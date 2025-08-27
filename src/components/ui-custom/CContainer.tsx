@@ -6,7 +6,9 @@ interface Props extends StackProps {
 }
 
 const CContainer = forwardRef<HTMLDivElement, Props>((props, ref) => {
+  // Props
   const { children, ...rest } = props;
+
   return (
     <VStack
       ref={ref}
