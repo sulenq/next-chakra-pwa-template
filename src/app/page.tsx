@@ -1,5 +1,1 @@
-import RootPage from "@/pages/RootPage";
-
-export default function Root() {
-  return <RootPage />;
-}
+export { default } from "@/pages/RootPage";

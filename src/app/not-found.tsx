@@ -1,5 +1,1 @@
-import NotFoundPage from "@/pages/errors/NotFoundPage";
-
-export default function MissingPage() {
-  return <NotFoundPage />;
-}
+export { default } from "@/pages/errors/NotFoundPage";

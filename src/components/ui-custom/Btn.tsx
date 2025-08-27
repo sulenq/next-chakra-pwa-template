@@ -3,17 +3,15 @@ import { useThemeConfig } from "@/context/useThemeConfig";
 import { Button, ButtonProps, IconButton } from "@chakra-ui/react";
 import { useMemo, forwardRef } from "react";
 
-export interface BButtonProps extends ButtonProps {
-  fRef?: React.Ref<HTMLButtonElement>;
+export interface BtnProps extends ButtonProps {
   children?: React.ReactNode;
   unclicky?: boolean;
   iconButton?: boolean;
 }
 
-const BButton = forwardRef<HTMLButtonElement, BButtonProps>((props, ref) => {
+const Btn = forwardRef<HTMLButtonElement, BtnProps>((props, ref) => {
   // Props
   const {
-    fRef,
     children,
     unclicky = false,
     iconButton = false,
@@ -58,7 +56,7 @@ const BButton = forwardRef<HTMLButtonElement, BButtonProps>((props, ref) => {
 
   return iconButton ? (
     <IconButton
-      ref={ref || fRef}
+      ref={ref}
       className={finalClassName}
       size={size}
       borderRadius={themeConfig.radii.component}
@@ -68,7 +66,7 @@ const BButton = forwardRef<HTMLButtonElement, BButtonProps>((props, ref) => {
     </IconButton>
   ) : (
     <Button
-      ref={ref || fRef}
+      ref={ref}
       className={finalClassName}
       fontWeight="semibold"
       size={size || (MAIN_BUTTON_SIZE as any)}
@@ -81,4 +79,6 @@ const BButton = forwardRef<HTMLButtonElement, BButtonProps>((props, ref) => {
   );
 });
 
-export default BButton;
+Btn.displayName = "Btn";
+
+export default Btn;
