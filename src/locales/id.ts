@@ -1,5 +1,93 @@
 const translations = {
   "back_to_main_page": "Kembali ke halaman utama",
+  "error_400_default": {
+    "title": "Bad Request",
+    "description": "Periksa kembali data atau langkah yang dilakukan."
+  },
+  "error_401_default": {
+    "title": "Unauthorized",
+    "description": "Kamu harus Sign in untuk mengakses ini."
+  },
+  "error_402_default": {
+    "title": "Payment Required",
+    "description": "Selesaikan pembayaran untuk melanjutkan."
+  },
+  "error_403_default": {
+    "title": "Forbidden",
+    "description": "Kamu tidak punya izin untuk melakukan ini."
+  },
+  "error_404_default": {
+    "title": "Not Found",
+    "description": "Data atau halaman yang diminta tidak tersedia."
+  },
+  "error_406_default": {
+    "title": "Not Acceptable",
+    "description": "Server tidak bisa memproses permintaan dengan format yang diberikan."
+  },
+  "error_408_default": {
+    "title": "Request Timeout",
+    "description": "Permintaan terlalu lama, silakan coba lagi."
+  },
+  "error_409_default": {
+    "title": "Conflict",
+    "description": "Data yang sama sudah ada."
+  },
+  "error_413_default": {
+    "title": "Payload Too Large",
+    "description": "Data terlalu besar, silakan kecilkan atau pisahkan."
+  },
+  "error_422_default": {
+    "title": "Validation Failed",
+    "description": "Beberapa data tidak valid, periksa kembali."
+  },
+  "error_429_default": {
+    "title": "Too Many Requests",
+    "description": "Silakan coba lagi nanti."
+  },
+  "error_500_default": {
+    "title": "Server Error",
+    "description": "Terjadi kesalahan di server, silakan coba lagi."
+  },
+  "error_503_default": {
+    "title": "Service Unavailable",
+    "description": "Layanan sedang tidak tersedia, silakan coba lagi."
+  },
+  "error_504_default": {
+    "title": "Gateway Timeout",
+    "description": "Permintaan ke server terlalu lama, silakan coba lagi."
+  },
+  "loading_delete_item": {
+    "title": "Delete Item",
+    "description": "Sedang menghapus data..."
+  },
+  "loading_fetch_data": {
+    "title": "Fetch Data",
+    "description": "Sedang mengambil data..."
+  },
+  "loading_reset_password": {
+    "title": "Reset Password",
+    "description": "Sedang memproses reset password..."
+  },
+  "loading_signin": {
+    "title": "Sign in",
+    "description": "Sedang Sign in..."
+  },
+  "loading_signout": {
+    "title": "Sign out",
+    "description": "Sedang Sign out..."
+  },
+  "loading_submit_form": {
+    "title": "Submit Form",
+    "description": "Sedang mengirim data..."
+  },
+  "loading_update_profile": {
+    "title": "Update Profile",
+    "description": "Sedang memperbarui profil..."
+  },
+  "loading_upload_file": {
+    "title": "Upload File",
+    "description": "Sedang mengunggah file..."
+  },
   "maintenance_page": {
     "description": "Kami sedang melakukan pemeliharaan untuk memberikan layanan yang lebih baik. Mohon maaf atas ketidaknyamanannya. Silakan cek kembali nanti."
   },
@@ -24,6 +112,38 @@ const translations = {
   "settings_navs_group": {
     "main": "Utama",
     "others": "Lainnya"
+  },
+  "success_200_default": {
+    "title": "OK",
+    "description": "Permintaan berhasil diproses."
+  },
+  "success_201_default": {
+    "title": "Created",
+    "description": "Data baru berhasil dibuat."
+  },
+  "success_202_default": {
+    "title": "Accepted",
+    "description": "Permintaan diterima dan sedang diproses."
+  },
+  "success_204_default": {
+    "title": "No Content",
+    "description": "Permintaan berhasil tapi tidak ada data untuk ditampilkan."
+  },
+  "success_206_default": {
+    "title": "Partial Content",
+    "description": "Hanya sebagian data yang dikirim."
+  },
+  "success_207_default": {
+    "title": "Multi-Status",
+    "description": "Beberapa operasi memiliki status berbeda."
+  },
+  "success_208_default": {
+    "title": "Already Reported",
+    "description": "Status telah dilaporkan sebelumnya."
+  },
+  "success_226_default": {
+    "title": "IM Used",
+    "description": "Resource berhasil dimodifikasi menggunakan instance-manipulation."
   }
 };
 

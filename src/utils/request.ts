@@ -1,16 +1,16 @@
 import axios from "axios";
-import { getAuthToken } from "./getAuthToken";
+import { getAuthToken, setAuthToken } from "./authToken";
 
+// Create Axios instance
 export const request = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
-  // withCredentials: true,
-  xsrfCookieName: "XSRF-TOKEN",
-  xsrfHeaderName: "X-XSRF-TOKEN",
   headers: {
     Accept: "application/json",
   },
+  withCredentials: true,
 });
 
+// Inject access token ke request
 request.interceptors.request.use(
   (config) => {
     const token = getAuthToken();
@@ -19,7 +19,40 @@ request.interceptors.request.use(
     }
     return config;
   },
-  (error) => {
+  (error) => Promise.reject(error)
+);
+
+// Helper function untuk refresh access token
+async function refreshAccessToken() {
+  return axios
+    .post(
+      `${process.env.NEXT_PUBLIC_API_BASE_URL}/auth/refresh`,
+      {},
+      { withCredentials: true }
+    )
+    .then((r) => {
+      const newToken = r.data.accessToken;
+      setAuthToken(newToken);
+      return newToken;
+    })
+    .catch(() => null);
+}
+
+// Response interceptor untuk auto-refresh
+request.interceptors.response.use(
+  (response) => response,
+  async (error) => {
+    const originalRequest = error.config;
+
+    if (error.response?.status === 401 && !originalRequest._retry) {
+      originalRequest._retry = true;
+      const newToken = await refreshAccessToken();
+      if (newToken) {
+        originalRequest.headers.Authorization = `Bearer ${newToken}`;
+        return request(originalRequest); // retry request
+      }
+    }
+
     return Promise.reject(error);
   }
 );
