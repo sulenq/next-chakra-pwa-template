@@ -137,19 +137,27 @@ export const show = {
   id: "Tampilkan",
   en: "Show",
 };
+export const optional = {
+  id: "Opsional",
+  en: "Optional",
+};
 export const back_to_main_page = {
   id: "Kembali ke halaman utama",
   en: "Back to main page",
 };
 
 // Message
-export const message_cannot_be_undone = {
+export const msg_cannot_be_undone = {
   id: "Aksi ini tidak dapat dibatalkan, harap hati-hati.",
   en: "This action cannot be undone, please be careful.",
 };
-export const message_soft_delete = {
+export const msg_soft_delete = {
   id: "Data akan disembunyikan dan bisa dikembalikan nanti.",
   en: "Data will be hidden but can be restored later.",
+};
+export const msg_required_form = {
+  id: "Tidak boleh kosong",
+  en: "Cannot be empty",
 };
 
 // Setting Page
@@ -166,6 +174,16 @@ export const theme = {
 };
 
 // Loading Toast
+export const loading_default = {
+  title: {
+    id: "Memuat",
+    en: "Loading",
+  },
+  description: {
+    id: "Permintaan sedang diproses...",
+    en: "The request is being processed...",
+  },
+};
 export const loading_signin = {
   title: { id: "Sign in", en: "Sign in" },
   description: { id: "Sedang Sign in...", en: "Signing in..." },
@@ -206,6 +224,16 @@ export const loading_reset_password = {
 };
 
 // Success Toast
+export const success_default = {
+  title: {
+    id: "Request successful",
+    en: "Request successful",
+  },
+  description: {
+    id: "Proses berjalan tanpa kendala.",
+    en: "Process completed without issues.",
+  },
+};
 export const success_200_default = {
   title: { id: "OK", en: "OK" },
   description: {
@@ -264,6 +292,20 @@ export const success_226_default = {
 };
 
 // Error Toast
+export const error_default = {
+  title: { id: "Terjadi kesalahan", en: "An error occurred" },
+  description: {
+    id: "Terjadi kesalahan yang tidak diketahui. Silakan coba lagi.",
+    en: "An unknown error occurred. Please try again.",
+  },
+};
+export const error_network = {
+  title: { id: "Gangguan koneksi ke server", en: "Server connection problem" },
+  description: {
+    id: "Tidak dapat terhubung ke server. Coba lagi nanti.",
+    en: "Unable to connect to the server. Try again later.",
+  },
+};
 export const error_400_default = {
   title: { id: "Bad Request", en: "Bad Request" },
   description: {

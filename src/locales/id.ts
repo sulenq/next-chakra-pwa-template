@@ -1,5 +1,13 @@
 const translations = {
+  "add": "Tambah",
+  "all": "Semua",
+  "back": "Kembali",
   "back_to_main_page": "Kembali ke halaman utama",
+  "cancel": "Batal",
+  "clear": "Clear",
+  "close": "Tutup",
+  "day": "Hari",
+  "delete_": "Hapus",
   "error_400_default": {
     "title": "Bad Request",
     "description": "Periksa kembali data atau langkah yang dilakukan."
@@ -56,6 +64,19 @@ const translations = {
     "title": "Gateway Timeout",
     "description": "Permintaan ke server terlalu lama, silakan coba lagi."
   },
+  "error_default": {
+    "title": "Terjadi kesalahan",
+    "description": "Terjadi kesalahan yang tidak diketahui. Silakan coba lagi."
+  },
+  "error_network": {
+    "title": "Gangguan koneksi ke server",
+    "description": "Tidak dapat terhubung ke server. Coba lagi nanti."
+  },
+  "hide": "Sembunyikan",
+  "loading_default": {
+    "title": "Memuat",
+    "description": "Permintaan sedang diproses..."
+  },
   "loading_delete_item": {
     "title": "Delete Item",
     "description": "Sedang menghapus data..."
@@ -96,10 +117,24 @@ const translations = {
   "missing_page": {
     "description": "Halaman yang Anda cari tidak tersedia. Kemungkinan ada URL yang keliru atau halaman ini sudah tidak tersedia."
   },
+  "month": "Bulan",
+  "msg_cannot_be_undone": "Aksi ini tidak dapat dibatalkan, harap hati-hati.",
+  "msg_required_form": "Tidak boleh kosong",
+  "msg_soft_delete": "Data akan disembunyikan dan bisa dikembalikan nanti.",
   "navs": {
     "master_data": "Master data",
     "settings": "Pengaturan",
     "profile": "Profil"
+  },
+  "next": "Selanjutnya",
+  "optional": "Opsional",
+  "previous": "Sebelumnya",
+  "reset": "Reset",
+  "save": "Simpan",
+  "search": "Cari",
+  "settings_display": {
+    "title": "Tampilan",
+    "description": "Pengaturan tampilan aplikasi."
   },
   "settings_navs": {
     "display": "Tampilan",
@@ -113,6 +148,8 @@ const translations = {
     "main": "Utama",
     "others": "Lainnya"
   },
+  "show": "Tampilkan",
+  "submit": "Submit",
   "success_200_default": {
     "title": "OK",
     "description": "Permintaan berhasil diproses."
@@ -144,7 +181,16 @@ const translations = {
   "success_226_default": {
     "title": "IM Used",
     "description": "Resource berhasil dimodifikasi menggunakan instance-manipulation."
-  }
+  },
+  "success_default": {
+    "title": "Request successful",
+    "description": "Proses berjalan tanpa kendala."
+  },
+  "theme": "Tema",
+  "update": "Ubah",
+  "view": "Lihat",
+  "week": "Minggu",
+  "year": "Tahun"
 };
 
 export default translations;

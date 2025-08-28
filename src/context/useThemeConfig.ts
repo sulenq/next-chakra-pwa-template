@@ -1,5 +1,5 @@
 import { IMAGES_PATH } from "@/constants/paths";
-import { getStorage } from "@/utils/browser";
+import { getStorage } from "@/utils/client";
 import { create } from "zustand";
 
 const LOCAL_STORAGE_KEY = "theme_config";

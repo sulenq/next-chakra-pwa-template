@@ -1,4 +1,4 @@
-import { getStorage, removeStorage, setStorage } from "./browser";
+import { getStorage, removeStorage, setStorage } from "./client";
 
 export function getAuthToken() {
   return getStorage("__auth_token") || null;

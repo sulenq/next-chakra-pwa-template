@@ -1,5 +1,13 @@
 const translations = {
+  "add": "Add",
+  "all": "All",
+  "back": "Back",
   "back_to_main_page": "Back to main page",
+  "cancel": "Cancel",
+  "clear": "Clear",
+  "close": "Close",
+  "day": "Day",
+  "delete_": "Delete",
   "error_400_default": {
     "title": "Bad Request",
     "description": "Please review your data or actions."
@@ -56,6 +64,19 @@ const translations = {
     "title": "Gateway Timeout",
     "description": "The server took too long to respond, please try again."
   },
+  "error_default": {
+    "title": "An error occurred",
+    "description": "An unknown error occurred. Please try again."
+  },
+  "error_network": {
+    "title": "Server connection problem",
+    "description": "Unable to connect to the server. Try again later."
+  },
+  "hide": "Hide",
+  "loading_default": {
+    "title": "Loading",
+    "description": "The request is being processed..."
+  },
   "loading_delete_item": {
     "title": "Delete Item",
     "description": "Deleting item..."
@@ -96,10 +117,24 @@ const translations = {
   "missing_page": {
     "description": "The page you are looking for is not available. There may be an incorrect URL or the page is no longer available."
   },
+  "month": "Month",
+  "msg_cannot_be_undone": "This action cannot be undone, please be careful.",
+  "msg_required_form": "Cannot be empty",
+  "msg_soft_delete": "Data will be hidden but can be restored later.",
   "navs": {
     "master_data": "Master data",
     "settings": "Settings",
     "profile": "Profile"
+  },
+  "next": "Next",
+  "optional": "Optional",
+  "previous": "Previous",
+  "reset": "Reset",
+  "save": "Save",
+  "search": "Search",
+  "settings_display": {
+    "title": "Display",
+    "description": "Application display settings."
   },
   "settings_navs": {
     "display": "Display",
@@ -113,6 +148,8 @@ const translations = {
     "main": "Main",
     "others": "Others"
   },
+  "show": "Show",
+  "submit": "Submit",
   "success_200_default": {
     "title": "OK",
     "description": "Request was successful."
@@ -144,7 +181,16 @@ const translations = {
   "success_226_default": {
     "title": "IM Used",
     "description": "Resource successfully modified using instance-manipulation."
-  }
+  },
+  "success_default": {
+    "title": "Request successful",
+    "description": "Process completed without issues."
+  },
+  "theme": "Theme",
+  "update": "Update",
+  "view": "View",
+  "week": "Week",
+  "year": "Year"
 };
 
 export default translations;

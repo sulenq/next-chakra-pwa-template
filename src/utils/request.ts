@@ -4,41 +4,21 @@ import { getAuthToken, setAuthToken } from "./authToken";
 // Create Axios instance
 export const request = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
-  headers: {
-    Accept: "application/json",
-  },
-  withCredentials: true,
+  headers: { Accept: "application/json" },
+  // withCredentials: true,
 });
 
-// Inject access token ke request
+// Inject access token to request
 request.interceptors.request.use(
   (config) => {
     const token = getAuthToken();
-    if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
-    }
+    if (token) config.headers.Authorization = `Bearer ${token}`;
     return config;
   },
   (error) => Promise.reject(error)
 );
 
-// Helper function untuk refresh access token
-async function refreshAccessToken() {
-  return axios
-    .post(
-      `${process.env.NEXT_PUBLIC_API_BASE_URL}/auth/refresh`,
-      {},
-      { withCredentials: true }
-    )
-    .then((r) => {
-      const newToken = r.data.accessToken;
-      setAuthToken(newToken);
-      return newToken;
-    })
-    .catch(() => null);
-}
-
-// Response interceptor untuk auto-refresh
+// Response interceptor for auto-refresh
 request.interceptors.response.use(
   (response) => response,
   async (error) => {
@@ -56,3 +36,19 @@ request.interceptors.response.use(
     return Promise.reject(error);
   }
 );
+
+// Refresh access token helper
+async function refreshAccessToken(): Promise<string | null> {
+  try {
+    const r = await axios.post(
+      `${process.env.NEXT_PUBLIC_API_BASE_URL}/auth/refresh`,
+      {},
+      { withCredentials: true }
+    );
+    const newToken = r.data.accessToken;
+    setAuthToken(newToken);
+    return newToken;
+  } catch {
+    return null;
+  }
+}

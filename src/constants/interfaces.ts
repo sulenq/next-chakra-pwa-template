@@ -15,6 +15,22 @@ import {
   Type__TableOptions,
   Type__TimeRange,
 } from "./types";
+import { AxiosRequestConfig, AxiosResponse } from "axios";
+
+// HTTP
+export interface Interface__RequestState<T = any> {
+  loading: boolean;
+  status: number | null;
+  error: any;
+  response: AxiosResponse<T> | null;
+}
+export interface Interface__Req<T = any> {
+  config: AxiosRequestConfig;
+  onResolve?: {
+    onSuccess?: (r: AxiosResponse<T>) => void;
+    onError?: (e: any) => void;
+  };
+}
 
 // CUD
 export interface Interface__CUD {
