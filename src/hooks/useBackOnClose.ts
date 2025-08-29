@@ -1,4 +1,3 @@
-import { usePathname } from "next/navigation";
 import { useCallback, useEffect } from "react";
 
 const useBackOnClose = (
@@ -7,7 +6,7 @@ const useBackOnClose = (
   onOpen: () => void,
   onClose: () => void
 ) => {
-  const pathname = usePathname();
+  const url = typeof window !== "undefined" ? window.location.href : "";
 
   // handle onOpen, push history if needed
   useEffect(() => {
@@ -49,12 +48,14 @@ const useBackOnClose = (
     const currentUrl = new URL(window.location.href);
     const modalId = currentUrl.searchParams.get(id);
 
+    console.log("modalId", modalId);
+
     if (modalId) {
       onOpen();
     } else {
       onClose();
     }
-  }, [pathname, id, onOpen]);
+  }, [url, id, onOpen]);
 };
 
 export default useBackOnClose;
