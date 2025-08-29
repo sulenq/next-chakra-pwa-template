@@ -1,9 +1,11 @@
+"use client";
+
 import BButton from "@/components/ui-custom/Btn";
+import NavLink from "@/components/ui-custom/NavLink";
 import ExiumWatermark from "@/components/widget/ExiumWatermark";
 import useLang from "@/context/useLang";
 import { useThemeConfig } from "@/context/useThemeConfig";
 import { Text, VStack } from "@chakra-ui/react";
-import Link from "next/link";
 
 export default function MaintenancePage() {
   // Contexts
@@ -21,11 +23,11 @@ export default function MaintenancePage() {
           {l.maintenance_page.description}
         </Text>
 
-        <Link href={"/"}>
+        <NavLink to={"/"}>
           <BButton colorPalette={themeConfig.colorPalette}>
             {l.back_to_main_page}
           </BButton>
-        </Link>
+        </NavLink>
       </VStack>
 
       <VStack w={"full"} py={4}>
