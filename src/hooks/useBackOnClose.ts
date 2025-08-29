@@ -48,8 +48,6 @@ const useBackOnClose = (
     const currentUrl = new URL(window.location.href);
     const modalId = currentUrl.searchParams.get(id);
 
-    console.log("modalId", modalId);
-
     if (modalId) {
       onOpen();
     } else {

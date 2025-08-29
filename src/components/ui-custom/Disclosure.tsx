@@ -44,6 +44,7 @@ import {
 } from "@/components/ui/drawer";
 import CContainer from "./CContainer";
 import { SM_SCREEN_W_NUMBER } from "@/constants/sizes";
+import { useEffect } from "react";
 
 const DisclosureRoot = ({ children, ...props }: any) => {
   // Utils
@@ -88,6 +89,16 @@ type DisclosureContentProps = {
 const DisclosureContent = ({ children, ...props }: DisclosureContentProps) => {
   const { themeConfig } = useThemeConfig();
   const iss = useIsSmScreenWidth();
+
+  useEffect(() => {
+    const handleKeyUp = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        back();
+      }
+    };
+    document.addEventListener("keyup", handleKeyUp);
+    return () => document.removeEventListener("keyup", handleKeyUp);
+  }, []);
 
   return iss ? (
     <DrawerContent
