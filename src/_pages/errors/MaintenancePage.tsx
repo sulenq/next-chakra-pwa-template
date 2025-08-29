@@ -1,5 +1,4 @@
 "use client";
-export const dynamic = "force-dynamic";
 
 import BButton from "@/components/ui-custom/Btn";
 import NavLink from "@/components/ui-custom/NavLink";
