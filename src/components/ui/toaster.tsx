@@ -33,7 +33,6 @@ export const Toaster = () => {
               color={
                 toast.type === "info" || toast.type === "loading" ? "" : "white"
               }
-              maxW={"360px"}
               bg={toast.type === "success" ? "green.600 !important" : ""}
             >
               {toast.type === "loading" ? (

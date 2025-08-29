@@ -1,13 +1,23 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import Loader from "../ui-custom/Loader";
+import { APP } from "@/constants/_app";
 import { useFirefoxPaddingY } from "@/hooks/useFirefoxPaddingY";
+import { Center } from "@chakra-ui/react";
+import { useEffect, useState } from "react";
+import Img from "../ui-custom/Img";
 
 interface Props {
   children: React.ReactNode;
   fallback?: React.ReactNode;
 }
+
+const DefaultFallback = () => {
+  return (
+    <Center minH={"100dvh"}>
+      <Img alt={`${APP.name} Logo`} src={"/logo.svg"} />
+    </Center>
+  );
+};
 
 export default function ClientOnly(props: Props) {
   // Props
@@ -23,7 +33,7 @@ export default function ClientOnly(props: Props) {
     setMounted(true);
   }, []);
 
-  if (!mounted) return <>{fallback || <Loader minH={"100dvh"} />}</>;
+  if (!mounted) return <>{fallback || <DefaultFallback />}</>;
 
   return <>{children}</>;
 }

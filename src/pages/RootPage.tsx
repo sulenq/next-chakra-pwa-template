@@ -4,6 +4,7 @@ import Btn from "@/components/ui-custom/Btn";
 import CContainer from "@/components/ui-custom/CContainer";
 import Img from "@/components/ui-custom/Img";
 import LangSwitcher from "@/components/ui-custom/LangSwitcher";
+import NavLink from "@/components/ui-custom/NavLink";
 import P from "@/components/ui-custom/P";
 import { Avatar } from "@/components/ui/avatar";
 import { ColorModeButton } from "@/components/ui/color-mode";
@@ -27,7 +28,8 @@ const Signedin = () => {
   // Hooks
   const { req, loading } = useRequest({
     id: "logout",
-    showLoadingToast: false,
+    loadingMessage: l.loading_signout,
+    successMessage: l.success_signout,
   });
 
   // Utils
@@ -61,11 +63,11 @@ const Signedin = () => {
       </VStack>
 
       <VStack>
-        {/* <NavLink to="/workspace" w={"fit"}> */}
-        <Btn w={"160px"} colorPalette={themeConfig.colorPalette}>
-          {l.access} App
-        </Btn>
-        {/* </NavLink> */}
+        <NavLink to="/dashboard" w={"fit"}>
+          <Btn w={"160px"} colorPalette={themeConfig.colorPalette}>
+            {l.access} App
+          </Btn>
+        </NavLink>
 
         <Btn
           w={"160px"}

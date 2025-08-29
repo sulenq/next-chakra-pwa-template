@@ -32,6 +32,14 @@ const SigninForm = (props: Props) => {
   const { req, loading } = useRequest({
     id: "signin",
     loadingMessage: l.loading_signin,
+    successMessage: l.success_signin,
+    errorMessage: {
+      400: {
+        INVALID_CREDENTIALS: {
+          ...l.error_signin_wrong_credentials,
+        },
+      },
+    },
   });
 
   // States

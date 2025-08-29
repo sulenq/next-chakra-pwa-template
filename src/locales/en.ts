@@ -10,7 +10,7 @@ const translations = {
   "day": "Day",
   "delete_": "Delete",
   "error_400_default": {
-    "title": "Bad Request",
+    "title": "Bad request",
     "description": "Please review your data or actions."
   },
   "error_401_default": {
@@ -18,7 +18,7 @@ const translations = {
     "description": "You need to Sign in to access this."
   },
   "error_402_default": {
-    "title": "Payment Required",
+    "title": "Payment required",
     "description": "Payment required to proceed."
   },
   "error_403_default": {
@@ -26,15 +26,15 @@ const translations = {
     "description": "You don't have permission to perform this action."
   },
   "error_404_default": {
-    "title": "Not Found",
+    "title": "Not found",
     "description": "The requested data or page is not available."
   },
   "error_406_default": {
-    "title": "Not Acceptable",
+    "title": "Not acceptable",
     "description": "The server cannot process the request with the provided format."
   },
   "error_408_default": {
-    "title": "Request Timeout",
+    "title": "Request timeout",
     "description": "The request took too long, please try again."
   },
   "error_409_default": {
@@ -42,27 +42,27 @@ const translations = {
     "description": "The same data already exists."
   },
   "error_413_default": {
-    "title": "Payload Too Large",
+    "title": "Payload too large",
     "description": "Data too large, reduce or split it."
   },
   "error_422_default": {
-    "title": "Validation Failed",
+    "title": "Validation failed",
     "description": "Some data is invalid, please review."
   },
   "error_429_default": {
-    "title": "Too Many Requests",
+    "title": "Too many requests",
     "description": "Please try again later."
   },
   "error_500_default": {
-    "title": "Server Error",
+    "title": "Server error",
     "description": "An error occurred on the server, please try again."
   },
   "error_503_default": {
-    "title": "Service Unavailable",
+    "title": "Service unavailable",
     "description": "The service is currently unavailable, please try again."
   },
   "error_504_default": {
-    "title": "Gateway Timeout",
+    "title": "Gateway timeout",
     "description": "The server took too long to respond, please try again."
   },
   "error_default": {
@@ -73,6 +73,10 @@ const translations = {
     "title": "Server connection problem",
     "description": "Unable to connect to the server. Try again later."
   },
+  "error_signin_wrong_credentials": {
+    "title": "Login failed",
+    "description": "Invalid credentials."
+  },
   "hide": "Hide",
   "language": "Language",
   "loading_default": {
@@ -80,35 +84,35 @@ const translations = {
     "description": "The request is being processed..."
   },
   "loading_delete_item": {
-    "title": "Delete Item",
+    "title": "Delete item",
     "description": "Deleting item..."
   },
   "loading_fetch_data": {
-    "title": "Fetch Data",
+    "title": "Fetch data",
     "description": "Fetching data..."
   },
   "loading_reset_password": {
-    "title": "Reset Password",
+    "title": "Reset password",
     "description": "Resetting password..."
   },
   "loading_signin": {
     "title": "Sign in",
-    "description": "Signing in..."
+    "description": "Verifying account..."
   },
   "loading_signout": {
     "title": "Sign out",
-    "description": "Signing out..."
+    "description": "Ending session..."
   },
   "loading_submit_form": {
-    "title": "Submit Form",
+    "title": "Submit form",
     "description": "Submitting data..."
   },
   "loading_update_profile": {
-    "title": "Update Profile",
+    "title": "Update profile",
     "description": "Updating profile..."
   },
   "loading_upload_file": {
-    "title": "Upload File",
+    "title": "Upload file",
     "description": "Uploading file..."
   },
   "maintenance_page": {
@@ -164,7 +168,7 @@ const translations = {
   "show": "Show",
   "submit": "Submit",
   "success_200_default": {
-    "title": "OK",
+    "title": "Ok",
     "description": "Request was successful."
   },
   "success_201_default": {
@@ -176,28 +180,36 @@ const translations = {
     "description": "Request accepted and is being processed."
   },
   "success_204_default": {
-    "title": "No Content",
+    "title": "No content",
     "description": "Request succeeded but no content to display."
   },
   "success_206_default": {
-    "title": "Partial Content",
+    "title": "Partial content",
     "description": "Only part of the data was sent."
   },
   "success_207_default": {
-    "title": "Multi-Status",
+    "title": "Multi-status",
     "description": "Multiple operations have different statuses."
   },
   "success_208_default": {
-    "title": "Already Reported",
+    "title": "Already reported",
     "description": "Status has already been reported."
   },
   "success_226_default": {
-    "title": "IM Used",
+    "title": "IM used",
     "description": "Resource successfully modified using instance-manipulation."
   },
   "success_default": {
     "title": "Request successful",
     "description": "Process completed without issues."
+  },
+  "success_signin": {
+    "title": "Sign in successful",
+    "description": "You are now signed in."
+  },
+  "success_signout": {
+    "title": "Sign out successful",
+    "description": "You are now signed out."
   },
   "theme": "Theme",
   "update": "Update",

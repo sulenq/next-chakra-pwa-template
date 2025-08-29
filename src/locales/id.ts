@@ -10,7 +10,7 @@ const translations = {
   "day": "Hari",
   "delete_": "Hapus",
   "error_400_default": {
-    "title": "Bad Request",
+    "title": "Bad request",
     "description": "Periksa kembali data atau langkah yang dilakukan."
   },
   "error_401_default": {
@@ -18,7 +18,7 @@ const translations = {
     "description": "Kamu harus Sign in untuk mengakses ini."
   },
   "error_402_default": {
-    "title": "Payment Required",
+    "title": "Payment required",
     "description": "Selesaikan pembayaran untuk melanjutkan."
   },
   "error_403_default": {
@@ -26,15 +26,15 @@ const translations = {
     "description": "Kamu tidak punya izin untuk melakukan ini."
   },
   "error_404_default": {
-    "title": "Not Found",
+    "title": "Not found",
     "description": "Data atau halaman yang diminta tidak tersedia."
   },
   "error_406_default": {
-    "title": "Not Acceptable",
+    "title": "Not acceptable",
     "description": "Server tidak bisa memproses permintaan dengan format yang diberikan."
   },
   "error_408_default": {
-    "title": "Request Timeout",
+    "title": "Request timeout",
     "description": "Permintaan terlalu lama, silakan coba lagi."
   },
   "error_409_default": {
@@ -42,27 +42,27 @@ const translations = {
     "description": "Data yang sama sudah ada."
   },
   "error_413_default": {
-    "title": "Payload Too Large",
+    "title": "Payload too large",
     "description": "Data terlalu besar, silakan kecilkan atau pisahkan."
   },
   "error_422_default": {
-    "title": "Validation Failed",
+    "title": "Validation failed",
     "description": "Beberapa data tidak valid, periksa kembali."
   },
   "error_429_default": {
-    "title": "Too Many Requests",
+    "title": "Too many requests",
     "description": "Silakan coba lagi nanti."
   },
   "error_500_default": {
-    "title": "Server Error",
+    "title": "Server error",
     "description": "Terjadi kesalahan di server, silakan coba lagi."
   },
   "error_503_default": {
-    "title": "Service Unavailable",
+    "title": "Service unavailable",
     "description": "Layanan sedang tidak tersedia, silakan coba lagi."
   },
   "error_504_default": {
-    "title": "Gateway Timeout",
+    "title": "Gateway timeout",
     "description": "Permintaan ke server terlalu lama, silakan coba lagi."
   },
   "error_default": {
@@ -73,6 +73,10 @@ const translations = {
     "title": "Gangguan koneksi ke server",
     "description": "Tidak dapat terhubung ke server. Coba lagi nanti."
   },
+  "error_signin_wrong_credentials": {
+    "title": "Login gagal",
+    "description": "Kredensial tidak valid."
+  },
   "hide": "Sembunyikan",
   "language": "Bahasa",
   "loading_default": {
@@ -80,35 +84,35 @@ const translations = {
     "description": "Permintaan sedang diproses..."
   },
   "loading_delete_item": {
-    "title": "Delete Item",
+    "title": "Delete item",
     "description": "Sedang menghapus data..."
   },
   "loading_fetch_data": {
-    "title": "Fetch Data",
+    "title": "Fetch data",
     "description": "Sedang mengambil data..."
   },
   "loading_reset_password": {
-    "title": "Reset Password",
+    "title": "Reset password",
     "description": "Sedang memproses reset password..."
   },
   "loading_signin": {
     "title": "Sign in",
-    "description": "Sedang Sign in..."
+    "description": "Memverifikasi akun..."
   },
   "loading_signout": {
     "title": "Sign out",
-    "description": "Sedang Sign out..."
+    "description": "Mengakhiri sesi..."
   },
   "loading_submit_form": {
-    "title": "Submit Form",
+    "title": "Submit form",
     "description": "Sedang mengirim data..."
   },
   "loading_update_profile": {
-    "title": "Update Profile",
+    "title": "Update profile",
     "description": "Sedang memperbarui profil..."
   },
   "loading_upload_file": {
-    "title": "Upload File",
+    "title": "Upload file",
     "description": "Sedang mengunggah file..."
   },
   "maintenance_page": {
@@ -164,7 +168,7 @@ const translations = {
   "show": "Tampilkan",
   "submit": "Submit",
   "success_200_default": {
-    "title": "OK",
+    "title": "Ok",
     "description": "Permintaan berhasil diproses."
   },
   "success_201_default": {
@@ -176,28 +180,36 @@ const translations = {
     "description": "Permintaan diterima dan sedang diproses."
   },
   "success_204_default": {
-    "title": "No Content",
+    "title": "No content",
     "description": "Permintaan berhasil tapi tidak ada data untuk ditampilkan."
   },
   "success_206_default": {
-    "title": "Partial Content",
+    "title": "Partial content",
     "description": "Hanya sebagian data yang dikirim."
   },
   "success_207_default": {
-    "title": "Multi-Status",
+    "title": "Multi-status",
     "description": "Beberapa operasi memiliki status berbeda."
   },
   "success_208_default": {
-    "title": "Already Reported",
+    "title": "Already reported",
     "description": "Status telah dilaporkan sebelumnya."
   },
   "success_226_default": {
-    "title": "IM Used",
+    "title": "Im used",
     "description": "Resource berhasil dimodifikasi menggunakan instance-manipulation."
   },
   "success_default": {
     "title": "Request successful",
     "description": "Proses berjalan tanpa kendala."
+  },
+  "success_signin": {
+    "title": "Sign in berhasil",
+    "description": "Anda telah masuk."
+  },
+  "success_signout": {
+    "title": "Sign out berhasil",
+    "description": "Anda telah keluar."
   },
   "theme": "Tema",
   "update": "Ubah",

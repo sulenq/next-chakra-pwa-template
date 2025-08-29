@@ -231,10 +231,7 @@ export const theme = {
 
 // Loading Toast
 export const loading_default = {
-  title: {
-    id: "Memuat",
-    en: "Loading",
-  },
+  title: { id: "Memuat", en: "Loading" },
   description: {
     id: "Permintaan sedang diproses...",
     en: "The request is being processed...",
@@ -242,37 +239,37 @@ export const loading_default = {
 };
 export const loading_signin = {
   title: { id: "Sign in", en: "Sign in" },
-  description: { id: "Sedang Sign in...", en: "Signing in..." },
+  description: { id: "Memverifikasi akun...", en: "Verifying account..." },
 };
 export const loading_signout = {
   title: { id: "Sign out", en: "Sign out" },
-  description: { id: "Sedang Sign out...", en: "Signing out..." },
+  description: { id: "Mengakhiri sesi...", en: "Ending session..." },
 };
 export const loading_fetch_data = {
-  title: { id: "Fetch Data", en: "Fetch Data" },
+  title: { id: "Fetch data", en: "Fetch data" },
   description: { id: "Sedang mengambil data...", en: "Fetching data..." },
 };
 export const loading_submit_form = {
-  title: { id: "Submit Form", en: "Submit Form" },
+  title: { id: "Submit form", en: "Submit form" },
   description: { id: "Sedang mengirim data...", en: "Submitting data..." },
 };
 export const loading_upload_file = {
-  title: { id: "Upload File", en: "Upload File" },
+  title: { id: "Upload file", en: "Upload file" },
   description: { id: "Sedang mengunggah file...", en: "Uploading file..." },
 };
 export const loading_delete_item = {
-  title: { id: "Delete Item", en: "Delete Item" },
+  title: { id: "Delete item", en: "Delete item" },
   description: { id: "Sedang menghapus data...", en: "Deleting item..." },
 };
 export const loading_update_profile = {
-  title: { id: "Update Profile", en: "Update Profile" },
+  title: { id: "Update profile", en: "Update profile" },
   description: {
     id: "Sedang memperbarui profil...",
     en: "Updating profile...",
   },
 };
 export const loading_reset_password = {
-  title: { id: "Reset Password", en: "Reset Password" },
+  title: { id: "Reset password", en: "Reset password" },
   description: {
     id: "Sedang memproses reset password...",
     en: "Resetting password...",
@@ -281,17 +278,22 @@ export const loading_reset_password = {
 
 // Success Toast
 export const success_default = {
-  title: {
-    id: "Request successful",
-    en: "Request successful",
-  },
+  title: { id: "Request successful", en: "Request successful" },
   description: {
     id: "Proses berjalan tanpa kendala.",
     en: "Process completed without issues.",
   },
 };
+export const success_signin = {
+  title: { id: "Sign in berhasil", en: "Sign in successful" },
+  description: { id: "Anda telah masuk.", en: "You are now signed in." },
+};
+export const success_signout = {
+  title: { id: "Sign out berhasil", en: "Sign out successful" },
+  description: { id: "Anda telah keluar.", en: "You are now signed out." },
+};
 export const success_200_default = {
-  title: { id: "OK", en: "OK" },
+  title: { id: "Ok", en: "Ok" },
   description: {
     id: "Permintaan berhasil diproses.",
     en: "Request was successful.",
@@ -312,35 +314,35 @@ export const success_202_default = {
   },
 };
 export const success_204_default = {
-  title: { id: "No Content", en: "No Content" },
+  title: { id: "No content", en: "No content" },
   description: {
     id: "Permintaan berhasil tapi tidak ada data untuk ditampilkan.",
     en: "Request succeeded but no content to display.",
   },
 };
 export const success_206_default = {
-  title: { id: "Partial Content", en: "Partial Content" },
+  title: { id: "Partial content", en: "Partial content" },
   description: {
     id: "Hanya sebagian data yang dikirim.",
     en: "Only part of the data was sent.",
   },
 };
 export const success_207_default = {
-  title: { id: "Multi-Status", en: "Multi-Status" },
+  title: { id: "Multi-status", en: "Multi-status" },
   description: {
     id: "Beberapa operasi memiliki status berbeda.",
     en: "Multiple operations have different statuses.",
   },
 };
 export const success_208_default = {
-  title: { id: "Already Reported", en: "Already Reported" },
+  title: { id: "Already reported", en: "Already reported" },
   description: {
     id: "Status telah dilaporkan sebelumnya.",
     en: "Status has already been reported.",
   },
 };
 export const success_226_default = {
-  title: { id: "IM Used", en: "IM Used" },
+  title: { id: "Im used", en: "IM used" },
   description: {
     id: "Resource berhasil dimodifikasi menggunakan instance-manipulation.",
     en: "Resource successfully modified using instance-manipulation.",
@@ -355,6 +357,10 @@ export const error_default = {
     en: "An unknown error occurred. Please try again.",
   },
 };
+export const error_signin_wrong_credentials = {
+  title: { id: "Login gagal", en: "Login failed" },
+  description: { id: "Kredensial tidak valid.", en: "Invalid credentials." },
+};
 export const error_network = {
   title: { id: "Gangguan koneksi ke server", en: "Server connection problem" },
   description: {
@@ -363,7 +369,7 @@ export const error_network = {
   },
 };
 export const error_400_default = {
-  title: { id: "Bad Request", en: "Bad Request" },
+  title: { id: "Bad request", en: "Bad request" },
   description: {
     id: "Periksa kembali data atau langkah yang dilakukan.",
     en: "Please review your data or actions.",
@@ -377,7 +383,7 @@ export const error_401_default = {
   },
 };
 export const error_402_default = {
-  title: { id: "Payment Required", en: "Payment Required" },
+  title: { id: "Payment required", en: "Payment required" },
   description: {
     id: "Selesaikan pembayaran untuk melanjutkan.",
     en: "Payment required to proceed.",
@@ -391,21 +397,21 @@ export const error_403_default = {
   },
 };
 export const error_404_default = {
-  title: { id: "Not Found", en: "Not Found" },
+  title: { id: "Not found", en: "Not found" },
   description: {
     id: "Data atau halaman yang diminta tidak tersedia.",
     en: "The requested data or page is not available.",
   },
 };
 export const error_406_default = {
-  title: { id: "Not Acceptable", en: "Not Acceptable" },
+  title: { id: "Not acceptable", en: "Not acceptable" },
   description: {
     id: "Server tidak bisa memproses permintaan dengan format yang diberikan.",
     en: "The server cannot process the request with the provided format.",
   },
 };
 export const error_408_default = {
-  title: { id: "Request Timeout", en: "Request Timeout" },
+  title: { id: "Request timeout", en: "Request timeout" },
   description: {
     id: "Permintaan terlalu lama, silakan coba lagi.",
     en: "The request took too long, please try again.",
@@ -419,42 +425,42 @@ export const error_409_default = {
   },
 };
 export const error_413_default = {
-  title: { id: "Payload Too Large", en: "Payload Too Large" },
+  title: { id: "Payload too large", en: "Payload too large" },
   description: {
     id: "Data terlalu besar, silakan kecilkan atau pisahkan.",
     en: "Data too large, reduce or split it.",
   },
 };
 export const error_422_default = {
-  title: { id: "Validation Failed", en: "Validation Failed" },
+  title: { id: "Validation failed", en: "Validation failed" },
   description: {
     id: "Beberapa data tidak valid, periksa kembali.",
     en: "Some data is invalid, please review.",
   },
 };
 export const error_429_default = {
-  title: { id: "Too Many Requests", en: "Too Many Requests" },
+  title: { id: "Too many requests", en: "Too many requests" },
   description: {
     id: "Silakan coba lagi nanti.",
     en: "Please try again later.",
   },
 };
 export const error_500_default = {
-  title: { id: "Server Error", en: "Server Error" },
+  title: { id: "Server error", en: "Server error" },
   description: {
     id: "Terjadi kesalahan di server, silakan coba lagi.",
     en: "An error occurred on the server, please try again.",
   },
 };
 export const error_503_default = {
-  title: { id: "Service Unavailable", en: "Service Unavailable" },
+  title: { id: "Service unavailable", en: "Service unavailable" },
   description: {
     id: "Layanan sedang tidak tersedia, silakan coba lagi.",
     en: "The service is currently unavailable, please try again.",
   },
 };
 export const error_504_default = {
-  title: { id: "Gateway Timeout", en: "Gateway Timeout" },
+  title: { id: "Gateway timeout", en: "Gateway timeout" },
   description: {
     id: "Permintaan ke server terlalu lama, silakan coba lagi.",
     en: "The server took too long to respond, please try again.",
