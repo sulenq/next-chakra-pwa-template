@@ -5,6 +5,7 @@ import {
 } from "@/constants/interfaces";
 import useLang from "@/context/useLang";
 import { clearAuthToken } from "@/utils/authToken";
+import { removeStorage } from "@/utils/client";
 import { request } from "@/utils/request";
 import { useRouter } from "next/navigation";
 import { useCallback, useRef, useState } from "react";
@@ -151,7 +152,7 @@ export default function useRequest<T = any>(props: Props) {
         switch (statusCode) {
           case 401:
           case 403:
-            localStorage.removeItem("__auth_token");
+            removeStorage("__auth_token");
             clearAuthToken();
             router?.push(signinPath);
             break;

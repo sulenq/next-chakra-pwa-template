@@ -1,3 +1,4 @@
+import { getStorage, setStorage } from "@/utils/client";
 import { create } from "zustand";
 import en from "../locales/en";
 import id from "../locales/id";
@@ -19,12 +20,12 @@ interface Props {
 const useLang = create<Props>((set) => {
   const getStoredLang = (): keyof typeof translations => {
     try {
-      const stored = localStorage.getItem(STORAGE_KEY);
+      const stored = getStorage(STORAGE_KEY);
       if (stored && stored in translations)
         return stored as keyof typeof translations;
-      localStorage.setItem(STORAGE_KEY, DEFAULT);
+      setStorage(STORAGE_KEY, DEFAULT);
     } catch (error) {
-      console.error("Failed to access language from localStorage:", error);
+      console.error("Failed to access language from local storage:", error);
     }
     return DEFAULT;
   };
@@ -37,7 +38,7 @@ const useLang = create<Props>((set) => {
     setLang: (newState) =>
       set((state) => {
         if (state.lang !== newState) {
-          localStorage.setItem(STORAGE_KEY, newState);
+          setStorage(STORAGE_KEY, newState);
           return {
             lang: newState,
             l: translations[newState],

@@ -1,5 +1,5 @@
 import { IMAGES_PATH } from "@/constants/paths";
-import { getStorage } from "@/utils/client";
+import { getStorage, setStorage } from "@/utils/client";
 import { create } from "zustand";
 
 const LOCAL_STORAGE_KEY = "theme_config";
@@ -40,7 +40,7 @@ export const useThemeConfig = create<Props>((set) => {
     setThemeConfig: (config) => {
       set((state) => {
         const newConfig = { ...state.themeConfig, ...config };
-        localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(newConfig));
+        setStorage(LOCAL_STORAGE_KEY, JSON.stringify(newConfig));
         return { themeConfig: newConfig };
       });
     },

@@ -2,10 +2,11 @@ import { MONTHS } from "@/constants/months";
 import { Type__DateFormat, Type__DateVariant } from "@/constants/types";
 import { WEEKDAYS_0_BASED } from "@/constants/weekdays";
 import moment from "moment-timezone";
-import userTimeZone from "./userTimeZone";
+import { userTimeZone } from "./userTimeZone";
 import { dateObject } from "./dateObject";
-import getTzOffsetMs from "./getTzOffsetMs";
+import { getTzOffsetMs } from "./getTzOffsetMs";
 import { autoTimeZone } from "./autoTimeZone";
+import { getStorage } from "./client";
 
 const formatDate = (
   date?: Date | string | undefined,
@@ -26,9 +27,9 @@ const formatDate = (
     finalDate = date;
   }
 
-  const lang = localStorage.getItem("lang") || "id";
+  const lang = getStorage("lang") || "id";
   const dateFormat =
-    options.prefixDateFormat || localStorage.getItem("dateFormat") || "dmy";
+    options.prefixDateFormat || getStorage("dateFormat") || "dmy";
   const timeZoneKey = options.prefixTimeZoneKey || userTimeZone().key;
   const localDate = moment.tz(finalDate, timeZoneKey);
   const day = localDate.date();

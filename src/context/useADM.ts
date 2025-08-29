@@ -2,26 +2,25 @@ import { getStorage, setStorage } from "@/utils/client";
 import { create } from "zustand";
 
 const STORAGE_KEY = "adm";
-const DEFAULT = "false";
+const DEFAULT = false;
 
 interface Props {
-  ADM: string;
-  setADM: (newState: string) => void;
+  ADM: boolean;
+  setADM: (newState: boolean) => void;
 }
 
 const useADM = create<Props>((set) => {
   const stored = getStorage(STORAGE_KEY);
-  if (!stored) setStorage(STORAGE_KEY, DEFAULT);
-  const initial = stored ? stored : DEFAULT;
+  const initial = stored === null ? DEFAULT : stored === "true";
+
+  if (stored === null) setStorage(STORAGE_KEY, DEFAULT ? "true" : "false");
 
   return {
     ADM: initial,
-    setADM: (newState) =>
+    setADM: (newState: boolean) =>
       set(() => {
-        setStorage(STORAGE_KEY, newState);
-        return {
-          ADM: newState,
-        };
+        setStorage(STORAGE_KEY, newState ? "true" : "false");
+        return { ADM: newState };
       }),
   };
 });

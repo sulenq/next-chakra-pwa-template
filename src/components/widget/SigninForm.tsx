@@ -1,16 +1,17 @@
 import { Field } from "@/components/ui/field";
 import useLang from "@/context/useLang";
+import { useThemeConfig } from "@/context/useThemeConfig";
 import useRequest from "@/hooks/useRequest";
+import { setStorage } from "@/utils/client";
 import { Icon, InputGroup, StackProps } from "@chakra-ui/react";
 import { IconLock, IconUser } from "@tabler/icons-react";
 import { useFormik } from "formik";
 import * as yup from "yup";
-import StringInput from "../ui-custom/StringInput";
-import PasswordInput from "../ui-custom/PasswordInput";
 import Btn from "../ui-custom/Btn";
-import { useThemeConfig } from "@/context/useThemeConfig";
 import CContainer from "../ui-custom/CContainer";
 import P from "../ui-custom/P";
+import PasswordInput from "../ui-custom/PasswordInput";
+import StringInput from "../ui-custom/StringInput";
 
 interface Props extends StackProps {}
 
@@ -53,11 +54,8 @@ const SigninForm = (props: Props) => {
         config,
         onResolve: {
           onSuccess: (r: any) => {
-            localStorage.setItem("__auth_token", r.data.data?.token);
-            localStorage.setItem(
-              "__user_data",
-              JSON.stringify(r.data.data?.user)
-            );
+            setStorage("__auth_token", r.data.data?.token);
+            setStorage("__user_data", JSON.stringify(r.data.data?.user));
             // setAuthToken(r.data.data?.token);
             // setPermissions(r.data.data?.permissions);
             // navigate("/workspace");

@@ -14,6 +14,7 @@ import { SVGS_PATH } from "@/constants/paths";
 import { useThemeConfig } from "@/context/useThemeConfig";
 import useRequest from "@/hooks/useRequest";
 import { getAuthToken } from "@/utils/authToken";
+import { removeStorage } from "@/utils/client";
 import { HStack, SimpleGrid, VStack } from "@chakra-ui/react";
 
 const Signedin = () => {
@@ -39,8 +40,8 @@ const Signedin = () => {
       config,
       onResolve: {
         onSuccess: () => {
-          localStorage.removeItem("__auth_token");
-          localStorage.removeItem("__user_data");
+          removeStorage("__auth_token");
+          removeStorage("__user_data");
           // setAuthToken(undefined);
           // setPermissions(undefined);
         },

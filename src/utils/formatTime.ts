@@ -1,6 +1,7 @@
 import { Type__TimeFormat } from "@/constants/types";
-import userTimeZone from "./userTimeZone";
-import getTzOffsetMs from "./getTzOffsetMs";
+import { userTimeZone } from "./userTimeZone";
+import { getTzOffsetMs } from "./getTzOffsetMs";
+import { getStorage } from "./client";
 
 export function formatTime(
   time?: string,
@@ -14,7 +15,7 @@ export function formatTime(
   if (!time) return "";
 
   const timeFormat =
-    options.prefixTimeFormat || localStorage.getItem("timeFormat") || "24-hour";
+    options.prefixTimeFormat || getStorage("timeFormat") || "24-hour";
 
   const timeZoneKey = options.prefixTimeZoneKey || userTimeZone().key;
   const offsetMs = getTzOffsetMs(timeZoneKey);

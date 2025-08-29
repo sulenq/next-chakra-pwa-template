@@ -1,5 +1,7 @@
+import { getStorage } from "./client";
+
 export const getUserFromLocalStorage = () => {
-  const userData = localStorage.getItem("user");
+  const userData = getStorage("user");
   if (!userData) {
     return null;
   }
@@ -8,7 +10,7 @@ export const getUserFromLocalStorage = () => {
     const parsedUser = JSON.parse(userData);
     return parsedUser;
   } catch (error) {
-    console.error("Error parsing user data from localStorage:", error);
+    console.error("Error parsing user data from local storage:", error);
     return null;
   }
 };
