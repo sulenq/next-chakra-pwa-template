@@ -109,7 +109,7 @@ const RootRoute = () => {
             alt={APP.name}
             src={`${SVGS_PATH}/logo_light.svg`}
             w={"full"}
-            maxW={"160px"}
+            maxW={"120px"}
             m={"auto"}
           />
         </CContainer>
