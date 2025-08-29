@@ -1,38 +1,121 @@
 "use client";
 
-import BButton from "@/components/ui-custom/Btn";
+import Btn from "@/components/ui-custom/Btn";
+import CContainer from "@/components/ui-custom/CContainer";
+import Img from "@/components/ui-custom/Img";
+import LangSwitcher from "@/components/ui-custom/LangSwitcher";
 import NavLink from "@/components/ui-custom/NavLink";
+import P from "@/components/ui-custom/P";
+import { Avatar } from "@/components/ui/avatar";
+import { ColorModeButton } from "@/components/ui/color-mode";
 import ExiumWatermark from "@/components/widget/ExiumWatermark";
+import SigninForm from "@/components/widget/SigninForm";
+import { APP } from "@/constants/_app";
+import { SVGS_PATH } from "@/constants/paths";
+import useAuthMiddleware from "@/context/useAuthMiddleware";
 import useLang from "@/context/useLang";
 import { useThemeConfig } from "@/context/useThemeConfig";
-import { Text, VStack } from "@chakra-ui/react";
+import useRequest from "@/hooks/useRequest";
+import { removeStorage } from "@/utils/client";
+import { HStack, SimpleGrid, VStack } from "@chakra-ui/react";
 
-export default function MaintenancePage() {
+const Signedin = () => {
   // Contexts
   const { l } = useLang();
   const { themeConfig } = useThemeConfig();
+  const removeAuth = useAuthMiddleware((s) => s.removeAuth);
+
+  // Hooks
+  const { req, loading } = useRequest({
+    id: "logout",
+    loadingMessage: l.loading_signout,
+    successMessage: l.success_signout,
+  });
+
+  // Utils
+  function onSignout() {
+    const url = `/api/signout`;
+
+    const config = {
+      url,
+      method: "GET",
+    };
+
+    req({
+      config,
+      onResolve: {
+        onSuccess: () => {
+          removeStorage("__auth_token");
+          removeStorage("__user_data");
+          removeAuth();
+        },
+      },
+    });
+  }
 
   return (
-    <VStack h={"100vh"} gap={0}>
-      <VStack p={8} flex={1} justify={"center"} gap={4} w={"full"}>
-        <Text textAlign={"center"} fontSize={32} fontWeight={600}>
-          503 Maintenance
-        </Text>
+    <VStack gap={4} m={"auto"}>
+      <Avatar size={"2xl"} />
 
-        <Text textAlign={"center"} mb={4} maxW={"600px"} color={"fg.muted"}>
-          {l.maintenance_page.description}
-        </Text>
-
-        <NavLink to={"/"}>
-          <BButton colorPalette={themeConfig.colorPalette}>
-            {l.back_to_main_page}
-          </BButton>
-        </NavLink>
+      <VStack gap={0}>
+        <P fontWeight={"semibold"}>Admin</P>
+        <P>admin@gmail.com</P>
       </VStack>
 
-      <VStack w={"full"} py={4}>
-        <ExiumWatermark />
+      <VStack>
+        <NavLink to="/dashboard" w={"fit"}>
+          <Btn w={"160px"} colorPalette={themeConfig.colorPalette}>
+            {l.access} App
+          </Btn>
+        </NavLink>
+
+        <Btn
+          w={"160px"}
+          variant={"ghost"}
+          onClick={onSignout}
+          loading={loading}
+        >
+          Signin
+        </Btn>
       </VStack>
     </VStack>
   );
-}
+};
+
+const RootPage = () => {
+  // Contexts
+  const { themeConfig } = useThemeConfig();
+  const authToken = useAuthMiddleware((s) => s.authToken);
+
+  return (
+    <CContainer minH={"100dvh"}>
+      <SimpleGrid columns={[1, null, 2]} flex={1}>
+        <CContainer h={"full"} p={4}>
+          <HStack justify={"center"}>
+            <ColorModeButton />
+
+            <LangSwitcher />
+          </HStack>
+
+          {authToken && <Signedin />}
+
+          {!authToken && <SigninForm />}
+
+          <ExiumWatermark />
+        </CContainer>
+
+        <CContainer bg={themeConfig.primaryColor}>
+          <Img
+            alt={APP.name}
+            src={`${SVGS_PATH}/logo_light.svg`}
+            w={"full"}
+            maxW={"160px"}
+            m={"auto"}
+          />
+        </CContainer>
+      </SimpleGrid>
+    </CContainer>
+  );
+};
+
+export default RootPage;
