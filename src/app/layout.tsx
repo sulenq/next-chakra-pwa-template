@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
 import ClientOnly from "@/components/widget/ClientOnly";
+import GlobalDisclosure from "@/components/widget/GlobalDisclosure";
 
 interface Props {
   children: React.ReactNode;

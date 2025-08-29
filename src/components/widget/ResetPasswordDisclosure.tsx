@@ -96,7 +96,7 @@ const Step1 = (props: any) => {
             </Field>
           </form>
 
-          <HelperText>{l.msg_reset_password_step_1_helper}</HelperText>
+          <HelperText>{l.msg_reset_password_step_1}</HelperText>
         </CContainer>
       </DisclosureBody>
 
@@ -200,7 +200,7 @@ const Step2 = (props: any) => {
           <HelperText color={"fg.subtle"}>{`${l.otp_sent_to} ${maskEmail(
             email
           )}`}</HelperText>
-          <HelperText>{l.msg_reset_password_step_2_helper}</HelperText>
+          <HelperText>{l.msg_reset_password_step_2}</HelperText>
         </CContainer>
       </DisclosureBody>
 
@@ -312,7 +312,7 @@ const Step3 = (props: any) => {
             </Field>
           </form>
 
-          <HelperText>{l.msg_reset_password_step_3_helper}</HelperText>
+          <HelperText>{l.msg_reset_password_step_3}</HelperText>
         </CContainer>
       </DisclosureBody>
 

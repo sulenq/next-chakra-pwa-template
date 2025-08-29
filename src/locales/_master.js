@@ -199,21 +199,33 @@ export const msg_toggle_dark_mode = {
   id: "Toggle mode gelap",
   en: "Toggle dark mode",
 };
-export const msg_reset_password_step_1_helper = {
+export const msg_reset_password_step_1 = {
   id: "Langkah pertama, masukkan email Anda dan kami akan mengirimkan OTP untuk mengatur ulang kata sandi Anda.",
   en: "First step, enter your email and we will send you an OTP to reset your password.",
 };
-export const msg_reset_password_step_2_helper = {
+export const msg_reset_password_step_2 = {
   id: "Langkah kedua, verifikasi OTP",
   en: "Second step, verify OTP",
 };
-export const msg_reset_password_step_3_helper = {
+export const msg_reset_password_step_3 = {
   id: "Langkah ketiga, masukkan kata sandi baru Anda",
   en: "Third step, enter your new password",
 };
 export const msg_password_confirmation_not_match = {
   id: "Konfirmasi kata sandi tidak cocok",
   en: "Password confirmation does not match",
+};
+
+// Alert
+export const alert_offline = {
+  title: {
+    id: "Koneksi Terputus",
+    en: "Connection Lost",
+  },
+  description: {
+    id: "Sepertinya Anda sedang offline. Periksa koneksi internet Anda dan coba lagi.",
+    en: "It looks like you are offline. Check your internet connection and try again.",
+  },
 };
 
 // Setting Page

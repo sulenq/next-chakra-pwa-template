@@ -5,6 +5,7 @@ import { useFirefoxPaddingY } from "@/hooks/useFirefoxPaddingY";
 import { Center } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import Img from "../ui-custom/Img";
+import GlobalDisclosure from "./GlobalDisclosure";
 
 interface Props {
   children: React.ReactNode;
@@ -35,5 +36,11 @@ export default function ClientOnly(props: Props) {
 
   if (!mounted) return <>{fallback || <DefaultFallback />}</>;
 
-  return <>{children}</>;
+  return (
+    <>
+      <GlobalDisclosure />
+
+      {children}
+    </>
+  );
 }

@@ -1,6 +1,10 @@
 const translations = {
   "access": "Akses",
   "add": "Tambah",
+  "alert_offline": {
+    "title": "Koneksi Terputus",
+    "description": "Sepertinya Anda sedang offline. Periksa koneksi internet Anda dan coba lagi."
+  },
   "all": "Semua",
   "back": "Kembali",
   "back_to_main_page": "Kembali ke halaman utama",
@@ -128,9 +132,9 @@ const translations = {
   "msg_cannot_be_undone": "Aksi ini tidak dapat dibatalkan, harap hati-hati.",
   "msg_password_confirmation_not_match": "Konfirmasi kata sandi tidak cocok",
   "msg_required_form": "Tidak boleh kosong",
-  "msg_reset_password_step_1_helper": "Langkah pertama, masukkan email Anda dan kami akan mengirimkan OTP untuk mengatur ulang kata sandi Anda.",
-  "msg_reset_password_step_2_helper": "Langkah kedua, verifikasi OTP",
-  "msg_reset_password_step_3_helper": "Langkah ketiga, masukkan kata sandi baru Anda",
+  "msg_reset_password_step_1": "Langkah pertama, masukkan email Anda dan kami akan mengirimkan OTP untuk mengatur ulang kata sandi Anda.",
+  "msg_reset_password_step_2": "Langkah kedua, verifikasi OTP",
+  "msg_reset_password_step_3": "Langkah ketiga, masukkan kata sandi baru Anda",
   "msg_signin": "Masukkan detail akun untuk melanjutkan.",
   "msg_soft_delete": "Data akan disembunyikan dan bisa dikembalikan nanti.",
   "msg_toggle_dark_mode": "Toggle mode gelap",
