@@ -289,6 +289,16 @@ export const loading_reset_password = {
 };
 
 // Success Toast
+export const success_online = {
+  title: {
+    id: "Koneksi Pulih",
+    en: "Connection Recovered",
+  },
+  description: {
+    id: "Anda kembali online.",
+    en: "You are back online.",
+  },
+};
 export const success_default = {
   title: { id: "Request successful", en: "Request successful" },
   description: {

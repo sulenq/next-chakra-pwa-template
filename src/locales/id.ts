@@ -207,6 +207,10 @@ const translations = {
     "title": "Request successful",
     "description": "Proses berjalan tanpa kendala."
   },
+  "success_online": {
+    "title": "Koneksi Pulih",
+    "description": "Anda kembali online."
+  },
   "success_signin": {
     "title": "Sign in berhasil",
     "description": "Anda telah masuk."

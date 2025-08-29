@@ -207,6 +207,10 @@ const translations = {
     "title": "Request successful",
     "description": "Process completed without issues."
   },
+  "success_online": {
+    "title": "Connection Recovered",
+    "description": "You are back online."
+  },
   "success_signin": {
     "title": "Sign in successful",
     "description": "You are now signed in."

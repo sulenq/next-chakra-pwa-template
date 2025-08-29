@@ -6,6 +6,7 @@ import { Center } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import Img from "../ui-custom/Img";
 import GlobalDisclosure from "./GlobalDisclosure";
+import useOfflineAlert from "@/hooks/useOfflineAlert";
 
 interface Props {
   children: React.ReactNode;
@@ -30,9 +31,12 @@ export default function ClientOnly(props: Props) {
   // States
   const [mounted, setMounted] = useState(false);
 
+  // Hanlde mount
   useEffect(() => {
     setMounted(true);
   }, []);
+  // Handle offline alert
+  useOfflineAlert({ mounted: mounted });
 
   if (!mounted) return <>{fallback || <DefaultFallback />}</>;
 
