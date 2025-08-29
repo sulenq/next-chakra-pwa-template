@@ -40,6 +40,7 @@ export default function LangSwitcher({ ...props }: Props) {
             pr={1}
             variant={"ghost"}
             color={"current"}
+            size="sm"
             {...props}
           >
             {lang.toUpperCase()}

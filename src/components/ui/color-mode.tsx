@@ -63,7 +63,7 @@ export const ColorModeButton = React.forwardRef<
   const { ADM } = useADM();
 
   // States
-  const ADMActive = ADM === "true";
+  const ADMActive = ADM;
 
   return (
     <ClientOnly fallback={<Skeleton boxSize="8" />}>
