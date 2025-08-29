@@ -24,10 +24,8 @@ const LANGUAGES = [
 ];
 
 export default function LangSwitcher({ ...props }: Props) {
-  // Hooks
-  const { l, lang, setLang } = useLang();
-
   // Contexts
+  const { l, lang, setLang } = useLang();
   const { themeConfig } = useThemeConfig();
 
   return (

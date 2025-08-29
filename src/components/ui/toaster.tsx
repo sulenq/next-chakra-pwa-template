@@ -27,12 +27,13 @@ export const Toaster = () => {
         {(toast) => {
           return (
             <Toast.Root
-              borderRadius={10}
+              borderRadius={themeConfig?.radii?.component}
               width={{ md: "sm" }}
               boxShadow={"none"}
               color={
                 toast.type === "info" || toast.type === "loading" ? "" : "white"
               }
+              maxW={"360px"}
               bg={toast.type === "success" ? "green.600 !important" : ""}
             >
               {toast.type === "loading" ? (

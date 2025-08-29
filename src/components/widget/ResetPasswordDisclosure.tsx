@@ -34,14 +34,14 @@ const Step1 = (props: any) => {
   // Props
   const { setStep, setEmail } = props;
 
-  // Hooks
+  // Contexts
   const { l } = useLang();
+  const { themeConfig } = useThemeConfig();
+
+  // Hooks
   const { req, loading } = useRequest({
     id: "forgot_password",
   });
-
-  // Contexts
-  const { themeConfig } = useThemeConfig();
 
   // States
   const formik = useFormik({
@@ -118,14 +118,14 @@ const Step2 = (props: any) => {
   // Props
   const { email, setOtp, setStep } = props;
 
-  // Hooks
+  // Contexts
   const { l } = useLang();
+  const { themeConfig } = useThemeConfig();
+
+  // Hooks
   const { req, loading } = useRequest({
     id: "forgot_password",
   });
-
-  // Contexts
-  const { themeConfig } = useThemeConfig();
 
   // States
   const formik = useFormik({
@@ -222,14 +222,14 @@ const Step3 = (props: any) => {
   // Props
   const { email, otp } = props;
 
-  // Hooks
+  // Contexts
   const { l } = useLang();
+  const { themeConfig } = useThemeConfig();
+
+  // Hooks
   const { req, loading } = useRequest({
     id: "forgot_password",
   });
-
-  // Contexts
-  const { themeConfig } = useThemeConfig();
 
   // States
   const formik = useFormik({

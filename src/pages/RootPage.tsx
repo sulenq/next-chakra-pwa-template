@@ -19,16 +19,16 @@ import { removeStorage } from "@/utils/client";
 import { HStack, SimpleGrid, VStack } from "@chakra-ui/react";
 
 const Signedin = () => {
+  // Contexts
+  const { l } = useLang();
+  const { themeConfig } = useThemeConfig();
+  const removeAuth = useAuthMiddleware((s) => s.removeAuth);
+
   // Hooks
   const { req, loading } = useRequest({
     id: "logout",
     showLoadingToast: false,
   });
-
-  // Contexts
-  const { l } = useLang();
-  const { themeConfig } = useThemeConfig();
-  const removeAuth = useAuthMiddleware((s) => s.removeAuth);
 
   // Utils
   function onSignout() {

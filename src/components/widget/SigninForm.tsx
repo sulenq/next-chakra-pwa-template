@@ -22,16 +22,17 @@ const SigninForm = (props: Props) => {
   // Props
   const { ...restProps } = props;
 
-  // Hooks
-  const { req, loading } = useRequest({
-    id: "signin",
-  });
-
   // Contexts
   const { l } = useLang();
   const { themeConfig } = useThemeConfig();
   const setAuthToken = useAuthMiddleware((s) => s.setAuthToken);
   const setPermissions = useAuthMiddleware((s) => s.setPermissions);
+
+  // Hooks
+  const { req, loading } = useRequest({
+    id: "signin",
+    loadingMessage: l.loading_signin,
+  });
 
   // States
   const formik = useFormik({

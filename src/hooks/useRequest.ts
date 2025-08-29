@@ -38,11 +38,11 @@ export default function useRequest<T = any>(props: Props) {
     signinPath = "/",
   } = props;
 
-  // Hooks
-  const router = useRouter();
-
   // Contexts
   const { l } = useLang();
+
+  // Hooks
+  const router = useRouter();
 
   // Refs
   const abortControllerRef = useRef<AbortController | null>(null);
