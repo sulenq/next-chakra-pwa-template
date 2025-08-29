@@ -82,7 +82,7 @@ const Signedin = () => {
   );
 };
 
-const RootPage = () => {
+const RootRoute = () => {
   // Contexts
   const { themeConfig } = useThemeConfig();
   const authToken = useAuthMiddleware((s) => s.authToken);
@@ -118,4 +118,4 @@ const RootPage = () => {
   );
 };
 
-export default RootPage;
+export default RootRoute;

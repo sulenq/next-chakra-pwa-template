@@ -1,4 +1,4 @@
-export const arrayType = (input: unknown): "array" | "object" | "other" => {
+export const mapType = (input: unknown): "array" | "object" | "other" => {
   if (Array.isArray(input)) {
     return "array";
   } else if (

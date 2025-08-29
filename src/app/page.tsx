@@ -1,1 +1,1 @@
-export { default } from "@/routes/RootPage";
+export { default } from "@/routes/RootRoute";
