@@ -21,11 +21,8 @@ export function formatTime(
   const offsetMs = getTzOffsetMs(timeZoneKey);
   const offsetHours = offsetMs / (1000 * 60 * 60);
 
-  let [hh, mmNum, ssNum = 0] = time.split(":").map(Number);
-  const mm = mmNum;
-  const ss = ssNum;
-
-  hh += offsetHours;
+  const [hhNum, mm, ss = 0] = time.split(":").map(Number);
+  let hh = hhNum + offsetHours;
 
   if (hh >= 24) hh -= 24;
   if (hh < 0) hh += 24;
