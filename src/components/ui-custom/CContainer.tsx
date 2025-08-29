@@ -1,3 +1,5 @@
+"use client";
+
 import { forwardRef } from "react";
 import { StackProps, VStack } from "@chakra-ui/react";
 
@@ -22,7 +24,5 @@ const CContainer = forwardRef<HTMLDivElement, Props>((props, ref) => {
     </VStack>
   );
 });
-
-CContainer.displayName = "CContainer";
 
 export default CContainer;

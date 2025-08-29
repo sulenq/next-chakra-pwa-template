@@ -1,3 +1,5 @@
+"use client";
+
 import { MAIN_BUTTON_SIZE } from "@/constants/sizes";
 import { useThemeConfig } from "@/context/useThemeConfig";
 import { Button, ButtonProps, IconButton } from "@chakra-ui/react";
@@ -78,7 +80,5 @@ const Btn = forwardRef<HTMLButtonElement, BtnProps>((props, ref) => {
     </Button>
   );
 });
-
-Btn.displayName = "Btn";
 
 export default Btn;

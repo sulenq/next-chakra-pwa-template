@@ -1,8 +1,9 @@
+"use client";
+
 import { Box, BoxProps, Icon, IconButton, InputProps } from "@chakra-ui/react";
 import { IconEye, IconEyeOff } from "@tabler/icons-react";
 import { useState } from "react";
 import StringInput from "./StringInput";
-import { useColorModeValue } from "../ui/color-mode";
 
 interface Props extends InputProps {
   name?: string;
@@ -14,7 +15,7 @@ interface Props extends InputProps {
   invalid?: boolean;
 }
 
-export default function PasswordInput({
+const PasswordInput = ({
   name,
   onChangeSetter,
   inputValue,
@@ -23,7 +24,7 @@ export default function PasswordInput({
   boxProps,
   invalid,
   ...props
-}: Props) {
+}: Props) => {
   const [showPassword, setShowPassword] = useState<boolean>(false);
 
   return (
@@ -65,4 +66,6 @@ export default function PasswordInput({
       </IconButton>
     </Box>
   );
-}
+};
+
+export default PasswordInput;

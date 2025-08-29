@@ -1,3 +1,4 @@
+import { getStorage, setStorage } from "@/utils/client";
 import { create } from "zustand";
 
 const STORAGE_KEY = "adm";
@@ -9,15 +10,15 @@ interface Props {
 }
 
 const useADM = create<Props>((set) => {
-  const stored = localStorage.getItem(STORAGE_KEY);
-  if (!stored) localStorage.setItem(STORAGE_KEY, DEFAULT);
+  const stored = getStorage(STORAGE_KEY);
+  if (!stored) setStorage(STORAGE_KEY, DEFAULT);
   const initial = stored ? stored : DEFAULT;
 
   return {
     ADM: initial,
     setADM: (newState) =>
       set(() => {
-        localStorage.setItem(STORAGE_KEY, newState);
+        setStorage(STORAGE_KEY, newState);
         return {
           ADM: newState,
         };

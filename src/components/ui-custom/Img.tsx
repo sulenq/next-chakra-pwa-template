@@ -1,3 +1,5 @@
+"use client";
+
 import { IMAGES_PATH } from "@/constants/paths";
 import { Image, ImageProps } from "@chakra-ui/react";
 import { useState } from "react";

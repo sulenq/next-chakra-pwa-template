@@ -1,3 +1,5 @@
+"use client";
+
 import { ButtonProps, Icon, MenuPositioner, Portal } from "@chakra-ui/react";
 import { IconCheck, IconChevronDown } from "@tabler/icons-react";
 import useLang from "../../context/useLang";

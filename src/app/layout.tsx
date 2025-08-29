@@ -1,6 +1,7 @@
 import { Provider } from "@/components/ui/provider";
 import type { Metadata } from "next";
 import "./globals.css";
+import { Toaster } from "@/components/ui/toaster";
 
 export const metadata: Metadata = {
   title: "Next Chakra PWA Template | Exium.id",
@@ -14,7 +15,11 @@ export default function RootLayout(props: { children: React.ReactNode }) {
   return (
     <html suppressHydrationWarning>
       <body>
-        <Provider>{children}</Provider>
+        <Provider>
+          <Toaster />
+
+          {children}
+        </Provider>
       </body>
     </html>
   );
