@@ -3,7 +3,7 @@ import useLang from "@/context/useLang";
 import { useThemeConfig } from "@/context/useThemeConfig";
 import useRequest from "@/hooks/useRequest";
 import { setStorage } from "@/utils/client";
-import { Icon, InputGroup, StackProps } from "@chakra-ui/react";
+import { HStack, Icon, InputGroup, StackProps } from "@chakra-ui/react";
 import { IconLock, IconUser } from "@tabler/icons-react";
 import { useFormik } from "formik";
 import * as yup from "yup";
@@ -12,6 +12,9 @@ import CContainer from "../ui-custom/CContainer";
 import P from "../ui-custom/P";
 import PasswordInput from "../ui-custom/PasswordInput";
 import StringInput from "../ui-custom/StringInput";
+import Divider from "../ui-custom/Divider";
+import ResetPasswordDisclosure from "./ResetPasswordDisclosure";
+import useAuthMiddleware from "@/context/useAuthMiddleware";
 
 interface Props extends StackProps {}
 
@@ -27,6 +30,8 @@ const SigninForm = (props: Props) => {
   // Contexts
   const { l } = useLang();
   const { themeConfig } = useThemeConfig();
+  const setAuthToken = useAuthMiddleware((s) => s.setAuthToken);
+  const setPermissions = useAuthMiddleware((s) => s.setPermissions);
 
   // States
   const formik = useFormik({
@@ -56,8 +61,8 @@ const SigninForm = (props: Props) => {
           onSuccess: (r: any) => {
             setStorage("__auth_token", r.data.data?.token);
             setStorage("__user_data", JSON.stringify(r.data.data?.user));
-            // setAuthToken(r.data.data?.token);
-            // setPermissions(r.data.data?.permissions);
+            setAuthToken(r.data.data?.token);
+            setPermissions(r.data.data?.permissions);
             // navigate("/workspace");
           },
         },
@@ -145,17 +150,17 @@ const SigninForm = (props: Props) => {
           Login
         </Btn>
 
-        {/* <HStack mt={4}>
-        <Divider borderColor={"red"} h={"2px"} w={"full"} />
+        <HStack mt={4}>
+          <Divider borderColor={"red"} h={"1px"} w={"full"} />
 
-        <ResetPasswordDisclosureTrigger>
-          <BButton variant={"ghost"} color={themeConfig.primaryColor}>
-            {l.forgot_password}
-          </BButton>
-        </ResetPasswordDisclosureTrigger>
+          <ResetPasswordDisclosure>
+            <Btn variant={"ghost"} color={themeConfig.primaryColor}>
+              Reset Password
+            </Btn>
+          </ResetPasswordDisclosure>
 
-        <Divider borderColor={"red"} h={"2px"} w={"full"} />
-      </HStack> */}
+          <Divider borderColor={"red"} h={"1px"} w={"full"} />
+        </HStack>
       </form>
     </CContainer>
   );

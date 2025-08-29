@@ -11,9 +11,10 @@ import ExiumWatermark from "@/components/widget/ExiumWatermark";
 import SigninForm from "@/components/widget/SigninForm";
 import { APP } from "@/constants/_app";
 import { SVGS_PATH } from "@/constants/paths";
+import useAuthMiddleware from "@/context/useAuthMiddleware";
+import useLang from "@/context/useLang";
 import { useThemeConfig } from "@/context/useThemeConfig";
 import useRequest from "@/hooks/useRequest";
-import { getAuthToken } from "@/utils/authToken";
 import { removeStorage } from "@/utils/client";
 import { HStack, SimpleGrid, VStack } from "@chakra-ui/react";
 
@@ -25,7 +26,9 @@ const Signedin = () => {
   });
 
   // Contexts
+  const { l } = useLang();
   const { themeConfig } = useThemeConfig();
+  const removeAuth = useAuthMiddleware((s) => s.removeAuth);
 
   // Utils
   function onSignout() {
@@ -42,8 +45,7 @@ const Signedin = () => {
         onSuccess: () => {
           removeStorage("__auth_token");
           removeStorage("__user_data");
-          // setAuthToken(undefined);
-          // setPermissions(undefined);
+          removeAuth();
         },
       },
     });
@@ -61,7 +63,7 @@ const Signedin = () => {
       <VStack>
         {/* <NavLink to="/workspace" w={"fit"}> */}
         <Btn w={"160px"} colorPalette={themeConfig.colorPalette}>
-          Go to App
+          {l.access} App
         </Btn>
         {/* </NavLink> */}
 
@@ -81,9 +83,7 @@ const Signedin = () => {
 const RootPage = () => {
   // Contexts
   const { themeConfig } = useThemeConfig();
-
-  // States
-  const authToken = getAuthToken();
+  const authToken = useAuthMiddleware((s) => s.authToken);
 
   return (
     <CContainer minH={"100dvh"}>

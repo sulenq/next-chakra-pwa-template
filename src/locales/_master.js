@@ -53,6 +53,14 @@ export const master_data_navs_group = {};
 export const master_data_navs = {};
 
 // Semantic UI
+export const back_to_main_page = {
+  id: "Kembali ke halaman utama",
+  en: "Back to main page",
+};
+export const access = {
+  id: "Akses",
+  en: "Access",
+};
 export const add = {
   id: "Tambah",
   en: "Add",
@@ -145,9 +153,25 @@ export const language = {
   id: "Bahasa",
   en: "Language",
 };
-export const back_to_main_page = {
-  id: "Kembali ke halaman utama",
-  en: "Back to main page",
+export const recieve = {
+  id: "Terima",
+  en: "Recieve",
+};
+export const verify = {
+  id: "Verifikasi",
+  en: "Verify",
+};
+export const otp_sent_to = {
+  id: "OTP telah dikirim ke",
+  en: "OTP has been sent to",
+};
+export const otp_sent = {
+  id: "OTP telah dikirim",
+  en: "OTP has been sent",
+};
+export const password_confirmation = {
+  id: "Konfirmasi Password",
+  en: "Password Confirmation",
 };
 
 // Message
@@ -174,6 +198,22 @@ export const msg_ADM_active = {
 export const msg_toggle_dark_mode = {
   id: "Toggle mode gelap",
   en: "Toggle dark mode",
+};
+export const msg_reset_password_step_1_helper = {
+  id: "Langkah pertama, masukkan email Anda dan kami akan mengirimkan OTP untuk mengatur ulang kata sandi Anda.",
+  en: "First step of forgot password, enter your email and we will send you an OTP to reset your password.",
+};
+export const msg_reset_password_step_2_helper = {
+  id: "Langkah kedua, verifikasi OTP",
+  en: "Second step of forgot password, verify OTP",
+};
+export const msg_reset_password_step_3_helper = {
+  id: "Langkah ketiga, masukkan kata sandi baru Anda",
+  en: "Third step of forgot password, enter your new password",
+};
+export const msg_password_confirmation_not_match = {
+  id: "Konfirmasi kata sandi tidak cocok",
+  en: "Password confirmation does not match",
 };
 
 // Setting Page

@@ -29,6 +29,7 @@ export const Toaster = () => {
             <Toast.Root
               borderRadius={10}
               width={{ md: "sm" }}
+              boxShadow={"none"}
               color={
                 toast.type === "info" || toast.type === "loading" ? "" : "white"
               }
