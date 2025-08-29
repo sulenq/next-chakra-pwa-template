@@ -1,1 +1,1 @@
-export { default } from "@/routes/errors/MaintenancePage";
+export { default } from "@/routes/errors/MaintenanceRoute";

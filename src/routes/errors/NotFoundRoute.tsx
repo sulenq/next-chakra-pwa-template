@@ -8,7 +8,7 @@ import useLang from "@/context/useLang";
 import { useThemeConfig } from "@/context/useThemeConfig";
 import { Text, VStack } from "@chakra-ui/react";
 
-export default function NotFoundPage() {
+export default function NotFoundRoute() {
   // Contexts
   const { l } = useLang();
   const { themeConfig } = useThemeConfig();
@@ -24,7 +24,7 @@ export default function NotFoundPage() {
           {l.missing_page.description}
         </Text>
 
-        <NavLink to={"/"}>
+        <NavLink to={"/"} w={"fit"}>
           <BButton colorPalette={themeConfig.colorPalette}>
             {l.back_to_main_page}
           </BButton>

@@ -7,7 +7,7 @@ import useLang from "@/context/useLang";
 import { useThemeConfig } from "@/context/useThemeConfig";
 import { Text, VStack } from "@chakra-ui/react";
 
-export default function MaintenancePage() {
+export default function MaintenanceRoute() {
   // Contexts
   const { l } = useLang();
   const { themeConfig } = useThemeConfig();
@@ -23,7 +23,7 @@ export default function MaintenancePage() {
           {l.maintenance_page.description}
         </Text>
 
-        <NavLink to={"/"}>
+        <NavLink to={"/"} w={"fit"}>
           <BButton colorPalette={themeConfig.colorPalette}>
             {l.back_to_main_page}
           </BButton>
