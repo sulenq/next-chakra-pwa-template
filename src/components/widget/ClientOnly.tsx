@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Loader from "../ui-custom/Loader";
+import { useFirefoxPaddingY } from "@/hooks/useFirefoxPaddingY";
 
 interface Props {
   children: React.ReactNode;
@@ -11,6 +12,9 @@ interface Props {
 export default function ClientOnly(props: Props) {
   // Props
   const { children, fallback } = props;
+
+  // Hooks
+  useFirefoxPaddingY(6);
 
   // States
   const [mounted, setMounted] = useState(false);
