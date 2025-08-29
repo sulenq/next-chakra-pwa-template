@@ -489,17 +489,17 @@ export const error_504_default = {
   },
 };
 
-// Error Pages
-export const missing_page = {
+// Error Route
+export const missing_route = {
   description: {
     id: "Halaman yang Anda cari tidak tersedia. Kemungkinan ada URL yang keliru atau halaman ini sudah tidak tersedia.",
     en: "The page you are looking for is not available. There may be an incorrect URL or the page is no longer available.",
   },
 };
-export const maintenance_page = {
+export const maintenance_route = {
   description: {
-    id: "Kami sedang melakukan pemeliharaan untuk memberikan layanan yang lebih baik. Mohon maaf atas ketidaknyamanannya. Silakan cek kembali nanti.",
-    en: "We are currently performing maintenance to provide better service. Sorry for the inconvenience. Please check back later.",
+    id: "Kami sedang melakukan pemeliharaan untuk memberikan layanan yang lebih baik. Mohon maaf atas ketidaknyamanannya.",
+    en: "We are currently performing maintenance to provide better service. Sorry for the inconvenience.",
   },
 };
 

@@ -24,8 +24,8 @@ export default function MaintenanceRoute() {
           Maintenance
         </P>
 
-        <P textAlign={"center"} mb={4} maxW={"600px"} color={"fg.muted"}>
-          {l.maintenance_page.description}
+        <P textAlign={"center"} mb={4} maxW={"450px"} color={"fg.subtle"}>
+          {l.maintenance_route.description}
         </P>
 
         <NavLink to={"/"} w={"fit"}>

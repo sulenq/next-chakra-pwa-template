@@ -119,12 +119,12 @@ const translations = {
     "title": "Upload file",
     "description": "Sedang mengunggah file..."
   },
-  "maintenance_page": {
-    "description": "Kami sedang melakukan pemeliharaan untuk memberikan layanan yang lebih baik. Mohon maaf atas ketidaknyamanannya. Silakan cek kembali nanti."
+  "maintenance_route": {
+    "description": "Kami sedang melakukan pemeliharaan untuk memberikan layanan yang lebih baik. Mohon maaf atas ketidaknyamanannya."
   },
   "master_data_navs": {},
   "master_data_navs_group": {},
-  "missing_page": {
+  "missing_route": {
     "description": "Halaman yang Anda cari tidak tersedia. Kemungkinan ada URL yang keliru atau halaman ini sudah tidak tersedia."
   },
   "month": "Bulan",

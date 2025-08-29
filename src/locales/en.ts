@@ -119,12 +119,12 @@ const translations = {
     "title": "Upload file",
     "description": "Uploading file..."
   },
-  "maintenance_page": {
-    "description": "We are currently performing maintenance to provide better service. Sorry for the inconvenience. Please check back later."
+  "maintenance_route": {
+    "description": "We are currently performing maintenance to provide better service. Sorry for the inconvenience."
   },
   "master_data_navs": {},
   "master_data_navs_group": {},
-  "missing_page": {
+  "missing_route": {
     "description": "The page you are looking for is not available. There may be an incorrect URL or the page is no longer available."
   },
   "month": "Month",

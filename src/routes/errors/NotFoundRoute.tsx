@@ -26,7 +26,7 @@ export default function NotFoundRoute() {
         </Text>
 
         <Text textAlign={"center"} mb={4} maxW={"450px"} color={"fg.subtle"}>
-          {l.missing_page.description}
+          {l.missing_route.description}
         </Text>
 
         <NavLink to={"/"} w={"fit"}>
