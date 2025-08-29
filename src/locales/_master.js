@@ -141,6 +141,10 @@ export const optional = {
   id: "Opsional",
   en: "Optional",
 };
+export const language = {
+  id: "Bahasa",
+  en: "Language",
+};
 export const back_to_main_page = {
   id: "Kembali ke halaman utama",
   en: "Back to main page",
@@ -158,6 +162,18 @@ export const msg_soft_delete = {
 export const msg_required_form = {
   id: "Tidak boleh kosong",
   en: "Cannot be empty",
+};
+export const msg_signin = {
+  id: "Masukkan detail akun untuk melanjutkan.",
+  en: "Enter your account details to continue.",
+};
+export const msg_ADM_active = {
+  id: "Mode gelap adaptif aktif",
+  en: "Adaptive dark mode is active",
+};
+export const msg_toggle_dark_mode = {
+  id: "Toggle mode gelap",
+  en: "Toggle dark mode",
 };
 
 // Setting Page

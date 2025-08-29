@@ -50,11 +50,12 @@ export default function PasswordInput({
         right={0}
         top={0}
         zIndex={2}
+        color={"ibody"}
         onClick={() => {
           setShowPassword((ps) => !ps);
         }}
       >
-        <Icon fontSize={"lg"} color={useColorModeValue("black", "white")}>
+        <Icon fontSize={"lg"}>
           {showPassword ? (
             <IconEye stroke={1.5} />
           ) : (

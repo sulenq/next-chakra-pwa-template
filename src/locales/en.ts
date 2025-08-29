@@ -73,6 +73,7 @@ const translations = {
     "description": "Unable to connect to the server. Try again later."
   },
   "hide": "Hide",
+  "language": "Language",
   "loading_default": {
     "title": "Loading",
     "description": "The request is being processed..."
@@ -118,9 +119,12 @@ const translations = {
     "description": "The page you are looking for is not available. There may be an incorrect URL or the page is no longer available."
   },
   "month": "Month",
+  "msg_ADM_active": "Adaptive dark mode is active",
   "msg_cannot_be_undone": "This action cannot be undone, please be careful.",
   "msg_required_form": "Cannot be empty",
+  "msg_signin": "Enter your account details to continue.",
   "msg_soft_delete": "Data will be hidden but can be restored later.",
+  "msg_toggle_dark_mode": "Toggle dark mode",
   "navs": {
     "master_data": "Master data",
     "settings": "Settings",

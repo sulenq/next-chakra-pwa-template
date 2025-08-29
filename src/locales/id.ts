@@ -73,6 +73,7 @@ const translations = {
     "description": "Tidak dapat terhubung ke server. Coba lagi nanti."
   },
   "hide": "Sembunyikan",
+  "language": "Bahasa",
   "loading_default": {
     "title": "Memuat",
     "description": "Permintaan sedang diproses..."
@@ -118,9 +119,12 @@ const translations = {
     "description": "Halaman yang Anda cari tidak tersedia. Kemungkinan ada URL yang keliru atau halaman ini sudah tidak tersedia."
   },
   "month": "Bulan",
+  "msg_ADM_active": "Mode gelap adaptif aktif",
   "msg_cannot_be_undone": "Aksi ini tidak dapat dibatalkan, harap hati-hati.",
   "msg_required_form": "Tidak boleh kosong",
+  "msg_signin": "Masukkan detail akun untuk melanjutkan.",
   "msg_soft_delete": "Data akan disembunyikan dan bisa dikembalikan nanti.",
+  "msg_toggle_dark_mode": "Toggle mode gelap",
   "navs": {
     "master_data": "Master data",
     "settings": "Pengaturan",

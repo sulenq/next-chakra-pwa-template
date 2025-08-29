@@ -10,6 +10,7 @@ import PasswordInput from "../ui-custom/PasswordInput";
 import Btn from "../ui-custom/Btn";
 import { useThemeConfig } from "@/context/useThemeConfig";
 import CContainer from "../ui-custom/CContainer";
+import P from "../ui-custom/P";
 
 interface Props extends StackProps {}
 
@@ -72,13 +73,20 @@ const SigninForm = (props: Props) => {
       w={"full"}
       maxW={"380px"}
       p={6}
+      gap={4}
       borderRadius={themeConfig.radii.container}
-      align={"center"}
       {...restProps}
     >
+      <CContainer gap={1}>
+        <P textAlign={"center"} fontWeight={"bold"} fontSize={"lg"}>
+          App Name
+        </P>
+
+        <P textAlign={"center"}>{l.msg_signin}</P>
+      </CContainer>
+
       <form id="signin_form" onSubmit={formik.handleSubmit}>
         <Field
-          // label="Email"
           invalid={!!formik.errors.identifier}
           errorText={formik.errors.identifier as string}
           mb={4}
@@ -97,14 +105,13 @@ const SigninForm = (props: Props) => {
                 formik.setFieldValue("identifier", input);
               }}
               inputValue={formik.values.identifier}
-              placeholder="Email"
+              placeholder="Email/Username"
               pl={"40px !important"}
             />
           </InputGroup>
         </Field>
 
         <Field
-          // label="Password"
           invalid={!!formik.errors.password}
           errorText={formik.errors.password as string}
         >

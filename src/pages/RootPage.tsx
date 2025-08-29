@@ -2,13 +2,19 @@
 
 import Btn from "@/components/ui-custom/Btn";
 import CContainer from "@/components/ui-custom/CContainer";
+import Img from "@/components/ui-custom/Img";
+import LangSwitcher from "@/components/ui-custom/LangSwitcher";
 import P from "@/components/ui-custom/P";
 import { Avatar } from "@/components/ui/avatar";
+import { ColorModeButton } from "@/components/ui/color-mode";
+import ExiumWatermark from "@/components/widget/ExiumWatermark";
 import SigninForm from "@/components/widget/SigninForm";
+import { APP } from "@/constants/_app";
+import { SVGS_PATH } from "@/constants/paths";
 import { useThemeConfig } from "@/context/useThemeConfig";
 import useRequest from "@/hooks/useRequest";
 import { getAuthToken } from "@/utils/authToken";
-import { VStack } from "@chakra-ui/react";
+import { HStack, SimpleGrid, VStack } from "@chakra-ui/react";
 
 const Signedin = () => {
   // Hooks
@@ -72,14 +78,39 @@ const Signedin = () => {
 };
 
 const RootPage = () => {
+  // Contexts
+  const { themeConfig } = useThemeConfig();
+
   // States
   const authToken = getAuthToken();
 
   return (
     <CContainer minH={"100dvh"}>
-      {authToken && <Signedin />}
+      <SimpleGrid columns={[1, null, 2]} flex={1}>
+        <CContainer h={"full"} p={4}>
+          <HStack justify={"center"}>
+            <ColorModeButton />
 
-      {!authToken && <SigninForm />}
+            <LangSwitcher />
+          </HStack>
+
+          {authToken && <Signedin />}
+
+          {!authToken && <SigninForm />}
+
+          <ExiumWatermark />
+        </CContainer>
+
+        <CContainer bg={themeConfig.primaryColor}>
+          <Img
+            alt={APP.name}
+            src={`${SVGS_PATH}/logo_light.svg`}
+            w={"full"}
+            maxW={"160px"}
+            m={"auto"}
+          />
+        </CContainer>
+      </SimpleGrid>
     </CContainer>
   );
 };
