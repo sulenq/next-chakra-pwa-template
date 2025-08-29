@@ -18,7 +18,7 @@ interface ThemeConfigProps {
 const DEFAULT: ThemeConfigProps = {
   colorPalette: "p",
   primaryColor: "p.500",
-  primaryColorHex: "#00A86B",
+  primaryColorHex: "#006aff",
   logo: `${IMAGES_PATH}/logo_graphic.png`,
   radii: {
     component: "6px",
