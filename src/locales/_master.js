@@ -201,15 +201,15 @@ export const msg_toggle_dark_mode = {
 };
 export const msg_reset_password_step_1_helper = {
   id: "Langkah pertama, masukkan email Anda dan kami akan mengirimkan OTP untuk mengatur ulang kata sandi Anda.",
-  en: "First step of forgot password, enter your email and we will send you an OTP to reset your password.",
+  en: "First step, enter your email and we will send you an OTP to reset your password.",
 };
 export const msg_reset_password_step_2_helper = {
   id: "Langkah kedua, verifikasi OTP",
-  en: "Second step of forgot password, verify OTP",
+  en: "Second step, verify OTP",
 };
 export const msg_reset_password_step_3_helper = {
   id: "Langkah ketiga, masukkan kata sandi baru Anda",
-  en: "Third step of forgot password, enter your new password",
+  en: "Third step, enter your new password",
 };
 export const msg_password_confirmation_not_match = {
   id: "Konfirmasi kata sandi tidak cocok",
