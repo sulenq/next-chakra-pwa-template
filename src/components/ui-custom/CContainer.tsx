@@ -25,4 +25,6 @@ const CContainer = forwardRef<HTMLDivElement, Props>((props, ref) => {
   );
 });
 
+CContainer.displayName = "CContainer";
+
 export default CContainer;

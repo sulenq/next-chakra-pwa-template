@@ -28,6 +28,23 @@
   height: 100px !important;
   clip-path: inset(50px 0 50px 0) !important;
 }
+.chakra-menu__item {
+  color: white;
+  cursor: pointer;
+  border-radius: 4px;
+  padding: 8px !important;
+}
+.chakra-menu__item:hover,
+.chakra-menu__item:focus,
+.chakra-menu__item:focus-visible,
+.chakra-menu__content div[data-highlighted] {
+  background: var(--d2) !important;
+}
+.chakra-menu__separator {
+  background: var(--d3) !important;
+  border-color: var(--d1) !important;
+  margin: 4px 0;
+}
 /* Custom Start End*/
 
 /* Color */

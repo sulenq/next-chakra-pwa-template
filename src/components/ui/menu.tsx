@@ -132,6 +132,17 @@ export const MenuItem = forwardRef<HTMLDivElement, MenuItemProps>(
         gap={4}
         ref={ref}
         borderRadius={themeConfig?.radii.component}
+        color={"body"}
+        cursor={"pointer"}
+        _hover={{
+          bg: "d2",
+        }}
+        _focus={{
+          bg: "d2",
+        }}
+        _focusVisible={{
+          bg: "d2",
+        }}
         {...rest}
       >
         {children}

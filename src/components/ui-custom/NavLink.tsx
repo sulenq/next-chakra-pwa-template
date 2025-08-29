@@ -31,4 +31,6 @@ const NavLink = forwardRef<HTMLDivElement, Props>((props, ref) => {
   );
 });
 
+NavLink.displayName = "NavLink";
+
 export default NavLink;
