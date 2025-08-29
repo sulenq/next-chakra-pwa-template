@@ -1,10 +1,7 @@
-import dynamic from "next/dynamic";
+"use client";
 
-const MaintenancePage = dynamic(
-  () => import("@/pages/errors/MaintenancePage"),
-  {
-    ssr: false,
-  }
-);
+import MaintenancePage from "@/pages/errors/MaintenancePage";
 
-export default MaintenancePage;
+export default function Page() {
+  return <MaintenancePage />;
+}
