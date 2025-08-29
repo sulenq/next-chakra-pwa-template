@@ -1,1 +1,1 @@
-export { default } from "@/_pages/errors/NotFoundPage";
+export { default } from "@/routes/errors/NotFoundPage";
