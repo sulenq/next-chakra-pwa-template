@@ -72,6 +72,7 @@ export const fileValidation = ({
 
                 if (!hasValidFile) return false; // no match file in ZIP
               } catch (error) {
+                console.error("check zip error", error);
                 return false; // ZIP corrupt
               }
             }

@@ -21,7 +21,9 @@ export function formatTime(
   const offsetMs = getTzOffsetMs(timeZoneKey);
   const offsetHours = offsetMs / (1000 * 60 * 60);
 
-  let [hh, mm, ss = "00"] = time.split(":").map(Number);
+  let [hh, mmNum, ssNum = 0] = time.split(":").map(Number);
+  const mm = mmNum;
+  const ss = ssNum;
 
   hh += offsetHours;
 
@@ -38,8 +40,7 @@ export function formatTime(
       formattedTime += `:${String(ss).padStart(2, "0")}`;
     }
 
-    const withSuffix = options.withSuffix || true;
-
+    const withSuffix = options.withSuffix ?? true;
     if (withSuffix) {
       formattedTime += ` ${suffix}`;
     }
