@@ -1,5 +1,3 @@
-"use client";
-
 import BButton from "@/components/ui-custom/Btn";
 import ExiumWatermark from "@/components/widget/ExiumWatermark";
 import useLang from "@/context/useLang";
