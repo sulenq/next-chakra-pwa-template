@@ -1,3 +1,5 @@
+"use client";
+
 import back from "@/utils/back";
 import {
   Drawer as ChakraDrawer,

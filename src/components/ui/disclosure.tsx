@@ -1,3 +1,5 @@
+"use client";
+
 import { useThemeConfig } from "@/context/useThemeConfig";
 import useIsSmScreenWidth from "@/hooks/useIsSmScreenWidth";
 import useScreen from "@/hooks/useScreen";
@@ -48,7 +50,7 @@ import { useEffect } from "react";
 
 const DisclosureRoot = ({ children, ...props }: any) => {
   // Utils
-  const { sw } = useScreen(0);
+  const { sw } = useScreen();
   const iss = sw < SM_SCREEN_W_NUMBER;
 
   return iss ? (

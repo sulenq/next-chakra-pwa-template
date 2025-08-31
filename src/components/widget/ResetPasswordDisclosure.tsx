@@ -29,6 +29,8 @@ import BackButton from "./BackButton";
 import Btn from "../ui/spinner";
 import useBackOnClose from "@/hooks/useBackOnClose";
 import DisclosureHeaderContent from "../ui/disclosure-header-content";
+import { DialogContent, DialogHeader, DialogRoot } from "../ui/dialog";
+import { DrawerContent, DrawerHeader, DrawerRoot } from "../ui/drawer";
 
 const Step1 = (props: any) => {
   // Props

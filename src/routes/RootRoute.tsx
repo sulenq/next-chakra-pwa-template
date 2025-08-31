@@ -64,13 +64,13 @@ const Signedin = () => {
 
       <VStack>
         <NavLink to="/maintenance2" w={"fit"}>
-          <Btn w={"160px"} colorPalette={themeConfig.colorPalette}>
+          <Btn w={"140px"} colorPalette={themeConfig.colorPalette}>
             {l.access} App
           </Btn>
         </NavLink>
 
         <Btn
-          w={"160px"}
+          w={"140px"}
           variant={"ghost"}
           onClick={onSignout}
           loading={loading}

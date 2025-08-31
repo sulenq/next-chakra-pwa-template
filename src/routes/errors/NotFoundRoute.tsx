@@ -34,7 +34,7 @@ export default function NotFoundRoute() {
         </Text>
 
         <NavLink to={"/"} w={"fit"}>
-          <BButton colorPalette={themeConfig.colorPalette}>
+          <BButton colorPalette={themeConfig.colorPalette} px={8}>
             {l.main_page}
           </BButton>
         </NavLink>
