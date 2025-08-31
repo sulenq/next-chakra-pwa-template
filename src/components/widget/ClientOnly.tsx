@@ -50,8 +50,7 @@ export default function ClientOnly(props: Props) {
   return (
     <>
       <GlobalDisclosure />
-      {/* {children} */}
-      <DefaultFallback />
+      {children}
     </>
   );
 }
