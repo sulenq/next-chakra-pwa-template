@@ -7,7 +7,6 @@ const translations = {
   },
   "all": "All",
   "back": "Back",
-  "back_to_main_page": "Back to main page",
   "cancel": "Cancel",
   "clear": "Clear",
   "close": "Close",
@@ -119,6 +118,7 @@ const translations = {
     "title": "Upload file",
     "description": "Uploading file..."
   },
+  "main_page": "Main page",
   "maintenance_route": {
     "description": "We are currently performing maintenance to provide better service. Sorry for the inconvenience."
   },

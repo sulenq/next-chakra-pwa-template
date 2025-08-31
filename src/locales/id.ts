@@ -7,7 +7,6 @@ const translations = {
   },
   "all": "Semua",
   "back": "Kembali",
-  "back_to_main_page": "Kembali ke halaman utama",
   "cancel": "Batal",
   "clear": "Clear",
   "close": "Tutup",
@@ -119,6 +118,7 @@ const translations = {
     "title": "Upload file",
     "description": "Sedang mengunggah file..."
   },
+  "main_page": "Halaman utama",
   "maintenance_route": {
     "description": "Kami sedang melakukan pemeliharaan untuk memberikan layanan yang lebih baik. Mohon maaf atas ketidaknyamanannya."
   },

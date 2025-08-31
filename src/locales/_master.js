@@ -53,9 +53,9 @@ export const master_data_navs_group = {};
 export const master_data_navs = {};
 
 // Semantic UI
-export const back_to_main_page = {
-  id: "Kembali ke halaman utama",
-  en: "Back to main page",
+export const main_page = {
+  id: "Halaman utama",
+  en: "Main page",
 };
 export const access = {
   id: "Akses",
