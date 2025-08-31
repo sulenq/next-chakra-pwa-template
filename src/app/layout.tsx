@@ -3,6 +3,7 @@
 import { Provider } from "@/components/ui/provider";
 import { Toaster } from "@/components/ui/toaster";
 import "./globals.css";
+import ClientOnly from "@/components/widget/ClientOnly";
 
 interface Props {
   children: React.ReactNode;
@@ -24,7 +25,8 @@ export default function RootLayout(props: Props) {
       <body>
         <Provider>
           <Toaster />
-          {children}
+          <ClientOnly>{children}</ClientOnly>
+          {/* {children} */}
         </Provider>
       </body>
     </html>
