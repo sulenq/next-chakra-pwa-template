@@ -63,7 +63,7 @@ const Signedin = () => {
       </VStack>
 
       <VStack>
-        <NavLink to="/maintenance2" w={"fit"}>
+        <NavLink to="/dashboard" w={"fit"}>
           <Btn w={"140px"} colorPalette={themeConfig.colorPalette}>
             {l.access} App
           </Btn>

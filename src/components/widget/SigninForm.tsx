@@ -17,6 +17,7 @@ import StringInput from "../ui/string-input";
 import Divider from "../ui/divider";
 import ResetPasswordDisclosure from "./ResetPasswordDisclosure";
 import useAuthMiddleware from "@/context/useAuthMiddleware";
+import { useRouter } from "next/navigation";
 
 interface Props extends StackProps {}
 
@@ -31,6 +32,7 @@ const SigninForm = (props: Props) => {
   const setPermissions = useAuthMiddleware((s) => s.setPermissions);
 
   // Hooks
+  const router = useRouter();
   const { req, loading } = useRequest({
     id: "signin",
     loadingMessage: l.loading_signin,
@@ -74,7 +76,7 @@ const SigninForm = (props: Props) => {
             setStorage("__user_data", JSON.stringify(r.data.data?.user));
             setAuthToken(r.data.data?.token);
             setPermissions(r.data.data?.permissions);
-            // navigate("/workspace");
+            router.push("/dashboard");
           },
         },
       });
