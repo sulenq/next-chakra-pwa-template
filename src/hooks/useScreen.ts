@@ -1,3 +1,4 @@
+import { client } from "@/utils/client";
 import { useEffect, useState } from "react";
 
 interface Screen {
@@ -7,11 +8,16 @@ interface Screen {
 
 const useScreen = (timeout: number = 200) => {
   const [screen, setScreen] = useState<Screen>({
-    sw: window.innerWidth,
-    sh: window.innerHeight,
+    sw: 0,
+    sh: 0,
   });
 
   useEffect(() => {
+    if (!client()) return;
+
+    // Set initial value di client
+    setScreen({ sw: window.innerWidth, sh: window.innerHeight });
+
     let resizeTimeout: any;
 
     const handleResize = () => {
@@ -26,7 +32,7 @@ const useScreen = (timeout: number = 200) => {
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  }, [timeout]); // Menambahkan timeout ke dalam dependensi untuk menangani perubahan
+  }, [timeout]);
 
   return screen;
 };
