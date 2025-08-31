@@ -1,9 +1,9 @@
 import back from "@/utils/back";
 import { HStack } from "@chakra-ui/react";
-import { DialogCloseTrigger } from "../ui/dialog";
-import { DrawerCloseTrigger } from "../ui/drawer";
-import { DisclosureCloseTrigger } from "./Disclosure";
-import P from "./P";
+import { DialogCloseTrigger } from "./dialog";
+import { DrawerCloseTrigger } from "./drawer";
+import { DisclosureCloseTrigger } from "./disclosure";
+import P from "./p";
 
 type Props = {
   title?: string;

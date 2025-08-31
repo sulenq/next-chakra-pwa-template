@@ -3,7 +3,7 @@
 import { StackProps } from "@chakra-ui/react";
 import { useRouter } from "next/navigation";
 import { forwardRef } from "react";
-import CContainer from "../ui-custom/CContainer";
+import CContainer from "./c-container";
 
 interface Props extends StackProps {
   to?: string;

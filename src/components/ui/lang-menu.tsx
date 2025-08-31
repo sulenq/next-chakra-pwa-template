@@ -3,10 +3,10 @@
 import { ButtonProps, Icon, MenuPositioner, Portal } from "@chakra-ui/react";
 import { IconCheck, IconChevronDown } from "@tabler/icons-react";
 import useLang from "../../context/useLang";
-import { MenuContent, MenuItem, MenuRoot, MenuTrigger } from "../ui/menu";
-import { Tooltip } from "../ui/tooltip";
+import { MenuContent, MenuItem, MenuRoot, MenuTrigger } from "./menu";
+import { Tooltip } from "./tooltip";
 import { useThemeConfig } from "@/context/useThemeConfig";
-import Btn from "./Btn";
+import Btn from "./spinner";
 
 interface Props extends ButtonProps {}
 
@@ -23,7 +23,7 @@ const LANGUAGES = [
   },
 ];
 
-export default function LangSwitcher({ ...props }: Props) {
+const LangMenu = ({ ...props }: Props) => {
   // Contexts
   const { l, lang, setLang } = useLang();
   const { themeConfig } = useThemeConfig();
@@ -79,4 +79,6 @@ export default function LangSwitcher({ ...props }: Props) {
       </MenuRoot>
     </Tooltip>
   );
-}
+};
+
+export default LangMenu;

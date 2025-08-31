@@ -11,11 +11,11 @@ import {
   DisclosureFooter,
   DisclosureHeader,
   DisclosureRoot,
-} from "../ui-custom/Disclosure";
-import DisclosureHeaderContent from "../ui-custom/DisclosureHeaderContent";
+} from "../ui/disclosure";
+import DisclosureHeaderContent from "../ui/disclosure-header-content";
 import useOffline from "@/context/disclosure/useOffilne";
 import BackButton from "./BackButton";
-import Btn from "../ui-custom/Btn";
+import Btn from "../ui/spinner";
 import { EmptyState } from "../ui/empty-state";
 
 const OfflineDisclosure = () => {

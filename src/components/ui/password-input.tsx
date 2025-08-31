@@ -3,7 +3,7 @@
 import { Box, BoxProps, Icon, IconButton, InputProps } from "@chakra-ui/react";
 import { IconEye, IconEyeOff } from "@tabler/icons-react";
 import { useState } from "react";
-import StringInput from "./StringInput";
+import StringInput from "./string-input";
 
 interface Props extends InputProps {
   name?: string;

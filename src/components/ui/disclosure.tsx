@@ -42,7 +42,7 @@ import {
   DrawerRoot,
   DrawerTrigger,
 } from "@/components/ui/drawer";
-import CContainer from "./CContainer";
+import CContainer from "./c-container";
 import { SM_SCREEN_W_NUMBER } from "@/constants/sizes";
 import { useEffect } from "react";
 

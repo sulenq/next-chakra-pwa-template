@@ -1,4 +1,4 @@
-import CContainer from "@/components/ui-custom/CContainer";
+import CContainer from "@/components/ui/c-container";
 import useLang from "@/context/useLang";
 import { useThemeConfig } from "@/context/useThemeConfig";
 import useRequest from "@/hooks/useRequest";
@@ -20,15 +20,15 @@ import {
   DisclosureFooter,
   DisclosureHeader,
   DisclosureRoot,
-} from "@/components/ui-custom/Disclosure";
-import PasswordInput from "../ui-custom/PasswordInput";
-import StringInput from "../ui-custom/StringInput";
+} from "@/components/ui/disclosure";
+import PasswordInput from "../ui/password-input";
+import StringInput from "../ui/string-input";
 import { Field } from "../ui/field";
-import HelperText from "../ui-custom/HelperText";
+import HelperText from "../ui/helper-text";
 import BackButton from "./BackButton";
-import Btn from "../ui-custom/Btn";
+import Btn from "../ui/spinner";
 import useBackOnClose from "@/hooks/useBackOnClose";
-import DisclosureHeaderContent from "../ui-custom/DisclosureHeaderContent";
+import DisclosureHeaderContent from "../ui/disclosure-header-content";
 
 const Step1 = (props: any) => {
   // Props

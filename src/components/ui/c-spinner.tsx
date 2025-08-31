@@ -4,7 +4,7 @@ interface Props extends StackProps {
   spinnerProps?: SpinnerProps;
 }
 
-const Loader = ({ spinnerProps, ...props }: Props) => {
+const CSpinner = ({ spinnerProps, ...props }: Props) => {
   return (
     <VStack
       w={"full"}
@@ -14,9 +14,9 @@ const Loader = ({ spinnerProps, ...props }: Props) => {
       m={"auto"}
       {...props}
     >
-      <Spinner {...spinnerProps} />
+      <Spinner color={"d3"} {...spinnerProps} />
     </VStack>
   );
 };
 
-export default Loader;
+export default CSpinner;

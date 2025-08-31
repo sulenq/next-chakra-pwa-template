@@ -9,12 +9,12 @@ import { HStack, Icon, InputGroup, StackProps } from "@chakra-ui/react";
 import { IconLock, IconUser } from "@tabler/icons-react";
 import { useFormik } from "formik";
 import * as yup from "yup";
-import Btn from "../ui-custom/Btn";
-import CContainer from "../ui-custom/CContainer";
-import P from "../ui-custom/P";
-import PasswordInput from "../ui-custom/PasswordInput";
-import StringInput from "../ui-custom/StringInput";
-import Divider from "../ui-custom/Divider";
+import Btn from "../ui/spinner";
+import CContainer from "../ui/c-container";
+import P from "../ui/p";
+import PasswordInput from "../ui/password-input";
+import StringInput from "../ui/string-input";
+import Divider from "../ui/divider";
 import ResetPasswordDisclosure from "./ResetPasswordDisclosure";
 import useAuthMiddleware from "@/context/useAuthMiddleware";
 

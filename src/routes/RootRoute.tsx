@@ -1,16 +1,16 @@
 "use client";
 
-import Btn from "@/components/ui-custom/Btn";
-import CContainer from "@/components/ui-custom/CContainer";
-import Img from "@/components/ui-custom/Img";
-import LangSwitcher from "@/components/ui-custom/LangSwitcher";
-import NavLink from "@/components/ui-custom/NavLink";
-import P from "@/components/ui-custom/P";
+import Btn from "@/components/ui/spinner";
+import CContainer from "@/components/ui/c-container";
+import Img from "@/components/ui/img";
+import LangSwitcher from "@/components/ui/lang-menu";
+import NavLink from "@/components/ui/nav-link";
+import P from "@/components/ui/p";
 import { Avatar } from "@/components/ui/avatar";
 import { ColorModeButton } from "@/components/ui/color-mode";
 import ExiumWatermark from "@/components/widget/ExiumWatermark";
 import SigninForm from "@/components/widget/SigninForm";
-import { APP } from "@/constants/_app";
+import { META } from "@/constants/_meta";
 import { SVGS_PATH } from "@/constants/paths";
 import useAuthMiddleware from "@/context/useAuthMiddleware";
 import useLang from "@/context/useLang";
@@ -109,7 +109,7 @@ const RootRoute = () => {
           bg={themeConfig.primaryColor}
         >
           <Img
-            alt={APP.name}
+            alt={META.name}
             src={`${SVGS_PATH}/logo_light.svg`}
             w={"full"}
             maxW={"120px"}

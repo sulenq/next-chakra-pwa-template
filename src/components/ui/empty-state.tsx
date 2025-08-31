@@ -1,6 +1,6 @@
 import { EmptyState as ChakraEmptyState, VStack } from "@chakra-ui/react";
 import { forwardRef } from "react";
-import P from "../ui-custom/P";
+import P from "./p";
 
 export interface EmptyStateProps extends ChakraEmptyState.RootProps {
   title: string;

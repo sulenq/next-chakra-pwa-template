@@ -8,7 +8,7 @@ import {
 } from "@chakra-ui/react";
 import { css, Global } from "@emotion/react";
 import { useRef } from "react";
-import { useColorMode } from "../ui/color-mode";
+import { useColorMode } from "./color-mode";
 
 interface Props extends InputProps {
   fRef?: any;
