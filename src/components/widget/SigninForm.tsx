@@ -1,3 +1,5 @@
+"use client";
+
 import { Field } from "@/components/ui/field";
 import useLang from "@/context/useLang";
 import { useThemeConfig } from "@/context/useThemeConfig";

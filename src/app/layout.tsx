@@ -24,7 +24,6 @@ export default function RootLayout(props: Props) {
       <body>
         <Provider>
           <Toaster />
-          {/* <ClientOnly>{children}</ClientOnly> */}
           {children}
         </Provider>
       </body>
