@@ -1,7 +1,9 @@
+"use client";
+
 import { StackProps } from "@chakra-ui/react";
-import CContainer from "../ui-custom/CContainer";
 import { useRouter } from "next/navigation";
 import { forwardRef } from "react";
+import CContainer from "../ui-custom/CContainer";
 
 interface Props extends StackProps {
   to?: string;

@@ -1,3 +1,5 @@
+"use client";
+
 import { Span, Text, TextProps } from "@chakra-ui/react";
 import Link from "next/link";
 

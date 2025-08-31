@@ -21,6 +21,9 @@ const DefaultFallback = () => {
   );
 };
 
+// persist mounted state across route changes
+let mountedGlobal = false;
+
 export default function ClientOnly(props: Props) {
   // Props
   const { children, fallback } = props;
@@ -29,21 +32,22 @@ export default function ClientOnly(props: Props) {
   useFirefoxPaddingY(6);
 
   // States
-  const [mounted, setMounted] = useState(false);
+  const [mounted, setMounted] = useState(mountedGlobal);
 
-  // Hanlde mount
+  // Handle mount
   useEffect(() => {
+    mountedGlobal = true;
     setMounted(true);
   }, []);
+
   // Handle offline alert
-  useOfflineAlert({ mounted: mounted });
+  useOfflineAlert({ mounted });
 
   if (!mounted) return <>{fallback || <DefaultFallback />}</>;
 
   return (
     <>
       <GlobalDisclosure />
-
       {children}
     </>
   );

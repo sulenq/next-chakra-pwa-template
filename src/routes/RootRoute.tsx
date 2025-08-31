@@ -104,7 +104,10 @@ const RootRoute = () => {
           <ExiumWatermark />
         </CContainer>
 
-        <CContainer bg={themeConfig.primaryColor}>
+        <CContainer
+          display={["none", null, "flex"]}
+          bg={themeConfig.primaryColor}
+        >
           <Img
             alt={APP.name}
             src={`${SVGS_PATH}/logo_light.svg`}
