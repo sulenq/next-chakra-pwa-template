@@ -12,7 +12,7 @@ import {
 import DisclosureHeaderContent from "../ui/disclosure-header-content";
 import useConfirmationDisclosure from "@/context/disclosure/useConfirmationDisclosure";
 import BackButton from "./BackButton";
-import Btn from "../ui/spinner";
+import Btn from "../ui/btn";
 
 interface Props {
   children?: any;

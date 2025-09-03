@@ -9,7 +9,7 @@ import { HStack, Icon, InputGroup, StackProps } from "@chakra-ui/react";
 import { IconLock, IconUser } from "@tabler/icons-react";
 import { useFormik } from "formik";
 import * as yup from "yup";
-import Btn from "../ui/spinner";
+import Btn from "../ui/btn";
 import CContainer from "../ui/c-container";
 import P from "../ui/p";
 import PasswordInput from "../ui/password-input";

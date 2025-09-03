@@ -1,6 +1,6 @@
 "use client";
 
-import BButton from "@/components/ui/spinner";
+import BButton from "@/components/ui/btn";
 import Divider from "@/components/ui/divider";
 import NavLink from "@/components/ui/nav-link";
 import P from "@/components/ui/p";

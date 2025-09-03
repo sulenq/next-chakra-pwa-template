@@ -15,7 +15,7 @@ import {
 import DisclosureHeaderContent from "../ui/disclosure-header-content";
 import useOffline from "@/context/disclosure/useOffilne";
 import BackButton from "./BackButton";
-import Btn from "../ui/spinner";
+import Btn from "../ui/btn";
 import { EmptyState } from "../ui/empty-state";
 
 const OfflineDisclosure = () => {

@@ -6,7 +6,7 @@ import useLang from "../../context/useLang";
 import { MenuContent, MenuItem, MenuRoot, MenuTrigger } from "./menu";
 import { Tooltip } from "./tooltip";
 import { useThemeConfig } from "@/context/useThemeConfig";
-import Btn from "./spinner";
+import Btn from "./btn";
 
 interface Props extends ButtonProps {}
 

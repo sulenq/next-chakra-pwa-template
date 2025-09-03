@@ -26,7 +26,7 @@ import StringInput from "../ui/string-input";
 import { Field } from "../ui/field";
 import HelperText from "../ui/helper-text";
 import BackButton from "./BackButton";
-import Btn from "../ui/spinner";
+import Btn from "../ui/btn";
 import useBackOnClose from "@/hooks/useBackOnClose";
 import DisclosureHeaderContent from "../ui/disclosure-header-content";
 import { DialogContent, DialogHeader, DialogRoot } from "../ui/dialog";

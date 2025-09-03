@@ -1,6 +1,6 @@
 "use client";
 
-import Btn from "@/components/ui/spinner";
+import Btn from "@/components/ui/btn";
 import CContainer from "@/components/ui/c-container";
 import Img from "@/components/ui/img";
 import LangSwitcher from "@/components/ui/lang-menu";
@@ -17,7 +17,8 @@ import useLang from "@/context/useLang";
 import { useThemeConfig } from "@/context/useThemeConfig";
 import useRequest from "@/hooks/useRequest";
 import { removeStorage } from "@/utils/client";
-import { HStack, SimpleGrid, VStack } from "@chakra-ui/react";
+import { HStack, SimpleGrid, Spinner, VStack } from "@chakra-ui/react";
+import { toaster } from "@/components/ui/toaster";
 
 const Signedin = () => {
   // Contexts
@@ -76,6 +77,76 @@ const Signedin = () => {
           loading={loading}
         >
           Signin
+        </Btn>
+
+        <Btn
+          variant={"outline"}
+          onClick={() => {
+            toaster.create({
+              type: "loading",
+              title: "Toast title",
+              description: "Toast description here",
+              action: { label: "Close", onClick: () => {} },
+            });
+          }}
+        >
+          Loading Toast
+        </Btn>
+        <Btn
+          variant={"outline"}
+          onClick={() => {
+            toaster.create({
+              type: "success",
+              title: "Toast title",
+              description: "Toast description here",
+              action: { label: "Close", onClick: () => {} },
+              duration: 9999999,
+            });
+          }}
+        >
+          Success Toast
+        </Btn>
+        <Btn
+          variant={"outline"}
+          onClick={() => {
+            toaster.create({
+              type: "error",
+              title: "Toast title",
+              description: "Toast description here",
+              action: { label: "Close", onClick: () => {} },
+              duration: 9999999,
+            });
+          }}
+        >
+          Error Toast
+        </Btn>
+        <Btn
+          variant={"outline"}
+          onClick={() => {
+            toaster.create({
+              type: "warning",
+              title: "Toast title",
+              description: "Toast description here",
+              action: { label: "Close", onClick: () => {} },
+              duration: 9999999,
+            });
+          }}
+        >
+          Warning Toast
+        </Btn>
+        <Btn
+          variant={"outline"}
+          onClick={() => {
+            toaster.create({
+              type: "info",
+              title: "Toast title",
+              description: "Toast description here",
+              action: { label: "Close", onClick: () => {} },
+              duration: 9999999,
+            });
+          }}
+        >
+          Info Toast
         </Btn>
       </VStack>
     </VStack>

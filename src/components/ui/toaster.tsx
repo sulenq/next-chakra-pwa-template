@@ -4,13 +4,89 @@ import { SM_SCREEN_W_NUMBER } from "@/constants/sizes";
 import { useThemeConfig } from "@/context/useThemeConfig";
 import { client } from "@/utils/client";
 import {
+  Center,
   Toaster as ChakraToaster,
+  Icon,
   Portal,
   Spinner,
   Stack,
   Toast,
   createToaster,
 } from "@chakra-ui/react";
+import {
+  IconAlertCircle,
+  IconAlertTriangle,
+  IconCircleCheck,
+  IconInfoCircle,
+} from "@tabler/icons-react";
+import { useColorMode } from "./color-mode";
+
+const TOAST_PROPS = {
+  loading: {
+    icon: <Spinner w={"14px"} h={"14px"} color={"fg.muted"} />,
+    color: "current",
+    bg: {
+      light: "bg.muted",
+      dark: "bg.muted",
+    },
+  },
+  success: {
+    color: "fg.success",
+    bg: {
+      light: "green.100",
+      dark: "green.800",
+    },
+    icon: <IconCircleCheck stroke={1.5} />,
+  },
+  error: {
+    color: "fg.error",
+    bg: {
+      light: "red.100",
+      dark: "red.800",
+    },
+    icon: <IconAlertTriangle stroke={1.6} size={21} />,
+  },
+  warning: {
+    icon: <IconAlertCircle stroke={1.5} />,
+    color: "fg.warning",
+    bg: {
+      light: "orange.100",
+      dark: "orange.800",
+    },
+  },
+  info: {
+    icon: <IconInfoCircle stroke={1.5} />,
+    color: "current",
+    bg: {
+      light: "bg.muted",
+      dark: "bg.muted",
+    },
+  },
+};
+
+const ToastIcon = (props: any) => {
+  // Props
+  const { type } = props;
+
+  // Contexts
+  const { colorMode } = useColorMode();
+
+  // States
+  const toast = TOAST_PROPS[type as keyof typeof TOAST_PROPS];
+
+  return (
+    <Center
+      bg={toast.bg[colorMode]}
+      borderRadius={"full"}
+      w={"32px"}
+      h={"32px"}
+      ml={-1}
+      mt={-1}
+    >
+      <Icon color={toast.color}>{toast.icon}</Icon>
+    </Center>
+  );
+};
 
 export const toaster = createToaster({
   placement:
@@ -27,31 +103,51 @@ export const Toaster = () => {
         {(toast) => {
           return (
             <Toast.Root
-              borderRadius={themeConfig?.radii?.component}
+              borderRadius={themeConfig?.radii?.container}
               width={{ md: "sm" }}
               boxShadow={"none"}
-              color={
-                toast.type === "info" || toast.type === "loading" ? "" : "white"
-              }
-              bg={toast.type === "success" ? "green.600 !important" : ""}
+              color={"current"}
+              bg={"body !important"}
+              border={"1px solid"}
+              borderColor={"border.muted"}
+              className="ss"
             >
               {toast.type === "loading" ? (
-                <Spinner
-                  size="xs"
-                  color={themeConfig.primaryColor}
-                  mt={"4px"}
-                />
+                <Center
+                  bg={`bg.muted`}
+                  borderRadius={"full"}
+                  p={"6px"}
+                  w={"32px"}
+                  h={"32px"}
+                  ml={-1}
+                  mt={-1}
+                >
+                  <Spinner w={"14px"} h={"14px"} color={"fg.muted"} />
+                </Center>
               ) : (
-                <Toast.Indicator />
+                <ToastIcon type={toast.type} />
               )}
-              <Stack gap="1" flex="1" maxWidth="100%">
-                {toast.title && <Toast.Title>{toast.title}</Toast.Title>}
+
+              <Stack gap="1" flex="1" maxWidth="100%" ml={1}>
+                {toast.title && (
+                  <Toast.Title fontWeight={"semibold"}>
+                    {toast.title}
+                  </Toast.Title>
+                )}
                 {toast.description && (
                   <Toast.Description>{toast.description}</Toast.Description>
                 )}
               </Stack>
+
               {toast.action && (
-                <Toast.ActionTrigger borderRadius={6}>
+                <Toast.ActionTrigger
+                  borderRadius={6}
+                  borderColor={"border.muted"}
+                  cursor={"pointer"}
+                  _hover={{
+                    bg: "bg.subtle",
+                  }}
+                >
                   {toast.action.label}
                 </Toast.ActionTrigger>
               )}
