@@ -1,6 +1,6 @@
 "use client";
 
-import BButton from "@/components/ui/btn";
+import { Btn } from "@/components/ui/btn";
 import { Divider } from "@/components/ui/divider";
 import { NavLink } from "@/components/ui/nav-link";
 import { P } from "@/components/ui/p";
@@ -34,9 +34,9 @@ export default function NotFoundRoute() {
         </Text>
 
         <NavLink to={"/"} w={"fit"}>
-          <BButton colorPalette={themeConfig.colorPalette} px={8}>
+          <Btn colorPalette={themeConfig.colorPalette} px={8}>
             {l.main_page}
-          </BButton>
+          </Btn>
         </NavLink>
       </VStack>
 

@@ -193,7 +193,7 @@ const DatePicker = (props: Props__DatePicker) => {
 
     const startOfFirstWeek = startOfWeek(firstDayOfMonth, { weekStartsOn: 1 });
 
-    let weekDates = [];
+    const weekDates = [];
     let currentWeek = [];
 
     for (let i = 0; i < 6; i++) {
