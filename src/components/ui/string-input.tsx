@@ -7,12 +7,10 @@ import {
   useFieldContext,
 } from "@chakra-ui/react";
 import { css, Global } from "@emotion/react";
-import { useRef } from "react";
+import { forwardRef, useRef } from "react";
 import { useColorMode } from "./color-mode";
 
 interface Props extends InputProps {
-  fRef?: any;
-  name?: string;
   onChangeSetter?: (inputValue: string) => void;
   inputValue?: string;
   placeholder?: string;
@@ -20,26 +18,28 @@ interface Props extends InputProps {
   invalid?: boolean;
 }
 
-export default function StringInput({
-  fRef,
-  name,
-  onChangeSetter,
-  inputValue,
-  placeholder = "Input text",
-  boxProps,
-  invalid,
-  ...props
-}: Props) {
-  // SX
-  const { colorMode } = useColorMode();
-  const darkLightColorManual = colorMode === "light" ? "#fff" : "var(--dark)";
+export const StringInput = forwardRef<HTMLInputElement, Props>((props, ref) => {
+  // Props
+  const {
+    name,
+    onChangeSetter,
+    inputValue,
+    placeholder = "Input text",
+    boxProps,
+    invalid,
+    ...restProps
+  } = props;
 
   // Contexts
+  const { colorMode } = useColorMode();
   const { themeConfig } = useThemeConfig();
   const fc = useFieldContext();
 
-  // Track first render
+  // Refs
   const isFirstRender = useRef(true);
+
+  // States
+  const darkLightColorManual = colorMode === "light" ? "#fff" : "var(--dark)";
 
   // Utils
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -65,7 +65,7 @@ export default function StringInput({
 
       <Box position={"relative"} w={"full"} overflow={"visible"} {...boxProps}>
         <ChakraInput
-          ref={fRef}
+          ref={ref}
           name={name}
           onChange={handleChange}
           value={inputValue}
@@ -78,9 +78,11 @@ export default function StringInput({
           autoComplete="off"
           transition={"200ms"}
           color={"text"}
-          {...props}
+          {...restProps}
         />
       </Box>
     </>
   );
-}
+});
+
+StringInput.displayName = "StringInput";

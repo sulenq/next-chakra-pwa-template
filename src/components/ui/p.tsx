@@ -2,17 +2,18 @@
 
 import { Text, TextProps } from "@chakra-ui/react";
 import parse, { domToReact } from "html-react-parser";
+import { forwardRef } from "react";
 
 interface Props extends TextProps {
   children?: any;
 }
 
-const P = (props: Props) => {
+export const P = forwardRef<HTMLParagraphElement, Props>((props, ref) => {
   // Props
   const { children = "", ...restProps } = props;
 
   return (
-    <Text wordBreak={"break-word"} {...restProps}>
+    <Text ref={ref} as="p" wordBreak={"break-word"} {...restProps}>
       {typeof children === "string"
         ? parse(children, {
             replace: (domNode) => {
@@ -21,7 +22,6 @@ const P = (props: Props) => {
                 domNode.name === "b" &&
                 domNode.children.length
               ) {
-                // Cast children to any to avoid TS type mismatch
                 return (
                   <b style={{ fontWeight: 700 }}>
                     {domToReact(domNode.children as any)}
@@ -33,6 +33,6 @@ const P = (props: Props) => {
         : "Invalid string"}
     </Text>
   );
-};
+});
 
-export default P;
+P.displayName = "P";

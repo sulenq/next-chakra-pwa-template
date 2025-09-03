@@ -11,7 +11,7 @@ export interface BtnProps extends ButtonProps {
   iconButton?: boolean;
 }
 
-const Btn = forwardRef<HTMLButtonElement, BtnProps>((props, ref) => {
+export const Btn = forwardRef<HTMLButtonElement, BtnProps>((props, ref) => {
   // Props
   const {
     children,
@@ -82,5 +82,3 @@ const Btn = forwardRef<HTMLButtonElement, BtnProps>((props, ref) => {
 });
 
 Btn.displayName = "Btn";
-
-export default Btn;

@@ -5,7 +5,7 @@ import { useFirefoxPaddingY } from "@/hooks/useFirefoxPaddingY";
 import useOfflineAlert from "@/hooks/useOfflineAlert";
 import { Center } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
-import Img from "../ui/img";
+import { Img } from "../ui/img";
 import GlobalDisclosure from "./GlobalDisclosure";
 
 interface Props {

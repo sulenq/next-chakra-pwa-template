@@ -6,7 +6,7 @@ import { useState } from "react";
 
 interface Props extends ImageProps {}
 
-const Img = (props: Props) => {
+export const Img = (props: Props) => {
   // Props
   const { src, onError, ...rest } = props;
 
@@ -23,5 +23,3 @@ const Img = (props: Props) => {
 
   return <Image {...rest} src={currentSrc} onError={handleError} />;
 };
-
-export default Img;

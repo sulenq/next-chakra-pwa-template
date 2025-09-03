@@ -3,13 +3,13 @@
 import { StackProps } from "@chakra-ui/react";
 import { useRouter } from "next/navigation";
 import { forwardRef } from "react";
-import CContainer from "./c-container";
+import { CContainer } from "./c-container";
 
 interface Props extends StackProps {
   to?: string;
 }
 
-const NavLink = forwardRef<HTMLDivElement, Props>((props, ref) => {
+export const NavLink = forwardRef<HTMLDivElement, Props>((props, ref) => {
   // Props
   const { children, to, ...restProps } = props;
 
@@ -34,5 +34,3 @@ const NavLink = forwardRef<HTMLDivElement, Props>((props, ref) => {
 });
 
 NavLink.displayName = "NavLink";
-
-export default NavLink;

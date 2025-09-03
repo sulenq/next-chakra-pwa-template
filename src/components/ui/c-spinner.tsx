@@ -4,7 +4,7 @@ interface Props extends StackProps {
   spinnerProps?: SpinnerProps;
 }
 
-const CSpinner = ({ spinnerProps, ...props }: Props) => {
+export const CSpinner = ({ spinnerProps, ...props }: Props) => {
   return (
     <VStack
       w={"full"}
@@ -18,5 +18,3 @@ const CSpinner = ({ spinnerProps, ...props }: Props) => {
     </VStack>
   );
 };
-
-export default CSpinner;

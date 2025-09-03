@@ -1,9 +1,9 @@
 "use client";
 
 import BButton from "@/components/ui/btn";
-import Divider from "@/components/ui/divider";
-import NavLink from "@/components/ui/nav-link";
-import P from "@/components/ui/p";
+import { Divider } from "@/components/ui/divider";
+import { NavLink } from "@/components/ui/nav-link";
+import { P } from "@/components/ui/p";
 import ExiumWatermark from "@/components/widget/ExiumWatermark";
 import useLang from "@/context/useLang";
 import { useThemeConfig } from "@/context/useThemeConfig";

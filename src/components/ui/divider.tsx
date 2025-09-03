@@ -1,7 +1,10 @@
 import { Interface__Divider } from "@/constants/interfaces";
 import { Box } from "@chakra-ui/react";
 
-const Divider = ({ dir = "horizontal", ...props }: Interface__Divider) => {
+export const Divider = ({
+  dir = "horizontal",
+  ...props
+}: Interface__Divider) => {
   switch (dir) {
     default:
       return <Box w={"1px"} h={"full"} bg={"d1"} {...props} />;
@@ -9,5 +12,3 @@ const Divider = ({ dir = "horizontal", ...props }: Interface__Divider) => {
       return <Box w={"full"} h={"1px"} bg={"d1"} {...props} />;
   }
 };
-
-export default Divider;

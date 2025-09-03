@@ -6,7 +6,7 @@ import useLang from "../../context/useLang";
 import { MenuContent, MenuItem, MenuRoot, MenuTrigger } from "./menu";
 import { Tooltip } from "./tooltip";
 import { useThemeConfig } from "@/context/useThemeConfig";
-import Btn from "./btn";
+import { Btn } from "./btn";
 
 interface Props extends ButtonProps {}
 
@@ -23,7 +23,7 @@ const LANGUAGES = [
   },
 ];
 
-const LangMenu = ({ ...props }: Props) => {
+export const LangMenu = ({ ...props }: Props) => {
   // Contexts
   const { l, lang, setLang } = useLang();
   const { themeConfig } = useThemeConfig();
@@ -80,5 +80,3 @@ const LangMenu = ({ ...props }: Props) => {
     </Tooltip>
   );
 };
-
-export default LangMenu;

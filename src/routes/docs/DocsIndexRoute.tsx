@@ -1,7 +1,7 @@
-import CContainer from "@/components/ui/c-container";
+import { CContainer } from "@/components/ui/c-container";
 
 const DocsIndexRoute = () => {
-  return <CContainer>Docs</CContainer>;
+  return <CContainer></CContainer>;
 };
 
 export default DocsIndexRoute;

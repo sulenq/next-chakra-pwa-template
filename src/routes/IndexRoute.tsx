@@ -1,11 +1,11 @@
 "use client";
 
-import Btn from "@/components/ui/btn";
-import CContainer from "@/components/ui/c-container";
-import Img from "@/components/ui/img";
-import LangSwitcher from "@/components/ui/lang-menu";
-import NavLink from "@/components/ui/nav-link";
-import P from "@/components/ui/p";
+import { Btn } from "@/components/ui/btn";
+import { CContainer } from "@/components/ui/c-container";
+import { Img } from "@/components/ui/img";
+import { LangMenu } from "@/components/ui/lang-menu";
+import { NavLink } from "@/components/ui/nav-link";
+import { P } from "@/components/ui/p";
 import { Avatar } from "@/components/ui/avatar";
 import { ColorModeButton } from "@/components/ui/color-mode";
 import ExiumWatermark from "@/components/widget/ExiumWatermark";
@@ -108,7 +108,7 @@ const IndexRoute = () => {
           <HStack justify={"center"}>
             <ColorModeButton />
 
-            <LangSwitcher />
+            <LangMenu />
           </HStack>
 
           {authToken && <Signedin />}

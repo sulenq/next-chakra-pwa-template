@@ -3,7 +3,7 @@ import { HStack } from "@chakra-ui/react";
 import { DialogCloseTrigger } from "./dialog";
 import { DrawerCloseTrigger } from "./drawer";
 import { DisclosureCloseTrigger } from "./disclosure";
-import P from "./p";
+import { P } from "./p";
 
 type Props = {
   title?: string;
@@ -11,7 +11,7 @@ type Props = {
   content?: any;
   prefix?: "drawer" | "dialog";
 };
-const DisclosureHeaderContent = ({
+export const DisclosureHeaderContent = ({
   title,
   withCloseButton = true,
   prefix,
@@ -74,5 +74,3 @@ const DisclosureHeaderContent = ({
     </HStack>
   );
 };
-
-export default DisclosureHeaderContent;

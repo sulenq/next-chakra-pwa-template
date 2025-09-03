@@ -44,9 +44,9 @@ import {
   DrawerRoot,
   DrawerTrigger,
 } from "@/components/ui/drawer";
-import CContainer from "./c-container";
 import { SM_SCREEN_W_NUMBER } from "@/constants/sizes";
 import { useEffect } from "react";
+import { CContainer } from "./c-container";
 
 const DisclosureRoot = ({ children, ...props }: any) => {
   // Utils

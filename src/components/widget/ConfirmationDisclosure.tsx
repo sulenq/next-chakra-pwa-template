@@ -1,18 +1,18 @@
 import { useThemeConfig } from "@/context/useThemeConfig";
 import useBackOnClose from "@/hooks/useBackOnClose";
 import { Text } from "@chakra-ui/react";
-import CContainer from "../ui/c-container";
+import { CContainer } from "@/components/ui/c-container";
 import {
   DisclosureBody,
   DisclosureContent,
   DisclosureFooter,
   DisclosureHeader,
   DisclosureRoot,
-} from "../ui/disclosure";
-import DisclosureHeaderContent from "../ui/disclosure-header-content";
+} from "@/components/ui/disclosure";
+import { DisclosureHeaderContent } from "@/components/ui/disclosure-header-content";
 import useConfirmationDisclosure from "@/context/disclosure/useConfirmationDisclosure";
 import BackButton from "./BackButton";
-import Btn from "../ui/btn";
+import { Btn } from "@/components/ui/btn";
 
 interface Props {
   children?: any;
