@@ -133,6 +133,10 @@ export const year = {
   id: "Tahun",
   en: "Year",
 };
+export const retry = {
+  id: "Coba lagi",
+  en: "Retry",
+};
 export const all = {
   id: "Semua",
   en: "All",
@@ -188,6 +192,34 @@ export const select_date = {
 export const select_date_range = {
   id: "Pilih rentang tanggal",
   en: "Select date range",
+};
+export const monday = {
+  id: "Senin",
+  en: "Monday",
+};
+export const tuesday = {
+  id: "Selasa",
+  en: "Tuesday",
+};
+export const wednesday = {
+  id: "Rabu",
+  en: "Wednesday",
+};
+export const thursday = {
+  id: "Kamis",
+  en: "Thursday",
+};
+export const friday = {
+  id: "Jumat",
+  en: "Friday",
+};
+export const saturday = {
+  id: "Sabtu",
+  en: "Saturday",
+};
+export const sunday = {
+  id: "Minggu",
+  en: "Sunday",
 };
 export const january = {
   id: "Januari",
@@ -289,6 +321,46 @@ export const alert_offline = {
   description: {
     id: "Sepertinya Anda sedang offline. Periksa koneksi internet Anda dan coba lagi.",
     en: "It looks like you are offline. Check your internet connection and try again.",
+  },
+};
+export const alert_no_data = {
+  title: {
+    id: "Tidak ada data",
+    en: "No data available",
+  },
+  description: {
+    id: "Silakan perbarui data atau sesuaikan filter.",
+    en: "Please refresh the data or adjust your filters.",
+  },
+};
+export const alert_forbidden = {
+  title: {
+    id: "Akses ditolak",
+    en: "Access denied",
+  },
+  description: {
+    id: "Anda tidak memiliki izin untuk melihat konten ini.",
+    en: "You do not have permission to view this content.",
+  },
+};
+export const alert_not_found = {
+  title: {
+    id: "Tidak ditemukan",
+    en: "Not found",
+  },
+  description: {
+    id: "Data yang dicari tidak tersedia.",
+    en: "The requested data could not be found.",
+  },
+};
+export const alert_retry = {
+  title: {
+    id: "Terjadi kesalahan",
+    en: "An error occurred",
+  },
+  description: {
+    id: "Silakan coba lagi.",
+    en: "Please try again.",
   },
 };
 

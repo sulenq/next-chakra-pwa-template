@@ -1,6 +1,10 @@
 "use client";
 
-import { Props__DatePickerInput } from "@/constants/props";
+import {
+  Props__DatePicker,
+  Props__DatePickerInput,
+  Props__SelectedDateList,
+} from "@/constants/props";
 import { Type__Period } from "@/constants/types";
 import useLang from "@/context/useLang";
 import useBackOnClose from "@/hooks/useBackOnClose";
@@ -10,6 +14,8 @@ import {
   Group,
   HStack,
   Icon,
+  List,
+  SimpleGrid,
   useDisclosure,
   useFieldContext,
 } from "@chakra-ui/react";
@@ -32,6 +38,74 @@ import {
 import { DisclosureHeaderContent } from "./disclosure-header-content";
 import { P } from "./p";
 import { PeriodPickerInput } from "./period-picker-input";
+import { useThemeConfig } from "@/context/useThemeConfig";
+import { getTimezoneOffsetMs, getUserTimezone } from "@/utils/time";
+import moment from "moment-timezone";
+import { addDays, startOfWeek } from "date-fns";
+import { Tooltip } from "./tooltip";
+import { formatDate } from "@/utils/formatter";
+import { back } from "@/utils/client";
+import FeedbackNoData from "../widget/FeedbackNoData";
+
+const SelectedDateList = (props: Props__SelectedDateList) => {
+  // Props
+  const { id, selected, formattedSelectedLabel } = props;
+
+  // Hooks
+  const { open, onOpen, onClose } = useDisclosure();
+  useBackOnClose(`${id}-selected-date-list`, open, onOpen, onClose);
+
+  return (
+    <>
+      <CContainer
+        borderColor={"border.muted"}
+        bg={"bg.muted"}
+        p={3}
+        borderRadius={6}
+        cursor={"pointer"}
+        onClick={onOpen}
+      >
+        <P
+          textAlign={"center"}
+          fontWeight={"semibold"}
+          maxW={"calc(100% - 16px)"}
+          mx={"auto"}
+          truncate
+        >
+          {formattedSelectedLabel}
+        </P>
+      </CContainer>
+
+      <DisclosureRoot open={open} size={"xs"} scrollBehavior={"inside"}>
+        <DisclosureContent>
+          <DisclosureHeader>
+            <DisclosureHeaderContent title="Tanggal dipilih" />
+          </DisclosureHeader>
+          <DisclosureBody>
+            <CContainer px={2} pl={4} pt={1}>
+              <List.Root gap={2}>
+                {emptyArray(selected) && <FeedbackNoData />}
+                {!emptyArray(selected) &&
+                  selected.map((item, i) => {
+                    return (
+                      <List.Item key={i}>
+                        {formatDate(item, {
+                          variant: "weekdayFullMonth",
+                        })}
+                      </List.Item>
+                    );
+                  })}
+              </List.Root>
+            </CContainer>
+          </DisclosureBody>
+          <DisclosureFooter>
+            <BackButton />
+          </DisclosureFooter>
+        </DisclosureContent>
+      </DisclosureRoot>
+    </>
+  );
+};
 
 const PeriodPicker = (props: any) => {
   // Props
@@ -68,6 +142,7 @@ const PeriodPicker = (props: any) => {
     <Group w={"full"}>
       <Btn
         iconButton
+        clicky={false}
         variant={"outline"}
         onClick={() => cycleMonth("decrement")}
         size={"md"}
@@ -91,6 +166,7 @@ const PeriodPicker = (props: any) => {
 
       <Btn
         iconButton
+        clicky={false}
         variant={"outline"}
         onClick={() => cycleMonth("increment")}
         size={"md"}
@@ -102,11 +178,139 @@ const PeriodPicker = (props: any) => {
     </Group>
   );
 };
-const DatePicker = (props: any) => {
+const DatePicker = (props: Props__DatePicker) => {
   // Props
-  const { selected, setSelected, ...restProps } = props;
+  const { inputValue, period, selected, setSelected, multiple, ...restProps } =
+    props;
 
-  return <CContainer></CContainer>;
+  // Contexts
+  const { l } = useLang();
+  const { themeConfig } = useThemeConfig();
+
+  // States
+  const fullDates = () => {
+    const firstDayOfMonth = new Date(period.year!, period.month!, 1);
+
+    const startOfFirstWeek = startOfWeek(firstDayOfMonth, { weekStartsOn: 1 });
+
+    let weekDates = [];
+    let currentWeek = [];
+
+    for (let i = 0; i < 6; i++) {
+      currentWeek = [];
+
+      for (let j = 0; j < 7; j++) {
+        const fullDate = addDays(startOfFirstWeek, i * 7 + j);
+        currentWeek.push({
+          fullDate: fullDate,
+          date: fullDate.getDate(),
+          month: fullDate.getMonth(),
+          year: fullDate.getFullYear(),
+        });
+      }
+
+      weekDates.push(currentWeek);
+    }
+
+    return weekDates;
+  };
+  const WEEKDAYS = [
+    l.monday,
+    l.tuesday,
+    l.wednesday,
+    l.thursday,
+    l.friday,
+    l.saturday,
+    l.sunday,
+  ];
+
+  return (
+    <CContainer {...restProps}>
+      <SimpleGrid
+        columns={[7]}
+        gap={2}
+        borderBottom={"1px solid"}
+        borderColor={"var(--d3)"}
+        pb={2}
+        mb={2}
+      >
+        {WEEKDAYS.map((day, i) => (
+          <P key={i} fontWeight={"semibold"} textAlign={"center"}>
+            {day.substring(0, 3)}
+          </P>
+        ))}
+      </SimpleGrid>
+
+      <CContainer gap={2}>
+        {fullDates().map((weeks, i) => (
+          <SimpleGrid columns={[7]} key={i} gap={2}>
+            {weeks.map((date, ii) => {
+              const today = new Date();
+              const dateSelected = selected.some(
+                (sd) =>
+                  sd.getDate() === date.fullDate.getDate() &&
+                  sd.getMonth() === date.month &&
+                  sd.getFullYear() === date.year
+              );
+              const dateToday =
+                date.date === today.getDate() &&
+                date.month === today.getMonth() &&
+                date.year === today.getFullYear();
+
+              return (
+                <Btn
+                  key={ii}
+                  clicky={false}
+                  borderRadius={"full"}
+                  onClick={() => {
+                    if (multiple) {
+                      const newSelectedDates = selected.some(
+                        (sd) =>
+                          sd.getDate() === date.fullDate.getDate() &&
+                          sd.getMonth() === date.month &&
+                          sd.getFullYear() === date.year
+                      )
+                        ? selected.filter(
+                            (sd) =>
+                              !(
+                                sd.getDate() === date.fullDate.getDate() &&
+                                sd.getMonth() === date.month &&
+                                sd.getFullYear() === date.year
+                              )
+                          )
+                        : [...selected, date.fullDate].sort(
+                            (a, b) => a.getTime() - b.getTime()
+                          );
+                      setSelected(newSelectedDates);
+                    } else {
+                      if (dateSelected) {
+                        setSelected([]);
+                      } else {
+                        setSelected([date.fullDate]);
+                      }
+                    }
+                  }}
+                  variant={dateSelected ? "outline" : "ghost"}
+                  borderColor={dateSelected ? themeConfig.primaryColor : ""}
+                  aspectRatio={1}
+                >
+                  <P
+                    opacity={
+                      date.month !== period.month && !dateSelected ? 0.3 : 1
+                    }
+                    color={dateToday ? themeConfig.primaryColor : ""}
+                    fontWeight={dateToday ? "extrabold" : ""}
+                  >
+                    {`${date.date}`}
+                  </P>
+                </Btn>
+              );
+            })}
+          </SimpleGrid>
+        ))}
+      </CContainer>
+    </CContainer>
+  );
 };
 
 export const DatePickerInput = (props: Props__DatePickerInput) => {
@@ -126,6 +330,7 @@ export const DatePickerInput = (props: Props__DatePickerInput) => {
 
   // Contexts
   const { l } = useLang();
+  const { themeConfig } = useThemeConfig();
   const fc = useFieldContext();
 
   // Hooks
@@ -133,33 +338,88 @@ export const DatePickerInput = (props: Props__DatePickerInput) => {
   useBackOnClose(id || `date-picker-input`, open, onOpen, onClose);
 
   // States
-  const [selected, setSelected] = useState<string[]>([]);
+  const userTz = getUserTimezone();
+  const offsetInMs = moment.tz(userTz.key).utcOffset() * 60 * 1000;
+  const [selected, setSelected] = useState<Date[]>(
+    inputValue
+      ? inputValue.map(
+          (item: any) =>
+            new Date(new Date(item).getTime() - getTimezoneOffsetMs(userTz.key))
+        )
+      : []
+  );
   const [period, setPeriod] = useState<Type__Period>({
     month: new Date().getMonth(),
     year: new Date().getFullYear(),
   });
+  const resolvedPlaceholder = placeholder || l.select_date;
+  const formattedSelectedLabel =
+    selected && selected?.length > 0
+      ? selected
+          .map((date) =>
+            formatDate(new Date(date), { prefixTimeZoneKey: userTz.key })
+          )
+          .join(", ")
+      : resolvedPlaceholder;
+  const formattedButtonLabel =
+    inputValue && inputValue?.length > 0
+      ? inputValue
+          .map((date) =>
+            formatDate(new Date(date), { prefixTimeZoneKey: userTz.key })
+          )
+          .join(", ")
+      : resolvedPlaceholder;
+
+  // Utils
+  function onConfirmSelected() {
+    if (!required || selected.length > 0) {
+      onConfirm?.(
+        selected.map((item) =>
+          new Date(
+            item.getTime() + getTimezoneOffsetMs(userTz.key)
+          ).toISOString()
+        )
+      );
+      back();
+    }
+  }
 
   return (
     <>
-      <Btn
-        w={"full"}
-        clicky={false}
-        variant={"outline"}
-        justifyContent={"start"}
-        onClick={onOpen}
-        borderColor={invalid ?? fc?.invalid ? "border.error" : "border.muted"}
-        {...restProps}
+      <Tooltip
+        content={inputValue ? formattedButtonLabel : resolvedPlaceholder}
       >
-        <HStack w={"full"} justify={"space-between"}>
-          <P color={emptyArray(selected) ? "placeholder" : "current"}>
-            {l.select_date}
-          </P>
+        <Btn
+          w={"full"}
+          clicky={false}
+          variant={"outline"}
+          justifyContent={"start"}
+          onClick={() => {
+            if (inputValue) {
+              setSelected(
+                inputValue.map(
+                  (item) => new Date(new Date(item).getTime() - offsetInMs)
+                )
+              );
+            }
+            onOpen();
+          }}
+          borderColor={invalid ?? fc?.invalid ? "border.error" : "border.muted"}
+          {...restProps}
+        >
+          <HStack w={"full"} justify={"space-between"}>
+            {!emptyArray(inputValue) && <P>{formattedButtonLabel}</P>}
 
-          <Icon color={"fg.subtle"}>
-            <IconCalendar stroke={1.5} />
-          </Icon>
-        </HStack>
-      </Btn>
+            {emptyArray(inputValue) && (
+              <P color={"placeholder"}>{l.select_date}</P>
+            )}
+
+            <Icon color={"fg.subtle"}>
+              <IconCalendar stroke={1.5} />
+            </Icon>
+          </HStack>
+        </Btn>
+      </Tooltip>
 
       <DisclosureRoot open={open} lazyLoad size={disclosureSize}>
         <DisclosureContent>
@@ -168,11 +428,42 @@ export const DatePickerInput = (props: Props__DatePickerInput) => {
           </DisclosureHeader>
 
           <DisclosureBody>
-            <PeriodPicker period={period} setPeriod={setPeriod} />
+            <CContainer gap={4}>
+              <PeriodPicker period={period} setPeriod={setPeriod} />
+
+              <DatePicker
+                inputValue={inputValue}
+                period={period}
+                selected={selected}
+                setSelected={setSelected}
+                multiple={!!multiple}
+              />
+
+              <SelectedDateList
+                id={id}
+                selected={selected}
+                formattedSelectedLabel={formattedSelectedLabel}
+              />
+            </CContainer>
           </DisclosureBody>
 
           <DisclosureFooter>
-            <BackButton />
+            <Btn
+              variant={"outline"}
+              onClick={() => {
+                setSelected([]);
+              }}
+            >
+              Reset
+            </Btn>
+
+            <Btn
+              colorPalette={themeConfig.colorPalette}
+              disabled={required && selected.length === 0}
+              onClick={onConfirmSelected}
+            >
+              {l.confirm}
+            </Btn>
           </DisclosureFooter>
         </DisclosureContent>
       </DisclosureRoot>

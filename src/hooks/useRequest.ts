@@ -4,7 +4,7 @@ import {
   Interface__RequestState,
 } from "@/constants/interfaces";
 import useLang from "@/context/useLang";
-import { clearAuthToken } from "@/utils/authToken";
+import { clearAuthToken } from "@/utils/auth";
 import { removeStorage } from "@/utils/client";
 import { request } from "@/utils/request";
 import { useRouter } from "next/navigation";

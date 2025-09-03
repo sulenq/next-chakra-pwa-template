@@ -101,6 +101,7 @@
   background: var(--darktrans) !important;
   backdrop-filter: blur(15px) !important;
   color: white !important;
+  box-shadow: none !important;
 }
 
 /* Border Radius */

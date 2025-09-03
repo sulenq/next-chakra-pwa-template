@@ -13,12 +13,9 @@ import {
   Icon,
   SimpleGrid,
   useDisclosure,
-  useFieldContext,
 } from "@chakra-ui/react";
 import { IconCheck } from "@tabler/icons-react";
-import { useFormik } from "formik";
-import { useEffect } from "react";
-import * as yup from "yup";
+import { useEffect, useState } from "react";
 import BackButton from "../widget/BackButton";
 import { Btn } from "./btn";
 import {
@@ -53,7 +50,6 @@ export const PeriodPickerInput = (props: Props__PeriodPickerInput) => {
   // Contexts
   const { l } = useLang();
   const { themeConfig } = useThemeConfig();
-  const fc = useFieldContext();
 
   // Hooks
   const { open, onOpen, onClose } = useDisclosure();
@@ -75,36 +71,29 @@ export const PeriodPickerInput = (props: Props__PeriodPickerInput) => {
     l.november,
     l.december,
   ];
-  const formik = useFormik({
-    validateOnChange: false,
-    initialValues: {
-      month: null,
-      year: null,
-    } as Type__Period,
-    validationSchema: yup.object().shape({
-      month: yup.number().required(l.msg_required_form),
-      year: yup.number().required(l.msg_required_form),
-    }),
-    onSubmit: (values) => {
-      onConfirm?.({
-        month: values.month,
-        year: values.year,
-      });
-      back();
-    },
+  const [selected, setSelected] = useState<Type__Period>({
+    month: inputValue?.month ?? null,
+    year: inputValue?.year ?? null,
   });
-  const empty =
-    inputValue && (inputValue?.year === null || inputValue?.month === null);
 
-  // handle initial value
+  const empty = selected.year === null || selected.month === null;
+
+  // handle initial value saat open
   useEffect(() => {
-    if (open && inputValue) {
-      formik.setValues({
+    if (inputValue) {
+      setSelected({
         month: inputValue.month,
         year: inputValue.year,
       });
     }
-  }, [open]);
+  }, [open, inputValue]);
+
+  const handleConfirm = () => {
+    if (!empty) {
+      onConfirm?.({ month: selected.month, year: selected.year });
+      back();
+    }
+  };
 
   return (
     <>
@@ -114,20 +103,18 @@ export const PeriodPickerInput = (props: Props__PeriodPickerInput) => {
         variant={"outline"}
         justifyContent={"start"}
         onClick={onOpen}
-        borderColor={invalid ?? fc?.invalid ? "border.error" : "border.muted"}
+        borderColor={invalid ? "border.error" : "border.muted"}
         {...restProps}
       >
         {empty && <P color={"placeholder"}>{resolvedPlaceholder}</P>}
 
-        {inputValue &&
-          inputValue.year !== null &&
-          inputValue.month !== null && (
-            <P>
-              {formatDate(new Date(inputValue.year, inputValue.month), {
-                variant: "period",
-              })}
-            </P>
-          )}
+        {!empty && (
+          <P>
+            {formatDate(new Date(selected.year!, selected.month!), {
+              variant: "period",
+            })}
+          </P>
+        )}
       </Btn>
 
       <DisclosureRoot open={open} lazyLoad size={disclosureSize}>
@@ -137,67 +124,65 @@ export const PeriodPickerInput = (props: Props__PeriodPickerInput) => {
           </DisclosureHeader>
 
           <DisclosureBody>
-            <form id={resolvedId} onSubmit={formik.handleSubmit}>
-              <FieldRoot gap={4}>
-                <Field
-                  label={l.year}
-                  invalid={!!formik.errors.year}
-                  errorText={formik.errors.year}
-                >
-                  <NumInput
-                    inputValue={formik.values.year}
-                    onChange={(inputValue) => {
-                      formik.setFieldValue("year", inputValue);
-                    }}
-                  />
-                </Field>
+            <FieldRoot gap={4}>
+              <Field
+                label={l.year}
+                invalid={required && selected.year === null}
+                errorText={
+                  required && selected.year === null ? l.msg_required_form : ""
+                }
+              >
+                <NumInput
+                  inputValue={selected.year}
+                  onChange={(val) =>
+                    setSelected((prev) => ({ ...prev, year: val }))
+                  }
+                />
+              </Field>
 
-                <Field
-                  label={l.month}
-                  invalid={!!formik.errors.month}
-                  errorText={formik.errors.month}
-                >
-                  <SimpleGrid w={"full"} columns={2} gap={2}>
-                    {MONTHS.map((month, idx) => {
-                      const active = formik.values.month === idx;
+              <Field
+                label={l.month}
+                invalid={required && selected.month === null}
+                errorText={
+                  required && selected.month === null ? l.msg_required_form : ""
+                }
+              >
+                <SimpleGrid w={"full"} columns={2} gap={2}>
+                  {MONTHS.map((month, idx) => {
+                    const active = selected.month === idx;
 
-                      return (
-                        <Btn
-                          key={month}
-                          clicky={false}
-                          variant={"outline"}
-                          onClick={() => {
-                            formik.setFieldValue("month", idx);
-                          }}
-                        >
-                          <HStack w={"full"} justify={"space-between"}>
-                            {month}
+                    return (
+                      <Btn
+                        key={month}
+                        clicky={false}
+                        variant={"outline"}
+                        onClick={() =>
+                          setSelected((prev) => ({ ...prev, month: idx }))
+                        }
+                      >
+                        <HStack w={"full"} justify={"space-between"}>
+                          {month}
 
-                            {active && (
-                              <Icon
-                                color={themeConfig.primaryColor}
-                                boxSize={5}
-                              >
-                                <IconCheck />
-                              </Icon>
-                            )}
-                          </HStack>
-                        </Btn>
-                      );
-                    })}
-                  </SimpleGrid>
-                </Field>
-              </FieldRoot>
-            </form>
+                          {active && (
+                            <Icon color={themeConfig.primaryColor} boxSize={5}>
+                              <IconCheck />
+                            </Icon>
+                          )}
+                        </HStack>
+                      </Btn>
+                    );
+                  })}
+                </SimpleGrid>
+              </Field>
+            </FieldRoot>
           </DisclosureBody>
 
           <DisclosureFooter>
             <BackButton />
-
             <Btn
-              type="submit"
-              form={resolvedId}
+              onClick={handleConfirm}
               colorPalette={themeConfig.colorPalette}
+              disabled={empty && required}
             >
               {l.confirm}
             </Btn>

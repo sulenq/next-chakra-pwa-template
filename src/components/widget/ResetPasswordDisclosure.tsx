@@ -1,9 +1,17 @@
 import { CContainer } from "@/components/ui/c-container";
+import {
+  DisclosureBody,
+  DisclosureContent,
+  DisclosureFooter,
+  DisclosureHeader,
+  DisclosureRoot,
+} from "@/components/ui/disclosure";
 import useLang from "@/context/useLang";
 import { useThemeConfig } from "@/context/useThemeConfig";
+import useBackOnClose from "@/hooks/useBackOnClose";
 import useRequest from "@/hooks/useRequest";
 import { back } from "@/utils/client";
-import { maskEmail } from "@/utils/maskEmail";
+import { maskEmail } from "@/utils/string";
 import {
   PinInputControl,
   PinInputHiddenInput,
@@ -14,23 +22,13 @@ import {
 import { useFormik } from "formik";
 import { useEffect, useState } from "react";
 import * as yup from "yup";
-import {
-  DisclosureBody,
-  DisclosureContent,
-  DisclosureFooter,
-  DisclosureHeader,
-  DisclosureRoot,
-} from "@/components/ui/disclosure";
-import { PasswordInput } from "../ui/password-input";
-import { StringInput } from "../ui/string-input";
+import { Btn } from "../ui/btn";
+import { DisclosureHeaderContent } from "../ui/disclosure-header-content";
 import { Field } from "../ui/field";
 import { HelperText } from "../ui/helper-text";
+import { PasswordInput } from "../ui/password-input";
+import { StringInput } from "../ui/string-input";
 import BackButton from "./BackButton";
-import { Btn } from "../ui/btn";
-import useBackOnClose from "@/hooks/useBackOnClose";
-import { DisclosureHeaderContent } from "../ui/disclosure-header-content";
-import { DialogContent, DialogHeader, DialogRoot } from "../ui/dialog";
-import { DrawerContent, DrawerHeader, DrawerRoot } from "../ui/drawer";
 
 const Step1 = (props: any) => {
   // Props
@@ -89,7 +87,7 @@ const Step1 = (props: any) => {
             >
               <StringInput
                 name="email"
-                onChangeSetter={(input) => {
+                onChange={(input) => {
                   formik.setFieldValue("email", input);
                 }}
                 inputValue={formik.values.email}
@@ -292,7 +290,7 @@ const Step3 = (props: any) => {
               mb={4}
             >
               <PasswordInput
-                onChangeSetter={(input) => {
+                onChange={(input) => {
                   formik.setFieldValue("password", input);
                 }}
                 inputValue={formik.values.password}
@@ -306,7 +304,7 @@ const Step3 = (props: any) => {
               mb={4}
             >
               <PasswordInput
-                onChangeSetter={(input) => {
+                onChange={(input) => {
                   formik.setFieldValue("password_confirmation", input);
                 }}
                 inputValue={formik.values.password_confirmation}

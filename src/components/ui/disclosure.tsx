@@ -123,7 +123,15 @@ const DisclosureHeader = ({ children, ...props }: DisclosureHeaderProps) => {
   const iss = useIsSmScreenWidth();
 
   return iss ? (
-    <DrawerHeader px={5} pt={3} bg={"body"} {...(props as DrawerHeaderProps)}>
+    <DrawerHeader
+      px={5}
+      pt={2}
+      pb={4}
+      bg={"body"}
+      // borderBottom={"1px solid"}
+      borderColor={children ? "border.subtle" : ""}
+      {...(props as DrawerHeaderProps)}
+    >
       {children}
     </DrawerHeader>
   ) : (

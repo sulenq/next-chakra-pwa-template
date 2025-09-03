@@ -1,9 +1,25 @@
 const translations = {
   "access": "Access",
   "add": "Add",
+  "alert_forbidden": {
+    "title": "Access denied",
+    "description": "You do not have permission to view this content."
+  },
+  "alert_no_data": {
+    "title": "No data available",
+    "description": "Please refresh the data or adjust your filters."
+  },
+  "alert_not_found": {
+    "title": "Not found",
+    "description": "The requested data could not be found."
+  },
   "alert_offline": {
     "title": "Connection Lost",
     "description": "It looks like you are offline. Check your internet connection and try again."
+  },
+  "alert_retry": {
+    "title": "An error occurred",
+    "description": "Please try again."
   },
   "all": "All",
   "april": "April",
@@ -85,6 +101,7 @@ const translations = {
     "description": "Invalid credentials."
   },
   "february": "February",
+  "friday": "Friday",
   "hide": "Hide",
   "january": "January",
   "july": "July",
@@ -137,6 +154,7 @@ const translations = {
   "missing_route": {
     "description": "The page you are looking for is not available. There may be an incorrect URL or the page is no longer available."
   },
+  "monday": "Monday",
   "month": "Month",
   "msg_ADM_active": "Adaptive dark mode is active",
   "msg_cannot_be_undone": "This action cannot be undone, please be careful.",
@@ -163,6 +181,8 @@ const translations = {
   "previous": "Previous",
   "recieve": "Recieve",
   "reset": "Reset",
+  "retry": "Retry",
+  "saturday": "Saturday",
   "save": "Save",
   "search": "Search",
   "select_date": "Select date",
@@ -235,10 +255,14 @@ const translations = {
     "title": "Sign out successful",
     "description": "You are now signed out."
   },
+  "sunday": "Sunday",
   "theme": "Theme",
+  "thursday": "Thursday",
+  "tuesday": "Tuesday",
   "update": "Update",
   "verify": "Verify",
   "view": "View",
+  "wednesday": "Wednesday",
   "week": "Week",
   "year": "Year"
 };

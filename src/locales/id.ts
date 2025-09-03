@@ -1,9 +1,25 @@
 const translations = {
   "access": "Akses",
   "add": "Tambah",
+  "alert_forbidden": {
+    "title": "Akses ditolak",
+    "description": "Anda tidak memiliki izin untuk melihat konten ini."
+  },
+  "alert_no_data": {
+    "title": "Tidak ada data",
+    "description": "Silakan perbarui data atau sesuaikan filter."
+  },
+  "alert_not_found": {
+    "title": "Tidak ditemukan",
+    "description": "Data yang dicari tidak tersedia."
+  },
   "alert_offline": {
     "title": "Koneksi Terputus",
     "description": "Sepertinya Anda sedang offline. Periksa koneksi internet Anda dan coba lagi."
+  },
+  "alert_retry": {
+    "title": "Terjadi kesalahan",
+    "description": "Silakan coba lagi."
   },
   "all": "Semua",
   "april": "April",
@@ -85,6 +101,7 @@ const translations = {
     "description": "Kredensial tidak valid."
   },
   "february": "Februari",
+  "friday": "Jumat",
   "hide": "Sembunyikan",
   "january": "Januari",
   "july": "Juli",
@@ -137,6 +154,7 @@ const translations = {
   "missing_route": {
     "description": "Halaman yang Anda cari tidak tersedia. Kemungkinan ada URL yang keliru atau halaman ini sudah tidak tersedia."
   },
+  "monday": "Senin",
   "month": "Bulan",
   "msg_ADM_active": "Mode gelap adaptif aktif",
   "msg_cannot_be_undone": "Aksi ini tidak dapat dibatalkan, harap hati-hati.",
@@ -163,6 +181,8 @@ const translations = {
   "previous": "Sebelumnya",
   "recieve": "Terima",
   "reset": "Reset",
+  "retry": "Coba lagi",
+  "saturday": "Sabtu",
   "save": "Simpan",
   "search": "Cari",
   "select_date": "Pilih tanggal",
@@ -235,10 +255,14 @@ const translations = {
     "title": "Sign out berhasil",
     "description": "Anda telah keluar."
   },
+  "sunday": "Minggu",
   "theme": "Tema",
+  "thursday": "Kamis",
+  "tuesday": "Selasa",
   "update": "Ubah",
   "verify": "Verifikasi",
   "view": "Lihat",
+  "wednesday": "Rabu",
   "week": "Minggu",
   "year": "Tahun"
 };
