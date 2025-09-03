@@ -64,7 +64,7 @@ const Signedin = () => {
       </VStack>
 
       <VStack>
-        <NavLink to="/dashboard" w={"fit"}>
+        <NavLink to="/docs" w={"fit"}>
           <Btn w={"140px"} colorPalette={themeConfig.colorPalette}>
             {l.access} App
           </Btn>
@@ -83,7 +83,7 @@ const Signedin = () => {
   );
 };
 
-const RootRoute = () => {
+const IndexRoute = () => {
   // Contexts
   const { themeConfig } = useThemeConfig();
   const authToken = useAuthMiddleware((s) => s.authToken);
@@ -122,4 +122,4 @@ const RootRoute = () => {
   );
 };
 
-export default RootRoute;
+export default IndexRoute;

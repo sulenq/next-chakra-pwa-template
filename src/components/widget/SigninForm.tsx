@@ -76,7 +76,7 @@ const SigninForm = (props: Props) => {
             setStorage("__user_data", JSON.stringify(r.data.data?.user));
             setAuthToken(r.data.data?.token);
             setPermissions(r.data.data?.permissions);
-            router.push("/dashboard");
+            router.push("/docs");
           },
         },
       });
