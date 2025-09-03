@@ -164,7 +164,7 @@ const SigninForm = (props: Props) => {
         </Btn>
 
         <HStack mt={4}>
-          <Divider borderColor={"red"} h={"1px"} w={"full"} />
+          <Divider h={"1px"} w={"full"} />
 
           <ResetPasswordDisclosure>
             <Btn variant={"ghost"} color={themeConfig.primaryColor}>
@@ -172,7 +172,7 @@ const SigninForm = (props: Props) => {
             </Btn>
           </ResetPasswordDisclosure>
 
-          <Divider borderColor={"red"} h={"1px"} w={"full"} />
+          <Divider h={"1px"} w={"full"} />
         </HStack>
       </form>
     </CContainer>
