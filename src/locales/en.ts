@@ -6,11 +6,15 @@ const translations = {
     "description": "It looks like you are offline. Check your internet connection and try again."
   },
   "all": "All",
+  "april": "April",
+  "august": "August",
   "back": "Back",
   "cancel": "Cancel",
   "clear": "Clear",
   "close": "Close",
+  "confirm": "Confirm",
   "day": "Day",
+  "december": "December",
   "delete_": "Delete",
   "error_400_default": {
     "title": "Bad request",
@@ -80,7 +84,11 @@ const translations = {
     "title": "Login failed",
     "description": "Invalid credentials."
   },
+  "february": "February",
   "hide": "Hide",
+  "january": "January",
+  "july": "July",
+  "june": "June",
   "language": "Language",
   "loading_default": {
     "title": "Loading",
@@ -122,8 +130,10 @@ const translations = {
   "maintenance_route": {
     "description": "We are currently performing maintenance to provide better service. Sorry for the inconvenience."
   },
+  "march": "March",
   "master_data_navs": {},
   "master_data_navs_group": {},
+  "may": "May",
   "missing_route": {
     "description": "The page you are looking for is not available. There may be an incorrect URL or the page is no longer available."
   },
@@ -144,6 +154,8 @@ const translations = {
     "profile": "Profile"
   },
   "next": "Next",
+  "november": "November",
+  "october": "October",
   "optional": "Optional",
   "otp_sent": "OTP has been sent",
   "otp_sent_to": "OTP has been sent to",
@@ -153,6 +165,10 @@ const translations = {
   "reset": "Reset",
   "save": "Save",
   "search": "Search",
+  "select_date": "Select date",
+  "select_date_range": "Select date range",
+  "select_period": "Select period",
+  "september": "September",
   "settings_display": {
     "title": "Display",
     "description": "Application display settings."

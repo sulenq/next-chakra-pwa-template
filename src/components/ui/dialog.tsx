@@ -1,7 +1,7 @@
 "use client";
 
 import useScreen from "@/hooks/useScreen";
-import back from "@/utils/back";
+import { back } from "@/utils/client";
 import { Dialog as ChakraDialog, Portal } from "@chakra-ui/react";
 import { forwardRef, useRef, useState } from "react";
 import { CloseButton } from "./close-button";

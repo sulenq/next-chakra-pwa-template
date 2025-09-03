@@ -5,9 +5,9 @@ import { IconEye, IconEyeOff } from "@tabler/icons-react";
 import { forwardRef, useState } from "react";
 import { StringInput } from "./string-input";
 
-interface Props extends InputProps {
+interface Props extends Omit<InputProps, "onChange"> {
   name?: string;
-  onChangeSetter?: (inputValue: string | undefined) => void;
+  onChange?: (inputValue: string | undefined) => void;
   inputValue?: string | undefined;
   isError?: boolean;
   placeholder?: string;
@@ -19,7 +19,7 @@ export const PasswordInput = forwardRef<HTMLInputElement, Props>(
   (props, ref) => {
     const {
       name,
-      onChangeSetter,
+      onChange,
       inputValue,
       isError,
       placeholder = "********",
@@ -37,8 +37,8 @@ export const PasswordInput = forwardRef<HTMLInputElement, Props>(
           ref={ref}
           name={name}
           placeholder={placeholder}
-          onChangeSetter={(inputValue) => {
-            if (onChangeSetter) onChangeSetter(inputValue);
+          onChange={(inputValue) => {
+            if (onChange) onChange(inputValue);
           }}
           inputValue={inputValue}
           type={showPassword ? "text" : "password"}

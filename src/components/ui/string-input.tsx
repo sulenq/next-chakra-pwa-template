@@ -1,88 +1,88 @@
+import { Props__StringInput } from "@/constants/props";
 import { useThemeConfig } from "@/context/useThemeConfig";
 import {
   Box,
-  BoxProps,
   Input as ChakraInput,
-  InputProps,
-  useFieldContext,
+  useFieldContext
 } from "@chakra-ui/react";
 import { css, Global } from "@emotion/react";
 import { forwardRef, useRef } from "react";
 import { useColorMode } from "./color-mode";
 
-interface Props extends InputProps {
-  onChangeSetter?: (inputValue: string) => void;
-  inputValue?: string;
-  placeholder?: string;
-  boxProps?: BoxProps;
-  invalid?: boolean;
-}
+export const StringInput = forwardRef<HTMLInputElement, Props__StringInput>(
+  (props, ref) => {
+    // Props
+    const {
+      name,
+      onChange,
+      inputValue,
+      placeholder = "Input text",
+      boxProps,
+      invalid,
+      ...restProps
+    } = props;
 
-export const StringInput = forwardRef<HTMLInputElement, Props>((props, ref) => {
-  // Props
-  const {
-    name,
-    onChangeSetter,
-    inputValue,
-    placeholder = "Input text",
-    boxProps,
-    invalid,
-    ...restProps
-  } = props;
+    // Contexts
+    const { colorMode } = useColorMode();
+    const { themeConfig } = useThemeConfig();
+    const fc = useFieldContext();
 
-  // Contexts
-  const { colorMode } = useColorMode();
-  const { themeConfig } = useThemeConfig();
-  const fc = useFieldContext();
+    // Refs
+    const isFirstRender = useRef(true);
 
-  // Refs
-  const isFirstRender = useRef(true);
+    // States
+    const darkLightColorManual = colorMode === "light" ? "#fff" : "var(--dark)";
 
-  // States
-  const darkLightColorManual = colorMode === "light" ? "#fff" : "var(--dark)";
+    // Utils
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      if (onChange) {
+        onChange(e.target.value);
+      }
+      if (isFirstRender.current) isFirstRender.current = false;
+    };
 
-  // Utils
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (onChangeSetter) {
-      onChangeSetter(e.target.value);
-    }
-    if (isFirstRender.current) isFirstRender.current = false;
-  };
-
-  return (
-    <>
-      <Global
-        styles={css`
-          input:-webkit-autofill,
-          input:-webkit-autofill:hover,
-          input:-webkit-autofill:focus,
-          input:-webkit-autofill:active {
-            -webkit-box-shadow: 0 0 0 30px ${darkLightColorManual} inset !important;
-            box-shadow: 0 0 0 30px ${darkLightColorManual} inset !important;
-          }
-        `}
-      />
-
-      <Box position={"relative"} w={"full"} overflow={"visible"} {...boxProps}>
-        <ChakraInput
-          ref={ref}
-          name={name}
-          onChange={handleChange}
-          value={inputValue}
-          placeholder={placeholder}
-          borderColor={invalid ?? fc?.invalid ? "border.error" : "border.muted"}
-          fontWeight={"medium"}
-          outline={"none !important"}
-          _focus={{ borderColor: themeConfig.primaryColor }}
-          borderRadius={themeConfig.radii.component}
-          autoComplete="off"
-          transition={"200ms"}
-          color={"text"}
-          {...restProps}
+    return (
+      <>
+        <Global
+          styles={css`
+            input:-webkit-autofill,
+            input:-webkit-autofill:hover,
+            input:-webkit-autofill:focus,
+            input:-webkit-autofill:active {
+              -webkit-box-shadow: 0 0 0 30px ${darkLightColorManual} inset !important;
+              box-shadow: 0 0 0 30px ${darkLightColorManual} inset !important;
+            }
+          `}
         />
-      </Box>
-    </>
-  );
-});
+
+        <Box
+          position={"relative"}
+          w={"full"}
+          overflow={"visible"}
+          {...boxProps}
+        >
+          <ChakraInput
+            ref={ref}
+            name={name}
+            onChange={handleChange}
+            value={inputValue}
+            placeholder={placeholder}
+            borderColor={
+              invalid ?? fc?.invalid ? "border.error" : "border.muted"
+            }
+            fontWeight={"medium"}
+            outline={"none !important"}
+            _focus={{ borderColor: themeConfig.primaryColor }}
+            borderRadius={themeConfig.radii.component}
+            autoComplete="off"
+            transition={"200ms"}
+            color={"text"}
+            {...restProps}
+          />
+        </Box>
+      </>
+    );
+  }
+);
 
 StringInput.displayName = "StringInput";

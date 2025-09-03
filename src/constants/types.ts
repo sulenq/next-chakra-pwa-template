@@ -1,14 +1,18 @@
 import { ButtonProps, MenuItemProps } from "@chakra-ui/react";
-import { RefObject } from "react";
+
+export type Type__Period = {
+  month: number | null; // 0 = Jan
+  year: number | null;
+};
 
 export type Type__LanguageOptions = "id" | "en";
 
-export type LatLong = {
+export type Type__LatLong = {
   lat: number;
   lon: number;
 };
 
-export type Type__TimeZoneObject = {
+export type Type__TimezoneObject = {
   key: string;
   label: string;
   offset: number;
@@ -66,6 +70,7 @@ export type Type__DateVariant =
   | "shortMonth"
   | "fullMonth"
   | "monthYear"
+  | "period"
   | "shortMonthDay"
   | "fullMonthDay"
   | "weekdayBasic"

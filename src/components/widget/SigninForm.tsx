@@ -117,7 +117,7 @@ const SigninForm = (props: Props) => {
           >
             <StringInput
               name="identifier"
-              onChangeSetter={(input) => {
+              onChange={(input) => {
                 formik.setFieldValue("identifier", input);
               }}
               inputValue={formik.values.identifier}
@@ -141,7 +141,7 @@ const SigninForm = (props: Props) => {
           >
             <PasswordInput
               name="password"
-              onChangeSetter={(input) => {
+              onChange={(input) => {
                 formik.setFieldValue("password", input);
               }}
               inputValue={formik.values.password}

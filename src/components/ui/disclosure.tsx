@@ -1,27 +1,5 @@
 "use client";
 
-import { useThemeConfig } from "@/context/useThemeConfig";
-import useIsSmScreenWidth from "@/hooks/useIsSmScreenWidth";
-import useScreen from "@/hooks/useScreen";
-import back from "@/utils/back";
-import {
-  Box,
-  DialogActionTriggerProps,
-  DialogBackdropProps,
-  DialogBodyProps,
-  DialogCloseTriggerProps,
-  DialogContentProps,
-  DialogFooterProps,
-  DialogHeaderProps,
-  DrawerActionTriggerProps,
-  DrawerBackdropProps,
-  DrawerBodyProps,
-  DrawerCloseTriggerProps,
-  DrawerContentProps,
-  DrawerFooterProps,
-  DrawerHeaderProps,
-  HStack,
-} from "@chakra-ui/react";
 import {
   DialogActionTrigger,
   DialogBackdrop,
@@ -45,7 +23,28 @@ import {
   DrawerTrigger,
 } from "@/components/ui/drawer";
 import { SM_SCREEN_W_NUMBER } from "@/constants/sizes";
-import { useEffect } from "react";
+import { useThemeConfig } from "@/context/useThemeConfig";
+import useIsSmScreenWidth from "@/hooks/useIsSmScreenWidth";
+import useScreen from "@/hooks/useScreen";
+import { back } from "@/utils/client";
+import {
+  Box,
+  DialogActionTriggerProps,
+  DialogBackdropProps,
+  DialogBodyProps,
+  DialogCloseTriggerProps,
+  DialogContentProps,
+  DialogFooterProps,
+  DialogHeaderProps,
+  DrawerActionTriggerProps,
+  DrawerBackdropProps,
+  DrawerBodyProps,
+  DrawerCloseTriggerProps,
+  DrawerContentProps,
+  DrawerFooterProps,
+  DrawerHeaderProps,
+  HStack,
+} from "@chakra-ui/react";
 import { CContainer } from "./c-container";
 
 const DisclosureRoot = ({ children, ...props }: any) => {
@@ -91,16 +90,6 @@ type DisclosureContentProps = {
 const DisclosureContent = ({ children, ...props }: DisclosureContentProps) => {
   const { themeConfig } = useThemeConfig();
   const iss = useIsSmScreenWidth();
-
-  useEffect(() => {
-    const handleKeyUp = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
-        back();
-      }
-    };
-    document.addEventListener("keyup", handleKeyUp);
-    return () => document.removeEventListener("keyup", handleKeyUp);
-  }, []);
 
   return iss ? (
     <DrawerContent
@@ -154,15 +143,14 @@ type DisclosureBodyProps = {
 } & (DrawerBodyProps | DialogBodyProps);
 const DisclosureBody = ({ children, ...props }: DisclosureBodyProps) => {
   const iss = useIsSmScreenWidth();
-  const finalClassName = `scrollY ${props.className}`;
+  const resolvedClassName = `scrollY ${props.className}`;
 
   return iss ? (
     <DrawerBody
       pl={4}
       pr={"10px"}
       py={0}
-      className={finalClassName}
-      overflowX={"clip"}
+      className={resolvedClassName}
       bg={"body"}
       {...(props as DrawerHeaderProps)}
     >
@@ -173,9 +161,8 @@ const DisclosureBody = ({ children, ...props }: DisclosureBodyProps) => {
       pl={4}
       pr={"10px"}
       py={4}
-      pb={"4 !important"}
-      className={finalClassName}
-      overflowX={"clip"}
+      className={resolvedClassName}
+      bg={"body"}
       {...(props as DialogBodyProps)}
     >
       {children}

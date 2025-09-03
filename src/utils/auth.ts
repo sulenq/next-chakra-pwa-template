@@ -1,4 +1,4 @@
-import { getStorage, removeStorage, setStorage } from "./client";
+import { getStorage, removeStorage, setStorage } from "@/utils/client";
 
 export function getAuthToken() {
   return getStorage("__auth_token") || null;

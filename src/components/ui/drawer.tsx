@@ -1,6 +1,6 @@
 "use client";
 
-import back from "@/utils/back";
+import { back } from "@/utils/client";
 import {
   Drawer as ChakraDrawer,
   Portal,
@@ -30,11 +30,8 @@ export const DrawerContent = forwardRef<HTMLDivElement, DrawerContentProps>(
     // Contexts
     const { open } = useDrawerContext();
 
-    // State for debounce unmount
+    // State
     const [visible, setVisible] = useState(open);
-
-    // Utils
-    // const handleBackOnDefaultPage = useBackOnDefaultPage();
 
     useEffect(() => {
       if (open) {
@@ -54,11 +51,11 @@ export const DrawerContent = forwardRef<HTMLDivElement, DrawerContentProps>(
             pointerEvents={"auto"}
             onClick={() => {
               back();
-              // handleBackOnDefaultPage();
             }}
           >
             <ChakraDrawer.Content
               ref={ref}
+              bg={"body"}
               justifyContent={"end"}
               shadow={"none"}
               onClick={(e) => e.stopPropagation()}

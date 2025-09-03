@@ -89,6 +89,10 @@ export const clear = {
   id: "Clear",
   en: "Clear",
 };
+export const confirm = {
+  id: "Konfirmasi",
+  en: "Confirm",
+};
 export const search = {
   id: "Cari",
   en: "Search",
@@ -172,6 +176,66 @@ export const otp_sent = {
 export const password_confirmation = {
   id: "Konfirmasi Password",
   en: "Password Confirmation",
+};
+export const select_period = {
+  id: "Pilih periode",
+  en: "Select period",
+};
+export const select_date = {
+  id: "Pilih tanggal",
+  en: "Select date",
+};
+export const select_date_range = {
+  id: "Pilih rentang tanggal",
+  en: "Select date range",
+};
+export const january = {
+  id: "Januari",
+  en: "January",
+};
+export const february = {
+  id: "Februari",
+  en: "February",
+};
+export const march = {
+  id: "Maret",
+  en: "March",
+};
+export const april = {
+  id: "April",
+  en: "April",
+};
+export const may = {
+  id: "Mei",
+  en: "May",
+};
+export const june = {
+  id: "Juni",
+  en: "June",
+};
+export const july = {
+  id: "Juli",
+  en: "July",
+};
+export const august = {
+  id: "Agustus",
+  en: "August",
+};
+export const september = {
+  id: "September",
+  en: "September",
+};
+export const october = {
+  id: "Oktober",
+  en: "October",
+};
+export const november = {
+  id: "November",
+  en: "November",
+};
+export const december = {
+  id: "Desember",
+  en: "December",
 };
 
 // Message

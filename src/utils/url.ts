@@ -1,4 +1,4 @@
-export function makeWAURL(phone: string, message: string = ""): void {
+export function generateWAUrl(phone: string, message: string = ""): void {
   const sanitizedPhone = phone.trim().replace(/[^0-9]/g, "");
 
   const url = `https://wa.me/${sanitizedPhone}${

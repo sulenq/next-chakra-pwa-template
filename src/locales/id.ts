@@ -6,11 +6,15 @@ const translations = {
     "description": "Sepertinya Anda sedang offline. Periksa koneksi internet Anda dan coba lagi."
   },
   "all": "Semua",
+  "april": "April",
+  "august": "Agustus",
   "back": "Kembali",
   "cancel": "Batal",
   "clear": "Clear",
   "close": "Tutup",
+  "confirm": "Konfirmasi",
   "day": "Hari",
+  "december": "Desember",
   "delete_": "Hapus",
   "error_400_default": {
     "title": "Bad request",
@@ -80,7 +84,11 @@ const translations = {
     "title": "Login gagal",
     "description": "Kredensial tidak valid."
   },
+  "february": "Februari",
   "hide": "Sembunyikan",
+  "january": "Januari",
+  "july": "Juli",
+  "june": "Juni",
   "language": "Bahasa",
   "loading_default": {
     "title": "Memuat",
@@ -122,8 +130,10 @@ const translations = {
   "maintenance_route": {
     "description": "Kami sedang melakukan pemeliharaan untuk memberikan layanan yang lebih baik. Mohon maaf atas ketidaknyamanannya."
   },
+  "march": "Maret",
   "master_data_navs": {},
   "master_data_navs_group": {},
+  "may": "Mei",
   "missing_route": {
     "description": "Halaman yang Anda cari tidak tersedia. Kemungkinan ada URL yang keliru atau halaman ini sudah tidak tersedia."
   },
@@ -144,6 +154,8 @@ const translations = {
     "profile": "Profil"
   },
   "next": "Selanjutnya",
+  "november": "November",
+  "october": "Oktober",
   "optional": "Opsional",
   "otp_sent": "OTP telah dikirim",
   "otp_sent_to": "OTP telah dikirim ke",
@@ -153,6 +165,10 @@ const translations = {
   "reset": "Reset",
   "save": "Simpan",
   "search": "Cari",
+  "select_date": "Pilih tanggal",
+  "select_date_range": "Pilih rentang tanggal",
+  "select_period": "Pilih periode",
+  "september": "September",
   "settings_display": {
     "title": "Tampilan",
     "description": "Pengaturan tampilan aplikasi."

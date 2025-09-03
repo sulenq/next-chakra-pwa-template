@@ -5,13 +5,13 @@ type FileValidationParams = {
   maxSizeMB?: number;
   allowedExtensions?: string[];
   min?: number;
-  checkZip?: boolean; // Menambahkan properti checkZip
+  checkZip?: boolean;
 };
 
 export const fileValidation = ({
   maxSizeMB = 10,
   allowedExtensions,
-  checkZip = false, // Default false jika tidak ditentukan
+  checkZip = false,
 }: FileValidationParams = {}): yup.MixedSchema =>
   yup
     .mixed<File[]>()

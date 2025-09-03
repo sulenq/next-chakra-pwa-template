@@ -1,7 +1,7 @@
 import { useThemeConfig } from "@/context/useThemeConfig";
 import useBackOnClose from "@/hooks/useBackOnClose";
 import useLang from "@/context/useLang";
-import back from "@/utils/back";
+import { back } from "@/utils/client";
 import { Icon, useDisclosure } from "@chakra-ui/react";
 import { IconAccessPointOff } from "@tabler/icons-react";
 import { useEffect } from "react";
@@ -34,7 +34,7 @@ const OfflineDisclosure = () => {
   }, [offline]);
 
   return (
-    <DisclosureRoot open={open} lazyLoad size={"xs"}>
+    <DisclosureRoot open={open} lazyLoad size={"xs"} role={"alertdialog"}>
       <DisclosureContent>
         <DisclosureHeader border={"none"}>
           <DisclosureHeaderContent title={``} />

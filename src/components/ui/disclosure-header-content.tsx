@@ -1,4 +1,4 @@
-import back from "@/utils/back";
+import { back } from "@/utils/client";
 import { HStack } from "@chakra-ui/react";
 import { DialogCloseTrigger } from "./dialog";
 import { DrawerCloseTrigger } from "./drawer";

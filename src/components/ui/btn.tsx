@@ -7,7 +7,7 @@ import { useMemo, forwardRef } from "react";
 
 export interface BtnProps extends ButtonProps {
   children?: React.ReactNode;
-  unclicky?: boolean;
+  clicky?: boolean;
   iconButton?: boolean;
 }
 
@@ -15,7 +15,7 @@ export const Btn = forwardRef<HTMLButtonElement, BtnProps>((props, ref) => {
   // Props
   const {
     children,
-    unclicky = false,
+    clicky = true,
     iconButton = false,
     className = "",
     size,
@@ -26,7 +26,7 @@ export const Btn = forwardRef<HTMLButtonElement, BtnProps>((props, ref) => {
   const { themeConfig } = useThemeConfig();
 
   // States, Refs
-  const finalClassName = `${unclicky ? "" : "clicky"} ${className}`.trim();
+  const resolvedClassName = `${clicky ? "clicky" : ""} ${className}`.trim();
 
   // Memoized Active Style
   const activeBg = useMemo(() => {
@@ -59,7 +59,7 @@ export const Btn = forwardRef<HTMLButtonElement, BtnProps>((props, ref) => {
   return iconButton ? (
     <IconButton
       ref={ref}
-      className={finalClassName}
+      className={resolvedClassName}
       size={size}
       borderRadius={themeConfig.radii.component}
       {...restProps}
@@ -69,7 +69,7 @@ export const Btn = forwardRef<HTMLButtonElement, BtnProps>((props, ref) => {
   ) : (
     <Button
       ref={ref}
-      className={finalClassName}
+      className={resolvedClassName}
       fontWeight="semibold"
       size={size || (MAIN_BUTTON_SIZE as any)}
       borderRadius={themeConfig.radii.component}

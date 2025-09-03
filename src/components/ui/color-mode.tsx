@@ -1,25 +1,26 @@
 "use client";
 
 import useADM from "@/context/useADM";
+import useLang from "@/context/useLang";
 import type { IconButtonProps, SpanProps } from "@chakra-ui/react";
-import { ClientOnly, IconButton, Skeleton, Span } from "@chakra-ui/react";
+import { ClientOnly, Icon, IconButton, Skeleton, Span } from "@chakra-ui/react";
 import { IconMoon2 } from "@tabler/icons-react";
 import type { ThemeProviderProps } from "next-themes";
 import { ThemeProvider, useTheme } from "next-themes";
 import * as React from "react";
+import { forwardRef } from "react";
 import { LuSun } from "react-icons/lu";
 import { Tooltip } from "./tooltip";
-import useLang from "@/context/useLang";
 
 export interface ColorModeProviderProps extends ThemeProviderProps {}
+interface ColorModeButtonProps extends Omit<IconButtonProps, "aria-label"> {}
+export type ColorMode = "light" | "dark";
 
 export function ColorModeProvider(props: ColorModeProviderProps) {
   return (
     <ThemeProvider attribute="class" disableTransitionOnChange {...props} />
   );
 }
-
-export type ColorMode = "light" | "dark";
 
 export interface UseColorModeReturn {
   colorMode: ColorMode;
@@ -44,22 +45,16 @@ export function useColorModeValue<T>(light: T, dark: T) {
   return colorMode === "dark" ? dark : light;
 }
 
-export function ColorModeIcon() {
-  const { colorMode } = useColorMode();
-  return colorMode === "dark" ? <IconMoon2 stroke={1.8} /> : <LuSun />;
-}
-
-interface ColorModeButtonProps extends Omit<IconButtonProps, "aria-label"> {}
-
-export const ColorModeButton = React.forwardRef<
+export const ColorModeButton = forwardRef<
   HTMLButtonElement,
   ColorModeButtonProps
->(function ColorModeButton(props, ref) {
+>((props, ref) => {
   // Hooks
   const { l } = useLang();
   const { toggleColorMode } = useColorMode();
 
   // Contexts
+  const { colorMode } = useColorMode();
   const { ADM } = useADM();
 
   // States
@@ -77,12 +72,15 @@ export const ColorModeButton = React.forwardRef<
           ref={ref}
           {...props}
         >
-          <ColorModeIcon />
+          <Icon boxSize={5}>
+            {colorMode === "dark" ? <IconMoon2 stroke={1.8} /> : <LuSun />}
+          </Icon>
         </IconButton>
       </Tooltip>
     </ClientOnly>
   );
 });
+ColorModeButton.displayName = "ColorModeButton";
 
 export const LightMode = React.forwardRef<HTMLSpanElement, SpanProps>(
   function LightMode(props, ref) {

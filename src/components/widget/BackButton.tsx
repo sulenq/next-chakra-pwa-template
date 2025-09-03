@@ -1,4 +1,4 @@
-import back from "@/utils/back";
+import { back } from "@/utils/client";
 import { ButtonProps, Icon } from "@chakra-ui/react";
 import { IconChevronLeft } from "@tabler/icons-react";
 import { useRouter } from "next/navigation";

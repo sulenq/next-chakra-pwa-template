@@ -2,7 +2,7 @@ import { CContainer } from "@/components/ui/c-container";
 import useLang from "@/context/useLang";
 import { useThemeConfig } from "@/context/useThemeConfig";
 import useRequest from "@/hooks/useRequest";
-import back from "@/utils/back";
+import { back } from "@/utils/client";
 import { maskEmail } from "@/utils/maskEmail";
 import {
   PinInputControl,
