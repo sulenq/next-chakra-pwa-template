@@ -91,6 +91,19 @@ const RootRoute = () => {
   return (
     <CContainer minH={"100dvh"}>
       <SimpleGrid columns={[1, null, 2]} flex={1}>
+        <CContainer
+          display={["none", null, "flex"]}
+          bg={themeConfig.primaryColor}
+        >
+          <Img
+            alt={META.name}
+            src={`${SVGS_PATH}/logo_light.svg`}
+            w={"full"}
+            maxW={"120px"}
+            m={"auto"}
+          />
+        </CContainer>
+
         <CContainer h={"full"} p={4}>
           <HStack justify={"center"}>
             <ColorModeButton />
@@ -103,19 +116,6 @@ const RootRoute = () => {
           {!authToken && <SigninForm />}
 
           <ExiumWatermark />
-        </CContainer>
-
-        <CContainer
-          display={["none", null, "flex"]}
-          bg={themeConfig.primaryColor}
-        >
-          <Img
-            alt={META.name}
-            src={`${SVGS_PATH}/logo_light.svg`}
-            w={"full"}
-            maxW={"120px"}
-            m={"auto"}
-          />
         </CContainer>
       </SimpleGrid>
     </CContainer>
