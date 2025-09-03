@@ -80,8 +80,8 @@ const ToastIcon = (props: any) => {
       borderRadius={"full"}
       w={"32px"}
       h={"32px"}
-      ml={-1}
-      mt={-1}
+      ml={"-2px"}
+      mt={"-2px"}
     >
       <Icon color={toast.color}>{toast.icon}</Icon>
     </Center>
