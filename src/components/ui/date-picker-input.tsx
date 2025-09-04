@@ -58,6 +58,7 @@ const SelectedDateList = (props: Props__SelectedDateList) => {
   return (
     <>
       <CContainer
+        mt={-2}
         borderColor={"border.muted"}
         bg={"bg.muted"}
         p={3}
@@ -236,7 +237,7 @@ const DatePicker = (props: Props__DatePicker) => {
       >
         {WEEKDAYS.map((day, i) => (
           <P key={i} fontWeight={"semibold"} textAlign={"center"}>
-            {day.substring(0, 3)}
+            {day.substring(0, 2)}
           </P>
         ))}
       </SimpleGrid>
