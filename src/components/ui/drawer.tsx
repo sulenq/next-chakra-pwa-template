@@ -1,7 +1,7 @@
 "use client";
 
 import { back } from "@/utils/client";
-import { Drawer as ChakraDrawer } from "@chakra-ui/react";
+import { Drawer as ChakraDrawer, Portal } from "@chakra-ui/react";
 import { forwardRef } from "react";
 import { CloseButton } from "./close-button";
 
@@ -16,17 +16,18 @@ export const DrawerContent = forwardRef<HTMLDivElement, DrawerContentProps>(
   function DrawerContent(props, ref) {
     const {
       children,
+      portalled = true,
+      portalRef,
       offset,
       backdrop = true,
-      // portalled = true,
-      // portalRef,
       ...rest
     } = props;
 
     return (
-      <>
-        {backdrop && <ChakraDrawer.Backdrop />}
+      <Portal disabled={!portalled} container={portalRef}>
+        {backdrop && <ChakraDrawer.Backdrop zIndex="modal" />}
         <ChakraDrawer.Positioner
+          zIndex="modal"
           padding={offset}
           pointerEvents={"auto"}
           onClick={() => {
@@ -45,7 +46,7 @@ export const DrawerContent = forwardRef<HTMLDivElement, DrawerContentProps>(
             {children}
           </ChakraDrawer.Content>
         </ChakraDrawer.Positioner>
-      </>
+      </Portal>
     );
   }
 );
