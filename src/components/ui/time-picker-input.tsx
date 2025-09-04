@@ -56,7 +56,7 @@ const TimePickerInput = ({
   const { l } = useLang();
 
   // States, Refs
-  const finalPlaceholder = placeholder || withSeconds ? "hh:mm:ss" : "hh:mm";
+  const finalPlaceholder = placeholder || l.select_time;
   const defaultTime = "00:00:00";
   const [selected, setSelected] = useState<string | undefined>(inputValue);
   const [firstRender, setFirstRender] = useState(true);
