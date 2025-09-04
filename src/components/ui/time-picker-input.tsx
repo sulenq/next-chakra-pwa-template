@@ -1,9 +1,21 @@
-import { Interface__TimePicker } from "@/constants/interfaces";
+import { Btn } from "@/components/ui/btn";
+import {
+  DisclosureBody,
+  DisclosureContent,
+  DisclosureFooter,
+  DisclosureHeader,
+  DisclosureRoot,
+} from "@/components/ui/disclosure";
+import { DisclosureHeaderContent } from "@/components/ui/disclosure-header-content";
+import { StringInput } from "@/components/ui/string-input";
+import { Props__TimePicker } from "@/constants/props";
+import useLang from "@/context/useLang";
 import { useThemeConfig } from "@/context/useThemeConfig";
 import useBackOnClose from "@/hooks/useBackOnClose";
 import useScreen from "@/hooks/useScreen";
 import { back } from "@/utils/client";
 import { formatTime } from "@/utils/formatter";
+import { capitalizeWords } from "@/utils/string";
 import {
   getHoursFromTime,
   getMinutesFromTime,
@@ -24,32 +36,22 @@ import {
 } from "@tabler/icons-react";
 import { useEffect, useRef, useState } from "react";
 import { Tooltip } from "./tooltip";
-import { Btn } from "@/components/ui/btn";
-import {
-  DisclosureBody,
-  DisclosureContent,
-  DisclosureFooter,
-  DisclosureHeader,
-  DisclosureRoot,
-} from "@/components/ui/disclosure";
-import { DisclosureHeaderContent } from "@/components/ui/disclosure-header-content";
-import { StringInput } from "@/components/ui/string-input";
-import useLang from "@/context/useLang";
-import { capitalizeWords } from "@/utils/string";
 
-const TimePickerInput = ({
-  id,
-  name,
-  title,
-  onConfirm,
-  inputValue,
-  withSeconds = false,
-  placeholder,
-  nonNullable,
-  invalid,
-  disclosureSize = withSeconds ? "sm" : "xs",
-  ...props
-}: Interface__TimePicker) => {
+const TimePickerInput = (props: Props__TimePicker) => {
+  // Props
+  const {
+    id,
+    name,
+    title,
+    onConfirm,
+    inputValue,
+    withSeconds = false,
+    placeholder,
+    required,
+    invalid,
+    disclosureSize = withSeconds ? "sm" : "xs",
+    ...restProps
+  } = props;
   // Contexts
   const fc = useFieldContext();
   const { themeConfig } = useThemeConfig();
@@ -169,7 +171,7 @@ const TimePickerInput = ({
   // Handle confirm selected
   function onConfirmSelected() {
     let confirmable = false;
-    if (!nonNullable) {
+    if (!required) {
       confirmable = true;
     } else {
       if (selected) {
@@ -201,7 +203,7 @@ const TimePickerInput = ({
             onOpen();
           }}
           size={"md"}
-          {...props}
+          {...restProps}
         >
           <HStack w={"full"} justify={"space-between"}>
             {inputValue ? (
@@ -486,7 +488,7 @@ const TimePickerInput = ({
               variant={"outline"}
               onClick={() => {
                 if (
-                  !nonNullable &&
+                  !required &&
                   selected &&
                   hours === 0 &&
                   minutes === 0 &&
@@ -508,13 +510,13 @@ const TimePickerInput = ({
               hours === 0 &&
               minutes === 0 &&
               seconds === 0 &&
-              !nonNullable
+              !required
                 ? "Clear"
                 : "Reset"}
             </Btn>
             <Btn
               onClick={onConfirmSelected}
-              disabled={nonNullable ? (selected ? false : true) : false}
+              disabled={required ? (selected ? false : true) : false}
               colorPalette={themeConfig.colorPalette}
             >
               {l.confirm}

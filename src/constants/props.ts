@@ -2,6 +2,7 @@ import { BtnProps } from "@/components/ui/btn";
 import { Type__DisclosureSizes, Type__Period } from "./types";
 import {
   BoxProps,
+  ButtonProps,
   FileUploadRootProps,
   IconProps,
   InputGroupProps,
@@ -9,6 +10,19 @@ import {
   StackProps,
 } from "@chakra-ui/react";
 import { Dispatch } from "react";
+
+export interface Props__TimePicker extends ButtonProps {
+  id?: string;
+  name?: string;
+  title?: string;
+  onConfirm?: (inputValue: string | undefined) => void;
+  inputValue?: string | undefined;
+  withSeconds?: boolean;
+  placeholder?: string;
+  required?: boolean;
+  invalid?: boolean;
+  disclosureSize?: Type__DisclosureSizes;
+}
 
 export interface Props__StringInput extends Omit<InputProps, "onChange"> {
   onChange?: (inputValue: string) => void;
