@@ -16,7 +16,7 @@ export const formatDate = (
     variant?: Type__DateVariant;
     withTime?: boolean;
     prefixDateFormat?: Type__DateFormat;
-    prefixTimeZoneKey?: string;
+    prefixTimezoneKey?: string;
   } = {}
 ) => {
   if (!date) return "";
@@ -32,8 +32,8 @@ export const formatDate = (
   const lang = getStorage("lang") || "id";
   const dateFormat =
     options.prefixDateFormat || getStorage("dateFormat") || "dmy";
-  const timeZoneKey = options.prefixTimeZoneKey || getUserTimezone().key;
-  const localDate = moment.tz(resolvedDate, timeZoneKey);
+  const timezoneKey = options.prefixTimezoneKey || getUserTimezone().key;
+  const localDate = moment.tz(resolvedDate, timezoneKey);
   const day = localDate.date();
   const month = localDate.month();
   const year = localDate.year();
@@ -212,7 +212,7 @@ export function formatTime(
   options: {
     showSeconds?: boolean;
     prefixTimeFormat?: Type__TimeFormat;
-    prefixTimeZoneKey?: string;
+    prefixTimezoneKey?: string;
     withSuffix?: boolean;
   } = {}
 ): string {
@@ -221,8 +221,8 @@ export function formatTime(
   const timeFormat =
     options.prefixTimeFormat || getStorage("timeFormat") || "24-hour";
 
-  const timeZoneKey = options.prefixTimeZoneKey || getUserTimezone().key;
-  const offsetMs = getTimezoneOffsetMs(timeZoneKey);
+  const timezoneKey = options.prefixTimezoneKey || getUserTimezone().key;
+  const offsetMs = getTimezoneOffsetMs(timezoneKey);
   const offsetHours = offsetMs / (1000 * 60 * 60);
 
   const [hhNum, mm, ss = 0] = time.split(":").map(Number);

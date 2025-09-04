@@ -359,7 +359,7 @@ export const DatePickerInput = (props: Props__DatePickerInput) => {
       ? selected
           .map((date) =>
             formatDate(new Date(date), {
-              prefixTimeZoneKey: userTz.key,
+              prefixTimezoneKey: userTz.key,
               variant:
                 selected.length > 1 ? "weekdayShortMonth" : "weekdayFullMonth",
             })
@@ -371,7 +371,7 @@ export const DatePickerInput = (props: Props__DatePickerInput) => {
       ? inputValue
           .map((date) =>
             formatDate(new Date(date), {
-              prefixTimeZoneKey: userTz.key,
+              prefixTimezoneKey: userTz.key,
               variant:
                 inputValue.length > 1
                   ? "weekdayShortMonth"

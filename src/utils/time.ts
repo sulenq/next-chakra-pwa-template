@@ -8,7 +8,7 @@ export const getTimezoneOffsetMs = (timezoneKey: string): number => {
 
 export const getLocalTimezone = (): Type__TimezoneObject => {
   const timezone = moment.tz.guess();
-  const autoTimeZoneLabel = `Auto (${timezone})`;
+  const autoTimezoneLabel = `Auto (${timezone})`;
   const offsetMinutes = moment.tz(timezone).utcOffset();
   const offsetHours = offsetMinutes / 60;
   const formattedOffset = `UTC${offsetHours >= 0 ? "+" : ""}${String(
@@ -18,7 +18,7 @@ export const getLocalTimezone = (): Type__TimezoneObject => {
 
   return {
     key: timezone,
-    label: autoTimeZoneLabel,
+    label: autoTimezoneLabel,
     offset: offsetHours,
     offsetMs: offsetMinutes * 60 * 1000,
     formattedOffset,
@@ -28,15 +28,15 @@ export const getLocalTimezone = (): Type__TimezoneObject => {
 
 export const getUserTimezone = (): Type__TimezoneObject => {
   const localTZ = getLocalTimezone();
-  const storedTimeZone = getStorage("timezone");
+  const storedTimezone = getStorage("timezone");
 
-  if (!storedTimeZone) return localTZ;
+  if (!storedTimezone) return localTZ;
 
   try {
-    const parsedTimeZone = JSON.parse(storedTimeZone) as Type__TimezoneObject;
-    if (parsedTimeZone.label.startsWith("Auto")) return localTZ;
+    const parsedTimezone = JSON.parse(storedTimezone) as Type__TimezoneObject;
+    if (parsedTimezone.label.startsWith("Auto")) return localTZ;
 
-    return parsedTimeZone;
+    return parsedTimezone;
   } catch {
     return localTZ;
   }
