@@ -12,7 +12,7 @@ export const PasswordInput = forwardRef<HTMLInputElement, Props__PasswordInput>(
       name,
       onChange,
       inputValue,
-      placeholder = "********",
+      placeholder = "••••••••",
       boxProps,
       invalid,
 
