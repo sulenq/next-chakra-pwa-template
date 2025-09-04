@@ -421,13 +421,19 @@ export const DatePickerInput = (props: Props__DatePickerInput) => {
           {...restProps}
         >
           <HStack w={"full"} justify={"space-between"}>
-            {!emptyArray(inputValue) && <P>{formattedButtonLabel}</P>}
-
-            {emptyArray(inputValue) && (
-              <P color={"placeholder"}>{l.select_date}</P>
+            {!emptyArray(inputValue) && (
+              <P lineClamp={1} textAlign={"left"}>
+                {formattedButtonLabel}
+              </P>
             )}
 
-            <Icon color={"fg.subtle"}>
+            {emptyArray(inputValue) && (
+              <P color={"placeholder"} lineClamp={1} textAlign={"left"}>
+                {l.select_date}
+              </P>
+            )}
+
+            <Icon color={"fg.subtle"} flexShrink={0}>
               <IconCalendar stroke={1.5} />
             </Icon>
           </HStack>
