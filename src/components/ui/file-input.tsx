@@ -91,11 +91,15 @@ const FileInput = (props: Props__FileInput) => {
             <Tooltip content={"Reset"}>
               <CloseButton
                 pos={"absolute"}
-                top={2}
-                right={2}
+                top={3}
+                right={3}
                 size={"xs"}
+                color={"fg.subtle"}
                 onClick={() => {
                   onChange?.(undefined);
+                }}
+                iconProps={{
+                  boxSize: "18px",
                 }}
               />
             </Tooltip>
