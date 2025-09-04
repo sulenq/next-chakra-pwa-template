@@ -10,6 +10,7 @@ import { P } from "@/components/ui/p";
 import { PasswordInput } from "@/components/ui/password-input";
 import SearchInput from "@/components/ui/search-input";
 import { StringInput } from "@/components/ui/string-input";
+import TimePickerInput from "@/components/ui/time-picker-input";
 import { HStack } from "@chakra-ui/react";
 import { useFormik } from "formik";
 import * as yup from "yup";
@@ -22,6 +23,7 @@ const DocsIndexRoute = () => {
       password: "",
       search: "",
       date: undefined as any,
+      time: undefined as any,
       file: undefined as any,
     },
     validationSchema: yup.object({
@@ -29,6 +31,7 @@ const DocsIndexRoute = () => {
       password: yup.string().required(),
       search: yup.string().required(),
       date: yup.array().required(),
+      time: yup.string().required(),
       file: yup.array().required(),
     }),
     onSubmit: (values) => {
@@ -82,6 +85,15 @@ const DocsIndexRoute = () => {
                 formik.setFieldValue("date", input);
               }}
               multiple
+            />
+          </Field>
+
+          <Field invalid={!!formik.errors.time}>
+            <TimePickerInput
+              inputValue={formik.values.time}
+              onConfirm={(input) => {
+                formik.setFieldValue("time", input);
+              }}
             />
           </Field>
 

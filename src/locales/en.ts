@@ -189,6 +189,7 @@ const translations = {
   "select_date": "Select date",
   "select_date_range": "Select date range",
   "select_period": "Select period",
+  "select_time": "Select time",
   "september": "September",
   "settings_display": {
     "title": "Display",

@@ -189,6 +189,10 @@ export const select_date = {
   id: "Pilih tanggal",
   en: "Select date",
 };
+export const select_time = {
+  id: "Pilih waktu",
+  en: "Select time",
+};
 export const select_date_range = {
   id: "Pilih rentang tanggal",
   en: "Select date range",

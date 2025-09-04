@@ -189,6 +189,7 @@ const translations = {
   "select_date": "Pilih tanggal",
   "select_date_range": "Pilih rentang tanggal",
   "select_period": "Pilih periode",
+  "select_time": "Pilih waktu",
   "september": "September",
   "settings_display": {
     "title": "Tampilan",
