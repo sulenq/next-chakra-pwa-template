@@ -33,7 +33,7 @@ export const LangMenu = ({ ...props }: Props) => {
       <MenuRoot>
         <MenuTrigger asChild>
           <Btn
-            unclicky
+            clicky={false}
             px={2}
             pr={1}
             variant={"ghost"}
