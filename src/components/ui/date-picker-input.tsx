@@ -7,9 +7,13 @@ import {
 } from "@/constants/props";
 import { Type__Period } from "@/constants/types";
 import useLang from "@/context/useLang";
+import { useThemeConfig } from "@/context/useThemeConfig";
 import useBackOnClose from "@/hooks/useBackOnClose";
 import { emptyArray } from "@/utils/array";
+import { back } from "@/utils/client";
+import { formatDate } from "@/utils/formatter";
 import { capitalizeWords } from "@/utils/string";
+import { getTimezoneOffsetMs, getUserTimezone } from "@/utils/time";
 import {
   Group,
   HStack,
@@ -24,8 +28,10 @@ import {
   IconCaretLeftFilled,
   IconCaretRightFilled,
 } from "@tabler/icons-react";
+import { addDays, startOfWeek } from "date-fns";
 import { useState } from "react";
 import BackButton from "../widget/BackButton";
+import FeedbackNoData from "../widget/FeedbackNoData";
 import { Btn } from "./btn";
 import { CContainer } from "./c-container";
 import {
@@ -38,14 +44,7 @@ import {
 import { DisclosureHeaderContent } from "./disclosure-header-content";
 import { P } from "./p";
 import { PeriodPickerInput } from "./period-picker-input";
-import { useThemeConfig } from "@/context/useThemeConfig";
-import { getTimezoneOffsetMs, getUserTimezone } from "@/utils/time";
-import moment from "moment-timezone";
-import { addDays, startOfWeek } from "date-fns";
 import { Tooltip } from "./tooltip";
-import { formatDate } from "@/utils/formatter";
-import { back } from "@/utils/client";
-import FeedbackNoData from "../widget/FeedbackNoData";
 
 const DEFAULT_PERIOD = {
   month: new Date().getMonth(),
@@ -344,7 +343,7 @@ export const DatePickerInput = (props: Props__DatePickerInput) => {
 
   // States
   const userTz = getUserTimezone();
-  const offsetInMs = moment.tz(userTz.key).utcOffset() * 60 * 1000;
+  const offsetInMs = getTimezoneOffsetMs(userTz.key);
   const [selected, setSelected] = useState<Date[]>(
     inputValue
       ? inputValue.map(
