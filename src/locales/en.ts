@@ -158,6 +158,7 @@ const translations = {
   "month": "Month",
   "msg_ADM_active": "Adaptive dark mode is active",
   "msg_cannot_be_undone": "This action cannot be undone, please be careful.",
+  "msg_file_input_dropzone": "Drag and drop/click to upload files",
   "msg_password_confirmation_not_match": "Password confirmation does not match",
   "msg_required_form": "Cannot be empty",
   "msg_reset_password_step_1": "First step, enter your email and we will send you an OTP to reset your password.",

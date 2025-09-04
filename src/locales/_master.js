@@ -311,6 +311,10 @@ export const msg_password_confirmation_not_match = {
   id: "Konfirmasi kata sandi tidak cocok",
   en: "Password confirmation does not match",
 };
+export const msg_file_input_dropzone = {
+  id: "Drag and drop/klik untuk unggah berkas",
+  en: "Drag and drop/click to upload files",
+};
 
 // Alert
 export const alert_offline = {

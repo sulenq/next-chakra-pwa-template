@@ -125,8 +125,7 @@ const PeriodPicker = (props: any) => {
 };
 const DatePicker = (props: Props__DatePicker) => {
   // Props
-  const { inputValue, period, selected, setSelected, multiple, ...restProps } =
-    props;
+  const { period, selected, setSelected, multiple, ...restProps } = props;
 
   // Contexts
   const { l } = useLang();
@@ -438,7 +437,9 @@ export const DatePickerInput = (props: Props__DatePickerInput) => {
       <DisclosureRoot open={open} lazyLoad size={disclosureSize}>
         <DisclosureContent>
           <DisclosureHeader>
-            <DisclosureHeaderContent title={capitalizeWords(l.select_date)} />
+            <DisclosureHeaderContent
+              title={capitalizeWords(title || l.select_date)}
+            />
           </DisclosureHeader>
 
           <DisclosureBody>
@@ -446,7 +447,6 @@ export const DatePickerInput = (props: Props__DatePickerInput) => {
               <PeriodPicker period={period} setPeriod={setPeriod} />
 
               <DatePicker
-                inputValue={inputValue}
                 period={period}
                 selected={selected}
                 setSelected={setSelected}

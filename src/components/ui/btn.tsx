@@ -46,12 +46,10 @@ export const Btn = forwardRef<HTMLButtonElement, BtnProps>((props, ref) => {
     } else {
       switch (props?.variant) {
         default:
-          return "gray.subtle";
+          return "";
         case "subtle":
         case "surface":
           return "gray.muted";
-        case "plain":
-          return "";
       }
     }
   }, [props.variant, props.colorPalette]);

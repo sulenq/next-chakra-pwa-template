@@ -158,6 +158,7 @@ const translations = {
   "month": "Bulan",
   "msg_ADM_active": "Mode gelap adaptif aktif",
   "msg_cannot_be_undone": "Aksi ini tidak dapat dibatalkan, harap hati-hati.",
+  "msg_file_input_dropzone": "Drag and drop/klik untuk unggah berkas",
   "msg_password_confirmation_not_match": "Konfirmasi kata sandi tidak cocok",
   "msg_required_form": "Tidak boleh kosong",
   "msg_reset_password_step_1": "Langkah pertama, masukkan email Anda dan kami akan mengirimkan OTP untuk mengatur ulang kata sandi Anda.",
