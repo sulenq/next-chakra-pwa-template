@@ -1,12 +1,8 @@
 "use client";
 
 import { back } from "@/utils/client";
-import {
-  Drawer as ChakraDrawer,
-  Portal,
-  useDrawerContext,
-} from "@chakra-ui/react";
-import { forwardRef, useEffect, useState } from "react";
+import { Drawer as ChakraDrawer } from "@chakra-ui/react";
+import { forwardRef } from "react";
 import { CloseButton } from "./close-button";
 
 interface DrawerContentProps extends ChakraDrawer.ContentProps {
@@ -20,53 +16,36 @@ export const DrawerContent = forwardRef<HTMLDivElement, DrawerContentProps>(
   function DrawerContent(props, ref) {
     const {
       children,
-      portalled = true,
-      portalRef,
       offset,
       backdrop = true,
+      // portalled = true,
+      // portalRef,
       ...rest
     } = props;
 
-    // Contexts
-    const { open } = useDrawerContext();
-
-    // State
-    const [visible, setVisible] = useState(open);
-
-    useEffect(() => {
-      if (open) {
-        setVisible(true);
-      } else {
-        const timeout = setTimeout(() => setVisible(false), 300);
-        return () => clearTimeout(timeout);
-      }
-    }, [open]);
-
     return (
-      <Portal disabled={!portalled} container={portalRef}>
-        {backdrop && visible && <ChakraDrawer.Backdrop />}
-        {visible && (
-          <ChakraDrawer.Positioner
-            padding={offset}
-            pointerEvents={"auto"}
-            onClick={() => {
-              back();
-            }}
+      <>
+        {backdrop && <ChakraDrawer.Backdrop />}
+        <ChakraDrawer.Positioner
+          padding={offset}
+          pointerEvents={"auto"}
+          onClick={() => {
+            back();
+          }}
+        >
+          <ChakraDrawer.Content
+            ref={ref}
+            bg={"body"}
+            justifyContent={"end"}
+            shadow={"none"}
+            onClick={(e) => e.stopPropagation()}
+            asChild={false}
+            {...rest}
           >
-            <ChakraDrawer.Content
-              ref={ref}
-              bg={"body"}
-              justifyContent={"end"}
-              shadow={"none"}
-              onClick={(e) => e.stopPropagation()}
-              asChild={false}
-              {...rest}
-            >
-              {children}
-            </ChakraDrawer.Content>
-          </ChakraDrawer.Positioner>
-        )}
-      </Portal>
+            {children}
+          </ChakraDrawer.Content>
+        </ChakraDrawer.Positioner>
+      </>
     );
   }
 );

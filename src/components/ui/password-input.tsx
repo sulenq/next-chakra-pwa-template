@@ -43,7 +43,7 @@ export const PasswordInput = forwardRef<HTMLInputElement, Props__PasswordInput>(
 
         <Center
           flexShrink={0}
-          zIndex={3}
+          zIndex={2}
           position={"absolute"}
           h={"full"}
           right={2}

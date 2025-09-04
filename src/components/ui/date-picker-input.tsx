@@ -84,7 +84,7 @@ const PeriodPicker = (props: any) => {
   }
 
   return (
-    <Group w={"full"}>
+    <Group w={"full"} {...restProps}>
       <Btn
         iconButton
         clicky={false}
@@ -106,7 +106,6 @@ const PeriodPicker = (props: any) => {
         onConfirm={(inputValue) => {
           setPeriod(inputValue);
         }}
-        {...restProps}
       />
 
       <Btn
@@ -451,7 +450,7 @@ export const DatePickerInput = (props: Props__DatePickerInput) => {
 
           <DisclosureBody>
             <CContainer gap={4}>
-              <PeriodPicker period={period} setPeriod={setPeriod} />
+              <PeriodPicker period={period} setPeriod={setPeriod} zIndex={2} />
 
               <DatePicker
                 period={period}

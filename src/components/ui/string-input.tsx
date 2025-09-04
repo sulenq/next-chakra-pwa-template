@@ -90,7 +90,7 @@ export const StringInput = forwardRef<HTMLInputElement, Props__StringInput>(
           {inputValue && clearable && (
             <Center
               flexShrink={0}
-              zIndex={3}
+              zIndex={2}
               position={"absolute"}
               h={"full"}
               right={2}

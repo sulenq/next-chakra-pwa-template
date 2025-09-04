@@ -30,6 +30,7 @@ import { Field } from "./field";
 import { NumInput } from "./number-input";
 import { P } from "./p";
 import { formatDate } from "@/utils/formatter";
+import { Tooltip } from "@/components/ui/tooltip";
 
 export const PeriodPickerInput = (props: Props__PeriodPickerInput) => {
   // Props
@@ -42,7 +43,6 @@ export const PeriodPickerInput = (props: Props__PeriodPickerInput) => {
     required,
     invalid,
     disclosureSize = "xs",
-    multiple,
     ...restProps
   } = props;
   const resolvedId = id || `period-picker-input`;
@@ -97,30 +97,42 @@ export const PeriodPickerInput = (props: Props__PeriodPickerInput) => {
 
   return (
     <>
-      <Btn
-        w={"full"}
-        clicky={false}
-        variant={"outline"}
-        justifyContent={"start"}
-        onClick={onOpen}
-        borderColor={invalid ? "border.error" : "border.muted"}
-        {...restProps}
+      <Tooltip
+        content={
+          !empty
+            ? formatDate(new Date(selected.year!, selected.month!), {
+                variant: "period",
+              })
+            : resolvedPlaceholder
+        }
       >
-        {empty && <P color={"placeholder"}>{resolvedPlaceholder}</P>}
+        <Btn
+          w={"full"}
+          clicky={false}
+          variant={"outline"}
+          justifyContent={"start"}
+          onClick={onOpen}
+          borderColor={invalid ? "border.error" : "border.muted"}
+          {...restProps}
+        >
+          {empty && <P color={"placeholder"}>{resolvedPlaceholder}</P>}
 
-        {!empty && (
-          <P>
-            {formatDate(new Date(selected.year!, selected.month!), {
-              variant: "period",
-            })}
-          </P>
-        )}
-      </Btn>
+          {!empty && (
+            <P>
+              {formatDate(new Date(selected.year!, selected.month!), {
+                variant: "period",
+              })}
+            </P>
+          )}
+        </Btn>
+      </Tooltip>
 
       <DisclosureRoot open={open} lazyLoad size={disclosureSize}>
         <DisclosureContent>
           <DisclosureHeader>
-            <DisclosureHeaderContent title={capitalizeWords(l.select_period)} />
+            <DisclosureHeaderContent
+              title={capitalizeWords(title || l.select_period)}
+            />
           </DisclosureHeader>
 
           <DisclosureBody>
