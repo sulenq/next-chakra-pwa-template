@@ -2,22 +2,22 @@ import { Type__TimezoneObject } from "@/constants/types";
 import { getStorage } from "@/utils/client";
 import moment from "moment-timezone";
 
-export const getTimezoneOffsetMs = (timeZoneKey: string): number => {
-  return moment.tz(timeZoneKey).utcOffset() * 60 * 1000;
+export const getTimezoneOffsetMs = (timezoneKey: string): number => {
+  return moment.tz(timezoneKey).utcOffset() * 60 * 1000;
 };
 
 export const getLocalTimezone = (): Type__TimezoneObject => {
-  const timeZone = moment.tz.guess();
-  const autoTimeZoneLabel = `Auto (${timeZone})`;
-  const offsetMinutes = moment.tz(timeZone).utcOffset();
+  const timezone = moment.tz.guess();
+  const autoTimeZoneLabel = `Auto (${timezone})`;
+  const offsetMinutes = moment.tz(timezone).utcOffset();
   const offsetHours = offsetMinutes / 60;
   const formattedOffset = `UTC${offsetHours >= 0 ? "+" : ""}${String(
     offsetHours
   ).padStart(2, "0")}:00`;
-  const abbreviation = moment.tz(timeZone).format("z");
+  const abbreviation = moment.tz(timezone).format("z");
 
   return {
-    key: timeZone,
+    key: timezone,
     label: autoTimeZoneLabel,
     offset: offsetHours,
     offsetMs: offsetMinutes * 60 * 1000,
@@ -28,7 +28,7 @@ export const getLocalTimezone = (): Type__TimezoneObject => {
 
 export const getUserTimezone = (): Type__TimezoneObject => {
   const localTZ = getLocalTimezone();
-  const storedTimeZone = getStorage("timeZone");
+  const storedTimeZone = getStorage("timezone");
 
   if (!storedTimeZone) return localTZ;
 

@@ -21,19 +21,19 @@ export const formatDate = (
 ) => {
   if (!date) return "";
 
-  let finalDate;
-  const autoTzOffset = getTimezoneOffsetMs(getLocalTimezone().key);
+  let resolvedDate;
+  const localTimezoneOffsetMs = getTimezoneOffsetMs(getLocalTimezone().key);
   if (!dateObject(date)) {
-    finalDate = new Date(new Date(date).getTime() - autoTzOffset);
+    resolvedDate = new Date(new Date(date).getTime() - localTimezoneOffsetMs);
   } else {
-    finalDate = date;
+    resolvedDate = date;
   }
 
   const lang = getStorage("lang") || "id";
   const dateFormat =
     options.prefixDateFormat || getStorage("dateFormat") || "dmy";
   const timeZoneKey = options.prefixTimeZoneKey || getUserTimezone().key;
-  const localDate = moment.tz(finalDate, timeZoneKey);
+  const localDate = moment.tz(resolvedDate, timeZoneKey);
   const day = localDate.date();
   const month = localDate.month();
   const year = localDate.year();

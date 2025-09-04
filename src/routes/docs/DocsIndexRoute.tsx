@@ -11,6 +11,8 @@ import { PasswordInput } from "@/components/ui/password-input";
 import SearchInput from "@/components/ui/search-input";
 import { StringInput } from "@/components/ui/string-input";
 import TimePickerInput from "@/components/ui/time-picker-input";
+import { formatDate } from "@/utils/formatter";
+import { getUserTimezone } from "@/utils/time";
 import { HStack } from "@chakra-ui/react";
 import { useFormik } from "formik";
 import * as yup from "yup";
@@ -39,8 +41,6 @@ const DocsIndexRoute = () => {
     },
   });
 
-  console.log(formik.values);
-
   return (
     <CContainer p={4} gap={8} maxW={"500px"} mx={"auto"}>
       <HStack justify={"space-between"}>
@@ -50,6 +50,18 @@ const DocsIndexRoute = () => {
 
         <ColorModeButton />
       </HStack>
+
+      <CContainer>
+        <P>{formik.values.date?.[0]}</P>
+
+        <P>{`${getUserTimezone().key} ${getUserTimezone().formattedOffset}`}</P>
+
+        <P>
+          {formatDate(formik.values.date?.[0], {
+            withTime: true,
+          })}
+        </P>
+      </CContainer>
 
       <form id="test" onSubmit={formik.handleSubmit}>
         <CContainer gap={4}>
@@ -86,7 +98,6 @@ const DocsIndexRoute = () => {
               onConfirm={(input) => {
                 formik.setFieldValue("date", input);
               }}
-              multiple
             />
           </Field>
 
