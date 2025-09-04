@@ -94,6 +94,7 @@ const FileInput = (props: Props__FileInput) => {
                 top={3}
                 right={3}
                 size={"xs"}
+                variant={"plain"}
                 color={"fg.subtle"}
                 onClick={() => {
                   onChange?.(undefined);
