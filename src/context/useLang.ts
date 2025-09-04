@@ -30,11 +30,11 @@ const useLang = create<Props>((set) => {
     return DEFAULT;
   };
 
-  const initialLang = getStoredLang();
+  const lang = getStoredLang();
 
   return {
-    lang: initialLang,
-    l: translations[initialLang],
+    lang: lang,
+    l: translations[lang],
     setLang: (newState) =>
       set((state) => {
         if (state.lang !== newState) {

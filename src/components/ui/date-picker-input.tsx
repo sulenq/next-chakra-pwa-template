@@ -47,65 +47,9 @@ import { formatDate } from "@/utils/formatter";
 import { back } from "@/utils/client";
 import FeedbackNoData from "../widget/FeedbackNoData";
 
-const SelectedDateList = (props: Props__SelectedDateList) => {
-  // Props
-  const { id, selected, formattedSelectedLabel } = props;
-
-  // Hooks
-  const { open, onOpen, onClose } = useDisclosure();
-  useBackOnClose(`${id}-selected-date-list`, open, onOpen, onClose);
-
-  return (
-    <>
-      <CContainer
-        mt={-2}
-        borderColor={"border.muted"}
-        bg={"bg.muted"}
-        p={3}
-        borderRadius={6}
-        cursor={"pointer"}
-        onClick={onOpen}
-      >
-        <P
-          textAlign={"center"}
-          fontWeight={"semibold"}
-          maxW={"calc(100% - 16px)"}
-          mx={"auto"}
-          truncate
-        >
-          {formattedSelectedLabel}
-        </P>
-      </CContainer>
-
-      <DisclosureRoot open={open} size={"xs"} scrollBehavior={"inside"}>
-        <DisclosureContent>
-          <DisclosureHeader>
-            <DisclosureHeaderContent title="Tanggal dipilih" />
-          </DisclosureHeader>
-          <DisclosureBody>
-            <CContainer px={2} pl={4} pt={1}>
-              <List.Root gap={2}>
-                {emptyArray(selected) && <FeedbackNoData />}
-                {!emptyArray(selected) &&
-                  selected.map((item, i) => {
-                    return (
-                      <List.Item key={i}>
-                        {formatDate(item, {
-                          variant: "weekdayFullMonth",
-                        })}
-                      </List.Item>
-                    );
-                  })}
-              </List.Root>
-            </CContainer>
-          </DisclosureBody>
-          <DisclosureFooter>
-            <BackButton />
-          </DisclosureFooter>
-        </DisclosureContent>
-      </DisclosureRoot>
-    </>
-  );
+const DEFAULT_PERIOD = {
+  month: new Date().getMonth(),
+  year: new Date().getFullYear(),
 };
 
 const PeriodPicker = (props: any) => {
@@ -313,6 +257,68 @@ const DatePicker = (props: Props__DatePicker) => {
     </CContainer>
   );
 };
+const SelectedDateList = (props: Props__SelectedDateList) => {
+  // Props
+  const { id, selected, formattedSelectedLabel } = props;
+
+  // Hooks
+  const { open, onOpen, onClose } = useDisclosure();
+  useBackOnClose(`${id}-selected-date-list`, open, onOpen, onClose);
+
+  return (
+    <>
+      <CContainer
+        mt={-2}
+        borderColor={"border.muted"}
+        bg={"bg.muted"}
+        p={3}
+        borderRadius={6}
+        cursor={"pointer"}
+        onClick={onOpen}
+      >
+        <P
+          textAlign={"center"}
+          fontWeight={"semibold"}
+          maxW={"calc(100% - 16px)"}
+          mx={"auto"}
+          truncate
+        >
+          {formattedSelectedLabel}
+        </P>
+      </CContainer>
+
+      <DisclosureRoot open={open} size={"xs"} scrollBehavior={"inside"}>
+        <DisclosureContent>
+          <DisclosureHeader>
+            <DisclosureHeaderContent title="Tanggal dipilih" />
+          </DisclosureHeader>
+
+          <DisclosureBody>
+            <CContainer px={2} pl={4} pt={1}>
+              <List.Root gap={2}>
+                {emptyArray(selected) && <FeedbackNoData />}
+                {!emptyArray(selected) &&
+                  selected.map((item, i) => {
+                    return (
+                      <List.Item key={i}>
+                        {formatDate(item, {
+                          variant: "weekdayFullMonth",
+                        })}
+                      </List.Item>
+                    );
+                  })}
+              </List.Root>
+            </CContainer>
+          </DisclosureBody>
+
+          <DisclosureFooter>
+            <BackButton />
+          </DisclosureFooter>
+        </DisclosureContent>
+      </DisclosureRoot>
+    </>
+  );
+};
 
 export const DatePickerInput = (props: Props__DatePickerInput) => {
   // Props
@@ -349,16 +355,17 @@ export const DatePickerInput = (props: Props__DatePickerInput) => {
         )
       : []
   );
-  const [period, setPeriod] = useState<Type__Period>({
-    month: new Date().getMonth(),
-    year: new Date().getFullYear(),
-  });
+  const [period, setPeriod] = useState<Type__Period>(DEFAULT_PERIOD);
   const resolvedPlaceholder = placeholder || l.select_date;
   const formattedSelectedLabel =
     selected && selected?.length > 0
       ? selected
           .map((date) =>
-            formatDate(new Date(date), { prefixTimeZoneKey: userTz.key })
+            formatDate(new Date(date), {
+              prefixTimeZoneKey: userTz.key,
+              variant:
+                selected.length > 1 ? "weekdayShortMonth" : "weekdayFullMonth",
+            })
           )
           .join(", ")
       : resolvedPlaceholder;
@@ -366,7 +373,13 @@ export const DatePickerInput = (props: Props__DatePickerInput) => {
     inputValue && inputValue?.length > 0
       ? inputValue
           .map((date) =>
-            formatDate(new Date(date), { prefixTimeZoneKey: userTz.key })
+            formatDate(new Date(date), {
+              prefixTimeZoneKey: userTz.key,
+              variant:
+                inputValue.length > 1
+                  ? "weekdayShortMonth"
+                  : "weekdayFullMonth",
+            })
           )
           .join(", ")
       : resolvedPlaceholder;
@@ -453,6 +466,7 @@ export const DatePickerInput = (props: Props__DatePickerInput) => {
               variant={"outline"}
               onClick={() => {
                 setSelected([]);
+                setPeriod(DEFAULT_PERIOD);
               }}
             >
               Reset
