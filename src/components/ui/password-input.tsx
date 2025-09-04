@@ -46,7 +46,7 @@ export const PasswordInput = forwardRef<HTMLInputElement, Props__PasswordInput>(
           zIndex={3}
           position={"absolute"}
           h={"full"}
-          right={"6px"}
+          right={2}
           top={0}
         >
           <IconButton
