@@ -2,12 +2,16 @@ import { Props__StringInput } from "@/constants/props";
 import { useThemeConfig } from "@/context/useThemeConfig";
 import {
   Box,
+  Center,
   Input as ChakraInput,
-  useFieldContext
+  Icon,
+  IconButton,
+  useFieldContext,
 } from "@chakra-ui/react";
 import { css, Global } from "@emotion/react";
 import { forwardRef, useRef } from "react";
 import { useColorMode } from "./color-mode";
+import { IconX } from "@tabler/icons-react";
 
 export const StringInput = forwardRef<HTMLInputElement, Props__StringInput>(
   (props, ref) => {
@@ -19,6 +23,8 @@ export const StringInput = forwardRef<HTMLInputElement, Props__StringInput>(
       placeholder = "Input text",
       boxProps,
       invalid,
+      clearable = true,
+      clearButtonProps,
       ...restProps
     } = props;
 
@@ -77,8 +83,35 @@ export const StringInput = forwardRef<HTMLInputElement, Props__StringInput>(
             autoComplete="off"
             transition={"200ms"}
             color={"text"}
+            pr={clearable ? 10 : ""}
             {...restProps}
           />
+
+          {inputValue && clearable && (
+            <Center
+              flexShrink={0}
+              zIndex={3}
+              position={"absolute"}
+              h={"full"}
+              right={"6px"}
+              top={0}
+              {...clearButtonProps}
+            >
+              <IconButton
+                aria-label="clear input"
+                onClick={() => {
+                  onChange?.("");
+                }}
+                variant={"plain"}
+                size={"sm"}
+                color={"fg.subtle"}
+              >
+                <Icon boxSize={"18px"}>
+                  <IconX />
+                </Icon>
+              </IconButton>
+            </Center>
+          )}
         </Box>
       </>
     );

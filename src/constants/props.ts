@@ -3,10 +3,47 @@ import { Type__DisclosureSizes, Type__Period } from "./types";
 import {
   BoxProps,
   FileUploadRootProps,
+  IconProps,
+  InputGroupProps,
   InputProps,
   StackProps,
 } from "@chakra-ui/react";
 import { Dispatch } from "react";
+
+export interface Props__StringInput extends Omit<InputProps, "onChange"> {
+  onChange?: (inputValue: string) => void;
+  inputValue?: string;
+  placeholder?: string;
+  boxProps?: BoxProps;
+  invalid?: boolean;
+  clearable?: boolean;
+  clearButtonProps?: StackProps;
+}
+
+export interface Props__PasswordInput extends Omit<InputProps, "onChange"> {
+  name?: string;
+  onChange?: (inputValue: string | undefined) => void;
+  inputValue?: string | undefined;
+  placeholder?: string;
+  boxProps?: BoxProps;
+  invalid?: boolean;
+}
+
+export interface Props__SearchInput
+  extends Omit<InputGroupProps, "children" | "onChange"> {
+  inputValue?: string;
+  onChange?: (inputValue: string) => void;
+  placeholder?: string;
+  additionalPlaceholder?: string;
+  tooltipLabel?: string;
+  inputRef?: any;
+  inputProps?: Props__StringInput;
+  icon?: any;
+  iconProps?: IconProps;
+  invalid?: boolean;
+  noIcon?: boolean;
+  children?: React.ReactNode;
+}
 
 export interface Props__FileInput
   extends Omit<FileUploadRootProps, "onChange"> {
@@ -58,14 +95,6 @@ export interface Props__SelectedDateList {
   id?: string;
   selected: Date[];
   formattedSelectedLabel: string;
-}
-
-export interface Props__StringInput extends Omit<InputProps, "onChange"> {
-  onChange?: (inputValue: string) => void;
-  inputValue?: string;
-  placeholder?: string;
-  boxProps?: BoxProps;
-  invalid?: boolean;
 }
 
 export interface Props__NumInput extends Omit<InputProps, "onChange"> {

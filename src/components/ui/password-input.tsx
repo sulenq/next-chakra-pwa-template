@@ -1,30 +1,21 @@
 "use client";
 
-import { Box, BoxProps, Icon, IconButton, InputProps } from "@chakra-ui/react";
+import { Props__PasswordInput } from "@/constants/props";
+import { Box, Center, Icon, IconButton } from "@chakra-ui/react";
 import { IconEye, IconEyeOff } from "@tabler/icons-react";
 import { forwardRef, useState } from "react";
 import { StringInput } from "./string-input";
 
-interface Props extends Omit<InputProps, "onChange"> {
-  name?: string;
-  onChange?: (inputValue: string | undefined) => void;
-  inputValue?: string | undefined;
-  isError?: boolean;
-  placeholder?: string;
-  boxProps?: BoxProps;
-  invalid?: boolean;
-}
-
-export const PasswordInput = forwardRef<HTMLInputElement, Props>(
+export const PasswordInput = forwardRef<HTMLInputElement, Props__PasswordInput>(
   (props, ref) => {
     const {
       name,
       onChange,
       inputValue,
-      isError,
       placeholder = "********",
       boxProps,
       invalid,
+
       ...restProps
     } = props;
 
@@ -42,33 +33,40 @@ export const PasswordInput = forwardRef<HTMLInputElement, Props>(
           }}
           inputValue={inputValue}
           type={showPassword ? "text" : "password"}
-          pr={"40px !important"}
+          pr={20}
           invalid={invalid}
+          clearButtonProps={{
+            right: 10,
+          }}
           {...restProps}
         />
 
-        <IconButton
-          aria-label="show password button"
-          bg={"transparent"}
-          _hover={{ bg: "transparent" }}
-          _active={{ bg: "transparent" }}
+        <Center
+          flexShrink={0}
+          zIndex={3}
           position={"absolute"}
-          right={0}
+          h={"full"}
+          right={"6px"}
           top={0}
-          zIndex={2}
-          color={"ibody"}
-          onClick={() => {
-            setShowPassword((ps) => !ps);
-          }}
         >
-          <Icon fontSize={"lg"}>
-            {showPassword ? (
-              <IconEye stroke={1.5} />
-            ) : (
-              <IconEyeOff stroke={1.5} />
-            )}
-          </Icon>
-        </IconButton>
+          <IconButton
+            aria-label="clear input"
+            onClick={() => {
+              setShowPassword((ps) => !ps);
+            }}
+            variant={"plain"}
+            size={"sm"}
+            color={"fg.subtle"}
+          >
+            <Icon boxSize={5}>
+              {showPassword ? (
+                <IconEye stroke={1.5} />
+              ) : (
+                <IconEyeOff stroke={1.5} />
+              )}
+            </Icon>
+          </IconButton>
+        </Center>
       </Box>
     );
   }
