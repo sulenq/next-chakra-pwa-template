@@ -1,4 +1,4 @@
-export const emptyObject = (value: Object) => {
+export const emptyObject = (value: object | null | undefined) => {
   if (!value) return true;
 
   if (typeof value === "object" && Object.keys(value).length === 0) return true;
