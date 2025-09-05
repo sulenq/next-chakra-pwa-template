@@ -126,6 +126,7 @@ const DocsIndexRoute = () => {
           <Field invalid={!!formik.errors.select}>
             <SelectPropertyByLayerId
               layerId={1}
+              id="select-props-by-layer-id"
               inputValue={formik.values.select}
               onChange={(input) => {
                 formik.setFieldValue("select", input);

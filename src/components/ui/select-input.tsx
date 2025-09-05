@@ -65,8 +65,9 @@ const SelectOptions = (props: Props__SelectOptions) => {
               <Btn
                 key={o.id}
                 clicky={false}
-                variant={"outline"}
+                variant={"ghost"}
                 justifyContent={"start"}
+                size={"md"}
                 onClick={() => {
                   if (!multiple) {
                     setSelected([o]);

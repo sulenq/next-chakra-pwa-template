@@ -189,6 +189,8 @@ const DisclosureFooter = ({ children, ...props }: DisclosureFooterProps) => {
       pt={5}
       pb={6}
       bg={"body"}
+      borderTop={"1px solid"}
+      borderColor={"border.subtle"}
       {...(props as DrawerHeaderProps)}
     >
       <CContainer align={"stretch"} gap={2}>
