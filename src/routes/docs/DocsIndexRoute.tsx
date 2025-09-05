@@ -25,7 +25,7 @@ const DocsIndexRoute = () => {
       search: "",
       date: undefined as any,
       time: undefined as any,
-      dateTime: "",
+      dateTime: "2025-09-05T00:00:00.000Z",
       select: undefined as any,
       file: undefined as any,
     },

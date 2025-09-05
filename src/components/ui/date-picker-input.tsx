@@ -356,8 +356,8 @@ export const DatePickerInput = (props: Props__DatePickerInput) => {
 
   // States
   const userTz = getUserTimezone();
-  const userTzOffsetInMs = getTimezoneOffsetMs(userTz.key);
   const localTz = getLocalTimezone();
+  const localTzOffsetInMs = getTimezoneOffsetMs(localTz.key);
   const [selected, setSelected] = useState<Date[]>([]);
   const [period, setPeriod] = useState<Type__Period>(DEFAULT_PERIOD);
   const resolvedPlaceholder = placeholder || l.select_date;
@@ -415,7 +415,7 @@ export const DatePickerInput = (props: Props__DatePickerInput) => {
               setSelected(
                 inputValue.map(
                   (item) =>
-                    new Date(new Date(item).getTime() - userTzOffsetInMs)
+                    new Date(new Date(item).getTime() - localTzOffsetInMs)
                 )
               );
             }
