@@ -10,6 +10,9 @@ import {
 } from "@/components/ui/disclosure";
 import { DisclosureHeaderContent } from "@/components/ui/disclosure-header-content";
 import { P } from "@/components/ui/p";
+import SearchInput from "@/components/ui/search-input";
+import { Tooltip } from "@/components/ui/tooltip";
+import FeedbackNoData from "@/components/widget/FeedbackNoData";
 import { Interface__SelectOption } from "@/constants/interfaces";
 import { Props__SelectInput, Props__SelectOptions } from "@/constants/props";
 import useLang from "@/context/useLang";
@@ -36,41 +39,79 @@ const SelectOptions = (props: Props__SelectOptions) => {
   // Contexts
   const { themeConfig } = useThemeConfig();
 
+  // States
+  const [search, setSearch] = useState<string>("");
+  const filteredSelectOptions = selectOptions?.filter((o) =>
+    o.label?.toLowerCase().includes(search.toLowerCase())
+  );
+
   return (
-    <CContainer gap={2} {...restProps}>
+    <CContainer {...restProps}>
       {loading && <CSpinner />}
 
       {!loading && (
         <>
-          {selectOptions?.map((o) => {
-            const isActive = selected?.some((s) => s.id === o.id);
+          <CContainer
+            px={4}
+            pt={2}
+            pos={"sticky"}
+            top={0}
+            bg={"body"}
+            zIndex={2}
+          >
+            <SearchInput
+              inputValue={search}
+              onChange={(inputValue) => {
+                setSearch(inputValue || "");
+              }}
+              inputProps={{
+                variant: "flushed",
+                borderRadius: 0,
+              }}
+            />
+          </CContainer>
 
-            return (
-              <Btn
-                key={o.id}
-                clicky={false}
-                variant={"outline"}
-                justifyContent={"start"}
-                onClick={() => {
-                  if (!multiple) {
-                    setSelected([o]);
-                  } else {
-                    setSelected([...selected, o]);
-                  }
-                }}
-              >
-                <HStack w={"full"} align={"start"} justify={"space-between"}>
-                  <P textAlign={"left"}>{o.label}</P>
+          {isEmptyArray(filteredSelectOptions) && (
+            <FeedbackNoData minH={"250px"} />
+          )}
 
-                  {isActive && (
-                    <Icon color={themeConfig.primaryColor} boxSize={5}>
-                      <IconCheck />
-                    </Icon>
-                  )}
-                </HStack>
-              </Btn>
-            );
-          })}
+          {!isEmptyArray(filteredSelectOptions) && (
+            <CContainer p={4} gap={2}>
+              {filteredSelectOptions?.map((o) => {
+                const isActive = selected?.some((s) => s.id === o.id);
+
+                return (
+                  <Btn
+                    key={o.id}
+                    clicky={false}
+                    variant={"outline"}
+                    justifyContent={"start"}
+                    onClick={() => {
+                      if (!multiple) {
+                        setSelected([o]);
+                      } else {
+                        setSelected([...selected, o]);
+                      }
+                    }}
+                  >
+                    <HStack
+                      w={"full"}
+                      align={"start"}
+                      justify={"space-between"}
+                    >
+                      <P textAlign={"left"}>{o.label}</P>
+
+                      {isActive && (
+                        <Icon color={themeConfig.primaryColor} boxSize={5}>
+                          <IconCheck />
+                        </Icon>
+                      )}
+                    </HStack>
+                  </Btn>
+                );
+              })}
+            </CContainer>
+          )}
         </>
       )}
     </CContainer>
@@ -128,34 +169,36 @@ export const SelectInput = (props: Props__SelectInput) => {
 
   return (
     <>
-      <Btn
-        w={"full"}
-        size={"md"}
-        clicky={false}
-        variant={"outline"}
-        justifyContent={"start"}
-        borderColor={invalid ?? fc?.invalid ? "border.error" : "border.muted"}
-        onClick={onOpen}
-        {...restProps}
-      >
-        <HStack w={"full"} justify={"space-between"}>
-          {!isEmptyArray(inputValue) && (
-            <P lineClamp={1} textAlign={"left"}>
-              {formattedButtonLabel}
-            </P>
-          )}
+      <Tooltip content={formattedButtonLabel}>
+        <Btn
+          w={"full"}
+          size={"md"}
+          clicky={false}
+          variant={"outline"}
+          justifyContent={"start"}
+          borderColor={invalid ?? fc?.invalid ? "border.error" : "border.muted"}
+          onClick={onOpen}
+          {...restProps}
+        >
+          <HStack w={"full"} justify={"space-between"}>
+            {!isEmptyArray(inputValue) && (
+              <P lineClamp={1} textAlign={"left"}>
+                {formattedButtonLabel}
+              </P>
+            )}
 
-          {isEmptyArray(inputValue) && (
-            <P color={"placeholder"} lineClamp={1} textAlign={"left"}>
-              {resolvedPlaceholder}
-            </P>
-          )}
+            {isEmptyArray(inputValue) && (
+              <P color={"placeholder"} lineClamp={1} textAlign={"left"}>
+                {resolvedPlaceholder}
+              </P>
+            )}
 
-          <Icon color={"fg.subtle"} flexShrink={0} boxSize={4} mr={"3px"}>
-            <IconCaretDownFilled stroke={1.5} />
-          </Icon>
-        </HStack>
-      </Btn>
+            <Icon color={"fg.subtle"} flexShrink={0} boxSize={4} mr={"3px"}>
+              <IconCaretDownFilled stroke={1.5} />
+            </Icon>
+          </HStack>
+        </Btn>
+      </Tooltip>
 
       <DisclosureRoot open={open} lazyLoad size={disclosureSize}>
         <DisclosureContent>
@@ -165,7 +208,7 @@ export const SelectInput = (props: Props__SelectInput) => {
             />
           </DisclosureHeader>
 
-          <DisclosureBody>
+          <DisclosureBody p={0} overflowY={"auto"} className="noScroll">
             <SelectOptions
               multiple={multiple}
               loading={loading}
