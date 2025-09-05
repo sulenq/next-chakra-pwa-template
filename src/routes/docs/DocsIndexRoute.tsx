@@ -13,6 +13,7 @@ import SearchInput from "@/components/ui/search-input";
 import { SelectInput } from "@/components/ui/select-input";
 import { StringInput } from "@/components/ui/string-input";
 import TimePickerInput from "@/components/ui/time-picker-input";
+import SelectPropertyByLayerId from "@/components/widget/SelectPropertyByLayerId";
 import { OPTIONS_RELIGION } from "@/constants/selectOptions";
 import { HStack } from "@chakra-ui/react";
 import { useFormik } from "formik";
@@ -119,7 +120,16 @@ const DocsIndexRoute = () => {
                 formik.setFieldValue("select", input);
               }}
               selectOptions={OPTIONS_RELIGION}
-              loading={true}
+            />
+          </Field>
+
+          <Field invalid={!!formik.errors.select}>
+            <SelectPropertyByLayerId
+              layerId={1}
+              inputValue={formik.values.select}
+              onChange={(input) => {
+                formik.setFieldValue("select", input);
+              }}
             />
           </Field>
 

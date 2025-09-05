@@ -1,7 +1,7 @@
 import { Provider } from "@/components/ui/provider";
 import { Toaster } from "@/components/ui/toaster";
 import "./globals.css";
-import ClientOnly from "@/components/widget/ClientOnly";
+import ClientOnlyApp from "@/components/widget/ClientOnlyApp";
 import { Metadata } from "next";
 
 interface Props {
@@ -22,7 +22,7 @@ export default function RootLayout(props: Props) {
       <body>
         <Provider>
           <Toaster />
-          <ClientOnly>{children}</ClientOnly>
+          <ClientOnlyApp>{children}</ClientOnlyApp>
           {/* {children} */}
         </Provider>
       </body>

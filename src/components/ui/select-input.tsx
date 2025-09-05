@@ -121,7 +121,7 @@ export const SelectInput = (props: Props__SelectInput) => {
 
   // States
   const [selected, setSelected] = useState<Interface__SelectOption[]>([]);
-  const resolvedPlaceholder = placeholder || `${l.select} ${title}`;
+  const resolvedPlaceholder = placeholder || `${l.select}`;
   const formattedButtonLabel =
     inputValue && inputValue?.length > 0
       ? inputValue.map((o) => o.label).join(", ")
