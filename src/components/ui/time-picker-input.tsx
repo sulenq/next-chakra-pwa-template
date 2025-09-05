@@ -444,10 +444,16 @@ const TimePickerInput = (props: Props__TimePicker) => {
           <DisclosureFooter>
             {showTimezone && (
               <CContainer mr={"auto"}>
-                <P color={"fg.subtle"} fontSize={"xs"}>{`${userTz.key}`}</P>
-                <P color={"fg.subtle"} fontSize={"xs"}>
-                  {`${userTz.formattedOffset}`}
-                </P>
+                <P
+                  color={"fg.subtle"}
+                  fontSize={"xs"}
+                  lineHeight={1.4}
+                >{`${userTz.key}`}</P>
+                <P
+                  color={"fg.subtle"}
+                  fontSize={"xs"}
+                  lineHeight={1.4}
+                >{`${userTz.formattedOffset}`}</P>
               </CContainer>
             )}
 

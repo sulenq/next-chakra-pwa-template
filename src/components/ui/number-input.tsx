@@ -8,7 +8,6 @@ export const NumInput = forwardRef<HTMLInputElement, Props__NumInput>(
   (props, ref) => {
     // Props
     const {
-      id,
       inputValue,
       onChange,
       placeholder = `${new Date().getFullYear()}`,
@@ -44,7 +43,7 @@ export const NumInput = forwardRef<HTMLInputElement, Props__NumInput>(
     }, [inputValue, formatFunction, formatted, integer]);
 
     // Utils
-    function handleChange(rawInput: string) {
+    function handleChange(rawInput?: string) {
       if (!rawInput) {
         setLocalInputValue("");
         onChange?.(null);

@@ -152,7 +152,6 @@ export interface Props__DateTimePickerInput
 }
 
 export interface Props__NumInput extends Omit<InputProps, "onChange"> {
-  id?: string;
   inputValue?: number | null;
   onChange?: (inputValue: Props__NumInput["inputValue"]) => void;
   placeholder?: string;
