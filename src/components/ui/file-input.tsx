@@ -14,6 +14,8 @@ import {
 } from "../ui/file-button";
 import { CloseButton } from "@/components/ui/close-button";
 import { Tooltip } from "@/components/ui/tooltip";
+import { useState } from "react";
+import { toaster } from "@/components/ui/toaster";
 
 const FileInput = (props: Props__FileInput) => {
   // Props
@@ -26,7 +28,7 @@ const FileInput = (props: Props__FileInput) => {
     placeholder,
     label,
     dropzone,
-    maxFileSize,
+    maxFileSize = 1,
     maxFiles = 1,
     description,
     disabled,
@@ -38,6 +40,7 @@ const FileInput = (props: Props__FileInput) => {
   const fc = useFieldContext();
 
   // States
+  const [key, setKey] = useState<number>(1);
   const singleFile = inputValue?.[0] as File;
   const singleFileInputted =
     maxFiles === 1 && (!isEmptyArray(inputValue) as boolean);
@@ -50,12 +53,14 @@ const FileInput = (props: Props__FileInput) => {
   const resolvedDescription = singleFileInputted
     ? formatBytes(singleFile?.size)
     : description ||
-      `up to ${maxFileSize || 10} MB, max ${maxFiles || 1} file${
+      `up to ${maxFileSize} MB, max ${maxFiles || 1} file${
         maxFiles! > 1 ? "s" : ""
       } ${accept ? `(${accept})` : ""}`;
 
   // Utils
   function handleFileChange(details: any) {
+    setKey((ps) => ps + 1);
+
     let files = details.acceptedFiles || [];
 
     if (maxFiles && files.length > maxFiles) {
@@ -68,19 +73,21 @@ const FileInput = (props: Props__FileInput) => {
   return (
     <>
       <FileUploadRoot
+        key={`${key}`}
         ref={fRef}
         alignItems="stretch"
         onFileChange={handleFileChange}
-        // onFileReject={() => {
-        //   toaster.error({
-        //     title: l.error_file_input.title,
-        //     description: l.error_file_input.description,
-        //     action: {
-        //       label: "Close",
-        //       onClick: () => {},
-        //     },
-        //   });
-        // }}
+        onFileReject={() => {
+          toaster.error({
+            title: l.error_400_default.title,
+            description: l.error_400_default.description,
+            action: {
+              label: "Close",
+              onClick: () => {},
+            },
+          });
+        }}
+        maxFileSize={maxFileSize}
         maxFiles={maxFiles}
         gap={2}
         accept={accept}
@@ -98,6 +105,7 @@ const FileInput = (props: Props__FileInput) => {
                 color={"fg.subtle"}
                 onClick={() => {
                   onChange?.(undefined);
+                  setKey((ps) => ps + 1);
                 }}
                 iconProps={{
                   boxSize: "18px",
