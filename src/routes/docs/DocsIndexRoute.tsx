@@ -119,6 +119,7 @@ const DocsIndexRoute = () => {
                 formik.setFieldValue("select", input);
               }}
               selectOptions={OPTIONS_RELIGION}
+              loading={true}
             />
           </Field>
 

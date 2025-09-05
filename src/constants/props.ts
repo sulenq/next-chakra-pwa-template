@@ -28,7 +28,6 @@ export interface Props__SelectInput extends BtnProps {
 }
 export interface Props__SelectOptions {
   multiple: Props__SelectInput["multiple"];
-  loading: Props__SelectInput["loading"];
   selectOptions: Props__SelectInput["inputValue"];
   selected: Interface__SelectOption[];
   setSelected: Dispatch<Props__SelectOptions["selected"]>;

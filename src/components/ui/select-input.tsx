@@ -27,14 +27,8 @@ import { useEffect, useState } from "react";
 
 const SelectOptions = (props: Props__SelectOptions) => {
   // Props
-  const {
-    multiple,
-    loading,
-    selectOptions,
-    selected,
-    setSelected,
-    ...restProps
-  } = props;
+  const { multiple, selectOptions, selected, setSelected, ...restProps } =
+    props;
 
   // Contexts
   const { themeConfig } = useThemeConfig();
@@ -47,72 +41,53 @@ const SelectOptions = (props: Props__SelectOptions) => {
 
   return (
     <CContainer {...restProps}>
-      {loading && <CSpinner />}
+      <CContainer px={4} pt={2} pos={"sticky"} top={0} bg={"body"} zIndex={2}>
+        <SearchInput
+          inputValue={search}
+          onChange={(inputValue) => {
+            setSearch(inputValue || "");
+          }}
+          inputProps={{
+            variant: "flushed",
+            borderRadius: 0,
+          }}
+        />
+      </CContainer>
 
-      {!loading && (
-        <>
-          <CContainer
-            px={4}
-            pt={2}
-            pos={"sticky"}
-            top={0}
-            bg={"body"}
-            zIndex={2}
-          >
-            <SearchInput
-              inputValue={search}
-              onChange={(inputValue) => {
-                setSearch(inputValue || "");
-              }}
-              inputProps={{
-                variant: "flushed",
-                borderRadius: 0,
-              }}
-            />
-          </CContainer>
+      {isEmptyArray(filteredSelectOptions) && <FeedbackNoData minH={"250px"} />}
 
-          {isEmptyArray(filteredSelectOptions) && (
-            <FeedbackNoData minH={"250px"} />
-          )}
+      {!isEmptyArray(filteredSelectOptions) && (
+        <CContainer p={4} gap={2}>
+          {filteredSelectOptions?.map((o) => {
+            const isActive = selected?.some((s) => s.id === o.id);
 
-          {!isEmptyArray(filteredSelectOptions) && (
-            <CContainer p={4} gap={2}>
-              {filteredSelectOptions?.map((o) => {
-                const isActive = selected?.some((s) => s.id === o.id);
+            return (
+              <Btn
+                key={o.id}
+                clicky={false}
+                variant={"outline"}
+                justifyContent={"start"}
+                onClick={() => {
+                  if (!multiple) {
+                    setSelected([o]);
+                  } else {
+                    setSelected([...selected, o]);
+                  }
+                }}
+              >
+                <HStack w={"full"} align={"start"} justify={"space-between"}>
+                  <P textAlign={"left"}>{o.label}</P>
 
-                return (
-                  <Btn
-                    key={o.id}
-                    clicky={false}
-                    variant={"outline"}
-                    justifyContent={"start"}
-                    onClick={() => {
-                      if (!multiple) {
-                        setSelected([o]);
-                      } else {
-                        setSelected([...selected, o]);
-                      }
-                    }}
-                  >
-                    <HStack
-                      w={"full"}
-                      align={"start"}
-                      justify={"space-between"}
-                    >
-                      <P textAlign={"left"}>{o.label}</P>
-
-                      {isActive && (
-                        <Icon color={themeConfig.primaryColor} boxSize={5}>
-                          <IconCheck />
-                        </Icon>
-                      )}
-                    </HStack>
-                  </Btn>
-                );
-              })}
-            </CContainer>
-          )}
-        </>
+                  {isActive && (
+                    <Icon color={themeConfig.primaryColor} boxSize={5}>
+                      <IconCheck />
+                    </Icon>
+                  )}
+                </HStack>
+              </Btn>
+            );
+          })}
+        </CContainer>
       )}
     </CContainer>
   );
@@ -162,7 +137,7 @@ export const SelectInput = (props: Props__SelectInput) => {
 
   // set selected on open
   useEffect(() => {
-    if (inputValue) {
+    if (inputValue && !isEmptyArray(inputValue)) {
       setSelected(inputValue);
     }
   }, [open]);
@@ -209,13 +184,16 @@ export const SelectInput = (props: Props__SelectInput) => {
           </DisclosureHeader>
 
           <DisclosureBody p={0} overflowY={"auto"} className="noScroll">
-            <SelectOptions
-              multiple={multiple}
-              loading={loading}
-              selectOptions={selectOptions}
-              selected={selected}
-              setSelected={setSelected}
-            />
+            {loading && <CSpinner />}
+
+            {!loading && (
+              <SelectOptions
+                multiple={multiple}
+                selectOptions={selectOptions}
+                selected={selected}
+                setSelected={setSelected}
+              />
+            )}
           </DisclosureBody>
 
           <DisclosureFooter>

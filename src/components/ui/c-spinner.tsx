@@ -1,5 +1,6 @@
+import { CContainer } from "@/components/ui/c-container";
 import Spinner from "@/components/ui/spinner";
-import { SpinnerProps, StackProps, VStack } from "@chakra-ui/react";
+import { SpinnerProps, StackProps } from "@chakra-ui/react";
 
 interface Props extends StackProps {
   spinnerProps?: SpinnerProps;
@@ -7,15 +8,16 @@ interface Props extends StackProps {
 
 export const CSpinner = ({ spinnerProps, ...props }: Props) => {
   return (
-    <VStack
-      w={"full"}
+    <CContainer
       minH={"300px"}
+      align={"center"}
       justify={"center"}
       opacity={0.4}
       m={"auto"}
+      p={4}
       {...props}
     >
-      <Spinner color={"d3"} {...spinnerProps} />
-    </VStack>
+      <Spinner {...spinnerProps} />
+    </CContainer>
   );
 };
