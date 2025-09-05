@@ -186,6 +186,7 @@ const translations = {
   "saturday": "Sabtu",
   "save": "Simpan",
   "search": "Cari",
+  "select": "Pilih",
   "select_date": "Pilih tanggal",
   "select_date_range": "Pilih rentang tanggal",
   "select_period": "Pilih periode",

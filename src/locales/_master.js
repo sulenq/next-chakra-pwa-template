@@ -153,6 +153,10 @@ export const show = {
   id: "Tampilkan",
   en: "Show",
 };
+export const select = {
+  id: "Pilih",
+  en: "Select",
+};
 export const optional = {
   id: "Opsional",
   en: "Optional",

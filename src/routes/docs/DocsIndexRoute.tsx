@@ -24,8 +24,9 @@ const DocsIndexRoute = () => {
       password: "",
       search: "",
       date: undefined as any,
-      dateTime: "",
       time: undefined as any,
+      dateTime: "",
+      select: undefined as any,
       file: undefined as any,
     },
     validationSchema: yup.object({
@@ -33,8 +34,9 @@ const DocsIndexRoute = () => {
       password: yup.string().required(),
       search: yup.string().required(),
       date: yup.array().required(),
-      dateTime: yup.string().required(),
       time: yup.string().required(),
+      dateTime: yup.string().required(),
+      select: yup.array().required(),
       file: yup.array().required(),
     }),
     onSubmit: (values) => {

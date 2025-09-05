@@ -9,8 +9,27 @@ import {
   InputProps,
   StackProps,
 } from "@chakra-ui/react";
-import { Dispatch } from "react";
+import { Dispatch, SetStateAction } from "react";
 import { Type__DisclosureSizes, Type__Period } from "./types";
+import { Interface__SelectOption } from "@/constants/interfaces";
+
+export interface Props__SelectInput extends BtnProps {
+  id?: string;
+  title?: string;
+  inputValue?: Interface__SelectOption[] | undefined;
+  onConfirm?: (inputValue: Props__SelectInput["inputValue"]) => void;
+  initialOptions?: Interface__SelectOption[] | undefined | null;
+  placeholder?: string;
+  invalid?: boolean;
+  nonNullable?: boolean;
+  multiple?: boolean;
+  disclosureSize?: Type__DisclosureSizes;
+  fetch?: (
+    setOptions: Dispatch<
+      SetStateAction<Interface__SelectOption[] | null | undefined>
+    >
+  ) => void;
+}
 
 export interface Props__StringInput extends Omit<InputProps, "onChange"> {
   inputValue?: string;

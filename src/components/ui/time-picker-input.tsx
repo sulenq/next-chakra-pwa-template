@@ -55,6 +55,7 @@ const TimePickerInput = (props: Props__TimePicker) => {
     disclosureSize = withSeconds ? "sm" : "xs",
     ...restProps
   } = props;
+
   // Contexts
   const fc = useFieldContext();
   const { themeConfig } = useThemeConfig();
@@ -65,7 +66,6 @@ const TimePickerInput = (props: Props__TimePicker) => {
   const resolvedPlaceholder = placeholder || l.select_time;
   const defaultTime = "00:00:00";
   const [selected, setSelected] = useState<string | undefined>(inputValue);
-  const [firstRender, setFirstRender] = useState(true);
   const [hours, setHours] = useState<number>(getHoursFromTime(inputValue));
   const [minutes, setMinutes] = useState<number>(
     getMinutesFromTime(inputValue)
@@ -98,7 +98,7 @@ const TimePickerInput = (props: Props__TimePicker) => {
   const { sw } = useScreen();
   const overflow = sw < 450 && withSeconds;
 
-  // Handle initial
+  // Update hours, minutes, seconds when inputValue changes
   useEffect(() => {
     if (inputValue) {
       setHours(getHoursFromTime(inputValue));
@@ -106,18 +106,13 @@ const TimePickerInput = (props: Props__TimePicker) => {
       setSeconds(getSecondsFromTime(inputValue));
     }
   }, [inputValue]);
-  useEffect(() => {
-    setFirstRender(false);
-  }, []);
 
-  // Handle selected
+  // Update selected value when hours, minutes, or seconds change
   useEffect(() => {
     const fHours = String(hours).padStart(2, "0");
     const fMinutes = String(minutes).padStart(2, "0");
     const fSeconds = String(seconds).padStart(2, "0");
-    if (!firstRender) {
-      setSelected(`${fHours}:${fMinutes}:${fSeconds}`);
-    }
+    setSelected(`${fHours}:${fMinutes}:${fSeconds}`);
   }, [hours, minutes, seconds]);
 
   // Handle increment, decrement
@@ -136,6 +131,7 @@ const TimePickerInput = (props: Props__TimePicker) => {
       }, 100);
     }, 300);
   }
+
   function handleMouseUpIncrement() {
     if (timeoutIncrementRef.current) {
       clearTimeout(timeoutIncrementRef.current);
@@ -146,6 +142,7 @@ const TimePickerInput = (props: Props__TimePicker) => {
       intervalIncrementRef.current = null;
     }
   }
+
   function handleMouseDownDecrement(type: string) {
     if (timeoutDecrementRef.current || intervalDecrementRef.current) return;
 
@@ -161,6 +158,7 @@ const TimePickerInput = (props: Props__TimePicker) => {
       }, 100);
     }, 300);
   }
+
   function handleMouseUpDecrement() {
     if (timeoutDecrementRef.current) {
       clearTimeout(timeoutDecrementRef.current);
@@ -174,19 +172,9 @@ const TimePickerInput = (props: Props__TimePicker) => {
 
   // Handle confirm selected
   function onConfirmSelected() {
-    let confirmable = false;
-    if (!required) {
-      confirmable = true;
-    } else {
-      if (selected) {
-        confirmable = true;
-      }
-    }
-
+    const confirmable = !required || !!selected;
     if (confirmable) {
-      if (onConfirm) {
-        onConfirm(selected);
-      }
+      onConfirm?.(selected);
       back();
     }
   }
@@ -241,12 +229,14 @@ const TimePickerInput = (props: Props__TimePicker) => {
           </DisclosureHeader>
 
           <DisclosureBody>
+            {/* Main layout for hours, minutes, (optional) seconds */}
             <HStack
               justify={"space-between"}
               gap={1}
               wrap={overflow ? "wrap" : ""}
               gapY={overflow ? 4 : 0}
             >
+              {/* Hours control */}
               <VStack flex={"1 1 120"} align={"stretch"} gap={0}>
                 <Btn
                   iconButton
@@ -254,18 +244,12 @@ const TimePickerInput = (props: Props__TimePicker) => {
                   variant={"outline"}
                   onClick={() => {
                     setHours((ps) => (ps < 23 ? ps + 1 : 0));
-                    if (!selected) {
-                      setSelected(defaultTime);
-                    }
+                    if (!selected) setSelected(defaultTime);
                   }}
-                  onMouseDown={() => {
-                    handleMouseDownIncrement("hours");
-                  }}
+                  onMouseDown={() => handleMouseDownIncrement("hours")}
                   onMouseUp={handleMouseUpIncrement}
                   onMouseLeave={handleMouseUpIncrement}
-                  onTouchStart={() => {
-                    handleMouseDownIncrement("hours");
-                  }}
+                  onTouchStart={() => handleMouseDownIncrement("hours")}
                   onTouchEnd={handleMouseUpIncrement}
                 >
                   <Icon fontSize={"md"}>
@@ -301,18 +285,12 @@ const TimePickerInput = (props: Props__TimePicker) => {
                   variant={"outline"}
                   onClick={() => {
                     setHours((ps) => (ps > 0 ? ps - 1 : 23));
-                    if (!selected) {
-                      setSelected(defaultTime);
-                    }
+                    if (!selected) setSelected(defaultTime);
                   }}
-                  onMouseDown={() => {
-                    handleMouseDownDecrement("hours");
-                  }}
+                  onMouseDown={() => handleMouseDownDecrement("hours")}
                   onMouseUp={handleMouseUpDecrement}
                   onMouseLeave={handleMouseUpDecrement}
-                  onTouchStart={() => {
-                    handleMouseDownDecrement("hours");
-                  }}
+                  onTouchStart={() => handleMouseDownDecrement("hours")}
                   onTouchEnd={handleMouseUpDecrement}
                 >
                   <Icon fontSize={"md"}>
@@ -327,25 +305,20 @@ const TimePickerInput = (props: Props__TimePicker) => {
                 </P>
               )}
 
+              {/* Minutes control */}
               <VStack flex={"1 1 120"} align={"stretch"} gap={0}>
                 <Btn
                   iconButton
-                  aria-label="add hour button"
+                  aria-label="add minute button"
                   variant={"outline"}
                   onClick={() => {
                     setMinutes((ps) => (ps < 59 ? ps + 1 : 0));
-                    if (!selected) {
-                      setSelected(defaultTime);
-                    }
+                    if (!selected) setSelected(defaultTime);
                   }}
-                  onMouseDown={() => {
-                    handleMouseDownIncrement("minutes");
-                  }}
+                  onMouseDown={() => handleMouseDownIncrement("minutes")}
                   onMouseUp={handleMouseUpIncrement}
                   onMouseLeave={handleMouseUpIncrement}
-                  onTouchStart={() => {
-                    handleMouseDownIncrement("minutes");
-                  }}
+                  onTouchStart={() => handleMouseDownIncrement("minutes")}
                   onTouchEnd={handleMouseUpIncrement}
                 >
                   <Icon fontSize={"md"}>
@@ -356,7 +329,7 @@ const TimePickerInput = (props: Props__TimePicker) => {
                 <VStack my={4}>
                   <StringInput
                     clearable={false}
-                    name="jam"
+                    name="menit"
                     onChange={(input) => {
                       if (parseInt(input as string) < 60) {
                         setMinutes(parseInt(input as string));
@@ -377,22 +350,16 @@ const TimePickerInput = (props: Props__TimePicker) => {
 
                 <Btn
                   iconButton
-                  aria-label="reduce hour button"
+                  aria-label="reduce minute button"
                   variant={"outline"}
                   onClick={() => {
                     setMinutes((ps) => (ps > 0 ? ps - 1 : 59));
-                    if (!selected) {
-                      setSelected(defaultTime);
-                    }
+                    if (!selected) setSelected(defaultTime);
                   }}
-                  onMouseDown={() => {
-                    handleMouseDownDecrement("minutes");
-                  }}
+                  onMouseDown={() => handleMouseDownDecrement("minutes")}
                   onMouseUp={handleMouseUpDecrement}
                   onMouseLeave={handleMouseUpDecrement}
-                  onTouchStart={() => {
-                    handleMouseDownDecrement("minutes");
-                  }}
+                  onTouchStart={() => handleMouseDownDecrement("minutes")}
                   onTouchEnd={handleMouseUpDecrement}
                 >
                   <Icon fontSize={"md"}>
@@ -409,25 +376,20 @@ const TimePickerInput = (props: Props__TimePicker) => {
                     </P>
                   )}
 
+                  {/* Seconds control */}
                   <VStack flex={"1 1 120"} align={"stretch"} gap={0}>
                     <Btn
                       iconButton
-                      aria-label="add hour button"
+                      aria-label="add second button"
                       variant={"outline"}
                       onClick={() => {
                         setSeconds((ps) => (ps < 59 ? ps + 1 : 0));
-                        if (!selected) {
-                          setSelected(defaultTime);
-                        }
+                        if (!selected) setSelected(defaultTime);
                       }}
-                      onMouseDown={() => {
-                        handleMouseDownIncrement("seconds");
-                      }}
+                      onMouseDown={() => handleMouseDownIncrement("seconds")}
                       onMouseUp={handleMouseUpIncrement}
                       onMouseLeave={handleMouseUpIncrement}
-                      onTouchStart={() => {
-                        handleMouseDownIncrement("seconds");
-                      }}
+                      onTouchStart={() => handleMouseDownIncrement("seconds")}
                       onTouchEnd={handleMouseUpIncrement}
                     >
                       <Icon fontSize={"md"}>
@@ -438,7 +400,7 @@ const TimePickerInput = (props: Props__TimePicker) => {
                     <VStack my={4}>
                       <StringInput
                         clearable={false}
-                        name="jam"
+                        name="detik"
                         onChange={(input) => {
                           if (parseInt(input as string) < 60) {
                             setSeconds(parseInt(input as string));
@@ -459,22 +421,16 @@ const TimePickerInput = (props: Props__TimePicker) => {
 
                     <Btn
                       iconButton
-                      aria-label="reduce hour button"
+                      aria-label="reduce second button"
                       variant={"outline"}
                       onClick={() => {
                         setSeconds((ps) => (ps > 0 ? ps - 1 : 59));
-                        if (!selected) {
-                          setSelected(defaultTime);
-                        }
+                        if (!selected) setSelected(defaultTime);
                       }}
-                      onMouseDown={() => {
-                        handleMouseDownDecrement("seconds");
-                      }}
+                      onMouseDown={() => handleMouseDownDecrement("seconds")}
                       onMouseUp={handleMouseUpDecrement}
                       onMouseLeave={handleMouseUpDecrement}
-                      onTouchStart={() => {
-                        handleMouseDownDecrement("seconds");
-                      }}
+                      onTouchStart={() => handleMouseDownDecrement("seconds")}
                       onTouchEnd={handleMouseUpDecrement}
                     >
                       <Icon fontSize={"md"}>
@@ -491,10 +447,9 @@ const TimePickerInput = (props: Props__TimePicker) => {
             {showTimezone && (
               <CContainer mr={"auto"}>
                 <P color={"fg.subtle"} fontSize={"xs"}>{`${userTz.key}`}</P>
-                <P
-                  color={"fg.subtle"}
-                  fontSize={"xs"}
-                >{`${userTz.formattedOffset}`}</P>
+                <P color={"fg.subtle"} fontSize={"xs"}>
+                  {`${userTz.formattedOffset}`}
+                </P>
               </CContainer>
             )}
 
@@ -530,7 +485,7 @@ const TimePickerInput = (props: Props__TimePicker) => {
             </Btn>
             <Btn
               onClick={onConfirmSelected}
-              disabled={required ? (selected ? false : true) : false}
+              disabled={required ? !selected : false}
               colorPalette={themeConfig.colorPalette}
             >
               {l.confirm}

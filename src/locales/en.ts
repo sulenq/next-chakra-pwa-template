@@ -186,6 +186,7 @@ const translations = {
   "saturday": "Saturday",
   "save": "Save",
   "search": "Search",
+  "select": "Select",
   "select_date": "Select date",
   "select_date_range": "Select date range",
   "select_period": "Select period",
