@@ -20,11 +20,11 @@ import {
   getHoursFromTime,
   getMinutesFromTime,
   getSecondsFromTime,
+  getUserTimezone,
 } from "@/utils/time";
 import {
   HStack,
   Icon,
-  Text,
   useDisclosure,
   useFieldContext,
   VStack,
@@ -36,6 +36,8 @@ import {
 } from "@tabler/icons-react";
 import { useEffect, useRef, useState } from "react";
 import { Tooltip } from "./tooltip";
+import { CContainer } from "@/components/ui/c-container";
+import { P } from "@/components/ui/p";
 
 const TimePickerInput = (props: Props__TimePicker) => {
   // Props
@@ -45,6 +47,7 @@ const TimePickerInput = (props: Props__TimePicker) => {
     title,
     onConfirm,
     inputValue,
+    showTimezone,
     withSeconds = false,
     placeholder,
     required,
@@ -57,8 +60,9 @@ const TimePickerInput = (props: Props__TimePicker) => {
   const { themeConfig } = useThemeConfig();
   const { l } = useLang();
 
-  // States, Refs
-  const finalPlaceholder = placeholder || l.select_time;
+  // States
+  const userTz = getUserTimezone();
+  const resolvedPlaceholder = placeholder || l.select_time;
   const defaultTime = "00:00:00";
   const [selected, setSelected] = useState<string | undefined>(inputValue);
   const [firstRender, setFirstRender] = useState(true);
@@ -189,7 +193,7 @@ const TimePickerInput = (props: Props__TimePicker) => {
 
   return (
     <>
-      <Tooltip content={inputValue ? renderValue : finalPlaceholder}>
+      <Tooltip content={inputValue ? renderValue : resolvedPlaceholder}>
         <Btn
           w={"full"}
           clicky={false}
@@ -207,18 +211,18 @@ const TimePickerInput = (props: Props__TimePicker) => {
         >
           <HStack w={"full"} justify={"space-between"}>
             {inputValue ? (
-              <Text truncate>
+              <P truncate>
                 {withSeconds
                   ? inputValue
-                  : formatTime(inputValue, { prefixTimezoneKey: "UTC" })}
-              </Text>
+                  : formatTime(inputValue, { timezoneKey: "UTC" })}
+              </P>
             ) : (
-              <Text
+              <P
                 color={props?._placeholder?.color || "var(--placeholder)"}
                 truncate
               >
-                {finalPlaceholder}
-              </Text>
+                {resolvedPlaceholder}
+              </P>
             )}
 
             <Icon color={"fg.subtle"}>
@@ -288,7 +292,7 @@ const TimePickerInput = (props: Props__TimePicker) => {
                     border={"none !important"}
                     _focus={{ border: "none !important" }}
                   />
-                  {/* <Text textAlign={"center"}>Jam</Text> */}
+                  {/* <P textAlign={"center"}>Jam</P> */}
                 </VStack>
 
                 <Btn
@@ -318,9 +322,9 @@ const TimePickerInput = (props: Props__TimePicker) => {
               </VStack>
 
               {!overflow && (
-                <Text fontSize={50} opacity={0.2} mt={-2}>
+                <P fontSize={50} opacity={0.2} mt={-2}>
                   :
-                </Text>
+                </P>
               )}
 
               <VStack flex={"1 1 120"} align={"stretch"} gap={0}>
@@ -368,7 +372,7 @@ const TimePickerInput = (props: Props__TimePicker) => {
                     border={"none !important"}
                     _focus={{ border: "none !important" }}
                   />
-                  {/* <Text textAlign={"center"}>Menit</Text> */}
+                  {/* <P textAlign={"center"}>Menit</P> */}
                 </VStack>
 
                 <Btn
@@ -400,9 +404,9 @@ const TimePickerInput = (props: Props__TimePicker) => {
               {withSeconds && (
                 <>
                   {!overflow && (
-                    <Text fontSize={50} opacity={0.2} mt={-2}>
+                    <P fontSize={50} opacity={0.2} mt={-2}>
                       :
-                    </Text>
+                    </P>
                   )}
 
                   <VStack flex={"1 1 120"} align={"stretch"} gap={0}>
@@ -450,7 +454,7 @@ const TimePickerInput = (props: Props__TimePicker) => {
                         border={"none !important"}
                         _focus={{ border: "none !important" }}
                       />
-                      {/* <Text textAlign={"center"}>Detik</Text> */}
+                      {/* <P textAlign={"center"}>Detik</P> */}
                     </VStack>
 
                     <Btn
@@ -484,6 +488,16 @@ const TimePickerInput = (props: Props__TimePicker) => {
           </DisclosureBody>
 
           <DisclosureFooter>
+            {showTimezone && (
+              <CContainer mr={"auto"}>
+                <P color={"fg.subtle"} fontSize={"xs"}>{`${userTz.key}`}</P>
+                <P
+                  color={"fg.subtle"}
+                  fontSize={"xs"}
+                >{`${userTz.formattedOffset}`}</P>
+              </CContainer>
+            )}
+
             <Btn
               variant={"outline"}
               onClick={() => {

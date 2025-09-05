@@ -12,19 +12,6 @@ import {
 import { Dispatch } from "react";
 import { Type__DisclosureSizes, Type__Period } from "./types";
 
-export interface Props__TimePicker extends ButtonProps {
-  id?: string;
-  name?: string;
-  title?: string;
-  onConfirm?: (inputValue: string | undefined) => void;
-  inputValue?: string | undefined;
-  withSeconds?: boolean;
-  placeholder?: string;
-  required?: boolean;
-  invalid?: boolean;
-  disclosureSize?: Type__DisclosureSizes;
-}
-
 export interface Props__StringInput extends Omit<InputProps, "onChange"> {
   inputValue?: string;
   onChange?: (inputValue: Props__StringInput["inputValue"]) => void;
@@ -93,6 +80,7 @@ export interface Props__DatePickerInput extends BtnProps {
   title?: string;
   inputValue?: string[];
   onConfirm?: (inputValue: Props__DatePickerInput["inputValue"]) => void;
+  showTimezone?: boolean;
   placeholder?: string;
   required?: boolean;
   invalid?: boolean;
@@ -111,16 +99,35 @@ export interface Props__SelectedDateList {
   selected: Date[];
   formattedSelectedLabel: string;
 }
-export interface Props__DateTimePickerInput extends GroupProps {
+export interface Props__TimePicker extends ButtonProps {
   id?: string;
+  name?: string;
   title?: string;
-  inputValue?: string;
-  onConfirm?: (inputValue: Props__DateTimePickerInput["inputValue"]) => void;
+  onConfirm?: (inputValue: string | undefined) => void;
+  inputValue?: string | undefined;
+  withSeconds?: boolean;
+  showTimezone?: boolean;
   placeholder?: string;
   required?: boolean;
   invalid?: boolean;
   disclosureSize?: Type__DisclosureSizes;
-  multiple?: boolean;
+}
+export interface Props__DateTimePickerInput
+  extends Omit<GroupProps, "title" | "placeholder" | "onChange"> {
+  id?: string;
+  title?: {
+    date: string;
+    time: string;
+  };
+  inputValue?: string;
+  onChange?: (inputValue: Props__DateTimePickerInput["inputValue"]) => void;
+  placeholder?: {
+    date: string;
+    time: string;
+  };
+  required?: boolean;
+  invalid?: boolean;
+  disclosureSize?: Type__DisclosureSizes;
 }
 
 export interface Props__NumInput extends Omit<InputProps, "onChange"> {

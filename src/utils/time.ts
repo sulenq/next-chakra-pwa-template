@@ -137,6 +137,47 @@ export const makeDateTime = (isoDate: string, time: string): Date => {
   return dateTime;
 };
 
+export const makeISODateTime = (isoDate: string, time: string): string => {
+  const datePart = isoDate.split("T")[0];
+  return `${datePart}T${time}Z`;
+};
+
+export const makeUTCISODateTime = (
+  isoDate: string,
+  time: string,
+  options?: { timezoneKey?: string }
+): string => {
+  if (!isoDate || !time) return "";
+
+  const datePart = isoDate.split("T")[0];
+  const timezoneKey = options?.timezoneKey || getUserTimezone().key;
+  const normalizedTime = /^\d{2}:\d{2}$/.test(time) ? `${time}:00` : time;
+
+  const m = moment.tz(
+    `${datePart} ${normalizedTime}`,
+    "YYYY-MM-DD HH:mm:ss",
+    timezoneKey
+  );
+
+  // convert to UTC ISO string (includes ms, ends with 'Z')
+  return m.utc().toISOString();
+};
+
+export const extractTime = (
+  input?: string | Date | null,
+  options: { withSeconds?: boolean } = {}
+): string => {
+  if (!input) return "";
+
+  const isoStr = typeof input === "string" ? input : input.toISOString();
+
+  // regex capture HH:mm or HH:mm:ss
+  const regex = options.withSeconds ? /T(\d{2}:\d{2}:\d{2})/ : /T(\d{2}:\d{2})/;
+  const match = isoStr.match(regex);
+
+  return match ? match[1] : "";
+};
+
 export const parseTimeToSeconds = (time: string): number => {
   const [hours, minutes, seconds] = time.split(":").map(Number);
 

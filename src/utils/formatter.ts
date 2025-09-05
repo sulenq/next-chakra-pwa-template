@@ -16,16 +16,15 @@ export const formatDate = (
     variant?: Type__DateVariant;
     withTime?: boolean;
     timeFormat?: string; // default HH:mm
-    prefixDateFormat?: Type__DateFormat;
-    prefixTimezoneKey?: string;
+    dateFormat?: Type__DateFormat;
+    timezoneKey?: string;
   } = {}
 ): string => {
   if (!date) return "";
 
   // display format / timezone choices
-  const dateFormat =
-    options.prefixDateFormat || getStorage("dateFormat") || "dmy";
-  const timezoneKey = options.prefixTimezoneKey || getUserTimezone().key;
+  const dateFormat = options.dateFormat || getStorage("dateFormat") || "dmy";
+  const timezoneKey = options.timezoneKey || getUserTimezone().key;
 
   // Build a moment object *interpreted* according to the input kind and target timezone.
   // We avoid manual offset math; let moment-timezone handle conversions.
@@ -165,7 +164,7 @@ export const formatAbsDate = (
   options: Parameters<typeof formatDate>[1] = {}
 ): string => {
   return formatDate(date, {
-    prefixTimezoneKey: "UTC",
+    timezoneKey: "UTC",
     ...options,
   });
 };
@@ -284,7 +283,7 @@ export function formatTime(
   options: {
     showSeconds?: boolean;
     prefixTimeFormat?: Type__TimeFormat;
-    prefixTimezoneKey?: string;
+    timezoneKey?: string;
     withSuffix?: boolean;
   } = {}
 ): string {
@@ -293,7 +292,7 @@ export function formatTime(
   const timeFormat =
     options.prefixTimeFormat || getStorage("timeFormat") || "24-hour";
 
-  const timezoneKey = options.prefixTimezoneKey || getUserTimezone().key;
+  const timezoneKey = options.timezoneKey || getUserTimezone().key;
   const offsetMs = getTimezoneOffsetMs(timezoneKey);
   const offsetHours = offsetMs / (1000 * 60 * 60);
 

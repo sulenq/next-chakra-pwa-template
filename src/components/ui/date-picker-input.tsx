@@ -311,7 +311,7 @@ const SelectedDateList = (props: Props__SelectedDateList) => {
                             selected.length > 1
                               ? "weekdayShortMonth"
                               : "weekdayFullMonth",
-                          prefixTimezoneKey: userTz.key,
+                          timezoneKey: userTz.key,
                         })}
                       </List.Item>
                     );
@@ -336,6 +336,7 @@ export const DatePickerInput = (props: Props__DatePickerInput) => {
     title,
     inputValue,
     onConfirm,
+    showTimezone,
     placeholder,
     required,
     invalid,
@@ -357,14 +358,7 @@ export const DatePickerInput = (props: Props__DatePickerInput) => {
   const userTz = getUserTimezone();
   const userTzOffsetInMs = getTimezoneOffsetMs(userTz.key);
   const localTz = getLocalTimezone();
-  const [selected, setSelected] = useState<Date[]>(
-    inputValue
-      ? inputValue.map(
-          (item: any) =>
-            new Date(new Date(item).getTime() - getTimezoneOffsetMs(userTz.key))
-        )
-      : []
-  );
+  const [selected, setSelected] = useState<Date[]>([]);
   const [period, setPeriod] = useState<Type__Period>(DEFAULT_PERIOD);
   const resolvedPlaceholder = placeholder || l.select_date;
   const formattedSelectedLabel =
@@ -373,9 +367,8 @@ export const DatePickerInput = (props: Props__DatePickerInput) => {
           .map((date) =>
             formatDate(new Date(date), {
               // withTime: true,
-              prefixTimezoneKey: localTz.key,
-              variant:
-                selected.length > 1 ? "weekdayShortMonth" : "weekdayFullMonth",
+              timezoneKey: localTz.key,
+              variant: "weekdayShortMonth",
             })
           )
           .join(", ")
@@ -386,10 +379,7 @@ export const DatePickerInput = (props: Props__DatePickerInput) => {
           .map((date) =>
             formatAbsDate(new Date(date), {
               // withTime: true,
-              variant:
-                inputValue.length > 1
-                  ? "weekdayShortMonth"
-                  : "weekdayFullMonth",
+              variant: "weekdayShortMonth",
             })
           )
           .join(", ")
@@ -482,6 +472,16 @@ export const DatePickerInput = (props: Props__DatePickerInput) => {
           </DisclosureBody>
 
           <DisclosureFooter>
+            {showTimezone && (
+              <CContainer mr={"auto"}>
+                <P color={"fg.subtle"} fontSize={"xs"}>{`${userTz.key}`}</P>
+                <P
+                  color={"fg.subtle"}
+                  fontSize={"xs"}
+                >{`${userTz.formattedOffset}`}</P>
+              </CContainer>
+            )}
+
             <Btn
               variant={"outline"}
               onClick={() => {
@@ -489,7 +489,7 @@ export const DatePickerInput = (props: Props__DatePickerInput) => {
                 setPeriod(DEFAULT_PERIOD);
               }}
             >
-              Reset
+              Clear
             </Btn>
 
             <Btn
