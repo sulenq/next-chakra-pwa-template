@@ -39,6 +39,8 @@ import { Tooltip } from "./tooltip";
 import { CContainer } from "@/components/ui/c-container";
 import { P } from "@/components/ui/p";
 
+const DEFAULT_TIME = "00:00:00";
+
 const TimePickerInput = (props: Props__TimePicker) => {
   // Props
   const {
@@ -64,7 +66,6 @@ const TimePickerInput = (props: Props__TimePicker) => {
   // States
   const userTz = getUserTimezone();
   const resolvedPlaceholder = placeholder || l.select_time;
-  const defaultTime = "00:00:00";
   const [selected, setSelected] = useState<string | undefined>(inputValue);
   const [hours, setHours] = useState<number>(getHoursFromTime(inputValue));
   const [minutes, setMinutes] = useState<number>(
@@ -116,7 +117,7 @@ const TimePickerInput = (props: Props__TimePicker) => {
   }, [hours, minutes, seconds]);
 
   // Handle increment, decrement
-  function handleMouseDownIncrement(type: string) {
+  function handleHoldIncrement(type: string) {
     if (timeoutIncrementRef.current || intervalIncrementRef.current) return;
 
     timeoutIncrementRef.current = setTimeout(() => {
@@ -131,8 +132,7 @@ const TimePickerInput = (props: Props__TimePicker) => {
       }, 100);
     }, 300);
   }
-
-  function handleMouseUpIncrement() {
+  function handleTapIncrement() {
     if (timeoutIncrementRef.current) {
       clearTimeout(timeoutIncrementRef.current);
       timeoutIncrementRef.current = null;
@@ -142,8 +142,7 @@ const TimePickerInput = (props: Props__TimePicker) => {
       intervalIncrementRef.current = null;
     }
   }
-
-  function handleMouseDownDecrement(type: string) {
+  function handleHoldDecrement(type: string) {
     if (timeoutDecrementRef.current || intervalDecrementRef.current) return;
 
     timeoutDecrementRef.current = setTimeout(() => {
@@ -158,8 +157,7 @@ const TimePickerInput = (props: Props__TimePicker) => {
       }, 100);
     }, 300);
   }
-
-  function handleMouseUpDecrement() {
+  function handleTapDecrement() {
     if (timeoutDecrementRef.current) {
       clearTimeout(timeoutDecrementRef.current);
       timeoutDecrementRef.current = null;
@@ -244,13 +242,13 @@ const TimePickerInput = (props: Props__TimePicker) => {
                   variant={"outline"}
                   onClick={() => {
                     setHours((ps) => (ps < 23 ? ps + 1 : 0));
-                    if (!selected) setSelected(defaultTime);
+                    if (!selected) setSelected(DEFAULT_TIME);
                   }}
-                  onMouseDown={() => handleMouseDownIncrement("hours")}
-                  onMouseUp={handleMouseUpIncrement}
-                  onMouseLeave={handleMouseUpIncrement}
-                  onTouchStart={() => handleMouseDownIncrement("hours")}
-                  onTouchEnd={handleMouseUpIncrement}
+                  onMouseDown={() => handleHoldIncrement("hours")}
+                  onMouseUp={handleTapIncrement}
+                  onMouseLeave={handleTapIncrement}
+                  onTouchStart={() => handleHoldIncrement("hours")}
+                  onTouchEnd={handleTapIncrement}
                 >
                   <Icon fontSize={"md"}>
                     <IconCaretUpFilled />
@@ -285,13 +283,13 @@ const TimePickerInput = (props: Props__TimePicker) => {
                   variant={"outline"}
                   onClick={() => {
                     setHours((ps) => (ps > 0 ? ps - 1 : 23));
-                    if (!selected) setSelected(defaultTime);
+                    if (!selected) setSelected(DEFAULT_TIME);
                   }}
-                  onMouseDown={() => handleMouseDownDecrement("hours")}
-                  onMouseUp={handleMouseUpDecrement}
-                  onMouseLeave={handleMouseUpDecrement}
-                  onTouchStart={() => handleMouseDownDecrement("hours")}
-                  onTouchEnd={handleMouseUpDecrement}
+                  onMouseDown={() => handleHoldDecrement("hours")}
+                  onMouseUp={handleTapDecrement}
+                  onMouseLeave={handleTapDecrement}
+                  onTouchStart={() => handleHoldDecrement("hours")}
+                  onTouchEnd={handleTapDecrement}
                 >
                   <Icon fontSize={"md"}>
                     <IconCaretDownFilled />
@@ -313,13 +311,13 @@ const TimePickerInput = (props: Props__TimePicker) => {
                   variant={"outline"}
                   onClick={() => {
                     setMinutes((ps) => (ps < 59 ? ps + 1 : 0));
-                    if (!selected) setSelected(defaultTime);
+                    if (!selected) setSelected(DEFAULT_TIME);
                   }}
-                  onMouseDown={() => handleMouseDownIncrement("minutes")}
-                  onMouseUp={handleMouseUpIncrement}
-                  onMouseLeave={handleMouseUpIncrement}
-                  onTouchStart={() => handleMouseDownIncrement("minutes")}
-                  onTouchEnd={handleMouseUpIncrement}
+                  onMouseDown={() => handleHoldIncrement("minutes")}
+                  onMouseUp={handleTapIncrement}
+                  onMouseLeave={handleTapIncrement}
+                  onTouchStart={() => handleHoldIncrement("minutes")}
+                  onTouchEnd={handleTapIncrement}
                 >
                   <Icon fontSize={"md"}>
                     <IconCaretUpFilled />
@@ -354,13 +352,13 @@ const TimePickerInput = (props: Props__TimePicker) => {
                   variant={"outline"}
                   onClick={() => {
                     setMinutes((ps) => (ps > 0 ? ps - 1 : 59));
-                    if (!selected) setSelected(defaultTime);
+                    if (!selected) setSelected(DEFAULT_TIME);
                   }}
-                  onMouseDown={() => handleMouseDownDecrement("minutes")}
-                  onMouseUp={handleMouseUpDecrement}
-                  onMouseLeave={handleMouseUpDecrement}
-                  onTouchStart={() => handleMouseDownDecrement("minutes")}
-                  onTouchEnd={handleMouseUpDecrement}
+                  onMouseDown={() => handleHoldDecrement("minutes")}
+                  onMouseUp={handleTapDecrement}
+                  onMouseLeave={handleTapDecrement}
+                  onTouchStart={() => handleHoldDecrement("minutes")}
+                  onTouchEnd={handleTapDecrement}
                 >
                   <Icon fontSize={"md"}>
                     <IconCaretDownFilled />
@@ -384,13 +382,13 @@ const TimePickerInput = (props: Props__TimePicker) => {
                       variant={"outline"}
                       onClick={() => {
                         setSeconds((ps) => (ps < 59 ? ps + 1 : 0));
-                        if (!selected) setSelected(defaultTime);
+                        if (!selected) setSelected(DEFAULT_TIME);
                       }}
-                      onMouseDown={() => handleMouseDownIncrement("seconds")}
-                      onMouseUp={handleMouseUpIncrement}
-                      onMouseLeave={handleMouseUpIncrement}
-                      onTouchStart={() => handleMouseDownIncrement("seconds")}
-                      onTouchEnd={handleMouseUpIncrement}
+                      onMouseDown={() => handleHoldIncrement("seconds")}
+                      onMouseUp={handleTapIncrement}
+                      onMouseLeave={handleTapIncrement}
+                      onTouchStart={() => handleHoldIncrement("seconds")}
+                      onTouchEnd={handleTapIncrement}
                     >
                       <Icon fontSize={"md"}>
                         <IconCaretUpFilled />
@@ -425,13 +423,13 @@ const TimePickerInput = (props: Props__TimePicker) => {
                       variant={"outline"}
                       onClick={() => {
                         setSeconds((ps) => (ps > 0 ? ps - 1 : 59));
-                        if (!selected) setSelected(defaultTime);
+                        if (!selected) setSelected(DEFAULT_TIME);
                       }}
-                      onMouseDown={() => handleMouseDownDecrement("seconds")}
-                      onMouseUp={handleMouseUpDecrement}
-                      onMouseLeave={handleMouseUpDecrement}
-                      onTouchStart={() => handleMouseDownDecrement("seconds")}
-                      onTouchEnd={handleMouseUpDecrement}
+                      onMouseDown={() => handleHoldDecrement("seconds")}
+                      onMouseUp={handleTapDecrement}
+                      onMouseLeave={handleTapDecrement}
+                      onTouchStart={() => handleHoldDecrement("seconds")}
+                      onTouchEnd={handleTapDecrement}
                     >
                       <Icon fontSize={"md"}>
                         <IconCaretDownFilled />
@@ -468,7 +466,7 @@ const TimePickerInput = (props: Props__TimePicker) => {
                   setMinutes(0);
                   setSeconds(0);
                 } else {
-                  setSelected(defaultTime);
+                  setSelected(DEFAULT_TIME);
                   setHours(0);
                   setMinutes(0);
                   setSeconds(0);
