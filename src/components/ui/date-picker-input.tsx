@@ -11,7 +11,7 @@ import { useThemeConfig } from "@/context/useThemeConfig";
 import useBackOnClose from "@/hooks/useBackOnClose";
 import { isEmptyArray } from "@/utils/array";
 import { back } from "@/utils/client";
-import { formatDate } from "@/utils/formatter";
+import { formatAbsDate, formatDate } from "@/utils/formatter";
 import { capitalizeWords } from "@/utils/string";
 import {
   getLocalTimezone,
@@ -306,6 +306,7 @@ const SelectedDateList = (props: Props__SelectedDateList) => {
                     return (
                       <List.Item key={i}>
                         {formatDate(item, {
+                          // withTime: true,
                           variant:
                             selected.length > 1
                               ? "weekdayShortMonth"
@@ -371,6 +372,7 @@ export const DatePickerInput = (props: Props__DatePickerInput) => {
       ? selected
           .map((date) =>
             formatDate(new Date(date), {
+              // withTime: true,
               prefixTimezoneKey: localTz.key,
               variant:
                 selected.length > 1 ? "weekdayShortMonth" : "weekdayFullMonth",
@@ -382,8 +384,8 @@ export const DatePickerInput = (props: Props__DatePickerInput) => {
     inputValue && inputValue?.length > 0
       ? inputValue
           .map((date) =>
-            formatDate(new Date(date), {
-              prefixTimezoneKey: localTz.key,
+            formatAbsDate(new Date(date), {
+              // withTime: true,
               variant:
                 inputValue.length > 1
                   ? "weekdayShortMonth"

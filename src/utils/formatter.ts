@@ -160,6 +160,16 @@ export const formatDate = (
   return formattedDate;
 };
 
+export const formatAbsDate = (
+  date?: Date | string,
+  options: Parameters<typeof formatDate>[1] = {}
+): string => {
+  return formatDate(date, {
+    prefixTimezoneKey: "UTC",
+    ...options,
+  });
+};
+
 export const formatNumber = (
   numParam: number | string | undefined | null
 ): string => {

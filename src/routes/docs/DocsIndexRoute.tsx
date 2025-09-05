@@ -12,7 +12,7 @@ import SearchInput from "@/components/ui/search-input";
 import { StringInput } from "@/components/ui/string-input";
 import TimePickerInput from "@/components/ui/time-picker-input";
 import { isDateObject } from "@/utils/date";
-import { formatDate } from "@/utils/formatter";
+import { formatAbsDate } from "@/utils/formatter";
 import { getUserTimezone } from "@/utils/time";
 import { HStack } from "@chakra-ui/react";
 import { useFormik } from "formik";
@@ -62,9 +62,7 @@ const DocsIndexRoute = () => {
         <P>{`${getUserTimezone().key} ${getUserTimezone().formattedOffset}`}</P>
 
         <P>
-          {formatDate(date, {
-            // prefixTimezoneKey: "Asia/Jakarta",
-            // prefixTimezoneKey: "UTC",
+          {formatAbsDate(date, {
             withTime: true,
           })}
         </P>
