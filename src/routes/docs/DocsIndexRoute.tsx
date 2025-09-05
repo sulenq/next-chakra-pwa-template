@@ -115,6 +115,7 @@ const DocsIndexRoute = () => {
 
           <Field invalid={!!formik.errors.select}>
             <SelectInput
+              title={"Agama"}
               inputValue={formik.values.select}
               onChange={(input) => {
                 formik.setFieldValue("select", input);
