@@ -147,7 +147,7 @@ export const PeriodPickerInput = (props: Props__PeriodPickerInput) => {
                 <NumInput
                   inputValue={selected.year}
                   onChange={(val) =>
-                    setSelected((prev) => ({ ...prev, year: val }))
+                    setSelected((prev) => ({ ...prev, year: val! }))
                   }
                 />
               </Field>
