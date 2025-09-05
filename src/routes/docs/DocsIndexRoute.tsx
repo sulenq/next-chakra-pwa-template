@@ -13,6 +13,7 @@ import SearchInput from "@/components/ui/search-input";
 import { SelectInput } from "@/components/ui/select-input";
 import { StringInput } from "@/components/ui/string-input";
 import TimePickerInput from "@/components/ui/time-picker-input";
+import { OPTIONS_RELIGION } from "@/constants/selectOptions";
 import { HStack } from "@chakra-ui/react";
 import { useFormik } from "formik";
 import * as yup from "yup";
@@ -117,6 +118,7 @@ const DocsIndexRoute = () => {
               onChange={(input) => {
                 formik.setFieldValue("select", input);
               }}
+              selectOptions={OPTIONS_RELIGION}
             />
           </Field>
 

@@ -33,7 +33,7 @@ import {
   IconCaretRightFilled,
 } from "@tabler/icons-react";
 import { addDays, startOfWeek } from "date-fns";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import BackButton from "../widget/BackButton";
 import FeedbackNoData from "../widget/FeedbackNoData";
 import { Btn } from "./btn";
@@ -355,11 +355,11 @@ export const DatePickerInput = (props: Props__DatePickerInput) => {
   useBackOnClose(id || `date-picker-input`, open, onOpen, onClose);
 
   // States
+  const [selected, setSelected] = useState<Date[]>([]);
+  const [period, setPeriod] = useState<Type__Period>(DEFAULT_PERIOD);
   const userTz = getUserTimezone();
   const localTz = getLocalTimezone();
   const localTzOffsetInMs = getTimezoneOffsetMs(localTz.key);
-  const [selected, setSelected] = useState<Date[]>([]);
-  const [period, setPeriod] = useState<Type__Period>(DEFAULT_PERIOD);
   const resolvedPlaceholder = placeholder || l.select_date;
   const formattedSelectedLabel =
     selected && selected?.length > 0
@@ -387,7 +387,7 @@ export const DatePickerInput = (props: Props__DatePickerInput) => {
 
   // Utils
   function onConfirmSelected() {
-    if (!required || selected.length > 0) {
+    if (!required || !isEmptyArray(selected)) {
       onConfirm?.(
         selected.map((item) =>
           new Date(
@@ -398,6 +398,24 @@ export const DatePickerInput = (props: Props__DatePickerInput) => {
       back();
     }
   }
+
+  // set selected date on open
+  useEffect(() => {
+    if (inputValue && !isEmptyArray(inputValue)) {
+      const localDates = inputValue.map((item) => {
+        return new Date(new Date(item).getTime() - localTzOffsetInMs);
+      });
+
+      setSelected(localDates);
+
+      // Use the last date in the array for period
+      const lastDate = localDates[localDates.length - 1];
+      setPeriod({
+        month: lastDate.getMonth(),
+        year: lastDate.getFullYear(),
+      });
+    }
+  }, [open]);
 
   return (
     <>
@@ -411,17 +429,7 @@ export const DatePickerInput = (props: Props__DatePickerInput) => {
           variant={"outline"}
           justifyContent={"start"}
           borderColor={invalid ?? fc?.invalid ? "border.error" : "border.muted"}
-          onClick={() => {
-            if (inputValue) {
-              setSelected(
-                inputValue.map(
-                  (item) =>
-                    new Date(new Date(item).getTime() - localTzOffsetInMs)
-                )
-              );
-            }
-            onOpen();
-          }}
+          onClick={onOpen}
           {...restProps}
         >
           <HStack w={"full"} justify={"space-between"}>
@@ -494,7 +502,7 @@ export const DatePickerInput = (props: Props__DatePickerInput) => {
 
             <Btn
               colorPalette={themeConfig.colorPalette}
-              disabled={required && selected.length === 0}
+              disabled={required && isEmptyArray(selected)}
               onClick={onConfirmSelected}
             >
               {l.confirm}

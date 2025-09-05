@@ -1,4 +1,6 @@
 import { Btn } from "@/components/ui/btn";
+import { CContainer } from "@/components/ui/c-container";
+import { CSpinner } from "@/components/ui/c-spinner";
 import {
   DisclosureBody,
   DisclosureContent,
@@ -8,30 +10,72 @@ import {
 } from "@/components/ui/disclosure";
 import { DisclosureHeaderContent } from "@/components/ui/disclosure-header-content";
 import { P } from "@/components/ui/p";
-import { Props__SelectInput } from "@/constants/props";
+import { Interface__SelectOption } from "@/constants/interfaces";
+import { Props__SelectInput, Props__SelectOptions } from "@/constants/props";
 import useLang from "@/context/useLang";
 import { useThemeConfig } from "@/context/useThemeConfig";
 import useBackOnClose from "@/hooks/useBackOnClose";
 import { isEmptyArray } from "@/utils/array";
+import { back } from "@/utils/client";
 import { capitalizeWords } from "@/utils/string";
 import { HStack, Icon, useDisclosure, useFieldContext } from "@chakra-ui/react";
-import { IconCaretDownFilled } from "@tabler/icons-react";
+import { IconCaretDownFilled, IconCheck } from "@tabler/icons-react";
+import { useEffect, useState } from "react";
 
-// id?: string;
-// title?: string;
-// inputValue?: Interface__SelectOption[] | undefined;
-// onConfirm?: (inputValue: Props__SelectInput["inputValue"]) => void;
-// selectOptions?: Interface__SelectOption[] | undefined | null;
-// placeholder?: string;
-// invalid?: boolean;
-// required?: boolean;
-// multiple?: boolean;
-// disclosureSize?: Type__DisclosureSizes;
-// fetch?: (
-//   setOptions: Dispatch<
-//     SetStateAction<Interface__SelectOption[] | null | undefined>
-//   >
-// ) => void;
+const SelectOptions = (props: Props__SelectOptions) => {
+  // Props
+  const {
+    multiple,
+    loading,
+    selectOptions,
+    selected,
+    setSelected,
+    ...restProps
+  } = props;
+
+  // Contexts
+  const { themeConfig } = useThemeConfig();
+
+  return (
+    <CContainer gap={2} {...restProps}>
+      {loading && <CSpinner />}
+
+      {!loading && (
+        <>
+          {selectOptions?.map((o) => {
+            const isActive = selected?.some((s) => s.id === o.id);
+
+            return (
+              <Btn
+                key={o.id}
+                clicky={false}
+                variant={"outline"}
+                justifyContent={"start"}
+                onClick={() => {
+                  if (!multiple) {
+                    setSelected([o]);
+                  } else {
+                    setSelected([...selected, o]);
+                  }
+                }}
+              >
+                <HStack w={"full"} align={"start"} justify={"space-between"}>
+                  <P textAlign={"left"}>{o.label}</P>
+
+                  {isActive && (
+                    <Icon color={themeConfig.primaryColor} boxSize={5}>
+                      <IconCheck />
+                    </Icon>
+                  )}
+                </HStack>
+              </Btn>
+            );
+          })}
+        </>
+      )}
+    </CContainer>
+  );
+};
 
 export const SelectInput = (props: Props__SelectInput) => {
   // Props
@@ -40,6 +84,7 @@ export const SelectInput = (props: Props__SelectInput) => {
     title = "",
     inputValue,
     onConfirm,
+    loading,
     selectOptions,
     placeholder,
     invalid,
@@ -59,11 +104,27 @@ export const SelectInput = (props: Props__SelectInput) => {
   useBackOnClose(id || "select-input", open, onOpen, onClose);
 
   // States
+  const [selected, setSelected] = useState<Interface__SelectOption[]>([]);
   const resolvedPlaceholder = placeholder || `${l.select} ${title}`;
   const formattedButtonLabel =
     inputValue && inputValue?.length > 0
       ? inputValue.map((o) => o.label).join(", ")
       : resolvedPlaceholder;
+
+  // Utils
+  function onConfirmSelected() {
+    if (!required || !isEmptyArray(selected)) {
+      onConfirm?.(selected);
+      back();
+    }
+  }
+
+  // set selected on open
+  useEffect(() => {
+    if (inputValue) {
+      setSelected(inputValue);
+    }
+  }, [open]);
 
   return (
     <>
@@ -74,6 +135,7 @@ export const SelectInput = (props: Props__SelectInput) => {
         variant={"outline"}
         justifyContent={"start"}
         borderColor={invalid ?? fc?.invalid ? "border.error" : "border.muted"}
+        onClick={onOpen}
         {...restProps}
       >
         <HStack w={"full"} justify={"space-between"}>
@@ -95,7 +157,7 @@ export const SelectInput = (props: Props__SelectInput) => {
         </HStack>
       </Btn>
 
-      <DisclosureRoot open={open} lazyLoad>
+      <DisclosureRoot open={open} lazyLoad size={disclosureSize}>
         <DisclosureContent>
           <DisclosureHeader>
             <DisclosureHeaderContent
@@ -103,10 +165,24 @@ export const SelectInput = (props: Props__SelectInput) => {
             />
           </DisclosureHeader>
 
-          <DisclosureBody>Select</DisclosureBody>
+          <DisclosureBody>
+            <SelectOptions
+              multiple={multiple}
+              loading={loading}
+              selectOptions={selectOptions}
+              selected={selected}
+              setSelected={setSelected}
+            />
+          </DisclosureBody>
 
           <DisclosureFooter>
-            <Btn colorPalette={themeConfig.colorPalette}>{l.confirm}</Btn>
+            <Btn
+              colorPalette={themeConfig.colorPalette}
+              disabled={required && isEmptyArray(selected)}
+              onClick={onConfirmSelected}
+            >
+              {l.confirm}
+            </Btn>
           </DisclosureFooter>
         </DisclosureContent>
       </DisclosureRoot>

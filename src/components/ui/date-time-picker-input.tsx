@@ -11,7 +11,10 @@ export const DateTimePickerInput = (props: Props__DateTimePickerInput) => {
   // Props
   const {
     id,
-    title = "",
+    title = {
+      date: "",
+      time: "",
+    },
     inputValue,
     onChange,
     placeholder,
@@ -46,8 +49,6 @@ export const DateTimePickerInput = (props: Props__DateTimePickerInput) => {
       // convert UTC iso ke user tz
       const localized = moment.utc(inputValue).tz(userTzKey).format();
 
-      console.log("localized", localized);
-
       setDate(localized);
       setTime(
         extractTime(localized, {
@@ -55,7 +56,7 @@ export const DateTimePickerInput = (props: Props__DateTimePickerInput) => {
         })
       );
     }
-  }, []);
+  }, [open]);
 
   return (
     <Group

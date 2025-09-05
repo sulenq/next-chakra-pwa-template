@@ -1,4 +1,5 @@
 import { BtnProps } from "@/components/ui/btn";
+import { Interface__SelectOption } from "@/constants/interfaces";
 import {
   BoxProps,
   ButtonProps,
@@ -9,26 +10,28 @@ import {
   InputProps,
   StackProps,
 } from "@chakra-ui/react";
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch } from "react";
 import { Type__DisclosureSizes, Type__Period } from "./types";
-import { Interface__SelectOption } from "@/constants/interfaces";
 
 export interface Props__SelectInput extends BtnProps {
   id?: string;
   title?: string;
-  inputValue?: Interface__SelectOption[] | undefined;
+  inputValue?: Interface__SelectOption[] | null;
   onConfirm?: (inputValue: Props__SelectInput["inputValue"]) => void;
-  selectOptions?: Interface__SelectOption[] | undefined | null;
+  loading?: boolean;
+  selectOptions?: Props__SelectInput["inputValue"];
   placeholder?: string;
   invalid?: boolean;
   required?: boolean;
   multiple?: boolean;
   disclosureSize?: Type__DisclosureSizes;
-  fetch?: (
-    setOptions: Dispatch<
-      SetStateAction<Interface__SelectOption[] | null | undefined>
-    >
-  ) => void;
+}
+export interface Props__SelectOptions {
+  multiple: Props__SelectInput["multiple"];
+  loading: Props__SelectInput["loading"];
+  selectOptions: Props__SelectInput["inputValue"];
+  selected: Interface__SelectOption[];
+  setSelected: Dispatch<Props__SelectOptions["selected"]>;
 }
 
 export interface Props__StringInput extends Omit<InputProps, "onChange"> {
