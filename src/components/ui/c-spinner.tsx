@@ -1,4 +1,5 @@
-import { Spinner, SpinnerProps, StackProps, VStack } from "@chakra-ui/react";
+import Spinner from "@/components/ui/spinner";
+import { SpinnerProps, StackProps, VStack } from "@chakra-ui/react";
 
 interface Props extends StackProps {
   spinnerProps?: SpinnerProps;

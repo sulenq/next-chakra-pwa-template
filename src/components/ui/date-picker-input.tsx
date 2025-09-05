@@ -9,11 +9,15 @@ import { Type__Period } from "@/constants/types";
 import useLang from "@/context/useLang";
 import { useThemeConfig } from "@/context/useThemeConfig";
 import useBackOnClose from "@/hooks/useBackOnClose";
-import { emptyArray } from "@/utils/array";
+import { isEmptyArray } from "@/utils/array";
 import { back } from "@/utils/client";
 import { formatDate } from "@/utils/formatter";
 import { capitalizeWords } from "@/utils/string";
-import { getTimezoneOffsetMs, getUserTimezone } from "@/utils/time";
+import {
+  getLocalTimezone,
+  getTimezoneOffsetMs,
+  getUserTimezone,
+} from "@/utils/time";
 import {
   Group,
   HStack,
@@ -262,6 +266,9 @@ const SelectedDateList = (props: Props__SelectedDateList) => {
   const { open, onOpen, onClose } = useDisclosure();
   useBackOnClose(`${id}-selected-date-list`, open, onOpen, onClose);
 
+  // States
+  const userTz = getUserTimezone();
+
   return (
     <>
       <CContainer
@@ -293,13 +300,17 @@ const SelectedDateList = (props: Props__SelectedDateList) => {
           <DisclosureBody>
             <CContainer px={2} pl={4} pt={1}>
               <List.Root gap={2}>
-                {emptyArray(selected) && <FeedbackNoData />}
-                {!emptyArray(selected) &&
+                {isEmptyArray(selected) && <FeedbackNoData />}
+                {!isEmptyArray(selected) &&
                   selected.map((item, i) => {
                     return (
                       <List.Item key={i}>
                         {formatDate(item, {
-                          variant: "weekdayFullMonth",
+                          variant:
+                            selected.length > 1
+                              ? "weekdayShortMonth"
+                              : "weekdayFullMonth",
+                          prefixTimezoneKey: userTz.key,
                         })}
                       </List.Item>
                     );
@@ -343,7 +354,8 @@ export const DatePickerInput = (props: Props__DatePickerInput) => {
 
   // States
   const userTz = getUserTimezone();
-  const offsetInMs = getTimezoneOffsetMs(userTz.key);
+  const userTzOffsetInMs = getTimezoneOffsetMs(userTz.key);
+  const localTz = getLocalTimezone();
   const [selected, setSelected] = useState<Date[]>(
     inputValue
       ? inputValue.map(
@@ -359,7 +371,7 @@ export const DatePickerInput = (props: Props__DatePickerInput) => {
       ? selected
           .map((date) =>
             formatDate(new Date(date), {
-              prefixTimezoneKey: userTz.key,
+              prefixTimezoneKey: localTz.key,
               variant:
                 selected.length > 1 ? "weekdayShortMonth" : "weekdayFullMonth",
             })
@@ -371,7 +383,7 @@ export const DatePickerInput = (props: Props__DatePickerInput) => {
       ? inputValue
           .map((date) =>
             formatDate(new Date(date), {
-              prefixTimezoneKey: userTz.key,
+              prefixTimezoneKey: localTz.key,
               variant:
                 inputValue.length > 1
                   ? "weekdayShortMonth"
@@ -387,7 +399,7 @@ export const DatePickerInput = (props: Props__DatePickerInput) => {
       onConfirm?.(
         selected.map((item) =>
           new Date(
-            item.getTime() + getTimezoneOffsetMs(userTz.key)
+            item.getTime() + getTimezoneOffsetMs(localTz.key)
           ).toISOString()
         )
       );
@@ -410,7 +422,8 @@ export const DatePickerInput = (props: Props__DatePickerInput) => {
             if (inputValue) {
               setSelected(
                 inputValue.map(
-                  (item) => new Date(new Date(item).getTime() - offsetInMs)
+                  (item) =>
+                    new Date(new Date(item).getTime() - userTzOffsetInMs)
                 )
               );
             }
@@ -420,13 +433,13 @@ export const DatePickerInput = (props: Props__DatePickerInput) => {
           {...restProps}
         >
           <HStack w={"full"} justify={"space-between"}>
-            {!emptyArray(inputValue) && (
+            {!isEmptyArray(inputValue) && (
               <P lineClamp={1} textAlign={"left"}>
                 {formattedButtonLabel}
               </P>
             )}
 
-            {emptyArray(inputValue) && (
+            {isEmptyArray(inputValue) && (
               <P color={"placeholder"} lineClamp={1} textAlign={"left"}>
                 {l.select_date}
               </P>

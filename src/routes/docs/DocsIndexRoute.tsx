@@ -11,6 +11,7 @@ import { PasswordInput } from "@/components/ui/password-input";
 import SearchInput from "@/components/ui/search-input";
 import { StringInput } from "@/components/ui/string-input";
 import TimePickerInput from "@/components/ui/time-picker-input";
+import { isDateObject } from "@/utils/date";
 import { formatDate } from "@/utils/formatter";
 import { getUserTimezone } from "@/utils/time";
 import { HStack } from "@chakra-ui/react";
@@ -41,6 +42,8 @@ const DocsIndexRoute = () => {
     },
   });
 
+  const date = formik.values.date?.[0];
+
   return (
     <CContainer p={4} gap={8} maxW={"500px"} mx={"auto"}>
       <HStack justify={"space-between"}>
@@ -52,12 +55,16 @@ const DocsIndexRoute = () => {
       </HStack>
 
       <CContainer>
-        <P>{formik.values.date?.[0]}</P>
+        <P>{`${date}`}</P>
+
+        <P>{`${!isDateObject(date)}`}</P>
 
         <P>{`${getUserTimezone().key} ${getUserTimezone().formattedOffset}`}</P>
 
         <P>
-          {formatDate(formik.values.date?.[0], {
+          {formatDate(date, {
+            // prefixTimezoneKey: "Asia/Jakarta",
+            // prefixTimezoneKey: "UTC",
             withTime: true,
           })}
         </P>

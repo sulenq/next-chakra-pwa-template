@@ -1,7 +1,7 @@
 import { getStorage, setStorage } from "@/utils/client";
 import { create } from "zustand";
-import en from "../locales/en";
-import id from "../locales/id";
+import en from "@/locales/en";
+import id from "@/locales/id";
 
 const STORAGE_KEY = "lang";
 const DEFAULT: keyof typeof translations = "id";

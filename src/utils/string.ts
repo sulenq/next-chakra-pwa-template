@@ -1,3 +1,5 @@
+import useLang from "@/context/useLang";
+
 export function capitalize(string: string) {
   if (typeof string !== "string" || string.length === 0) {
     return "";
@@ -57,4 +59,8 @@ export const maskEmail = (email?: string) => {
   const stars = "*".repeat(local.length - 3);
 
   return `${visible}${stars}@${domain}`;
+};
+
+export const getL = () => {
+  return useLang.getState().l;
 };

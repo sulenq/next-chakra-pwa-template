@@ -2,7 +2,7 @@ import { Btn } from "@/components/ui/btn";
 import { FileIcon } from "@/components/ui/file-icon";
 import { Props__FileInput } from "@/constants/props";
 import useLang from "@/context/useLang";
-import { emptyArray } from "@/utils/array";
+import { isEmptyArray } from "@/utils/array";
 import { formatBytes } from "@/utils/formatter";
 import { Icon, useFieldContext } from "@chakra-ui/react";
 import { IconUpload } from "@tabler/icons-react";
@@ -40,7 +40,7 @@ const FileInput = (props: Props__FileInput) => {
   // States
   const singleFile = inputValue?.[0] as File;
   const singleFileInputted =
-    maxFiles === 1 && (!emptyArray(inputValue) as boolean);
+    maxFiles === 1 && (!isEmptyArray(inputValue) as boolean);
   const resolvedIcon = singleFileInputted ? (
     <FileIcon name={singleFile.name} mimeType={singleFile.type} size={"2xl"} />
   ) : undefined;
@@ -87,7 +87,7 @@ const FileInput = (props: Props__FileInput) => {
         {...restProps}
       >
         <>
-          {dropzone && !emptyArray(inputValue) && (
+          {dropzone && !isEmptyArray(inputValue) && (
             <Tooltip content={"Reset"}>
               <CloseButton
                 pos={"absolute"}

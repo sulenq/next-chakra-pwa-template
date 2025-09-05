@@ -8,7 +8,6 @@ import {
   Toaster as ChakraToaster,
   Icon,
   Portal,
-  Spinner,
   Stack,
   Toast,
   createToaster,
@@ -20,6 +19,7 @@ import {
   IconInfoCircle,
 } from "@tabler/icons-react";
 import { useColorMode } from "./color-mode";
+import Spinner from "@/components/ui/spinner";
 
 const TOAST_PROPS = {
   loading: {

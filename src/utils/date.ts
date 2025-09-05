@@ -1,4 +1,4 @@
-export const dateObject = (date: any): boolean => date instanceof Date;
+export const isDateObject = (date: any): boolean => date instanceof Date;
 
 export const countDay = (
   dateFrom: string | Date,
