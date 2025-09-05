@@ -88,7 +88,7 @@ export default function SearchInput(props: Props__SearchInput) {
             placeholder={placeholder || `${l.search} ${additionalPlaceholder}`}
             pr={"40px"}
             onChange={(inputValue) => {
-              setSearchLocal(inputValue);
+              setSearchLocal(inputValue || "");
             }}
             inputValue={searchLocal}
             boxShadow={"none !important"}
