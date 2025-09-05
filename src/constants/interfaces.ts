@@ -7,7 +7,8 @@ import {
   TableColumnHeaderProps,
   TableRowProps,
 } from "@chakra-ui/react";
-import { Dispatch, SetStateAction } from "react";
+import { AxiosRequestConfig, AxiosResponse } from "axios";
+import { Dispatch } from "react";
 import {
   Type__DateRange,
   Type__DateRangePresets,
@@ -15,7 +16,6 @@ import {
   Type__TableOptions,
   Type__TimeRange,
 } from "./types";
-import { AxiosRequestConfig, AxiosResponse } from "axios";
 
 // HTTP
 export interface Interface__RequestState<T = any> {
@@ -49,12 +49,6 @@ export interface Interface__StorageFile extends Interface__CUD {
   file_size: number;
 }
 
-// Gens
-export interface Interface__Gens extends Interface__CUD {
-  id: number;
-  label: string;
-}
-
 // Select Input
 export interface Interface__SelectOption {
   id: any;
@@ -62,42 +56,6 @@ export interface Interface__SelectOption {
   label2?: any;
   original_data?: any;
   disabled?: boolean;
-}
-export interface Interface__Select extends ButtonProps {
-  id?: string;
-  name?: string;
-  title?: string;
-  onConfirm?: (inputValue: Interface__SelectOption[] | undefined) => void;
-  inputValue?: Interface__SelectOption[] | undefined;
-  initialOptions?: Interface__SelectOption[] | undefined | null;
-  placeholder?: string;
-  invalid?: boolean;
-  nonNullable?: boolean;
-  multiple?: boolean;
-  disclosureSize?: Type__DisclosureSizes;
-  fetch?: (
-    setOptions: Dispatch<
-      SetStateAction<Interface__SelectOption[] | null | undefined>
-    >
-  ) => void;
-}
-
-// Date Picker Input
-export interface Interface__SelectedDateList {
-  selectedDates: Date[];
-  selectedRenderValue: string;
-}
-export interface Interface__DatePicker extends ButtonProps {
-  id?: string;
-  name?: string;
-  title?: string;
-  onConfirm?: (inputValue: string[] | undefined) => void;
-  inputValue?: string[] | undefined;
-  placeholder?: string;
-  nonNullable?: boolean;
-  invalid?: boolean;
-  disclosureSize?: Type__DisclosureSizes;
-  multiple?: boolean;
 }
 
 // Date Range Picker Input
@@ -108,25 +66,11 @@ export interface Interface__DateRangePicker extends ButtonProps {
   onConfirm?: (inputValue: Type__DateRange) => void;
   inputValue?: Type__DateRange;
   placeholder?: string;
-  nonNullable?: boolean;
+  required?: boolean;
   invalid?: boolean;
   disclosureSize?: Type__DisclosureSizes;
   preset?: Type__DateRangePresets[];
   maxRange?: number;
-}
-
-// Time Picker Input
-export interface Interface__TimePicker extends ButtonProps {
-  id?: string;
-  name?: string;
-  title?: string;
-  onConfirm?: (inputValue: string | undefined) => void;
-  inputValue?: string | undefined;
-  withSeconds?: boolean;
-  placeholder?: string;
-  nonNullable?: boolean;
-  invalid?: boolean;
-  disclosureSize?: Type__DisclosureSizes;
 }
 
 // Time Range Picker Input
@@ -138,7 +82,7 @@ export interface Interface__TimeRangePicker extends ButtonProps {
   inputValue?: Type__TimeRange | undefined;
   withSeconds?: boolean;
   placeholder?: string;
-  nonNullable?: boolean;
+  required?: boolean;
   invalid?: boolean;
   disclosureSize?: Type__DisclosureSizes;
 }

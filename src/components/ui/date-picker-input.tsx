@@ -176,7 +176,7 @@ const DatePicker = (props: Props__DatePicker) => {
         columns={[7]}
         gap={2}
         borderBottom={"1px solid"}
-        borderColor={"var(--d3)"}
+        borderColor={"border.muted"}
         pb={2}
         mb={2}
       >
@@ -333,7 +333,7 @@ export const DatePickerInput = (props: Props__DatePickerInput) => {
   // Props
   const {
     id,
-    title,
+    title = "",
     inputValue,
     onConfirm,
     showTimezone,
@@ -410,6 +410,7 @@ export const DatePickerInput = (props: Props__DatePickerInput) => {
           clicky={false}
           variant={"outline"}
           justifyContent={"start"}
+          borderColor={invalid ?? fc?.invalid ? "border.error" : "border.muted"}
           onClick={() => {
             if (inputValue) {
               setSelected(
@@ -421,7 +422,6 @@ export const DatePickerInput = (props: Props__DatePickerInput) => {
             }
             onOpen();
           }}
-          borderColor={invalid ?? fc?.invalid ? "border.error" : "border.muted"}
           {...restProps}
         >
           <HStack w={"full"} justify={"space-between"}>
@@ -433,7 +433,7 @@ export const DatePickerInput = (props: Props__DatePickerInput) => {
 
             {isEmptyArray(inputValue) && (
               <P color={"placeholder"} lineClamp={1} textAlign={"left"}>
-                {l.select_date}
+                {resolvedPlaceholder}
               </P>
             )}
 

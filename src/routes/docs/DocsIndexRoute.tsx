@@ -10,6 +10,7 @@ import FileInput from "@/components/ui/file-input";
 import { P } from "@/components/ui/p";
 import { PasswordInput } from "@/components/ui/password-input";
 import SearchInput from "@/components/ui/search-input";
+import { SelectInput } from "@/components/ui/select-input";
 import { StringInput } from "@/components/ui/string-input";
 import TimePickerInput from "@/components/ui/time-picker-input";
 import { HStack } from "@chakra-ui/react";
@@ -106,6 +107,15 @@ const DocsIndexRoute = () => {
               inputValue={formik.values.dateTime}
               onChange={(input) => {
                 formik.setFieldValue("dateTime", input);
+              }}
+            />
+          </Field>
+
+          <Field invalid={!!formik.errors.select}>
+            <SelectInput
+              inputValue={formik.values.select}
+              onChange={(input) => {
+                formik.setFieldValue("select", input);
               }}
             />
           </Field>

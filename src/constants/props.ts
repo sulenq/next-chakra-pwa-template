@@ -18,10 +18,10 @@ export interface Props__SelectInput extends BtnProps {
   title?: string;
   inputValue?: Interface__SelectOption[] | undefined;
   onConfirm?: (inputValue: Props__SelectInput["inputValue"]) => void;
-  initialOptions?: Interface__SelectOption[] | undefined | null;
+  selectOptions?: Interface__SelectOption[] | undefined | null;
   placeholder?: string;
   invalid?: boolean;
-  nonNullable?: boolean;
+  required?: boolean;
   multiple?: boolean;
   disclosureSize?: Type__DisclosureSizes;
   fetch?: (

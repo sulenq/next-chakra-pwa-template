@@ -36,7 +36,7 @@ export const PeriodPickerInput = (props: Props__PeriodPickerInput) => {
   // Props
   const {
     id,
-    title,
+    title = "",
     inputValue,
     onConfirm,
     placeholder,

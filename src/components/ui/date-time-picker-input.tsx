@@ -11,7 +11,7 @@ export const DateTimePickerInput = (props: Props__DateTimePickerInput) => {
   // Props
   const {
     id,
-    title,
+    title = "",
     inputValue,
     onChange,
     placeholder,
