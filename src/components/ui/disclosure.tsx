@@ -53,11 +53,24 @@ const DisclosureRoot = ({ children, ...props }: any) => {
   const iss = sw < SM_SCREEN_W_NUMBER;
 
   return iss ? (
-    <DrawerRoot placement={"bottom"} {...props}>
+    <DrawerRoot
+      onEscapeKeyDown={() => {
+        back();
+      }}
+      placement={"bottom"}
+      {...props}
+    >
       {children}
     </DrawerRoot>
   ) : (
-    <DialogRoot placement={"center"} scrollBehavior={"inside"} {...props}>
+    <DialogRoot
+      onEscapeKeyDown={() => {
+        back();
+      }}
+      placement={"center"}
+      scrollBehavior={"inside"}
+      {...props}
+    >
       {children}
     </DialogRoot>
   );
@@ -189,8 +202,6 @@ const DisclosureFooter = ({ children, ...props }: DisclosureFooterProps) => {
       pt={5}
       pb={6}
       bg={"body"}
-      borderTop={"1px solid"}
-      borderColor={"border.subtle"}
       {...(props as DrawerHeaderProps)}
     >
       <CContainer align={"stretch"} gap={2}>
