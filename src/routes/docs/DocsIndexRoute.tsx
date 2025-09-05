@@ -4,6 +4,7 @@ import { Btn } from "@/components/ui/btn";
 import { CContainer } from "@/components/ui/c-container";
 import { ColorModeButton } from "@/components/ui/color-mode";
 import { DatePickerInput } from "@/components/ui/date-picker-input";
+import { DateTimePickerInput } from "@/components/ui/date-time-picker";
 import { Field } from "@/components/ui/field";
 import FileInput from "@/components/ui/file-input";
 import { P } from "@/components/ui/p";
@@ -11,9 +12,6 @@ import { PasswordInput } from "@/components/ui/password-input";
 import SearchInput from "@/components/ui/search-input";
 import { StringInput } from "@/components/ui/string-input";
 import TimePickerInput from "@/components/ui/time-picker-input";
-import { isDateObject } from "@/utils/date";
-import { formatAbsDate } from "@/utils/formatter";
-import { getUserTimezone } from "@/utils/time";
 import { HStack } from "@chakra-ui/react";
 import { useFormik } from "formik";
 import * as yup from "yup";
@@ -26,6 +24,7 @@ const DocsIndexRoute = () => {
       password: "",
       search: "",
       date: undefined as any,
+      dateTime: "",
       time: undefined as any,
       file: undefined as any,
     },
@@ -34,6 +33,7 @@ const DocsIndexRoute = () => {
       password: yup.string().required(),
       search: yup.string().required(),
       date: yup.array().required(),
+      dateTime: yup.string().required(),
       time: yup.string().required(),
       file: yup.array().required(),
     }),
@@ -42,7 +42,7 @@ const DocsIndexRoute = () => {
     },
   });
 
-  const date = formik.values.date?.[0];
+  const dateTime = formik.values.dateTime;
 
   return (
     <CContainer p={4} gap={8} maxW={"500px"} mx={"auto"}>
@@ -55,17 +55,7 @@ const DocsIndexRoute = () => {
       </HStack>
 
       <CContainer>
-        <P>{`${date}`}</P>
-
-        <P>{`${!isDateObject(date)}`}</P>
-
-        <P>{`${getUserTimezone().key} ${getUserTimezone().formattedOffset}`}</P>
-
-        <P>
-          {formatAbsDate(date, {
-            withTime: true,
-          })}
-        </P>
+        <P>{`${dateTime}`}</P>
       </CContainer>
 
       <form id="test" onSubmit={formik.handleSubmit}>
@@ -111,6 +101,15 @@ const DocsIndexRoute = () => {
               inputValue={formik.values.time}
               onConfirm={(input) => {
                 formik.setFieldValue("time", input);
+              }}
+            />
+          </Field>
+
+          <Field invalid={!!formik.errors.dateTime}>
+            <DateTimePickerInput
+              inputValue={formik.values.dateTime}
+              onConfirm={(input) => {
+                formik.setFieldValue("dateTime", input);
               }}
             />
           </Field>

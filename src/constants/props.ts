@@ -1,15 +1,16 @@
 import { BtnProps } from "@/components/ui/btn";
-import { Type__DisclosureSizes, Type__Period } from "./types";
 import {
   BoxProps,
   ButtonProps,
   FileUploadRootProps,
+  GroupProps,
   IconProps,
   InputGroupProps,
   InputProps,
   StackProps,
 } from "@chakra-ui/react";
 import { Dispatch } from "react";
+import { Type__DisclosureSizes, Type__Period } from "./types";
 
 export interface Props__TimePicker extends ButtonProps {
   id?: string;
@@ -25,8 +26,8 @@ export interface Props__TimePicker extends ButtonProps {
 }
 
 export interface Props__StringInput extends Omit<InputProps, "onChange"> {
-  onChange?: (inputValue: string) => void;
   inputValue?: string;
+  onChange?: (inputValue: Props__StringInput["inputValue"]) => void;
   placeholder?: string;
   boxProps?: BoxProps;
   invalid?: boolean;
@@ -36,7 +37,7 @@ export interface Props__StringInput extends Omit<InputProps, "onChange"> {
 
 export interface Props__PasswordInput extends Omit<InputProps, "onChange"> {
   name?: string;
-  onChange?: (inputValue: string | undefined) => void;
+  onChange?: (inputValue: Props__PasswordInput["inputValue"]) => void;
   inputValue?: string | undefined;
   placeholder?: string;
   boxProps?: BoxProps;
@@ -46,7 +47,7 @@ export interface Props__PasswordInput extends Omit<InputProps, "onChange"> {
 export interface Props__SearchInput
   extends Omit<InputGroupProps, "children" | "onChange"> {
   inputValue?: string;
-  onChange?: (inputValue: string) => void;
+  onChange?: (inputValue: Props__SearchInput["inputValue"]) => void;
   placeholder?: string;
   additionalPlaceholder?: string;
   tooltipLabel?: string;
@@ -62,8 +63,8 @@ export interface Props__SearchInput
 export interface Props__FileInput
   extends Omit<FileUploadRootProps, "onChange"> {
   fRef?: any;
-  onChange?: (inputValue: File[] | undefined) => void;
   inputValue?: File[];
+  onChange?: (inputValue: Props__FileInput["inputValue"]) => void;
   accept?: string;
   invalid?: boolean;
   placeholder?: string;
@@ -91,7 +92,7 @@ export interface Props__DatePickerInput extends BtnProps {
   id?: string;
   title?: string;
   inputValue?: string[];
-  onConfirm?: (inputValue: string[]) => void;
+  onConfirm?: (inputValue: Props__DatePickerInput["inputValue"]) => void;
   placeholder?: string;
   required?: boolean;
   invalid?: boolean;
@@ -110,11 +111,22 @@ export interface Props__SelectedDateList {
   selected: Date[];
   formattedSelectedLabel: string;
 }
+export interface Props__DateTimePickerInput extends GroupProps {
+  id?: string;
+  title?: string;
+  inputValue?: string;
+  onConfirm?: (inputValue: Props__DateTimePickerInput["inputValue"]) => void;
+  placeholder?: string;
+  required?: boolean;
+  invalid?: boolean;
+  disclosureSize?: Type__DisclosureSizes;
+  multiple?: boolean;
+}
 
 export interface Props__NumInput extends Omit<InputProps, "onChange"> {
   id?: string;
   inputValue?: number | null;
-  onChange?: (inputValue: number | null) => void;
+  onChange?: (inputValue: Props__NumInput["inputValue"]) => void;
   placeholder?: string;
   invalid?: boolean;
   boxProps?: BoxProps;
