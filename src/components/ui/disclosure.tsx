@@ -202,6 +202,8 @@ const DisclosureFooter = ({ children, ...props }: DisclosureFooterProps) => {
       pt={5}
       pb={6}
       bg={"body"}
+      borderTop={"1px solid"}
+      borderColor={"border.muted"}
       {...(props as DrawerHeaderProps)}
     >
       <CContainer align={"stretch"} gap={2}>
@@ -212,7 +214,7 @@ const DisclosureFooter = ({ children, ...props }: DisclosureFooterProps) => {
     <DialogFooter
       p={4}
       borderTop={"1px solid"}
-      borderColor={"border.subtle"}
+      borderColor={"border.muted"}
       {...(props as DialogFooterProps)}
     >
       <HStack w={"full"} justify={"end"}>

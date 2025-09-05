@@ -29,7 +29,7 @@ const customConfig = defineConfig({
         dt: { value: "#858585ff" },
         gray: {
           800: { value: "#1f1f1f" },
-          900: { value: "#202020" },
+          900: { value: "#252525" },
         },
         placeholder: { value: "#96969691" },
         p: {
@@ -325,7 +325,7 @@ const customConfig = defineConfig({
           muted: {
             value: {
               base: "#EBEBEC !important",
-              _dark: "#202020 !important",
+              _dark: "#252525 !important",
             },
           },
         },

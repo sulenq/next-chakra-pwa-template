@@ -527,6 +527,16 @@ export const error_default = {
     en: "An unknown error occurred. Please try again.",
   },
 };
+export const error_invalid_file = {
+  title: {
+    id: "File tidak valid",
+    en: "Invalid file",
+  },
+  description: {
+    id: "File yang diunggah tidak sesuai ukuran atau tipe yang diperbolehkan. Silakan periksa dan coba lagi.",
+    en: "The uploaded file exceeds allowed size or has an unsupported type. Please check and try again.",
+  },
+};
 export const error_signin_wrong_credentials = {
   title: { id: "Login gagal", en: "Login failed" },
   description: { id: "Kredensial tidak valid.", en: "Invalid credentials." },
