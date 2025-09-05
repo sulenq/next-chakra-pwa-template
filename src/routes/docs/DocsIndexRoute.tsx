@@ -12,7 +12,6 @@ import { PasswordInput } from "@/components/ui/password-input";
 import SearchInput from "@/components/ui/search-input";
 import { StringInput } from "@/components/ui/string-input";
 import TimePickerInput from "@/components/ui/time-picker-input";
-import { extractTime, makeUTCISODateTime } from "@/utils/time";
 import { HStack } from "@chakra-ui/react";
 import { useFormik } from "formik";
 import * as yup from "yup";
@@ -25,7 +24,7 @@ const DocsIndexRoute = () => {
       password: "",
       search: "",
       date: undefined as any,
-      dateTime: "2025-09-05T00:00:00.000Z",
+      dateTime: "",
       time: undefined as any,
       file: undefined as any,
     },
@@ -43,8 +42,6 @@ const DocsIndexRoute = () => {
     },
   });
 
-  const dateTime = formik.values.dateTime;
-
   return (
     <CContainer p={4} gap={8} maxW={"500px"} mx={"auto"}>
       <HStack justify={"space-between"}>
@@ -54,12 +51,6 @@ const DocsIndexRoute = () => {
 
         <ColorModeButton />
       </HStack>
-
-      <CContainer>
-        <P>{`${dateTime}`}</P>
-        <P>{`${extractTime("2025-09-04T00:00:00.000Z")}`}</P>
-        <P>{`${makeUTCISODateTime("2025-09-04T08:00:00.000Z", "08:00:00")}`}</P>
-      </CContainer>
 
       <form id="test" onSubmit={formik.handleSubmit}>
         <CContainer gap={4}>
