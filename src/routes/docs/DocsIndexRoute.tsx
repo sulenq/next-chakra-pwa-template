@@ -4,7 +4,7 @@ import { Btn } from "@/components/ui/btn";
 import { CContainer } from "@/components/ui/c-container";
 import { ColorModeButton } from "@/components/ui/color-mode";
 import { DatePickerInput } from "@/components/ui/date-picker-input";
-import { DateTimePickerInput } from "@/components/ui/date-time-picker";
+import { DateTimePickerInput } from "@/components/ui/date-time-picker-input";
 import { Field } from "@/components/ui/field";
 import FileInput from "@/components/ui/file-input";
 import { P } from "@/components/ui/p";
