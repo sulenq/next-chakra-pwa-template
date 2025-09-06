@@ -152,6 +152,7 @@ const SelectOptions = (props: Props__SelectOptions) => {
                       <Checkbox
                         checked={isActive}
                         colorPalette={themeConfig.colorPalette}
+                        size={"md"}
                       />
                     )}
                   </HStack>

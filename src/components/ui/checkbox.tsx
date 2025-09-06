@@ -1,3 +1,5 @@
+"use client";
+
 import { useThemeConfig } from "@/context/useThemeConfig";
 import { Checkbox as ChakraCheckbox } from "@chakra-ui/react";
 import { forwardRef } from "react";
@@ -10,8 +12,12 @@ export interface CheckboxProps extends ChakraCheckbox.RootProps {
 
 export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
   function Checkbox(props, ref) {
+    // Props
     const { icon, children, inputProps, rootRef, ...rest } = props;
+
+    // Contexts
     const { themeConfig } = useThemeConfig();
+
     return (
       <ChakraCheckbox.Root
         ref={rootRef}
@@ -21,11 +27,11 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
       >
         <ChakraCheckbox.HiddenInput ref={ref} {...inputProps} />
         <ChakraCheckbox.Control
-          borderRadius={"sm"}
+          borderRadius={props?.borderRadius || "sm"}
           borderColor={rest.borderColor}
           bg={rest.bg}
         >
-          {icon || <ChakraCheckbox.Indicator />}
+          {icon || <ChakraCheckbox.Indicator boxSize={4} />}
         </ChakraCheckbox.Control>
         {children != null && (
           <ChakraCheckbox.Label>{children}</ChakraCheckbox.Label>

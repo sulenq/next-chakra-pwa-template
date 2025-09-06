@@ -49,8 +49,6 @@ const DocsIndexRoute = () => {
     },
   });
 
-  // console.log()
-
   return (
     <CContainer p={4} gap={8} maxW={"500px"} mx={"auto"}>
       <HStack justify={"space-between"}>
