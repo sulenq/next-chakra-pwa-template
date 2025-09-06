@@ -537,8 +537,8 @@ export const error_invalid_file = {
     en: "Invalid file",
   },
   description: {
-    id: "File yang diunggah tidak sesuai ukuran atau tipe yang diperbolehkan. Silakan periksa dan coba lagi.",
-    en: "The uploaded file exceeds allowed size or has an unsupported type. Please check and try again.",
+    id: "Ukuran atau tipe file tidak sesuai.",
+    en: "File size or type is not allowed.",
   },
 };
 export const error_signin_wrong_credentials = {

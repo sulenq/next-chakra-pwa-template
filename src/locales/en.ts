@@ -94,7 +94,7 @@ const translations = {
   },
   "error_invalid_file": {
     "title": "Invalid file",
-    "description": "The uploaded file exceeds allowed size or has an unsupported type. Please check and try again."
+    "description": "File size or type is not allowed."
   },
   "error_network": {
     "title": "Server connection problem",

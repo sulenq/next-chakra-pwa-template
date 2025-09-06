@@ -28,7 +28,7 @@ const FileInput = (props: Props__FileInput) => {
     placeholder,
     label,
     dropzone,
-    maxFileSize = 1,
+    maxFileSize = 10,
     maxFiles = 1,
     description,
     disabled,
@@ -79,15 +79,15 @@ const FileInput = (props: Props__FileInput) => {
         onFileChange={handleFileChange}
         onFileReject={() => {
           toaster.error({
-            title: l.error_400_default.title,
-            description: l.error_400_default.description,
+            title: l.error_invalid_file.title,
+            description: l.error_invalid_file.description,
             action: {
               label: "Close",
               onClick: () => {},
             },
           });
         }}
-        maxFileSize={maxFileSize}
+        maxFileSize={maxFileSize * 1024 * 1024}
         maxFiles={maxFiles}
         gap={2}
         accept={accept}
