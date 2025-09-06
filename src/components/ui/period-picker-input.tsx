@@ -154,6 +154,7 @@ export const PeriodPickerInput = (props: Props__PeriodPickerInput) => {
                   onChange={(val) =>
                     setSelected((prev) => ({ ...prev, year: val! }))
                   }
+                  max={9999}
                 />
               </Field>
 

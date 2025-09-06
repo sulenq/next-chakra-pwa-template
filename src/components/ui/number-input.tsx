@@ -50,10 +50,8 @@ export const NumInput = forwardRef<HTMLInputElement, Props__NumInput>(
         return;
       }
 
-      // remove non-numeric characters
       let sanitizedInput = rawInput.replace(/[^0-9,]/g, "");
 
-      // if integer = true, remove commas
       if (integer) {
         sanitizedInput = sanitizedInput.replace(/,/g, "");
       }
@@ -67,22 +65,36 @@ export const NumInput = forwardRef<HTMLInputElement, Props__NumInput>(
         return;
       }
 
-      // limit max 19 char
       if (sanitizedInput.length > 19) {
         sanitizedInput = sanitizedInput.substring(0, 19);
       }
 
-      // if formatted = false, show without formatting
+      // Parse number earlier to apply min/max before rendering
+      let parsedValue = parseNumber(sanitizedInput);
+
+      if (parsedValue !== undefined) {
+        if (integer) parsedValue = Math.round(parsedValue!);
+
+        // Apply max limit
+        if (max !== undefined && parsedValue! > max) {
+          parsedValue = max;
+          sanitizedInput = String(max); // enforce max in UI
+        }
+
+        // Apply min limit
+        if (min !== undefined && parsedValue! < min) {
+          parsedValue = min;
+          sanitizedInput = String(min); // enforce min in UI
+        }
+      }
+
       if (!formatted) {
         setLocalInputValue(sanitizedInput);
-        const parsedValue = parseNumber(sanitizedInput);
-        if (parsedValue !== undefined && onChange) {
-          onChange(parsedValue);
-        }
+        if (parsedValue !== undefined) onChange?.(parsedValue);
         return;
       }
 
-      // if formatted = true, show with formatting
+      // Format value with thousand separators
       let formattedValue = sanitizedInput.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
       if (!integer && sanitizedInput.includes(",")) {
         const parts = sanitizedInput.split(",");
@@ -93,35 +105,8 @@ export const NumInput = forwardRef<HTMLInputElement, Props__NumInput>(
         }
       }
 
-      // parse number
-      let parsedValue = parseNumber(formattedValue);
-
-      // if integer = true, round
-      if (integer && parsedValue !== undefined) {
-        parsedValue = Math.round(parsedValue!);
-      }
-
-      // if parsedValue > max, set to max
-      if (parsedValue !== undefined && max && parsedValue! > max) {
-        setLocalInputValue(formatNumber(max));
-        if (onChange) onChange(max);
-        return;
-      }
-
-      // if parsedValue < min, set to min
-      if (parsedValue !== undefined && min && parsedValue! < min) {
-        setLocalInputValue(formatNumber(min));
-        if (onChange) onChange(min);
-        return;
-      }
-
-      // set localInputValue
       setLocalInputValue(formattedValue);
-
-      // onChange
-      if (parsedValue !== undefined) {
-        onChange?.(parsedValue);
-      }
+      if (parsedValue !== undefined) onChange?.(parsedValue);
     }
 
     return (

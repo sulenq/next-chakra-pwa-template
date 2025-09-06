@@ -109,6 +109,7 @@ const PeriodPicker = (props: any) => {
         onConfirm={(inputValue) => {
           setPeriod(inputValue);
         }}
+        required
       />
 
       <Btn
