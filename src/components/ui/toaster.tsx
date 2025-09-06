@@ -111,7 +111,7 @@ export const Toaster = () => {
               border={"1px solid"}
               borderColor={"border.muted"}
               p={"14px"}
-              className="ss"
+              // className="ss"
             >
               {toast.type === "loading" ? (
                 <Center

@@ -83,6 +83,7 @@ export const StringInput = forwardRef<HTMLInputElement, Props__StringInput>(
             autoComplete="off"
             transition={"200ms"}
             color={"text"}
+            pl={4}
             pr={clearable ? 10 : ""}
             {...restProps}
           />

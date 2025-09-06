@@ -13,6 +13,7 @@ import SearchInput from "@/components/ui/search-input";
 import { SelectInput } from "@/components/ui/select-input";
 import { StringInput } from "@/components/ui/string-input";
 import TimePickerInput from "@/components/ui/time-picker-input";
+import { toaster } from "@/components/ui/toaster";
 import SelectPropertyByLayerId from "@/components/widget/SelectPropertyByLayerId";
 import { OPTIONS_RELIGION } from "@/constants/selectOptions";
 import { HStack } from "@chakra-ui/react";
@@ -20,6 +21,33 @@ import { useFormik } from "formik";
 import * as yup from "yup";
 
 const DocsIndexRoute = () => {
+  const toasters = [
+    {
+      label: "Success",
+      type: "success",
+      description: "Success description",
+    },
+    {
+      label: "Error",
+      type: "error",
+      description: "Error description",
+    },
+    {
+      label: "Warning",
+      type: "warning",
+      description: "Warning description",
+    },
+    {
+      label: "Info",
+      type: "info",
+      description: "Info description",
+    },
+    {
+      label: "Loading",
+      type: "loading",
+      description: "Loading description",
+    },
+  ];
   const formik = useFormik({
     validateOnChange: false,
     initialValues: {
@@ -57,6 +85,30 @@ const DocsIndexRoute = () => {
         </P>
 
         <ColorModeButton />
+      </HStack>
+
+      <HStack>
+        {toasters.map((toast) => (
+          <Btn
+            key={toast.label}
+            onClick={() => {
+              toaster.create({
+                type: toast.type,
+                title: toast.label,
+                description: toast.description,
+                action: {
+                  label: "Close",
+                  onClick: () => {
+                    console.log("action");
+                  },
+                },
+              });
+            }}
+            variant={"outline"}
+          >
+            {toast.label}
+          </Btn>
+        ))}
       </HStack>
 
       <form id="test" onSubmit={formik.handleSubmit}>
