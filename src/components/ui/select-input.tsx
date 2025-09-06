@@ -216,6 +216,8 @@ export const SelectInput = (props: Props__SelectInput) => {
   useEffect(() => {
     if (inputValue && !isEmptyArray(inputValue)) {
       setSelected(inputValue);
+    } else {
+      setSelected([]);
     }
   }, [open]);
 
