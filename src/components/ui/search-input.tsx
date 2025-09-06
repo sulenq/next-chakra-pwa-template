@@ -26,7 +26,7 @@ export default function SearchInput(props: Props__SearchInput) {
   const { l } = useLang();
 
   // States, Refs
-  const [searchLocal, setSearchLocal] = useState<string>(inputValue || "");
+  const [searchTemp, setSearchTemp] = useState<string>(inputValue || "");
 
   // Handle onchange
   const handleOnChange = useCallback(
@@ -41,17 +41,17 @@ export default function SearchInput(props: Props__SearchInput) {
   // Handle debounce
   useEffect(() => {
     const handler = setTimeout(() => {
-      handleOnChange(searchLocal);
+      handleOnChange(searchTemp);
     }, 300);
 
     return () => {
       clearTimeout(handler);
     };
-  }, [searchLocal, handleOnChange]);
+  }, [searchTemp, handleOnChange]);
 
-  // Sync searchLocal with inputValue prop when it changes
+  // Sync searchTemp with inputValue prop when it changes
   useEffect(() => {
-    setSearchLocal(inputValue || "");
+    setSearchTemp(inputValue || "");
   }, [inputValue]);
 
   return (
@@ -88,9 +88,9 @@ export default function SearchInput(props: Props__SearchInput) {
             placeholder={placeholder || `${l.search} ${additionalPlaceholder}`}
             pr={"40px"}
             onChange={(inputValue) => {
-              setSearchLocal(inputValue || "");
+              setSearchTemp(inputValue || "");
             }}
-            inputValue={searchLocal}
+            inputValue={searchTemp}
             boxShadow={"none !important"}
             borderColor={invalid ? "border.error" : "border.muted"}
             {...inputProps}
