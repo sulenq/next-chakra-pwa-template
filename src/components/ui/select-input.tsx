@@ -201,8 +201,12 @@ export const SelectInput = (props: Props__SelectInput) => {
 
   // Utils
   function onConfirmSelected() {
-    if (!required || !isEmptyArray(selected)) {
-      onConfirm?.(selected);
+    if (!required) {
+      if (!isEmptyArray(selected)) {
+        onConfirm?.(selected);
+      } else {
+        onConfirm?.(null);
+      }
       back();
     }
   }

@@ -91,8 +91,13 @@ export const PeriodPickerInput = (props: Props__PeriodPickerInput) => {
   const handleConfirm = () => {
     if (!empty) {
       onConfirm?.({ month: selected.month, year: selected.year });
-      back();
+    } else {
+      onConfirm?.({
+        month: null,
+        year: null,
+      });
     }
+    back();
   };
 
   return (

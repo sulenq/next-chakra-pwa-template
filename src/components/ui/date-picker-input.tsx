@@ -387,14 +387,18 @@ export const DatePickerInput = (props: Props__DatePickerInput) => {
 
   // Utils
   function onConfirmSelected() {
-    if (!required || !isEmptyArray(selected)) {
-      onConfirm?.(
-        selected.map((item) =>
-          new Date(
-            item.getTime() + getTimezoneOffsetMs(localTz.key)
-          ).toISOString()
-        )
-      );
+    if (!required) {
+      if (!isEmptyArray(selected)) {
+        onConfirm?.(
+          selected.map((item) =>
+            new Date(
+              item.getTime() + getTimezoneOffsetMs(localTz.key)
+            ).toISOString()
+          )
+        );
+      } else {
+        onConfirm?.(null);
+      }
       back();
     }
   }

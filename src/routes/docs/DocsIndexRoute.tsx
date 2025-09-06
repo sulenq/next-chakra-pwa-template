@@ -26,12 +26,12 @@ const DocsIndexRoute = () => {
       string: "",
       password: "",
       search: "",
-      date: undefined as any,
-      time: undefined as any,
+      date: null as any,
+      time: null as any,
       dateTime: "2025-09-06T00:00:00.000Z",
-      select: undefined as any,
-      multiSelect: undefined as any,
-      file: undefined as any,
+      select: null as any,
+      multiSelect: null as any,
+      file: null as any,
     },
     validationSchema: yup.object({
       string: yup.string().required(),
@@ -48,6 +48,8 @@ const DocsIndexRoute = () => {
       console.log(values);
     },
   });
+
+  // console.log()
 
   return (
     <CContainer p={4} gap={8} maxW={"500px"} mx={"auto"}>

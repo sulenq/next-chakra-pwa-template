@@ -279,7 +279,7 @@ export const formatDBTableName = (str: string): string => {
 };
 
 export function formatTime(
-  time?: string,
+  time?: string | null,
   options: {
     showSeconds?: boolean;
     prefixTimeFormat?: Type__TimeFormat;

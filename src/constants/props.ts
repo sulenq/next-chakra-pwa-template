@@ -93,8 +93,8 @@ export interface Props__FileInput
 export interface Props__PeriodPickerInput extends BtnProps {
   id?: string;
   title?: string;
-  inputValue?: Type__Period;
-  onConfirm?: (inputValue: Type__Period) => void;
+  inputValue?: Type__Period | null;
+  onConfirm?: (inputValue?: Props__PeriodPickerInput["inputValue"]) => void;
   placeholder?: string;
   required?: boolean;
   invalid?: boolean;
@@ -105,7 +105,7 @@ export interface Props__PeriodPickerInput extends BtnProps {
 export interface Props__DatePickerInput extends BtnProps {
   id?: string;
   title?: string;
-  inputValue?: string[];
+  inputValue?: string[] | null;
   onConfirm?: (inputValue: Props__DatePickerInput["inputValue"]) => void;
   showTimezone?: boolean;
   placeholder?: string;
@@ -130,8 +130,8 @@ export interface Props__TimePicker extends ButtonProps {
   id?: string;
   name?: string;
   title?: string;
-  onConfirm?: (inputValue: string | undefined) => void;
-  inputValue?: string | undefined;
+  inputValue?: string | null;
+  onConfirm?: (inputValue?: Props__TimePicker["inputValue"]) => void;
   withSeconds?: boolean;
   showTimezone?: boolean;
   placeholder?: string;

@@ -66,7 +66,9 @@ const TimePickerInput = (props: Props__TimePicker) => {
   // States
   const userTz = getUserTimezone();
   const resolvedPlaceholder = placeholder || l.select_time;
-  const [selected, setSelected] = useState<string | undefined>(inputValue);
+  const [selected, setSelected] = useState<string | null | undefined>(
+    inputValue
+  );
   const [hours, setHours] = useState<number>(getHoursFromTime(inputValue));
   const [minutes, setMinutes] = useState<number>(
     getMinutesFromTime(inputValue)
@@ -170,9 +172,12 @@ const TimePickerInput = (props: Props__TimePicker) => {
 
   // Handle confirm selected
   function onConfirmSelected() {
-    const confirmable = !required || !!selected;
-    if (confirmable) {
-      onConfirm?.(selected);
+    if (!required) {
+      if (selected) {
+        onConfirm?.(selected);
+      } else {
+        onConfirm?.(null);
+      }
       back();
     }
   }
