@@ -13,6 +13,12 @@ import {
 import { Dispatch } from "react";
 import { Type__DisclosureSizes, Type__Period } from "./types";
 
+export interface Props__FeedbackState extends StackProps {
+  title?: string;
+  description?: string;
+  icon?: any;
+}
+
 export interface Props__SelectInput extends BtnProps {
   id?: string;
   title?: string;

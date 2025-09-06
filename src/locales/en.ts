@@ -92,6 +92,10 @@ const translations = {
     "title": "An error occurred",
     "description": "An unknown error occurred. Please try again."
   },
+  "error_invalid_file": {
+    "title": "Invalid file",
+    "description": "The uploaded file exceeds allowed size or has an unsupported type. Please check and try again."
+  },
   "error_network": {
     "title": "Server connection problem",
     "description": "Unable to connect to the server. Try again later."
@@ -187,6 +191,7 @@ const translations = {
   "save": "Save",
   "search": "Search",
   "select": "Select",
+  "select_all": "Select all",
   "select_date": "Select date",
   "select_date_range": "Select date range",
   "select_period": "Select period",

@@ -28,8 +28,9 @@ const DocsIndexRoute = () => {
       search: "",
       date: undefined as any,
       time: undefined as any,
-      dateTime: "2025-09-05T00:00:00.000Z",
+      dateTime: "2025-09-06T00:00:00.000Z",
       select: undefined as any,
+      multiSelect: undefined as any,
       file: undefined as any,
     },
     validationSchema: yup.object({
@@ -40,6 +41,7 @@ const DocsIndexRoute = () => {
       time: yup.string().required(),
       dateTime: yup.string().required(),
       select: yup.array().required(),
+      multiSelect: yup.array().required(),
       file: yup.array().required(),
     }),
     onSubmit: (values) => {
@@ -117,10 +119,23 @@ const DocsIndexRoute = () => {
             <SelectInput
               title={"Agama"}
               inputValue={formik.values.select}
-              onChange={(input) => {
+              onConfirm={(input) => {
                 formik.setFieldValue("select", input);
               }}
               selectOptions={OPTIONS_RELIGION}
+            />
+          </Field>
+
+          <Field invalid={!!formik.errors.multiSelect}>
+            <SelectInput
+              id="select-multiple"
+              title={"Agama"}
+              inputValue={formik.values.multiSelect}
+              onConfirm={(input) => {
+                formik.setFieldValue("multiSelect", input);
+              }}
+              selectOptions={OPTIONS_RELIGION}
+              multiple
             />
           </Field>
 

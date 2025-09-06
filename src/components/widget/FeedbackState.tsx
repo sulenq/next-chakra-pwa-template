@@ -19,13 +19,13 @@ const FeedbackState = (props: Props) => {
   const descriptionString = typeof description === "string";
 
   return (
-    <VStack gap={1} {...restProps}>
-      <Icon mb={2} color={"fg.subtle"} boxSize={10}>
+    <VStack gap={1} p={4} {...restProps}>
+      <Icon mb={2} color={"fg.subtle"} boxSize={9}>
         {icon || <IconDatabaseOff />}
       </Icon>
 
       {titleString && (
-        <P textAlign={"center"} fontSize={"lg"} fontWeight={"semibold"}>
+        <P textAlign={"center"} fontSize={15} fontWeight={"semibold"}>
           {title}
         </P>
       )}

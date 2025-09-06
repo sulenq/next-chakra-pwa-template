@@ -92,6 +92,10 @@ const translations = {
     "title": "Terjadi kesalahan",
     "description": "Terjadi kesalahan yang tidak diketahui. Silakan coba lagi."
   },
+  "error_invalid_file": {
+    "title": "File tidak valid",
+    "description": "File yang diunggah tidak sesuai ukuran atau tipe yang diperbolehkan. Silakan periksa dan coba lagi."
+  },
   "error_network": {
     "title": "Gangguan koneksi ke server",
     "description": "Tidak dapat terhubung ke server. Coba lagi nanti."
@@ -187,6 +191,7 @@ const translations = {
   "save": "Simpan",
   "search": "Cari",
   "select": "Pilih",
+  "select_all": "Pilih semua",
   "select_date": "Pilih tanggal",
   "select_date_range": "Pilih rentang tanggal",
   "select_period": "Pilih periode",

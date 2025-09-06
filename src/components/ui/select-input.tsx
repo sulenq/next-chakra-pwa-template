@@ -1,6 +1,7 @@
 import { Btn } from "@/components/ui/btn";
 import { CContainer } from "@/components/ui/c-container";
 import { CSpinner } from "@/components/ui/c-spinner";
+import { Checkbox } from "@/components/ui/checkbox";
 import {
   DisclosureBody,
   DisclosureContent,
@@ -21,7 +22,13 @@ import useBackOnClose from "@/hooks/useBackOnClose";
 import { isEmptyArray } from "@/utils/array";
 import { back } from "@/utils/client";
 import { capitalizeWords } from "@/utils/string";
-import { HStack, Icon, useDisclosure, useFieldContext } from "@chakra-ui/react";
+import {
+  Box,
+  HStack,
+  Icon,
+  useDisclosure,
+  useFieldContext,
+} from "@chakra-ui/react";
 import { IconCaretDownFilled, IconCheck } from "@tabler/icons-react";
 import { useEffect, useState } from "react";
 
@@ -31,64 +38,128 @@ const SelectOptions = (props: Props__SelectOptions) => {
     props;
 
   // Contexts
+  const { l } = useLang();
   const { themeConfig } = useThemeConfig();
 
   // States
   const [search, setSearch] = useState<string>("");
+  const [selectAll, setSelectAll] = useState<boolean>(false);
   const filteredSelectOptions = selectOptions?.filter((o) =>
     o.label?.toLowerCase().includes(search.toLowerCase())
   );
 
+  useEffect(() => {
+    if (selected) {
+      setSelectAll(selected.length === selectOptions?.length);
+    }
+  }, [selected]);
+
   return (
     <CContainer {...restProps}>
-      <CContainer px={4} pt={2} pos={"sticky"} top={0} bg={"body"} zIndex={2}>
-        <SearchInput
-          inputValue={search}
-          onChange={(inputValue) => {
-            setSearch(inputValue || "");
-          }}
-          inputProps={{
-            variant: "flushed",
-            borderRadius: 0,
-          }}
-        />
-      </CContainer>
-
       {isEmptyArray(filteredSelectOptions) && <FeedbackNoData minH={"250px"} />}
 
       {!isEmptyArray(filteredSelectOptions) && (
-        <CContainer p={4} gap={2}>
-          {filteredSelectOptions?.map((o) => {
-            const isActive = selected?.some((s) => s.id === o.id);
+        <>
+          <CContainer
+            px={4}
+            pt={2}
+            pos={"sticky"}
+            top={0}
+            bg={"body"}
+            zIndex={2}
+          >
+            <SearchInput
+              inputValue={search}
+              onChange={(inputValue) => {
+                setSearch(inputValue || "");
+              }}
+              inputProps={{
+                variant: "flushed",
+                borderRadius: 0,
+              }}
+            />
+          </CContainer>
 
-            return (
-              <Btn
-                key={o.id}
-                clicky={false}
-                variant={"ghost"}
-                justifyContent={"start"}
-                size={"md"}
-                onClick={() => {
-                  if (!multiple) {
-                    setSelected([o]);
+          {multiple && (
+            <CContainer px={7} pt={4} zIndex={3}>
+              <Box
+                onClick={(e) => {
+                  e.stopPropagation();
+                  e.preventDefault();
+                  if (!selectAll) {
+                    setSelected(selectOptions as any);
                   } else {
-                    setSelected([...selected, o]);
+                    setSelected([]);
                   }
                 }}
+                w={"fit-content"}
               >
-                <HStack w={"full"} align={"start"} justify={"space-between"}>
-                  <P textAlign={"left"}>{o.label}</P>
+                <Checkbox
+                  name="select_all"
+                  onChange={(e: any) => {
+                    setSelectAll(e.target.checked);
+                    e.stopPropagation();
+                  }}
+                  checked={selectAll}
+                  invalid={false}
+                  size={"md"}
+                  colorPalette={themeConfig.colorPalette}
+                >
+                  <P>{l.select_all}</P>
+                </Checkbox>
+              </Box>
+            </CContainer>
+          )}
 
-                  {isActive && (
-                    <Icon color={themeConfig.primaryColor} boxSize={5}>
-                      <IconCheck />
-                    </Icon>
-                  )}
-                </HStack>
-              </Btn>
-            );
-          })}
-        </CContainer>
+          <CContainer p={4} gap={2}>
+            {filteredSelectOptions?.map((o) => {
+              const isActive = selected?.some((s) => s.id === o.id);
+
+              return (
+                <Btn
+                  key={o.id}
+                  clicky={false}
+                  variant={"ghost"}
+                  justifyContent={"start"}
+                  size={"md"}
+                  onClick={() => {
+                    if (!multiple) {
+                      setSelected([o]);
+                    } else {
+                      const exists = selected.some((item) => item.id === o.id);
+                      if (exists) {
+                        // remove o
+                        setSelected(
+                          selected.filter((item) => item.id !== o.id)
+                        );
+                      } else {
+                        // add o
+                        setSelected([...selected, o]);
+                      }
+                    }
+                  }}
+                >
+                  <HStack w={"full"} align={"start"} justify={"space-between"}>
+                    <P textAlign={"left"}>{o.label}</P>
+
+                    {isActive && !multiple && (
+                      <Icon color={themeConfig.primaryColor} boxSize={5}>
+                        <IconCheck />
+                      </Icon>
+                    )}
+
+                    {multiple && (
+                      <Checkbox
+                        checked={isActive}
+                        colorPalette={themeConfig.colorPalette}
+                      />
+                    )}
+                  </HStack>
+                </Btn>
+              );
+            })}
+          </CContainer>
+        </>
       )}
     </CContainer>
   );
@@ -124,7 +195,7 @@ export const SelectInput = (props: Props__SelectInput) => {
   const [selected, setSelected] = useState<Interface__SelectOption[]>([]);
   const resolvedPlaceholder = placeholder || `${l.select}`;
   const formattedButtonLabel =
-    inputValue && inputValue?.length > 0
+    inputValue && !isEmptyArray(inputValue)
       ? inputValue.map((o) => o.label).join(", ")
       : resolvedPlaceholder;
 
@@ -198,6 +269,14 @@ export const SelectInput = (props: Props__SelectInput) => {
           </DisclosureBody>
 
           <DisclosureFooter>
+            <Btn
+              variant={"outline"}
+              onClick={() => {
+                setSelected([]);
+              }}
+            >
+              Clear
+            </Btn>
             <Btn
               colorPalette={themeConfig.colorPalette}
               disabled={required && isEmptyArray(selected)}

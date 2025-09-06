@@ -1,24 +1,17 @@
 "use client";
 
-import { Icon, StackProps } from "@chakra-ui/react";
-import { IconSearch } from "@tabler/icons-react";
-import { EmptyState } from "../ui/empty-state";
 import { CContainer } from "@/components/ui/c-container";
-import useLang from "@/context/useLang";
+import FeedbackState from "@/components/widget/FeedbackState";
+import { Props__FeedbackState } from "@/constants/props";
 import { MIN_H_FEEDBACK_CONTAINER } from "@/constants/sizes";
+import useLang from "@/context/useLang";
+import { Icon } from "@chakra-ui/react";
+import { IconSearch } from "@tabler/icons-react";
 
-interface Props extends StackProps {
-  title?: string;
-  description?: string;
-  children?: any;
-}
+export default function FeedbackNotFound(props: Props__FeedbackState) {
+  // Props
+  const { title, description, icon, children, ...restProps } = props;
 
-export default function FeedbackNotFound({
-  title,
-  description,
-  children,
-  ...props
-}: Props) {
   // Hooks
   const { l } = useLang();
 
@@ -28,20 +21,16 @@ export default function FeedbackNotFound({
       m={"auto"}
       minH={MIN_H_FEEDBACK_CONTAINER}
       justify={"center"}
-      {...props}
+      {...restProps}
     >
-      <EmptyState
-        icon={
-          <Icon mb={title ? -2 : 0}>
-            <IconSearch />
-          </Icon>
-        }
-        title={title || l.alert_not_found.title}
-        description={description || l.alert_not_found.description}
+      <FeedbackState
+        icon={<Icon mb={title ? -2 : 0}>{icon || <IconSearch />}</Icon>}
+        title={title ?? l.alert_not_found.title}
+        description={description ?? l.alert_not_found.description}
         maxW={"300px"}
-      >
-        {children}
-      </EmptyState>
+      />
+
+      {children}
     </CContainer>
   );
 }

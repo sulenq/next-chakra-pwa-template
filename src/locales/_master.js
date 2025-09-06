@@ -277,6 +277,10 @@ export const december = {
   id: "Desember",
   en: "December",
 };
+export const select_all = {
+  id: "Pilih semua",
+  en: "Select all",
+};
 
 // Message
 export const msg_cannot_be_undone = {
