@@ -7,6 +7,7 @@ import { DatePickerInput } from "@/components/ui/date-picker-input";
 import { DateTimePickerInput } from "@/components/ui/date-time-picker-input";
 import { Field } from "@/components/ui/field";
 import FileInput from "@/components/ui/file-input";
+import { NumInput } from "@/components/ui/number-input";
 import { P } from "@/components/ui/p";
 import { PasswordInput } from "@/components/ui/password-input";
 import { PeriodPickerInput } from "@/components/ui/period-picker-input";
@@ -55,6 +56,7 @@ const DocsIndexRoute = () => {
       string: "",
       password: "",
       search: "",
+      number: null as any,
       period: null as any,
       date: null as any,
       time: null as any,
@@ -67,6 +69,7 @@ const DocsIndexRoute = () => {
       string: yup.string().required(),
       password: yup.string().required(),
       search: yup.string().required(),
+      number: yup.number().required(),
       period: yup.object().required(),
       date: yup.array().required(),
       time: yup.string().required(),
@@ -114,9 +117,6 @@ const DocsIndexRoute = () => {
         ))}
       </HStack>
 
-      <P>{`${formik.values.period?.year}`}</P>
-      <P>{`${formik.values.period?.month}`}</P>
-
       <form id="test" onSubmit={formik.handleSubmit}>
         <CContainer gap={4}>
           <Field invalid={!!formik.errors.string}>
@@ -142,6 +142,15 @@ const DocsIndexRoute = () => {
               inputValue={formik.values.search}
               onChange={(input) => {
                 formik.setFieldValue("search", input);
+              }}
+            />
+          </Field>
+
+          <Field invalid={!!formik.errors.number}>
+            <NumInput
+              inputValue={formik.values.number}
+              onChange={(input) => {
+                formik.setFieldValue("number", input);
               }}
             />
           </Field>

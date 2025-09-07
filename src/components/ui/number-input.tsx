@@ -10,13 +10,13 @@ export const NumInput = forwardRef<HTMLInputElement, Props__NumInput>(
     const {
       inputValue,
       onChange,
-      placeholder = `${new Date().getFullYear()}`,
+      placeholder = "Input number",
       invalid,
       boxProps,
       formatFunction,
-      formatted,
-      integer,
-      min,
+      formatted = true,
+      integer = true,
+      min = 0,
       max,
       ...restProps
     } = props;

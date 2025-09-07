@@ -152,6 +152,7 @@ export const PeriodPickerInput = (props: Props__PeriodPickerInput) => {
                     setSelected((prev) => ({ ...prev, year: val! }))
                   }
                   max={9999}
+                  placeholder={`${new Date().getFullYear()}`}
                 />
               </Field>
 
