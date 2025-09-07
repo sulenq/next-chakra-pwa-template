@@ -15,6 +15,7 @@
     "@chakra-ui/react": "^3.25.0",
     "@emotion/react": "^11.14.0",
     "@tabler/icons-react": "^3.34.1",
+    "@tinymce/tinymce-react": "^6.3.0",
     "axios": "^1.11.0",
     "date-fns": "2.30.0",
     "formik": "^2.4.6",

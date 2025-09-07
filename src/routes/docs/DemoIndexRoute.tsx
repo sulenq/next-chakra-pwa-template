@@ -11,6 +11,7 @@ import { NumInput } from "@/components/ui/number-input";
 import { P } from "@/components/ui/p";
 import { PasswordInput } from "@/components/ui/password-input";
 import { PeriodPickerInput } from "@/components/ui/period-picker-input";
+import { RichEditor } from "@/components/ui/RichEditor";
 import SearchInput from "@/components/ui/search-input";
 import { SelectInput } from "@/components/ui/select-input";
 import { StringInput } from "@/components/ui/string-input";
@@ -66,6 +67,7 @@ const DocsIndexRoute = () => {
       select: null as any,
       multiSelect: null as any,
       file: null as any,
+      richEditor: null as any,
     },
     validationSchema: yup.object({
       string: yup.string().required(),
@@ -80,6 +82,7 @@ const DocsIndexRoute = () => {
       select: yup.array().required(),
       multiSelect: yup.array().required(),
       file: yup.array().required(),
+      richEditor: yup.array().required(),
     }),
     onSubmit: (values) => {
       console.log(values);
@@ -246,6 +249,15 @@ const DocsIndexRoute = () => {
               inputValue={formik.values.file}
               onChange={(input) => {
                 formik.setFieldValue("file", input);
+              }}
+            />
+          </Field>
+
+          <Field invalid={!!formik.errors.richEditor}>
+            <RichEditor
+              inputValue={formik.values.richEditor}
+              onChange={(input) => {
+                formik.setFieldValue("richEditor", input);
               }}
             />
           </Field>

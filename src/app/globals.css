@@ -45,6 +45,33 @@
   border-color: var(--d1) !important;
   margin: 4px 0;
 }
+.tox-statusbar__branding {
+  display: none !important;
+}
+.tox-statusbar {
+  padding-bottom: 4px !important;
+}
+.tox .tox-tbtn--enabled,
+.tox .tox-tbtn:hover,
+.tox .tox-tbtn:focus {
+  background-color: #f3f3f3 !important; /* subtle gray */
+  color: #333 !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+.tox .tox-tbtn svg {
+  fill: #666 !important;
+}
+.tox .tox-tbtn:focus-visible,
+.tox .tox-tbtn:focus {
+  outline: none !important;
+  box-shadow: 0 0 0 2px #d1d5db !important; /* ganti ke subtle gray */
+}
+.tox .tox-mbtn:focus-visible,
+.tox .tox-mbtn:focus {
+  outline: none !important;
+  box-shadow: 0 0 0 2px #d1d5db !important;
+}
 /* Custom Start End*/
 
 /* Color */

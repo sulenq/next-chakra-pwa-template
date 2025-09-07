@@ -7,6 +7,7 @@
         "@chakra-ui/react": "^3.25.0",
         "@emotion/react": "^11.14.0",
         "@tabler/icons-react": "^3.34.1",
+        "@tinymce/tinymce-react": "^6.3.0",
         "axios": "^1.11.0",
         "date-fns": "2.30.0",
         "formik": "^2.4.6",
@@ -221,6 +222,8 @@
     "@tabler/icons": ["@tabler/icons@3.34.1", "", {}, "sha512-9gTnUvd7Fd/DmQgr3MKY+oJLa1RfNsQo8c/ir3TJAWghOuZXodbtbVp0QBY2DxWuuvrSZFys0HEbv1CoiI5y6A=="],
 
     "@tabler/icons-react": ["@tabler/icons-react@3.34.1", "", { "dependencies": { "@tabler/icons": "3.34.1" }, "peerDependencies": { "react": ">= 16" } }, "sha512-Ld6g0NqOO05kyyHsfU8h787PdHBm7cFmOycQSIrGp45XcXYDuOK2Bs0VC4T2FWSKZ6bx5g04imfzazf/nqtk1A=="],
+
+    "@tinymce/tinymce-react": ["@tinymce/tinymce-react@6.3.0", "", { "dependencies": { "prop-types": "^15.6.2" }, "peerDependencies": { "react": "^19.0.0 || ^18.0.0 || ^17.0.1 || ^16.7.0", "react-dom": "^19.0.0 || ^18.0.0 || ^17.0.1 || ^16.7.0", "tinymce": "^8.0.0 || ^7.0.0 || ^6.0.0 || ^5.5.1" }, "optionalPeers": ["tinymce"] }, "sha512-E++xnn0XzDzpKr40jno2Kj7umfAE6XfINZULEBBeNjTMvbACWzA6CjiR6V8eTDc9yVmdVhIPqVzV4PqD5TZ/4g=="],
 
     "@tybys/wasm-util": ["@tybys/wasm-util@0.10.0", "", { "dependencies": { "tslib": "^2.4.0" } }, "sha512-VyyPYFlOMNylG45GoAe0xDoLwWuowvf92F9kySqzYh8vmYm7D2u4iUJKa1tOUpS70Ku13ASrOkS4ScXFsTaCNQ=="],
 
