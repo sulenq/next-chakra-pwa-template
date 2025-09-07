@@ -49,7 +49,7 @@ export default function VideoPlayer(props: Props) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [progress, setProgress] = useState(0);
   const [duration, setDuration] = useState(0);
-  const [volume, setVolume] = useState(1);
+  const [volume, setVolume] = useState(100);
   const [muted, setMuted] = useState(false);
   const [playbackRate, setRate] = useState(1);
   const rates = [
@@ -109,15 +109,25 @@ export default function VideoPlayer(props: Props) {
   const handleVolume = (e: any) => {
     const video = videoRef.current;
     if (!video) return;
-    setVideoVolume(video, e.value);
+    setVideoVolume(video, e.value / 100);
     setVolume(e.value);
-    setMuted(e.value === 0);
+    if (e.value / 100 === 0) {
+      setMuted(true);
+      toggleMute(video, true);
+    } else {
+      setMuted(false);
+      toggleMute(video, false);
+    }
   };
   const handleMute = () => {
     const video = videoRef.current;
     if (!video) return;
     toggleMute(video);
     setMuted(!muted);
+    if (!muted === false && volume / 100 === 0) {
+      setVideoVolume(video, 100 / 100);
+      setVolume(100);
+    }
   };
   const handleRate = (val: number) => {
     const video = videoRef.current;
@@ -239,18 +249,18 @@ export default function VideoPlayer(props: Props) {
               <Slider.Root
                 w="60px"
                 min={0}
-                max={1}
-                step={0.05}
+                max={100}
+                step={1}
                 size={"sm"}
                 colorPalette={"light"}
-                value={muted ? [0] : [volume]}
-                onChange={handleVolume}
+                value={[volume]}
+                onValueChange={handleVolume}
               >
                 <Slider.Control>
-                  <Slider.Track>
+                  <Slider.Track bg={"dark"}>
                     <Slider.Range />
                   </Slider.Track>
-                  <Slider.Thumbs w={"10px"} h={"10px"} />
+                  <Slider.Thumbs w={"10px"} h={"10px"} bg={"dark"} />
                 </Slider.Control>
               </Slider.Root>
             </HStack>
