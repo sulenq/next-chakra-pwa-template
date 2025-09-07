@@ -7,8 +7,8 @@ export const Divider = ({
 }: Interface__Divider) => {
   switch (dir) {
     default:
-      return <Box w={"1px"} h={"full"} bg={"d1"} {...props} />;
+      return <Box w={"1px"} h={"full"} bg={"d2"} {...props} />;
     case "vertical":
-      return <Box w={"full"} h={"1px"} bg={"d1"} {...props} />;
+      return <Box w={"full"} h={"1px"} bg={"d2"} {...props} />;
   }
 };
