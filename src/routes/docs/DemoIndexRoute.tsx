@@ -14,6 +14,7 @@ import { PeriodPickerInput } from "@/components/ui/period-picker-input";
 import SearchInput from "@/components/ui/search-input";
 import { SelectInput } from "@/components/ui/select-input";
 import { StringInput } from "@/components/ui/string-input";
+import { Textarea } from "@/components/ui/textarea";
 import TimePickerInput from "@/components/ui/time-picker-input";
 import { toaster } from "@/components/ui/toaster";
 import SelectPropertyByLayerId from "@/components/widget/SelectPropertyByLayerId";
@@ -56,6 +57,7 @@ const DocsIndexRoute = () => {
       string: "",
       password: "",
       search: "",
+      textarea: "",
       number: null as any,
       period: null as any,
       date: null as any,
@@ -69,6 +71,7 @@ const DocsIndexRoute = () => {
       string: yup.string().required(),
       password: yup.string().required(),
       search: yup.string().required(),
+      textarea: yup.string().required(),
       number: yup.number().required(),
       period: yup.object().required(),
       date: yup.array().required(),
@@ -82,6 +85,8 @@ const DocsIndexRoute = () => {
       console.log(values);
     },
   });
+
+  // console.log(formik.values.textarea);
 
   return (
     <CContainer p={4} gap={8} maxW={"500px"} mx={"auto"}>
@@ -142,6 +147,15 @@ const DocsIndexRoute = () => {
               inputValue={formik.values.search}
               onChange={(input) => {
                 formik.setFieldValue("search", input);
+              }}
+            />
+          </Field>
+
+          <Field invalid={!!formik.errors.textarea}>
+            <Textarea
+              inputValue={formik.values.textarea}
+              onChange={(input) => {
+                formik.setFieldValue("textarea", input);
               }}
             />
           </Field>

@@ -12,6 +12,7 @@ import {
 } from "@chakra-ui/react";
 import { Dispatch } from "react";
 import { Type__DisclosureSizes, Type__Period } from "./types";
+import { TextareaProps } from "node_modules/@chakra-ui/react/dist/types/components/editable/namespace";
 
 export interface Props__FeedbackState extends StackProps {
   title?: string;
@@ -72,6 +73,13 @@ export interface Props__SearchInput
   invalid?: boolean;
   noIcon?: boolean;
   children?: React.ReactNode;
+}
+
+export interface Props__TextareaInput extends Omit<TextareaProps, "onChange"> {
+  inputValue?: string;
+  onChange?: (inputValue: Props__TextareaInput["inputValue"]) => void;
+  invalid?: boolean;
+  placeholder?: string;
 }
 
 export interface Props__FileInput
