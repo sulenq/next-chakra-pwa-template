@@ -9,6 +9,7 @@ import { Field } from "@/components/ui/field";
 import FileInput from "@/components/ui/file-input";
 import { P } from "@/components/ui/p";
 import { PasswordInput } from "@/components/ui/password-input";
+import { PeriodPickerInput } from "@/components/ui/period-picker-input";
 import SearchInput from "@/components/ui/search-input";
 import { SelectInput } from "@/components/ui/select-input";
 import { StringInput } from "@/components/ui/string-input";
@@ -54,6 +55,7 @@ const DocsIndexRoute = () => {
       string: "",
       password: "",
       search: "",
+      period: null as any,
       date: null as any,
       time: null as any,
       dateTime: "2025-09-06T00:00:00.000Z",
@@ -65,6 +67,7 @@ const DocsIndexRoute = () => {
       string: yup.string().required(),
       password: yup.string().required(),
       search: yup.string().required(),
+      period: yup.object().required(),
       date: yup.array().required(),
       time: yup.string().required(),
       dateTime: yup.string().required(),
@@ -87,7 +90,7 @@ const DocsIndexRoute = () => {
         <ColorModeButton />
       </HStack>
 
-      <HStack>
+      <HStack wrap={"wrap"}>
         {toasters.map((toast) => (
           <Btn
             key={toast.label}
@@ -110,6 +113,9 @@ const DocsIndexRoute = () => {
           </Btn>
         ))}
       </HStack>
+
+      <P>{`${formik.values.period?.year}`}</P>
+      <P>{`${formik.values.period?.month}`}</P>
 
       <form id="test" onSubmit={formik.handleSubmit}>
         <CContainer gap={4}>
@@ -136,6 +142,15 @@ const DocsIndexRoute = () => {
               inputValue={formik.values.search}
               onChange={(input) => {
                 formik.setFieldValue("search", input);
+              }}
+            />
+          </Field>
+
+          <Field invalid={!!formik.errors.period}>
+            <PeriodPickerInput
+              inputValue={formik.values.period}
+              onConfirm={(input) => {
+                formik.setFieldValue("period", input);
               }}
             />
           </Field>

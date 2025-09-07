@@ -92,6 +92,7 @@ const PeriodPicker = (props: any) => {
         iconButton
         clicky={false}
         variant={"outline"}
+        bg={"transparent"}
         onClick={() => cycleMonth("decrement")}
         size={"md"}
       >

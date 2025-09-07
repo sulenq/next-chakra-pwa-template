@@ -38,6 +38,15 @@ export const StringInput = forwardRef<HTMLInputElement, Props__StringInput>(
 
     // States
     const darkLightColorManual = colorMode === "light" ? "#fff" : "var(--dark)";
+    const styles = css`
+      input:-webkit-autofill,
+      input:-webkit-autofill:hover,
+      input:-webkit-autofill:focus,
+      input:-webkit-autofill:active {
+        -webkit-box-shadow: 0 0 0 30px ${darkLightColorManual} inset !important;
+        box-shadow: 0 0 0 30px ${darkLightColorManual} inset !important;
+      }
+    `;
 
     // Utils
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -49,17 +58,7 @@ export const StringInput = forwardRef<HTMLInputElement, Props__StringInput>(
 
     return (
       <>
-        <Global
-          styles={css`
-            input:-webkit-autofill,
-            input:-webkit-autofill:hover,
-            input:-webkit-autofill:focus,
-            input:-webkit-autofill:active {
-              -webkit-box-shadow: 0 0 0 30px ${darkLightColorManual} inset !important;
-              box-shadow: 0 0 0 30px ${darkLightColorManual} inset !important;
-            }
-          `}
-        />
+        <Global styles={styles} />
 
         <Box
           position={"relative"}

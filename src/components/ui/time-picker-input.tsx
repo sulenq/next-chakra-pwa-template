@@ -39,7 +39,7 @@ import { Tooltip } from "./tooltip";
 import { CContainer } from "@/components/ui/c-container";
 import { P } from "@/components/ui/p";
 
-const DEFAULT_TIME = "00:00:00";
+const DEFAULT = "00:00:00";
 
 const TimePickerInput = (props: Props__TimePicker) => {
   // Props
@@ -188,7 +188,7 @@ const TimePickerInput = (props: Props__TimePicker) => {
         <Btn
           w={"full"}
           clicky={false}
-          variant={"ghost"}
+          variant={"outline"}
           border={"1px solid"}
           borderColor={invalid ?? fc?.invalid ? "border.error" : "border.muted"}
           onClick={() => {
@@ -247,7 +247,7 @@ const TimePickerInput = (props: Props__TimePicker) => {
                   variant={"outline"}
                   onClick={() => {
                     setHours((ps) => (ps < 23 ? ps + 1 : 0));
-                    if (!selected) setSelected(DEFAULT_TIME);
+                    if (!selected) setSelected(DEFAULT);
                   }}
                   onMouseDown={() => handleHoldIncrement("hours")}
                   onMouseUp={handleTapIncrement}
@@ -288,7 +288,7 @@ const TimePickerInput = (props: Props__TimePicker) => {
                   variant={"outline"}
                   onClick={() => {
                     setHours((ps) => (ps > 0 ? ps - 1 : 23));
-                    if (!selected) setSelected(DEFAULT_TIME);
+                    if (!selected) setSelected(DEFAULT);
                   }}
                   onMouseDown={() => handleHoldDecrement("hours")}
                   onMouseUp={handleTapDecrement}
@@ -316,7 +316,7 @@ const TimePickerInput = (props: Props__TimePicker) => {
                   variant={"outline"}
                   onClick={() => {
                     setMinutes((ps) => (ps < 59 ? ps + 1 : 0));
-                    if (!selected) setSelected(DEFAULT_TIME);
+                    if (!selected) setSelected(DEFAULT);
                   }}
                   onMouseDown={() => handleHoldIncrement("minutes")}
                   onMouseUp={handleTapIncrement}
@@ -357,7 +357,7 @@ const TimePickerInput = (props: Props__TimePicker) => {
                   variant={"outline"}
                   onClick={() => {
                     setMinutes((ps) => (ps > 0 ? ps - 1 : 59));
-                    if (!selected) setSelected(DEFAULT_TIME);
+                    if (!selected) setSelected(DEFAULT);
                   }}
                   onMouseDown={() => handleHoldDecrement("minutes")}
                   onMouseUp={handleTapDecrement}
@@ -387,7 +387,7 @@ const TimePickerInput = (props: Props__TimePicker) => {
                       variant={"outline"}
                       onClick={() => {
                         setSeconds((ps) => (ps < 59 ? ps + 1 : 0));
-                        if (!selected) setSelected(DEFAULT_TIME);
+                        if (!selected) setSelected(DEFAULT);
                       }}
                       onMouseDown={() => handleHoldIncrement("seconds")}
                       onMouseUp={handleTapIncrement}
@@ -428,7 +428,7 @@ const TimePickerInput = (props: Props__TimePicker) => {
                       variant={"outline"}
                       onClick={() => {
                         setSeconds((ps) => (ps > 0 ? ps - 1 : 59));
-                        if (!selected) setSelected(DEFAULT_TIME);
+                        if (!selected) setSelected(DEFAULT);
                       }}
                       onMouseDown={() => handleHoldDecrement("seconds")}
                       onMouseUp={handleTapDecrement}
@@ -477,7 +477,7 @@ const TimePickerInput = (props: Props__TimePicker) => {
                   setMinutes(0);
                   setSeconds(0);
                 } else {
-                  setSelected(DEFAULT_TIME);
+                  setSelected(DEFAULT);
                   setHours(0);
                   setMinutes(0);
                   setSeconds(0);

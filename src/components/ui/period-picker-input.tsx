@@ -1,11 +1,13 @@
 "use client";
 
+import { Tooltip } from "@/components/ui/tooltip";
 import { Props__PeriodPickerInput } from "@/constants/props";
 import { Type__Period } from "@/constants/types";
 import useLang from "@/context/useLang";
 import { useThemeConfig } from "@/context/useThemeConfig";
 import useBackOnClose from "@/hooks/useBackOnClose";
 import { back } from "@/utils/client";
+import { formatDate } from "@/utils/formatter";
 import { capitalizeWords } from "@/utils/string";
 import {
   FieldRoot,
@@ -16,7 +18,6 @@ import {
 } from "@chakra-ui/react";
 import { IconCheck } from "@tabler/icons-react";
 import { useEffect, useState } from "react";
-import BackButton from "../widget/BackButton";
 import { Btn } from "./btn";
 import {
   DisclosureBody,
@@ -29,8 +30,11 @@ import { DisclosureHeaderContent } from "./disclosure-header-content";
 import { Field } from "./field";
 import { NumInput } from "./number-input";
 import { P } from "./p";
-import { formatDate } from "@/utils/formatter";
-import { Tooltip } from "@/components/ui/tooltip";
+
+const DEFAULT = {
+  month: null,
+  year: null,
+};
 
 export const PeriodPickerInput = (props: Props__PeriodPickerInput) => {
   // Props
@@ -71,14 +75,10 @@ export const PeriodPickerInput = (props: Props__PeriodPickerInput) => {
     l.november,
     l.december,
   ];
-  const [selected, setSelected] = useState<Type__Period>({
-    month: inputValue?.month ?? null,
-    year: inputValue?.year ?? null,
-  });
-
+  const [selected, setSelected] = useState<Type__Period>(DEFAULT);
   const empty = selected.year === null || selected.month === null;
 
-  // handle initial value saat open
+  // handle initial value on open
   useEffect(() => {
     if (inputValue) {
       setSelected({
@@ -92,10 +92,7 @@ export const PeriodPickerInput = (props: Props__PeriodPickerInput) => {
     if (!empty) {
       onConfirm?.({ month: selected.month, year: selected.year });
     } else {
-      onConfirm?.({
-        month: null,
-        year: null,
-      });
+      onConfirm?.(null);
     }
     back();
   };
@@ -120,11 +117,11 @@ export const PeriodPickerInput = (props: Props__PeriodPickerInput) => {
           borderColor={invalid ? "border.error" : "border.muted"}
           {...restProps}
         >
-          {empty && <P color={"placeholder"}>{resolvedPlaceholder}</P>}
+          {!inputValue && <P color={"placeholder"}>{resolvedPlaceholder}</P>}
 
-          {!empty && (
+          {inputValue && (
             <P>
-              {formatDate(new Date(selected.year!, selected.month!), {
+              {formatDate(new Date(inputValue.year!, inputValue.month!), {
                 variant: "period",
               })}
             </P>
@@ -196,7 +193,15 @@ export const PeriodPickerInput = (props: Props__PeriodPickerInput) => {
           </DisclosureBody>
 
           <DisclosureFooter>
-            <BackButton />
+            <Btn
+              variant={"outline"}
+              onClick={() => {
+                setSelected(DEFAULT);
+              }}
+            >
+              Clear
+            </Btn>
+
             <Btn
               onClick={handleConfirm}
               colorPalette={themeConfig.colorPalette}
