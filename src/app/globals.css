@@ -45,6 +45,9 @@
   border-color: var(--d1) !important;
   margin: 4px 0;
 }
+.tox-platform-touch {
+  width: 100% !important;
+}
 .tox-statusbar__branding {
   display: none !important;
 }
