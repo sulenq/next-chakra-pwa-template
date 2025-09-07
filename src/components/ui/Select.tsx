@@ -1,3 +1,4 @@
+import { useThemeConfig } from "@/context/useThemeConfig";
 import {
   Select as ChakraSelect,
   Portal,
@@ -21,6 +22,7 @@ interface Props__Select
 }
 
 export default function Select(props: Props__Select) {
+  // Props
   const {
     inputValue,
     onValueChange,
@@ -31,7 +33,10 @@ export default function Select(props: Props__Select) {
     ...restProps
   } = props;
 
-  // Create proper ListCollection using official helper
+  // Contexts
+  const { themeConfig } = useThemeConfig();
+
+  // States
   const collection = createListCollection({
     items: selectOptions,
     itemToString: (item) => item.label,
@@ -57,7 +62,7 @@ export default function Select(props: Props__Select) {
         <ChakraSelect.Trigger
           border="none"
           cursor="pointer"
-          _hover={{ bg: "d1" }}
+          _hover={{ bg: "d2" }}
         >
           <ChakraSelect.ValueText placeholder={placeholder} />
         </ChakraSelect.Trigger>
@@ -68,9 +73,16 @@ export default function Select(props: Props__Select) {
 
       <Portal>
         <ChakraSelect.Positioner>
-          <ChakraSelect.Content className="ss">
+          <ChakraSelect.Content
+            className="ss"
+            rounded={themeConfig?.radii.container}
+          >
             {collection.items.map((opt) => (
-              <ChakraSelect.Item item={opt} key={opt.value}>
+              <ChakraSelect.Item
+                item={opt}
+                key={opt.value}
+                rounded={themeConfig?.radii.component}
+              >
                 {opt.label}
                 <ChakraSelect.ItemIndicator />
               </ChakraSelect.Item>

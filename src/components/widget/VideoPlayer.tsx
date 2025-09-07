@@ -3,6 +3,7 @@
 import { Btn } from "@/components/ui/btn";
 import { CContainer } from "@/components/ui/c-container";
 import Select from "@/components/ui/Select";
+import useClickOutside from "@/hooks/useClickOutside";
 import {
   getVideoCurrentTime,
   getVideoDuration,
@@ -40,9 +41,11 @@ export default function VideoPlayer(props: Props) {
   const { src, storageKey = "default", ...restProps } = props;
 
   // Refs
+  const videoContainerRef = useRef<HTMLDivElement | null>(null);
   const videoRef = useRef<HTMLVideoElement | null>(null);
 
   // States
+  const [showControls, setShowControls] = useState<boolean>(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const [progress, setProgress] = useState(0);
   const [duration, setDuration] = useState(0);
@@ -55,6 +58,9 @@ export default function VideoPlayer(props: Props) {
     { label: "1.5x", value: "1.5" },
     { label: "2x", value: "2" },
   ];
+
+  // handle show controls
+  useClickOutside([videoContainerRef], () => setShowControls(false));
 
   // load progress awal
   useEffect(() => {
@@ -94,14 +100,12 @@ export default function VideoPlayer(props: Props) {
       setIsPlaying(true);
     }
   };
-
   const handleSeek = (e: any) => {
     const video = videoRef.current;
     if (!video) return;
     seekVideo(video, e.value);
     setProgress(e.value);
   };
-
   const handleVolume = (e: any) => {
     const video = videoRef.current;
     if (!video) return;
@@ -109,21 +113,18 @@ export default function VideoPlayer(props: Props) {
     setVolume(e.value);
     setMuted(e.value === 0);
   };
-
   const handleMute = () => {
     const video = videoRef.current;
     if (!video) return;
     toggleMute(video);
     setMuted(!muted);
   };
-
   const handleRate = (val: number) => {
     const video = videoRef.current;
     if (!video) return;
     setPlaybackRate(video, val);
     setRate(val);
   };
-
   const formatTime = (s: number) => {
     if (!s) return "0:00";
     const m = Math.floor(s / 60);
@@ -133,10 +134,18 @@ export default function VideoPlayer(props: Props) {
     return `${m}:${sec}`;
   };
 
-  console.log(volume);
-
   return (
-    <CContainer mx="auto" pos={"relative"} {...restProps}>
+    <CContainer
+      ref={videoContainerRef}
+      mx="auto"
+      pos={"relative"}
+      overflow={"clip"}
+      onMouseEnter={() => setShowControls(true)}
+      onTouchStart={() => setShowControls(true)}
+      onMouseLeave={() => setShowControls(false)}
+      onBlur={() => setShowControls(true)}
+      {...restProps}
+    >
       <VideoElement
         as="video"
         ref={videoRef}
@@ -151,7 +160,8 @@ export default function VideoPlayer(props: Props) {
         className="dsb"
         pos={"absolute"}
         left={0}
-        bottom={0}
+        transition={"200ms"}
+        bottom={showControls ? 0 : "-60px"}
       >
         <HStack mt={"-5px"}>
           {/* Progress bar */}
@@ -166,10 +176,11 @@ export default function VideoPlayer(props: Props) {
             colorPalette={"light"}
           >
             <Slider.Control>
-              <Slider.Track rounded={0}>
+              <Slider.Track rounded={0} bg={"dark"}>
                 <Slider.Range rounded={0} />
               </Slider.Track>
-              <Slider.Thumbs w={"10px"} h={"10px"} />
+
+              <Slider.Thumbs w={"10px"} h={"10px"} bg={"dark"} />
             </Slider.Control>
           </Slider.Root>
         </HStack>
@@ -200,8 +211,19 @@ export default function VideoPlayer(props: Props) {
           </HStack>
 
           <HStack>
+            {/* Playback Rate */}
+            <Select
+              selectOptions={rates}
+              inputValue={`${playbackRate}`}
+              onValueChange={(val) => handleRate(Number(val))}
+              color={"light"}
+              w={"68px"}
+              size="xs"
+              mr={-2}
+            />
+
+            {/* Volume */}
             <HStack>
-              {/* Volume */}
               <Btn
                 iconButton
                 size={"xs"}
@@ -232,17 +254,6 @@ export default function VideoPlayer(props: Props) {
                 </Slider.Control>
               </Slider.Root>
             </HStack>
-
-            {/* Playback Rate */}
-            <Select
-              selectOptions={rates}
-              inputValue={`${playbackRate}`}
-              onValueChange={(val) => handleRate(Number(val))}
-              color={"light"}
-              w={"68px"}
-              size="xs"
-              mr={-2}
-            />
 
             {/* Fullscreen */}
             <Btn

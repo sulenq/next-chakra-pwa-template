@@ -353,8 +353,8 @@ const customConfig = defineConfig({
           },
           subtle: {
             value: {
-              base: "{colors.d1}",
-              _dark: "{colors.d1}",
+              base: "{colors.d2}",
+              _dark: "{colors.d2}",
             },
           },
           emphasized: { value: "{colors.gray.700}" },
