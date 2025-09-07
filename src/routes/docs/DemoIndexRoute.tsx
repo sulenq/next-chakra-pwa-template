@@ -19,6 +19,7 @@ import { Textarea } from "@/components/ui/textarea";
 import TimePickerInput from "@/components/ui/time-picker-input";
 import { toaster } from "@/components/ui/toaster";
 import SelectPropertyByLayerId from "@/components/widget/SelectPropertyByLayerId";
+import VideoPlayer from "@/components/widget/VideoPlayer";
 import { OPTIONS_RELIGION } from "@/constants/selectOptions";
 import { HStack } from "@chakra-ui/react";
 import { useFormik } from "formik";
@@ -89,10 +90,8 @@ const DocsIndexRoute = () => {
     },
   });
 
-  // console.log(formik.values.textarea);
-
   return (
-    <CContainer p={4} gap={8} maxW={"500px"} mx={"auto"}>
+    <CContainer p={4} gap={8} maxW={"720px"} mx={"auto"}>
       <HStack justify={"space-between"}>
         <P fontSize={"xl"} fontWeight={"bold"}>
           Docs
@@ -263,6 +262,8 @@ const DocsIndexRoute = () => {
           </Field>
         </CContainer>
       </form>
+
+      <VideoPlayer src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" />
 
       <Btn type={"submit"} form="test">
         Submit

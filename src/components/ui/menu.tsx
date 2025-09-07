@@ -29,7 +29,7 @@ export const MenuContent = forwardRef<HTMLDivElement, MenuContentProps>(
             className="dsb"
             boxShadow={"none"}
             borderRadius={themeConfig?.radii.container}
-            border={"1px solid var(--d2)"}
+            border={"1px solid {colors.d2}"}
             p={1}
             ref={ref}
             {...rest}

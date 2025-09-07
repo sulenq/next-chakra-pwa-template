@@ -329,6 +329,42 @@ const customConfig = defineConfig({
             },
           },
         },
+        light: {
+          solid: {
+            value: {
+              base: "{colors.light}",
+              _dark: "{colors.light}",
+            },
+          },
+          contrast: {
+            value: { base: "{colors.light}", _dark: "{colors.light}" },
+          },
+          fg: {
+            value: {
+              base: "{colors.light}",
+              _dark: "{colors.light}",
+            },
+          },
+          muted: {
+            value: {
+              base: "{colors.light}",
+              _dark: "{colors.light}",
+            },
+          },
+          subtle: {
+            value: {
+              base: "{colors.d1}",
+              _dark: "{colors.d1}",
+            },
+          },
+          emphasized: { value: "{colors.gray.700}" },
+          focusRing: {
+            value: {
+              base: "{colors.light}",
+              _dark: "{colors.light}",
+            },
+          },
+        },
         p: {
           solid: {
             value: {

@@ -14,6 +14,14 @@ import { Dispatch } from "react";
 import { Type__DisclosureSizes, Type__Period } from "./types";
 import { TextareaProps } from "node_modules/@chakra-ui/react/dist/types/components/editable/namespace";
 
+export interface Props__VideoPlayer extends StackProps {
+  src?: string;
+  type?: string;
+  width?: number | string;
+  height?: number | string;
+  storageKey?: string;
+}
+
 export interface Props__RichEditor {
   inputValue?: string;
   onChange?: (inputValue: Props__RichEditor["inputValue"]) => void;
