@@ -58,7 +58,7 @@ export const PasswordInput = forwardRef<HTMLInputElement, Props__PasswordInput>(
             size={"sm"}
             color={"fg.subtle"}
           >
-            <Icon boxSize={"21px"}>
+            <Icon boxSize={5}>
               {showPassword ? (
                 <IconEye stroke={1.5} />
               ) : (
