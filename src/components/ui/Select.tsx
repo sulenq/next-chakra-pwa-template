@@ -64,7 +64,10 @@ export default function Select(props: Props__Select) {
           cursor="pointer"
           _hover={{ bg: "d2" }}
         >
-          <ChakraSelect.ValueText placeholder={placeholder} />
+          <ChakraSelect.ValueText
+            fontSize={props?.fontSize}
+            placeholder={placeholder}
+          />
         </ChakraSelect.Trigger>
         <ChakraSelect.IndicatorGroup>
           <ChakraSelect.Indicator color={props?.color} />

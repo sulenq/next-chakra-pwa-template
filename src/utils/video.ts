@@ -46,9 +46,19 @@ export const setPlaybackRate = (
 };
 
 // cross-browser fullscreen
-export const toggleFullscreen = (video: HTMLVideoElement | null) => {
-  if (!video) return;
-  const elem = video as any;
+export function toggleFullscreen(container: any | null) {
+  if (!container) return;
+  const elem = container as any;
+
+  const handleFullscreenChange = () => {
+    if (!document.fullscreenElement) {
+      // keluar fullscreen, scroll elem ke view
+      elem.scrollIntoView({ block: "center" });
+      document.removeEventListener("fullscreenchange", handleFullscreenChange);
+    }
+  };
+
+  document.addEventListener("fullscreenchange", handleFullscreenChange);
 
   if (!document.fullscreenElement) {
     if (elem.requestFullscreen) elem.requestFullscreen();
@@ -56,7 +66,7 @@ export const toggleFullscreen = (video: HTMLVideoElement | null) => {
   } else {
     if (document.exitFullscreen) document.exitFullscreen();
   }
-};
+}
 
 export const saveProgress = (key: string, currentTime: number) => {
   setStorage(`video-progress:${key}`, String(currentTime));

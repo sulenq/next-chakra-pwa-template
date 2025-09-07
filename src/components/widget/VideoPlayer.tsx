@@ -17,11 +17,13 @@ import {
   toggleFullscreen,
   toggleMute,
 } from "@/utils/video";
-import { chakra, HStack, Icon, Slider, Text } from "@chakra-ui/react";
+import { chakra, HStack, Icon, Slider, Stack, Text } from "@chakra-ui/react";
 import {
   IconMaximize,
   IconPlayerPauseFilled,
   IconPlayerPlayFilled,
+  IconRewindBackward5,
+  IconRewindForward5,
   IconVolume,
   IconVolumeOff,
 } from "@tabler/icons-react";
@@ -62,13 +64,13 @@ export default function VideoPlayer(props: Props) {
   // handle show controls
   useClickOutside([videoContainerRef], () => setShowControls(false));
 
-  // load progress awal
+  // load first progress
   useEffect(() => {
     const saved = loadProgress(storageKey);
     seekVideo(videoRef.current, saved);
   }, [storageKey]);
 
-  // update duration pas metadata loaded
+  // update duration when metadata loaded
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
@@ -89,7 +91,7 @@ export default function VideoPlayer(props: Props) {
     return () => clearInterval(interval);
   }, [storageKey]);
 
-  const handlePlayPause = () => {
+  function handlePlayPause() {
     const video = videoRef.current;
     if (!video) return;
     if (isPlaying) {
@@ -99,14 +101,26 @@ export default function VideoPlayer(props: Props) {
       playVideo(video);
       setIsPlaying(true);
     }
-  };
-  const handleSeek = (e: any) => {
+  }
+  function handleSeek(e: any) {
     const video = videoRef.current;
     if (!video) return;
     seekVideo(video, e.value);
     setProgress(e.value);
-  };
-  const handleVolume = (e: any) => {
+  }
+  function handleSeekForward() {
+    const video = videoRef.current;
+    if (!video) return;
+    seekVideo(video, progress + 5);
+    setProgress(progress + 5);
+  }
+  function handleSeekBackward() {
+    const video = videoRef.current;
+    if (!video) return;
+    seekVideo(video, progress - 5);
+    setProgress(progress - 5);
+  }
+  function handleVolume(e: any) {
     const video = videoRef.current;
     if (!video) return;
     setVideoVolume(video, e.value / 100);
@@ -118,8 +132,8 @@ export default function VideoPlayer(props: Props) {
       setMuted(false);
       toggleMute(video, false);
     }
-  };
-  const handleMute = () => {
+  }
+  function handleMute() {
     const video = videoRef.current;
     if (!video) return;
     toggleMute(video);
@@ -128,25 +142,91 @@ export default function VideoPlayer(props: Props) {
       setVideoVolume(video, 100 / 100);
       setVolume(100);
     }
-  };
-  const handleRate = (val: number) => {
+  }
+  function handleRate(val: number) {
     const video = videoRef.current;
     if (!video) return;
     setPlaybackRate(video, val);
     setRate(val);
-  };
-  const formatTime = (s: number) => {
+  }
+  function formatTime(s: number) {
     if (!s) return "0:00";
     const m = Math.floor(s / 60);
     const sec = Math.floor(s % 60)
       .toString()
       .padStart(2, "0");
     return `${m}:${sec}`;
-  };
+  }
+
+  // keyboard controls
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (!videoContainerRef.current) return;
+
+      // check if focus is inside container
+      if (!videoContainerRef.current.contains(document.activeElement)) return;
+
+      switch (e.code) {
+        case "Space":
+          e.preventDefault(); // biar page ga scroll
+          handlePlayPause();
+          break;
+        case "ArrowRight":
+          e.preventDefault();
+          handleSeekForward();
+          break;
+        case "ArrowLeft":
+          e.preventDefault();
+          handleSeekBackward();
+          break;
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [progress, isPlaying]); // dependensi biar update saat progress/playing state berubah
+
+  // inside VideoPlayer component
+  useEffect(() => {
+    const container = videoContainerRef.current;
+    if (!container) return;
+
+    let timer: NodeJS.Timeout;
+
+    const handleMouseMove = () => {
+      setShowControls(true);
+      container.style.cursor = "default";
+
+      // reset timer
+      if (timer) clearTimeout(timer);
+      timer = setTimeout(() => {
+        setShowControls(false);
+        container.style.cursor = "none";
+      }, 3000);
+    };
+
+    const handleMouseLeave = () => {
+      // mouse keluar container, showControls normal behavior
+      setShowControls(false);
+      container.style.cursor = "default";
+      if (timer) clearTimeout(timer);
+    };
+
+    container.addEventListener("mousemove", handleMouseMove);
+    container.addEventListener("mouseleave", handleMouseLeave);
+
+    return () => {
+      container.removeEventListener("mousemove", handleMouseMove);
+      container.removeEventListener("mouseleave", handleMouseLeave);
+      if (timer) clearTimeout(timer);
+    };
+  }, []);
 
   return (
     <CContainer
       ref={videoContainerRef}
+      justify={"center"}
+      align={"center"}
       mx="auto"
       pos={"relative"}
       overflow={"clip"}
@@ -154,6 +234,8 @@ export default function VideoPlayer(props: Props) {
       onTouchStart={() => setShowControls(true)}
       onMouseLeave={() => setShowControls(false)}
       onBlur={() => setShowControls(true)}
+      aspectRatio={16 / 10}
+      bg={"black"}
       {...restProps}
     >
       <VideoElement
@@ -171,7 +253,9 @@ export default function VideoPlayer(props: Props) {
         pos={"absolute"}
         left={0}
         transition={"200ms"}
-        bottom={showControls ? 0 : "-60px"}
+        bottom={0}
+        visibility={showControls ? "visible" : "hidden"}
+        opacity={showControls ? 1 : 0}
       >
         <HStack mt={"-5px"}>
           {/* Progress bar */}
@@ -195,32 +279,39 @@ export default function VideoPlayer(props: Props) {
           </Slider.Root>
         </HStack>
 
-        <HStack pb={1} px={1} justify={"space-between"}>
-          <HStack>
-            {/* Play / Pause */}
-            <Btn
-              iconButton
-              size={"xs"}
-              colorPalette={"light"}
-              variant="ghost"
-              onClick={handlePlayPause}
-            >
-              <Icon>
-                {isPlaying ? (
-                  <IconPlayerPauseFilled />
-                ) : (
-                  <IconPlayerPlayFilled />
-                )}
-              </Icon>
-            </Btn>
+        <Stack
+          flexDir={["column", null, "row"]}
+          gap={0}
+          pb={1}
+          px={1}
+          justify={"space-between"}
+        >
+          <HStack justify={"space-between"}>
+            <HStack>
+              {/* Play / Pause */}
+              <Btn
+                iconButton
+                clicky={false}
+                size={"xs"}
+                colorPalette={"light"}
+                variant="ghost"
+                onClick={handlePlayPause}
+              >
+                <Icon>
+                  {isPlaying ? (
+                    <IconPlayerPauseFilled />
+                  ) : (
+                    <IconPlayerPlayFilled />
+                  )}
+                </Icon>
+              </Btn>
 
-            {/* Timer */}
-            <Text fontSize="xs" textAlign="right">
-              {formatTime(progress)} / {formatTime(duration)}
-            </Text>
-          </HStack>
+              {/* Timer */}
+              <Text fontSize="xs" textAlign="right" flexShrink={0}>
+                {formatTime(progress)} / {formatTime(duration)}
+              </Text>
+            </HStack>
 
-          <HStack>
             {/* Playback Rate */}
             <Select
               selectOptions={rates}
@@ -229,54 +320,88 @@ export default function VideoPlayer(props: Props) {
               color={"light"}
               w={"68px"}
               size="xs"
-              mr={-2}
+              fontSize={"xs"}
             />
+          </HStack>
 
-            {/* Volume */}
-            <HStack>
+          <HStack justify={"space-between"}>
+            <HStack gap={0}>
               <Btn
                 iconButton
+                clicky={false}
                 size={"xs"}
-                variant="ghost"
-                onClick={handleMute}
                 colorPalette={"light"}
+                variant="ghost"
+                onClick={handleSeekBackward}
               >
                 <Icon>
-                  {muted || volume === 0 ? <IconVolumeOff /> : <IconVolume />}
+                  <IconRewindBackward5 />
                 </Icon>
               </Btn>
 
-              <Slider.Root
-                w="60px"
-                min={0}
-                max={100}
-                step={1}
-                size={"sm"}
+              <Btn
+                iconButton
+                clicky={false}
+                size={"xs"}
                 colorPalette={"light"}
-                value={[volume]}
-                onValueChange={handleVolume}
+                variant="ghost"
+                onClick={handleSeekForward}
               >
-                <Slider.Control>
-                  <Slider.Track bg={"dark"}>
-                    <Slider.Range />
-                  </Slider.Track>
-                  <Slider.Thumbs w={"10px"} h={"10px"} bg={"dark"} />
-                </Slider.Control>
-              </Slider.Root>
+                <Icon>
+                  <IconRewindForward5 />
+                </Icon>
+              </Btn>
             </HStack>
 
-            {/* Fullscreen */}
-            <Btn
-              iconButton
-              size={"xs"}
-              colorPalette={"light"}
-              variant="ghost"
-              onClick={() => toggleFullscreen(videoRef.current)}
-            >
-              <IconMaximize size={18} />
-            </Btn>
+            <HStack>
+              {/* Volume */}
+              <HStack>
+                <Btn
+                  iconButton
+                  clicky={false}
+                  size={"xs"}
+                  variant="ghost"
+                  onClick={handleMute}
+                  colorPalette={"light"}
+                >
+                  <Icon>
+                    {muted || volume === 0 ? <IconVolumeOff /> : <IconVolume />}
+                  </Icon>
+                </Btn>
+
+                <Slider.Root
+                  w="60px"
+                  min={0}
+                  max={100}
+                  step={1}
+                  size={"sm"}
+                  colorPalette={"light"}
+                  value={[volume]}
+                  onValueChange={handleVolume}
+                >
+                  <Slider.Control>
+                    <Slider.Track bg={"dark"}>
+                      <Slider.Range />
+                    </Slider.Track>
+                    <Slider.Thumbs w={"10px"} h={"10px"} bg={"dark"} />
+                  </Slider.Control>
+                </Slider.Root>
+              </HStack>
+
+              {/* Fullscreen */}
+              <Btn
+                iconButton
+                clicky={false}
+                size={"xs"}
+                colorPalette={"light"}
+                variant="ghost"
+                onClick={() => toggleFullscreen(videoContainerRef.current)}
+              >
+                <IconMaximize size={18} />
+              </Btn>
+            </HStack>
           </HStack>
-        </HStack>
+        </Stack>
       </CContainer>
     </CContainer>
   );
