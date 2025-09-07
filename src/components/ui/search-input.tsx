@@ -64,7 +64,6 @@ export default function SearchInput(props: Props__SearchInput) {
               ml={
                 inputProps?.size === "xs" || inputProps?.size === "sm" ? -1 : ""
               }
-              mb={"2px"}
               boxSize={5}
               color={"fg.subtle"}
               {...iconProps}
