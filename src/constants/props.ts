@@ -1,5 +1,8 @@
 import { BtnProps } from "@/components/ui/btn";
-import { Interface__SelectOption } from "@/constants/interfaces";
+import {
+  Interface__SelectOption,
+  Interface__TableData,
+} from "@/constants/interfaces";
 import {
   BoxProps,
   ButtonProps,
@@ -15,8 +18,12 @@ import { Type__DisclosureSizes, Type__Period } from "./types";
 import { TextareaProps } from "node_modules/@chakra-ui/react/dist/types/components/editable/namespace";
 
 export interface Props__DataTable extends StackProps {
-  ths?: any[];
-  tds?: any[];
+  tableData?: Interface__TableData;
+}
+export interface Props_RowOption {
+  rowData?: any;
+  rowOptions?: Interface__TableData["rowOptions"];
+  tableRef: any;
 }
 
 export interface Props__Logo {

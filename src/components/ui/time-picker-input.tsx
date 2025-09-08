@@ -273,7 +273,7 @@ const TimePickerInput = (props: Props__TimePicker) => {
                       selected ? String(hours).padStart(2, "0") : "--"
                     }
                     fontSize={"64px !important"}
-                    fontWeight={600}
+                    fontWeight={"medium"}
                     h={"64px"}
                     textAlign={"center"}
                     border={"none !important"}
@@ -342,7 +342,7 @@ const TimePickerInput = (props: Props__TimePicker) => {
                       selected ? String(minutes).padStart(2, "0") : "--"
                     }
                     fontSize={"64px !important"}
-                    fontWeight={600}
+                    fontWeight={"medium"}
                     h={"64px"}
                     textAlign={"center"}
                     border={"none !important"}
@@ -413,7 +413,7 @@ const TimePickerInput = (props: Props__TimePicker) => {
                           selected ? String(seconds).padStart(2, "0") : "--"
                         }
                         fontSize={"64px !important"}
-                        fontWeight={600}
+                        fontWeight={"medium"}
                         h={"64px"}
                         textAlign={"center"}
                         border={"none !important"}

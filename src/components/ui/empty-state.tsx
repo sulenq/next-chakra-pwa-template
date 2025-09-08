@@ -19,7 +19,7 @@ export const EmptyState = forwardRef<HTMLDivElement, EmptyStateProps>(
           )}
           <VStack textAlign="center">
             {title && (
-              <P fontSize={"lg"} fontWeight={"semibold"}>
+              <P fontSize={"lg"} fontWeight={"medium"}>
                 {title}
               </P>
             )}

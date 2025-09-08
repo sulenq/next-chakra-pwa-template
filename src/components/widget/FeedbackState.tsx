@@ -25,7 +25,7 @@ const FeedbackState = (props: Props) => {
       </Icon>
 
       {titleString && (
-        <P textAlign={"center"} fontSize={15} fontWeight={"semibold"}>
+        <P textAlign={"center"} fontSize={15} fontWeight={"medium"}>
           {title}
         </P>
       )}

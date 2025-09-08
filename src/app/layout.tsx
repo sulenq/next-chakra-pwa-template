@@ -3,6 +3,7 @@ import { Toaster } from "@/components/ui/toaster";
 import "./globals.css";
 import ClientOnlyApp from "@/components/widget/ClientOnlyApp";
 import { Metadata } from "next";
+import { GeistSans } from "geist/font/sans";
 
 interface Props {
   children: React.ReactNode;
@@ -18,7 +19,7 @@ export default function RootLayout(props: Props) {
   const { children } = props;
 
   return (
-    <html suppressHydrationWarning>
+    <html suppressHydrationWarning className={GeistSans.className}>
       <body>
         <Provider>
           <Toaster />

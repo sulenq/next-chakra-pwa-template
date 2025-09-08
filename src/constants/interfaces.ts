@@ -1,21 +1,66 @@
+import { BtnProps } from "@/components/ui/btn";
 import {
   BoxProps,
   ButtonProps,
-  SimpleGridProps,
+  MenuItemProps,
   StackProps,
   TableCellProps,
   TableColumnHeaderProps,
-  TableRowProps,
 } from "@chakra-ui/react";
 import { AxiosRequestConfig, AxiosResponse } from "axios";
-import { Dispatch } from "react";
 import {
   Type__DateRange,
   Type__DateRangePresets,
   Type__DisclosureSizes,
-  Type__TableOptions,
   Type__TimeRange,
 } from "./types";
+import { Dispatch } from "react";
+
+// Data Table
+export interface Interface__FormattedTableHeader {
+  th: string;
+  columnKey?: string; // unused yet
+  sortable?: boolean;
+  tableColumnHeaderProps?: TableColumnHeaderProps;
+  wrapperProps?: StackProps;
+}
+export interface Interface__FormattedTableBody {
+  id: number;
+  columnsFormat: {
+    td: any;
+    value: any;
+    columnKey?: string; // unused yet
+    dataType?: string; // "string" | "number" | "date" | "time" |
+    tableCellProps?: TableCellProps;
+    wrapperProps?: StackProps;
+  }[];
+}
+export interface Interface__TableOption {
+  label?: string;
+  icon?: any;
+  onClick?: (data: any) => void;
+  confirmation?: (dataParams: any) => {
+    id: string;
+    title: string;
+    description: string;
+    confirmLabel: string;
+    onConfrim: () => void;
+    confirmButtonProps?: BtnProps;
+  };
+  menuItemProps?: MenuItemProps;
+  ovveride?: any;
+}
+export interface Interface__TableData {
+  ths?: Interface__FormattedTableHeader[];
+  tds?: Interface__FormattedTableBody[];
+  rowOptions?: Interface__TableOption[];
+  batchOptions?: Interface__TableOption[];
+  initialSortOrder?: "asc" | "desc";
+  page?: number;
+  setPage?: Dispatch<number>;
+  limit?: number;
+  setLimit?: Dispatch<number>;
+}
 
 // HTTP
 export interface Interface__RequestState<T = any> {
@@ -85,76 +130,6 @@ export interface Interface__TimeRangePicker extends ButtonProps {
   required?: boolean;
   invalid?: boolean;
   disclosureSize?: Type__DisclosureSizes;
-}
-
-// Table Component Input
-export interface Interface__FormattedTableHeader {
-  th: string;
-  columnKey?: string; // unused yet
-  sortable?: boolean;
-  tableColumnHeaderProps?: TableColumnHeaderProps;
-  wrapperProps?: StackProps;
-}
-export interface Interface__FormattedTableBody {
-  id: number;
-  columnsFormat: {
-    td: any;
-    value: any;
-    columnKey?: string; // unused yet
-    dataType?: string; // "string" | "number" | "date" | "time" |
-    original_data?: any;
-    tableCellProps?: TableCellProps;
-    wrapperProps?: StackProps;
-  }[];
-}
-export interface Interface__TableComponent extends StackProps {
-  ths: Interface__FormattedTableHeader[];
-  tds: Interface__FormattedTableBody[];
-  originalData: any;
-  rowClick?: (rowData: any) => void;
-  columnsConfig?: number[];
-  batchOptions?: any[];
-  rowOptions?: any[];
-  initialSortOrder?: "asc" | "desc";
-  initialSortColumnIndex?: number;
-  trBodyProps?: TableRowProps;
-  footerContent?: any;
-  initialLimit?: number;
-  initialPage?: number;
-  pagination?: any;
-  pageControl?: number;
-  setPageControl?: Dispatch<number>;
-  limitOptions?: number[];
-  limitControl?: number;
-  setLimitControl?: Dispatch<number>;
-  footerContainerProps?: SimpleGridProps;
-}
-export interface Interface__RowOptions {
-  rowData: any;
-  rowOptions: Type__TableOptions;
-  tableRef: any;
-}
-export interface Interface__BatchOptions {
-  selectedRows: number[];
-  batchOptions: Type__TableOptions;
-  selectAllRows: boolean;
-  handleSelectAllRows: (isChecked: boolean) => void;
-  tableRef: any;
-}
-export interface Interface__TableFooterNote {
-  footerContent?: any;
-}
-export interface Interface__LimitControl extends StackProps {
-  initialLimit: number;
-  limitControl?: number;
-  setLimitControl?: Dispatch<number>;
-  limitOptions?: number[];
-}
-export interface Interface__PageControl extends StackProps {
-  initialPage?: number;
-  pagination?: any;
-  pageControl?: number;
-  setPageControl?: Dispatch<number>;
 }
 
 // Divider

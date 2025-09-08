@@ -19,6 +19,7 @@
     "axios": "^1.11.0",
     "date-fns": "2.30.0",
     "formik": "^2.4.6",
+    "geist": "^1.5.1",
     "html-react-parser": "^5.2.6",
     "jszip": "^3.10.1",
     "moment-timezone": "^0.6.0",

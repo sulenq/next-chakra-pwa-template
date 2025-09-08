@@ -183,7 +183,7 @@ const DatePicker = (props: Props__DatePicker) => {
         mb={2}
       >
         {WEEKDAYS.map((day, i) => (
-          <P key={i} fontWeight={"semibold"} textAlign={"center"}>
+          <P key={i} fontWeight={"medium"} textAlign={"center"}>
             {day.substring(0, 2)}
           </P>
         ))}
@@ -284,7 +284,7 @@ const SelectedDateList = (props: Props__SelectedDateList) => {
       >
         <P
           textAlign={"center"}
-          fontWeight={"semibold"}
+          fontWeight={"medium"}
           maxW={"calc(100% - 16px)"}
           mx={"auto"}
           truncate

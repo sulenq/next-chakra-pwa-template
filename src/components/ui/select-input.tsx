@@ -142,18 +142,10 @@ const SelectOptions = (props: Props__SelectOptions) => {
                   <HStack w={"full"} align={"start"} justify={"space-between"}>
                     <P textAlign={"left"}>{o.label}</P>
 
-                    {isActive && !multiple && (
+                    {isActive && (
                       <Icon color={themeConfig.primaryColor} boxSize={5}>
                         <IconCheck />
                       </Icon>
-                    )}
-
-                    {multiple && (
-                      <Checkbox
-                        checked={isActive}
-                        colorPalette={themeConfig.colorPalette}
-                        size={"md"}
-                      />
                     )}
                   </HStack>
                 </Btn>

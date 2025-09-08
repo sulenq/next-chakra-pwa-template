@@ -91,8 +91,8 @@ const DemoIndexRoute = () => {
     },
   });
   const tableData = {
-    ths: [{}],
-    tds: [],
+    ths: [],
+    // tds: [{}],
   };
 
   return (
@@ -284,7 +284,7 @@ const DemoIndexRoute = () => {
         </CContainer>
       </SimpleGrid>
 
-      <DataTable ths={tableData.ths} tds={tableData.tds} />
+      <DataTable tableData={tableData} />
     </CContainer>
   );
 };

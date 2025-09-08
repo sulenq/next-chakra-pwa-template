@@ -57,7 +57,7 @@ export const LangMenu = ({ ...props }: Props) => {
                     key={i}
                     value={item.key}
                     onClick={() => setLang(item.key as any)}
-                    fontWeight={active ? "semibold" : "normal"}
+                    fontWeight={active ? "medium" : "normal"}
                   >
                     {item.label}
 

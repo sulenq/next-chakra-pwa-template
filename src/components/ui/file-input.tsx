@@ -53,7 +53,7 @@ const FileInput = (props: Props__FileInput) => {
   const resolvedDescription = singleFileInputted
     ? formatBytes(singleFile?.size)
     : description ||
-      `up to ${maxFileSize} MB, max ${maxFiles || 1} file${
+      `up to ${maxFileSize} mB, max ${maxFiles || 1} file${
         maxFiles! > 1 ? "s" : ""
       } ${accept ? `(${accept})` : ""}`;
 

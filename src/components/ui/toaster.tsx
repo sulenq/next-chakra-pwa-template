@@ -131,9 +131,7 @@ export const Toaster = () => {
 
               <Stack gap="1" flex="1" maxWidth="100%" ml={1}>
                 {toast.title && (
-                  <Toast.Title fontWeight={"semibold"}>
-                    {toast.title}
-                  </Toast.Title>
+                  <Toast.Title fontWeight={"medium"}>{toast.title}</Toast.Title>
                 )}
                 {toast.description && (
                   <Toast.Description>{toast.description}</Toast.Description>
