@@ -68,7 +68,7 @@ export const Btn = forwardRef<HTMLButtonElement, BtnProps>((props, ref) => {
     <Button
       ref={ref}
       className={resolvedClassName}
-      fontWeight="semibold"
+      fontWeight="medium"
       size={size || (MAIN_BUTTON_SIZE as any)}
       borderRadius={themeConfig.radii.component}
       _active={{ bg: activeBg }}

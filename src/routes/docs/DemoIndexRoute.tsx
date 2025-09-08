@@ -21,7 +21,7 @@ import { toaster } from "@/components/ui/toaster";
 import SelectPropertyByLayerId from "@/components/widget/SelectPropertyByLayerId";
 import VideoPlayer from "@/components/widget/VideoPlayer";
 import { OPTIONS_RELIGION } from "@/constants/selectOptions";
-import { HStack } from "@chakra-ui/react";
+import { HStack, SimpleGrid } from "@chakra-ui/react";
 import { useFormik } from "formik";
 import * as yup from "yup";
 
@@ -83,7 +83,7 @@ const DocsIndexRoute = () => {
       select: yup.array().required(),
       multiSelect: yup.array().required(),
       file: yup.array().required(),
-      richEditor: yup.array().required(),
+      richEditor: yup.string(),
     }),
     onSubmit: (values) => {
       console.log(values);
@@ -91,7 +91,7 @@ const DocsIndexRoute = () => {
   });
 
   return (
-    <CContainer p={4} gap={8} maxW={"720px"} mx={"auto"}>
+    <CContainer p={4} gap={8} mx={"auto"}>
       <HStack justify={"space-between"}>
         <P fontSize={"xl"} fontWeight={"bold"}>
           Docs
@@ -100,158 +100,168 @@ const DocsIndexRoute = () => {
         <ColorModeButton />
       </HStack>
 
-      <HStack wrap={"wrap"}>
-        {toasters.map((toast) => (
-          <Btn
-            key={toast.label}
-            onClick={() => {
-              toaster.create({
-                type: toast.type,
-                title: toast.label,
-                description: toast.description,
-                action: {
-                  label: "Close",
-                  onClick: () => {
-                    console.log("action");
-                  },
-                },
-              });
-            }}
-            variant={"outline"}
-          >
-            {toast.label}
-          </Btn>
-        ))}
-      </HStack>
-
-      <form id="test" onSubmit={formik.handleSubmit}>
+      <SimpleGrid columns={[1, null, 2]} gap={8}>
         <CContainer gap={4}>
-          <Field invalid={!!formik.errors.string}>
-            <StringInput
-              inputValue={formik.values.string}
-              onChange={(input) => {
-                formik.setFieldValue("string", input);
-              }}
-            />
-          </Field>
+          <HStack wrap={"wrap"}>
+            {toasters.map((toast) => (
+              <Btn
+                key={toast.label}
+                onClick={() => {
+                  toaster.create({
+                    type: toast.type,
+                    title: toast.label,
+                    description: toast.description,
+                    action: {
+                      label: "Close",
+                      onClick: () => {
+                        console.log("action");
+                      },
+                    },
+                  });
+                }}
+                variant={"outline"}
+              >
+                {toast.label}
+              </Btn>
+            ))}
+          </HStack>
 
-          <Field invalid={!!formik.errors.password}>
-            <PasswordInput
-              inputValue={formik.values.password}
-              onChange={(input) => {
-                formik.setFieldValue("password", input);
-              }}
-            />
-          </Field>
+          <form id="test" onSubmit={formik.handleSubmit}>
+            <CContainer gap={4}>
+              <Field invalid={!!formik.errors.string}>
+                <StringInput
+                  inputValue={formik.values.string}
+                  onChange={(input) => {
+                    formik.setFieldValue("string", input);
+                  }}
+                />
+              </Field>
 
-          <Field invalid={!!formik.errors.search}>
-            <SearchInput
-              inputValue={formik.values.search}
-              onChange={(input) => {
-                formik.setFieldValue("search", input);
-              }}
-            />
-          </Field>
+              <Field invalid={!!formik.errors.password}>
+                <PasswordInput
+                  inputValue={formik.values.password}
+                  onChange={(input) => {
+                    formik.setFieldValue("password", input);
+                  }}
+                />
+              </Field>
 
-          <Field invalid={!!formik.errors.textarea}>
-            <Textarea
-              inputValue={formik.values.textarea}
-              onChange={(input) => {
-                formik.setFieldValue("textarea", input);
-              }}
-            />
-          </Field>
+              <Field invalid={!!formik.errors.search}>
+                <SearchInput
+                  inputValue={formik.values.search}
+                  onChange={(input) => {
+                    formik.setFieldValue("search", input);
+                  }}
+                />
+              </Field>
 
-          <Field invalid={!!formik.errors.number}>
-            <NumInput
-              inputValue={formik.values.number}
-              onChange={(input) => {
-                formik.setFieldValue("number", input);
-              }}
-            />
-          </Field>
+              <Field invalid={!!formik.errors.textarea}>
+                <Textarea
+                  inputValue={formik.values.textarea}
+                  onChange={(input) => {
+                    formik.setFieldValue("textarea", input);
+                  }}
+                />
+              </Field>
 
-          <Field invalid={!!formik.errors.period}>
-            <PeriodPickerInput
-              inputValue={formik.values.period}
-              onConfirm={(input) => {
-                formik.setFieldValue("period", input);
-              }}
-            />
-          </Field>
+              <Field invalid={!!formik.errors.number}>
+                <NumInput
+                  inputValue={formik.values.number}
+                  onChange={(input) => {
+                    formik.setFieldValue("number", input);
+                  }}
+                />
+              </Field>
 
-          <Field invalid={!!formik.errors.date}>
-            <DatePickerInput
-              inputValue={formik.values.date}
-              onConfirm={(input) => {
-                formik.setFieldValue("date", input);
-              }}
-            />
-          </Field>
+              <Field invalid={!!formik.errors.period}>
+                <PeriodPickerInput
+                  inputValue={formik.values.period}
+                  onConfirm={(input) => {
+                    formik.setFieldValue("period", input);
+                  }}
+                />
+              </Field>
 
-          <Field invalid={!!formik.errors.time}>
-            <TimePickerInput
-              inputValue={formik.values.time}
-              onConfirm={(input) => {
-                formik.setFieldValue("time", input);
-              }}
-            />
-          </Field>
+              <Field invalid={!!formik.errors.date}>
+                <DatePickerInput
+                  inputValue={formik.values.date}
+                  onConfirm={(input) => {
+                    formik.setFieldValue("date", input);
+                  }}
+                />
+              </Field>
 
-          <Field invalid={!!formik.errors.dateTime}>
-            <DateTimePickerInput
-              inputValue={formik.values.dateTime}
-              onChange={(input) => {
-                formik.setFieldValue("dateTime", input);
-              }}
-            />
-          </Field>
+              <Field invalid={!!formik.errors.time}>
+                <TimePickerInput
+                  inputValue={formik.values.time}
+                  onConfirm={(input) => {
+                    formik.setFieldValue("time", input);
+                  }}
+                />
+              </Field>
 
-          <Field invalid={!!formik.errors.select}>
-            <SelectInput
-              title={"Agama"}
-              inputValue={formik.values.select}
-              onConfirm={(input) => {
-                formik.setFieldValue("select", input);
-              }}
-              selectOptions={OPTIONS_RELIGION}
-            />
-          </Field>
+              <Field invalid={!!formik.errors.dateTime}>
+                <DateTimePickerInput
+                  inputValue={formik.values.dateTime}
+                  onChange={(input) => {
+                    formik.setFieldValue("dateTime", input);
+                  }}
+                />
+              </Field>
 
-          <Field invalid={!!formik.errors.multiSelect}>
-            <SelectInput
-              id="select-multiple"
-              title={"Agama"}
-              inputValue={formik.values.multiSelect}
-              onConfirm={(input) => {
-                formik.setFieldValue("multiSelect", input);
-              }}
-              selectOptions={OPTIONS_RELIGION}
-              multiple
-            />
-          </Field>
+              <Field invalid={!!formik.errors.select}>
+                <SelectInput
+                  title={"Agama"}
+                  inputValue={formik.values.select}
+                  onConfirm={(input) => {
+                    formik.setFieldValue("select", input);
+                  }}
+                  selectOptions={OPTIONS_RELIGION}
+                />
+              </Field>
 
-          <Field invalid={!!formik.errors.select}>
-            <SelectPropertyByLayerId
-              layerId={1}
-              id="select-props-by-layer-id"
-              inputValue={formik.values.select}
-              onChange={(input) => {
-                formik.setFieldValue("select", input);
-              }}
-            />
-          </Field>
+              <Field invalid={!!formik.errors.multiSelect}>
+                <SelectInput
+                  id="select-multiple"
+                  title={"Agama"}
+                  inputValue={formik.values.multiSelect}
+                  onConfirm={(input) => {
+                    formik.setFieldValue("multiSelect", input);
+                  }}
+                  selectOptions={OPTIONS_RELIGION}
+                  multiple
+                />
+              </Field>
 
-          <Field invalid={!!formik.errors.file}>
-            <FileInput
-              dropzone
-              inputValue={formik.values.file}
-              onChange={(input) => {
-                formik.setFieldValue("file", input);
-              }}
-            />
-          </Field>
+              <Field invalid={!!formik.errors.select}>
+                <SelectPropertyByLayerId
+                  layerId={1}
+                  id="select-props-by-layer-id"
+                  inputValue={formik.values.select}
+                  onChange={(input) => {
+                    formik.setFieldValue("select", input);
+                  }}
+                />
+              </Field>
 
+              <Field invalid={!!formik.errors.file}>
+                <FileInput
+                  dropzone
+                  inputValue={formik.values.file}
+                  onChange={(input) => {
+                    formik.setFieldValue("file", input);
+                  }}
+                />
+              </Field>
+            </CContainer>
+          </form>
+
+          <Btn type={"submit"} form="test">
+            Submit
+          </Btn>
+        </CContainer>
+
+        <CContainer gap={4}>
           <Field invalid={!!formik.errors.richEditor}>
             <RichEditor
               inputValue={formik.values.richEditor}
@@ -260,18 +270,14 @@ const DocsIndexRoute = () => {
               }}
             />
           </Field>
+
+          <VideoPlayer
+            src={
+              "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+            }
+          />
         </CContainer>
-      </form>
-
-      <VideoPlayer
-        src={
-          "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
-        }
-      />
-
-      <Btn type={"submit"} form="test">
-        Submit
-      </Btn>
+      </SimpleGrid>
     </CContainer>
   );
 };
