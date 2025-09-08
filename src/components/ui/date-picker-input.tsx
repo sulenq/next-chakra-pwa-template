@@ -94,7 +94,7 @@ const PeriodPicker = (props: any) => {
         variant={"outline"}
         bg={"transparent"}
         onClick={() => cycleMonth("decrement")}
-        size={"md"}
+        size={"sm"}
       >
         <Icon boxSize={4}>
           <IconCaretLeftFilled />
@@ -103,7 +103,7 @@ const PeriodPicker = (props: any) => {
 
       <PeriodPickerInput
         flex={1}
-        size={"md"}
+        size={"sm"}
         justifyContent="center"
         inputValue={period}
         invalid={false}
@@ -118,7 +118,7 @@ const PeriodPicker = (props: any) => {
         clicky={false}
         variant={"outline"}
         onClick={() => cycleMonth("increment")}
-        size={"md"}
+        size={"sm"}
       >
         <Icon boxSize={4}>
           <IconCaretRightFilled />
@@ -277,7 +277,7 @@ const SelectedDateList = (props: Props__SelectedDateList) => {
         mt={-2}
         borderColor={"border.muted"}
         bg={"bg.muted"}
-        p={3}
+        p={2}
         borderRadius={6}
         cursor={"pointer"}
         onClick={onOpen}
