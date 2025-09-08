@@ -88,6 +88,7 @@ export default function Select(props: Props__Select) {
                 item={opt}
                 key={opt.value}
                 rounded={themeConfig?.radii.component}
+                color={"ibody"}
               >
                 {opt.label}
                 <ChakraSelect.ItemIndicator />

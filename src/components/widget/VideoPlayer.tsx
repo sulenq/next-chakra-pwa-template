@@ -340,7 +340,6 @@ export default function VideoPlayer(props: Props__VideoPlayer) {
               selectOptions={rates}
               inputValue={`${playbackRate}`}
               onValueChange={(val) => handleRate(Number(val))}
-              color={"light"}
               w={"68px"}
               size={"md"}
               fontSize={"xs"}
