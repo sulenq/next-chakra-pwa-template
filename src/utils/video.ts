@@ -84,3 +84,32 @@ export const isVideoCompleted = (
   if (!video || !video.duration || isNaN(video.duration)) return false;
   return video.currentTime / video.duration >= threshold;
 };
+
+export const getVideoThumbnail = (
+  videoSrc: string,
+  seekTime = 1
+): Promise<string> => {
+  return new Promise((resolve, reject) => {
+    const video = document.createElement("video");
+    video.src = videoSrc;
+    video.crossOrigin = "anonymous";
+
+    video.addEventListener("loadeddata", () => {
+      video.currentTime = seekTime;
+    });
+
+    video.addEventListener("seeked", () => {
+      const canvas = document.createElement("canvas");
+      canvas.width = video.videoWidth;
+      canvas.height = video.videoHeight;
+      const ctx = canvas.getContext("2d");
+      if (!ctx) return reject("Canvas context error");
+
+      ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+      const imgData = canvas.toDataURL("image/jpeg");
+      resolve(imgData);
+    });
+
+    video.addEventListener("error", (e) => reject(e));
+  });
+};

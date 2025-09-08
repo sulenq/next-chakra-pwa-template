@@ -2,11 +2,14 @@
 
 import { Btn } from "@/components/ui/btn";
 import { CContainer } from "@/components/ui/c-container";
+import { P } from "@/components/ui/p";
 import Select from "@/components/ui/Select";
+import { Props__VideoPlayer } from "@/constants/props";
 import useClickOutside from "@/hooks/useClickOutside";
 import {
   getVideoCurrentTime,
   getVideoDuration,
+  getVideoThumbnail,
   loadProgress,
   pauseVideo,
   playVideo,
@@ -22,31 +25,27 @@ import {
   IconMaximize,
   IconPlayerPauseFilled,
   IconPlayerPlayFilled,
-  IconRewindBackward5,
-  IconRewindForward5,
+  IconPlayerTrackNextFilled,
+  IconPlayerTrackPrevFilled,
   IconVolume,
   IconVolumeOff,
 } from "@tabler/icons-react";
 import { useEffect, useRef, useState } from "react";
 
-type Props = {
-  src: string;
-  width?: number;
-  height?: number;
-  storageKey?: string;
-};
-
 const VideoElement = chakra("video");
 
-export default function VideoPlayer(props: Props) {
+export default function VideoPlayer(props: Props__VideoPlayer) {
   // Props
-  const { src, storageKey = "default", ...restProps } = props;
+  const { id, thumbnail, src, ...restProps } = props;
 
   // Refs
   const videoContainerRef = useRef<HTMLDivElement | null>(null);
   const videoRef = useRef<HTMLVideoElement | null>(null);
 
   // States
+  const [resolvedThumbnail, setResolvedThumbnail] = useState<string>(
+    thumbnail || ""
+  );
   const [showControls, setShowControls] = useState<boolean>(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const [progress, setProgress] = useState(0);
@@ -61,14 +60,25 @@ export default function VideoPlayer(props: Props) {
     { label: "2x", value: "2" },
   ];
 
+  // resolved thumbnail
+  useEffect(() => {
+    if (!thumbnail) {
+      const getThumbnail = async () => {
+        const fethcedThumbnail = await getVideoThumbnail(src || "", 1);
+        setResolvedThumbnail(fethcedThumbnail);
+      };
+      getThumbnail();
+    }
+  }, [thumbnail]);
+
   // handle show controls
   useClickOutside([videoContainerRef], () => setShowControls(false));
 
   // load first progress
   useEffect(() => {
-    const saved = loadProgress(storageKey);
+    const saved = loadProgress(`video-progress:${id}`);
     seekVideo(videoRef.current, saved);
-  }, [storageKey]);
+  }, [id]);
 
   // update duration when metadata loaded
   useEffect(() => {
@@ -85,12 +95,21 @@ export default function VideoPlayer(props: Props) {
       if (videoRef.current) {
         const current = getVideoCurrentTime(videoRef.current);
         setProgress(current);
-        saveProgress(storageKey, current);
+        saveProgress(`video-progress:${id}`, current);
       }
     }, 1000);
     return () => clearInterval(interval);
-  }, [storageKey]);
+  }, [id]);
 
+  // Utils
+  const formatTime = (s: number) => {
+    if (!s) return "0:00";
+    const m = Math.floor(s / 60);
+    const sec = Math.floor(s % 60)
+      .toString()
+      .padStart(2, "0");
+    return `${m}:${sec}`;
+  };
   function handlePlayPause() {
     const video = videoRef.current;
     if (!video) return;
@@ -149,13 +168,10 @@ export default function VideoPlayer(props: Props) {
     setPlaybackRate(video, val);
     setRate(val);
   }
-  function formatTime(s: number) {
-    if (!s) return "0:00";
-    const m = Math.floor(s / 60);
-    const sec = Math.floor(s % 60)
-      .toString()
-      .padStart(2, "0");
-    return `${m}:${sec}`;
+  function handleFullscreen() {
+    const video = videoContainerRef.current;
+    if (!video) return;
+    toggleFullscreen(video);
   }
 
   // keyboard controls
@@ -168,7 +184,7 @@ export default function VideoPlayer(props: Props) {
 
       switch (e.code) {
         case "Space":
-          e.preventDefault(); // biar page ga scroll
+          e.preventDefault();
           handlePlayPause();
           break;
         case "ArrowRight":
@@ -184,9 +200,9 @@ export default function VideoPlayer(props: Props) {
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [progress, isPlaying]); // dependensi biar update saat progress/playing state berubah
+  }, [progress, isPlaying]);
 
-  // inside VideoPlayer component
+  // handle show controls
   useEffect(() => {
     const container = videoContainerRef.current;
     if (!container) return;
@@ -194,7 +210,6 @@ export default function VideoPlayer(props: Props) {
     let timer: NodeJS.Timeout;
 
     const handleMouseMove = () => {
-      setShowControls(true);
       container.style.cursor = "default";
 
       // reset timer
@@ -205,21 +220,23 @@ export default function VideoPlayer(props: Props) {
       }, 3000);
     };
 
-    const handleMouseLeave = () => {
-      // mouse keluar container, showControls normal behavior
-      setShowControls(false);
-      container.style.cursor = "default";
-      if (timer) clearTimeout(timer);
-    };
-
     container.addEventListener("mousemove", handleMouseMove);
-    container.addEventListener("mouseleave", handleMouseLeave);
 
     return () => {
       container.removeEventListener("mousemove", handleMouseMove);
-      container.removeEventListener("mouseleave", handleMouseLeave);
       if (timer) clearTimeout(timer);
     };
+  }, []);
+
+  // handle video ended
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const handleEnded = () => setIsPlaying(false);
+
+    video.addEventListener("ended", handleEnded);
+    return () => video.removeEventListener("ended", handleEnded);
   }, []);
 
   return (
@@ -242,9 +259,17 @@ export default function VideoPlayer(props: Props) {
         as="video"
         ref={videoRef}
         src={src}
+        poster={resolvedThumbnail}
         w="full"
         shadow="md"
-        onClick={handlePlayPause}
+        onClick={() => {
+          if (showControls) {
+            handlePlayPause();
+          } else {
+            setShowControls(true);
+          }
+        }}
+        onDoubleClick={handleFullscreen}
       />
 
       <CContainer
@@ -252,7 +277,7 @@ export default function VideoPlayer(props: Props) {
         className="dsb"
         pos={"absolute"}
         left={0}
-        transition={"200ms"}
+        transition={"500ms"}
         bottom={0}
         visibility={showControls ? "visible" : "hidden"}
         opacity={showControls ? 1 : 0}
@@ -292,9 +317,9 @@ export default function VideoPlayer(props: Props) {
               <Btn
                 iconButton
                 clicky={false}
-                size={"xs"}
+                size={"md"}
                 colorPalette={"light"}
-                variant="ghost"
+                variant={"plain"}
                 onClick={handlePlayPause}
               >
                 <Icon>
@@ -314,42 +339,49 @@ export default function VideoPlayer(props: Props) {
 
             {/* Playback Rate */}
             <Select
+              portalled={false}
               selectOptions={rates}
               inputValue={`${playbackRate}`}
               onValueChange={(val) => handleRate(Number(val))}
               color={"light"}
               w={"68px"}
-              size="xs"
+              size={"md"}
               fontSize={"xs"}
+              _hover={{
+                bg: "transparent !important",
+              }}
             />
           </HStack>
 
           <HStack justify={"space-between"}>
+            {/* Forward Backward */}
             <HStack gap={0}>
               <Btn
-                iconButton
                 clicky={false}
-                size={"xs"}
+                size={"md"}
                 colorPalette={"light"}
-                variant="ghost"
+                variant={"plain"}
                 onClick={handleSeekBackward}
+                px={2}
               >
+                <P fontSize={"xs"}>5</P>
                 <Icon>
-                  <IconRewindBackward5 />
+                  <IconPlayerTrackPrevFilled />
                 </Icon>
               </Btn>
 
               <Btn
-                iconButton
                 clicky={false}
-                size={"xs"}
+                size={"md"}
                 colorPalette={"light"}
-                variant="ghost"
+                variant={"plain"}
                 onClick={handleSeekForward}
+                px={2}
               >
                 <Icon>
-                  <IconRewindForward5 />
+                  <IconPlayerTrackNextFilled />
                 </Icon>
+                <P fontSize={"xs"}>5</P>
               </Btn>
             </HStack>
 
@@ -359,8 +391,8 @@ export default function VideoPlayer(props: Props) {
                 <Btn
                   iconButton
                   clicky={false}
-                  size={"xs"}
-                  variant="ghost"
+                  size={"md"}
+                  variant={"plain"}
                   onClick={handleMute}
                   colorPalette={"light"}
                 >
@@ -392,10 +424,10 @@ export default function VideoPlayer(props: Props) {
               <Btn
                 iconButton
                 clicky={false}
-                size={"xs"}
+                size={"md"}
                 colorPalette={"light"}
-                variant="ghost"
-                onClick={() => toggleFullscreen(videoContainerRef.current)}
+                variant={"plain"}
+                onClick={handleFullscreen}
               >
                 <IconMaximize size={18} />
               </Btn>

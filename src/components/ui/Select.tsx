@@ -19,6 +19,7 @@ interface Props__Select
   placeholder?: string;
   width?: string | number;
   size?: "xs" | "sm" | "md" | "lg";
+  portalled?: boolean;
 }
 
 export default function Select(props: Props__Select) {
@@ -30,6 +31,7 @@ export default function Select(props: Props__Select) {
     placeholder = "Select option",
     width = "150px",
     size = "sm",
+    portalled = true,
     ...restProps
   } = props;
 
@@ -62,7 +64,7 @@ export default function Select(props: Props__Select) {
         <ChakraSelect.Trigger
           border="none"
           cursor="pointer"
-          _hover={{ bg: "d2" }}
+          _hover={props?._hover || { bg: "d2" }}
         >
           <ChakraSelect.ValueText
             fontSize={props?.fontSize}
@@ -70,15 +72,16 @@ export default function Select(props: Props__Select) {
           />
         </ChakraSelect.Trigger>
         <ChakraSelect.IndicatorGroup>
-          <ChakraSelect.Indicator color={props?.color} />
+          <ChakraSelect.Indicator boxSize={5} color={props?.color} />
         </ChakraSelect.IndicatorGroup>
       </ChakraSelect.Control>
 
-      <Portal>
+      <Portal disabled={!portalled}>
         <ChakraSelect.Positioner>
           <ChakraSelect.Content
             className="ss"
             rounded={themeConfig?.radii.container}
+            minW={"80px"}
           >
             {collection.items.map((opt) => (
               <ChakraSelect.Item

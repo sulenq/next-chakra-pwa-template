@@ -263,7 +263,11 @@ const DocsIndexRoute = () => {
         </CContainer>
       </form>
 
-      <VideoPlayer src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4" />
+      <VideoPlayer
+        src={
+          "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+        }
+      />
 
       <Btn type={"submit"} form="test">
         Submit
