@@ -14,6 +14,11 @@ import { Dispatch } from "react";
 import { Type__DisclosureSizes, Type__Period } from "./types";
 import { TextareaProps } from "node_modules/@chakra-ui/react/dist/types/components/editable/namespace";
 
+export interface Props__Logo {
+  color?: string;
+  size?: number;
+}
+
 export interface Props__VideoPlayer extends StackProps {
   id?: string;
   thumbnail?: string;
