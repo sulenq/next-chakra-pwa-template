@@ -7,6 +7,7 @@ import {
   DisclosureRoot,
 } from "@/components/ui/disclosure";
 import { DisclosureHeaderContent } from "@/components/ui/disclosure-header-content";
+import { P } from "@/components/ui/p";
 import { StringInput } from "@/components/ui/string-input";
 import { Props__TimePicker } from "@/constants/props";
 import useLang from "@/context/useLang";
@@ -25,6 +26,7 @@ import {
 import {
   HStack,
   Icon,
+  Stack,
   useDisclosure,
   useFieldContext,
   VStack,
@@ -36,8 +38,6 @@ import {
 } from "@tabler/icons-react";
 import { useEffect, useRef, useState } from "react";
 import { Tooltip } from "./tooltip";
-import { CContainer } from "@/components/ui/c-container";
-import { P } from "@/components/ui/p";
 
 const DEFAULT = "00:00:00";
 
@@ -243,6 +243,7 @@ const TimePickerInput = (props: Props__TimePicker) => {
               <VStack flex={"1 1 120"} align={"stretch"} gap={0}>
                 <Btn
                   iconButton
+                  size={"sm"}
                   aria-label="add hour button"
                   variant={"outline"}
                   onClick={() => {
@@ -255,7 +256,7 @@ const TimePickerInput = (props: Props__TimePicker) => {
                   onTouchStart={() => handleHoldIncrement("hours")}
                   onTouchEnd={handleTapIncrement}
                 >
-                  <Icon fontSize={"md"}>
+                  <Icon>
                     <IconCaretUpFilled />
                   </Icon>
                 </Btn>
@@ -284,6 +285,7 @@ const TimePickerInput = (props: Props__TimePicker) => {
 
                 <Btn
                   iconButton
+                  size={"sm"}
                   aria-label="reduce hour button"
                   variant={"outline"}
                   onClick={() => {
@@ -296,7 +298,7 @@ const TimePickerInput = (props: Props__TimePicker) => {
                   onTouchStart={() => handleHoldDecrement("hours")}
                   onTouchEnd={handleTapDecrement}
                 >
-                  <Icon fontSize={"md"}>
+                  <Icon>
                     <IconCaretDownFilled />
                   </Icon>
                 </Btn>
@@ -312,6 +314,7 @@ const TimePickerInput = (props: Props__TimePicker) => {
               <VStack flex={"1 1 120"} align={"stretch"} gap={0}>
                 <Btn
                   iconButton
+                  size={"sm"}
                   aria-label="add minute button"
                   variant={"outline"}
                   onClick={() => {
@@ -324,7 +327,7 @@ const TimePickerInput = (props: Props__TimePicker) => {
                   onTouchStart={() => handleHoldIncrement("minutes")}
                   onTouchEnd={handleTapIncrement}
                 >
-                  <Icon fontSize={"md"}>
+                  <Icon>
                     <IconCaretUpFilled />
                   </Icon>
                 </Btn>
@@ -353,6 +356,7 @@ const TimePickerInput = (props: Props__TimePicker) => {
 
                 <Btn
                   iconButton
+                  size={"sm"}
                   aria-label="reduce minute button"
                   variant={"outline"}
                   onClick={() => {
@@ -365,7 +369,7 @@ const TimePickerInput = (props: Props__TimePicker) => {
                   onTouchStart={() => handleHoldDecrement("minutes")}
                   onTouchEnd={handleTapDecrement}
                 >
-                  <Icon fontSize={"md"}>
+                  <Icon>
                     <IconCaretDownFilled />
                   </Icon>
                 </Btn>
@@ -395,7 +399,7 @@ const TimePickerInput = (props: Props__TimePicker) => {
                       onTouchStart={() => handleHoldIncrement("seconds")}
                       onTouchEnd={handleTapIncrement}
                     >
-                      <Icon fontSize={"md"}>
+                      <Icon>
                         <IconCaretUpFilled />
                       </Icon>
                     </Btn>
@@ -436,7 +440,7 @@ const TimePickerInput = (props: Props__TimePicker) => {
                       onTouchStart={() => handleHoldDecrement("seconds")}
                       onTouchEnd={handleTapDecrement}
                     >
-                      <Icon fontSize={"md"}>
+                      <Icon>
                         <IconCaretDownFilled />
                       </Icon>
                     </Btn>
@@ -448,7 +452,11 @@ const TimePickerInput = (props: Props__TimePicker) => {
 
           <DisclosureFooter>
             {showTimezone && (
-              <CContainer mr={"auto"}>
+              <Stack
+                flexDir={["row", null, "column"]}
+                justify={"space-between"}
+                mr={[0, null, "auto"]}
+              >
                 <P
                   color={"fg.subtle"}
                   fontSize={"xs"}
@@ -459,7 +467,7 @@ const TimePickerInput = (props: Props__TimePicker) => {
                   fontSize={"xs"}
                   lineHeight={1.4}
                 >{`${userTz.formattedOffset}`}</P>
-              </CContainer>
+              </Stack>
             )}
 
             <Btn

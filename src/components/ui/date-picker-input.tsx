@@ -24,6 +24,7 @@ import {
   Icon,
   List,
   SimpleGrid,
+  Stack,
   useDisclosure,
   useFieldContext,
 } from "@chakra-ui/react";
@@ -487,7 +488,11 @@ export const DatePickerInput = (props: Props__DatePickerInput) => {
 
           <DisclosureFooter>
             {showTimezone && (
-              <CContainer mr={"auto"}>
+              <Stack
+                flexDir={["row", null, "column"]}
+                justify={"space-between"}
+                mr={[0, null, "auto"]}
+              >
                 <P
                   color={"fg.subtle"}
                   fontSize={"xs"}
@@ -498,7 +503,7 @@ export const DatePickerInput = (props: Props__DatePickerInput) => {
                   fontSize={"xs"}
                   lineHeight={1.4}
                 >{`${userTz.formattedOffset}`}</P>
-              </CContainer>
+              </Stack>
             )}
 
             <Btn

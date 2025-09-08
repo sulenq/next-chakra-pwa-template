@@ -13,7 +13,7 @@ import { LuCheck, LuChevronRight } from "react-icons/lu";
 
 interface MenuContentProps extends ChakraMenu.ContentProps {
   portalled?: boolean;
-  portalRef?: React.RefObject<HTMLElement>;
+  portalRef?: React.RefObject<HTMLElement | null>;
 }
 
 export const MenuContent = forwardRef<HTMLDivElement, MenuContentProps>(
@@ -131,9 +131,10 @@ export const MenuItem = forwardRef<HTMLDivElement, MenuItemProps>(
       <ChakraMenu.Item
         gap={4}
         ref={ref}
-        borderRadius={themeConfig?.radii.component}
+        py={"6px !important"}
         color={"body"}
         cursor={"pointer"}
+        borderRadius={themeConfig?.radii.component}
         _hover={{
           bg: "d2",
         }}

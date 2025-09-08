@@ -14,28 +14,28 @@ import {
   Type__DisclosureSizes,
   Type__TimeRange,
 } from "./types";
-import { Dispatch } from "react";
 
 // Data Table
 export interface Interface__FormattedTableHeader {
   th: string;
-  columnKey?: string; // unused yet
   sortable?: boolean;
-  tableColumnHeaderProps?: TableColumnHeaderProps;
+  headerProps?: TableColumnHeaderProps;
   wrapperProps?: StackProps;
 }
-export interface Interface__FormattedTableBody {
+export interface Interface__FormattedTableData {
   id: number;
-  columnsFormat: {
+  idx: number;
+  data: any;
+  columns: {
     td: any;
     value: any;
-    columnKey?: string; // unused yet
     dataType?: string; // "string" | "number" | "date" | "time" |
     tableCellProps?: TableCellProps;
     wrapperProps?: StackProps;
   }[];
 }
 export interface Interface__TableOption {
+  disabled?: boolean;
   label?: string;
   icon?: any;
   onClick?: (data: any) => void;
@@ -48,18 +48,7 @@ export interface Interface__TableOption {
     confirmButtonProps?: BtnProps;
   };
   menuItemProps?: MenuItemProps;
-  ovveride?: any;
-}
-export interface Interface__TableData {
-  ths?: Interface__FormattedTableHeader[];
-  tds?: Interface__FormattedTableBody[];
-  rowOptions?: Interface__TableOption[];
-  batchOptions?: Interface__TableOption[];
-  initialSortOrder?: "asc" | "desc";
-  page?: number;
-  setPage?: Dispatch<number>;
-  limit?: number;
-  setLimit?: Dispatch<number>;
+  override?: any;
 }
 
 // HTTP

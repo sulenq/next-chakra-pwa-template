@@ -44,7 +44,7 @@ const SelectOptions = (props: Props__SelectOptions) => {
   // States
   const [search, setSearch] = useState<string>("");
   const [selectAll, setSelectAll] = useState<boolean>(false);
-  const filteredSelectOptions = selectOptions?.filter((o) =>
+  const resolvedSelectOptions = selectOptions?.filter((o) =>
     o.label?.toLowerCase().includes(search.toLowerCase())
   );
 
@@ -56,9 +56,9 @@ const SelectOptions = (props: Props__SelectOptions) => {
 
   return (
     <CContainer {...restProps}>
-      {isEmptyArray(filteredSelectOptions) && <FeedbackNoData minH={"250px"} />}
+      {isEmptyArray(resolvedSelectOptions) && <FeedbackNoData minH={"250px"} />}
 
-      {!isEmptyArray(filteredSelectOptions) && (
+      {!isEmptyArray(resolvedSelectOptions) && (
         <>
           <CContainer
             px={4}
@@ -112,7 +112,7 @@ const SelectOptions = (props: Props__SelectOptions) => {
           )}
 
           <CContainer p={4} gap={2}>
-            {filteredSelectOptions?.map((o) => {
+            {resolvedSelectOptions?.map((o) => {
               const isActive = selected?.some((s) => s.id === o.id);
 
               return (

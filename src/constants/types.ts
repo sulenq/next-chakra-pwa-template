@@ -1,5 +1,11 @@
 import { ButtonProps, MenuItemProps } from "@chakra-ui/react";
 
+export type Type__SortHandler = (
+  aValue: any,
+  bValue: any,
+  direction: "asc" | "desc"
+) => number;
+
 export type Type__Period = {
   month: number | null; // 0 = Jan
   year: number | null;

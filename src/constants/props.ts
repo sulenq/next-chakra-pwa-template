@@ -1,7 +1,9 @@
 import { BtnProps } from "@/components/ui/btn";
 import {
+  Interface__FormattedTableData,
+  Interface__FormattedTableHeader,
   Interface__SelectOption,
-  Interface__TableData,
+  Interface__TableOption,
 } from "@/constants/interfaces";
 import {
   BoxProps,
@@ -12,18 +14,34 @@ import {
   InputGroupProps,
   InputProps,
   StackProps,
+  TableRowProps,
 } from "@chakra-ui/react";
-import { Dispatch } from "react";
-import { Type__DisclosureSizes, Type__Period } from "./types";
 import { TextareaProps } from "node_modules/@chakra-ui/react/dist/types/components/editable/namespace";
+import { Dispatch, RefObject } from "react";
+import { Type__DisclosureSizes, Type__Period } from "./types";
 
-export interface Props__DataTable extends StackProps {
-  tableData?: Interface__TableData;
+export interface Props__SortIcon extends IconProps {
+  columnIndex: number;
+  sortColumnIdx?: number;
+  direction: "asc" | "desc";
 }
-export interface Props_RowOption {
-  rowData?: any;
-  rowOptions?: Interface__TableData["rowOptions"];
-  tableRef: any;
+export interface Props__DataTable extends Omit<StackProps, "page"> {
+  trBodyProps?: TableRowProps;
+  headers?: Interface__FormattedTableHeader[];
+  rows?: Interface__FormattedTableData[];
+  rowOptions?: Interface__TableOption[];
+  batchOptions?: Interface__TableOption[];
+  initialSortColumnIndex?: number;
+  initialSortOrder?: "asc" | "desc";
+  page?: number;
+  setPage?: Dispatch<number>;
+  limit?: number;
+  setLimit?: Dispatch<number>;
+}
+export interface Props_RowOptions {
+  row?: any;
+  rowOptions?: (Interface__TableOption | "divider")[];
+  tableContainerRef?: RefObject<HTMLDivElement | null>;
 }
 
 export interface Props__Logo {
