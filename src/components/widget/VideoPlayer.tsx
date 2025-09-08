@@ -41,6 +41,7 @@ export default function VideoPlayer(props: Props__VideoPlayer) {
   // Refs
   const videoContainerRef = useRef<HTMLDivElement | null>(null);
   const videoRef = useRef<HTMLVideoElement | null>(null);
+  const timerRef = useRef<NodeJS.Timeout | null>(null);
 
   // States
   const [resolvedThumbnail, setResolvedThumbnail] = useState<string>(
@@ -59,47 +60,6 @@ export default function VideoPlayer(props: Props__VideoPlayer) {
     { label: "1.5x", value: "1.5" },
     { label: "2x", value: "2" },
   ];
-
-  // resolved thumbnail
-  useEffect(() => {
-    if (!thumbnail) {
-      const getThumbnail = async () => {
-        const fethcedThumbnail = await getVideoThumbnail(src || "", 1);
-        setResolvedThumbnail(fethcedThumbnail);
-      };
-      getThumbnail();
-    }
-  }, [thumbnail]);
-
-  // handle show controls
-  useClickOutside([videoContainerRef], () => setShowControls(false));
-
-  // load first progress
-  useEffect(() => {
-    const saved = loadProgress(`video-progress:${id}`);
-    seekVideo(videoRef.current, saved);
-  }, [id]);
-
-  // update duration when metadata loaded
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-    const onLoaded = () => setDuration(getVideoDuration(video));
-    video.addEventListener("loadedmetadata", onLoaded);
-    return () => video.removeEventListener("loadedmetadata", onLoaded);
-  }, []);
-
-  // update progress setiap detik
-  useEffect(() => {
-    const interval = setInterval(() => {
-      if (videoRef.current) {
-        const current = getVideoCurrentTime(videoRef.current);
-        setProgress(current);
-        saveProgress(`video-progress:${id}`, current);
-      }
-    }, 1000);
-    return () => clearInterval(interval);
-  }, [id]);
 
   // Utils
   const formatTime = (s: number) => {
@@ -174,6 +134,44 @@ export default function VideoPlayer(props: Props__VideoPlayer) {
     toggleFullscreen(video);
   }
 
+  // resolved thumbnail
+  useEffect(() => {
+    if (!thumbnail) {
+      const getThumbnail = async () => {
+        const fethcedThumbnail = await getVideoThumbnail(src || "", 1);
+        setResolvedThumbnail(fethcedThumbnail);
+      };
+      getThumbnail();
+    }
+  }, [thumbnail]);
+
+  // load first progress
+  useEffect(() => {
+    const saved = loadProgress(`video-progress:${id}`);
+    seekVideo(videoRef.current, saved);
+  }, [id]);
+
+  // update duration when metadata loaded
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+    const onLoaded = () => setDuration(getVideoDuration(video));
+    video.addEventListener("loadedmetadata", onLoaded);
+    return () => video.removeEventListener("loadedmetadata", onLoaded);
+  }, []);
+
+  // update progress setiap detik
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (videoRef.current) {
+        const current = getVideoCurrentTime(videoRef.current);
+        setProgress(current);
+        saveProgress(`video-progress:${id}`, current);
+      }
+    }, 1000);
+    return () => clearInterval(interval);
+  }, [id]);
+
   // keyboard controls
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -202,31 +200,31 @@ export default function VideoPlayer(props: Props__VideoPlayer) {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [progress, isPlaying]);
 
-  // handle show controls
+  // handle show controls + reset countdown
   useEffect(() => {
     const container = videoContainerRef.current;
     if (!container) return;
 
-    let timer: NodeJS.Timeout;
-
     const handleMouseMove = () => {
+      setShowControls(true);
       container.style.cursor = "default";
 
       // reset timer
-      if (timer) clearTimeout(timer);
-      timer = setTimeout(() => {
+      if (timerRef.current) clearTimeout(timerRef.current);
+      timerRef.current = setTimeout(() => {
         setShowControls(false);
         container.style.cursor = "none";
+        timerRef.current = null;
       }, 3000);
     };
 
     container.addEventListener("mousemove", handleMouseMove);
-
     return () => {
       container.removeEventListener("mousemove", handleMouseMove);
-      if (timer) clearTimeout(timer);
+      if (timerRef.current) clearTimeout(timerRef.current);
     };
   }, []);
+  useClickOutside([videoContainerRef], () => setShowControls(false));
 
   // handle video ended
   useEffect(() => {
@@ -247,10 +245,9 @@ export default function VideoPlayer(props: Props__VideoPlayer) {
       mx="auto"
       pos={"relative"}
       overflow={"clip"}
-      onMouseEnter={() => setShowControls(true)}
       onTouchStart={() => setShowControls(true)}
       onMouseLeave={() => setShowControls(false)}
-      onBlur={() => setShowControls(true)}
+      onBlur={() => setShowControls(false)}
       aspectRatio={16 / 10}
       bg={"black"}
       {...restProps}
