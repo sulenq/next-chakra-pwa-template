@@ -14,6 +14,11 @@ import { Dispatch } from "react";
 import { Type__DisclosureSizes, Type__Period } from "./types";
 import { TextareaProps } from "node_modules/@chakra-ui/react/dist/types/components/editable/namespace";
 
+export interface Props__DataTable extends StackProps {
+  ths?: any[];
+  tds?: any[];
+}
+
 export interface Props__Logo {
   color?: string;
   size?: number;

@@ -18,6 +18,7 @@ import { StringInput } from "@/components/ui/string-input";
 import { Textarea } from "@/components/ui/textarea";
 import TimePickerInput from "@/components/ui/time-picker-input";
 import { toaster } from "@/components/ui/toaster";
+import { DataTable } from "@/components/widget/DataTable";
 import SelectPropertyByLayerId from "@/components/widget/SelectPropertyByLayerId";
 import VideoPlayer from "@/components/widget/VideoPlayer";
 import { OPTIONS_RELIGION } from "@/constants/selectOptions";
@@ -89,6 +90,10 @@ const DemoIndexRoute = () => {
       console.log(values);
     },
   });
+  const tableData = {
+    ths: [{}],
+    tds: [],
+  };
 
   return (
     <CContainer p={4} gap={8} mx={"auto"}>
@@ -278,6 +283,8 @@ const DemoIndexRoute = () => {
           />
         </CContainer>
       </SimpleGrid>
+
+      <DataTable ths={tableData.ths} tds={tableData.tds} />
     </CContainer>
   );
 };
