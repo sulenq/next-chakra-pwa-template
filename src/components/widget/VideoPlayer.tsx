@@ -391,6 +391,7 @@ export default function VideoPlayer(props: Props__VideoPlayer) {
                   variant={"plain"}
                   onClick={handleMute}
                   colorPalette={"light"}
+                  mr={"-10px"}
                 >
                   <Icon>
                     {muted || volume === 0 ? <IconVolumeOff /> : <IconVolume />}
