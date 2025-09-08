@@ -25,7 +25,7 @@ import { HStack, SimpleGrid } from "@chakra-ui/react";
 import { useFormik } from "formik";
 import * as yup from "yup";
 
-const DocsIndexRoute = () => {
+const DemoIndexRoute = () => {
   const toasters = [
     {
       label: "Success",
@@ -94,7 +94,7 @@ const DocsIndexRoute = () => {
     <CContainer p={4} gap={8} mx={"auto"}>
       <HStack justify={"space-between"}>
         <P fontSize={"xl"} fontWeight={"bold"}>
-          Docs
+          Demo
         </P>
 
         <ColorModeButton />
@@ -282,4 +282,4 @@ const DocsIndexRoute = () => {
   );
 };
 
-export default DocsIndexRoute;
+export default DemoIndexRoute;
