@@ -186,6 +186,7 @@ const translations = {
   "password_confirmation": "Password Confirmation",
   "previous": "Previous",
   "recieve": "Recieve",
+  "removed_file": "Removed file",
   "reset": "Reset",
   "retry": "Retry",
   "saturday": "Saturday",
@@ -271,10 +272,13 @@ const translations = {
   "thursday": "Thursday",
   "tuesday": "Tuesday",
   "update": "Update",
+  "uploaded": "Uploaded",
+  "uploaded_file": "Uploaded file",
   "verify": "Verify",
   "view": "View",
   "wednesday": "Wednesday",
   "week": "Week",
+  "will_be_deleted": "Will be deleted",
   "year": "Year"
 };
 

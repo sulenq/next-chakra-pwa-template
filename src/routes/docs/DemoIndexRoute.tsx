@@ -6,7 +6,7 @@ import { ColorModeButton } from "@/components/ui/color-mode";
 import { DatePickerInput } from "@/components/ui/date-picker-input";
 import { DateTimePickerInput } from "@/components/ui/date-time-picker-input";
 import { Field } from "@/components/ui/field";
-import FileInput from "@/components/ui/file-input";
+import { FileInput } from "@/components/ui/file-input";
 import { NumInput } from "@/components/ui/number-input";
 import { P } from "@/components/ui/p";
 import { PasswordInput } from "@/components/ui/password-input";
@@ -188,6 +188,34 @@ const DemoIndexRoute = () => {
       label: "Loading",
       type: "loading",
       description: "Loading description",
+    },
+  ];
+  const existingFiles = [
+    {
+      id: 24,
+      file_id: "9fab5f8f-b70f-438c-89e9-7ff2bda65001",
+      file_name: "File A",
+      file_path: "file/Z8f60265g6ienDZCrqi1z4sMX",
+      file_url:
+        "https://doc-mamura.exium.id/storage/file/Z8f60265g6ienDZCrqi1z4sMX",
+      file_mime_type: "image/jpeg",
+      file_size: "668.01 kB",
+      deleted_at: null,
+      created_at: "2025-08-19T06:11:54.000000Z",
+      updated_at: "2025-08-19T06:11:54.000000Z",
+    },
+    {
+      id: 25,
+      file_id: "9fab5f8f-b70f-438c-89e9-7ff2bda65001",
+      file_name: "File B",
+      file_path: "file/Z8f60265g6ienDZCrqi1z4sMX",
+      file_url:
+        "https://doc-mamura.exium.id/storage/file/Z8f60265g6ienDZCrqi1z4sMX",
+      file_mime_type: "image/jpeg",
+      file_size: "668.01 kB",
+      deleted_at: null,
+      created_at: "2025-08-19T06:11:54.000000Z",
+      updated_at: "2025-08-19T06:11:54.000000Z",
     },
   ];
   const formik = useFormik({
@@ -381,13 +409,15 @@ const DemoIndexRoute = () => {
                 />
               </Field>
 
-              <Field invalid={!!formik.errors.file}>
+              <Field label={"Dokumen Negara"} invalid={!!formik.errors.file}>
                 <FileInput
                   dropzone
                   inputValue={formik.values.file}
                   onChange={(input) => {
                     formik.setFieldValue("file", input);
                   }}
+                  existingFiles={existingFiles}
+                  maxFiles={5}
                 />
               </Field>
             </CContainer>

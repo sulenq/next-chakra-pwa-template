@@ -157,6 +157,22 @@ export const showing = {
   id: "Menampilkan",
   en: "Showing",
 };
+export const will_be_deleted = {
+  id: "Akan dihapus",
+  en: "Will be deleted",
+};
+export const uploaded = {
+  id: "Sudah diunggah",
+  en: "Uploaded",
+};
+export const uploaded_file = {
+  id: "File yang sudah diunggah",
+  en: "Uploaded file",
+};
+export const removed_file = {
+  id: "File dihapus",
+  en: "Removed file",
+};
 export const of = {
   id: "dari",
   en: "of",

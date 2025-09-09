@@ -115,6 +115,7 @@ const FileUploadItem = (props: FileUploadItemProps) => {
             size="xs"
             h={"32px"}
             mr={-2}
+            my={"auto"}
           >
             <IconX />
           </IconButton>

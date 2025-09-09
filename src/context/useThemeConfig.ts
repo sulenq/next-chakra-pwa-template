@@ -22,7 +22,7 @@ const DEFAULT: ThemeConfigProps = {
   logo: `${IMAGES_PATH}/logo_graphic.png`,
   radii: {
     component: "6px",
-    container: "8px",
+    container: "10px",
   },
 };
 

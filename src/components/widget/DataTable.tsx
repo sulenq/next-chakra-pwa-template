@@ -37,6 +37,8 @@ import {
 } from "@tabler/icons-react";
 import { Fragment, useEffect, useMemo, useRef, useState } from "react";
 
+const ICON_BOX_SIZE = "18px";
+
 const BatchOptions = (props: Props__BatchOptions) => {
   // Props
   const {
@@ -135,7 +137,7 @@ const BatchOptions = (props: Props__BatchOptions) => {
               >
                 {label}
 
-                {icon && <Icon boxSize={4}>{icon}</Icon>}
+                {icon && <Icon boxSize={ICON_BOX_SIZE}>{icon}</Icon>}
               </MenuItem>
             );
           }
@@ -157,7 +159,7 @@ const BatchOptions = (props: Props__BatchOptions) => {
             >
               {label}
 
-              {icon && <Icon boxSize={4}>{icon}</Icon>}
+              {icon && <Icon boxSize={ICON_BOX_SIZE}>{icon}</Icon>}
             </MenuItem>
           );
         })}
@@ -225,7 +227,7 @@ const RowOptions = (props: Props_RowOptions) => {
               >
                 {label}
 
-                {icon && <Icon boxSize={4}>{icon}</Icon>}
+                {icon && <Icon boxSize={ICON_BOX_SIZE}>{icon}</Icon>}
               </MenuItem>
             );
           }
@@ -247,7 +249,7 @@ const RowOptions = (props: Props_RowOptions) => {
             >
               {label}
 
-              {icon && <Icon boxSize={4}>{icon}</Icon>}
+              {icon && <Icon boxSize={ICON_BOX_SIZE}>{icon}</Icon>}
             </MenuItem>
           );
         })}

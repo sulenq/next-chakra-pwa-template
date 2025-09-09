@@ -70,8 +70,8 @@ export interface Interface__Req<T = any> {
 // CUD
 export interface Interface__CUD {
   created_at?: string;
-  updated_at?: string;
-  deleted_at?: string;
+  updated_at?: string | null;
+  deleted_at?: string | null;
 }
 
 // Storage
@@ -81,7 +81,7 @@ export interface Interface__StorageFile extends Interface__CUD {
   file_path: string;
   file_url: string;
   file_mime_type: string;
-  file_size: number;
+  file_size: string;
 }
 
 // Select Input

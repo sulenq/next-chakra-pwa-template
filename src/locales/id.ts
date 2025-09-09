@@ -186,6 +186,7 @@ const translations = {
   "password_confirmation": "Konfirmasi Password",
   "previous": "Sebelumnya",
   "recieve": "Terima",
+  "removed_file": "File dihapus",
   "reset": "Reset",
   "retry": "Coba lagi",
   "saturday": "Sabtu",
@@ -271,10 +272,13 @@ const translations = {
   "thursday": "Kamis",
   "tuesday": "Selasa",
   "update": "Ubah",
+  "uploaded": "Sudah diunggah",
+  "uploaded_file": "File yang sudah diunggah",
   "verify": "Verifikasi",
   "view": "Lihat",
   "wednesday": "Rabu",
   "week": "Minggu",
+  "will_be_deleted": "Akan dihapus",
   "year": "Tahun"
 };
 

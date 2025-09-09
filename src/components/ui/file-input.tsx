@@ -1,6 +1,9 @@
 import { Btn } from "@/components/ui/btn";
 import { FileIcon } from "@/components/ui/file-icon";
-import { Props__FileInput } from "@/constants/props";
+import {
+  Props__FileInput,
+  Props__FileInputInputComponent,
+} from "@/constants/props";
 import useLang from "@/context/useLang";
 import { isEmptyArray } from "@/utils/array";
 import { formatBytes } from "@/utils/formatter";
@@ -14,10 +17,15 @@ import {
 } from "../ui/file-button";
 import { CloseButton } from "@/components/ui/close-button";
 import { Tooltip } from "@/components/ui/tooltip";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { toaster } from "@/components/ui/toaster";
+import { CContainer } from "@/components/ui/c-container";
+import { P } from "@/components/ui/p";
+import { FileItem } from "@/components/widget/FIleItem";
+import { Interface__StorageFile } from "@/constants/interfaces";
+import { useThemeConfig } from "@/context/useThemeConfig";
 
-const FileInput = (props: Props__FileInput) => {
+const InputComponent = (props: Props__FileInputInputComponent) => {
   // Props
   const {
     fRef,
@@ -32,6 +40,8 @@ const FileInput = (props: Props__FileInput) => {
     maxFiles = 1,
     description,
     disabled,
+    existing,
+    // removed,
     ...restProps
   } = props;
 
@@ -56,6 +66,7 @@ const FileInput = (props: Props__FileInput) => {
       `up to ${maxFileSize} mB, max ${maxFiles || 1} file${
         maxFiles! > 1 ? "s" : ""
       } ${accept ? `(${accept})` : ""}`;
+  const resolvedDisabled = disabled || existing.length === maxFiles;
 
   // Utils
   function handleFileChange(details: any) {
@@ -69,6 +80,14 @@ const FileInput = (props: Props__FileInput) => {
 
     onChange?.(files.length > 0 ? files : undefined);
   }
+
+  // clear input when resolvedDisabled = true
+  useEffect(() => {
+    if (resolvedDisabled) {
+      onChange?.(undefined);
+      setKey((ps) => ps + 1);
+    }
+  }, [resolvedDisabled]);
 
   return (
     <>
@@ -91,10 +110,12 @@ const FileInput = (props: Props__FileInput) => {
         maxFiles={maxFiles}
         gap={2}
         accept={accept}
+        disabled={resolvedDisabled}
+        pos={"relative"}
         {...restProps}
       >
         <>
-          {dropzone && !isEmptyArray(inputValue) && (
+          {dropzone && singleFileInputted && (
             <Tooltip content={"Reset"}>
               <CloseButton
                 pos={"absolute"}
@@ -123,8 +144,8 @@ const FileInput = (props: Props__FileInput) => {
               borderColor={
                 invalid ?? fc?.invalid ? "border.error" : "border.muted"
               }
-              opacity={disabled ? 0.5 : 1}
-              cursor={disabled ? "disabled" : "pointer"}
+              opacity={resolvedDisabled ? 0.5 : 1}
+              cursor={resolvedDisabled ? "disabled" : "pointer"}
             />
           ) : (
             <FileUploadTrigger asChild borderColor={invalid ? "fg.error" : ""}>
@@ -151,4 +172,85 @@ const FileInput = (props: Props__FileInput) => {
   );
 };
 
-export default FileInput;
+export const FileInput = (props: Props__FileInput) => {
+  // Props
+  const { existingFiles, onDeleteFile, onUndoDeleteFile, ...restProps } = props;
+
+  // Contexts
+  const { l } = useLang();
+  const { themeConfig } = useThemeConfig();
+
+  // States
+  const [existing, setExisting] = useState<Interface__StorageFile[]>(
+    existingFiles || []
+  );
+  const [removed, setRemoved] = useState<Interface__StorageFile[]>([]);
+
+  return (
+    <CContainer gap={2}>
+      {!isEmptyArray(existing) && (
+        <CContainer
+          p={2}
+          gap={3}
+          border={"2px dashed"}
+          borderColor={"border.muted"}
+          rounded={themeConfig.radii.container}
+        >
+          <CContainer gap={2}>
+            <P fontWeight={"medium"} pl={1}>
+              {l.uploaded_file}
+            </P>
+
+            {existing?.map((item: any, idx: number) => {
+              return (
+                <FileItem
+                  key={idx}
+                  data={item}
+                  onDelete={() => {
+                    setExisting((prev) => prev.filter((f) => f !== item));
+                    setRemoved((ps) => [...ps, item]);
+                    onDeleteFile?.(item);
+                  }}
+                />
+              );
+            })}
+          </CContainer>
+        </CContainer>
+      )}
+
+      {!isEmptyArray(removed) && (
+        <CContainer
+          p={2}
+          gap={3}
+          border={"2px dashed"}
+          borderColor={"border.muted"}
+          rounded={themeConfig.radii.container}
+        >
+          <CContainer gap={2}>
+            <P fontWeight={"medium"} pl={1}>
+              {l.removed_file}
+            </P>
+
+            {removed?.map((item: any, idx: number) => {
+              return (
+                <FileItem
+                  key={idx}
+                  data={item}
+                  withDeleteButton={false}
+                  withUndoButton
+                  onUndo={() => {
+                    setExisting((prev) => [...prev, item]);
+                    setRemoved((ps) => ps.filter((f) => f != item));
+                    onUndoDeleteFile?.(item);
+                  }}
+                />
+              );
+            })}
+          </CContainer>
+        </CContainer>
+      )}
+
+      <InputComponent existing={existing} removed={removed} {...restProps} />
+    </CContainer>
+  );
+};

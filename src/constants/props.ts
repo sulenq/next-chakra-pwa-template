@@ -3,6 +3,7 @@ import {
   Interface__FormattedTableData,
   Interface__FormattedTableHeader,
   Interface__SelectOption,
+  Interface__StorageFile,
   Interface__TableOption,
 } from "@/constants/interfaces";
 import {
@@ -163,6 +164,14 @@ export interface Props__FileInput
   maxFiles?: number;
   description?: string;
   disabled?: boolean;
+  existingFiles?: Interface__StorageFile[];
+  onDeleteFile?: (file: Interface__StorageFile) => void;
+  onUndoDeleteFile?: (file: Interface__StorageFile) => void;
+}
+export interface Props__FileInputInputComponent
+  extends Omit<Props__FileInput, "removed"> {
+  existing: Interface__StorageFile[];
+  removed: Interface__StorageFile[];
 }
 
 export interface Props__PeriodPickerInput extends BtnProps {

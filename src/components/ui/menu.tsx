@@ -21,7 +21,7 @@ interface MenuContentProps extends ChakraMenu.ContentProps {
 export const MenuContent = forwardRef<HTMLDivElement, MenuContentProps>(
   function MenuContent(props, ref) {
     // Props
-    const { portalled = true, portalRef, ...rest } = props;
+    const { portalled = true, portalRef, ...restProps } = props;
 
     // Contexts
     // const { themeConfig } = useThemeConfig();
@@ -30,16 +30,17 @@ export const MenuContent = forwardRef<HTMLDivElement, MenuContentProps>(
       <Portal disabled={!portalled} container={portalRef}>
         <ChakraMenu.Positioner>
           <ChakraMenu.Content
+            ref={ref}
             className={"ss"}
-            boxShadow={"none"}
-            bg={"body !important"}
-            rounded={8}
-            border={"1px solid {colors.d2}"}
             w={"150px"}
+            gap={1}
             px={0}
             py={1}
-            ref={ref}
-            {...rest}
+            bg={"body !important"}
+            border={"1px solid {colors.d2}"}
+            rounded={8}
+            boxShadow={"none"}
+            {...restProps}
           />
         </ChakraMenu.Positioner>
       </Portal>
@@ -50,7 +51,7 @@ export const MenuContent = forwardRef<HTMLDivElement, MenuContentProps>(
 export const MenuItem = forwardRef<HTMLDivElement, MenuItemProps>(
   function MenuItem(props, ref) {
     //Props
-    const { children, ...rest } = props;
+    const { children, ...restProps } = props;
 
     // Contexts
     // const { themeConfig } = useThemeConfig();
@@ -60,10 +61,10 @@ export const MenuItem = forwardRef<HTMLDivElement, MenuItemProps>(
         <ChakraMenu.Item
           gap={4}
           ref={ref}
-          py={"6px !important"}
+          py={"8px !important"}
           cursor={"pointer"}
           rounded={4}
-          {...rest}
+          {...restProps}
         >
           {children}
         </ChakraMenu.Item>
@@ -100,9 +101,9 @@ export const MenuRadioItem = forwardRef<
   HTMLDivElement,
   ChakraMenu.RadioItemProps
 >(function MenuRadioItem(props, ref) {
-  const { children, ...rest } = props;
+  const { children, ...restProps } = props;
   return (
-    <ChakraMenu.RadioItem ps="8" ref={ref} {...rest}>
+    <ChakraMenu.RadioItem ps="8" ref={ref} {...restProps}>
       <AbsoluteCenter axis="horizontal" left="4" asChild>
         <ChakraMenu.ItemIndicator>
           <LuCheck />
@@ -117,9 +118,9 @@ export const MenuItemGroup = forwardRef<
   HTMLDivElement,
   ChakraMenu.ItemGroupProps
 >(function MenuItemGroup(props, ref) {
-  const { title, children, ...rest } = props;
+  const { title, children, ...restProps } = props;
   return (
-    <ChakraMenu.ItemGroup ref={ref} {...rest}>
+    <ChakraMenu.ItemGroup ref={ref} {...restProps}>
       {title && (
         <ChakraMenu.ItemGroupLabel color={"fg.subtle"} userSelect="none">
           {title}
@@ -139,12 +140,12 @@ export const MenuTriggerItem = forwardRef<HTMLDivElement, MenuTriggerItemProps>(
     // Contexts
     const { themeConfig } = useThemeConfig();
 
-    const { startIcon, children, ...rest } = props;
+    const { startIcon, children, ...restProps } = props;
     return (
       <ChakraMenu.TriggerItem
         ref={ref}
         rounded={themeConfig.radii.component}
-        {...rest}
+        {...restProps}
       >
         {startIcon}
         {children}
@@ -155,12 +156,12 @@ export const MenuTriggerItem = forwardRef<HTMLDivElement, MenuTriggerItemProps>(
 );
 
 export const MenuRoot = (props: MenuRootProps) => {
-  const { children, ...rest } = props;
+  const { children, ...restProps } = props;
   return (
     <ChakraMenu.Root
       positioning={{ hideWhenDetached: true }}
       unmountOnExit={false}
-      {...rest}
+      {...restProps}
     >
       {children}
     </ChakraMenu.Root>
