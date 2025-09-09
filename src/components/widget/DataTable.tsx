@@ -269,7 +269,7 @@ const Limittation = (props: Props_LimitationTableData) => {
   return (
     <MenuRoot>
       <MenuTrigger asChild>
-        <Btn clicky={false} size={"xs"} variant={"ghost"} pr={"10px"}>
+        <Btn clicky={false} size={"xs"} variant={"ghost"} pr={"8px"}>
           <HStack>
             <P>{l.show}</P>
             <P>{`${limit}`}</P>
