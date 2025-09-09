@@ -207,30 +207,6 @@ export default function VideoPlayer(props: Props__VideoPlayer) {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [progress, isPlaying]);
 
-  // handle show controls + reset countdown
-  useEffect(() => {
-    const container = videoContainerRef.current;
-    if (!container) return;
-
-    const handleMouseMove = () => {
-      setShowControls(true);
-      container.style.cursor = "default";
-
-      // reset timer
-      if (timerRef.current) clearTimeout(timerRef.current);
-      timerRef.current = setTimeout(() => {
-        setShowControls(false);
-        container.style.cursor = "none";
-        timerRef.current = null;
-      }, 3000);
-    };
-
-    container.addEventListener("mousemove", handleMouseMove);
-    return () => {
-      container.removeEventListener("mousemove", handleMouseMove);
-      if (timerRef.current) clearTimeout(timerRef.current);
-    };
-  }, []);
   useClickOutside([videoContainerRef], () => setShowControls(false));
 
   // handle video ended
@@ -244,19 +220,47 @@ export default function VideoPlayer(props: Props__VideoPlayer) {
     return () => video.removeEventListener("ended", handleEnded);
   }, []);
 
+  useEffect(() => {
+    const container = videoContainerRef.current;
+    if (!container) return;
+
+    const resetTimer = () => {
+      setShowControls(true);
+      container.style.cursor = "default";
+
+      if (timerRef.current) clearTimeout(timerRef.current);
+      timerRef.current = setTimeout(() => {
+        setShowControls(false);
+        container.style.cursor = "none";
+        timerRef.current = null;
+      }, 3000);
+    };
+
+    container.addEventListener("mousemove", resetTimer);
+    container.addEventListener("click", resetTimer);
+    container.addEventListener("touchstart", resetTimer);
+
+    // start countdown langsung ketika mount
+    resetTimer();
+
+    return () => {
+      container.removeEventListener("mousemove", resetTimer);
+      container.removeEventListener("click", resetTimer);
+      container.removeEventListener("touchstart", resetTimer);
+      if (timerRef.current) clearTimeout(timerRef.current);
+    };
+  }, []);
+
   return (
     <CContainer
       ref={videoContainerRef}
-      justify={"center"}
-      align={"center"}
+      justify="center"
+      align="center"
       mx="auto"
-      pos={"relative"}
-      overflow={"clip"}
-      onTouchStart={() => setShowControls(true)}
-      onMouseLeave={() => setShowControls(false)}
-      onBlur={() => setShowControls(false)}
+      pos="relative"
+      overflow="clip"
       aspectRatio={16 / 10}
-      bg={"black"}
+      bg="black"
       {...restProps}
     >
       <VideoElement
