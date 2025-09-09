@@ -275,7 +275,7 @@ const Limittation = (props: Props_LimitationTableData) => {
             <P>{`${limit}`}</P>
           </HStack>
 
-          <Icon boxSize={4} ml={1}>
+          <Icon boxSize={4} ml={1} color={"fg.subtle"}>
             <IconCaretDownFilled />
           </Icon>
         </Btn>
