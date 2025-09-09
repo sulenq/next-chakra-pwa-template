@@ -32,8 +32,8 @@ import { NumInput } from "./number-input";
 import { P } from "./p";
 
 const DEFAULT = {
-  month: null,
   year: null,
+  month: null,
 };
 
 export const PeriodPickerInput = (props: Props__PeriodPickerInput) => {
@@ -82,8 +82,8 @@ export const PeriodPickerInput = (props: Props__PeriodPickerInput) => {
   useEffect(() => {
     if (inputValue) {
       setSelected({
-        month: inputValue.month,
         year: inputValue.year,
+        month: inputValue.month,
       });
     }
   }, [open, inputValue]);

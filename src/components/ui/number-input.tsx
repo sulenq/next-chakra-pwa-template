@@ -22,7 +22,7 @@ export const NumInput = forwardRef<HTMLInputElement, Props__NumInput>(
     } = props;
 
     // States
-    const [localInputValue, setLocalInputValue] = useState<string>("");
+    const [num, setNum] = useState<string>("");
 
     useEffect(() => {
       if (inputValue !== undefined && inputValue !== null) {
@@ -38,14 +38,16 @@ export const NumInput = forwardRef<HTMLInputElement, Props__NumInput>(
           ? formatFunction(valueToDisplay)
           : formatNumber(valueToDisplay);
 
-        setLocalInputValue(formattedValue || "");
+        setNum(formattedValue || "");
+      } else {
+        setNum("");
       }
     }, [inputValue, formatFunction, formatted, integer]);
 
     // Utils
     function handleChange(rawInput?: string) {
       if (!rawInput) {
-        setLocalInputValue("");
+        setNum("");
         onChange?.(null);
         return;
       }
@@ -89,7 +91,7 @@ export const NumInput = forwardRef<HTMLInputElement, Props__NumInput>(
       }
 
       if (!formatted) {
-        setLocalInputValue(sanitizedInput);
+        setNum(sanitizedInput);
         if (parsedValue !== undefined) onChange?.(parsedValue);
         return;
       }
@@ -105,7 +107,7 @@ export const NumInput = forwardRef<HTMLInputElement, Props__NumInput>(
         }
       }
 
-      setLocalInputValue(formattedValue);
+      setNum(formattedValue);
       if (parsedValue !== undefined) onChange?.(parsedValue);
     }
 
@@ -113,7 +115,7 @@ export const NumInput = forwardRef<HTMLInputElement, Props__NumInput>(
       <StringInput
         ref={ref}
         onChange={handleChange}
-        inputValue={localInputValue}
+        inputValue={num}
         invalid={invalid}
         placeholder={placeholder}
         boxProps={boxProps}
