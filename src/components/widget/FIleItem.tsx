@@ -2,34 +2,18 @@ import { Btn } from "@/components/ui/btn";
 import { CContainer } from "@/components/ui/c-container";
 import { FileIcon } from "@/components/ui/file-icon";
 import { P } from "@/components/ui/p";
+import { Props__FileItem } from "@/constants/props";
 import { useThemeConfig } from "@/context/useThemeConfig";
-import { HStack, Icon, StackProps } from "@chakra-ui/react";
-import { IconTrash } from "@tabler/icons-react";
+import { HStack, Icon } from "@chakra-ui/react";
 import Link from "next/link";
 
-interface Props extends StackProps {
-  data: any;
-  withDeleteButton?: boolean;
-  onDelete?: () => void;
-  withUndoButton?: boolean;
-  onUndo?: () => void;
-}
-
-export const FileItem = (props: Props) => {
+export const FileItem = (props: Props__FileItem) => {
   // Props
-  const {
-    data,
-    withDeleteButton = true,
-    onDelete,
-    withUndoButton = false,
-    onUndo,
-    ...restProps
-  } = props;
-
-  // console.log("file", data);
+  const { fileData, actions = [], ...restProps } = props;
 
   // Contexts
   const { themeConfig } = useThemeConfig();
+
   return (
     <HStack
       py={2}
@@ -43,51 +27,44 @@ export const FileItem = (props: Props) => {
       {...restProps}
     >
       <Link
-        href={data?.file_url}
+        href={fileData?.fileUrl}
         target="_blank"
         style={{
           width: "100%",
         }}
       >
         <HStack gap={4}>
-          <FileIcon flexShrink={0} mimeType={data?.file_mime_type} />
+          <FileIcon flexShrink={0} mimeType={fileData?.fileMimeType} />
 
           <CContainer flex={1}>
-            <P lineClamp={1}>{`${data?.file_name}`}</P>
+            <P lineClamp={1}>{`${fileData?.fileName}`}</P>
             <P fontSize={"xs"} color={"fg.muted"}>
-              {`${data?.file_size}`}
+              {`${fileData?.fileSize}`}
             </P>
           </CContainer>
         </HStack>
       </Link>
 
       <HStack justify={"end"}>
-        {withDeleteButton && (
-          <Btn
-            flexShrink={0}
-            iconButton
-            size={"xs"}
-            variant={"ghost"}
-            colorPalette={"gray"}
-            onClick={onDelete}
-          >
-            <Icon boxSize={5}>
-              <IconTrash stroke={1.5} />
-            </Icon>
-          </Btn>
-        )}
-
-        {withUndoButton && (
-          <Btn
-            flexShrink={0}
-            size={"xs"}
-            onClick={onUndo}
-            variant={"ghost"}
-            colorPalette={"gray"}
-          >
-            Undo
-          </Btn>
-        )}
+        {actions.map((action) => {
+          return (
+            <Btn
+              key={action.type}
+              iconButton={!!action.icon}
+              flexShrink={0}
+              size={"xs"}
+              variant={"ghost"}
+              colorPalette={"gray"}
+              onClick={action.onClick}
+            >
+              {action.icon ? (
+                <Icon boxSize={5}>{action.icon}</Icon>
+              ) : (
+                action.label
+              )}
+            </Btn>
+          );
+        })}
       </HStack>
     </HStack>
   );

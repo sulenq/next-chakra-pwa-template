@@ -24,7 +24,7 @@ export const MenuContent = forwardRef<HTMLDivElement, MenuContentProps>(
     const { portalled = true, portalRef, ...restProps } = props;
 
     // Contexts
-    // const { themeConfig } = useThemeConfig();
+    const { themeConfig } = useThemeConfig();
 
     return (
       <Portal disabled={!portalled} container={portalRef}>
@@ -38,7 +38,7 @@ export const MenuContent = forwardRef<HTMLDivElement, MenuContentProps>(
             py={1}
             bg={"body !important"}
             border={"1px solid {colors.d2}"}
-            rounded={8}
+            rounded={themeConfig.radii.container}
             boxShadow={"none"}
             {...restProps}
           />
@@ -54,7 +54,7 @@ export const MenuItem = forwardRef<HTMLDivElement, MenuItemProps>(
     const { children, ...restProps } = props;
 
     // Contexts
-    // const { themeConfig } = useThemeConfig();
+    const { themeConfig } = useThemeConfig();
 
     return (
       <CContainer px={1}>
@@ -63,7 +63,7 @@ export const MenuItem = forwardRef<HTMLDivElement, MenuItemProps>(
           ref={ref}
           py={"8px !important"}
           cursor={"pointer"}
-          rounded={4}
+          rounded={themeConfig.radii.component}
           {...restProps}
         >
           {children}

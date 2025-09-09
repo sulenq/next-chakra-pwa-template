@@ -193,29 +193,29 @@ const DemoIndexRoute = () => {
   const existingFiles = [
     {
       id: 24,
-      file_id: "9fab5f8f-b70f-438c-89e9-7ff2bda65001",
-      file_name: "File A",
-      file_path: "file/Z8f60265g6ienDZCrqi1z4sMX",
-      file_url:
+      fileId: "9fab5f8f-b70f-438c-89e9-7ff2bda65001",
+      fileName: "File A",
+      filePath: "file/Z8f60265g6ienDZCrqi1z4sMX",
+      fileUrl:
         "https://doc-mamura.exium.id/storage/file/Z8f60265g6ienDZCrqi1z4sMX",
-      file_mime_type: "image/jpeg",
-      file_size: "668.01 kB",
-      deleted_at: null,
-      created_at: "2025-08-19T06:11:54.000000Z",
-      updated_at: "2025-08-19T06:11:54.000000Z",
+      fileMimeType: "image/jpeg",
+      fileSize: "668.01 kB",
+      deletedAt: null,
+      createdAt: "2025-08-19T06:11:54.000000Z",
+      updatedAt: "2025-08-19T06:11:54.000000Z",
     },
     {
       id: 25,
-      file_id: "9fab5f8f-b70f-438c-89e9-7ff2bda65001",
-      file_name: "File B",
-      file_path: "file/Z8f60265g6ienDZCrqi1z4sMX",
-      file_url:
+      fileId: "9fab5f8f-b70f-438c-89e9-7ff2bda65001",
+      fileName: "File B",
+      filePath: "file/Z8f60265g6ienDZCrqi1z4sMX",
+      fileUrl:
         "https://doc-mamura.exium.id/storage/file/Z8f60265g6ienDZCrqi1z4sMX",
-      file_mime_type: "image/jpeg",
-      file_size: "668.01 kB",
-      deleted_at: null,
-      created_at: "2025-08-19T06:11:54.000000Z",
-      updated_at: "2025-08-19T06:11:54.000000Z",
+      fileMimeType: "image/jpeg",
+      fileSize: "668.01 kB",
+      deletedAt: null,
+      createdAt: "2025-08-19T06:11:54.000000Z",
+      updatedAt: "2025-08-19T06:11:54.000000Z",
     },
   ];
   const formik = useFormik({
@@ -254,6 +254,8 @@ const DemoIndexRoute = () => {
       console.log(values);
     },
   });
+
+  console.log(formik.values.file);
 
   return (
     <CContainer p={4} gap={8} mx={"auto"}>

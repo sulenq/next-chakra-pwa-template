@@ -12,3 +12,7 @@ export function download(
   document.body.removeChild(link);
   URL.revokeObjectURL(downloadUrl);
 }
+
+export const makeFileUrl = (file: File) => {
+  return URL.createObjectURL(file);
+};

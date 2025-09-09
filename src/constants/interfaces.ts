@@ -77,11 +77,11 @@ export interface Interface__CUD {
 // Storage
 export interface Interface__StorageFile extends Interface__CUD {
   id: number;
-  file_name: string;
-  file_path: string;
-  file_url: string;
-  file_mime_type: string;
-  file_size: string;
+  fileName: string;
+  filePath: string;
+  fileUrl: string;
+  fileMimeType: string;
+  fileSize: string;
 }
 
 // Select Input

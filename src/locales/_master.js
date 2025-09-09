@@ -169,7 +169,7 @@ export const uploaded_file = {
   id: "File yang sudah diunggah",
   en: "Uploaded file",
 };
-export const removed_file = {
+export const deleted_file = {
   id: "File dihapus",
   en: "Removed file",
 };

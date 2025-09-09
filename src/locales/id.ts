@@ -32,6 +32,7 @@ const translations = {
   "day": "Hari",
   "december": "Desember",
   "delete_": "Hapus",
+  "deleted_file": "File dihapus",
   "error_400_default": {
     "title": "Bad request",
     "description": "Periksa kembali data atau langkah yang dilakukan."
@@ -186,7 +187,6 @@ const translations = {
   "password_confirmation": "Konfirmasi Password",
   "previous": "Sebelumnya",
   "recieve": "Terima",
-  "removed_file": "File dihapus",
   "reset": "Reset",
   "retry": "Coba lagi",
   "saturday": "Sabtu",

@@ -1,30 +1,66 @@
 import { Btn } from "@/components/ui/btn";
+import { CContainer } from "@/components/ui/c-container";
+import { CloseButton } from "@/components/ui/close-button";
 import { FileIcon } from "@/components/ui/file-icon";
+import { P } from "@/components/ui/p";
+import { toaster } from "@/components/ui/toaster";
+import { Tooltip } from "@/components/ui/tooltip";
+import { FileItem } from "@/components/widget/FIleItem";
+import { Interface__StorageFile } from "@/constants/interfaces";
 import {
   Props__FileInput,
   Props__FileInputInputComponent,
 } from "@/constants/props";
 import useLang from "@/context/useLang";
+import { useThemeConfig } from "@/context/useThemeConfig";
 import { isEmptyArray } from "@/utils/array";
 import { formatBytes } from "@/utils/formatter";
 import { Icon, useFieldContext } from "@chakra-ui/react";
-import { IconUpload } from "@tabler/icons-react";
+import { IconTrash, IconUpload, IconX } from "@tabler/icons-react";
+import { useEffect, useState } from "react";
 import {
   FileUploadDropzone,
-  FileUploadList,
   FileUploadRoot,
   FileUploadTrigger,
 } from "../ui/file-button";
-import { CloseButton } from "@/components/ui/close-button";
-import { Tooltip } from "@/components/ui/tooltip";
-import { useEffect, useState } from "react";
-import { toaster } from "@/components/ui/toaster";
-import { CContainer } from "@/components/ui/c-container";
-import { P } from "@/components/ui/p";
-import { FileItem } from "@/components/widget/FIleItem";
-import { Interface__StorageFile } from "@/constants/interfaces";
-import { useThemeConfig } from "@/context/useThemeConfig";
+import { makeFileUrl } from "@/utils/file";
 
+const FileList = (props: any) => {
+  // Props
+  const { inputValue, onChange, ...restProps } = props;
+
+  return (
+    <CContainer gap={2} {...restProps}>
+      {inputValue?.map((file: any, idx: number) => {
+        const fileData = {
+          fileName: file.name,
+          fileMimeType: file.type,
+          fileSize: formatBytes(file.size),
+          fileUrl: makeFileUrl(file) || "",
+        };
+
+        return (
+          <FileItem
+            key={idx}
+            fileData={fileData}
+            actions={[
+              {
+                type: "remove",
+                icon: <IconX stroke={1.5} />,
+                onClick: () => {
+                  const next = inputValue.filter(
+                    (_file: File, i: number) => i !== idx
+                  );
+                  onChange?.(next.length > 0 ? next : null);
+                },
+              },
+            ]}
+          />
+        );
+      })}
+    </CContainer>
+  );
+};
 const InputComponent = (props: Props__FileInputInputComponent) => {
   // Props
   const {
@@ -128,9 +164,6 @@ const InputComponent = (props: Props__FileInputInputComponent) => {
                   onChange?.(undefined);
                   setKey((ps) => ps + 1);
                 }}
-                iconProps={{
-                  boxSize: "18px",
-                }}
               />
             </Tooltip>
           )}
@@ -164,7 +197,11 @@ const InputComponent = (props: Props__FileInputInputComponent) => {
           )}
 
           {!singleFileInputted && inputValue && (
-            <FileUploadList files={inputValue as File[]} />
+            <FileList
+              inputValue={inputValue}
+              onChange={onChange}
+              setKey={setKey}
+            />
           )}
         </>
       </FileUploadRoot>
@@ -184,10 +221,10 @@ export const FileInput = (props: Props__FileInput) => {
   const [existing, setExisting] = useState<Interface__StorageFile[]>(
     existingFiles || []
   );
-  const [removed, setRemoved] = useState<Interface__StorageFile[]>([]);
+  const [deleted, setDeleted] = useState<Interface__StorageFile[]>([]);
 
   return (
-    <CContainer gap={2}>
+    <CContainer gap={3}>
       {!isEmptyArray(existing) && (
         <CContainer
           p={2}
@@ -201,16 +238,24 @@ export const FileInput = (props: Props__FileInput) => {
               {l.uploaded_file}
             </P>
 
-            {existing?.map((item: any, idx: number) => {
+            {existing?.map((fileData: any, idx: number) => {
               return (
                 <FileItem
                   key={idx}
-                  data={item}
-                  onDelete={() => {
-                    setExisting((prev) => prev.filter((f) => f !== item));
-                    setRemoved((ps) => [...ps, item]);
-                    onDeleteFile?.(item);
-                  }}
+                  fileData={fileData}
+                  actions={[
+                    {
+                      type: "delete",
+                      icon: <IconTrash stroke={1.5} />,
+                      onClick: () => {
+                        setExisting((prev) =>
+                          prev.filter((f) => f.id !== fileData.id)
+                        );
+                        setDeleted((ps) => [...ps, fileData]);
+                        onDeleteFile?.(fileData);
+                      },
+                    },
+                  ]}
                 />
               );
             })}
@@ -218,7 +263,7 @@ export const FileInput = (props: Props__FileInput) => {
         </CContainer>
       )}
 
-      {!isEmptyArray(removed) && (
+      {!isEmptyArray(deleted) && (
         <CContainer
           p={2}
           gap={3}
@@ -228,21 +273,27 @@ export const FileInput = (props: Props__FileInput) => {
         >
           <CContainer gap={2}>
             <P fontWeight={"medium"} pl={1}>
-              {l.removed_file}
+              {l.deleted_file}
             </P>
 
-            {removed?.map((item: any, idx: number) => {
+            {deleted?.map((fileData: any, idx: number) => {
               return (
                 <FileItem
                   key={idx}
-                  data={item}
-                  withDeleteButton={false}
-                  withUndoButton
-                  onUndo={() => {
-                    setExisting((prev) => [...prev, item]);
-                    setRemoved((ps) => ps.filter((f) => f != item));
-                    onUndoDeleteFile?.(item);
-                  }}
+                  fileData={fileData}
+                  actions={[
+                    {
+                      type: "undo_delete",
+                      label: "Undo",
+                      onClick: () => {
+                        setExisting((prev) => [...prev, fileData]);
+                        setDeleted((ps) =>
+                          ps.filter((f) => f.id !== fileData.id)
+                        );
+                        onUndoDeleteFile?.(fileData);
+                      },
+                    },
+                  ]}
                 />
               );
             })}
@@ -250,7 +301,7 @@ export const FileInput = (props: Props__FileInput) => {
         </CContainer>
       )}
 
-      <InputComponent existing={existing} removed={removed} {...restProps} />
+      <InputComponent existing={existing} {...restProps} />
     </CContainer>
   );
 };

@@ -18,7 +18,7 @@ import {
   TableRowProps,
 } from "@chakra-ui/react";
 import { TextareaProps } from "node_modules/@chakra-ui/react/dist/types/components/editable/namespace";
-import { Dispatch, RefObject } from "react";
+import { Dispatch, ReactNode, RefObject } from "react";
 import { Type__DisclosureSizes, Type__Period } from "./types";
 
 export interface Props__DataTable extends Omit<StackProps, "page"> {
@@ -171,7 +171,19 @@ export interface Props__FileInput
 export interface Props__FileInputInputComponent
   extends Omit<Props__FileInput, "removed"> {
   existing: Interface__StorageFile[];
-  removed: Interface__StorageFile[];
+}
+export interface Props__FileItem {
+  fileData: any;
+  actions?: {
+    type: "remove" | "delete" | "undo_delete";
+    onClick: () => void;
+    label?: string;
+    icon?: ReactNode;
+  }[];
+}
+export interface Props__FileList extends Omit<StackProps, "onChange"> {
+  inputValue: File[];
+  onChange?: Props__FileInput["onChange"];
 }
 
 export interface Props__PeriodPickerInput extends BtnProps {

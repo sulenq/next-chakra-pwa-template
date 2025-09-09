@@ -32,6 +32,7 @@ const translations = {
   "day": "Day",
   "december": "December",
   "delete_": "Delete",
+  "deleted_file": "Removed file",
   "error_400_default": {
     "title": "Bad request",
     "description": "Please review your data or actions."
@@ -186,7 +187,6 @@ const translations = {
   "password_confirmation": "Password Confirmation",
   "previous": "Previous",
   "recieve": "Recieve",
-  "removed_file": "Removed file",
   "reset": "Reset",
   "retry": "Retry",
   "saturday": "Saturday",
