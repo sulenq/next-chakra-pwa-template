@@ -28,7 +28,7 @@
   clip-path: inset(50px 0 50px 0) !important;
 }
 .chakra-menu__separator {
-  background: var(--d3) !important;
+  background: var(--d2) !important;
   border-color: var(--d1) !important;
   margin: 4px 0;
 }
