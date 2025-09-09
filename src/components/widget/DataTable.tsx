@@ -583,7 +583,7 @@ export const DataTable = (props: Props__DataTable) => {
             <Table.Row
               position={"sticky"}
               top={0}
-              zIndex={3}
+              zIndex={2}
               borderColor={borderColor}
             >
               {!isEmptyArray(batchOptions) && (
