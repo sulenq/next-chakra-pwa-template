@@ -30,6 +30,7 @@ import { DisclosureHeaderContent } from "./disclosure-header-content";
 import { Field } from "./field";
 import { NumInput } from "./number-input";
 import { P } from "./p";
+import { C_ACTIVE_INDICATOR_SIZE } from "@/constants/sizes";
 
 const DEFAULT = {
   year: null,
@@ -183,7 +184,7 @@ export const PeriodPickerInput = (props: Props__PeriodPickerInput) => {
                           {active && (
                             <Icon
                               color={themeConfig.primaryColor}
-                              boxSize={"10px"}
+                              boxSize={C_ACTIVE_INDICATOR_SIZE}
                             >
                               <IconCircleFilled />
                             </Icon>

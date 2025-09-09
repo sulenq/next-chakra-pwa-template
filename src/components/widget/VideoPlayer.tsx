@@ -253,8 +253,8 @@ export default function VideoPlayer(props: Props__VideoPlayer) {
       pos={"relative"}
       overflow={"clip"}
       onTouchStart={() => setShowControls(true)}
-      // onMouseLeave={() => setShowControls(false)}
-      // onBlur={() => setShowControls(false)}
+      onMouseLeave={() => setShowControls(false)}
+      onBlur={() => setShowControls(false)}
       aspectRatio={16 / 10}
       bg={"black"}
       {...restProps}

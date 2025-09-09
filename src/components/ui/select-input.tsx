@@ -16,6 +16,7 @@ import { Tooltip } from "@/components/ui/tooltip";
 import FeedbackNoData from "@/components/widget/FeedbackNoData";
 import { Interface__SelectOption } from "@/constants/interfaces";
 import { Props__SelectInput, Props__SelectOptions } from "@/constants/props";
+import { C_ACTIVE_INDICATOR_SIZE } from "@/constants/sizes";
 import useLang from "@/context/useLang";
 import { useThemeConfig } from "@/context/useThemeConfig";
 import useBackOnClose from "@/hooks/useBackOnClose";
@@ -143,7 +144,10 @@ const SelectOptions = (props: Props__SelectOptions) => {
                     <P textAlign={"left"}>{o.label}</P>
 
                     {isActive && (
-                      <Icon color={themeConfig.primaryColor} boxSize={"10px"}>
+                      <Icon
+                        color={themeConfig.primaryColor}
+                        boxSize={C_ACTIVE_INDICATOR_SIZE}
+                      >
                         <IconCircleFilled />
                       </Icon>
                     )}

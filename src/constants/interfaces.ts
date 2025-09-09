@@ -48,7 +48,7 @@ export interface Interface__TableOption {
     onConfrim: () => void;
     confirmButtonProps?: BtnProps;
   };
-  menuItemProps?: MenuItemProps;
+  menuItemProps?: Partial<MenuItemProps>;
   override?: (data: any) => ReactNode;
 }
 

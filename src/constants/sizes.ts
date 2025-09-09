@@ -8,3 +8,4 @@ export const SM_SCREEN_W_NUMBER = 720;
 export const PANEL_WIDTH_NUMBER = 400;
 export const FIT_BOUNDS_PADDING = 64; // px
 export const MIN_H_FEEDBACK_CONTAINER = "200px";
+export const C_ACTIVE_INDICATOR_SIZE = "8px";

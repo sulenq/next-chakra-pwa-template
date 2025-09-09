@@ -102,9 +102,17 @@ const DemoDataTable = () => {
     ],
     batchOptions: [
       {
-        disabled: true,
+        label: "Restore",
+        icon: <IconRestore stroke={1.5} />,
+        onClick: () => {
+          console.log("Restore");
+        },
+      },
+      {
+        // disabled: true,
         label: "Delete",
         icon: <IconTrash stroke={1.5} />,
+        menuItemProps: { color: "fg.error" },
         onClick: () => {
           console.log("Delete");
         },
@@ -126,9 +134,10 @@ const DemoDataTable = () => {
         },
       },
       {
-        disabled: true,
+        // disabled: true,
         label: "Delete",
         icon: <IconTrash stroke={1.5} />,
+        menuItemProps: { color: "fg.error" },
         onClick: () => {
           console.log("Delete");
         },

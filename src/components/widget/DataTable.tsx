@@ -18,6 +18,7 @@ import {
   Props_PaginationTableData,
   Props_RowOptions,
 } from "@/constants/props";
+import { C_ACTIVE_INDICATOR_SIZE } from "@/constants/sizes";
 import { Type__SortHandler } from "@/constants/types";
 import useConfirmationDisclosure from "@/context/disclosure/useConfirmationDisclosure";
 import useLang from "@/context/useLang";
@@ -94,7 +95,7 @@ const BatchOptions = (props: Props__BatchOptions) => {
 
           <Icon
             color={selectAllRows ? themeConfig.primaryColor : "d3"}
-            boxSize={"10px"}
+            boxSize={C_ACTIVE_INDICATOR_SIZE}
             mr={"2px"}
           >
             <IconCircleFilled />
@@ -118,17 +119,17 @@ const BatchOptions = (props: Props__BatchOptions) => {
             override,
           } = option;
 
+          const resolvedDisabled = noSelection || disabled;
+
           if (confirmation) {
             return (
               <MenuItem
                 key={idx}
                 value={label}
                 justifyContent={"space-between"}
-                disabled={
-                  typeof option?.disabled === "boolean" ? disabled : disabled
-                }
+                disabled={resolvedDisabled}
                 onClick={() => {
-                  if (!disabled) handleConfirmationClick(option);
+                  if (!resolvedDisabled) handleConfirmationClick(option);
                 }}
                 {...menuItemProps}
               >
@@ -148,13 +149,9 @@ const BatchOptions = (props: Props__BatchOptions) => {
               key={idx}
               value={label}
               onClick={() => {
-                if (!disabled) onClick?.(selectedRows);
+                if (!resolvedDisabled) onClick?.(selectedRows);
               }}
-              disabled={
-                typeof option?.disabled === "boolean"
-                  ? option?.disabled
-                  : disabled
-              }
+              disabled={resolvedDisabled}
               justifyContent={"space-between"}
               {...menuItemProps}
             >
@@ -299,7 +296,10 @@ const Limittation = (props: Props_LimitationTableData) => {
             >
               {l}
               {isActive && (
-                <Icon boxSize={"10px"} color={themeConfig.primaryColor}>
+                <Icon
+                  boxSize={C_ACTIVE_INDICATOR_SIZE}
+                  color={themeConfig.primaryColor}
+                >
                   <IconCircleFilled />
                 </Icon>
               )}
@@ -351,7 +351,7 @@ const Pagination = (props: Props_PaginationTableData) => {
       </Btn>
 
       <HStack whiteSpace={"nowrap"}>
-        <P minW={"10.2px"}>{formatNumber(page)}</P>
+        <P>{formatNumber(page)}</P>
 
         <P>{l.of}</P>
 
