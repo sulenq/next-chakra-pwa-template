@@ -25,8 +25,8 @@ import {
   IconMaximize,
   IconPlayerPauseFilled,
   IconPlayerPlayFilled,
-  IconPlayerTrackNextFilled,
-  IconPlayerTrackPrevFilled,
+  IconPlayerTrackNext,
+  IconPlayerTrackPrev,
   IconVolume,
   IconVolumeOff,
 } from "@tabler/icons-react";
@@ -362,7 +362,7 @@ export default function VideoPlayer(props: Props__VideoPlayer) {
               >
                 <P fontSize={"xs"}>5</P>
                 <Icon>
-                  <IconPlayerTrackPrevFilled />
+                  <IconPlayerTrackPrev />
                 </Icon>
               </Btn>
 
@@ -375,7 +375,7 @@ export default function VideoPlayer(props: Props__VideoPlayer) {
                 px={2}
               >
                 <Icon>
-                  <IconPlayerTrackNextFilled />
+                  <IconPlayerTrackNext />
                 </Icon>
                 <P fontSize={"xs"}>5</P>
               </Btn>

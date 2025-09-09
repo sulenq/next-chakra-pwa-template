@@ -376,7 +376,7 @@ const Pagination = (props: Props_PaginationTableData) => {
         }}
       >
         {!editMode && (
-          <P whiteSpace={"nowrap"} minW={"9px"}>
+          <P whiteSpace={"nowrap"} minW={"10.2px"}>
             {formatNumber(page)}
           </P>
         )}
@@ -394,7 +394,7 @@ const Pagination = (props: Props_PaginationTableData) => {
             textAlign={"center"}
             minW={0}
             h={"30px"}
-            w={`${9 * getDigit(pageTemp || 0)}px`}
+            w={`${10.2 * getDigit(pageTemp || 0)}px`}
             px={0}
           />
         )}
