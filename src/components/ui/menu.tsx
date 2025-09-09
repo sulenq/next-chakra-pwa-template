@@ -7,6 +7,7 @@ import {
   Menu as ChakraMenu,
   MenuItemProps,
   MenuRootProps,
+  MenuSeparatorProps,
   Portal,
 } from "@chakra-ui/react";
 import { forwardRef } from "react";
@@ -171,10 +172,12 @@ export const MenuRoot = (props: MenuRootProps) => {
   );
 };
 
+export const MenuSeparator = (props: MenuSeparatorProps) => {
+  return <ChakraMenu.Separator {...props} />;
+};
+
 export const MenuRadioItemGroup = ChakraMenu.RadioItemGroup;
 export const MenuContextTrigger = ChakraMenu.ContextTrigger;
-export const MenuSeparator = ChakraMenu.Separator;
-
 export const MenuItemText = ChakraMenu.ItemText;
 export const MenuItemCommand = ChakraMenu.ItemCommand;
 export const MenuTrigger = ChakraMenu.Trigger;

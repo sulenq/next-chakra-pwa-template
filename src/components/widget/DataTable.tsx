@@ -8,7 +8,6 @@ import {
   MenuSeparator,
   MenuTrigger,
 } from "@/components/ui/menu";
-import { NumInput } from "@/components/ui/number-input";
 import { P } from "@/components/ui/p";
 import { SortIcon } from "@/components/widget/SortIcon";
 import { Interface__FormattedTableData } from "@/constants/interfaces";
@@ -23,11 +22,9 @@ import { Type__SortHandler } from "@/constants/types";
 import useConfirmationDisclosure from "@/context/disclosure/useConfirmationDisclosure";
 import useLang from "@/context/useLang";
 import { useThemeConfig } from "@/context/useThemeConfig";
-import useClickOutside from "@/hooks/useClickOutside";
 import useScreen from "@/hooks/useScreen";
 import { isEmptyArray } from "@/utils/array";
 import { formatNumber } from "@/utils/formatter";
-import { getDigit } from "@/utils/number";
 import { Center, HStack, Icon, SimpleGrid, Table } from "@chakra-ui/react";
 import {
   IconCaretDownFilled,
@@ -320,14 +317,8 @@ const Pagination = (props: Props_PaginationTableData) => {
   // Contexts
   const { l } = useLang();
 
-  // Refs
-  const pageRef = useRef<HTMLDivElement>(null);
-  const numInputRef = useRef<HTMLInputElement>(null);
-
   // States
-  const [editMode, setEditMode] = useState<boolean>(false);
   const [pageTemp, setPageTemp] = useState<number | null | undefined>(page);
-  useClickOutside([pageRef], () => setEditMode(false));
   const isFirstPage = pageTemp === 1;
   const isLastPage = pageTemp === (totalPage || 1);
 
@@ -338,14 +329,6 @@ const Pagination = (props: Props_PaginationTableData) => {
   function handleNext() {
     if (page < (totalPage || 1)) setPageTemp((ps) => ps! - 1);
   }
-
-  // focus to input on click xpagination
-  useEffect(() => {
-    if (editMode && numInputRef) {
-      numInputRef.current?.focus();
-      numInputRef.current?.select();
-    }
-  }, [editMode]);
 
   // debounce setPage
   useEffect(() => {
@@ -367,43 +350,12 @@ const Pagination = (props: Props_PaginationTableData) => {
         </Icon>
       </Btn>
 
-      <HStack
-        ref={pageRef}
-        gap={2}
-        cursor={"pointer"}
-        onClick={() => {
-          setEditMode(true);
-        }}
-      >
-        {!editMode && (
-          <P whiteSpace={"nowrap"} minW={"10.2px"}>
-            {formatNumber(page)}
-          </P>
-        )}
-        {editMode && (
-          <NumInput
-            ref={numInputRef}
-            inputValue={page}
-            onChange={(inputValue) => {
-              setPageTemp(inputValue);
-            }}
-            fontWeight={"normal"}
-            placeholder={""}
-            border={"none"}
-            clearable={false}
-            textAlign={"center"}
-            minW={0}
-            h={"30px"}
-            w={`${10.2 * getDigit(pageTemp || 0)}px`}
-            px={0}
-          />
-        )}
+      <HStack whiteSpace={"nowrap"}>
+        <P minW={"10.2px"}>{formatNumber(page)}</P>
 
-        <HStack whiteSpace={"nowrap"}>
-          <P>{l.of}</P>
+        <P>{l.of}</P>
 
-          <P>{totalPage || "?"}</P>
-        </HStack>
+        <P>{totalPage || "?"}</P>
       </HStack>
 
       <Btn
