@@ -20,6 +20,7 @@ interface Props__Select
   width?: string | number;
   size?: "xs" | "sm" | "md" | "lg";
   portalled?: boolean;
+  portalRef?: React.RefObject<HTMLElement | null>;
 }
 
 export default function Select(props: Props__Select) {
@@ -32,6 +33,7 @@ export default function Select(props: Props__Select) {
     width = "150px",
     size = "sm",
     portalled = true,
+    portalRef,
     ...restProps
   } = props;
 
@@ -76,7 +78,7 @@ export default function Select(props: Props__Select) {
         </ChakraSelect.IndicatorGroup>
       </ChakraSelect.Control>
 
-      <Portal disabled={!portalled}>
+      <Portal container={portalRef} disabled={!portalled}>
         <ChakraSelect.Positioner>
           <ChakraSelect.Content
             className="ss"

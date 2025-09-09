@@ -3,7 +3,6 @@
 import { Btn } from "@/components/ui/btn";
 import { CContainer } from "@/components/ui/c-container";
 import { P } from "@/components/ui/p";
-import Select from "@/components/ui/Select";
 import { Props__VideoPlayer } from "@/constants/props";
 import useClickOutside from "@/hooks/useClickOutside";
 import {
@@ -122,11 +121,19 @@ export default function VideoPlayer(props: Props__VideoPlayer) {
       setVolume(100);
     }
   }
-  function handleRate(val: number) {
+  function handleCyclePlaybackRate() {
     const video = videoRef.current;
     if (!video) return;
-    setPlaybackRate(video, val);
-    setRate(val);
+
+    const currentIndex = rates.findIndex(
+      (r) => parseFloat(r.value) === playbackRate
+    );
+
+    const nextIndex = (currentIndex + 1) % rates.length;
+    const nextRate = rates[nextIndex];
+
+    setPlaybackRate(video, parseFloat(nextRate.value));
+    setRate(parseFloat(nextRate.value));
   }
   function handleFullscreen() {
     const video = videoContainerRef.current;
@@ -246,8 +253,8 @@ export default function VideoPlayer(props: Props__VideoPlayer) {
       pos={"relative"}
       overflow={"clip"}
       onTouchStart={() => setShowControls(true)}
-      onMouseLeave={() => setShowControls(false)}
-      onBlur={() => setShowControls(false)}
+      // onMouseLeave={() => setShowControls(false)}
+      // onBlur={() => setShowControls(false)}
       aspectRatio={16 / 10}
       bg={"black"}
       {...restProps}
@@ -335,8 +342,19 @@ export default function VideoPlayer(props: Props__VideoPlayer) {
             </HStack>
 
             {/* Playback Rate */}
-            <Select
-              portalled={false}
+            <Btn
+              clicky={false}
+              size={"md"}
+              colorPalette={"light"}
+              variant={"plain"}
+              onClick={handleCyclePlaybackRate}
+              px={2}
+            >
+              <P fontSize={"xs"}>{`${playbackRate}x`}</P>
+            </Btn>
+
+            {/* <Select
+              portalRef={videoContainerRef}
               selectOptions={rates}
               inputValue={`${playbackRate}`}
               onValueChange={(val) => handleRate(Number(val))}
@@ -346,7 +364,7 @@ export default function VideoPlayer(props: Props__VideoPlayer) {
               _hover={{
                 bg: "transparent !important",
               }}
-            />
+            /> */}
           </HStack>
 
           <HStack justify={"space-between"}>
