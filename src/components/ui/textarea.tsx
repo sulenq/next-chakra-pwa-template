@@ -23,7 +23,7 @@ export const Textarea = (props: Props__TextareaInput) => {
       onChange={(e) => {
         onChange?.(e.target.value);
       }}
-      pl={4}
+      px={4}
       value={inputValue}
       autoresize
       {...restProps}
