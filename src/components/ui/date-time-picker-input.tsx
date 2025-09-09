@@ -63,7 +63,7 @@ export const DateTimePickerInput = (props: Props__DateTimePickerInput) => {
       w={"full"}
       attached
       border={invalid || fc.invalid ? "1px solid {colors.border.error}" : ""}
-      borderRadius={themeConfig.radii.component}
+      rounded={themeConfig.radii.component}
       {...restProps}
     >
       <DatePickerInput

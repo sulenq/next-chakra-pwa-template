@@ -29,7 +29,7 @@ import {
   useDisclosure,
   useFieldContext,
 } from "@chakra-ui/react";
-import { IconCaretDownFilled, IconCheck } from "@tabler/icons-react";
+import { IconCaretDownFilled, IconCircleFilled } from "@tabler/icons-react";
 import { useEffect, useState } from "react";
 
 const SelectOptions = (props: Props__SelectOptions) => {
@@ -75,7 +75,7 @@ const SelectOptions = (props: Props__SelectOptions) => {
               }}
               inputProps={{
                 variant: "flushed",
-                borderRadius: 0,
+                rounded: 0,
               }}
             />
           </CContainer>
@@ -139,12 +139,12 @@ const SelectOptions = (props: Props__SelectOptions) => {
                     }
                   }}
                 >
-                  <HStack w={"full"} align={"start"} justify={"space-between"}>
+                  <HStack w={"full"} justify={"space-between"}>
                     <P textAlign={"left"}>{o.label}</P>
 
                     {isActive && (
-                      <Icon color={themeConfig.primaryColor} boxSize={5}>
-                        <IconCheck />
+                      <Icon color={themeConfig.primaryColor} boxSize={"10px"}>
+                        <IconCircleFilled />
                       </Icon>
                     )}
                   </HStack>

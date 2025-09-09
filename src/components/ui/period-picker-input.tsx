@@ -16,7 +16,7 @@ import {
   SimpleGrid,
   useDisclosure,
 } from "@chakra-ui/react";
-import { IconCheck } from "@tabler/icons-react";
+import { IconCircleFilled } from "@tabler/icons-react";
 import { useEffect, useState } from "react";
 import { Btn } from "./btn";
 import {
@@ -153,6 +153,7 @@ export const PeriodPickerInput = (props: Props__PeriodPickerInput) => {
                   }
                   max={9999}
                   placeholder={`${new Date().getFullYear()}`}
+                  formatted={false}
                 />
               </Field>
 
@@ -180,8 +181,11 @@ export const PeriodPickerInput = (props: Props__PeriodPickerInput) => {
                           {month}
 
                           {active && (
-                            <Icon color={themeConfig.primaryColor} boxSize={5}>
-                              <IconCheck />
+                            <Icon
+                              color={themeConfig.primaryColor}
+                              boxSize={"10px"}
+                            >
+                              <IconCircleFilled />
                             </Icon>
                           )}
                         </HStack>

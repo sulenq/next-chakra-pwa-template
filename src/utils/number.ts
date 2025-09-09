@@ -39,3 +39,7 @@ export const getPercentage = (
     percentage: ((item[valueKey] / total) * 100).toFixed(2) + "%",
   }));
 };
+
+export const getDigit = (num: number): number => {
+  return Math.abs(num).toString().length;
+};

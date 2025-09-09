@@ -274,11 +274,12 @@ const TimePickerInput = (props: Props__TimePicker) => {
                       selected ? String(hours).padStart(2, "0") : "--"
                     }
                     fontSize={"64px !important"}
-                    fontWeight={"medium"}
+                    fontWeight={"400"}
                     h={"64px"}
                     textAlign={"center"}
                     border={"none !important"}
                     _focus={{ border: "none !important" }}
+                    className="num"
                   />
                   {/* <P textAlign={"center"}>Jam</P> */}
                 </VStack>
@@ -345,11 +346,12 @@ const TimePickerInput = (props: Props__TimePicker) => {
                       selected ? String(minutes).padStart(2, "0") : "--"
                     }
                     fontSize={"64px !important"}
-                    fontWeight={"medium"}
+                    fontWeight={"400"}
                     h={"64px"}
                     textAlign={"center"}
                     border={"none !important"}
                     _focus={{ border: "none !important" }}
+                    className="num"
                   />
                   {/* <P textAlign={"center"}>Menit</P> */}
                 </VStack>
@@ -417,11 +419,12 @@ const TimePickerInput = (props: Props__TimePicker) => {
                           selected ? String(seconds).padStart(2, "0") : "--"
                         }
                         fontSize={"64px !important"}
-                        fontWeight={"medium"}
+                        fontWeight={"400"}
                         h={"64px"}
                         textAlign={"center"}
                         border={"none !important"}
                         _focus={{ border: "none !important" }}
+                        className="num"
                       />
                       {/* <P textAlign={"center"}>Detik</P> */}
                     </VStack>
@@ -460,12 +463,12 @@ const TimePickerInput = (props: Props__TimePicker) => {
                 <P
                   color={"fg.subtle"}
                   fontSize={"xs"}
-                  lineHeight={1.4}
+                  lineHeight={1}
                 >{`${userTz.key}`}</P>
                 <P
                   color={"fg.subtle"}
                   fontSize={"xs"}
-                  lineHeight={1.4}
+                  lineHeight={1}
                 >{`${userTz.formattedOffset}`}</P>
               </Stack>
             )}

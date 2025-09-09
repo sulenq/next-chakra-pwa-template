@@ -179,6 +179,7 @@ const translations = {
   "next": "Next",
   "november": "November",
   "october": "October",
+  "of": "of",
   "optional": "Optional",
   "otp_sent": "OTP has been sent",
   "otp_sent_to": "OTP has been sent to",
@@ -196,6 +197,7 @@ const translations = {
   "select_date_range": "Select date range",
   "select_period": "Select period",
   "select_time": "Select time",
+  "selected": "Selected",
   "september": "September",
   "settings_display": {
     "title": "Display",
@@ -214,6 +216,7 @@ const translations = {
     "others": "Others"
   },
   "show": "Show",
+  "showing": "Showing",
   "submit": "Submit",
   "success_200_default": {
     "title": "Ok",

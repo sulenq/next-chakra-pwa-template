@@ -37,7 +37,7 @@ export const DisclosureHeaderContent = ({
             <>
               {prefix === "dialog" && (
                 <DialogCloseTrigger
-                  borderRadius={"full"}
+                  rounded={"full"}
                   top={"12px"}
                   right={"12px"}
                   onClick={handleBack}
@@ -48,7 +48,7 @@ export const DisclosureHeaderContent = ({
 
               {prefix === "drawer" && (
                 <DrawerCloseTrigger
-                  borderRadius={"full"}
+                  rounded={"full"}
                   top={3}
                   right={"14px"}
                   onClick={handleBack}
@@ -59,7 +59,7 @@ export const DisclosureHeaderContent = ({
 
           {!prefix && (
             <DisclosureCloseTrigger
-              borderRadius={"full"}
+              rounded={"full"}
               top={3}
               right={["14px", null, "12px"]}
               onClick={handleBack}

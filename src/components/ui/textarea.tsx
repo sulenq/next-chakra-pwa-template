@@ -18,7 +18,7 @@ export const Textarea = (props: Props__TextareaInput) => {
       fontWeight={"medium"}
       outline={"none !important"}
       _focus={{ borderColor: themeConfig.primaryColor }}
-      borderRadius={themeConfig.radii.component}
+      rounded={themeConfig.radii.component}
       placeholder={placeholder || "Input text"}
       onChange={(e) => {
         onChange?.(e.target.value);

@@ -20,11 +20,6 @@ import { TextareaProps } from "node_modules/@chakra-ui/react/dist/types/componen
 import { Dispatch, RefObject } from "react";
 import { Type__DisclosureSizes, Type__Period } from "./types";
 
-export interface Props__SortIcon extends IconProps {
-  columnIndex: number;
-  sortColumnIdx?: number;
-  direction: "asc" | "desc";
-}
 export interface Props__DataTable extends Omit<StackProps, "page"> {
   trBodyProps?: TableRowProps;
   headers?: Interface__FormattedTableHeader[];
@@ -33,15 +28,38 @@ export interface Props__DataTable extends Omit<StackProps, "page"> {
   batchOptions?: Interface__TableOption[];
   initialSortColumnIndex?: number;
   initialSortOrder?: "asc" | "desc";
-  page?: number;
-  setPage?: Dispatch<number>;
   limit?: number;
   setLimit?: Dispatch<number>;
+  page?: number;
+  setPage?: Dispatch<number>;
+  totalPage?: number;
+  footer?: any;
+}
+export interface Props__SortIcon extends IconProps {
+  columnIndex: number;
+  sortColumnIdx?: number;
+  direction: "asc" | "desc";
+}
+export interface Props__BatchOptions {
+  selectedRows: any[];
+  batchOptions?: (Interface__TableOption | "divider")[];
+  selectAllRows: boolean;
+  handleSelectAllRows: (isChecked: boolean) => void;
+  tableContainerRef?: RefObject<HTMLDivElement | null>;
 }
 export interface Props_RowOptions {
   row?: any;
   rowOptions?: (Interface__TableOption | "divider")[];
   tableContainerRef?: RefObject<HTMLDivElement | null>;
+}
+export interface Props_LimitationTableData {
+  limit: number;
+  setLimit: Dispatch<number>;
+}
+export interface Props_PaginationTableData {
+  page: number;
+  setPage: Dispatch<number>;
+  totalPage?: number;
 }
 
 export interface Props__Logo {
@@ -225,4 +243,5 @@ export interface Props__NumInput extends Omit<InputProps, "onChange"> {
   integer?: boolean;
   min?: number;
   max?: number;
+  clearable?: boolean;
 }

@@ -23,73 +23,12 @@ import SelectPropertyByLayerId from "@/components/widget/SelectPropertyByLayerId
 import VideoPlayer from "@/components/widget/VideoPlayer";
 import { OPTIONS_RELIGION } from "@/constants/selectOptions";
 import { HStack, SimpleGrid } from "@chakra-ui/react";
+import { IconPencilMinus, IconRestore, IconTrash } from "@tabler/icons-react";
 import { useFormik } from "formik";
+import { useState } from "react";
 import * as yup from "yup";
 
-const DemoIndexRoute = () => {
-  const toasters = [
-    {
-      label: "Success",
-      type: "success",
-      description: "Success description",
-    },
-    {
-      label: "Error",
-      type: "error",
-      description: "Error description",
-    },
-    {
-      label: "Warning",
-      type: "warning",
-      description: "Warning description",
-    },
-    {
-      label: "Info",
-      type: "info",
-      description: "Info description",
-    },
-    {
-      label: "Loading",
-      type: "loading",
-      description: "Loading description",
-    },
-  ];
-  const formik = useFormik({
-    validateOnChange: false,
-    initialValues: {
-      string: "",
-      password: "",
-      search: "",
-      textarea: "",
-      number: null as any,
-      period: null as any,
-      date: null as any,
-      time: null as any,
-      dateTime: "2025-09-06T00:00:00.000Z",
-      select: null as any,
-      multiSelect: null as any,
-      file: null as any,
-      richEditor: null as any,
-    },
-    validationSchema: yup.object({
-      string: yup.string().required(),
-      password: yup.string().required(),
-      search: yup.string().required(),
-      textarea: yup.string().required(),
-      number: yup.number().required(),
-      period: yup.object().required(),
-      date: yup.array().required(),
-      time: yup.string().required(),
-      dateTime: yup.string().required(),
-      select: yup.array().required(),
-      multiSelect: yup.array().required(),
-      file: yup.array().required(),
-      richEditor: yup.string(),
-    }),
-    onSubmit: (values) => {
-      console.log(values);
-    },
-  });
+const DemoDataTable = () => {
   const tableProps = {
     headers: [
       {
@@ -161,12 +100,123 @@ const DemoIndexRoute = () => {
         ],
       },
     ],
+    batchOptions: [
+      {
+        disabled: true,
+        label: "Delete",
+        icon: <IconTrash stroke={1.5} />,
+        onClick: () => {
+          console.log("Delete");
+        },
+      },
+    ],
     rowOptions: [
       {
         label: "Edit",
+        icon: <IconPencilMinus stroke={1.5} />,
+        onClick: () => {
+          console.log("Edit");
+        },
+      },
+      {
+        label: "Restore",
+        icon: <IconRestore stroke={1.5} />,
+        onClick: () => {
+          console.log("Restore");
+        },
+      },
+      {
+        disabled: true,
+        label: "Delete",
+        icon: <IconTrash stroke={1.5} />,
+        onClick: () => {
+          console.log("Delete");
+        },
       },
     ],
   };
+
+  const [limit, setLimit] = useState<number>(15);
+  const [page, setPage] = useState<number>(1);
+
+  return (
+    <DataTable
+      headers={tableProps.headers}
+      rows={tableProps.rows}
+      rowOptions={tableProps.rowOptions}
+      batchOptions={tableProps.batchOptions}
+      limit={limit}
+      setLimit={setLimit}
+      page={page}
+      setPage={setPage}
+    />
+  );
+};
+
+const DemoIndexRoute = () => {
+  const toasters = [
+    {
+      label: "Success",
+      type: "success",
+      description: "Success description",
+    },
+    {
+      label: "Error",
+      type: "error",
+      description: "Error description",
+    },
+    {
+      label: "Warning",
+      type: "warning",
+      description: "Warning description",
+    },
+    {
+      label: "Info",
+      type: "info",
+      description: "Info description",
+    },
+    {
+      label: "Loading",
+      type: "loading",
+      description: "Loading description",
+    },
+  ];
+  const formik = useFormik({
+    validateOnChange: false,
+    initialValues: {
+      string: "",
+      password: "",
+      search: "",
+      textarea: "",
+      number: null as any,
+      period: null as any,
+      date: null as any,
+      time: null as any,
+      dateTime: "2025-09-06T00:00:00.000Z",
+      select: null as any,
+      multiSelect: null as any,
+      file: null as any,
+      richEditor: null as any,
+    },
+    validationSchema: yup.object({
+      string: yup.string().required(),
+      password: yup.string().required(),
+      search: yup.string().required(),
+      textarea: yup.string().required(),
+      number: yup.number().required(),
+      period: yup.object().required(),
+      date: yup.array().required(),
+      time: yup.string().required(),
+      dateTime: yup.string().required(),
+      select: yup.array().required(),
+      multiSelect: yup.array().required(),
+      file: yup.array().required(),
+      richEditor: yup.string(),
+    }),
+    onSubmit: (values) => {
+      console.log(values);
+    },
+  });
 
   return (
     <CContainer p={4} gap={8} mx={"auto"}>
@@ -357,11 +407,9 @@ const DemoIndexRoute = () => {
         </CContainer>
       </SimpleGrid>
 
-      <DataTable
-        headers={tableProps.headers}
-        rows={tableProps.rows}
-        rowOptions={tableProps.rowOptions}
-      />
+      <CContainer border={"1px solid"} borderColor={"border.muted"}>
+        <DemoDataTable />
+      </CContainer>
     </CContainer>
   );
 };

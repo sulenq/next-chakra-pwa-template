@@ -210,7 +210,7 @@ const DatePicker = (props: Props__DatePicker) => {
                 <Btn
                   key={ii}
                   clicky={false}
-                  borderRadius={"full"}
+                  rounded={"full"}
                   onClick={() => {
                     if (multiple) {
                       const newSelectedDates = selected.some(
@@ -279,7 +279,7 @@ const SelectedDateList = (props: Props__SelectedDateList) => {
         borderColor={"border.muted"}
         bg={"bg.muted"}
         p={2}
-        borderRadius={6}
+        rounded={6}
         cursor={"pointer"}
         onClick={onOpen}
       >
@@ -496,12 +496,12 @@ export const DatePickerInput = (props: Props__DatePickerInput) => {
                 <P
                   color={"fg.subtle"}
                   fontSize={"xs"}
-                  lineHeight={1.4}
+                  lineHeight={1}
                 >{`${userTz.key}`}</P>
                 <P
                   color={"fg.subtle"}
                   fontSize={"xs"}
-                  lineHeight={1.4}
+                  lineHeight={1}
                 >{`${userTz.formattedOffset}`}</P>
               </Stack>
             )}

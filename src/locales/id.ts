@@ -179,6 +179,7 @@ const translations = {
   "next": "Selanjutnya",
   "november": "November",
   "october": "Oktober",
+  "of": "dari",
   "optional": "Opsional",
   "otp_sent": "OTP telah dikirim",
   "otp_sent_to": "OTP telah dikirim ke",
@@ -196,6 +197,7 @@ const translations = {
   "select_date_range": "Pilih rentang tanggal",
   "select_period": "Pilih periode",
   "select_time": "Pilih waktu",
+  "selected": "Dipilih",
   "september": "September",
   "settings_display": {
     "title": "Tampilan",
@@ -214,6 +216,7 @@ const translations = {
     "others": "Lainnya"
   },
   "show": "Tampilkan",
+  "showing": "Menampilkan",
   "submit": "Submit",
   "success_200_default": {
     "title": "Ok",

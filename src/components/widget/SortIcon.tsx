@@ -1,11 +1,7 @@
 import { Props__SortIcon } from "@/constants/props";
 import { useThemeConfig } from "@/context/useThemeConfig";
-import { Icon } from "@chakra-ui/react";
-import {
-  IconCaretDownFilled,
-  IconCaretUpDownFilled,
-  IconCaretUpFilled,
-} from "@tabler/icons-react";
+import { Icon, VStack } from "@chakra-ui/react";
+import { IconCaretDownFilled, IconCaretUpFilled } from "@tabler/icons-react";
 
 export const SortIcon = (props: Props__SortIcon) => {
   // Props
@@ -14,21 +10,22 @@ export const SortIcon = (props: Props__SortIcon) => {
   // Contexts
   const { themeConfig } = useThemeConfig();
 
-  if (sortColumnIdx === columnIndex) {
-    return direction === "asc" ? (
-      <Icon boxSize={4} color={themeConfig.primaryColor}>
-        <IconCaretUpFilled />
-      </Icon>
-    ) : (
-      <Icon boxSize={4} color={themeConfig.primaryColor}>
-        <IconCaretDownFilled />
-      </Icon>
-    );
-  }
+  // States
+  const active = sortColumnIdx === columnIndex;
+  const asc = active && direction === "asc";
+  const desc = active && direction === "desc";
+  const ascColor = asc ? themeConfig.primaryColor : "d3";
+  const descColor = desc ? themeConfig.primaryColor : "d3";
 
   return (
-    <Icon boxSize={4} color={"d3"} {...restProps}>
-      <IconCaretUpDownFilled stroke={1.5} />
-    </Icon>
+    <VStack gap={0}>
+      <Icon boxSize={"15px"} color={ascColor} mb={"-5px"} {...restProps}>
+        <IconCaretUpFilled />
+      </Icon>
+
+      <Icon boxSize={"15px"} color={descColor} mt={"-5px"} {...restProps}>
+        <IconCaretDownFilled />
+      </Icon>
+    </VStack>
   );
 };

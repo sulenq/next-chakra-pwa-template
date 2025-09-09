@@ -77,7 +77,7 @@ const ToastIcon = (props: any) => {
   return (
     <Center
       bg={toast.bg[colorMode]}
-      borderRadius={"full"}
+      rounded={"full"}
       w={"32px"}
       h={"32px"}
       ml={"-2px"}
@@ -103,7 +103,7 @@ export const Toaster = () => {
         {(toast) => {
           return (
             <Toast.Root
-              borderRadius={themeConfig?.radii?.container}
+              rounded={themeConfig?.radii?.container}
               width={{ md: "sm" }}
               boxShadow={"none"}
               color={"current"}
@@ -111,12 +111,12 @@ export const Toaster = () => {
               border={"1px solid"}
               borderColor={"border.muted"}
               p={"14px"}
-              // className="ss"
+              className="ss"
             >
               {toast.type === "loading" ? (
                 <Center
                   bg={`bg.muted`}
-                  borderRadius={"full"}
+                  rounded={"full"}
                   p={"6px"}
                   w={"32px"}
                   h={"32px"}
@@ -140,11 +140,11 @@ export const Toaster = () => {
 
               {toast.action && (
                 <Toast.ActionTrigger
-                  borderRadius={6}
+                  rounded={6}
                   borderColor={"border.muted"}
                   cursor={"pointer"}
                   _hover={{
-                    bg: "bg.subtle",
+                    bg: "bg.muted",
                   }}
                 >
                   {toast.action.label}

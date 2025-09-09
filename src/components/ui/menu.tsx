@@ -1,5 +1,6 @@
 "use client";
 
+import { CContainer } from "@/components/ui/c-container";
 import { useThemeConfig } from "@/context/useThemeConfig";
 import {
   AbsoluteCenter,
@@ -26,16 +27,51 @@ export const MenuContent = forwardRef<HTMLDivElement, MenuContentProps>(
       <Portal disabled={!portalled} container={portalRef}>
         <ChakraMenu.Positioner>
           <ChakraMenu.Content
-            className="dsb"
+            className={"ss"}
             boxShadow={"none"}
-            borderRadius={themeConfig?.radii.container}
+            bg={"body !important"}
+            rounded={themeConfig?.radii.container}
             border={"1px solid {colors.d2}"}
-            p={1}
+            w={"150px"}
+            px={0}
+            py={1}
             ref={ref}
             {...rest}
           />
         </ChakraMenu.Positioner>
       </Portal>
+    );
+  }
+);
+
+export const MenuItem = forwardRef<HTMLDivElement, MenuItemProps>(
+  function MenuItem(props, ref) {
+    const { children, ...rest } = props;
+    const { themeConfig } = useThemeConfig();
+
+    return (
+      <CContainer px={1}>
+        <ChakraMenu.Item
+          gap={4}
+          ref={ref}
+          py={"6px !important"}
+          cursor={"pointer"}
+          rounded={themeConfig?.radii.component}
+          // color={"white"}
+          // _hover={{
+          //   bg: "d2",
+          // }}
+          // _focus={{
+          //   bg: "d2",
+          // }}
+          // _focusVisible={{
+          //   bg: "d2",
+          // }}
+          {...rest}
+        >
+          {children}
+        </ChakraMenu.Item>
+      </CContainer>
     );
   }
 );
@@ -111,43 +147,13 @@ export const MenuTriggerItem = forwardRef<HTMLDivElement, MenuTriggerItemProps>(
     return (
       <ChakraMenu.TriggerItem
         ref={ref}
-        borderRadius={themeConfig.radii.component}
+        rounded={themeConfig.radii.component}
         {...rest}
       >
         {startIcon}
         {children}
         <LuChevronRight />
       </ChakraMenu.TriggerItem>
-    );
-  }
-);
-
-export const MenuItem = forwardRef<HTMLDivElement, MenuItemProps>(
-  function MenuItem(props, ref) {
-    const { children, ...rest } = props;
-    const { themeConfig } = useThemeConfig();
-
-    return (
-      <ChakraMenu.Item
-        gap={4}
-        ref={ref}
-        py={"6px !important"}
-        color={"body"}
-        cursor={"pointer"}
-        borderRadius={themeConfig?.radii.component}
-        _hover={{
-          bg: "d2",
-        }}
-        _focus={{
-          bg: "d2",
-        }}
-        _focusVisible={{
-          bg: "d2",
-        }}
-        {...rest}
-      >
-        {children}
-      </ChakraMenu.Item>
     );
   }
 );

@@ -1,4 +1,5 @@
 /* Global */
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap");
 * {
   font-optical-sizing: auto;
   box-sizing: border-box !important;
@@ -25,18 +26,6 @@
 .timezones-list::-webkit-scrollbar-track {
   height: 100px !important;
   clip-path: inset(50px 0 50px 0) !important;
-}
-.chakra-menu__item {
-  color: white;
-  cursor: pointer;
-  border-radius: 4px;
-  padding: 8px !important;
-}
-.chakra-menu__item:hover,
-.chakra-menu__item:focus,
-.chakra-menu__item:focus-visible,
-.chakra-menu__content div[data-highlighted] {
-  background: var(--d2) !important;
 }
 .chakra-menu__separator {
   background: var(--d3) !important;
@@ -121,7 +110,7 @@
 
 /* Smooth shadow */
 .ss {
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.02) !important;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05), 0 2px 8px rgba(0, 0, 0, 0.03) !important;
 }
 
 /* Dark Transparent Blured */
@@ -143,21 +132,24 @@ textarea,
 
 /* Table */
 th {
-  font-weight: bold;
+  font-weight: 600;
   text-transform: none !important;
   border-bottom: 1px solid var(--d3) !important;
   color: var(--dt) !important;
 }
 td {
-  font-weight: 500 !important;
   border-bottom: none !important;
 }
 
 /* Typgography */
+.num {
+  font-family: "Roboto Mono", sans-serif !important;
+}
 a,
 p {
   text-decoration: none !important;
   font-size: 0.875rem;
+  /* letter-spacing: 0.25px; */
 }
 h1,
 h2,

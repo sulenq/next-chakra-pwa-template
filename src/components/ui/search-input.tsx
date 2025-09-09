@@ -5,6 +5,7 @@ import { HStack, Icon, InputGroup } from "@chakra-ui/react";
 import { IconSearch } from "@tabler/icons-react";
 import { useCallback, useEffect, useState } from "react";
 import { Tooltip } from "./tooltip";
+import { debounce } from "@/utils/callback";
 
 export default function SearchInput(props: Props__SearchInput) {
   const {
@@ -40,13 +41,7 @@ export default function SearchInput(props: Props__SearchInput) {
 
   // Handle debounce
   useEffect(() => {
-    const handler = setTimeout(() => {
-      handleOnChange(searchTemp);
-    }, 300);
-
-    return () => {
-      clearTimeout(handler);
-    };
+    debounce(() => handleOnChange(searchTemp), 500);
   }, [searchTemp, handleOnChange]);
 
   // Sync searchTemp with inputValue prop when it changes

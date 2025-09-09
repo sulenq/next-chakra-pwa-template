@@ -106,13 +106,13 @@ const DisclosureContent = ({ children, ...props }: DisclosureContentProps) => {
 
   return iss ? (
     <DrawerContent
-      borderRadius={themeConfig.radii.container}
+      rounded={themeConfig.radii.container}
       {...(props as DrawerContentProps)}
     >
       <Box
         w={"40px"}
         h={"4px"}
-        borderRadius={"full"}
+        rounded={"full"}
         bg={"d2"}
         mx={"auto"}
         mt={"6px"}
@@ -121,7 +121,7 @@ const DisclosureContent = ({ children, ...props }: DisclosureContentProps) => {
     </DrawerContent>
   ) : (
     <DialogContent
-      borderRadius={themeConfig.radii.container}
+      rounded={themeConfig.radii.container}
       {...(props as DialogContentProps)}
     >
       {children}

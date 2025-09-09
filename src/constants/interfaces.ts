@@ -14,6 +14,7 @@ import {
   Type__DisclosureSizes,
   Type__TimeRange,
 } from "./types";
+import { ReactNode } from "react";
 
 // Data Table
 export interface Interface__FormattedTableHeader {
@@ -48,7 +49,7 @@ export interface Interface__TableOption {
     confirmButtonProps?: BtnProps;
   };
   menuItemProps?: MenuItemProps;
-  override?: any;
+  override?: (data: any) => ReactNode;
 }
 
 // HTTP

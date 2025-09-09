@@ -59,7 +59,7 @@ export const Btn = forwardRef<HTMLButtonElement, BtnProps>((props, ref) => {
       ref={ref}
       className={resolvedClassName}
       size={size}
-      borderRadius={themeConfig.radii.component}
+      rounded={themeConfig.radii.component}
       {...restProps}
     >
       {children}
@@ -70,7 +70,7 @@ export const Btn = forwardRef<HTMLButtonElement, BtnProps>((props, ref) => {
       className={resolvedClassName}
       fontWeight="medium"
       size={size || (MAIN_BUTTON_SIZE as any)}
-      borderRadius={themeConfig.radii.component}
+      rounded={themeConfig.radii.component}
       _active={{ bg: activeBg }}
       {...restProps}
     >

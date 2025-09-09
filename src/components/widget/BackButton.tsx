@@ -34,7 +34,7 @@ const BackButton = ({
       <Btn
         iconButton
         variant={"ghost"}
-        borderRadius={"full"}
+        rounded={"full"}
         onClick={handleBack}
         size={"xs"}
         {...props}

@@ -89,7 +89,7 @@ const FileUploadItem = (props: FileUploadItemProps) => {
       py={2}
       h={"54px"}
       bg={"body"}
-      borderRadius={themeConfig.radii.component}
+      rounded={themeConfig.radii.component}
     >
       <ChakraFileUpload.ItemPreview asChild>
         <Icon fontSize={20}>

@@ -90,7 +90,7 @@ const SigninForm = (props: Props) => {
       maxW={"380px"}
       p={6}
       gap={4}
-      borderRadius={themeConfig.radii.container}
+      rounded={themeConfig.radii.container}
       {...restProps}
     >
       <CContainer gap={1}>

@@ -153,9 +153,21 @@ export const show = {
   id: "Tampilkan",
   en: "Show",
 };
+export const showing = {
+  id: "Menampilkan",
+  en: "Showing",
+};
+export const of = {
+  id: "dari",
+  en: "of",
+};
 export const select = {
   id: "Pilih",
   en: "Select",
+};
+export const selected = {
+  id: "Dipilih",
+  en: "Selected",
 };
 export const optional = {
   id: "Opsional",
