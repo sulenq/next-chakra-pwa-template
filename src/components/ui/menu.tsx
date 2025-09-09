@@ -20,9 +20,11 @@ interface MenuContentProps extends ChakraMenu.ContentProps {
 
 export const MenuContent = forwardRef<HTMLDivElement, MenuContentProps>(
   function MenuContent(props, ref) {
-    // Contexts
+    // Props
     const { portalled = true, portalRef, ...rest } = props;
-    const { themeConfig } = useThemeConfig();
+
+    // Contexts
+    // const { themeConfig } = useThemeConfig();
 
     return (
       <Portal disabled={!portalled} container={portalRef}>
@@ -31,7 +33,7 @@ export const MenuContent = forwardRef<HTMLDivElement, MenuContentProps>(
             className={"ss"}
             boxShadow={"none"}
             bg={"body !important"}
-            rounded={themeConfig?.radii.container}
+            rounded={8}
             border={"1px solid {colors.d2}"}
             w={"150px"}
             px={0}
@@ -47,8 +49,11 @@ export const MenuContent = forwardRef<HTMLDivElement, MenuContentProps>(
 
 export const MenuItem = forwardRef<HTMLDivElement, MenuItemProps>(
   function MenuItem(props, ref) {
+    //Props
     const { children, ...rest } = props;
-    const { themeConfig } = useThemeConfig();
+
+    // Contexts
+    // const { themeConfig } = useThemeConfig();
 
     return (
       <CContainer px={1}>
@@ -57,17 +62,7 @@ export const MenuItem = forwardRef<HTMLDivElement, MenuItemProps>(
           ref={ref}
           py={"6px !important"}
           cursor={"pointer"}
-          rounded={themeConfig?.radii.component}
-          // color={"white"}
-          // _hover={{
-          //   bg: "d2",
-          // }}
-          // _focus={{
-          //   bg: "d2",
-          // }}
-          // _focusVisible={{
-          //   bg: "d2",
-          // }}
+          rounded={4}
           {...rest}
         >
           {children}
