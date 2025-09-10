@@ -29,6 +29,7 @@ export const MiniProfile = (props: StackProps) => {
     successMessage: { ...l.success_signout },
   });
   const router = useRouter();
+  router.prefetch("/");
   const pathname = usePathname();
 
   // States

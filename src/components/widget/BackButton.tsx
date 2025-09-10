@@ -19,6 +19,7 @@ const BackButton = ({
   ...props
 }: Props) => {
   const router = useRouter();
+  router.prefetch(backPath || "");
 
   function handleBack() {
     if (backPath) {
