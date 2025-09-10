@@ -33,7 +33,7 @@ export default function MaintenanceRoute() {
           {l.maintenance_route.description}
         </P>
 
-        <NavLink to={"/"} w={"fit"}>
+        <NavLink to={"/"}>
           <Btn colorPalette={themeConfig.colorPalette} px={8}>
             {l.main_page}
           </Btn>

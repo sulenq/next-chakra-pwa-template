@@ -35,14 +35,16 @@ import { useThemeConfig } from "@/context/useThemeConfig";
 import useIsSmScreenWidth from "@/hooks/useIsSmScreenWidth";
 import { getUserData } from "@/utils/auth";
 import { pluckString } from "@/utils/string";
+import { getActiveNavs } from "@/utils/url";
 import { Box, Center, HStack, Icon, StackProps } from "@chakra-ui/react";
 import {
   IconBoxAlignLeft,
+  IconChevronRight,
   IconCircleFilled,
   IconSelector,
   IconSettings,
 } from "@tabler/icons-react";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { Fragment } from "react";
 
 export const DesktopActiveIndicator = () => {
@@ -105,11 +107,11 @@ export const DesktopLayout = (props: any) => {
   const toggleNavsExpanded = useNavs((s) => s.toggleNavsExpanded);
 
   // Hooks
-  const router = useRouter();
   const pathname = usePathname();
 
   // States
   const user = getUserData();
+  const activeNavs = getActiveNavs(pathname);
 
   return (
     <HStack
@@ -120,26 +122,28 @@ export const DesktopLayout = (props: any) => {
       overflowY={"auto"}
       {...restProps}
     >
+      {/* Side Panel */}
       <CContainer
         w={navsExpanded ? "300px" : "58px"}
         gap={8}
         p={2}
-        pr={0}
+        // pr={0}
         transition={"200ms"}
       >
         <CContainer gap={1}>
           {!navsExpanded && (
-            <Btn
-              iconButton
-              clicky={false}
-              variant={"ghost"}
-              colorPalette={"light"}
-              w={"42px"}
-              mr={"auto"}
-              onClick={() => router.push("/")}
-            >
-              <Logo size={15} />
-            </Btn>
+            <NavLink to="/">
+              <Btn
+                iconButton
+                clicky={false}
+                variant={"ghost"}
+                colorPalette={"light"}
+                w={"42px"}
+                mr={"auto"}
+              >
+                <Logo size={15} />
+              </Btn>
+            </NavLink>
           )}
 
           <HStack justify={"space-between"}>
@@ -240,38 +244,36 @@ export const DesktopLayout = (props: any) => {
                             const isSubNavsActive = pathname === menu.path;
 
                             return (
-                              <Btn
-                                key={menu.path}
-                                iconButton={navsExpanded ? false : true}
-                                clicky={false}
-                                w={"full"}
-                                gap={4}
-                                px={"6px"}
-                                rounded={`calc(${themeConfig.radii.component} - 2px)`}
-                                justifyContent={"start"}
-                                variant={"ghost"}
-                                colorPalette={"light"}
-                                onClick={() => {
-                                  router.push(menu.path);
-                                }}
-                              >
-                                <Center boxSize={5}>
-                                  <Icon
-                                    boxSize={2}
-                                    color={
-                                      isSubNavsActive
-                                        ? themeConfig.primaryColor
-                                        : "d2"
-                                    }
-                                  >
-                                    <IconCircleFilled stroke={1.5} />
-                                  </Icon>
-                                </Center>
+                              <NavLink key={menu.path} to={menu.path}>
+                                <Btn
+                                  iconButton={navsExpanded ? false : true}
+                                  clicky={false}
+                                  w={"full"}
+                                  gap={4}
+                                  px={"6px"}
+                                  rounded={`calc(${themeConfig.radii.component} - 2px)`}
+                                  justifyContent={"start"}
+                                  variant={"ghost"}
+                                  colorPalette={"light"}
+                                >
+                                  <Center boxSize={5}>
+                                    <Icon
+                                      boxSize={2}
+                                      color={
+                                        isSubNavsActive
+                                          ? themeConfig.primaryColor
+                                          : "d2"
+                                      }
+                                    >
+                                      <IconCircleFilled stroke={1.5} />
+                                    </Icon>
+                                  </Center>
 
-                                <P lineClamp={1} textAlign={"left"}>
-                                  {pluckString(l, menu.labelKey)}
-                                </P>
-                              </Btn>
+                                  <P lineClamp={1} textAlign={"left"}>
+                                    {pluckString(l, menu.labelKey)}
+                                  </P>
+                                </Btn>
+                              </NavLink>
                             );
                           })}
                         </CContainer>
@@ -317,17 +319,13 @@ export const DesktopLayout = (props: any) => {
                         const isSubNavsActive = pathname === menu.path;
 
                         return (
-                          <MenuItem
-                            key={menu.path}
-                            value={menu.path}
-                            onClick={() => {
-                              router.push(menu.path);
-                            }}
-                          >
-                            {pluckString(l, menu.labelKey)}
+                          <NavLink key={menu.path} to={menu.path}>
+                            <MenuItem value={menu.path}>
+                              {pluckString(l, menu.labelKey)}
 
-                            {isSubNavsActive && <DotIndicator mr={1} />}
-                          </MenuItem>
+                              {isSubNavsActive && <DotIndicator mr={1} />}
+                            </MenuItem>
+                          </NavLink>
                         );
                       })}
                     </MenuContent>
@@ -335,33 +333,32 @@ export const DesktopLayout = (props: any) => {
                 )}
 
                 {!hasSubMenu && (
-                  <NavTooltip content={pluckString(l, nav.labelKey)}>
-                    <Btn
-                      iconButton={navsExpanded ? false : true}
-                      clicky={false}
-                      h={"40px"}
-                      gap={4}
-                      px={"10px"}
-                      justifyContent={"start"}
-                      variant={"ghost"}
-                      colorPalette={"light"}
-                      onClick={() => {
-                        router.push(nav.path);
-                      }}
-                    >
-                      {isMainNavsActive && <DesktopActiveIndicator />}
+                  <NavLink key={nav.path} to={nav.path}>
+                    <NavTooltip content={pluckString(l, nav.labelKey)}>
+                      <Btn
+                        iconButton={navsExpanded ? false : true}
+                        clicky={false}
+                        h={"40px"}
+                        gap={4}
+                        px={"10px"}
+                        justifyContent={"start"}
+                        variant={"ghost"}
+                        colorPalette={"light"}
+                      >
+                        {isMainNavsActive && <DesktopActiveIndicator />}
 
-                      <Icon boxSize={5}>
-                        <nav.icon stroke={1.5} />
-                      </Icon>
+                        <Icon boxSize={5}>
+                          <nav.icon stroke={1.5} />
+                        </Icon>
 
-                      {navsExpanded && (
-                        <P lineClamp={1} textAlign={"left"}>
-                          {pluckString(l, nav.labelKey)}
-                        </P>
-                      )}
-                    </Btn>
-                  </NavTooltip>
+                        {navsExpanded && (
+                          <P lineClamp={1} textAlign={"left"}>
+                            {pluckString(l, nav.labelKey)}
+                          </P>
+                        )}
+                      </Btn>
+                    </NavTooltip>
+                  </NavLink>
                 )}
               </Fragment>
             );
@@ -369,41 +366,40 @@ export const DesktopLayout = (props: any) => {
         </CContainer>
 
         <CContainer mt={"auto"} gap={2}>
-          <NavTooltip content={l.settings}>
-            <Btn
-              clicky={false}
-              gap={4}
-              justifyContent={"start"}
-              variant={"ghost"}
-              colorPalette={"light"}
-              px={"10px"}
-              onClick={() => {
-                router.push("/admin/settings");
-              }}
-              pos={"relative"}
-            >
-              {pathname.includes("/admin/settings") && (
-                <DesktopActiveIndicator />
-              )}
+          <NavLink to={"/admin/settings"}>
+            <NavTooltip content={l.settings}>
+              <Btn
+                clicky={false}
+                gap={4}
+                justifyContent={"start"}
+                variant={"ghost"}
+                colorPalette={"light"}
+                px={"10px"}
+                pos={"relative"}
+              >
+                {pathname.includes("/admin/settings") && (
+                  <DesktopActiveIndicator />
+                )}
 
-              <Icon boxSize={5}>
-                <IconSettings stroke={1.5} />
-              </Icon>
+                <Icon boxSize={5}>
+                  <IconSettings stroke={1.5} />
+                </Icon>
 
-              {navsExpanded && (
-                <P lineClamp={1} textAlign={"left"}>
-                  {l.settings}
-                </P>
-              )}
-            </Btn>
-          </NavTooltip>
+                {navsExpanded && (
+                  <P lineClamp={1} textAlign={"left"}>
+                    {l.settings}
+                  </P>
+                )}
+              </Btn>
+            </NavTooltip>
+          </NavLink>
 
           <Divider />
 
           <PopoverRoot
             positioning={{
               placement: "right-end",
-              offset: { mainAxis: 12, crossAxis: -4 },
+              offset: { mainAxis: 16 },
             }}
           >
             <PopoverTrigger asChild>
@@ -457,19 +453,34 @@ export const DesktopLayout = (props: any) => {
       </CContainer>
 
       {/* Content */}
-      <CContainer p={2} bg={"dark"} overflowY={"auto"}>
-        <HStack p={1} gapX={4} mb={2}>
-          <P fontSize={16} color={"light"} fontWeight={"semibold"}>
-            Route Title
-          </P>
+      <CContainer
+        bg={"body"}
+        borderLeft={"1px solid"}
+        borderColor={"border.muted"}
+        overflowY={"auto"}
+      >
+        {/* Content Header */}
+        <HStack p={"15px"} gap={4} pl={4}>
+          <HStack gap={1}>
+            {activeNavs.map((nav, idx) => {
+              return (
+                <HStack key={idx} gap={1}>
+                  {idx !== 0 && (
+                    <Icon boxSize={5} color={"fg.subtle"}>
+                      <IconChevronRight stroke={1.5} />
+                    </Icon>
+                  )}
+
+                  <P fontSize={16} fontWeight={"semibold"}>
+                    {pluckString(l, nav.labelKey)}
+                  </P>
+                </HStack>
+              );
+            })}
+          </HStack>
         </HStack>
 
-        <CContainer
-          flex={1}
-          bg={"body"}
-          rounded={themeConfig.radii.container}
-          overflowY={"auto"}
-        >
+        <CContainer flex={1} overflowY={"auto"}>
           {children}
         </CContainer>
       </CContainer>

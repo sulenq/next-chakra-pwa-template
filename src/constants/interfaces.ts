@@ -16,6 +16,14 @@ import {
 } from "./types";
 import { ReactNode } from "react";
 
+// Navs
+export interface Interface__NavItem {
+  icon?: any;
+  labelKey: string;
+  path: string;
+  subMenus?: Interface__NavItem[];
+}
+
 // Data Table
 export interface Interface__FormattedTableHeader {
   th: string;

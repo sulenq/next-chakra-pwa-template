@@ -4,7 +4,9 @@ import {
   IconDeviceDesktop,
   IconLanguage,
   IconReceipt,
+  IconSettings,
   IconShieldHalf,
+  IconUser,
 } from "@tabler/icons-react";
 
 export const NAVS = [
@@ -32,6 +34,19 @@ export const NAVS = [
         path: "/admin/master-data/category",
       },
     ],
+  },
+];
+
+export const OTHER_NAVS = [
+  {
+    icon: IconSettings,
+    labelKey: "navs.settings",
+    path: "/admin/settings",
+  },
+  {
+    icon: IconUser,
+    labelKey: "navs.profile",
+    path: "/admin/profile",
   },
 ];
 

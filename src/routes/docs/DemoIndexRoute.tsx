@@ -264,8 +264,8 @@ const DemoIndexRoute = () => {
             Demo
           </P>
 
-          <NavLink to="/admin/dashboard" color={"p.500"}>
-            App Layout
+          <NavLink to="/admin/dashboard">
+            <P color={"p.500"}>App Layout</P>
           </NavLink>
         </HStack>
 
