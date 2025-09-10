@@ -170,6 +170,7 @@ const translations = {
   "msg_reset_password_step_2": "Langkah kedua, verifikasi OTP",
   "msg_reset_password_step_3": "Langkah ketiga, masukkan kata sandi baru Anda",
   "msg_signin": "Masukkan detail akun untuk melanjutkan.",
+  "msg_signout": "Anda yakin ingin keluar?",
   "msg_soft_delete": "Data akan disembunyikan dan bisa dikembalikan nanti.",
   "msg_toggle_dark_mode": "Toggle mode gelap",
   "my_profile": "Profil saya",

@@ -26,6 +26,7 @@ import {
 import { Tooltip, TooltipProps } from "@/components/ui/tooltip";
 import { DotIndicator } from "@/components/widget/DotIndicator";
 import Logo from "@/components/widget/Logo";
+import { MiniProfile } from "@/components/widget/MiniProfile";
 import { APP } from "@/constants/_meta";
 import { NAVS } from "@/constants/navs";
 import useLang from "@/context/useLang";
@@ -38,10 +39,8 @@ import { Box, Center, HStack, Icon, StackProps } from "@chakra-ui/react";
 import {
   IconBoxAlignLeft,
   IconCircleFilled,
-  IconLogout,
   IconSelector,
   IconSettings,
-  IconUser,
 } from "@tabler/icons-react";
 import { usePathname, useRouter } from "next/navigation";
 import { Fragment } from "react";
@@ -437,48 +436,7 @@ const DesktopLayout = (props: any) => {
             </PopoverTrigger>
 
             <PopoverContent w={"200px"}>
-              <CContainer align={"center"} p={2} mb={2}>
-                <Avatar
-                  src={user?.photoProfile?.file_url}
-                  name={user?.name}
-                  size={"2xl"}
-                  mx={"auto"}
-                  my={2}
-                />
-
-                <P fontWeight={"semibold"}>{user?.name}</P>
-                <P color={"fg.muted"}>{user?.email || user?.username || "-"}</P>
-              </CContainer>
-
-              <Divider />
-
-              <CContainer p={1}>
-                <Btn
-                  clicky={false}
-                  px={2}
-                  variant={"ghost"}
-                  justifyContent={"start"}
-                >
-                  <Icon boxSize={5}>
-                    <IconUser stroke={1.5} />
-                  </Icon>
-
-                  {l.my_profile}
-                </Btn>
-
-                <Btn
-                  clicky={false}
-                  px={2}
-                  variant={"ghost"}
-                  colorPalette={"red"}
-                  justifyContent={"start"}
-                >
-                  <Icon boxSize={5}>
-                    <IconLogout stroke={1.5} />
-                  </Icon>
-                  Sign Out
-                </Btn>
-              </CContainer>
+              <MiniProfile />
             </PopoverContent>
           </PopoverRoot>
         </CContainer>

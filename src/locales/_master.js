@@ -361,6 +361,10 @@ export const msg_signin = {
   id: "Masukkan detail akun untuk melanjutkan.",
   en: "Enter your account details to continue.",
 };
+export const msg_signout = {
+  id: "Anda yakin ingin keluar?",
+  en: "Are you sure you want to sign out?",
+};
 export const msg_ADM_active = {
   id: "Mode gelap adaptif aktif",
   en: "Adaptive dark mode is active",

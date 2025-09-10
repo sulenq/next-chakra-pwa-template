@@ -61,6 +61,7 @@ const ConfirmationDisclosure = (props: Props) => {
 
           <DisclosureFooter>
             <BackButton disabled={confirmationData?.loading} />
+
             <Btn
               onClick={confirmationData?.onConfirm}
               loading={confirmationData?.loading}

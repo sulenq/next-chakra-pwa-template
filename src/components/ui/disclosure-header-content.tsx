@@ -1,8 +1,9 @@
+import { Btn } from "@/components/ui/btn";
 import { back } from "@/utils/client";
-import { HStack } from "@chakra-ui/react";
+import { HStack, Icon } from "@chakra-ui/react";
+import { IconX } from "@tabler/icons-react";
 import { DialogCloseTrigger } from "./dialog";
 import { DrawerCloseTrigger } from "./drawer";
-import { DisclosureCloseTrigger } from "./disclosure";
 import { P } from "./p";
 
 type Props = {
@@ -58,12 +59,21 @@ export const DisclosureHeaderContent = ({
           )}
 
           {!prefix && (
-            <DisclosureCloseTrigger
+            <Btn
+              iconButton
+              clicky={false}
               rounded={"full"}
+              variant={["ghost", null, "subtle"]}
+              pos={"absolute"}
               top={3}
               right={["14px", null, "12px"]}
+              size={["xs", null, "2xs"]}
               onClick={handleBack}
-            />
+            >
+              <Icon boxSize={4}>
+                <IconX />
+              </Icon>
+            </Btn>
           )}
         </>
       )}
