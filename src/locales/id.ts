@@ -206,6 +206,7 @@ const translations = {
   "select_time": "Pilih waktu",
   "selected": "Dipilih",
   "september": "September",
+  "settings": "Pengaturan",
   "settings_display": {
     "title": "Tampilan",
     "description": "Pengaturan tampilan aplikasi."

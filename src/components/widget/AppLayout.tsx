@@ -6,8 +6,10 @@ import {
   AccordionItemTrigger,
   AccordionRoot,
 } from "@/components/ui/accordion";
+import { Avatar } from "@/components/ui/avatar";
 import { Btn } from "@/components/ui/btn";
 import { CContainer } from "@/components/ui/c-container";
+import { Divider } from "@/components/ui/divider";
 import {
   MenuContent,
   MenuItem,
@@ -25,9 +27,15 @@ import useLang from "@/context/useLang";
 import useNavs from "@/context/useNavs";
 import { useThemeConfig } from "@/context/useThemeConfig";
 import useIsSmScreenWidth from "@/hooks/useIsSmScreenWidth";
+import { getUserData } from "@/utils/auth";
 import { pluckString } from "@/utils/string";
 import { Box, Center, HStack, Icon, StackProps } from "@chakra-ui/react";
-import { IconBoxAlignLeft, IconCircleFilled } from "@tabler/icons-react";
+import {
+  IconBoxAlignLeft,
+  IconCircleFilled,
+  IconSelector,
+  IconSettings,
+} from "@tabler/icons-react";
 import { usePathname, useRouter } from "next/navigation";
 import { Fragment } from "react";
 
@@ -94,9 +102,12 @@ const DesktopLayout = (props: any) => {
   const router = useRouter();
   const pathname = usePathname();
 
+  // States
+  const user = getUserData();
+
   return (
     <HStack
-      border={"4px solid orange"}
+      // border={"4px solid orange"}
       align={"stretch"}
       gap={0}
       h={"100dvh"}
@@ -111,48 +122,64 @@ const DesktopLayout = (props: any) => {
         p={2}
         transition={"200ms"}
       >
-        {/* Toggle Side Navs */}
-        <HStack justify={"space-between"}>
-          {navsExpanded && (
-            <NavLink to="/">
-              <HStack ml={"10px"}>
-                <Logo size={15} />
-
-                <P
-                  w={"full"}
-                  fontSize={15}
-                  fontWeight={"semibold"}
-                  color={"light"}
-                  lineClamp={1}
-                >
-                  {APP.name}
-                </P>
-              </HStack>
-            </NavLink>
-          )}
-
-          <Tooltip
-            content={navsExpanded ? l.minimize : l.maximize}
-            positioning={{
-              placement: "right",
-              offset: {
-                mainAxis: 12,
-              },
-            }}
-          >
+        <CContainer gap={1}>
+          {!navsExpanded && (
             <Btn
               iconButton
-              w={navsExpanded ? "fit" : "full"}
+              clicky={false}
               variant={"ghost"}
               colorPalette={"light"}
-              onClick={toggleNavsExpanded}
+              w={"42px"}
+              mr={"auto"}
             >
-              <Icon>
-                <IconBoxAlignLeft />
-              </Icon>
+              <Logo size={15} />
             </Btn>
-          </Tooltip>
-        </HStack>
+          )}
+
+          <HStack justify={"space-between"}>
+            {navsExpanded && (
+              <NavLink to="/">
+                <HStack ml={"10px"}>
+                  <Logo size={15} />
+
+                  <P
+                    w={"full"}
+                    fontSize={15}
+                    fontWeight={"semibold"}
+                    color={"light"}
+                    lineClamp={1}
+                  >
+                    {APP.name}
+                  </P>
+                </HStack>
+              </NavLink>
+            )}
+
+            {/* Toggle Side Navs */}
+            <Tooltip
+              content={navsExpanded ? l.minimize : l.maximize}
+              positioning={{
+                placement: "right",
+                offset: {
+                  mainAxis: 12,
+                },
+              }}
+            >
+              <Btn
+                iconButton
+                clicky={false}
+                w={"42px"}
+                variant={"ghost"}
+                colorPalette={"light"}
+                onClick={toggleNavsExpanded}
+              >
+                <Icon>
+                  <IconBoxAlignLeft />
+                </Icon>
+              </Btn>
+            </Tooltip>
+          </HStack>
+        </CContainer>
 
         <CContainer gap={1}>
           {NAVS.map((nav) => {
@@ -332,6 +359,65 @@ const DesktopLayout = (props: any) => {
               </Fragment>
             );
           })}
+        </CContainer>
+
+        <CContainer mt={"auto"} gap={1}>
+          <Btn
+            clicky={false}
+            gap={4}
+            justifyContent={"start"}
+            variant={"ghost"}
+            colorPalette={"light"}
+            px={"10px"}
+          >
+            <Icon boxSize={5}>
+              <IconSettings stroke={1.5} />
+            </Icon>
+
+            {navsExpanded && (
+              <P lineClamp={1} textAlign={"left"}>
+                {l.settings}
+              </P>
+            )}
+          </Btn>
+
+          <Divider dir="vertical" />
+
+          <HStack
+            gap={4}
+            px={"10px"}
+            py={2}
+            rounded={themeConfig.radii.component}
+            color={"light"}
+            cursor={"pointer"}
+            _hover={{
+              bg: "d2",
+            }}
+            transition={"200ms"}
+          >
+            <Avatar
+              src={user?.photoProfile?.file_url}
+              name={user?.name}
+              size={navsExpanded ? "xs" : "2xs"}
+            />
+
+            {navsExpanded && (
+              <>
+                <CContainer>
+                  <P lineClamp={1} fontWeight={"semibold"}>
+                    {user?.name}
+                  </P>
+                  <P lineClamp={1} opacity={0.6}>
+                    {user?.email || user?.username || "-"}
+                  </P>
+                </CContainer>
+
+                <Icon opacity={0.6} boxSize={5}>
+                  <IconSelector stroke={1.5} />
+                </Icon>
+              </>
+            )}
+          </HStack>
         </CContainer>
       </CContainer>
 

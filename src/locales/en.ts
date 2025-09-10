@@ -206,6 +206,7 @@ const translations = {
   "select_time": "Select time",
   "selected": "Selected",
   "september": "September",
+  "settings": "Settings",
   "settings_display": {
     "title": "Display",
     "description": "Application display settings."

@@ -335,6 +335,10 @@ export const maximize = {
   id: "Maksimalkan",
   en: "Maximize",
 };
+export const settings = {
+  id: "Pengaturan",
+  en: "Settings",
+};
 
 // Message
 export const msg_cannot_be_undone = {
