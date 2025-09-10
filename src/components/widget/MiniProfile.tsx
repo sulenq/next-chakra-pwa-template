@@ -5,7 +5,7 @@ import { Btn } from "@/components/ui/btn";
 import { CContainer } from "@/components/ui/c-container";
 import { Divider } from "@/components/ui/divider";
 import { P } from "@/components/ui/p";
-import { DesktopActiveIndicator } from "@/components/widget/AppLayout";
+import { DotIndicator } from "@/components/widget/DotIndicator";
 import useConfirmationDisclosure from "@/context/disclosure/useConfirmationDisclosure";
 import useAuthMiddleware from "@/context/useAuthMiddleware";
 import useLang from "@/context/useLang";
@@ -90,11 +90,11 @@ export const MiniProfile = (props: StackProps) => {
           }}
           pos={"relative"}
         >
-          {pathname.includes("/profile") && <DesktopActiveIndicator />}
           <Icon boxSize={5}>
             <IconUser stroke={1.5} />
           </Icon>
           {l.my_profile}
+          {pathname.includes("/profile") && <DotIndicator mr={1} />}
         </Btn>
 
         <Btn
