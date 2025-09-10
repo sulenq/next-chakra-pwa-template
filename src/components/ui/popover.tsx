@@ -7,7 +7,7 @@ import { useThemeConfig } from "@/context/useThemeConfig";
 
 interface PopoverContentProps extends ChakraPopover.ContentProps {
   portalled?: boolean;
-  portalRef?: React.RefObject<HTMLElement>;
+  portalRef?: React.RefObject<HTMLElement | null>;
 }
 
 export const PopoverContent = forwardRef<HTMLDivElement, PopoverContentProps>(

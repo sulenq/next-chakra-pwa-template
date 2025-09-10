@@ -113,13 +113,13 @@ const DesktopLayout = (props: any) => {
 
   return (
     <HStack
-      // border={"4px solid orange"}
       align={"stretch"}
       gap={0}
       h={"100dvh"}
       bg={"dark"}
       overflowY={"auto"}
       {...restProps}
+      // border={"4px solid orange"}
     >
       {/* Navs */}
       <CContainer
@@ -435,7 +435,7 @@ const DesktopLayout = (props: any) => {
               </HStack>
             </PopoverTrigger>
 
-            <PopoverContent w={"200px"}>
+            <PopoverContent w={"200px"} zIndex={2}>
               <MiniProfile />
             </PopoverContent>
           </PopoverRoot>
