@@ -332,9 +332,9 @@ export default function VideoPlayer(props: Props__VideoPlayer) {
               >
                 <Icon>
                   {isPlaying ? (
-                    <IconPlayerPauseFilled />
+                    <IconPlayerPauseFilled stroke={1.5} />
                   ) : (
-                    <IconPlayerPlayFilled />
+                    <IconPlayerPlayFilled stroke={1.5} />
                   )}
                 </Icon>
               </Btn>
@@ -384,7 +384,7 @@ export default function VideoPlayer(props: Props__VideoPlayer) {
               >
                 <P fontSize={"xs"}>5</P>
                 <Icon>
-                  <IconPlayerTrackPrev />
+                  <IconPlayerTrackPrev stroke={1.5} />
                 </Icon>
               </Btn>
 
@@ -397,7 +397,7 @@ export default function VideoPlayer(props: Props__VideoPlayer) {
                 px={2}
               >
                 <Icon>
-                  <IconPlayerTrackNext />
+                  <IconPlayerTrackNext stroke={1.5} />
                 </Icon>
                 <P fontSize={"xs"}>5</P>
               </Btn>
@@ -416,7 +416,11 @@ export default function VideoPlayer(props: Props__VideoPlayer) {
                   mr={"-10px"}
                 >
                   <Icon>
-                    {muted || volume === 0 ? <IconVolumeOff /> : <IconVolume />}
+                    {muted || volume === 0 ? (
+                      <IconVolumeOff stroke={1.5} />
+                    ) : (
+                      <IconVolume stroke={1.5} />
+                    )}
                   </Icon>
                 </Btn>
 
@@ -448,7 +452,7 @@ export default function VideoPlayer(props: Props__VideoPlayer) {
                 variant={"plain"}
                 onClick={handleFullscreen}
               >
-                <IconMaximize size={18} />
+                <IconMaximize stroke={1.5} />
               </Btn>
             </HStack>
           </HStack>
