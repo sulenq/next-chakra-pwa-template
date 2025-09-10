@@ -148,6 +148,7 @@ const translations = {
     "title": "Upload file",
     "description": "Uploading file..."
   },
+  "main": "Main",
   "main_page": "Main page",
   "maintenance_route": {
     "description": "We are currently performing maintenance to provide better service. Sorry for the inconvenience."

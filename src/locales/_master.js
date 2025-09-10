@@ -343,6 +343,10 @@ export const my_profile = {
   id: "Profil saya",
   en: "My profile",
 };
+export const main = {
+  id: "Utama",
+  en: "Main",
+};
 
 // Message
 export const msg_cannot_be_undone = {

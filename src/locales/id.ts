@@ -148,6 +148,7 @@ const translations = {
     "title": "Upload file",
     "description": "Sedang mengunggah file..."
   },
+  "main": "Utama",
   "main_page": "Halaman utama",
   "maintenance_route": {
     "description": "Kami sedang melakukan pemeliharaan untuk memberikan layanan yang lebih baik. Mohon maaf atas ketidaknyamanannya."
