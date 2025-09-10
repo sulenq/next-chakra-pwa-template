@@ -4,6 +4,7 @@ import { Avatar } from "@/components/ui/avatar";
 import { Btn } from "@/components/ui/btn";
 import { CContainer } from "@/components/ui/c-container";
 import { Divider } from "@/components/ui/divider";
+import { NavLink } from "@/components/ui/nav-link";
 import { P } from "@/components/ui/p";
 import { DotIndicator } from "@/components/widget/DotIndicator";
 import useConfirmationDisclosure from "@/context/disclosure/useConfirmationDisclosure";
@@ -80,22 +81,21 @@ export const MiniProfile = (props: StackProps) => {
       <Divider />
 
       <CContainer p={1}>
-        <Btn
-          clicky={false}
-          px={2}
-          variant={"ghost"}
-          justifyContent={"start"}
-          onClick={() => {
-            router.push("/admin/profile");
-          }}
-          pos={"relative"}
-        >
-          <Icon boxSize={5}>
-            <IconUser stroke={1.5} />
-          </Icon>
-          {l.my_profile}
-          {pathname.includes("/profile") && <DotIndicator mr={1} />}
-        </Btn>
+        <NavLink to={"/admin/profile"}>
+          <Btn
+            clicky={false}
+            px={2}
+            variant={"ghost"}
+            justifyContent={"start"}
+            pos={"relative"}
+          >
+            <Icon boxSize={5}>
+              <IconUser stroke={1.5} />
+            </Icon>
+            {l.my_profile}
+            {pathname.includes("/profile") && <DotIndicator mr={1} />}
+          </Btn>
+        </NavLink>
 
         <Btn
           clicky={false}
