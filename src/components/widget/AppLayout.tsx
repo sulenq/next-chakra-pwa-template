@@ -362,24 +362,26 @@ const DesktopLayout = (props: any) => {
         </CContainer>
 
         <CContainer mt={"auto"} gap={1}>
-          <Btn
-            clicky={false}
-            gap={4}
-            justifyContent={"start"}
-            variant={"ghost"}
-            colorPalette={"light"}
-            px={"10px"}
-          >
-            <Icon boxSize={5}>
-              <IconSettings stroke={1.5} />
-            </Icon>
+          <NavTooltip content={l.settings}>
+            <Btn
+              clicky={false}
+              gap={4}
+              justifyContent={"start"}
+              variant={"ghost"}
+              colorPalette={"light"}
+              px={"10px"}
+            >
+              <Icon boxSize={5}>
+                <IconSettings stroke={1.5} />
+              </Icon>
 
-            {navsExpanded && (
-              <P lineClamp={1} textAlign={"left"}>
-                {l.settings}
-              </P>
-            )}
-          </Btn>
+              {navsExpanded && (
+                <P lineClamp={1} textAlign={"left"}>
+                  {l.settings}
+                </P>
+              )}
+            </Btn>
+          </NavTooltip>
 
           <Divider dir="vertical" />
 
