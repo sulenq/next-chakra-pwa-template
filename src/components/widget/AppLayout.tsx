@@ -124,6 +124,7 @@ export const DesktopLayout = (props: any) => {
         w={navsExpanded ? "300px" : "58px"}
         gap={8}
         p={2}
+        pr={0}
         transition={"200ms"}
       >
         <CContainer gap={1}>
@@ -400,7 +401,10 @@ export const DesktopLayout = (props: any) => {
           <Divider />
 
           <PopoverRoot
-            positioning={{ placement: "right-end", offset: { mainAxis: 12 } }}
+            positioning={{
+              placement: "right-end",
+              offset: { mainAxis: 12, crossAxis: -4 },
+            }}
           >
             <PopoverTrigger asChild>
               <HStack
@@ -453,7 +457,22 @@ export const DesktopLayout = (props: any) => {
       </CContainer>
 
       {/* Content */}
-      <CContainer bg={"body"}>{children}</CContainer>
+      <CContainer p={2} bg={"dark"} overflowY={"auto"}>
+        <HStack p={1} gapX={4} mb={2}>
+          <P fontSize={16} color={"light"} fontWeight={"semibold"}>
+            Route Title
+          </P>
+        </HStack>
+
+        <CContainer
+          flex={1}
+          bg={"body"}
+          rounded={themeConfig.radii.container}
+          overflowY={"auto"}
+        >
+          {children}
+        </CContainer>
+      </CContainer>
     </HStack>
   );
 };
