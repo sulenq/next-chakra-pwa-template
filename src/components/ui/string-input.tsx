@@ -1,3 +1,5 @@
+"use client";
+
 import { Props__StringInput } from "@/constants/props";
 import { useThemeConfig } from "@/context/useThemeConfig";
 import {

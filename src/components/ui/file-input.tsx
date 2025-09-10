@@ -1,3 +1,5 @@
+"use client";
+
 import { Btn } from "@/components/ui/btn";
 import { CContainer } from "@/components/ui/c-container";
 import { CloseButton } from "@/components/ui/close-button";

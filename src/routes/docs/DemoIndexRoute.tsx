@@ -7,6 +7,7 @@ import { DatePickerInput } from "@/components/ui/date-picker-input";
 import { DateTimePickerInput } from "@/components/ui/date-time-picker-input";
 import { Field } from "@/components/ui/field";
 import { FileInput } from "@/components/ui/file-input";
+import { NavLink } from "@/components/ui/nav-link";
 import { NumInput } from "@/components/ui/number-input";
 import { P } from "@/components/ui/p";
 import { PasswordInput } from "@/components/ui/password-input";
@@ -255,14 +256,18 @@ const DemoIndexRoute = () => {
     },
   });
 
-  console.log(formik.values.file);
-
   return (
     <CContainer p={4} gap={8} mx={"auto"}>
       <HStack justify={"space-between"}>
-        <P fontSize={"xl"} fontWeight={"bold"}>
-          Demo
-        </P>
+        <HStack gap={4}>
+          <P whiteSpace={"nowrap"} fontSize={"xl"} fontWeight={"bold"}>
+            Demo
+          </P>
+
+          <NavLink to="/admin-layout" color={"p.500"}>
+            Admin Layout
+          </NavLink>
+        </HStack>
 
         <ColorModeButton />
       </HStack>

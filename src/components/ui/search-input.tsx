@@ -1,3 +1,5 @@
+"use client";
+
 import { StringInput } from "@/components/ui/string-input";
 import { Props__SearchInput } from "@/constants/props";
 import useLang from "@/context/useLang";
