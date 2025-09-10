@@ -239,7 +239,7 @@ export const DesktopLayout = (props: any) => {
                       </NavTooltip>
 
                       <AccordionItemContent p={0}>
-                        <CContainer gap={1} p={1}>
+                        <CContainer p={1}>
                           {nav.subMenus.map((menu) => {
                             const isSubNavsActive = pathname === menu.path;
 
