@@ -1,8 +1,26 @@
 // Navs
 export const navs = {
+  dashboard: {
+    id: "Dashboard",
+    en: "Dashboard",
+  },
+  transaction: {
+    id: "Transaksi",
+    en: "Transaction",
+  },
   master_data: {
-    id: "Master data",
-    en: "Master data",
+    index: {
+      id: "Master Data",
+      en: "Master Data",
+    },
+    category: {
+      id: "Kategori",
+      en: "Category",
+    },
+    user: {
+      id: "Pengguna",
+      en: "User",
+    },
   },
   settings: {
     id: "Pengaturan",
@@ -13,44 +31,44 @@ export const navs = {
     en: "Profile",
   },
 };
-export const settings_navs_group = {
+export const settings_navs = {
   main: {
-    id: "Utama",
-    en: "Main",
+    index: {
+      id: "Utama",
+      en: "Main",
+    },
+    display: {
+      id: "Tampilan",
+      en: "Display",
+    },
+    regional: {
+      id: "Regional",
+      en: "Regional",
+    },
+    permissions: {
+      id: "Izin Aplikasi",
+      en: "App Permissions",
+    },
   },
   others: {
-    id: "Lainnya",
-    en: "Others",
+    index: {
+      id: "Lainnya",
+      en: "Others",
+    },
+    report_problem: {
+      id: "Laporkan Masalah",
+      en: "Report a Problem",
+    },
+    terms_of_service: {
+      id: "Ketentuan Layanan",
+      en: "Terms of Service",
+    },
+    privacy_policy: {
+      id: "Kebijakan Privasi",
+      en: "Privacy Policy",
+    },
   },
 };
-export const settings_navs = {
-  display: {
-    id: "Tampilan",
-    en: "Display",
-  },
-  regional: {
-    id: "Regional",
-    en: "Regional",
-  },
-  permissions: {
-    id: "Izin Aplikasi",
-    en: "App Permissions",
-  },
-  report_problem: {
-    id: "Laporkan Masalah",
-    en: "Report a Problem",
-  },
-  terms_of_service: {
-    id: "Ketentuan Layanan",
-    en: "Terms of Service",
-  },
-  privacy_policy: {
-    id: "Kebijakan Privasi",
-    en: "Privacy Policy",
-  },
-};
-export const master_data_navs_group = {};
-export const master_data_navs = {};
 
 // Semantic UI
 export const main_page = {
@@ -308,6 +326,14 @@ export const december = {
 export const select_all = {
   id: "Pilih semua",
   en: "Select all",
+};
+export const minimize = {
+  id: "Minimalkan",
+  en: "Minimize",
+};
+export const maximize = {
+  id: "Maksimalkan",
+  en: "Maximize",
 };
 
 // Message

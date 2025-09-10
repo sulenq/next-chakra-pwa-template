@@ -153,9 +153,9 @@ const translations = {
     "description": "Kami sedang melakukan pemeliharaan untuk memberikan layanan yang lebih baik. Mohon maaf atas ketidaknyamanannya."
   },
   "march": "Maret",
-  "master_data_navs": {},
-  "master_data_navs_group": {},
+  "maximize": "Maksimalkan",
   "may": "Mei",
+  "minimize": "Minimalkan",
   "missing_route": {
     "description": "Halaman yang Anda cari tidak tersedia. Kemungkinan ada URL yang keliru atau halaman ini sudah tidak tersedia."
   },
@@ -173,7 +173,13 @@ const translations = {
   "msg_soft_delete": "Data akan disembunyikan dan bisa dikembalikan nanti.",
   "msg_toggle_dark_mode": "Toggle mode gelap",
   "navs": {
-    "master_data": "Master data",
+    "dashboard": "Dashboard",
+    "transaction": "Transaksi",
+    "master_data": {
+      "index": "Master Data",
+      "category": "Kategori",
+      "user": "Pengguna"
+    },
     "settings": "Pengaturan",
     "profile": "Profil"
   },
@@ -205,16 +211,18 @@ const translations = {
     "description": "Pengaturan tampilan aplikasi."
   },
   "settings_navs": {
-    "display": "Tampilan",
-    "regional": "Regional",
-    "permissions": "Izin Aplikasi",
-    "report_problem": "Laporkan Masalah",
-    "terms_of_service": "Ketentuan Layanan",
-    "privacy_policy": "Kebijakan Privasi"
-  },
-  "settings_navs_group": {
-    "main": "Utama",
-    "others": "Lainnya"
+    "main": {
+      "index": "Utama",
+      "display": "Tampilan",
+      "regional": "Regional",
+      "permissions": "Izin Aplikasi"
+    },
+    "others": {
+      "index": "Lainnya",
+      "report_problem": "Laporkan Masalah",
+      "terms_of_service": "Ketentuan Layanan",
+      "privacy_policy": "Kebijakan Privasi"
+    }
   },
   "show": "Tampilkan",
   "showing": "Menampilkan",

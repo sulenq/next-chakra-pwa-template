@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   description: "Template that using Next.js, Chakra UI, and PWA by Exium.id",
 };
 
-export default function RootLayout(props: Props) {
+const RootLayout = (props: Props) => {
   // Props
   const { children } = props;
 
@@ -24,9 +24,9 @@ export default function RootLayout(props: Props) {
         <Provider>
           <Toaster />
           <ClientOnlyApp>{children}</ClientOnlyApp>
-          {/* {children} */}
         </Provider>
       </body>
     </html>
   );
-}
+};
+export default RootLayout;

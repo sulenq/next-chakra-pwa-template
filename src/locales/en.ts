@@ -153,9 +153,9 @@ const translations = {
     "description": "We are currently performing maintenance to provide better service. Sorry for the inconvenience."
   },
   "march": "March",
-  "master_data_navs": {},
-  "master_data_navs_group": {},
+  "maximize": "Maximize",
   "may": "May",
+  "minimize": "Minimize",
   "missing_route": {
     "description": "The page you are looking for is not available. There may be an incorrect URL or the page is no longer available."
   },
@@ -173,7 +173,13 @@ const translations = {
   "msg_soft_delete": "Data will be hidden but can be restored later.",
   "msg_toggle_dark_mode": "Toggle dark mode",
   "navs": {
-    "master_data": "Master data",
+    "dashboard": "Dashboard",
+    "transaction": "Transaction",
+    "master_data": {
+      "index": "Master Data",
+      "category": "Category",
+      "user": "User"
+    },
     "settings": "Settings",
     "profile": "Profile"
   },
@@ -205,16 +211,18 @@ const translations = {
     "description": "Application display settings."
   },
   "settings_navs": {
-    "display": "Display",
-    "regional": "Regional",
-    "permissions": "App Permissions",
-    "report_problem": "Report a Problem",
-    "terms_of_service": "Terms of Service",
-    "privacy_policy": "Privacy Policy"
-  },
-  "settings_navs_group": {
-    "main": "Main",
-    "others": "Others"
+    "main": {
+      "index": "Main",
+      "display": "Display",
+      "regional": "Regional",
+      "permissions": "App Permissions"
+    },
+    "others": {
+      "index": "Others",
+      "report_problem": "Report a Problem",
+      "terms_of_service": "Terms of Service",
+      "privacy_policy": "Privacy Policy"
+    }
   },
   "show": "Show",
   "showing": "Showing",

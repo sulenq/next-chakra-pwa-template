@@ -18,9 +18,8 @@ import {
   TableRowProps,
 } from "@chakra-ui/react";
 import { TextareaProps } from "node_modules/@chakra-ui/react/dist/types/components/editable/namespace";
-import { Dispatch, ReactNode, RefObject } from "react";
+import { Dispatch, RefObject } from "react";
 import { Type__DisclosureSizes, Type__Period } from "./types";
-
 export interface Props__DataTable extends Omit<StackProps, "page"> {
   trBodyProps?: TableRowProps;
   headers?: Interface__FormattedTableHeader[];
@@ -178,7 +177,7 @@ export interface Props__FileItem {
     type: "remove" | "delete" | "undo_delete";
     onClick: () => void;
     label?: string;
-    icon?: ReactNode;
+    icon?: React.ReactNode;
   }[];
 }
 export interface Props__FileList extends Omit<StackProps, "onChange"> {

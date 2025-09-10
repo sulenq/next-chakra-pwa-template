@@ -18,6 +18,7 @@ import { Divider } from "../ui/divider";
 import ResetPasswordDisclosure from "./ResetPasswordDisclosure";
 import useAuthMiddleware from "@/context/useAuthMiddleware";
 import { useRouter } from "next/navigation";
+import { APP } from "@/constants/_meta";
 
 interface Props extends StackProps {}
 
@@ -95,7 +96,7 @@ const SigninForm = (props: Props) => {
     >
       <CContainer gap={1}>
         <P textAlign={"center"} fontWeight={"bold"} fontSize={"lg"}>
-          App Name
+          {APP.name}
         </P>
 
         <P textAlign={"center"}>{l.msg_signin}</P>

@@ -2,10 +2,10 @@ const fs = require("fs");
 const path = require("path");
 const { LANGUAGES } = require("../locales/_languages.js");
 
-// Path absolute ke _master.js
+// Absolute path to _master.js
 const MASTER_PATH = path.resolve("src/locales/_master.js");
 
-// Load _master.js sebagai CJS
+// Load _master.js as CommonJS
 const MASTER = require(MASTER_PATH);
 
 if (!Object.keys(MASTER).length) {
@@ -15,27 +15,80 @@ if (!Object.keys(MASTER).length) {
 
 const languages = LANGUAGES.map(({ key }) => key);
 
-languages.forEach((lang) => {
-  const translations = {};
+/**
+ * Recursively extract translations for a given language.
+ * Works for infinite nested objects.
+ */
+function extractTranslations(obj, lang) {
+  if (typeof obj !== "object" || obj === null) {
+    return undefined;
+  }
 
-  Object.entries(MASTER).forEach(([key, value]) => {
-    if (typeof value === "object" && value !== null) {
-      translations[key] = {};
-      Object.entries(value).forEach(([subKey, subValue]) => {
-        if (
-          typeof subValue === "object" &&
-          subValue !== null &&
-          lang in subValue
-        ) {
-          translations[key][subKey] = subValue[lang];
-        }
-      });
+  // If this object has all language keys, return the value for current lang
+  if (lang in obj) {
+    return obj[lang];
+  }
 
-      if (Object.keys(translations[key]).length === 0 && lang in value) {
-        translations[key] = value[lang];
-      }
+  const result = {};
+  for (const [key, value] of Object.entries(obj)) {
+    const extracted = extractTranslations(value, lang);
+    if (extracted !== undefined) {
+      result[key] = extracted;
     }
-  });
+  }
+
+  return Object.keys(result).length > 0 ? result : undefined;
+}
+
+/**
+ * Recursively validate that each "leaf" has all languages defined.
+ * Will traverse infinite nested objects.
+ */
+function validateTranslations(obj, languages, pathArr = []) {
+  if (typeof obj !== "object" || obj === null) return [];
+
+  const keys = Object.keys(obj);
+  const errors = [];
+
+  const hasAllLangs = languages.every((lang) => keys.includes(lang));
+  if (hasAllLangs) {
+    // ✅ Leaf object contains all languages
+    return [];
+  }
+
+  const hasSomeLangs = languages.some((lang) => keys.includes(lang));
+  if (hasSomeLangs && !hasAllLangs) {
+    errors.push(
+      `❌ Incomplete langs at ${
+        pathArr.join(".") || "(root)"
+      } → found [${keys.join(", ")}], expected all [${languages.join(", ")}]`
+    );
+  }
+
+  // Recurse into children
+  for (const [key, value] of Object.entries(obj)) {
+    if (typeof value === "object" && value !== null) {
+      errors.push(...validateTranslations(value, languages, [...pathArr, key]));
+    }
+  }
+
+  return errors;
+}
+
+// Run validation first
+const errors = validateTranslations(MASTER, languages);
+
+if (errors.length > 0) {
+  console.error("❌ Validation failed!");
+  errors.forEach((e) => console.error(e));
+  process.exit(1);
+}
+
+console.log("✅ All translations are valid!");
+
+// Generate files for each language
+languages.forEach((lang) => {
+  const translations = extractTranslations(MASTER, lang) || {};
 
   const content = `const translations = ${JSON.stringify(
     translations,

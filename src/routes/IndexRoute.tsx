@@ -10,7 +10,7 @@ import { NavLink } from "@/components/ui/nav-link";
 import { P } from "@/components/ui/p";
 import ExiumWatermark from "@/components/widget/ExiumWatermark";
 import SigninForm from "@/components/widget/SigninForm";
-import { META } from "@/constants/_meta";
+import { APP } from "@/constants/_meta";
 import { SVGS_PATH } from "@/constants/paths";
 import useAuthMiddleware from "@/context/useAuthMiddleware";
 import useLang from "@/context/useLang";
@@ -95,7 +95,7 @@ const IndexRoute = () => {
           bg={themeConfig.primaryColor}
         >
           <Img
-            alt={META.name}
+            alt={APP.name}
             src={`${SVGS_PATH}/logo_light.svg`}
             w={"full"}
             maxW={"120px"}

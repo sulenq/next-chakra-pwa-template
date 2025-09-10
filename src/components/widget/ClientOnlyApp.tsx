@@ -1,6 +1,6 @@
 "use client";
 
-import { META } from "@/constants/_meta";
+import { APP } from "@/constants/_meta";
 import { useFirefoxPaddingY } from "@/hooks/useFirefoxPaddingY";
 import useOfflineAlert from "@/hooks/useOfflineAlert";
 import { Center } from "@chakra-ui/react";
@@ -17,7 +17,7 @@ const DefaultFallback = () => {
   return (
     <Center w={"100w"} minH={"100dvh"} color={"fg.subtle"}>
       <Center position={"relative"}>
-        <Img alt={`${META.name} Logo`} src={"/logo.svg"} w={"40px"} />
+        <Img alt={`${APP.name} Logo`} src={"/logo.svg"} w={"40px"} />
       </Center>
     </Center>
   );
