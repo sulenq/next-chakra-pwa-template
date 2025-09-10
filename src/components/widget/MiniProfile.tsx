@@ -81,7 +81,7 @@ export const MiniProfile = (props: StackProps) => {
 
       <Divider />
 
-      <CContainer p={1}>
+      <CContainer gap={1} p={1}>
         <NavLink to={"/admin/profile"}>
           <Btn
             clicky={false}
