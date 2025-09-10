@@ -13,10 +13,10 @@ import { DisclosureHeaderContent } from "@/components/ui/disclosure-header-conte
 import { P } from "@/components/ui/p";
 import SearchInput from "@/components/ui/search-input";
 import { Tooltip } from "@/components/ui/tooltip";
+import { DotIndicator } from "@/components/widget/DotIndicator";
 import FeedbackNoData from "@/components/widget/FeedbackNoData";
 import { Interface__SelectOption } from "@/constants/interfaces";
 import { Props__SelectInput, Props__SelectOptions } from "@/constants/props";
-import { C_ACTIVE_INDICATOR_SIZE } from "@/constants/sizes";
 import useLang from "@/context/useLang";
 import { useThemeConfig } from "@/context/useThemeConfig";
 import useBackOnClose from "@/hooks/useBackOnClose";
@@ -30,7 +30,7 @@ import {
   useDisclosure,
   useFieldContext,
 } from "@chakra-ui/react";
-import { IconCaretDownFilled, IconCircleFilled } from "@tabler/icons-react";
+import { IconCaretDownFilled } from "@tabler/icons-react";
 import { useEffect, useState } from "react";
 
 const SelectOptions = (props: Props__SelectOptions) => {
@@ -143,14 +143,7 @@ const SelectOptions = (props: Props__SelectOptions) => {
                   <HStack w={"full"} justify={"space-between"}>
                     <P textAlign={"left"}>{o.label}</P>
 
-                    {isActive && (
-                      <Icon
-                        color={themeConfig.primaryColor}
-                        boxSize={C_ACTIVE_INDICATOR_SIZE}
-                      >
-                        <IconCircleFilled />
-                      </Icon>
-                    )}
+                    {isActive && <DotIndicator />}
                   </HStack>
                 </Btn>
               );

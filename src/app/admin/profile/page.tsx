@@ -1,1 +1,1 @@
-export { default } from "@/routes/admin/AdminDashboard";
+export { default } from "@/routes/admin/ProfileRoute";

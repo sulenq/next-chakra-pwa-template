@@ -9,6 +9,7 @@ import {
   MenuTrigger,
 } from "@/components/ui/menu";
 import { P } from "@/components/ui/p";
+import { DotIndicator } from "@/components/widget/DotIndicator";
 import { SortIcon } from "@/components/widget/SortIcon";
 import { Interface__FormattedTableData } from "@/constants/interfaces";
 import {
@@ -18,7 +19,6 @@ import {
   Props_PaginationTableData,
   Props_RowOptions,
 } from "@/constants/props";
-import { C_ACTIVE_INDICATOR_SIZE } from "@/constants/sizes";
 import { Type__SortHandler } from "@/constants/types";
 import useConfirmationDisclosure from "@/context/disclosure/useConfirmationDisclosure";
 import useLang from "@/context/useLang";
@@ -31,7 +31,6 @@ import {
   IconCaretDownFilled,
   IconCaretLeftFilled,
   IconCaretRightFilled,
-  IconCircleFilled,
   IconDots,
   IconMenu,
 } from "@tabler/icons-react";
@@ -95,13 +94,10 @@ const BatchOptions = (props: Props__BatchOptions) => {
         >
           <P>{l.select_all}</P>
 
-          <Icon
+          <DotIndicator
             color={selectAllRows ? themeConfig.primaryColor : "d3"}
-            boxSize={C_ACTIVE_INDICATOR_SIZE}
-            mr={"4px"}
-          >
-            <IconCircleFilled />
-          </Icon>
+            mr={1}
+          />
         </MenuItem>
 
         <MenuSeparator />
@@ -263,7 +259,6 @@ const Limittation = (props: Props_LimitationTableData) => {
 
   // Contexts
   const { l } = useLang();
-  const { themeConfig } = useThemeConfig();
 
   // States
   const limitOptions = [15, 30, 50, 100];
@@ -297,14 +292,7 @@ const Limittation = (props: Props_LimitationTableData) => {
               justifyContent={"space-between"}
             >
               {l}
-              {isActive && (
-                <Icon
-                  boxSize={C_ACTIVE_INDICATOR_SIZE}
-                  color={themeConfig.primaryColor}
-                >
-                  <IconCircleFilled />
-                </Icon>
-              )}
+              {isActive && <DotIndicator mr={1} />}
             </MenuItem>
           );
         })}
