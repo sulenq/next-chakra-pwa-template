@@ -367,7 +367,7 @@ const DesktopLayout = (props: any) => {
           })}
         </CContainer>
 
-        <CContainer mt={"auto"} gap={1}>
+        <CContainer mt={"auto"} gap={2}>
           <NavTooltip content={l.settings}>
             <Btn
               clicky={false}
