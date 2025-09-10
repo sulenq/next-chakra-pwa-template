@@ -119,9 +119,7 @@ const DesktopLayout = (props: any) => {
       bg={"dark"}
       overflowY={"auto"}
       {...restProps}
-      // border={"4px solid orange"}
     >
-      {/* Navs */}
       <CContainer
         w={navsExpanded ? "300px" : "58px"}
         gap={8}
@@ -188,6 +186,7 @@ const DesktopLayout = (props: any) => {
           </HStack>
         </CContainer>
 
+        {/* Navs */}
         <CContainer gap={1}>
           {NAVS.map((nav) => {
             const hasSubMenu = nav.subMenus;
@@ -326,7 +325,7 @@ const DesktopLayout = (props: any) => {
                           >
                             {pluckString(l, menu.labelKey)}
 
-                            {isSubNavsActive && <DotIndicator />}
+                            {isSubNavsActive && <DotIndicator mr={1} />}
                           </MenuItem>
                         );
                       })}
@@ -410,7 +409,10 @@ const DesktopLayout = (props: any) => {
                   bg: "d2",
                 }}
                 transition={"200ms"}
+                pos={"relative"}
               >
+                {pathname.includes("/profile") && <DesktopActiveIndicator />}
+
                 <Avatar
                   src={user?.photoProfile?.file_url}
                   name={user?.name}

@@ -16,7 +16,6 @@ export const DotIndicator = (props: IconProps) => {
       color={themeConfig.primaryColor}
       boxSize={2}
       ml={"auto"}
-      mr={1}
       {...restProps}
     >
       {children || <IconCircleFilled />}

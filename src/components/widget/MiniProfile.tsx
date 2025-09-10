@@ -5,6 +5,7 @@ import { Btn } from "@/components/ui/btn";
 import { CContainer } from "@/components/ui/c-container";
 import { Divider } from "@/components/ui/divider";
 import { P } from "@/components/ui/p";
+import { DotIndicator } from "@/components/widget/DotIndicator";
 import useConfirmationDisclosure from "@/context/disclosure/useConfirmationDisclosure";
 import useAuthMiddleware from "@/context/useAuthMiddleware";
 import useLang from "@/context/useLang";
@@ -13,7 +14,7 @@ import { getUserData } from "@/utils/auth";
 import { back, removeStorage } from "@/utils/client";
 import { Icon, StackProps } from "@chakra-ui/react";
 import { IconLogout, IconUser } from "@tabler/icons-react";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 export const MiniProfile = (props: StackProps) => {
   // Contexts
@@ -27,6 +28,7 @@ export const MiniProfile = (props: StackProps) => {
     successMessage: { ...l.success_signout },
   });
   const router = useRouter();
+  const pathname = usePathname();
 
   // States
   const user = getUserData();
@@ -78,11 +80,20 @@ export const MiniProfile = (props: StackProps) => {
       <Divider />
 
       <CContainer p={1}>
-        <Btn clicky={false} px={2} variant={"ghost"} justifyContent={"start"}>
+        <Btn
+          clicky={false}
+          px={2}
+          variant={"ghost"}
+          justifyContent={"start"}
+          onClick={() => {
+            router.push("/admin/profile");
+          }}
+        >
           <Icon boxSize={5}>
             <IconUser stroke={1.5} />
           </Icon>
           {l.my_profile}
+          {pathname.includes("/profile") && <DotIndicator mr={1} />}
         </Btn>
 
         <Btn
