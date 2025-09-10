@@ -42,17 +42,17 @@ export const SETTINGS_NAVS = [
       {
         icon: IconDeviceDesktop,
         labelKey: "settings_navs.main.display",
-        path: "/settings/display",
+        path: "/admin/settings/display",
       },
       {
         icon: IconLanguage,
         labelKey: "settings_navs.main.regional",
-        path: "/settings/regional",
+        path: "/admin/settings/regional",
       },
       {
         icon: IconShieldHalf,
         labelKey: "settings_navs.main.permissions",
-        path: "/settings/permissions",
+        path: "/admin/settings/permissions",
       },
     ],
   },

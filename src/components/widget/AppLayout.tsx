@@ -377,9 +377,14 @@ const DesktopLayout = (props: any) => {
               colorPalette={"light"}
               px={"10px"}
               onClick={() => {
-                router.push("/settings");
+                router.push("/admin/settings");
               }}
+              pos={"relative"}
             >
+              {pathname.includes("/admin/settings") && (
+                <DesktopActiveIndicator />
+              )}
+
               <Icon boxSize={5}>
                 <IconSettings stroke={1.5} />
               </Icon>
@@ -411,7 +416,9 @@ const DesktopLayout = (props: any) => {
                 transition={"200ms"}
                 pos={"relative"}
               >
-                {pathname.includes("/profile") && <DesktopActiveIndicator />}
+                {pathname.includes("/admin/profile") && (
+                  <DesktopActiveIndicator />
+                )}
 
                 <Avatar
                   src={user?.photoProfile?.file_url}
@@ -459,7 +466,7 @@ export const AppLayout = (props: StackProps) => {
   const iss = useIsSmScreenWidth();
 
   return (
-    <CContainer {...restProps}>
+    <CContainer id="app_layout" {...restProps}>
       {iss ? <MobileLayout {...props} /> : <DesktopLayout {...props} />}
     </CContainer>
   );
