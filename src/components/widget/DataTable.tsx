@@ -98,7 +98,7 @@ const BatchOptions = (props: Props__BatchOptions) => {
           <Icon
             color={selectAllRows ? themeConfig.primaryColor : "d3"}
             boxSize={C_ACTIVE_INDICATOR_SIZE}
-            mr={"2px"}
+            mr={"4px"}
           >
             <IconCircleFilled />
           </Icon>
