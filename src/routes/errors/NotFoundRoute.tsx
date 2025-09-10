@@ -33,7 +33,7 @@ export default function NotFoundRoute() {
           {l.missing_route.description}
         </Text>
 
-        <NavLink to={"/"}>
+        <NavLink to={"/"} w={"fit"}>
           <Btn colorPalette={themeConfig.colorPalette} px={8}>
             {l.main_page}
           </Btn>
