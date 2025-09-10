@@ -370,6 +370,9 @@ const DesktopLayout = (props: any) => {
               variant={"ghost"}
               colorPalette={"light"}
               px={"10px"}
+              onClick={() => {
+                router.push("/settings");
+              }}
             >
               <Icon boxSize={5}>
                 <IconSettings stroke={1.5} />
@@ -387,7 +390,7 @@ const DesktopLayout = (props: any) => {
 
           <HStack
             gap={4}
-            px={"10px"}
+            px={navsExpanded ? "10px" : "9px"}
             py={2}
             rounded={themeConfig.radii.component}
             color={"light"}

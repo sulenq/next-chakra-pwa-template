@@ -172,6 +172,7 @@ const translations = {
   "msg_signin": "Enter your account details to continue.",
   "msg_soft_delete": "Data will be hidden but can be restored later.",
   "msg_toggle_dark_mode": "Toggle dark mode",
+  "my_profile": "My profile",
   "navs": {
     "dashboard": "Dashboard",
     "transaction": "Transaction",

@@ -172,6 +172,7 @@ const translations = {
   "msg_signin": "Masukkan detail akun untuk melanjutkan.",
   "msg_soft_delete": "Data akan disembunyikan dan bisa dikembalikan nanti.",
   "msg_toggle_dark_mode": "Toggle mode gelap",
+  "my_profile": "Profil saya",
   "navs": {
     "dashboard": "Dashboard",
     "transaction": "Transaksi",
