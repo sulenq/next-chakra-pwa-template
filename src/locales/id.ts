@@ -95,7 +95,7 @@ const translations = {
   },
   "error_invalid_file": {
     "title": "File tidak valid",
-    "description": "Ukuran atau tipe file tidak sesuai."
+    "description": "Ukuran, jumlah file atau tipe file tidak sesuai."
   },
   "error_network": {
     "title": "Gangguan koneksi ke server",

@@ -565,8 +565,8 @@ export const error_invalid_file = {
     en: "Invalid file",
   },
   description: {
-    id: "Ukuran atau tipe file tidak sesuai.",
-    en: "File size or type is not allowed.",
+    id: "Ukuran, jumlah file atau tipe file tidak sesuai.",
+    en: "File size, number of files or type is not allowed.",
   },
 };
 export const error_signin_wrong_credentials = {

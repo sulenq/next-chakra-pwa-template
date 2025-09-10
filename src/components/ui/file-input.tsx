@@ -87,6 +87,13 @@ const InputComponent = (props: Props__FileInputInputComponent) => {
 
   // States
   const [key, setKey] = useState<number>(1);
+
+  // normalize existing to array (prevent undefined issues)
+  const existingArr = Array.isArray(existing)
+    ? existing
+    : ([] as Interface__StorageFile[]);
+  const existingCount = existingArr.length;
+
   const singleFile = inputValue?.[0] as File;
   const singleFileInputted =
     maxFiles === 1 && (!isEmptyArray(inputValue) as boolean);
@@ -99,21 +106,40 @@ const InputComponent = (props: Props__FileInputInputComponent) => {
   const resolvedDescription = singleFileInputted
     ? formatBytes(singleFile?.size)
     : description ||
-      `up to ${maxFileSize} mB, max ${maxFiles || 1} file${
+      `up to ${maxFileSize} mB, max ${maxFiles - existingCount || 1} file${
         maxFiles! > 1 ? "s" : ""
       } ${accept ? `(${accept})` : ""}`;
-  const resolvedDisabled = disabled || existing.length === maxFiles;
+
+  // disable if disabled prop true or already have maxFiles existing
+  const resolvedDisabled = disabled || existingCount >= maxFiles;
 
   // Utils
   function handleFileChange(details: any) {
+    // reset internal input by changing key to force rerender when needed
     setKey((ps) => ps + 1);
 
-    let files = details.acceptedFiles || [];
+    const files = details.acceptedFiles || [];
 
-    if (maxFiles && files.length > maxFiles) {
-      files = files.slice(0, maxFiles);
+    // Reject if total existing + new exceeds maxFiles
+    if (maxFiles && existingCount + files.length > maxFiles) {
+      const title = l.error_invalid_file.title;
+      const description = l.error_invalid_file.description;
+
+      toaster.error({
+        title,
+        description,
+        action: {
+          label: "Close",
+          onClick: () => {},
+        },
+      });
+
+      // clear input by bumping key again (ensure dropzone/file input resets)
+      setKey((ps) => ps + 1);
+      return;
     }
 
+    // Accept upload (files length guaranteed to be within limits)
     onChange?.(files.length > 0 ? files : undefined);
   }
 

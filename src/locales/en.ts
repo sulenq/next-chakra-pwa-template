@@ -95,7 +95,7 @@ const translations = {
   },
   "error_invalid_file": {
     "title": "Invalid file",
-    "description": "File size or type is not allowed."
+    "description": "File size, number of files or type is not allowed."
   },
   "error_network": {
     "title": "Server connection problem",
