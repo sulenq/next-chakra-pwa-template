@@ -45,7 +45,24 @@ import {
 import { usePathname, useRouter } from "next/navigation";
 import { Fragment } from "react";
 
-const NavTooltip = (props: TooltipProps) => {
+export const DesktopActiveIndicator = () => {
+  // Contexts
+  const { themeConfig } = useThemeConfig();
+
+  return (
+    <Box
+      w={"3px"}
+      h={"12px"}
+      bg={themeConfig.primaryColor}
+      rounded={"full"}
+      pos={"absolute"}
+      top={"50%"}
+      left={0}
+      transform={"translateY(-50%)"}
+    />
+  );
+};
+export const NavTooltip = (props: TooltipProps) => {
   // Props
   const { children, ...restProps } = props;
 
@@ -63,24 +80,7 @@ const NavTooltip = (props: TooltipProps) => {
     </Tooltip>
   );
 };
-const DesktopActiveIndicator = () => {
-  // Contexts
-  const { themeConfig } = useThemeConfig();
-
-  return (
-    <Box
-      w={"3px"}
-      h={"12px"}
-      bg={themeConfig.primaryColor}
-      rounded={"full"}
-      pos={"absolute"}
-      top={"50%"}
-      left={0}
-      transform={"translateY(-50%)"}
-    />
-  );
-};
-const MobileLayout = (props: any) => {
+export const MobileLayout = (props: any) => {
   // Props
   const { children, ...restProps } = props;
 
@@ -94,7 +94,7 @@ const MobileLayout = (props: any) => {
     </CContainer>
   );
 };
-const DesktopLayout = (props: any) => {
+export const DesktopLayout = (props: any) => {
   // Props
   const { children, ...restProps } = props;
 
