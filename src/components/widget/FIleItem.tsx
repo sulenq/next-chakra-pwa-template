@@ -19,7 +19,7 @@ export const FileItem = (props: Props__FileItem) => {
       py={2}
       px={4}
       pr={3}
-      borderRadius={themeConfig.radii.component}
+      rounded={themeConfig.radii.component}
       border={"1px solid"}
       borderColor={"border.muted"}
       gap={4}

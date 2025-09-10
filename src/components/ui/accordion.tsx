@@ -39,7 +39,7 @@ export const AccordionItemContent = forwardRef<
   AccordionItemContentProps
 >(function AccordionItemContent(props, ref) {
   return (
-    <Accordion.ItemContent borderRadius={"0 !important"}>
+    <Accordion.ItemContent rounded={"0 !important"}>
       <Accordion.ItemBody {...props} ref={ref} />
     </Accordion.ItemContent>
   );

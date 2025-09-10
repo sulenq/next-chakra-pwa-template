@@ -18,6 +18,11 @@ import {
 } from "@/components/ui/menu";
 import { NavLink } from "@/components/ui/nav-link";
 import { P } from "@/components/ui/p";
+import {
+  PopoverContent,
+  PopoverRoot,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 import { Tooltip, TooltipProps } from "@/components/ui/tooltip";
 import { DotIndicator } from "@/components/widget/DotIndicator";
 import Logo from "@/components/widget/Logo";
@@ -33,8 +38,10 @@ import { Box, Center, HStack, Icon, StackProps } from "@chakra-ui/react";
 import {
   IconBoxAlignLeft,
   IconCircleFilled,
+  IconLogout,
   IconSelector,
   IconSettings,
+  IconUser,
 } from "@tabler/icons-react";
 import { usePathname, useRouter } from "next/navigation";
 import { Fragment } from "react";
@@ -386,43 +393,94 @@ const DesktopLayout = (props: any) => {
             </Btn>
           </NavTooltip>
 
-          <Divider dir="vertical" />
+          <Divider />
 
-          <HStack
-            gap={4}
-            px={navsExpanded ? "10px" : "9px"}
-            py={2}
-            rounded={themeConfig.radii.component}
-            color={"light"}
-            cursor={"pointer"}
-            _hover={{
-              bg: "d2",
-            }}
-            transition={"200ms"}
+          <PopoverRoot
+            positioning={{ placement: "right-end", offset: { mainAxis: 12 } }}
           >
-            <Avatar
-              src={user?.photoProfile?.file_url}
-              name={user?.name}
-              size={navsExpanded ? "xs" : "2xs"}
-            />
+            <PopoverTrigger asChild>
+              <HStack
+                gap={4}
+                px={navsExpanded ? "10px" : "9px"}
+                py={2}
+                rounded={themeConfig.radii.component}
+                color={"light"}
+                cursor={"pointer"}
+                _hover={{
+                  bg: "d2",
+                }}
+                transition={"200ms"}
+              >
+                <Avatar
+                  src={user?.photoProfile?.file_url}
+                  name={user?.name}
+                  size={navsExpanded ? "xs" : "2xs"}
+                />
 
-            {navsExpanded && (
-              <>
-                <CContainer>
-                  <P lineClamp={1} fontWeight={"semibold"}>
-                    {user?.name}
-                  </P>
-                  <P lineClamp={1} opacity={0.6}>
-                    {user?.email || user?.username || "-"}
-                  </P>
-                </CContainer>
+                {navsExpanded && (
+                  <>
+                    <CContainer>
+                      <P lineClamp={1} fontWeight={"semibold"}>
+                        {user?.name}
+                      </P>
+                      <P lineClamp={1} opacity={0.6}>
+                        {user?.email || user?.username || "-"}
+                      </P>
+                    </CContainer>
 
-                <Icon opacity={0.6} boxSize={5}>
-                  <IconSelector stroke={1.5} />
-                </Icon>
-              </>
-            )}
-          </HStack>
+                    <Icon opacity={0.6} boxSize={5}>
+                      <IconSelector stroke={1.5} />
+                    </Icon>
+                  </>
+                )}
+              </HStack>
+            </PopoverTrigger>
+
+            <PopoverContent w={"200px"}>
+              <CContainer align={"center"} p={2} mb={2}>
+                <Avatar
+                  src={user?.photoProfile?.file_url}
+                  name={user?.name}
+                  size={"2xl"}
+                  mx={"auto"}
+                  my={2}
+                />
+
+                <P fontWeight={"semibold"}>{user?.name}</P>
+                <P color={"fg.muted"}>{user?.email || user?.username || "-"}</P>
+              </CContainer>
+
+              <Divider />
+
+              <CContainer p={1}>
+                <Btn
+                  clicky={false}
+                  px={2}
+                  variant={"ghost"}
+                  justifyContent={"start"}
+                >
+                  <Icon boxSize={5}>
+                    <IconUser stroke={1.5} />
+                  </Icon>
+
+                  {l.my_profile}
+                </Btn>
+
+                <Btn
+                  clicky={false}
+                  px={2}
+                  variant={"ghost"}
+                  colorPalette={"red"}
+                  justifyContent={"start"}
+                >
+                  <Icon boxSize={5}>
+                    <IconLogout stroke={1.5} />
+                  </Icon>
+                  Sign Out
+                </Btn>
+              </CContainer>
+            </PopoverContent>
+          </PopoverRoot>
         </CContainer>
       </CContainer>
 
