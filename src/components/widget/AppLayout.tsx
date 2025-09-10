@@ -137,6 +137,7 @@ const DesktopLayout = (props: any) => {
               colorPalette={"light"}
               w={"42px"}
               mr={"auto"}
+              onClick={() => router.push("/")}
             >
               <Logo size={15} />
             </Btn>
@@ -420,7 +421,7 @@ const DesktopLayout = (props: any) => {
                   <>
                     <CContainer>
                       <P lineClamp={1} fontWeight={"semibold"}>
-                        {user?.name}
+                        {user?.name || "Signed out"}
                       </P>
                       <P lineClamp={1} opacity={0.6}>
                         {user?.email || user?.username || "-"}

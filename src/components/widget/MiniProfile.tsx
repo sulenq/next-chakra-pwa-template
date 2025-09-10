@@ -10,9 +10,10 @@ import useAuthMiddleware from "@/context/useAuthMiddleware";
 import useLang from "@/context/useLang";
 import useRequest from "@/hooks/useRequest";
 import { getUserData } from "@/utils/auth";
-import { removeStorage } from "@/utils/client";
+import { back, removeStorage } from "@/utils/client";
 import { Icon, StackProps } from "@chakra-ui/react";
 import { IconLogout, IconUser } from "@tabler/icons-react";
+import { useRouter } from "next/navigation";
 
 export const MiniProfile = (props: StackProps) => {
   // Contexts
@@ -25,6 +26,7 @@ export const MiniProfile = (props: StackProps) => {
     loadingMessage: { ...l.loading_signout },
     successMessage: { ...l.success_signout },
   });
+  const router = useRouter();
 
   // States
   const user = getUserData();
@@ -37,8 +39,9 @@ export const MiniProfile = (props: StackProps) => {
 
   // Utils
   function onSignout() {
-    const url = `/api/signout`;
+    back();
 
+    const url = `/api/signout`;
     const config = {
       url,
       method: "GET",
@@ -51,6 +54,7 @@ export const MiniProfile = (props: StackProps) => {
           removeStorage("__auth_token");
           removeStorage("__user_data");
           removeAuth();
+          router.push("/");
         },
       },
     });
@@ -67,7 +71,7 @@ export const MiniProfile = (props: StackProps) => {
           my={2}
         />
 
-        <P fontWeight={"semibold"}>{user?.name}</P>
+        <P fontWeight={"semibold"}>{user?.name || "Signed out"}</P>
         <P color={"fg.muted"}>{user?.email || user?.username || "-"}</P>
       </CContainer>
 
@@ -92,6 +96,7 @@ export const MiniProfile = (props: StackProps) => {
               title: "Sign out?",
               description: l.msg_signout,
               confirmLabel: "Sign out",
+              confirmButtonProps: { colorPalette: "red" },
               onConfirm: onSignout,
             });
             confirmationOnOpen();

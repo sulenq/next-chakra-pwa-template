@@ -37,7 +37,8 @@ export const MenuContent = forwardRef<HTMLDivElement, MenuContentProps>(
             px={0}
             py={1}
             bg={"body !important"}
-            border={"1px solid {colors.d2}"}
+            border={"1px solid"}
+            borderColor={"d2"}
             rounded={themeConfig.radii.container}
             boxShadow={"none"}
             {...restProps}
