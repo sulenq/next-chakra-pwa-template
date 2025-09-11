@@ -211,6 +211,7 @@ const DatePicker = (props: Props__DatePicker) => {
                   key={ii}
                   clicky={false}
                   rounded={"full"}
+                  size={"md"}
                   onClick={() => {
                     if (multiple) {
                       const newSelectedDates = selected.some(

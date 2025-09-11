@@ -57,30 +57,23 @@ const SelectOptions = (props: Props__SelectOptions) => {
 
   return (
     <CContainer {...restProps}>
+      <CContainer px={4} pt={2} pos={"sticky"} top={0} bg={"body"} zIndex={2}>
+        <SearchInput
+          inputValue={search}
+          onChange={(inputValue) => {
+            setSearch(inputValue || "");
+          }}
+          inputProps={{
+            variant: "flushed",
+            rounded: 0,
+          }}
+        />
+      </CContainer>
+
       {isEmptyArray(resolvedSelectOptions) && <FeedbackNoData minH={"250px"} />}
 
       {!isEmptyArray(resolvedSelectOptions) && (
         <>
-          <CContainer
-            px={4}
-            pt={2}
-            pos={"sticky"}
-            top={0}
-            bg={"body"}
-            zIndex={2}
-          >
-            <SearchInput
-              inputValue={search}
-              onChange={(inputValue) => {
-                setSearch(inputValue || "");
-              }}
-              inputProps={{
-                variant: "flushed",
-                rounded: 0,
-              }}
-            />
-          </CContainer>
-
           {multiple && (
             <CContainer px={7} pt={4} zIndex={3}>
               <Box
