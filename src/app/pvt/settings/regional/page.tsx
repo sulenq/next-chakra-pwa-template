@@ -221,12 +221,12 @@ const DateFormat = () => {
 
       <CContainer gap={4} py={2}>
         <SimpleGrid px={2} columns={[1, 2, 3]}>
-          {DATE_FORMATS.map((item, idx) => {
+          {DATE_FORMATS.map((item) => {
             const isActive = item.key === dateFormat;
 
             return (
               <CContainer
-                key={idx}
+                key={item.key}
                 px={[3, null, 3]}
                 py={3}
                 borderRadius={themeConfig.radii.component}
@@ -284,12 +284,12 @@ const TimeFormat = () => {
 
       <CContainer gap={4} py={2}>
         <SimpleGrid px={2} columns={[1, 2]}>
-          {TIME_FORMATS.map((item, i) => {
-            const active = item.key === timeFormat;
+          {TIME_FORMATS.map((item) => {
+            const isActive = item.key === timeFormat;
 
             return (
               <CContainer
-                key={i}
+                key={item.key}
                 px={[3, null, 3]}
                 py={3}
                 borderRadius={themeConfig.radii.component}
@@ -301,12 +301,12 @@ const TimeFormat = () => {
                 _active={{ bg: "gray.subtle" }}
                 transition={"200ms"}
               >
-                <HStack align={"start"}>
+                <HStack>
                   <P fontWeight={"medium"} truncate>
                     {item.label}
                   </P>
 
-                  {active && <DotIndicator />}
+                  {isActive && <DotIndicator ml={0} />}
                 </HStack>
 
                 <P>
@@ -341,12 +341,12 @@ const UOMFormat = () => {
 
       <CContainer gap={4} py={2}>
         <SimpleGrid px={2} columns={[1, 2, 3]}>
-          {UOM_FORMATS.map((item, i) => {
-            const active = item.key === UOM;
+          {UOM_FORMATS.map((item) => {
+            const isActive = item.key === UOM;
 
             return (
               <CContainer
-                key={i}
+                key={item.key}
                 px={[3, null, 3]}
                 py={3}
                 borderRadius={themeConfig.radii.component}
@@ -358,12 +358,12 @@ const UOMFormat = () => {
                 _active={{ bg: "gray.subtle" }}
                 transition={"200ms"}
               >
-                <HStack align={"start"}>
+                <HStack>
                   <P fontWeight={"medium"} truncate>
                     {item.label}
                   </P>
 
-                  {active && <DotIndicator />}
+                  {isActive && <DotIndicator ml={0} />}
                 </HStack>
 
                 <P color={"fg.muted"} mb={2}>
