@@ -191,6 +191,7 @@ const translations = {
   "october": "Oktober",
   "of": "dari",
   "optional": "Opsional",
+  "others": "Lainnya",
   "otp_sent": "OTP telah dikirim",
   "otp_sent_to": "OTP telah dikirim ke",
   "password_confirmation": "Konfirmasi Password",

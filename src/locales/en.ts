@@ -191,6 +191,7 @@ const translations = {
   "october": "October",
   "of": "of",
   "optional": "Optional",
+  "others": "Others",
   "otp_sent": "OTP has been sent",
   "otp_sent_to": "OTP has been sent to",
   "password_confirmation": "Password Confirmation",

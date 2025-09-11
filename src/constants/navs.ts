@@ -1,3 +1,4 @@
+import { Interface__NavItem } from "@/constants/interfaces";
 import {
   IconDatabase,
   IconDeviceAnalytics,
@@ -9,65 +10,80 @@ import {
   IconUser,
 } from "@tabler/icons-react";
 
-export const NAVS = [
+export const PRIVATE_ROUTE_INDEX = "/admin";
+
+export const NAVS: Interface__NavItem[] = [
   {
-    icon: IconDeviceAnalytics,
-    labelKey: "navs.dashboard",
-    path: "/admin/dashboard",
-  },
-  {
-    icon: IconReceipt,
-    labelKey: "navs.transaction",
-    path: "/admin/transaction",
-  },
-  {
-    icon: IconDatabase,
-    labelKey: "navs.master_data.index",
-    path: "/admin/master-data",
-    subMenus: [
+    groupLabelKey: "main",
+    list: [
       {
-        labelKey: "navs.master_data.user",
-        path: "/admin/master-data/user",
+        icon: IconDeviceAnalytics,
+        labelKey: "navs.dashboard",
+        path: `${PRIVATE_ROUTE_INDEX}/dashboard`,
       },
       {
-        labelKey: "navs.master_data.category",
-        path: "/admin/master-data/category",
+        icon: IconReceipt,
+        labelKey: "navs.transaction",
+        path: `${PRIVATE_ROUTE_INDEX}/transaction`,
+      },
+      {
+        icon: IconDatabase,
+        labelKey: "navs.master_data.index",
+        path: `${PRIVATE_ROUTE_INDEX}/master-data`,
+        subMenus: [
+          {
+            list: [
+              {
+                labelKey: "navs.master_data.user",
+                path: `${PRIVATE_ROUTE_INDEX}/master-data/user`,
+              },
+              {
+                labelKey: "navs.master_data.category",
+                path: `${PRIVATE_ROUTE_INDEX}/master-data/category`,
+              },
+            ],
+          },
+        ],
       },
     ],
   },
 ];
 
-export const OTHER_NAVS = [
+export const OTHER_NAVS: Interface__NavItem[] = [
   {
-    icon: IconSettings,
-    labelKey: "navs.settings",
-    path: "/admin/settings",
-  },
-  {
-    icon: IconUser,
-    labelKey: "navs.profile",
-    path: "/admin/profile",
-  },
-];
-
-export const SETTINGS_NAVS = [
-  {
-    groupLabelKey: "settings_navs_group.main.index",
+    groupLabelKey: "other",
     list: [
       {
-        icon: IconDeviceDesktop,
-        labelKey: "settings_navs.main.display",
-        path: "/admin/settings/display",
+        icon: IconSettings,
+        labelKey: "navs.settings",
+        path: `${PRIVATE_ROUTE_INDEX}/settings`,
+        subMenus: [
+          {
+            groupLabelKey: "settings_navs_group.main.index",
+            list: [
+              {
+                icon: IconDeviceDesktop,
+                labelKey: "settings_navs.main.display",
+                path: `${PRIVATE_ROUTE_INDEX}/settings/display`,
+              },
+              {
+                icon: IconLanguage,
+                labelKey: "settings_navs.main.regional",
+                path: `${PRIVATE_ROUTE_INDEX}/settings/regional`,
+              },
+              {
+                icon: IconShieldHalf,
+                labelKey: "settings_navs.main.permissions",
+                path: `${PRIVATE_ROUTE_INDEX}/settings/permissions`,
+              },
+            ],
+          },
+        ],
       },
       {
-        icon: IconLanguage,
-        labelKey: "settings_navs.main.regional",
-        path: "/admin/settings/regional",
-      },
-      {
-        icon: IconShieldHalf,
-        labelKey: "settings_navs.main.permissions",
-        path: "/admin/settings/permissions",
+        icon: IconUser,
+        labelKey: "navs.profile",
+        path: `${PRIVATE_ROUTE_INDEX}/profile`,
       },
     ],
   },

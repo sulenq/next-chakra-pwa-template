@@ -123,7 +123,13 @@ export const MenuItemGroup = forwardRef<
   return (
     <ChakraMenu.ItemGroup ref={ref} {...restProps}>
       {title && (
-        <ChakraMenu.ItemGroupLabel color={"fg.subtle"} userSelect="none">
+        <ChakraMenu.ItemGroupLabel
+          fontSize={"xs"}
+          color={"fg.subtle"}
+          userSelect="none"
+          pl={3}
+          lineHeight={1.2}
+        >
           {title}
         </ChakraMenu.ItemGroupLabel>
       )}

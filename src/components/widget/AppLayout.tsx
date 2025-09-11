@@ -13,6 +13,7 @@ import { Divider } from "@/components/ui/divider";
 import {
   MenuContent,
   MenuItem,
+  MenuItemGroup,
   MenuRoot,
   MenuTrigger,
 } from "@/components/ui/menu";
@@ -198,174 +199,243 @@ export const DesktopLayout = (props: any) => {
 
         {/* Navs */}
         <CContainer gap={1}>
-          {NAVS.map((nav) => {
-            const hasSubMenu = nav.subMenus;
-            const isMainNavsActive = pathname.includes(nav.path);
-
+          {NAVS.map((navItem, navItemIdx) => {
             return (
-              <Fragment key={nav.path}>
-                {hasSubMenu && navsExpanded && (
-                  <AccordionRoot multiple>
-                    <AccordionItem
-                      value={nav.path}
-                      bg={{
-                        _open: "d1",
-                      }}
-                      border={"none"}
-                      rounded={themeConfig.radii.component}
-                    >
-                      <NavTooltip
-                        key={nav.path}
-                        content={pluckString(l, nav.labelKey)}
-                      >
-                        <AccordionItemTrigger
-                          color={"light"}
-                          h={"40px"}
-                          px={"10.5px"}
-                          _hover={{
-                            bg: "d2",
+              <CContainer key={navItemIdx} gap={1}>
+                {navsExpanded && navItem.groupLabelKey && (
+                  <P
+                    fontSize={"xs"}
+                    fontWeight={"semibold"}
+                    color={"light"}
+                    opacity={0.6}
+                    ml={3}
+                  >
+                    {pluckString(l, navItem.groupLabelKey)}
+                  </P>
+                )}
+                {navItem.list.map((nav) => {
+                  const hasSubMenus = nav.subMenus;
+                  const isMainNavsActive = pathname.includes(nav.path);
+
+                  return (
+                    <Fragment key={nav.path}>
+                      {hasSubMenus && navsExpanded && (
+                        <AccordionRoot multiple>
+                          <AccordionItem
+                            value={nav.path}
+                            bg={{
+                              _open: "d1",
+                            }}
+                            border={"none"}
+                            rounded={themeConfig.radii.component}
+                          >
+                            <NavTooltip
+                              key={nav.path}
+                              content={pluckString(l, nav.labelKey)}
+                            >
+                              <AccordionItemTrigger
+                                color={"light"}
+                                h={"40px"}
+                                px={"10.5px"}
+                                _hover={{
+                                  bg: "d2",
+                                }}
+                                pos={"relative"}
+                                cursor={"pointer"}
+                                transition={"200ms"}
+                              >
+                                {isMainNavsActive && <DesktopActiveIndicator />}
+
+                                <HStack gap={4}>
+                                  <Icon boxSize={5}>
+                                    <nav.icon stroke={1.5} />
+                                  </Icon>
+
+                                  <P lineClamp={1} textAlign={"left"}>
+                                    {pluckString(l, nav.labelKey)}
+                                  </P>
+                                </HStack>
+                              </AccordionItemTrigger>
+                            </NavTooltip>
+
+                            <AccordionItemContent p={0}>
+                              <CContainer gap={1} p={1}>
+                                {nav.subMenus?.map((menuItem, menuItemIdx) => {
+                                  return (
+                                    <CContainer key={menuItemIdx} gap={1}>
+                                      {menuItem.groupLabelKey && (
+                                        <P
+                                          fontSize={"xs"}
+                                          fontWeight={"semibold"}
+                                          color={"light"}
+                                          opacity={0.6}
+                                          ml={"12px"}
+                                          mt={1}
+                                        >
+                                          {pluckString(
+                                            l,
+                                            menuItem.groupLabelKey
+                                          )}
+                                        </P>
+                                      )}
+
+                                      {menuItem.list.map((menu) => {
+                                        const isSubNavsActive =
+                                          pathname === menu.path;
+
+                                        return (
+                                          <NavLink
+                                            key={menu.path}
+                                            to={menu.path}
+                                          >
+                                            <Btn
+                                              iconButton={
+                                                navsExpanded ? false : true
+                                              }
+                                              clicky={false}
+                                              w={"full"}
+                                              gap={4}
+                                              px={"6px"}
+                                              rounded={`calc(${themeConfig.radii.component} - 2px)`}
+                                              justifyContent={"start"}
+                                              variant={"ghost"}
+                                              colorPalette={"light"}
+                                            >
+                                              <Center boxSize={5}>
+                                                <Icon
+                                                  boxSize={2}
+                                                  color={
+                                                    isSubNavsActive
+                                                      ? themeConfig.primaryColor
+                                                      : "d2"
+                                                  }
+                                                >
+                                                  <IconCircleFilled
+                                                    stroke={1.5}
+                                                  />
+                                                </Icon>
+                                              </Center>
+
+                                              <P
+                                                lineClamp={1}
+                                                textAlign={"left"}
+                                              >
+                                                {pluckString(l, menu.labelKey)}
+                                              </P>
+                                            </Btn>
+                                          </NavLink>
+                                        );
+                                      })}
+                                    </CContainer>
+                                  );
+                                })}
+                              </CContainer>
+                            </AccordionItemContent>
+                          </AccordionItem>
+                        </AccordionRoot>
+                      )}
+
+                      {hasSubMenus && !navsExpanded && (
+                        <MenuRoot
+                          positioning={{
+                            placement: "right-start",
+                            offset: {
+                              mainAxis: DESKTOP_MAIN_AXIS,
+                            },
                           }}
-                          pos={"relative"}
-                          cursor={"pointer"}
-                          transition={"200ms"}
                         >
-                          {isMainNavsActive && <DesktopActiveIndicator />}
-
-                          <HStack gap={4}>
-                            <Icon boxSize={5}>
-                              <nav.icon stroke={1.5} />
-                            </Icon>
-
-                            <P lineClamp={1} textAlign={"left"}>
-                              {pluckString(l, nav.labelKey)}
-                            </P>
-                          </HStack>
-                        </AccordionItemTrigger>
-                      </NavTooltip>
-
-                      <AccordionItemContent p={0}>
-                        <CContainer gap={1} p={1}>
-                          {nav.subMenus.map((menu) => {
-                            const isSubNavsActive = pathname === menu.path;
-
-                            return (
-                              <NavLink key={menu.path} to={menu.path}>
+                          <NavTooltip content={pluckString(l, nav.labelKey)}>
+                            <CContainer>
+                              <MenuTrigger asChild>
                                 <Btn
-                                  iconButton={navsExpanded ? false : true}
+                                  iconButton
                                   clicky={false}
-                                  w={"full"}
-                                  gap={4}
-                                  px={"6px"}
-                                  rounded={`calc(${themeConfig.radii.component} - 2px)`}
+                                  h={"40px"}
+                                  px={"10px"}
                                   justifyContent={"start"}
                                   variant={"ghost"}
                                   colorPalette={"light"}
+                                  pos={"relative"}
                                 >
-                                  <Center boxSize={5}>
-                                    <Icon
-                                      boxSize={2}
-                                      color={
-                                        isSubNavsActive
-                                          ? themeConfig.primaryColor
-                                          : "d2"
-                                      }
-                                    >
-                                      <IconCircleFilled stroke={1.5} />
-                                    </Icon>
-                                  </Center>
+                                  {isMainNavsActive && (
+                                    <DesktopActiveIndicator />
+                                  )}
 
-                                  <P lineClamp={1} textAlign={"left"}>
-                                    {pluckString(l, menu.labelKey)}
-                                  </P>
+                                  <Icon boxSize={5}>
+                                    <nav.icon stroke={1.5} />
+                                  </Icon>
                                 </Btn>
-                              </NavLink>
-                            );
-                          })}
-                        </CContainer>
-                      </AccordionItemContent>
-                    </AccordionItem>
-                  </AccordionRoot>
-                )}
+                              </MenuTrigger>
+                            </CContainer>
+                          </NavTooltip>
 
-                {hasSubMenu && !navsExpanded && (
-                  <MenuRoot
-                    positioning={{
-                      placement: "right-start",
-                      offset: {
-                        mainAxis: DESKTOP_MAIN_AXIS,
-                      },
-                    }}
-                  >
-                    <NavTooltip content={pluckString(l, nav.labelKey)}>
-                      <CContainer>
-                        <MenuTrigger asChild>
-                          <Btn
-                            iconButton
-                            clicky={false}
-                            h={"40px"}
-                            px={"10px"}
-                            justifyContent={"start"}
-                            variant={"ghost"}
-                            colorPalette={"light"}
-                            pos={"relative"}
-                          >
-                            {isMainNavsActive && <DesktopActiveIndicator />}
+                          <MenuContent>
+                            {nav.subMenus?.map((menuItem, menuItemIdx) => {
+                              return (
+                                <MenuItemGroup
+                                  key={menuItemIdx}
+                                  gap={1}
+                                  title={
+                                    menuItem.groupLabelKey
+                                      ? pluckString(l, menuItem.groupLabelKey)
+                                      : ""
+                                  }
+                                >
+                                  {menuItem.list.map((menu) => {
+                                    const isSubNavsActive =
+                                      pathname === menu.path;
 
-                            <Icon boxSize={5}>
-                              <nav.icon stroke={1.5} />
-                            </Icon>
-                          </Btn>
-                        </MenuTrigger>
-                      </CContainer>
-                    </NavTooltip>
+                                    return (
+                                      <NavLink key={menu.path} to={menu.path}>
+                                        <MenuItem value={menu.path}>
+                                          {pluckString(l, menu.labelKey)}
 
-                    <MenuContent>
-                      {nav.subMenus.map((menu) => {
-                        const isSubNavsActive = pathname === menu.path;
+                                          {isSubNavsActive && (
+                                            <DotIndicator mr={1} />
+                                          )}
+                                        </MenuItem>
+                                      </NavLink>
+                                    );
+                                  })}
+                                </MenuItemGroup>
+                              );
+                            })}
+                          </MenuContent>
+                        </MenuRoot>
+                      )}
 
-                        return (
-                          <NavLink key={menu.path} to={menu.path}>
-                            <MenuItem value={menu.path}>
-                              {pluckString(l, menu.labelKey)}
+                      {!hasSubMenus && (
+                        <NavLink key={nav.path} to={nav.path}>
+                          <NavTooltip content={pluckString(l, nav.labelKey)}>
+                            <Btn
+                              iconButton={navsExpanded ? false : true}
+                              clicky={false}
+                              h={"40px"}
+                              gap={4}
+                              px={"10px"}
+                              justifyContent={"start"}
+                              variant={"ghost"}
+                              colorPalette={"light"}
+                            >
+                              {isMainNavsActive && <DesktopActiveIndicator />}
 
-                              {isSubNavsActive && <DotIndicator mr={1} />}
-                            </MenuItem>
-                          </NavLink>
-                        );
-                      })}
-                    </MenuContent>
-                  </MenuRoot>
-                )}
+                              <Icon boxSize={5}>
+                                <nav.icon stroke={1.5} />
+                              </Icon>
 
-                {!hasSubMenu && (
-                  <NavLink key={nav.path} to={nav.path}>
-                    <NavTooltip content={pluckString(l, nav.labelKey)}>
-                      <Btn
-                        iconButton={navsExpanded ? false : true}
-                        clicky={false}
-                        h={"40px"}
-                        gap={4}
-                        px={"10px"}
-                        justifyContent={"start"}
-                        variant={"ghost"}
-                        colorPalette={"light"}
-                      >
-                        {isMainNavsActive && <DesktopActiveIndicator />}
-
-                        <Icon boxSize={5}>
-                          <nav.icon stroke={1.5} />
-                        </Icon>
-
-                        {navsExpanded && (
-                          <P lineClamp={1} textAlign={"left"}>
-                            {pluckString(l, nav.labelKey)}
-                          </P>
-                        )}
-                      </Btn>
-                    </NavTooltip>
-                  </NavLink>
-                )}
-              </Fragment>
+                              {navsExpanded && (
+                                <P lineClamp={1} textAlign={"left"}>
+                                  {pluckString(l, nav.labelKey)}
+                                </P>
+                              )}
+                            </Btn>
+                          </NavTooltip>
+                        </NavLink>
+                      )}
+                    </Fragment>
+                  );
+                })}
+              </CContainer>
             );
           })}
         </CContainer>

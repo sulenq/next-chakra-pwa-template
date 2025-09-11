@@ -71,6 +71,10 @@ export const settings_navs = {
 };
 
 // Semantic UI
+export const others = {
+  id: "Lainnya",
+  en: "Others",
+};
 export const main_page = {
   id: "Halaman utama",
   en: "Main page",
