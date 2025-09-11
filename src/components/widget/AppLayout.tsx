@@ -9,6 +9,7 @@ import {
 import { Avatar } from "@/components/ui/avatar";
 import { Btn } from "@/components/ui/btn";
 import { CContainer } from "@/components/ui/c-container";
+import { ColorModeButton } from "@/components/ui/color-mode";
 import { Divider } from "@/components/ui/divider";
 import {
   MenuContent,
@@ -25,6 +26,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { Tooltip, TooltipProps } from "@/components/ui/tooltip";
+import Clock from "@/components/widget/Clock";
 import { DotIndicator } from "@/components/widget/DotIndicator";
 import Logo from "@/components/widget/Logo";
 import { MiniProfile } from "@/components/widget/MiniProfile";
@@ -35,6 +37,7 @@ import useNavs from "@/context/useNavs";
 import { useThemeConfig } from "@/context/useThemeConfig";
 import useIsSmScreenWidth from "@/hooks/useIsSmScreenWidth";
 import { getUserData } from "@/utils/auth";
+import { formatDate } from "@/utils/formatter";
 import { pluckString } from "@/utils/string";
 import { getActiveNavs } from "@/utils/url";
 import { Box, Center, HStack, Icon, Stack, StackProps } from "@chakra-ui/react";
@@ -535,7 +538,7 @@ export const DesktopLayout = (props: any) => {
         overflowY={"auto"}
       >
         {/* Content Header */}
-        <HStack gap={4} p={"12px"} pl={4}>
+        <HStack gap={4} h={"52px"} p={"8px"} pl={4} justify={"space-between"}>
           <HStack gap={1}>
             {activeNavs.map((nav, idx) => {
               return (
@@ -552,6 +555,16 @@ export const DesktopLayout = (props: any) => {
                 </HStack>
               );
             })}
+          </HStack>
+
+          <HStack gap={1}>
+            <ColorModeButton size={"xs"} />
+
+            <HStack mx={1}>
+              <P>{formatDate(new Date().toDateString())}</P>
+
+              <Clock w={"42px"} textAlign={"center"} />
+            </HStack>
           </HStack>
         </HStack>
 
