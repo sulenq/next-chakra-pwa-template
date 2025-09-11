@@ -217,6 +217,62 @@ export const formatCount = (number: number): string => {
   return `${number}${units[index]}`;
 };
 
+export const formatDBTableName = (str: string): string => {
+  return str.toLowerCase().replace(/\s+/g, "_");
+};
+
+export function formatTime(
+  time?: string | null,
+  options: {
+    showSeconds?: boolean;
+    timeFormat?: Type__TimeFormat;
+    timezoneKey?: string;
+    withSuffix?: boolean;
+  } = {}
+): string {
+  if (!time) return "";
+
+  const timeFormat =
+    options.timeFormat || getStorage("timeFormat") || "24-hour";
+
+  const timezoneKey = options.timezoneKey || getUserTimezone().key;
+  const offsetMs = getTimezoneOffsetMs(timezoneKey);
+  const offsetHours = offsetMs / (1000 * 60 * 60);
+
+  const [hhNum, mm, ss = 0] = time.split(":").map(Number);
+  let hh = hhNum + offsetHours;
+
+  if (hh >= 24) hh -= 24;
+  if (hh < 0) hh += 24;
+
+  let formattedTime: string;
+  if (timeFormat === "12-hour") {
+    const suffix = hh >= 12 ? "PM" : "AM";
+    const hour12 = hh % 12 || 12;
+    formattedTime = `${hour12}:${String(mm).padStart(2, "0")}`;
+
+    if (options.showSeconds) {
+      formattedTime += `:${String(ss).padStart(2, "0")}`;
+    }
+
+    const withSuffix = options.withSuffix ?? true;
+    if (withSuffix) {
+      formattedTime += ` ${suffix}`;
+    }
+  } else {
+    formattedTime = `${String(hh).padStart(2, "0")}:${String(mm).padStart(
+      2,
+      "0"
+    )}`;
+
+    if (options.showSeconds) {
+      formattedTime += `:${String(ss).padStart(2, "0")}`;
+    }
+  }
+
+  return formattedTime;
+}
+
 export const formatDuration = (
   seconds: number | undefined,
   format: "long" | "short" | "digital" = "long"
@@ -273,59 +329,3 @@ export const formatDuration = (
       return "0 detik";
   }
 };
-
-export const formatDBTableName = (str: string): string => {
-  return str.toLowerCase().replace(/\s+/g, "_");
-};
-
-export function formatTime(
-  time?: string | null,
-  options: {
-    showSeconds?: boolean;
-    timeFormat?: Type__TimeFormat;
-    timezoneKey?: string;
-    withSuffix?: boolean;
-  } = {}
-): string {
-  if (!time) return "";
-
-  const timeFormat =
-    options.timeFormat || getStorage("timeFormat") || "24-hour";
-
-  const timezoneKey = options.timezoneKey || getUserTimezone().key;
-  const offsetMs = getTimezoneOffsetMs(timezoneKey);
-  const offsetHours = offsetMs / (1000 * 60 * 60);
-
-  const [hhNum, mm, ss = 0] = time.split(":").map(Number);
-  let hh = hhNum + offsetHours;
-
-  if (hh >= 24) hh -= 24;
-  if (hh < 0) hh += 24;
-
-  let formattedTime: string;
-  if (timeFormat === "12-hour") {
-    const suffix = hh >= 12 ? "PM" : "AM";
-    const hour12 = hh % 12 || 12;
-    formattedTime = `${hour12}:${String(mm).padStart(2, "0")}`;
-
-    if (options.showSeconds) {
-      formattedTime += `:${String(ss).padStart(2, "0")}`;
-    }
-
-    const withSuffix = options.withSuffix ?? true;
-    if (withSuffix) {
-      formattedTime += ` ${suffix}`;
-    }
-  } else {
-    formattedTime = `${String(hh).padStart(2, "0")}:${String(mm).padStart(
-      2,
-      "0"
-    )}`;
-
-    if (options.showSeconds) {
-      formattedTime += `:${String(ss).padStart(2, "0")}`;
-    }
-  }
-
-  return formattedTime;
-}

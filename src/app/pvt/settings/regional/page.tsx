@@ -102,6 +102,7 @@ const Timezone = () => {
 
   // States
   const [search, setSearch] = useState("");
+  console.log(search);
 
   // Filtered Timezones
   const fd = useMemo(() => {
@@ -188,9 +189,7 @@ const Timezone = () => {
             inputProps={{
               variant: "flushed",
               borderRadius: 0,
-              pl: "36px",
             }}
-            iconProps={{ ml: "-6px" }}
           />
         </CContainer>
 

@@ -1,29 +1,44 @@
 import { P } from "@/components/ui/p";
 import { Props__ClockProps } from "@/constants/props";
-import { useEffect, useState } from "react";
+import useTimezone from "@/context/useTimezone";
 import { formatTime } from "@/utils/formatter";
+import { useEffect, useState } from "react";
 
 export default function Clock(props: Props__ClockProps) {
   const { withSeconds = false, ...restProps } = props;
 
-  const formatNow = () => {
+  const tz = useTimezone((s) => s.timeZone);
+  const tzKey = tz?.key;
+
+  // format UTC time string because `formatTime` expects UTC input
+  function utcTimeString() {
     const now = new Date();
-    const timeStr = `${String(now.getHours()).padStart(2, "0")}:${String(
-      now.getMinutes()
-    ).padStart(2, "0")}:${String(now.getSeconds()).padStart(2, "0")}`;
+    const hh = String(now.getUTCHours()).padStart(2, "0");
+    const mm = String(now.getUTCMinutes()).padStart(2, "0");
+    const ss = String(now.getUTCSeconds()).padStart(2, "0");
+    return `${hh}:${mm}:${ss}`;
+  }
 
-    return formatTime(timeStr, { showSeconds: withSeconds });
-  };
-
-  const [time, setTime] = useState(formatNow);
+  const [time, setTime] = useState(() =>
+    formatTime(utcTimeString(), {
+      showSeconds: withSeconds,
+      timezoneKey: tzKey,
+    })
+  );
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setTime(formatNow());
-    }, 1000);
+    const tick = () =>
+      setTime(
+        formatTime(utcTimeString(), {
+          showSeconds: withSeconds,
+          timezoneKey: tzKey,
+        })
+      );
 
+    tick(); // immediate set to avoid waiting 1s
+    const interval = setInterval(tick, 1000);
     return () => clearInterval(interval);
-  }, [withSeconds]);
+  }, [withSeconds, tzKey]);
 
   return <P {...restProps}>{time}</P>;
 }

@@ -3,11 +3,11 @@
 import { StringInput } from "@/components/ui/string-input";
 import { Props__SearchInput } from "@/constants/props";
 import useLang from "@/context/useLang";
+import { useDebouncedCallback } from "@/hooks/useDebounceCallback";
 import { HStack, Icon, InputGroup } from "@chakra-ui/react";
 import { IconSearch } from "@tabler/icons-react";
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Tooltip } from "./tooltip";
-import { debounce } from "@/utils/callback";
 
 export default function SearchInput(props: Props__SearchInput) {
   const {
@@ -28,28 +28,27 @@ export default function SearchInput(props: Props__SearchInput) {
   // Contexts
   const { l } = useLang();
 
+  // Hooks
+  const { debounced } = useDebouncedCallback(handleOnChange, 500);
+
   // States, Refs
   const [searchTemp, setSearchTemp] = useState<string>(inputValue || "");
 
   // Handle onchange
-  const handleOnChange = useCallback(
-    (value: string) => {
-      if (value !== inputValue) {
-        if (onChange) onChange(value);
-      }
-    },
-    [onChange, inputValue]
-  );
-
-  // Handle debounce
-  useEffect(() => {
-    debounce(() => handleOnChange(searchTemp), 500);
-  }, [searchTemp, handleOnChange]);
+  function handleOnChange(value: string) {
+    if (value !== inputValue) {
+      if (onChange) onChange(value);
+    }
+  }
 
   // Sync searchTemp with inputValue prop when it changes
   useEffect(() => {
     setSearchTemp(inputValue || "");
   }, [inputValue]);
+
+  useEffect(() => {
+    debounced(searchTemp);
+  }, [searchTemp, debounced]);
 
   return (
     <Tooltip content={tooltipLabel || placeholder || l.search}>
