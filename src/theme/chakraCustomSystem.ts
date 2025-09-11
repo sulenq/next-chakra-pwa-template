@@ -717,6 +717,45 @@ const customConfig = defineConfig({
             value: { base: "{colors.olive.500}", _dark: "{colors.olive.900}" },
           },
         },
+        teal: {
+          solid: {
+            value: {
+              base: "{colors.teal.500} !important",
+              _dark: "{colors.teal.500}",
+            },
+          },
+          contrast: {
+            value: {
+              base: "{colors.light}",
+              _dark: "{colors.dark} !important",
+            },
+          },
+          fg: {
+            value: {
+              base: "{colors.teal.600} !important",
+              _dark: "{colors.teal.200}",
+            },
+          },
+          muted: {
+            value: {
+              base: "{colors.teal.300} !important",
+              _dark: "{colors.teal.800} !important",
+            },
+          },
+          subtle: {
+            value: {
+              base: "{colors.teal.100}",
+              _dark: "{colors.teal.900}",
+            },
+          },
+          emphasized: { value: "{colors.teal.400}" },
+          focusRing: {
+            value: {
+              base: "{colors.teal.600}",
+              _dark: "{colors.teal.700}",
+            },
+          },
+        },
         kemenkes: {
           solid: {
             value: {
@@ -789,6 +828,45 @@ const customConfig = defineConfig({
             value: {
               base: "{colors.sky.500}",
               _dark: "{colors.sky.900}",
+            },
+          },
+        },
+        blue: {
+          solid: {
+            value: {
+              base: "{colors.blue.500} !important",
+              _dark: "{colors.blue.500}",
+            },
+          },
+          contrast: {
+            value: {
+              base: "{colors.light}",
+              _dark: "{colors.dark} !important",
+            },
+          },
+          fg: {
+            value: {
+              base: "{colors.blue.600} !important",
+              _dark: "{colors.blue.200}",
+            },
+          },
+          muted: {
+            value: {
+              base: "{colors.blue.300} !important",
+              _dark: "{colors.blue.800} !important",
+            },
+          },
+          subtle: {
+            value: {
+              base: "{colors.blue.100}",
+              _dark: "{colors.blue.900}",
+            },
+          },
+          emphasized: { value: "{colors.blue.400}" },
+          focusRing: {
+            value: {
+              base: "{colors.blue.600}",
+              _dark: "{colors.blue.700}",
             },
           },
         },
