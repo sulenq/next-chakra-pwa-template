@@ -128,7 +128,7 @@ export const DesktopLayout = (props: any) => {
       {/* Sidebar */}
       <CContainer
         flexShrink={0}
-        w={navsExpanded ? "250px" : "58px"}
+        w={navsExpanded ? "250px" : "54px"}
         gap={8}
         p={2}
         transition={"200ms"}
@@ -141,7 +141,7 @@ export const DesktopLayout = (props: any) => {
                 clicky={false}
                 variant={"ghost"}
                 colorPalette={NAVS_COLOR_PALETTE}
-                w={"42px"}
+                w={"40px"}
                 mr={"auto"}
               >
                 <Logo size={15} />
@@ -182,7 +182,7 @@ export const DesktopLayout = (props: any) => {
                   order={navsExpanded ? 2 : 1}
                   iconButton
                   clicky={false}
-                  w={"42px"}
+                  w={"40px"}
                   variant={"ghost"}
                   colorPalette={NAVS_COLOR_PALETTE}
                   onClick={toggleNavsExpanded}
@@ -234,8 +234,8 @@ export const DesktopLayout = (props: any) => {
                               content={pluckString(l, nav.labelKey)}
                             >
                               <AccordionItemTrigger
-                                h={"40px"}
-                                px={"10.5px"}
+                                h={"36px"}
+                                px={"8.5px"}
                                 _hover={{
                                   bg: "gray.subtle",
                                 }}
@@ -348,8 +348,7 @@ export const DesktopLayout = (props: any) => {
                                 <Btn
                                   iconButton
                                   clicky={false}
-                                  h={"40px"}
-                                  px={"10px"}
+                                  px={2}
                                   justifyContent={"start"}
                                   variant={"ghost"}
                                   colorPalette={NAVS_COLOR_PALETTE}
@@ -406,9 +405,8 @@ export const DesktopLayout = (props: any) => {
                             <Btn
                               iconButton={navsExpanded ? false : true}
                               clicky={false}
-                              h={"40px"}
                               gap={4}
-                              px={"10px"}
+                              px={2}
                               justifyContent={"start"}
                               variant={"ghost"}
                               colorPalette={NAVS_COLOR_PALETTE}
@@ -445,7 +443,7 @@ export const DesktopLayout = (props: any) => {
                 justifyContent={"start"}
                 variant={"ghost"}
                 colorPalette={NAVS_COLOR_PALETTE}
-                px={"10px"}
+                px={2}
                 pos={"relative"}
               >
                 {pathname.includes("/admin/settings") && <LeftIndicator />}
@@ -474,7 +472,7 @@ export const DesktopLayout = (props: any) => {
             <PopoverTrigger asChild>
               <HStack
                 gap={4}
-                px={navsExpanded ? "10px" : "9px"}
+                px={navsExpanded ? 2 : "7px"}
                 py={2}
                 rounded={themeConfig.radii.component}
                 cursor={"pointer"}

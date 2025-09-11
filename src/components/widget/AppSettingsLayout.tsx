@@ -4,6 +4,7 @@ import { Btn } from "@/components/ui/btn";
 import { CContainer } from "@/components/ui/c-container";
 import { NavLink } from "@/components/ui/nav-link";
 import { P } from "@/components/ui/p";
+import { LeftIndicator } from "@/components/widget/Indicator";
 import { ItemContainer } from "@/components/widget/ItemContainer";
 import { RouteContainer } from "@/components/widget/RouteContainer";
 import { OTHER_NAVS, PRIVATE_ROUTE_INDEX } from "@/constants/navs";
@@ -58,14 +59,16 @@ export const AppSettingsLayout = (props: StackProps) => {
                       fontSize={"xs"}
                       fontWeight={"semibold"}
                       color={"fg.subtle"}
-                      ml={2}
-                      mt={"2px"}
+                      ml={3}
+                      mt={1}
                     >
                       {pluckString(l, navItem.groupLabelKey)}
                     </P>
                   )}
 
                   {navItem.list.map((nav) => {
+                    const isActive = nav.path === pathname;
+
                     return (
                       <NavLink key={nav.path} to={nav.path}>
                         <Btn
@@ -73,7 +76,10 @@ export const AppSettingsLayout = (props: StackProps) => {
                           justifyContent={"start"}
                           variant={"ghost"}
                           px={2}
+                          pos={"relative"}
                         >
+                          {isActive && <LeftIndicator />}
+
                           <Icon boxSize={5}>
                             <nav.icon stroke={1.5} />
                           </Icon>
