@@ -16,7 +16,7 @@ export const LeftIndicator = (props: BoxProps) => {
       rounded={"full"}
       pos={"absolute"}
       top={"50%"}
-      left={0}
+      left={"-1.5px"}
       transform={"translateY(-50%)"}
       {...props}
     />
