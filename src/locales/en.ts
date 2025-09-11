@@ -1,5 +1,6 @@
 const translations = {
   "access": "Access",
+  "adaptive_dark_mode": "Adaptive dark mode",
   "add": "Add",
   "alert_forbidden": {
     "title": "Access denied",
@@ -29,6 +30,7 @@ const translations = {
   "clear": "Clear",
   "close": "Close",
   "confirm": "Confirm",
+  "dark_mode": "Dark mode",
   "day": "Day",
   "december": "December",
   "delete_": "Delete",
@@ -170,7 +172,8 @@ const translations = {
   "msg_reset_password_step_1": "First step, enter your email and we will send you an OTP to reset your password.",
   "msg_reset_password_step_2": "Second step, verify OTP",
   "msg_reset_password_step_3": "Third step, enter your new password",
-  "msg_settings": "Please select the settings menu.",
+  "msg_settings_index_route": "Please select the settings menu.",
+  "msg_settings_saved_locally": "Settings for this display are saved locally on your device and will not be synchronized with your account.",
   "msg_signin": "Enter your account details to continue.",
   "msg_signout": "Are you sure you want to sign out?",
   "msg_soft_delete": "Data will be hidden but can be restored later.",
@@ -212,6 +215,14 @@ const translations = {
   "selected": "Selected",
   "september": "September",
   "settings": "Settings",
+  "settings_adaptive_dark_mode": {
+    "title": "Adaptive dark mode",
+    "description": "UI dark mode active at night 18:00 - 06:00"
+  },
+  "settings_dark_mode": {
+    "title": "UI dark mode",
+    "description": "Dark mode for UI, default follows system"
+  },
   "settings_display": {
     "title": "Display",
     "description": "Application display settings."

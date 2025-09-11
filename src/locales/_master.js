@@ -351,9 +351,25 @@ export const main = {
   id: "Utama",
   en: "Main",
 };
+export const theme = {
+  id: "Tema",
+  en: "Theme",
+};
+export const dark_mode = {
+  id: "Mode gelap",
+  en: "Dark mode",
+};
+export const adaptive_dark_mode = {
+  id: "Mode gelap adaptif",
+  en: "Adaptive dark mode",
+};
 
 // Message
-export const msg_settings = {
+export const msg_settings_saved_locally = {
+  id: "Pengaturan tampilan ini disimpan secara lokal di perangkat Anda dan tidak akan disinkronkan dengan akun Anda.",
+  en: "Settings for this display are saved locally on your device and will not be synchronized with your account.",
+};
+export const msg_settings_index_route = {
   id: "Silahkan pilih menu pengaturan.",
   en: "Please select the settings menu.",
 };
@@ -459,16 +475,26 @@ export const alert_retry = {
 };
 
 // Setting Page
+export const settings_dark_mode = {
+  title: { id: "UI mode gelap", en: "UI dark mode" },
+  description: {
+    id: "Mode gelap untuk UI, default mengikuti system",
+    en: "Dark mode for UI, default follows system",
+  },
+};
+export const settings_adaptive_dark_mode = {
+  title: { id: "Mode gelap adaptif", en: "Adaptive dark mode" },
+  description: {
+    id: "UI mode gelap aktif saat malam hari 18:00 - 06:00",
+    en: "UI dark mode active at night 18:00 - 06:00",
+  },
+};
 export const settings_display = {
   title: { id: "Tampilan", en: "Display" },
   description: {
     id: "Pengaturan tampilan aplikasi.",
     en: "Application display settings.",
   },
-};
-export const theme = {
-  id: "Tema",
-  en: "Theme",
 };
 
 // Loading Toast

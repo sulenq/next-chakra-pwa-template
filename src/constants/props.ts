@@ -25,6 +25,13 @@ import { Type__DisclosureSizes, Type__Period } from "./types";
 export interface Props__ItemContainer extends StackProps {
   scrollY?: boolean;
 }
+export interface Props__ItemHeaderContainer extends StackProps {
+  borderless?: boolean;
+  clearSpacing?: boolean;
+}
+export interface Props__SettingsItemContainer extends Props__ItemContainer {
+  disabled?: boolean;
+}
 
 export interface Props__ClockProps extends TextProps {
   withSeconds?: boolean;

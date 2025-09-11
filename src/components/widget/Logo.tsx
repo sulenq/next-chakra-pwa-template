@@ -1,10 +1,19 @@
+import { useColorMode } from "@/components/ui/color-mode";
 import { Props__Logo } from "@/constants/props";
 import { useThemeConfig } from "@/context/useThemeConfig";
 
 const Logo = (props: Props__Logo) => {
-  // Props
+  // Contexts
+  const { colorMode } = useColorMode();
   const { themeConfig } = useThemeConfig();
-  const { color = themeConfig?.primaryColorHex, size = 24 } = props;
+  const {
+    color = themeConfig.colorPalette === "gray"
+      ? colorMode === "dark"
+        ? "#fff"
+        : "#1b1b1b"
+      : themeConfig?.primaryColorHex,
+    size = 24,
+  } = props;
 
   return (
     <svg

@@ -1,5 +1,6 @@
 const translations = {
   "access": "Akses",
+  "adaptive_dark_mode": "Mode gelap adaptif",
   "add": "Tambah",
   "alert_forbidden": {
     "title": "Akses ditolak",
@@ -29,6 +30,7 @@ const translations = {
   "clear": "Clear",
   "close": "Tutup",
   "confirm": "Konfirmasi",
+  "dark_mode": "Mode gelap",
   "day": "Hari",
   "december": "Desember",
   "delete_": "Hapus",
@@ -170,7 +172,8 @@ const translations = {
   "msg_reset_password_step_1": "Langkah pertama, masukkan email Anda dan kami akan mengirimkan OTP untuk mengatur ulang kata sandi Anda.",
   "msg_reset_password_step_2": "Langkah kedua, verifikasi OTP",
   "msg_reset_password_step_3": "Langkah ketiga, masukkan kata sandi baru Anda",
-  "msg_settings": "Silahkan pilih menu pengaturan.",
+  "msg_settings_index_route": "Silahkan pilih menu pengaturan.",
+  "msg_settings_saved_locally": "Pengaturan tampilan ini disimpan secara lokal di perangkat Anda dan tidak akan disinkronkan dengan akun Anda.",
   "msg_signin": "Masukkan detail akun untuk melanjutkan.",
   "msg_signout": "Anda yakin ingin keluar?",
   "msg_soft_delete": "Data akan disembunyikan dan bisa dikembalikan nanti.",
@@ -212,6 +215,14 @@ const translations = {
   "selected": "Dipilih",
   "september": "September",
   "settings": "Pengaturan",
+  "settings_adaptive_dark_mode": {
+    "title": "Mode gelap adaptif",
+    "description": "UI mode gelap aktif saat malam hari 18:00 - 06:00"
+  },
+  "settings_dark_mode": {
+    "title": "UI mode gelap",
+    "description": "Mode gelap untuk UI, default mengikuti system"
+  },
   "settings_display": {
     "title": "Tampilan",
     "description": "Pengaturan tampilan aplikasi."

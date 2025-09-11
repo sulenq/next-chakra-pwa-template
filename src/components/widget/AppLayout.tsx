@@ -207,7 +207,7 @@ export const DesktopLayout = (props: any) => {
                     fontWeight={"semibold"}
                     letterSpacing={"wide"}
                     opacity={0.4}
-                    ml={3}
+                    ml={"10px"}
                   >
                     {pluckString(l, navItem.groupLabelKey)}
                   </P>
@@ -293,7 +293,7 @@ export const DesktopLayout = (props: any) => {
                                               clicky={false}
                                               w={"full"}
                                               gap={4}
-                                              px={"6px"}
+                                              px={2}
                                               rounded={`calc(${themeConfig.radii.component})`}
                                               justifyContent={"start"}
                                               variant={"ghost"}
@@ -307,6 +307,7 @@ export const DesktopLayout = (props: any) => {
                                                       ? themeConfig.primaryColor
                                                       : "d2"
                                                   }
+                                                  ml={"-6px"}
                                                 >
                                                   <IconCircleFilled
                                                     stroke={1.5}

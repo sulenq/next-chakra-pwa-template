@@ -1,14 +1,14 @@
 import { useEffect, useState, useRef } from "react";
 
 export function useContainerDimension(
-  ref: React.RefObject<HTMLDivElement | null>,
+  ref: React.RefObject<HTMLDivElement | null> | null,
   debounceDelay = 0
 ) {
   const [size, setSize] = useState({ width: 0, height: 0 });
   const timeoutRef = useRef<NodeJS.Timeout | undefined>(undefined);
 
   useEffect(() => {
-    if (!ref.current) return;
+    if (!ref?.current) return;
 
     const handleResize = (entries: ResizeObserverEntry[]) => {
       const entry = entries[0];

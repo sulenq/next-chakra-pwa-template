@@ -9,11 +9,12 @@ import { ItemContainer } from "@/components/widget/ItemContainer";
 import { RouteContainer } from "@/components/widget/RouteContainer";
 import { OTHER_NAVS, PRIVATE_ROUTE_INDEX } from "@/constants/navs";
 import useLang from "@/context/useLang";
+import { useSettingsRouteContainer } from "@/context/useSettingsRouteContainer";
 import { useContainerDimension } from "@/hooks/useContainerDimension";
 import { pluckString } from "@/utils/string";
 import { HStack, Icon, StackProps } from "@chakra-ui/react";
 import { usePathname } from "next/navigation";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 
 const SETTINGS_NAVS = OTHER_NAVS[0].list[0].subMenus!;
 
@@ -30,6 +31,7 @@ export const AppSettingsLayout = (props: StackProps) => {
 
   // Contexts
   const { l } = useLang();
+  const setContainerRef = useSettingsRouteContainer((s) => s.setContainerRef);
 
   // States
   const isSmContainer = size.width < 720;
@@ -39,8 +41,16 @@ export const AppSettingsLayout = (props: StackProps) => {
   const showContent =
     !isSmContainer || (isSmContainer && !isAtSettingsIndexRoute);
 
+  useEffect(() => {
+    setContainerRef(containerRef);
+  }, [setContainerRef]);
+
   return (
-    <RouteContainer ref={containerRef} {...restProps}>
+    <RouteContainer
+      id="settings_route_container"
+      ref={containerRef}
+      {...restProps}
+    >
       <HStack align={"stretch"} flex={1} gap={4}>
         {/* Sidebar */}
         {showSidebar && (
@@ -59,7 +69,7 @@ export const AppSettingsLayout = (props: StackProps) => {
                       fontSize={"xs"}
                       fontWeight={"semibold"}
                       color={"fg.subtle"}
-                      ml={3}
+                      ml={"10px"}
                       mt={1}
                     >
                       {pluckString(l, navItem.groupLabelKey)}
@@ -98,7 +108,7 @@ export const AppSettingsLayout = (props: StackProps) => {
         )}
 
         {/* Content */}
-        {showContent && <ItemContainer h={"full"}>{children}</ItemContainer>}
+        {showContent && <CContainer>{children}</CContainer>}
       </HStack>
     </RouteContainer>
   );
