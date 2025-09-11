@@ -6,7 +6,7 @@ import { useThemeConfig } from "@/context/useThemeConfig";
 
 export const ItemContainer = (props: Props__ItemContainer) => {
   // Props
-  const { children, scrollY, ...restProps } = props;
+  const { children, scrollY = false, ...restProps } = props;
 
   // Contexts
   const { themeConfig } = useThemeConfig();
@@ -14,7 +14,6 @@ export const ItemContainer = (props: Props__ItemContainer) => {
   return (
     <CContainer
       className={scrollY ? "scrollY" : ""}
-      h={"fit"}
       gap={2}
       bg={"body"}
       rounded={themeConfig.radii.container}

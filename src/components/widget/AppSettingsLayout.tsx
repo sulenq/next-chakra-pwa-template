@@ -49,9 +49,17 @@ export const AppSettingsLayout = (props: StackProps) => {
     <RouteContainer
       id="settings_route_container"
       ref={containerRef}
+      p={0}
       {...restProps}
     >
-      <HStack align={"stretch"} flex={1} gap={4}>
+      <HStack
+        align={"stretch"}
+        flex={1}
+        gap={0}
+        overflowY={"auto"}
+        pl={showSidebar ? 4 : 0}
+        pr={showContent ? 0 : 4}
+      >
         {/* Sidebar */}
         {showSidebar && (
           <ItemContainer
@@ -60,6 +68,7 @@ export const AppSettingsLayout = (props: StackProps) => {
             w={isSmContainer ? "full" : "250px"}
             p={"6px"}
             pr={0}
+            mb={4}
           >
             {SETTINGS_NAVS.map((navItem, navItemIdx) => {
               return (
@@ -108,7 +117,11 @@ export const AppSettingsLayout = (props: StackProps) => {
         )}
 
         {/* Content */}
-        {showContent && <CContainer>{children}</CContainer>}
+        {showContent && (
+          <CContainer className="scrollY" pl={4} pr={"calc(16px - 6px)"}>
+            {children}
+          </CContainer>
+        )}
       </HStack>
     </RouteContainer>
   );

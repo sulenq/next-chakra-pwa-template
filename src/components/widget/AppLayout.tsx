@@ -83,9 +83,9 @@ export const MobileLayout = (props: any) => {
   const { children, ...restProps } = props;
 
   return (
-    <CContainer flex={1} {...restProps}>
+    <CContainer flex={1} overflowY={"auto"} {...restProps}>
       {/* Content */}
-      <CContainer flex={1} bg={BG_CONTENT_CONTAINER}>
+      <CContainer flex={1} bg={BG_CONTENT_CONTAINER} overflowY={"auto"}>
         {children}
       </CContainer>
 
