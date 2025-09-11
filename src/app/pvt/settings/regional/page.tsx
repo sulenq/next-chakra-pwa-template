@@ -76,14 +76,14 @@ const Language = () => {
                 }}
                 pos={"relative"}
               >
-                {isActive && <DotIndicator ml={0} />}
-
                 <Text fontWeight={"medium"} truncate>
                   {item.label}{" "}
                   <chakra.span color={"fg.subtle"} mx={2} fontWeight={"normal"}>
                     {item.code}
                   </chakra.span>
                 </Text>
+
+                {isActive && <DotIndicator ml={0} />}
               </Btn>
             );
           })}
@@ -220,7 +220,7 @@ const DateFormat = () => {
       </ItemHeaderContainer>
 
       <CContainer gap={4} py={2}>
-        <SimpleGrid px={2} columns={[1, 2, 3]}>
+        <SimpleGrid px={2} columns={[1, 2, 3]} gap={1}>
           {DATE_FORMATS.map((item) => {
             const isActive = item.key === dateFormat;
 
@@ -283,7 +283,7 @@ const TimeFormat = () => {
       </ItemHeaderContainer>
 
       <CContainer gap={4} py={2}>
-        <SimpleGrid px={2} columns={[1, 2]}>
+        <SimpleGrid px={2} columns={[1, 2]} gap={1}>
           {TIME_FORMATS.map((item) => {
             const isActive = item.key === timeFormat;
 
@@ -340,7 +340,7 @@ const UOMFormat = () => {
       </ItemHeaderContainer>
 
       <CContainer gap={4} py={2}>
-        <SimpleGrid px={2} columns={[1, 2, 3]}>
+        <SimpleGrid px={2} columns={[1, 2, 3]} gap={1}>
           {UOM_FORMATS.map((item) => {
             const isActive = item.key === UOM;
 
