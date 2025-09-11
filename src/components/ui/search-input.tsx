@@ -33,6 +33,7 @@ export default function SearchInput(props: Props__SearchInput) {
 
   // States, Refs
   const [searchTemp, setSearchTemp] = useState<string>(inputValue || "");
+  // const smInput = inputProps?.size === "xs" || inputProps?.size === "sm";
 
   // Handle onchange
   function handleOnChange(value: string) {
@@ -56,14 +57,7 @@ export default function SearchInput(props: Props__SearchInput) {
         w={"full"}
         startElement={
           !noIcon && (
-            <Icon
-              ml={
-                inputProps?.size === "xs" || inputProps?.size === "sm" ? -1 : ""
-              }
-              boxSize={5}
-              color={"fg.subtle"}
-              {...iconProps}
-            >
+            <Icon boxSize={5} color={"fg.subtle"} {...iconProps}>
               {icon || <IconSearch />}
             </Icon>
           )
@@ -73,13 +67,7 @@ export default function SearchInput(props: Props__SearchInput) {
         <HStack position="relative" w="full">
           <StringInput
             ref={inputRef ? inputRef : null}
-            pl={
-              noIcon
-                ? 4
-                : inputProps?.size === "xs" || inputProps?.size === "sm"
-                ? 8
-                : 10
-            }
+            pl={noIcon ? 4 : 10}
             placeholder={placeholder || `${l.search} ${additionalPlaceholder}`}
             pr={"40px"}
             onChange={(inputValue) => {

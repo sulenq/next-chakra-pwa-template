@@ -67,7 +67,7 @@ const Language = () => {
               <Btn
                 key={i}
                 clicky={false}
-                borderRadius={themeConfig.radii.component}
+                rounded={themeConfig.radii.component}
                 variant={"ghost"}
                 justifyContent={"start"}
                 px={[3, null, 3]}
@@ -158,7 +158,7 @@ const Timezone = () => {
             inputValue={search}
             inputProps={{
               variant: "flushed",
-              borderRadius: 0,
+              rounded: 0,
             }}
           />
         </CContainer>
@@ -229,7 +229,7 @@ const DateFormat = () => {
                 key={item.key}
                 px={[3, null, 3]}
                 py={3}
-                borderRadius={themeConfig.radii.component}
+                rounded={themeConfig.radii.component}
                 onClick={() => {
                   setDateFormat(item.key as Type__DateFormat);
                 }}
@@ -292,7 +292,7 @@ const TimeFormat = () => {
                 key={item.key}
                 px={[3, null, 3]}
                 py={3}
-                borderRadius={themeConfig.radii.component}
+                rounded={themeConfig.radii.component}
                 onClick={() => {
                   setTimeFormat(item.key);
                 }}
@@ -349,7 +349,7 @@ const UOMFormat = () => {
                 key={item.key}
                 px={[3, null, 3]}
                 py={3}
-                borderRadius={themeConfig.radii.component}
+                rounded={themeConfig.radii.component}
                 onClick={() => {
                   setUOM(item.key);
                 }}
