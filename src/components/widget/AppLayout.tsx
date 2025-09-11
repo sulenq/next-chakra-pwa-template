@@ -538,7 +538,7 @@ export const DesktopLayout = (props: any) => {
         overflowY={"auto"}
       >
         {/* Content Header */}
-        <HStack gap={4} h={"52px"} p={"8px"} pl={4} justify={"space-between"}>
+        <HStack gap={4} h={"52px"} p={"8px"} pl={1} justify={"space-between"}>
           <HStack gap={1}>
             {activeNavs.map((nav, idx) => {
               return (
