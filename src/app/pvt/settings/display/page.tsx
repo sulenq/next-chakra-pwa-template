@@ -64,8 +64,8 @@ const ManualDarkModeSetting = () => {
 
       <Switch
         checked={active}
-        onChange={() => {
-          setActive(!active);
+        onCheckedChange={(e) => {
+          setActive(e.checked);
         }}
         colorPalette={themeConfig.colorPalette}
       />
@@ -205,7 +205,7 @@ const Theme = () => {
     { palette: "kemenkes", primaryHex: "#16B3AC" },
     { palette: "cyan", primaryHex: "#00BCD4" },
     { palette: "sky", primaryHex: "#0EA5E9" },
-    { palette: "blue", primaryHex: "#2196F3" },
+    { palette: "blue", primaryHex: "#3a72ed" },
     { palette: "sapphire", primaryHex: "#1939B7" },
     { palette: "discord", primaryHex: "#5865F2" },
     { palette: "indigo", primaryHex: "#3F51B5" },

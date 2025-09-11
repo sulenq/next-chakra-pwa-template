@@ -9,7 +9,6 @@ import {
 import { Avatar } from "@/components/ui/avatar";
 import { Btn } from "@/components/ui/btn";
 import { CContainer } from "@/components/ui/c-container";
-import { ColorModeButton } from "@/components/ui/color-mode";
 import { Divider } from "@/components/ui/divider";
 import {
   MenuContent,
@@ -555,8 +554,6 @@ export const DesktopLayout = (props: any) => {
           </HStack>
 
           <HStack flexShrink={0} gap={1}>
-            <ColorModeButton size={"xs"} />
-
             <HStack mx={1}>
               <P>{formatDate(new Date().toDateString())}</P>
 
