@@ -262,6 +262,7 @@ const Theme = () => {
                 bg={`${color.palette}.500`}
                 rounded={themeConfig.radii.component}
                 cursor={"pointer"}
+                overflow={"clip"}
                 onClick={() => {
                   setThemeConfig({
                     colorPalette: color.palette,
@@ -269,11 +270,12 @@ const Theme = () => {
                     primaryColorHex: color.primaryHex,
                   });
                 }}
+                pos={"relative"}
               >
                 {active && (
-                  <Center p={1} rounded={"full"} bg={"body"}>
-                    <Icon boxSize={5}>
-                      <IconX />
+                  <Center p={1} rounded={"full"}>
+                    <Icon boxSize={200} color={"light"} pos={"absolute"}>
+                      <IconX stroke={0.5} />
                     </Icon>
                   </Center>
                 )}

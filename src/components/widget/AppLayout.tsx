@@ -436,7 +436,7 @@ export const DesktopLayout = (props: any) => {
         </CContainer>
 
         <CContainer mt={"auto"} gap={2}>
-          <NavLink to={"/admin/settings"}>
+          <NavLink to={"/pvt/settings"}>
             <NavTooltip content={l.settings}>
               <Btn
                 clicky={false}
@@ -447,7 +447,7 @@ export const DesktopLayout = (props: any) => {
                 px={2}
                 pos={"relative"}
               >
-                {pathname.includes("/admin/settings") && <LeftIndicator />}
+                {pathname.includes("/pvt/settings") && <LeftIndicator />}
 
                 <Icon boxSize={5}>
                   <IconSettings stroke={1.5} />
@@ -483,7 +483,7 @@ export const DesktopLayout = (props: any) => {
                 transition={"200ms"}
                 pos={"relative"}
               >
-                {pathname.includes("/admin/profile") && <LeftIndicator />}
+                {pathname.includes("/pvt/profile") && <LeftIndicator />}
 
                 <Avatar
                   src={user?.photoProfile?.file_url}

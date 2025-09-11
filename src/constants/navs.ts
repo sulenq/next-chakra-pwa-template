@@ -10,7 +10,7 @@ import {
   IconUser,
 } from "@tabler/icons-react";
 
-export const PRIVATE_ROUTE_INDEX = "/admin";
+export const PRIVATE_ROUTE_INDEX = "/pvt";
 
 export const NAVS: Interface__NavItem[] = [
   {
