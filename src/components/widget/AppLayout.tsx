@@ -26,6 +26,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { Tooltip, TooltipProps } from "@/components/ui/tooltip";
+import BackButton from "@/components/widget/BackButton";
 import Clock from "@/components/widget/Clock";
 import { DotIndicator, LeftIndicator } from "@/components/widget/Indicator";
 import Logo from "@/components/widget/Logo";
@@ -36,6 +37,7 @@ import useLang from "@/context/useLang";
 import useNavs from "@/context/useNavs";
 import { useThemeConfig } from "@/context/useThemeConfig";
 import useIsSmScreenWidth from "@/hooks/useIsSmScreenWidth";
+import { last } from "@/utils/array";
 import { getUserData } from "@/utils/auth";
 import { formatDate } from "@/utils/formatter";
 import { pluckString } from "@/utils/string";
@@ -43,10 +45,10 @@ import { getActiveNavs } from "@/utils/url";
 import { Center, HStack, Icon, Stack, StackProps } from "@chakra-ui/react";
 import {
   IconBoxAlignLeft,
-  IconChevronRight,
   IconCircleFilled,
   IconSelector,
   IconSettings,
+  IconSlash,
 } from "@tabler/icons-react";
 import { usePathname } from "next/navigation";
 import { Fragment } from "react";
@@ -55,7 +57,7 @@ const NAVS_BG = "body";
 const NAVS_COLOR = "ibody";
 const NAVS_COLOR_PALETTE = "gray";
 const BG_CONTENT_CONTAINER = "bgContent";
-const DESKTOP_POPUP_MAIN_AXIS = 12;
+const DESKTOP_POPUP_MAIN_AXIS = 16;
 
 export const NavTooltip = (props: TooltipProps) => {
   // Props
@@ -80,9 +82,11 @@ export const MobileLayout = (props: any) => {
   const { children, ...restProps } = props;
 
   return (
-    <CContainer {...restProps}>
+    <CContainer flex={1} {...restProps}>
       {/* Content */}
-      <CContainer bg={"bg.emphasized"}>{children}</CContainer>
+      <CContainer flex={1} bg={BG_CONTENT_CONTAINER}>
+        {children}
+      </CContainer>
 
       {/* Navs */}
       <HStack bg={"yellow"}></HStack>
@@ -116,12 +120,12 @@ export const DesktopLayout = (props: any) => {
       overflowY={"auto"}
       {...restProps}
     >
-      {/* Side Panel */}
+      {/* Sidebar */}
       <CContainer
-        w={navsExpanded ? "300px" : "58px"}
+        flexShrink={0}
+        w={navsExpanded ? "250px" : "58px"}
         gap={8}
         p={2}
-        // pr={0}
         transition={"200ms"}
       >
         <CContainer gap={1}>
@@ -148,7 +152,7 @@ export const DesktopLayout = (props: any) => {
 
                   <P
                     w={"full"}
-                    fontSize={15}
+                    fontSize={16}
                     fontWeight={"semibold"}
                     lineClamp={1}
                   >
@@ -216,6 +220,9 @@ export const DesktopLayout = (props: any) => {
                             value={nav.path}
                             border={"none"}
                             rounded={themeConfig.radii.component}
+                            _open={{
+                              bg: "d0",
+                            }}
                           >
                             <NavTooltip
                               key={nav.path}
@@ -510,17 +517,25 @@ export const DesktopLayout = (props: any) => {
       <CContainer bg={BG_CONTENT_CONTAINER} overflowY={"auto"}>
         {/* Content Header */}
         <HStack gap={4} h={"52px"} p={4} justify={"space-between"}>
-          <HStack gap={1}>
+          <HStack>
+            {last(activeNavs)?.backPath && (
+              <BackButton iconButton clicky={false} />
+            )}
+
             {activeNavs.map((nav, idx) => {
               return (
-                <HStack key={idx} gap={1}>
+                <HStack key={idx}>
                   {idx !== 0 && (
                     <Icon boxSize={5} color={"fg.subtle"}>
-                      <IconChevronRight stroke={1.5} />
+                      <IconSlash stroke={1.5} />
                     </Icon>
                   )}
 
-                  <P fontSize={16} fontWeight={"semibold"}>
+                  <P
+                    fontSize={16}
+                    fontWeight={"semibold"}
+                    ml={idx === 0 ? 1 : 0}
+                  >
                     {pluckString(l, nav.labelKey)}
                   </P>
                 </HStack>
@@ -555,7 +570,7 @@ export const AppLayout = (props: StackProps) => {
   const iss = useIsSmScreenWidth();
 
   return (
-    <CContainer id="app_layout" {...restProps}>
+    <CContainer id="app_layout" h={"100dvh"} {...restProps}>
       {iss ? <MobileLayout {...props} /> : <DesktopLayout {...props} />}
     </CContainer>
   );

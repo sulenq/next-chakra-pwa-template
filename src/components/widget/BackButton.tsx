@@ -1,21 +1,21 @@
 import { back } from "@/utils/client";
-import { ButtonProps, Icon } from "@chakra-ui/react";
-import { IconChevronLeft } from "@tabler/icons-react";
+import { Icon } from "@chakra-ui/react";
+import { IconArrowLeft } from "@tabler/icons-react";
 import { useRouter } from "next/navigation";
-import { Btn } from "../ui/btn";
+import { Btn, BtnProps } from "../ui/btn";
 
-interface Props extends ButtonProps {
+interface Props extends BtnProps {
   children?: any;
   iconButton?: boolean;
   backPath?: string;
-  aoc?: () => void;
+  onBack?: () => void;
 }
 
 const BackButton = ({
   children,
   iconButton = false,
   backPath,
-  aoc,
+  onBack,
   ...props
 }: Props) => {
   const router = useRouter();
@@ -27,7 +27,7 @@ const BackButton = ({
     } else {
       back();
     }
-    aoc?.();
+    onBack?.();
   }
 
   if (iconButton)
@@ -40,8 +40,8 @@ const BackButton = ({
         size={"xs"}
         {...props}
       >
-        <Icon fontSize={"lg"}>
-          <IconChevronLeft />
+        <Icon boxSize={5}>
+          <IconArrowLeft stroke={1.5} />
         </Icon>
       </Btn>
     );

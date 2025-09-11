@@ -5,7 +5,7 @@ import FeedbackState from "@/components/widget/FeedbackState";
 import useLang from "@/context/useLang";
 import { IconSettings } from "@tabler/icons-react";
 
-const SettingsRoute = () => {
+const SettingsDisplayRoute = () => {
   // Contexts
   const { l } = useLang();
 
@@ -19,4 +19,4 @@ const SettingsRoute = () => {
     </CContainer>
   );
 };
-export default SettingsRoute;
+export default SettingsDisplayRoute;

@@ -65,36 +65,19 @@ export const OTHER_NAVS: Interface__NavItem[] = [
                 icon: IconDeviceDesktop,
                 labelKey: "settings_navs.main.display",
                 path: `${PRIVATE_ROUTE_INDEX}/settings/display`,
+                backPath: `${PRIVATE_ROUTE_INDEX}/settings`,
               },
               {
                 icon: IconLanguage,
                 labelKey: "settings_navs.main.regional",
                 path: `${PRIVATE_ROUTE_INDEX}/settings/regional`,
+                backPath: `${PRIVATE_ROUTE_INDEX}/settings`,
               },
               {
                 icon: IconShieldHalf,
                 labelKey: "settings_navs.main.permissions",
                 path: `${PRIVATE_ROUTE_INDEX}/settings/permissions`,
-              },
-            ],
-          },
-          {
-            groupLabelKey: "settings_navs.main.index",
-            list: [
-              {
-                icon: IconDeviceDesktop,
-                labelKey: "settings_navs.main.display",
-                path: `${PRIVATE_ROUTE_INDEX}/settings/display`,
-              },
-              {
-                icon: IconLanguage,
-                labelKey: "settings_navs.main.regional",
-                path: `${PRIVATE_ROUTE_INDEX}/settings/regional`,
-              },
-              {
-                icon: IconShieldHalf,
-                labelKey: "settings_navs.main.permissions",
-                path: `${PRIVATE_ROUTE_INDEX}/settings/permissions`,
+                backPath: `${PRIVATE_ROUTE_INDEX}/settings`,
               },
             ],
           },

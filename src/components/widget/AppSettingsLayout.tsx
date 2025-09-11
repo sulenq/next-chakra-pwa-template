@@ -27,15 +27,22 @@ export const AppSettingsLayout = (props: StackProps) => {
   const { l } = useLang();
 
   // States
-  const isSettingsIndexRoute = pathname === `${PRIVATE_ROUTE_INDEX}/settings`;
-  const showSidebar = !iss || (iss && isSettingsIndexRoute);
-  const showContent = iss || (!iss && isSettingsIndexRoute);
+  const isAtSettingsIndexRoute = pathname === `${PRIVATE_ROUTE_INDEX}/settings`;
+  const showSidebar = !iss || (iss && isAtSettingsIndexRoute);
+  const showContent = !iss || (iss && !isAtSettingsIndexRoute);
 
   return (
     <RouteContainer id={"settings_container"} {...restProps}>
       <HStack align={"stretch"} flex={1} gap={4}>
+        {/* Sidebar */}
         {showSidebar && (
-          <ItemContainer scrollY w={["full", null, "300px"]} p={"6px"} pr={0}>
+          <ItemContainer
+            scrollY
+            flexShrink={0}
+            w={["full", null, "250px"]}
+            p={"6px"}
+            pr={0}
+          >
             {SETTINGS_NAVS.map((navItem, navItemIdx) => {
               return (
                 <CContainer key={navItemIdx} gap={1}>
@@ -54,7 +61,12 @@ export const AppSettingsLayout = (props: StackProps) => {
                   {navItem.list.map((nav) => {
                     return (
                       <NavLink key={nav.path} to={nav.path}>
-                        <Btn justifyContent={"start"} variant={"ghost"} px={2}>
+                        <Btn
+                          clicky={false}
+                          justifyContent={"start"}
+                          variant={"ghost"}
+                          px={2}
+                        >
                           <Icon boxSize={5}>
                             <nav.icon stroke={1.5} />
                           </Icon>
@@ -72,6 +84,7 @@ export const AppSettingsLayout = (props: StackProps) => {
           </ItemContainer>
         )}
 
+        {/* Content */}
         {showContent && <ItemContainer h={"full"}>{children}</ItemContainer>}
       </HStack>
     </RouteContainer>
