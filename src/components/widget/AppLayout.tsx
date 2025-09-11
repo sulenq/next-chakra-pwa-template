@@ -51,6 +51,7 @@ import { Fragment } from "react";
 const NAVS_BG = "body";
 const NAVS_COLOR = "ibody";
 const NAVS_COLOR_PALETTE = "gray";
+const BG_CONTENT_CONTAINER = "bgContent";
 const DESKTOP_POPUP_MAIN_AXIS = 16;
 
 export const DesktopActiveIndicator = () => {
@@ -529,13 +530,12 @@ export const DesktopLayout = (props: any) => {
 
       {/* Content */}
       <CContainer
-        bg={"bgContent"}
-        borderLeft={"1px solid"}
-        borderColor={"border.muted"}
+        bg={BG_CONTENT_CONTAINER}
+        // borderLeft={"1px solid {colors.border.muted}"}
         overflowY={"auto"}
       >
         {/* Content Header */}
-        <HStack p={"15px"} gap={4} pl={4}>
+        <HStack gap={4} p={"12px"} pl={4}>
           <HStack gap={1}>
             {activeNavs.map((nav, idx) => {
               return (
