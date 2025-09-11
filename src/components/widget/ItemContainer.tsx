@@ -14,7 +14,6 @@ export const ItemContainer = (props: Props__ItemContainer) => {
   return (
     <CContainer
       className={scrollY ? "scrollY" : ""}
-      gap={2}
       bg={"body"}
       rounded={themeConfig.radii.container}
       {...restProps}

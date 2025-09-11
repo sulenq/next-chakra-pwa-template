@@ -249,7 +249,7 @@ const Theme = () => {
         </HStack>
       </ItemHeaderContainer>
 
-      <CContainer gap={4} py={3} px={3}>
+      <CContainer gap={4} p={4}>
         <SimpleGrid columns={cols} gap={2}>
           {colorPalettes.map((color, idx) => {
             const active = color.palette === themeConfig.colorPalette;
@@ -275,7 +275,7 @@ const Theme = () => {
                 {active && (
                   <Center p={1} rounded={"full"}>
                     <Icon boxSize={200} color={"light"} pos={"absolute"}>
-                      <IconX stroke={0.5} />
+                      <IconX stroke={0.3} />
                     </Icon>
                   </Center>
                 )}
