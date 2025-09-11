@@ -113,6 +113,7 @@ export const DesktopLayout = (props: any) => {
   const activeNavs = getActiveNavs(pathname);
   const resolvedActiveNavs =
     sw < 960 ? [activeNavs[activeNavs.length - 1]] : activeNavs;
+  const hasBackPath = last(activeNavs)?.backPath;
 
   return (
     <HStack
@@ -293,7 +294,7 @@ export const DesktopLayout = (props: any) => {
                                               w={"full"}
                                               gap={4}
                                               px={"6px"}
-                                              rounded={`calc(${themeConfig.radii.component} - 2px)`}
+                                              rounded={`calc(${themeConfig.radii.component})`}
                                               justifyContent={"start"}
                                               variant={"ghost"}
                                               colorPalette={NAVS_COLOR_PALETTE}
@@ -522,17 +523,21 @@ export const DesktopLayout = (props: any) => {
         {/* Content Header */}
         <HStack gap={4} h={"52px"} p={4} justify={"space-between"}>
           <HStack>
-            {last(activeNavs)?.backPath && (
-              <BackButton iconButton clicky={false} />
-            )}
+            {hasBackPath && <BackButton iconButton clicky={false} />}
 
             {resolvedActiveNavs.map((nav, idx) => {
               return (
                 <HStack key={idx}>
                   {idx !== 0 && (
-                    <Icon boxSize={5} color={"fg.subtle"}>
-                      <IconSlash stroke={1.5} />
-                    </Icon>
+                    <>
+                      {hasBackPath && (
+                        <Icon boxSize={5} color={"fg.subtle"}>
+                          <IconSlash stroke={1.5} />
+                        </Icon>
+                      )}
+
+                      {!hasBackPath && <DotIndicator color={"d4"} />}
+                    </>
                   )}
 
                   <P
