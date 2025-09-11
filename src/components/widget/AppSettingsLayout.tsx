@@ -62,58 +62,60 @@ export const AppSettingsLayout = (props: StackProps) => {
       >
         {/* Sidebar */}
         {showSidebar && (
-          <ItemContainer
-            scrollY
+          <CContainer
             flexShrink={0}
             w={isSmContainer ? "full" : "250px"}
-            p={"6px"}
-            pr={0}
-            mb={4}
+            h={"fit"}
+            maxH={"full"}
+            pb={4}
+            overflowY={"auto"}
           >
-            {SETTINGS_NAVS.map((navItem, navItemIdx) => {
-              return (
-                <CContainer key={navItemIdx} gap={1}>
-                  {navItem.groupLabelKey && (
-                    <P
-                      fontSize={"xs"}
-                      fontWeight={"semibold"}
-                      color={"fg.subtle"}
-                      ml={"10px"}
-                      mt={1}
-                    >
-                      {pluckString(l, navItem.groupLabelKey)}
-                    </P>
-                  )}
+            <ItemContainer scrollY p={"6px"} pr={0}>
+              {SETTINGS_NAVS.map((navItem, navItemIdx) => {
+                return (
+                  <CContainer key={navItemIdx} gap={1}>
+                    {navItem.groupLabelKey && (
+                      <P
+                        fontSize={"xs"}
+                        fontWeight={"semibold"}
+                        color={"fg.subtle"}
+                        ml={"10px"}
+                        mt={1}
+                      >
+                        {pluckString(l, navItem.groupLabelKey)}
+                      </P>
+                    )}
 
-                  {navItem.list.map((nav) => {
-                    const isActive = nav.path === pathname;
+                    {navItem.list.map((nav) => {
+                      const isActive = nav.path === pathname;
 
-                    return (
-                      <NavLink key={nav.path} to={nav.path}>
-                        <Btn
-                          clicky={false}
-                          justifyContent={"start"}
-                          variant={"ghost"}
-                          px={2}
-                          pos={"relative"}
-                        >
-                          {isActive && <LeftIndicator />}
+                      return (
+                        <NavLink key={nav.path} to={nav.path}>
+                          <Btn
+                            clicky={false}
+                            justifyContent={"start"}
+                            variant={"ghost"}
+                            px={2}
+                            pos={"relative"}
+                          >
+                            {isActive && <LeftIndicator />}
 
-                          <Icon boxSize={5}>
-                            <nav.icon stroke={1.5} />
-                          </Icon>
+                            <Icon boxSize={5}>
+                              <nav.icon stroke={1.5} />
+                            </Icon>
 
-                          <P textAlign={"left"}>
-                            {pluckString(l, nav.labelKey)}
-                          </P>
-                        </Btn>
-                      </NavLink>
-                    );
-                  })}
-                </CContainer>
-              );
-            })}
-          </ItemContainer>
+                            <P textAlign={"left"}>
+                              {pluckString(l, nav.labelKey)}
+                            </P>
+                          </Btn>
+                        </NavLink>
+                      );
+                    })}
+                  </CContainer>
+                );
+              })}
+            </ItemContainer>
+          </CContainer>
         )}
 
         {/* Content */}

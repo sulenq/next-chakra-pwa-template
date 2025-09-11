@@ -18,6 +18,7 @@ const SettingsRoute = () => {
       justify={"center"}
       bg={"body"}
       p={4}
+      mb={4}
       rounded={themeConfig.radii.container}
     >
       <FeedbackState
