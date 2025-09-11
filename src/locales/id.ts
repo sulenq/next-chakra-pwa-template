@@ -173,7 +173,7 @@ const translations = {
   "msg_reset_password_step_2": "Langkah kedua, verifikasi OTP",
   "msg_reset_password_step_3": "Langkah ketiga, masukkan kata sandi baru Anda",
   "msg_settings_index_route": "Silahkan pilih menu pengaturan.",
-  "msg_settings_saved_locally": "Pengaturan tampilan ini disimpan secara lokal di perangkat Anda dan tidak akan disinkronkan dengan akun Anda.",
+  "msg_settings_saved_locally": "Pengaturan ini disimpan secara lokal di perangkat Anda dan tidak akan disinkronkan dengan akun Anda.",
   "msg_signin": "Masukkan detail akun untuk melanjutkan.",
   "msg_signout": "Anda yakin ingin keluar?",
   "msg_soft_delete": "Data akan disembunyikan dan bisa dikembalikan nanti.",

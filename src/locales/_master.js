@@ -366,8 +366,8 @@ export const adaptive_dark_mode = {
 
 // Message
 export const msg_settings_saved_locally = {
-  id: "Pengaturan tampilan ini disimpan secara lokal di perangkat Anda dan tidak akan disinkronkan dengan akun Anda.",
-  en: "Settings for this display are saved locally on your device and will not be synchronized with your account.",
+  id: "Pengaturan ini disimpan secara lokal di perangkat Anda dan tidak akan disinkronkan dengan akun Anda.",
+  en: "This settings are saved locally on your device and will not be synchronized with your account.",
 };
 export const msg_settings_index_route = {
   id: "Silahkan pilih menu pengaturan.",

@@ -173,7 +173,7 @@ const translations = {
   "msg_reset_password_step_2": "Second step, verify OTP",
   "msg_reset_password_step_3": "Third step, enter your new password",
   "msg_settings_index_route": "Please select the settings menu.",
-  "msg_settings_saved_locally": "Settings for this display are saved locally on your device and will not be synchronized with your account.",
+  "msg_settings_saved_locally": "This settings are saved locally on your device and will not be synchronized with your account.",
   "msg_signin": "Enter your account details to continue.",
   "msg_signout": "Are you sure you want to sign out?",
   "msg_soft_delete": "Data will be hidden but can be restored later.",
