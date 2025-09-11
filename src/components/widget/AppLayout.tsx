@@ -292,7 +292,7 @@ export const DesktopLayout = (props: any) => {
                                               }
                                               clicky={false}
                                               w={"full"}
-                                              gap={4}
+                                              gap={3}
                                               px={2}
                                               rounded={`calc(${themeConfig.radii.component})`}
                                               justifyContent={"start"}
