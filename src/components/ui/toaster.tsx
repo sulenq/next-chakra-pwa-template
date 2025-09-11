@@ -109,7 +109,7 @@ export const Toaster = () => {
               color={"current"}
               bg={"body !important"}
               border={"1px solid"}
-              borderColor={"border.muted"}
+              borderColor={"border.subtle"}
               p={"14px"}
               className="ss"
             >
