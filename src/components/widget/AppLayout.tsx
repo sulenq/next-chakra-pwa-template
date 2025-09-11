@@ -113,7 +113,7 @@ export const DesktopLayout = (props: any) => {
   const activeNavs = getActiveNavs(pathname);
   const resolvedActiveNavs =
     sw < 960 ? [activeNavs[activeNavs.length - 1]] : activeNavs;
-  const hasBackPath = last(activeNavs)?.backPath;
+  const backPath = last(activeNavs)?.backPath;
 
   return (
     <HStack
@@ -522,20 +522,22 @@ export const DesktopLayout = (props: any) => {
         {/* Content Header */}
         <HStack gap={4} h={"52px"} p={4} justify={"space-between"}>
           <HStack>
-            {hasBackPath && <BackButton iconButton clicky={false} />}
+            {backPath && (
+              <BackButton iconButton clicky={false} backPath={backPath} />
+            )}
 
             {resolvedActiveNavs.map((nav, idx) => {
               return (
                 <HStack key={idx}>
                   {idx !== 0 && (
                     <>
-                      {hasBackPath && (
+                      {backPath && (
                         <Icon boxSize={5} color={"fg.subtle"}>
                           <IconSlash stroke={1.5} />
                         </Icon>
                       )}
 
-                      {!hasBackPath && <DotIndicator color={"d4"} />}
+                      {!backPath && <DotIndicator color={"d4"} />}
                     </>
                   )}
 
