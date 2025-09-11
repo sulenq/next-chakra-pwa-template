@@ -518,7 +518,7 @@ export const DesktopLayout = (props: any) => {
       </CContainer>
 
       {/* Content */}
-      <CContainer bg={BG_CONTENT_CONTAINER} overflowY={"auto"}>
+      <CContainer bg={BG_CONTENT_CONTAINER} overflowY={"auto"} color={"ibody"}>
         {/* Content Header */}
         <HStack gap={4} h={"52px"} p={4} justify={"space-between"}>
           <HStack>
