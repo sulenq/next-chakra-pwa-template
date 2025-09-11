@@ -36,7 +36,8 @@ import { NAVS } from "@/constants/navs";
 import useLang from "@/context/useLang";
 import useNavs from "@/context/useNavs";
 import { useThemeConfig } from "@/context/useThemeConfig";
-import useIsSmScreenWidth from "@/hooks/useIsSmScreenWidth";
+import { useIsSmScreenWidth } from "@/hooks/useIsSmScreenWidth";
+import useScreen from "@/hooks/useScreen";
 import { last } from "@/utils/array";
 import { getUserData } from "@/utils/auth";
 import { formatDate } from "@/utils/formatter";
@@ -105,10 +106,13 @@ export const DesktopLayout = (props: any) => {
 
   // Hooks
   const pathname = usePathname();
+  const { sw } = useScreen();
 
   // States
   const user = getUserData();
   const activeNavs = getActiveNavs(pathname);
+  const resolvedActiveNavs =
+    sw < 960 ? [activeNavs[activeNavs.length - 1]] : activeNavs;
 
   return (
     <HStack
@@ -522,7 +526,7 @@ export const DesktopLayout = (props: any) => {
               <BackButton iconButton clicky={false} />
             )}
 
-            {activeNavs.map((nav, idx) => {
+            {resolvedActiveNavs.map((nav, idx) => {
               return (
                 <HStack key={idx}>
                   {idx !== 0 && (
@@ -535,6 +539,7 @@ export const DesktopLayout = (props: any) => {
                     fontSize={16}
                     fontWeight={"semibold"}
                     ml={idx === 0 ? 1 : 0}
+                    lineClamp={1}
                   >
                     {pluckString(l, nav.labelKey)}
                   </P>
@@ -543,7 +548,7 @@ export const DesktopLayout = (props: any) => {
             })}
           </HStack>
 
-          <HStack gap={1}>
+          <HStack flexShrink={0} gap={1}>
             <ColorModeButton size={"xs"} />
 
             <HStack mx={1}>

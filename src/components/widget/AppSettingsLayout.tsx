@@ -8,10 +8,11 @@ import { ItemContainer } from "@/components/widget/ItemContainer";
 import { RouteContainer } from "@/components/widget/RouteContainer";
 import { OTHER_NAVS, PRIVATE_ROUTE_INDEX } from "@/constants/navs";
 import useLang from "@/context/useLang";
-import useIsSmScreenWidth from "@/hooks/useIsSmScreenWidth";
+import { useContainerDimension } from "@/hooks/useContainerDimension";
 import { pluckString } from "@/utils/string";
 import { HStack, Icon, StackProps } from "@chakra-ui/react";
 import { usePathname } from "next/navigation";
+import { useRef } from "react";
 
 const SETTINGS_NAVS = OTHER_NAVS[0].list[0].subMenus!;
 
@@ -21,25 +22,31 @@ export const AppSettingsLayout = (props: StackProps) => {
 
   // Hooks
   const pathname = usePathname();
-  const iss = useIsSmScreenWidth();
+
+  // Refs
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const size = useContainerDimension(containerRef);
 
   // Contexts
   const { l } = useLang();
 
   // States
+  const isSmContainer = size.width < 720;
   const isAtSettingsIndexRoute = pathname === `${PRIVATE_ROUTE_INDEX}/settings`;
-  const showSidebar = !iss || (iss && isAtSettingsIndexRoute);
-  const showContent = !iss || (iss && !isAtSettingsIndexRoute);
+  const showSidebar =
+    !isSmContainer || (isSmContainer && isAtSettingsIndexRoute);
+  const showContent =
+    !isSmContainer || (isSmContainer && !isAtSettingsIndexRoute);
 
   return (
-    <RouteContainer id={"settings_container"} {...restProps}>
+    <RouteContainer ref={containerRef} {...restProps}>
       <HStack align={"stretch"} flex={1} gap={4}>
         {/* Sidebar */}
         {showSidebar && (
           <ItemContainer
             scrollY
             flexShrink={0}
-            w={["full", null, "250px"]}
+            w={isSmContainer ? "full" : "250px"}
             p={"6px"}
             pr={0}
           >

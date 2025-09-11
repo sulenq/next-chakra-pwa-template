@@ -24,7 +24,7 @@ import {
 } from "@/components/ui/drawer";
 import { SM_SCREEN_W_NUMBER } from "@/constants/sizes";
 import { useThemeConfig } from "@/context/useThemeConfig";
-import useIsSmScreenWidth from "@/hooks/useIsSmScreenWidth";
+import { useIsSmScreenWidth } from "@/hooks/useIsSmScreenWidth";
 import useScreen from "@/hooks/useScreen";
 import { back } from "@/utils/client";
 import {
