@@ -27,7 +27,7 @@ export const PopoverContent = forwardRef<HTMLDivElement, PopoverContentProps>(
             borderColor={"d2"}
             rounded={themeConfig.radii.container}
             shadow={"none"}
-            className="ss"
+            // className="ss"
             {...rest}
           />
         </ChakraPopover.Positioner>
