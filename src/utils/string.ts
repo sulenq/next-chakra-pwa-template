@@ -34,16 +34,13 @@ export const interpolateString = (
   return result;
 };
 
-export const pluckString = <T>(
-  obj: Record<string, any>,
-  key: string
-): T | undefined => {
+export const pluckString = (obj: Record<string, any>, key: string): string => {
   return key.split(".").reduce<any>((acc, curr) => {
     if (acc && typeof acc === "object" && curr in acc) {
       return acc[curr];
     }
     return undefined;
-  }, obj) as T | undefined;
+  }, obj);
 };
 
 export const maskEmail = (email?: string) => {

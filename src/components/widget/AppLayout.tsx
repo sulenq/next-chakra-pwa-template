@@ -48,7 +48,10 @@ import {
 import { usePathname } from "next/navigation";
 import { Fragment } from "react";
 
-const DESKTOP_MAIN_AXIS = 16;
+const NAVS_BG = "body";
+const NAVS_COLOR = "ibody";
+const NAVS_COLOR_PALETTE = "gray";
+const DESKTOP_POPUP_MAIN_AXIS = 16;
 
 export const DesktopActiveIndicator = () => {
   // Contexts
@@ -76,7 +79,7 @@ export const NavTooltip = (props: TooltipProps) => {
       positioning={{
         placement: "right",
         offset: {
-          mainAxis: DESKTOP_MAIN_AXIS,
+          mainAxis: DESKTOP_POPUP_MAIN_AXIS,
         },
       }}
       {...restProps}
@@ -121,7 +124,8 @@ export const DesktopLayout = (props: any) => {
       align={"stretch"}
       gap={0}
       h={"100dvh"}
-      bg={"dark"}
+      bg={NAVS_BG}
+      color={NAVS_COLOR}
       overflowY={"auto"}
       {...restProps}
     >
@@ -140,7 +144,7 @@ export const DesktopLayout = (props: any) => {
                 iconButton
                 clicky={false}
                 variant={"ghost"}
-                colorPalette={"light"}
+                colorPalette={NAVS_COLOR_PALETTE}
                 w={"42px"}
                 mr={"auto"}
               >
@@ -159,7 +163,6 @@ export const DesktopLayout = (props: any) => {
                     w={"full"}
                     fontSize={15}
                     fontWeight={"semibold"}
-                    color={"light"}
                     lineClamp={1}
                   >
                     {APP.name}
@@ -175,7 +178,7 @@ export const DesktopLayout = (props: any) => {
                 positioning={{
                   placement: "right",
                   offset: {
-                    mainAxis: DESKTOP_MAIN_AXIS,
+                    mainAxis: DESKTOP_POPUP_MAIN_AXIS,
                   },
                 }}
               >
@@ -185,11 +188,11 @@ export const DesktopLayout = (props: any) => {
                   clicky={false}
                   w={"42px"}
                   variant={"ghost"}
-                  colorPalette={"light"}
+                  colorPalette={NAVS_COLOR_PALETTE}
                   onClick={toggleNavsExpanded}
                 >
                   <Icon boxSize={5}>
-                    <IconBoxAlignLeft />
+                    <IconBoxAlignLeft stroke={1.5} />
                   </Icon>
                 </Btn>
               </Tooltip>
@@ -206,11 +209,11 @@ export const DesktopLayout = (props: any) => {
                   <P
                     fontSize={"xs"}
                     fontWeight={"semibold"}
-                    color={"light"}
-                    opacity={0.6}
+                    letterSpacing={"wide"}
+                    opacity={0.4}
                     ml={3}
                   >
-                    {pluckString(l, navItem.groupLabelKey)}
+                    {pluckString(l, navItem.groupLabelKey)?.toUpperCase()}
                   </P>
                 )}
                 {navItem.list.map((nav) => {
@@ -234,7 +237,6 @@ export const DesktopLayout = (props: any) => {
                               content={pluckString(l, nav.labelKey)}
                             >
                               <AccordionItemTrigger
-                                color={"light"}
                                 h={"40px"}
                                 px={"10.5px"}
                                 _hover={{
@@ -267,7 +269,6 @@ export const DesktopLayout = (props: any) => {
                                         <P
                                           fontSize={"xs"}
                                           fontWeight={"semibold"}
-                                          color={"light"}
                                           opacity={0.6}
                                           ml={"12px"}
                                           mt={1}
@@ -299,7 +300,7 @@ export const DesktopLayout = (props: any) => {
                                               rounded={`calc(${themeConfig.radii.component} - 2px)`}
                                               justifyContent={"start"}
                                               variant={"ghost"}
-                                              colorPalette={"light"}
+                                              colorPalette={NAVS_COLOR_PALETTE}
                                             >
                                               <Center boxSize={5}>
                                                 <Icon
@@ -340,7 +341,7 @@ export const DesktopLayout = (props: any) => {
                           positioning={{
                             placement: "right-start",
                             offset: {
-                              mainAxis: DESKTOP_MAIN_AXIS,
+                              mainAxis: DESKTOP_POPUP_MAIN_AXIS,
                             },
                           }}
                         >
@@ -354,7 +355,7 @@ export const DesktopLayout = (props: any) => {
                                   px={"10px"}
                                   justifyContent={"start"}
                                   variant={"ghost"}
-                                  colorPalette={"light"}
+                                  colorPalette={NAVS_COLOR_PALETTE}
                                   pos={"relative"}
                                 >
                                   {isMainNavsActive && (
@@ -415,7 +416,7 @@ export const DesktopLayout = (props: any) => {
                               px={"10px"}
                               justifyContent={"start"}
                               variant={"ghost"}
-                              colorPalette={"light"}
+                              colorPalette={NAVS_COLOR_PALETTE}
                             >
                               {isMainNavsActive && <DesktopActiveIndicator />}
 
@@ -448,7 +449,7 @@ export const DesktopLayout = (props: any) => {
                 gap={4}
                 justifyContent={"start"}
                 variant={"ghost"}
-                colorPalette={"light"}
+                colorPalette={NAVS_COLOR_PALETTE}
                 px={"10px"}
                 pos={"relative"}
               >
@@ -483,7 +484,6 @@ export const DesktopLayout = (props: any) => {
                 px={navsExpanded ? "10px" : "9px"}
                 py={2}
                 rounded={themeConfig.radii.component}
-                color={"light"}
                 cursor={"pointer"}
                 _hover={{
                   bg: "d2",
@@ -529,7 +529,7 @@ export const DesktopLayout = (props: any) => {
 
       {/* Content */}
       <CContainer
-        bg={"body"}
+        bg={"bgContent"}
         borderLeft={"1px solid"}
         borderColor={"border.muted"}
         overflowY={"auto"}
