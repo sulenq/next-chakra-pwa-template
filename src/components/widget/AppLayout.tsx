@@ -51,7 +51,7 @@ import { Fragment } from "react";
 const NAVS_BG = "body";
 const NAVS_COLOR = "ibody";
 const NAVS_COLOR_PALETTE = "gray";
-const BG_CONTENT_CONTAINER = "bgContent";
+const BG_CONTENT_CONTAINER = "body";
 const DESKTOP_POPUP_MAIN_AXIS = 16;
 
 export const DesktopActiveIndicator = () => {

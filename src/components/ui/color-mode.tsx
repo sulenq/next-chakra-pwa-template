@@ -4,7 +4,7 @@ import useADM from "@/context/useADM";
 import useLang from "@/context/useLang";
 import type { IconButtonProps, SpanProps } from "@chakra-ui/react";
 import { ClientOnly, Icon, IconButton, Skeleton, Span } from "@chakra-ui/react";
-import { IconMoon, IconMoonOff } from "@tabler/icons-react";
+import { IconMoon2, IconSun } from "@tabler/icons-react";
 import type { ThemeProviderProps } from "next-themes";
 import { ThemeProvider, useTheme } from "next-themes";
 import * as React from "react";
@@ -81,9 +81,9 @@ export const ColorModeButton = forwardRef<
         >
           <Icon boxSize={props.boxSize || 5}>
             {colorMode === "dark" ? (
-              <IconMoon stroke={1.5} />
+              <IconMoon2 stroke={1.5} />
             ) : (
-              <IconMoonOff stroke={1.5} />
+              <IconSun stroke={1.5} />
             )}
           </Icon>
         </IconButton>
