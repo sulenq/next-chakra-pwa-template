@@ -60,6 +60,10 @@ export const MiniProfile = (props: StackProps) => {
           removeAuth();
           router.push("/");
         },
+        onError: () => {
+          removeAuth();
+          router.push("/");
+        },
       },
     });
   }
