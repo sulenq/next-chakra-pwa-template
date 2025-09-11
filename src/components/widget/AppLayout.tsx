@@ -36,7 +36,7 @@ import useIsSmScreenWidth from "@/hooks/useIsSmScreenWidth";
 import { getUserData } from "@/utils/auth";
 import { pluckString } from "@/utils/string";
 import { getActiveNavs } from "@/utils/url";
-import { Box, Center, HStack, Icon, StackProps } from "@chakra-ui/react";
+import { Box, Center, HStack, Icon, Stack, StackProps } from "@chakra-ui/react";
 import {
   IconBoxAlignLeft,
   IconChevronRight,
@@ -46,6 +46,8 @@ import {
 } from "@tabler/icons-react";
 import { usePathname } from "next/navigation";
 import { Fragment } from "react";
+
+const DESKTOP_MAIN_AXIS = 16;
 
 export const DesktopActiveIndicator = () => {
   // Contexts
@@ -73,7 +75,7 @@ export const NavTooltip = (props: TooltipProps) => {
       positioning={{
         placement: "right",
         offset: {
-          mainAxis: 12,
+          mainAxis: DESKTOP_MAIN_AXIS,
         },
       }}
       {...restProps}
@@ -165,29 +167,32 @@ export const DesktopLayout = (props: any) => {
               </NavLink>
             )}
 
-            {/* Toggle Side Navs */}
-            <Tooltip
-              content={navsExpanded ? l.minimize : l.maximize}
-              positioning={{
-                placement: "right",
-                offset: {
-                  mainAxis: 12,
-                },
-              }}
-            >
-              <Btn
-                iconButton
-                clicky={false}
-                w={"42px"}
-                variant={"ghost"}
-                colorPalette={"light"}
-                onClick={toggleNavsExpanded}
+            <Stack flexDir={navsExpanded ? "row" : "column"} gap={1}>
+              {/* Toggle Side Navs */}
+              <Tooltip
+                content={navsExpanded ? l.minimize : l.maximize}
+                positioning={{
+                  placement: "right",
+                  offset: {
+                    mainAxis: DESKTOP_MAIN_AXIS,
+                  },
+                }}
               >
-                <Icon>
-                  <IconBoxAlignLeft />
-                </Icon>
-              </Btn>
-            </Tooltip>
+                <Btn
+                  order={navsExpanded ? 2 : 1}
+                  iconButton
+                  clicky={false}
+                  w={"42px"}
+                  variant={"ghost"}
+                  colorPalette={"light"}
+                  onClick={toggleNavsExpanded}
+                >
+                  <Icon boxSize={5}>
+                    <IconBoxAlignLeft />
+                  </Icon>
+                </Btn>
+              </Tooltip>
+            </Stack>
           </HStack>
         </CContainer>
 
@@ -287,7 +292,7 @@ export const DesktopLayout = (props: any) => {
                     positioning={{
                       placement: "right-start",
                       offset: {
-                        mainAxis: 12,
+                        mainAxis: DESKTOP_MAIN_AXIS,
                       },
                     }}
                   >

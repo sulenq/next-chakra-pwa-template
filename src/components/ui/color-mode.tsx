@@ -4,16 +4,17 @@ import useADM from "@/context/useADM";
 import useLang from "@/context/useLang";
 import type { IconButtonProps, SpanProps } from "@chakra-ui/react";
 import { ClientOnly, Icon, IconButton, Skeleton, Span } from "@chakra-ui/react";
-import { IconMoon2 } from "@tabler/icons-react";
+import { IconMoon, IconMoonOff } from "@tabler/icons-react";
 import type { ThemeProviderProps } from "next-themes";
 import { ThemeProvider, useTheme } from "next-themes";
 import * as React from "react";
 import { forwardRef } from "react";
-import { LuSun } from "react-icons/lu";
-import { Tooltip } from "./tooltip";
+import { Tooltip, TooltipProps } from "./tooltip";
 
 export interface ColorModeProviderProps extends ThemeProviderProps {}
-interface ColorModeButtonProps extends Omit<IconButtonProps, "aria-label"> {}
+interface ColorModeButtonProps extends Omit<IconButtonProps, "aria-label"> {
+  tooltipProps?: Omit<TooltipProps, "content">;
+}
 export type ColorMode = "light" | "dark";
 
 export function ColorModeProvider(props: ColorModeProviderProps) {
@@ -49,6 +50,9 @@ export const ColorModeButton = forwardRef<
   HTMLButtonElement,
   ColorModeButtonProps
 >((props, ref) => {
+  // Props
+  const { tooltipProps, ...restProps } = props;
+
   // Hooks
   const { l } = useLang();
   const { toggleColorMode } = useColorMode();
@@ -62,7 +66,10 @@ export const ColorModeButton = forwardRef<
 
   return (
     <ClientOnly fallback={<Skeleton boxSize="8" />}>
-      <Tooltip content={ADMActive ? l.msg_ADM_active : l.msg_toggle_dark_mode}>
+      <Tooltip
+        content={ADMActive ? l.msg_ADM_active : l.msg_toggle_dark_mode}
+        {...tooltipProps}
+      >
         <IconButton
           onClick={toggleColorMode}
           variant="ghost"
@@ -70,10 +77,14 @@ export const ColorModeButton = forwardRef<
           size="sm"
           disabled={ADMActive}
           ref={ref}
-          {...props}
+          {...restProps}
         >
-          <Icon boxSize={5}>
-            {colorMode === "dark" ? <IconMoon2 stroke={1.8} /> : <LuSun />}
+          <Icon boxSize={props.boxSize || 5}>
+            {colorMode === "dark" ? (
+              <IconMoon stroke={1.5} />
+            ) : (
+              <IconMoonOff stroke={1.5} />
+            )}
           </Icon>
         </IconButton>
       </Tooltip>
