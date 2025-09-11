@@ -30,6 +30,7 @@ import Clock from "@/components/widget/Clock";
 import { DotIndicator, LeftIndicator } from "@/components/widget/Indicator";
 import Logo from "@/components/widget/Logo";
 import { MiniProfile } from "@/components/widget/MiniProfile";
+import { Today } from "@/components/widget/Today";
 import { APP } from "@/constants/_meta";
 import { NAVS } from "@/constants/navs";
 import useLang from "@/context/useLang";
@@ -39,7 +40,6 @@ import { useIsSmScreenWidth } from "@/hooks/useIsSmScreenWidth";
 import useScreen from "@/hooks/useScreen";
 import { last } from "@/utils/array";
 import { getUserData } from "@/utils/auth";
-import { formatDate } from "@/utils/formatter";
 import { pluckString } from "@/utils/string";
 import { getActiveNavs } from "@/utils/url";
 import { Center, HStack, Icon, Stack, StackProps } from "@chakra-ui/react";
@@ -555,9 +555,9 @@ export const DesktopLayout = (props: any) => {
 
           <HStack flexShrink={0} gap={1}>
             <HStack mx={1}>
-              <P>{formatDate(new Date().toDateString())}</P>
+              <Clock />
 
-              <Clock w={"42px"} textAlign={"center"} />
+              <Today />
             </HStack>
           </HStack>
         </HStack>

@@ -5,20 +5,14 @@ import { formatTime } from "@/utils/formatter";
 import { useEffect, useState } from "react";
 
 export default function Clock(props: Props__ClockProps) {
+  // Props
   const { withSeconds = false, ...restProps } = props;
 
+  // Contexts
   const tz = useTimezone((s) => s.timeZone);
   const tzKey = tz?.key;
 
-  // format UTC time string because `formatTime` expects UTC input
-  function utcTimeString() {
-    const now = new Date();
-    const hh = String(now.getUTCHours()).padStart(2, "0");
-    const mm = String(now.getUTCMinutes()).padStart(2, "0");
-    const ss = String(now.getUTCSeconds()).padStart(2, "0");
-    return `${hh}:${mm}:${ss}`;
-  }
-
+  // States
   const [time, setTime] = useState(() =>
     formatTime(utcTimeString(), {
       showSeconds: withSeconds,
@@ -26,6 +20,17 @@ export default function Clock(props: Props__ClockProps) {
     })
   );
 
+  // Utils
+  function utcTimeString() {
+    const now = new Date();
+    const hh = String(now.getUTCHours()).padStart(2, "0");
+    const mm = String(now.getUTCMinutes()).padStart(2, "0");
+    const ss = String(now.getUTCSeconds()).padStart(2, "0");
+
+    return `${hh}:${mm}:${ss}`;
+  }
+
+  // handle tick
   useEffect(() => {
     const tick = () =>
       setTime(

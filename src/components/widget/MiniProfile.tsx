@@ -102,7 +102,7 @@ export const MiniProfile = (props: StackProps) => {
           clicky={false}
           px={2}
           variant={"ghost"}
-          colorPalette={"red"}
+          color={"fg.error"}
           justifyContent={"start"}
           onClick={() => {
             setConfirmationData({
