@@ -112,6 +112,10 @@ const translations = {
   "february": "Februari",
   "friday": "Jumat",
   "hide": "Sembunyikan",
+  "info_timezone_auto": {
+    "title": "Zona waktu otomatis diset",
+    "description": "${timezone}"
+  },
   "january": "Januari",
   "july": "Juli",
   "june": "Juni",

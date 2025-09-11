@@ -5,6 +5,7 @@ import { CContainer } from "@/components/ui/c-container";
 import { HelperText } from "@/components/ui/helper-text";
 import { P } from "@/components/ui/p";
 import SearchInput from "@/components/ui/search-input";
+import { toaster } from "@/components/ui/toaster";
 import FeedbackNoData from "@/components/widget/FeedbackNoData";
 import { DotIndicator } from "@/components/widget/Indicator";
 import { ItemContainer } from "@/components/widget/ItemContainer";
@@ -26,7 +27,7 @@ import { useThemeConfig } from "@/context/useThemeConfig";
 import useTimeFormat from "@/context/useTimeFormat";
 import useTimezone from "@/context/useTimezone";
 import useUOM from "@/context/useUOM";
-import useScreen from "@/hooks/useScreen";
+import { isEmptyArray } from "@/utils/array";
 import { formatDate, formatTime } from "@/utils/formatter";
 import { capitalizeWords, pluckString } from "@/utils/string";
 import { getLocalTimezone, makeTime } from "@/utils/time";
@@ -36,10 +37,10 @@ import {
   IconClock12,
   IconLanguage,
   IconRulerMeasure,
+  IconSparkles,
   IconTimezone,
 } from "@tabler/icons-react";
 import { useMemo, useState } from "react";
-import { AutoSizer, Grid, GridCellRenderer } from "react-virtualized";
 
 const Language = () => {
   // Contexts
@@ -60,29 +61,29 @@ const Language = () => {
       <CContainer gap={4} py={2}>
         <SimpleGrid px={2} columns={[1, 2]}>
           {LANGUAGES.map((item, i) => {
-            const active = lang === item.key;
+            const isActive = lang === item.key;
 
             return (
               <Btn
                 key={i}
                 clicky={false}
                 borderRadius={themeConfig.radii.component}
-                gap={1}
                 variant={"ghost"}
                 justifyContent={"start"}
                 px={[3, null, 3]}
                 onClick={() => {
                   setLang(item.key as Type__LanguageOptions);
                 }}
+                pos={"relative"}
               >
+                {isActive && <DotIndicator ml={0} />}
+
                 <Text fontWeight={"medium"} truncate>
                   {item.label}{" "}
                   <chakra.span color={"fg.subtle"} mx={2} fontWeight={"normal"}>
                     {item.code}
                   </chakra.span>
                 </Text>
-
-                {active && <DotIndicator />}
               </Btn>
             );
           })}
@@ -96,73 +97,23 @@ const Timezone = () => {
   const { l } = useLang();
   const { timeZone, setTimeZone } = useTimezone();
 
-  // Constants
-  const autoTZ = useMemo(() => getLocalTimezone(), []);
-  const resolverTimezone = useMemo(() => [autoTZ, ...TIME_ZONES], [autoTZ]);
-
   // States
+  const localTz = getLocalTimezone();
+  const timezones = TIME_ZONES;
   const [search, setSearch] = useState("");
-
-  // Filtered Timezones
-  const fd = useMemo(() => {
-    if (!search) return resolverTimezone;
+  const resolvedTimezones = useMemo(() => {
+    if (!search) return timezones;
     const searchTerm = search.toLowerCase().normalize("NFD");
-    return resolverTimezone.filter(({ key, formattedOffset, localAbbr }) =>
+    return timezones.filter(({ key, formattedOffset, localAbbr }) =>
       `${key} ${formattedOffset} ${localAbbr}`
         .toLowerCase()
         .includes(searchTerm)
     );
-  }, [search, resolverTimezone]);
-
-  // Utils
-  const { sw } = useScreen();
-  const iss = sw < 1000;
-  const columnCount = iss ? 1 : 2;
-
-  // Cell Renderer vz
-  const cellRenderer: GridCellRenderer = ({
-    columnIndex,
-    rowIndex,
-    key,
-    style,
-  }) => {
-    const itemIndex = rowIndex * columnCount + columnIndex; // exceeds fd.length
-    if (itemIndex >= fd.length) return null; // handle exceeds
-    const item = fd[itemIndex];
-
-    return (
-      <div
-        key={key}
-        style={{
-          ...style,
-          paddingLeft: itemIndex % 2 === 0 || iss ? "8px" : "",
-          paddingRight: itemIndex % 2 === 0 && !iss ? "" : "8px",
-        }}
-      >
-        <Btn
-          clicky={false}
-          onClick={() => setTimeZone(item)}
-          variant="ghost"
-          justifyContent="start"
-          px={[3, null, 3]}
-          w={"full"}
-        >
-          <P fontWeight={"medium"} truncate>
-            {item.label}
-          </P>
-          <P color="fg.subtle">{item.formattedOffset}</P>
-          <P color="fg.subtle" ml={-1}>
-            {`(${item.localAbbr})`}
-          </P>
-          {item.key === timeZone.key && <DotIndicator />}
-        </Btn>
-      </div>
-    );
-  };
+  }, [search, timezones]);
 
   return (
     <ItemContainer>
-      <ItemHeaderContainer borderless={iss} gap={2}>
+      <ItemHeaderContainer gap={2} pr={3}>
         <HStack truncate w={"full"} justify={"space-between"}>
           <HStack>
             <Icon boxSize={5}>
@@ -172,9 +123,29 @@ const Timezone = () => {
             <ItemHeaderTitle>{capitalizeWords(l.timezone)}</ItemHeaderTitle>
           </HStack>
 
-          <P color="fg.subtle" truncate>
-            {`${timeZone.key} ${timeZone.formattedOffset} (${timeZone.localAbbr})`}
-          </P>
+          <HStack>
+            <Btn
+              size={"xs"}
+              variant={"outline"}
+              pl={2}
+              onClick={() => {
+                setTimeZone(localTz);
+                toaster.info({
+                  title: l.info_timezone_auto.title,
+                  description: `${localTz.key} ${localTz.formattedOffset} (${localTz.localAbbr})`,
+                  action: {
+                    label: "Close",
+                    onClick: () => {},
+                  },
+                });
+              }}
+            >
+              <Icon>
+                <IconSparkles />
+              </Icon>
+              Auto
+            </Btn>
+          </HStack>
         </HStack>
       </ItemHeaderContainer>
 
@@ -192,29 +163,39 @@ const Timezone = () => {
           />
         </CContainer>
 
-        <CContainer h="178px" mb={2}>
-          {fd.length === 0 ? (
-            <FeedbackNoData />
-          ) : (
-            <AutoSizer>
-              {({ height, width }) => (
-                <Grid
-                  width={width}
-                  height={height}
-                  columnCount={columnCount}
-                  columnWidth={width / columnCount}
-                  rowCount={Math.ceil(fd.length / columnCount)}
-                  rowHeight={40}
-                  cellRenderer={cellRenderer}
-                  className="scrollY timezones-list"
-                  style={{
-                    paddingTop: "8px",
-                    // paddingBottom: "8px",
-                    overflowX: "clip",
-                  }}
-                />
-              )}
-            </AutoSizer>
+        <CContainer className="scrollY" h={"200px"} p={2}>
+          {isEmptyArray(resolvedTimezones) && <FeedbackNoData />}
+
+          {!isEmptyArray(resolvedTimezones) && (
+            <SimpleGrid columns={[1, null, 2]} gap={2}>
+              {resolvedTimezones.map((tz, idx) => {
+                const isActive = timeZone.key === tz.key;
+
+                return (
+                  <Btn
+                    key={`${tz.key}-${idx}`}
+                    clicky={false}
+                    variant={"ghost"}
+                    justifyContent={"start"}
+                    onClick={() => {
+                      setTimeZone(tz);
+                    }}
+                    pos={"relative"}
+                  >
+                    <P textAlign={"left"} lineClamp={1}>
+                      {tz.key}
+                    </P>
+
+                    <P
+                      textAlign={"left"}
+                      color={"fg.subtle"}
+                    >{`${tz.formattedOffset} (${tz.localAbbr})`}</P>
+
+                    {isActive && <DotIndicator ml={0} />}
+                  </Btn>
+                );
+              })}
+            </SimpleGrid>
           )}
         </CContainer>
       </CContainer>
@@ -240,12 +221,12 @@ const DateFormat = () => {
 
       <CContainer gap={4} py={2}>
         <SimpleGrid px={2} columns={[1, 2, 3]}>
-          {DATE_FORMATS.map((item, i) => {
-            const active = item.key === dateFormat;
+          {DATE_FORMATS.map((item, idx) => {
+            const isActive = item.key === dateFormat;
 
             return (
               <CContainer
-                key={i}
+                key={idx}
                 px={[3, null, 3]}
                 py={3}
                 borderRadius={themeConfig.radii.component}
@@ -257,12 +238,12 @@ const DateFormat = () => {
                 _active={{ bg: "gray.subtle" }}
                 transition={"200ms"}
               >
-                <HStack align={"start"}>
+                <HStack>
                   <P fontWeight={"medium"} truncate>
                     {item.label}
                   </P>
 
-                  {active && <DotIndicator />}
+                  {isActive && <DotIndicator ml={0} />}
                 </HStack>
 
                 <P color={"fg.muted"} mb={2}>

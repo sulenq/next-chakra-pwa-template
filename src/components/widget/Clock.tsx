@@ -2,11 +2,12 @@ import { P } from "@/components/ui/p";
 import { Props__ClockProps } from "@/constants/props";
 import useTimezone from "@/context/useTimezone";
 import { formatTime } from "@/utils/formatter";
+import { HStack } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 
 export default function Clock(props: Props__ClockProps) {
   // Props
-  const { withSeconds = false, ...restProps } = props;
+  const { withSeconds = false, withTimezone = true, ...restProps } = props;
 
   // Contexts
   const tz = useTimezone((s) => s.timeZone);
@@ -45,5 +46,11 @@ export default function Clock(props: Props__ClockProps) {
     return () => clearInterval(interval);
   }, [withSeconds, tzKey]);
 
-  return <P {...restProps}>{time}</P>;
+  return (
+    <HStack {...restProps}>
+      {withTimezone && <P color={"fg.subtle"}>{tz.formattedOffset}</P>}
+
+      <P>{time}</P>
+    </HStack>
+  );
 }

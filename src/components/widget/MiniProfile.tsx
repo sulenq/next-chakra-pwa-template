@@ -93,7 +93,9 @@ export const MiniProfile = (props: StackProps) => {
             <Icon boxSize={5}>
               <IconUser stroke={1.5} />
             </Icon>
+
             {l.my_profile}
+
             {pathname.includes("/profile") && <DotIndicator mr={1} />}
           </Btn>
         </NavLink>

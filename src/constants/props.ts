@@ -16,7 +16,6 @@ import {
   InputProps,
   StackProps,
   TableRowProps,
-  TextProps,
 } from "@chakra-ui/react";
 import { TextareaProps } from "node_modules/@chakra-ui/react/dist/types/components/editable/namespace";
 import { Dispatch, RefObject } from "react";
@@ -33,8 +32,9 @@ export interface Props__SettingsItemContainer extends Props__ItemContainer {
   disabled?: boolean;
 }
 
-export interface Props__ClockProps extends TextProps {
+export interface Props__ClockProps extends StackProps {
   withSeconds?: boolean;
+  withTimezone?: boolean;
 }
 
 export interface Props__DataTable extends Omit<StackProps, "page"> {

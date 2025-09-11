@@ -1,5 +1,10 @@
 import { ButtonProps, MenuItemProps } from "@chakra-ui/react";
 
+export type Type__ContainerDimension = {
+  width: number;
+  height: number;
+};
+
 export type Type__SortHandler = (
   aValue: any,
   bValue: any,

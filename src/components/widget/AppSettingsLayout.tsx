@@ -27,14 +27,16 @@ export const AppSettingsLayout = (props: StackProps) => {
 
   // Refs
   const containerRef = useRef<HTMLDivElement | null>(null);
-  const size = useContainerDimension(containerRef);
+  const containerDimensions = useContainerDimension(containerRef);
 
   // Contexts
   const { l } = useLang();
-  const setContainerRef = useSettingsRouteContainer((s) => s.setContainerRef);
+  const setContainerDimension = useSettingsRouteContainer(
+    (s) => s.setContainerDimension
+  );
 
   // States
-  const isSmContainer = size.width < 720;
+  const isSmContainer = containerDimensions.width < 720;
   const isAtSettingsIndexRoute = pathname === `${PRIVATE_ROUTE_INDEX}/settings`;
   const showSidebar =
     !isSmContainer || (isSmContainer && isAtSettingsIndexRoute);
@@ -42,8 +44,8 @@ export const AppSettingsLayout = (props: StackProps) => {
     !isSmContainer || (isSmContainer && !isAtSettingsIndexRoute);
 
   useEffect(() => {
-    setContainerRef(containerRef);
-  }, [setContainerRef]);
+    setContainerDimension(containerDimensions);
+  }, [containerDimensions]);
 
   return (
     <RouteContainer

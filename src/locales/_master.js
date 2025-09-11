@@ -771,6 +771,18 @@ export const error_504_default = {
   },
 };
 
+// Info
+export const info_timezone_auto = {
+  title: {
+    id: "Zona waktu otomatis diset",
+    en: "Timezone automatically set",
+  },
+  description: {
+    id: "${timezone}",
+    en: "${timezone}",
+  },
+};
+
 // Error Route
 export const missing_route = {
   description: {

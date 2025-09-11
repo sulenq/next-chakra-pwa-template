@@ -112,6 +112,10 @@ const translations = {
   "february": "February",
   "friday": "Friday",
   "hide": "Hide",
+  "info_timezone_auto": {
+    "title": "Timezone automatically set",
+    "description": "${timezone}"
+  },
   "january": "January",
   "july": "July",
   "june": "June",

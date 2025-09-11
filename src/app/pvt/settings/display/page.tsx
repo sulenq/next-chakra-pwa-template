@@ -17,7 +17,6 @@ import useADM from "@/context/useADM";
 import useLang from "@/context/useLang";
 import { useSettingsRouteContainer } from "@/context/useSettingsRouteContainer";
 import { useThemeConfig } from "@/context/useThemeConfig";
-import { useContainerDimension } from "@/hooks/useContainerDimension";
 import { Center, HStack, Icon, SimpleGrid } from "@chakra-ui/react";
 import { IconMoon2, IconPalette, IconX } from "@tabler/icons-react";
 import { useEffect, useRef, useState } from "react";
@@ -166,8 +165,8 @@ const Theme = () => {
   // Contexts
   const { l } = useLang();
   const { themeConfig, setThemeConfig } = useThemeConfig();
-  const settingsRouteContainer = useSettingsRouteContainer(
-    (s) => s.containerRef
+  const settingsContainerDimensions = useSettingsRouteContainer(
+    (s) => s.containerDimension
   );
 
   // States
@@ -221,9 +220,8 @@ const Theme = () => {
     960: 10,
     1200: 15,
   };
-  const size = useContainerDimension(settingsRouteContainer);
   const cols = (() => {
-    const width = size.width;
+    const width = settingsContainerDimensions.width;
     let result = 3;
 
     for (const bp of Object.keys(gridColumns)
