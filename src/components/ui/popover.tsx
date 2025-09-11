@@ -24,10 +24,10 @@ export const PopoverContent = forwardRef<HTMLDivElement, PopoverContentProps>(
             p={0}
             bg={"body"}
             border={"1px solid"}
-            borderColor={"d2"}
+            borderColor={"border.subtle"}
             rounded={themeConfig.radii.container}
             shadow={"none"}
-            // className="ss"
+            className="ss"
             {...rest}
           />
         </ChakraPopover.Positioner>
