@@ -282,7 +282,7 @@ export function formatTime(
   time?: string | null,
   options: {
     showSeconds?: boolean;
-    prefixTimeFormat?: Type__TimeFormat;
+    timeFormat?: Type__TimeFormat;
     timezoneKey?: string;
     withSuffix?: boolean;
   } = {}
@@ -290,7 +290,7 @@ export function formatTime(
   if (!time) return "";
 
   const timeFormat =
-    options.prefixTimeFormat || getStorage("timeFormat") || "24-hour";
+    options.timeFormat || getStorage("timeFormat") || "24-hour";
 
   const timezoneKey = options.timezoneKey || getUserTimezone().key;
   const offsetMs = getTimezoneOffsetMs(timezoneKey);

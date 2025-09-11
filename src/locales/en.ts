@@ -1,4 +1,5 @@
 const translations = {
+  "UOM_format": "UOM format",
   "access": "Access",
   "adaptive_dark_mode": "Adaptive dark mode",
   "add": "Add",
@@ -31,6 +32,7 @@ const translations = {
   "close": "Close",
   "confirm": "Confirm",
   "dark_mode": "Dark mode",
+  "date_format": "Date format",
   "day": "Day",
   "december": "December",
   "delete_": "Delete",
@@ -295,6 +297,8 @@ const translations = {
   "sunday": "Sunday",
   "theme": "Theme",
   "thursday": "Thursday",
+  "time_format": "Time format",
+  "timezone": "Timezone",
   "tuesday": "Tuesday",
   "update": "Update",
   "uploaded": "Uploaded",

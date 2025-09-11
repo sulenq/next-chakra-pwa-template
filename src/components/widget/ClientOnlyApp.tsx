@@ -7,6 +7,8 @@ import { Center } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { Img } from "../ui/img";
 import GlobalDisclosure from "./GlobalDisclosure";
+import { useColorMode } from "@/components/ui/color-mode";
+import useADM from "@/context/useADM";
 
 interface Props {
   children: React.ReactNode;
@@ -30,11 +32,21 @@ export default function ClientOnlyApp(props: Props) {
   // Props
   const { children, fallback } = props;
 
+  // Contexts
+  const { setColorMode } = useColorMode();
+  const ADM = useADM((s) => s.ADM);
+
   // Hooks
   useFirefoxPaddingY(6);
 
   // States
   const [mounted, setMounted] = useState(mountedGlobal);
+
+  // Utils
+  function updateDarkMode() {
+    const hour = new Date().getHours();
+    setColorMode(hour >= 18 || hour < 6 ? "dark" : "light");
+  }
 
   // Handle mount
   useEffect(() => {
@@ -44,6 +56,24 @@ export default function ClientOnlyApp(props: Props) {
 
   // Handle offline alert
   useOfflineAlert({ mounted });
+
+  useEffect(() => {
+    if (ADM) {
+      const interval = setInterval(() => {
+        const hour = new Date().getHours();
+        if (hour === 6 || hour === 18) {
+          updateDarkMode();
+        }
+      }, 60 * 1000);
+
+      return () => clearInterval(interval);
+    }
+  }, []);
+  useEffect(() => {
+    if (ADM) {
+      updateDarkMode();
+    }
+  }, [ADM]);
 
   if (!mounted) return <>{fallback || <DefaultFallback />}</>;
 

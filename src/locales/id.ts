@@ -1,4 +1,5 @@
 const translations = {
+  "UOM_format": "Format satuan",
   "access": "Akses",
   "adaptive_dark_mode": "Mode gelap adaptif",
   "add": "Tambah",
@@ -31,6 +32,7 @@ const translations = {
   "close": "Tutup",
   "confirm": "Konfirmasi",
   "dark_mode": "Mode gelap",
+  "date_format": "Format tanggal",
   "day": "Hari",
   "december": "Desember",
   "delete_": "Hapus",
@@ -295,6 +297,8 @@ const translations = {
   "sunday": "Minggu",
   "theme": "Tema",
   "thursday": "Kamis",
+  "time_format": "Format waktu",
+  "timezone": "Zona waktu",
   "tuesday": "Selasa",
   "update": "Ubah",
   "uploaded": "Sudah diunggah",

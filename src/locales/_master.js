@@ -363,6 +363,22 @@ export const adaptive_dark_mode = {
   id: "Mode gelap adaptif",
   en: "Adaptive dark mode",
 };
+export const timezone = {
+  id: "Zona waktu",
+  en: "Timezone",
+};
+export const date_format = {
+  id: "Format tanggal",
+  en: "Date format",
+};
+export const time_format = {
+  id: "Format waktu",
+  en: "Time format",
+};
+export const UOM_format = {
+  id: "Format satuan",
+  en: "UOM format",
+};
 
 // Message
 export const msg_settings_saved_locally = {
