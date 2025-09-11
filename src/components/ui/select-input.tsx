@@ -13,7 +13,7 @@ import { DisclosureHeaderContent } from "@/components/ui/disclosure-header-conte
 import { P } from "@/components/ui/p";
 import SearchInput from "@/components/ui/search-input";
 import { Tooltip } from "@/components/ui/tooltip";
-import { DotIndicator } from "@/components/widget/DotIndicator";
+import { DotIndicator } from "@/components/widget/Indicator";
 import FeedbackNoData from "@/components/widget/FeedbackNoData";
 import { Interface__SelectOption } from "@/constants/interfaces";
 import { Props__SelectInput, Props__SelectOptions } from "@/constants/props";

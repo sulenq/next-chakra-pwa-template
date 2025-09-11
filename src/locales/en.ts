@@ -170,6 +170,7 @@ const translations = {
   "msg_reset_password_step_1": "First step, enter your email and we will send you an OTP to reset your password.",
   "msg_reset_password_step_2": "Second step, verify OTP",
   "msg_reset_password_step_3": "Third step, enter your new password",
+  "msg_settings": "Please select the settings menu.",
   "msg_signin": "Enter your account details to continue.",
   "msg_signout": "Are you sure you want to sign out?",
   "msg_soft_delete": "Data will be hidden but can be restored later.",

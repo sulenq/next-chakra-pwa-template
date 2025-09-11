@@ -41,7 +41,7 @@ export const LangMenu = ({ ...props }: Props) => {
             size="sm"
             {...props}
           >
-            {lang.toUpperCase()}
+            {lang}
             <IconChevronDown stroke={1.5} />
           </Btn>
         </MenuTrigger>

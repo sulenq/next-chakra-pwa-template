@@ -353,6 +353,10 @@ export const main = {
 };
 
 // Message
+export const msg_settings = {
+  id: "Silahkan pilih menu pengaturan.",
+  en: "Please select the settings menu.",
+};
 export const msg_cannot_be_undone = {
   id: "Aksi ini tidak dapat dibatalkan, harap hati-hati.",
   en: "This action cannot be undone, please be careful.",

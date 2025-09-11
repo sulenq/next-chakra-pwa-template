@@ -6,7 +6,7 @@ import { CContainer } from "@/components/ui/c-container";
 import { Divider } from "@/components/ui/divider";
 import { NavLink } from "@/components/ui/nav-link";
 import { P } from "@/components/ui/p";
-import { DotIndicator } from "@/components/widget/DotIndicator";
+import { DotIndicator } from "@/components/widget/Indicator";
 import useConfirmationDisclosure from "@/context/disclosure/useConfirmationDisclosure";
 import useAuthMiddleware from "@/context/useAuthMiddleware";
 import useLang from "@/context/useLang";
@@ -81,7 +81,7 @@ export const MiniProfile = (props: StackProps) => {
 
       <Divider />
 
-      <CContainer gap={1} p={1}>
+      <CContainer gap={1} p={"6px"}>
         <NavLink to={"/admin/profile"}>
           <Btn
             clicky={false}

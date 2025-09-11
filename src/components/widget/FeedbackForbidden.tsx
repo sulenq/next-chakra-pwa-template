@@ -25,7 +25,9 @@ export default function FeedbackForbidden(props: Props__FeedbackState) {
       {...restProps}
     >
       <FeedbackState
-        icon={<Icon mb={title ? -2 : 0}>{icon || <IconBan />}</Icon>}
+        icon={
+          <Icon mb={title ? -2 : 0}>{icon || <IconBan stroke={1.8} />}</Icon>
+        }
         title={title ?? l.alert_forbidden.title}
         description={description ?? l.alert_forbidden.description}
         maxW={"300px"}

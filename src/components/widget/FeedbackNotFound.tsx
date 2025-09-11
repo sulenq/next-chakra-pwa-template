@@ -24,7 +24,9 @@ export default function FeedbackNotFound(props: Props__FeedbackState) {
       {...restProps}
     >
       <FeedbackState
-        icon={<Icon mb={title ? -2 : 0}>{icon || <IconSearch />}</Icon>}
+        icon={
+          <Icon mb={title ? -2 : 0}>{icon || <IconSearch stroke={1.8} />}</Icon>
+        }
         title={title ?? l.alert_not_found.title}
         description={description ?? l.alert_not_found.description}
         maxW={"300px"}

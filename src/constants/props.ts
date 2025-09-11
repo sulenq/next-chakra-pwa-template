@@ -22,6 +22,10 @@ import { TextareaProps } from "node_modules/@chakra-ui/react/dist/types/componen
 import { Dispatch, RefObject } from "react";
 import { Type__DisclosureSizes, Type__Period } from "./types";
 
+export interface Props__ItemContainer extends StackProps {
+  scrollY?: boolean;
+}
+
 export interface Props__ClockProps extends TextProps {
   withSeconds?: boolean;
 }

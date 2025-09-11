@@ -27,7 +27,7 @@ import {
 } from "@/components/ui/popover";
 import { Tooltip, TooltipProps } from "@/components/ui/tooltip";
 import Clock from "@/components/widget/Clock";
-import { DotIndicator } from "@/components/widget/DotIndicator";
+import { DotIndicator, LeftIndicator } from "@/components/widget/Indicator";
 import Logo from "@/components/widget/Logo";
 import { MiniProfile } from "@/components/widget/MiniProfile";
 import { APP } from "@/constants/_meta";
@@ -40,7 +40,7 @@ import { getUserData } from "@/utils/auth";
 import { formatDate } from "@/utils/formatter";
 import { pluckString } from "@/utils/string";
 import { getActiveNavs } from "@/utils/url";
-import { Box, Center, HStack, Icon, Stack, StackProps } from "@chakra-ui/react";
+import { Center, HStack, Icon, Stack, StackProps } from "@chakra-ui/react";
 import {
   IconBoxAlignLeft,
   IconChevronRight,
@@ -54,26 +54,9 @@ import { Fragment } from "react";
 const NAVS_BG = "body";
 const NAVS_COLOR = "ibody";
 const NAVS_COLOR_PALETTE = "gray";
-const BG_CONTENT_CONTAINER = "body";
-const DESKTOP_POPUP_MAIN_AXIS = 16;
+const BG_CONTENT_CONTAINER = "bgContent";
+const DESKTOP_POPUP_MAIN_AXIS = 12;
 
-export const DesktopActiveIndicator = () => {
-  // Contexts
-  const { themeConfig } = useThemeConfig();
-
-  return (
-    <Box
-      w={"3px"}
-      h={"12px"}
-      bg={themeConfig.primaryColor}
-      rounded={"full"}
-      pos={"absolute"}
-      top={"50%"}
-      left={0}
-      transform={"translateY(-50%)"}
-    />
-  );
-};
 export const NavTooltip = (props: TooltipProps) => {
   // Props
   const { children, ...restProps } = props;
@@ -217,9 +200,10 @@ export const DesktopLayout = (props: any) => {
                     opacity={0.4}
                     ml={3}
                   >
-                    {pluckString(l, navItem.groupLabelKey)?.toUpperCase()}
+                    {pluckString(l, navItem.groupLabelKey)}
                   </P>
                 )}
+
                 {navItem.list.map((nav) => {
                   const hasSubMenus = nav.subMenus;
                   const isMainNavsActive = pathname.includes(nav.path);
@@ -230,9 +214,6 @@ export const DesktopLayout = (props: any) => {
                         <AccordionRoot multiple>
                           <AccordionItem
                             value={nav.path}
-                            bg={{
-                              _open: "d1",
-                            }}
                             border={"none"}
                             rounded={themeConfig.radii.component}
                           >
@@ -244,13 +225,13 @@ export const DesktopLayout = (props: any) => {
                                 h={"40px"}
                                 px={"10.5px"}
                                 _hover={{
-                                  bg: "d2",
+                                  bg: "gray.subtle",
                                 }}
                                 pos={"relative"}
                                 cursor={"pointer"}
                                 transition={"200ms"}
                               >
-                                {isMainNavsActive && <DesktopActiveIndicator />}
+                                {isMainNavsActive && <LeftIndicator />}
 
                                 <HStack gap={4}>
                                   <Icon boxSize={5}>
@@ -362,9 +343,7 @@ export const DesktopLayout = (props: any) => {
                                   colorPalette={NAVS_COLOR_PALETTE}
                                   pos={"relative"}
                                 >
-                                  {isMainNavsActive && (
-                                    <DesktopActiveIndicator />
-                                  )}
+                                  {isMainNavsActive && <LeftIndicator />}
 
                                   <Icon boxSize={5}>
                                     <nav.icon stroke={1.5} />
@@ -422,7 +401,7 @@ export const DesktopLayout = (props: any) => {
                               variant={"ghost"}
                               colorPalette={NAVS_COLOR_PALETTE}
                             >
-                              {isMainNavsActive && <DesktopActiveIndicator />}
+                              {isMainNavsActive && <LeftIndicator />}
 
                               <Icon boxSize={5}>
                                 <nav.icon stroke={1.5} />
@@ -457,9 +436,7 @@ export const DesktopLayout = (props: any) => {
                 px={"10px"}
                 pos={"relative"}
               >
-                {pathname.includes("/admin/settings") && (
-                  <DesktopActiveIndicator />
-                )}
+                {pathname.includes("/admin/settings") && <LeftIndicator />}
 
                 <Icon boxSize={5}>
                   <IconSettings stroke={1.5} />
@@ -479,7 +456,7 @@ export const DesktopLayout = (props: any) => {
           <PopoverRoot
             positioning={{
               placement: "right-end",
-              offset: { mainAxis: 16 },
+              offset: { mainAxis: DESKTOP_POPUP_MAIN_AXIS },
             }}
           >
             <PopoverTrigger asChild>
@@ -490,14 +467,12 @@ export const DesktopLayout = (props: any) => {
                 rounded={themeConfig.radii.component}
                 cursor={"pointer"}
                 _hover={{
-                  bg: "d2",
+                  bg: "gray.subtle",
                 }}
                 transition={"200ms"}
                 pos={"relative"}
               >
-                {pathname.includes("/admin/profile") && (
-                  <DesktopActiveIndicator />
-                )}
+                {pathname.includes("/admin/profile") && <LeftIndicator />}
 
                 <Avatar
                   src={user?.photoProfile?.file_url}
@@ -532,13 +507,9 @@ export const DesktopLayout = (props: any) => {
       </CContainer>
 
       {/* Content */}
-      <CContainer
-        bg={BG_CONTENT_CONTAINER}
-        // borderLeft={"1px solid {colors.border.muted}"}
-        overflowY={"auto"}
-      >
+      <CContainer bg={BG_CONTENT_CONTAINER} overflowY={"auto"}>
         {/* Content Header */}
-        <HStack gap={4} h={"52px"} p={"8px"} pl={1} justify={"space-between"}>
+        <HStack gap={4} h={"52px"} p={4} justify={"space-between"}>
           <HStack gap={1}>
             {activeNavs.map((nav, idx) => {
               return (

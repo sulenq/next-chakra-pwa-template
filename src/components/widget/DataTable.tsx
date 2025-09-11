@@ -9,7 +9,7 @@ import {
   MenuTrigger,
 } from "@/components/ui/menu";
 import { P } from "@/components/ui/p";
-import { DotIndicator } from "@/components/widget/DotIndicator";
+import { DotIndicator } from "@/components/widget/Indicator";
 import { SortIcon } from "@/components/widget/SortIcon";
 import { Interface__FormattedTableData } from "@/constants/interfaces";
 import {

@@ -21,7 +21,7 @@ const FeedbackState = (props: Props) => {
   return (
     <VStack gap={1} p={4} {...restProps}>
       <Icon mb={2} color={"fg.subtle"} boxSize={9}>
-        {icon || <IconDatabaseOff />}
+        {icon || <IconDatabaseOff stroke={1.8} />}
       </Icon>
 
       {titleString && (

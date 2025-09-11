@@ -31,7 +31,11 @@ export default function FeedbackRetry(props: Props) {
       {...restProps}
     >
       <FeedbackState
-        icon={<Icon mb={title ? -2 : 0}>{icon || <IconAlertTriangle />}</Icon>}
+        icon={
+          <Icon mb={title ? -2 : 0}>
+            {icon || <IconAlertTriangle stroke={1.8} />}
+          </Icon>
+        }
         title={title ?? l.alert_retry.title}
         description={description ?? l.alert_retry.description}
         maxW={"300px"}

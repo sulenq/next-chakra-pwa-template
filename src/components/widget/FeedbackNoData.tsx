@@ -26,7 +26,11 @@ export default function FeedbackNoData(props: Props__FeedbackState) {
       {...restProps}
     >
       <FeedbackState
-        icon={<Icon mb={title ? -2 : 0}>{icon || <IconDatabaseOff />}</Icon>}
+        icon={
+          <Icon mb={title ? -2 : 0}>
+            {icon || <IconDatabaseOff stroke={1.8} />}
+          </Icon>
+        }
         title={title ?? l.alert_no_data.title}
         description={description ?? l.alert_no_data.description}
         maxW={"300px"}

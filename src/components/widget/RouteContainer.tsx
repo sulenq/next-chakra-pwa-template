@@ -15,7 +15,6 @@ export const RouteContainer = (props: Props) => {
       flex={1}
       p={4}
       pt={0}
-      pl={0}
       overflowY={"auto"}
       {...restProps}
     >
