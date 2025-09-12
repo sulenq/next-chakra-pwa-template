@@ -170,7 +170,15 @@ const MobileLayout = (props: any) => {
       </CContainer>
 
       {/* Navs */}
-      <HStack gap={4} px={4} pt={3} pb={5} overflowX={"auto"}>
+      <HStack
+        gap={4}
+        px={4}
+        pt={3}
+        pb={5}
+        borderTop={"1px solid"}
+        borderColor={"border.subtle"}
+        overflowX={"auto"}
+      >
         {NAVS.map((navItem) => {
           return (
             <>
@@ -869,7 +877,10 @@ const DesktopLayout = (props: any) => {
   );
 };
 
-const AppLayout = (props: StackProps) => {
+interface Props extends StackProps {
+  children: React.ReactNode;
+}
+const AppLayout = (props: Props) => {
   // Props
   const { ...restProps } = props;
 

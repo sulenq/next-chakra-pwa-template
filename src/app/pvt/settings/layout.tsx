@@ -102,7 +102,10 @@ const SettingsNavsList = (props: any) => {
   );
 };
 
-const AppSettingsLayout = (props: StackProps) => {
+interface Props extends StackProps {
+  children: React.ReactNode;
+}
+const AppSettingsLayout = (props: Props) => {
   // Props
   const { children, ...restProps } = props;
 
