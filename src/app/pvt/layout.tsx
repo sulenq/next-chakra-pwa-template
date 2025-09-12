@@ -186,7 +186,7 @@ const MobileLayout = (props: any) => {
                 const isMainNavActive = pathname.includes(nav.path);
 
                 return (
-                  <>
+                  <Fragment key={nav.path}>
                     {nav.subMenus && (
                       <>
                         <MenuRoot
@@ -240,7 +240,7 @@ const MobileLayout = (props: any) => {
 
                                     return (
                                       <NavLink key={menu.path} to={menu.path}>
-                                        <MenuItem value={menu.path}>
+                                        <MenuItem value={menu.path} h={"44px"}>
                                           {pluckString(l, menu.labelKey)}
 
                                           {isSubNavsActive && (
@@ -275,7 +275,7 @@ const MobileLayout = (props: any) => {
                         {isMainNavActive && <BottomIndicator />}
                       </MobileNavLink>
                     )}
-                  </>
+                  </Fragment>
                 );
               })}
             </Fragment>
