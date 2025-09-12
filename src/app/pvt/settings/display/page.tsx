@@ -26,12 +26,7 @@ import {
   Icon,
   SimpleGrid,
 } from "@chakra-ui/react";
-import {
-  IconMoon2,
-  IconPalette,
-  IconRadiusTopLeft,
-  IconX,
-} from "@tabler/icons-react";
+import { IconMoon2, IconPalette, IconRadiusTopLeft } from "@tabler/icons-react";
 import { useEffect, useRef, useState } from "react";
 
 const ManualDarkModeSetting = () => {
@@ -263,7 +258,7 @@ const Theme = () => {
       <CContainer gap={4} p={4}>
         <SimpleGrid columns={cols} gap={2}>
           {colorPalettes.map((color, idx) => {
-            const active = color.palette === themeConfig.colorPalette;
+            const isActive = color.palette === themeConfig.colorPalette;
 
             return (
               <Center
@@ -283,12 +278,13 @@ const Theme = () => {
                 }}
                 pos={"relative"}
               >
-                {active && (
-                  <Center p={1} rounded={"full"}>
-                    <Icon boxSize={200} color={"light"} pos={"absolute"}>
-                      <IconX stroke={0.3} />
-                    </Icon>
-                  </Center>
+                {isActive && (
+                  <DotIndicator
+                    pos={"absolute"}
+                    color={"light"}
+                    top={2}
+                    right={2}
+                  />
                 )}
               </Center>
             );

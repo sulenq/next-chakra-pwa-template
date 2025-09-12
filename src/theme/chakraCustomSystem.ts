@@ -949,13 +949,13 @@ const customConfig = defineConfig({
           fg: {
             value: {
               base: "{colors.discord.700}",
-              _dark: "{colors.discord.200}",
+              _dark: "{colors.discord.400}",
             },
           },
           muted: {
             value: {
               base: "{colors.discord.100}",
-              _dark: "{colors.discord.800}",
+              _dark: "{colors.discord.500}",
             },
           },
           subtle: {
