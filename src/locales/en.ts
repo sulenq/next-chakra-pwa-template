@@ -236,6 +236,7 @@ const translations = {
   "otp_sent_to": "OTP has been sent to",
   "password_confirmation": "Password Confirmation",
   "previous": "Previous",
+  "profile": "Profile",
   "recieve": "Recieve",
   "reset": "Reset",
   "retry": "Retry",

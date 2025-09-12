@@ -60,6 +60,7 @@ export const Btn = forwardRef<HTMLButtonElement, BtnProps>((props, ref) => {
       className={resolvedClassName}
       size={size || (MAIN_BUTTON_SIZE as any)}
       rounded={themeConfig.radii.component}
+      _active={{ bg: activeBg }}
       {...restProps}
     >
       {children}

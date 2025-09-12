@@ -71,6 +71,10 @@ export const settings_navs = {
 };
 
 // Semantic UI
+export const profile = {
+  id: "Profil",
+  en: "Profile",
+};
 export const address_not_found = {
   id: "Alamat tidak ditemukan",
   en: "Address not found",

@@ -115,7 +115,11 @@ export const MiniProfile = (props: StackProps) => {
               title: "Sign out?",
               description: l.msg_signout,
               confirmLabel: "Sign out",
-              confirmButtonProps: { colorPalette: "red" },
+              confirmButtonProps: {
+                color: "fg.error",
+                colorPalette: "gray",
+                variant: "outline",
+              },
               onConfirm: onSignout,
             });
             confirmationOnOpen();

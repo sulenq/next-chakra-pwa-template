@@ -16,11 +16,22 @@ import {
   InputProps,
   StackProps,
   TableRowProps,
+  TextProps,
 } from "@chakra-ui/react";
 import { TextareaProps } from "node_modules/@chakra-ui/react/dist/types/components/editable/namespace";
 import { Dispatch, RefObject } from "react";
-import { Type__DisclosureSizes, Type__Period } from "./types";
+import {
+  Type__DateVariant,
+  Type__DisclosureSizes,
+  Type__Period,
+} from "./types";
 
+export interface Props__Today extends TextProps {
+  dateVariant?: Type__DateVariant;
+}
+export interface Props__NavLink extends StackProps {
+  to?: string;
+}
 export interface Props__ItemContainer extends StackProps {
   scrollY?: boolean;
 }

@@ -1,4 +1,8 @@
 /* Global */
+#devtools-indicator {
+  display: none !important;
+}
+
 :root {
   font-family: var(--font-figtree), sans-serif;
   font-synthesis: none;

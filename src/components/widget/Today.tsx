@@ -1,21 +1,25 @@
 "use client";
 
 import { P } from "@/components/ui/p";
+import { Props__Today } from "@/constants/props";
 import useDateFormat from "@/context/useDateFormat";
 import useTimezone from "@/context/useTimezone";
 import { formatDate } from "@/utils/formatter";
-import { TextProps } from "@chakra-ui/react";
 
-export const Today = (props: TextProps) => {
+export const Today = (props: Props__Today) => {
+  // Props
+  const { dateVariant, ...restProps } = props;
+
   // Contexts
   const tz = useTimezone((s) => s.timeZone);
   const dateFormat = useDateFormat((s) => s.dateFormat);
 
   return (
-    <P {...props}>
+    <P {...restProps}>
       {formatDate(new Date().toISOString(), {
-        timezoneKey: tz.key,
+        variant: dateVariant,
         dateFormat: dateFormat,
+        timezoneKey: tz.key,
       })}
     </P>
   );

@@ -236,6 +236,7 @@ const translations = {
   "otp_sent_to": "OTP telah dikirim ke",
   "password_confirmation": "Konfirmasi Password",
   "previous": "Sebelumnya",
+  "profile": "Profil",
   "recieve": "Terima",
   "reset": "Reset",
   "retry": "Coba lagi",

@@ -37,7 +37,8 @@ import Logo from "@/components/widget/Logo";
 import { MiniProfile } from "@/components/widget/MiniProfile";
 import { Today } from "@/components/widget/Today";
 import { APP } from "@/constants/_meta";
-import { NAVS } from "@/constants/navs";
+import { NAVS, PRIVATE_ROUTE_INDEX } from "@/constants/navs";
+import { Props__NavLink } from "@/constants/props";
 import { FIREFOX_SCROLL_Y_CLASS_PR_PREFIX } from "@/constants/sizes";
 import useLang from "@/context/useLang";
 import useNavs from "@/context/useNavs";
@@ -83,6 +84,22 @@ const NavTooltip = (props: TooltipProps) => {
     </Tooltip>
   );
 };
+const MobileNavLink = (props: Props__NavLink) => {
+  // Props
+  const { children, ...restProps } = props;
+
+  return (
+    <NavLink
+      minW={"50px"}
+      align={"center"}
+      gap={1}
+      pos={"relative"}
+      {...restProps}
+    >
+      {children}
+    </NavLink>
+  );
+};
 const MobileLayout = (props: any) => {
   // Props
   const { children, ...restProps } = props;
@@ -92,11 +109,63 @@ const MobileLayout = (props: any) => {
 
   // Hooks
   const pathname = usePathname();
+  const { sw } = useScreen();
+
+  // States
+  const user = getUserData();
+  const activeNavs = getActiveNavs(pathname);
+  const resolvedActiveNavs =
+    sw < 360 ? [activeNavs[activeNavs.length - 1]] : activeNavs;
+  const backPath = last(activeNavs)?.backPath;
 
   return (
     <CContainer flex={1} overflowY={"auto"} {...restProps}>
       {/* Content */}
       <CContainer flex={1} bg={BG_CONTENT_CONTAINER} overflowY={"auto"}>
+        {/* Content header */}
+        <HStack gap={4} h={"52px"} p={4} justify={"space-between"}>
+          <HStack>
+            {backPath && (
+              <BackButton iconButton clicky={false} backPath={backPath} />
+            )}
+
+            {resolvedActiveNavs.map((nav, idx) => {
+              return (
+                <HStack key={idx}>
+                  {idx !== 0 && (
+                    <>
+                      {backPath && (
+                        <Icon boxSize={5} color={"fg.subtle"}>
+                          <IconSlash stroke={1.5} />
+                        </Icon>
+                      )}
+
+                      {!backPath && <DotIndicator color={"d4"} />}
+                    </>
+                  )}
+
+                  <P
+                    fontSize={16}
+                    fontWeight={"semibold"}
+                    ml={idx === 0 ? 1 : 0}
+                    lineClamp={1}
+                  >
+                    {pluckString(l, nav.labelKey)}
+                  </P>
+                </HStack>
+              );
+            })}
+          </HStack>
+
+          <HStack flexShrink={0} gap={1}>
+            <HStack mx={1}>
+              {/* <Clock /> */}
+
+              {/* <Today dateVariant="basic" /> */}
+            </HStack>
+          </HStack>
+        </HStack>
+
         {children}
       </CContainer>
 
@@ -182,14 +251,10 @@ const MobileLayout = (props: any) => {
                     )}
 
                     {!nav.subMenus && (
-                      <NavLink
+                      <MobileNavLink
                         key={nav.path}
                         to={nav.subMenus ? "" : nav.path}
-                        minW={"50px"}
-                        align={"center"}
-                        gap={1}
                         color={isMainNavActive ? "" : "fg.muted"}
-                        pos={"relative"}
                       >
                         <Icon boxSize={6}>
                           <nav.icon stroke={1.5} />
@@ -200,7 +265,7 @@ const MobileLayout = (props: any) => {
                         </P>
 
                         {isMainNavActive && <BottomIndicator />}
-                      </NavLink>
+                      </MobileNavLink>
                     )}
                   </>
                 );
@@ -208,6 +273,59 @@ const MobileLayout = (props: any) => {
             </>
           );
         })}
+
+        <MobileNavLink
+          to={`${PRIVATE_ROUTE_INDEX}/settings`}
+          color={
+            pathname.includes(`${PRIVATE_ROUTE_INDEX}/settings`)
+              ? ""
+              : "fg.muted"
+          }
+        >
+          <Icon boxSize={6}>
+            <IconSettings stroke={1.5} />
+          </Icon>
+
+          <P textAlign={"center"} lineClamp={1} fontSize={"xs"}>
+            {l.settings}
+          </P>
+        </MobileNavLink>
+
+        <PopoverRoot
+          positioning={{
+            placement: "top",
+            offset: {
+              mainAxis: 24,
+            },
+          }}
+        >
+          <PopoverTrigger asChild>
+            <MobileNavLink>
+              <Avatar
+                src={user?.photoProfile?.fileUrl}
+                name={user?.name}
+                size={"2xs"}
+              />
+
+              <P
+                fontSize={"xs"}
+                textAlign={"center"}
+                color={
+                  pathname.includes(`${PRIVATE_ROUTE_INDEX}/profile`)
+                    ? ""
+                    : "fg.muted"
+                }
+                lineClamp={1}
+              >
+                {l.profile}
+              </P>
+            </MobileNavLink>
+          </PopoverTrigger>
+
+          <PopoverContent w={"200px"} zIndex={2}>
+            <MiniProfile />
+          </PopoverContent>
+        </PopoverRoot>
       </HStack>
     </CContainer>
   );
@@ -666,7 +784,7 @@ const DesktopLayout = (props: any) => {
                 {pathname.includes("/pvt/profile") && <LeftIndicator />}
 
                 <Avatar
-                  src={user?.photoProfile?.file_url}
+                  src={user?.photoProfile?.fileUrl}
                   name={user?.name}
                   size={navsExpanded ? "xs" : "2xs"}
                 />
@@ -699,7 +817,7 @@ const DesktopLayout = (props: any) => {
 
       {/* Content */}
       <CContainer bg={BG_CONTENT_CONTAINER} overflowY={"auto"} color={"ibody"}>
-        {/* Content Header */}
+        {/* Content header */}
         <HStack gap={4} h={"52px"} p={4} justify={"space-between"}>
           <HStack>
             {backPath && (
