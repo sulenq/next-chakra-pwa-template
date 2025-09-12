@@ -325,7 +325,7 @@ const MobileLayout = (props: any) => {
                 }
                 lineClamp={1}
               >
-                {l.profile}
+                {l.my_profile}
               </P>
             </MobileNavLink>
           </PopoverTrigger>
