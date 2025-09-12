@@ -156,7 +156,7 @@ export const AppSettingsLayout = (props: StackProps) => {
             overflowY={"auto"}
           >
             <ItemContainer scrollY p={"6px"} pr={0}>
-              <CContainer mb={2}>
+              <CContainer mb={1} p={"2px"}>
                 <SearchInput
                   inputProps={{ variant: "flushed", rounded: 0 }}
                   inputValue={search}
