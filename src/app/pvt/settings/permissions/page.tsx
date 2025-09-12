@@ -518,20 +518,21 @@ const Location = () => {
 
             <DisclosureBody>
               {!address && <P>{l.msg_location_test_helper}</P>}
+
               {address && center && (
                 <CContainer gap={2}>
                   <HStack align={"start"}>
                     <P w={"100px"} color={"fg.muted"} flexShrink={0}>
                       Latitude
                     </P>
-                    <P>{center.lat}</P>
+                    <P>{`${center.lat}`}</P>
                   </HStack>
 
                   <HStack align={"start"}>
                     <P w={"100px"} color={"fg.muted"} flexShrink={0}>
                       Longitude
                     </P>
-                    <P>{center.long}</P>
+                    <P>{`${center.long}`}</P>
                   </HStack>
 
                   <HStack align={"start"}>

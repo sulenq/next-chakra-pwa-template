@@ -1,5 +1,11 @@
 import { ButtonProps, MenuItemProps } from "@chakra-ui/react";
 
+export type Type__ExtendedPermissionState =
+  | "prompt"
+  | "denied"
+  | "granted-once"
+  | "granted-forever";
+
 export type Type__ContainerDimension = {
   width: number;
   height: number;
