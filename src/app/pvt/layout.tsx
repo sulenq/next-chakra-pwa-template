@@ -117,6 +117,10 @@ const MobileLayout = (props: any) => {
   const resolvedActiveNavs =
     sw < 360 ? [activeNavs[activeNavs.length - 1]] : activeNavs;
   const backPath = last(activeNavs)?.backPath;
+  const isInSettingsRoute = pathname.includes(
+    `${PRIVATE_ROUTE_INDEX}/settings`
+  );
+  const isInProfileRoute = pathname.includes(`${PRIVATE_ROUTE_INDEX}/profile`);
 
   return (
     <CContainer flex={1} overflowY={"auto"} {...restProps}>
@@ -284,11 +288,7 @@ const MobileLayout = (props: any) => {
 
         <MobileNavLink
           to={`${PRIVATE_ROUTE_INDEX}/settings`}
-          color={
-            pathname.includes(`${PRIVATE_ROUTE_INDEX}/settings`)
-              ? ""
-              : "fg.muted"
-          }
+          color={isInSettingsRoute ? "" : "fg.muted"}
         >
           <Icon boxSize={6}>
             <IconSettings stroke={1.5} />
@@ -297,6 +297,8 @@ const MobileLayout = (props: any) => {
           <P textAlign={"center"} lineClamp={1} fontSize={"xs"}>
             {l.settings}
           </P>
+
+          {isInSettingsRoute && <BottomIndicator />}
         </MobileNavLink>
 
         <PopoverRoot
@@ -318,15 +320,13 @@ const MobileLayout = (props: any) => {
               <P
                 fontSize={"xs"}
                 textAlign={"center"}
-                color={
-                  pathname.includes(`${PRIVATE_ROUTE_INDEX}/profile`)
-                    ? ""
-                    : "fg.muted"
-                }
+                color={isInProfileRoute ? "" : "fg.muted"}
                 lineClamp={1}
               >
                 {l.my_profile}
               </P>
+
+              {isInProfileRoute && <BottomIndicator />}
             </MobileNavLink>
           </PopoverTrigger>
 
