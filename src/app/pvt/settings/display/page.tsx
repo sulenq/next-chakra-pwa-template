@@ -307,6 +307,7 @@ const Theme = () => {
           >
             Button
           </Btn>
+
           <Btn
             flex={"1 1 100px"}
             colorPalette={themeConfig.colorPalette}
@@ -315,12 +316,13 @@ const Theme = () => {
           >
             Button
           </Btn>
+
           <StringInput
-            boxProps={{ flex: "1 1 100px" }}
+            boxProps={{ flex: "1 1 200px" }}
             placeholder="example@email.com"
           />
           <SelectInput
-            flex={"1 1 100px"}
+            flex={"1 1 200px"}
             name="select1"
             selectOptions={OPTIONS_RELIGION}
             onConfirm={(inputValue) => {
