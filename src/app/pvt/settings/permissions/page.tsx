@@ -172,12 +172,10 @@ const Camera = () => {
     <ItemContainer>
       <ItemHeaderContainer>
         <HStack>
-          <Icon maxW={"20px"}>
-            <IconCamera />
+          <Icon boxSize={5}>
+            <IconCamera stroke={1.5} />
           </Icon>
-          <P fontWeight={"bold"} fontSize={"md"}>
-            {l.camera}
-          </P>
+          <P fontWeight={"semibold"}>{l.camera}</P>
         </HStack>
 
         <Test />
@@ -357,12 +355,10 @@ const Microphone = () => {
     <ItemContainer>
       <ItemHeaderContainer>
         <HStack>
-          <Icon maxW={"20px"}>
-            <IconMicrophone />
+          <Icon boxSize={5}>
+            <IconMicrophone stroke={1.5} />
           </Icon>
-          <P fontWeight={"bold"} fontSize={"md"}>
-            {l.mic}
-          </P>
+          <P fontWeight={"semibold"}>{l.mic}</P>
         </HStack>
 
         <Test />
@@ -567,12 +563,10 @@ const Location = () => {
     <ItemContainer>
       <ItemHeaderContainer>
         <HStack>
-          <Icon maxW={"20px"}>
-            <IconMapPin />
+          <Icon boxSize={5}>
+            <IconMapPin stroke={1.5} />
           </Icon>
-          <P fontWeight={"bold"} fontSize={"md"}>
-            {l.location}
-          </P>
+          <P fontWeight={"semibold"}>{l.location}</P>
         </HStack>
 
         <Test />
