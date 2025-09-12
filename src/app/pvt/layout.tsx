@@ -231,15 +231,17 @@ const DesktopLayout = (props: any) => {
           p={2}
           pr={`calc(8px - ${FIREFOX_SCROLL_Y_CLASS_PR_PREFIX})`}
         >
-          <CContainer mb={1}>
-            <SearchInput
-              inputProps={{ variant: "flushed", rounded: 0 }}
-              inputValue={search}
-              onChange={(inputValue) => {
-                setSearch(inputValue || "");
-              }}
-            />
-          </CContainer>
+          {navsExpanded && (
+            <CContainer mb={1}>
+              <SearchInput
+                inputProps={{ variant: "flushed", rounded: 0 }}
+                inputValue={search}
+                onChange={(inputValue) => {
+                  setSearch(inputValue || "");
+                }}
+              />
+            </CContainer>
+          )}
 
           {resolvedNavs.map((navItem, navItemIdx) => {
             return (
