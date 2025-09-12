@@ -210,8 +210,8 @@ const Camera = () => {
                 : l.msg_permissions_denied_helper}
             </P>
             <P color={"fg.subtle"}>
-              {getBrowserSettingsLink()}
-              {l.camera}
+              {`${getBrowserSettingsLink()}
+              ${l.camera}`}
             </P>
           </CContainer>
         )}
@@ -395,8 +395,8 @@ const Microphone = () => {
                 : l.msg_permissions_denied_helper}
             </P>
             <P color={"fg.subtle"}>
-              {getBrowserSettingsLink()}
-              {l.mic}
+              {`${getBrowserSettingsLink()}
+              ${l.mic}`}
             </P>
           </CContainer>
         )}
@@ -605,7 +605,7 @@ const Location = () => {
                 : l.msg_permissions_denied_helper}
             </P>
             <P color={"fg.subtle"}>
-              {getBrowserSettingsLink()} {l.location}
+              {`${getBrowserSettingsLink()} ${l.location}`}
             </P>
           </CContainer>
         )}
