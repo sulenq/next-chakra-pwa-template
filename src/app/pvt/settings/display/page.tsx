@@ -225,11 +225,13 @@ const Theme = () => {
   const gridColumns: Record<number, number> = {
     320: 3,
     720: 5,
-    1200: 10,
+    1000: 10,
   };
   const cols = (() => {
     const width = settingsContainerDimensions.width;
     let result = 3;
+
+    console.log(width);
 
     for (const bp of Object.keys(gridColumns)
       .map(Number)
