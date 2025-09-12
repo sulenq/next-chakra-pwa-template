@@ -38,7 +38,7 @@ import { MiniProfile } from "@/components/widget/MiniProfile";
 import { Today } from "@/components/widget/Today";
 import { APP } from "@/constants/_meta";
 import { NAVS, PRIVATE_ROUTE_INDEX } from "@/constants/navs";
-import { Props__NavLink } from "@/constants/props";
+import { Props__Layout, Props__NavLink } from "@/constants/props";
 import { FIREFOX_SCROLL_Y_CLASS_PR_PREFIX } from "@/constants/sizes";
 import useLang from "@/context/useLang";
 import useNavs from "@/context/useNavs";
@@ -49,7 +49,7 @@ import { last } from "@/utils/array";
 import { getUserData } from "@/utils/auth";
 import { pluckString } from "@/utils/string";
 import { getActiveNavs } from "@/utils/url";
-import { Center, HStack, Icon, Stack, StackProps } from "@chakra-ui/react";
+import { Center, HStack, Icon, Stack } from "@chakra-ui/react";
 import {
   IconBoxAlignLeft,
   IconCircleFilled,
@@ -877,10 +877,7 @@ const DesktopLayout = (props: any) => {
   );
 };
 
-interface Props extends StackProps {
-  children: React.ReactNode;
-}
-const AppLayout = (props: Props) => {
+const AppLayout = (props: Props__Layout) => {
   // Props
   const { ...restProps } = props;
 

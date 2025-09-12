@@ -26,6 +26,9 @@ import {
   Type__Period,
 } from "./types";
 
+export interface Props__Layout {
+  children: React.ReactNode;
+}
 export interface Props__Today extends TextProps {
   dateVariant?: Type__DateVariant;
 }

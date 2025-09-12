@@ -10,13 +10,14 @@ import { LeftIndicator } from "@/components/widget/Indicator";
 import { ItemContainer } from "@/components/widget/ItemContainer";
 import { RouteContainer } from "@/components/widget/RouteContainer";
 import { OTHER_NAVS, PRIVATE_ROUTE_INDEX } from "@/constants/navs";
+import { Props__Layout } from "@/constants/props";
 import { FIREFOX_SCROLL_Y_CLASS_PR_PREFIX } from "@/constants/sizes";
 import useLang from "@/context/useLang";
 import { useSettingsRouteContainer } from "@/context/useSettingsRouteContainer";
 import { useContainerDimension } from "@/hooks/useContainerDimension";
 import { isEmptyArray } from "@/utils/array";
 import { pluckString } from "@/utils/string";
-import { HStack, Icon, StackProps } from "@chakra-ui/react";
+import { HStack, Icon } from "@chakra-ui/react";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
@@ -102,12 +103,9 @@ const SettingsNavsList = (props: any) => {
   );
 };
 
-interface Props extends StackProps {
-  children: React.ReactNode;
-}
-const AppSettingsLayout = (props: Props) => {
+const AppSettingsLayout = (props: Props__Layout) => {
   // Props
-  const { children, ...restProps } = props;
+  const { children } = props;
 
   // Hooks
   const pathname = usePathname();
@@ -135,12 +133,7 @@ const AppSettingsLayout = (props: Props) => {
   }, [containerDimensions]);
 
   return (
-    <RouteContainer
-      id="settings_route_container"
-      ref={containerRef}
-      p={0}
-      {...restProps}
-    >
+    <RouteContainer id="settings_route_container" ref={containerRef} p={0}>
       <HStack
         align={"stretch"}
         flex={1}
