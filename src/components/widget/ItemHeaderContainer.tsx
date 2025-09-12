@@ -4,7 +4,7 @@ interface Props extends StackProps {
   borderless?: boolean;
   clearSpacing?: boolean;
 }
-const ItemHeaderContainer = ({
+export const ItemHeaderContainer = ({
   children,
   borderless = false,
   // clearSpacing = false,
@@ -25,5 +25,3 @@ const ItemHeaderContainer = ({
     </HStack>
   );
 };
-
-export default ItemHeaderContainer;

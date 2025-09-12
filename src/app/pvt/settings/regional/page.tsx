@@ -9,7 +9,7 @@ import { toaster } from "@/components/ui/toaster";
 import FeedbackNoData from "@/components/widget/FeedbackNoData";
 import { DotIndicator } from "@/components/widget/Indicator";
 import { ItemContainer } from "@/components/widget/ItemContainer";
-import ItemHeaderContainer from "@/components/widget/ItemHeaderContainer";
+import { ItemHeaderContainer } from "@/components/widget/ItemHeaderContainer";
 import ItemHeaderTitle from "@/components/widget/ItemHeaderTitle";
 import { DATE_FORMATS } from "@/constants/dateFormats";
 import { LANGUAGES } from "@/constants/languages";

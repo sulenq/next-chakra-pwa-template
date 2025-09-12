@@ -71,6 +71,34 @@ export const settings_navs = {
 };
 
 // Semantic UI
+export const address_not_found = {
+  id: "Alamat tidak ditemukan",
+  en: "Address not found",
+};
+export const camera = {
+  id: "Kamera",
+  en: "Camera",
+};
+export const try_camera = {
+  id: "Coba Kamera",
+  en: "Try Camera",
+};
+export const mic = {
+  id: "Mic",
+  en: "Mic",
+};
+export const try_mic = {
+  id: "Coba Mic",
+  en: "Try Mic",
+};
+export const location = {
+  id: "Lokasi",
+  en: "Location",
+};
+export const try_location = {
+  id: "Coba Lokasi",
+  en: "Try Location",
+};
 export const others = {
   id: "Lainnya",
   en: "Others",
@@ -379,8 +407,48 @@ export const UOM_format = {
   id: "Format satuan",
   en: "UOM format",
 };
+export const open = {
+  id: "Buka",
+  en: "Open",
+};
+export const address = {
+  id: "Alamat",
+  en: "Address",
+};
+export const get = {
+  id: "Dapatkan",
+  en: "Get",
+};
 
 // Message
+export const msg_location_test_helper = {
+  id: "Klik dapatkan lokasi untuk mendapatkan data lokasi.",
+  en: "Click get location to get location data.",
+};
+export const msg_permissions_granted_helper = {
+  id: "Jika ingin menonaktifkan, buka",
+  en: "If you want to disable it, go to",
+};
+export const msg_permissions_denied_helper = {
+  id: "Jika ingin memberi akses kembali, buka",
+  en: "If you want to grant access again, go to",
+};
+export const msg_chrome_permissions_settings_link = {
+  id: "Pengaturan → Privasi & Keamanan → Pengaturan Situs → ",
+  en: "Settings → Privacy & Security → Site Settings → ",
+};
+export const msg_firefox_permissions_settings_link = {
+  id: "Preferensi → Privasi & Keamanan → Izin → ",
+  en: "Preferences → Privacy & Security → Permissions → ",
+};
+export const msg_edge_permissions_settings_link = {
+  id: "Pengaturan → Cookie dan izin situs → ",
+  en: "Settings → Cookies and site permissions → ",
+};
+export const msg_default_permissions_settings_link = {
+  id: "Buka pengaturan browser untuk mengubah izin.",
+  en: "Open browser settings to change permissions.",
+};
 export const msg_settings_saved_locally = {
   id: "Pengaturan ini disimpan secara lokal di perangkat Anda dan tidak akan disinkronkan dengan akun Anda.",
   en: "This settings are saved locally on your device and will not be synchronized with your account.",
@@ -505,11 +573,34 @@ export const settings_adaptive_dark_mode = {
     en: "UI dark mode active at night 18:00 - 06:00",
   },
 };
-export const settings_display = {
-  title: { id: "Tampilan", en: "Display" },
+export const settings_camera = {
+  title: {
+    id: "Akses kamera",
+    en: "Camera access",
+  },
   description: {
-    id: "Pengaturan tampilan aplikasi.",
-    en: "Application display settings.",
+    id: "Izinkan aplikasi menggunakan kamera perangkat Anda untuk mengambil foto atau video.",
+    en: "Allow the app to access your device's camera to take photos or videos.",
+  },
+};
+export const settings_mic = {
+  title: {
+    id: "Akses mikrofon",
+    en: "Microphone access",
+  },
+  description: {
+    id: "Izinkan aplikasi menggunakan mikrofon perangkat Anda untuk mengambil suara.",
+    en: "Allow the app to access your device's microphone to record audio.",
+  },
+};
+export const settings_location = {
+  title: {
+    id: "Akses lokasi",
+    en: "Location access",
+  },
+  description: {
+    id: "Izinkan aplikasi menggunakan lokasi perangkat Anda untuk mendapatkan informasi lokasi.",
+    en: "Allow the app to access your device's location to get location information.",
   },
 };
 
@@ -768,6 +859,46 @@ export const error_504_default = {
   description: {
     id: "Permintaan ke server terlalu lama, silakan coba lagi.",
     en: "The server took too long to respond, please try again.",
+  },
+};
+export const error_camera = {
+  title: {
+    id: "Gagal mengakses kamera",
+    en: "Failed to access camera",
+  },
+  description: {
+    id: "Periksa izin kamera atau pastikan tidak digunakan aplikasi lain.",
+    en: "Check camera permission or ensure it's not in use by another app.",
+  },
+};
+export const error_mic = {
+  title: {
+    id: "Gagal mengakses mikrofon",
+    en: "Failed to access microphone",
+  },
+  description: {
+    id: "Periksa izin mikrofon atau pastikan tidak digunakan aplikasi lain.",
+    en: "Check microphone permission or ensure it's not in use by another app.",
+  },
+};
+export const error_location = {
+  title: {
+    id: "Gagal mendapatkan lokasi",
+    en: "Failed to get location",
+  },
+  description: {
+    id: "Periksa izin lokasi atau pastikan GPS diaktifkan.",
+    en: "Check location permission or ensure GPS is enabled.",
+  },
+};
+export const errpr_location_support = {
+  title: {
+    id: "Lokasi tidak didukung",
+    en: "Location not supported",
+  },
+  description: {
+    id: "Perangkat Anda tidak mendukung fitur lokasi.",
+    en: "Your device does not support location features.",
   },
 };
 

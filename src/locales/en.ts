@@ -3,6 +3,8 @@ const translations = {
   "access": "Access",
   "adaptive_dark_mode": "Adaptive dark mode",
   "add": "Add",
+  "address": "Address",
+  "address_not_found": "Address not found",
   "alert_forbidden": {
     "title": "Access denied",
     "description": "You do not have permission to view this content."
@@ -27,6 +29,7 @@ const translations = {
   "april": "April",
   "august": "August",
   "back": "Back",
+  "camera": "Camera",
   "cancel": "Cancel",
   "clear": "Clear",
   "close": "Close",
@@ -93,6 +96,10 @@ const translations = {
     "title": "Gateway timeout",
     "description": "The server took too long to respond, please try again."
   },
+  "error_camera": {
+    "title": "Failed to access camera",
+    "description": "Check camera permission or ensure it's not in use by another app."
+  },
   "error_default": {
     "title": "An error occurred",
     "description": "An unknown error occurred. Please try again."
@@ -100,6 +107,14 @@ const translations = {
   "error_invalid_file": {
     "title": "Invalid file",
     "description": "File size, number of files or type is not allowed."
+  },
+  "error_location": {
+    "title": "Failed to get location",
+    "description": "Check location permission or ensure GPS is enabled."
+  },
+  "error_mic": {
+    "title": "Failed to access microphone",
+    "description": "Check microphone permission or ensure it's not in use by another app."
   },
   "error_network": {
     "title": "Server connection problem",
@@ -109,8 +124,13 @@ const translations = {
     "title": "Login failed",
     "description": "Invalid credentials."
   },
+  "errpr_location_support": {
+    "title": "Location not supported",
+    "description": "Your device does not support location features."
+  },
   "february": "February",
   "friday": "Friday",
+  "get": "Get",
   "hide": "Hide",
   "info_timezone_auto": {
     "title": "Timezone automatically set",
@@ -156,6 +176,7 @@ const translations = {
     "title": "Upload file",
     "description": "Uploading file..."
   },
+  "location": "Location",
   "main": "Main",
   "main_page": "Main page",
   "maintenance_route": {
@@ -164,6 +185,7 @@ const translations = {
   "march": "March",
   "maximize": "Maximize",
   "may": "May",
+  "mic": "Mic",
   "minimize": "Minimize",
   "missing_route": {
     "description": "The page you are looking for is not available. There may be an incorrect URL or the page is no longer available."
@@ -172,8 +194,15 @@ const translations = {
   "month": "Month",
   "msg_ADM_active": "Adaptive dark mode is active",
   "msg_cannot_be_undone": "This action cannot be undone, please be careful.",
+  "msg_chrome_permissions_settings_link": "Settings → Privacy & Security → Site Settings → ",
+  "msg_default_permissions_settings_link": "Open browser settings to change permissions.",
+  "msg_edge_permissions_settings_link": "Settings → Cookies and site permissions → ",
   "msg_file_input_dropzone": "Drag and drop/click to upload files",
+  "msg_firefox_permissions_settings_link": "Preferences → Privacy & Security → Permissions → ",
+  "msg_location_test_helper": "Click get location to get location data.",
   "msg_password_confirmation_not_match": "Password confirmation does not match",
+  "msg_permissions_denied_helper": "If you want to grant access again, go to",
+  "msg_permissions_granted_helper": "If you want to disable it, go to",
   "msg_required_form": "Cannot be empty",
   "msg_reset_password_step_1": "First step, enter your email and we will send you an OTP to reset your password.",
   "msg_reset_password_step_2": "Second step, verify OTP",
@@ -200,6 +229,7 @@ const translations = {
   "november": "November",
   "october": "October",
   "of": "of",
+  "open": "Open",
   "optional": "Optional",
   "others": "Others",
   "otp_sent": "OTP has been sent",
@@ -225,13 +255,21 @@ const translations = {
     "title": "Adaptive dark mode",
     "description": "UI dark mode active at night 18:00 - 06:00"
   },
+  "settings_camera": {
+    "title": "Camera access",
+    "description": "Allow the app to access your device's camera to take photos or videos."
+  },
   "settings_dark_mode": {
     "title": "UI dark mode",
     "description": "Dark mode for UI, default follows system"
   },
-  "settings_display": {
-    "title": "Display",
-    "description": "Application display settings."
+  "settings_location": {
+    "title": "Location access",
+    "description": "Allow the app to access your device's location to get location information."
+  },
+  "settings_mic": {
+    "title": "Microphone access",
+    "description": "Allow the app to access your device's microphone to record audio."
   },
   "settings_navs": {
     "main": {
@@ -303,6 +341,9 @@ const translations = {
   "thursday": "Thursday",
   "time_format": "Time format",
   "timezone": "Timezone",
+  "try_camera": "Try Camera",
+  "try_location": "Try Location",
+  "try_mic": "Try Mic",
   "tuesday": "Tuesday",
   "update": "Update",
   "uploaded": "Uploaded",

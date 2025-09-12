@@ -9,7 +9,7 @@ import { SelectInput } from "@/components/ui/select-input";
 import { StringInput } from "@/components/ui/string-input";
 import { Switch } from "@/components/ui/switch";
 import { ItemContainer } from "@/components/widget/ItemContainer";
-import ItemHeaderContainer from "@/components/widget/ItemHeaderContainer";
+import { ItemHeaderContainer } from "@/components/widget/ItemHeaderContainer";
 import ItemHeaderTitle from "@/components/widget/ItemHeaderTitle";
 import { SettingsItemContainer } from "@/components/widget/SettingsItemContainer";
 import { OPTIONS_RELIGION } from "@/constants/selectOptions";

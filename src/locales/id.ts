@@ -3,6 +3,8 @@ const translations = {
   "access": "Akses",
   "adaptive_dark_mode": "Mode gelap adaptif",
   "add": "Tambah",
+  "address": "Alamat",
+  "address_not_found": "Alamat tidak ditemukan",
   "alert_forbidden": {
     "title": "Akses ditolak",
     "description": "Anda tidak memiliki izin untuk melihat konten ini."
@@ -27,6 +29,7 @@ const translations = {
   "april": "April",
   "august": "Agustus",
   "back": "Kembali",
+  "camera": "Kamera",
   "cancel": "Batal",
   "clear": "Clear",
   "close": "Tutup",
@@ -93,6 +96,10 @@ const translations = {
     "title": "Gateway timeout",
     "description": "Permintaan ke server terlalu lama, silakan coba lagi."
   },
+  "error_camera": {
+    "title": "Gagal mengakses kamera",
+    "description": "Periksa izin kamera atau pastikan tidak digunakan aplikasi lain."
+  },
   "error_default": {
     "title": "Terjadi kesalahan",
     "description": "Terjadi kesalahan yang tidak diketahui. Silakan coba lagi."
@@ -100,6 +107,14 @@ const translations = {
   "error_invalid_file": {
     "title": "File tidak valid",
     "description": "Ukuran, jumlah file atau tipe file tidak sesuai."
+  },
+  "error_location": {
+    "title": "Gagal mendapatkan lokasi",
+    "description": "Periksa izin lokasi atau pastikan GPS diaktifkan."
+  },
+  "error_mic": {
+    "title": "Gagal mengakses mikrofon",
+    "description": "Periksa izin mikrofon atau pastikan tidak digunakan aplikasi lain."
   },
   "error_network": {
     "title": "Gangguan koneksi ke server",
@@ -109,8 +124,13 @@ const translations = {
     "title": "Login gagal",
     "description": "Kredensial tidak valid."
   },
+  "errpr_location_support": {
+    "title": "Lokasi tidak didukung",
+    "description": "Perangkat Anda tidak mendukung fitur lokasi."
+  },
   "february": "Februari",
   "friday": "Jumat",
+  "get": "Dapatkan",
   "hide": "Sembunyikan",
   "info_timezone_auto": {
     "title": "Zona waktu otomatis diset",
@@ -156,6 +176,7 @@ const translations = {
     "title": "Upload file",
     "description": "Sedang mengunggah file..."
   },
+  "location": "Lokasi",
   "main": "Utama",
   "main_page": "Halaman utama",
   "maintenance_route": {
@@ -164,6 +185,7 @@ const translations = {
   "march": "Maret",
   "maximize": "Maksimalkan",
   "may": "Mei",
+  "mic": "Mic",
   "minimize": "Minimalkan",
   "missing_route": {
     "description": "Halaman yang Anda cari tidak tersedia. Kemungkinan ada URL yang keliru atau halaman ini sudah tidak tersedia."
@@ -172,8 +194,15 @@ const translations = {
   "month": "Bulan",
   "msg_ADM_active": "Mode gelap adaptif aktif",
   "msg_cannot_be_undone": "Aksi ini tidak dapat dibatalkan, harap hati-hati.",
+  "msg_chrome_permissions_settings_link": "Pengaturan → Privasi & Keamanan → Pengaturan Situs → ",
+  "msg_default_permissions_settings_link": "Buka pengaturan browser untuk mengubah izin.",
+  "msg_edge_permissions_settings_link": "Pengaturan → Cookie dan izin situs → ",
   "msg_file_input_dropzone": "Drag and drop/klik untuk unggah berkas",
+  "msg_firefox_permissions_settings_link": "Preferensi → Privasi & Keamanan → Izin → ",
+  "msg_location_test_helper": "Klik dapatkan lokasi untuk mendapatkan data lokasi.",
   "msg_password_confirmation_not_match": "Konfirmasi kata sandi tidak cocok",
+  "msg_permissions_denied_helper": "Jika ingin memberi akses kembali, buka",
+  "msg_permissions_granted_helper": "Jika ingin menonaktifkan, buka",
   "msg_required_form": "Tidak boleh kosong",
   "msg_reset_password_step_1": "Langkah pertama, masukkan email Anda dan kami akan mengirimkan OTP untuk mengatur ulang kata sandi Anda.",
   "msg_reset_password_step_2": "Langkah kedua, verifikasi OTP",
@@ -200,6 +229,7 @@ const translations = {
   "november": "November",
   "october": "Oktober",
   "of": "dari",
+  "open": "Buka",
   "optional": "Opsional",
   "others": "Lainnya",
   "otp_sent": "OTP telah dikirim",
@@ -225,13 +255,21 @@ const translations = {
     "title": "Mode gelap adaptif",
     "description": "UI mode gelap aktif saat malam hari 18:00 - 06:00"
   },
+  "settings_camera": {
+    "title": "Akses kamera",
+    "description": "Izinkan aplikasi menggunakan kamera perangkat Anda untuk mengambil foto atau video."
+  },
   "settings_dark_mode": {
     "title": "UI mode gelap",
     "description": "Mode gelap untuk UI, default mengikuti system"
   },
-  "settings_display": {
-    "title": "Tampilan",
-    "description": "Pengaturan tampilan aplikasi."
+  "settings_location": {
+    "title": "Akses lokasi",
+    "description": "Izinkan aplikasi menggunakan lokasi perangkat Anda untuk mendapatkan informasi lokasi."
+  },
+  "settings_mic": {
+    "title": "Akses mikrofon",
+    "description": "Izinkan aplikasi menggunakan mikrofon perangkat Anda untuk mengambil suara."
   },
   "settings_navs": {
     "main": {
@@ -303,6 +341,9 @@ const translations = {
   "thursday": "Kamis",
   "time_format": "Format waktu",
   "timezone": "Zona waktu",
+  "try_camera": "Coba Kamera",
+  "try_location": "Coba Lokasi",
+  "try_mic": "Coba Mic",
   "tuesday": "Selasa",
   "update": "Ubah",
   "uploaded": "Sudah diunggah",
