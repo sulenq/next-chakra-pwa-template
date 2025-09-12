@@ -2,9 +2,8 @@ import { FIREFOX_SCROLL_Y_CLASS_PR_PREFIX_NUMBER } from "@/constants/sizes";
 import { useEffect } from "react";
 
 export function useFirefoxPaddingY(
-  additionalPx: string = FIREFOX_SCROLL_Y_CLASS_PR_PREFIX_NUMBER
+  additionalPx: string = FIREFOX_SCROLL_Y_CLASS_PR_PREFIX_NUMBER // e.g. "6px"
 ) {
-  // px
   useEffect(() => {
     if (!navigator.userAgent.toLowerCase().includes("firefox")) return;
 
@@ -13,18 +12,18 @@ export function useFirefoxPaddingY(
         const style = window.getComputedStyle(el);
         const currentPadding = parseFloat(style.paddingRight) || 0;
 
-        // set only if not already added
         const alreadyAdded = el.dataset.firefoxAdded === "true";
         if (!alreadyAdded) {
-          el.style.paddingRight = `${currentPadding + additionalPx}`;
-          el.dataset.firefoxAdded = "true"; // mark as added
+          // extract number dari additionalPx
+          const addNumber = parseFloat(additionalPx) || 0;
+          el.style.paddingRight = `${currentPadding + addNumber}px`;
+          el.dataset.firefoxAdded = "true";
         }
       });
     };
 
     updatePadding();
 
-    // optional: observe DOM changes in case .scrollY elements added dynamically
     const observer = new MutationObserver(updatePadding);
     observer.observe(document.body, { childList: true, subtree: true });
 
