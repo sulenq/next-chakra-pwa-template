@@ -239,6 +239,7 @@ const translations = {
   "recieve": "Terima",
   "reset": "Reset",
   "retry": "Coba lagi",
+  "rounded": "Rounded",
   "saturday": "Sabtu",
   "save": "Simpan",
   "search": "Cari",

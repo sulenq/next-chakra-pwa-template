@@ -419,6 +419,10 @@ export const get = {
   id: "Dapatkan",
   en: "Get",
 };
+export const rounded = {
+  id: "Rounded",
+  en: "Rounded",
+};
 
 // Message
 export const msg_location_test_helper = {

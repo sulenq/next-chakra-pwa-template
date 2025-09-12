@@ -8,6 +8,7 @@ import { P } from "@/components/ui/p";
 import { SelectInput } from "@/components/ui/select-input";
 import { StringInput } from "@/components/ui/string-input";
 import { Switch } from "@/components/ui/switch";
+import { DotIndicator } from "@/components/widget/Indicator";
 import { ItemContainer } from "@/components/widget/ItemContainer";
 import { ItemHeaderContainer } from "@/components/widget/ItemHeaderContainer";
 import ItemHeaderTitle from "@/components/widget/ItemHeaderTitle";
@@ -18,7 +19,12 @@ import useLang from "@/context/useLang";
 import { useSettingsRouteContainer } from "@/context/useSettingsRouteContainer";
 import { useThemeConfig } from "@/context/useThemeConfig";
 import { Center, HStack, Icon, SimpleGrid } from "@chakra-ui/react";
-import { IconMoon2, IconPalette, IconX } from "@tabler/icons-react";
+import {
+  IconMoon2,
+  IconPalette,
+  IconRadiusTopLeft,
+  IconX,
+} from "@tabler/icons-react";
 import { useEffect, useRef, useState } from "react";
 
 const ManualDarkModeSetting = () => {
@@ -241,7 +247,7 @@ const Theme = () => {
       <ItemHeaderContainer>
         <HStack>
           <Icon boxSize={5}>
-            <IconPalette />
+            <IconPalette stroke={1.5} />
           </Icon>
           <ItemHeaderTitle>{l.theme}</ItemHeaderTitle>
         </HStack>
@@ -317,6 +323,114 @@ const Theme = () => {
     </ItemContainer>
   );
 };
+const Rounded = () => {
+  // Contexts
+  const { l } = useLang();
+  const { themeConfig, setThemeConfig } = useThemeConfig();
+
+  const roundedList = [
+    {
+      label: "None",
+      component: "0",
+      container: "0",
+    },
+    {
+      label: "xs",
+      component: "xs",
+      container: "sm",
+    },
+    {
+      label: "sm",
+      component: "sm",
+      container: "md",
+    },
+    {
+      label: "md",
+      component: "md",
+      container: "lg",
+    },
+    {
+      label: "lg",
+      component: "lg",
+      container: "xl",
+    },
+    {
+      label: "xl",
+      component: "xl",
+      container: "2xl",
+    },
+  ];
+
+  // Component
+  const RoundedExampe = (props: any) => {
+    // Props
+    const { preset, isActive } = props;
+
+    // Utils
+    function handleOnClick() {
+      setThemeConfig({
+        ...themeConfig,
+        radii: {
+          component: preset.component,
+          container: preset.container,
+        },
+      });
+    }
+
+    return (
+      <Center
+        h={"100px"}
+        p={3}
+        rounded={preset.container}
+        border={"2px solid"}
+        borderColor={"border.emphasized"}
+        cursor={"pointer"}
+        onClick={handleOnClick}
+      >
+        <Center
+          w={"full"}
+          h={"80px"}
+          rounded={preset.component}
+          border={"2px solid"}
+          borderColor={"border.muted"}
+          pos={"relative"}
+          bg={"d0"}
+        >
+          {isActive && <DotIndicator top={3} right={3} pos={"absolute"} />}
+
+          {preset.label}
+        </Center>
+      </Center>
+    );
+  };
+
+  return (
+    <ItemContainer>
+      <ItemHeaderContainer>
+        <HStack>
+          <Icon boxSize={5}>
+            <IconRadiusTopLeft />
+          </Icon>
+          <ItemHeaderTitle>{l.rounded}</ItemHeaderTitle>
+        </HStack>
+      </ItemHeaderContainer>
+
+      <CContainer gap={4} p={4}>
+        <SimpleGrid columns={[2, null, 3]} gap={4}>
+          {roundedList.map((item) => {
+            const isActive = item.component === themeConfig.radii.component;
+
+            return (
+              <CContainer key={item.label}>
+                <RoundedExampe preset={item} isActive={isActive} />
+              </CContainer>
+            );
+          })}
+        </SimpleGrid>
+      </CContainer>
+    </ItemContainer>
+  );
+};
 
 const SettingsDisplayRoute = () => {
   // Contexts
@@ -326,6 +440,8 @@ const SettingsDisplayRoute = () => {
     <CContainer>
       <CContainer gap={4}>
         <DarkMode />
+
+        <Rounded />
 
         <Theme />
       </CContainer>

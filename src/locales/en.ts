@@ -239,6 +239,7 @@ const translations = {
   "recieve": "Recieve",
   "reset": "Reset",
   "retry": "Retry",
+  "rounded": "Rounded",
   "saturday": "Saturday",
   "save": "Save",
   "search": "Search",
