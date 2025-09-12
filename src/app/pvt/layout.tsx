@@ -24,6 +24,7 @@ import {
   PopoverRoot,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import SearchInput from "@/components/ui/search-input";
 import { Tooltip, TooltipProps } from "@/components/ui/tooltip";
 import BackButton from "@/components/widget/BackButton";
 import Clock from "@/components/widget/Clock";
@@ -33,6 +34,7 @@ import { MiniProfile } from "@/components/widget/MiniProfile";
 import { Today } from "@/components/widget/Today";
 import { APP } from "@/constants/_meta";
 import { NAVS } from "@/constants/navs";
+import { FIREFOX_SCROLL_Y_CLASS_PR_PREFIX } from "@/constants/sizes";
 import useLang from "@/context/useLang";
 import useNavs from "@/context/useNavs";
 import { useThemeConfig } from "@/context/useThemeConfig";
@@ -51,7 +53,7 @@ import {
   IconSlash,
 } from "@tabler/icons-react";
 import { usePathname } from "next/navigation";
-import { Fragment } from "react";
+import { Fragment, useState } from "react";
 
 const NAVS_BG = "body";
 const NAVS_COLOR = "ibody";
@@ -113,6 +115,34 @@ const DesktopLayout = (props: any) => {
   const resolvedActiveNavs =
     sw < 960 ? [activeNavs[activeNavs.length - 1]] : activeNavs;
   const backPath = last(activeNavs)?.backPath;
+  const [search, setSearch] = useState<string>("");
+  const resolvedNavs = NAVS.map((nav) => {
+    const filteredList = nav.list.flatMap((item) => {
+      const isMatch =
+        item.path &&
+        pluckString(l, item.labelKey)
+          .toLowerCase()
+          .includes(search.toLowerCase());
+
+      if (isMatch) return [item];
+
+      if (item.subMenus) {
+        const matchedSubs = item.subMenus.flatMap((sub) =>
+          sub.list.filter((subItem) =>
+            pluckString(l, subItem.labelKey)
+              .toLowerCase()
+              .includes(search.toLowerCase())
+          )
+        );
+
+        return matchedSubs.length > 0 ? matchedSubs : [];
+      }
+
+      return [];
+    });
+
+    return filteredList.length > 0 ? { ...nav, list: filteredList } : null;
+  }).filter(Boolean) as typeof NAVS;
 
   return (
     <HStack
@@ -128,11 +158,10 @@ const DesktopLayout = (props: any) => {
       <CContainer
         flexShrink={0}
         w={navsExpanded ? "250px" : "54px"}
-        gap={8}
-        p={2}
+        gap={6}
         transition={"200ms"}
       >
-        <CContainer gap={1}>
+        <CContainer gap={1} p={2}>
           {!navsExpanded && (
             <NavLink to="/">
               <Btn
@@ -196,8 +225,23 @@ const DesktopLayout = (props: any) => {
         </CContainer>
 
         {/* Navs */}
-        <CContainer gap={1}>
-          {NAVS.map((navItem, navItemIdx) => {
+        <CContainer
+          className={"scrollY"}
+          gap={1}
+          p={2}
+          pr={`calc(8px - ${FIREFOX_SCROLL_Y_CLASS_PR_PREFIX})`}
+        >
+          <CContainer mb={1}>
+            <SearchInput
+              inputProps={{ variant: "flushed", rounded: 0 }}
+              inputValue={search}
+              onChange={(inputValue) => {
+                setSearch(inputValue || "");
+              }}
+            />
+          </CContainer>
+
+          {resolvedNavs.map((navItem, navItemIdx) => {
             return (
               <CContainer key={navItemIdx} gap={1}>
                 {navsExpanded && navItem.groupLabelKey && (
@@ -412,11 +456,28 @@ const DesktopLayout = (props: any) => {
                               variant={"ghost"}
                               colorPalette={NAVS_COLOR_PALETTE}
                             >
-                              {isMainNavsActive && <LeftIndicator />}
+                              {isMainNavsActive && nav.icon && (
+                                <LeftIndicator />
+                              )}
 
-                              <Icon boxSize={5}>
-                                <nav.icon stroke={1.5} />
-                              </Icon>
+                              {nav.icon && (
+                                <Icon boxSize={5}>
+                                  <nav.icon stroke={1.5} />
+                                </Icon>
+                              )}
+
+                              {!nav.icon && (
+                                <Icon
+                                  boxSize={2}
+                                  color={
+                                    isMainNavsActive
+                                      ? themeConfig.primaryColor
+                                      : "d2"
+                                  }
+                                >
+                                  <IconCircleFilled stroke={1.5} />
+                                </Icon>
+                              )}
 
                               {navsExpanded && (
                                 <P lineClamp={1} textAlign={"left"}>
@@ -435,7 +496,7 @@ const DesktopLayout = (props: any) => {
           })}
         </CContainer>
 
-        <CContainer mt={"auto"} gap={2}>
+        <CContainer mt={"auto"} gap={2} p={2}>
           <NavLink to={"/pvt/settings"}>
             <NavTooltip content={l.settings}>
               <Btn

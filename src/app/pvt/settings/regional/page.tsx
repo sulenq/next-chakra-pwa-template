@@ -13,7 +13,7 @@ import { ItemHeaderContainer } from "@/components/widget/ItemHeaderContainer";
 import ItemHeaderTitle from "@/components/widget/ItemHeaderTitle";
 import { DATE_FORMATS } from "@/constants/dateFormats";
 import { LANGUAGES } from "@/constants/languages";
-import { FIREFOX_SCROLL_Y_CLASS_PR_PREFIX_NUMBER } from "@/constants/sizes";
+import { FIREFOX_SCROLL_Y_CLASS_PR_PREFIX } from "@/constants/sizes";
 import { TIME_FORMATS } from "@/constants/timeFormats";
 import { TIME_ZONES } from "@/constants/timezone";
 import {
@@ -168,7 +168,7 @@ const Timezone = () => {
           className={"scrollY"}
           h={"200px"}
           pl={2}
-          pr={`calc(8px -${FIREFOX_SCROLL_Y_CLASS_PR_PREFIX_NUMBER})`}
+          pr={`calc(8px -${FIREFOX_SCROLL_Y_CLASS_PR_PREFIX})`}
         >
           {isEmptyArray(resolvedTimezones) && <FeedbackNoData />}
 

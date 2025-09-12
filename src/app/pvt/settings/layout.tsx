@@ -10,7 +10,7 @@ import { LeftIndicator } from "@/components/widget/Indicator";
 import { ItemContainer } from "@/components/widget/ItemContainer";
 import { RouteContainer } from "@/components/widget/RouteContainer";
 import { OTHER_NAVS, PRIVATE_ROUTE_INDEX } from "@/constants/navs";
-import { FIREFOX_SCROLL_Y_CLASS_PR_PREFIX_NUMBER } from "@/constants/sizes";
+import { FIREFOX_SCROLL_Y_CLASS_PR_PREFIX } from "@/constants/sizes";
 import useLang from "@/context/useLang";
 import { useSettingsRouteContainer } from "@/context/useSettingsRouteContainer";
 import { useContainerDimension } from "@/hooks/useContainerDimension";
@@ -177,7 +177,7 @@ const AppSettingsLayout = (props: StackProps) => {
           <CContainer
             className={"scrollY"}
             pl={4}
-            pr={`calc(16px - ${FIREFOX_SCROLL_Y_CLASS_PR_PREFIX_NUMBER})`}
+            pr={`calc(16px - ${FIREFOX_SCROLL_Y_CLASS_PR_PREFIX})`}
           >
             {children}
           </CContainer>

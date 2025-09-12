@@ -1,8 +1,8 @@
-import { FIREFOX_SCROLL_Y_CLASS_PR_PREFIX_NUMBER } from "@/constants/sizes";
+import { FIREFOX_SCROLL_Y_CLASS_PR_PREFIX } from "@/constants/sizes";
 import { useEffect } from "react";
 
 export function useFirefoxPaddingY(
-  additionalPx: string = FIREFOX_SCROLL_Y_CLASS_PR_PREFIX_NUMBER
+  additionalPx: string = FIREFOX_SCROLL_Y_CLASS_PR_PREFIX
 ) {
   useEffect(() => {
     if (!navigator.userAgent.toLowerCase().includes("firefox")) return;
