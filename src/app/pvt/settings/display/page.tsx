@@ -324,6 +324,7 @@ const Theme = () => {
               setSelect(inputValue);
             }}
             inputValue={select}
+            multiple
           />
         </HStack>
       </CContainer>
@@ -338,33 +339,33 @@ const Rounded = () => {
   const roundedList = [
     {
       label: "None",
-      component: "0",
-      container: "0",
+      component: "0px",
+      container: "0px",
     },
     {
       label: "XS",
-      component: "xs",
-      container: "sm",
+      component: "2px",
+      container: "4px",
     },
     {
       label: "Sm",
-      component: "sm",
-      container: "md",
+      component: "4px",
+      container: "6px",
     },
     {
       label: "Md",
-      component: "md",
-      container: "lg",
+      component: "6px",
+      container: "8px",
     },
     {
       label: "Lg",
-      component: "lg",
-      container: "xl",
+      component: "8px",
+      container: "12px",
     },
     {
       label: "XL",
-      component: "xl",
-      container: "2xl",
+      component: "12px",
+      container: "16px",
     },
   ];
 

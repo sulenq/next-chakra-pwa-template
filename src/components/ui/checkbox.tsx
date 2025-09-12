@@ -21,6 +21,11 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
     // Contexts
     const { themeConfig } = useThemeConfig();
 
+    // States
+    const isRoundedZero = themeConfig.radii.component === "0px";
+
+    console.log(themeConfig.radii.component);
+
     return (
       <ChakraCheckbox.Root
         ref={rootRef}
@@ -31,7 +36,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
         <ChakraCheckbox.HiddenInput ref={ref} {...inputProps} />
 
         <ChakraCheckbox.Control
-          rounded={props?.rounded || "sm"}
+          rounded={props?.rounded || isRoundedZero ? "0px" : "sm"}
           borderColor={
             rest.borderColor || checked
               ? "transparent"
