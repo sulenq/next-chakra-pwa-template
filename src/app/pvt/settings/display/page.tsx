@@ -18,7 +18,14 @@ import useADM from "@/context/useADM";
 import useLang from "@/context/useLang";
 import { useSettingsRouteContainer } from "@/context/useSettingsRouteContainer";
 import { useThemeConfig } from "@/context/useThemeConfig";
-import { Center, HStack, Icon, SimpleGrid } from "@chakra-ui/react";
+import {
+  Box,
+  Center,
+  Circle,
+  HStack,
+  Icon,
+  SimpleGrid,
+} from "@chakra-ui/react";
 import {
   IconMoon2,
   IconPalette,
@@ -335,27 +342,27 @@ const Rounded = () => {
       container: "0",
     },
     {
-      label: "xs",
+      label: "XS",
       component: "xs",
       container: "sm",
     },
     {
-      label: "sm",
+      label: "Sm",
       component: "sm",
       container: "md",
     },
     {
-      label: "md",
+      label: "Md",
       component: "md",
       container: "lg",
     },
     {
-      label: "lg",
+      label: "Lg",
       component: "lg",
       container: "xl",
     },
     {
-      label: "xl",
+      label: "XL",
       component: "xl",
       container: "2xl",
     },
@@ -378,29 +385,60 @@ const Rounded = () => {
     }
 
     return (
-      <Center
-        h={"100px"}
-        p={3}
+      <CContainer
+        h={"160px"}
+        gap={2}
+        p={2}
         rounded={preset.container}
-        border={"2px solid"}
+        border={"1px solid"}
         borderColor={"border.emphasized"}
         cursor={"pointer"}
         onClick={handleOnClick}
+        pos={"relative"}
       >
-        <Center
-          w={"full"}
-          h={"80px"}
-          rounded={preset.component}
-          border={"2px solid"}
-          borderColor={"border.muted"}
-          pos={"relative"}
-          bg={"d0"}
-        >
-          {isActive && <DotIndicator top={3} right={3} pos={"absolute"} />}
+        <HStack pl={1}>
+          <P>{preset.label}</P>
 
-          {preset.label}
-        </Center>
-      </Center>
+          {isActive && <DotIndicator ml={0} />}
+
+          <Circle
+            w={"24px"}
+            h={"24px"}
+            bg={"d0"}
+            border={"1px solid"}
+            borderColor={"border.muted"}
+            ml={"auto"}
+          />
+        </HStack>
+
+        <Box
+          flex={1}
+          rounded={preset.component}
+          border={"1px solid"}
+          borderColor={"border.muted"}
+          bg={"d0"}
+        />
+
+        <HStack justify={"end"}>
+          <Box
+            w={"30%"}
+            h={"30px"}
+            rounded={preset.component}
+            border={"1px solid"}
+            borderColor={"border.muted"}
+            bg={"d0"}
+          />
+
+          <Box
+            w={"30%"}
+            h={"30px"}
+            rounded={preset.component}
+            border={"1px solid"}
+            borderColor={"border.muted"}
+            bg={"d0"}
+          />
+        </HStack>
+      </CContainer>
     );
   };
 
@@ -416,7 +454,7 @@ const Rounded = () => {
       </ItemHeaderContainer>
 
       <CContainer gap={4} p={4}>
-        <SimpleGrid columns={[2, null, 3]} gap={4}>
+        <SimpleGrid columns={[2, null, 3, null, 6]} gap={4}>
           {roundedList.map((item) => {
             const isActive = item.component === themeConfig.radii.component;
 

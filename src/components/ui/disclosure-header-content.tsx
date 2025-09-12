@@ -51,7 +51,7 @@ export const DisclosureHeaderContent = ({
                 <DrawerCloseTrigger
                   rounded={"full"}
                   top={3}
-                  right={"14px"}
+                  right={"10px"}
                   onClick={handleBack}
                 />
               )}
@@ -66,7 +66,7 @@ export const DisclosureHeaderContent = ({
               variant={["ghost", null, "subtle"]}
               pos={"absolute"}
               top={3}
-              right={["14px", null, "12px"]}
+              right={["10px", null, "12px"]}
               size={["xs", null, "2xs"]}
               onClick={handleBack}
             >
