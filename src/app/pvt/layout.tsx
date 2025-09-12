@@ -28,7 +28,11 @@ import SearchInput from "@/components/ui/search-input";
 import { Tooltip, TooltipProps } from "@/components/ui/tooltip";
 import BackButton from "@/components/widget/BackButton";
 import Clock from "@/components/widget/Clock";
-import { DotIndicator, LeftIndicator } from "@/components/widget/Indicator";
+import {
+  BottomIndicator,
+  DotIndicator,
+  LeftIndicator,
+} from "@/components/widget/Indicator";
 import Logo from "@/components/widget/Logo";
 import { MiniProfile } from "@/components/widget/MiniProfile";
 import { Today } from "@/components/widget/Today";
@@ -83,6 +87,12 @@ const MobileLayout = (props: any) => {
   // Props
   const { children, ...restProps } = props;
 
+  // Contexts
+  const { l } = useLang();
+
+  // Hooks
+  const pathname = usePathname();
+
   return (
     <CContainer flex={1} overflowY={"auto"} {...restProps}>
       {/* Content */}
@@ -91,7 +101,114 @@ const MobileLayout = (props: any) => {
       </CContainer>
 
       {/* Navs */}
-      <HStack bg={"yellow"}></HStack>
+      <HStack gap={4} px={4} pt={3} pb={5} overflowX={"auto"}>
+        {NAVS.map((navItem) => {
+          return (
+            <>
+              {navItem.list.map((nav) => {
+                const isMainNavActive = pathname.includes(nav.path);
+
+                return (
+                  <>
+                    {nav.subMenus && (
+                      <>
+                        <MenuRoot
+                          positioning={{
+                            placement: "top",
+                            offset: {
+                              mainAxis: 24,
+                            },
+                          }}
+                        >
+                          <MenuTrigger asChild>
+                            <CContainer
+                              key={nav.path}
+                              minW={"50px"}
+                              align={"center"}
+                              gap={1}
+                              color={isMainNavActive ? "" : "fg.muted"}
+                              pos={"relative"}
+                              cursor={"pointer"}
+                            >
+                              <Icon boxSize={6}>
+                                <nav.icon stroke={1.5} />
+                              </Icon>
+
+                              <P
+                                fontSize={"xs"}
+                                textAlign={"center"}
+                                lineClamp={1}
+                              >
+                                {pluckString(l, nav.labelKey)}
+                              </P>
+
+                              {isMainNavActive && <BottomIndicator />}
+                            </CContainer>
+                          </MenuTrigger>
+
+                          <MenuContent>
+                            {nav.subMenus.map((menuItem, idx) => {
+                              return (
+                                <MenuItemGroup
+                                  key={idx}
+                                  title={
+                                    menuItem.groupLabelKey
+                                      ? pluckString(l, menuItem.groupLabelKey)
+                                      : ""
+                                  }
+                                >
+                                  {menuItem.list.map((menu) => {
+                                    const isSubNavsActive =
+                                      pathname === menu.path;
+
+                                    return (
+                                      <NavLink key={menu.path} to={menu.path}>
+                                        <MenuItem value={menu.path}>
+                                          {pluckString(l, menu.labelKey)}
+
+                                          {isSubNavsActive && (
+                                            <DotIndicator mr={1} />
+                                          )}
+                                        </MenuItem>
+                                      </NavLink>
+                                    );
+                                  })}
+                                </MenuItemGroup>
+                              );
+                            })}
+                          </MenuContent>
+                        </MenuRoot>
+                      </>
+                    )}
+
+                    {!nav.subMenus && (
+                      <NavLink
+                        key={nav.path}
+                        to={nav.subMenus ? "" : nav.path}
+                        minW={"50px"}
+                        align={"center"}
+                        gap={1}
+                        color={isMainNavActive ? "" : "fg.muted"}
+                        pos={"relative"}
+                      >
+                        <Icon boxSize={6}>
+                          <nav.icon stroke={1.5} />
+                        </Icon>
+
+                        <P textAlign={"center"} lineClamp={1} fontSize={"xs"}>
+                          {pluckString(l, nav.labelKey)}
+                        </P>
+
+                        {isMainNavActive && <BottomIndicator />}
+                      </NavLink>
+                    )}
+                  </>
+                );
+              })}
+            </>
+          );
+        })}
+      </HStack>
     </CContainer>
   );
 };

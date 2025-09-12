@@ -23,6 +23,25 @@ export const LeftIndicator = (props: BoxProps) => {
   );
 };
 
+export const BottomIndicator = (props: BoxProps) => {
+  // Contexts
+  const { themeConfig } = useThemeConfig();
+
+  return (
+    <Box
+      w={"12px"}
+      h={"3px"}
+      bg={themeConfig.primaryColor}
+      rounded={"full"}
+      pos={"absolute"}
+      bottom={-2}
+      left={"50%"}
+      transform={"translateX(-50%)"}
+      {...props}
+    />
+  );
+};
+
 export const DotIndicator = (props: IconProps) => {
   // Props
   const { children, ...restProps } = props;
