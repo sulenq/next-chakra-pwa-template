@@ -216,7 +216,7 @@ const TimePickerInput = (props: Props__TimePicker) => {
               </P>
             )}
 
-            <Icon color={"fg.subtle"}>
+            <Icon color={"fg.subtle"} mr={-1}>
               <IconClock stroke={1.5} />
             </Icon>
           </HStack>

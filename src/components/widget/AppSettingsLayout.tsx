@@ -158,7 +158,7 @@ export const AppSettingsLayout = (props: StackProps) => {
             <ItemContainer scrollY p={"6px"} pr={0}>
               <CContainer mb={2}>
                 <SearchInput
-                  inputProps={{ size: "sm", variant: "flushed", rounded: 0 }}
+                  inputProps={{ variant: "flushed", rounded: 0 }}
                   inputValue={search}
                   onChange={(inputValue) => {
                     setSearch(inputValue || "");

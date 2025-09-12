@@ -229,7 +229,7 @@ export const SelectInput = (props: Props__SelectInput) => {
               </P>
             )}
 
-            <Icon color={"fg.subtle"} flexShrink={0} boxSize={4} mr={"3px"}>
+            <Icon color={"fg.subtle"} flexShrink={0} boxSize={4} mr={"-2px"}>
               <IconCaretDownFilled stroke={1.5} />
             </Icon>
           </HStack>

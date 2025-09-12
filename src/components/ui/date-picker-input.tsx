@@ -453,7 +453,7 @@ export const DatePickerInput = (props: Props__DatePickerInput) => {
               </P>
             )}
 
-            <Icon color={"fg.subtle"} flexShrink={0}>
+            <Icon color={"fg.subtle"} flexShrink={0} mr={-1}>
               <IconCalendar stroke={1.5} />
             </Icon>
           </HStack>
