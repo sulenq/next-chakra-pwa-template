@@ -145,7 +145,7 @@ export const Toaster = () => {
 
               {toast.action && (
                 <Toast.ActionTrigger
-                  rounded={6}
+                  rounded={themeConfig.radii.component}
                   borderColor={"border.muted"}
                   cursor={"pointer"}
                   _hover={{
