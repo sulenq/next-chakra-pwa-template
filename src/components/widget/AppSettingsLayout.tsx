@@ -5,7 +5,7 @@ import { CContainer } from "@/components/ui/c-container";
 import { NavLink } from "@/components/ui/nav-link";
 import { P } from "@/components/ui/p";
 import SearchInput from "@/components/ui/search-input";
-import FeedbackNoData from "@/components/widget/FeedbackNoData";
+import FeedbackNotFound from "@/components/widget/FeedbackNotFound";
 import { LeftIndicator } from "@/components/widget/Indicator";
 import { ItemContainer } from "@/components/widget/ItemContainer";
 import { RouteContainer } from "@/components/widget/RouteContainer";
@@ -53,7 +53,7 @@ const SettingsNavsList = (props: any) => {
 
   return (
     <>
-      {isEmptyArray(resolvedList) && <FeedbackNoData />}
+      {isEmptyArray(resolvedList) && <FeedbackNotFound />}
 
       {!isEmptyArray(resolvedList) &&
         resolvedList.map((navItem, navItemIdx) => {
@@ -156,7 +156,7 @@ export const AppSettingsLayout = (props: StackProps) => {
             overflowY={"auto"}
           >
             <ItemContainer scrollY p={"6px"} pr={0}>
-              <CContainer mb={1} p={1}>
+              <CContainer mb={2}>
                 <SearchInput
                   inputProps={{ size: "sm", variant: "flushed", rounded: 0 }}
                   inputValue={search}

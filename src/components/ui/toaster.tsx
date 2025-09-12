@@ -21,7 +21,7 @@ import {
 import { useColorMode } from "./color-mode";
 import Spinner from "@/components/ui/spinner";
 
-const TOAST_PROPS = {
+const TOAST_PRESETS = {
   loading: {
     icon: <Spinner w={"14px"} h={"14px"} color={"fg.muted"} />,
     color: "current",
@@ -72,18 +72,18 @@ const ToastIcon = (props: any) => {
   const { colorMode } = useColorMode();
 
   // States
-  const toast = TOAST_PROPS[type as keyof typeof TOAST_PROPS];
+  const preset = TOAST_PRESETS[type as keyof typeof TOAST_PRESETS];
 
   return (
     <Center
-      bg={toast.bg[colorMode]}
+      bg={preset.bg[colorMode]}
       rounded={"full"}
       w={"32px"}
       h={"32px"}
       ml={"-2px"}
       mt={"-2px"}
     >
-      <Icon color={toast.color}>{toast.icon}</Icon>
+      <Icon color={preset.color}>{preset.icon}</Icon>
     </Center>
   );
 };
@@ -101,6 +101,9 @@ export const Toaster = () => {
     <Portal>
       <ChakraToaster toaster={toaster} insetInline={{ mdDown: "4" }}>
         {(toast) => {
+          const preset =
+            TOAST_PRESETS[toast.type as keyof typeof TOAST_PRESETS];
+
           return (
             <Toast.Root
               rounded={themeConfig?.radii?.container}
@@ -131,7 +134,9 @@ export const Toaster = () => {
 
               <Stack gap="1" flex="1" maxWidth="100%" ml={1}>
                 {toast.title && (
-                  <Toast.Title fontWeight={"medium"}>{toast.title}</Toast.Title>
+                  <Toast.Title fontWeight={"medium"} color={preset.color}>
+                    {toast.title}
+                  </Toast.Title>
                 )}
                 {toast.description && (
                   <Toast.Description>{toast.description}</Toast.Description>
