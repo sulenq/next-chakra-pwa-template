@@ -224,9 +224,8 @@ const Theme = () => {
   ];
   const gridColumns: Record<number, number> = {
     320: 3,
-    640: 5,
-    960: 10,
-    1200: 15,
+    720: 5,
+    1200: 10,
   };
   const cols = (() => {
     const width = settingsContainerDimensions.width;
@@ -278,6 +277,14 @@ const Theme = () => {
                 }}
                 pos={"relative"}
               >
+                {/* <P
+                  fontSize={"xs"}
+                  color={`${color.palette}.contrast`}
+                  textAlign={"center"}
+                >
+                  {color.palette}
+                </P> */}
+
                 {isActive && (
                   <DotIndicator
                     pos={"absolute"}
