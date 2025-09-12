@@ -179,9 +179,9 @@ const MobileLayout = (props: any) => {
         borderColor={"border.subtle"}
         overflowX={"auto"}
       >
-        {NAVS.map((navItem) => {
+        {NAVS.map((navItem, idx) => {
           return (
-            <>
+            <Fragment key={idx}>
               {navItem.list.map((nav) => {
                 const isMainNavActive = pathname.includes(nav.path);
 
@@ -278,7 +278,7 @@ const MobileLayout = (props: any) => {
                   </>
                 );
               })}
-            </>
+            </Fragment>
           );
         })}
 
