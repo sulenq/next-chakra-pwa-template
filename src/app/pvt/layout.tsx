@@ -185,7 +185,7 @@ const MobileLayout = (props: any) => {
                           positioning={{
                             placement: "top",
                             offset: {
-                              mainAxis: 24,
+                              mainAxis: 20,
                             },
                           }}
                         >
@@ -295,7 +295,7 @@ const MobileLayout = (props: any) => {
           positioning={{
             placement: "top",
             offset: {
-              mainAxis: 24,
+              mainAxis: 20,
             },
           }}
         >

@@ -140,7 +140,7 @@ const DisclosureHeader = ({ children, ...props }: DisclosureHeaderProps) => {
 
   return iss ? (
     <DrawerHeader
-      px={5}
+      px={4}
       pt={2}
       pb={4}
       bg={"body"}
@@ -172,7 +172,7 @@ const DisclosureBody = ({ children, ...props }: DisclosureBodyProps) => {
     <DrawerBody
       pl={4}
       pr={`calc(16px - ${FIREFOX_SCROLL_Y_CLASS_PR_PREFIX})`}
-      py={0}
+      py={2}
       className={props.className || "scrollY"}
       bg={"body"}
       {...(props as DrawerHeaderProps)}
@@ -205,7 +205,7 @@ const DisclosureFooter = ({ children, ...props }: DisclosureFooterProps) => {
       pt={5}
       pb={6}
       bg={"body"}
-      borderTop={"1px solid"}
+      // borderTop={"1px solid"}
       borderColor={"border.subtle"}
       {...(props as DrawerHeaderProps)}
     >
