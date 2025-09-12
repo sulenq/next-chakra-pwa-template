@@ -1,6 +1,9 @@
+import { FIREFOX_SCROLL_Y_CLASS_PR_PREFIX_NUMBER } from "@/constants/sizes";
 import { useEffect } from "react";
 
-export function useFirefoxPaddingY(additionalPx: number = 6) {
+export function useFirefoxPaddingY(
+  additionalPx: string = FIREFOX_SCROLL_Y_CLASS_PR_PREFIX_NUMBER
+) {
   // px
   useEffect(() => {
     if (!navigator.userAgent.toLowerCase().includes("firefox")) return;
@@ -13,7 +16,7 @@ export function useFirefoxPaddingY(additionalPx: number = 6) {
         // set only if not already added
         const alreadyAdded = el.dataset.firefoxAdded === "true";
         if (!alreadyAdded) {
-          el.style.paddingRight = `${currentPadding + additionalPx}px`;
+          el.style.paddingRight = `${currentPadding + additionalPx}`;
           el.dataset.firefoxAdded = "true"; // mark as added
         }
       });

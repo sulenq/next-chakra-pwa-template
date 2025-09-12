@@ -37,7 +37,7 @@ export default function ClientOnlyApp(props: Props) {
   const ADM = useADM((s) => s.ADM);
 
   // Hooks
-  useFirefoxPaddingY(6);
+  useFirefoxPaddingY();
 
   // States
   const [mounted, setMounted] = useState(mountedGlobal);

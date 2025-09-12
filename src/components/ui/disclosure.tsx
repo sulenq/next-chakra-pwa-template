@@ -22,7 +22,10 @@ import {
   DrawerRoot,
   DrawerTrigger,
 } from "@/components/ui/drawer";
-import { SM_SCREEN_W_NUMBER } from "@/constants/sizes";
+import {
+  FIREFOX_SCROLL_Y_CLASS_PR_PREFIX_NUMBER,
+  SM_SCREEN_W_NUMBER,
+} from "@/constants/sizes";
 import { useThemeConfig } from "@/context/useThemeConfig";
 import { useIsSmScreenWidth } from "@/hooks/useIsSmScreenWidth";
 import useScreen from "@/hooks/useScreen";
@@ -168,7 +171,7 @@ const DisclosureBody = ({ children, ...props }: DisclosureBodyProps) => {
   return iss ? (
     <DrawerBody
       pl={4}
-      pr={"10px"}
+      pr={`calc(16px - ${FIREFOX_SCROLL_Y_CLASS_PR_PREFIX_NUMBER})`}
       py={0}
       className={props.className || "scrollY"}
       bg={"body"}
@@ -179,7 +182,7 @@ const DisclosureBody = ({ children, ...props }: DisclosureBodyProps) => {
   ) : (
     <DialogBody
       pl={4}
-      pr={"10px"}
+      pr={`calc(16px - ${FIREFOX_SCROLL_Y_CLASS_PR_PREFIX_NUMBER})`}
       py={4}
       className={props.className || "scrollY"}
       bg={"body"}
