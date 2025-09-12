@@ -3,24 +3,27 @@ import { Props__Logo } from "@/constants/props";
 import { useThemeConfig } from "@/context/useThemeConfig";
 
 const Logo = (props: Props__Logo) => {
+  // Props
+  const { color, size = 24 } = props;
+
   // Contexts
   const { colorMode } = useColorMode();
   const { themeConfig } = useThemeConfig();
-  const {
-    color = themeConfig.colorPalette === "gray"
+
+  // States
+  const resolvedColor =
+    color || themeConfig.colorPalette === "gray"
       ? colorMode === "dark"
         ? "#fff"
         : "#1b1b1b"
-      : themeConfig?.primaryColorHex,
-    size = 24,
-  } = props;
+      : themeConfig?.primaryColorHex;
 
   return (
     <svg
       width={size}
       height={size}
       viewBox="0 0 88.74 88.74"
-      fill={color}
+      fill={resolvedColor}
       xmlns="http://www.w3.org/2000/svg"
       style={{ flexShrink: 0 }}
     >
