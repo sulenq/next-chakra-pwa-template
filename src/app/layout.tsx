@@ -3,7 +3,7 @@ import { Toaster } from "@/components/ui/toaster";
 import "./globals.css";
 import ClientOnlyApp from "@/components/widget/ClientOnlyApp";
 import { Metadata } from "next";
-import { GeistSans } from "geist/font/sans";
+import { Figtree } from "next/font/google";
 
 interface Props {
   children: React.ReactNode;
@@ -14,12 +14,17 @@ export const metadata: Metadata = {
   description: "Template that using Next.js, Chakra UI, and PWA by Exium.id",
 };
 
+const figtree = Figtree({
+  subsets: ["latin"],
+  display: "swap",
+});
+
 const RootLayout = (props: Props) => {
   // Props
   const { children } = props;
 
   return (
-    <html suppressHydrationWarning className={GeistSans.className}>
+    <html suppressHydrationWarning className={figtree.className}>
       <body>
         <Provider>
           <Toaster />
@@ -29,4 +34,5 @@ const RootLayout = (props: Props) => {
     </html>
   );
 };
+
 export default RootLayout;
