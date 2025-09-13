@@ -848,7 +848,7 @@ const DesktopLayout = (props: any) => {
                   )}
 
                   <P
-                    fontSize={16}
+                    fontSize={"lg"}
                     fontWeight={"semibold"}
                     ml={idx === 0 ? 1 : 0}
                     lineClamp={1}

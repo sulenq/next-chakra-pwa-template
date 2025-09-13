@@ -297,7 +297,7 @@ const Theme = () => {
             );
           })}
         </SimpleGrid>
-        {/* Example */}bun
+        {/* Example */}
         <HStack wrap={"wrap"} gapY={4}>
           <Btn
             flex={"1 1 100px"}

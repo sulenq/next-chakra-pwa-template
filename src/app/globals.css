@@ -145,14 +145,15 @@ td {
   border-bottom: none !important;
 }
 
-/* Typgography */
+/* Tyhography */
 /* .num {
   font-family: "Roboto Mono", sans-serif !important;
 } */
 a,
-p {
+p,
+button {
   text-decoration: none !important;
-  font-size: 0.875rem;
+  font-size: 1rem;
   /* letter-spacing: 0.25px; */
 }
 h1,
@@ -173,11 +174,6 @@ textarea {
 input::placeholder,
 textarea::placeholder {
   color: #96969691;
-}
-
-/* Button */
-button {
-  font-size: 0.875rem !important;
 }
 
 /* Clicky */

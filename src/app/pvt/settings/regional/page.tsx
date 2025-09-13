@@ -60,7 +60,7 @@ const Language = () => {
       </ItemHeaderContainer>
 
       <CContainer gap={4} py={2}>
-        <SimpleGrid px={2} columns={[1, 2]}>
+        <HStack wrap={"wrap"} px={2}>
           {LANGUAGES.map((item, i) => {
             const isActive = lang === item.key;
 
@@ -68,10 +68,11 @@ const Language = () => {
               <Btn
                 key={i}
                 clicky={false}
+                flex={"1 1 180px"}
+                px={[3, null, 3]}
                 rounded={themeConfig.radii.component}
                 variant={"ghost"}
                 justifyContent={"start"}
-                px={[3, null, 3]}
                 onClick={() => {
                   setLang(item.key as Type__LanguageOptions);
                 }}
@@ -88,7 +89,7 @@ const Language = () => {
               </Btn>
             );
           })}
-        </SimpleGrid>
+        </HStack>
       </CContainer>
     </ItemContainer>
   );
