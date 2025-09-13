@@ -168,7 +168,7 @@ const Timezone = () => {
         <CContainer
           className={"scrollY"}
           h={"200px"}
-          pl={2}
+          p={2}
           pr={`calc(8px -${FIREFOX_SCROLL_Y_CLASS_PR_PREFIX})`}
         >
           {isEmptyArray(resolvedTimezones) && <FeedbackNoData />}
