@@ -3,6 +3,6 @@
 import { CContainer } from "@/components/ui/c-container";
 
 const ProfileRoute = () => {
-  return <CContainer>Admin Profile</CContainer>;
+  return <CContainer>My Profile</CContainer>;
 };
 export default ProfileRoute;

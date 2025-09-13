@@ -2,6 +2,7 @@
 
 import { Btn } from "@/components/ui/btn";
 import { CContainer } from "@/components/ui/c-container";
+import { HelperText } from "@/components/ui/helper-text";
 import { NavLink } from "@/components/ui/nav-link";
 import { P } from "@/components/ui/p";
 import SearchInput from "@/components/ui/search-input";
@@ -9,6 +10,7 @@ import FeedbackNotFound from "@/components/widget/FeedbackNotFound";
 import { LeftIndicator } from "@/components/widget/Indicator";
 import { ItemContainer } from "@/components/widget/ItemContainer";
 import { RouteContainer } from "@/components/widget/RouteContainer";
+import { APP } from "@/constants/_meta";
 import { OTHER_NAVS, PRIVATE_ROUTE_INDEX } from "@/constants/navs";
 import { Props__Layout } from "@/constants/props";
 import { FIREFOX_SCROLL_Y_CLASS_PR_PREFIX } from "@/constants/sizes";
@@ -16,6 +18,7 @@ import useLang from "@/context/useLang";
 import { useSettingsRouteContainer } from "@/context/useSettingsRouteContainer";
 import { useContainerDimension } from "@/hooks/useContainerDimension";
 import { isEmptyArray } from "@/utils/array";
+import { formatAbsDate } from "@/utils/formatter";
 import { pluckString } from "@/utils/string";
 import { HStack, Icon } from "@chakra-ui/react";
 import { usePathname } from "next/navigation";
@@ -166,6 +169,17 @@ const AppSettingsLayout = (props: Props__Layout) => {
 
               <SettingsNavsList search={search} />
             </ItemContainer>
+
+            <HStack justify={"space-between"} mt={"auto"}>
+              <HelperText>v{APP.version}</HelperText>
+
+              <HelperText>
+                {`Last updated: 
+                ${formatAbsDate(APP.lastUpdated, {
+                  variant: "basic",
+                })}`}
+              </HelperText>
+            </HStack>
           </CContainer>
         )}
 
