@@ -153,7 +153,7 @@ const AppSettingsLayout = (props: Props__Layout) => {
             overflowY={"auto"}
           >
             <ItemContainer scrollY p={"6px"} pr={0}>
-              <CContainer mb={[2, null, 1]}>
+              <CContainer mb={[2, null, 1]} mt={"2px"}>
                 <SearchInput
                   inputProps={{ variant: "flushed", rounded: 0 }}
                   inputValue={search}
