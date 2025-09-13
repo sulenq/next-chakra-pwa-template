@@ -147,6 +147,18 @@ const customConfig = defineConfig({
           800: { value: "#075267" },
           900: { value: "#043C55" },
         },
+        powderBlue: {
+          50: { value: "#f3f7fb" },
+          100: { value: "#e2edf7" },
+          200: { value: "#c8dbef" },
+          300: { value: "#a9c6e2" },
+          400: { value: "#8fb2d4" },
+          500: { value: "#769cc2" },
+          600: { value: "#5f82a7" },
+          700: { value: "#4b6888" },
+          800: { value: "#394f69" },
+          900: { value: "#263447" },
+        },
         sky: {
           50: { value: "#F0F9FF" },
           100: { value: "#E0F2FE" },
@@ -1070,6 +1082,45 @@ const customConfig = defineConfig({
             value: {
               base: "{colors.kemenkes.600}",
               _dark: "{colors.kemenkes.700}",
+            },
+          },
+        },
+        powderBlue: {
+          solid: {
+            value: {
+              base: "{colors.powderBlue.500}",
+              _dark: "{colors.powderBlue.400}",
+            },
+          },
+          contrast: {
+            value: {
+              base: "{colors.powderBlue.100}",
+              _dark: "{colors.powderBlue.900}",
+            },
+          },
+          fg: {
+            value: {
+              base: "{colors.powderBlue.500}",
+              _dark: "{colors.powderBlue.400}",
+            },
+          },
+          muted: {
+            value: {
+              base: "{colors.powderBlue.500}",
+              _dark: "{colors.powderBlue.500}",
+            },
+          },
+          subtle: {
+            value: {
+              base: "{colors.powderBlue.100}",
+              _dark: "{colors.powderBlue.900}",
+            },
+          },
+          emphasized: { value: "{colors.powderBlue.300}" },
+          focusRing: {
+            value: {
+              base: "{colors.powderBlue.500}",
+              _dark: "{colors.powderBlue.900}",
             },
           },
         },

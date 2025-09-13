@@ -342,7 +342,6 @@ const Theme = () => {
     { palette: "salmon", primaryHex: "#FF6242" },
     { palette: "flamingoPink", primaryHex: "#FF478B" },
     { palette: "bubblegumPink", primaryHex: "#FF4ABB" },
-    { palette: "pink", primaryHex: "#E91E63" },
 
     // Oranges & Yellows
     { palette: "orange", primaryHex: "#FF8E62" },
@@ -359,6 +358,7 @@ const Theme = () => {
     // Cyans & Blues
     { palette: "kemenkes", primaryHex: "#16B3AC" },
     { palette: "cyan", primaryHex: "#00BCD4" },
+    { palette: "powderBlue", primaryHex: "#769cc2" },
     { palette: "sky", primaryHex: "#0EA5E9" },
     { palette: "blue", primaryHex: "#3a72ed" },
     { palette: "sapphire", primaryHex: "#1939B7" },
@@ -511,7 +511,7 @@ const ExampleUI = () => {
 
         <Checkbox
           checked={checked}
-          onChange={(e: any) => setChecked(e.target.checked)}
+          onChange={(e: any) => setChecked(!e.target.checked)}
           colorPalette={themeConfig.colorPalette}
           variant={"solid"}
           size={"lg"}
