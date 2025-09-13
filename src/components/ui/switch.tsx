@@ -19,7 +19,7 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(function Switch(
     <ChakraSwitch.Root ref={rootRef} {...rest}>
       <ChakraSwitch.HiddenInput ref={ref} {...inputProps} />
       <ChakraSwitch.Control>
-        <ChakraSwitch.Thumb>
+        <ChakraSwitch.Thumb boxShadow={"none !important"}>
           {thumbLabel && (
             <ChakraSwitch.ThumbIndicator fallback={thumbLabel?.off}>
               {thumbLabel?.on}

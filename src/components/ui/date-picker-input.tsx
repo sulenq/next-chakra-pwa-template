@@ -280,6 +280,7 @@ const SelectedDateList = (props: Props__SelectedDateList) => {
         borderColor={"border.muted"}
         bg={"bg.muted"}
         p={2}
+        h={"40px"}
         rounded={6}
         cursor={"pointer"}
         onClick={onOpen}

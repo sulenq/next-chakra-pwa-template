@@ -128,6 +128,7 @@ const translations = {
     "title": "Lokasi tidak didukung",
     "description": "Perangkat Anda tidak mendukung fitur lokasi."
   },
+  "example_UI": "Contoh UI",
   "february": "Februari",
   "friday": "Jumat",
   "get": "Dapatkan",

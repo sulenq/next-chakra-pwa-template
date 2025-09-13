@@ -71,6 +71,10 @@ export const settings_navs = {
 };
 
 // Semantic UI
+export const example_UI = {
+  id: "Contoh UI",
+  en: "Example UI",
+};
 export const profile = {
   id: "Profil",
   en: "Profile",

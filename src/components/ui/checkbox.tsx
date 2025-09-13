@@ -15,13 +15,20 @@ export interface CheckboxProps extends ChakraCheckbox.RootProps {
 export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
   function Checkbox(props, ref) {
     // Props
-    const { icon, children, inputProps, rootRef, checked, subtle, ...rest } =
-      props;
+    const {
+      icon,
+      children,
+      inputProps,
+      rootRef,
+      checked,
+      subtle,
+      ...restProps
+    } = props;
 
     // Contexts
     const { themeConfig } = useThemeConfig();
 
-    // States
+    // Statesyawe
     const isRoundedZero = themeConfig.radii.component === "0px";
 
     return (
@@ -29,28 +36,33 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
         ref={rootRef}
         cursor={"pointer"}
         colorPalette={themeConfig.colorPalette}
-        {...rest}
+        {...restProps}
       >
         <ChakraCheckbox.HiddenInput ref={ref} {...inputProps} />
 
         <ChakraCheckbox.Control
-          rounded={props?.rounded || isRoundedZero ? "0px" : "sm"}
-          borderColor={
-            rest.borderColor || checked
-              ? "transparent"
-              : subtle
-              ? "border.muted"
-              : "d3"
-          }
           bg={
-            rest.bg || checked
+            restProps.bg || checked
               ? themeConfig.primaryColor
               : subtle
               ? "bg.muted"
               : "transparent"
           }
+          rounded={props?.rounded || isRoundedZero ? "0px" : "sm"}
+          borderColor={
+            restProps.borderColor || checked
+              ? "transparent"
+              : subtle
+              ? "border.muted"
+              : "d3"
+          }
+          cursor={"pointer"}
         >
-          {checked && <Icon boxSize={4}>{icon || <IconX />}</Icon>}
+          {checked && (
+            <Icon boxSize={4} color={`${themeConfig.colorPalette}.contrast`}>
+              {icon || <IconX />}
+            </Icon>
+          )}
         </ChakraCheckbox.Control>
 
         {children != null && (
