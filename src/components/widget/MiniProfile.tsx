@@ -1,15 +1,16 @@
 "use client";
 
-import { Avatar } from "@/components/ui/avatar";
 import { Btn } from "@/components/ui/btn";
 import { CContainer } from "@/components/ui/c-container";
 import { Divider } from "@/components/ui/divider";
+import { Img } from "@/components/ui/img";
 import { NavLink } from "@/components/ui/nav-link";
 import { P } from "@/components/ui/p";
 import { DotIndicator } from "@/components/widget/Indicator";
 import useConfirmationDisclosure from "@/context/disclosure/useConfirmationDisclosure";
 import useAuthMiddleware from "@/context/useAuthMiddleware";
 import useLang from "@/context/useLang";
+import { useThemeConfig } from "@/context/useThemeConfig";
 import useRequest from "@/hooks/useRequest";
 import { getUserData } from "@/utils/auth";
 import { back, removeStorage } from "@/utils/client";
@@ -20,6 +21,7 @@ import { usePathname, useRouter } from "next/navigation";
 export const MiniProfile = (props: StackProps) => {
   // Contexts
   const { l } = useLang();
+  const { themeConfig } = useThemeConfig();
   const removeAuth = useAuthMiddleware((s) => s.removeAuth);
 
   // Hooks
@@ -69,17 +71,25 @@ export const MiniProfile = (props: StackProps) => {
   }
 
   return (
-    <CContainer {...props}>
-      <CContainer align={"center"} gap={1} p={4} mb={2}>
-        <Avatar
-          src={user?.photoProfile?.file_url}
-          name={user?.name}
-          size={"2xl"}
-          mb={3}
-        />
+    <CContainer
+      rounded={themeConfig.radii.container}
+      overflow={"clip"}
+      {...props}
+    >
+      <CContainer>
+        <CContainer pos={"relative"} aspectRatio={1}>
+          <Img src={"/dummy_avatar.jpg"} alt="avatar" fill />
+        </CContainer>
 
-        <P fontWeight={"semibold"}>{user?.name || "Signed out"}</P>
-        <P color={"fg.subtle"}>{user?.email || user?.username || "-"}</P>
+        <CContainer
+          bg={"body"}
+          p={4}
+          // borderTop={"1px solid"}
+          borderColor={"border.muted"}
+        >
+          <P fontWeight={"semibold"}>{user?.name || "Signed out"}</P>
+          <P color={"fg.subtle"}>{user?.email || user?.username || "-"}</P>
+        </CContainer>
       </CContainer>
 
       <Divider />

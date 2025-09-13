@@ -25,6 +25,12 @@ import {
   Type__DisclosureSizes,
   Type__Period,
 } from "./types";
+import { ImageProps } from "next/image";
+
+export interface Props__Img extends ImageProps {
+  objectFit?: ObjectFit;
+  objectPos?: string;
+}
 
 export interface Props__Layout {
   children: React.ReactNode;

@@ -848,7 +848,7 @@ const DesktopLayout = (props: any) => {
               </HStack>
             </PopoverTrigger>
 
-            <PopoverContent w={"200px"} zIndex={2}>
+            <PopoverContent w={"240px"} zIndex={2}>
               <MiniProfile />
             </PopoverContent>
           </PopoverRoot>

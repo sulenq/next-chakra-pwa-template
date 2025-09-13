@@ -1,14 +1,13 @@
 "use client";
 
 import { IMAGES_PATH } from "@/constants/paths";
-import { Image, ImageProps } from "@chakra-ui/react";
+import { Props__Img } from "@/constants/props";
+import Image from "next/image";
 import { useState } from "react";
 
-interface Props extends ImageProps {}
-
-export const Img = (props: Props) => {
+export const Img = (props: Props__Img) => {
   // Props
-  const { src, onError, ...rest } = props;
+  const { src, onError, objectFit, objectPos, ...restProps } = props;
 
   // States
   const fallbackSrc = `${IMAGES_PATH}/no_img.jpeg`;
@@ -21,5 +20,15 @@ export const Img = (props: Props) => {
     if (onError) onError(e);
   };
 
-  return <Image {...rest} src={currentSrc} onError={handleError} />;
+  return (
+    <Image
+      src={currentSrc}
+      onError={handleError}
+      style={{
+        objectFit: objectFit ?? "cover",
+        objectPosition: objectPos ?? "top",
+      }}
+      {...restProps}
+    />
+  );
 };

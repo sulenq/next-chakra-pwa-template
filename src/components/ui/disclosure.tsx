@@ -145,7 +145,7 @@ const DisclosureHeader = ({ children, ...props }: DisclosureHeaderProps) => {
       pb={4}
       bg={"body"}
       // borderBottom={"1px solid"}
-      borderColor={children ? "border.subtle" : ""}
+      borderColor={children ? "d1" : ""}
       {...(props as DrawerHeaderProps)}
     >
       {children}
@@ -154,7 +154,7 @@ const DisclosureHeader = ({ children, ...props }: DisclosureHeaderProps) => {
     <DialogHeader
       p={3}
       borderBottom={"1px solid"}
-      borderColor={children ? "border.subtle" : ""}
+      borderColor={children ? "d1" : ""}
       {...(props as DialogHeaderProps)}
     >
       {children}

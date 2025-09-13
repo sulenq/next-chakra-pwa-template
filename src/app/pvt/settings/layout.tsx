@@ -147,8 +147,9 @@ const AppSettingsLayout = (props: Props__Layout) => {
           <CContainer
             flexShrink={0}
             w={isSmContainer ? "full" : "250px"}
-            h={"fit"}
+            h={"full"}
             maxH={"full"}
+            gap={4}
             pb={4}
             overflowY={"auto"}
           >
