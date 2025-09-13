@@ -531,7 +531,7 @@ const DesktopLayout = (props: any) => {
                               content={pluckString(l, nav.labelKey)}
                             >
                               <AccordionItemTrigger
-                                h={"36px"}
+                                h={"40px"}
                                 px={"8.5px"}
                                 _hover={{
                                   bg: "gray.subtle",
