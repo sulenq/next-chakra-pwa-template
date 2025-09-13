@@ -101,6 +101,7 @@ const MobileNavLink = (props: Props__NavLink) => {
     </NavLink>
   );
 };
+
 const MobileLayout = (props: any) => {
   // Props
   const { children, ...restProps } = props;
@@ -128,48 +129,70 @@ const MobileLayout = (props: any) => {
       {/* Content */}
       <CContainer flex={1} bg={BG_CONTENT_CONTAINER} overflowY={"auto"}>
         {/* Content header */}
-        <HStack gap={4} h={"52px"} p={4} justify={"space-between"}>
-          <HStack>
-            {backPath && (
-              <BackButton iconButton clicky={false} backPath={backPath} />
-            )}
+        <CContainer>
+          <HStack
+            w={"full"}
+            justify={"space-between"}
+            py={2}
+            px={4}
+            borderBottom={"1px solid"}
+            borderColor={"border.subtle"}
+          >
+            <HStack>
+              <Logo size={15} />
+              <P fontWeight={"semibold"}>{APP.name}</P>
+            </HStack>
 
-            {resolvedActiveNavs.map((nav, idx) => {
-              return (
-                <HStack key={idx}>
-                  {idx !== 0 && (
-                    <>
-                      {backPath && (
-                        <Icon boxSize={5} color={"fg.subtle"}>
-                          <IconSlash stroke={1.5} />
-                        </Icon>
-                      )}
+            <HStack>
+              <Clock />
 
-                      {!backPath && <DotIndicator color={"d4"} />}
-                    </>
-                  )}
-
-                  <P
-                    fontSize={"lg"}
-                    fontWeight={"semibold"}
-                    ml={idx === 0 ? 1 : 0}
-                    lineClamp={1}
-                  >
-                    {pluckString(l, nav.labelKey)}
-                  </P>
-                </HStack>
-              );
-            })}
-          </HStack>
-
-          <HStack flexShrink={0} gap={1}>
-            <HStack mx={1}>
-              {/* <Clock /> */}
-
-              {/* <Today dateVariant="basic" /> */}
+              <Today dateVariant="basic" />
             </HStack>
           </HStack>
-        </HStack>
+
+          <HStack gap={4} h={"52px"} p={4} justify={"space-between"}>
+            <HStack>
+              {backPath && (
+                <BackButton iconButton clicky={false} backPath={backPath} />
+              )}
+
+              {resolvedActiveNavs.map((nav, idx) => {
+                return (
+                  <HStack key={idx}>
+                    {idx !== 0 && (
+                      <>
+                        {backPath && (
+                          <Icon boxSize={5} color={"fg.subtle"}>
+                            <IconSlash stroke={1.5} />
+                          </Icon>
+                        )}
+
+                        {!backPath && <DotIndicator color={"d4"} />}
+                      </>
+                    )}
+
+                    <P
+                      fontSize={"lg"}
+                      fontWeight={"semibold"}
+                      ml={idx === 0 ? 1 : 0}
+                      lineClamp={1}
+                    >
+                      {pluckString(l, nav.labelKey)}
+                    </P>
+                  </HStack>
+                );
+              })}
+            </HStack>
+
+            <HStack flexShrink={0} gap={1}>
+              <HStack mx={1}>
+                {/* <Clock /> */}
+
+                {/* <Today dateVariant="basic" /> */}
+              </HStack>
+            </HStack>
+          </HStack>
+        </CContainer>
 
         {children}
       </CContainer>
