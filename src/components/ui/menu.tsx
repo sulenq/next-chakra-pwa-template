@@ -124,7 +124,7 @@ export const MenuItemGroup = forwardRef<
     <ChakraMenu.ItemGroup ref={ref} {...restProps}>
       {title && (
         <ChakraMenu.ItemGroupLabel
-          fontSize={"xs"}
+          fontSize={"sm"}
           color={"fg.subtle"}
           userSelect="none"
           pl={3}

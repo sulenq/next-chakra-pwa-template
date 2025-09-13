@@ -279,7 +279,7 @@ const translations = {
       "index": "Main",
       "display": "Display",
       "regional": "Regional",
-      "permissions": "App Permissions"
+      "permissions": "App permissions"
     },
     "others": {
       "index": "Others",

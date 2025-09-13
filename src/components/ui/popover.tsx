@@ -1,6 +1,10 @@
 "use client";
 
-import { Popover as ChakraPopover, Portal } from "@chakra-ui/react";
+import {
+  Popover as ChakraPopover,
+  PopoverRootProps,
+  Portal,
+} from "@chakra-ui/react";
 import { forwardRef } from "react";
 import { CloseButton } from "./close-button";
 import { useThemeConfig } from "@/context/useThemeConfig";
@@ -10,11 +14,21 @@ interface PopoverContentProps extends ChakraPopover.ContentProps {
   portalRef?: React.RefObject<HTMLElement | null>;
 }
 
+export const PopoverRoot = (props: PopoverRootProps) => {
+  const { children, ...restProps } = props;
+
+  return (
+    <ChakraPopover.Root autoFocus={false} {...restProps}>
+      {children}
+    </ChakraPopover.Root>
+  );
+};
+
 export const PopoverContent = forwardRef<HTMLDivElement, PopoverContentProps>(
   function PopoverContent(props, ref) {
     // Contexts
     const { themeConfig } = useThemeConfig();
-    const { portalled = true, portalRef, ...rest } = props;
+    const { portalled = true, portalRef, ...restProps } = props;
 
     return (
       <Portal disabled={!portalled} container={portalRef}>
@@ -28,7 +42,7 @@ export const PopoverContent = forwardRef<HTMLDivElement, PopoverContentProps>(
             rounded={themeConfig.radii.container}
             shadow={"none"}
             className="ss"
-            {...rest}
+            {...restProps}
           />
         </ChakraPopover.Positioner>
       </Portal>
@@ -75,6 +89,5 @@ export const PopoverTitle = ChakraPopover.Title;
 export const PopoverDescription = ChakraPopover.Description;
 export const PopoverFooter = ChakraPopover.Footer;
 export const PopoverHeader = ChakraPopover.Header;
-export const PopoverRoot = ChakraPopover.Root;
 export const PopoverBody = ChakraPopover.Body;
 export const PopoverTrigger = ChakraPopover.Trigger;

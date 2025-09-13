@@ -46,8 +46,8 @@ export const settings_navs = {
       en: "Regional",
     },
     permissions: {
-      id: "Izin Aplikasi",
-      en: "App Permissions",
+      id: "Izin aplikasi",
+      en: "App permissions",
     },
   },
   others: {

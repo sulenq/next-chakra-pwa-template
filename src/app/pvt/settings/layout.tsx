@@ -63,7 +63,7 @@ const SettingsNavsList = (props: any) => {
             <CContainer key={navItemIdx} gap={1}>
               {navItem.groupLabelKey && (
                 <P
-                  fontSize={"xs"}
+                  fontSize={"sm"}
                   fontWeight={"semibold"}
                   color={"fg.subtle"}
                   ml={"10px"}
@@ -154,7 +154,7 @@ const AppSettingsLayout = (props: Props__Layout) => {
             overflowY={"auto"}
           >
             <ItemContainer scrollY p={"6px"} pr={0}>
-              <CContainer mb={[2, null, 1]} mt={"2px"}>
+              <CContainer mb={[2, null, 1]}>
                 <SearchInput
                   inputProps={{ variant: "flushed", rounded: 0 }}
                   inputValue={search}

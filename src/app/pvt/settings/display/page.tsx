@@ -425,7 +425,7 @@ const Theme = () => {
                 pos={"relative"}
               >
                 {/* <P
-                  fontSize={"xs"}
+                  fontSize={"sm"}
                   color={`${color.palette}.contrast`}
                   textAlign={"center"}
                 >

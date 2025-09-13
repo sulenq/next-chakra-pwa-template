@@ -7,6 +7,7 @@ import { Img } from "@/components/ui/img";
 import { NavLink } from "@/components/ui/nav-link";
 import { P } from "@/components/ui/p";
 import { DotIndicator } from "@/components/widget/Indicator";
+import { PRIVATE_ROUTE_INDEX } from "@/constants/navs";
 import useConfirmationDisclosure from "@/context/disclosure/useConfirmationDisclosure";
 import useAuthMiddleware from "@/context/useAuthMiddleware";
 import useLang from "@/context/useLang";
@@ -95,7 +96,7 @@ export const MiniProfile = (props: StackProps) => {
       <Divider />
 
       <CContainer gap={1} p={"6px"}>
-        <NavLink to={"/pvt/profile"}>
+        <NavLink to={`${PRIVATE_ROUTE_INDEX}/settings/profile`}>
           <Btn
             clicky={false}
             px={2}

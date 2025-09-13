@@ -4,14 +4,12 @@ import { Avatar } from "@/components/ui/avatar";
 import { Btn } from "@/components/ui/btn";
 import { CContainer } from "@/components/ui/c-container";
 import { ColorModeButton } from "@/components/ui/color-mode";
-import { Img } from "@/components/ui/img";
 import { LangMenu } from "@/components/ui/lang-menu";
 import { NavLink } from "@/components/ui/nav-link";
 import { P } from "@/components/ui/p";
 import ExiumWatermark from "@/components/widget/ExiumWatermark";
+import Logo from "@/components/widget/Logo";
 import SigninForm from "@/components/widget/SigninForm";
-import { APP } from "@/constants/_meta";
-import { SVGS_PATH } from "@/constants/paths";
 import useAuthMiddleware from "@/context/useAuthMiddleware";
 import useLang from "@/context/useLang";
 import { useThemeConfig } from "@/context/useThemeConfig";
@@ -94,13 +92,7 @@ const IndexRoute = () => {
           display={["none", null, "flex"]}
           bg={themeConfig.primaryColor}
         >
-          <Img
-            alt={APP.name}
-            src={`${SVGS_PATH}/logo_light.svg`}
-            w={"full"}
-            maxW={"120px"}
-            m={"auto"}
-          />
+          <Logo color="white" />
         </CContainer>
 
         <CContainer h={"full"} p={4}>

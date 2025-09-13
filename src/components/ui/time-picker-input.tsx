@@ -462,12 +462,12 @@ const TimePickerInput = (props: Props__TimePicker) => {
               >
                 <P
                   color={"fg.subtle"}
-                  fontSize={"xs"}
+                  fontSize={"sm"}
                   lineHeight={1}
                 >{`${userTz.key}`}</P>
                 <P
                   color={"fg.subtle"}
-                  fontSize={"xs"}
+                  fontSize={"sm"}
                   lineHeight={1}
                 >{`${userTz.formattedOffset}`}</P>
               </Stack>

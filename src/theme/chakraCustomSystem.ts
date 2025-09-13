@@ -1,5 +1,5 @@
 import { SM_SCREEN_W_NUMBER } from "@/constants/sizes";
-import { createSystem, defineConfig, defaultConfig } from "@chakra-ui/react";
+import { createSystem, defaultConfig, defineConfig } from "@chakra-ui/react";
 
 const customConfig = defineConfig({
   conditions: {
@@ -148,16 +148,16 @@ const customConfig = defineConfig({
           900: { value: "#043C55" },
         },
         powderBlue: {
-          50: { value: "#f3f7fb" },
-          100: { value: "#e2edf7" },
-          200: { value: "#c8dbef" },
-          300: { value: "#a9c6e2" },
-          400: { value: "#8fb2d4" },
-          500: { value: "#769cc2" },
-          600: { value: "#5f82a7" },
-          700: { value: "#4b6888" },
-          800: { value: "#394f69" },
-          900: { value: "#263447" },
+          50: { value: "#f0f8ff" },
+          100: { value: "#dceefc" },
+          200: { value: "#c1def7" },
+          300: { value: "#9ecaf0" },
+          400: { value: "#7fb4e6" },
+          500: { value: "#649fd9" },
+          600: { value: "#4f86bf" },
+          700: { value: "#3f6ba1" },
+          800: { value: "#325382" },
+          900: { value: "#223758" },
         },
         sky: {
           50: { value: "#F0F9FF" },
@@ -316,6 +316,12 @@ const customConfig = defineConfig({
           800: { value: "#0C1A5C" },
           900: { value: "#07103D" },
         },
+      },
+      fontSizes: {
+        xs: { value: "0.625rem" },
+        sm: { value: "0.75rem" },
+        md: { value: "0.875rem" },
+        lg: { value: "1rem" },
       },
     },
     semanticTokens: {

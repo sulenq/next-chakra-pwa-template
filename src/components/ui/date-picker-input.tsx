@@ -497,12 +497,12 @@ export const DatePickerInput = (props: Props__DatePickerInput) => {
               >
                 <P
                   color={"fg.subtle"}
-                  fontSize={"xs"}
+                  fontSize={"sm"}
                   lineHeight={1}
                 >{`${userTz.key}`}</P>
                 <P
                   color={"fg.subtle"}
-                  fontSize={"xs"}
+                  fontSize={"sm"}
                   lineHeight={1}
                 >{`${userTz.formattedOffset}`}</P>
               </Stack>

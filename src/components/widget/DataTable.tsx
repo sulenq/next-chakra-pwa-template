@@ -79,7 +79,7 @@ const BatchOptions = (props: Props__BatchOptions) => {
 
       <MenuContent portalRef={tableContainerRef} zIndex={10} minW={"140px"}>
         <CContainer px={3} py={1}>
-          <P fontSize={"xs"} opacity={0.5} fontWeight={500}>
+          <P fontSize={"sm"} opacity={0.5} fontWeight={500}>
             {`${selectedRows.length} ${l.selected.toLowerCase()}`}
           </P>
         </CContainer>

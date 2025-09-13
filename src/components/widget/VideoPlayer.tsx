@@ -354,7 +354,7 @@ export default function VideoPlayer(props: Props__VideoPlayer) {
               onClick={handleCyclePlaybackRate}
               px={2}
             >
-              <P fontSize={"xs"}>{`${playbackRate}x`}</P>
+              <P fontSize={"sm"}>{`${playbackRate}x`}</P>
             </Btn>
 
             {/* <Select
@@ -364,7 +364,7 @@ export default function VideoPlayer(props: Props__VideoPlayer) {
               onValueChange={(val) => handleRate(Number(val))}
               w={"68px"}
               size={"md"}
-              fontSize={"xs"}
+              fontSize={"sm"}
               _hover={{
                 bg: "transparent !important",
               }}
@@ -382,7 +382,7 @@ export default function VideoPlayer(props: Props__VideoPlayer) {
                 onClick={handleSeekBackward}
                 px={2}
               >
-                <P fontSize={"xs"}>5</P>
+                <P fontSize={"sm"}>5</P>
                 <Icon>
                   <IconPlayerTrackPrev stroke={1.5} />
                 </Icon>
@@ -399,7 +399,7 @@ export default function VideoPlayer(props: Props__VideoPlayer) {
                 <Icon>
                   <IconPlayerTrackNext stroke={1.5} />
                 </Icon>
-                <P fontSize={"xs"}>5</P>
+                <P fontSize={"sm"}>5</P>
               </Btn>
             </HStack>
 

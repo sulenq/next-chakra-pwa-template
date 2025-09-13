@@ -279,7 +279,7 @@ const translations = {
       "index": "Utama",
       "display": "Tampilan",
       "regional": "Regional",
-      "permissions": "Izin Aplikasi"
+      "permissions": "Izin aplikasi"
     },
     "others": {
       "index": "Lainnya",

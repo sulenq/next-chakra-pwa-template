@@ -57,6 +57,7 @@ export const Btn = forwardRef<HTMLButtonElement, BtnProps>((props, ref) => {
   return iconButton ? (
     <IconButton
       ref={ref}
+      fontSize={"md"}
       className={resolvedClassName}
       size={size || (MAIN_BUTTON_SIZE as any)}
       rounded={themeConfig.radii.component}
@@ -69,6 +70,7 @@ export const Btn = forwardRef<HTMLButtonElement, BtnProps>((props, ref) => {
     <Button
       ref={ref}
       className={resolvedClassName}
+      fontSize={"md"}
       fontWeight="medium"
       size={size || (MAIN_BUTTON_SIZE as any)}
       rounded={themeConfig.radii.component}

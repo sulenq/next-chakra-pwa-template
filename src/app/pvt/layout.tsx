@@ -523,7 +523,7 @@ const DesktopLayout = (props: any) => {
               <CContainer key={navItemIdx} gap={1}>
                 {navsExpanded && navItem.groupLabelKey && (
                   <P
-                    fontSize={"xs"}
+                    fontSize={"sm"}
                     fontWeight={"semibold"}
                     letterSpacing={"wide"}
                     color={"fg.subtle"}
@@ -553,16 +553,12 @@ const DesktopLayout = (props: any) => {
                               key={nav.path}
                               content={pluckString(l, nav.labelKey)}
                             >
-                              <AccordionItemTrigger
-                                h={"40px"}
-                                px={"8.5px"}
-                                _hover={{
-                                  bg: "gray.subtle",
-                                }}
-                                rounded={themeConfig.radii.component}
+                              <Btn
+                                as={AccordionItemTrigger}
+                                clicky={false}
+                                variant={"ghost"}
+                                px={2}
                                 pos={"relative"}
-                                cursor={"pointer"}
-                                transition={"200ms"}
                               >
                                 {isMainNavsActive && <LeftIndicator />}
 
@@ -571,11 +567,13 @@ const DesktopLayout = (props: any) => {
                                     <nav.icon stroke={1.5} />
                                   </Icon>
 
-                                  <P lineClamp={1} textAlign={"left"}>
-                                    {pluckString(l, nav.labelKey)}
-                                  </P>
+                                  {navsExpanded && (
+                                    <P lineClamp={1} textAlign={"left"}>
+                                      {pluckString(l, nav.labelKey)}
+                                    </P>
+                                  )}
                                 </HStack>
-                              </AccordionItemTrigger>
+                              </Btn>
                             </NavTooltip>
 
                             <AccordionItemContent p={0}>
@@ -585,7 +583,7 @@ const DesktopLayout = (props: any) => {
                                     <CContainer key={menuItemIdx} gap={1}>
                                       {menuItem.groupLabelKey && (
                                         <P
-                                          fontSize={"xs"}
+                                          fontSize={"sm"}
                                           fontWeight={"semibold"}
                                           color={"fg.subtle"}
                                           ml={"12px"}

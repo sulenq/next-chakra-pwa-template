@@ -38,7 +38,7 @@ export const FileItem = (props: Props__FileItem) => {
 
           <CContainer flex={1}>
             <P lineClamp={1}>{`${fileData?.fileName}`}</P>
-            <P fontSize={"xs"} color={"fg.muted"}>
+            <P fontSize={"sm"} color={"fg.muted"}>
               {`${fileData?.fileSize}`}
             </P>
           </CContainer>

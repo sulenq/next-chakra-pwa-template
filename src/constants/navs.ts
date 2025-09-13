@@ -62,6 +62,12 @@ export const OTHER_NAVS: Interface__NavItem[] = [
             groupLabelKey: "settings_navs.main.index",
             list: [
               {
+                icon: IconUser,
+                labelKey: "my_profile",
+                path: `${PRIVATE_ROUTE_INDEX}/settings/profile`,
+                backPath: `${PRIVATE_ROUTE_INDEX}/settings`,
+              },
+              {
                 icon: IconDeviceDesktop,
                 labelKey: "settings_navs.main.display",
                 path: `${PRIVATE_ROUTE_INDEX}/settings/display`,
