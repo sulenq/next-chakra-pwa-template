@@ -24,8 +24,6 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
     // States
     const isRoundedZero = themeConfig.radii.component === "0px";
 
-    console.log(themeConfig.radii.component);
-
     return (
       <ChakraCheckbox.Root
         ref={rootRef}
