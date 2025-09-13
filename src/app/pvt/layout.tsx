@@ -65,6 +65,7 @@ const NAVS_COLOR = "ibody";
 const NAVS_COLOR_PALETTE = "gray";
 const BG_CONTENT_CONTAINER = "bgContent";
 const DESKTOP_POPUP_MAIN_AXIS = 16;
+const MOBILE_NAV_LABEL_FONT_SIZE = "sm";
 
 const NavTooltip = (props: TooltipProps) => {
   // Props
@@ -216,7 +217,7 @@ const MobileLayout = (props: any) => {
                               </Icon>
 
                               <P
-                                fontSize={"xs"}
+                                fontSize={MOBILE_NAV_LABEL_FONT_SIZE}
                                 textAlign={"center"}
                                 lineClamp={1}
                               >
@@ -272,7 +273,11 @@ const MobileLayout = (props: any) => {
                           <nav.icon stroke={1.5} />
                         </Icon>
 
-                        <P textAlign={"center"} lineClamp={1} fontSize={"xs"}>
+                        <P
+                          textAlign={"center"}
+                          lineClamp={1}
+                          fontSize={MOBILE_NAV_LABEL_FONT_SIZE}
+                        >
                           {pluckString(l, nav.labelKey)}
                         </P>
 
@@ -294,7 +299,11 @@ const MobileLayout = (props: any) => {
             <IconSettings stroke={1.5} />
           </Icon>
 
-          <P textAlign={"center"} lineClamp={1} fontSize={"xs"}>
+          <P
+            textAlign={"center"}
+            lineClamp={1}
+            fontSize={MOBILE_NAV_LABEL_FONT_SIZE}
+          >
             {l.settings}
           </P>
 
@@ -318,7 +327,7 @@ const MobileLayout = (props: any) => {
               />
 
               <P
-                fontSize={"xs"}
+                fontSize={MOBILE_NAV_LABEL_FONT_SIZE}
                 textAlign={"center"}
                 color={isInProfileRoute ? "" : "fg.muted"}
                 lineClamp={1}
