@@ -332,7 +332,7 @@ const MobileLayout = (props: any) => {
                 color={isInProfileRoute ? "" : "fg.muted"}
                 lineClamp={1}
               >
-                {l.my_profile}
+                {l.profile}
               </P>
 
               {isInProfileRoute && <BottomIndicator />}
