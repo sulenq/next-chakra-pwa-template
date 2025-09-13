@@ -27,7 +27,7 @@ export const DisclosureHeaderContent = ({
       {content ? (
         content
       ) : (
-        <P fontSize={14} fontWeight={"500"} ml={!prefix ? [0, null, 1] : ""}>
+        <P fontWeight={"semibold"} ml={!prefix ? [0, null, 1] : ""}>
           {title}
         </P>
       )}
