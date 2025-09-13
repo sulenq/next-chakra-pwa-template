@@ -416,16 +416,16 @@ const DesktopLayout = (props: any) => {
         <CContainer gap={1} p={2}>
           {!navsExpanded && (
             <NavLink to="/">
-              <Btn
-                iconButton
-                clicky={false}
-                variant={"ghost"}
-                colorPalette={NAVS_COLOR_PALETTE}
+              <Center
                 w={"40px"}
+                h={"40px"}
                 mr={"auto"}
+                _hover={{
+                  bg: "bg.subtle",
+                }}
               >
                 <Logo size={15} />
-              </Btn>
+              </Center>
             </NavLink>
           )}
 
