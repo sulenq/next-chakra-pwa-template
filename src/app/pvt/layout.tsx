@@ -526,7 +526,7 @@ const DesktopLayout = (props: any) => {
                     fontSize={"xs"}
                     fontWeight={"semibold"}
                     letterSpacing={"wide"}
-                    opacity={0.4}
+                    color={"fg.subtle"}
                     ml={"10px"}
                   >
                     {pluckString(l, navItem.groupLabelKey)}
@@ -587,7 +587,7 @@ const DesktopLayout = (props: any) => {
                                         <P
                                           fontSize={"xs"}
                                           fontWeight={"semibold"}
-                                          opacity={0.6}
+                                          color={"fg.subtle"}
                                           ml={"12px"}
                                           mt={1}
                                         >
@@ -835,12 +835,12 @@ const DesktopLayout = (props: any) => {
                       <P lineClamp={1} fontWeight={"semibold"}>
                         {user?.name || "Signed out"}
                       </P>
-                      <P lineClamp={1} opacity={0.6}>
+                      <P lineClamp={1} color={"fg.subtle"}>
                         {user?.email || user?.username || "-"}
                       </P>
                     </CContainer>
 
-                    <Icon opacity={0.6} boxSize={5}>
+                    <Icon boxSize={5} color={"fg.subtle"}>
                       <IconSelector stroke={1.5} />
                     </Icon>
                   </>

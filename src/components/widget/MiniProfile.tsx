@@ -70,17 +70,16 @@ export const MiniProfile = (props: StackProps) => {
 
   return (
     <CContainer {...props}>
-      <CContainer align={"center"} p={2} mb={2}>
+      <CContainer align={"center"} gap={1} p={4} mb={2}>
         <Avatar
           src={user?.photoProfile?.file_url}
           name={user?.name}
           size={"2xl"}
-          mx={"auto"}
-          my={2}
+          mb={3}
         />
 
         <P fontWeight={"semibold"}>{user?.name || "Signed out"}</P>
-        <P color={"fg.muted"}>{user?.email || user?.username || "-"}</P>
+        <P color={"fg.subtle"}>{user?.email || user?.username || "-"}</P>
       </CContainer>
 
       <Divider />
