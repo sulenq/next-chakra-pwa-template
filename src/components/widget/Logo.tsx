@@ -12,12 +12,15 @@ const Logo = (props: Props__Logo) => {
   const { themeConfig } = useThemeConfig();
 
   // States
-  const resolvedColor =
-    color || themeConfig.colorPalette === "gray"
-      ? colorMode === "dark"
-        ? "#fff"
-        : "#1b1b1b"
-      : themeConfig?.primaryColorHex;
+  const resolvedColor = color
+    ? color
+    : themeConfig.colorPalette === "gray"
+    ? colorMode === "dark"
+      ? "#fff"
+      : "#1b1b1b"
+    : themeConfig?.primaryColorHex;
+
+  console.log(color, resolvedColor);
 
   return (
     <Center flexShrink={0} w={size} h={size}>

@@ -92,7 +92,7 @@ const IndexRoute = () => {
           display={["none", null, "flex"]}
           bg={themeConfig.primaryColor}
         >
-          <Logo color="white" />
+          <Logo color="#fff" />
         </CContainer>
 
         <CContainer h={"full"} p={4}>
