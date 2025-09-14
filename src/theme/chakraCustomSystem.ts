@@ -22,7 +22,7 @@ const customConfig = defineConfig({
         light: { value: "#fff" },
         dark: { value: "#151515" },
         darktrans: { value: "#202020cf" },
-        d0: { value: "#8a8a8a09" },
+        d0: { value: "#8a8a8a10" },
         d1: { value: "#8a8a8a15" },
         d2: { value: "#8a8a8a25" },
         d3: { value: "#8a8a8a35" },
@@ -329,7 +329,7 @@ const customConfig = defineConfig({
         text: { value: { base: "{colors.dark}", _dark: "#ddd" } },
         body: { value: { base: "{colors.light}", _dark: "{colors.dark}" } },
         bgContent: {
-          value: { base: "{colors.bg.subtle}", _dark: "{colors.bg.subtle}" },
+          value: { base: "{colors.d0}", _dark: "{colors.bg.subtle}" },
         },
         bodytrans: {
           value: { base: "{colors.light}aa", _dark: "{colors.dark}aa" },
