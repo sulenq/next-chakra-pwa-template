@@ -25,7 +25,7 @@ export const Img = (props: Props__Img) => {
       src={currentSrc}
       onError={handleError}
       style={{
-        objectFit: objectFit ?? "cover",
+        objectFit: (objectFit as any) ?? "cover",
         objectPosition: objectPos ?? "top",
       }}
       {...restProps}

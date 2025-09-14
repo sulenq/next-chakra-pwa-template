@@ -28,7 +28,7 @@ import {
 import { ImageProps } from "next/image";
 
 export interface Props__Img extends ImageProps {
-  objectFit?: ObjectFit;
+  objectFit?: string;
   objectPos?: string;
 }
 
