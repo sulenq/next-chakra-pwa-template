@@ -772,7 +772,7 @@ const DesktopLayout = (props: any) => {
         </CContainer>
 
         <CContainer mt={"auto"} gap={2} p={2}>
-          <NavLink to={"/pvt/settings"}>
+          <NavLink to={`${PRIVATE_ROUTE_INDEX}/settings`}>
             <NavTooltip content={l.settings}>
               <Btn
                 clicky={false}
@@ -783,7 +783,9 @@ const DesktopLayout = (props: any) => {
                 px={2}
                 pos={"relative"}
               >
-                {pathname.includes("/pvt/settings") && <LeftIndicator />}
+                {pathname.includes(`${PRIVATE_ROUTE_INDEX}/settings`) && (
+                  <LeftIndicator />
+                )}
 
                 <Icon boxSize={5}>
                   <IconSettings stroke={1.5} />
