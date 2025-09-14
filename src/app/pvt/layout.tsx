@@ -135,9 +135,9 @@ const MobileLayout = (props: any) => {
           <HStack
             w={"full"}
             justify={"space-between"}
-            py={2}
+            pt={2}
             px={4}
-            borderBottom={"1px solid"}
+            // borderBottom={"1px solid"}
             borderColor={"border.subtle"}
           >
             <HStack>
