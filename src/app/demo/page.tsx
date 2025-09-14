@@ -20,7 +20,7 @@ import { Textarea } from "@/components/ui/textarea";
 import TimePickerInput from "@/components/ui/time-picker-input";
 import { toaster } from "@/components/ui/toaster";
 import { DataTable } from "@/components/widget/DataTable";
-import SelectPropertyByLayerId from "@/components/widget/SelectPropertyByLayerId";
+import SelectWorkspaceCategory from "@/components/widget/SelectWorkspaceCategory";
 import VideoPlayer from "@/components/widget/VideoPlayer";
 import { OPTIONS_RELIGION } from "@/constants/selectOptions";
 import { HStack, SimpleGrid } from "@chakra-ui/react";
@@ -406,9 +406,8 @@ const DemoIndexRoute = () => {
               </Field>
 
               <Field invalid={!!formik.errors.select}>
-                <SelectPropertyByLayerId
-                  layerId={1}
-                  id="select-props-by-layer-id"
+                <SelectWorkspaceCategory
+                  id={"select-workspace-category"}
                   inputValue={formik.values.select}
                   onChange={(input) => {
                     formik.setFieldValue("select", input);

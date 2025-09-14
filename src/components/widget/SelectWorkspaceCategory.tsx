@@ -5,12 +5,9 @@ import useRequest from "@/hooks/useRequest";
 import { capitalizeWords } from "@/utils/string";
 import { useEffect, useState } from "react";
 
-interface Props extends Props__SelectInput {
-  layerId: number;
-}
-const SelectPropertyByLayerId = (props: Props) => {
+const SelectWorkspaceCategory = (props: Props__SelectInput) => {
   // Props
-  const { layerId, ...restProps } = props;
+  const { ...restProps } = props;
 
   // Hooks
   const { req, loading } = useRequest({
@@ -26,7 +23,7 @@ const SelectPropertyByLayerId = (props: Props) => {
   // Utils
   function fetch() {
     const config = {
-      url: `/api/gis-bpn/workspaces-layers/property/${layerId}`,
+      url: `/api/gis-bpn/master-data/categories/index`,
       method: "GET",
       params: {
         with_trashed: 0,
@@ -38,10 +35,10 @@ const SelectPropertyByLayerId = (props: Props) => {
       config,
       onResolve: {
         onSuccess: (r) => {
-          const newOptions = r?.data?.data?.properties
-            ?.map((property: any) => ({
-              id: property,
-              label: property,
+          const newOptions = r?.data?.data?.data
+            ?.map((category: any) => ({
+              id: category?.id,
+              label: category?.label,
             }))
             .sort((a: Interface__SelectOption, b: Interface__SelectOption) =>
               a.label.localeCompare(b.label)
@@ -61,9 +58,10 @@ const SelectPropertyByLayerId = (props: Props) => {
       title={capitalizeWords("Properties")}
       loading={loading}
       selectOptions={selectOptions}
+      fetch={fetch}
       {...restProps}
     />
   );
 };
 
-export default SelectPropertyByLayerId;
+export default SelectWorkspaceCategory;

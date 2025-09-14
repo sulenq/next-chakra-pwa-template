@@ -30,7 +30,7 @@ import {
   useDisclosure,
   useFieldContext,
 } from "@chakra-ui/react";
-import { IconCaretDownFilled } from "@tabler/icons-react";
+import { IconCaretDownFilled, IconReload } from "@tabler/icons-react";
 import { useEffect, useState } from "react";
 
 const SelectOptions = (props: Props__SelectOptions) => {
@@ -162,6 +162,7 @@ export const SelectInput = (props: Props__SelectInput) => {
     required,
     multiple,
     disclosureSize = "xs",
+    fetch,
     ...restProps
   } = props;
 
@@ -241,7 +242,24 @@ export const SelectInput = (props: Props__SelectInput) => {
           <DisclosureHeader>
             <DisclosureHeaderContent
               title={capitalizeWords(`${l.select} ${title}`)}
-            />
+            >
+              {fetch && (
+                <Btn
+                  iconButton
+                  size={["sm", null, "2xs"]}
+                  rounded={"full"}
+                  variant={["ghost", null, "subtle"]}
+                  pos={"absolute"}
+                  right={[12, null, 11]}
+                  disabled={loading}
+                  onClick={fetch}
+                >
+                  <Icon boxSize={4}>
+                    <IconReload stroke={1.5} />
+                  </Icon>
+                </Btn>
+              )}
+            </DisclosureHeaderContent>
           </DisclosureHeader>
 
           <DisclosureBody p={0} overflowY={"auto"} className="noScroll">

@@ -27,6 +27,14 @@ import {
 } from "./types";
 import { ImageProps } from "next/image";
 
+export interface Props__DisclosureHeaderContent {
+  title?: string;
+  withCloseButton?: boolean;
+  content?: any;
+  prefix?: "drawer" | "dialog";
+  children?: any;
+}
+
 export interface Props__Img extends ImageProps {
   objectFit?: string;
   objectPos?: string;
@@ -135,6 +143,7 @@ export interface Props__SelectInput extends BtnProps {
   invalid?: boolean;
   required?: boolean;
   multiple?: boolean;
+  fetch?: () => void;
   disclosureSize?: Type__DisclosureSizes;
 }
 export interface Props__SelectOptions {
