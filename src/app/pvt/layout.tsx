@@ -64,8 +64,10 @@ const NAVS_BG = "body";
 const NAVS_COLOR = "ibody";
 const NAVS_COLOR_PALETTE = "gray";
 const BG_CONTENT_CONTAINER = "bgContent";
-const DESKTOP_POPUP_MAIN_AXIS = 16;
+const DESKTOP_POPOVER_MAIN_AXIS = 22;
+const DESKTOP_TOOLTIP_MAIN_AXIS = 16;
 const MOBILE_NAV_LABEL_FONT_SIZE = "sm";
+const MOBILE_POPOVER_MAIN_AXIS = 22;
 
 const NavTooltip = (props: TooltipProps) => {
   // Props
@@ -76,7 +78,7 @@ const NavTooltip = (props: TooltipProps) => {
       positioning={{
         placement: "right",
         offset: {
-          mainAxis: DESKTOP_POPUP_MAIN_AXIS,
+          mainAxis: DESKTOP_TOOLTIP_MAIN_AXIS,
         },
       }}
       {...restProps}
@@ -221,7 +223,7 @@ const MobileLayout = (props: any) => {
                           positioning={{
                             placement: "top",
                             offset: {
-                              mainAxis: 20,
+                              mainAxis: MOBILE_POPOVER_MAIN_AXIS,
                             },
                           }}
                         >
@@ -337,7 +339,7 @@ const MobileLayout = (props: any) => {
           positioning={{
             placement: "top",
             offset: {
-              mainAxis: 20,
+              mainAxis: MOBILE_POPOVER_MAIN_AXIS,
             },
           }}
         >
@@ -477,7 +479,7 @@ const DesktopLayout = (props: any) => {
                 positioning={{
                   placement: "right",
                   offset: {
-                    mainAxis: DESKTOP_POPUP_MAIN_AXIS,
+                    mainAxis: DESKTOP_TOOLTIP_MAIN_AXIS,
                   },
                 }}
               >
@@ -658,7 +660,7 @@ const DesktopLayout = (props: any) => {
                           positioning={{
                             placement: "right-start",
                             offset: {
-                              mainAxis: DESKTOP_POPUP_MAIN_AXIS,
+                              mainAxis: DESKTOP_POPOVER_MAIN_AXIS,
                             },
                           }}
                         >
@@ -805,7 +807,7 @@ const DesktopLayout = (props: any) => {
           <PopoverRoot
             positioning={{
               placement: "right-end",
-              offset: { mainAxis: DESKTOP_POPUP_MAIN_AXIS },
+              offset: { mainAxis: DESKTOP_POPOVER_MAIN_AXIS },
             }}
           >
             <PopoverTrigger asChild>

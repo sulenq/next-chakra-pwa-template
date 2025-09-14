@@ -75,6 +75,7 @@ export const MiniProfile = (props: StackProps) => {
     <CContainer
       rounded={themeConfig.radii.container}
       overflow={"clip"}
+      color={"ibody"}
       {...props}
     >
       <CContainer>
