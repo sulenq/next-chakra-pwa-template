@@ -230,6 +230,9 @@ const translations = {
   "november": "November",
   "october": "October",
   "of": "of",
+  "offline_route": {
+    "description": "It looks like you are offline. Check your internet connection and try again."
+  },
   "open": "Open",
   "optional": "Optional",
   "others": "Others",

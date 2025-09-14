@@ -939,5 +939,11 @@ export const maintenance_route = {
     en: "We are currently performing maintenance to provide better service. Sorry for the inconvenience.",
   },
 };
+export const offline_route = {
+  description: {
+    id: "Sepertinya Anda sedang offline. Periksa koneksi internet Anda dan coba lagi.",
+    en: "It looks like you are offline. Check your internet connection and try again.",
+  },
+};
 
 // Interfaces

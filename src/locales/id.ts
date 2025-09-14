@@ -230,6 +230,9 @@ const translations = {
   "november": "November",
   "october": "Oktober",
   "of": "dari",
+  "offline_route": {
+    "description": "Sepertinya Anda sedang offline. Periksa koneksi internet Anda dan coba lagi."
+  },
   "open": "Buka",
   "optional": "Opsional",
   "others": "Lainnya",
