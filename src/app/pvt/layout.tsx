@@ -155,7 +155,13 @@ const MobileLayout = (props: any) => {
           <HStack gap={4} h={"52px"} p={4} justify={"space-between"}>
             <HStack>
               {backPath && (
-                <BackButton iconButton clicky={false} backPath={backPath} />
+                <BackButton
+                  iconButton
+                  clicky={false}
+                  backPath={backPath}
+                  ml={"-6px"}
+                  variant={"plain"}
+                />
               )}
 
               {resolvedActiveNavs.map((nav, idx) => {
@@ -173,12 +179,7 @@ const MobileLayout = (props: any) => {
                       </>
                     )}
 
-                    <P
-                      fontSize={"lg"}
-                      fontWeight={"semibold"}
-                      ml={idx === 0 ? 1 : 0}
-                      lineClamp={1}
-                    >
+                    <P fontSize={"lg"} fontWeight={"semibold"} lineClamp={1}>
                       {pluckString(l, nav.labelKey)}
                     </P>
                   </HStack>
@@ -807,7 +808,7 @@ const DesktopLayout = (props: any) => {
           <PopoverRoot
             positioning={{
               placement: "right-end",
-              offset: { mainAxis: DESKTOP_POPOVER_MAIN_AXIS },
+              offset: { mainAxis: DESKTOP_POPOVER_MAIN_AXIS, crossAxis: -6 },
             }}
           >
             <PopoverTrigger asChild>
@@ -850,7 +851,7 @@ const DesktopLayout = (props: any) => {
               </HStack>
             </PopoverTrigger>
 
-            <PopoverContent w={"240px"} zIndex={2}>
+            <PopoverContent w={"232px"} zIndex={2}>
               <MiniProfile />
             </PopoverContent>
           </PopoverRoot>
