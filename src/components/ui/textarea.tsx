@@ -17,6 +17,9 @@ export const Textarea = (props: Props__TextareaInput) => {
       borderColor={invalid ?? fc?.invalid ? "border.error" : "border.muted"}
       fontWeight={"medium"}
       outline={"none !important"}
+      _placeholder={{
+        fontSize: "md",
+      }}
       _focus={{ borderColor: themeConfig.primaryColor }}
       rounded={themeConfig.radii.component}
       placeholder={placeholder || "Input text"}

@@ -695,6 +695,7 @@ export const DataTable = (props: Props__DataTable) => {
                           : ""
                       }
                       borderColor={borderColor}
+                      fontSize={"md"}
                     >
                       {rowIdx + 1}
                     </HStack>
@@ -705,6 +706,7 @@ export const DataTable = (props: Props__DataTable) => {
                       key={colIndex}
                       whiteSpace={"nowrap"}
                       p={0}
+                      fontSize={"md"}
                       {...col?.tableCellProps}
                     >
                       <HStack

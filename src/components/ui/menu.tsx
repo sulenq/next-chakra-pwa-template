@@ -64,6 +64,7 @@ export const MenuItem = forwardRef<HTMLDivElement, MenuItemProps>(
           ref={ref}
           py={"8px !important"}
           cursor={"pointer"}
+          fontSize={"md"}
           rounded={themeConfig.radii.component}
           {...restProps}
         >

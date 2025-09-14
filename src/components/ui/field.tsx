@@ -30,7 +30,7 @@ export const Field = forwardRef<HTMLDivElement, FieldProps>(function Field(
   return (
     <ChakraField.Root ref={ref} gap={2} {...rest}>
       {label && (
-        <ChakraField.Label>
+        <ChakraField.Label fontSize={"md"}>
           {label}
           {optional && (
             <Badge colorScheme="gray" color={"fg.muted"}>

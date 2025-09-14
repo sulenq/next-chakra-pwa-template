@@ -73,6 +73,9 @@ export const StringInput = forwardRef<HTMLInputElement, Props__StringInput>(
             name={name}
             onChange={handleChange}
             value={inputValue}
+            _placeholder={{
+              fontSize: "md",
+            }}
             placeholder={placeholder}
             borderColor={
               invalid ?? fc?.invalid ? "border.error" : "border.muted"
