@@ -393,7 +393,7 @@ const customConfig = defineConfig({
             },
           },
           contrast: {
-            value: { base: "{colors.p.100}", _dark: "{colors.p.900}" },
+            value: { base: "{colors.p.50}", _dark: "{colors.p.900}" },
           },
           fg: {
             value: {
@@ -457,7 +457,7 @@ const customConfig = defineConfig({
             value: { base: "{colors.brown.500}", _dark: "{colors.brown.500}" },
           },
           contrast: {
-            value: { base: "{colors.brown.100}", _dark: "{colors.brown.900}" },
+            value: { base: "{colors.brown.50}", _dark: "{colors.brown.900}" },
           },
           fg: {
             value: { base: "{colors.brown.700}", _dark: "{colors.brown.200}" },
@@ -478,7 +478,7 @@ const customConfig = defineConfig({
             value: { base: "{colors.mocha.500}", _dark: "{colors.mocha.400}" },
           },
           contrast: {
-            value: { base: "{colors.mocha.100}", _dark: "{colors.mocha.900}" },
+            value: { base: "{colors.mocha.50}", _dark: "{colors.mocha.900}" },
           },
           fg: {
             value: { base: "{colors.mocha.500}", _dark: "{colors.mocha.400}" },
@@ -503,7 +503,7 @@ const customConfig = defineConfig({
           },
           contrast: {
             value: {
-              base: "{colors.caramel.100}",
+              base: "{colors.caramel.50}",
               _dark: "{colors.caramel.900}",
             },
           },
@@ -538,7 +538,7 @@ const customConfig = defineConfig({
             value: { base: "{colors.cream.500}", _dark: "{colors.cream.400}" },
           },
           contrast: {
-            value: { base: "{colors.cream.100}", _dark: "{colors.cream.900}" },
+            value: { base: "{colors.cream.50}", _dark: "{colors.cream.900}" },
           },
           fg: {
             value: { base: "{colors.cream.500}", _dark: "{colors.cream.400}" },
@@ -563,7 +563,7 @@ const customConfig = defineConfig({
           },
           contrast: {
             value: {
-              base: "{colors.maroon.100}",
+              base: "{colors.maroon.50}",
               _dark: "{colors.maroon.900}",
             },
           },
@@ -601,7 +601,7 @@ const customConfig = defineConfig({
             },
           },
           contrast: {
-            value: { base: "{colors.red.100}", _dark: "{colors.red.900}" },
+            value: { base: "{colors.red.50}", _dark: "{colors.red.900}" },
           },
           fg: {
             value: {
@@ -638,7 +638,7 @@ const customConfig = defineConfig({
           },
           contrast: {
             value: {
-              base: "{colors.salmon.100}",
+              base: "{colors.salmon.50}",
               _dark: "{colors.salmon.900}",
             },
           },
@@ -677,7 +677,7 @@ const customConfig = defineConfig({
           },
           contrast: {
             value: {
-              base: "{colors.flamingoPink.100}",
+              base: "{colors.flamingoPink.50}",
               _dark: "{colors.flamingoPink.900}",
             },
           },
@@ -716,7 +716,7 @@ const customConfig = defineConfig({
           },
           contrast: {
             value: {
-              base: "{colors.bubblegumPink.100}",
+              base: "{colors.bubblegumPink.50}",
               _dark: "{colors.bubblegumPink.900}",
             },
           },
@@ -755,7 +755,7 @@ const customConfig = defineConfig({
           },
           contrast: {
             value: {
-              base: "{colors.pink.100}",
+              base: "{colors.pink.50}",
               _dark: "{colors.pink.900}",
             },
           },
@@ -794,7 +794,7 @@ const customConfig = defineConfig({
           },
           contrast: {
             value: {
-              base: "{colors.pastelSalmon.100}",
+              base: "{colors.pastelSalmon.50}",
               _dark: "{colors.pastelSalmon.900} !important",
             },
           },
@@ -833,7 +833,7 @@ const customConfig = defineConfig({
           },
           contrast: {
             value: {
-              base: "{colors.orange.100}",
+              base: "{colors.orange.50}",
               _dark: "{colors.orange.900} !important",
             },
           },
@@ -935,7 +935,7 @@ const customConfig = defineConfig({
           },
           contrast: {
             value: {
-              base: "{colors.olive.100}",
+              base: "{colors.olive.50}",
               _dark: "{colors.olive.900} !important",
             },
           },
@@ -962,7 +962,7 @@ const customConfig = defineConfig({
           },
           contrast: {
             value: {
-              base: "{colors.green.100}",
+              base: "{colors.green.50}",
               _dark: "{colors.green.900} !important",
             },
           },
@@ -997,7 +997,7 @@ const customConfig = defineConfig({
             value: { base: "{colors.jade.500}", _dark: "{colors.jade.500}" },
           },
           contrast: {
-            value: { base: "{colors.jade.100}", _dark: "{colors.jade.900}" },
+            value: { base: "{colors.jade.50}", _dark: "{colors.jade.900}" },
           },
           fg: {
             value: { base: "{colors.jade.500}", _dark: "{colors.jade.400}" },
@@ -1022,7 +1022,7 @@ const customConfig = defineConfig({
           },
           contrast: {
             value: {
-              base: "{colors.teal.100}",
+              base: "{colors.teal.50}",
               _dark: "{colors.teal.900} !important",
             },
           },
@@ -1061,7 +1061,7 @@ const customConfig = defineConfig({
           },
           contrast: {
             value: {
-              base: "{colors.kemenkes.100}",
+              base: "{colors.kemenkes.50}",
               _dark: "{colors.kemenkes.900} !important",
             },
           },
@@ -1100,7 +1100,7 @@ const customConfig = defineConfig({
           },
           contrast: {
             value: {
-              base: "{colors.powderBlue.100}",
+              base: "{colors.powderBlue.50}",
               _dark: "{colors.powderBlue.900}",
             },
           },
@@ -1139,7 +1139,7 @@ const customConfig = defineConfig({
           },
           contrast: {
             value: {
-              base: "{colors.cyan.100}",
+              base: "{colors.cyan.50}",
               _dark: "{colors.cyan.900} !important",
             },
           },
@@ -1178,7 +1178,7 @@ const customConfig = defineConfig({
           },
           contrast: {
             value: {
-              base: "{colors.sky.100}",
+              base: "{colors.sky.50}",
               _dark: "{colors.sky.900}",
             },
           },
@@ -1217,7 +1217,7 @@ const customConfig = defineConfig({
           },
           contrast: {
             value: {
-              base: "{colors.blue.100}",
+              base: "{colors.blue.50}",
               _dark: "{colors.blue.900}",
             },
           },
@@ -1256,7 +1256,7 @@ const customConfig = defineConfig({
           },
           contrast: {
             value: {
-              base: "{colors.sapphire.100}",
+              base: "{colors.sapphire.50}",
               _dark: "{colors.sapphire.900}",
             },
           },
@@ -1295,7 +1295,7 @@ const customConfig = defineConfig({
           },
           contrast: {
             value: {
-              base: "{colors.discord.100}",
+              base: "{colors.discord.50}",
               _dark: "{colors.discord.900}",
             },
           },
@@ -1334,7 +1334,7 @@ const customConfig = defineConfig({
           },
           contrast: {
             value: {
-              base: "{colors.indigo.100}",
+              base: "{colors.indigo.50}",
               _dark: "{colors.indigo.900}",
             },
           },
@@ -1373,7 +1373,7 @@ const customConfig = defineConfig({
           },
           contrast: {
             value: {
-              base: "{colors.lavender.100}",
+              base: "{colors.lavender.50}",
               _dark: "{colors.lavender.900}",
             },
           },
@@ -1412,7 +1412,7 @@ const customConfig = defineConfig({
           },
           contrast: {
             value: {
-              base: "{colors.powderLavender.100}",
+              base: "{colors.powderLavender.50}",
               _dark: "{colors.powderLavender.900}",
             },
           },
@@ -1451,7 +1451,7 @@ const customConfig = defineConfig({
           },
           contrast: {
             value: {
-              base: "{colors.purple.100}",
+              base: "{colors.purple.50}",
               _dark: "{colors.purple.900}",
             },
           },

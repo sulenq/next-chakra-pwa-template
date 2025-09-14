@@ -252,7 +252,7 @@ const Rounded = () => {
           <Circle
             w={"24px"}
             h={"24px"}
-            bg={"d0"}
+            bg={"d1"}
             border={"1px solid"}
             borderColor={"border.muted"}
             ml={"auto"}
@@ -264,7 +264,7 @@ const Rounded = () => {
           rounded={preset.component}
           border={"1px solid"}
           borderColor={"border.muted"}
-          bg={"d0"}
+          bg={"d1"}
         />
 
         <HStack justify={"end"}>
@@ -274,7 +274,7 @@ const Rounded = () => {
             rounded={preset.component}
             border={"1px solid"}
             borderColor={"border.muted"}
-            bg={"d0"}
+            bg={"d1"}
           />
 
           <Box
@@ -283,7 +283,7 @@ const Rounded = () => {
             rounded={preset.component}
             border={"1px solid"}
             borderColor={"border.muted"}
-            bg={"d0"}
+            bg={"d1"}
           />
         </HStack>
       </CContainer>
