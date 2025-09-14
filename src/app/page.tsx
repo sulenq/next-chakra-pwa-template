@@ -7,7 +7,7 @@ import { ColorModeButton } from "@/components/ui/color-mode";
 import { LangMenu } from "@/components/ui/lang-menu";
 import { NavLink } from "@/components/ui/nav-link";
 import { P } from "@/components/ui/p";
-import ExiumWatermark from "@/components/widget/ExiumWatermark";
+import BrandWatermark from "@/components/widget/BrandWatermark";
 import Logo from "@/components/widget/Logo";
 import SigninForm from "@/components/widget/SigninForm";
 import useAuthMiddleware from "@/context/useAuthMiddleware";
@@ -106,7 +106,7 @@ const IndexRoute = () => {
 
           {!authToken && <SigninForm />}
 
-          <ExiumWatermark />
+          <BrandWatermark />
         </CContainer>
       </SimpleGrid>
     </CContainer>

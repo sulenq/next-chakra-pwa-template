@@ -1,11 +1,12 @@
 "use client";
 
+import { APP } from "@/constants/_meta";
 import { Span, Text, TextProps } from "@chakra-ui/react";
 import Link from "next/link";
 
 interface Props extends TextProps {}
 
-const ExiumWatermark = (props: Props) => {
+const BrandWatermark = (props: Props) => {
   // Props
   const { ...restProps } = props;
 
@@ -17,11 +18,11 @@ const ExiumWatermark = (props: Props) => {
       © {currentYear} powered by{" "}
       <Span fontWeight={"bold"}>
         <Link href={"https://exium.id"} target="_blank">
-          Exium.id
+          {APP.name}
         </Link>
       </Span>
     </Text>
   );
 };
 
-export default ExiumWatermark;
+export default BrandWatermark;

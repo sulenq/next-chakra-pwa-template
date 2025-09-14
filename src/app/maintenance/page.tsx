@@ -4,7 +4,7 @@ import { Btn } from "@/components/ui/btn";
 import { Divider } from "@/components/ui/divider";
 import { NavLink } from "@/components/ui/nav-link";
 import { P } from "@/components/ui/p";
-import ExiumWatermark from "@/components/widget/ExiumWatermark";
+import BrandWatermark from "@/components/widget/BrandWatermark";
 import useLang from "@/context/useLang";
 import { useThemeConfig } from "@/context/useThemeConfig";
 import { HStack, VStack } from "@chakra-ui/react";
@@ -41,7 +41,7 @@ export default function MaintenanceRoute() {
       </VStack>
 
       <VStack w={"full"} py={4}>
-        <ExiumWatermark />
+        <BrandWatermark />
       </VStack>
     </VStack>
   );
