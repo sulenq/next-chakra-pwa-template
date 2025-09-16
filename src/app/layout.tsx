@@ -40,6 +40,10 @@ const RootLayout = (props: Props) => {
 
   return (
     <html suppressHydrationWarning className={figtree.className}>
+      <head>
+        <link rel="manifest" href="/manifest.json" />
+      </head>
+
       <body>
         <Provider>
           <Toaster />
