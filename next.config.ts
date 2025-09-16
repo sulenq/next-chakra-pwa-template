@@ -8,6 +8,7 @@ const withPWA = require("@ducanh2912/next-pwa").default({
   fallbacks: {
     document: "/offline.html",
   },
+  buildExcludes: [/\.map$/, /asset-manifest\.json$/],
 });
 
 const nextConfig: NextConfig = {

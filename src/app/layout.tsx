@@ -11,7 +11,22 @@ interface Props {
 
 export const metadata: Metadata = {
   title: "Next Chakra PWA Template | Exium.id",
-  description: "Template that using Next.js, Chakra UI, and PWA by Exium.id",
+  description: "Template using Next.js + Chakra + PWA",
+  icons: [
+    {
+      rel: "icon",
+      url: "/icons/icon-192x192.png",
+      sizes: "192x192",
+      type: "image/png",
+    },
+    {
+      rel: "icon",
+      url: "/icons/icon-512x512.png",
+      sizes: "512x512",
+      type: "image/png",
+    },
+  ],
+  manifest: "/manifest.json",
 };
 
 const figtree = Figtree({
