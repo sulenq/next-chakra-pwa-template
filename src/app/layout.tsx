@@ -2,31 +2,52 @@ import { Provider } from "@/components/ui/provider";
 import { Toaster } from "@/components/ui/toaster";
 import "./globals.css";
 import ClientOnlyApp from "@/components/widget/ClientOnlyApp";
-import { Metadata } from "next";
+import { Metadata, Viewport } from "next";
 import { Figtree } from "next/font/google";
+import { APP } from "@/constants/_meta";
 
 interface Props {
   children: React.ReactNode;
 }
 
 export const metadata: Metadata = {
-  title: "Next Chakra PWA Template | Exium.id",
-  description: "Template using Next.js + Chakra + PWA",
-  icons: [
-    {
-      rel: "icon",
-      url: "/icons/icon-192x192.png",
-      sizes: "192x192",
-      type: "image/png",
-    },
-    {
-      rel: "icon",
-      url: "/icons/icon-512x512.png",
-      sizes: "512x512",
-      type: "image/png",
-    },
-  ],
+  applicationName: APP.name,
+  title: {
+    default: APP.defaultTitle,
+    template: APP.titleTemplate,
+  },
+  description: APP.description,
   manifest: "/manifest.json",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "default",
+    title: APP.defaultTitle,
+    // startUpImage: [],
+  },
+  formatDetection: {
+    telephone: false,
+  },
+  openGraph: {
+    type: "website",
+    siteName: APP.name,
+    title: {
+      default: APP.defaultTitle,
+      template: APP.titleTemplate,
+    },
+    description: APP.description,
+  },
+  twitter: {
+    card: "summary",
+    title: {
+      default: APP.defaultTitle,
+      template: APP.titleTemplate,
+    },
+    description: APP.description,
+  },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#000000",
 };
 
 const figtree = Figtree({
