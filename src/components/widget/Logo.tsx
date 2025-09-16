@@ -20,8 +20,6 @@ const Logo = (props: Props__Logo) => {
       : "#1b1b1b"
     : themeConfig?.primaryColorHex;
 
-  console.log(color, resolvedColor);
-
   return (
     <Center flexShrink={0} w={size} h={size}>
       <svg
