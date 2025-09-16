@@ -37,6 +37,7 @@ import { useEffect, useRef, useState } from "react";
 import { Checkbox } from "@/components/ui/checkbox";
 import { DatePickerInput } from "@/components/ui/date-picker-input";
 import TimePickerInput from "@/components/ui/time-picker-input";
+import { getGridColumns } from "@/utils/style";
 
 const ManualDarkModeSetting = () => {
   // Contexts
@@ -182,7 +183,12 @@ const Rounded = () => {
   // Contexts
   const { l } = useLang();
   const { themeConfig, setThemeConfig } = useThemeConfig();
+  const settingsContainerDimensions = useSettingsRouteContainer(
+    (s) => s.containerDimension
+  );
+  console.log(settingsContainerDimensions.width);
 
+  // States
   const roundedList = [
     {
       label: "None",
@@ -214,7 +220,25 @@ const Rounded = () => {
       component: "12px",
       container: "16px",
     },
+    {
+      label: "2XL",
+      component: "16px",
+      container: "20px",
+    },
+    {
+      label: "3XL",
+      component: "20px",
+      container: "24px",
+    },
   ];
+  const gridColumns: Record<number, number> = {
+    320: 2,
+    680: 3,
+    960: 4,
+    1280: 6,
+    1920: 8,
+  };
+  const cols = getGridColumns(settingsContainerDimensions.width, gridColumns);
 
   // Component
   const RoundedExampe = (props: any) => {
@@ -302,7 +326,7 @@ const Rounded = () => {
       </ItemHeaderContainer>
 
       <CContainer gap={4} p={4}>
-        <SimpleGrid columns={[2, null, 3]} gap={4}>
+        <SimpleGrid columns={cols} gap={4}>
           {roundedList.map((item) => {
             const isActive = item.component === themeConfig.radii.component;
 
@@ -375,20 +399,7 @@ const Theme = () => {
     720: 5,
     960: 10,
   };
-  const cols = (() => {
-    const width = settingsContainerDimensions.width;
-    let result = 3;
-
-    for (const bp of Object.keys(gridColumns)
-      .map(Number)
-      .sort((a, b) => a - b)) {
-      if (width >= bp) {
-        result = gridColumns[bp];
-      }
-    }
-
-    return result;
-  })();
+  const cols = getGridColumns(settingsContainerDimensions.width, gridColumns);
 
   return (
     <ItemContainer>
