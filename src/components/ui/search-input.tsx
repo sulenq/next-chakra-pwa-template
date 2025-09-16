@@ -3,7 +3,7 @@
 import { StringInput } from "@/components/ui/string-input";
 import { Props__SearchInput } from "@/constants/props";
 import useLang from "@/context/useLang";
-import { debounce } from "@/utils/callback";
+import { useDebouncedCallback } from "@/hooks/useDebounceCallback";
 import { HStack, Icon, InputGroup } from "@chakra-ui/react";
 import { IconSearch } from "@tabler/icons-react";
 import { useEffect, useState } from "react";
@@ -28,16 +28,14 @@ export default function SearchInput(props: Props__SearchInput) {
   // Contexts
   const { l } = useLang();
 
-  // States, Refs
-  const [searchTemp, setSearchTemp] = useState<string>(inputValue || "");
-  // const smInput = inputProps?.size === "xs" || inputProps?.size === "sm";
+  // Hooks
+  const debounced = useDebouncedCallback(
+    (inputValue: string) => onChange?.(inputValue),
+    500
+  );
 
-  // Handle onchange
-  function handleOnChange(value: string) {
-    if (value !== inputValue) {
-      if (onChange) onChange(value);
-    }
-  }
+  // States
+  const [searchTemp, setSearchTemp] = useState<string>(inputValue || "");
 
   // Sync searchTemp with inputValue prop when it changes
   useEffect(() => {
@@ -65,9 +63,7 @@ export default function SearchInput(props: Props__SearchInput) {
             pr={"40px"}
             onChange={(inputValue) => {
               setSearchTemp(inputValue || "");
-              debounce(() => {
-                handleOnChange(inputValue || "");
-              });
+              debounced(inputValue || "");
             }}
             inputValue={searchTemp}
             boxShadow={"none !important"}
