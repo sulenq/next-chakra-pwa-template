@@ -169,7 +169,7 @@ const Timezone = () => {
           className={"scrollY"}
           h={"220px"}
           p={2}
-          pr={`calc(8px -${FIREFOX_SCROLL_Y_CLASS_PR_PREFIX})`}
+          pr={`calc(8px - ${FIREFOX_SCROLL_Y_CLASS_PR_PREFIX})`}
         >
           {isEmptyArray(resolvedTimezones) && <FeedbackNoData />}
 
