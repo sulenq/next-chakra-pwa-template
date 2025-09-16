@@ -234,7 +234,7 @@ const Rounded = () => {
 
     return (
       <CContainer
-        h={"160px"}
+        h={"240px"}
         gap={2}
         p={2}
         rounded={preset.container}
