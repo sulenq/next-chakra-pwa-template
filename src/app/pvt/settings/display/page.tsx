@@ -186,7 +186,6 @@ const Rounded = () => {
   const settingsContainerDimensions = useSettingsRouteContainer(
     (s) => s.containerDimension
   );
-  console.log(settingsContainerDimensions.width);
 
   // States
   const roundedList = [
