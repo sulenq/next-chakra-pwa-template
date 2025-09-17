@@ -227,8 +227,8 @@ const Rounded = () => {
     },
     {
       label: "3XL",
-      component: "20px",
-      container: "24px",
+      component: "18px",
+      container: "22px",
     },
   ];
   const gridColumns: Record<number, number> = {
