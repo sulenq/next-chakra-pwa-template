@@ -114,7 +114,7 @@ const AppSettingsLayout = (props: Props__Layout) => {
   const pathname = usePathname();
 
   // Refs
-  const containerRef = useRef<HTMLDivElement | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   const containerDimensions = useContainerDimension(containerRef);
 
   // Contexts

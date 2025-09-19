@@ -38,7 +38,7 @@ export default function VideoPlayer(props: Props__VideoPlayer) {
   const { id, thumbnail, src, ...restProps } = props;
 
   // Refs
-  const videoContainerRef = useRef<HTMLDivElement | null>(null);
+  const videoContainerRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const timerRef = useRef<NodeJS.Timeout | null>(null);
 

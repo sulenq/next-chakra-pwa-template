@@ -2,7 +2,7 @@ import { Type__ContainerDimension } from "@/constants/types";
 import { create } from "zustand";
 
 interface State {
-  containerRef: React.RefObject<HTMLDivElement | null> | null;
+  containerRef: React.RefObject<HTMLDivElement> | null;
   setContainerRef: (ref: State["containerRef"]) => void;
   containerDimension: Type__ContainerDimension;
   setContainerDimension: (dim: Type__ContainerDimension) => void;

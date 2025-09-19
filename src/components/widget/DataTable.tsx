@@ -390,7 +390,7 @@ export const DataTable = (props: Props__DataTable) => {
   const { sh } = useScreen();
 
   // Refs
-  const tableContainerRef = useRef<HTMLDivElement | null>(null);
+  const tableContainerRef = useRef<HTMLDivElement>(null);
 
   // States
   const [tableData, setTableData] = useState(rows);
