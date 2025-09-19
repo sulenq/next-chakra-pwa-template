@@ -79,9 +79,7 @@ export const MiniProfile = (props: StackProps) => {
       {...props}
     >
       <CContainer>
-        <CContainer pos={"relative"} aspectRatio={1}>
-          <Img src={"/dummy_avatar.jpg"} alt="avatar" fill />
-        </CContainer>
+        <Img src={"/dummy_avatar.jpg"} alt="avatar" aspectRatio={1} />
 
         <CContainer
           bg={"body"}

@@ -1,5 +1,6 @@
 "use client";
 
+import { CContainer } from "@/components/ui/c-container";
 import { IMAGES_PATH } from "@/constants/paths";
 import { Props__Img } from "@/constants/props";
 import Image from "next/image";
@@ -7,7 +8,8 @@ import { useState } from "react";
 
 export const Img = (props: Props__Img) => {
   // Props
-  const { src, onError, objectFit, objectPos, ...restProps } = props;
+  const { src, alt, onError, objectFit, objectPos, imageProps, ...restProps } =
+    props;
 
   // States
   const fallbackSrc = `${IMAGES_PATH}/no_img.jpeg`;
@@ -21,14 +23,23 @@ export const Img = (props: Props__Img) => {
   };
 
   return (
-    <Image
-      src={currentSrc}
-      onError={handleError}
-      style={{
-        objectFit: (objectFit as any) ?? "cover",
-        objectPosition: objectPos ?? "top",
-      }}
+    <CContainer
+      justify={"center"}
+      align={"center"}
+      pos={"relative"}
       {...restProps}
-    />
+    >
+      <Image
+        src={currentSrc}
+        alt={alt || "image"}
+        onError={handleError}
+        style={{
+          objectFit: (objectFit as any) ?? "cover",
+          objectPosition: objectPos ?? "center",
+        }}
+        fill={true}
+        {...imageProps}
+      />
+    </CContainer>
   );
 };

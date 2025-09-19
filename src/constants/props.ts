@@ -35,9 +35,12 @@ export interface Props__DisclosureHeaderContent {
   children?: any;
 }
 
-export interface Props__Img extends ImageProps {
+export interface Props__Img extends StackProps {
+  src?: string;
+  alt?: string;
   objectFit?: string;
   objectPos?: string;
+  imageProps?: ImageProps;
 }
 
 export interface Props__Layout {
