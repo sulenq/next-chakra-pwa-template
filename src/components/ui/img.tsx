@@ -12,7 +12,7 @@ export const Img = (props: Props__Img) => {
     props;
 
   // States
-  const fallbackSrc = `${IMAGES_PATH}/no_img.jpeg`;
+  const fallbackSrc = `${IMAGES_PATH}/no-img.jpeg`;
   const [currentSrc, setCurrentSrc] = useState(src || fallbackSrc);
 
   const handleError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
