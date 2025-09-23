@@ -1,4 +1,3 @@
-"use client";
 
 import { useEffect, useState } from "react";
 
@@ -28,7 +27,7 @@ const useScreen = (timeout: number = 200) => {
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  }, [timeout]); // Menambahkan timeout ke dalam dependensi untuk menangani perubahan
+  }, [timeout]); 
 
   return screen;
 };
