@@ -98,13 +98,14 @@ export default function useRequest<T = any>(props: Props) {
   const req = useCallback(
     async ({ config, onResolve }: Interface__Req<T>) => {
       try {
-        showLoadingToast &&
+        if (showLoadingToast) {
           toaster.loading({
             id,
             title: resolvedLoadingMessage.title,
             description: resolvedLoadingMessage.description,
             action: { label: "Close", onClick: () => {} },
           });
+        }
 
         safeSetState({ loading: true, error: null, status: null });
 
@@ -125,14 +126,16 @@ export default function useRequest<T = any>(props: Props) {
 
         if ([200, 201, 304].includes(r.status)) {
           onResolve?.onSuccess?.(r);
-          showSuccessToast
-            ? toaster.update(id, {
-                type: "success",
-                title: resolvedSuccessMessage.title,
-                description: resolvedSuccessMessage.description,
-                action: { label: "Close", onClick: () => {} },
-              })
-            : toaster.dismiss(id);
+          if (showSuccessToast) {
+            toaster.update(id, {
+              type: "success",
+              title: resolvedSuccessMessage.title,
+              description: resolvedSuccessMessage.description,
+              action: { label: "Close", onClick: () => {} },
+            });
+          } else {
+            toaster.dismiss(id);
+          }
         }
 
         return r;
