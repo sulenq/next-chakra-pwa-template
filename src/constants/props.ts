@@ -188,6 +188,7 @@ export interface Props__SearchInput
   iconProps?: IconProps;
   invalid?: boolean;
   noIcon?: boolean;
+  debounceTime?: number;
   children?: React.ReactNode;
 }
 

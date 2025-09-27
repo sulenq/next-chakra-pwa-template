@@ -1,126 +1,78 @@
 "use client";
 
-import { Props__StringInput } from "@/constants/props";
-import { useThemeConfig } from "@/context/useThemeConfig";
-import { useMergedRefs } from "@/hooks/useMergeRefs";
-import {
-  Box,
-  Center,
-  Input as ChakraInput,
-  Icon,
-  IconButton,
-  useFieldContext,
-} from "@chakra-ui/react";
-import { css, Global } from "@emotion/react";
-import { IconX } from "@tabler/icons-react";
-import { forwardRef, useRef } from "react";
-import { useColorMode } from "./color-mode";
+import { StringInput } from "@/components/ui/string-input";
+import { Props__SearchInput } from "@/constants/props";
+import useLang from "@/context/useLang";
+import { useDebouncedCallback } from "@/hooks/useDebounceCallback";
+import { HStack, Icon, InputGroup } from "@chakra-ui/react";
+import { IconSearch } from "@tabler/icons-react";
+import { useEffect, useState } from "react";
+import { Tooltip } from "./tooltip";
 
-export const StringInput = forwardRef<HTMLInputElement, Props__StringInput>(
-  (props, ref) => {
-    // Props
-    const {
-      name,
-      onChange,
-      inputValue,
-      placeholder = "Input text",
-      boxProps,
-      invalid,
-      clearable = true,
-      clearButtonProps,
-      ...restProps
-    } = props;
+export default function SearchInput(props: Props__SearchInput) {
+  const {
+    inputRef,
+    inputValue,
+    onChange,
+    tooltipLabel,
+    placeholder,
+    additionalPlaceholder = "",
+    inputProps,
+    icon,
+    iconProps,
+    invalid = false,
+    noIcon = false,
+    debounceTime = 500,
+    ...restProps
+  } = props;
 
-    // Contexts
-    const { colorMode } = useColorMode();
-    const { themeConfig } = useThemeConfig();
-    const fc = useFieldContext();
+  // Contexts
+  const { l } = useLang();
 
-    // Refs
-    const isFirstRender = useRef(true);
-    const localInputRef = useRef<HTMLInputElement>(null);
-    const mergedRef = useMergedRefs(ref, localInputRef);
+  // Hooks
+  const debounced = useDebouncedCallback(
+    (inputValue: string) => onChange?.(inputValue),
+    debounceTime
+  );
 
-    // Styles
-    const darkLightColorManual = colorMode === "light" ? "#fff" : "var(--dark)";
-    const styles = css`
-      input:-webkit-autofill,
-      input:-webkit-autofill:hover,
-      input:-webkit-autofill:focus,
-      input:-webkit-autofill:active {
-        -webkit-box-shadow: 0 0 0 30px ${darkLightColorManual} inset !important;
-        box-shadow: 0 0 0 30px ${darkLightColorManual} inset !important;
-      }
-    `;
+  // States
+  const [searchTemp, setSearchTemp] = useState<string>(inputValue || "");
 
-    // Utils
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-      onChange?.(e.target.value);
-      if (isFirstRender.current) isFirstRender.current = false;
-    };
+  // Sync searchTemp with inputValue prop when it changes
+  useEffect(() => {
+    setSearchTemp(inputValue || "");
+  }, [inputValue]);
 
-    return (
-      <>
-        <Global styles={styles} />
-
-        <Box
-          position={"relative"}
-          w={"full"}
-          overflow={"visible"}
-          {...boxProps}
-        >
-          <ChakraInput
-            ref={mergedRef}
-            name={name}
-            onChange={handleChange}
-            value={inputValue}
-            _placeholder={{ fontSize: "md" }}
-            placeholder={placeholder}
-            borderColor={
-              invalid ?? fc?.invalid ? "border.error" : "border.muted"
-            }
-            fontWeight={"medium"}
-            outline={"none !important"}
-            _focus={{ borderColor: themeConfig.primaryColor }}
-            rounded={themeConfig.radii.component}
-            autoComplete="off"
-            transition={"200ms"}
-            color={"text"}
-            pl={4}
-            pr={clearable ? 10 : ""}
-            {...restProps}
+  return (
+    <Tooltip content={tooltipLabel || placeholder || l.search}>
+      <InputGroup
+        w={"full"}
+        startElement={
+          !noIcon && (
+            <Icon boxSize={5} color={"fg.subtle"} {...iconProps}>
+              {icon || <IconSearch />}
+            </Icon>
+          )
+        }
+        {...restProps}
+      >
+        <HStack position="relative" w="full">
+          <StringInput
+            ref={inputRef ? inputRef : null}
+            pl={noIcon ? 4 : 10}
+            placeholder={placeholder || `${l.search} ${additionalPlaceholder}`}
+            pr={"40px"}
+            onChange={(inputValue) => {
+              setSearchTemp(inputValue || "");
+              debounced(inputValue || "");
+            }}
+            inputValue={searchTemp}
+            boxShadow={"none !important"}
+            borderColor={invalid ? "border.error" : "border.muted"}
+            {...inputProps}
           />
-
-          {inputValue && clearable && (
-            <Center
-              flexShrink={0}
-              zIndex={2}
-              position={"absolute"}
-              h={"full"}
-              right={1}
-              top={0}
-              {...clearButtonProps}
-            >
-              <IconButton
-                aria-label="clear input"
-                onClick={() => {
-                  onChange?.("");
-                  localInputRef.current?.focus(); // back to input after clear
-                }}
-                variant={"plain"}
-                size={"sm"}
-                color={"fg.subtle"}
-              >
-                <Icon boxSize={"18px"}>
-                  <IconX />
-                </Icon>
-              </IconButton>
-            </Center>
-          )}
-        </Box>
-      </>
-    );
-  }
-);
-
-StringInput.displayName = "StringInput";
+        </HStack>
+      </InputGroup>
+    </Tooltip>
+  );
+}
