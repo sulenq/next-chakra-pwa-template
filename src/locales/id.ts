@@ -26,6 +26,7 @@ const translations = {
     "description": "Silakan coba lagi."
   },
   "all": "Semua",
+  "apply": "Terapkan",
   "april": "April",
   "august": "Agustus",
   "back": "Kembali",
@@ -33,6 +34,7 @@ const translations = {
   "cancel": "Batal",
   "clear": "Clear",
   "close": "Tutup",
+  "component": "Komponen",
   "confirm": "Konfirmasi",
   "dark_mode": "Mode gelap",
   "date_format": "Format tanggal",
@@ -141,6 +143,7 @@ const translations = {
   "july": "Juli",
   "june": "Juni",
   "language": "Bahasa",
+  "learn_more": "Pelajari lebih lanjut",
   "loading_default": {
     "title": "Memuat",
     "description": "Permintaan sedang diproses..."
@@ -183,6 +186,7 @@ const translations = {
   "maintenance_route": {
     "description": "Kami sedang melakukan pemeliharaan untuk memberikan layanan yang lebih baik. Mohon maaf atas ketidaknyamanannya."
   },
+  "map": "Peta",
   "march": "Maret",
   "maximize": "Maksimalkan",
   "may": "Mei",
@@ -215,6 +219,7 @@ const translations = {
   "msg_soft_delete": "Data akan disembunyikan dan bisa dikembalikan nanti.",
   "msg_toggle_dark_mode": "Toggle mode gelap",
   "my_profile": "Profil saya",
+  "navigation": "Navigasi",
   "navs": {
     "dashboard": "Dashboard",
     "transaction": "Transaksi",
@@ -241,7 +246,11 @@ const translations = {
   "password_confirmation": "Konfirmasi Password",
   "previous": "Sebelumnya",
   "profile": "Profil",
+  "published_at": "Diterbitkan pada",
+  "purpose": "Tujuan",
+  "read_more": "Baca selengkapnya",
   "recieve": "Terima",
+  "related_apps": "Aplikasi Terkait",
   "reset": "Reset",
   "retry": "Coba lagi",
   "rounded": "Rounded",

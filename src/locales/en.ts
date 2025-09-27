@@ -26,6 +26,7 @@ const translations = {
     "description": "Please try again."
   },
   "all": "All",
+  "apply": "Apply",
   "april": "April",
   "august": "August",
   "back": "Back",
@@ -33,6 +34,7 @@ const translations = {
   "cancel": "Cancel",
   "clear": "Clear",
   "close": "Close",
+  "component": "Component",
   "confirm": "Confirm",
   "dark_mode": "Dark mode",
   "date_format": "Date format",
@@ -141,6 +143,7 @@ const translations = {
   "july": "July",
   "june": "June",
   "language": "Language",
+  "learn_more": "Learn more",
   "loading_default": {
     "title": "Loading",
     "description": "The request is being processed..."
@@ -183,6 +186,7 @@ const translations = {
   "maintenance_route": {
     "description": "We are currently performing maintenance to provide better service. Sorry for the inconvenience."
   },
+  "map": "Map",
   "march": "March",
   "maximize": "Maximize",
   "may": "May",
@@ -215,6 +219,7 @@ const translations = {
   "msg_soft_delete": "Data will be hidden but can be restored later.",
   "msg_toggle_dark_mode": "Toggle dark mode",
   "my_profile": "My profile",
+  "navigation": "Navigation",
   "navs": {
     "dashboard": "Dashboard",
     "transaction": "Transaction",
@@ -241,7 +246,11 @@ const translations = {
   "password_confirmation": "Password Confirmation",
   "previous": "Previous",
   "profile": "Profile",
+  "published_at": "Published at",
+  "purpose": "Purpose",
+  "read_more": "Read more",
   "recieve": "Recieve",
+  "related_apps": "Related App",
   "reset": "Reset",
   "retry": "Retry",
   "rounded": "Rounded",

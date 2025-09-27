@@ -46,13 +46,23 @@ export const NumInput = forwardRef<HTMLInputElement, Props__NumInput>(
 
     // Utils
     function handleChange(rawInput?: string) {
-      if (!rawInput) {
+      if (rawInput === undefined) return;
+
+      // case: nothing
+      if (rawInput.trim() === "") {
         setNum("");
         onChange?.(null);
         return;
       }
 
-      let sanitizedInput = rawInput.replace(/[^0-9,]/g, "");
+      // hanya izinkan digit + koma
+      const isValid = /^[0-9,]+$/.test(rawInput);
+      if (!isValid) {
+        // kalau huruf → jangan ubah state/value sama sekali
+        return;
+      }
+
+      let sanitizedInput = rawInput;
 
       if (integer) {
         sanitizedInput = sanitizedInput.replace(/,/g, "");
@@ -71,22 +81,22 @@ export const NumInput = forwardRef<HTMLInputElement, Props__NumInput>(
         sanitizedInput = sanitizedInput.substring(0, 19);
       }
 
-      // Parse number earlier to apply min/max before rendering
+      // Parse number
       let parsedValue = parseNumber(sanitizedInput);
 
       if (parsedValue !== undefined) {
         if (integer) parsedValue = Math.round(parsedValue!);
 
-        // Apply max limit
+        // max
         if (max !== undefined && parsedValue! > max) {
           parsedValue = max;
-          sanitizedInput = String(max); // enforce max in UI
+          sanitizedInput = String(max);
         }
 
-        // Apply min limit
+        // min
         if (min !== undefined && parsedValue! < min) {
           parsedValue = min;
-          sanitizedInput = String(min); // enforce min in UI
+          sanitizedInput = String(min);
         }
       }
 
@@ -96,7 +106,7 @@ export const NumInput = forwardRef<HTMLInputElement, Props__NumInput>(
         return;
       }
 
-      // Format value with thousand separators
+      // thousand separator
       let formattedValue = sanitizedInput.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
       if (!integer && sanitizedInput.includes(",")) {
         const parts = sanitizedInput.split(",");

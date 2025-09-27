@@ -431,6 +431,42 @@ export const rounded = {
   id: "Rounded",
   en: "Rounded",
 };
+export const learn_more = {
+  id: "Pelajari lebih lanjut",
+  en: "Learn more",
+};
+export const published_at = {
+  id: "Diterbitkan pada",
+  en: "Published at",
+};
+export const read_more = {
+  id: "Baca selengkapnya",
+  en: "Read more",
+};
+export const apply = {
+  id: "Terapkan",
+  en: "Apply",
+};
+export const navigation = {
+  id: "Navigasi",
+  en: "Navigation",
+};
+export const map = {
+  id: "Peta",
+  en: "Map",
+};
+export const related_apps = {
+  id: "Aplikasi Terkait",
+  en: "Related App",
+};
+export const component = {
+  id: "Komponen",
+  en: "Component",
+};
+export const purpose = {
+  id: "Tujuan",
+  en: "Purpose",
+};
 
 // Message
 export const msg_location_test_helper = {

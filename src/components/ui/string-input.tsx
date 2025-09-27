@@ -2,6 +2,7 @@
 
 import { Props__StringInput } from "@/constants/props";
 import { useThemeConfig } from "@/context/useThemeConfig";
+import { useMergedRefs } from "@/hooks/useMergeRefs";
 import {
   Box,
   Center,
@@ -11,9 +12,9 @@ import {
   useFieldContext,
 } from "@chakra-ui/react";
 import { css, Global } from "@emotion/react";
+import { IconX } from "@tabler/icons-react";
 import { forwardRef, useRef } from "react";
 import { useColorMode } from "./color-mode";
-import { IconX } from "@tabler/icons-react";
 
 export const StringInput = forwardRef<HTMLInputElement, Props__StringInput>(
   (props, ref) => {
@@ -37,8 +38,10 @@ export const StringInput = forwardRef<HTMLInputElement, Props__StringInput>(
 
     // Refs
     const isFirstRender = useRef(true);
+    const localInputRef = useRef<HTMLInputElement>(null);
+    const mergedRef = useMergedRefs(ref, localInputRef);
 
-    // States
+    // Styles
     const darkLightColorManual = colorMode === "light" ? "#fff" : "var(--dark)";
     const styles = css`
       input:-webkit-autofill,
@@ -52,9 +55,7 @@ export const StringInput = forwardRef<HTMLInputElement, Props__StringInput>(
 
     // Utils
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-      if (onChange) {
-        onChange(e.target.value);
-      }
+      onChange?.(e.target.value);
       if (isFirstRender.current) isFirstRender.current = false;
     };
 
@@ -69,13 +70,11 @@ export const StringInput = forwardRef<HTMLInputElement, Props__StringInput>(
           {...boxProps}
         >
           <ChakraInput
-            ref={ref}
+            ref={mergedRef}
             name={name}
             onChange={handleChange}
             value={inputValue}
-            _placeholder={{
-              fontSize: "md",
-            }}
+            _placeholder={{ fontSize: "md" }}
             placeholder={placeholder}
             borderColor={
               invalid ?? fc?.invalid ? "border.error" : "border.muted"
@@ -106,6 +105,7 @@ export const StringInput = forwardRef<HTMLInputElement, Props__StringInput>(
                 aria-label="clear input"
                 onClick={() => {
                   onChange?.("");
+                  localInputRef.current?.focus(); // back to input after clear
                 }}
                 variant={"plain"}
                 size={"sm"}
