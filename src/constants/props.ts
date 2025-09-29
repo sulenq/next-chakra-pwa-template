@@ -39,7 +39,10 @@ export interface Props__Img extends StackProps {
   alt?: string;
   objectFit?: string;
   objectPos?: string;
-  imageProps?: ImageProps;
+  fluid?: boolean;
+  fallbackSrc?: string;
+  wide?: boolean;
+  imageProps?: Omit<ImageProps, "src" | "width" | "height" | "alt">;
 }
 
 export interface Props__Layout {

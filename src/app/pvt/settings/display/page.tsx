@@ -499,10 +499,7 @@ const ExampleUI = () => {
           Label
         </Btn>
 
-        <StringInput
-          boxProps={{ flex: "1 1 200px" }}
-          placeholder="example@email.com"
-        />
+        <StringInput flex={"1 1 200px"} placeholder="example@email.com" />
 
         <SelectInput
           flex={"1 1 200px"}

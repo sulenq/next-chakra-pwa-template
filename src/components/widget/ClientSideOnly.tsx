@@ -18,7 +18,7 @@ interface Props {
 const DefaultFallback = () => {
   return (
     <Center w={"100w"} minH={"100dvh"} color={"fg.subtle"}>
-      <Img alt={`${APP.name} Logo`} src={"/logo.svg"} width={40} height={40} />
+      <Img alt={`${APP.name} Logo`} src={"/logo.svg"} width={16} height={16} />
     </Center>
   );
 };

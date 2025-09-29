@@ -28,6 +28,10 @@ export const StringInput = forwardRef<HTMLInputElement, Props__StringInput>(
       invalid,
       clearable = true,
       clearButtonProps,
+      flex,
+      flexShrink,
+      flexGrow,
+      flexBasis,
       ...restProps
     } = props;
 
@@ -67,6 +71,10 @@ export const StringInput = forwardRef<HTMLInputElement, Props__StringInput>(
           position={"relative"}
           w={restProps?.w || "full"}
           h={restProps?.h}
+          flex={flex}
+          flexShrink={flexShrink}
+          flexGrow={flexGrow}
+          flexBasis={flexBasis}
           display={"inline-flex"}
           overflow={"visible"}
           {...containerProps}

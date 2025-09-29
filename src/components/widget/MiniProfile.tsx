@@ -8,6 +8,7 @@ import { NavLink } from "@/components/ui/nav-link";
 import { P } from "@/components/ui/p";
 import { DotIndicator } from "@/components/widget/Indicator";
 import { PRIVATE_ROUTE_INDEX } from "@/constants/navs";
+import { SVGS_PATH } from "@/constants/paths";
 import useConfirmationDisclosure from "@/context/disclosure/useConfirmationDisclosure";
 import useAuthMiddleware from "@/context/useAuthMiddleware";
 import useLang from "@/context/useLang";
@@ -79,7 +80,11 @@ export const MiniProfile = (props: StackProps) => {
       {...props}
     >
       <CContainer>
-        <Img src={"/dummy_avatar.jpg"} alt="avatar" aspectRatio={1} />
+        <Img
+          src={user?.avatar || `${SVGS_PATH}/no-avatar.svg`}
+          alt="avatar"
+          aspectRatio={1}
+        />
 
         <CContainer
           bg={"body"}
