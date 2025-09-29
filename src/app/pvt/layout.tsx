@@ -567,11 +567,9 @@ const DesktopLayout = (props: any) => {
                                     <nav.icon stroke={1.5} />
                                   </Icon>
 
-                                  {navsExpanded && (
-                                    <P lineClamp={1} textAlign={"left"}>
-                                      {pluckString(l, nav.labelKey)}
-                                    </P>
-                                  )}
+                                  <P lineClamp={1} textAlign={"left"}>
+                                    {pluckString(l, nav.labelKey)}
+                                  </P>
                                 </HStack>
                               </Btn>
                             </NavTooltip>
@@ -605,42 +603,62 @@ const DesktopLayout = (props: any) => {
                                             key={menu.path}
                                             to={menu.path}
                                           >
-                                            <Btn
-                                              iconButton={
-                                                navsExpanded ? false : true
-                                              }
-                                              clicky={false}
-                                              w={"full"}
-                                              gap={3}
-                                              px={2}
-                                              rounded={`calc(${themeConfig.radii.component})`}
-                                              justifyContent={"start"}
-                                              variant={"ghost"}
-                                              colorPalette={NAVS_COLOR_PALETTE}
+                                            <Tooltip
+                                              content={pluckString(
+                                                l,
+                                                menu.labelKey
+                                              )}
+                                              positioning={{
+                                                placement: "right",
+                                                offset: {
+                                                  mainAxis:
+                                                    DESKTOP_TOOLTIP_MAIN_AXIS +
+                                                    2,
+                                                },
+                                              }}
                                             >
-                                              <Center boxSize={5}>
-                                                <Icon
-                                                  boxSize={2}
-                                                  color={
-                                                    isSubNavsActive
-                                                      ? themeConfig.primaryColor
-                                                      : "d2"
-                                                  }
-                                                  ml={"-6px"}
-                                                >
-                                                  <IconCircleFilled
-                                                    stroke={1.5}
-                                                  />
-                                                </Icon>
-                                              </Center>
-
-                                              <P
-                                                lineClamp={1}
-                                                textAlign={"left"}
+                                              <Btn
+                                                iconButton={
+                                                  navsExpanded ? false : true
+                                                }
+                                                clicky={false}
+                                                w={"full"}
+                                                gap={3}
+                                                px={2}
+                                                rounded={`calc(${themeConfig.radii.component})`}
+                                                justifyContent={"start"}
+                                                variant={"ghost"}
+                                                colorPalette={
+                                                  NAVS_COLOR_PALETTE
+                                                }
                                               >
-                                                {pluckString(l, menu.labelKey)}
-                                              </P>
-                                            </Btn>
+                                                <Center boxSize={5}>
+                                                  <Icon
+                                                    boxSize={2}
+                                                    color={
+                                                      isSubNavsActive
+                                                        ? themeConfig.primaryColor
+                                                        : "d2"
+                                                    }
+                                                    ml={"-6px"}
+                                                  >
+                                                    <IconCircleFilled
+                                                      stroke={1.5}
+                                                    />
+                                                  </Icon>
+                                                </Center>
+
+                                                <P
+                                                  lineClamp={1}
+                                                  textAlign={"left"}
+                                                >
+                                                  {pluckString(
+                                                    l,
+                                                    menu.labelKey
+                                                  )}
+                                                </P>
+                                              </Btn>
+                                            </Tooltip>
                                           </NavLink>
                                         );
                                       })}
@@ -702,13 +720,28 @@ const DesktopLayout = (props: any) => {
 
                                     return (
                                       <NavLink key={menu.path} to={menu.path}>
-                                        <MenuItem value={menu.path}>
-                                          {pluckString(l, menu.labelKey)}
-
-                                          {isSubNavsActive && (
-                                            <DotIndicator mr={1} />
+                                        <Tooltip
+                                          content={pluckString(
+                                            l,
+                                            menu.labelKey
                                           )}
-                                        </MenuItem>
+                                          positioning={{
+                                            placement: "right",
+                                            offset: {
+                                              mainAxis: 12,
+                                            },
+                                          }}
+                                        >
+                                          <MenuItem value={menu.path}>
+                                            <P lineClamp={1}>
+                                              {pluckString(l, menu.labelKey)}
+                                            </P>
+
+                                            {isSubNavsActive && (
+                                              <DotIndicator mr={1} />
+                                            )}
+                                          </MenuItem>
+                                        </Tooltip>
                                       </NavLink>
                                     );
                                   })}
