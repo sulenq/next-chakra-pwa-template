@@ -60,7 +60,7 @@ import {
   IconSlash,
 } from "@tabler/icons-react";
 import { usePathname } from "next/navigation";
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 
 const NAVS_BG = "body";
 const NAVS_COLOR = "ibody";
@@ -416,7 +416,11 @@ const DesktopLayout = (props: any) => {
     return filteredList.length > 0 ? { ...nav, list: filteredList } : null;
   }).filter(Boolean) as typeof PRIVATE_NAVS;
 
-  console.log(resolvedNavs);
+  useEffect(() => {
+    if (!navsExpanded) {
+      setSearch("");
+    }
+  }, [navsExpanded]);
 
   return (
     <HStack
