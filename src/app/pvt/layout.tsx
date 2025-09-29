@@ -546,7 +546,8 @@ const DesktopLayout = (props: any) => {
                                 clicky={false}
                                 variant={"ghost"}
                                 px={2}
-                                pos={"relative"} bg={"transparent"}
+                                pos={"relative"}
+                                bg={"transparent"}
                                 _hover={{
                                   bg: "bg.muted",
                                 }}
@@ -839,7 +840,7 @@ const DesktopLayout = (props: any) => {
               </HStack>
             </PopoverTrigger>
 
-            <PopoverContent w={"232px"} zIndex={2}>
+            <PopoverContent w={"254px"} zIndex={2}>
               <MiniProfile />
             </PopoverContent>
           </PopoverRoot>
