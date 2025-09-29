@@ -546,7 +546,10 @@ const DesktopLayout = (props: any) => {
                                 clicky={false}
                                 variant={"ghost"}
                                 px={2}
-                                pos={"relative"}
+                                pos={"relative"} bg={"transparent"}
+                                _hover={{
+                                  bg: "bg.muted",
+                                }}
                               >
                                 {isMainNavsActive && <LeftIndicator />}
 
