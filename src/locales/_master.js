@@ -953,7 +953,7 @@ export const errpr_location_support = {
 // Info
 export const info_timezone_auto = {
   title: {
-    id: "Zona waktu otomatis diset",
+    id: "Zona waktu diatur secara otomatis",
     en: "Timezone automatically set",
   },
   description: {
