@@ -22,6 +22,7 @@ export default function SearchInput(props: Props__SearchInput) {
     iconProps,
     invalid = false,
     noIcon = false,
+    debounceTime = 500,
     ...restProps
   } = props;
 
@@ -31,7 +32,7 @@ export default function SearchInput(props: Props__SearchInput) {
   // Hooks
   const debounced = useDebouncedCallback(
     (inputValue: string) => onChange?.(inputValue),
-    500
+    debounceTime
   );
 
   // States
