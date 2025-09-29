@@ -66,8 +66,8 @@ export interface Props__SettingsItemContainer extends Props__ItemContainer {
 }
 
 export interface Props__ClockProps extends StackProps {
-  withSeconds?: boolean;
-  withTimezone?: boolean;
+  showSeconds?: boolean;
+  showTimezone?: boolean;
 }
 
 export interface Props__DataTable extends Omit<StackProps, "page"> {

@@ -132,23 +132,16 @@ const MobileLayout = (props: any) => {
       <CContainer flex={1} bg={BG_CONTENT_CONTAINER} overflowY={"auto"}>
         {/* Content header */}
         <CContainer>
-          <HStack
-            w={"full"}
-            justify={"space-between"}
-            pt={2}
-            px={4}
-            // borderBottom={"1px solid"}
-            borderColor={"border.subtle"}
-          >
+          <HStack w={"full"} justify={"space-between"} pt={2} px={4}>
             <HStack>
               <Logo size={15} />
               <P fontWeight={"semibold"}>{APP.name}</P>
             </HStack>
 
             <HStack>
-              <Clock />
+              <Clock showTimezone={sw > 320} />
 
-              <Today dateVariant="basic" />
+              <Today dateVariant="numeric" />
             </HStack>
           </HStack>
 
@@ -185,14 +178,6 @@ const MobileLayout = (props: any) => {
                   </HStack>
                 );
               })}
-            </HStack>
-
-            <HStack flexShrink={0} gap={1}>
-              <HStack mx={1}>
-                {/* <Clock /> */}
-
-                {/* <Today dateVariant="basic" /> */}
-              </HStack>
             </HStack>
           </HStack>
         </CContainer>
