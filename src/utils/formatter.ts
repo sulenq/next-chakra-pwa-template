@@ -22,42 +22,32 @@ export const formatDate = (
 ): string => {
   if (!date) return "";
 
-  // display format / timezone choices
   const dateFormat = options.dateFormat || getStorage("dateFormat") || "dmy";
   const timezoneKey = options.timezoneKey || getUserTimezone().key;
 
-  // Build a moment object *interpreted* according to the input kind and target timezone.
-  // We avoid manual offset math; let moment-timezone handle conversions.
   let localDate: moment.Moment;
 
   if (isDateObject(date)) {
-    // If it's a Date object => it's an absolute instant, convert to target tz for display.
     localDate = moment(date as Date).tz(timezoneKey);
   } else if (typeof date === "string") {
     const s = date as string;
-    const dateOnlyRegex = /^\d{4}-\d{2}-\d{2}$/; // YYYY-MM-DD
-    const isoWithOffsetRegex = /Z|[+-]\d{2}:\d{2}$/i; // ends with Z or +hh:mm / -hh:mm
+    const dateOnlyRegex = /^\d{4}-\d{2}-\d{2}$/;
+    const isoWithOffsetRegex = /Z|[+-]\d{2}:\d{2}$/i;
     const isoWithoutOffsetRegex =
-      /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}(:\d{2}(\.\d+)?)?$/; // YYYY-MM-DDTHH:mm(:ss(.sss)?)
+      /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}(:\d{2}(\.\d+)?)?$/;
 
     if (dateOnlyRegex.test(s)) {
-      // Treat pure date as date-only in the chosen timezone (no accidental day-shift).
       localDate = moment.tz(s, "YYYY-MM-DD", timezoneKey);
     } else if (isoWithOffsetRegex.test(s)) {
-      // Has explicit timezone/offset -> parse preserving that offset, then convert to target tz.
       localDate = moment.parseZone(s).tz(timezoneKey);
     } else if (isoWithoutOffsetRegex.test(s)) {
-      // Has time but no offset -> interpret this string as local time in the chosen timezone.
       localDate = moment.tz(s, timezoneKey);
     } else if (/^\d+$/.test(s)) {
-      // numeric timestamp (ms)
       localDate = moment(Number(s)).tz(timezoneKey);
     } else {
-      // fallback: let moment try to parse and convert to target tz
       localDate = moment(s).tz(timezoneKey);
     }
   } else {
-    // fallback safety
     localDate = moment(date as any).tz(timezoneKey);
   }
 
@@ -71,14 +61,13 @@ export const formatDate = (
   const weekdayName = L_WEEKDAYS_0_BASED[weekday];
   const shortWeekdayName = weekdayName.substring(0, 3);
 
-  const basicVariant = options.variant === "basic";
+  const basicVariant = options.variant === "numeric";
 
   const formatDateString = (
-    dayVal: number,
     yearVal: number,
-    monthOrName: string | number
+    monthOrName: string | number,
+    dayVal: number
   ) => {
-    // If monthOrName is a number, it's 0-based -> convert to 1-based display
     const monthDisplay =
       typeof monthOrName === "number"
         ? String(monthOrName + 1)
@@ -105,48 +94,72 @@ export const formatDate = (
   let formattedDate: string;
 
   switch (options.variant) {
-    case "basic":
-      formattedDate = formatDateString(day, year, month);
+    case "numeric":
+      formattedDate = formatDateString(year, month, day);
+      break;
+    case "day":
+      formattedDate = `${day}`;
+      break;
+    case "month":
+      formattedDate = monthName;
       break;
     case "shortMonth":
-      formattedDate = formatDateString(day, year, shortMonthName);
+      formattedDate = shortMonthName;
       break;
-    case "fullMonth":
-      formattedDate = formatDateString(day, year, monthName);
+    case "year":
+      formattedDate = `${year}`;
+      break;
+    case "shortYear":
+      formattedDate = `${year}`;
+      break;
+    case "dayMonthYear":
+      formattedDate = formatDateString(year, monthName, day);
+      break;
+    case "dayShortMonthYear":
+      formattedDate = formatDateString(year, shortMonthName, day);
       break;
     case "monthYear":
-    case "period":
       formattedDate = `${monthName} ${year}`;
       break;
-    case "shortMonthDay":
-      formattedDate = `${day} ${shortMonthName}`;
+    case "shortMonthYear":
+      formattedDate = `${shortMonthName} ${year}`;
       break;
-    case "fullMonthDay":
+    case "dayMonth":
       formattedDate = `${day} ${monthName}`;
       break;
-    case "weekdayBasic":
-      formattedDate = `${shortWeekdayName}, ${formatDateString(
-        day,
-        year,
-        monthName
-      )}`;
+    case "dayShortMonth":
+      formattedDate = `${day} ${shortMonthName}`;
       break;
-    case "weekdayShortMonth":
-      formattedDate = `${shortWeekdayName}, ${formatDateString(
-        day,
-        year,
-        shortMonthName
-      )}`;
-      break;
-    case "weekdayFullMonth":
+    case "weekdayDayMonthYear":
       formattedDate = `${weekdayName}, ${formatDateString(
-        day,
         year,
-        monthName
+        monthName,
+        day
+      )}`;
+      break;
+    case "weekdayDayShortMonthYear":
+      formattedDate = `${weekdayName}, ${formatDateString(
+        year,
+        shortMonthName,
+        day
+      )}`;
+      break;
+    case "shortWeekdayDayMonthYear":
+      formattedDate = `${shortWeekdayName}, ${formatDateString(
+        year,
+        monthName,
+        day
+      )}`;
+      break;
+    case "shortWeekdayDayShortMonthYear":
+      formattedDate = `${shortWeekdayName}, ${formatDateString(
+        year,
+        shortMonthName,
+        day
       )}`;
       break;
     default:
-      formattedDate = formatDateString(day, year, monthName);
+      formattedDate = formatDateString(year, monthName, day);
       break;
   }
 

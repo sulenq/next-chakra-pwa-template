@@ -314,8 +314,8 @@ const SelectedDateList = (props: Props__SelectedDateList) => {
                           // withTime: true,
                           variant:
                             selected.length > 1
-                              ? "weekdayShortMonth"
-                              : "weekdayFullMonth",
+                              ? "weekdayDayShortMonthYear"
+                              : "weekdayDayMonthYear",
                           timezoneKey: userTz.key,
                         })}
                       </List.Item>
@@ -373,7 +373,7 @@ export const DatePickerInput = (props: Props__DatePickerInput) => {
             formatDate(new Date(date), {
               // withTime: true,
               timezoneKey: localTz.key,
-              variant: "weekdayShortMonth",
+              variant: "weekdayDayShortMonthYear",
             })
           )
           .join(", ")
@@ -384,7 +384,7 @@ export const DatePickerInput = (props: Props__DatePickerInput) => {
           .map((date) =>
             formatAbsDate(new Date(date), {
               // withTime: true,
-              variant: "weekdayShortMonth",
+              variant: "weekdayDayShortMonthYear",
             })
           )
           .join(", ")

@@ -83,13 +83,19 @@ export type Type__TableOptions = (
 )[];
 
 export type Type__DateVariant =
-  | "basic"
-  | "shortMonth"
-  | "fullMonth"
-  | "monthYear"
-  | "period"
-  | "shortMonthDay"
-  | "fullMonthDay"
-  | "weekdayBasic"
-  | "weekdayShortMonth"
-  | "weekdayFullMonth";
+  | "numeric" // 15-1-2025
+  | "day" // 15
+  | "month" // January
+  | "shortMonth" // Jan
+  | "year" // 2025
+  | "shortYear" // 2025
+  | "dayMonthYear" // 15 January 2025
+  | "dayShortMonthYear" // 15 Jan 2025
+  | "monthYear" // January 2025
+  | "shortMonthYear" // Jan 2025
+  | "dayMonth" // 15 January
+  | "dayShortMonth" // 15 Jan
+  | "weekdayDayMonthYear" // Wednesday, 15 January 2025
+  | "weekdayDayShortMonthYear" // Wednesday, 15 Jan 2025
+  | "shortWeekdayDayMonthYear" // Wed, 15 January 2025
+  | "shortWeekdayDayShortMonthYear"; // Wed, 15 Jan 2025

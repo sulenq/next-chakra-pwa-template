@@ -261,7 +261,7 @@ const DateFormat = () => {
                 {/* Example */}
                 <P color={"fg.subtle"}>
                   {formatDate(new Date().toISOString(), {
-                    variant: "weekdayFullMonth",
+                    variant: "weekdayDayShortMonthYear",
                     dateFormat: item.key as Type__DateFormat,
                   })}
                 </P>

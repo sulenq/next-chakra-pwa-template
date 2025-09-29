@@ -104,7 +104,7 @@ export const PeriodPickerInput = (props: Props__PeriodPickerInput) => {
         content={
           !empty
             ? formatDate(new Date(selected.year!, selected.month!), {
-                variant: "period",
+                variant: "monthYear",
               })
             : resolvedPlaceholder
         }
@@ -123,7 +123,7 @@ export const PeriodPickerInput = (props: Props__PeriodPickerInput) => {
           {inputValue && (
             <P>
               {formatDate(new Date(inputValue.year!, inputValue.month!), {
-                variant: "period",
+                variant: "monthYear",
               })}
             </P>
           )}
