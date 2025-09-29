@@ -340,7 +340,7 @@ export default function VideoPlayer(props: Props__VideoPlayer) {
               </Btn>
 
               {/* Timer */}
-              <Text fontSize="xs" textAlign="right" flexShrink={0}>
+              <Text fontSize="sm" textAlign="right" flexShrink={0}>
                 {formatTime(progress)} / {formatTime(duration)}
               </Text>
             </HStack>

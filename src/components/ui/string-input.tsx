@@ -1,10 +1,10 @@
 "use client";
 
+import { CContainer } from "@/components/ui/c-container";
 import { Props__StringInput } from "@/constants/props";
 import { useThemeConfig } from "@/context/useThemeConfig";
 import { useMergedRefs } from "@/hooks/useMergeRefs";
 import {
-  Box,
   Center,
   Input as ChakraInput,
   Icon,
@@ -24,7 +24,7 @@ export const StringInput = forwardRef<HTMLInputElement, Props__StringInput>(
       onChange,
       inputValue,
       placeholder = "Input text",
-      boxProps,
+      containerProps,
       invalid,
       clearable = true,
       clearButtonProps,
@@ -63,11 +63,13 @@ export const StringInput = forwardRef<HTMLInputElement, Props__StringInput>(
       <>
         <Global styles={styles} />
 
-        <Box
+        <CContainer
           position={"relative"}
-          w={"full"}
+          w={restProps?.w || "full"}
+          h={restProps?.h}
+          display={"inline-flex"}
           overflow={"visible"}
-          {...boxProps}
+          {...containerProps}
         >
           <ChakraInput
             ref={mergedRef}
@@ -117,7 +119,7 @@ export const StringInput = forwardRef<HTMLInputElement, Props__StringInput>(
               </IconButton>
             </Center>
           )}
-        </Box>
+        </CContainer>
       </>
     );
   }

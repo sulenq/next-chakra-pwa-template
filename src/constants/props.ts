@@ -7,7 +7,6 @@ import {
   Interface__TableOption,
 } from "@/constants/interfaces";
 import {
-  BoxProps,
   ButtonProps,
   FileUploadRootProps,
   GroupProps,
@@ -18,6 +17,7 @@ import {
   TableRowProps,
   TextProps,
 } from "@chakra-ui/react";
+import { ImageProps } from "next/image";
 import { TextareaProps } from "node_modules/@chakra-ui/react/dist/types/components/editable/namespace";
 import { Dispatch, RefObject } from "react";
 import {
@@ -25,7 +25,6 @@ import {
   Type__DisclosureSizes,
   Type__Period,
 } from "./types";
-import { ImageProps } from "next/image";
 
 export interface Props__DisclosureHeaderContent {
   title?: string;
@@ -160,7 +159,7 @@ export interface Props__StringInput extends Omit<InputProps, "onChange"> {
   inputValue?: string;
   onChange?: (inputValue: string) => void;
   placeholder?: string;
-  boxProps?: BoxProps;
+  containerProps?: StackProps;
   invalid?: boolean;
   clearable?: boolean;
   clearButtonProps?: StackProps;
@@ -171,7 +170,7 @@ export interface Props__PasswordInput extends Omit<InputProps, "onChange"> {
   onChange?: (inputValue: string) => void;
   inputValue?: string | undefined;
   placeholder?: string;
-  boxProps?: BoxProps;
+  containerProps?: StackProps;
   invalid?: boolean;
 }
 
@@ -307,7 +306,7 @@ export interface Props__NumInput extends Omit<InputProps, "onChange"> {
   onChange?: (inputValue: number | null) => void;
   placeholder?: string;
   invalid?: boolean;
-  boxProps?: BoxProps;
+  containerProps?: StackProps;
   formatFunction?: (inputValue: number | null) => string;
   formatted?: boolean;
   integer?: boolean;

@@ -12,7 +12,7 @@ export const NumInput = forwardRef<HTMLInputElement, Props__NumInput>(
       onChange,
       placeholder = "Input number",
       invalid,
-      boxProps,
+      containerProps,
       formatFunction,
       formatted = true,
       integer = true,
@@ -128,7 +128,7 @@ export const NumInput = forwardRef<HTMLInputElement, Props__NumInput>(
         inputValue={num}
         invalid={invalid}
         placeholder={placeholder}
-        boxProps={boxProps}
+        containerProps={containerProps}
         {...restProps}
       />
     );
