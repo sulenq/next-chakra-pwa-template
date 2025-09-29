@@ -26,7 +26,7 @@ const DefaultFallback = () => {
 // persist mounted state across route changes
 let mountedGlobal = false;
 
-export default function ClientOnlyApp(props: Props) {
+export default function ClientSideOnly(props: Props) {
   // Props
   const { children, fallback } = props;
 
