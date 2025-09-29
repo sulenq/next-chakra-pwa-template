@@ -176,7 +176,7 @@ const AppSettingsLayout = (props: Props__Layout) => {
               <HelperText>
                 {`Last updated: 
                 ${formatAbsDate(APP.lastUpdated, {
-                  variant: "basic",
+                  variant: "numeric",
                 })}`}
               </HelperText>
             </HStack>
