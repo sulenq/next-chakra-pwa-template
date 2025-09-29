@@ -12,7 +12,7 @@ import {
 
 export const PRIVATE_ROUTE_INDEX = "/pvt";
 
-export const NAVS: Interface__NavItem[] = [
+export const PRIVATE_NAVS: Interface__NavItem[] = [
   {
     groupLabelKey: "main",
     list: [

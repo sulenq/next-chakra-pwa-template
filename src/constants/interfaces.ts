@@ -17,15 +17,18 @@ import {
 import { ReactNode } from "react";
 
 // Navs
+export interface Interface__NavListItem {
+  icon?: any;
+  labelKey: string;
+  path: string;
+  backPath?: string;
+  allowedRoles?: string[];
+  allowedPermissions?: string[];
+  subMenus?: Interface__NavItem[];
+}
 export interface Interface__NavItem {
   groupLabelKey?: string;
-  list: {
-    icon?: any;
-    labelKey: string;
-    path: string;
-    backPath?: string;
-    subMenus?: Interface__NavItem[];
-  }[];
+  list: Interface__NavListItem[];
 }
 
 // Data Table
