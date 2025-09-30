@@ -32,7 +32,7 @@ export const MenuContent = forwardRef<HTMLDivElement, MenuContentProps>(
           <ChakraMenu.Content
             ref={ref}
             className={"ss"}
-            w={"150px"}
+            w={"155px"}
             gap={1}
             px={0}
             py={1}

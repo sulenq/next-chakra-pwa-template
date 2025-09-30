@@ -43,6 +43,7 @@ export default function FeedbackRetry(props: Props) {
 
       <Btn
         className="clicky"
+        variant={"outline"}
         colorPalette={themeConfig.colorPalette}
         onClick={onRetry}
       >

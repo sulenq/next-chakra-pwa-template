@@ -101,48 +101,43 @@ const DemoDataTable = () => {
         ],
       },
     ],
-    batchOptions: [
-      {
-        label: "Restore",
-        icon: <IconRestore stroke={1.5} />,
-        onClick: () => {
-          console.log("Restore");
-        },
-      },
-      {
-        // disabled: true,
-        label: "Delete",
-        icon: <IconTrash stroke={1.5} />,
-        menuItemProps: { color: "fg.error" },
-        onClick: () => {
-          console.log("Delete");
-        },
-      },
-    ],
     rowOptions: [
-      {
+      () => ({
         label: "Edit",
         icon: <IconPencilMinus stroke={1.5} />,
-        onClick: () => {
-          console.log("Edit");
-        },
-      },
-      {
+        onClick: () => console.log("Edit"),
+      }),
+      () => ({
         label: "Restore",
         icon: <IconRestore stroke={1.5} />,
-        onClick: () => {
-          console.log("Restore");
-        },
-      },
-      {
-        // disabled: true,
+        onClick: () => console.log("Restore"),
+      }),
+      () => ({
         label: "Delete",
         icon: <IconTrash stroke={1.5} />,
         menuItemProps: { color: "fg.error" },
-        onClick: () => {
-          console.log("Delete");
+        onClick: () => console.log("Delete"),
+        confirmation: {
+          id: "deleteUsr",
+          title: "Delete User",
+          description: `Are you sure you want to delete?`,
+          confirmLabel: "Delete",
+          onConfrim: () => console.log("Confirmed delete"),
         },
-      },
+      }),
+    ],
+    batchOptions: [
+      (ids: number[]) => ({
+        label: "Restore",
+        icon: <IconRestore stroke={1.5} />,
+        onClick: () => console.log("Restore", ids),
+      }),
+      (ids: number[]) => ({
+        label: "Delete",
+        icon: <IconTrash stroke={1.5} />,
+        menuItemProps: { color: "fg.error" },
+        onClick: () => console.log("Delete", ids),
+      }),
     ],
   };
 

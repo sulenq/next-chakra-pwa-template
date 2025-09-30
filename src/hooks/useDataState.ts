@@ -7,6 +7,7 @@ interface Props<T> {
   url?: string;
   method?: string;
   payload?: any;
+  params?: any;
   dependencies?: any[];
   conditions?: boolean;
   noRt?: boolean;
@@ -23,6 +24,7 @@ const useDataState = <T = any>(props: Props<T>) => {
   const {
     initialData,
     payload,
+    params,
     url,
     method,
     dependencies = [],
@@ -54,12 +56,16 @@ const useDataState = <T = any>(props: Props<T>) => {
     limit,
     page,
   };
-
+  const paramsData = {
+    ...params,
+    limit,
+    page,
+  };
   const baseConfig = {
     url: url,
     method,
     data: payloadData,
-    params: payloadData,
+    params: paramsData,
   };
 
   // Refs
@@ -82,9 +88,6 @@ const useDataState = <T = any>(props: Props<T>) => {
 
     const currentUrl = url;
 
-    // setData(undefined);
-
-    // Delay microtask untuk memastikan ini benar url terbaru
     Promise.resolve().then(() => {
       if (latestUrlRef.current !== currentUrl) {
         return; // Skip if outdated

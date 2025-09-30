@@ -18,7 +18,7 @@ export const FileItem = (props: Props__FileItem) => {
     <HStack
       py={2}
       px={4}
-      pr={3}
+      pr={"6px"}
       rounded={themeConfig.radii.component}
       border={"1px solid"}
       borderColor={"border.muted"}
@@ -53,12 +53,13 @@ export const FileItem = (props: Props__FileItem) => {
               iconButton={!!action.icon}
               flexShrink={0}
               size={"xs"}
-              variant={"ghost"}
+              color={"fg.subtle"}
+              variant={"plain"}
               colorPalette={"gray"}
               onClick={action.onClick}
             >
               {action.icon ? (
-                <Icon boxSize={5}>{action.icon}</Icon>
+                <Icon boxSize={"18px"}>{action.icon}</Icon>
               ) : (
                 action.label
               )}

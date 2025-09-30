@@ -329,7 +329,7 @@ const customConfig = defineConfig({
         text: { value: { base: "{colors.dark}", _dark: "#ddd" } },
         body: { value: { base: "{colors.light}", _dark: "{colors.dark}" } },
         bgContent: {
-          value: { base: "{colors.d0}", _dark: "{colors.bg.subtle}" },
+          value: { base: "{colors.d0}", _dark: "#131313" },
         },
         bodytrans: {
           value: { base: "{colors.light}aa", _dark: "{colors.dark}aa" },

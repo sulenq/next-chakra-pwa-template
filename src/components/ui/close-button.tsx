@@ -22,7 +22,7 @@ export const CloseButton = forwardRef<HTMLButtonElement, CloseButtonProps>(
         ref={ref}
         {...restProps}
       >
-        <Icon boxSize={5} {...iconProps}>
+        <Icon boxSize={"18px"} {...iconProps}>
           {props.children ?? <IconX />}
         </Icon>
       </ChakraIconButton>

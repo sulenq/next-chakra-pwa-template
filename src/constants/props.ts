@@ -4,7 +4,7 @@ import {
   Interface__FormattedTableHeader,
   Interface__SelectOption,
   Interface__StorageFile,
-  Interface__TableOption,
+  Interface__TableOptionGenerator,
 } from "@/constants/interfaces";
 import {
   ButtonProps,
@@ -74,8 +74,8 @@ export interface Props__DataTable extends Omit<StackProps, "page"> {
   trBodyProps?: TableRowProps;
   headers?: Interface__FormattedTableHeader[];
   rows?: Interface__FormattedTableData[];
-  rowOptions?: Interface__TableOption[];
-  batchOptions?: Interface__TableOption[];
+  rowOptions?: Interface__TableOptionGenerator[];
+  batchOptions?: Interface__TableOptionGenerator<number[]>[];
   initialSortColumnIndex?: number;
   initialSortOrder?: "asc" | "desc";
   limit?: number;
@@ -84,6 +84,7 @@ export interface Props__DataTable extends Omit<StackProps, "page"> {
   setPage?: Dispatch<number>;
   totalPage?: number;
   footer?: any;
+  loading?: boolean;
 }
 export interface Props__SortIcon extends IconProps {
   columnIndex: number;
@@ -92,14 +93,14 @@ export interface Props__SortIcon extends IconProps {
 }
 export interface Props__BatchOptions {
   selectedRows: any[];
-  batchOptions?: (Interface__TableOption | "divider")[];
+  batchOptions?: Interface__TableOptionGenerator<number[]>[];
   selectAllRows: boolean;
   handleSelectAllRows: (isChecked: boolean) => void;
   tableContainerRef?: RefObject<HTMLDivElement | null>;
 }
 export interface Props_RowOptions {
   row?: any;
-  rowOptions?: (Interface__TableOption | "divider")[];
+  rowOptions?: Interface__TableOptionGenerator[];
   tableContainerRef?: RefObject<HTMLDivElement | null>;
 }
 export interface Props_LimitationTableData {

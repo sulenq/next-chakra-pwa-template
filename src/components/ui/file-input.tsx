@@ -48,7 +48,7 @@ const FileList = (props: any) => {
             actions={[
               {
                 type: "remove",
-                icon: <IconX stroke={1.5} />,
+                icon: <IconX />,
                 onClick: () => {
                   const next = inputValue.filter(
                     (_file: File, i: number) => i !== idx
@@ -183,8 +183,8 @@ const InputComponent = (props: Props__FileInputInputComponent) => {
             <Tooltip content={"Reset"}>
               <CloseButton
                 pos={"absolute"}
-                top={3}
-                right={3}
+                top={"6px"}
+                right={"6px"}
                 size={"xs"}
                 variant={"plain"}
                 color={"fg.subtle"}
