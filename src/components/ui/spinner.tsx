@@ -6,7 +6,7 @@ const Spinner = (props: Props) => {
   // Props
   const { ...restProps } = props;
 
-  return <ChakraSpinner animationDuration="0.8s" {...restProps} />;
+  return <ChakraSpinner {...restProps} />;
 };
 
 export default Spinner;
