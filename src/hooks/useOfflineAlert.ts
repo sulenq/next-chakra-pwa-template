@@ -22,6 +22,7 @@ export default function useOfflineAlert(props: Props) {
   function handleOnline() {
     setOffline(false);
     toaster.success({
+      id: "success_online",
       title: l.success_online.title,
       description: l.success_online.description,
       action: {
