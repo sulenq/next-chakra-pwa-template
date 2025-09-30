@@ -66,6 +66,9 @@ export const MenuItem = forwardRef<HTMLDivElement, MenuItemProps>(
           cursor={"pointer"}
           fontSize={"md"}
           rounded={themeConfig.radii.component}
+          _hover={{
+            bg: "bg.muted",
+          }}
           {...restProps}
         >
           {children}
