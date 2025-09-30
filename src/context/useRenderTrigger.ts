@@ -1,14 +1,11 @@
 import { create } from "zustand";
 
-type State = {
+interface Props {
   rt: boolean;
-};
-
-type Actions = {
   setRt: (rt: boolean | ((prev: boolean) => boolean)) => void;
-};
+}
 
-const useRenderTrigger = create<State & Actions>((set, get) => ({
+const useRenderTrigger = create<Props>((set, get) => ({
   rt: false,
   setRt: (rt) => {
     if (typeof rt === "function") {

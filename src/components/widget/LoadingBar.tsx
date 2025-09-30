@@ -1,16 +1,15 @@
 "use client";
 
+import { CContainer } from "@/components/ui/c-container";
+import { useLoadingBar } from "@/context/useLoadingBar";
 import { useThemeConfig } from "@/context/useThemeConfig";
-import { Box, BoxProps } from "@chakra-ui/react";
-import { useEffect, useState, useRef } from "react";
+import { Box, StackProps } from "@chakra-ui/react";
+import { useEffect, useRef, useState } from "react";
 
-interface LoadingBarProps extends BoxProps {
-  loading: boolean;
-}
-
-export function LoadingBar({ loading, ...restProps }: LoadingBarProps) {
+export function LoadingBar(props: StackProps) {
   // Contexts
   const { themeConfig } = useThemeConfig();
+  const loading = useLoadingBar((s) => s.loading);
 
   // States
   const [visible, setVisible] = useState(false);
@@ -53,15 +52,14 @@ export function LoadingBar({ loading, ...restProps }: LoadingBarProps) {
   if (!visible) return null;
 
   return (
-    <Box
+    <CContainer
       position={"fixed"}
       top={0}
       left={0}
-      width={"100%"}
       height={"1px"}
       bg={"transparent"}
       zIndex={9999}
-      {...restProps}
+      {...props}
     >
       <Box
         width={`${progress}%`}
@@ -69,6 +67,6 @@ export function LoadingBar({ loading, ...restProps }: LoadingBarProps) {
         bg={themeConfig.primaryColor}
         transition="width 0.2s linear, opacity 0.3s ease"
       />
-    </Box>
+    </CContainer>
   );
 }

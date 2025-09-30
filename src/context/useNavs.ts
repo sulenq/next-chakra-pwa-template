@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { getStorage, setStorage } from "@/utils/client";
 
-interface State_Actions {
+interface Props {
   navsExpanded: boolean;
   setNavsExpanded: (newState: boolean | ((prev: boolean) => boolean)) => void;
   toggleNavsExpanded: () => void;
@@ -12,7 +12,7 @@ const STORAGE_KEY = "navsExpanded";
 const initialValue =
   getStorage(STORAGE_KEY) === null ? true : getStorage(STORAGE_KEY) === "true";
 
-const useNavs = create<State_Actions>((set, get) => {
+const useNavs = create<Props>((set, get) => {
   return {
     navsExpanded: initialValue,
     setNavsExpanded: (newState) => {

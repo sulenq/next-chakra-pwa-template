@@ -10,7 +10,6 @@ import {
 } from "@/components/ui/menu";
 import { P } from "@/components/ui/p";
 import { DotIndicator } from "@/components/widget/Indicator";
-import { LoadingBar } from "@/components/widget/LoadingBar";
 import { SortIcon } from "@/components/widget/SortIcon";
 import { Interface__FormattedTableData } from "@/constants/interfaces";
 import {
@@ -384,7 +383,6 @@ export const DataTable = (props: Props__DataTable) => {
     setPage,
     totalPage,
     footer,
-    loading = false,
     ...restProps
   } = props;
 
@@ -522,8 +520,6 @@ export const DataTable = (props: Props__DataTable) => {
         flex={1}
         {...restProps}
       >
-        <LoadingBar loading={loading} />
-
         <Table.Root
           w={headers.length > 1 ? "full" : "fit-content"}
           tableLayout={"auto"}
