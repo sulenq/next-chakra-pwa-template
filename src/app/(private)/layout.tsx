@@ -39,7 +39,7 @@ import { MiniProfile } from "@/components/widget/MiniProfile";
 import { Today } from "@/components/widget/Today";
 import { APP } from "@/constants/_meta";
 import { Interface__NavListItem } from "@/constants/interfaces";
-import { PRIVATE_NAVS, PRIVATE_ROUTE_INDEX } from "@/constants/navs";
+import { PRIVATE_NAVS } from "@/constants/navs";
 import { Props__Layout, Props__NavLink } from "@/constants/props";
 import { FIREFOX_SCROLL_Y_CLASS_PR_PREFIX } from "@/constants/sizes";
 import useLang from "@/context/useLang";
@@ -49,7 +49,7 @@ import { useIsSmScreenWidth } from "@/hooks/useIsSmScreenWidth";
 import useScreen from "@/hooks/useScreen";
 import { isEmptyArray, last } from "@/utils/array";
 import { getUserData } from "@/utils/auth";
-import { capitalizeWords, pluckString } from "@/utils/string";
+import { pluckString } from "@/utils/string";
 import { getActiveNavs } from "@/utils/url";
 import { Center, HStack, Icon, Stack } from "@chakra-ui/react";
 import {
@@ -116,7 +116,7 @@ const NavTitle = (props: any) => {
             )}
 
             <P fontSize={"lg"} fontWeight={"semibold"} lineClamp={1}>
-              {capitalizeWords(pluckString(l, nav.labelKey))}
+              {pluckString(l, nav.labelKey)}
             </P>
           </HStack>
         );
@@ -158,10 +158,8 @@ const MobileLayout = (props: any) => {
   const resolvedActiveNavs =
     sw < 360 ? [activeNavs[activeNavs.length - 1]] : activeNavs;
   const backPath = last(activeNavs)?.backPath;
-  const isInSettingsRoute = pathname.includes(
-    `${PRIVATE_ROUTE_INDEX}/settings`
-  );
-  const isInProfileRoute = pathname.includes(`${PRIVATE_ROUTE_INDEX}/profile`);
+  const isInSettingsRoute = pathname.includes(`/settings`);
+  const isInProfileRoute = pathname.includes(`/profile`);
 
   return (
     <CContainer flex={1} overflowY={"auto"} {...restProps}>
@@ -312,7 +310,7 @@ const MobileLayout = (props: any) => {
         })}
 
         <MobileNavLink
-          to={`${PRIVATE_ROUTE_INDEX}/settings`}
+          to={`/settings`}
           color={isInSettingsRoute ? "" : "fg.muted"}
         >
           <Icon boxSize={6}>
@@ -819,7 +817,7 @@ const DesktopLayout = (props: any) => {
         </CContainer>
 
         <CContainer mt={"auto"} gap={2} p={2}>
-          <NavLink to={`${PRIVATE_ROUTE_INDEX}/settings`}>
+          <NavLink to={`/settings`}>
             <NavTooltip content={l.settings}>
               <Btn
                 clicky={false}
@@ -830,9 +828,7 @@ const DesktopLayout = (props: any) => {
                 px={2}
                 pos={"relative"}
               >
-                {pathname.includes(`${PRIVATE_ROUTE_INDEX}/settings`) && (
-                  <LeftIndicator />
-                )}
+                {pathname.includes(`/settings`) && <LeftIndicator />}
 
                 <Icon boxSize={5}>
                   <IconSettings stroke={1.5} />

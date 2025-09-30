@@ -11,7 +11,7 @@ import { LeftIndicator } from "@/components/widget/Indicator";
 import { ItemContainer } from "@/components/widget/ItemContainer";
 import { RouteContainer } from "@/components/widget/RouteContainer";
 import { APP } from "@/constants/_meta";
-import { OTHER_NAVS, PRIVATE_ROUTE_INDEX } from "@/constants/navs";
+import { OTHER_NAVS } from "@/constants/navs";
 import { Props__Layout } from "@/constants/props";
 import { FIREFOX_SCROLL_Y_CLASS_PR_PREFIX } from "@/constants/sizes";
 import useLang from "@/context/useLang";
@@ -125,7 +125,7 @@ const AppSettingsLayout = (props: Props__Layout) => {
   // States
   const [search, setSearch] = useState<string>("");
   const isSmContainer = containerDimensions.width < 720;
-  const isAtSettingsIndexRoute = pathname === `${PRIVATE_ROUTE_INDEX}/settings`;
+  const isAtSettingsIndexRoute = pathname === `/settings`;
   const showSidebar =
     !isSmContainer || (isSmContainer && isAtSettingsIndexRoute);
   const showContent =
