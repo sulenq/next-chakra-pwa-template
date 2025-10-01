@@ -601,7 +601,14 @@ export const DataTable = (props: Props__DataTable) => {
                     px={4}
                     py={3}
                     pl={idx === 0 ? 4 : ""}
-                    pr={idx === headers.length - 1 ? 4 : ""}
+                    pr={
+                      idx === headers.length - 1
+                        ? 4
+                        : header?.wrapperProps?.justify === "center" ||
+                          header?.wrapperProps?.justifyContent === "center"
+                        ? 1
+                        : ""
+                    }
                     borderBottom={"1px solid"}
                     borderColor={thBorderColor}
                     {...header?.wrapperProps}
