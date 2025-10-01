@@ -19,11 +19,11 @@ export const SortIcon = (props: Props__SortIcon) => {
 
   return (
     <VStack gap={0}>
-      <Icon boxSize={"15px"} color={ascColor} mb={"-5px"} {...restProps}>
+      <Icon boxSize={"15px"} color={ascColor} mb={"-4.5px"} {...restProps}>
         <IconCaretUpFilled />
       </Icon>
 
-      <Icon boxSize={"15px"} color={descColor} mt={"-5px"} {...restProps}>
+      <Icon boxSize={"15px"} color={descColor} mt={"-4.5px"} {...restProps}>
         <IconCaretDownFilled />
       </Icon>
     </VStack>
