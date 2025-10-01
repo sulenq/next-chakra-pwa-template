@@ -85,7 +85,7 @@ const Language = () => {
                   </chakra.span>
                 </Text>
 
-                {isActive && <DotIndicator ml={0} />}
+                {isActive && <DotIndicator />}
               </Btn>
             );
           })}
@@ -199,7 +199,7 @@ const Timezone = () => {
                       color={"fg.subtle"}
                     >{`${tz.formattedOffset} (${tz.localAbbr})`}</P>
 
-                    {isActive && <DotIndicator ml={0} />}
+                    {isActive && <DotIndicator />}
                   </Btn>
                 );
               })}
@@ -251,7 +251,7 @@ const DateFormat = () => {
                     {item.label}
                   </P>
 
-                  {isActive && <DotIndicator ml={0} />}
+                  {isActive && <DotIndicator />}
                 </HStack>
 
                 <P color={"fg.muted"} mb={2}>
@@ -314,7 +314,7 @@ const TimeFormat = () => {
                     {item.label}
                   </P>
 
-                  {isActive && <DotIndicator ml={0} />}
+                  {isActive && <DotIndicator />}
                 </HStack>
 
                 <P>
@@ -371,7 +371,7 @@ const UOMFormat = () => {
                     {item.label}
                   </P>
 
-                  {isActive && <DotIndicator ml={0} />}
+                  {isActive && <DotIndicator />}
                 </HStack>
 
                 <P color={"fg.muted"} mb={2}>

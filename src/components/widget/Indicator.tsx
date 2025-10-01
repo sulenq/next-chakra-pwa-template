@@ -50,12 +50,7 @@ export const DotIndicator = (props: IconProps) => {
   const { themeConfig } = useThemeConfig();
 
   return (
-    <Icon
-      color={themeConfig.primaryColor}
-      boxSize={2}
-      ml={"auto"}
-      {...restProps}
-    >
+    <Icon color={themeConfig.primaryColor} boxSize={2} {...restProps}>
       {children || <IconCircleFilled />}
     </Icon>
   );

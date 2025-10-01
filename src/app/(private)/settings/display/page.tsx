@@ -270,7 +270,7 @@ const Rounded = () => {
         <HStack pl={1}>
           <P>{preset.label}</P>
 
-          {isActive && <DotIndicator ml={0} />}
+          {isActive && <DotIndicator />}
 
           <Circle
             w={"24px"}
