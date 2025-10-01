@@ -122,6 +122,7 @@ export const MiniProfile = (props: StackProps) => {
             colorPalette: "gray",
             variant: "outline",
           }}
+          w={"full"}
         >
           <Btn
             clicky={false}

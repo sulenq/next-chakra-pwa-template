@@ -60,7 +60,7 @@ import {
   IconSlash,
 } from "@tabler/icons-react";
 import { usePathname } from "next/navigation";
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 
 const NAVS_BG = "body";
 const NAVS_COLOR = "ibody";
@@ -380,6 +380,9 @@ const DesktopLayout = (props: any) => {
   const pathname = usePathname();
   const { sw } = useScreen();
 
+  // Refs
+  const searchInputRef = useRef<HTMLInputElement>(null);
+
   // States
   const user = getUserData();
   const activeNavs = getActiveNavs(pathname);
@@ -418,6 +421,8 @@ const DesktopLayout = (props: any) => {
   useEffect(() => {
     if (!navsExpanded) {
       setSearch("");
+    } else {
+      searchInputRef.current?.focus();
     }
   }, [navsExpanded]);
 
@@ -511,6 +516,7 @@ const DesktopLayout = (props: any) => {
           {navsExpanded && (
             <CContainer mb={1}>
               <SearchInput
+                inputRef={searchInputRef}
                 inputProps={{ variant: "flushed", rounded: 0 }}
                 inputValue={search}
                 onChange={(inputValue) => {
