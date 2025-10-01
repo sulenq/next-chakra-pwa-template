@@ -9,6 +9,7 @@ import { Img } from "../ui/img";
 import GlobalDisclosure from "./GlobalDisclosure";
 import { useColorMode } from "@/components/ui/color-mode";
 import useADM from "@/context/useADM";
+import { LoadingBar } from "@/components/widget/LoadingBar";
 
 interface Props {
   children: React.ReactNode;
@@ -18,7 +19,15 @@ interface Props {
 const DefaultFallback = () => {
   return (
     <Center w={"100w"} minH={"100dvh"} color={"fg.subtle"}>
-      <Img alt={`${APP.name} Logo`} src={"/logo.svg"} width={16} height={16} />
+      <Img
+        alt={`${APP.name} Logo`}
+        src={"/logo.svg"}
+        width={"32px"}
+        height={"32px"}
+        imageProps={{
+          priority: true,
+        }}
+      />
     </Center>
   );
 };
@@ -77,7 +86,9 @@ export default function ClientSideOnly(props: Props) {
 
   return (
     <>
+      <LoadingBar />
       <GlobalDisclosure />
+
       {children}
     </>
   );

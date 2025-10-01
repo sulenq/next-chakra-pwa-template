@@ -123,8 +123,8 @@ export const Toaster = () => {
                   p={"6px"}
                   w={"32px"}
                   h={"32px"}
-                  ml={-1}
-                  mt={-1}
+                  ml={"-2px"}
+                  mt={"-2px"}
                 >
                   <Spinner w={"14px"} h={"14px"} color={"fg.muted"} />
                 </Center>

@@ -1,5 +1,8 @@
 "use client";
 
+import { FileIcon } from "@/components/ui/file-icon";
+import { P } from "@/components/ui/p";
+import { useThemeConfig } from "@/context/useThemeConfig";
 import type { ButtonProps, RecipeProps } from "@chakra-ui/react";
 import {
   Button,
@@ -7,15 +10,11 @@ import {
   Icon,
   IconButton,
   Span,
-  Text,
   useFileUploadContext,
   useRecipe,
 } from "@chakra-ui/react";
 import { IconUpload, IconX } from "@tabler/icons-react";
 import { forwardRef } from "react";
-import { useThemeConfig } from "@/context/useThemeConfig";
-import { FileIcon } from "@/components/ui/file-icon";
-import { P } from "@/components/ui/p";
 
 export interface FileUploadRootProps extends ChakraFileUpload.RootProps {
   inputProps?: React.InputHTMLAttributes<HTMLInputElement>;
@@ -59,9 +58,7 @@ export const FileUploadDropzone = forwardRef<
       </Icon>
       <ChakraFileUpload.DropzoneContent>
         <P>{label}</P>
-        {description && (
-          <Text color="fg.muted">{description || ".* up to 5MB"}</Text>
-        )}
+        {description && <P color="fg.muted">{description || ".* up to 5MB"}</P>}
       </ChakraFileUpload.DropzoneContent>
       {children}
     </ChakraFileUpload.Dropzone>

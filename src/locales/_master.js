@@ -131,6 +131,10 @@ export const delete_ = {
   id: "Hapus",
   en: "Delete",
 };
+export const deleted = {
+  id: "Dihapus",
+  en: "Deleted",
+};
 export const submit = {
   id: "Submit",
   en: "Submit",
@@ -702,8 +706,8 @@ export const loading_reset_password = {
 // Success Toast
 export const success_online = {
   title: {
-    id: "Koneksi Pulih",
-    en: "Connection Recovered",
+    id: "Koneksi pulih",
+    en: "Connection recovered",
   },
   description: {
     id: "Anda kembali online.",

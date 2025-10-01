@@ -19,7 +19,7 @@ import {
   toggleFullscreen,
   toggleMute,
 } from "@/utils/video";
-import { chakra, HStack, Icon, Slider, Stack, Text } from "@chakra-ui/react";
+import { chakra, HStack, Icon, Slider, Stack } from "@chakra-ui/react";
 import {
   IconMaximize,
   IconPlayerPauseFilled,
@@ -340,9 +340,9 @@ export default function VideoPlayer(props: Props__VideoPlayer) {
               </Btn>
 
               {/* Timer */}
-              <Text fontSize="sm" textAlign="right" flexShrink={0}>
-                {formatTime(progress)} / {formatTime(duration)}
-              </Text>
+              <P fontSize="sm" textAlign="right" flexShrink={0}>
+                {`${formatTime(progress)} / ${formatTime(duration)}`}
+              </P>
             </HStack>
 
             {/* Playback Rate */}

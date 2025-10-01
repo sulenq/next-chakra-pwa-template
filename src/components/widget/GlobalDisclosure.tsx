@@ -1,12 +1,12 @@
-import ConfirmationDisclosure from "./ConfirmationDisclosure";
-import OfflineDisclosure from "./OfflineDisclosure";
+import GlobalConfirmationDisclosure from "./GlobalConfirmationDisclosure";
+import GlobalOfflineDisclosure from "./GlobalOfflineDisclosure";
 
 const GlobalDisclosure = () => {
   return (
     <>
-      <OfflineDisclosure />
+      <GlobalOfflineDisclosure />
 
-      <ConfirmationDisclosure />
+      <GlobalConfirmationDisclosure />
     </>
   );
 };

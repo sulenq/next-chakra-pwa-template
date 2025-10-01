@@ -1,6 +1,6 @@
 import { BtnProps } from "@/components/ui/btn";
 import {
-  Interface__FormattedTableData,
+  Interface__FormattedTableRow,
   Interface__FormattedTableHeader,
   Interface__SelectOption,
   Interface__StorageFile,
@@ -53,6 +53,7 @@ export interface Props__Today extends TextProps {
 }
 export interface Props__NavLink extends StackProps {
   to?: string;
+  external?: boolean;
 }
 export interface Props__ItemContainer extends StackProps {
   scrollY?: boolean;
@@ -73,9 +74,9 @@ export interface Props__ClockProps extends StackProps {
 export interface Props__DataTable extends Omit<StackProps, "page"> {
   trBodyProps?: TableRowProps;
   headers?: Interface__FormattedTableHeader[];
-  rows?: Interface__FormattedTableData[];
-  rowOptions?: Interface__TableOptionGenerator[];
-  batchOptions?: Interface__TableOptionGenerator<number[]>[];
+  rows?: Interface__FormattedTableRow[];
+  rowOptions?: Interface__TableOptionGenerator<Interface__FormattedTableRow>[];
+  batchOptions?: Interface__TableOptionGenerator<string[]>[];
   initialSortColumnIndex?: number;
   initialSortOrder?: "asc" | "desc";
   limit?: number;
@@ -93,14 +94,14 @@ export interface Props__SortIcon extends IconProps {
 }
 export interface Props__BatchOptions {
   selectedRows: any[];
-  batchOptions?: Interface__TableOptionGenerator<number[]>[];
+  batchOptions?: Interface__TableOptionGenerator<string[]>[];
   selectAllRows: boolean;
   handleSelectAllRows: (isChecked: boolean) => void;
   tableContainerRef?: RefObject<HTMLDivElement | null>;
 }
 export interface Props_RowOptions {
-  row?: any;
-  rowOptions?: Interface__TableOptionGenerator[];
+  row: Interface__FormattedTableRow;
+  rowOptions?: Interface__TableOptionGenerator<Interface__FormattedTableRow>[];
   tableContainerRef?: RefObject<HTMLDivElement | null>;
 }
 export interface Props_LimitationTableData {
@@ -224,7 +225,7 @@ export interface Props__FileInputInputComponent
   extends Omit<Props__FileInput, "removed"> {
   existing: Interface__StorageFile[];
 }
-export interface Props__FileItem {
+export interface Props__FileItem extends StackProps {
   fileData: any;
   actions?: {
     type: "remove" | "delete" | "undo_delete";

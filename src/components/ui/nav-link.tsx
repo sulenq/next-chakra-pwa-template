@@ -2,28 +2,34 @@
 
 import { Props__NavLink } from "@/constants/props";
 import { useRouter } from "next/navigation";
-import { forwardRef } from "react";
+import { forwardRef, useEffect } from "react";
 import { CContainer } from "./c-container";
 
 export const NavLink = forwardRef<HTMLDivElement, Props__NavLink>(
   (props, ref) => {
-    // Props
-    const { children, to, ...restProps } = props;
-
-    // Utils
+    const { children, to, external, ...restProps } = props;
     const router = useRouter();
-    router.prefetch(to || "");
+
+    useEffect(() => {
+      if (to && !external) {
+        router.prefetch(to);
+      }
+    }, [to, external, router]);
+
     function handleOnClick() {
-      if (to) {
+      if (!to) return;
+
+      if (external) {
+        window.open(to, "_blank", "noopener,noreferrer");
+      } else {
         router.push(to);
-        window.scrollTo(0, 0);
       }
     }
 
     return (
       <CContainer
         ref={ref}
-        cursor={"pointer"}
+        cursor="pointer"
         onClick={handleOnClick}
         {...restProps}
       >

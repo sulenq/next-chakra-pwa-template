@@ -6,9 +6,9 @@ import { Divider } from "@/components/ui/divider";
 import { Img } from "@/components/ui/img";
 import { NavLink } from "@/components/ui/nav-link";
 import { P } from "@/components/ui/p";
+import { ConfirmationDisclosureTrigger } from "@/components/widget/ConfirmationDisclosure";
 import { DotIndicator } from "@/components/widget/Indicator";
 import { SVGS_PATH } from "@/constants/paths";
-import useConfirmationDisclosure from "@/context/disclosure/useConfirmationDisclosure";
 import useAuthMiddleware from "@/context/useAuthMiddleware";
 import useLang from "@/context/useLang";
 import { useThemeConfig } from "@/context/useThemeConfig";
@@ -37,12 +37,6 @@ export const MiniProfile = (props: StackProps) => {
 
   // States
   const user = getUserData();
-  const confirmationOnOpen = useConfirmationDisclosure(
-    (s) => s.confirmationOnOpen
-  );
-  const setConfirmationData = useConfirmationDisclosure(
-    (s) => s.setConfirmationData
-  );
 
   // Utils
   function onSignout() {
@@ -117,32 +111,31 @@ export const MiniProfile = (props: StackProps) => {
           </Btn>
         </NavLink>
 
-        <Btn
-          clicky={false}
-          px={2}
-          variant={"ghost"}
-          color={"fg.error"}
-          justifyContent={"start"}
-          onClick={() => {
-            setConfirmationData({
-              title: "Sign out?",
-              description: l.msg_signout,
-              confirmLabel: "Sign out",
-              confirmButtonProps: {
-                color: "fg.error",
-                colorPalette: "gray",
-                variant: "outline",
-              },
-              onConfirm: onSignout,
-            });
-            confirmationOnOpen();
+        <ConfirmationDisclosureTrigger
+          id="signout"
+          title="Sign out?"
+          description={l.msg_signout}
+          confirmLabel="Sign out"
+          onConfirm={onSignout}
+          confirmButtonProps={{
+            color: "fg.error",
+            colorPalette: "gray",
+            variant: "outline",
           }}
         >
-          <Icon boxSize={5}>
-            <IconLogout stroke={1.5} />
-          </Icon>
-          Sign Out
-        </Btn>
+          <Btn
+            clicky={false}
+            px={2}
+            variant={"ghost"}
+            color={"fg.error"}
+            justifyContent={"start"}
+          >
+            <Icon boxSize={5}>
+              <IconLogout stroke={1.5} />
+            </Icon>
+            Sign Out
+          </Btn>
+        </ConfirmationDisclosureTrigger>
       </CContainer>
     </CContainer>
   );

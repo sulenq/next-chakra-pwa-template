@@ -41,6 +41,7 @@ const translations = {
   "day": "Hari",
   "december": "Desember",
   "delete_": "Hapus",
+  "deleted": "Dihapus",
   "deleted_file": "File dihapus",
   "error_400_default": {
     "title": "Bad request",
@@ -340,7 +341,7 @@ const translations = {
     "description": "Proses berjalan tanpa kendala."
   },
   "success_online": {
-    "title": "Koneksi Pulih",
+    "title": "Koneksi pulih",
     "description": "Anda kembali online."
   },
   "success_signin": {

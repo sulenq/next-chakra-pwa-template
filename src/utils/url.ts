@@ -45,3 +45,9 @@ export function getActiveNavs(
 
   return [];
 }
+
+export function imgUrl(url: string): string {
+  return `${process.env.NEXT_PUBLIC_STORAGE_BASE_URL}${
+    url?.[0] !== "/" ? "/" : ""
+  }${url}`;
+}

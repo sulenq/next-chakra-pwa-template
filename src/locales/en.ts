@@ -41,6 +41,7 @@ const translations = {
   "day": "Day",
   "december": "December",
   "delete_": "Delete",
+  "deleted": "Deleted",
   "deleted_file": "Removed file",
   "error_400_default": {
     "title": "Bad request",
@@ -340,7 +341,7 @@ const translations = {
     "description": "Process completed without issues."
   },
   "success_online": {
-    "title": "Connection Recovered",
+    "title": "Connection recovered",
     "description": "You are back online."
   },
   "success_signin": {

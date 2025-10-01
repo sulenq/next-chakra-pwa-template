@@ -113,7 +113,7 @@ const InputComponent = (props: Props__FileInputInputComponent) => {
       } ${accept ? `(${accept})` : ""}`;
 
   // disable if disabled prop true or already have maxFiles existing
-  const resolvedDisabled = disabled || existingCount >= maxFiles;
+  const resolvedDisabled = fc.disabled || disabled || existingCount >= maxFiles;
 
   // Utils
   function handleFileChange(details: any) {
@@ -244,8 +244,10 @@ export const FileInput = (props: Props__FileInput) => {
   // Contexts
   const { l } = useLang();
   const { themeConfig } = useThemeConfig();
+  const fc = useFieldContext();
 
   // States
+  const resolvedDisabled = fc.disabled;
   const [existing, setExisting] = useState<Interface__StorageFile[]>(
     existingFiles || []
   );
@@ -261,7 +263,11 @@ export const FileInput = (props: Props__FileInput) => {
           borderColor={"border.muted"}
           rounded={themeConfig.radii.container}
         >
-          <CContainer gap={2}>
+          <CContainer
+            gap={2}
+            opacity={resolvedDisabled ? 0.5 : 1}
+            cursor={resolvedDisabled ? "disabled" : "auto"}
+          >
             <P fontWeight={"medium"} pl={1}>
               {l.uploaded_file}
             </P>
@@ -299,7 +305,11 @@ export const FileInput = (props: Props__FileInput) => {
           borderColor={"border.muted"}
           rounded={themeConfig.radii.container}
         >
-          <CContainer gap={2}>
+          <CContainer
+            gap={2}
+            opacity={resolvedDisabled ? 0.5 : 1}
+            cursor={resolvedDisabled ? "disabled" : "auto"}
+          >
             <P fontWeight={"medium"} pl={1}>
               {l.deleted_file}
             </P>

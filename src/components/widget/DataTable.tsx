@@ -9,9 +9,10 @@ import {
   MenuTrigger,
 } from "@/components/ui/menu";
 import { P } from "@/components/ui/p";
+import { ConfirmationDisclosureTrigger } from "@/components/widget/ConfirmationDisclosure";
 import { DotIndicator } from "@/components/widget/Indicator";
 import { SortIcon } from "@/components/widget/SortIcon";
-import { Interface__FormattedTableData } from "@/constants/interfaces";
+import { Interface__FormattedTableRow } from "@/constants/interfaces";
 import {
   Props__BatchOptions,
   Props__DataTable,
@@ -20,7 +21,6 @@ import {
   Props_RowOptions,
 } from "@/constants/props";
 import { Type__SortHandler } from "@/constants/types";
-import useConfirmationDisclosure from "@/context/disclosure/useConfirmationDisclosure";
 import useLang from "@/context/useLang";
 import { useThemeConfig } from "@/context/useThemeConfig";
 import { useIsSmScreenWidth } from "@/hooks/useIsSmScreenWidth";
@@ -43,24 +43,6 @@ const RowOptions = (props: Props_RowOptions) => {
   // Props
   const { row, rowOptions, tableContainerRef } = props;
 
-  // Contexts
-  const { setConfirmationData, confirmationOnOpen } =
-    useConfirmationDisclosure();
-
-  // Utils
-  function handleConfirmationClick(option: any) {
-    setConfirmationData({
-      id: option.confirmation(row).id,
-      title: option.confirmation(row).title,
-      description: option.confirmation(row).description,
-      confirmLabel: option.confirmation(row).confirmLabel,
-      onConfirm: option.confirmation(row).onConfirm,
-      confirmButtonProps: option.confirmation(row).confirmButtonProps,
-      loading: option.confirmation(row).loading,
-    });
-    confirmationOnOpen();
-  }
-
   return (
     <MenuRoot lazyMount>
       <MenuTrigger asChild aria-label="row options">
@@ -71,7 +53,7 @@ const RowOptions = (props: Props_RowOptions) => {
         </Btn>
       </MenuTrigger>
 
-      <MenuContent portalRef={tableContainerRef} zIndex={2} minW={"140px"}>
+      <MenuContent portalRef={tableContainerRef} zIndex={10} minW={"140px"}>
         {rowOptions?.map((item, idx) => {
           // if (item === "divider") return <MenuSeparator key={idx} />;
 
@@ -90,19 +72,29 @@ const RowOptions = (props: Props_RowOptions) => {
 
           if (confirmation) {
             return (
-              <MenuItem
+              <ConfirmationDisclosureTrigger
                 key={idx}
-                value={label}
-                justifyContent="space-between"
+                w="full"
+                id={`${row.id}-confirmation-${idx}`}
+                title={confirmation.title}
+                description={confirmation.description}
+                confirmLabel={confirmation.confirmLabel}
+                onConfirm={confirmation.onConfirm}
+                confirmButtonProps={confirmation.confirmButtonProps}
+                loading={confirmation.loading}
                 disabled={disabled}
-                onClick={() => {
-                  if (!disabled) handleConfirmationClick(option);
-                }}
-                {...menuItemProps}
               >
-                {label}
-                {icon && <Icon boxSize={ICON_BOX_SIZE}>{icon}</Icon>}
-              </MenuItem>
+                <MenuItem
+                  value={label}
+                  color={"fg.error"}
+                  disabled={disabled}
+                  {...menuItemProps}
+                  justifyContent="space-between"
+                >
+                  {label}
+                  {icon && <Icon boxSize={ICON_BOX_SIZE}>{icon}</Icon>}
+                </MenuItem>
+              </ConfirmationDisclosureTrigger>
             );
           }
 
@@ -143,21 +135,6 @@ const BatchOptions = (props: Props__BatchOptions) => {
   // Contexts
   const { l } = useLang();
   const { themeConfig } = useThemeConfig();
-  const { setConfirmationData, confirmationOnOpen } =
-    useConfirmationDisclosure();
-
-  // Utils
-  function handleConfirmationClick(option: any) {
-    setConfirmationData({
-      id: option.confirmation(selectedRows).id,
-      title: option.confirmation(selectedRows).title,
-      description: option.confirmation(selectedRows).description,
-      confirmLabel: option.confirmation(selectedRows).confirmLabel,
-      onConfirm: option.confirmation(selectedRows).onConfirm,
-      confirmButtonProps: option.confirmation(selectedRows).confirmButtonProps,
-    });
-    confirmationOnOpen();
-  }
 
   return (
     <MenuRoot lazyMount closeOnSelect={false}>
@@ -216,19 +193,29 @@ const BatchOptions = (props: Props__BatchOptions) => {
 
           if (confirmation) {
             return (
-              <MenuItem
+              <ConfirmationDisclosureTrigger
                 key={idx}
-                value={label}
-                justifyContent="space-between"
-                disabled={resolvedDisabled}
-                onClick={() => {
-                  if (!resolvedDisabled) handleConfirmationClick(option);
-                }}
-                {...menuItemProps}
+                w="full"
+                id={`confirmation-batch-${idx}`}
+                title={confirmation.title}
+                description={confirmation.description}
+                confirmLabel={confirmation.confirmLabel}
+                onConfirm={confirmation.onConfirm}
+                confirmButtonProps={confirmation.confirmButtonProps}
+                loading={confirmation.loading}
+                disabled={disabled}
               >
-                {label}
-                {icon && <Icon boxSize={ICON_BOX_SIZE}>{icon}</Icon>}
-              </MenuItem>
+                <MenuItem
+                  value={label}
+                  color={"fg.error"}
+                  disabled={disabled}
+                  {...menuItemProps}
+                  justifyContent="space-between"
+                >
+                  {label}
+                  {icon && <Icon boxSize={ICON_BOX_SIZE}>{icon}</Icon>}
+                </MenuItem>
+              </ConfirmationDisclosureTrigger>
             );
           }
 
@@ -482,7 +469,7 @@ export const DataTable = (props: Props__DataTable) => {
       setSelectedRows([]);
     }
   }
-  function toggleRowSelection(row: Interface__FormattedTableData) {
+  function toggleRowSelection(row: Interface__FormattedTableRow) {
     const rowId = row.id;
     setSelectedRows((ps) => {
       const isSelected = ps.includes(rowId);
@@ -503,7 +490,8 @@ export const DataTable = (props: Props__DataTable) => {
   const thHeight = "48px";
   const thWidth = "52.4px";
   const thBg = "body";
-  const borderColor = "border.subtle";
+  const thBorderColor = "border.muted";
+  const tdBorderColor = "border.subtle";
 
   // set initial source of truth table data
   useEffect(() => {
@@ -528,8 +516,8 @@ export const DataTable = (props: Props__DataTable) => {
             <Table.Row
               position={"sticky"}
               top={0}
-              zIndex={2}
-              borderColor={borderColor}
+              zIndex={3}
+              borderColor={thBorderColor}
             >
               {!isEmptyArray(batchOptions) && (
                 <Table.ColumnHeader
@@ -539,14 +527,13 @@ export const DataTable = (props: Props__DataTable) => {
                   p={0}
                   position={"sticky"}
                   left={0}
-                  zIndex={10}
                   borderBottom={"none !important"}
                 >
                   <Center
                     h={thHeight}
                     px={"10px"}
                     borderBottom={"1px solid"}
-                    borderColor={borderColor}
+                    borderColor={thBorderColor}
                     bg={thBg}
                   >
                     <BatchOptions
@@ -575,7 +562,7 @@ export const DataTable = (props: Props__DataTable) => {
                   px={4}
                   py={3}
                   borderBottom={"1px solid"}
-                  borderColor={borderColor}
+                  borderColor={thBorderColor}
                 >
                   <P color={"fg.muted"}>No.</P>
                 </HStack>
@@ -599,7 +586,7 @@ export const DataTable = (props: Props__DataTable) => {
                     pl={idx === 0 ? 4 : ""}
                     pr={idx === headers.length - 1 ? 4 : ""}
                     borderBottom={"1px solid"}
-                    borderColor={borderColor}
+                    borderColor={thBorderColor}
                     {...header?.wrapperProps}
                   >
                     <P color={"fg.muted"}>{header?.th}</P>
@@ -630,7 +617,7 @@ export const DataTable = (props: Props__DataTable) => {
                     pr={"18px"}
                     py={3}
                     borderBottom={"1px solid"}
-                    borderColor={borderColor}
+                    borderColor={thBorderColor}
                   >
                     {/* Row Actions !!! */}
                   </HStack>
@@ -669,7 +656,7 @@ export const DataTable = (props: Props__DataTable) => {
                             ? "1px solid"
                             : ""
                         }
-                        borderColor={borderColor}
+                        borderColor={tdBorderColor}
                         onClick={(e) => {
                           e.stopPropagation();
                           toggleRowSelection(row);
@@ -697,8 +684,10 @@ export const DataTable = (props: Props__DataTable) => {
                           ? "1px solid"
                           : ""
                       }
-                      borderColor={borderColor}
+                      borderColor={tdBorderColor}
                       fontSize={"md"}
+                      color={"fg.subtle"}
+                      justify={"center"}
                     >
                       {rowIdx + 1}
                     </HStack>
@@ -721,7 +710,7 @@ export const DataTable = (props: Props__DataTable) => {
                             ? "1px solid"
                             : ""
                         }
-                        borderColor={borderColor}
+                        borderColor={tdBorderColor}
                         {...col?.wrapperProps}
                       >
                         {col?.td}
@@ -747,7 +736,7 @@ export const DataTable = (props: Props__DataTable) => {
                             ? "1px solid"
                             : ""
                         }
-                        borderColor={borderColor}
+                        borderColor={tdBorderColor}
                         onClick={(e) => {
                           e.stopPropagation();
                         }}

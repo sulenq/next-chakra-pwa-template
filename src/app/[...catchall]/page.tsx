@@ -7,7 +7,7 @@ import { P } from "@/components/ui/p";
 import BrandWatermark from "@/components/widget/BrandWatermark";
 import useLang from "@/context/useLang";
 import { useThemeConfig } from "@/context/useThemeConfig";
-import { HStack, Text, VStack } from "@chakra-ui/react";
+import { HStack, VStack } from "@chakra-ui/react";
 
 export default function NotFoundRoute() {
   // Contexts
@@ -25,13 +25,13 @@ export default function NotFoundRoute() {
           <Divider dir={"vertical"} w={"20px"} h={"2px"} />
         </HStack>
 
-        <Text textAlign={"center"} fontSize={"xl"} fontWeight={"bold"}>
+        <P textAlign={"center"} fontSize={"xl"} fontWeight={"bold"}>
           Page Not Found
-        </Text>
+        </P>
 
-        <Text textAlign={"center"} mb={4} maxW={"450px"} color={"fg.subtle"}>
+        <P textAlign={"center"} mb={4} maxW={"450px"} color={"fg.subtle"}>
           {l.missing_route.description}
-        </Text>
+        </P>
 
         <NavLink to={"/"} w={"fit"}>
           <Btn colorPalette={themeConfig.colorPalette} px={8}>

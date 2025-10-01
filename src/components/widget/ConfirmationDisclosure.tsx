@@ -1,6 +1,4 @@
-import { useThemeConfig } from "@/context/useThemeConfig";
-import useBackOnClose from "@/hooks/useBackOnClose";
-import { Text } from "@chakra-ui/react";
+import { Btn, BtnProps } from "@/components/ui/btn";
 import { CContainer } from "@/components/ui/c-container";
 import {
   DisclosureBody,
@@ -10,71 +8,113 @@ import {
   DisclosureRoot,
 } from "@/components/ui/disclosure";
 import { DisclosureHeaderContent } from "@/components/ui/disclosure-header-content";
-import useConfirmationDisclosure from "@/context/disclosure/useConfirmationDisclosure";
+import { P } from "@/components/ui/p";
+import { useThemeConfig } from "@/context/useThemeConfig";
+import useBackOnClose from "@/hooks/useBackOnClose";
+import { StackProps, useDisclosure } from "@chakra-ui/react";
 import BackButton from "./BackButton";
-import { Btn } from "@/components/ui/btn";
 
-interface Props {
-  children?: any;
+interface DisclosureProps {
+  open: boolean;
+  title: string;
+  description: string;
+  confirmLabel: string;
+  onConfirm: () => void;
+  confirmButtonProps?: BtnProps;
+  loading?: boolean;
 }
-
-const ConfirmationDisclosure = (props: Props) => {
+export const ConfirmationDisclosure = (props: DisclosureProps) => {
   // Props
-  const { children } = props;
+  const {
+    open,
+    title,
+    description,
+    confirmLabel,
+    onConfirm,
+    confirmButtonProps,
+    loading = false,
+  } = props;
 
   // Contexts
   const { themeConfig } = useThemeConfig();
-  const {
-    confirmationData,
-    confirmationOpen,
-    confirmationOnOpen,
-    confirmationOnClose,
-  } = useConfirmationDisclosure();
 
-  // Utils
-  useBackOnClose(
-    `confirm-${confirmationData?.title}-${confirmationData?.id}`,
-    confirmationOpen,
-    confirmationOnOpen,
-    confirmationOnClose
+  return (
+    <DisclosureRoot open={open} size={"xs"}>
+      <DisclosureContent>
+        <DisclosureHeader>
+          <DisclosureHeaderContent title={`${title}`} />
+        </DisclosureHeader>
+
+        <DisclosureBody>
+          <P>{description}</P>
+        </DisclosureBody>
+
+        <DisclosureFooter>
+          <BackButton disabled={loading} />
+
+          <Btn
+            onClick={onConfirm}
+            loading={loading}
+            colorPalette={themeConfig.colorPalette}
+            {...confirmButtonProps}
+          >
+            {confirmLabel}
+          </Btn>
+        </DisclosureFooter>
+      </DisclosureContent>
+    </DisclosureRoot>
   );
+};
+
+interface TriggerProps extends StackProps {
+  children?: any;
+  id: string;
+  title: string;
+  description: string;
+  confirmLabel: string;
+  onConfirm: () => void;
+  confirmButtonProps?: BtnProps;
+  loading?: boolean;
+  disabled?: any;
+}
+export const ConfirmationDisclosureTrigger = (props: TriggerProps) => {
+  // Props
+  const {
+    children,
+    id,
+    title,
+    description,
+    confirmLabel,
+    onConfirm,
+    confirmButtonProps,
+    loading,
+    disabled,
+    ...restProps
+  } = props;
+
+  // Hooks
+  const { open, onOpen, onClose } = useDisclosure();
+  useBackOnClose(`${id}`, open, onOpen, onClose);
 
   return (
     <>
       <CContainer
-        w={"unset"}
-        onClick={confirmationData?.disabled ? undefined : confirmationOnOpen}
-        {...confirmationData?.triggerProps}
+        w={"fit"}
+        onClick={disabled ? () => {} : onOpen}
+        {...restProps}
       >
         {children}
       </CContainer>
 
-      <DisclosureRoot open={confirmationOpen} size={"xs"}>
-        <DisclosureContent>
-          <DisclosureHeader>
-            <DisclosureHeaderContent title={`${confirmationData?.title}`} />
-          </DisclosureHeader>
-
-          <DisclosureBody>
-            <Text>{confirmationData?.description}</Text>
-          </DisclosureBody>
-
-          <DisclosureFooter>
-            <BackButton disabled={confirmationData?.loading} />
-
-            <Btn
-              onClick={confirmationData?.onConfirm}
-              loading={confirmationData?.loading}
-              colorPalette={themeConfig.colorPalette}
-              {...confirmationData?.confirmButtonProps}
-            >
-              {confirmationData?.confirmLabel}
-            </Btn>
-          </DisclosureFooter>
-        </DisclosureContent>
-      </DisclosureRoot>
+      <ConfirmationDisclosure
+        open={open}
+        title={title}
+        description={description}
+        confirmLabel={confirmLabel}
+        onConfirm={onConfirm}
+        confirmButtonProps={confirmButtonProps}
+        loading={loading}
+      />
     </>
   );
 };
-
-export default ConfirmationDisclosure;

@@ -57,6 +57,7 @@ export const FileItem = (props: Props__FileItem) => {
               variant={"plain"}
               colorPalette={"gray"}
               onClick={action.onClick}
+              disabled={false}
             >
               {action.icon ? (
                 <Icon boxSize={"18px"}>{action.icon}</Icon>

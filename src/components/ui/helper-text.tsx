@@ -1,9 +1,10 @@
-import { Text, TextProps } from "@chakra-ui/react";
+import { P } from "@/components/ui/p";
+import { TextProps } from "@chakra-ui/react";
 
 export const HelperText = ({ children, ...restProps }: TextProps) => {
   return (
-    <Text fontSize={"sm"} color={"fg.subtle"} {...restProps}>
+    <P fontSize={"sm"} color={"fg.subtle"} {...restProps}>
       {children}
-    </Text>
+    </P>
   );
 };

@@ -1,15 +1,14 @@
 "use client";
 
-import { CContainer } from "@/components/ui/c-container";
 import { useLoadingBar } from "@/context/useLoadingBar";
 import { useThemeConfig } from "@/context/useThemeConfig";
-import { Box, StackProps } from "@chakra-ui/react";
+import { Box, BoxProps } from "@chakra-ui/react";
 import { useEffect, useRef, useState } from "react";
 
-export function LoadingBar(props: StackProps) {
+export function LoadingBar(props: BoxProps) {
   // Contexts
   const { themeConfig } = useThemeConfig();
-  const loading = useLoadingBar((s) => s.loading);
+  const loadingBar = useLoadingBar((s) => s.loadingBar);
 
   // States
   const [visible, setVisible] = useState(false);
@@ -18,8 +17,8 @@ export function LoadingBar(props: StackProps) {
   const finishTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
-    // Start loading
-    if (loading) {
+    // Start loadingBar
+    if (loadingBar) {
       setVisible(true);
       setProgress(0);
 
@@ -33,7 +32,7 @@ export function LoadingBar(props: StackProps) {
         });
       }, tick);
     } else {
-      // Finish loading
+      // Finish loadingBar
       if (intervalRef.current) clearInterval(intervalRef.current);
       setProgress(100);
 
@@ -47,26 +46,28 @@ export function LoadingBar(props: StackProps) {
       if (intervalRef.current) clearInterval(intervalRef.current);
       if (finishTimeoutRef.current) clearTimeout(finishTimeoutRef.current);
     };
-  }, [loading]);
+  }, [loadingBar]);
 
   if (!visible) return null;
 
   return (
-    <CContainer
+    <Box
+      id="loading_bar"
+      w={"full"}
+      h={"3px"}
+      bg={"transparent"}
       position={"fixed"}
       top={0}
       left={0}
-      height={"1px"}
-      bg={"transparent"}
       zIndex={9999}
       {...props}
     >
       <Box
-        width={`${progress}%`}
-        height={"full"}
+        w={`${progress}%`}
+        h={"full"}
         bg={themeConfig.primaryColor}
         transition="width 0.2s linear, opacity 0.3s ease"
       />
-    </CContainer>
+    </Box>
   );
 }
