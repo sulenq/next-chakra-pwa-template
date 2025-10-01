@@ -11,7 +11,7 @@ import { isDateObject } from "./date";
 import { getTimezoneOffsetMs, getUserTimezone } from "./time";
 
 export const formatDate = (
-  date?: Date | string | undefined,
+  date?: Date | string | null | undefined,
   options: {
     variant?: Type__DateVariant;
     withTime?: boolean;

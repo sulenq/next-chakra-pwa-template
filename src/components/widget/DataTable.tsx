@@ -505,6 +505,7 @@ export const DataTable = (props: Props__DataTable) => {
   const thBg = "body";
   const thBorderColor = "border.muted";
   const tdBg = "body";
+  const tdMinH = "48px";
   const selectedColor = hexWithOpacity(themeConfig.primaryColorHex, 0.05);
   const tdBorderColor = "d1";
 
@@ -658,7 +659,7 @@ export const DataTable = (props: Props__DataTable) => {
                   {!isEmptyArray(batchOptions) && (
                     <Table.Cell
                       minW={"0% !important"}
-                      h={"48px"}
+                      h={tdMinH}
                       p={0}
                       position={"sticky"}
                       left={0}
@@ -666,7 +667,7 @@ export const DataTable = (props: Props__DataTable) => {
                       zIndex={2}
                     >
                       <Center
-                        h={"48px"}
+                        h={tdMinH}
                         px={"10px"}
                         cursor={"pointer"}
                         borderBottom={
@@ -698,7 +699,7 @@ export const DataTable = (props: Props__DataTable) => {
                     <HStack
                       py={3}
                       px={4}
-                      h={"48px"}
+                      h={tdMinH}
                       bg={isRowSelected ? selectedColor : tdBg}
                       borderBottom={
                         rowIdx !== resolvedTableData.length - 1
@@ -727,7 +728,7 @@ export const DataTable = (props: Props__DataTable) => {
                       <HStack
                         py={3}
                         px={4}
-                        h={"48px"}
+                        h={tdMinH}
                         bg={isRowSelected ? selectedColor : tdBg}
                         borderBottom={
                           rowIdx !== resolvedTableData.length - 1
@@ -747,7 +748,7 @@ export const DataTable = (props: Props__DataTable) => {
                   {!isEmptyArray(rowOptions) && (
                     <Table.Cell
                       minW={"0% !important"}
-                      h={"48px"}
+                      h={tdMinH}
                       p={0}
                       position={"sticky"}
                       right={"0px"}
@@ -755,7 +756,7 @@ export const DataTable = (props: Props__DataTable) => {
                       zIndex={2}
                     >
                       <Center
-                        h={"48px"}
+                        h={tdMinH}
                         px={"10px"}
                         borderBottom={
                           rowIdx !== resolvedTableData.length - 1
