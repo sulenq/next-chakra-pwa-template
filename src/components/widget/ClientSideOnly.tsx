@@ -22,7 +22,7 @@ const DefaultFallback = () => {
     <Center w={"100w"} minH={"100dvh"} color={"fg.subtle"}>
       <Img
         alt={`${APP.name} Logo`}
-        src={"/logo.svg"}
+        src={"/logo_gray.svg"}
         width={"32px"}
         height={"32px"}
         imageProps={{
