@@ -47,7 +47,7 @@ const DemoDataTable = () => {
     ],
     rows: [
       {
-        id: 1,
+        id: "1",
         idx: 1,
         data: { name: "Alice Johnson", age: 28, joinDate: "2023-01-12" },
         columns: [
@@ -65,7 +65,7 @@ const DemoDataTable = () => {
         ],
       },
       {
-        id: 3,
+        id: "3",
         idx: 2,
         data: { name: "Charlie Davis", age: 41, joinDate: "2021-05-17" },
         columns: [
@@ -83,7 +83,7 @@ const DemoDataTable = () => {
         ],
       },
       {
-        id: 2,
+        id: "2",
         idx: 3,
         data: { name: "Bob Smith", age: 34, joinDate: "2022-09-30" },
         columns: [
@@ -127,12 +127,12 @@ const DemoDataTable = () => {
       }),
     ],
     batchOptions: [
-      (ids: number[]) => ({
+      (ids: string[]) => ({
         label: "Restore",
         icon: <IconRestore stroke={1.5} />,
         onClick: () => console.log("Restore", ids),
       }),
-      (ids: number[]) => ({
+      (ids: string[]) => ({
         label: "Delete",
         icon: <IconTrash stroke={1.5} />,
         menuItemProps: { color: "fg.error" },
@@ -188,7 +188,7 @@ const DemoIndexRoute = () => {
   ];
   const existingFiles = [
     {
-      id: 24,
+      id: "24",
       fileId: "9fab5f8f-b70f-438c-89e9-7ff2bda65001",
       fileName: "File A",
       filePath: "file/Z8f60265g6ienDZCrqi1z4sMX",
@@ -201,7 +201,7 @@ const DemoIndexRoute = () => {
       updatedAt: "2025-08-19T06:11:54.000000Z",
     },
     {
-      id: 25,
+      id: "25",
       fileId: "9fab5f8f-b70f-438c-89e9-7ff2bda65001",
       fileName: "File B",
       filePath: "file/Z8f60265g6ienDZCrqi1z4sMX",
