@@ -123,9 +123,21 @@ export const add = {
   id: "Tambah",
   en: "Add",
 };
+export const added = {
+  id: "Ditambahkan",
+  en: "Added",
+};
+export const created = {
+  id: "Dibuat",
+  en: "Created",
+};
 export const update = {
   id: "Ubah",
   en: "Update",
+};
+export const updated = {
+  id: "Diubah",
+  en: "Updated",
 };
 export const delete_ = {
   id: "Hapus",
