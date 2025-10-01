@@ -76,7 +76,7 @@ const SelectOptions = (props: Props__SelectOptions) => {
       {!isEmptyArray(resolvedSelectOptions) && (
         <>
           {multiple && (
-            <CContainer px={7} pt={4} zIndex={3}>
+            <CContainer px={6} pt={4} zIndex={3}>
               <Box
                 onClick={(e) => {
                   e.stopPropagation();
@@ -138,6 +138,8 @@ const SelectOptions = (props: Props__SelectOptions) => {
                     <P textAlign={"left"}>{o.label}</P>
 
                     {isActive && <DotIndicator />}
+
+                    {!isActive && multiple && <DotIndicator color={"d2"} />}
                   </HStack>
                 </Btn>
               );

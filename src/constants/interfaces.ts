@@ -69,7 +69,7 @@ export interface Interface__TableOption {
   override?: ReactNode;
 }
 export type Interface__TableOptionGenerator<T = Interface__FormattedTableRow> =
-  (data: T) => Interface__TableOption | null | false;
+  (data: T, overloads?: any) => Interface__TableOption | null | false;
 
 // HTTP
 export interface Interface__RequestState<T = any> {

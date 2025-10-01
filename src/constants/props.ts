@@ -94,12 +94,13 @@ export interface Props__SortIcon extends IconProps {
 }
 export interface Props__BatchOptions {
   selectedRows: any[];
+  clearSelectedRows: () => void;
   batchOptions?: Interface__TableOptionGenerator<string[]>[];
   selectAllRows: boolean;
   handleSelectAllRows: (isChecked: boolean) => void;
   tableContainerRef?: RefObject<HTMLDivElement | null>;
 }
-export interface Props_RowOptions {
+export interface Props_RowOptions extends BtnProps {
   row: Interface__FormattedTableRow;
   rowOptions?: Interface__TableOptionGenerator<Interface__FormattedTableRow>[];
   tableContainerRef?: RefObject<HTMLDivElement | null>;

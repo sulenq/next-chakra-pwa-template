@@ -26,6 +26,7 @@ import { useThemeConfig } from "@/context/useThemeConfig";
 import { useIsSmScreenWidth } from "@/hooks/useIsSmScreenWidth";
 import useScreen from "@/hooks/useScreen";
 import { isEmptyArray } from "@/utils/array";
+import { hexWithOpacity } from "@/utils/color";
 import { formatNumber } from "@/utils/formatter";
 import { Center, HStack, Icon, Table } from "@chakra-ui/react";
 import {
@@ -41,12 +42,18 @@ const ICON_BOX_SIZE = "18px";
 
 const RowOptions = (props: Props_RowOptions) => {
   // Props
-  const { row, rowOptions, tableContainerRef } = props;
+  const { row, rowOptions, tableContainerRef, ...restProps } = props;
 
   return (
     <MenuRoot lazyMount>
       <MenuTrigger asChild aria-label="row options">
-        <Btn iconButton clicky={false} variant={"ghost"} size={"xs"}>
+        <Btn
+          iconButton
+          clicky={false}
+          variant={"ghost"}
+          size={"xs"}
+          {...restProps}
+        >
           <Icon boxSize={5}>
             <IconDots />
           </Icon>
@@ -126,6 +133,7 @@ const BatchOptions = (props: Props__BatchOptions) => {
   // Props
   const {
     selectedRows,
+    clearSelectedRows,
     batchOptions,
     selectAllRows,
     handleSelectAllRows,
@@ -137,7 +145,7 @@ const BatchOptions = (props: Props__BatchOptions) => {
   const { themeConfig } = useThemeConfig();
 
   return (
-    <MenuRoot lazyMount closeOnSelect={false}>
+    <MenuRoot lazyMount>
       <MenuTrigger asChild aria-label="batch options">
         <Btn iconButton clicky={false} variant={"ghost"} size={"xs"}>
           <Icon>
@@ -164,7 +172,7 @@ const BatchOptions = (props: Props__BatchOptions) => {
           <P>{l.select_all}</P>
 
           <DotIndicator
-            color={selectAllRows ? themeConfig.primaryColor : "d3"}
+            color={selectAllRows ? themeConfig.primaryColor : "d2"}
             mr={1}
           />
         </MenuItem>
@@ -176,7 +184,9 @@ const BatchOptions = (props: Props__BatchOptions) => {
 
           // if (item === "divider") return <MenuSeparator key={idx} />;
 
-          const option = item(selectedRows);
+          const option = item(selectedRows, {
+            clearSelectedRows: clearSelectedRows,
+          });
           if (!option) return null;
 
           const {
@@ -469,6 +479,9 @@ export const DataTable = (props: Props__DataTable) => {
       setSelectedRows([]);
     }
   }
+  function handleClearSelectedRows() {
+    setSelectedRows([]);
+  }
   function toggleRowSelection(row: Interface__FormattedTableRow) {
     const rowId = row.id;
     setSelectedRows((ps) => {
@@ -491,7 +504,9 @@ export const DataTable = (props: Props__DataTable) => {
   const thWidth = "52.4px";
   const thBg = "body";
   const thBorderColor = "border.muted";
-  const tdBorderColor = "border.subtle";
+  const tdBg = "body";
+  const selectedColor = hexWithOpacity(themeConfig.primaryColorHex, 0.05);
+  const tdBorderColor = "d1";
 
   // set initial source of truth table data
   useEffect(() => {
@@ -538,6 +553,7 @@ export const DataTable = (props: Props__DataTable) => {
                   >
                     <BatchOptions
                       selectedRows={selectedRows}
+                      clearSelectedRows={handleClearSelectedRows}
                       batchOptions={batchOptions}
                       selectAllRows={selectAllRows}
                       handleSelectAllRows={handleSelectAllRows}
@@ -628,6 +644,8 @@ export const DataTable = (props: Props__DataTable) => {
 
           <Table.Body>
             {resolvedTableData?.map((row, rowIdx) => {
+              const isRowSelected = selectedRows.includes(row.id);
+
               return (
                 <Table.Row
                   key={rowIdx}
@@ -644,7 +662,7 @@ export const DataTable = (props: Props__DataTable) => {
                       p={0}
                       position={"sticky"}
                       left={0}
-                      bg={"body"}
+                      bg={isRowSelected ? selectedColor : tdBg}
                       zIndex={2}
                     >
                       <Center
@@ -656,7 +674,9 @@ export const DataTable = (props: Props__DataTable) => {
                             ? "1px solid"
                             : ""
                         }
-                        borderColor={tdBorderColor}
+                        borderColor={
+                          isRowSelected ? selectedColor : tdBorderColor
+                        }
                         onClick={(e) => {
                           e.stopPropagation();
                           toggleRowSelection(row);
@@ -679,12 +699,15 @@ export const DataTable = (props: Props__DataTable) => {
                       py={3}
                       px={4}
                       h={"48px"}
+                      bg={isRowSelected ? selectedColor : tdBg}
                       borderBottom={
                         rowIdx !== resolvedTableData.length - 1
                           ? "1px solid"
                           : ""
                       }
-                      borderColor={tdBorderColor}
+                      borderColor={
+                        isRowSelected ? selectedColor : tdBorderColor
+                      }
                       fontSize={"md"}
                       color={"fg.subtle"}
                       justify={"center"}
@@ -705,12 +728,15 @@ export const DataTable = (props: Props__DataTable) => {
                         py={3}
                         px={4}
                         h={"48px"}
+                        bg={isRowSelected ? selectedColor : tdBg}
                         borderBottom={
                           rowIdx !== resolvedTableData.length - 1
                             ? "1px solid"
                             : ""
                         }
-                        borderColor={tdBorderColor}
+                        borderColor={
+                          isRowSelected ? selectedColor : tdBorderColor
+                        }
                         {...col?.wrapperProps}
                       >
                         {col?.td}
@@ -725,7 +751,7 @@ export const DataTable = (props: Props__DataTable) => {
                       p={0}
                       position={"sticky"}
                       right={"0px"}
-                      bg={"body"}
+                      bg={isRowSelected ? selectedColor : tdBg}
                       zIndex={2}
                     >
                       <Center
@@ -736,7 +762,9 @@ export const DataTable = (props: Props__DataTable) => {
                             ? "1px solid"
                             : ""
                         }
-                        borderColor={tdBorderColor}
+                        borderColor={
+                          isRowSelected ? selectedColor : tdBorderColor
+                        }
                         onClick={(e) => {
                           e.stopPropagation();
                         }}
@@ -745,6 +773,8 @@ export const DataTable = (props: Props__DataTable) => {
                           row={row}
                           rowOptions={rowOptions}
                           tableContainerRef={tableContainerRef}
+                          colorPalette={isRowSelected ? "p" : ""}
+                          color={"ibody"}
                         />
                       </Center>
                     </Table.Cell>
