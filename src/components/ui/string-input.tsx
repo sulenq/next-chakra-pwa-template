@@ -89,6 +89,7 @@ export const StringInput = forwardRef<HTMLInputElement, Props__StringInput>(
             borderColor={
               invalid ?? fc?.invalid ? "border.error" : "border.muted"
             }
+            fontSize={"md"}
             fontWeight={"medium"}
             outline={"none !important"}
             _focus={{ borderColor: themeConfig.primaryColor }}
