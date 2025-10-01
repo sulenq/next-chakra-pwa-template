@@ -338,7 +338,7 @@ const customConfig = defineConfig({
         border: {
           subtle: {
             value: {
-              base: "#f0f0f0 !important",
+              base: "#f3f3f3ff !important",
               _dark: "#1b1b1b !important",
             },
           },
