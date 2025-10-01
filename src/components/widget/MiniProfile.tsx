@@ -107,7 +107,9 @@ export const MiniProfile = (props: StackProps) => {
 
             {l.my_profile}
 
-            {pathname.includes("/profile") && <DotIndicator mr={1} />}
+            {pathname.includes("/profile") && (
+              <DotIndicator ml={"auto"} mr={1} />
+            )}
           </Btn>
         </NavLink>
 
