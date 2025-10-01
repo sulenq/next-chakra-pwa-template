@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/dialog";
 import useBackOnClose from "@/hooks/useBackOnClose";
 import { back } from "@/utils/client";
+import { disclosureId } from "@/utils/disclosure";
 import { Image, StackProps, useDisclosure } from "@chakra-ui/react";
 
 interface Props extends StackProps {
@@ -23,7 +24,7 @@ export const ImgViewer = (props: Props) => {
 
   // Hooks
   const { open, onOpen, onClose } = useDisclosure();
-  useBackOnClose(`img-viewer-${src}`, open, onOpen, onClose);
+  useBackOnClose(disclosureId(`img-viewer-${src}`), open, onOpen, onClose);
 
   return (
     <>

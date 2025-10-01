@@ -30,6 +30,7 @@ import { useRef, useState } from "react";
 import { Btn } from "@/components/ui/btn";
 import { CContainer } from "@/components/ui/c-container";
 import { P } from "@/components/ui/p";
+import { disclosureId } from "@/utils/disclosure";
 
 const Camera = () => {
   // Contexts
@@ -71,7 +72,7 @@ const Camera = () => {
       stopCamera(videoRef, streamRef, () => setCameraOpen(false));
       onClose();
     }
-    useBackOnClose("camera-test", open, onOpen, handleClose);
+    useBackOnClose(disclosureId("camera-test"), open, onOpen, handleClose);
 
     // States, Refs
     const [cameraOpen, setCameraOpen] = useState(false);
@@ -265,7 +266,7 @@ const Microphone = () => {
       stopMicTest();
       onClose();
     }
-    useBackOnClose("mic-test", open, onOpen, handleClose);
+    useBackOnClose(disclosureId("mic-test"), open, onOpen, handleClose);
 
     // Handle test mic
     const startMicTest = async () => {
@@ -471,7 +472,7 @@ const Location = () => {
 
     // Utils
     const { open, onOpen, onClose } = useDisclosure();
-    useBackOnClose("location-test", open, onOpen, onClose);
+    useBackOnClose(disclosureId("location-test"), open, onOpen, onClose);
 
     // Handle test
     function startLocationTest() {

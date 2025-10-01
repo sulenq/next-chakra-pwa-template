@@ -13,6 +13,7 @@ import { useThemeConfig } from "@/context/useThemeConfig";
 import useBackOnClose from "@/hooks/useBackOnClose";
 import { StackProps, useDisclosure } from "@chakra-ui/react";
 import BackButton from "./BackButton";
+import { disclosureId } from "@/utils/disclosure";
 
 interface DisclosureProps {
   open: boolean;
@@ -94,7 +95,7 @@ export const ConfirmationDisclosureTrigger = (props: TriggerProps) => {
 
   // Hooks
   const { open, onOpen, onClose } = useDisclosure();
-  useBackOnClose(`${id}`, open, onOpen, onClose);
+  useBackOnClose(disclosureId(`${id}`), open, onOpen, onClose);
 
   return (
     <>

@@ -29,6 +29,7 @@ import { HelperText } from "../ui/helper-text";
 import { PasswordInput } from "../ui/password-input";
 import { StringInput } from "../ui/string-input";
 import BackButton from "./BackButton";
+import { disclosureId } from "@/utils/disclosure";
 
 const Step1 = (props: any) => {
   // Props
@@ -340,7 +341,7 @@ const ResetPasswordDisclosure = (props: any) => {
 
   // Hooks
   const { open, onOpen, onClose } = useDisclosure();
-  useBackOnClose(`reset-password`, open, onOpen, onClose);
+  useBackOnClose(disclosureId(`reset-password`), open, onOpen, onClose);
 
   // States
   const [otp, setOtp] = useState<string>("");

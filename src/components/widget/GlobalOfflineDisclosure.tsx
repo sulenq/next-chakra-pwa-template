@@ -17,6 +17,7 @@ import useOffline from "@/context/disclosure/useOffilne";
 import BackButton from "./BackButton";
 import { Btn } from "../ui/btn";
 import { EmptyState } from "../ui/empty-state";
+import { disclosureId } from "@/utils/disclosure";
 
 const OfflineDisclosure = () => {
   // Contexts
@@ -26,7 +27,7 @@ const OfflineDisclosure = () => {
 
   // Utils
   const { open, onOpen, onClose } = useDisclosure();
-  useBackOnClose(``, open, onOpen, onClose);
+  useBackOnClose(disclosureId("offline-disclosure"), open, onOpen, onClose);
 
   useEffect(() => {
     if (offline) onOpen();

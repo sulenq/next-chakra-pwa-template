@@ -32,6 +32,7 @@ import {
 } from "@chakra-ui/react";
 import { IconCaretDownFilled, IconReload } from "@tabler/icons-react";
 import { useEffect, useState } from "react";
+import { disclosureId } from "@/utils/disclosure";
 
 const SelectOptions = (props: Props__SelectOptions) => {
   // Props
@@ -173,7 +174,7 @@ export const SelectInput = (props: Props__SelectInput) => {
 
   // Hooks
   const { open, onOpen, onClose } = useDisclosure();
-  useBackOnClose(id || "select-input", open, onOpen, onClose);
+  useBackOnClose(disclosureId(id || "select-input"), open, onOpen, onClose);
 
   // States
   const [selected, setSelected] = useState<Interface__SelectOption[]>([]);

@@ -10,6 +10,7 @@ import GlobalDisclosure from "./GlobalDisclosure";
 import { useColorMode } from "@/components/ui/color-mode";
 import useADM from "@/context/useADM";
 import { LoadingBar } from "@/components/widget/LoadingBar";
+import { purgeDisclosureSearchParams } from "@/utils/disclosure";
 
 interface Props {
   children: React.ReactNode;
@@ -55,10 +56,11 @@ export default function ClientSideOnly(props: Props) {
     setColorMode(hour >= 18 || hour < 6 ? "dark" : "light");
   }
 
-  // Handle mount
+  // Handle mount (cold start)
   useEffect(() => {
     mountedGlobal = true;
     setMounted(true);
+    purgeDisclosureSearchParams();
   }, []);
 
   // Handle offline alert

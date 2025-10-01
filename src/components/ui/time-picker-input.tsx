@@ -38,6 +38,7 @@ import {
 } from "@tabler/icons-react";
 import { useEffect, useRef, useState } from "react";
 import { Tooltip } from "./tooltip";
+import { disclosureId } from "@/utils/disclosure";
 
 const DEFAULT = "00:00:00";
 
@@ -93,7 +94,7 @@ const TimePickerInput = (props: Props__TimePicker) => {
   // Utils
   const { open, onOpen, onClose } = useDisclosure();
   useBackOnClose(
-    id || `time-picker${name ? `-${name}` : ""}`,
+    disclosureId(id || `time-picker${name ? `-${name}` : ""}`),
     open,
     onOpen,
     onClose

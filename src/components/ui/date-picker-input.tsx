@@ -50,6 +50,7 @@ import { DisclosureHeaderContent } from "./disclosure-header-content";
 import { P } from "./p";
 import { PeriodPickerInput } from "./period-picker-input";
 import { Tooltip } from "./tooltip";
+import { disclosureId } from "@/utils/disclosure";
 
 const DEFAULT_PERIOD = {
   month: new Date().getMonth(),
@@ -268,7 +269,12 @@ const SelectedDateList = (props: Props__SelectedDateList) => {
 
   // Hooks
   const { open, onOpen, onClose } = useDisclosure();
-  useBackOnClose(`${id}-selected-date-list`, open, onOpen, onClose);
+  useBackOnClose(
+    disclosureId(`${id}-selected-date-list`),
+    open,
+    onOpen,
+    onClose
+  );
 
   // States
   const userTz = getUserTimezone();
@@ -357,7 +363,12 @@ export const DatePickerInput = (props: Props__DatePickerInput) => {
 
   // Hooks
   const { open, onOpen, onClose } = useDisclosure();
-  useBackOnClose(id || `date-picker-input`, open, onOpen, onClose);
+  useBackOnClose(
+    disclosureId(id || `date-picker-input`),
+    open,
+    onOpen,
+    onClose
+  );
 
   // States
   const [selected, setSelected] = useState<Date[]>([]);

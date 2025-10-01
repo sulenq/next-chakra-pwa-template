@@ -31,6 +31,7 @@ import { Field } from "./field";
 import { NumInput } from "./number-input";
 import { P } from "./p";
 import { C_ACTIVE_INDICATOR_SIZE } from "@/constants/sizes";
+import { disclosureId } from "@/utils/disclosure";
 
 const DEFAULT = {
   year: null,
@@ -58,7 +59,7 @@ export const PeriodPickerInput = (props: Props__PeriodPickerInput) => {
 
   // Hooks
   const { open, onOpen, onClose } = useDisclosure();
-  useBackOnClose(resolvedId, open, onOpen, onClose);
+  useBackOnClose(disclosureId(resolvedId), open, onOpen, onClose);
 
   // States
   const resolvedPlaceholder = placeholder || l.select_period;
