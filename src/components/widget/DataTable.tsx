@@ -11,13 +11,13 @@ import {
 import { P } from "@/components/ui/p";
 import { ConfirmationDisclosureTrigger } from "@/components/widget/ConfirmationDisclosure";
 import { DotIndicator } from "@/components/widget/Indicator";
+import { Limitation } from "@/components/widget/Limitation";
+import { Pagination } from "@/components/widget/Pagination";
 import { SortIcon } from "@/components/widget/SortIcon";
 import { Interface__FormattedTableRow } from "@/constants/interfaces";
 import {
   Props__BatchOptions,
   Props__DataTable,
-  Props_LimitationTableData,
-  Props_PaginationTableData,
   Props_RowOptions,
 } from "@/constants/props";
 import { Type__SortHandler } from "@/constants/types";
@@ -27,15 +27,8 @@ import { useIsSmScreenWidth } from "@/hooks/useIsSmScreenWidth";
 import useScreen from "@/hooks/useScreen";
 import { isEmptyArray } from "@/utils/array";
 import { hexWithOpacity } from "@/utils/color";
-import { formatNumber } from "@/utils/formatter";
 import { Center, HStack, Icon, Table } from "@chakra-ui/react";
-import {
-  IconCaretDownFilled,
-  IconCaretLeftFilled,
-  IconCaretRightFilled,
-  IconDots,
-  IconMenu,
-} from "@tabler/icons-react";
+import { IconDots, IconMenu } from "@tabler/icons-react";
 import { Fragment, useEffect, useMemo, useRef, useState } from "react";
 
 const ICON_BOX_SIZE = "18px";
@@ -251,116 +244,6 @@ const BatchOptions = (props: Props__BatchOptions) => {
         })}
       </MenuContent>
     </MenuRoot>
-  );
-};
-const Limittation = (props: Props_LimitationTableData) => {
-  // Props
-  const { limit, setLimit } = props;
-
-  // Contexts
-  const { l } = useLang();
-
-  // States
-  const limitOptions = [15, 30, 50, 100];
-
-  return (
-    <MenuRoot>
-      <MenuTrigger asChild>
-        <Btn clicky={false} size={"xs"} variant={"ghost"} pr={"8px"}>
-          <HStack>
-            <P>{l.show}</P>
-            <P>{`${limit}`}</P>
-          </HStack>
-
-          <Icon boxSize={4} ml={1} color={"fg.subtle"}>
-            <IconCaretDownFilled />
-          </Icon>
-        </Btn>
-      </MenuTrigger>
-
-      <MenuContent w={"120px"}>
-        {limitOptions.map((l) => {
-          const isActive = limit === l;
-
-          return (
-            <MenuItem
-              key={l}
-              value={`${l}`}
-              onClick={() => {
-                setLimit(l);
-              }}
-              justifyContent={"space-between"}
-            >
-              {l}
-              {isActive && <DotIndicator mr={1} />}
-            </MenuItem>
-          );
-        })}
-      </MenuContent>
-    </MenuRoot>
-  );
-};
-const Pagination = (props: Props_PaginationTableData) => {
-  // Props
-  const { page, setPage, totalPage } = props;
-
-  // Contexts
-  const { l } = useLang();
-
-  // States
-  const [pageTemp, setPageTemp] = useState<number | null | undefined>(page);
-  const isFirstPage = pageTemp === 1;
-  const isLastPage = pageTemp === (totalPage || 1);
-
-  // Utils
-  function handlePrev() {
-    if (page > 1) setPageTemp((ps) => ps! + 1);
-  }
-  function handleNext() {
-    if (page < (totalPage || 1)) setPageTemp((ps) => ps! - 1);
-  }
-
-  // debounce setPage
-  useEffect(() => {
-    if (pageTemp) setPage(pageTemp);
-  }, [pageTemp]);
-
-  return (
-    <HStack gap={2}>
-      <Btn
-        iconButton
-        clicky={false}
-        size={"xs"}
-        variant={"ghost"}
-        onClick={handlePrev}
-        disabled={isFirstPage}
-      >
-        <Icon>
-          <IconCaretLeftFilled />
-        </Icon>
-      </Btn>
-
-      <HStack whiteSpace={"nowrap"}>
-        <P>{formatNumber(page)}</P>
-
-        <P>{l.of}</P>
-
-        <P>{formatNumber(totalPage) || "?"}</P>
-      </HStack>
-
-      <Btn
-        iconButton
-        clicky={false}
-        size={"xs"}
-        variant={"ghost"}
-        onClick={handleNext}
-        disabled={isLastPage}
-      >
-        <Icon>
-          <IconCaretRightFilled />
-        </Icon>
-      </Btn>
-    </HStack>
   );
 };
 
@@ -805,7 +688,7 @@ export const DataTable = (props: Props__DataTable) => {
             justify={"space-between"}
           >
             <CContainer w={"fit"} mb={[1, null, 0]}>
-              <Limittation limit={limit} setLimit={setLimit} />
+              <Limitation limit={limit} setLimit={setLimit} />
             </CContainer>
 
             {!iss && (

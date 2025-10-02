@@ -23,12 +23,10 @@ export const Img = (props: Props__Img) => {
 
   // States
   const resolvedFallbackSrc =
-    fallbackSrc || wide
-      ? `${SVGS_PATH}/no-img-wide.svg`
-      : `${SVGS_PATH}/no-img.svg`;
+    fallbackSrc ??
+    (wide ? `${SVGS_PATH}/no-img-wide.svg` : `${SVGS_PATH}/no-img.svg`);
   const [currentSrc, setCurrentSrc] = useState(src || resolvedFallbackSrc);
 
-  // Utils
   const handleError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
     if (currentSrc !== resolvedFallbackSrc) {
       setCurrentSrc(resolvedFallbackSrc);
@@ -38,9 +36,9 @@ export const Img = (props: Props__Img) => {
 
   return (
     <CContainer
-      justify="center"
-      align="center"
-      pos="relative"
+      justify={"center"}
+      align={"center"}
+      pos={"relative"}
       overflow={restProps.rounded ? "clip" : ""}
       {...restProps}
     >
@@ -51,10 +49,12 @@ export const Img = (props: Props__Img) => {
         style={{
           objectFit: (objectFit as any) ?? "cover",
           objectPosition: objectPos ?? "center",
+          width: "100%",
+          height: "100%",
         }}
         fill={!fluid}
-        width={fluid ? undefined : 0}
-        height={fluid ? undefined : 0}
+        width={fluid ? 0 : undefined}
+        height={fluid ? 0 : undefined}
         quality={80}
         sizes={
           imageProps?.sizes ??

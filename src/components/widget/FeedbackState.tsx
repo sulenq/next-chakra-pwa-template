@@ -33,7 +33,7 @@ const FeedbackState = (props: Props) => {
       {!titleString && title}
 
       {descriptionString && (
-        <P textAlign={"center"} color={"fg.subtle"}>
+        <P maxW={"300px"} textAlign={"center"} color={"fg.subtle"}>
           {description}
         </P>
       )}
