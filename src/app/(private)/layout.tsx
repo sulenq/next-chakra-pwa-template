@@ -390,29 +390,68 @@ const DesktopLayout = (props: any) => {
     sw < 960 ? [activeNavs[activeNavs.length - 1]] : activeNavs;
   const backPath = last(activeNavs)?.backPath;
   const [search, setSearch] = useState<string>("");
+  const roleId = user?.role?.id;
+  const q = (search ?? "").toLowerCase();
   const resolvedNavs = PRIVATE_NAVS.map((nav) => {
+    // Case 1: search is empty
+    if (!q) {
+      const filteredList = nav.list
+        .map((item) => {
+          if (item.subMenus && item.subMenus.length > 0) {
+            const filteredSubs = item.subMenus.map((sub) => ({
+              ...sub,
+              list: (sub.list ?? []).filter(
+                (subItem) =>
+                  !subItem.allowedRoles ||
+                  subItem.allowedRoles.length === 0 ||
+                  (roleId && subItem.allowedRoles.includes(roleId))
+              ),
+            }));
+
+            const hasSubs = filteredSubs.some((s) => s.list.length > 0);
+            return hasSubs ? { ...item, subMenus: filteredSubs } : null;
+          }
+
+          const allowed =
+            !item.allowedRoles ||
+            item.allowedRoles.length === 0 ||
+            (roleId && item.allowedRoles.includes(roleId));
+
+          return allowed ? item : null;
+        })
+        .filter(Boolean) as typeof nav.list;
+
+      return filteredList.length > 0 ? { ...nav, list: filteredList } : null;
+    }
+
+    // Case 2: search has value
     const filteredList = nav.list.flatMap((item) => {
-      const isMatch =
-        item.path &&
-        pluckString(l, item.labelKey)
-          ?.toLowerCase()
-          ?.includes(search.toLowerCase());
-
-      if (isMatch) return [item];
-
-      if (item.subMenus) {
+      if (item.subMenus && item.subMenus.length > 0) {
+        // return only matched subItems, no parent
         const matchedSubs = item.subMenus.flatMap((sub) =>
-          sub.list.filter((subItem) =>
-            pluckString(l, subItem.labelKey)
-              ?.toLowerCase()
-              ?.includes(search.toLowerCase())
-          )
+          (sub.list ?? []).filter((subItem) => {
+            const allowed =
+              !subItem.allowedRoles ||
+              subItem.allowedRoles.length === 0 ||
+              (roleId && subItem.allowedRoles.includes(roleId));
+
+            if (!allowed) return false;
+            return pluckString(l, subItem.labelKey)?.toLowerCase().includes(q);
+          })
         );
 
-        return matchedSubs.length > 0 ? matchedSubs : [];
+        return matchedSubs;
       }
 
-      return [];
+      const allowed =
+        !item.allowedRoles ||
+        item.allowedRoles.length === 0 ||
+        (roleId && item.allowedRoles.includes(roleId));
+
+      const matches =
+        allowed && pluckString(l, item.labelKey)?.toLowerCase().includes(q);
+
+      return matches ? [item] : [];
     });
 
     return filteredList.length > 0 ? { ...nav, list: filteredList } : null;

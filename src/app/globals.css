@@ -177,7 +177,9 @@ textarea::placeholder {
 }
 
 /* Clicky */
-.clicky {
+.clicky,
+.m-clicky,
+.lg-clicky {
   transition: 200ms;
 }
 .clicky:active:not(:disabled) {
