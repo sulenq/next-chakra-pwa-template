@@ -18,9 +18,10 @@ export const formatDate = (
     timeFormat?: string; // default HH:mm
     dateFormat?: Type__DateFormat;
     timezoneKey?: string;
+    dashEmpty?: boolean;
   } = {}
 ): string => {
-  if (!date) return "";
+  if (!date) return options.dashEmpty ? "-" : "";
 
   const dateFormat = options.dateFormat || getStorage("dateFormat") || "dmy";
   const timezoneKey = options.timezoneKey || getUserTimezone().key;

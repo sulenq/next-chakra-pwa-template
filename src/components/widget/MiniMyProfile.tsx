@@ -19,7 +19,7 @@ import { Icon, StackProps } from "@chakra-ui/react";
 import { IconLogout, IconUser } from "@tabler/icons-react";
 import { usePathname, useRouter } from "next/navigation";
 
-export const MiniProfile = (props: StackProps) => {
+export const MiniMyProfile = (props: StackProps) => {
   // Contexts
   const { l } = useLang();
   const { themeConfig } = useThemeConfig();

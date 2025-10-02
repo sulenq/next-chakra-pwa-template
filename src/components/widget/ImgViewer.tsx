@@ -5,6 +5,7 @@ import { CContainer } from "@/components/ui/c-container";
 import { CloseButton } from "@/components/ui/close-button";
 import { DialogBody, DialogContent, DialogRoot } from "@/components/ui/dialog";
 import { NavLink } from "@/components/ui/nav-link";
+import { SVGS_PATH } from "@/constants/paths";
 import useLang from "@/context/useLang";
 import useBackOnClose from "@/hooks/useBackOnClose";
 import { back } from "@/utils/client";
@@ -13,7 +14,7 @@ import { Icon, Image, StackProps, useDisclosure } from "@chakra-ui/react";
 import { IconArrowUpRight } from "@tabler/icons-react";
 
 interface Props extends StackProps {
-  src: string;
+  src?: string;
 }
 
 export const ImgViewer = (props: Props) => {
@@ -49,7 +50,8 @@ export const ImgViewer = (props: Props) => {
                 />
 
                 <Image
-                  src={src}
+                  src={src || `${SVGS_PATH}/no-img.svg`}
+                  bg={"body"}
                   onClick={(e) => {
                     e.stopPropagation();
                   }}

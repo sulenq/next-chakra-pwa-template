@@ -38,10 +38,10 @@ export interface Interface__FormattedTableHeader {
   headerProps?: TableColumnHeaderProps;
   wrapperProps?: StackProps;
 }
-export interface Interface__FormattedTableRow {
+export interface Interface__FormattedTableRow<T = any> {
   id: string;
   idx: number;
-  data: any;
+  data: T;
   columns: {
     td: any;
     value: any;
@@ -68,8 +68,14 @@ export interface Interface__TableOption {
   menuItemProps?: Partial<MenuItemProps>;
   override?: ReactNode;
 }
-export type Interface__TableOptionGenerator<T = Interface__FormattedTableRow> =
-  (data: T, overloads?: any) => Interface__TableOption | null | false;
+export type Interface__RowOptionsTableOptionGenerator<T = any> = (
+  formattedRow: Interface__FormattedTableRow<T>,
+  overloads?: any
+) => Interface__TableOption | null | false;
+export type Interface__BatchOptionsTableOptionGenerator<T = string[]> = (
+  selectedRowIds: T,
+  overloads?: any
+) => Interface__TableOption | null | false;
 
 // HTTP
 export interface Interface__RequestState<T = any> {

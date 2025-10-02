@@ -35,7 +35,7 @@ import {
   LeftIndicator,
 } from "@/components/widget/Indicator";
 import Logo from "@/components/widget/Logo";
-import { MiniProfile } from "@/components/widget/MiniProfile";
+import { MiniMyProfile } from "@/components/widget/MiniMyProfile";
 import { Today } from "@/components/widget/Today";
 import { APP } from "@/constants/_meta";
 import { Interface__NavListItem } from "@/constants/interfaces";
@@ -359,7 +359,7 @@ const MobileLayout = (props: any) => {
           </PopoverTrigger>
 
           <PopoverContent w={"200px"} zIndex={10}>
-            <MiniProfile />
+            <MiniMyProfile />
           </PopoverContent>
         </PopoverRoot>
       </HStack>
@@ -941,7 +941,7 @@ const DesktopLayout = (props: any) => {
             </PopoverTrigger>
 
             <PopoverContent w={"254px"} zIndex={10}>
-              <MiniProfile />
+              <MiniMyProfile />
             </PopoverContent>
           </PopoverRoot>
         </CContainer>
