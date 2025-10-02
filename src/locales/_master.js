@@ -483,6 +483,38 @@ export const purpose = {
   id: "Tujuan",
   en: "Purpose",
 };
+export const super_admin = {
+  id: "Super Admin",
+  en: "Super Admin",
+};
+export const educator = {
+  id: "Pengajar",
+  en: "Educator",
+};
+export const name = {
+  id: "Nama",
+  en: "Name",
+};
+export const title = {
+  id: "Judul",
+  en: "Title",
+};
+export const description = {
+  id: "Deskripsi",
+  en: "Description",
+};
+export const student = {
+  id: "Pelajar",
+  en: "Student",
+};
+export const total_material = {
+  id: "Total Materi",
+  en: "Total Material",
+};
+export const count = {
+  id: "Jumlah",
+  en: "Count",
+};
 
 // Message
 export const msg_location_test_helper = {
