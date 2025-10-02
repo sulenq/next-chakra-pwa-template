@@ -9,6 +9,7 @@ import {
 import { Avatar } from "@/components/ui/avatar";
 import { Btn } from "@/components/ui/btn";
 import { CContainer } from "@/components/ui/c-container";
+import { ColorModeButton } from "@/components/ui/color-mode";
 import { Divider } from "@/components/ui/divider";
 import {
   MenuContent,
@@ -962,6 +963,13 @@ const DesktopLayout = (props: any) => {
 
               <Today />
             </HStack>
+
+            <ColorModeButton
+              rounded={"full"}
+              size={"xs"}
+              w={"32px"}
+              h={"32px"}
+            />
           </HStack>
         </HStack>
 
