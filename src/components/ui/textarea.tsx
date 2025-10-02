@@ -15,6 +15,7 @@ export const Textarea = (props: Props__TextareaInput) => {
     <ChakraTextarea
       name={name}
       borderColor={invalid ?? fc?.invalid ? "border.error" : "border.muted"}
+      fontSize={"md"}
       fontWeight={"medium"}
       outline={"none !important"}
       _placeholder={{

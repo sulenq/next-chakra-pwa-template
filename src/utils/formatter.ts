@@ -61,7 +61,7 @@ export const formatDate = (
   const weekdayName = L_WEEKDAYS_0_BASED[weekday];
   const shortWeekdayName = weekdayName.substring(0, 3);
 
-  const basicVariant = options.variant === "numeric";
+  const numericVariant = options.variant === "numeric";
 
   const formatDateString = (
     yearVal: number,
@@ -75,16 +75,16 @@ export const formatDate = (
 
     switch (dateFormat.toLowerCase()) {
       case "dmy":
-        return `${dayVal}${basicVariant ? "-" : " "}${monthDisplay}${
-          basicVariant ? "-" : " "
+        return `${dayVal}${numericVariant ? "/" : " "}${monthDisplay}${
+          numericVariant ? "/" : " "
         }${yearVal}`;
       case "mdy":
-        return `${monthDisplay}${basicVariant ? "-" : " "}${dayVal}${
-          basicVariant ? "-" : ", "
+        return `${monthDisplay}${numericVariant ? "/" : " "}${dayVal}${
+          numericVariant ? "/" : ", "
         }${yearVal}`;
       case "ymd":
-        return `${yearVal}${basicVariant ? "-" : " "}${monthDisplay}${
-          basicVariant ? "-" : " "
+        return `${yearVal}${numericVariant ? "/" : " "}${monthDisplay}${
+          numericVariant ? "/" : " "
         }${dayVal}`;
       default:
         return `${dayVal} ${monthDisplay} ${yearVal}`;

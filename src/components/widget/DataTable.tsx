@@ -55,7 +55,7 @@ const RowOptions = (props: Props_RowOptions) => {
           {...restProps}
         >
           <Icon boxSize={5}>
-            <IconDots />
+            <IconDots stroke={1.5} />
           </Icon>
         </Btn>
       </MenuTrigger>
