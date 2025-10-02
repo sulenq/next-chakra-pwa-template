@@ -12,7 +12,7 @@ const translations = {
   },
   "alert_no_data": {
     "title": "No data available",
-    "description": "Please refresh the data or adjust your filters."
+    "description": "Update data or adjust filters."
   },
   "alert_not_found": {
     "title": "Not found",

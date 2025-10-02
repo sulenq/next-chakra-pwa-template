@@ -587,8 +587,8 @@ export const alert_no_data = {
     en: "No data available",
   },
   description: {
-    id: "Silakan perbarui data atau sesuaikan filter.",
-    en: "Please refresh the data or adjust your filters.",
+    id: "Perbarui data atau sesuaikan filter.",
+    en: "Update data or adjust filters.",
   },
 };
 export const alert_forbidden = {

@@ -12,7 +12,7 @@ const translations = {
   },
   "alert_no_data": {
     "title": "Tidak ada data",
-    "description": "Silakan perbarui data atau sesuaikan filter."
+    "description": "Perbarui data atau sesuaikan filter."
   },
   "alert_not_found": {
     "title": "Tidak ditemukan",
