@@ -395,6 +395,7 @@ export const DataTable = (props: Props__DataTable) => {
                       whiteSpace={"nowrap"}
                       p={0}
                       fontSize={"md"}
+                      opacity={row.dim || col.dim ? 0.4 : 1}
                       {...col?.tableCellProps}
                     >
                       <HStack
