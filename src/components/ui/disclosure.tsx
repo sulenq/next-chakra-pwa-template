@@ -153,6 +153,7 @@ const DisclosureHeader = ({ children, ...props }: DisclosureHeaderProps) => {
   ) : (
     <DialogHeader
       p={3}
+      pl={4}
       borderBottom={"1px solid"}
       borderColor={children ? "d1" : ""}
       {...(props as DialogHeaderProps)}
