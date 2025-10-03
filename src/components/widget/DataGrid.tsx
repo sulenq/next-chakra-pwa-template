@@ -113,6 +113,8 @@ export const DataGrid = (props: Props) => {
         ref={containerRef}
         flex={1}
         px={3}
+        mt={3}
+        overflowY={"auto"}
         pos={"relative"}
         {...restProps}
       >
@@ -163,9 +165,9 @@ export const DataGrid = (props: Props) => {
           </HStack>
         </Presence>
 
-        <CContainer className="scrollY" flex={1}>
+        <CContainer className="scrollY" flex={1} pb={3}>
           {containerWidth > 0 && (
-            <SimpleGrid columns={gridCols} gap={4} mt={4}>
+            <SimpleGrid columns={gridCols} gap={4}>
               {data?.map((item, idx) => {
                 const row = dataProps.rows?.[
                   idx

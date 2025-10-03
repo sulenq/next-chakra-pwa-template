@@ -25,7 +25,9 @@ export const DrawerContent = forwardRef<HTMLDivElement, DrawerContentProps>(
 
     return (
       <Portal disabled={!portalled} container={portalRef}>
-        {backdrop && <ChakraDrawer.Backdrop zIndex="modal" />}
+        {backdrop && (
+          <ChakraDrawer.Backdrop zIndex="modal" backdropFilter={"blur(4px)"} />
+        )}
         <ChakraDrawer.Positioner
           zIndex="modal"
           padding={offset}

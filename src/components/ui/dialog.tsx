@@ -33,10 +33,10 @@ export const DialogContent = forwardRef<HTMLDivElement, DialogContentProps>(
 
     return (
       <Portal disabled={!portalled} container={portalRef}>
-        {backdrop && <ChakraDialog.Backdrop />}
+        {backdrop && <ChakraDialog.Backdrop backdropFilter={"blur(4px)"} />}
         <ChakraDialog.Positioner
           pointerEvents="auto"
-          py={4}
+          p={4}
           onMouseDown={(e) => {
             if (contentRef.current?.contains(e.target as Node)) {
               setIsMouseDownInsideContent(true);
