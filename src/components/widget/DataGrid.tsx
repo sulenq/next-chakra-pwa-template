@@ -15,7 +15,13 @@ import { useContainerDimension } from "@/hooks/useContainerDimension";
 import { useIsSmScreenWidth } from "@/hooks/useIsSmScreenWidth";
 import { isEmptyArray } from "@/utils/array";
 import { imgUrl } from "@/utils/url";
-import { HStack, Icon, SimpleGrid, StackProps } from "@chakra-ui/react";
+import {
+  HStack,
+  Icon,
+  Presence,
+  SimpleGrid,
+  StackProps,
+} from "@chakra-ui/react";
 import { IconMenu } from "@tabler/icons-react";
 import { useRef, useState } from "react";
 
@@ -59,6 +65,8 @@ export const DataGrid = (props: Props) => {
   const hasFooter = limit && setLimit && page && setPage;
   const [allRowsSelected, setAllRowsSelected] = useState<boolean>(false);
   const [selectedRows, setSelectedRows] = useState<any[]>([]);
+  const shouldShowBatch =
+    dataProps?.batchOptions && !isEmptyArray(selectedRows);
 
   // Utils
   function handleSelectAllRows(isChecked: boolean) {
@@ -99,7 +107,12 @@ export const DataGrid = (props: Props) => {
         pos={"relative"}
         {...restProps}
       >
-        {dataProps?.batchOptions && !isEmptyArray(selectedRows) && (
+        <Presence
+          present={shouldShowBatch}
+          animationName={{ _open: "fade-in", _closed: "fade-out" }}
+          animationDuration="fast"
+          unmountOnExit
+        >
           <HStack
             w={"full"}
             justify={"center"}
@@ -108,12 +121,14 @@ export const DataGrid = (props: Props) => {
             bottom={0}
             left={0}
             zIndex={2}
+            pointerEvents={"none"}
           >
             <HStack
               bg={"body"}
               border={"1px solid"}
               borderColor={"border.muted"}
               rounded={themeConfig.radii.component}
+              pointerEvents={"auto"}
             >
               <BatchOptions
                 iconButton={false}
@@ -133,43 +148,47 @@ export const DataGrid = (props: Props) => {
                 <Icon>
                   <IconMenu stroke={1.5} />
                 </Icon>
-                Batch Options
+                Batch options
               </BatchOptions>
             </HStack>
           </HStack>
-        )}
+        </Presence>
 
         <CContainer className="scrollY" flex={1}>
-          <SimpleGrid columns={gridCols} gap={4} mt={4}>
-            {data?.map((item, idx) => {
-              const row = dataProps.rows?.[idx] as Interface__FormattedTableRow;
-              const details = row.columns.map((col, rowIdx) => ({
-                label: dataProps.headers?.[rowIdx].th,
-                render: col.td,
-              }));
+          {containerWidth > 0 && (
+            <SimpleGrid columns={gridCols} gap={4} mt={4}>
+              {data?.map((item, idx) => {
+                const row = dataProps.rows?.[
+                  idx
+                ] as Interface__FormattedTableRow;
+                const details = row.columns.map((col, rowIdx) => ({
+                  label: dataProps.headers?.[rowIdx].th,
+                  render: col.td,
+                }));
 
-              return (
-                <DataGridItem
-                  key={item.id}
-                  item={{
-                    id: item.id,
-                    showImg: true,
-                    img: imgUrl(item.user.photoProfile?.[0]?.filePath),
-                    imgFallbackSrc: `${SVGS_PATH}/no-avatar.svg`,
-                    title: item.user.name,
-                    description: item.user.email,
-                    deletedAt: item.user.deactiveAt,
-                  }}
-                  dataProps={dataProps}
-                  row={row}
-                  selectedRows={selectedRows}
-                  toggleRowSelection={toggleRowSelection}
-                  routeTitle={routeTitle}
-                  details={details}
-                />
-              );
-            })}
-          </SimpleGrid>
+                return (
+                  <DataGridItem
+                    key={item.id}
+                    item={{
+                      id: item.id,
+                      showImg: true,
+                      img: imgUrl(item.user.photoProfile?.[0]?.filePath),
+                      imgFallbackSrc: `${SVGS_PATH}/no-avatar.svg`,
+                      title: item.user.name,
+                      description: item.user.email,
+                      deletedAt: item.user.deactiveAt,
+                    }}
+                    dataProps={dataProps}
+                    row={row}
+                    selectedRows={selectedRows}
+                    toggleRowSelection={toggleRowSelection}
+                    routeTitle={routeTitle}
+                    details={details}
+                  />
+                );
+              })}
+            </SimpleGrid>
+          )}
         </CContainer>
       </CContainer>
 

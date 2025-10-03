@@ -320,17 +320,19 @@ const Rounded = () => {
       </ItemHeaderContainer>
 
       <CContainer gap={4} p={4}>
-        <SimpleGrid columns={gridCols} gap={4}>
-          {roundedList.map((item) => {
-            const isActive = item.component === themeConfig.radii.component;
+        {containerWidth > 0 && (
+          <SimpleGrid columns={gridCols} gap={4}>
+            {roundedList.map((item) => {
+              const isActive = item.component === themeConfig.radii.component;
 
-            return (
-              <CContainer key={item.label}>
-                <RoundedExampe preset={item} isActive={isActive} />
-              </CContainer>
-            );
-          })}
-        </SimpleGrid>
+              return (
+                <CContainer key={item.label}>
+                  <RoundedExampe preset={item} isActive={isActive} />
+                </CContainer>
+              );
+            })}
+          </SimpleGrid>
+        )}
       </CContainer>
     </ItemContainer>
   );
