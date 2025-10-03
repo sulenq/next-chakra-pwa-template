@@ -6,6 +6,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Img } from "@/components/ui/img";
 import { P } from "@/components/ui/p";
 import { DataGridDetailDisclosureTrigger } from "@/components/widget/DataGridDetailDisclosure";
+import { ImgViewer } from "@/components/widget/ImgViewer";
 import { DotIndicator } from "@/components/widget/Indicator";
 import { RowOptions } from "@/components/widget/RowOptions";
 import {
@@ -61,12 +62,19 @@ export const DataGridItem = (props: Props) => {
       {...restProps}
     >
       {item.showImg && (
-        <Img
+        <ImgViewer
+          w={"full"}
           src={item.img}
           aspectRatio={1.1}
-          rounded={themeConfig.radii.component}
           fallbackSrc={item.imgFallbackSrc}
-        />
+        >
+          <Img
+            src={item.img}
+            aspectRatio={1.1}
+            rounded={themeConfig.radii.component}
+            fallbackSrc={item.imgFallbackSrc}
+          />
+        </ImgViewer>
       )}
 
       <CContainer flex={1} gap={1} px={3} my={3}>

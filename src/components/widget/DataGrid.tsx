@@ -44,6 +44,8 @@ interface Props extends Omit<StackProps, "page"> {
   footer?: React.ReactNode;
 }
 
+const ITEM_MAX_W_NUMBER = 160;
+
 export const DataGrid = (props: Props) => {
   // Props
   const {
@@ -67,7 +69,7 @@ export const DataGrid = (props: Props) => {
   const { width: containerWidth } = useContainerDimension(containerRef);
 
   // States
-  const gridCols = Math.max(1, Math.floor(containerWidth / 195));
+  const gridCols = Math.max(1, Math.floor(containerWidth / ITEM_MAX_W_NUMBER));
   const hasFooter = limit && setLimit && page && setPage;
   const [allRowsSelected, setAllRowsSelected] = useState<boolean>(false);
   const [selectedRows, setSelectedRows] = useState<any[]>([]);

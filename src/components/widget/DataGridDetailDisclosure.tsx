@@ -36,8 +36,8 @@ export const DataGridDetailDisclosure = (props: any) => {
           <DisclosureHeaderContent title={`Detail ${title}`} />
         </DisclosureHeader>
 
-        <DisclosureBody p={0}>
-          <CContainer px={2} my={2}>
+        <DisclosureBody>
+          <CContainer>
             <SearchInput
               inputValue={search}
               onChange={(inputValue) => {
@@ -50,7 +50,7 @@ export const DataGridDetailDisclosure = (props: any) => {
             />
           </CContainer>
 
-          <CContainer px={2}>
+          <CContainer>
             {data && (
               <>
                 {isEmptyArray(resolvedDetails) && <FeedbackNotFound />}
@@ -62,7 +62,7 @@ export const DataGridDetailDisclosure = (props: any) => {
                     <CContainer
                       key={idx}
                       gap={2}
-                      px={3}
+                      px={1}
                       py={3}
                       borderBottom={!isLast ? "1px solid" : ""}
                       borderColor={"d1"}

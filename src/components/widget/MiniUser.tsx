@@ -22,7 +22,6 @@ export const MiniUser = (props: Props) => {
       <ImgViewer
         src={imgUrl(user?.photoProfile?.[0]?.filePath)}
         fallbackSrc={`${SVGS_PATH}/no-avatar.svg`}
-        disabled={!imgUrl(user?.photoProfile?.[0]?.filePath)}
       >
         <Avatar
           src={imgUrl(user?.photoProfile?.[0]?.filePath)}
