@@ -2,12 +2,15 @@
 
 import { Btn } from "@/components/ui/btn";
 import { CContainer } from "@/components/ui/c-container";
+import { Checkbox } from "@/components/ui/checkbox";
 import { useColorMode } from "@/components/ui/color-mode";
+import { DatePickerInput } from "@/components/ui/date-picker-input";
 import { HelperText } from "@/components/ui/helper-text";
 import { P } from "@/components/ui/p";
 import { SelectInput } from "@/components/ui/select-input";
 import { StringInput } from "@/components/ui/string-input";
 import { Switch } from "@/components/ui/switch";
+import TimePickerInput from "@/components/ui/time-picker-input";
 import { DotIndicator } from "@/components/widget/Indicator";
 import { ItemContainer } from "@/components/widget/ItemContainer";
 import { ItemHeaderContainer } from "@/components/widget/ItemHeaderContainer";
@@ -19,6 +22,8 @@ import useADM from "@/context/useADM";
 import useLang from "@/context/useLang";
 import { useSettingsRouteContainer } from "@/context/useSettingsRouteContainer";
 import { useThemeConfig } from "@/context/useThemeConfig";
+import { useContainerDimension } from "@/hooks/useContainerDimension";
+import { getGridColumns } from "@/utils/style";
 import {
   Box,
   Center,
@@ -34,10 +39,6 @@ import {
   IconRadiusTopLeft,
 } from "@tabler/icons-react";
 import { useEffect, useRef, useState } from "react";
-import { Checkbox } from "@/components/ui/checkbox";
-import { DatePickerInput } from "@/components/ui/date-picker-input";
-import TimePickerInput from "@/components/ui/time-picker-input";
-import { getGridColumns } from "@/utils/style";
 
 const ManualDarkModeSetting = () => {
   // Contexts
@@ -183,9 +184,10 @@ const Rounded = () => {
   // Contexts
   const { l } = useLang();
   const { themeConfig, setThemeConfig } = useThemeConfig();
-  const settingsContainerDimensions = useSettingsRouteContainer(
-    (s) => s.containerDimension
-  );
+
+  // Hooks
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { width: containerWidth } = useContainerDimension(containerRef);
 
   // States
   const roundedList = [
@@ -230,14 +232,7 @@ const Rounded = () => {
       container: "22px",
     },
   ];
-  const gridColumns: Record<number, number> = {
-    320: 2,
-    680: 3,
-    960: 4,
-    1280: 6,
-    1920: 8,
-  };
-  const cols = getGridColumns(settingsContainerDimensions.width, gridColumns);
+  const gridCols = Math.max(1, Math.floor(containerWidth / 160));
 
   // Component
   const RoundedExampe = (props: any) => {
@@ -314,7 +309,7 @@ const Rounded = () => {
   };
 
   return (
-    <ItemContainer>
+    <ItemContainer ref={containerRef}>
       <ItemHeaderContainer>
         <HStack>
           <Icon boxSize={5}>
@@ -325,7 +320,7 @@ const Rounded = () => {
       </ItemHeaderContainer>
 
       <CContainer gap={4} p={4}>
-        <SimpleGrid columns={cols} gap={4}>
+        <SimpleGrid columns={gridCols} gap={4}>
           {roundedList.map((item) => {
             const isActive = item.component === themeConfig.radii.component;
 
@@ -350,7 +345,7 @@ const Theme = () => {
 
   // States
   const colorPalettes = [
-    { palette: "p", primaryHex: "#006aff" },
+    { palette: "p", primaryHex: "#4f8250" },
 
     // Neutral & Dark Shades
     { palette: "gray", primaryHex: "#1B1B1B" },
