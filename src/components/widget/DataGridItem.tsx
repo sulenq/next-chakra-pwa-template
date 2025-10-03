@@ -13,7 +13,6 @@ import {
   Interface__FormattedTableRow,
 } from "@/constants/interfaces";
 import { useThemeConfig } from "@/context/useThemeConfig";
-import { imgUrl } from "@/utils/url";
 import { Box, HStack, StackProps } from "@chakra-ui/react";
 
 interface Props extends StackProps {
@@ -63,7 +62,7 @@ export const DataGridItem = (props: Props) => {
     >
       {item.showImg && (
         <Img
-          src={imgUrl(item.img)}
+          src={item.img}
           aspectRatio={1.1}
           rounded={themeConfig.radii.component}
           fallbackSrc={item.imgFallbackSrc}

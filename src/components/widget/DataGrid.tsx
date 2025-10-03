@@ -1,20 +1,19 @@
 "use client";
 
 import { CContainer } from "@/components/ui/c-container";
+import { Img } from "@/components/ui/img";
 import { BatchOptions } from "@/components/widget/BatchOptions";
-import { DataGridItem } from "@/components/widget/DataGridItem";
+import { ImgViewer } from "@/components/widget/ImgViewer";
 import { Limitation } from "@/components/widget/Limitation";
 import { Pagination } from "@/components/widget/Pagination";
 import {
   Interface__DataProps,
   Interface__FormattedTableRow,
 } from "@/constants/interfaces";
-import { SVGS_PATH } from "@/constants/paths";
 import { useThemeConfig } from "@/context/useThemeConfig";
 import { useContainerDimension } from "@/hooks/useContainerDimension";
 import { useIsSmScreenWidth } from "@/hooks/useIsSmScreenWidth";
 import { isEmptyArray } from "@/utils/array";
-import { imgUrl } from "@/utils/url";
 import {
   HStack,
   Icon,
@@ -25,16 +24,24 @@ import {
 import { IconMenu } from "@tabler/icons-react";
 import { useRef, useState } from "react";
 
+interface RenderItemProps {
+  item: any;
+  row: Interface__FormattedTableRow;
+  idx: number;
+  details: any;
+  selectedRows: string[];
+  toggleRowSelection: (row: Interface__FormattedTableRow) => void;
+}
 interface Props extends Omit<StackProps, "page"> {
   data?: any[];
   dataProps: Interface__DataProps;
+  renderItem: (props: RenderItemProps) => React.ReactNode;
   limit?: number;
   setLimit?: (limit: number) => void;
   page?: number;
   setPage?: (page: number) => void;
   totalPage?: number;
   footer?: React.ReactNode;
-  routeTitle: string;
 }
 
 export const DataGrid = (props: Props) => {
@@ -48,7 +55,6 @@ export const DataGrid = (props: Props) => {
     setPage,
     totalPage,
     footer,
-    routeTitle,
     ...restProps
   } = props;
 
@@ -79,6 +85,7 @@ export const DataGrid = (props: Props) => {
     }
   }
   function handleClearSelectedRows() {
+    setAllRowsSelected(false);
     setSelectedRows([]);
   }
   function toggleRowSelection(row: Interface__FormattedTableRow) {
@@ -161,31 +168,32 @@ export const DataGrid = (props: Props) => {
                 const row = dataProps.rows?.[
                   idx
                 ] as Interface__FormattedTableRow;
-                const details = row.columns.map((col, rowIdx) => ({
-                  label: dataProps.headers?.[rowIdx].th,
-                  render: col.td,
-                }));
+                const details = row.columns.map((col, rowIdx) => {
+                  if (col.dataType === "image") {
+                    return {
+                      label: dataProps.headers?.[rowIdx].th,
+                      render: (
+                        <ImgViewer src={col.value}>
+                          <Img src={col.value} fluid />
+                        </ImgViewer>
+                      ),
+                    };
+                  }
 
-                return (
-                  <DataGridItem
-                    key={item.id}
-                    item={{
-                      id: item.id,
-                      showImg: true,
-                      img: imgUrl(item.user.photoProfile?.[0]?.filePath),
-                      imgFallbackSrc: `${SVGS_PATH}/no-avatar.svg`,
-                      title: item.user.name,
-                      description: item.user.email,
-                      deletedAt: item.user.deactiveAt,
-                    }}
-                    dataProps={dataProps}
-                    row={row}
-                    selectedRows={selectedRows}
-                    toggleRowSelection={toggleRowSelection}
-                    routeTitle={routeTitle}
-                    details={details}
-                  />
-                );
+                  return {
+                    label: dataProps.headers?.[rowIdx].th,
+                    render: col.td,
+                  };
+                });
+
+                return props.renderItem({
+                  item,
+                  row,
+                  idx,
+                  details,
+                  selectedRows,
+                  toggleRowSelection,
+                });
               })}
             </SimpleGrid>
           )}
