@@ -44,7 +44,7 @@ interface Props extends Omit<StackProps, "page"> {
   footer?: React.ReactNode;
 }
 
-const ITEM_MAX_W_NUMBER = 160;
+const ITEM_MAX_W_NUMBER = 175;
 
 export const DataGrid = (props: Props) => {
   // Props
