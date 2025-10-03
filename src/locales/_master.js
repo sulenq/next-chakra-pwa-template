@@ -143,6 +143,10 @@ export const delete_ = {
   id: "Hapus",
   en: "Delete",
 };
+export const restore = {
+  id: "Pulihkan",
+  en: "Restore",
+};
 export const deleted = {
   id: "Dihapus",
   en: "Deleted",
@@ -580,6 +584,18 @@ export const msg_cannot_be_undone = {
 export const msg_soft_delete = {
   id: "Data akan disembunyikan dan bisa dikembalikan nanti.",
   en: "Data will be hidden but can be restored later.",
+};
+export const msg_deactivate = {
+  id: "Akun akan dinonaktifkan dan tidak bisa digunakan sementara.",
+  en: "The account will be deactivated and cannot be used temporarily.",
+};
+export const msg_activate = {
+  id: "Akun akan diaktifkan kembali dan bisa digunakan.",
+  en: "The account will be activated again and can be used.",
+};
+export const msg_restore = {
+  id: "Data akan dikembalikan ke kondisi semula.",
+  en: "The data will be restored to its original state.",
 };
 export const msg_required_form = {
   id: "Tidak boleh kosong",
