@@ -63,10 +63,11 @@ const FileList = (props: any) => {
     </CContainer>
   );
 };
-const InputComponent = (props: Props__FileInputInputComponent) => {
+export const InputComponent = (props: Props__FileInputInputComponent) => {
   // Props
   const {
     fRef,
+    children,
     onChange,
     inputValue,
     accept,
@@ -79,6 +80,9 @@ const InputComponent = (props: Props__FileInputInputComponent) => {
     description,
     disabled,
     existing,
+    showDropzoneIcon = true,
+    showDropzoneLabel = true,
+    showDropzoneDescription = true,
     // removed,
     ...restProps
   } = props;
@@ -207,7 +211,12 @@ const InputComponent = (props: Props__FileInputInputComponent) => {
               }
               opacity={resolvedDisabled ? 0.5 : 1}
               cursor={resolvedDisabled ? "disabled" : "pointer"}
-            />
+              showIcon={showDropzoneIcon}
+              showLabel={showDropzoneLabel}
+              showDescription={showDropzoneDescription}
+            >
+              {children}
+            </FileUploadDropzone>
           ) : (
             <FileUploadTrigger asChild borderColor={invalid ? "fg.error" : ""}>
               <Btn
