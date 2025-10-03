@@ -3,7 +3,7 @@ import { getStorage, setStorage } from "@/utils/client";
 import { getLocalTimezone } from "@/utils/time";
 import { create } from "zustand";
 
-const STORAGE_KEY = "timeZone";
+const STORAGE_KEY = "timezone";
 
 interface Props {
   timeZone: Type__TimezoneObject;
