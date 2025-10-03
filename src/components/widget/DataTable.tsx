@@ -361,7 +361,6 @@ export const DataTable = (props: Props__DataTable) => {
                           size={"sm"}
                           colorPalette={themeConfig.colorPalette}
                           checked={selectedRows.includes(row.id)}
-                          zIndex={-1}
                         />
                       </Center>
                     </Table.Cell>
