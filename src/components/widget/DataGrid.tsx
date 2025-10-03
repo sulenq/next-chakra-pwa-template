@@ -169,21 +169,25 @@ export const DataGrid = (props: Props) => {
                   idx
                 ] as Interface__FormattedTableRow;
                 const details = row.columns.map((col, rowIdx) => {
-                  if (col.dataType === "image") {
-                    return {
-                      label: dataProps.headers?.[rowIdx].th,
-                      render: (
-                        <ImgViewer src={col.value}>
-                          <Img src={col.value} fluid />
-                        </ImgViewer>
-                      ),
-                    };
-                  }
+                  const label = dataProps.headers?.[rowIdx].th;
 
-                  return {
-                    label: dataProps.headers?.[rowIdx].th,
-                    render: col.td,
-                  };
+                  switch (col.dataType) {
+                    case "image":
+                      return {
+                        label,
+                        render: (
+                          <ImgViewer src={col.value}>
+                            <Img src={col.value} fluid />
+                          </ImgViewer>
+                        ),
+                      };
+
+                    default:
+                      return {
+                        label,
+                        render: col.td,
+                      };
+                  }
                 });
 
                 return props.renderItem({
