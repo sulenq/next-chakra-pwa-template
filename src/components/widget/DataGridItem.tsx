@@ -7,7 +7,6 @@ import { Img } from "@/components/ui/img";
 import { P } from "@/components/ui/p";
 import { DataGridDetailDisclosureTrigger } from "@/components/widget/DataGridDetailDisclosure";
 import { ImgViewer } from "@/components/widget/ImgViewer";
-import { DotIndicator } from "@/components/widget/Indicator";
 import { RowOptions } from "@/components/widget/RowOptions";
 import {
   Interface__DataProps,
@@ -24,8 +23,9 @@ interface Props extends StackProps {
     imgFallbackSrc?: string;
     title: string;
     description: string;
-    deletedAt: string | null;
+    deletedAt?: string | null;
   };
+  dim?: boolean;
   dataProps: Interface__DataProps;
   row: Interface__FormattedTableRow;
   selectedRows: string[];
@@ -38,6 +38,7 @@ export const DataGridItem = (props: Props) => {
   // Props
   const {
     item,
+    dim = false,
     dataProps,
     row,
     selectedRows,
@@ -67,6 +68,7 @@ export const DataGridItem = (props: Props) => {
           src={item.img}
           aspectRatio={1.1}
           fallbackSrc={item.imgFallbackSrc}
+          opacity={dim ? 0.4 : 1}
         >
           <Img
             src={item.img}
@@ -79,9 +81,7 @@ export const DataGridItem = (props: Props) => {
 
       <CContainer flex={1} gap={1} px={3} my={3}>
         <HStack maxW={"calc(100% - 32px)"}>
-          {item.deletedAt && <DotIndicator color={"fg.error"} />}
-
-          <P fontWeight={"semibold"} lineClamp={1}>
+          <P fontWeight={"semibold"} lineClamp={1} opacity={dim ? 0.4 : 1}>
             {item.title}
           </P>
 
@@ -102,7 +102,7 @@ export const DataGridItem = (props: Props) => {
           </Box>
         </HStack>
 
-        <P color={"fg.subtle"} lineClamp={1}>
+        <P color={"fg.subtle"} lineClamp={1} opacity={dim ? 0.4 : 1}>
           {item.description}
         </P>
       </CContainer>

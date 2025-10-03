@@ -115,7 +115,7 @@ export const MiniMyProfile = (props: StackProps) => {
 
         <ConfirmationDisclosureTrigger
           id="signout"
-          title="Sign out?"
+          title="Sign out"
           description={l.msg_signout}
           confirmLabel="Sign out"
           onConfirm={onSignout}
