@@ -1,251 +1,21 @@
-import { Btn } from "@/components/ui/btn";
 import { CContainer } from "@/components/ui/c-container";
 import { Checkbox } from "@/components/ui/checkbox";
-import {
-  MenuContent,
-  MenuItem,
-  MenuRoot,
-  MenuSeparator,
-  MenuTrigger,
-} from "@/components/ui/menu";
 import { P } from "@/components/ui/p";
-import { ConfirmationDisclosureTrigger } from "@/components/widget/ConfirmationDisclosure";
-import { DotIndicator } from "@/components/widget/Indicator";
+import { BatchOptions } from "@/components/widget/BatchOptions";
 import { Limitation } from "@/components/widget/Limitation";
 import { Pagination } from "@/components/widget/Pagination";
+import { RowOptions } from "@/components/widget/RowOptions";
 import { SortIcon } from "@/components/widget/SortIcon";
 import { Interface__FormattedTableRow } from "@/constants/interfaces";
-import {
-  Props__BatchOptions,
-  Props__DataTable,
-  Props_RowOptions,
-} from "@/constants/props";
+import { Props__DataTable } from "@/constants/props";
 import { Type__SortHandler } from "@/constants/types";
-import useLang from "@/context/useLang";
 import { useThemeConfig } from "@/context/useThemeConfig";
 import { useIsSmScreenWidth } from "@/hooks/useIsSmScreenWidth";
 import useScreen from "@/hooks/useScreen";
 import { isEmptyArray } from "@/utils/array";
 import { hexWithOpacity } from "@/utils/color";
-import { Center, HStack, Icon, Table } from "@chakra-ui/react";
-import { IconDots, IconMenu } from "@tabler/icons-react";
-import { Fragment, useEffect, useMemo, useRef, useState } from "react";
-
-const ICON_BOX_SIZE = "18px";
-
-const RowOptions = (props: Props_RowOptions) => {
-  // Props
-  const { row, rowOptions, tableContainerRef, ...restProps } = props;
-
-  return (
-    <MenuRoot lazyMount>
-      <MenuTrigger asChild aria-label="row options">
-        <Btn
-          iconButton
-          clicky={false}
-          variant={"ghost"}
-          size={"xs"}
-          {...restProps}
-        >
-          <Icon boxSize={5}>
-            <IconDots stroke={1.5} />
-          </Icon>
-        </Btn>
-      </MenuTrigger>
-
-      <MenuContent portalRef={tableContainerRef} zIndex={10} minW={"140px"}>
-        {rowOptions?.map((item, idx) => {
-          // if (item === "divider") return <MenuSeparator key={idx} />;
-
-          const option = item(row);
-          if (!option) return null;
-
-          const {
-            disabled = false,
-            label = "",
-            icon,
-            onClick = () => {},
-            confirmation,
-            menuItemProps,
-            override,
-          } = option;
-
-          if (confirmation) {
-            return (
-              <ConfirmationDisclosureTrigger
-                key={idx}
-                w="full"
-                id={`${row.id}-confirmation-${idx}`}
-                title={confirmation.title}
-                description={confirmation.description}
-                confirmLabel={confirmation.confirmLabel}
-                onConfirm={confirmation.onConfirm}
-                confirmButtonProps={confirmation.confirmButtonProps}
-                loading={confirmation.loading}
-                disabled={disabled}
-              >
-                <MenuItem
-                  value={label}
-                  color={"fg.error"}
-                  disabled={disabled}
-                  {...menuItemProps}
-                  justifyContent="space-between"
-                >
-                  {label}
-                  {icon && <Icon boxSize={ICON_BOX_SIZE}>{icon}</Icon>}
-                </MenuItem>
-              </ConfirmationDisclosureTrigger>
-            );
-          }
-
-          if (override) {
-            return <Fragment key={idx}>{override}</Fragment>;
-          }
-
-          return (
-            <MenuItem
-              key={idx}
-              disabled={disabled}
-              value={label}
-              onClick={() => {
-                if (!disabled) onClick();
-              }}
-              justifyContent="space-between"
-              {...menuItemProps}
-            >
-              {label}
-              {icon && <Icon boxSize={ICON_BOX_SIZE}>{icon}</Icon>}
-            </MenuItem>
-          );
-        })}
-      </MenuContent>
-    </MenuRoot>
-  );
-};
-const BatchOptions = (props: Props__BatchOptions) => {
-  // Props
-  const {
-    selectedRows,
-    clearSelectedRows,
-    batchOptions,
-    selectAllRows,
-    handleSelectAllRows,
-    tableContainerRef,
-  } = props;
-
-  // Contexts
-  const { l } = useLang();
-  const { themeConfig } = useThemeConfig();
-
-  return (
-    <MenuRoot lazyMount>
-      <MenuTrigger asChild aria-label="batch options">
-        <Btn iconButton clicky={false} variant={"ghost"} size={"xs"}>
-          <Icon>
-            <IconMenu />
-          </Icon>
-        </Btn>
-      </MenuTrigger>
-
-      <MenuContent portalRef={tableContainerRef} zIndex={10} minW={"140px"}>
-        <CContainer px={3} py={1}>
-          <P fontSize={"sm"} opacity={0.5} fontWeight={500}>
-            {`${selectedRows.length} ${l.selected.toLowerCase()}`}
-          </P>
-        </CContainer>
-
-        <MenuItem
-          value={"select all"}
-          justifyContent={"space-between"}
-          onClick={() => {
-            handleSelectAllRows(selectAllRows);
-          }}
-          closeOnSelect={false}
-        >
-          <P>{l.select_all}</P>
-
-          <DotIndicator
-            color={selectAllRows ? themeConfig.primaryColor : "d2"}
-            mr={1}
-          />
-        </MenuItem>
-
-        <MenuSeparator />
-
-        {batchOptions?.map((item, idx) => {
-          const noSelection = selectedRows.length === 0;
-
-          // if (item === "divider") return <MenuSeparator key={idx} />;
-
-          const option = item(selectedRows, {
-            clearSelectedRows: clearSelectedRows,
-          });
-          if (!option) return null;
-
-          const {
-            disabled = false,
-            label = "",
-            icon,
-            onClick = () => {},
-            confirmation,
-            menuItemProps,
-            override,
-          } = option;
-
-          const resolvedDisabled = noSelection || disabled;
-
-          if (confirmation) {
-            return (
-              <ConfirmationDisclosureTrigger
-                key={idx}
-                w="full"
-                id={`confirmation-batch-${idx}`}
-                title={confirmation.title}
-                description={confirmation.description}
-                confirmLabel={confirmation.confirmLabel}
-                onConfirm={confirmation.onConfirm}
-                confirmButtonProps={confirmation.confirmButtonProps}
-                loading={confirmation.loading}
-                disabled={disabled}
-              >
-                <MenuItem
-                  value={label}
-                  color={"fg.error"}
-                  disabled={disabled}
-                  {...menuItemProps}
-                  justifyContent="space-between"
-                >
-                  {label}
-                  {icon && <Icon boxSize={ICON_BOX_SIZE}>{icon}</Icon>}
-                </MenuItem>
-              </ConfirmationDisclosureTrigger>
-            );
-          }
-
-          if (override) {
-            return <Fragment key={idx}>{override}</Fragment>;
-          }
-
-          return (
-            <MenuItem
-              key={idx}
-              value={label}
-              onClick={() => {
-                if (!resolvedDisabled) onClick();
-              }}
-              disabled={resolvedDisabled}
-              justifyContent="space-between"
-              {...menuItemProps}
-            >
-              {label}
-              {icon && <Icon boxSize={ICON_BOX_SIZE}>{icon}</Icon>}
-            </MenuItem>
-          );
-        })}
-      </MenuContent>
-    </MenuRoot>
-  );
-};
+import { Box, Center, HStack, Table } from "@chakra-ui/react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 export const DataTable = (props: Props__DataTable) => {
   // Props
@@ -278,7 +48,7 @@ export const DataTable = (props: Props__DataTable) => {
 
   // States
   const [tableData, setTableData] = useState(rows);
-  const [selectAllRows, setSelectAllRows] = useState<boolean>(false);
+  const [allRowsSelected, setAllRowsSelected] = useState<boolean>(false);
   const [selectedRows, setSelectedRows] = useState<any[]>([]);
   const [sortConfig, setSortConfig] = useState<{
     sortColumnIdx?: number;
@@ -354,7 +124,7 @@ export const DataTable = (props: Props__DataTable) => {
     });
   }
   function handleSelectAllRows(isChecked: boolean) {
-    setSelectAllRows(!selectAllRows);
+    setAllRowsSelected(!allRowsSelected);
     if (!isChecked) {
       const allIds = tableData.map((row) => row.id);
       setSelectedRows(allIds);
@@ -371,11 +141,11 @@ export const DataTable = (props: Props__DataTable) => {
       const isSelected = ps.includes(rowId);
 
       if (isSelected) {
-        setSelectAllRows(false);
+        setAllRowsSelected(false);
         return ps.filter((id) => id !== rowId);
       } else {
         if (tableData.length === selectedRows.length + 1) {
-          setSelectAllRows(true);
+          setAllRowsSelected(true);
         }
         return [...ps, rowId];
       }
@@ -401,7 +171,7 @@ export const DataTable = (props: Props__DataTable) => {
     <>
       <CContainer
         ref={tableContainerRef}
-        className="scrollX scrollY"
+        className="scrollX scrollYAlt"
         borderColor={"border.muted"}
         minH={props?.minH || sh < 625 ? "400px" : ""}
         flex={1}
@@ -439,7 +209,7 @@ export const DataTable = (props: Props__DataTable) => {
                       selectedRows={selectedRows}
                       clearSelectedRows={handleClearSelectedRows}
                       batchOptions={batchOptions}
-                      selectAllRows={selectAllRows}
+                      allRowsSelected={allRowsSelected}
                       handleSelectAllRows={handleSelectAllRows}
                       tableContainerRef={tableContainerRef}
                     />
@@ -487,11 +257,14 @@ export const DataTable = (props: Props__DataTable) => {
                     pr={
                       idx === headers.length - 1
                         ? 4
-                        : header?.wrapperProps?.justify === "center" ||
-                          header?.wrapperProps?.justifyContent === "center"
+                        : (header?.wrapperProps?.justify === "center" ||
+                            header?.wrapperProps?.justifyContent ===
+                              "center") &&
+                          header.sortable
                         ? 1
                         : ""
                     }
+                    justify={header.align}
                     borderBottom={"1px solid"}
                     borderColor={thBorderColor}
                     {...header?.wrapperProps}
@@ -525,7 +298,15 @@ export const DataTable = (props: Props__DataTable) => {
                     py={3}
                     borderBottom={"1px solid"}
                     borderColor={thBorderColor}
+                    pos={"relative"}
                   >
+                    <Box
+                      h={tdMinH}
+                      w={"6px"}
+                      bg={"body"}
+                      pos={"absolute"}
+                      right={"-6px"}
+                    />
                     {/* Row Actions !!! */}
                   </HStack>
                 </Table.ColumnHeader>
@@ -628,6 +409,7 @@ export const DataTable = (props: Props__DataTable) => {
                         borderColor={
                           isRowSelected ? selectedColor : tdBorderColor
                         }
+                        justify={col.align}
                         {...col?.wrapperProps}
                       >
                         {col?.td}
@@ -641,7 +423,7 @@ export const DataTable = (props: Props__DataTable) => {
                       h={tdMinH}
                       p={0}
                       position={"sticky"}
-                      right={"0px"}
+                      right={"0"}
                       bg={isRowSelected ? selectedColor : tdBg}
                       zIndex={2}
                     >
@@ -659,7 +441,16 @@ export const DataTable = (props: Props__DataTable) => {
                         onClick={(e) => {
                           e.stopPropagation();
                         }}
+                        pos={"relative"}
                       >
+                        <Box
+                          h={tdMinH}
+                          w={"6px"}
+                          bg={"body"}
+                          pos={"absolute"}
+                          right={"-6px"}
+                        />
+
                         <RowOptions
                           row={row}
                           rowOptions={rowOptions}

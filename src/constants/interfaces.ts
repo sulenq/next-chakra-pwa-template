@@ -16,6 +16,35 @@ import {
 } from "./types";
 import { ReactNode } from "react";
 
+// Auth
+export interface Interface__User extends Interface__CUD {
+  id: string;
+  photoProfile: Interface__StorageFile[];
+  name: string;
+  email: string;
+  role: Interface__Role;
+  accountStatus: string;
+  // optional
+  gender: boolean | null; // 1 male, 0 female
+  phoneNumber: string | null;
+  birthDate: string | null;
+  address: string | null;
+  // audit timestamps
+  registeredAt: string;
+  lastLogin: string | null;
+  lastChangePasswordAt: string | null;
+  deactiveAt: string | null;
+}
+export interface Interface__Role {
+  id: string;
+  name: string;
+  description: string;
+  permissions: string[];
+  createdAt: string;
+  updatedAt: string;
+  deletedAt: string | null;
+}
+
 // Navs
 export interface Interface__NavListItem {
   icon?: any;
@@ -32,11 +61,18 @@ export interface Interface__NavItem {
 }
 
 // Data Table
+export interface Interface__DataProps {
+  headers?: Interface__FormattedTableHeader[];
+  rows?: Interface__FormattedTableRow[];
+  rowOptions?: Interface__RowOptionsTableOptionGenerator[];
+  batchOptions?: Interface__BatchOptionsTableOptionGenerator[];
+}
 export interface Interface__FormattedTableHeader {
   th: string;
   sortable?: boolean;
   headerProps?: TableColumnHeaderProps;
   wrapperProps?: StackProps;
+  align?: string;
 }
 export interface Interface__FormattedTableRow<T = any> {
   id: string;
@@ -48,6 +84,7 @@ export interface Interface__FormattedTableRow<T = any> {
     dataType?: string; // "string" | "number" | "date" | "time" |
     tableCellProps?: TableCellProps;
     wrapperProps?: StackProps;
+    align?: string;
   }[];
 }
 export interface Interface__TableOption {

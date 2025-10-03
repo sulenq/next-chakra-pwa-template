@@ -62,10 +62,11 @@ export const DataGridDetailDisclosure = (props: any) => {
                     <CContainer
                       key={idx}
                       gap={2}
-                      px={4}
+                      px={3}
                       py={3}
                       borderBottom={!isLast ? "1px solid" : ""}
                       borderColor={"d1"}
+                      align={"start"}
                     >
                       <P fontWeight={"medium"} color={"fg.subtle"}>
                         {detail.label}

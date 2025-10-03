@@ -15,11 +15,13 @@ import { IconArrowUpRight } from "@tabler/icons-react";
 
 interface Props extends StackProps {
   src?: string;
+  fallbackSrc?: string;
+  disabled?: boolean;
 }
 
 export const ImgViewer = (props: Props) => {
   // Props
-  const { children, src, ...restProps } = props;
+  const { children, src, fallbackSrc, disabled = false, ...restProps } = props;
 
   // Contexts
   const { l } = useLang();
@@ -30,7 +32,12 @@ export const ImgViewer = (props: Props) => {
 
   return (
     <>
-      <CContainer w={"fit"} cursor={"pointer"} onClick={onOpen} {...restProps}>
+      <CContainer
+        w={"fit"}
+        cursor={disabled ? "" : "pointer"}
+        onClick={disabled ? () => {} : onOpen}
+        {...restProps}
+      >
         {children}
       </CContainer>
 
@@ -50,7 +57,7 @@ export const ImgViewer = (props: Props) => {
                 />
 
                 <Image
-                  src={src || `${SVGS_PATH}/no-img.svg`}
+                  src={src || fallbackSrc || `${SVGS_PATH}/no-img.svg`}
                   bg={"body"}
                   onClick={(e) => {
                     e.stopPropagation();

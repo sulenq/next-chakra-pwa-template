@@ -515,6 +515,26 @@ export const count = {
   id: "Jumlah",
   en: "Count",
 };
+export const inactive = {
+  id: "Belum aktif",
+  en: "Inactive",
+};
+export const active = {
+  id: "Aktif",
+  en: "Active",
+};
+export const deactive = {
+  id: "Dinonaktifkan",
+  en: "Deactivated",
+};
+export const activate = {
+  id: "Aktifkan",
+  en: "Activate",
+};
+export const deactivate = {
+  id: "Nonaktifkan",
+  en: "Deactivate",
+};
 
 // Message
 export const msg_location_test_helper = {

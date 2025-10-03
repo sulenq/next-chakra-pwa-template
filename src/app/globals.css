@@ -204,7 +204,8 @@ textarea::placeholder {
   overflow-x: auto;
   scrollbar-gutter: auto;
 }
-.scrollY {
+.scrollY,
+.scrollYAlt {
   overflow-y: scroll;
   scrollbar-gutter: auto;
 }
@@ -213,29 +214,35 @@ textarea::placeholder {
 .scrollX::-webkit-scrollbar {
   height: 6px;
 }
-.scrollY::-webkit-scrollbar {
+.scrollY::-webkit-scrollbar,
+.scrollYAlt::-webkit-scrollbar {
   width: 6px;
 }
 .scrollX::-webkit-scrollbar-corner,
-.scrollY::-webkit-scrollbar-corner {
+.scrollY::-webkit-scrollbar-corner,
+.scrollYAlt::-webkit-scrollbar-corner {
   background: transparent !important;
 }
 .scrollX::-webkit-scrollbar-thumb,
-.scrollY::-webkit-scrollbar-thumb {
+.scrollY::-webkit-scrollbar-thumb,
+.scrollYAlt::-webkit-scrollbar-thumb {
   background-color: transparent;
   transition: background-color 0.3s;
   border-radius: 3px;
 }
 .scrollX.scrolling::-webkit-scrollbar-thumb,
-.scrollY.scrolling::-webkit-scrollbar-thumb {
+.scrollY.scrolling::-webkit-scrollbar-thumb,
+.scrollYAlt.scrolling::-webkit-scrollbar-thumb {
   background-color: var(--d2);
 }
 .scrollX::-webkit-scrollbar-thumb:hover,
-.scrollY::-webkit-scrollbar-thumb:hover {
+.scrollY::-webkit-scrollbar-thumb:hover,
+.scrollYAlt::-webkit-scrollbar-thumb:hover {
   background-color: var(--d3);
 }
 .scrollX::-webkit-scrollbar-track,
-.scrollY::-webkit-scrollbar-track {
+.scrollY::-webkit-scrollbar-track,
+.scrollYAlt::-webkit-scrollbar-track {
   background-color: transparent;
   border-radius: 0 0 8px 8px;
 }
