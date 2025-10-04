@@ -35,11 +35,12 @@ export const FileUploadRoot = forwardRef<HTMLInputElement, FileUploadRootProps>(
 export interface FileUploadDropzoneProps
   extends ChakraFileUpload.DropzoneProps {
   icon: any;
-  label?: React.ReactNode;
-  description?: React.ReactNode;
+  label?: string;
+  description?: string;
   showIcon?: boolean;
   showLabel?: boolean;
   showDescription?: boolean;
+  imgInput?: boolean;
 }
 
 export const FileUploadDropzone = forwardRef<
@@ -54,6 +55,7 @@ export const FileUploadDropzone = forwardRef<
     showIcon = true,
     showLabel = true,
     showDescription = true,
+    imgInput,
     ...rest
   } = props;
 
@@ -62,6 +64,8 @@ export const FileUploadDropzone = forwardRef<
       ref={ref}
       cursor={"pointer"}
       bg={"body"}
+      overflow={"auto"}
+      p={imgInput ? 0 : 4}
       {...rest}
       _hover={{ bg: "gray.subtle" }}
     >
@@ -71,8 +75,10 @@ export const FileUploadDropzone = forwardRef<
         </Icon>
       )}
 
+      {children}
+
       {(showLabel || showDescription) && (
-        <ChakraFileUpload.DropzoneContent>
+        <ChakraFileUpload.DropzoneContent mb={imgInput ? "28px" : ""}>
           {showLabel && <P>{label}</P>}
 
           {showDescription && description && (
@@ -80,8 +86,6 @@ export const FileUploadDropzone = forwardRef<
           )}
         </ChakraFileUpload.DropzoneContent>
       )}
-
-      {children}
     </ChakraFileUpload.Dropzone>
   );
 });

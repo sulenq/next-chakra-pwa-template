@@ -4,12 +4,12 @@ import { FileIcon } from "@/components/ui/file-icon";
 import { P } from "@/components/ui/p";
 import { Props__FileItem } from "@/constants/props";
 import { useThemeConfig } from "@/context/useThemeConfig";
-import { HStack, Icon } from "@chakra-ui/react";
+import { Center, Circle, HStack, Icon } from "@chakra-ui/react";
 import Link from "next/link";
 
 export const FileItem = (props: Props__FileItem) => {
   // Props
-  const { fileData, actions = [], ...restProps } = props;
+  const { fileData, actions = [], idx, ...restProps } = props;
 
   // Contexts
   const { themeConfig } = useThemeConfig();
@@ -34,7 +34,24 @@ export const FileItem = (props: Props__FileItem) => {
         }}
       >
         <HStack gap={4}>
-          <FileIcon flexShrink={0} mimeType={fileData?.fileMimeType} />
+          <Center pos={"relative"}>
+            <FileIcon flexShrink={0} mimeType={fileData?.fileMimeType} />
+
+            {idx !== undefined && (
+              <Circle
+                className="ss"
+                size={"16px"}
+                bg={"body"}
+                border={"1px solid"}
+                borderColor={"d1"}
+                pos={"absolute"}
+                left={"-6px"}
+                top={"-6px"}
+              >
+                <P fontSize={"sm"}>{`${idx + 1}`}</P>
+              </Circle>
+            )}
+          </Center>
 
           <CContainer flex={1}>
             <P lineClamp={1}>{`${fileData?.fileName}`}</P>

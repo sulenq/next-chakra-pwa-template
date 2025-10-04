@@ -1,14 +1,15 @@
 import { BtnProps } from "@/components/ui/btn";
 import {
-  Interface__BatchOptionsTableOptionGenerator,
-  Interface__FormattedTableHeader,
   Interface__FormattedTableRow,
-  Interface__RowOptionsTableOptionGenerator,
+  Interface__FormattedTableHeader,
   Interface__SelectOption,
   Interface__StorageFile,
+  Interface__RowOptionsTableOptionGenerator,
+  Interface__BatchOptionsTableOptionGenerator,
 } from "@/constants/interfaces";
 import {
   ButtonProps,
+  CenterProps,
   FileUploadRootProps,
   GroupProps,
   IconProps,
@@ -100,7 +101,7 @@ export interface Props__BatchOptions extends BtnProps {
 }
 export interface Props_RowOptions extends BtnProps {
   row: Interface__FormattedTableRow;
-  rowOptions?: Interface__RowOptionsTableOptionGenerator[];
+  rowOptions?: Interface__RowOptionsTableOptionGenerator<Interface__FormattedTableRow>[];
   tableContainerRef?: RefObject<HTMLDivElement | null>;
   menuRootProps?: Omit<MenuRootProps, "children">;
 }
@@ -119,7 +120,7 @@ export interface Props_PaginationTableData {
   totalPage?: number;
 }
 
-export interface Props__Logo {
+export interface Props__Logo extends CenterProps {
   color?: string;
   size?: number;
 }
@@ -214,6 +215,7 @@ export interface Props__FileInput
   inputValue?: File[];
   onChange?: (inputValue: Props__FileInput["inputValue"]) => void;
   accept?: string;
+  acceptPlaceholder?: string;
   invalid?: boolean;
   placeholder?: string;
   label?: string;
@@ -232,9 +234,12 @@ export interface Props__FileInputInputComponent
   showDropzoneIcon?: boolean;
   showDropzoneLabel?: boolean;
   showDropzoneDescription?: boolean;
+  acceptPlaceholder?: string;
+  imgInput?: boolean;
 }
 export interface Props__FileItem extends StackProps {
   fileData: any;
+  idx?: number;
   actions?: {
     type: "remove" | "delete" | "undo_delete";
     onClick: () => void;

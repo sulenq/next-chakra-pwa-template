@@ -16,7 +16,7 @@ import {
 import useLang from "@/context/useLang";
 import { useThemeConfig } from "@/context/useThemeConfig";
 import { isEmptyArray } from "@/utils/array";
-import { formatBytes } from "@/utils/formatter";
+import { formatBytes, formatNumber } from "@/utils/formatter";
 import { Icon, useFieldContext } from "@chakra-ui/react";
 import { IconTrash, IconUpload, IconX } from "@tabler/icons-react";
 import { useEffect, useState } from "react";
@@ -29,7 +29,7 @@ import { makeFileUrl } from "@/utils/file";
 
 const FileList = (props: any) => {
   // Props
-  const { inputValue, onChange, ...restProps } = props;
+  const { inputValue, onChange, existing, ...restProps } = props;
 
   return (
     <CContainer gap={2} {...restProps}>
@@ -44,6 +44,7 @@ const FileList = (props: any) => {
         return (
           <FileItem
             key={idx}
+            idx={existing.length + idx}
             fileData={fileData}
             actions={[
               {
@@ -71,6 +72,7 @@ export const InputComponent = (props: Props__FileInputInputComponent) => {
     onChange,
     inputValue,
     accept,
+    acceptPlaceholder,
     invalid,
     placeholder,
     label,
@@ -83,6 +85,7 @@ export const InputComponent = (props: Props__FileInputInputComponent) => {
     showDropzoneIcon = true,
     showDropzoneLabel = true,
     showDropzoneDescription = true,
+    imgInput,
     // removed,
     ...restProps
   } = props;
@@ -112,9 +115,9 @@ export const InputComponent = (props: Props__FileInputInputComponent) => {
   const resolvedDescription = singleFileInputted
     ? formatBytes(singleFile?.size)
     : description ||
-      `up to ${maxFileSize} mB, max ${maxFiles - existingCount || 1} file${
+      `up to ${maxFileSize} mB, max ${maxFiles || 1} file${
         maxFiles! > 1 ? "s" : ""
-      } ${accept ? `(${accept})` : ""}`;
+      } ${acceptPlaceholder ? `(${acceptPlaceholder})` : ""}`;
 
   // disable if disabled prop true or already have maxFiles existing
   const resolvedDisabled = fc.disabled || disabled || existingCount >= maxFiles;
@@ -183,7 +186,7 @@ export const InputComponent = (props: Props__FileInputInputComponent) => {
         {...restProps}
       >
         <>
-          {dropzone && singleFileInputted && (
+          {dropzone && singleFileInputted && !imgInput && (
             <Tooltip content={"Reset"}>
               <CloseButton
                 pos={"absolute"}
@@ -214,6 +217,7 @@ export const InputComponent = (props: Props__FileInputInputComponent) => {
               showIcon={showDropzoneIcon}
               showLabel={showDropzoneLabel}
               showDescription={showDropzoneDescription}
+              imgInput={imgInput}
             >
               {children}
             </FileUploadDropzone>
@@ -233,12 +237,19 @@ export const InputComponent = (props: Props__FileInputInputComponent) => {
             </FileUploadTrigger>
           )}
 
-          {!singleFileInputted && inputValue && (
-            <FileList
-              inputValue={inputValue}
-              onChange={onChange}
-              setKey={setKey}
-            />
+          {(!singleFileInputted || imgInput) && inputValue && (
+            <CContainer gap={2}>
+              <P fontSize={"sm"} color={"fg.subtle"}>{`Total : ${formatNumber(
+                inputValue.length + existing.length
+              )}`}</P>
+
+              <FileList
+                inputValue={inputValue}
+                onChange={onChange}
+                setKey={setKey}
+                existing={existing}
+              />
+            </CContainer>
           )}
         </>
       </FileUploadRoot>
@@ -285,6 +296,7 @@ export const FileInput = (props: Props__FileInput) => {
               return (
                 <FileItem
                   key={idx}
+                  idx={idx}
                   fileData={fileData}
                   actions={[
                     {

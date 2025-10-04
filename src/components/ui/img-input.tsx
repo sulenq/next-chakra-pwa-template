@@ -1,22 +1,31 @@
 "use client";
 
-// TODO hiatus
 import { CContainer } from "@/components/ui/c-container";
 import { InputComponent } from "@/components/ui/file-input";
+import { Img } from "@/components/ui/img";
 import { P } from "@/components/ui/p";
 import { FileItem } from "@/components/widget/FIleItem";
+import HScroll from "@/components/widget/HScroll";
+import { ImgViewer } from "@/components/widget/ImgViewer";
 import { Interface__StorageFile } from "@/constants/interfaces";
 import { Props__FileInput } from "@/constants/props";
 import useLang from "@/context/useLang";
 import { useThemeConfig } from "@/context/useThemeConfig";
 import { isEmptyArray } from "@/utils/array";
-import { useFieldContext } from "@chakra-ui/react";
+import { imgUrl } from "@/utils/url";
+import { Center, Circle, HStack, useFieldContext } from "@chakra-ui/react";
 import { IconTrash } from "@tabler/icons-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export const ImgInput = (props: Props__FileInput) => {
   // Props
-  const { existingFiles, onDeleteFile, onUndoDeleteFile, ...restProps } = props;
+  const {
+    existingFiles,
+    onDeleteFile,
+    onUndoDeleteFile,
+    inputValue,
+    ...restProps
+  } = props;
 
   // Contexts
   const { l } = useLang();
@@ -24,11 +33,25 @@ export const ImgInput = (props: Props__FileInput) => {
   const fc = useFieldContext();
 
   // States
+  const [previewUrls, setPreviewUrls] = useState<string[]>([]);
   const resolvedDisabled = fc.disabled;
   const [existing, setExisting] = useState<Interface__StorageFile[]>(
     existingFiles || []
   );
   const [deleted, setDeleted] = useState<Interface__StorageFile[]>([]);
+  const shouldRenderPreview = !isEmptyArray(previewUrls);
+
+  useEffect(() => {
+    let inputValueUrls: string[] = [];
+    if (inputValue) {
+      inputValueUrls = inputValue.map((f: any) => URL.createObjectURL(f));
+    }
+    const exsistingUrls = existing.map((f: Interface__StorageFile) =>
+      imgUrl(f.filePath)
+    ) as string[];
+
+    setPreviewUrls([...exsistingUrls, ...inputValueUrls]);
+  }, [existing, inputValue]);
 
   return (
     <CContainer gap={3}>
@@ -53,6 +76,7 @@ export const ImgInput = (props: Props__FileInput) => {
               return (
                 <FileItem
                   key={idx}
+                  idx={idx}
                   fileData={fileData}
                   actions={[
                     {
@@ -117,13 +141,61 @@ export const ImgInput = (props: Props__FileInput) => {
       )}
 
       <InputComponent
+        imgInput
         dropzone
         existing={existing}
-        showDropzoneIcon={false}
-        showDropzoneLabel={false}
-        showDropzoneDescription={false}
+        showDropzoneIcon={shouldRenderPreview ? false : true}
+        inputValue={inputValue}
         {...restProps}
-      ></InputComponent>
+      >
+        {shouldRenderPreview && (
+          <>
+            {/* <P
+              fontWeight={"medium"}
+              mt={3}
+              mb={-8}
+              ml={4}
+              mr={"auto"}
+              color={"fg.subtle"}
+            >
+              Preview
+            </P> */}
+
+            <HScroll
+              className="scrollX"
+              maxW={restProps?.maxW || "352px"}
+              gap={2}
+              mt={1}
+            >
+              <HStack justify={"center"} h={"224px"} px={4}>
+                {previewUrls.map((url: string, idx: number) => {
+                  return (
+                    <ImgViewer key={url} src={url} flex={"1 1 0"}>
+                      <Center w={"fit"} mx={"auto"} pos={"relative"}>
+                        <Circle
+                          className="ss"
+                          bg={"body"}
+                          size={"20px"}
+                          border={"1px solid"}
+                          borderColor={"d1"}
+                          pos={"absolute"}
+                          top={"6px"}
+                          left={"6px"}
+                          zIndex={2}
+                        >
+                          <P fontWeight={"medium"}>{`${idx + 1}`}</P>
+                        </Circle>
+
+                        <Img key={idx} src={url} fluid h={"200px"} />
+                      </Center>
+                    </ImgViewer>
+                  );
+                })}
+              </HStack>
+            </HScroll>
+          </>
+        )}
+      </InputComponent>
     </CContainer>
   );
 };
