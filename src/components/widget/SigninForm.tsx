@@ -269,12 +269,14 @@ const SigninForm = (props: Props) => {
         <Signedin indexRoute={indexRoute} />
       ) : (
         <>
-          <CContainer gap={1}>
-            <H1 fontSize={"3xl"} fontWeight={"bold"}>
+          <CContainer gap={2} mb={2}>
+            <H1 fontSize={"3xl"} fontWeight={"bold"} textAlign={"center"}>
               {APP.name}
             </H1>
 
-            <P textAlign={"center"}>{l.msg_signin}</P>
+            <P textAlign={"center"} color={"fg.subtle"}>
+              {l.msg_signin}
+            </P>
           </CContainer>
 
           <BasicAuthForm signinAPI={signinAPI} indexRoute={indexRoute} />
