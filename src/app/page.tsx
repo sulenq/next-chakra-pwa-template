@@ -1,116 +1,84 @@
 "use client";
 
-import { Avatar } from "@/components/ui/avatar";
-import { Btn } from "@/components/ui/btn";
 import { CContainer } from "@/components/ui/c-container";
 import { ColorModeButton } from "@/components/ui/color-mode";
 import { LangMenu } from "@/components/ui/lang-menu";
-import { NavLink } from "@/components/ui/nav-link";
-import { P } from "@/components/ui/p";
 import BrandWatermark from "@/components/widget/BrandWatermark";
 import Logo from "@/components/widget/Logo";
 import SigninForm from "@/components/widget/SigninForm";
-import useAuthMiddleware from "@/context/useAuthMiddleware";
-import useLang from "@/context/useLang";
 import { useThemeConfig } from "@/context/useThemeConfig";
-import useRequest from "@/hooks/useRequest";
-import { removeStorage } from "@/utils/client";
-import { HStack, SimpleGrid, VStack } from "@chakra-ui/react";
+import { Box, HStack, SimpleGrid } from "@chakra-ui/react";
 
-const Signedin = () => {
-  // Contexts
-  const { l } = useLang();
-  const { themeConfig } = useThemeConfig();
-  const removeAuth = useAuthMiddleware((s) => s.removeAuth);
-
-  // Hooks
-  const { req, loading } = useRequest({
-    id: "logout",
-    loadingMessage: l.loading_signout,
-    successMessage: l.success_signout,
-  });
-
-  // Utils
-  function onSignout() {
-    const url = `/api/signout`;
-
-    const config = {
-      url,
-      method: "GET",
-    };
-
-    req({
-      config,
-      onResolve: {
-        onSuccess: () => {
-          removeStorage("__auth_token");
-          removeStorage("__user_data");
-          removeAuth();
-        },
-      },
-    });
-  }
-
-  return (
-    <VStack gap={4} m={"auto"}>
-      <Avatar size={"2xl"} />
-
-      <VStack gap={0}>
-        <P fontWeight={"semibold"}>Admin</P>
-        <P>admin@gmail.com</P>
-      </VStack>
-
-      <VStack>
-        <NavLink to="/demo">
-          <Btn w={"140px"} colorPalette={themeConfig.colorPalette}>
-            {l.access} App
-          </Btn>
-        </NavLink>
-
-        <Btn
-          w={"140px"}
-          variant={"ghost"}
-          onClick={onSignout}
-          loading={loading}
-        >
-          Signin
-        </Btn>
-      </VStack>
-    </VStack>
-  );
-};
-
-const IndexRoute = () => {
+export default function IndexRoute() {
   // Contexts
   const { themeConfig } = useThemeConfig();
-  const authToken = useAuthMiddleware((s) => s.authToken);
 
   return (
-    <CContainer minH={"100dvh"}>
-      <SimpleGrid columns={[1, null, 2]} flex={1}>
+    <CContainer
+      h={"100dvh"}
+      align={"start"}
+      bg={themeConfig.primaryColor}
+      overflowY={"auto"}
+    >
+      <CContainer pos={"relative"} overflow={"clip"}>
+        <Box
+          w={"50%"}
+          aspectRatio={1.2}
+          rounded={"40%"}
+          bg={`${themeConfig.colorPalette}.300`}
+          animation={"rotate360 5s linear infinite"}
+        />
+        <Box
+          w={"50%"}
+          aspectRatio={1.2}
+          rounded={"40%"}
+          bg={`${themeConfig.colorPalette}.600`}
+          animation={"rotate360 5s linear infinite"}
+        />
+      </CContainer>
+
+      <SimpleGrid
+        p={[2, null, 4]}
+        columns={[1, null, 2]}
+        flex={1}
+        w={"full"}
+        h={"full"}
+        overflowY={"auto"}
+        pos={"absolute"}
+        zIndex={10}
+        bg={"blackAlpha.300"}
+        backdropFilter={"blur(70px)"}
+        gap={4}
+      >
         <CContainer
-          display={["none", null, "flex"]}
-          bg={themeConfig.primaryColor}
+          bgPos={"center"}
+          bgSize={"cover"}
+          pos={"relative"}
+          overflow={"clip"}
+          rounded={themeConfig.radii.container}
+          maxH={"calc(100dvh - 16px)"}
         >
-          <Logo color="#fff" />
+          <Logo color={"white"} />
         </CContainer>
 
-        <CContainer h={"full"} p={4}>
+        <CContainer
+          p={8}
+          gap={16}
+          overflowY={"auto"}
+          bg={"body"}
+          rounded={themeConfig.radii.container}
+        >
           <HStack justify={"center"}>
             <ColorModeButton />
 
             <LangMenu />
           </HStack>
 
-          {authToken && <Signedin />}
+          <SigninForm />
 
-          {!authToken && <SigninForm />}
-
-          <BrandWatermark />
+          <BrandWatermark textAlign={"center"} />
         </CContainer>
       </SimpleGrid>
     </CContainer>
   );
-};
-
-export default IndexRoute;
+}

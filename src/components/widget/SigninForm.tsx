@@ -1,30 +1,100 @@
 "use client";
 
+import { Avatar } from "@/components/ui/avatar";
 import { Field } from "@/components/ui/field";
+import { H1 } from "@/components/ui/heading";
+import { NavLink } from "@/components/ui/nav-link";
+import { APP } from "@/constants/_meta";
+import useAuthMiddleware from "@/context/useAuthMiddleware";
 import useLang from "@/context/useLang";
 import { useThemeConfig } from "@/context/useThemeConfig";
 import useRequest from "@/hooks/useRequest";
-import { setStorage } from "@/utils/client";
-import { HStack, Icon, InputGroup, StackProps } from "@chakra-ui/react";
+import { getUserData } from "@/utils/auth";
+import { removeStorage, setStorage } from "@/utils/client";
+import { HStack, Icon, InputGroup, StackProps, VStack } from "@chakra-ui/react";
 import { IconLock, IconUser } from "@tabler/icons-react";
 import { useFormik } from "formik";
+import { useRouter } from "next/navigation";
 import * as yup from "yup";
 import { Btn } from "../ui/btn";
 import { CContainer } from "../ui/c-container";
+import { Divider } from "../ui/divider";
 import { P } from "../ui/p";
 import { PasswordInput } from "../ui/password-input";
 import { StringInput } from "../ui/string-input";
-import { Divider } from "../ui/divider";
 import ResetPasswordDisclosure from "./ResetPasswordDisclosure";
-import useAuthMiddleware from "@/context/useAuthMiddleware";
-import { useRouter } from "next/navigation";
-import { APP } from "@/constants/_meta";
 
 interface Props extends StackProps {}
 
-const SigninForm = (props: Props) => {
+const Signedin = (props: any) => {
   // Props
-  const { ...restProps } = props;
+  const { indexRoute, ...restProps } = props;
+
+  // Contexts
+  const { l } = useLang();
+  const { themeConfig } = useThemeConfig();
+  const removeAuth = useAuthMiddleware((s) => s.removeAuth);
+  const user = getUserData();
+
+  // Hooks
+  const { req, loading } = useRequest({
+    id: "logout",
+    loadingMessage: l.loading_signout,
+    successMessage: l.success_signout,
+  });
+
+  // Utils
+  function onSignout() {
+    const url = `/api/signout`;
+
+    const config = {
+      url,
+      method: "GET",
+    };
+
+    req({
+      config,
+      onResolve: {
+        onSuccess: () => {
+          removeStorage("__auth_token");
+          removeStorage("__user_data");
+          removeAuth();
+        },
+      },
+    });
+  }
+
+  return (
+    <VStack gap={4} m={"auto"} {...restProps}>
+      <Avatar size={"2xl"} src={user?.photoProfile?.[0]?.fileUrl} />
+
+      <VStack gap={0}>
+        <P fontWeight={"semibold"}>Admin</P>
+        <P>admin@gmail.com</P>
+      </VStack>
+
+      <VStack>
+        <NavLink to={indexRoute}>
+          <Btn w={"140px"} colorPalette={themeConfig.colorPalette}>
+            {l.access} App
+          </Btn>
+        </NavLink>
+
+        <Btn
+          w={"140px"}
+          variant={"ghost"}
+          onClick={onSignout}
+          loading={loading}
+        >
+          Signin
+        </Btn>
+      </VStack>
+    </VStack>
+  );
+};
+const BasicAuthForm = (props: any) => {
+  // Props
+  const { indexRoute, signinAPI, ...restProps } = props;
 
   // Contexts
   const { l } = useLang();
@@ -40,7 +110,15 @@ const SigninForm = (props: Props) => {
     successMessage: l.success_signin,
     errorMessage: {
       400: {
+        VALIDATION_FAILED: {
+          ...l.error_signin_wrong_credentials,
+        },
         INVALID_CREDENTIALS: {
+          ...l.error_signin_wrong_credentials,
+        },
+      },
+      403: {
+        FORBIDDEN_ROLE: {
           ...l.error_signin_wrong_credentials,
         },
       },
@@ -65,7 +143,7 @@ const SigninForm = (props: Props) => {
       };
       const config = {
         method: "post",
-        url: "/api/signin",
+        url: signinAPI,
         data: payload,
       };
 
@@ -77,7 +155,7 @@ const SigninForm = (props: Props) => {
             setStorage("__user_data", JSON.stringify(r.data.data?.user));
             setAuthToken(r.data.data?.token);
             setPermissions(r.data.data?.permissions);
-            router.push("/demo");
+            router.push(indexRoute);
           },
         },
       });
@@ -85,23 +163,7 @@ const SigninForm = (props: Props) => {
   });
 
   return (
-    <CContainer
-      m={"auto"}
-      w={"full"}
-      maxW={"380px"}
-      p={6}
-      gap={4}
-      rounded={themeConfig.radii.container}
-      {...restProps}
-    >
-      <CContainer gap={1}>
-        <P textAlign={"center"} fontWeight={"bold"} fontSize={"lg"}>
-          {APP.name}
-        </P>
-
-        <P textAlign={"center"}>{l.msg_signin}</P>
-      </CContainer>
-
+    <CContainer {...restProps}>
       <form id="signin_form" onSubmit={formik.handleSubmit}>
         <Field
           invalid={!!formik.errors.identifier}
@@ -122,7 +184,7 @@ const SigninForm = (props: Props) => {
                 formik.setFieldValue("identifier", input);
               }}
               inputValue={formik.values.identifier}
-              placeholder="Email/Username"
+              placeholder="Email"
               pl={"40px !important"}
             />
           </InputGroup>
@@ -161,7 +223,7 @@ const SigninForm = (props: Props) => {
           loading={loading}
           colorPalette={themeConfig.colorPalette}
         >
-          Login
+          Sign in
         </Btn>
 
         <HStack mt={4}>
@@ -176,6 +238,48 @@ const SigninForm = (props: Props) => {
           <Divider h={"1px"} w={"full"} />
         </HStack>
       </form>
+    </CContainer>
+  );
+};
+
+const SigninForm = (props: Props) => {
+  // Props
+  const { ...restProps } = props;
+
+  // Contexts
+  const { l } = useLang();
+  const { themeConfig } = useThemeConfig();
+  const authToken = useAuthMiddleware((s) => s.authToken);
+
+  // States
+  const signinAPI = "/api/signin";
+  const indexRoute = "/demo";
+
+  return (
+    <CContainer
+      m={"auto"}
+      w={"full"}
+      maxW={"380px"}
+      p={6}
+      gap={4}
+      rounded={themeConfig.radii.container}
+      {...restProps}
+    >
+      {authToken ? (
+        <Signedin indexRoute={indexRoute} />
+      ) : (
+        <>
+          <CContainer gap={1}>
+            <H1 fontSize={"3xl"} fontWeight={"bold"}>
+              {APP.name}
+            </H1>
+
+            <P textAlign={"center"}>{l.msg_signin}</P>
+          </CContainer>
+
+          <BasicAuthForm signinAPI={signinAPI} indexRoute={indexRoute} />
+        </>
+      )}
     </CContainer>
   );
 };

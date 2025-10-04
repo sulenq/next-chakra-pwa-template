@@ -21,7 +21,7 @@ const Logo = (props: Props__Logo) => {
     : themeConfig?.primaryColorHex;
 
   return (
-    <Center flexShrink={0} w={size} h={size}>
+    <Center flexShrink={0} w={`${size + 8}px`} h={`${size + 8}px`}>
       <svg
         width={size}
         height={size}

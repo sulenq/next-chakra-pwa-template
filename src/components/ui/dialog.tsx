@@ -13,11 +13,9 @@ interface DialogContentProps extends ChakraDialog.ContentProps {
   backdrop?: boolean;
 }
 
-export const DialogRoot = forwardRef<HTMLDivElement, ChakraDialog.RootProps>(
-  function DialogRoot(props) {
-    return <ChakraDialog.Root onEscapeKeyDown={back} {...props} />;
-  }
-);
+export const DialogRoot = (props: ChakraDialog.RootProps) => {
+  return <ChakraDialog.Root onEscapeKeyDown={back} {...props} />;
+};
 
 export const DialogContent = forwardRef<HTMLDivElement, DialogContentProps>(
   function DialogContent(props, ref) {

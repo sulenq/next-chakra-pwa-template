@@ -13,11 +13,9 @@ interface DrawerContentProps extends ChakraDrawer.ContentProps {
   backdrop?: boolean;
 }
 
-export const DrawerRoot = forwardRef<HTMLDivElement, ChakraDrawer.RootProps>(
-  function DialogRoot(props) {
-    return <ChakraDrawer.Root onEscapeKeyDown={back} {...props} />;
-  }
-);
+export const DrawerRoot = (props: ChakraDrawer.RootProps) => {
+  return <ChakraDrawer.Root onEscapeKeyDown={back} {...props} />;
+};
 
 export const DrawerContent = forwardRef<HTMLDivElement, DrawerContentProps>(
   function DrawerContent(props, ref) {
