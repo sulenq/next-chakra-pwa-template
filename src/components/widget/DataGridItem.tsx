@@ -4,7 +4,7 @@ import { Btn } from "@/components/ui/btn";
 import { CContainer } from "@/components/ui/c-container";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Img } from "@/components/ui/img";
-import { P } from "@/components/ui/p";
+import { ClampText } from "@/components/widget/ClampText";
 import { DataGridDetailDisclosureTrigger } from "@/components/widget/DataGridDetailDisclosure";
 import { ImgViewer } from "@/components/widget/ImgViewer";
 import { RowOptions } from "@/components/widget/RowOptions";
@@ -109,18 +109,16 @@ export const DataGridItem = (props: Props) => {
       >
         <HStack maxW={"calc(100% - 32px)"}>
           {typeof item.title === "string" ? (
-            <P fontWeight={"semibold"} lineClamp={1}>
-              {item.title}
-            </P>
+            <ClampText fontWeight={"semibold"}>{item.title}</ClampText>
           ) : (
             item.title
           )}
         </HStack>
 
         {typeof item.description === "string" ? (
-          <P color={"fg.subtle"} lineClamp={1}>
+          <ClampText color={"fg.subtle"} lineClamp={1}>
             {item.description}
-          </P>
+          </ClampText>
         ) : (
           item.description
         )}
