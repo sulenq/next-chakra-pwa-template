@@ -239,9 +239,11 @@ export const InputComponent = (props: Props__FileInputInputComponent) => {
 
           {(!singleFileInputted || imgInput) && inputValue && (
             <CContainer gap={2}>
-              <P fontSize={"sm"} color={"fg.subtle"}>{`Total : ${formatNumber(
-                inputValue.length + existing.length
-              )}`}</P>
+              {(!isEmptyArray(existing) || !isEmptyArray(inputValue)) && (
+                <P fontSize={"sm"} color={"fg.subtle"}>{`Total : ${formatNumber(
+                  inputValue.length + existing.length
+                )}`}</P>
+              )}
 
               <FileList
                 inputValue={inputValue}

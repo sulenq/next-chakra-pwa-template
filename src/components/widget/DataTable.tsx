@@ -160,7 +160,10 @@ export const DataTable = (props: Props__DataTable) => {
   const thBorderColor = "border.muted";
   const tdBg = "body";
   const tdMinH = "52px";
-  const selectedColor = hexWithOpacity(themeConfig.primaryColorHex, 0.05);
+  const selectedColor =
+    themeConfig.colorPalette === "gray"
+      ? "d1"
+      : hexWithOpacity(themeConfig.primaryColorHex, 0.05);
   const tdBorderColor = "d1";
 
   // set initial source of truth table data
