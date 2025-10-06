@@ -10,7 +10,7 @@ export const ClampText = (props: TextProps) => {
 
   return (
     <SimplePopover content={<P>{children}</P>}>
-      <P lineClamp={1} maxW={"300px"} {...restProps}>
+      <P lineClamp={1} w={"200px"} {...restProps}>
         {children}
       </P>
     </SimplePopover>
