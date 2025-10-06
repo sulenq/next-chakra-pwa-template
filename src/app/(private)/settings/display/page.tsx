@@ -180,6 +180,124 @@ const DarkMode = () => {
     </ItemContainer>
   );
 };
+const Theme = () => {
+  // Contexts
+  const { l } = useLang();
+  const { themeConfig, setThemeConfig } = useThemeConfig();
+  const settingsContainerDimensions = useSettingsRouteContainer(
+    (s) => s.containerDimension
+  );
+
+  // States
+  const colorPalettes = [
+    { palette: "p", primaryHex: "#4f8250" },
+
+    // Neutral & Dark Shades
+    { palette: "gray", primaryHex: "#1B1B1B" },
+    { palette: "brown", primaryHex: "#795548" },
+    { palette: "mocha", primaryHex: "#9F5D39" },
+    { palette: "caramel", primaryHex: "#C47B27" },
+    { palette: "cream", primaryHex: "#D7BF8C" },
+
+    // Reds & Pinks
+    { palette: "maroon", primaryHex: "#800000" },
+    { palette: "red", primaryHex: "#FF0000" },
+    { palette: "salmon", primaryHex: "#FF6242" },
+    { palette: "flamingoPink", primaryHex: "#FF478B" },
+    { palette: "bubblegumPink", primaryHex: "#FF4ABB" },
+
+    // Oranges & Yellows
+    { palette: "orange", primaryHex: "#FF8E62" },
+    { palette: "pastelSalmon", primaryHex: "#FF8E62" },
+    { palette: "yellow", primaryHex: "#f6e05e" },
+
+    // Greens
+    { palette: "lime", primaryHex: "#CDDC39" },
+    { palette: "olive", primaryHex: "#879F30" },
+    { palette: "green", primaryHex: "#4CAF50" },
+    { palette: "jade", primaryHex: "#00A86B" },
+    { palette: "teal", primaryHex: "#009688" },
+
+    // Cyans & Blues
+    { palette: "kemenkes", primaryHex: "#16B3AC" },
+    { palette: "cyan", primaryHex: "#00BCD4" },
+    { palette: "powderBlue", primaryHex: "#769cc2" },
+    { palette: "sky", primaryHex: "#0EA5E9" },
+    { palette: "blue", primaryHex: "#3a72ed" },
+    { palette: "sapphire", primaryHex: "#1939B7" },
+    { palette: "discord", primaryHex: "#5865F2" },
+    { palette: "indigo", primaryHex: "#3F51B5" },
+
+    // Purples & Lavenders
+    { palette: "lavender", primaryHex: "#7A42FF" },
+    { palette: "powderLavender", primaryHex: "#8E8CD8" },
+    { palette: "purple", primaryHex: "#9C27B0" },
+  ];
+  const gridColumns: Record<number, number> = {
+    320: 3,
+    720: 5,
+    960: 10,
+  };
+  const cols = getGridColumns(settingsContainerDimensions.width, gridColumns);
+
+  return (
+    <ItemContainer>
+      <ItemHeaderContainer>
+        <HStack>
+          <Icon boxSize={5}>
+            <IconPalette stroke={1.5} />
+          </Icon>
+          <ItemHeaderTitle>{l.theme}</ItemHeaderTitle>
+        </HStack>
+      </ItemHeaderContainer>
+
+      <CContainer gap={4} p={4}>
+        <SimpleGrid columns={cols} gap={2}>
+          {colorPalettes.map((color, idx) => {
+            const isActive = color.palette === themeConfig.colorPalette;
+
+            return (
+              <Center
+                key={idx}
+                w={"full"}
+                aspectRatio={1}
+                bg={`${color.palette}.500`}
+                rounded={themeConfig.radii.component}
+                cursor={"pointer"}
+                overflow={"clip"}
+                onClick={() => {
+                  setThemeConfig({
+                    colorPalette: color.palette,
+                    primaryColor: `${color.palette}.500`,
+                    primaryColorHex: color.primaryHex,
+                  });
+                }}
+                pos={"relative"}
+              >
+                {/* <P
+                  fontSize={"sm"}
+                  color={`${color.palette}.contrast`}
+                  textAlign={"center"}
+                >
+                  {color.palette}
+                </P> */}
+
+                {isActive && (
+                  <DotIndicator
+                    pos={"absolute"}
+                    color={"light"}
+                    top={2}
+                    right={2}
+                  />
+                )}
+              </Center>
+            );
+          })}
+        </SimpleGrid>
+      </CContainer>
+    </ItemContainer>
+  );
+};
 const Rounded = () => {
   // Contexts
   const { l } = useLang();
@@ -337,124 +455,6 @@ const Rounded = () => {
     </ItemContainer>
   );
 };
-const Theme = () => {
-  // Contexts
-  const { l } = useLang();
-  const { themeConfig, setThemeConfig } = useThemeConfig();
-  const settingsContainerDimensions = useSettingsRouteContainer(
-    (s) => s.containerDimension
-  );
-
-  // States
-  const colorPalettes = [
-    { palette: "p", primaryHex: "#4f8250" },
-
-    // Neutral & Dark Shades
-    { palette: "gray", primaryHex: "#1B1B1B" },
-    { palette: "brown", primaryHex: "#795548" },
-    { palette: "mocha", primaryHex: "#9F5D39" },
-    { palette: "caramel", primaryHex: "#C47B27" },
-    { palette: "cream", primaryHex: "#D7BF8C" },
-
-    // Reds & Pinks
-    { palette: "maroon", primaryHex: "#800000" },
-    { palette: "red", primaryHex: "#FF0000" },
-    { palette: "salmon", primaryHex: "#FF6242" },
-    { palette: "flamingoPink", primaryHex: "#FF478B" },
-    { palette: "bubblegumPink", primaryHex: "#FF4ABB" },
-
-    // Oranges & Yellows
-    { palette: "orange", primaryHex: "#FF8E62" },
-    { palette: "pastelSalmon", primaryHex: "#FF8E62" },
-    { palette: "yellow", primaryHex: "#f6e05e" },
-
-    // Greens
-    { palette: "lime", primaryHex: "#CDDC39" },
-    { palette: "olive", primaryHex: "#879F30" },
-    { palette: "green", primaryHex: "#4CAF50" },
-    { palette: "jade", primaryHex: "#00A86B" },
-    { palette: "teal", primaryHex: "#009688" },
-
-    // Cyans & Blues
-    { palette: "kemenkes", primaryHex: "#16B3AC" },
-    { palette: "cyan", primaryHex: "#00BCD4" },
-    { palette: "powderBlue", primaryHex: "#769cc2" },
-    { palette: "sky", primaryHex: "#0EA5E9" },
-    { palette: "blue", primaryHex: "#3a72ed" },
-    { palette: "sapphire", primaryHex: "#1939B7" },
-    { palette: "discord", primaryHex: "#5865F2" },
-    { palette: "indigo", primaryHex: "#3F51B5" },
-
-    // Purples & Lavenders
-    { palette: "lavender", primaryHex: "#7A42FF" },
-    { palette: "powderLavender", primaryHex: "#8E8CD8" },
-    { palette: "purple", primaryHex: "#9C27B0" },
-  ];
-  const gridColumns: Record<number, number> = {
-    320: 3,
-    720: 5,
-    960: 10,
-  };
-  const cols = getGridColumns(settingsContainerDimensions.width, gridColumns);
-
-  return (
-    <ItemContainer>
-      <ItemHeaderContainer>
-        <HStack>
-          <Icon boxSize={5}>
-            <IconPalette stroke={1.5} />
-          </Icon>
-          <ItemHeaderTitle>{l.theme}</ItemHeaderTitle>
-        </HStack>
-      </ItemHeaderContainer>
-
-      <CContainer gap={4} p={4}>
-        <SimpleGrid columns={cols} gap={2}>
-          {colorPalettes.map((color, idx) => {
-            const isActive = color.palette === themeConfig.colorPalette;
-
-            return (
-              <Center
-                key={idx}
-                w={"full"}
-                aspectRatio={1}
-                bg={`${color.palette}.500`}
-                rounded={themeConfig.radii.component}
-                cursor={"pointer"}
-                overflow={"clip"}
-                onClick={() => {
-                  setThemeConfig({
-                    colorPalette: color.palette,
-                    primaryColor: `${color.palette}.500`,
-                    primaryColorHex: color.primaryHex,
-                  });
-                }}
-                pos={"relative"}
-              >
-                {/* <P
-                  fontSize={"sm"}
-                  color={`${color.palette}.contrast`}
-                  textAlign={"center"}
-                >
-                  {color.palette}
-                </P> */}
-
-                {isActive && (
-                  <DotIndicator
-                    pos={"absolute"}
-                    color={"light"}
-                    top={2}
-                    right={2}
-                  />
-                )}
-              </Center>
-            );
-          })}
-        </SimpleGrid>
-      </CContainer>
-    </ItemContainer>
-  );
-};
 
 const ExampleUI = () => {
   // Contexts
@@ -537,9 +537,9 @@ const SettingsDisplayRoute = () => {
       <CContainer gap={4}>
         <DarkMode />
 
-        <Rounded />
-
         <Theme />
+
+        <Rounded />
 
         <ExampleUI />
       </CContainer>
