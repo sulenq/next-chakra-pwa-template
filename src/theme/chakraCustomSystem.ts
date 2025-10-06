@@ -9,6 +9,9 @@ const customConfig = defineConfig({
     "html, body": {
       bg: "body",
     },
+    "div, span, section, article, li, ul, ol, a, label, strong, em": {
+      fontSize: "md",
+    },
   },
   theme: {
     breakpoints: {
@@ -319,10 +322,10 @@ const customConfig = defineConfig({
         },
       },
       fontSizes: {
-        xs: { value: "0.625rem" },
-        sm: { value: "0.75rem" },
-        md: { value: "0.875rem" },
-        lg: { value: "1rem" },
+        xs: { value: "0.625rem" }, // 10px
+        sm: { value: "0.75rem" }, // 12px
+        md: { value: "0.875rem" }, // 14px
+        lg: { value: "1rem" }, // 16px
       },
     },
     semanticTokens: {

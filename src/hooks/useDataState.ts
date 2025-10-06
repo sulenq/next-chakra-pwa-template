@@ -5,6 +5,7 @@ import { useLoadingBar } from "@/context/useLoadingBar";
 
 interface Props<T> {
   initialData?: T;
+  dummyData?: T;
   url?: string;
   method?: string;
   payload?: any;
@@ -24,6 +25,7 @@ const useDataState = <T = any>(props: Props<T>) => {
   // Props
   const {
     initialData,
+    dummyData,
     payload,
     params,
     url,
@@ -41,7 +43,7 @@ const useDataState = <T = any>(props: Props<T>) => {
   const setLoadingBar = useLoadingBar((s) => s.setLoadingBar);
 
   // States
-  const [data, setData] = useState<T | undefined>(initialData);
+  const [data, setData] = useState<T | undefined>(dummyData || initialData);
   const [initialLoading, setInitialLoading] = useState<boolean>(true);
   const [loadingLoadMore, setLoadingLoadMore] = useState<boolean>(false);
   const [page, setPage] = useState(initialPage);
@@ -101,15 +103,19 @@ const useDataState = <T = any>(props: Props<T>) => {
         config,
         onResolve: {
           onSuccess: (r) => {
-            setData(
-              dataResource
-                ? Array.isArray(r?.data?.data)
-                  ? r?.data?.data
-                  : r?.data?.data?.data
-                : r?.data?.data
-            );
             setPagination(r?.data?.data?.pagination);
             setInitialLoading(false);
+            if (dummyData) {
+              setData(dummyData);
+            } else {
+              setData(
+                dataResource
+                  ? Array.isArray(r?.data?.data)
+                    ? r?.data?.data
+                    : r?.data?.data?.data
+                  : r?.data?.data
+              );
+            }
           },
           onError: () => {
             setInitialLoading(false);
