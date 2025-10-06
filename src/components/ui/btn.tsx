@@ -61,6 +61,7 @@ export const Btn = forwardRef<HTMLButtonElement, BtnProps>((props, ref) => {
       className={resolvedClassName}
       size={size || (MAIN_BUTTON_SIZE as any)}
       rounded={themeConfig.radii.component}
+      _hover={{ bg: activeBg }}
       _active={{ bg: activeBg }}
       {...restProps}
     >
@@ -74,6 +75,7 @@ export const Btn = forwardRef<HTMLButtonElement, BtnProps>((props, ref) => {
       fontWeight="medium"
       size={size || (MAIN_BUTTON_SIZE as any)}
       rounded={themeConfig.radii.component}
+      _hover={{ bg: activeBg }}
       _active={{ bg: activeBg }}
       {...restProps}
     >
