@@ -181,7 +181,11 @@ export const DataGrid = (props: Props) => {
                       return {
                         label,
                         render: (
-                          <ImgViewer src={col.value} w={"full"}>
+                          <ImgViewer
+                            id={`img-${rowIdx}-${item?.id}`}
+                            src={col.value}
+                            w={"full"}
+                          >
                             <Img src={col.value} w={"full"} fluid />
                           </ImgViewer>
                         ),

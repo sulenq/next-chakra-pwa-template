@@ -89,6 +89,7 @@ export const DataGridItem = (props: Props) => {
 
       {item.showImg && (
         <ImgViewer
+          id={`img-${row?.idx}-${item?.id}`}
           w={"full"}
           src={item.img}
           aspectRatio={1.1}

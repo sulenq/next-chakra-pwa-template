@@ -20,6 +20,7 @@ import { useEffect, useState } from "react";
 export const ImgInput = (props: Props__FileInput) => {
   // Props
   const {
+    id,
     existingFiles,
     onDeleteFile,
     onUndoDeleteFile,
@@ -170,7 +171,12 @@ export const ImgInput = (props: Props__FileInput) => {
               <HStack justify={"center"} h={"224px"} px={4}>
                 {previewUrls.map((url: string, idx: number) => {
                   return (
-                    <ImgViewer key={url} src={url} flex={"1 1 0"}>
+                    <ImgViewer
+                      id={`img-input-preview-${id}-${idx}`}
+                      key={url}
+                      src={url}
+                      flex={"1 1 0"}
+                    >
                       <Center w={"fit"} mx={"auto"} pos={"relative"}>
                         <Circle
                           className="ss"

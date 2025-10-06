@@ -211,6 +211,7 @@ export interface Props__TextareaInput extends Omit<TextareaProps, "onChange"> {
 
 export interface Props__FileInput
   extends Omit<FileUploadRootProps, "onChange"> {
+  id?: string;
   fRef?: any;
   inputValue?: File[];
   onChange?: (inputValue: Props__FileInput["inputValue"]) => void;

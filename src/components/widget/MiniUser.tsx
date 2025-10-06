@@ -20,6 +20,7 @@ export const MiniUser = (props: Props) => {
   return (
     <HStack gap={3} {...restProps}>
       <ImgViewer
+        id={`avatar-${user.id}`}
         src={imgUrl(user?.photoProfile?.[0]?.filePath)}
         fallbackSrc={`${SVGS_PATH}/no-avatar.svg`}
       >

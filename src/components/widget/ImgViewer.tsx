@@ -10,12 +10,11 @@ import useLang from "@/context/useLang";
 import useBackOnClose from "@/hooks/useBackOnClose";
 import { back } from "@/utils/client";
 import { disclosureId } from "@/utils/disclosure";
-import { getEpochMilliseconds } from "@/utils/time";
 import { Icon, Image, StackProps, useDisclosure } from "@chakra-ui/react";
 import { IconArrowUpRight } from "@tabler/icons-react";
 
 interface Props extends StackProps {
-  id?: string;
+  id: string;
   src?: string;
   fallbackSrc?: string;
   disabled?: boolean;
@@ -37,12 +36,7 @@ export const ImgViewer = (props: Props) => {
 
   // Hooks
   const { open, onOpen, onClose } = useDisclosure();
-  useBackOnClose(
-    disclosureId(id || `img-viewer-${getEpochMilliseconds()}`),
-    open,
-    onOpen,
-    onClose
-  );
+  useBackOnClose(disclosureId(id), open, onOpen, onClose);
 
   return (
     <>
