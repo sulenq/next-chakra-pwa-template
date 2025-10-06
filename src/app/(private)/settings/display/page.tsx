@@ -499,6 +499,7 @@ const ExampleUI = () => {
         <StringInput flex={"1 1 200px"} placeholder="example@email.com" />
 
         <SelectInput
+          id="example_select_religion"
           flex={"1 1 200px"}
           name="select1"
           selectOptions={OPTIONS_RELIGION}

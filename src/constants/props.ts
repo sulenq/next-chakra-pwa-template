@@ -146,7 +146,7 @@ export interface Props__FeedbackState extends StackProps {
 }
 
 export interface Props__SelectInput extends BtnProps {
-  id?: string;
+  id: string;
   title?: string;
   inputValue?: Interface__SelectOption[] | null;
   onConfirm?: (inputValue: Props__SelectInput["inputValue"]) => void;

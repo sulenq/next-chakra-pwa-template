@@ -203,3 +203,11 @@ export const timezones = () => {
     };
   });
 };
+
+export const getEpochSeconds = () => {
+  return Math.floor(Date.now() / 1000);
+};
+
+export const getEpochMilliseconds = () => {
+  return Date.now();
+};

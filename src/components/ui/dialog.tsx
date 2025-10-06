@@ -65,6 +65,7 @@ export const DialogContent = forwardRef<HTMLDivElement, DialogContentProps>(
               else if (ref) ref.current = node;
             }}
             minH={sh < 500 ? "90dvh" : ""}
+            maxH={"full"}
             bg="body"
             shadow="none"
             onClick={(e) => {

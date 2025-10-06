@@ -41,6 +41,7 @@ export interface FileUploadDropzoneProps
   showLabel?: boolean;
   showDescription?: boolean;
   imgInput?: boolean;
+  disabled?: boolean;
 }
 
 export const FileUploadDropzone = forwardRef<
@@ -55,6 +56,7 @@ export const FileUploadDropzone = forwardRef<
     showIcon = true,
     showLabel = true,
     showDescription = true,
+    disabled,
     imgInput,
     ...rest
   } = props;
@@ -70,7 +72,7 @@ export const FileUploadDropzone = forwardRef<
       _hover={{ bg: "gray.subtle" }}
     >
       {showIcon && (
-        <Icon fontSize="2xl" color="fg.muted">
+        <Icon fontSize="2xl" color="fg.muted" opacity={disabled ? 0.4 : 1}>
           {icon || <IconUpload />}
         </Icon>
       )}
@@ -78,7 +80,10 @@ export const FileUploadDropzone = forwardRef<
       {children}
 
       {(showLabel || showDescription) && (
-        <ChakraFileUpload.DropzoneContent mb={imgInput ? "28px" : ""}>
+        <ChakraFileUpload.DropzoneContent
+          opacity={disabled ? 0.4 : 1}
+          mb={imgInput ? "28px" : ""}
+        >
           {showLabel && <P>{label}</P>}
 
           {showDescription && description && (

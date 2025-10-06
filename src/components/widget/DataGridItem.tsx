@@ -92,6 +92,7 @@ export const DataGridItem = (props: Props) => {
           opacity={dim || row.dim ? 0.4 : 1}
         >
           <Img
+            key={item.img}
             src={item.img}
             aspectRatio={1.1}
             rounded={themeConfig.radii.component}

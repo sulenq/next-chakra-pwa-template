@@ -26,7 +26,7 @@ const translations = {
   },
   "alert_retry": {
     "title": "An error occurred",
-    "description": "Please try again."
+    "description": "We're sorry. Please try again."
   },
   "all": "All",
   "apply": "Apply",
@@ -141,6 +141,7 @@ const translations = {
     "description": "Your device does not support location features."
   },
   "example_UI": "Example UI",
+  "explanation": "Explanation",
   "february": "February",
   "friday": "Friday",
   "get": "Get",
@@ -254,6 +255,7 @@ const translations = {
     "description": "It looks like you are offline. Check your internet connection and try again."
   },
   "open": "Open",
+  "option": "Option",
   "optional": "Optional",
   "others": "Others",
   "otp_sent": "OTP has been sent",
@@ -380,6 +382,7 @@ const translations = {
   "try_location": "Try Location",
   "try_mic": "Try Mic",
   "tuesday": "Tuesday",
+  "type": "Type",
   "update": "Update",
   "updated": "Updated",
   "uploaded": "Uploaded",

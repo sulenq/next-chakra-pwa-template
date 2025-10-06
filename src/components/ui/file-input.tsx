@@ -212,7 +212,7 @@ export const InputComponent = (props: Props__FileInputInputComponent) => {
               borderColor={
                 invalid ?? fc?.invalid ? "border.error" : "border.muted"
               }
-              opacity={resolvedDisabled ? 0.5 : 1}
+              disabled={resolvedDisabled}
               cursor={resolvedDisabled ? "disabled" : "pointer"}
               showIcon={showDropzoneIcon}
               showLabel={showDropzoneLabel}

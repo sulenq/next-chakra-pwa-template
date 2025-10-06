@@ -26,7 +26,7 @@ const translations = {
   },
   "alert_retry": {
     "title": "Terjadi kesalahan",
-    "description": "Silakan coba lagi."
+    "description": "Maaf, silakan coba lagi."
   },
   "all": "Semua",
   "apply": "Terapkan",
@@ -141,6 +141,7 @@ const translations = {
     "description": "Perangkat Anda tidak mendukung fitur lokasi."
   },
   "example_UI": "Contoh UI",
+  "explanation": "Penjelasan",
   "february": "Februari",
   "friday": "Jumat",
   "get": "Dapatkan",
@@ -254,6 +255,7 @@ const translations = {
     "description": "Sepertinya Anda sedang offline. Periksa koneksi internet Anda dan coba lagi."
   },
   "open": "Buka",
+  "option": "Opsi",
   "optional": "Opsional",
   "others": "Lainnya",
   "otp_sent": "OTP telah dikirim",
@@ -380,6 +382,7 @@ const translations = {
   "try_location": "Coba Lokasi",
   "try_mic": "Coba Mic",
   "tuesday": "Selasa",
+  "type": "Tipe",
   "update": "Ubah",
   "updated": "Diubah",
   "uploaded": "Sudah diunggah",
