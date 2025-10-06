@@ -122,7 +122,7 @@ export const DataGridItem = (props: Props) => {
         </HStack>
 
         {typeof item.description === "string" ? (
-          <ClampText color={"fg.subtle"} lineClamp={1}>
+          <ClampText maxW={"full"} color={"fg.subtle"} lineClamp={1}>
             {item.description}
           </ClampText>
         ) : (
