@@ -79,6 +79,7 @@ export const DataGridItem = (props: Props) => {
           pos={"absolute"}
           top={2}
           right={2}
+          borderColor={"border.emphasized"}
           zIndex={2}
         />
       </Box>

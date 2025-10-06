@@ -50,11 +50,8 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
           }
           rounded={props?.rounded || isRoundedZero ? "0px" : "sm"}
           borderColor={
-            restProps.borderColor || checked
-              ? "transparent"
-              : subtle
-              ? "border.muted"
-              : "d3"
+            restProps.borderColor ||
+            (checked ? "transparent" : subtle ? "border.muted" : "d3")
           }
           cursor={"pointer"}
         >
