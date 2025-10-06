@@ -461,9 +461,6 @@ export const DataTable = (props: Props__DataTable) => {
                           row={row}
                           rowOptions={rowOptions}
                           tableContainerRef={tableContainerRef}
-                          colorPalette={
-                            isRowSelected ? themeConfig.colorPalette : ""
-                          }
                           color={"ibody"}
                         />
                       </Center>

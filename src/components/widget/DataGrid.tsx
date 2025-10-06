@@ -123,6 +123,7 @@ export const DataGrid = (props: Props) => {
           animationName={{ _open: "fade-in", _closed: "fade-out" }}
           animationDuration="fast"
           unmountOnExit
+          zIndex={10}
         >
           <HStack
             w={"full"}

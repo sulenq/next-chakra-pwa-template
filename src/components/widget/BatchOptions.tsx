@@ -45,6 +45,9 @@ export const BatchOptions = (props: Props__BatchOptions) => {
           clicky={false}
           variant={"ghost"}
           size={"xs"}
+          _open={{
+            bg: "d0",
+          }}
           {...restProps}
         >
           {children ? (

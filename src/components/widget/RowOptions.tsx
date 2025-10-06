@@ -26,6 +26,9 @@ export const RowOptions = (props: Props_RowOptions) => {
           clicky={false}
           variant={"ghost"}
           size={"xs"}
+          _open={{
+            bg: "d0",
+          }}
           {...restProps}
         >
           <Icon boxSize={5}>
