@@ -155,6 +155,7 @@ const translations = {
     "title": "Zona waktu diatur secara otomatis",
     "description": "${timezone}"
   },
+  "is_public": "Publik",
   "january": "Januari",
   "july": "Juli",
   "june": "Juni",
@@ -253,6 +254,7 @@ const translations = {
     "profile": "Profil"
   },
   "next": "Selanjutnya",
+  "no": "Tidak",
   "not_started": "Belum dimulai",
   "november": "November",
   "october": "Oktober",
@@ -403,7 +405,8 @@ const translations = {
   "wednesday": "Rabu",
   "week": "Minggu",
   "will_be_deleted": "Akan dihapus",
-  "year": "Tahun"
+  "year": "Tahun",
+  "yes": "Ya"
 };
 
 export default translations;

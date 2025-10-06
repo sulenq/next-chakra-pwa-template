@@ -1,23 +1,30 @@
 import useLang from "@/context/useLang";
 
 export function capitalize(string: string) {
-  if (typeof string !== "string" || string.length === 0) {
-    return "";
-  }
-  return string.charAt(0).toUpperCase() + string.slice(1).toLocaleLowerCase();
+  if (typeof string !== "string" || string.length === 0) return "";
+
+  const firstChar = string.charAt(0);
+  // Only capitalize if first char is not already uppercase
+  return firstChar === firstChar.toUpperCase()
+    ? string
+    : firstChar.toUpperCase() + string.slice(1);
 }
 
 export const capitalizeWords = (str: string): string => {
   if (!str) return "";
 
-  const words = str.split(" ");
+  return str
+    .split(" ")
+    .map((word) => {
+      if (!word) return word;
 
-  const capitalizedWords = words.map((word) => {
-    if (word.length === 0) return word;
-    return word[0].toUpperCase() + word.slice(1).toLowerCase();
-  });
-
-  return capitalizedWords.join(" ");
+      const firstChar = word[0];
+      // Only capitalize if first char is not uppercase
+      return firstChar === firstChar.toUpperCase()
+        ? word
+        : firstChar.toUpperCase() + word.slice(1);
+    })
+    .join(" ");
 };
 
 export const interpolateString = (

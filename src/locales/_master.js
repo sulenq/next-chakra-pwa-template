@@ -595,6 +595,18 @@ export const grade = {
   id: "Nilai",
   en: "Grade",
 };
+export const is_public = {
+  id: "Publik",
+  en: "Public",
+};
+export const yes = {
+  id: "Ya",
+  en: "Yes",
+};
+export const no = {
+  id: "Tidak",
+  en: "No",
+};
 
 // Message
 export const msg_location_test_helper = {

@@ -155,6 +155,7 @@ const translations = {
     "title": "Timezone automatically set",
     "description": "${timezone}"
   },
+  "is_public": "Public",
   "january": "January",
   "july": "July",
   "june": "June",
@@ -253,6 +254,7 @@ const translations = {
     "profile": "Profile"
   },
   "next": "Next",
+  "no": "No",
   "not_started": "Not started",
   "november": "November",
   "october": "October",
@@ -403,7 +405,8 @@ const translations = {
   "wednesday": "Wednesday",
   "week": "Week",
   "will_be_deleted": "Will be deleted",
-  "year": "Year"
+  "year": "Year",
+  "yes": "Yes"
 };
 
 export default translations;

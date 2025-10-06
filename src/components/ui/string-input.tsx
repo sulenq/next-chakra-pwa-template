@@ -45,6 +45,10 @@ export const StringInput = forwardRef<HTMLInputElement, Props__StringInput>(
     const localInputRef = useRef<HTMLInputElement>(null);
     const mergedRef = useMergedRefs(ref, localInputRef);
 
+    // States
+    const resolvedInvalid = invalid || fc?.invalid;
+    const disabled = fc?.disabled;
+
     // Styles
     const darkLightColorManual = colorMode === "light" ? "#fff" : "var(--dark)";
     const styles = css`
@@ -86,9 +90,7 @@ export const StringInput = forwardRef<HTMLInputElement, Props__StringInput>(
             value={inputValue}
             _placeholder={{ fontSize: "md" }}
             placeholder={placeholder}
-            borderColor={
-              invalid ?? fc?.invalid ? "border.error" : "border.muted"
-            }
+            borderColor={resolvedInvalid ? "border.error" : "border.muted"}
             fontSize={"md"}
             fontWeight={"medium"}
             outline={"none !important"}
@@ -102,7 +104,7 @@ export const StringInput = forwardRef<HTMLInputElement, Props__StringInput>(
             {...restProps}
           />
 
-          {inputValue && clearable && (
+          {inputValue && clearable && !disabled && (
             <Center
               flexShrink={0}
               zIndex={2}
