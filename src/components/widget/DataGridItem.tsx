@@ -12,6 +12,7 @@ import {
   Interface__DataProps,
   Interface__FormattedTableRow,
 } from "@/constants/interfaces";
+import useLang from "@/context/useLang";
 import { useThemeConfig } from "@/context/useThemeConfig";
 import { isEmptyArray } from "@/utils/array";
 import { Box, HStack, StackProps } from "@chakra-ui/react";
@@ -51,6 +52,7 @@ export const DataGridItem = (props: Props) => {
   } = props;
 
   // Contexts
+  const { l } = useLang();
   const { themeConfig } = useThemeConfig();
 
   // States
@@ -143,7 +145,7 @@ export const DataGridItem = (props: Props) => {
             size={"sm"}
             rounded={`calc(${themeConfig.radii.component} - 2px)`}
           >
-            Detail
+            {l.view_more}
           </Btn>
         </DataGridDetailDisclosureTrigger>
 

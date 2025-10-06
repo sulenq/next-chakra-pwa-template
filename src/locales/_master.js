@@ -451,17 +451,29 @@ export const rounded = {
   id: "Rounded",
   en: "Rounded",
 };
-export const learn_more = {
-  id: "Pelajari lebih lanjut",
-  en: "Learn more",
-};
 export const published_at = {
   id: "Diterbitkan pada",
   en: "Published at",
 };
+export const learn_more = {
+  id: "Pelajari lebih lanjut",
+  en: "Learn more",
+};
 export const read_more = {
   id: "Baca selengkapnya",
   en: "Read more",
+};
+export const view_more = {
+  id: "Lihat lebih",
+  en: "View more",
+};
+export const show_more = {
+  id: "Tampilkan lebih",
+  en: "Show more",
+};
+export const more_info = {
+  id: "Info lebih",
+  en: "More info",
 };
 export const apply = {
   id: "Terapkan",

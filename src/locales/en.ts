@@ -213,6 +213,7 @@ const translations = {
   },
   "monday": "Monday",
   "month": "Month",
+  "more_info": "More info",
   "msg_ADM_active": "Adaptive dark mode is active",
   "msg_activate": "The account will be activated again and can be used.",
   "msg_cannot_be_undone": "This action cannot be undone, please be careful.",
@@ -325,6 +326,7 @@ const translations = {
     }
   },
   "show": "Show",
+  "show_more": "Show more",
   "showing": "Showing",
   "start_date": "Start date",
   "start_date_time": "Start time",
@@ -397,6 +399,7 @@ const translations = {
   "uploaded_file": "Uploaded file",
   "verify": "Verify",
   "view": "View",
+  "view_more": "View more",
   "wednesday": "Wednesday",
   "week": "Week",
   "will_be_deleted": "Will be deleted",
