@@ -93,7 +93,7 @@ export const MiniMyProfile = (props: StackProps) => {
       <Divider />
 
       <CContainer gap={1} p={"6px"}>
-        <NavLink to={`/settings/profile`}>
+        <NavLink to={`/settings/profile`} w={"full"}>
           <Btn
             clicky={false}
             px={2}
