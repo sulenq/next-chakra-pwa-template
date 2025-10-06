@@ -551,6 +551,38 @@ export const explanation = {
   id: "Penjelasan",
   en: "Explanation",
 };
+export const start_date = {
+  id: "Tanggal mulai",
+  en: "Start date",
+};
+export const end_date = {
+  id: "Tanggal selesai",
+  en: "End date",
+};
+export const start_date_time = {
+  id: "Waktu mulai",
+  en: "Start time",
+};
+export const end_date_time = {
+  id: "Waktu selesai",
+  en: "End time",
+};
+export const not_started = {
+  id: "Belum dimulai",
+  en: "Not started",
+};
+export const on_progress = {
+  id: "Dalam proses",
+  en: "On progress",
+};
+export const finished = {
+  id: "Selesai",
+  en: "Finished",
+};
+export const grade = {
+  id: "Nilai",
+  en: "Grade",
+};
 
 // Message
 export const msg_location_test_helper = {

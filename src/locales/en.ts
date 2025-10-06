@@ -52,6 +52,8 @@ const translations = {
   "deleted_file": "Removed file",
   "description": "Description",
   "educator": "Educator",
+  "end_date": "End date",
+  "end_date_time": "End time",
   "error_400_default": {
     "title": "Bad request",
     "description": "Please review your data or actions."
@@ -143,8 +145,10 @@ const translations = {
   "example_UI": "Example UI",
   "explanation": "Explanation",
   "february": "February",
+  "finished": "Finished",
   "friday": "Friday",
   "get": "Get",
+  "grade": "Grade",
   "hide": "Hide",
   "inactive": "Inactive",
   "info_timezone_auto": {
@@ -248,12 +252,14 @@ const translations = {
     "profile": "Profile"
   },
   "next": "Next",
+  "not_started": "Not started",
   "november": "November",
   "october": "October",
   "of": "of",
   "offline_route": {
     "description": "It looks like you are offline. Check your internet connection and try again."
   },
+  "on_progress": "On progress",
   "open": "Open",
   "option": "Option",
   "optional": "Optional",
@@ -320,6 +326,8 @@ const translations = {
   },
   "show": "Show",
   "showing": "Showing",
+  "start_date": "Start date",
+  "start_date_time": "Start time",
   "student": "Student",
   "submit": "Submit",
   "success_200_default": {

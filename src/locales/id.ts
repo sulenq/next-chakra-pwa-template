@@ -52,6 +52,8 @@ const translations = {
   "deleted_file": "File dihapus",
   "description": "Deskripsi",
   "educator": "Pengajar",
+  "end_date": "Tanggal selesai",
+  "end_date_time": "Waktu selesai",
   "error_400_default": {
     "title": "Bad request",
     "description": "Periksa kembali data atau langkah yang dilakukan."
@@ -143,8 +145,10 @@ const translations = {
   "example_UI": "Contoh UI",
   "explanation": "Penjelasan",
   "february": "Februari",
+  "finished": "Selesai",
   "friday": "Jumat",
   "get": "Dapatkan",
+  "grade": "Nilai",
   "hide": "Sembunyikan",
   "inactive": "Belum aktif",
   "info_timezone_auto": {
@@ -248,12 +252,14 @@ const translations = {
     "profile": "Profil"
   },
   "next": "Selanjutnya",
+  "not_started": "Belum dimulai",
   "november": "November",
   "october": "Oktober",
   "of": "dari",
   "offline_route": {
     "description": "Sepertinya Anda sedang offline. Periksa koneksi internet Anda dan coba lagi."
   },
+  "on_progress": "Dalam proses",
   "open": "Buka",
   "option": "Opsi",
   "optional": "Opsional",
@@ -320,6 +326,8 @@ const translations = {
   },
   "show": "Tampilkan",
   "showing": "Menampilkan",
+  "start_date": "Tanggal mulai",
+  "start_date_time": "Waktu mulai",
   "student": "Pelajar",
   "submit": "Submit",
   "success_200_default": {
