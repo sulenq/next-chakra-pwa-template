@@ -80,7 +80,7 @@ const SettingsNavsList = (props: any) => {
                 const isActive = nav.path === pathname;
 
                 return (
-                  <NavLink key={nav.path} to={nav.path}>
+                  <NavLink key={nav.path} to={nav.path} w={"full"}>
                     <Btn
                       clicky={false}
                       justifyContent={"start"}

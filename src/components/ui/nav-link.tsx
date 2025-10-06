@@ -31,6 +31,7 @@ export const NavLink = forwardRef<HTMLDivElement, Props__NavLink>(
         ref={ref}
         cursor="pointer"
         onClick={handleOnClick}
+        w={"fit"}
         {...restProps}
       >
         {children}
