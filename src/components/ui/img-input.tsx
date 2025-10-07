@@ -164,7 +164,7 @@ export const ImgInput = (props: Props__FileInput) => {
 
             <HScroll
               className="scrollX"
-              maxW={restProps?.maxW || "352px"}
+              maxW={restProps?.maxW || ""}
               gap={2}
               mt={1}
             >

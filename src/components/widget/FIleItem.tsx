@@ -9,7 +9,7 @@ import Link from "next/link";
 
 export const FileItem = (props: Props__FileItem) => {
   // Props
-  const { fileData, actions = [], idx, ...restProps } = props;
+  const { children, fileData, actions = [], idx, ...restProps } = props;
 
   // Contexts
   const { themeConfig } = useThemeConfig();
@@ -85,6 +85,8 @@ export const FileItem = (props: Props__FileItem) => {
           );
         })}
       </HStack>
+
+      {children}
     </HStack>
   );
 };

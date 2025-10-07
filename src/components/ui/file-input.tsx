@@ -16,8 +16,9 @@ import {
 import useLang from "@/context/useLang";
 import { useThemeConfig } from "@/context/useThemeConfig";
 import { isEmptyArray } from "@/utils/array";
+import { makeFileUrl } from "@/utils/file";
 import { formatBytes, formatNumber } from "@/utils/formatter";
-import { Icon, useFieldContext } from "@chakra-ui/react";
+import { Center, Icon, useFieldContext } from "@chakra-ui/react";
 import { IconTrash, IconUpload, IconX } from "@tabler/icons-react";
 import { useEffect, useState } from "react";
 import {
@@ -25,7 +26,6 @@ import {
   FileUploadRoot,
   FileUploadTrigger,
 } from "../ui/file-button";
-import { makeFileUrl } from "@/utils/file";
 
 const FileList = (props: any) => {
   // Props
@@ -186,7 +186,7 @@ export const InputComponent = (props: Props__FileInputInputComponent) => {
         {...restProps}
       >
         <>
-          {dropzone && singleFileInputted && !imgInput && (
+          {dropzone && singleFileInputted && (
             <Tooltip content={"Reset"}>
               <CloseButton
                 pos={"absolute"}
@@ -219,7 +219,16 @@ export const InputComponent = (props: Props__FileInputInputComponent) => {
               showDescription={showDropzoneDescription}
               imgInput={imgInput}
             >
-              {children}
+              <Center
+                mt={
+                  imgInput &&
+                  (!isEmptyArray(inputValue) || !isEmptyArray(existing))
+                    ? 7
+                    : -4
+                }
+              >
+                {children}
+              </Center>
             </FileUploadDropzone>
           ) : (
             <FileUploadTrigger asChild borderColor={invalid ? "fg.error" : ""}>
@@ -237,7 +246,7 @@ export const InputComponent = (props: Props__FileInputInputComponent) => {
             </FileUploadTrigger>
           )}
 
-          {(!singleFileInputted || imgInput) && inputValue && (
+          {!singleFileInputted && inputValue && (
             <CContainer gap={2}>
               {(!isEmptyArray(existing) || !isEmptyArray(inputValue)) && (
                 <P fontSize={"sm"} color={"fg.subtle"}>{`Total : ${formatNumber(
