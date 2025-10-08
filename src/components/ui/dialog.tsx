@@ -2,15 +2,20 @@
 
 import useScreen from "@/hooks/useScreen";
 import { back } from "@/utils/client";
-import { Dialog as ChakraDialog, Portal } from "@chakra-ui/react";
+import {
+  Dialog as ChakraDialog,
+  DialogPositionerProps,
+  Portal,
+} from "@chakra-ui/react";
 import { forwardRef, useRef, useState } from "react";
 import { CloseButton } from "./close-button";
 import { BLUR_RADIUS } from "@/constants/sizes";
 
-interface DialogContentProps extends ChakraDialog.ContentProps {
+export interface DialogContentProps extends ChakraDialog.ContentProps {
   portalled?: boolean;
   portalRef?: React.RefObject<HTMLElement>;
   backdrop?: boolean;
+  positionerProps?: DialogPositionerProps;
 }
 
 export const DialogRoot = (props: ChakraDialog.RootProps) => {
@@ -24,6 +29,7 @@ export const DialogContent = forwardRef<HTMLDivElement, DialogContentProps>(
       portalled = true,
       portalRef,
       backdrop = true,
+      positionerProps,
       ...rest
     } = props;
 
@@ -57,6 +63,7 @@ export const DialogContent = forwardRef<HTMLDivElement, DialogContentProps>(
             }
             setIsMouseDownInsideContent(false);
           }}
+          {...positionerProps}
         >
           <ChakraDialog.Content
             ref={(node) => {

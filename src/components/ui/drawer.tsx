@@ -1,16 +1,21 @@
 "use client";
 
 import { back } from "@/utils/client";
-import { Drawer as ChakraDrawer, Portal } from "@chakra-ui/react";
+import {
+  Drawer as ChakraDrawer,
+  DrawerPositionerProps,
+  Portal,
+} from "@chakra-ui/react";
 import { forwardRef } from "react";
 import { CloseButton } from "./close-button";
 import { BLUR_RADIUS } from "@/constants/sizes";
 
-interface DrawerContentProps extends ChakraDrawer.ContentProps {
+export interface DrawerContentProps extends ChakraDrawer.ContentProps {
   portalled?: boolean;
   portalRef?: React.RefObject<HTMLElement>;
   offset?: ChakraDrawer.ContentProps["padding"];
   backdrop?: boolean;
+  positionerProps?: DrawerPositionerProps;
 }
 
 export const DrawerRoot = (props: ChakraDrawer.RootProps) => {
@@ -25,6 +30,7 @@ export const DrawerContent = forwardRef<HTMLDivElement, DrawerContentProps>(
       portalRef,
       offset,
       backdrop = true,
+      positionerProps,
       ...rest
     } = props;
 
@@ -43,6 +49,7 @@ export const DrawerContent = forwardRef<HTMLDivElement, DrawerContentProps>(
           onClick={() => {
             back();
           }}
+          {...positionerProps}
         >
           <ChakraDrawer.Content
             ref={ref}

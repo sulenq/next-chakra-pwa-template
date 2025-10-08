@@ -26,7 +26,7 @@ export const DisclosureHeaderContent = (
   }
 
   return (
-    <HStack justify={"space-between"} w={"full"} pr={7} {...restProps}>
+    <HStack justify={"space-between"} w={"full"} {...restProps}>
       {content ? (
         content
       ) : (
@@ -45,20 +45,22 @@ export const DisclosureHeaderContent = (
                 {prefix === "dialog" && (
                   <DialogCloseTrigger
                     rounded={"full"}
-                    top={"12px"}
-                    right={"12px"}
                     onClick={handleBack}
-                    mt={"-2px"}
-                    mr={"-6px"}
+                    pos={"static"}
+                    // top={"12px"}
+                    // right={"12px"}
+                    // mt={"-2px"}
+                    // mr={"-6px"}
                   />
                 )}
 
                 {prefix === "drawer" && (
                   <DrawerCloseTrigger
                     rounded={"full"}
-                    top={3}
-                    right={"10px"}
                     onClick={handleBack}
+                    pos={"static"}
+                    // top={3}
+                    // right={"10px"}
                   />
                 )}
               </>
@@ -70,9 +72,6 @@ export const DisclosureHeaderContent = (
                 clicky={false}
                 rounded={"full"}
                 variant={["ghost", null, "subtle"]}
-                pos={"absolute"}
-                top={[3, null, "10px"]}
-                right={["10px", null, "12px"]}
                 size={["xs", null, "2xs"]}
                 onClick={handleBack}
               >
