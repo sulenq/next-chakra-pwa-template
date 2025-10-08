@@ -61,8 +61,6 @@ export default function SearchInput(props: Props__SearchInput) {
     if (searchTemp) params.set(queryKey, searchTemp);
     else params.delete(queryKey);
 
-    console.debug(params.toString());
-
     // Use replace to avoid polluting browser history for every keystroke
     router.replace(`?${params.toString()}`);
   }, [searchTemp, inputValue, queryKey, router]);
