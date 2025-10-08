@@ -57,16 +57,15 @@ export default function SearchInput(props: Props__SearchInput) {
 
   // Update query string whenever search changes
   useEffect(() => {
-    const currentValue = searchParams.get(queryKey);
-    if (searchTemp === (currentValue || "")) return;
-
     const params = new URLSearchParams(searchParams.toString());
     if (searchTemp) params.set(queryKey, searchTemp);
     else params.delete(queryKey);
 
+    console.debug(params.toString());
+
     // Use replace to avoid polluting browser history for every keystroke
     router.replace(`?${params.toString()}`);
-  }, [searchTemp, queryKey, router]);
+  }, [searchTemp, inputValue, queryKey, router]);
 
   return (
     <Tooltip content={tooltipLabel || placeholder || l.search}>
