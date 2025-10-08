@@ -32,6 +32,8 @@ import {
 export interface Props__DisclosureHeaderContent {
   title?: string;
   withCloseButton?: boolean;
+  withMaximizeButton?: boolean;
+  onMaximizeChange?: (maximize: boolean) => void;
   content?: any;
   prefix?: "drawer" | "dialog";
   children?: any;

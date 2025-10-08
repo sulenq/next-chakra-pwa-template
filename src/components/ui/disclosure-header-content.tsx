@@ -1,11 +1,13 @@
 import { Btn } from "@/components/ui/btn";
 import { back } from "@/utils/client";
 import { HStack, Icon } from "@chakra-ui/react";
-import { IconX } from "@tabler/icons-react";
+import { IconMaximize, IconMinimize, IconX } from "@tabler/icons-react";
 import { DialogCloseTrigger } from "./dialog";
 import { DrawerCloseTrigger } from "./drawer";
 import { P } from "./p";
 import { Props__DisclosureHeaderContent } from "@/constants/props";
+import { useEffect, useState } from "react";
+import { useIsSmScreenWidth } from "@/hooks/useIsSmScreenWidth";
 
 export const DisclosureHeaderContent = (
   props: Props__DisclosureHeaderContent
@@ -14,16 +16,28 @@ export const DisclosureHeaderContent = (
   const {
     title,
     withCloseButton = true,
+    withMaximizeButton = false,
+    onMaximizeChange,
     prefix,
     content,
     children,
     ...restProps
   } = props;
 
+  // Hooks
+  const iss = useIsSmScreenWidth();
+
+  // States
+  const [maximize, setMaximize] = useState(false);
+
   // Utils
   function handleBack() {
     back();
   }
+
+  useEffect(() => {
+    onMaximizeChange?.(maximize);
+  }, [maximize]);
 
   return (
     <HStack justify={"space-between"} w={"full"} {...restProps}>
@@ -37,6 +51,27 @@ export const DisclosureHeaderContent = (
 
       <HStack ml={"auto"}>
         {children}
+
+        {withMaximizeButton && !iss && (
+          <Btn
+            clicky={false}
+            iconButton
+            size={["xs", null, "2xs"]}
+            rounded={"full"}
+            variant={"subtle"}
+            onClick={() => {
+              setMaximize((ps) => !ps);
+            }}
+          >
+            <Icon boxSize={4}>
+              {maximize ? (
+                <IconMinimize stroke={1.5} />
+              ) : (
+                <IconMaximize stroke={1.5} />
+              )}
+            </Icon>
+          </Btn>
+        )}
 
         {withCloseButton && (
           <>
