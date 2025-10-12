@@ -334,5 +334,6 @@ export interface Props__NumInput extends Omit<InputProps, "onChange"> {
   integer?: boolean;
   min?: number;
   max?: number;
+  clearButtonProps?: StackProps;
   clearable?: boolean;
 }

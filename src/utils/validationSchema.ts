@@ -99,3 +99,31 @@ export const fileValidation = ({
         return true;
       }
     );
+
+type min1FileParams = {
+  resolvedData: Record<string, any>;
+  existingKey: string;
+  deletedKey: string;
+  newKey: string;
+  message?: string;
+};
+export function min1File({
+  resolvedData,
+  existingKey,
+  deletedKey,
+  newKey,
+  message = "At least one item is required",
+}: min1FileParams) {
+  return yup
+    .mixed()
+    .test("must-have-at-least-one-item", message, function (_, ctx) {
+      const { parent } = ctx;
+
+      const existingCount = resolvedData?.[existingKey]?.length || 0;
+      const deletedCount = parent?.[deletedKey]?.length || 0;
+      const newCount = parent?.[newKey]?.length || 0;
+
+      const remaining = existingCount - deletedCount + newCount;
+      return remaining > 0;
+    });
+}

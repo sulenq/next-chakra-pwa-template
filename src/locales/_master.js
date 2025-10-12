@@ -607,6 +607,18 @@ export const no = {
   id: "Tidak",
   en: "No",
 };
+export const hour = {
+  id: "Jam",
+  en: "Hour",
+};
+export const minute = {
+  id: "Menit",
+  en: "Minute",
+};
+export const second = {
+  id: "Detik",
+  en: "Second",
+};
 
 // Message
 export const msg_location_test_helper = {

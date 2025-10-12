@@ -246,7 +246,7 @@ export const InputComponent = (props: Props__FileInputInputComponent) => {
             </FileUploadTrigger>
           )}
 
-          {!singleFileInputted && inputValue && (
+          {!singleFileInputted && inputValue && !isEmptyArray(inputValue) && (
             <CContainer gap={2}>
               {(!isEmptyArray(existing) || !isEmptyArray(inputValue)) && (
                 <P fontSize={"sm"} color={"fg.subtle"}>{`Total : ${formatNumber(

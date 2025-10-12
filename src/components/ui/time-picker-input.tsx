@@ -42,7 +42,7 @@ import { disclosureId } from "@/utils/disclosure";
 
 const DEFAULT = "00:00:00";
 
-const TimePickerInput = (props: Props__TimePicker) => {
+export const TimePickerInput = (props: Props__TimePicker) => {
   // Props
   const {
     id,
@@ -65,6 +65,7 @@ const TimePickerInput = (props: Props__TimePicker) => {
   const { l } = useLang();
 
   // States
+  const resolvedInvalid = invalid ?? fc?.invalid;
   const userTz = getUserTimezone();
   const resolvedPlaceholder = placeholder || l.select_time;
   const [selected, setSelected] = useState<string | null | undefined>(
@@ -191,7 +192,7 @@ const TimePickerInput = (props: Props__TimePicker) => {
           clicky={false}
           variant={"outline"}
           border={"1px solid"}
-          borderColor={invalid ?? fc?.invalid ? "border.error" : "border.muted"}
+          borderColor={resolvedInvalid ? "border.error" : "border.muted"}
           onClick={() => {
             if (inputValue) {
               setSelected(inputValue);
@@ -517,5 +518,3 @@ const TimePickerInput = (props: Props__TimePicker) => {
     </>
   );
 };
-
-export default TimePickerInput;
