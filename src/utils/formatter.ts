@@ -11,17 +11,16 @@ import { isDateObject } from "./date";
 import { getTimezoneOffsetMs, getUserTimezone } from "./time";
 
 export const formatDate = (
-  date?: Date | string | null | undefined,
+  date?: Date | string | undefined,
   options: {
     variant?: Type__DateVariant;
     withTime?: boolean;
     timeFormat?: string; // default HH:mm
     dateFormat?: Type__DateFormat;
     timezoneKey?: string;
-    dashEmpty?: boolean;
   } = {}
 ): string => {
-  if (!date) return options.dashEmpty ? "-" : "";
+  if (!date) return "";
 
   const dateFormat = options.dateFormat || getStorage("dateFormat") || "dmy";
   const timezoneKey = options.timezoneKey || getUserTimezone().key;
@@ -62,7 +61,7 @@ export const formatDate = (
   const weekdayName = L_WEEKDAYS_0_BASED[weekday];
   const shortWeekdayName = weekdayName.substring(0, 3);
 
-  const numericVariant = options.variant === "numeric";
+  const basicVariant = options.variant === "numeric";
 
   const formatDateString = (
     yearVal: number,
@@ -76,16 +75,16 @@ export const formatDate = (
 
     switch (dateFormat.toLowerCase()) {
       case "dmy":
-        return `${dayVal}${numericVariant ? "/" : " "}${monthDisplay}${
-          numericVariant ? "/" : " "
+        return `${dayVal}${basicVariant ? "-" : " "}${monthDisplay}${
+          basicVariant ? "-" : " "
         }${yearVal}`;
       case "mdy":
-        return `${monthDisplay}${numericVariant ? "/" : " "}${dayVal}${
-          numericVariant ? "/" : ", "
+        return `${monthDisplay}${basicVariant ? "-" : " "}${dayVal}${
+          basicVariant ? "-" : ", "
         }${yearVal}`;
       case "ymd":
-        return `${yearVal}${numericVariant ? "/" : " "}${monthDisplay}${
-          numericVariant ? "/" : " "
+        return `${yearVal}${basicVariant ? "-" : " "}${monthDisplay}${
+          basicVariant ? "-" : " "
         }${dayVal}`;
       default:
         return `${dayVal} ${monthDisplay} ${yearVal}`;
@@ -291,7 +290,7 @@ export const formatDuration = (
   seconds: number | undefined,
   format: "long" | "short" | "digital" = "long"
 ): string => {
-  if (!seconds) return "0 detik";
+  if (!seconds) return "0 s";
 
   switch (format) {
     case "long": {
@@ -300,9 +299,9 @@ export const formatDuration = (
       const detik = seconds % 60;
 
       let result = "";
-      if (jam > 0) result += `${jam} jam`;
-      if (menit > 0) result += ` ${menit} menit`;
-      if (detik > 0) result += ` ${detik} detik`;
+      if (jam > 0) result += `${jam} h`;
+      if (menit > 0) result += ` ${menit} m`;
+      if (detik > 0) result += ` ${detik} s`;
 
       return result.trim();
     }

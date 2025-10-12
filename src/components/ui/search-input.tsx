@@ -6,9 +6,9 @@ import useLang from "@/context/useLang";
 import { useDebouncedCallback } from "@/hooks/useDebounceCallback";
 import { HStack, Icon, InputGroup } from "@chakra-ui/react";
 import { IconSearch } from "@tabler/icons-react";
+import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Tooltip } from "./tooltip";
-import { useRouter, useSearchParams } from "next/navigation";
 
 export default function SearchInput(props: Props__SearchInput) {
   const {
@@ -32,7 +32,6 @@ export default function SearchInput(props: Props__SearchInput) {
   const { l } = useLang();
 
   // Next navigation utils
-  const router = useRouter();
   const searchParams = useSearchParams();
 
   // Hooks
@@ -61,9 +60,9 @@ export default function SearchInput(props: Props__SearchInput) {
     if (searchTemp) params.set(queryKey, searchTemp);
     else params.delete(queryKey);
 
-    // Use replace to avoid polluting browser history for every keystroke
-    router.replace(`?${params.toString()}`);
-  }, [searchTemp, inputValue, queryKey, router]);
+    // Use native history.replaceState to prevent rerender or scroll reset
+    window.history.replaceState(null, "", `?${params.toString()}`);
+  }, [searchTemp, queryKey]);
 
   return (
     <Tooltip content={tooltipLabel || placeholder || l.search}>

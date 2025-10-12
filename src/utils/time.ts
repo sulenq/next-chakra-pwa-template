@@ -204,10 +204,44 @@ export const timezones = () => {
   });
 };
 
-export const getEpochSeconds = () => {
-  return Math.floor(Date.now() / 1000);
+export const addSecondsToTime = (
+  time: string | null,
+  secondsToAdd: number
+): string => {
+  if (!time) return "";
+
+  // Parse HH:mm:ss
+  const [h, m, s] = time.split(":").map(Number);
+
+  // Construct date from time
+  const base = new Date();
+  base.setHours(h, m, s, 0);
+
+  // Add seconds
+  const result = new Date(base.getTime() + secondsToAdd * 1000);
+
+  // Format back to HH:mm:ss
+  const hh = String(result.getHours()).padStart(2, "0");
+  const mm = String(result.getMinutes()).padStart(2, "0");
+  const ss = String(result.getSeconds()).padStart(2, "0");
+
+  return `${hh}:${mm}:${ss}`;
 };
 
-export const getEpochMilliseconds = () => {
-  return Date.now();
+export const getRemainingSecondsUntil = (targetTime: string): number => {
+  // Parse target time
+  const [h, m, s] = targetTime.split(":").map(Number);
+
+  // Get current time
+  const now = new Date();
+  const target = new Date();
+
+  // Set target time on today's date
+  target.setHours(h, m, s, 0);
+
+  // Calculate difference in milliseconds
+  const diffMs = target.getTime() - now.getTime();
+
+  // Convert to seconds
+  return Math.floor(diffMs / 1000);
 };
