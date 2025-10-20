@@ -57,7 +57,7 @@ const SettingsNavsList = (props: any) => {
   );
 
   return (
-    <>
+    <CContainer gap={2}>
       {isEmptyArray(resolvedList) && <FeedbackNotFound />}
 
       {!isEmptyArray(resolvedList) &&
@@ -102,7 +102,7 @@ const SettingsNavsList = (props: any) => {
             </CContainer>
           );
         })}
-    </>
+    </CContainer>
   );
 };
 

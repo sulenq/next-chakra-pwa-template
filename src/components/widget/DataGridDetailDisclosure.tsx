@@ -26,7 +26,7 @@ export const DataGridDetailDisclosure = (props: any) => {
   // States
   const [search, setSearch] = useState<string>("");
   const resolvedDetails = details.filter((detail: any) => {
-    return detail.label.toLowerCase().includes(search.toLowerCase());
+    return detail?.label?.toLowerCase()?.includes(search?.toLowerCase());
   });
 
   return (
