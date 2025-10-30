@@ -15,6 +15,9 @@ import { css, Global } from "@emotion/react";
 import { IconX } from "@tabler/icons-react";
 import { forwardRef, useRef } from "react";
 import { useColorMode } from "./color-mode";
+import { toaster } from "@/components/ui/toaster";
+import useLang from "@/context/useLang";
+import { interpolateString } from "@/utils/string";
 
 export const StringInput = forwardRef<HTMLInputElement, Props__StringInput>(
   (props, ref) => {
@@ -32,10 +35,12 @@ export const StringInput = forwardRef<HTMLInputElement, Props__StringInput>(
       flexShrink,
       flexGrow,
       flexBasis,
+      maxChar = null,
       ...restProps
     } = props;
 
     // Contexts
+    const { l } = useLang();
     const { colorMode } = useColorMode();
     const { themeConfig } = useThemeConfig();
     const fc = useFieldContext();
@@ -63,7 +68,20 @@ export const StringInput = forwardRef<HTMLInputElement, Props__StringInput>(
 
     // Utils
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-      onChange?.(e.target.value);
+      let value = e.target.value;
+
+      // Handle maxChar limitation
+      if (maxChar !== null && value.length > maxChar) {
+        value = value.slice(0, maxChar);
+        toaster.create({
+          title: l.info_max_char_reached.title,
+          description: interpolateString(l.info_max_char_reached.description, {
+            maxChar: maxChar,
+          }),
+        });
+      }
+
+      onChange?.(value);
       if (isFirstRender.current) isFirstRender.current = false;
     };
 

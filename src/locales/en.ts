@@ -150,7 +150,12 @@ const translations = {
   "get": "Get",
   "grade": "Grade",
   "hide": "Hide",
+  "hour": "Hour",
   "inactive": "Inactive",
+  "info_max_char_reached": {
+    "title": "Character Limit Reached",
+    "description": "Only a maximum of ${maxChar} characters will be used/kept."
+  },
   "info_timezone_auto": {
     "title": "Timezone automatically set",
     "description": "${timezone}"
@@ -209,6 +214,7 @@ const translations = {
   "may": "May",
   "mic": "Mic",
   "minimize": "Minimize",
+  "minute": "Minute",
   "missing_route": {
     "description": "The page you are looking for is not available. There may be an incorrect URL or the page is no longer available."
   },
@@ -284,6 +290,7 @@ const translations = {
   "saturday": "Saturday",
   "save": "Save",
   "search": "Search",
+  "second": "Second",
   "select": "Select",
   "select_all": "Select all",
   "select_date": "Select date",

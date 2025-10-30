@@ -1125,6 +1125,16 @@ export const info_timezone_auto = {
     en: "${timezone}",
   },
 };
+export const info_max_char_reached = {
+  title: {
+    id: "Batas Karakter Tercapai",
+    en: "Character Limit Reached",
+  },
+  description: {
+    id: "Hanya maksimal ${maxChar} karakter yang akan diambil.",
+    en: "Only a maximum of ${maxChar} characters will be used/kept.",
+  },
+};
 
 // Error Route
 export const missing_route = {

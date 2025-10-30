@@ -150,7 +150,12 @@ const translations = {
   "get": "Dapatkan",
   "grade": "Nilai",
   "hide": "Sembunyikan",
+  "hour": "Jam",
   "inactive": "Belum aktif",
+  "info_max_char_reached": {
+    "title": "Batas Karakter Tercapai",
+    "description": "Hanya maksimal ${maxChar} karakter yang akan diambil."
+  },
   "info_timezone_auto": {
     "title": "Zona waktu diatur secara otomatis",
     "description": "${timezone}"
@@ -209,6 +214,7 @@ const translations = {
   "may": "Mei",
   "mic": "Mic",
   "minimize": "Minimalkan",
+  "minute": "Menit",
   "missing_route": {
     "description": "Halaman yang Anda cari tidak tersedia. Kemungkinan ada URL yang keliru atau halaman ini sudah tidak tersedia."
   },
@@ -284,6 +290,7 @@ const translations = {
   "saturday": "Sabtu",
   "save": "Simpan",
   "search": "Cari",
+  "second": "Detik",
   "select": "Pilih",
   "select_all": "Pilih semua",
   "select_date": "Pilih tanggal",

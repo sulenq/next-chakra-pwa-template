@@ -176,6 +176,7 @@ export interface Props__StringInput extends Omit<InputProps, "onChange"> {
   invalid?: boolean;
   clearable?: boolean;
   clearButtonProps?: StackProps;
+  maxChar?: number;
 }
 
 export interface Props__PasswordInput extends Omit<InputProps, "onChange"> {
@@ -210,6 +211,7 @@ export interface Props__TextareaInput extends Omit<TextareaProps, "onChange"> {
   onChange?: (inputValue: string) => void;
   invalid?: boolean;
   placeholder?: string;
+  maxChar?: number;
 }
 
 export interface Props__FileInput
