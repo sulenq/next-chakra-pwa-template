@@ -32,6 +32,7 @@ import { NumInput } from "./number-input";
 import { P } from "./p";
 import { C_ACTIVE_INDICATOR_SIZE } from "@/constants/sizes";
 import { disclosureId } from "@/utils/disclosure";
+import { getLocalTimezone } from "@/utils/time";
 
 const DEFAULT = {
   year: null,
@@ -125,6 +126,7 @@ export const PeriodPickerInput = (props: Props__PeriodPickerInput) => {
             <P>
               {formatDate(new Date(inputValue.year!, inputValue.month!), {
                 variant: "monthYear",
+                timezoneKey: getLocalTimezone().key,
               })}
             </P>
           )}

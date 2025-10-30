@@ -205,6 +205,7 @@ export const InputComponent = (props: Props__FileInputInputComponent) => {
 
           {dropzone ? (
             <FileUploadDropzone
+              flex={1}
               icon={resolvedIcon}
               label={resolvedLabel}
               description={resolvedDescription}

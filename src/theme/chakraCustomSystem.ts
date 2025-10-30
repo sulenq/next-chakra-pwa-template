@@ -582,13 +582,13 @@ const customConfig = defineConfig({
           fg: {
             value: {
               base: "{colors.brown.500}",
-              _dark: "{colors.brown.400}",
+              _dark: "{colors.brown.300}",
             },
           },
           muted: {
             value: {
-              base: "{colors.brown.200}",
-              _dark: "{colors.brown.800}",
+              base: "{colors.brown.400} !important",
+              _dark: "{colors.brown.400} !important",
             },
           },
           subtle: {
@@ -623,8 +623,8 @@ const customConfig = defineConfig({
           },
           muted: {
             value: {
-              base: "{colors.mocha.200}",
-              _dark: "{colors.mocha.800}",
+              base: "{colors.mocha.400}",
+              _dark: "{colors.mocha.400}",
             },
           },
           subtle: {
@@ -662,8 +662,8 @@ const customConfig = defineConfig({
           },
           muted: {
             value: {
-              base: "{colors.caramel.200}",
-              _dark: "{colors.caramel.800}",
+              base: "{colors.caramel.400}",
+              _dark: "{colors.caramel.400}",
             },
           },
           subtle: {
@@ -692,14 +692,14 @@ const customConfig = defineConfig({
           },
           fg: {
             value: {
-              base: "{colors.cream.500}",
+              base: "{colors.cream.600}",
               _dark: "{colors.cream.400}",
             },
           },
           muted: {
             value: {
-              base: "{colors.cream.200}",
-              _dark: "{colors.cream.800}",
+              base: "{colors.cream.500}",
+              _dark: "{colors.cream.400}",
             },
           },
           subtle: {
@@ -734,8 +734,8 @@ const customConfig = defineConfig({
           },
           muted: {
             value: {
-              base: "{colors.maroon.200}",
-              _dark: "{colors.maroon.800}",
+              base: "{colors.maroon.400}",
+              _dark: "{colors.maroon.400}",
             },
           },
           subtle: {
@@ -764,14 +764,14 @@ const customConfig = defineConfig({
           },
           fg: {
             value: {
-              base: "{colors.red.500}",
-              _dark: "{colors.red.400}",
+              base: "{colors.red.500} !important",
+              _dark: "{colors.red.400} !important",
             },
           },
           muted: {
             value: {
-              base: "{colors.red.200}",
-              _dark: "{colors.red.800}",
+              base: "{colors.red.400} !important",
+              _dark: "{colors.red.400}",
             },
           },
           subtle: {
@@ -806,8 +806,8 @@ const customConfig = defineConfig({
           },
           muted: {
             value: {
-              base: "{colors.salmon.200}",
-              _dark: "{colors.salmon.800}",
+              base: "{colors.salmon.400}",
+              _dark: "{colors.salmon.400}",
             },
           },
           subtle: {
@@ -845,8 +845,8 @@ const customConfig = defineConfig({
           },
           muted: {
             value: {
-              base: "{colors.flamingoPink.200}",
-              _dark: "{colors.flamingoPink.800}",
+              base: "{colors.flamingoPink.400}",
+              _dark: "{colors.flamingoPink.400}",
             },
           },
           subtle: {
@@ -884,8 +884,8 @@ const customConfig = defineConfig({
           },
           muted: {
             value: {
-              base: "{colors.bubblegumPink.200}",
-              _dark: "{colors.bubblegumPink.800}",
+              base: "{colors.bubblegumPink.400}",
+              _dark: "{colors.bubblegumPink.400}",
             },
           },
           subtle: {
@@ -914,14 +914,14 @@ const customConfig = defineConfig({
           },
           fg: {
             value: {
-              base: "{colors.pink.500}",
-              _dark: "{colors.pink.400}",
+              base: "{colors.pink.500} !important",
+              _dark: "{colors.pink.400} !important",
             },
           },
           muted: {
             value: {
-              base: "{colors.pink.200}",
-              _dark: "{colors.pink.800}",
+              base: "{colors.pink.400} !important",
+              _dark: "{colors.pink.400} !important",
             },
           },
           subtle: {
@@ -935,6 +935,42 @@ const customConfig = defineConfig({
             value: {
               base: "{colors.pink.500}",
               _dark: "{colors.pink.700}",
+            },
+          },
+        },
+        orange: {
+          solid: {
+            value: {
+              base: "{colors.orange.500}",
+              _dark: "{colors.orange.500}",
+            },
+          },
+          contrast: {
+            value: { base: "{colors.orange.50}", _dark: "{colors.orange.900}" },
+          },
+          fg: {
+            value: {
+              base: "{colors.orange.500} !important",
+              _dark: "{colors.orange.400}",
+            },
+          },
+          muted: {
+            value: {
+              base: "{colors.orange.400} !important",
+              _dark: "{colors.orange.400} !important",
+            },
+          },
+          subtle: {
+            value: {
+              base: "{colors.orange.100}",
+              _dark: "{colors.orange.900}",
+            },
+          },
+          emphasized: { value: "{colors.orange.400}" },
+          focusRing: {
+            value: {
+              base: "{colors.orange.500}",
+              _dark: "{colors.orange.700}",
             },
           },
         },
@@ -959,8 +995,8 @@ const customConfig = defineConfig({
           },
           muted: {
             value: {
-              base: "{colors.pastelSalmon.200}",
-              _dark: "{colors.pastelSalmon.800}",
+              base: "{colors.pastelSalmon.400}",
+              _dark: "{colors.pastelSalmon.400}",
             },
           },
           subtle: {
@@ -977,42 +1013,6 @@ const customConfig = defineConfig({
             },
           },
         },
-        orange: {
-          solid: {
-            value: {
-              base: "{colors.orange.500}",
-              _dark: "{colors.orange.500}",
-            },
-          },
-          contrast: {
-            value: { base: "{colors.orange.50}", _dark: "{colors.orange.900}" },
-          },
-          fg: {
-            value: {
-              base: "{colors.orange.500}",
-              _dark: "{colors.orange.400}",
-            },
-          },
-          muted: {
-            value: {
-              base: "{colors.orange.200}",
-              _dark: "{colors.orange.800}",
-            },
-          },
-          subtle: {
-            value: {
-              base: "{colors.orange.100}",
-              _dark: "{colors.orange.900}",
-            },
-          },
-          emphasized: { value: "{colors.orange.400}" },
-          focusRing: {
-            value: {
-              base: "{colors.orange.500}",
-              _dark: "{colors.orange.700}",
-            },
-          },
-        },
         yellow: {
           solid: {
             value: {
@@ -1025,14 +1025,14 @@ const customConfig = defineConfig({
           },
           fg: {
             value: {
-              base: "{colors.yellow.500}",
-              _dark: "{colors.yellow.400}",
+              base: "{colors.yellow.600} !important",
+              _dark: "{colors.yellow.500} !important",
             },
           },
           muted: {
             value: {
-              base: "{colors.yellow.200}",
-              _dark: "{colors.yellow.800}",
+              base: "{colors.yellow.600} !important",
+              _dark: "{colors.yellow.500} !important",
             },
           },
           subtle: {
@@ -1133,14 +1133,14 @@ const customConfig = defineConfig({
           },
           fg: {
             value: {
-              base: "{colors.green.500}",
-              _dark: "{colors.green.400}",
+              base: "{colors.green.600} !important",
+              _dark: "{colors.green.500} !important",
             },
           },
           muted: {
             value: {
-              base: "{colors.green.200}",
-              _dark: "{colors.green.800}",
+              base: "{colors.green.500} !important",
+              _dark: "{colors.green.500} !important",
             },
           },
           subtle: {
@@ -1169,14 +1169,14 @@ const customConfig = defineConfig({
           },
           fg: {
             value: {
-              base: "{colors.jade.500}",
-              _dark: "{colors.jade.400}",
+              base: "{colors.jade.600}",
+              _dark: "{colors.jade.500}",
             },
           },
           muted: {
             value: {
-              base: "{colors.jade.200}",
-              _dark: "{colors.jade.800}",
+              base: "{colors.jade.400}",
+              _dark: "{colors.jade.500}",
             },
           },
           subtle: {
@@ -1205,14 +1205,14 @@ const customConfig = defineConfig({
           },
           fg: {
             value: {
-              base: "{colors.teal.500}",
-              _dark: "{colors.teal.400}",
+              base: "{colors.teal.600} !important",
+              _dark: "{colors.teal.400} !important",
             },
           },
           muted: {
             value: {
-              base: "{colors.teal.200}",
-              _dark: "{colors.teal.800}",
+              base: "{colors.teal.500} !important",
+              _dark: "{colors.teal.500} !important",
             },
           },
           subtle: {
@@ -1250,8 +1250,8 @@ const customConfig = defineConfig({
           },
           muted: {
             value: {
-              base: "{colors.kemenkes.200}",
-              _dark: "{colors.kemenkes.800}",
+              base: "{colors.kemenkes.400}",
+              _dark: "{colors.kemenkes.400}",
             },
           },
           subtle: {
@@ -1319,14 +1319,14 @@ const customConfig = defineConfig({
           },
           fg: {
             value: {
-              base: "{colors.cyan.500}",
-              _dark: "{colors.cyan.400}",
+              base: "{colors.cyan.600} !important",
+              _dark: "{colors.cyan.500} !important",
             },
           },
           muted: {
             value: {
-              base: "{colors.cyan.200}",
-              _dark: "{colors.cyan.800}",
+              base: "{colors.cyan.500} !important",
+              _dark: "{colors.cyan.500} !important",
             },
           },
           subtle: {
@@ -1361,8 +1361,8 @@ const customConfig = defineConfig({
           },
           muted: {
             value: {
-              base: "{colors.sky.200}",
-              _dark: "{colors.sky.800}",
+              base: "{colors.sky.400}",
+              _dark: "{colors.sky.500}",
             },
           },
           subtle: {
@@ -1397,8 +1397,8 @@ const customConfig = defineConfig({
           },
           muted: {
             value: {
-              base: "{colors.blue.200}",
-              _dark: "{colors.blue.800}",
+              base: "{colors.blue.400} !important",
+              _dark: "{colors.blue.400} !important",
             },
           },
           subtle: {
@@ -1436,8 +1436,8 @@ const customConfig = defineConfig({
           },
           muted: {
             value: {
-              base: "{colors.sapphire.200}",
-              _dark: "{colors.sapphire.800}",
+              base: "{colors.sapphire.400}",
+              _dark: "{colors.sapphire.400}",
             },
           },
           subtle: {
@@ -1475,8 +1475,8 @@ const customConfig = defineConfig({
           },
           muted: {
             value: {
-              base: "{colors.discord.200}",
-              _dark: "{colors.discord.800}",
+              base: "{colors.discord.400}",
+              _dark: "{colors.discord.400}",
             },
           },
           subtle: {
@@ -1511,8 +1511,8 @@ const customConfig = defineConfig({
           },
           muted: {
             value: {
-              base: "{colors.indigo.200}",
-              _dark: "{colors.indigo.800}",
+              base: "{colors.indigo.400}",
+              _dark: "{colors.indigo.400}",
             },
           },
           subtle: {
@@ -1550,8 +1550,8 @@ const customConfig = defineConfig({
           },
           muted: {
             value: {
-              base: "{colors.lavender.200}",
-              _dark: "{colors.lavender.800}",
+              base: "{colors.lavender.400}",
+              _dark: "{colors.lavender.400}",
             },
           },
           subtle: {
@@ -1625,8 +1625,8 @@ const customConfig = defineConfig({
           },
           muted: {
             value: {
-              base: "{colors.purple.200}",
-              _dark: "{colors.purple.800}",
+              base: "{colors.purple.400} !important",
+              _dark: "{colors.purple.400} !important",
             },
           },
           subtle: {

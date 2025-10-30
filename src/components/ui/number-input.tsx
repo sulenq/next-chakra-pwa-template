@@ -55,10 +55,8 @@ export const NumInput = forwardRef<HTMLInputElement, Props__NumInput>(
         return;
       }
 
-      // hanya izinkan digit + koma
-      const isValid = /^[0-9,]+$/.test(rawInput);
+      const isValid = /^[0-9.,]+$/.test(rawInput);
       if (!isValid) {
-        // kalau huruf → jangan ubah state/value sama sekali
         return;
       }
 
