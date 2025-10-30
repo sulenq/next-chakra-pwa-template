@@ -72,7 +72,7 @@ interface TriggerProps extends StackProps {
   id: string;
   title: string;
   description: string;
-  confirmLabel: string;
+  confirmLabel: any;
   onConfirm: () => void;
   confirmButtonProps?: BtnProps;
   loading?: boolean;
