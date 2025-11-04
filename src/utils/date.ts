@@ -35,3 +35,26 @@ export const dateInRange = (
     (includeEndDate ? dateObj <= endDate : dateObj < endDate)
   );
 };
+
+export const getCalendarRange = ({
+  month,
+  year,
+}: {
+  month: number;
+  year: number;
+}) => {
+  // get the first date of the target month
+  const firstOfMonth = new Date(year, month, 1);
+  // get the weekday index (0 = Sunday, 6 = Saturday)
+  const startDay = firstOfMonth.getDay();
+
+  // calculate the first visible date in the calendar
+  const firstVisible = new Date(firstOfMonth);
+  firstVisible.setDate(firstOfMonth.getDate() - startDay);
+
+  // calculate the last visible date (6 rows × 7 days = 42 days)
+  const lastVisible = new Date(firstVisible);
+  lastVisible.setDate(firstVisible.getDate() + 41);
+
+  return { firstVisible, lastVisible };
+};
