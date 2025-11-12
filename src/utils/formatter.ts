@@ -248,7 +248,7 @@ export function formatTime(
   const timeFormat =
     options.timeFormat || getStorage("timeFormat") || "24-hour";
 
-  const timezoneKey = options.timezoneKey || getUserTimezone().key;
+  const timezoneKey = options.timezoneKey || "UTC";
   const offsetMs = getTimezoneOffsetMs(timezoneKey);
   const offsetHours = offsetMs / (1000 * 60 * 60);
 
