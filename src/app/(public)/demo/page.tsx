@@ -17,7 +17,7 @@ import SearchInput from "@/components/ui/search-input";
 import { SelectInput } from "@/components/ui/select-input";
 import { StringInput } from "@/components/ui/string-input";
 import { Textarea } from "@/components/ui/textarea";
-import TimePickerInput from "@/components/ui/time-picker-input";
+import { TimePickerInput } from "@/components/ui/time-picker-input";
 import { toaster } from "@/components/ui/toaster";
 import { DataTable } from "@/components/widget/DataTable";
 import SelectWorkspaceCategory from "@/components/widget/SelectWorkspaceCategory";

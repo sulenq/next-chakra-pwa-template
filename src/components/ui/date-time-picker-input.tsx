@@ -1,5 +1,5 @@
 import { DatePickerInput } from "@/components/ui/date-picker-input";
-import TimePickerInput from "@/components/ui/time-picker-input";
+import { TimePickerInput } from "@/components/ui/time-picker-input";
 import { Props__DateTimePickerInput } from "@/constants/props";
 import { useThemeConfig } from "@/context/useThemeConfig";
 import { extractTime, getUserTimezone, makeUTCISODateTime } from "@/utils/time";

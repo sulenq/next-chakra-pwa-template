@@ -10,7 +10,7 @@ import { P } from "@/components/ui/p";
 import { SelectInput } from "@/components/ui/select-input";
 import { StringInput } from "@/components/ui/string-input";
 import { Switch } from "@/components/ui/switch";
-import TimePickerInput from "@/components/ui/time-picker-input";
+import { TimePickerInput } from "@/components/ui/time-picker-input";
 import { DotIndicator } from "@/components/widget/Indicator";
 import { ItemContainer } from "@/components/widget/ItemContainer";
 import { ItemHeaderContainer } from "@/components/widget/ItemHeaderContainer";
