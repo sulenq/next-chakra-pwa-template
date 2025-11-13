@@ -24,7 +24,7 @@ import { HStack, Icon } from "@chakra-ui/react";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
-const SETTINGS_NAVS = OTHER_PRIVATE_NAVS[0].list[0].subMenus!;
+const SETTINGS_NAVS = OTHER_PRIVATE_NAVS[0].list[1].subMenus!;
 
 const SettingsNavsList = (props: any) => {
   // Props
