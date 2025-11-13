@@ -38,18 +38,22 @@ import {
 import Logo from "@/components/widget/Logo";
 import { MiniMyProfile } from "@/components/widget/MiniMyProfile";
 import { Today } from "@/components/widget/Today";
+import { VerifyingScreen } from "@/components/widget/VerifyingScreen";
 import { APP } from "@/constants/_meta";
 import { Interface__NavListItem } from "@/constants/interfaces";
 import { PRIVATE_NAVS } from "@/constants/navs";
 import { Props__Layout, Props__NavLink } from "@/constants/props";
 import { FIREFOX_SCROLL_Y_CLASS_PR_PREFIX } from "@/constants/sizes";
+import useAuthMiddleware from "@/context/useAuthMiddleware";
 import useLang from "@/context/useLang";
 import useNavs from "@/context/useNavs";
 import { useThemeConfig } from "@/context/useThemeConfig";
 import { useIsSmScreenWidth } from "@/hooks/useIsSmScreenWidth";
+import useRequest from "@/hooks/useRequest";
 import useScreen from "@/hooks/useScreen";
 import { isEmptyArray, last } from "@/utils/array";
-import { getUserData } from "@/utils/auth";
+import { getAuthToken, getUserData } from "@/utils/auth";
+import { setStorage } from "@/utils/client";
 import { pluckString } from "@/utils/string";
 import { getActiveNavs } from "@/utils/url";
 import { Center, HStack, Icon, Stack } from "@chakra-ui/react";
@@ -60,7 +64,7 @@ import {
   IconSettings,
   IconSlash,
 } from "@tabler/icons-react";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { Fragment, useEffect, useRef, useState } from "react";
 
 const NAVS_BG = "body";
@@ -990,8 +994,69 @@ const AppLayout = (props: Props__Layout) => {
   // Props
   const { ...restProps } = props;
 
+  // Contexts
+  const authToken = getAuthToken();
+  const verifiedAuthToken = useAuthMiddleware((s) => s.verifiedAuthToken);
+  const setRole = useAuthMiddleware((s) => s.setRole);
+  const setPermissions = useAuthMiddleware((s) => s.setPermissions);
+  const setVerifiedAuthToken = useAuthMiddleware((s) => s.setVerifiedAuthToken);
+
   // Hooks
   const iss = useIsSmScreenWidth();
+  const router = useRouter();
+  const { req, loading } = useRequest({
+    id: "user-profile",
+    showLoadingToast: false,
+    showSuccessToast: false,
+    showErrorToast: false,
+  });
+
+  // Track whether verification check is finished
+  const [checked, setChecked] = useState(false);
+
+  useEffect(() => {
+    // If there's no local token → redirect after first render
+    if (!authToken) {
+      setChecked(true);
+      return;
+    }
+
+    // If token exists but not verified yet → verify
+    if (authToken && !verifiedAuthToken) {
+      const config = { method: "GET", url: "/api/profile/get-user-profile" };
+      req({
+        config,
+        onResolve: {
+          onSuccess: (r) => {
+            const user = r.data.data;
+            setStorage("__auth_token", authToken, "local", 259200000);
+            setStorage("__user_data", JSON.stringify(user), "local", 259200000);
+            setVerifiedAuthToken(authToken);
+            setRole(user.role);
+            setPermissions(user.role.permissions);
+            setChecked(true);
+          },
+          onError: () => {
+            setChecked(true);
+          },
+        },
+      });
+    } else {
+      setChecked(true);
+    }
+  }, [authToken, verifiedAuthToken]);
+
+  useEffect(() => {
+    // Redirect only when check is done and no verified token
+    if (checked && !verifiedAuthToken) {
+      router.replace("/");
+    }
+  }, [checked, verifiedAuthToken]);
+
+  // Show verifying screen when still loading or not checked yet
+  if (!checked || loading) {
+    return <VerifyingScreen />;
+  }
 
   return (
     <CContainer id="app_layout" h={"100dvh"} {...restProps}>

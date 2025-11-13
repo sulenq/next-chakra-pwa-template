@@ -1,10 +1,10 @@
 import { create } from "zustand";
 
 interface Props {
-  authToken?: string;
+  verifiedAuthToken?: string;
   role?: object;
   permissions?: number[];
-  setAuthToken: (newState: Props["authToken"]) => void;
+  setVerifiedAuthToken: (newState: Props["verifiedAuthToken"]) => void;
   setRole: (newState: Props["role"]) => void;
   setPermissions: (newState: Props["permissions"]) => void;
   hasPermissions: (allowedPermissions: number[]) => boolean;
@@ -15,15 +15,15 @@ interface Props {
 }
 
 const useAuthMiddleware = create<Props>((set, get) => ({
-  authToken:
+  verifiedAuthToken:
     typeof window !== "undefined"
       ? localStorage.getItem("__auth_token") || undefined
       : undefined,
-  setAuthToken: (newState) =>
+  setVerifiedAuthToken: (newState) =>
     set(() => {
       if (typeof window !== "undefined")
         localStorage.setItem("__auth_token", newState || "");
-      return { authToken: newState };
+      return { verifiedAuthToken: newState };
     }),
 
   role: undefined,
@@ -45,7 +45,7 @@ const useAuthMiddleware = create<Props>((set, get) => ({
 
   removeAuthToken: () => {
     if (typeof window !== "undefined") localStorage.removeItem("__auth_token");
-    set(() => ({ authToken: undefined }));
+    set(() => ({ verifiedAuthToken: undefined }));
   },
 
   removePermissions: () => set(() => ({ permissions: undefined })),
