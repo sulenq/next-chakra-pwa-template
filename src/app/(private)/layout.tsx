@@ -933,7 +933,7 @@ const DesktopLayout = (props: any) => {
                 transition={"200ms"}
                 pos={"relative"}
               >
-                {pathname.includes("/profile") && <LeftIndicator />}
+                {/* {pathname.includes("/profile") && <LeftIndicator />} */}
 
                 <Avatar
                   src={user?.photoProfile?.fileUrl}
