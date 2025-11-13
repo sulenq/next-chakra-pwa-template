@@ -478,7 +478,7 @@ const ExampleUI = () => {
           flex={"1 1 200px"}
           name="select1"
           selectOptions={OPTIONS_RELIGION}
-          onConfirm={(inputValue) => {
+          onChange={(inputValue) => {
             setSelect(inputValue);
           }}
           inputValue={select}

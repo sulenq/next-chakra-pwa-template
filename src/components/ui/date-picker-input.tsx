@@ -109,7 +109,7 @@ const PeriodPicker = (props: any) => {
         justifyContent="center"
         inputValue={period}
         invalid={false}
-        onConfirm={(inputValue) => {
+        onChange={(inputValue) => {
           setPeriod(inputValue);
         }}
         required
@@ -346,7 +346,7 @@ export const DatePickerInput = (props: Props__DatePickerInput) => {
     id,
     title = "",
     inputValue,
-    onConfirm,
+    onChange,
     showTimezone,
     placeholder,
     required,
@@ -405,7 +405,7 @@ export const DatePickerInput = (props: Props__DatePickerInput) => {
   function onConfirmSelected() {
     if (!required) {
       if (!isEmptyArray(selected)) {
-        onConfirm?.(
+        onChange?.(
           selected.map((item) =>
             new Date(
               item.getTime() + getTimezoneOffsetMs(localTz.key)
@@ -413,7 +413,7 @@ export const DatePickerInput = (props: Props__DatePickerInput) => {
           )
         );
       } else {
-        onConfirm?.(null);
+        onChange?.(null);
       }
       back();
     }

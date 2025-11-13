@@ -343,7 +343,7 @@ const DemoIndexRoute = () => {
               <Field invalid={!!formik.errors.period}>
                 <PeriodPickerInput
                   inputValue={formik.values.period}
-                  onConfirm={(input) => {
+                  onChange={(input) => {
                     formik.setFieldValue("period", input);
                   }}
                 />
@@ -352,7 +352,7 @@ const DemoIndexRoute = () => {
               <Field invalid={!!formik.errors.date}>
                 <DatePickerInput
                   inputValue={formik.values.date}
-                  onConfirm={(input) => {
+                  onChange={(input) => {
                     formik.setFieldValue("date", input);
                   }}
                 />
@@ -361,7 +361,7 @@ const DemoIndexRoute = () => {
               <Field invalid={!!formik.errors.time}>
                 <TimePickerInput
                   inputValue={formik.values.time}
-                  onConfirm={(input) => {
+                  onChange={(input) => {
                     formik.setFieldValue("time", input);
                   }}
                 />
@@ -381,7 +381,7 @@ const DemoIndexRoute = () => {
                   id="select-single"
                   title={"Agama"}
                   inputValue={formik.values.select}
-                  onConfirm={(input) => {
+                  onChange={(input) => {
                     formik.setFieldValue("select", input);
                   }}
                   selectOptions={OPTIONS_RELIGION}
@@ -393,7 +393,7 @@ const DemoIndexRoute = () => {
                   id="select-multiple"
                   title={"Agama"}
                   inputValue={formik.values.multiSelect}
-                  onConfirm={(input) => {
+                  onChange={(input) => {
                     formik.setFieldValue("multiSelect", input);
                   }}
                   selectOptions={OPTIONS_RELIGION}

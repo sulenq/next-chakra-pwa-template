@@ -20,7 +20,7 @@ interface DisclosureProps {
   title: string;
   description: string;
   confirmLabel: string;
-  onConfirm: () => void;
+  onChange: () => void;
   confirmButtonProps?: BtnProps;
   loading?: boolean;
 }
@@ -31,7 +31,7 @@ export const ConfirmationDisclosure = (props: DisclosureProps) => {
     title,
     description,
     confirmLabel,
-    onConfirm,
+    onChange,
     confirmButtonProps,
     loading = false,
   } = props;
@@ -54,7 +54,7 @@ export const ConfirmationDisclosure = (props: DisclosureProps) => {
           <BackButton disabled={loading} />
 
           <Btn
-            onClick={onConfirm}
+            onClick={onChange}
             loading={loading}
             colorPalette={themeConfig.colorPalette}
             {...confirmButtonProps}
@@ -73,7 +73,7 @@ interface TriggerProps extends StackProps {
   title: string;
   description: string;
   confirmLabel: any;
-  onConfirm: () => void;
+  onChange: () => void;
   confirmButtonProps?: BtnProps;
   loading?: boolean;
   disabled?: any;
@@ -86,7 +86,7 @@ export const ConfirmationDisclosureTrigger = (props: TriggerProps) => {
     title,
     description,
     confirmLabel,
-    onConfirm,
+    onChange,
     confirmButtonProps,
     loading,
     disabled,
@@ -112,7 +112,7 @@ export const ConfirmationDisclosureTrigger = (props: TriggerProps) => {
         title={title}
         description={description}
         confirmLabel={confirmLabel}
-        onConfirm={onConfirm}
+        onChange={onChange}
         confirmButtonProps={confirmButtonProps}
         loading={loading}
       />

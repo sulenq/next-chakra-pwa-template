@@ -1,19 +1,11 @@
 import { BtnProps } from "@/components/ui/btn";
 import {
-  BoxProps,
-  ButtonProps,
   MenuItemProps,
   StackProps,
   TableCellProps,
   TableColumnHeaderProps,
 } from "@chakra-ui/react";
 import { AxiosRequestConfig, AxiosResponse } from "axios";
-import {
-  Type__DateRange,
-  Type__DateRangePresets,
-  Type__DisclosureSizes,
-  Type__TimeRange,
-} from "./types";
 import { ReactNode } from "react";
 
 // Auth
@@ -99,7 +91,7 @@ export interface Interface__TableOption {
     title: string;
     description: string;
     confirmLabel: string;
-    onConfirm: () => void;
+    onChange: () => void;
     confirmButtonProps?: BtnProps;
     loading?: boolean;
     disabled?: boolean;
@@ -155,38 +147,4 @@ export interface Interface__SelectOption {
   label2?: any;
   original_data?: any;
   disabled?: boolean;
-}
-
-// Date Range Picker Input
-export interface Interface__DateRangePicker extends ButtonProps {
-  id?: string;
-  name?: string;
-  title?: string;
-  onConfirm?: (inputValue: Type__DateRange) => void;
-  inputValue?: Type__DateRange;
-  placeholder?: string;
-  required?: boolean;
-  invalid?: boolean;
-  disclosureSize?: Type__DisclosureSizes;
-  preset?: Type__DateRangePresets[];
-  maxRange?: number;
-}
-
-// Time Range Picker Input
-export interface Interface__TimeRangePicker extends ButtonProps {
-  id?: string;
-  name?: string;
-  title?: string;
-  onConfirm?: (inputValue: Type__TimeRange | undefined) => void;
-  inputValue?: Type__TimeRange | undefined;
-  withSeconds?: boolean;
-  placeholder?: string;
-  required?: boolean;
-  invalid?: boolean;
-  disclosureSize?: Type__DisclosureSizes;
-}
-
-// Divider
-export interface Interface__Divider extends BoxProps {
-  dir?: "vertical" | "horizontal";
 }

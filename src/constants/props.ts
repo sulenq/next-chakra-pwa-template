@@ -1,14 +1,14 @@
 import { BtnProps } from "@/components/ui/btn";
 import {
-  Interface__FormattedTableRow,
+  Interface__BatchOptionsTableOptionGenerator,
   Interface__FormattedTableHeader,
+  Interface__FormattedTableRow,
+  Interface__RowOptionsTableOptionGenerator,
   Interface__SelectOption,
   Interface__StorageFile,
-  Interface__RowOptionsTableOptionGenerator,
-  Interface__BatchOptionsTableOptionGenerator,
 } from "@/constants/interfaces";
 import {
-  ButtonProps,
+  BoxProps,
   CenterProps,
   FileUploadRootProps,
   GroupProps,
@@ -28,6 +28,10 @@ import {
   Type__DisclosureSizes,
   Type__Period,
 } from "./types";
+
+export interface Props__Divider extends BoxProps {
+  dir?: "vertical" | "horizontal";
+}
 
 export interface Props__DisclosureHeaderContent {
   title?: string;
@@ -147,11 +151,11 @@ export interface Props__FeedbackState extends StackProps {
   icon?: any;
 }
 
-export interface Props__SelectInput extends BtnProps {
+export interface Props__SelectInput extends Omit<BtnProps, "onChange"> {
   id: string;
   title?: string;
   inputValue?: Interface__SelectOption[] | null;
-  onConfirm?: (inputValue: Props__SelectInput["inputValue"]) => void;
+  onChange?: (inputValue: Props__SelectInput["inputValue"]) => void;
   loading?: boolean;
   selectOptions?: Props__SelectInput["inputValue"];
   placeholder?: string;
@@ -258,11 +262,11 @@ export interface Props__FileList extends Omit<StackProps, "onChange"> {
   onChange?: Props__FileInput["onChange"];
 }
 
-export interface Props__PeriodPickerInput extends BtnProps {
+export interface Props__PeriodPickerInput extends Omit<BtnProps, "onChange"> {
   id?: string;
   title?: string;
   inputValue?: Type__Period | null;
-  onConfirm?: (inputValue?: Props__PeriodPickerInput["inputValue"]) => void;
+  onChange?: (inputValue?: Props__PeriodPickerInput["inputValue"]) => void;
   placeholder?: string;
   required?: boolean;
   invalid?: boolean;
@@ -270,11 +274,11 @@ export interface Props__PeriodPickerInput extends BtnProps {
   multiple?: boolean;
 }
 
-export interface Props__DatePickerInput extends BtnProps {
+export interface Props__DatePickerInput extends Omit<BtnProps, "onChange"> {
   id?: string;
   title?: string;
   inputValue?: string[] | null;
-  onConfirm?: (inputValue: Props__DatePickerInput["inputValue"]) => void;
+  onChange?: (inputValue: Props__DatePickerInput["inputValue"]) => void;
   showTimezone?: boolean;
   placeholder?: string;
   required?: boolean;
@@ -294,12 +298,12 @@ export interface Props__SelectedDateList {
   selected: Date[];
   formattedSelectedLabel: string;
 }
-export interface Props__TimePicker extends ButtonProps {
+export interface Props__TimePicker extends Omit<BtnProps, "onChange"> {
   id?: string;
   name?: string;
   title?: string;
   inputValue?: string | null;
-  onConfirm?: (inputValue?: Props__TimePicker["inputValue"]) => void;
+  onChange?: (inputValue?: Props__TimePicker["inputValue"]) => void;
   withSeconds?: boolean;
   showTimezone?: boolean;
   placeholder?: string;

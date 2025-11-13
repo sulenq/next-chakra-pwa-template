@@ -48,7 +48,7 @@ export const TimePickerInput = (props: Props__TimePicker) => {
     id,
     name,
     title,
-    onConfirm,
+    onChange,
     inputValue,
     showTimezone,
     withSeconds = false,
@@ -176,9 +176,9 @@ export const TimePickerInput = (props: Props__TimePicker) => {
   function onConfirmSelected() {
     if (!required) {
       if (selected) {
-        onConfirm?.(selected);
+        onChange?.(selected);
       } else {
-        onConfirm?.(null);
+        onChange?.(null);
       }
       back();
     }

@@ -46,7 +46,7 @@ export const PeriodPickerInput = (props: Props__PeriodPickerInput) => {
     id,
     title = "",
     inputValue,
-    onConfirm,
+    onChange,
     placeholder,
     required,
     invalid,
@@ -99,9 +99,9 @@ export const PeriodPickerInput = (props: Props__PeriodPickerInput) => {
 
   const handleConfirm = () => {
     if (!isEmpty) {
-      onConfirm?.({ month: selected.month, year: selected.year });
+      onChange?.({ month: selected.month, year: selected.year });
     } else {
-      onConfirm?.(null);
+      onChange?.(null);
     }
     back();
   };

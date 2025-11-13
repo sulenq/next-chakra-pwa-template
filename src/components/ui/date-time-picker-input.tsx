@@ -73,7 +73,7 @@ export const DateTimePickerInput = (props: Props__DateTimePickerInput) => {
         placeholder={placeholder?.date}
         disclosureSize={disclosureSize}
         inputValue={date ? [date] : []}
-        onConfirm={(inputValue) => setDate(inputValue?.[0] || "")}
+        onChange={(inputValue) => setDate(inputValue?.[0] || "")}
         invalid={false}
         required={required}
         showTimezone
@@ -85,7 +85,7 @@ export const DateTimePickerInput = (props: Props__DateTimePickerInput) => {
         placeholder={placeholder?.time}
         disclosureSize={disclosureSize}
         inputValue={time}
-        onConfirm={(inputValue) => setTime(inputValue || "")}
+        onChange={(inputValue) => setTime(inputValue || "")}
         invalid={false}
         required={required}
         showTimezone

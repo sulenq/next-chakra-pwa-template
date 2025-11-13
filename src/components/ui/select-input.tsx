@@ -157,7 +157,7 @@ export const SelectInput = (props: Props__SelectInput) => {
     id,
     title = "",
     inputValue,
-    onConfirm,
+    onChange,
     loading,
     selectOptions,
     placeholder,
@@ -190,9 +190,9 @@ export const SelectInput = (props: Props__SelectInput) => {
   function onConfirmSelected() {
     if (!required) {
       if (!isEmptyArray(selected)) {
-        onConfirm?.(selected);
+        onChange?.(selected);
       } else {
-        onConfirm?.(null);
+        onChange?.(null);
       }
       back();
     }

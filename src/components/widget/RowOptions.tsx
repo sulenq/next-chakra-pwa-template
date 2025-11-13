@@ -63,7 +63,7 @@ export const RowOptions = (props: Props_RowOptions) => {
                 title={confirmation.title}
                 description={confirmation.description}
                 confirmLabel={confirmation.confirmLabel}
-                onConfirm={confirmation.onConfirm}
+                onChange={confirmation.onChange}
                 confirmButtonProps={confirmation.confirmButtonProps}
                 loading={confirmation.loading}
                 disabled={disabled}
