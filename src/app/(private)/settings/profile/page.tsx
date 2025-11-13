@@ -95,7 +95,11 @@ export default function Page() {
         overflowY={"auto"}
         align={"stretch"}
       >
-        <CContainer gap={4} flex={[null, null, 3]}>
+        <CContainer
+          gap={4}
+          flex={[null, null, 1]}
+          maxH={["800px", null, "unset"]}
+        >
           <ItemContainer flex={1}>
             <ItemHeaderContainer>
               <ItemHeaderTitle>{l.personal_information}</ItemHeaderTitle>
@@ -127,10 +131,22 @@ export default function Page() {
             </CContainer>
           </ItemContainer>
 
-          <ItemContainer flex={1}></ItemContainer>
+          <ItemContainer flex={1}>
+            <ItemHeaderContainer>
+              <ItemHeaderTitle>{l.signin_history}</ItemHeaderTitle>
+            </ItemHeaderContainer>
+
+            <CContainer></CContainer>
+          </ItemContainer>
         </CContainer>
 
-        <ItemContainer flex={[null, null, 2]}></ItemContainer>
+        <ItemContainer flex={[null, null, 1]} maxH={["400px", null, "unset"]}>
+          <ItemHeaderContainer>
+            <ItemHeaderTitle>{l.activity}</ItemHeaderTitle>
+          </ItemHeaderContainer>
+
+          <CContainer></CContainer>
+        </ItemContainer>
       </HStack>
     ),
   };

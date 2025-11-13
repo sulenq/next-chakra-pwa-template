@@ -6,7 +6,7 @@ interface Props extends StackProps {
 }
 export const ItemHeaderContainer = ({
   children,
-  borderless = false,
+  borderless = true,
   withUtils = false,
   ...restProps
 }: Props) => {

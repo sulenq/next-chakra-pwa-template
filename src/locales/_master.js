@@ -661,6 +661,94 @@ export const is_allowed = {
   id: "Diizinkan",
   en: "Allowed",
 };
+export const signin_history = {
+  id: "Riwayat sign in",
+  en: "Signin History",
+};
+export const activity = {
+  id: "Aktivitas",
+  en: "Activity",
+};
+export const from = {
+  id: "Dari",
+  en: "From",
+};
+export const to = {
+  id: "Sampai",
+  en: "To",
+};
+export const after = {
+  id: "Setelah",
+  en: "After",
+};
+export const before = {
+  id: "Sebelum",
+  en: "Before",
+};
+export const current_data = {
+  id: "Data saat ini",
+  en: "Current data",
+};
+export const pending_data = {
+  id: "Data tertunda",
+  en: "Pending data",
+};
+export const start_time = {
+  id: "Waktu mulai",
+  en: "Start time",
+};
+export const end_time = {
+  id: "Waktu selesai",
+  en: "End time",
+};
+export const progress = {
+  id: "Progres",
+  en: "Progress",
+};
+export const physical_progress = {
+  id: "Progres fisik",
+  en: "Physical progress",
+};
+export const problem = {
+  id: "Masalah",
+  en: "Problem",
+};
+export const uninputted = {
+  id: "Belum diisi",
+  en: "Not filled in",
+};
+export const unvalidated = {
+  id: "Belum divalidasi",
+  en: "Unvalidated",
+};
+export const validation = {
+  id: "Validasi",
+  en: "Validation",
+};
+export const validated = {
+  id: "Diverifikasi",
+  en: "Validated",
+};
+export const rejected = {
+  id: "Ditolak",
+  en: "Rejected",
+};
+export const evidence = {
+  id: "Bukti",
+  en: "Evidence",
+};
+export const category = {
+  id: "Kategori",
+  en: "Category",
+};
+export const successful = {
+  id: "Berhasil",
+  en: "Successful",
+};
+export const account_status = {
+  id: "Status akun",
+  en: "Account status",
+};
 
 // Message
 export const msg_new_avatar_helper = {
