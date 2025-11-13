@@ -2,7 +2,7 @@
 
 import { SM_SCREEN_W_NUMBER } from "@/constants/sizes";
 import { useThemeConfig } from "@/context/useThemeConfig";
-import { client } from "@/utils/client";
+import { isClient } from "@/utils/client";
 import {
   Center,
   Toaster as ChakraToaster,
@@ -90,7 +90,7 @@ const ToastIcon = (props: any) => {
 
 export const toaster = createToaster({
   placement:
-    client() && window.innerWidth < SM_SCREEN_W_NUMBER ? "top" : "bottom-end",
+    isClient() && window.innerWidth < SM_SCREEN_W_NUMBER ? "top" : "bottom-end",
   pauseOnPageIdle: true,
 });
 
