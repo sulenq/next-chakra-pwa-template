@@ -28,18 +28,18 @@ export const PRIVATE_NAVS: Interface__NavItem[] = [
       },
       {
         icon: IconDatabase,
-        labelKey: "navs.master_data.index",
-        path: `/master-data`,
+        labelKey: "navs.other.index",
+        path: `/other`,
         subMenus: [
           {
             list: [
               {
-                labelKey: "navs.master_data.user",
-                path: `/master-data/user`,
+                labelKey: "navs.other.user",
+                path: `/other/user`,
               },
               {
-                labelKey: "navs.master_data.category",
-                path: `/master-data/category`,
+                labelKey: "navs.other.category",
+                path: `/other/category`,
               },
             ],
           },

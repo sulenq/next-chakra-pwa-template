@@ -8,7 +8,7 @@ export const navs = {
     id: "Transaksi",
     en: "Transaction",
   },
-  master_data: {
+  other: {
     index: {
       id: "Master Data",
       en: "Master Data",
@@ -619,8 +619,24 @@ export const second = {
   id: "Detik",
   en: "Second",
 };
+export const personal_information = {
+  id: "Informasi pribadi",
+  en: "Personal Information",
+};
+export const upload_new_avatar = {
+  id: "Unggah avatar baru",
+  en: "Upload new avatar",
+};
+export const is_allowed = {
+  id: "Diizinkan",
+  en: "Allowed",
+};
 
 // Message
+export const msg_new_avatar_helper = {
+  id: "Direkomendasikan minimal 800 x 800 px",
+  en: "At least 800 x 800 px recommended",
+};
 export const msg_location_test_helper = {
   id: "Klik dapatkan lokasi untuk mendapatkan data lokasi.",
   en: "Click get location to get location data.",

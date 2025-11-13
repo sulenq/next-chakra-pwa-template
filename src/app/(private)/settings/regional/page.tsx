@@ -396,7 +396,7 @@ const UOMFormat = () => {
   );
 };
 
-const SettingsRegionalRoute = () => {
+export default function Page() {
   // Contexts
   const { l } = useLang();
 
@@ -419,5 +419,4 @@ const SettingsRegionalRoute = () => {
       </CContainer>
     </CContainer>
   );
-};
-export default SettingsRegionalRoute;
+}

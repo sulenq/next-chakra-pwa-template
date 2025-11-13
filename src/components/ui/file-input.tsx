@@ -120,7 +120,8 @@ export const InputComponent = (props: Props__FileInputInputComponent) => {
       } ${acceptPlaceholder ? `(${acceptPlaceholder})` : ""}`;
 
   // disable if disabled prop true or already have maxFiles existing
-  const resolvedDisabled = fc.disabled || disabled || existingCount >= maxFiles;
+  const resolvedDisabled =
+    fc?.disabled || disabled || existingCount >= maxFiles;
 
   // Utils
   function handleFileChange(details: any) {
@@ -279,7 +280,7 @@ export const FileInput = (props: Props__FileInput) => {
   const fc = useFieldContext();
 
   // States
-  const resolvedDisabled = fc.disabled;
+  const resolvedDisabled = fc?.disabled;
   const [existing, setExisting] = useState<Interface__StorageFile[]>(
     existingFiles || []
   );

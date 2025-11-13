@@ -60,6 +60,7 @@ import { Center, HStack, Icon, Stack } from "@chakra-ui/react";
 import {
   IconBoxAlignLeft,
   IconCircleFilled,
+  IconDatabase,
   IconSelector,
   IconSettings,
   IconSlash,
@@ -165,6 +166,7 @@ const MobileLayout = (props: any) => {
     sw < 360 ? [activeNavs[activeNavs.length - 1]] : activeNavs;
   const backPath = last(activeNavs)?.backPath;
   const isInSettingsRoute = pathname.includes(`/settings`);
+  const isInMasterDataRoute = pathname.includes(`/master-data`);
   const isInProfileRoute = pathname.includes(`/profile`);
 
   return (
@@ -323,6 +325,26 @@ const MobileLayout = (props: any) => {
             </Fragment>
           );
         })}
+
+        <MobileNavLink
+          to={`/master-data`}
+          color={isInMasterDataRoute ? "" : "fg.muted"}
+          flex={1}
+        >
+          <Icon boxSize={6}>
+            <IconDatabase stroke={1.5} />
+          </Icon>
+
+          <P
+            textAlign={"center"}
+            lineClamp={1}
+            fontSize={MOBILE_NAV_LABEL_FONT_SIZE}
+          >
+            Master Data
+          </P>
+
+          {isInMasterDataRoute && <BottomIndicator />}
+        </MobileNavLink>
 
         <MobileNavLink
           to={`/settings`}
@@ -889,6 +911,32 @@ const DesktopLayout = (props: any) => {
         </CContainer>
 
         <CContainer mt={"auto"} gap={2} p={2}>
+          <NavLink to={`/master-data`} w={"full"}>
+            <NavTooltip content={"Master Data"}>
+              <Btn
+                clicky={false}
+                gap={4}
+                justifyContent={"start"}
+                variant={"ghost"}
+                colorPalette={NAVS_COLOR_PALETTE}
+                px={2}
+                pos={"relative"}
+              >
+                {pathname.includes(`/master-data`) && <LeftIndicator />}
+
+                <Icon boxSize={5}>
+                  <IconDatabase stroke={1.5} />
+                </Icon>
+
+                {navsExpanded && (
+                  <P lineClamp={1} textAlign={"left"}>
+                    Master Data
+                  </P>
+                )}
+              </Btn>
+            </NavTooltip>
+          </NavLink>
+
           <NavLink to={`/settings`} w={"full"}>
             <NavTooltip content={l.settings}>
               <Btn

@@ -2,23 +2,25 @@ import { HStack, StackProps } from "@chakra-ui/react";
 
 interface Props extends StackProps {
   borderless?: boolean;
-  clearSpacing?: boolean;
+  withUtils?: boolean;
 }
 export const ItemHeaderContainer = ({
   children,
   borderless = false,
-  // clearSpacing = false,
+  withUtils = false,
   ...restProps
 }: Props) => {
   return (
     <HStack
+      h={"46px"}
+      p={1}
+      pl={4}
+      pr={withUtils ? "6px" : 4}
+      gap={4}
+      wrap={"wrap"}
       borderBottom={"1px solid"}
       borderColor={borderless ? "transparent" : "border.muted"}
       justify={"space-between"}
-      wrap={"wrap"}
-      px={4}
-      py={3}
-      gap={4}
       {...restProps}
     >
       {children}

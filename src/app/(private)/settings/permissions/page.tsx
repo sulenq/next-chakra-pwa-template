@@ -610,7 +610,7 @@ const Location = () => {
   );
 };
 
-const PermissionsSettingsPage = () => {
+export default function Page() {
   // Contexts
   const { l } = useLang();
 
@@ -629,6 +629,4 @@ const PermissionsSettingsPage = () => {
       </HelperText>
     </CContainer>
   );
-};
-
-export default PermissionsSettingsPage;
+}

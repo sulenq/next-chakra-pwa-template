@@ -35,7 +35,7 @@ export const ImgInput = (props: Props__FileInput) => {
 
   // States
   const [previewUrls, setPreviewUrls] = useState<string[]>([]);
-  const resolvedDisabled = fc.disabled;
+  const resolvedDisabled = fc?.disabled;
   const [existing, setExisting] = useState<Interface__StorageFile[]>(
     existingFiles || []
   );

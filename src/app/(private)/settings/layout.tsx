@@ -171,7 +171,7 @@ const AppSettingsLayout = (props: Props__Layout) => {
             </ItemContainer>
 
             <HStack justify={"space-between"} mt={"auto"}>
-              <HelperText>v{APP.version}</HelperText>
+              <HelperText>{`v${APP.version}`}</HelperText>
 
               <HelperText>
                 {`Last updated: 

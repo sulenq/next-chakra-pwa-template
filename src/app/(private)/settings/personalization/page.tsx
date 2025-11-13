@@ -503,7 +503,7 @@ const ExampleUI = () => {
   );
 };
 
-const SettingsDisplayRoute = () => {
+export default function Page() {
   // Contexts
   const { l } = useLang();
 
@@ -524,6 +524,4 @@ const SettingsDisplayRoute = () => {
       </CContainer>
     </CContainer>
   );
-};
-
-export default SettingsDisplayRoute;
+}

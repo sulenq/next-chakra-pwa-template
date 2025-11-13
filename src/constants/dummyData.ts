@@ -1,1 +1,51 @@
-export {};
+export const dummyUser = {
+  id: "1",
+  photoProfile: [
+    {
+      id: "10",
+      fileName: "profile_rani_kartika.jpg",
+      filePath: "/uploads/profile/profile_rani_kartika.jpg",
+      fileUrl:
+        "https://cdn.rssehat.id/uploads/profile/profile_rani_kartika.jpg",
+      fileMimeType: "image/jpeg",
+      fileSize: "245320",
+      createdBy: "system",
+      updatedBy: "system",
+      createdAt: "2023-03-10T08:42:00Z",
+      updatedAt: "2025-11-12T04:20:00Z",
+    },
+  ],
+  name: "Dr. Rani Kartika",
+  email: "rani.kartika@rssehat.id",
+  role: {
+    id: "3",
+    name: "HR Manager",
+    description:
+      "Responsible for managing employee data, policies, and approvals",
+    permissions: [
+      "employee.read",
+      "employee.write",
+      "attendance.validate",
+      "leave.approve",
+      "role.manage",
+    ],
+    createdBy: "system",
+    updatedBy: "system",
+    createdAt: "2023-03-10T08:42:00Z",
+    updatedAt: "2025-11-12T04:20:00Z",
+    deletedAt: null,
+  },
+  accountStatus: "active",
+  gender: false, // female
+  phoneNumber: "+6281234567890",
+  birthDate: "1985-07-12",
+  address: "Jl. Melati No. 12, Jakarta Selatan",
+  registeredAt: "2023-03-10T08:42:00Z",
+  lastLogin: "2025-11-12T04:20:00Z",
+  lastChangePasswordAt: "2025-05-01T12:30:00Z",
+  deactiveAt: null,
+  createdBy: "system",
+  updatedBy: "system",
+  createdAt: "2023-03-10T08:42:00Z",
+  updatedAt: "2025-11-12T04:20:00Z",
+};

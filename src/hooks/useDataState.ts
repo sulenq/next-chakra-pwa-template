@@ -71,7 +71,7 @@ const useDataState = <T = any>(props: Props<T>) => {
     url: url,
     method,
     data: payloadData,
-    params: paramsData,
+    params: dataResource ? paramsData : null,
   };
 
   // Refs
