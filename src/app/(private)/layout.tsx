@@ -55,7 +55,7 @@ import { isEmptyArray, last } from "@/utils/array";
 import { getAuthToken, getUserData } from "@/utils/auth";
 import { setStorage } from "@/utils/client";
 import { pluckString } from "@/utils/string";
-import { getActiveNavs } from "@/utils/url";
+import { getActiveNavs, imgUrl } from "@/utils/url";
 import { Center, HStack, Icon, Stack } from "@chakra-ui/react";
 import {
   IconBoxAlignLeft,
@@ -63,6 +63,7 @@ import {
   IconSelector,
   IconSettings,
   IconSlash,
+  IconUser,
 } from "@tabler/icons-react";
 import { usePathname, useRouter } from "next/navigation";
 import { Fragment, useEffect, useRef, useState } from "react";
@@ -233,6 +234,7 @@ const MobileLayout = (props: any) => {
                               color={isMainNavActive ? "" : "fg.muted"}
                               pos={"relative"}
                               cursor={"pointer"}
+                              flex={1}
                             >
                               <Icon boxSize={6}>
                                 <nav.icon stroke={1.5} />
@@ -292,6 +294,7 @@ const MobileLayout = (props: any) => {
                         key={nav.path}
                         to={nav.subMenus ? "" : nav.path}
                         color={isMainNavActive ? "" : "fg.muted"}
+                        flex={1}
                       >
                         <Icon boxSize={6}>
                           <nav.icon stroke={1.5} />
@@ -318,6 +321,7 @@ const MobileLayout = (props: any) => {
         <MobileNavLink
           to={`/settings`}
           color={isInSettingsRoute ? "" : "fg.muted"}
+          flex={1}
         >
           <Icon boxSize={6}>
             <IconSettings stroke={1.5} />
@@ -343,12 +347,20 @@ const MobileLayout = (props: any) => {
           }}
         >
           <PopoverTrigger asChild>
-            <MobileNavLink>
-              <Avatar
-                src={user?.photoProfile?.fileUrl}
-                name={user?.name}
-                size={"2xs"}
-              />
+            <MobileNavLink flex={1} color={"fg.muted"}>
+              {!user?.photoProfile?.filePath && (
+                <Icon boxSize={6}>
+                  <IconUser stroke={1.5} />
+                </Icon>
+              )}
+
+              {user?.photoProfile?.filePath && (
+                <Avatar
+                  src={imgUrl(user?.photoProfile?.filePath)}
+                  name={user?.name}
+                  size={"2xs"}
+                />
+              )}
 
               <P
                 fontSize={MOBILE_NAV_LABEL_FONT_SIZE}
@@ -358,8 +370,6 @@ const MobileLayout = (props: any) => {
               >
                 {l.profile}
               </P>
-
-              {isInProfileRoute && <BottomIndicator />}
             </MobileNavLink>
           </PopoverTrigger>
 
