@@ -378,6 +378,7 @@ const DemoIndexRoute = () => {
 
               <Field invalid={!!formik.errors.select}>
                 <SelectInput
+                  id="select-single"
                   title={"Agama"}
                   inputValue={formik.values.select}
                   onConfirm={(input) => {
