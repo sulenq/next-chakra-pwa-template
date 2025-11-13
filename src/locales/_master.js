@@ -10,8 +10,8 @@ export const navs = {
   },
   other: {
     index: {
-      id: "Master Data",
-      en: "Master Data",
+      id: "Lainya",
+      en: "Other",
     },
     category: {
       id: "Kategori",
@@ -21,6 +21,10 @@ export const navs = {
       id: "Pengguna",
       en: "User",
     },
+  },
+  master_data: {
+    id: "Master Data",
+    en: "Master Data",
   },
   settings: {
     id: "Pengaturan",
@@ -66,6 +70,32 @@ export const settings_navs = {
     privacy_policy: {
       id: "Kebijakan Privasi",
       en: "Privacy Policy",
+    },
+  },
+};
+export const master_data_navs = {
+  access_control: {
+    index: {
+      id: "Kontrol Akses",
+      en: "Access Control",
+    },
+    role: {
+      id: "Role",
+      en: "Role",
+    },
+    permission: {
+      id: "Permission",
+      en: "Permission",
+    },
+  },
+  hr: {
+    index: {
+      id: "Manajemen SDM",
+      en: "Human resources",
+    },
+    employment_status: {
+      id: "Status kepegawaian",
+      en: "Employment Status",
     },
   },
 };

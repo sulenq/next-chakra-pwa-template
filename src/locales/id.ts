@@ -211,6 +211,17 @@ const translations = {
   },
   "map": "Peta",
   "march": "Maret",
+  "master_data_navs": {
+    "access_control": {
+      "index": "Kontrol Akses",
+      "role": "Role",
+      "permission": "Permission"
+    },
+    "hr": {
+      "index": "Manajemen SDM",
+      "employment_status": "Status kepegawaian"
+    }
+  },
   "maximize": "Maksimalkan",
   "may": "Mei",
   "mic": "Mic",
@@ -253,11 +264,12 @@ const translations = {
   "navs": {
     "dashboard": "Dashboard",
     "transaction": "Transaksi",
-    "master_data": {
-      "index": "Master Data",
+    "other": {
+      "index": "Lainya",
       "category": "Kategori",
       "user": "Pengguna"
     },
+    "master_data": "Master Data",
     "settings": "Pengaturan",
     "profile": "Profil"
   },

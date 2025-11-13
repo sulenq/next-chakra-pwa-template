@@ -211,6 +211,17 @@ const translations = {
   },
   "map": "Map",
   "march": "March",
+  "master_data_navs": {
+    "access_control": {
+      "index": "Access Control",
+      "role": "Role",
+      "permission": "Permission"
+    },
+    "hr": {
+      "index": "Human resources",
+      "employment_status": "Employment Status"
+    }
+  },
   "maximize": "Maximize",
   "may": "May",
   "mic": "Mic",
@@ -253,11 +264,12 @@ const translations = {
   "navs": {
     "dashboard": "Dashboard",
     "transaction": "Transaction",
-    "master_data": {
-      "index": "Master Data",
+    "other": {
+      "index": "Other",
       "category": "Category",
       "user": "User"
     },
+    "master_data": "Master Data",
     "settings": "Settings",
     "profile": "Profile"
   },
