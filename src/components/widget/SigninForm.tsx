@@ -99,7 +99,7 @@ const BasicAuthForm = (props: any) => {
   // Contexts
   const { l } = useLang();
   const { themeConfig } = useThemeConfig();
-  const setAuthToken = useAuthMiddleware((s) => s.setAuthToken);
+  const setAuthToken = useAuthMiddleware((s) => s.setVerifiedAuthToken);
   const setPermissions = useAuthMiddleware((s) => s.setPermissions);
 
   // Hooks
@@ -249,7 +249,7 @@ const SigninForm = (props: Props) => {
   // Contexts
   const { l } = useLang();
   const { themeConfig } = useThemeConfig();
-  const authToken = useAuthMiddleware((s) => s.authToken);
+  const authToken = useAuthMiddleware((s) => s.verifiedAuthToken);
 
   // States
   const signinAPI = "/api/signin";
