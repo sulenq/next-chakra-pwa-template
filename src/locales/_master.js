@@ -37,9 +37,9 @@ export const settings_navs = {
       id: "Utama",
       en: "Main",
     },
-    display: {
-      id: "Tampilan",
-      en: "Display",
+    personalization: {
+      id: "Personalisasi",
+      en: "Personalization",
     },
     regional: {
       id: "Regional",

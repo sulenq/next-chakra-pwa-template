@@ -16,6 +16,7 @@ import { ItemContainer } from "@/components/widget/ItemContainer";
 import { ItemHeaderContainer } from "@/components/widget/ItemHeaderContainer";
 import ItemHeaderTitle from "@/components/widget/ItemHeaderTitle";
 import { SettingsItemContainer } from "@/components/widget/SettingsItemContainer";
+import { COLOR_PALETTES } from "@/constants/colors";
 import { Interface__SelectOption } from "@/constants/interfaces";
 import { OPTIONS_RELIGION } from "@/constants/selectOptions";
 import useADM from "@/context/useADM";
@@ -32,9 +33,9 @@ import {
   SimpleGrid,
 } from "@chakra-ui/react";
 import {
+  IconColorSwatch,
   IconLayout,
   IconMoon2,
-  IconPalette,
   IconRadiusTopLeft,
 } from "@tabler/icons-react";
 import { useEffect, useRef, useState } from "react";
@@ -188,50 +189,6 @@ const Theme = () => {
   );
 
   // States
-  const colorPalettes = [
-    { palette: "p", primaryHex: "#4f8250" },
-
-    // Neutral & Dark Shades
-    { palette: "gray", primaryHex: "#1B1B1B" },
-    { palette: "brown", primaryHex: "#795548" },
-    { palette: "mocha", primaryHex: "#9F5D39" },
-    { palette: "caramel", primaryHex: "#C47B27" },
-    { palette: "cream", primaryHex: "#D7BF8C" },
-
-    // Reds & Pinks
-    { palette: "maroon", primaryHex: "#800000" },
-    { palette: "red", primaryHex: "#FF0000" },
-    { palette: "salmon", primaryHex: "#FF6242" },
-    { palette: "flamingoPink", primaryHex: "#FF478B" },
-    { palette: "bubblegumPink", primaryHex: "#FF4ABB" },
-
-    // Oranges & Yellows
-    { palette: "orange", primaryHex: "#FF8E62" },
-    { palette: "pastelSalmon", primaryHex: "#FF8E62" },
-    { palette: "yellow", primaryHex: "#f6e05e" },
-
-    // Greens
-    { palette: "lime", primaryHex: "#CDDC39" },
-    { palette: "olive", primaryHex: "#879F30" },
-    { palette: "green", primaryHex: "#4CAF50" },
-    { palette: "jade", primaryHex: "#00A86B" },
-    { palette: "teal", primaryHex: "#009688" },
-
-    // Cyans & Blues
-    { palette: "kemenkes", primaryHex: "#16B3AC" },
-    { palette: "cyan", primaryHex: "#00BCD4" },
-    { palette: "powderBlue", primaryHex: "#769cc2" },
-    { palette: "sky", primaryHex: "#0EA5E9" },
-    { palette: "blue", primaryHex: "#3a72ed" },
-    { palette: "sapphire", primaryHex: "#1939B7" },
-    { palette: "discord", primaryHex: "#5865F2" },
-    { palette: "indigo", primaryHex: "#3F51B5" },
-
-    // Purples & Lavenders
-    { palette: "lavender", primaryHex: "#7A42FF" },
-    { palette: "powderLavender", primaryHex: "#8E8CD8" },
-    { palette: "purple", primaryHex: "#9C27B0" },
-  ];
   const gridColumns: Record<number, number> = {
     320: 3,
     720: 5,
@@ -247,7 +204,7 @@ const Theme = () => {
       <ItemHeaderContainer>
         <HStack>
           <Icon boxSize={5}>
-            <IconPalette stroke={1.5} />
+            <IconColorSwatch stroke={1.5} />
           </Icon>
           <ItemHeaderTitle>{l.theme}</ItemHeaderTitle>
         </HStack>
@@ -255,7 +212,7 @@ const Theme = () => {
 
       <CContainer gap={4} p={4}>
         <SimpleGrid columns={gridCols} gap={2}>
-          {colorPalettes.map((color, idx) => {
+          {COLOR_PALETTES.map((color, idx) => {
             const isActive = color.palette === themeConfig.colorPalette;
 
             return (
@@ -465,7 +422,6 @@ const Rounded = () => {
     </ItemContainer>
   );
 };
-
 const ExampleUI = () => {
   // Contexts
   const { l } = useLang();
@@ -502,6 +458,15 @@ const ExampleUI = () => {
           colorPalette={themeConfig.colorPalette}
           size={"md"}
           variant={"outline"}
+        >
+          Label
+        </Btn>
+
+        <Btn
+          flex={"1 1 100px"}
+          colorPalette={themeConfig.colorPalette}
+          size={"md"}
+          variant={"subtle"}
         >
           Label
         </Btn>
@@ -560,4 +525,5 @@ const SettingsDisplayRoute = () => {
     </CContainer>
   );
 };
+
 export default SettingsDisplayRoute;

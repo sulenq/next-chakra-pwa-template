@@ -89,16 +89,16 @@ const customConfig = defineConfig({
           900: { value: "#4D2E1F" },
         },
         yellow: {
-          50: { value: "#fffff0" },
-          100: { value: "#fefcbf" },
-          200: { value: "#faf089" },
-          300: { value: "#f6e05e" },
-          400: { value: "#ecc94b" },
-          500: { value: "#f6e05e" },
-          600: { value: "#b7791f" },
-          700: { value: "#975a16" },
-          800: { value: "#744210" },
-          900: { value: "#5f370e" },
+          50: { value: "#fffdea" },
+          100: { value: "#fff6b3" },
+          200: { value: "#ffeb80" },
+          300: { value: "#ffe14d" },
+          400: { value: "#ffd633" },
+          500: { value: "#ffcc00" },
+          600: { value: "#e6b800" },
+          700: { value: "#cc9f00" },
+          800: { value: "#997700" },
+          900: { value: "#665000" },
         },
         lime: {
           50: { value: "#F9FBE7" },
@@ -407,8 +407,8 @@ const customConfig = defineConfig({
           },
           muted: {
             value: {
-              base: "{colors.p.200}",
-              _dark: "{colors.p.800}",
+              base: "{colors.p.400}",
+              _dark: "{colors.p.400}",
             },
           },
           subtle: {
@@ -724,7 +724,7 @@ const customConfig = defineConfig({
             },
           },
           contrast: {
-            value: { base: "{colors.maroon.50}", _dark: "{colors.maroon.900}" },
+            value: { base: "{colors.maroon.50}", _dark: "{colors.maroon.100}" },
           },
           fg: {
             value: {
@@ -760,7 +760,7 @@ const customConfig = defineConfig({
             },
           },
           contrast: {
-            value: { base: "{colors.red.50}", _dark: "{colors.red.900}" },
+            value: { base: "{colors.red.50}", _dark: "{colors.red.100}" },
           },
           fg: {
             value: {
@@ -771,7 +771,7 @@ const customConfig = defineConfig({
           muted: {
             value: {
               base: "{colors.red.400} !important",
-              _dark: "{colors.red.400}",
+              _dark: "{colors.red.400} !important",
             },
           },
           subtle: {
@@ -796,7 +796,7 @@ const customConfig = defineConfig({
             },
           },
           contrast: {
-            value: { base: "{colors.salmon.50}", _dark: "{colors.salmon.900}" },
+            value: { base: "{colors.salmon.50}", _dark: "{colors.salmon.100}" },
           },
           fg: {
             value: {
@@ -834,7 +834,7 @@ const customConfig = defineConfig({
           contrast: {
             value: {
               base: "{colors.flamingoPink.50}",
-              _dark: "{colors.flamingoPink.900}",
+              _dark: "{colors.flamingoPink.100}",
             },
           },
           fg: {
@@ -873,7 +873,7 @@ const customConfig = defineConfig({
           contrast: {
             value: {
               base: "{colors.bubblegumPink.50}",
-              _dark: "{colors.bubblegumPink.900}",
+              _dark: "{colors.bubblegumPink.100}",
             },
           },
           fg: {
@@ -951,7 +951,7 @@ const customConfig = defineConfig({
           fg: {
             value: {
               base: "{colors.orange.500} !important",
-              _dark: "{colors.orange.400}",
+              _dark: "{colors.orange.400} !important",
             },
           },
           muted: {
@@ -1025,7 +1025,7 @@ const customConfig = defineConfig({
           },
           fg: {
             value: {
-              base: "{colors.yellow.600} !important",
+              base: "{colors.yellow.700} !important",
               _dark: "{colors.yellow.500} !important",
             },
           },
@@ -1057,18 +1057,18 @@ const customConfig = defineConfig({
             },
           },
           contrast: {
-            value: { base: "{colors.lime.50}", _dark: "{colors.lime.900}" },
+            value: { base: "{colors.lime.900}", _dark: "{colors.dark}" },
           },
           fg: {
             value: {
-              base: "{colors.lime.500}",
-              _dark: "{colors.lime.400}",
+              base: "{colors.lime.700}",
+              _dark: "{colors.lime.500}",
             },
           },
           muted: {
             value: {
-              base: "{colors.lime.200}",
-              _dark: "{colors.lime.800}",
+              base: "{colors.lime.600}",
+              _dark: "{colors.lime.600}",
             },
           },
           subtle: {

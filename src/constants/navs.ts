@@ -2,8 +2,8 @@ import { Interface__NavItem } from "@/constants/interfaces";
 import {
   IconDatabase,
   IconDeviceAnalytics,
-  IconDeviceDesktop,
   IconLanguage,
+  IconPalette,
   IconReceipt,
   IconSettings,
   IconShieldHalf,
@@ -68,9 +68,9 @@ export const OTHER_NAVS: Interface__NavItem[] = [
                 backPath: `/settings`,
               },
               {
-                icon: IconDeviceDesktop,
-                labelKey: "settings_navs.main.display",
-                path: `/settings/display`,
+                icon: IconPalette,
+                labelKey: "settings_navs.main.personalization",
+                path: `/settings/personalization`,
                 backPath: `/settings`,
               },
               {
