@@ -215,6 +215,29 @@ const MobileLayout = (props: any) => {
 
                 return (
                   <Fragment key={nav.path}>
+                    {!nav.subMenus && (
+                      <MobileNavLink
+                        key={nav.path}
+                        to={nav.subMenus ? "" : nav.path}
+                        color={isMainNavActive ? "" : "fg.muted"}
+                        flex={1}
+                      >
+                        <Icon boxSize={6}>
+                          <nav.icon stroke={1.5} />
+                        </Icon>
+
+                        <P
+                          textAlign={"center"}
+                          lineClamp={1}
+                          fontSize={MOBILE_NAV_LABEL_FONT_SIZE}
+                        >
+                          {pluckString(l, nav.labelKey)}
+                        </P>
+
+                        {isMainNavActive && <BottomIndicator />}
+                      </MobileNavLink>
+                    )}
+
                     {nav.subMenus && (
                       <>
                         <MenuRoot
@@ -268,15 +291,21 @@ const MobileLayout = (props: any) => {
                                       pathname === menu.path;
 
                                     return (
-                                      <NavLink key={menu.path} to={menu.path}>
-                                        <MenuItem value={menu.path} h={"44px"}>
+                                      <NavLink
+                                        key={menu.path}
+                                        w={"full"}
+                                        to={menu.path}
+                                      >
+                                        <MenuItem
+                                          value={menu.path}
+                                          h={"44px"}
+                                          px={3}
+                                        >
+                                          {isSubNavsActive && <LeftIndicator />}
+
                                           <P lineClamp={1}>
                                             {pluckString(l, menu.labelKey)}
                                           </P>
-
-                                          {isSubNavsActive && (
-                                            <DotIndicator ml={"auto"} mr={1} />
-                                          )}
                                         </MenuItem>
                                       </NavLink>
                                     );
@@ -287,29 +316,6 @@ const MobileLayout = (props: any) => {
                           </MenuContent>
                         </MenuRoot>
                       </>
-                    )}
-
-                    {!nav.subMenus && (
-                      <MobileNavLink
-                        key={nav.path}
-                        to={nav.subMenus ? "" : nav.path}
-                        color={isMainNavActive ? "" : "fg.muted"}
-                        flex={1}
-                      >
-                        <Icon boxSize={6}>
-                          <nav.icon stroke={1.5} />
-                        </Icon>
-
-                        <P
-                          textAlign={"center"}
-                          lineClamp={1}
-                          fontSize={MOBILE_NAV_LABEL_FONT_SIZE}
-                        >
-                          {pluckString(l, nav.labelKey)}
-                        </P>
-
-                        {isMainNavActive && <BottomIndicator />}
-                      </MobileNavLink>
                     )}
                   </Fragment>
                 );
@@ -604,6 +610,136 @@ const DesktopLayout = (props: any) => {
 
                     return (
                       <Fragment key={nav.path}>
+                        {!hasSubMenus && (
+                          <NavLink key={nav.path} to={nav.path} w={"full"}>
+                            <NavTooltip content={pluckString(l, nav.labelKey)}>
+                              <Btn
+                                iconButton={navsExpanded ? false : true}
+                                clicky={false}
+                                gap={4}
+                                px={2}
+                                justifyContent={"start"}
+                                variant={"ghost"}
+                                colorPalette={NAVS_COLOR_PALETTE}
+                              >
+                                {isMainNavsActive && nav.icon && (
+                                  <LeftIndicator />
+                                )}
+
+                                {nav.icon && (
+                                  <Icon boxSize={5}>
+                                    <nav.icon stroke={1.5} />
+                                  </Icon>
+                                )}
+
+                                {!nav.icon && (
+                                  <Icon
+                                    boxSize={2}
+                                    color={
+                                      isMainNavsActive
+                                        ? themeConfig.primaryColor
+                                        : "d2"
+                                    }
+                                  >
+                                    <IconCircleFilled stroke={1.5} />
+                                  </Icon>
+                                )}
+
+                                {navsExpanded && (
+                                  <P lineClamp={1} textAlign={"left"}>
+                                    {pluckString(l, nav.labelKey)}
+                                  </P>
+                                )}
+                              </Btn>
+                            </NavTooltip>
+                          </NavLink>
+                        )}
+
+                        {hasSubMenus && !navsExpanded && (
+                          <MenuRoot
+                            positioning={{
+                              placement: "right-start",
+                              offset: {
+                                mainAxis: DESKTOP_POPOVER_MAIN_AXIS,
+                              },
+                            }}
+                          >
+                            <NavTooltip content={pluckString(l, nav.labelKey)}>
+                              <CContainer>
+                                <MenuTrigger asChild>
+                                  <Btn
+                                    iconButton
+                                    clicky={false}
+                                    px={2}
+                                    justifyContent={"start"}
+                                    variant={"ghost"}
+                                    colorPalette={NAVS_COLOR_PALETTE}
+                                    pos={"relative"}
+                                  >
+                                    {isMainNavsActive && <LeftIndicator />}
+
+                                    <Icon boxSize={5}>
+                                      <nav.icon stroke={1.5} />
+                                    </Icon>
+                                  </Btn>
+                                </MenuTrigger>
+                              </CContainer>
+                            </NavTooltip>
+
+                            <MenuContent>
+                              {nav.subMenus?.map((menuItem, menuItemIdx) => {
+                                return (
+                                  <MenuItemGroup
+                                    key={menuItemIdx}
+                                    gap={1}
+                                    title={
+                                      menuItem.groupLabelKey
+                                        ? pluckString(l, menuItem.groupLabelKey)
+                                        : ""
+                                    }
+                                  >
+                                    {menuItem.list.map((menu) => {
+                                      const isSubNavsActive =
+                                        pathname === menu.path;
+
+                                      return (
+                                        <NavLink
+                                          key={menu.path}
+                                          to={menu.path}
+                                          w={"full"}
+                                        >
+                                          <Tooltip
+                                            content={pluckString(
+                                              l,
+                                              menu.labelKey
+                                            )}
+                                            positioning={{
+                                              placement: "right",
+                                              offset: {
+                                                mainAxis: 12,
+                                              },
+                                            }}
+                                          >
+                                            <MenuItem value={menu.path} px={3}>
+                                              {isSubNavsActive && (
+                                                <LeftIndicator />
+                                              )}
+
+                                              <P lineClamp={1}>
+                                                {pluckString(l, menu.labelKey)}
+                                              </P>
+                                            </MenuItem>
+                                          </Tooltip>
+                                        </NavLink>
+                                      );
+                                    })}
+                                  </MenuItemGroup>
+                                );
+                              })}
+                            </MenuContent>
+                          </MenuRoot>
+                        )}
+
                         {hasSubMenus && navsExpanded && (
                           <AccordionRoot multiple>
                             <AccordionItem
@@ -744,139 +880,6 @@ const DesktopLayout = (props: any) => {
                             </AccordionItem>
                           </AccordionRoot>
                         )}
-
-                        {hasSubMenus && !navsExpanded && (
-                          <MenuRoot
-                            positioning={{
-                              placement: "right-start",
-                              offset: {
-                                mainAxis: DESKTOP_POPOVER_MAIN_AXIS,
-                              },
-                            }}
-                          >
-                            <NavTooltip content={pluckString(l, nav.labelKey)}>
-                              <CContainer>
-                                <MenuTrigger asChild>
-                                  <Btn
-                                    iconButton
-                                    clicky={false}
-                                    px={2}
-                                    justifyContent={"start"}
-                                    variant={"ghost"}
-                                    colorPalette={NAVS_COLOR_PALETTE}
-                                    pos={"relative"}
-                                  >
-                                    {isMainNavsActive && <LeftIndicator />}
-
-                                    <Icon boxSize={5}>
-                                      <nav.icon stroke={1.5} />
-                                    </Icon>
-                                  </Btn>
-                                </MenuTrigger>
-                              </CContainer>
-                            </NavTooltip>
-
-                            <MenuContent>
-                              {nav.subMenus?.map((menuItem, menuItemIdx) => {
-                                return (
-                                  <MenuItemGroup
-                                    key={menuItemIdx}
-                                    gap={1}
-                                    title={
-                                      menuItem.groupLabelKey
-                                        ? pluckString(l, menuItem.groupLabelKey)
-                                        : ""
-                                    }
-                                  >
-                                    {menuItem.list.map((menu) => {
-                                      const isSubNavsActive =
-                                        pathname === menu.path;
-
-                                      return (
-                                        <NavLink
-                                          key={menu.path}
-                                          to={menu.path}
-                                          w={"full"}
-                                        >
-                                          <Tooltip
-                                            content={pluckString(
-                                              l,
-                                              menu.labelKey
-                                            )}
-                                            positioning={{
-                                              placement: "right",
-                                              offset: {
-                                                mainAxis: 12,
-                                              },
-                                            }}
-                                          >
-                                            <MenuItem value={menu.path}>
-                                              <P lineClamp={1}>
-                                                {pluckString(l, menu.labelKey)}
-                                              </P>
-
-                                              {isSubNavsActive && (
-                                                <DotIndicator
-                                                  ml={"auto"}
-                                                  mr={1}
-                                                />
-                                              )}
-                                            </MenuItem>
-                                          </Tooltip>
-                                        </NavLink>
-                                      );
-                                    })}
-                                  </MenuItemGroup>
-                                );
-                              })}
-                            </MenuContent>
-                          </MenuRoot>
-                        )}
-
-                        {!hasSubMenus && (
-                          <NavLink key={nav.path} to={nav.path} w={"full"}>
-                            <NavTooltip content={pluckString(l, nav.labelKey)}>
-                              <Btn
-                                iconButton={navsExpanded ? false : true}
-                                clicky={false}
-                                gap={4}
-                                px={2}
-                                justifyContent={"start"}
-                                variant={"ghost"}
-                                colorPalette={NAVS_COLOR_PALETTE}
-                              >
-                                {isMainNavsActive && nav.icon && (
-                                  <LeftIndicator />
-                                )}
-
-                                {nav.icon && (
-                                  <Icon boxSize={5}>
-                                    <nav.icon stroke={1.5} />
-                                  </Icon>
-                                )}
-
-                                {!nav.icon && (
-                                  <Icon
-                                    boxSize={2}
-                                    color={
-                                      isMainNavsActive
-                                        ? themeConfig.primaryColor
-                                        : "d2"
-                                    }
-                                  >
-                                    <IconCircleFilled stroke={1.5} />
-                                  </Icon>
-                                )}
-
-                                {navsExpanded && (
-                                  <P lineClamp={1} textAlign={"left"}>
-                                    {pluckString(l, nav.labelKey)}
-                                  </P>
-                                )}
-                              </Btn>
-                            </NavTooltip>
-                          </NavLink>
-                        )}
                       </Fragment>
                     );
                   })}
@@ -933,13 +936,19 @@ const DesktopLayout = (props: any) => {
                 transition={"200ms"}
                 pos={"relative"}
               >
-                {/* {pathname.includes("/profile") && <LeftIndicator />} */}
+                {!user?.photoProfile?.filePath && (
+                  <Icon boxSize={5}>
+                    <IconUser stroke={1.5} />
+                  </Icon>
+                )}
 
-                <Avatar
-                  src={user?.photoProfile?.fileUrl}
-                  name={user?.name}
-                  size={navsExpanded ? "md" : "2xs"}
-                />
+                {user?.photoProfile?.filePath && (
+                  <Avatar
+                    src={imgUrl(user?.photoProfile?.filePath)}
+                    name={user?.name}
+                    size={navsExpanded ? "md" : "2xs"}
+                  />
+                )}
 
                 {navsExpanded && (
                   <>
