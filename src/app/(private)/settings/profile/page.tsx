@@ -366,14 +366,9 @@ const ActivityLog = () => {
 
   // States
   const activityFormatter: Record<
-    Enum__ActivityAction,
+    string,
     (meta?: Record<string, any>) => string
   > = {
-    [Enum__ActivityAction.SIGNIN]: (meta) =>
-      `Signed in${meta?.ip ? ` from IP ${meta.ip}` : ""}`,
-
-    [Enum__ActivityAction.SIGNOUT]: () => `Signed out`,
-
     [Enum__ActivityAction.CREATE_WORKSPACE]: (meta) =>
       `Created workspace "${meta?.workspaceName ?? "Unknown"}"`,
 

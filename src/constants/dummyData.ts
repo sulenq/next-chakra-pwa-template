@@ -98,10 +98,10 @@ export const dummyActivityLogs = [
   {
     id: "1",
     userId: "101",
-    action: "SIGNIN",
-    metadata: { ip: "192.168.1.1" },
-    createdAt: "2025-11-14T01:10:00.000Z",
-    updatedAt: "2025-11-14T01:10:00.000Z",
+    action: "DELETE_LAYER",
+    metadata: { layerName: "Boundary Layer" },
+    createdAt: "2025-11-12T18:45:00.000Z",
+    updatedAt: "2025-11-12T18:45:00.000Z",
     deletedAt: null,
   },
   {
