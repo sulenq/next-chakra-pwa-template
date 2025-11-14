@@ -25,9 +25,15 @@ import { ItemContainer } from "@/components/widget/ItemContainer";
 import { ItemHeaderContainer } from "@/components/widget/ItemHeaderContainer";
 import ItemHeaderTitle from "@/components/widget/ItemHeaderTitle";
 import ResetPasswordDisclosureTrigger from "@/components/widget/ResetPasswordDisclosure";
-import { dummySigninHistory, dummyUser } from "@/constants/dummyData";
 import {
-  Interface__SigninHistory,
+  dummyActivityLogs,
+  dummySigninLogs,
+  dummyUser,
+} from "@/constants/dummyData";
+import { Enum__ActivityAction } from "@/constants/enums";
+import {
+  Interface__ActivityLog,
+  Interface__SigninLog,
   Interface__User,
 } from "@/constants/interfaces";
 import { SVGS_PATH } from "@/constants/paths";
@@ -40,7 +46,8 @@ import { isEmptyArray } from "@/utils/array";
 import { disclosureId } from "@/utils/disclosure";
 import { formatDate } from "@/utils/formatter";
 import { imgUrl } from "@/utils/url";
-import { FieldRoot, HStack, useDisclosure } from "@chakra-ui/react";
+import { FieldRoot, HStack, Icon, useDisclosure } from "@chakra-ui/react";
+import { IconActivity, IconLogin2, IconUser } from "@tabler/icons-react";
 import { useFormik } from "formik";
 import { useEffect } from "react";
 import * as yup from "yup";
@@ -175,7 +182,12 @@ const PersonalInformation = (props: Props__PersonalInformation) => {
   return (
     <ItemContainer>
       <ItemHeaderContainer>
-        <ItemHeaderTitle>{l.personal_information}</ItemHeaderTitle>
+        <HStack>
+          <Icon boxSize={5}>
+            <IconUser stroke={1.5} />
+          </Icon>
+          <ItemHeaderTitle>{l.personal_information}</ItemHeaderTitle>
+        </HStack>
       </ItemHeaderContainer>
 
       <CContainer p={4}>
@@ -270,15 +282,15 @@ const PersonalInformation = (props: Props__PersonalInformation) => {
   );
 };
 
-const SigninHistory = () => {
+const SigninLog = () => {
   // Contexts
   const { l } = useLang();
 
   // States
   const { error, initialLoading, data, onRetry } = useDataState<
-    Interface__SigninHistory[]
+    Interface__SigninLog[]
   >({
-    initialData: dummySigninHistory,
+    initialData: dummySigninLogs,
     url: ``,
     dataResource: false,
   });
@@ -289,10 +301,10 @@ const SigninHistory = () => {
     notFound: <FeedbackNotFound />,
     loaded: (
       <>
-        {data?.map((history, idx) => {
+        {data?.map((log, idx) => {
           return (
             <HStack
-              key={`${history.id}-${idx}`}
+              key={`${log.id}-${idx}`}
               justify={"space-between"}
               borderTop={idx === 0 ? "" : "1px solid"}
               borderColor={"border.subtle"}
@@ -300,16 +312,17 @@ const SigninHistory = () => {
             >
               <CContainer>
                 <P>
-                  {formatDate(history?.createdAt, {
+                  {formatDate(log?.createdAt, {
                     variant: "dayShortMonthYear",
+                    withTime: true,
                   })}
                 </P>
 
-                <P color={"fg.subtle"}>{history?.ip}</P>
+                <P color={"fg.subtle"}>{log?.ip}</P>
               </CContainer>
 
               <P color={"fg.subtle"} textAlign={"right"}>
-                {history?.userAgent}
+                {log?.userAgent}
               </P>
             </HStack>
           );
@@ -321,7 +334,12 @@ const SigninHistory = () => {
   return (
     <ItemContainer>
       <ItemHeaderContainer>
-        <ItemHeaderTitle>{l.signin_history}</ItemHeaderTitle>
+        <HStack>
+          <Icon boxSize={5}>
+            <IconLogin2 stroke={1.5} />
+          </Icon>
+          <ItemHeaderTitle>{l.signin_history}</ItemHeaderTitle>
+        </HStack>
       </ItemHeaderContainer>
 
       <CContainer minH={"300px"}>
@@ -342,17 +360,110 @@ const SigninHistory = () => {
   );
 };
 
-const Activity = () => {
+const ActivityLog = () => {
   // Contexts
   const { l } = useLang();
+
+  // States
+  const activityFormatter: Record<
+    Enum__ActivityAction,
+    (meta?: Record<string, any>) => string
+  > = {
+    [Enum__ActivityAction.SIGNIN]: (meta) =>
+      `Signed in${meta?.ip ? ` from IP ${meta.ip}` : ""}`,
+
+    [Enum__ActivityAction.SIGNOUT]: () => `Signed out`,
+
+    [Enum__ActivityAction.CREATE_WORKSPACE]: (meta) =>
+      `Created workspace "${meta?.workspaceName ?? "Unknown"}"`,
+
+    [Enum__ActivityAction.UPDATE_WORKSPACE]: (meta) =>
+      `Updated workspace "${meta?.workspaceName ?? "Unknown"}"`,
+
+    [Enum__ActivityAction.DELETE_WORKSPACE]: (meta) =>
+      `Deleted workspace "${meta?.workspaceName ?? "Unknown"}"`,
+
+    [Enum__ActivityAction.CREATE_LAYER]: (meta) =>
+      `Created layer "${meta?.layerName ?? "Unknown"}"`,
+
+    [Enum__ActivityAction.UPDATE_LAYER]: (meta) =>
+      `Updated layer "${meta?.layerName ?? "Unknown"}"`,
+
+    [Enum__ActivityAction.DELETE_LAYER]: (meta) =>
+      `Deleted layer "${meta?.layerName ?? "Unknown"}`,
+  };
+  const formatActivityLog = (log: Interface__ActivityLog): string => {
+    return activityFormatter[log.action as Enum__ActivityAction](log.metadata);
+  };
+  const { error, initialLoading, data, onRetry } = useDataState<
+    Interface__ActivityLog[]
+  >({
+    initialData: dummyActivityLogs,
+    url: ``,
+    dataResource: false,
+  });
+  const render = {
+    loading: <Skeleton flex={1} />,
+    error: <FeedbackRetry onRetry={onRetry} />,
+    empty: <FeedbackNoData />,
+    notFound: <FeedbackNotFound />,
+    loaded: (
+      <>
+        {data?.map((log, idx) => {
+          return (
+            <HStack
+              key={`${log.id}-${idx}`}
+              justify={"space-between"}
+              borderTop={idx === 0 ? "" : "1px solid"}
+              borderColor={"border.subtle"}
+              p={4}
+            >
+              <CContainer>
+                <P>{formatActivityLog(log)}</P>
+
+                <P color={"fg.subtle"}>
+                  {formatDate(log?.createdAt, {
+                    variant: "dayShortMonthYear",
+                    withTime: true,
+                  })}
+                </P>
+              </CContainer>
+
+              <P color={"fg.subtle"} textAlign={"right"}>
+                {/* {log?.userAgent} */}
+              </P>
+            </HStack>
+          );
+        })}
+      </>
+    ),
+  };
 
   return (
     <ItemContainer>
       <ItemHeaderContainer>
-        <ItemHeaderTitle>{l.activity}</ItemHeaderTitle>
+        <HStack>
+          <Icon boxSize={5}>
+            <IconActivity stroke={1.5} />
+          </Icon>
+          <ItemHeaderTitle>{l.activity_history}</ItemHeaderTitle>
+        </HStack>
       </ItemHeaderContainer>
 
-      <CContainer p={4} minH={"300px"}></CContainer>
+      <CContainer minH={"300px"}>
+        {initialLoading && render.loading}
+        {!initialLoading && (
+          <>
+            {error && render.error}
+            {!error && (
+              <>
+                {data && render.loaded}
+                {(!data || isEmptyArray(data)) && render.empty}
+              </>
+            )}
+          </>
+        )}
+      </CContainer>
     </ItemContainer>
   );
 };
@@ -374,9 +485,9 @@ export default function Page() {
       <CContainer flex={1} gap={4} pb={4}>
         <PersonalInformation initialData={data} />
 
-        <SigninHistory />
+        <SigninLog />
 
-        <Activity />
+        <ActivityLog />
       </CContainer>
     ),
   };

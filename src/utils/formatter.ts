@@ -234,7 +234,7 @@ export const formatDBTableName = (str: string): string => {
   return str.toLowerCase().replace(/\s+/g, "_");
 };
 
-export function formatTime(
+export const formatTime = (
   time?: string | null,
   options: {
     showSeconds?: boolean;
@@ -242,7 +242,7 @@ export function formatTime(
     timezoneKey?: string;
     withSuffix?: boolean;
   } = {}
-): string {
+): string => {
   if (!time) return "";
 
   const timeFormat =
@@ -284,7 +284,7 @@ export function formatTime(
   }
 
   return formattedTime;
-}
+};
 
 export const formatDuration = (
   seconds: number | undefined,

@@ -5,6 +5,7 @@ const translations = {
   "activate": "Activate",
   "active": "Active",
   "activity": "Activity",
+  "activity_history": "Activity History",
   "adaptive_dark_mode": "Adaptive dark mode",
   "add": "Add",
   "added": "Added",

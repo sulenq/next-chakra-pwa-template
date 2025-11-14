@@ -5,6 +5,7 @@ const translations = {
   "activate": "Aktifkan",
   "active": "Aktif",
   "activity": "Aktivitas",
+  "activity_history": "Riwayat aktivitas",
   "adaptive_dark_mode": "Mode gelap adaptif",
   "add": "Tambah",
   "added": "Ditambahkan",

@@ -1,4 +1,5 @@
 import { BtnProps } from "@/components/ui/btn";
+import { Enum__ActivityAction } from "@/constants/enums";
 import {
   MenuItemProps,
   StackProps,
@@ -9,7 +10,13 @@ import { AxiosRequestConfig, AxiosResponse } from "axios";
 import { ReactNode } from "react";
 
 // Auth
-export interface Interface__SigninHistory extends Interface__CUD {
+export interface Interface__ActivityLog extends Interface__CUD {
+  id: string;
+  userId: string;
+  action: Enum__ActivityAction | string;
+  metadata?: Record<string, any>;
+}
+export interface Interface__SigninLog extends Interface__CUD {
   id: string;
   ip: string;
   userAgent: string;

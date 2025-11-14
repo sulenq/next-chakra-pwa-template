@@ -677,6 +677,10 @@ export const signin_history = {
   id: "Riwayat sign in",
   en: "Sign in History",
 };
+export const activity_history = {
+  id: "Riwayat aktivitas",
+  en: "Activity History",
+};
 export const activity = {
   id: "Aktivitas",
   en: "Activity",
