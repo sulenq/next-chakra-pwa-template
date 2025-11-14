@@ -22,7 +22,7 @@ import { Divider } from "../ui/divider";
 import { P } from "../ui/p";
 import { PasswordInput } from "../ui/password-input";
 import { StringInput } from "../ui/string-input";
-import ResetPasswordDisclosure from "./ResetPasswordDisclosure";
+import ResetPasswordDisclosureTrigger from "./ResetPasswordDisclosureTrigger";
 
 interface Props extends StackProps {}
 
@@ -229,11 +229,11 @@ const BasicAuthForm = (props: any) => {
         <HStack mt={4}>
           <Divider h={"1px"} w={"full"} />
 
-          <ResetPasswordDisclosure>
+          <ResetPasswordDisclosureTrigger>
             <Btn variant={"ghost"} color={themeConfig.primaryColor}>
               Reset Password
             </Btn>
-          </ResetPasswordDisclosure>
+          </ResetPasswordDisclosureTrigger>
 
           <Divider h={"1px"} w={"full"} />
         </HStack>

@@ -24,6 +24,7 @@ import { ImgViewer } from "@/components/widget/ImgViewer";
 import { ItemContainer } from "@/components/widget/ItemContainer";
 import { ItemHeaderContainer } from "@/components/widget/ItemHeaderContainer";
 import ItemHeaderTitle from "@/components/widget/ItemHeaderTitle";
+import ResetPasswordDisclosureTrigger from "@/components/widget/ResetPasswordDisclosure";
 import { dummySigninHistory, dummyUser } from "@/constants/dummyData";
 import {
   Interface__SigninHistory,
@@ -250,7 +251,11 @@ const PersonalInformation = (props: Props__PersonalInformation) => {
             </Field>
           </FieldRoot>
 
-          <HStack justify={"flex-end"} mt={4}>
+          <HStack justify={"space-between"} mt={8}>
+            <ResetPasswordDisclosureTrigger>
+              <Btn variant={"outline"}>Reset password</Btn>
+            </ResetPasswordDisclosureTrigger>
+
             <Btn
               type="submit"
               form={"personal_info_form"}

@@ -335,7 +335,7 @@ const Step3 = (props: any) => {
   );
 };
 
-const ResetPasswordDisclosure = (props: any) => {
+const ResetPasswordDisclosureTrigger = (props: any) => {
   // Props
   const { children, ...restProps } = props;
 
@@ -376,4 +376,4 @@ const ResetPasswordDisclosure = (props: any) => {
   );
 };
 
-export default ResetPasswordDisclosure;
+export default ResetPasswordDisclosureTrigger;
