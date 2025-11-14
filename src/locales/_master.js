@@ -165,6 +165,10 @@ export const update = {
   id: "Ubah",
   en: "Update",
 };
+export const updating = {
+  id: "Memperbarui",
+  en: "Updating",
+};
 export const updated = {
   id: "Diubah",
   en: "Updated",
@@ -188,6 +192,14 @@ export const submit = {
 export const save = {
   id: "Simpan",
   en: "Save",
+};
+export const saving = {
+  id: "Menyimpan",
+  en: "Saving",
+};
+export const saved = {
+  id: "Disimpan",
+  en: "Saved",
 };
 export const reset = {
   id: "Reset",
@@ -663,7 +675,7 @@ export const is_allowed = {
 };
 export const signin_history = {
   id: "Riwayat sign in",
-  en: "Signin History",
+  en: "Sign in History",
 };
 export const activity = {
   id: "Aktivitas",

@@ -1,6 +1,6 @@
 export const dummyUser = {
   id: "1",
-  photoProfile: [
+  avatar: [
     {
       id: "10",
       fileName: "profile_rani_kartika.jpg",
@@ -49,3 +49,87 @@ export const dummyUser = {
   createdAt: "2023-03-10T08:42:00Z",
   updatedAt: "2025-11-12T04:20:00Z",
 };
+
+export const dummySigninHistory = [
+  {
+    id: "sh_001",
+    ip: "192.168.1.10",
+    userAgent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64)",
+    createdAt: "2025-11-14T03:20:00.000Z",
+    updatedAt: "2025-11-14T03:20:00.000Z",
+    deletedAt: null,
+  },
+  {
+    id: "sh_002",
+    ip: "10.0.0.5",
+    userAgent: "Mozilla/5.0 (Macintosh; Intel Mac OS X 14_5)",
+    createdAt: "2025-11-13T10:45:00.000Z",
+    updatedAt: "2025-11-13T10:45:00.000Z",
+    deletedAt: null,
+  },
+  {
+    id: "sh_003",
+    ip: "36.72.11.88",
+    userAgent: "Mozilla/5.0 (iPhone; CPU iPhone OS 17_1)",
+    createdAt: "2025-11-10T21:12:00.000Z",
+    updatedAt: "2025-11-11T09:00:00.000Z",
+    deletedAt: null,
+  },
+  {
+    id: "sh_004",
+    ip: "172.16.0.22",
+    userAgent: "Mozilla/5.0 (Linux; Android 14)",
+    createdAt: "2025-11-09T14:30:00.000Z",
+    updatedAt: "2025-11-09T14:30:00.000Z",
+    deletedAt: null,
+  },
+  {
+    id: "sh_005",
+    ip: "103.110.7.51",
+    userAgent:
+      "Mozilla/5.0 (Windows NT 10.0; rv:144.0) Gecko/20100101 Firefox/144.0",
+    createdAt: "2025-11-08T08:12:00.000Z",
+    updatedAt: "2025-11-08T08:12:00.000Z",
+    deletedAt: null,
+  },
+  {
+    id: "sh_006",
+    ip: "182.1.22.11",
+    userAgent: "Mozilla/5.0 (iPad; CPU OS 16_4)",
+    createdAt: "2025-11-08T07:55:00.000Z",
+    updatedAt: "2025-11-08T07:55:00.000Z",
+    deletedAt: "2025-11-09T06:00:00.000Z",
+  },
+  {
+    id: "sh_007",
+    ip: "203.130.201.9",
+    userAgent: "Mozilla/5.0 (Macintosh; Intel Mac OS X 14_1)",
+    createdAt: "2025-11-07T18:44:00.000Z",
+    updatedAt: "2025-11-07T18:44:00.000Z",
+    deletedAt: null,
+  },
+  {
+    id: "sh_008",
+    ip: "114.5.33.90",
+    userAgent: "Mozilla/5.0 (Linux; Android 13)",
+    createdAt: "2025-11-06T13:20:00.000Z",
+    updatedAt: "2025-11-06T13:20:00.000Z",
+    deletedAt: null,
+  },
+  {
+    id: "sh_009",
+    ip: "36.80.11.52",
+    userAgent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64)",
+    createdAt: "2025-11-05T11:00:00.000Z",
+    updatedAt: "2025-11-05T11:00:00.000Z",
+    deletedAt: null,
+  },
+  {
+    id: "sh_010",
+    ip: "180.251.22.44",
+    userAgent: "Mozilla/5.0 (iPhone; CPU iPhone OS 15_7)",
+    createdAt: "2025-11-04T09:30:00.000Z",
+    updatedAt: "2025-11-04T09:30:00.000Z",
+    deletedAt: null,
+  },
+];

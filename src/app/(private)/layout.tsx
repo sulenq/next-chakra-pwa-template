@@ -1117,6 +1117,7 @@ const AppLayout = (props: Props__Layout) => {
     // Redirect only when check is done and no verified token
     if (checked && !verifiedAuthToken) {
       router.replace("/");
+      console.debug("router.replace ran");
     }
   }, [checked, verifiedAuthToken]);
 

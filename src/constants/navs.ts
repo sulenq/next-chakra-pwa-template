@@ -1,13 +1,17 @@
 import { Interface__NavItem } from "@/constants/interfaces";
 import {
   IconCurrencyEthereum,
+  IconDatabase,
   IconDeviceAnalytics,
+  IconExclamationCircle,
   IconKey,
   IconLanguage,
   IconPalette,
   IconReceipt,
+  IconScale,
   IconSettings,
   IconShieldHalf,
+  IconShieldLock,
   IconUser,
   IconUserCog,
 } from "@tabler/icons-react";
@@ -56,7 +60,7 @@ export const OTHER_PRIVATE_NAVS: Interface__NavItem[] = [
     groupLabelKey: "other",
     list: [
       {
-        icon: IconSettings,
+        icon: IconDatabase,
         labelKey: "navs.master_data",
         path: `/master-data`,
         subMenus: [
@@ -120,6 +124,29 @@ export const OTHER_PRIVATE_NAVS: Interface__NavItem[] = [
                 icon: IconShieldHalf,
                 labelKey: "settings_navs.main.permissions",
                 path: `/settings/permissions`,
+                backPath: `/settings`,
+              },
+            ],
+          },
+          {
+            groupLabelKey: "settings_navs.others.index",
+            list: [
+              {
+                icon: IconExclamationCircle,
+                labelKey: "settings_navs.others.report_problem",
+                path: `/settings/report-problem`,
+                backPath: `/settings`,
+              },
+              {
+                icon: IconScale,
+                labelKey: "settings_navs.others.terms_of_service",
+                path: `/settings/terms-of-service`,
+                backPath: `/settings`,
+              },
+              {
+                icon: IconShieldLock,
+                labelKey: "settings_navs.others.privacy_policy",
+                path: `/settings/privacy-policy`,
                 backPath: `/settings`,
               },
             ],

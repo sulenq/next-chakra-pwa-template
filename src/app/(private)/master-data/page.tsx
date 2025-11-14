@@ -24,7 +24,7 @@ const SettingsRoute = () => {
       <FeedbackState
         icon={<IconDatabase stroke={1.8} />}
         title={"Master Data"}
-        description={l.msg_settings_index_route}
+        description={l.msg_master_data_index_route}
       />
     </CContainer>
   );

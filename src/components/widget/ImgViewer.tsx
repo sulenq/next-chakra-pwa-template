@@ -14,7 +14,7 @@ import { Icon, Image, StackProps, useDisclosure } from "@chakra-ui/react";
 import { IconArrowUpRight } from "@tabler/icons-react";
 
 interface Props extends StackProps {
-  id: string;
+  id?: string;
   src?: string;
   fallbackSrc?: string;
   disabled?: boolean;
@@ -36,7 +36,7 @@ export const ImgViewer = (props: Props) => {
 
   // Hooks
   const { open, onOpen, onClose } = useDisclosure();
-  useBackOnClose(disclosureId(id), open, onOpen, onClose);
+  useBackOnClose(disclosureId(id || `${src}`), open, onOpen, onClose);
 
   return (
     <>

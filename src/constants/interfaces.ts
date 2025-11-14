@@ -9,9 +9,14 @@ import { AxiosRequestConfig, AxiosResponse } from "axios";
 import { ReactNode } from "react";
 
 // Auth
+export interface Interface__SigninHistory extends Interface__CUD {
+  id: string;
+  ip: string;
+  userAgent: string;
+}
 export interface Interface__User extends Interface__CUD {
   id: string;
-  photoProfile: Interface__StorageFile[];
+  avatar: Interface__StorageFile[];
   name: string;
   email: string;
   role: Interface__Role;
@@ -125,9 +130,9 @@ export interface Interface__Req<T = any> {
 
 // CUD
 export interface Interface__CUD {
-  created_at?: string;
-  updated_at?: string | null;
-  deleted_at?: string | null;
+  createdAt?: string;
+  updatedAt?: string | null;
+  deletedAt?: string | null;
 }
 
 // Storage
