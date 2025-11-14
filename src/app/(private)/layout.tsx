@@ -1057,11 +1057,11 @@ const DesktopLayout = (props: any) => {
   );
 };
 
-const AppLayout = (props: Props__Layout) => {
+export default function Layout(props: Props__Layout) {
   // Props
   const { ...restProps } = props;
 
-  // Contexts
+  // Context / stores
   const authToken = getAuthToken();
   const verifiedAuthToken = useAuthMiddleware((s) => s.verifiedAuthToken);
   const setRole = useAuthMiddleware((s) => s.setRole);
@@ -1078,50 +1078,56 @@ const AppLayout = (props: Props__Layout) => {
     showErrorToast: false,
   });
 
-  // Track whether verification check is finished
-  const [checked, setChecked] = useState(false);
+  // Refs
+  const verificationStartedRef = useRef(false);
 
-  useEffect(() => {
-    // If there's no local token → redirect after first render
-    if (!authToken) {
-      setChecked(true);
-      return;
-    }
+  // If there's no token at all -> redirect immediately.
+  if (!authToken) {
+    router.replace("/");
+    return <VerifyingScreen />; // keep showing verifying screen while router navigates
+  }
 
-    // If token exists but not verified yet → verify
-    if (authToken && !verifiedAuthToken) {
+  // If token exists but not verified yet -> trigger verification (only once) and show verifying UI.
+  if (authToken && !verifiedAuthToken) {
+    if (!verificationStartedRef.current) {
+      verificationStartedRef.current = true;
+
+      // Kick off verification request. This is intentionally invoked directly
+      // instead of inside useEffect to follow the "direct logic" requirement.
       const config = { method: "GET", url: "/api/profile/get-user-profile" };
+
       req({
         config,
         onResolve: {
-          onSuccess: (r) => {
+          onSuccess: (r: any) => {
             const user = r.data.data;
             setStorage("__auth_token", authToken, "local", 259200000);
             setStorage("__user_data", JSON.stringify(user), "local", 259200000);
             setVerifiedAuthToken(authToken);
             setRole(user.role);
             setPermissions(user.role.permissions);
-            setChecked(true);
           },
           onError: () => {
-            setChecked(true);
+            // If verification fails, ensure we don't leave a stale store value.
+            setVerifiedAuthToken(null);
           },
         },
       });
-    } else {
-      setChecked(true);
     }
-  }, [authToken, verifiedAuthToken]);
 
-  useEffect(() => {
-    // Redirect only when check is done and no verified token
-    if (checked && !verifiedAuthToken) {
-      router.replace("/");
-    }
-  }, [checked, verifiedAuthToken]);
+    // While verification is in-flight, show the verifying screen.
+    return <VerifyingScreen />;
+  }
 
-  // Show verifying screen when still loading or not checked yet
-  if (!checked || loading) {
+  // If request hook reports loading -> show verifying screen as well.
+  if (loading) {
+    return <VerifyingScreen />;
+  }
+
+  // At this point: authToken exists and verifiedAuthToken is truthy -> render app.
+  // If verifiedAuthToken somehow still falsy (e.g. verification failed), redirect to root.
+  if (!verifiedAuthToken) {
+    router.replace("/");
     return <VerifyingScreen />;
   }
 
@@ -1130,6 +1136,4 @@ const AppLayout = (props: Props__Layout) => {
       {iss ? <MobileLayout {...props} /> : <DesktopLayout {...props} />}
     </CContainer>
   );
-};
-
-export default AppLayout;
+}
