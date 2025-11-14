@@ -379,7 +379,7 @@ const Rounded = () => {
       </ItemHeaderContainer>
 
       <CContainer gap={4} p={4}>
-        <SimpleGrid columns={[2, null, 4, null, 6]} gap={4}>
+        <SimpleGrid columns={[2, null, 4, null, null, 6]} gap={4}>
           {roundedList.map((item) => {
             const isActive = item.component === themeConfig.radii.component;
 
