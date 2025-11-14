@@ -22,7 +22,7 @@ import { Divider } from "../ui/divider";
 import { P } from "../ui/p";
 import { PasswordInput } from "../ui/password-input";
 import { StringInput } from "../ui/string-input";
-import ResetPasswordDisclosureTrigger from "./ResetPasswordDisclosureTrigger";
+import ResetPasswordDisclosureTrigger from "./ResetPasswordDisclosure";
 
 interface Props extends StackProps {}
 

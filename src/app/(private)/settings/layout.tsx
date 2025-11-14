@@ -26,7 +26,7 @@ import { useEffect, useRef, useState } from "react";
 
 const SETTINGS_NAVS = OTHER_PRIVATE_NAVS[0].list[1].subMenus!;
 
-const SettingsNavsList = (props: any) => {
+const NavsList = (props: any) => {
   // Props
   const { search } = props;
 
@@ -106,7 +106,7 @@ const SettingsNavsList = (props: any) => {
   );
 };
 
-const AppSettingsLayout = (props: Props__Layout) => {
+export default function Layout(props: Props__Layout) {
   // Props
   const { children } = props;
 
@@ -115,7 +115,7 @@ const AppSettingsLayout = (props: Props__Layout) => {
 
   // Refs
   const containerRef = useRef<HTMLDivElement>(null);
-  const containerDimensions = useContainerDimension(containerRef);
+  const containerDimension = useContainerDimension(containerRef);
 
   // Contexts
   const setContainerDimension = useSettingsRouteContainer(
@@ -124,7 +124,7 @@ const AppSettingsLayout = (props: Props__Layout) => {
 
   // States
   const [search, setSearch] = useState<string>("");
-  const isSmContainer = containerDimensions.width < 720;
+  const isSmContainer = containerDimension.width < 720;
   const isAtSettingsIndexRoute = pathname === `/settings`;
   const showSidebar =
     !isSmContainer || (isSmContainer && isAtSettingsIndexRoute);
@@ -132,70 +132,70 @@ const AppSettingsLayout = (props: Props__Layout) => {
     !isSmContainer || (isSmContainer && !isAtSettingsIndexRoute);
 
   useEffect(() => {
-    setContainerDimension(containerDimensions);
-  }, [containerDimensions]);
+    setContainerDimension(containerDimension);
+  }, [containerDimension]);
 
   return (
     <RouteContainer id="settings_route_container" ref={containerRef} p={0}>
-      <HStack
-        align={"stretch"}
-        flex={1}
-        gap={0}
-        overflowY={"auto"}
-        pl={showSidebar ? 4 : 0}
-        pr={showContent ? 0 : 4}
-      >
-        {/* Sidebar */}
-        {showSidebar && (
-          <CContainer
-            flexShrink={0}
-            w={isSmContainer ? "full" : "250px"}
-            h={"full"}
-            maxH={"full"}
-            gap={4}
-            pb={4}
-            overflowY={"auto"}
-          >
-            <ItemContainer scrollY p={"6px"} pr={0}>
-              <CContainer mb={[2, null, 1]}>
-                <SearchInput
-                  inputProps={{ variant: "flushed", rounded: 0 }}
-                  inputValue={search}
-                  onChange={(inputValue) => {
-                    setSearch(inputValue || "");
-                  }}
-                />
-              </CContainer>
+      {containerDimension.width > 0 && (
+        <HStack
+          align={"stretch"}
+          flex={1}
+          gap={0}
+          overflowY={"auto"}
+          pl={showSidebar ? 4 : 0}
+          pr={showContent ? 0 : 4}
+        >
+          {/* Sidebar */}
+          {showSidebar && (
+            <CContainer
+              flexShrink={0}
+              w={isSmContainer ? "full" : "250px"}
+              h={"full"}
+              maxH={"full"}
+              gap={4}
+              pb={4}
+              overflowY={"auto"}
+            >
+              <ItemContainer scrollY p={"6px"} pr={0}>
+                <CContainer mb={[2, null, 1]}>
+                  <SearchInput
+                    inputProps={{ variant: "flushed", rounded: 0 }}
+                    inputValue={search}
+                    onChange={(inputValue) => {
+                      setSearch(inputValue || "");
+                    }}
+                  />
+                </CContainer>
 
-              <SettingsNavsList search={search} />
-            </ItemContainer>
+                <NavsList search={search} />
+              </ItemContainer>
 
-            <HStack justify={"space-between"} mt={"auto"}>
-              <HelperText>{`v${APP.version}`}</HelperText>
+              <HStack justify={"space-between"} mt={"auto"}>
+                <HelperText>{`v${APP.version}`}</HelperText>
 
-              <HelperText>
-                {`Last updated: 
+                <HelperText>
+                  {`Last updated: 
                 ${formatAbsDate(APP.lastUpdated, {
                   variant: "numeric",
                 })}`}
-              </HelperText>
-            </HStack>
-          </CContainer>
-        )}
+                </HelperText>
+              </HStack>
+            </CContainer>
+          )}
 
-        {/* Content */}
-        {showContent && (
-          <CContainer
-            className={"scrollY"}
-            pl={4}
-            pr={`calc(16px - ${FIREFOX_SCROLL_Y_CLASS_PR_PREFIX})`}
-          >
-            {children}
-          </CContainer>
-        )}
-      </HStack>
+          {/* Content */}
+          {showContent && (
+            <CContainer
+              className={"scrollY"}
+              pl={4}
+              pr={`calc(16px - ${FIREFOX_SCROLL_Y_CLASS_PR_PREFIX})`}
+            >
+              {children}
+            </CContainer>
+          )}
+        </HStack>
+      )}
     </RouteContainer>
   );
-};
-
-export default AppSettingsLayout;
+}

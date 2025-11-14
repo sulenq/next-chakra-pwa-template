@@ -4,7 +4,7 @@ export function useContainerDimension(
   ref: React.RefObject<HTMLDivElement | null> | null,
   debounceDelay = 0
 ) {
-  const [size, setSize] = useState({ width: 0, height: 0 });
+  const [dimension, setDimension] = useState({ width: 0, height: 0 });
   const timeoutRef = useRef<NodeJS.Timeout | undefined>(undefined);
 
   useEffect(() => {
@@ -18,7 +18,7 @@ export function useContainerDimension(
 
       timeoutRef.current = setTimeout(() => {
         const { width, height } = entry.contentRect;
-        setSize({ width, height });
+        setDimension({ width, height });
       }, debounceDelay);
     };
 
@@ -31,5 +31,5 @@ export function useContainerDimension(
     };
   }, [ref, debounceDelay]);
 
-  return size;
+  return dimension;
 }
