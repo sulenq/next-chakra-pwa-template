@@ -161,7 +161,7 @@ export const LEGEND_COLOR_OPTIONS = [
 ];
 
 export const COLOR_PALETTES = [
-  { palette: "p", primaryHex: "#006aff" },
+  { palette: "p", primaryHex: "#7A7E89" },
 
   // Neutral & Dark Shades
   { palette: "gray", primaryHex: "#1B1B1B" },

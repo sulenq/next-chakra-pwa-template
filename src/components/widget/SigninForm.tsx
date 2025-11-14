@@ -66,7 +66,7 @@ const Signedin = (props: any) => {
 
   return (
     <VStack gap={4} m={"auto"} {...restProps}>
-      <Avatar size={"2xl"} src={user?.photoProfile?.[0]?.fileUrl} />
+      <Avatar size={"2xl"} src={user?.avatar?.[0]?.fileUrl} />
 
       <VStack gap={0}>
         <P fontWeight={"semibold"}>Admin</P>

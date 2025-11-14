@@ -376,15 +376,15 @@ const MobileLayout = (props: any) => {
         >
           <PopoverTrigger asChild>
             <MobileNavLink flex={1} color={"fg.muted"}>
-              {!user?.photoProfile?.filePath && (
+              {!user?.avatar?.filePath && (
                 <Icon boxSize={6}>
                   <IconUser stroke={1.5} />
                 </Icon>
               )}
 
-              {user?.photoProfile?.filePath && (
+              {user?.avatar?.filePath && (
                 <Avatar
-                  src={imgUrl(user?.photoProfile?.filePath)}
+                  src={imgUrl(user?.avatar?.filePath)}
                   name={user?.name}
                   size={"2xs"}
                 />
@@ -984,15 +984,15 @@ const DesktopLayout = (props: any) => {
                 transition={"200ms"}
                 pos={"relative"}
               >
-                {!user?.photoProfile?.filePath && (
+                {!user?.avatar?.filePath && (
                   <Icon boxSize={5}>
                     <IconUser stroke={1.5} />
                   </Icon>
                 )}
 
-                {user?.photoProfile?.filePath && (
+                {user?.avatar?.filePath && (
                   <Avatar
-                    src={imgUrl(user?.photoProfile?.filePath)}
+                    src={imgUrl(user?.avatar?.filePath)}
                     name={user?.name}
                     size={navsExpanded ? "md" : "2xs"}
                   />
