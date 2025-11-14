@@ -1058,6 +1058,9 @@ const DesktopLayout = (props: any) => {
 };
 
 export default function Layout(props: Props__Layout) {
+  // Toggle auth guard
+  const ENABLE_AUTH_GUARD = process.env.NODE_ENV !== "development";
+
   // Props
   const { ...restProps } = props;
 
@@ -1081,19 +1084,26 @@ export default function Layout(props: Props__Layout) {
   // Refs
   const verificationStartedRef = useRef(false);
 
-  // If there's no token at all -> redirect immediately.
-  if (!authToken) {
-    router.replace("/");
-    return <VerifyingScreen />; // keep showing verifying screen while router navigates
+  // If guard disabled -> render directly
+  if (!ENABLE_AUTH_GUARD) {
+    return (
+      <CContainer id="app_layout" h={"100dvh"} {...restProps}>
+        {iss ? <MobileLayout {...props} /> : <DesktopLayout {...props} />}
+      </CContainer>
+    );
   }
 
-  // If token exists but not verified yet -> trigger verification (only once) and show verifying UI.
+  // If there's no token at all -> redirect immediately
+  if (!authToken) {
+    router.replace("/");
+    return <VerifyingScreen />;
+  }
+
+  // If token exists but not verified yet
   if (authToken && !verifiedAuthToken) {
     if (!verificationStartedRef.current) {
       verificationStartedRef.current = true;
 
-      // Kick off verification request. This is intentionally invoked directly
-      // instead of inside useEffect to follow the "direct logic" requirement.
       const config = { method: "GET", url: "/api/profile/get-user-profile" };
 
       req({
@@ -1108,24 +1118,21 @@ export default function Layout(props: Props__Layout) {
             setPermissions(user.role.permissions);
           },
           onError: () => {
-            // If verification fails, ensure we don't leave a stale store value.
             setVerifiedAuthToken(null);
           },
         },
       });
     }
 
-    // While verification is in-flight, show the verifying screen.
     return <VerifyingScreen />;
   }
 
-  // If request hook reports loading -> show verifying screen as well.
+  // If request hook reports loading
   if (loading) {
     return <VerifyingScreen />;
   }
 
-  // At this point: authToken exists and verifiedAuthToken is truthy -> render app.
-  // If verifiedAuthToken somehow still falsy (e.g. verification failed), redirect to root.
+  // After verification, if still invalid -> redirect
   if (!verifiedAuthToken) {
     router.replace("/");
     return <VerifyingScreen />;
