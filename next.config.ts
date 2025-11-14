@@ -2,6 +2,7 @@ import type { NextConfig } from "next";
 import createNextPWA from "@ducanh2912/next-pwa";
 
 const nextConfig: NextConfig = {
+  devIndicators: false,
   reactStrictMode: true,
   images: {
     remotePatterns: [
@@ -29,7 +30,7 @@ const nextConfig: NextConfig = {
     return config;
   },
   pwa: {
-    dest: "public", // boleh tetap dipakai di sini
+    dest: "public",
     disable: process.env.NODE_ENV === "development",
     fallbacks: {
       document: "/offline.html",

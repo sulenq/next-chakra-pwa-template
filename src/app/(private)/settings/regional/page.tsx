@@ -115,40 +115,36 @@ const Timezone = () => {
 
   return (
     <ItemContainer>
-      <ItemHeaderContainer gap={2} pr={3}>
-        <HStack truncate w={"full"} justify={"space-between"}>
-          <HStack>
-            <Icon boxSize={5}>
-              <IconTimezone stroke={1.5} />
-            </Icon>
+      <ItemHeaderContainer withUtils>
+        <HStack>
+          <Icon boxSize={5}>
+            <IconTimezone stroke={1.5} />
+          </Icon>
 
-            <ItemHeaderTitle>{capitalizeWords(l.timezone)}</ItemHeaderTitle>
-          </HStack>
-
-          <HStack>
-            <Btn
-              size={"xs"}
-              variant={"outline"}
-              pl={2}
-              onClick={() => {
-                setTimeZone(localTz);
-                toaster.info({
-                  title: l.info_timezone_auto.title,
-                  description: `${localTz.key} ${localTz.formattedOffset} (${localTz.localAbbr})`,
-                  action: {
-                    label: "Close",
-                    onClick: () => {},
-                  },
-                });
-              }}
-            >
-              <Icon>
-                <IconSparkles />
-              </Icon>
-              Auto
-            </Btn>
-          </HStack>
+          <ItemHeaderTitle>{capitalizeWords(l.timezone)}</ItemHeaderTitle>
         </HStack>
+
+        <Btn
+          size={"xs"}
+          variant={"outline"}
+          pl={2}
+          onClick={() => {
+            setTimeZone(localTz);
+            toaster.info({
+              title: l.info_timezone_auto.title,
+              description: `${localTz.key} ${localTz.formattedOffset} (${localTz.localAbbr})`,
+              action: {
+                label: "Close",
+                onClick: () => {},
+              },
+            });
+          }}
+        >
+          <Icon>
+            <IconSparkles />
+          </Icon>
+          Auto
+        </Btn>
       </ItemHeaderContainer>
 
       <CContainer>

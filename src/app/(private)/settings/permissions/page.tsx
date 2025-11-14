@@ -171,7 +171,7 @@ const Camera = () => {
 
   return (
     <ItemContainer>
-      <ItemHeaderContainer>
+      <ItemHeaderContainer withUtils>
         <HStack>
           <Icon boxSize={5}>
             <IconCamera stroke={1.5} />
@@ -354,7 +354,7 @@ const Microphone = () => {
 
   return (
     <ItemContainer>
-      <ItemHeaderContainer>
+      <ItemHeaderContainer withUtils>
         <HStack>
           <Icon boxSize={5}>
             <IconMicrophone stroke={1.5} />
@@ -563,7 +563,7 @@ const Location = () => {
 
   return (
     <ItemContainer>
-      <ItemHeaderContainer>
+      <ItemHeaderContainer withUtils>
         <HStack>
           <Icon boxSize={5}>
             <IconMapPin stroke={1.5} />
