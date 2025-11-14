@@ -21,9 +21,7 @@ import { Interface__SelectOption } from "@/constants/interfaces";
 import { OPTIONS_RELIGION } from "@/constants/selectOptions";
 import useADM from "@/context/useADM";
 import useLang from "@/context/useLang";
-import { useSettingsRouteContainer } from "@/context/useSettingsRouteContainer";
 import { useThemeConfig } from "@/context/useThemeConfig";
-import { getGridColumns } from "@/utils/style";
 import {
   Box,
   Center,
@@ -184,20 +182,6 @@ const Theme = () => {
   // Contexts
   const { l } = useLang();
   const { themeConfig, setThemeConfig } = useThemeConfig();
-  const settingsContainerDimensions = useSettingsRouteContainer(
-    (s) => s.containerDimension
-  );
-
-  // States
-  const gridColumns: Record<number, number> = {
-    320: 3,
-    720: 5,
-    960: 10,
-  };
-  const gridCols = getGridColumns(
-    settingsContainerDimensions.width,
-    gridColumns
-  );
 
   return (
     <ItemContainer>
@@ -211,7 +195,7 @@ const Theme = () => {
       </ItemHeaderContainer>
 
       <CContainer gap={4} p={4}>
-        <SimpleGrid columns={gridCols} gap={2}>
+        <SimpleGrid columns={[3, null, 5, null, 10]} gap={2}>
           {COLOR_PALETTES.map((color, idx) => {
             const isActive = color.palette === themeConfig.colorPalette;
 
@@ -261,9 +245,6 @@ const Rounded = () => {
   // Contexts
   const { l } = useLang();
   const { themeConfig, setThemeConfig } = useThemeConfig();
-  const settingsContainerDimensions = useSettingsRouteContainer(
-    (s) => s.containerDimension
-  );
 
   // Hooks
   const containerRef = useRef<HTMLDivElement>(null);
@@ -311,15 +292,6 @@ const Rounded = () => {
       container: "22px",
     },
   ];
-  const gridColumns: Record<number, number> = {
-    320: 2,
-    720: 4,
-    1200: 5,
-  };
-  const gridCols = getGridColumns(
-    settingsContainerDimensions.width,
-    gridColumns
-  );
 
   // Component
   const RoundedExampe = (props: any) => {
@@ -407,7 +379,7 @@ const Rounded = () => {
       </ItemHeaderContainer>
 
       <CContainer gap={4} p={4}>
-        <SimpleGrid columns={gridCols} gap={4}>
+        <SimpleGrid columns={[2, null, 4, null, 6]} gap={4}>
           {roundedList.map((item) => {
             const isActive = item.component === themeConfig.radii.component;
 
