@@ -4,7 +4,6 @@ import {
   IconCurrencyEthereum,
   IconDatabase,
   IconDeviceAnalytics,
-  IconKey,
   IconLanguage,
   IconLayersIntersect,
   IconPalette,
@@ -63,23 +62,6 @@ export const OTHER_PRIVATE_NAVS: Interface__NavItem[] = [
         labelKey: "navs.master_data",
         path: `/master-data`,
         subMenus: [
-          {
-            groupLabelKey: "master_data_navs.access_control.index",
-            list: [
-              {
-                icon: IconUserCog,
-                labelKey: "master_data_navs.access_control.role",
-                path: `/master-data/role`,
-                backPath: `/master-data`,
-              },
-              {
-                icon: IconKey,
-                labelKey: "master_data_navs.access_control.permission",
-                path: `/master-data/permission`,
-                backPath: `/master-data`,
-              },
-            ],
-          },
           {
             groupLabelKey: "master_data_navs.hr.index",
             list: [
