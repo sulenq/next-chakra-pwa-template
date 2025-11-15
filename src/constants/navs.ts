@@ -1,17 +1,16 @@
 import { Interface__NavItem } from "@/constants/interfaces";
 import {
+  IconActivity,
   IconCurrencyEthereum,
   IconDatabase,
   IconDeviceAnalytics,
-  IconExclamationCircle,
   IconKey,
   IconLanguage,
+  IconLayersIntersect,
   IconPalette,
   IconReceipt,
-  IconScale,
   IconSettings,
   IconShieldHalf,
-  IconShieldLock,
   IconUser,
   IconUserCog,
 } from "@tabler/icons-react";
@@ -129,37 +128,30 @@ export const OTHER_PRIVATE_NAVS: Interface__NavItem[] = [
             ],
           },
           {
-            groupLabelKey: "settings_navs.others.index",
+            groupLabelKey: "settings_navs.system.index",
             list: [
               {
-                icon: IconExclamationCircle,
-                labelKey: "settings_navs.others.report_problem",
-                path: `/settings/report-problem`,
+                icon: IconUserCog,
+                labelKey: "settings_navs.system.account_role",
+                path: `/settings/account-role`,
                 backPath: `/settings`,
               },
               {
-                icon: IconScale,
-                labelKey: "settings_navs.others.terms_of_service",
-                path: `/settings/terms-of-service`,
+                icon: IconLayersIntersect,
+                labelKey: "settings_navs.system.integration",
+                path: `/settings/integration`,
                 backPath: `/settings`,
               },
               {
-                icon: IconShieldLock,
-                labelKey: "settings_navs.others.privacy_policy",
-                path: `/settings/privacy-policy`,
+                icon: IconActivity,
+                labelKey: "settings_navs.system.activity_log",
+                path: `/settings/activity-log`,
                 backPath: `/settings`,
               },
             ],
           },
         ],
       },
-      {
-        icon: IconUser,
-        labelKey: "navs.profile",
-        path: `/profile`,
-      },
     ],
   },
 ];
-
-export const MASTER_DATA_NAVS = [];

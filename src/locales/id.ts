@@ -269,7 +269,9 @@ const translations = {
   "msg_signout": "Anda yakin ingin keluar?",
   "msg_soft_delete": "Data akan disembunyikan dan bisa dikembalikan nanti.",
   "msg_toggle_dark_mode": "Toggle mode gelap",
+  "my_activity_history": "Riwayat aktivitas saya",
   "my_profile": "Profil saya",
+  "my_signin_history": "Riwayat sign in saya",
   "name": "Nama",
   "navigation": "Navigasi",
   "navs": {
@@ -360,11 +362,14 @@ const translations = {
       "regional": "Regional",
       "permissions": "Izin aplikasi"
     },
+    "system": {
+      "index": "Sistem",
+      "account_role": "Role akun",
+      "activity_log": "Log aktivitas",
+      "integration": "Integrasi"
+    },
     "others": {
-      "index": "Lainnya",
-      "report_problem": "Laporkan masalah",
-      "terms_of_service": "Ketentuan layanan",
-      "privacy_policy": "Kebijakan privasi"
+      "index": "Lainnya"
     }
   },
   "show": "Tampilkan",

@@ -80,22 +80,28 @@ export const settings_navs = {
       en: "App permissions",
     },
   },
+  system: {
+    index: {
+      id: "Sistem",
+      en: "System",
+    },
+    account_role: {
+      id: "Role akun",
+      en: "Account role",
+    },
+    activity_log: {
+      id: "Log aktivitas",
+      en: "Activity log",
+    },
+    integration: {
+      id: "Integrasi",
+      en: "Integration",
+    },
+  },
   others: {
     index: {
       id: "Lainnya",
       en: "Others",
-    },
-    report_problem: {
-      id: "Laporkan masalah",
-      en: "Report a problem",
-    },
-    terms_of_service: {
-      id: "Ketentuan layanan",
-      en: "Terms of service",
-    },
-    privacy_policy: {
-      id: "Kebijakan privasi",
-      en: "Privacy policy",
     },
   },
 };
@@ -663,7 +669,7 @@ export const second = {
 };
 export const personal_information = {
   id: "Informasi pribadi",
-  en: "Personal Information",
+  en: "Personal information",
 };
 export const upload_new_avatar = {
   id: "Unggah avatar baru",
@@ -675,11 +681,19 @@ export const is_allowed = {
 };
 export const signin_history = {
   id: "Riwayat sign in",
-  en: "Sign in History",
+  en: "Sign in history",
 };
 export const activity_history = {
   id: "Riwayat aktivitas",
-  en: "Activity History",
+  en: "Activity history",
+};
+export const my_signin_history = {
+  id: "Riwayat sign in saya",
+  en: "My sign in history",
+};
+export const my_activity_history = {
+  id: "Riwayat aktivitas saya",
+  en: "My activity history",
 };
 export const activity = {
   id: "Aktivitas",

@@ -5,7 +5,7 @@ const translations = {
   "activate": "Activate",
   "active": "Active",
   "activity": "Activity",
-  "activity_history": "Activity History",
+  "activity_history": "Activity history",
   "adaptive_dark_mode": "Adaptive dark mode",
   "add": "Add",
   "added": "Added",
@@ -269,7 +269,9 @@ const translations = {
   "msg_signout": "Are you sure you want to sign out?",
   "msg_soft_delete": "Data will be hidden but can be restored later.",
   "msg_toggle_dark_mode": "Toggle dark mode",
+  "my_activity_history": "My activity history",
   "my_profile": "My profile",
+  "my_signin_history": "My sign in history",
   "name": "Name",
   "navigation": "Navigation",
   "navs": {
@@ -302,7 +304,7 @@ const translations = {
   "otp_sent_to": "OTP has been sent to",
   "password_confirmation": "Password Confirmation",
   "pending_data": "Pending data",
-  "personal_information": "Personal Information",
+  "personal_information": "Personal information",
   "physical_progress": "Physical progress",
   "previous": "Previous",
   "problem": "Problem",
@@ -360,17 +362,20 @@ const translations = {
       "regional": "Regional",
       "permissions": "App permissions"
     },
+    "system": {
+      "index": "System",
+      "account_role": "Account role",
+      "activity_log": "Activity log",
+      "integration": "Integration"
+    },
     "others": {
-      "index": "Others",
-      "report_problem": "Report a problem",
-      "terms_of_service": "Terms of service",
-      "privacy_policy": "Privacy policy"
+      "index": "Others"
     }
   },
   "show": "Show",
   "show_more": "Show more",
   "showing": "Showing",
-  "signin_history": "Sign in History",
+  "signin_history": "Sign in history",
   "start_date": "Start date",
   "start_date_time": "Start time",
   "start_time": "Start time",

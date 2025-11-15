@@ -338,7 +338,7 @@ const SigninLog = () => {
           <Icon boxSize={5}>
             <IconLogin2 stroke={1.5} />
           </Icon>
-          <ItemHeaderTitle>{l.signin_history}</ItemHeaderTitle>
+          <ItemHeaderTitle>{l.my_signin_history}</ItemHeaderTitle>
         </HStack>
       </ItemHeaderContainer>
 
@@ -441,7 +441,7 @@ const ActivityLog = () => {
           <Icon boxSize={5}>
             <IconActivity stroke={1.5} />
           </Icon>
-          <ItemHeaderTitle>{l.activity_history}</ItemHeaderTitle>
+          <ItemHeaderTitle>{l.my_activity_history}</ItemHeaderTitle>
         </HStack>
       </ItemHeaderContainer>
 
