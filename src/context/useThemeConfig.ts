@@ -1,3 +1,4 @@
+import { COLOR_PALETTES } from "@/constants/colors";
 import { IMAGES_PATH } from "@/constants/paths";
 import { getStorage, setStorage } from "@/utils/client";
 import { create } from "zustand";
@@ -16,9 +17,9 @@ interface ThemeConfigProps {
 }
 
 const DEFAULT: ThemeConfigProps = {
-  colorPalette: "p",
-  primaryColor: "p.500",
-  primaryColorHex: "#006aff",
+  colorPalette: COLOR_PALETTES[0].palette,
+  primaryColor: `${COLOR_PALETTES[0].palette}.500`,
+  primaryColorHex: COLOR_PALETTES[0].primaryHex,
   logo: `${IMAGES_PATH}/logo_graphic.png`,
   radii: {
     component: "6px",

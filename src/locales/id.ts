@@ -362,9 +362,9 @@ const translations = {
     },
     "others": {
       "index": "Lainnya",
-      "report_problem": "Laporkan Masalah",
-      "terms_of_service": "Ketentuan Layanan",
-      "privacy_policy": "Kebijakan Privasi"
+      "report_problem": "Laporkan masalah",
+      "terms_of_service": "Ketentuan layanan",
+      "privacy_policy": "Kebijakan privasi"
     }
   },
   "show": "Tampilkan",

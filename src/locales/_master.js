@@ -35,6 +35,32 @@ export const navs = {
     en: "Profile",
   },
 };
+export const master_data_navs = {
+  access_control: {
+    index: {
+      id: "Kontrol Akses",
+      en: "Access Control",
+    },
+    role: {
+      id: "Role",
+      en: "Role",
+    },
+    permission: {
+      id: "Permission",
+      en: "Permission",
+    },
+  },
+  hr: {
+    index: {
+      id: "Manajemen SDM",
+      en: "Human resources",
+    },
+    employment_status: {
+      id: "Status kepegawaian",
+      en: "Employment Status",
+    },
+  },
+};
 export const settings_navs = {
   main: {
     index: {
@@ -60,42 +86,16 @@ export const settings_navs = {
       en: "Others",
     },
     report_problem: {
-      id: "Laporkan Masalah",
-      en: "Report a Problem",
+      id: "Laporkan masalah",
+      en: "Report a problem",
     },
     terms_of_service: {
-      id: "Ketentuan Layanan",
-      en: "Terms of Service",
+      id: "Ketentuan layanan",
+      en: "Terms of service",
     },
     privacy_policy: {
-      id: "Kebijakan Privasi",
-      en: "Privacy Policy",
-    },
-  },
-};
-export const master_data_navs = {
-  access_control: {
-    index: {
-      id: "Kontrol Akses",
-      en: "Access Control",
-    },
-    role: {
-      id: "Role",
-      en: "Role",
-    },
-    permission: {
-      id: "Permission",
-      en: "Permission",
-    },
-  },
-  hr: {
-    index: {
-      id: "Manajemen SDM",
-      en: "Human resources",
-    },
-    employment_status: {
-      id: "Status kepegawaian",
-      en: "Employment Status",
+      id: "Kebijakan privasi",
+      en: "Privacy policy",
     },
   },
 };

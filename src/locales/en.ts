@@ -362,9 +362,9 @@ const translations = {
     },
     "others": {
       "index": "Others",
-      "report_problem": "Report a Problem",
-      "terms_of_service": "Terms of Service",
-      "privacy_policy": "Privacy Policy"
+      "report_problem": "Report a problem",
+      "terms_of_service": "Terms of service",
+      "privacy_policy": "Privacy policy"
     }
   },
   "show": "Show",
