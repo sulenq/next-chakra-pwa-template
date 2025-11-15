@@ -1059,7 +1059,9 @@ const DesktopLayout = (props: any) => {
 
 export default function Layout(props: Props__Layout) {
   // Toggle auth guard
-  const ENABLE_AUTH_GUARD = process.env.NODE_ENV !== "development";
+  // const ENABLE_AUTH_GUARD = process.env.NODE_ENV !== "development";
+  // TODO remove on real dev and enable above
+  const ENABLE_AUTH_GUARD = false;
 
   // Props
   const { ...restProps } = props;

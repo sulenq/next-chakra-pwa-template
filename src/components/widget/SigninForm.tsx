@@ -108,21 +108,6 @@ const BasicAuthForm = (props: any) => {
     id: "signin",
     loadingMessage: l.loading_signin,
     successMessage: l.success_signin,
-    errorMessage: {
-      400: {
-        VALIDATION_FAILED: {
-          ...l.error_signin_wrong_credentials,
-        },
-        INVALID_CREDENTIALS: {
-          ...l.error_signin_wrong_credentials,
-        },
-      },
-      403: {
-        FORBIDDEN_ROLE: {
-          ...l.error_signin_wrong_credentials,
-        },
-      },
-    },
   });
 
   // States
@@ -142,7 +127,7 @@ const BasicAuthForm = (props: any) => {
         password: values.password,
       };
       const config = {
-        method: "post",
+        method: "POST",
         url: signinAPI,
         data: payload,
       };
@@ -159,6 +144,9 @@ const BasicAuthForm = (props: any) => {
           },
         },
       });
+
+      // TODO remove on real dev
+      router.push(indexRoute);
     },
   });
 

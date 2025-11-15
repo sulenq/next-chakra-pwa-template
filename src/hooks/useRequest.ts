@@ -108,6 +108,8 @@ export default function useRequest<T = any>(props: Props) {
 
       case 401:
         switch (errorCase) {
+          case "FORBIDDEN_ROLE":
+            return l.error_signin_wrong_credentials;
           default:
             return l.error_401_default;
         }
