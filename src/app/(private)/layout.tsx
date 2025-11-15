@@ -528,14 +528,7 @@ const DesktopLayout = (props: any) => {
         <CContainer gap={1} p={2}>
           {!navsExpanded && (
             <NavLink to="/">
-              <Center
-                w={"40px"}
-                h={"40px"}
-                mr={"auto"}
-                _hover={{
-                  bg: "bg.subtle",
-                }}
-              >
+              <Center w={"40px"} h={"40px"} mr={"auto"}>
                 <Logo size={15} />
               </Center>
             </NavLink>
@@ -544,7 +537,7 @@ const DesktopLayout = (props: any) => {
           <HStack justify={"space-between"}>
             {navsExpanded && (
               <NavLink to="/">
-                <HStack ml={"12px"} gap={3}>
+                <HStack ml={"8px"} gap={3}>
                   <Logo size={15} />
 
                   <P
