@@ -24,6 +24,8 @@ import { ImgViewer } from "@/components/widget/ImgViewer";
 import { ItemContainer } from "@/components/widget/ItemContainer";
 import { ItemHeaderContainer } from "@/components/widget/ItemHeaderContainer";
 import ItemHeaderTitle from "@/components/widget/ItemHeaderTitle";
+import { Limitation } from "@/components/widget/Limitation";
+import { Pagination } from "@/components/widget/Pagination";
 import ResetPasswordDisclosureTrigger from "@/components/widget/ResetPasswordDisclosure";
 import {
   dummyActivityLogs,
@@ -287,12 +289,19 @@ const SigninLog = () => {
   const { l } = useLang();
 
   // States
-  const { error, initialLoading, data, onRetry } = useDataState<
-    Interface__SigninLog[]
-  >({
+  const {
+    error,
+    initialLoading,
+    data,
+    onRetry,
+    limit,
+    setLimit,
+    pagination,
+    page,
+    setPage,
+  } = useDataState<Interface__SigninLog[]>({
     initialData: dummySigninLogs,
     url: ``,
-    dataResource: false,
   });
   const render = {
     loading: <Skeleton flex={1} />,
@@ -356,6 +365,22 @@ const SigninLog = () => {
           </>
         )}
       </CContainer>
+
+      <HStack
+        justify={"space-between"}
+        wrap={"wrap"}
+        p={"6px"}
+        borderTop={"1px solid"}
+        borderColor={"border.muted"}
+      >
+        <Limitation limit={limit} setLimit={setLimit} />
+
+        <Pagination
+          page={page}
+          setPage={setPage}
+          totalPage={pagination?.meta?.totalPage}
+        />
+      </HStack>
     </ItemContainer>
   );
 };
@@ -369,6 +394,7 @@ const ActivityLog = () => {
     string,
     (meta?: Record<string, any>) => string
   > = {
+    // TODO create action sentence glosary
     [Enum__ActivityAction.CREATE_WORKSPACE]: (meta) =>
       `Created workspace "${meta?.workspaceName ?? "Unknown"}"`,
 
@@ -390,9 +416,17 @@ const ActivityLog = () => {
   const formatActivityLog = (log: Interface__ActivityLog): string => {
     return activityFormatter[log.action as Enum__ActivityAction](log.metadata);
   };
-  const { error, initialLoading, data, onRetry } = useDataState<
-    Interface__ActivityLog[]
-  >({
+  const {
+    error,
+    initialLoading,
+    data,
+    onRetry,
+    limit,
+    setLimit,
+    pagination,
+    page,
+    setPage,
+  } = useDataState<Interface__ActivityLog[]>({
     initialData: dummyActivityLogs,
     url: ``,
     dataResource: false,
@@ -459,6 +493,22 @@ const ActivityLog = () => {
           </>
         )}
       </CContainer>
+
+      <HStack
+        justify={"space-between"}
+        wrap={"wrap"}
+        p={"6px"}
+        borderTop={"1px solid"}
+        borderColor={"border.muted"}
+      >
+        <Limitation limit={limit} setLimit={setLimit} />
+
+        <Pagination
+          page={page}
+          setPage={setPage}
+          totalPage={pagination?.meta?.totalPage}
+        />
+      </HStack>
     </ItemContainer>
   );
 };
