@@ -1,8 +1,17 @@
 "use client";
 
-import { CContainer } from "@/components/ui/c-container";
+import { ReactPDFViewer } from "@/components/widget/ReactPDFViewer";
+import { TOP_BAR_H } from "@/constants/sizes";
+import { SimpleGrid } from "@chakra-ui/react";
 
 const AdminDashboardRoute = () => {
-  return <CContainer id="dashboard"></CContainer>;
+  return (
+    <SimpleGrid id="dashboard" columns={2} gap={4}>
+      <ReactPDFViewer
+        fileUrl={`/assets/dummy-pdf.pdf`}
+        maxH={`calc(100vh -  ${TOP_BAR_H})`}
+      />
+    </SimpleGrid>
+  );
 };
 export default AdminDashboardRoute;

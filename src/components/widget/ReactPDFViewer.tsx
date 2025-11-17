@@ -21,7 +21,7 @@ interface Props extends StackProps {
   aspectRatio?: number;
 }
 
-export function PDFViewer(props: Props) {
+export function ReactPDFViewer(props: Props) {
   const { fileUrl, aspectRatio = 10 / 12, ...restProps } = props;
   const defaultLayoutPluginInstance = defaultLayoutPlugin();
 
