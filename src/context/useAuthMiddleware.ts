@@ -38,6 +38,7 @@ const useAuthMiddleware = create<Props>((set, get) => ({
     get().removeAuthToken();
     get().removePermissions();
     get().removeRole();
+    get().setVerifiedAuthToken(null);
   },
 
   removeAuthToken: () => {
