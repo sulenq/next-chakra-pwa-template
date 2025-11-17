@@ -39,16 +39,15 @@ export function usePDFUtils(
   const zoomIn = () => setScale(scale + 0.2);
   const zoomOut = () => setScale(Math.max(0.2, scale - 0.2));
   const resetZoom = () => setScale(1);
-  // fit to width
+
   const fitToWidth = async () => {
     if (!pdfDoc || !canvasRefs.current[0]) return;
     const page = await pdfDoc.getPage(currentPage);
     const viewport = page.getViewport({ scale: 1 });
     const containerWidth = canvasRefs.current[0].parentElement!.clientWidth;
-    setScale(containerWidth / viewport.width); // trigger useEffect → renderPage
+    setScale(containerWidth / viewport.width);
   };
 
-  // fit to page
   const fitToPage = async () => {
     if (!pdfDoc || !canvasRefs.current[0]) return;
     const page = await pdfDoc.getPage(currentPage);
@@ -56,7 +55,7 @@ export function usePDFUtils(
     const container = canvasRefs.current[0].parentElement!;
     const scaleX = container.clientWidth / viewport.width;
     const scaleY = container.clientHeight / viewport.height;
-    setScale(Math.min(scaleX, scaleY)); // trigger useEffect → renderPage
+    setScale(Math.min(scaleX, scaleY));
   };
 
   return {
@@ -77,17 +76,11 @@ interface Props__PDFToolbar extends StackProps {
   isSingleMode: boolean;
 }
 const PDFToolbar = (props: Props__PDFToolbar) => {
-  // Props
   const { utils, toggleMode, isSingleMode, ...restProps } = props;
-
-  // Contexts
   const { l } = useLang();
 
-  // Components
   const UtilBtn = (btnProps: any) => {
-    // Props
     const { tooltipContent, ...restProps } = btnProps;
-
     return (
       <Tooltip content={tooltipContent}>
         <Btn iconButton size="sm" variant="ghost" {...restProps} />
@@ -140,13 +133,9 @@ interface Props__PDFViewer extends StackProps {
   fileUrl: string;
 }
 export const SimplePDFViewer = (props: Props__PDFViewer) => {
-  // Props
   const { fileUrl, ...restProps } = props;
-
-  // Refs
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // States
   const [pdfDoc, setPdfDoc] = useState<PDFDocumentProxy | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [scale, setScale] = useState(1);
@@ -175,7 +164,14 @@ export const SimplePDFViewer = (props: Props__PDFViewer) => {
     canvas.width = viewport.width;
     canvas.height = viewport.height;
 
-    page.render({ canvasContext: ctx, viewport });
+    // cancel previous render if still running
+    if ((canvas as any)._pdfRenderTask) {
+      (canvas as any)._pdfRenderTask.cancel();
+    }
+
+    const renderTask = page.render({ canvasContext: ctx, viewport });
+    (canvas as any)._pdfRenderTask = renderTask;
+    await renderTask.promise;
   };
 
   useEffect(() => {
@@ -218,7 +214,6 @@ export const SimplePDFViewer = (props: Props__PDFViewer) => {
             style={{
               marginBottom: 12,
               boxShadow: "0 0 0 1px #8a8a8a15",
-              // border: "1px solid #8a8a8a15",
               margin: "auto auto",
             }}
           />
@@ -241,7 +236,6 @@ export const SimplePDFViewer = (props: Props__PDFViewer) => {
               }}
               style={{
                 marginBottom: 12,
-                // border: "1px solid #8a8a8a15",
                 margin: "0 auto",
               }}
             />
