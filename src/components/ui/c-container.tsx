@@ -9,16 +9,16 @@ interface Props extends StackProps {
 
 export const CContainer = forwardRef<HTMLDivElement, Props>((props, ref) => {
   // Props
-  const { children, ...rest } = props;
+  const { children, ...restProps } = props;
 
   return (
     <VStack
       ref={ref}
-      className="CContainer"
+      className={"CContainer"}
       gap={0}
-      align="stretch"
-      w="full"
-      {...rest}
+      align={"stretch"}
+      w={"full"}
+      {...restProps}
     >
       {children}
     </VStack>

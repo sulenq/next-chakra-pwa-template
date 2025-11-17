@@ -1,0 +1,258 @@
+"use client";
+
+import { Btn } from "@/components/ui/btn";
+import { CContainer } from "@/components/ui/c-container";
+import { HStack, Icon, StackProps } from "@chakra-ui/react";
+import {
+  IconArrowAutofitContent,
+  IconArrowAutofitWidth,
+  IconChevronLeft,
+  IconChevronRight,
+  IconZoomIn,
+  IconZoomOut,
+  IconZoomReset,
+} from "@tabler/icons-react";
+import { useEffect, useRef, useState } from "react";
+
+import { Tooltip } from "@/components/ui/tooltip";
+import type { PDFDocumentProxy, PDFPageProxy } from "pdfjs-dist";
+import * as pdfjsLib from "pdfjs-dist";
+import useLang from "@/context/useLang";
+
+pdfjsLib.GlobalWorkerOptions.workerSrc =
+  "https://unpkg.com/pdfjs-dist@3.4.120/build/pdf.worker.min.js";
+
+export function usePDFUtils(
+  pdfDoc: PDFDocumentProxy | null,
+  canvasRefs: React.MutableRefObject<HTMLCanvasElement[]>,
+  currentPage: number,
+  setCurrentPage: (p: number) => void,
+  scale: number,
+  setScale: (s: number) => void,
+  totalPages: number
+) {
+  const nextPage = () =>
+    currentPage < totalPages && setCurrentPage(currentPage + 1);
+  const prevPage = () => currentPage > 1 && setCurrentPage(currentPage - 1);
+  const goToPage = (page: number) =>
+    page >= 1 && page <= totalPages && setCurrentPage(page);
+  const zoomIn = () => setScale(scale + 0.2);
+  const zoomOut = () => setScale(Math.max(0.2, scale - 0.2));
+  const resetZoom = () => setScale(1);
+  // fit to width
+  const fitToWidth = async () => {
+    if (!pdfDoc || !canvasRefs.current[0]) return;
+    const page = await pdfDoc.getPage(currentPage);
+    const viewport = page.getViewport({ scale: 1 });
+    const containerWidth = canvasRefs.current[0].parentElement!.clientWidth;
+    setScale(containerWidth / viewport.width); // trigger useEffect → renderPage
+  };
+
+  // fit to page
+  const fitToPage = async () => {
+    if (!pdfDoc || !canvasRefs.current[0]) return;
+    const page = await pdfDoc.getPage(currentPage);
+    const viewport = page.getViewport({ scale: 1 });
+    const container = canvasRefs.current[0].parentElement!;
+    const scaleX = container.clientWidth / viewport.width;
+    const scaleY = container.clientHeight / viewport.height;
+    setScale(Math.min(scaleX, scaleY)); // trigger useEffect → renderPage
+  };
+
+  return {
+    nextPage,
+    prevPage,
+    goToPage,
+    zoomIn,
+    zoomOut,
+    resetZoom,
+    fitToWidth,
+    fitToPage,
+  };
+}
+
+interface Props__PDFToolbar extends StackProps {
+  utils: ReturnType<typeof usePDFUtils>;
+  toggleMode: () => void;
+  isSingleMode: boolean;
+}
+const PDFToolbar = (props: Props__PDFToolbar) => {
+  // Props
+  const { utils, toggleMode, isSingleMode, ...restProps } = props;
+
+  // Contexts
+  const { l } = useLang();
+
+  // Components
+  const UtilBtn = (btnProps: any) => {
+    // Props
+    const { tooltipContent, ...restProps } = btnProps;
+
+    return (
+      <Tooltip content={tooltipContent}>
+        <Btn iconButton size="sm" variant="ghost" {...restProps} />
+      </Tooltip>
+    );
+  };
+
+  return (
+    <HStack p={2} bg={"body"} {...restProps}>
+      <UtilBtn
+        onClick={utils.prevPage}
+        disabled={!isSingleMode}
+        tooltipContent={l.previous_page}
+      >
+        <Icon boxSize={5} as={IconChevronLeft} />
+      </UtilBtn>
+      <UtilBtn
+        onClick={utils.nextPage}
+        disabled={!isSingleMode}
+        tooltipContent={l.next_page}
+      >
+        <Icon boxSize={5} as={IconChevronRight} />
+      </UtilBtn>
+
+      <UtilBtn onClick={utils.zoomIn} tooltipContent={l.zoom_in}>
+        <Icon boxSize={5} as={IconZoomIn} />
+      </UtilBtn>
+      <UtilBtn onClick={utils.zoomOut} tooltipContent={l.zoom_out}>
+        <Icon boxSize={5} as={IconZoomOut} />
+      </UtilBtn>
+      <UtilBtn onClick={utils.resetZoom} tooltipContent={l.zoom_reset}>
+        <Icon boxSize={5} as={IconZoomReset} />
+      </UtilBtn>
+
+      <UtilBtn onClick={utils.fitToWidth} tooltipContent={l.fit_to_width}>
+        <Icon boxSize={5} as={IconArrowAutofitContent} />
+      </UtilBtn>
+      <UtilBtn onClick={utils.fitToPage} tooltipContent={l.fit_to_page}>
+        <Icon boxSize={5} as={IconArrowAutofitWidth} />
+      </UtilBtn>
+
+      <UtilBtn
+        iconButton={false}
+        onClick={toggleMode}
+        ml={"auto"}
+        tooltipContent={l.previous_page}
+      >
+        {isSingleMode ? "Single page" : "Scroll mode"}
+      </UtilBtn>
+    </HStack>
+  );
+};
+
+interface Props__PDFViewer extends StackProps {
+  fileUrl: string;
+}
+export const SimplePDFViewer = (props: Props__PDFViewer) => {
+  // Props
+  const { fileUrl, ...restProps } = props;
+
+  // Refs
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  // States
+  const [pdfDoc, setPdfDoc] = useState<PDFDocumentProxy | null>(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [scale, setScale] = useState(1);
+  const [totalPages, setTotalPages] = useState(0);
+  const [isSingleMode, setIsSingleMode] = useState(true);
+
+  const canvasRefs = useRef<HTMLCanvasElement[]>([]);
+
+  useEffect(() => {
+    const loadPDF = async () => {
+      const doc = await pdfjsLib.getDocument(fileUrl).promise;
+      setPdfDoc(doc);
+      setTotalPages(doc.numPages);
+      setCurrentPage(1);
+    };
+    loadPDF();
+  }, [fileUrl]);
+
+  const renderPage = async (pageNum: number, canvas: HTMLCanvasElement) => {
+    if (!pdfDoc) return;
+    const page: PDFPageProxy = await pdfDoc.getPage(pageNum);
+    const viewport = page.getViewport({ scale });
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    canvas.width = viewport.width;
+    canvas.height = viewport.height;
+
+    page.render({ canvasContext: ctx, viewport });
+  };
+
+  useEffect(() => {
+    if (!pdfDoc) return;
+    if (isSingleMode) {
+      if (canvasRefs.current[0]) renderPage(currentPage, canvasRefs.current[0]);
+    } else {
+      canvasRefs.current.forEach((canvas, idx) => renderPage(idx + 1, canvas));
+    }
+  }, [pdfDoc, currentPage, scale, isSingleMode]);
+
+  const utils = usePDFUtils(
+    pdfDoc,
+    canvasRefs,
+    currentPage,
+    setCurrentPage,
+    scale,
+    setScale,
+    totalPages
+  );
+  const toggleMode = () => setIsSingleMode(!isSingleMode);
+
+  return (
+    <CContainer w={"full"} h={"full"} overflow={"clip"} {...restProps}>
+      <PDFToolbar
+        utils={utils}
+        toggleMode={toggleMode}
+        isSingleMode={isSingleMode}
+        border={"1px solid"}
+        borderColor={"d1"}
+      />
+
+      {isSingleMode ? (
+        <CContainer h={"full"} gap={2} align={"start"} overflow={"auto"}>
+          <canvas
+            ref={(el) => {
+              if (!el) return;
+              canvasRefs.current[0] = el;
+            }}
+            style={{
+              marginBottom: 12,
+              boxShadow: "0 0 0 1px #8a8a8a15",
+              // border: "1px solid #8a8a8a15",
+              margin: "auto auto",
+            }}
+          />
+        </CContainer>
+      ) : (
+        <CContainer
+          ref={containerRef}
+          className={"scrollY"}
+          h={"full"}
+          gap={2}
+          align={"start"}
+          py={2}
+        >
+          {Array.from({ length: totalPages }, (_, i) => (
+            <canvas
+              key={i}
+              ref={(el) => {
+                if (!el) return;
+                canvasRefs.current[i] = el;
+              }}
+              style={{
+                marginBottom: 12,
+                // border: "1px solid #8a8a8a15",
+                margin: "0 auto",
+              }}
+            />
+          ))}
+        </CContainer>
+      )}
+    </CContainer>
+  );
+};

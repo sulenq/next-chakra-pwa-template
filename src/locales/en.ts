@@ -155,6 +155,8 @@ const translations = {
   "explanation": "Explanation",
   "february": "February",
   "finished": "Finished",
+  "fit_to_page": "Fit to page",
+  "fit_to_width": "Fit to width",
   "friday": "Friday",
   "from": "From",
   "get": "Get",
@@ -287,6 +289,7 @@ const translations = {
     "profile": "Profile"
   },
   "next": "Next",
+  "next_page": "Next page",
   "no": "No",
   "not_started": "Not started",
   "november": "November",
@@ -307,6 +310,7 @@ const translations = {
   "personal_information": "Personal information",
   "physical_progress": "Physical progress",
   "previous": "Previous",
+  "previous_page": "Previous page",
   "problem": "Problem",
   "profile": "Profile",
   "progress": "Progress",
@@ -461,7 +465,10 @@ const translations = {
   "week": "Week",
   "will_be_deleted": "Will be deleted",
   "year": "Year",
-  "yes": "Yes"
+  "yes": "Yes",
+  "zoom_in": "Zoom in",
+  "zoom_out": "Zoom out",
+  "zoom_reset": "Reset zoom"
 };
 
 export default translations;

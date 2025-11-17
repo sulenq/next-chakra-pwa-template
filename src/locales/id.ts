@@ -155,6 +155,8 @@ const translations = {
   "explanation": "Penjelasan",
   "february": "Februari",
   "finished": "Selesai",
+  "fit_to_page": "Menyesuaikan halaman",
+  "fit_to_width": "Menyesuaikan lebar",
   "friday": "Jumat",
   "from": "Dari",
   "get": "Dapatkan",
@@ -287,6 +289,7 @@ const translations = {
     "profile": "Profil"
   },
   "next": "Selanjutnya",
+  "next_page": "Halaman selanjutnya",
   "no": "Tidak",
   "not_started": "Belum dimulai",
   "november": "November",
@@ -307,6 +310,7 @@ const translations = {
   "personal_information": "Informasi pribadi",
   "physical_progress": "Progres fisik",
   "previous": "Sebelumnya",
+  "previous_page": "Halaman sebelumnya",
   "problem": "Masalah",
   "profile": "Profil",
   "progress": "Progres",
@@ -461,7 +465,10 @@ const translations = {
   "week": "Minggu",
   "will_be_deleted": "Akan dihapus",
   "year": "Tahun",
-  "yes": "Ya"
+  "yes": "Ya",
+  "zoom_in": "Perbesar",
+  "zoom_out": "Perkecil",
+  "zoom_reset": "Reset zoom"
 };
 
 export default translations;

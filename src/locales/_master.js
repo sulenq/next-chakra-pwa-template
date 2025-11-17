@@ -779,6 +779,34 @@ export const account_status = {
   id: "Status akun",
   en: "Account status",
 };
+export const next_page = {
+  id: "Halaman selanjutnya",
+  en: "Next page",
+};
+export const previous_page = {
+  id: "Halaman sebelumnya",
+  en: "Previous page",
+};
+export const zoom_in = {
+  id: "Perbesar",
+  en: "Zoom in",
+};
+export const zoom_out = {
+  id: "Perkecil",
+  en: "Zoom out",
+};
+export const zoom_reset = {
+  id: "Reset zoom",
+  en: "Reset zoom",
+};
+export const fit_to_width = {
+  id: "Menyesuaikan lebar",
+  en: "Fit to width",
+};
+export const fit_to_page = {
+  id: "Menyesuaikan halaman",
+  en: "Fit to page",
+};
 
 // Message
 export const msg_new_avatar_helper = {

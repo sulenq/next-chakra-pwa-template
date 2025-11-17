@@ -1,6 +1,6 @@
 "use client";
 
-import { PDFViewer } from "@/components/widget/PDFViewer";
+import { SimplePDFViewer } from "@/components/widget/SimplePDFViewer";
 import { ReactPDFViewer } from "@/components/widget/ReactPDFViewer";
 import { TOP_BAR_H } from "@/constants/sizes";
 import { SimpleGrid } from "@chakra-ui/react";
@@ -10,11 +10,11 @@ const AdminDashboardRoute = () => {
     <SimpleGrid id="dashboard" columns={2} gap={4}>
       <ReactPDFViewer
         fileUrl={`/assets/dummy-pdf.pdf`}
-        maxH={`calc(100vh -  ${TOP_BAR_H})`}
+        h={`calc(100vh -  ${TOP_BAR_H})`}
       />
-      <PDFViewer
+      <SimplePDFViewer
         fileUrl={`/assets/dummy-pdf.pdf`}
-        maxH={`calc(100vh -  ${TOP_BAR_H})`}
+        maxH={`calc(100vh - ${TOP_BAR_H})`}
       />
     </SimpleGrid>
   );
