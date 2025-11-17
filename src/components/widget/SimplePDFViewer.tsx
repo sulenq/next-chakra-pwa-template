@@ -155,6 +155,13 @@ export const SimplePDFViewer = (props: Props__PDFViewer) => {
       setPdfDoc(doc);
       setTotalPages(doc.numPages);
       setCurrentPage(1);
+
+      if (canvasRefs.current[0]) {
+        const page = await doc.getPage(1);
+        const viewport = page.getViewport({ scale: 1 });
+        const containerWidth = canvasRefs.current[0].parentElement!.clientWidth;
+        setScale(containerWidth / viewport.width);
+      }
     };
     loadPDF();
   }, [fileUrl]);
