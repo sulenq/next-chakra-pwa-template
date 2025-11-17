@@ -204,15 +204,16 @@ export const TimePickerInput = (props: Props__TimePicker) => {
         >
           <HStack w={"full"} justify={"space-between"}>
             {inputValue ? (
-              <P truncate>
+              <P truncate fontVariantNumeric={"tabular-nums"}>
                 {withSeconds
                   ? inputValue
                   : formatTime(inputValue, { timezoneKey: "UTC" })}
               </P>
             ) : (
               <P
-                color={props?._placeholder?.color || "var(--placeholder)"}
                 truncate
+                color={props?._placeholder?.color || "var(--placeholder)"}
+                fontVariantNumeric={"tabular-nums"}
               >
                 {resolvedPlaceholder}
               </P>
