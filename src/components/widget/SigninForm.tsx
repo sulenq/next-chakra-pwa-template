@@ -99,7 +99,9 @@ const BasicAuthForm = (props: any) => {
   // Contexts
   const { l } = useLang();
   const { themeConfig } = useThemeConfig();
-  const setAuthToken = useAuthMiddleware((s) => s.setVerifiedAuthToken);
+
+  const setAuthToken = useAuthMiddleware((s) => s.setAuthToken);
+  const setVerifiedAuthToken = useAuthMiddleware((s) => s.setVerifiedAuthToken);
   const setPermissions = useAuthMiddleware((s) => s.setPermissions);
 
   // Hooks
@@ -139,6 +141,7 @@ const BasicAuthForm = (props: any) => {
             setStorage("__auth_token", r.data.data?.token);
             setStorage("__user_data", JSON.stringify(r.data.data?.user));
             setAuthToken(r.data.data?.token);
+            setVerifiedAuthToken(r.data.data?.token);
             setPermissions(r.data.data?.permissions);
             router.push(indexRoute);
           },

@@ -1,13 +1,20 @@
+import { getStorage, removeStorage, setStorage } from "@/utils/client";
 import { create } from "zustand";
 
 interface Props {
+  authToken: string | null;
+  setAuthToken: (newState: Props["authToken"]) => void;
+
   verifiedAuthToken: string | null;
   role: object | null;
   permissions: number[] | null;
+
   setVerifiedAuthToken: (newState: Props["verifiedAuthToken"]) => void;
   setRole: (newState: Props["role"]) => void;
   setPermissions: (newState: Props["permissions"]) => void;
+
   hasPermissions: (allowedPermissions: number[]) => boolean;
+
   removeAuth: () => void;
   removeAuthToken: () => void;
   removePermissions: () => void;
@@ -15,11 +22,14 @@ interface Props {
 }
 
 const useAuthMiddleware = create<Props>((set, get) => ({
+  authToken: getStorage("__auth_token"),
+  setAuthToken: (newState) => set(() => ({ authToken: newState })),
+
   verifiedAuthToken: null,
   setVerifiedAuthToken: (newState) =>
     set(() => {
       if (typeof window !== "undefined")
-        localStorage.setItem("__auth_token", newState || "");
+        setStorage("__auth_token", newState || "");
       return { verifiedAuthToken: newState };
     }),
 
@@ -38,12 +48,16 @@ const useAuthMiddleware = create<Props>((set, get) => ({
     get().removeAuthToken();
     get().removePermissions();
     get().removeRole();
+    removeStorage("__user_data");
     get().setVerifiedAuthToken(null);
+    get().setAuthToken(null);
   },
 
   removeAuthToken: () => {
-    if (typeof window !== "undefined") localStorage.removeItem("__auth_token");
-    set(() => ({ verifiedAuthToken: undefined }));
+    if (typeof window !== "undefined") {
+      removeStorage("__auth_token");
+    }
+    set(() => ({ authToken: null, verifiedAuthToken: null }));
   },
 
   removePermissions: () => set(() => ({ permissions: undefined })),
