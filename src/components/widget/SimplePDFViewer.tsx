@@ -122,7 +122,12 @@ const PDFToolbar = (props: Props__PDFToolbar) => {
         <Icon boxSize={5} as={IconArrowAutofitWidth} />
       </UtilBtn>
 
-      <UtilBtn iconButton={false} onClick={toggleMode} ml={"auto"}>
+      <UtilBtn
+        iconButton={false}
+        onClick={toggleMode}
+        ml={"auto"}
+        tooltipContent={"Mode"}
+      >
         {isSingleMode ? "Single page" : "Scroll mode"}
       </UtilBtn>
     </HStack>
