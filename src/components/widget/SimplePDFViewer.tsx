@@ -212,7 +212,7 @@ export const SimplePDFViewer = (props: Props__PDFViewer) => {
         utils={utils}
         toggleMode={toggleMode}
         isSingleMode={isSingleMode}
-        border={"1px solid"}
+        // borderBottom={"1px solid"}
         borderColor={"d1"}
       />
 
