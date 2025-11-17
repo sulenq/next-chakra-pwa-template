@@ -101,7 +101,7 @@ export const TimePickerInput = (props: Props__TimePicker) => {
     onClose
   );
   const { sw } = useScreen();
-  const overflow = sw < 450 && withSeconds;
+  const wrapped = sw < 450 && withSeconds;
 
   // Update hours, minutes, seconds when inputValue changes
   useEffect(() => {
@@ -238,8 +238,8 @@ export const TimePickerInput = (props: Props__TimePicker) => {
             <HStack
               justify={"space-between"}
               gap={1}
-              wrap={overflow ? "wrap" : ""}
-              gapY={overflow ? 4 : 0}
+              wrap={wrapped ? "wrap" : ""}
+              gapY={wrapped ? 4 : 0}
             >
               {/* Hours control */}
               <VStack flex={"1 1 120"} align={"stretch"} gap={0}>
@@ -277,6 +277,7 @@ export const TimePickerInput = (props: Props__TimePicker) => {
                     }
                     fontSize={"64px !important"}
                     fontWeight={"400"}
+                    fontVariantNumeric={"tabular-nums"}
                     h={"64px"}
                     textAlign={"center"}
                     border={"none !important"}
@@ -307,7 +308,7 @@ export const TimePickerInput = (props: Props__TimePicker) => {
                 </Btn>
               </VStack>
 
-              {!overflow && (
+              {!wrapped && (
                 <P fontSize={50} opacity={0.2} mt={-2}>
                   :
                 </P>
@@ -349,6 +350,7 @@ export const TimePickerInput = (props: Props__TimePicker) => {
                     }
                     fontSize={"64px !important"}
                     fontWeight={"400"}
+                    fontVariantNumeric={"tabular-nums"}
                     h={"64px"}
                     textAlign={"center"}
                     border={"none !important"}
@@ -381,7 +383,7 @@ export const TimePickerInput = (props: Props__TimePicker) => {
 
               {withSeconds && (
                 <>
-                  {!overflow && (
+                  {!wrapped && (
                     <P fontSize={50} opacity={0.2} mt={-2}>
                       :
                     </P>
@@ -422,6 +424,7 @@ export const TimePickerInput = (props: Props__TimePicker) => {
                         }
                         fontSize={"64px !important"}
                         fontWeight={"400"}
+                        fontVariantNumeric={"tabular-nums"}
                         h={"64px"}
                         textAlign={"center"}
                         border={"none !important"}
