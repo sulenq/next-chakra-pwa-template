@@ -230,7 +230,7 @@ const BasicAuthForm = (props: any) => {
   );
 };
 
-const SigninForm = (props: Props) => {
+export const SigninForm = (props: Props) => {
   // Props
   const { ...restProps } = props;
 
@@ -273,5 +273,3 @@ const SigninForm = (props: Props) => {
     </CContainer>
   );
 };
-
-export default SigninForm;
