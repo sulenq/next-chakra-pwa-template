@@ -191,7 +191,7 @@ export const COLOR_PALETTES = [
 
   // Cyans & Blues
   { palette: "kemenkes", primaryHex: "#16B3AC" },
-  { palette: "cyan", primaryHex: "#00BCD4" },
+  { palette: "cyan", primaryHex: "#06b6d4" },
   { palette: "powderBlue", primaryHex: "#769cc2" },
   { palette: "sky", primaryHex: "#0EA5E9" },
   { palette: "blue", primaryHex: "#3a72ed" },

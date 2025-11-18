@@ -1310,7 +1310,7 @@ const customConfig = defineConfig({
         cyan: {
           solid: {
             value: {
-              base: "{colors.cyan.500}",
+              base: "{colors.cyan.500} !important",
               _dark: "{colors.cyan.500}",
             },
           },
@@ -1501,12 +1501,12 @@ const customConfig = defineConfig({
             },
           },
           contrast: {
-            value: { base: "{colors.indigo.50}", _dark: "{colors.indigo.900}" },
+            value: { base: "{colors.indigo.50}", _dark: "{colors.indigo.50}" },
           },
           fg: {
             value: {
               base: "{colors.indigo.500}",
-              _dark: "{colors.indigo.400}",
+              _dark: "{colors.indigo.300}",
             },
           },
           muted: {
