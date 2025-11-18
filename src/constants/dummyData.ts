@@ -54,6 +54,8 @@ export const dummySigninLogs = [
   {
     id: "sh_001",
     ip: "192.168.1.10",
+    city: "Jakarta",
+    countryCode: "ID",
     userAgent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64)",
     createdAt: "2025-11-14T03:20:00.000Z",
     updatedAt: "2025-11-14T03:20:00.000Z",
@@ -62,6 +64,8 @@ export const dummySigninLogs = [
   {
     id: "sh_002",
     ip: "10.0.0.5",
+    city: "Jakarta",
+    countryCode: "ID",
     userAgent: "Mozilla/5.0 (Macintosh; Intel Mac OS X 14_5)",
     createdAt: "2025-11-13T10:45:00.000Z",
     updatedAt: "2025-11-13T10:45:00.000Z",
@@ -70,6 +74,8 @@ export const dummySigninLogs = [
   {
     id: "sh_003",
     ip: "36.72.11.88",
+    city: "Jakarta",
+    countryCode: "ID",
     userAgent: "Mozilla/5.0 (iPhone; CPU iPhone OS 17_1)",
     createdAt: "2025-11-10T21:12:00.000Z",
     updatedAt: "2025-11-11T09:00:00.000Z",
@@ -78,6 +84,8 @@ export const dummySigninLogs = [
   {
     id: "sh_004",
     ip: "172.16.0.22",
+    city: "Jakarta",
+    countryCode: "ID",
     userAgent: "Mozilla/5.0 (Linux; Android 14)",
     createdAt: "2025-11-09T14:30:00.000Z",
     updatedAt: "2025-11-09T14:30:00.000Z",
@@ -86,6 +94,8 @@ export const dummySigninLogs = [
   {
     id: "sh_005",
     ip: "103.110.7.51",
+    city: "Jakarta",
+    countryCode: "ID",
     userAgent:
       "Mozilla/5.0 (Windows NT 10.0; rv:144.0) Gecko/20100101 Firefox/144.0",
     createdAt: "2025-11-08T08:12:00.000Z",
