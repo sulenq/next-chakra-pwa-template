@@ -15,9 +15,10 @@ import {
 import { useEffect, useRef, useState } from "react";
 
 import { Tooltip } from "@/components/ui/tooltip";
+import HScroll from "@/components/widget/HScroll";
+import useLang from "@/context/useLang";
 import type { PDFDocumentProxy, PDFPageProxy } from "pdfjs-dist";
 import * as pdfjsLib from "pdfjs-dist";
-import useLang from "@/context/useLang";
 
 pdfjsLib.GlobalWorkerOptions.workerSrc =
   "https://unpkg.com/pdfjs-dist@3.4.120/build/pdf.worker.min.js";
@@ -89,48 +90,50 @@ const PDFToolbar = (props: Props__PDFToolbar) => {
   };
 
   return (
-    <HStack p={2} bg={"body"} {...restProps}>
-      <UtilBtn
-        onClick={utils.prevPage}
-        disabled={!isSingleMode}
-        tooltipContent={l.previous_page}
-      >
-        <Icon boxSize={5} as={IconChevronLeft} />
-      </UtilBtn>
-      <UtilBtn
-        onClick={utils.nextPage}
-        disabled={!isSingleMode}
-        tooltipContent={l.next_page}
-      >
-        <Icon boxSize={5} as={IconChevronRight} />
-      </UtilBtn>
+    <HScroll className="noScroll" p={2} bg={"body"} {...restProps}>
+      <HStack>
+        <UtilBtn
+          onClick={utils.prevPage}
+          disabled={!isSingleMode}
+          tooltipContent={l.previous_page}
+        >
+          <Icon boxSize={5} as={IconChevronLeft} />
+        </UtilBtn>
+        <UtilBtn
+          onClick={utils.nextPage}
+          disabled={!isSingleMode}
+          tooltipContent={l.next_page}
+        >
+          <Icon boxSize={5} as={IconChevronRight} />
+        </UtilBtn>
 
-      <UtilBtn onClick={utils.zoomIn} tooltipContent={l.zoom_in}>
-        <Icon boxSize={5} as={IconZoomIn} />
-      </UtilBtn>
-      <UtilBtn onClick={utils.zoomOut} tooltipContent={l.zoom_out}>
-        <Icon boxSize={5} as={IconZoomOut} />
-      </UtilBtn>
-      <UtilBtn onClick={utils.resetZoom} tooltipContent={l.zoom_reset}>
-        <Icon boxSize={5} as={IconZoomReset} />
-      </UtilBtn>
+        <UtilBtn onClick={utils.zoomIn} tooltipContent={l.zoom_in}>
+          <Icon boxSize={5} as={IconZoomIn} />
+        </UtilBtn>
+        <UtilBtn onClick={utils.zoomOut} tooltipContent={l.zoom_out}>
+          <Icon boxSize={5} as={IconZoomOut} />
+        </UtilBtn>
+        <UtilBtn onClick={utils.resetZoom} tooltipContent={l.zoom_reset}>
+          <Icon boxSize={5} as={IconZoomReset} />
+        </UtilBtn>
 
-      <UtilBtn onClick={utils.fitToWidth} tooltipContent={l.fit_to_width}>
-        <Icon boxSize={5} as={IconArrowAutofitContent} />
-      </UtilBtn>
-      <UtilBtn onClick={utils.fitToPage} tooltipContent={l.fit_to_page}>
-        <Icon boxSize={5} as={IconArrowAutofitWidth} />
-      </UtilBtn>
+        <UtilBtn onClick={utils.fitToWidth} tooltipContent={l.fit_to_width}>
+          <Icon boxSize={5} as={IconArrowAutofitContent} />
+        </UtilBtn>
+        <UtilBtn onClick={utils.fitToPage} tooltipContent={l.fit_to_page}>
+          <Icon boxSize={5} as={IconArrowAutofitWidth} />
+        </UtilBtn>
 
-      <UtilBtn
-        iconButton={false}
-        onClick={toggleMode}
-        ml={"auto"}
-        tooltipContent={"Mode"}
-      >
-        {isSingleMode ? "Single page" : "Scroll mode"}
-      </UtilBtn>
-    </HStack>
+        <UtilBtn
+          iconButton={false}
+          onClick={toggleMode}
+          ml={"auto"}
+          tooltipContent={"Mode"}
+        >
+          {isSingleMode ? "Single page" : "Scroll mode"}
+        </UtilBtn>
+      </HStack>
+    </HScroll>
   );
 };
 
