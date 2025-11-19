@@ -17,11 +17,13 @@ import { useEffect, useRef, useState } from "react";
 import { Tooltip } from "@/components/ui/tooltip";
 import HScroll from "@/components/widget/HScroll";
 import useLang from "@/context/useLang";
-import type { PDFDocumentProxy, PDFPageProxy } from "pdfjs-dist";
-import * as pdfjsLib from "pdfjs-dist";
 
-pdfjsLib.GlobalWorkerOptions.workerSrc =
-  "https://unpkg.com/pdfjs-dist@3.4.120/build/pdf.worker.min.js";
+import * as pdfjsLib from "pdfjs-dist";
+import { GlobalWorkerOptions } from "pdfjs-dist";
+
+GlobalWorkerOptions.workerSrc = "/pdf.worker.min.js";
+
+import type { PDFDocumentProxy, PDFPageProxy } from "pdfjs-dist";
 
 export function usePDFUtils(
   pdfDoc: PDFDocumentProxy | null,
@@ -34,11 +36,16 @@ export function usePDFUtils(
 ) {
   const nextPage = () =>
     currentPage < totalPages && setCurrentPage(currentPage + 1);
+
   const prevPage = () => currentPage > 1 && setCurrentPage(currentPage - 1);
+
   const goToPage = (page: number) =>
     page >= 1 && page <= totalPages && setCurrentPage(page);
+
   const zoomIn = () => setScale(scale + 0.2);
+
   const zoomOut = () => setScale(Math.max(0.2, scale - 0.2));
+
   const resetZoom = () => setScale(1);
 
   const fitToWidth = async () => {
@@ -76,6 +83,7 @@ interface Props__PDFToolbar extends StackProps {
   toggleMode: () => void;
   isSingleMode: boolean;
 }
+
 const PDFToolbar = (props: Props__PDFToolbar) => {
   const { utils, toggleMode, isSingleMode, ...restProps } = props;
   const { l } = useLang();
@@ -140,8 +148,10 @@ const PDFToolbar = (props: Props__PDFToolbar) => {
 interface Props__PDFViewer extends StackProps {
   fileUrl: string;
 }
+
 export const SimplePDFViewer = (props: Props__PDFViewer) => {
   const { fileUrl, ...restProps } = props;
+
   const containerRef = useRef<HTMLDivElement>(null);
 
   const [pdfDoc, setPdfDoc] = useState<PDFDocumentProxy | null>(null);
@@ -154,11 +164,15 @@ export const SimplePDFViewer = (props: Props__PDFViewer) => {
 
   useEffect(() => {
     const loadPDF = async () => {
-      const doc = await pdfjsLib.getDocument(fileUrl).promise;
+      // load PDF document
+      const loadingTask = pdfjsLib.getDocument(fileUrl);
+      const doc = await loadingTask.promise;
+
       setPdfDoc(doc);
       setTotalPages(doc.numPages);
       setCurrentPage(1);
 
+      // auto-fit first page width
       if (canvasRefs.current[0]) {
         const page = await doc.getPage(1);
         const viewport = page.getViewport({ scale: 1 });
@@ -171,6 +185,7 @@ export const SimplePDFViewer = (props: Props__PDFViewer) => {
 
   const renderPage = async (pageNum: number, canvas: HTMLCanvasElement) => {
     if (!pdfDoc) return;
+
     const page: PDFPageProxy = await pdfDoc.getPage(pageNum);
     const viewport = page.getViewport({ scale });
     const ctx = canvas.getContext("2d");
@@ -179,20 +194,31 @@ export const SimplePDFViewer = (props: Props__PDFViewer) => {
     canvas.width = viewport.width;
     canvas.height = viewport.height;
 
-    // cancel previous render if still running
+    // cancel previous renderTask safely
     if ((canvas as any)._pdfRenderTask) {
       (canvas as any)._pdfRenderTask.cancel();
     }
 
     const renderTask = page.render({ canvasContext: ctx, viewport });
     (canvas as any)._pdfRenderTask = renderTask;
-    await renderTask.promise;
+
+    try {
+      await renderTask.promise;
+    } catch (err: any) {
+      // PDF.js throws RenderingCancelledException → harmless
+      if (err?.name !== "RenderingCancelledException") {
+        console.error(err);
+      }
+    }
   };
 
   useEffect(() => {
     if (!pdfDoc) return;
+
     if (isSingleMode) {
-      if (canvasRefs.current[0]) renderPage(currentPage, canvasRefs.current[0]);
+      if (canvasRefs.current[0]) {
+        renderPage(currentPage, canvasRefs.current[0]);
+      }
     } else {
       canvasRefs.current.forEach((canvas, idx) => renderPage(idx + 1, canvas));
     }
@@ -207,6 +233,7 @@ export const SimplePDFViewer = (props: Props__PDFViewer) => {
     setScale,
     totalPages
   );
+
   const toggleMode = () => setIsSingleMode(!isSingleMode);
 
   return (
@@ -215,7 +242,6 @@ export const SimplePDFViewer = (props: Props__PDFViewer) => {
         utils={utils}
         toggleMode={toggleMode}
         isSingleMode={isSingleMode}
-        // borderBottom={"1px solid"}
         borderColor={"d1"}
       />
 
