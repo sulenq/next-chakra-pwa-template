@@ -20,7 +20,6 @@ import {
   IconFiles,
   IconZoomIn,
   IconZoomOut,
-  IconZoomReset,
 } from "@tabler/icons-react";
 import "react-pdf/dist/Page/AnnotationLayer.css";
 import "react-pdf/dist/Page/TextLayer.css";
@@ -107,11 +106,11 @@ const Toolbar = (props: Props__PDFToolbar) => {
           </Icon>
         </UtilBtn>
 
-        <UtilBtn onClick={utils.resetZoom} tooltipContent={l.zoom_reset}>
+        {/* <UtilBtn onClick={utils.resetZoom} tooltipContent={l.zoom_reset}>
           <Icon boxSize={5}>
             <IconZoomReset stroke={1.5} />
           </Icon>
-        </UtilBtn>
+        </UtilBtn> */}
 
         <UtilBtn onClick={utils.fitToWidth} tooltipContent={l.fit_to_width}>
           <Icon boxSize={5}>
@@ -170,7 +169,7 @@ export const PDFViewer = (props: Props__PdfViewer) => {
     zoomIn: () => setScale((s) => Math.min(s + 0.1, 3)), // Max zoom 300%
     zoomOut: () => setScale((s) => Math.max(s - 0.1, 0.5)), // Min zoom 50%
     resetZoom: () => setScale(1),
-    fitToWidth: () => setScale(1), // 100% container width
+    fitToWidth: () => setScale(1),
     fitToPage: () => setScale(0.6),
   };
 
