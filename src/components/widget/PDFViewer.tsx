@@ -1,7 +1,7 @@
 "use client";
 
-import { HStack, Icon, Skeleton, StackProps } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
+import { Box, HStack, Icon, Skeleton, StackProps } from "@chakra-ui/react";
+import { useEffect, useRef, useState } from "react";
 import { Document, Page, pdfjs } from "react-pdf";
 // react-pdf CSS
 import { Btn } from "@/components/ui/btn";
@@ -16,7 +16,9 @@ import {
   IconArrowAutofitWidth,
   IconChevronLeft,
   IconChevronRight,
+  IconFile,
   IconFileOff,
+  IconFiles,
   IconZoomIn,
   IconZoomOut,
   IconZoomReset,
@@ -30,10 +32,21 @@ interface Props__PDFToolbar extends StackProps {
   utils: any;
   toggleMode: () => void;
   isSingleMode: boolean;
+  pageNumber: number;
+  numPages: number | null;
+  scale: number;
 }
 const Toolbar = (props: Props__PDFToolbar) => {
   // Props
-  const { utils, toggleMode, isSingleMode, ...restProps } = props;
+  const {
+    utils,
+    toggleMode,
+    isSingleMode,
+    pageNumber,
+    numPages,
+    scale,
+    ...restProps
+  } = props;
 
   // Contexts
   const { l } = useLang();
@@ -49,37 +62,52 @@ const Toolbar = (props: Props__PDFToolbar) => {
   };
 
   return (
-    <HScroll className={"noScroll"} p={2} bg={"body"} {...restProps}>
-      <HStack>
-        <UtilBtn
-          onClick={utils.prevPage}
-          disabled={!isSingleMode}
-          tooltipContent={l.previous_page}
-        >
+    <HScroll className={"noScroll"} bg={"body"} {...restProps}>
+      <HStack w={"max"} gap={2} p={2}>
+        <HStack gap={0} mr={2} borderRightWidth={"1px"} pr={2}>
+          <UtilBtn
+            onClick={utils.prevPage}
+            disabled={!isSingleMode || pageNumber <= 1}
+            tooltipContent={l.previous_page}
+          >
+            <Icon boxSize={5}>
+              <IconChevronLeft stroke={1.5} />
+            </Icon>
+          </UtilBtn>
+
+          {/* Page Indicator */}
+          <Box fontWeight={"medium"} px={2} whiteSpace={"nowrap"}>
+            {pageNumber} / {numPages || "--"}
+          </Box>
+
+          <UtilBtn
+            onClick={utils.nextPage}
+            disabled={!isSingleMode || pageNumber >= (numPages || 1)}
+            tooltipContent={l.next_page}
+          >
+            <Icon boxSize={5}>
+              <IconChevronRight stroke={1.5} />
+            </Icon>
+          </UtilBtn>
+        </HStack>
+
+        <UtilBtn onClick={utils.zoomOut} tooltipContent={l.zoom_out}>
           <Icon boxSize={5}>
-            <IconChevronLeft stroke={1.5} />
+            <IconZoomOut stroke={1.5} />
           </Icon>
         </UtilBtn>
-        <UtilBtn
-          onClick={utils.nextPage}
-          disabled={!isSingleMode}
-          tooltipContent={l.next_page}
-        >
-          <Icon boxSize={5}>
-            <IconChevronRight stroke={1.5} />
-          </Icon>
-        </UtilBtn>
+
+        {/* Scale Indicator */}
+        <Box minW={"35px"} textAlign={"center"}>
+          {Math.round(scale * 100)}%
+        </Box>
 
         <UtilBtn onClick={utils.zoomIn} tooltipContent={l.zoom_in}>
           <Icon boxSize={5}>
             <IconZoomIn stroke={1.5} />
           </Icon>
         </UtilBtn>
-        <UtilBtn onClick={utils.zoomOut} tooltipContent={l.zoom_out}>
-          <Icon boxSize={5}>
-            <IconZoomOut stroke={1.5} />
-          </Icon>
-        </UtilBtn>
+
         <UtilBtn onClick={utils.resetZoom} tooltipContent={l.zoom_reset}>
           <Icon boxSize={5}>
             <IconZoomReset stroke={1.5} />
@@ -88,12 +116,12 @@ const Toolbar = (props: Props__PDFToolbar) => {
 
         <UtilBtn onClick={utils.fitToWidth} tooltipContent={l.fit_to_width}>
           <Icon boxSize={5}>
-            <IconArrowAutofitContent stroke={1.5} />
+            <IconArrowAutofitWidth stroke={1.5} />
           </Icon>
         </UtilBtn>
         <UtilBtn onClick={utils.fitToPage} tooltipContent={l.fit_to_page}>
           <Icon boxSize={5}>
-            <IconArrowAutofitWidth stroke={1.5} />
+            <IconArrowAutofitContent stroke={1.5} />
           </Icon>
         </UtilBtn>
 
@@ -103,7 +131,14 @@ const Toolbar = (props: Props__PDFToolbar) => {
           ml={"auto"}
           tooltipContent={"Mode"}
         >
-          {isSingleMode ? "Single page" : "Scroll mode"}
+          <Icon boxSize={5}>
+            {isSingleMode ? (
+              <IconFile stroke={1.5} />
+            ) : (
+              <IconFiles stroke={1.5} />
+            )}
+          </Icon>
+          {isSingleMode ? "Single" : "Scroll"}
         </UtilBtn>
       </HStack>
     </HScroll>
@@ -126,14 +161,19 @@ export const PdfViewer = (props: Props__PdfViewer) => {
   const [isMounted, setIsMounted] = useState(false);
   const [scale, setScale] = useState<number>(1);
   const [isSingleMode, setIsSingleMode] = useState(true);
+
+  // Width Responsive State
+  const [containerWidth, setContainerWidth] = useState<number>(0);
+  const containerRef = useRef<HTMLDivElement>(null);
+
   const utils = {
     prevPage: () => setPageNumber((p) => Math.max(p - 1, 1)),
     nextPage: () => setPageNumber((p) => Math.min(p + 1, numPages || 1)),
-    zoomIn: () => setScale((s) => Math.min(s + 0.1, 2)),
-    zoomOut: () => setScale((s) => Math.max(s - 0.1, 0.5)),
+    zoomIn: () => setScale((s) => Math.min(s + 0.1, 3)), // Max zoom 300%
+    zoomOut: () => setScale((s) => Math.max(s - 0.1, 0.5)), // Min zoom 50%
     resetZoom: () => setScale(1),
-    fitToWidth: () => setScale(1),
-    fitToPage: () => setScale(1),
+    fitToWidth: () => setScale(1), // 100% container width
+    fitToPage: () => setScale(0.6),
   };
 
   // Utils
@@ -142,11 +182,25 @@ export const PdfViewer = (props: Props__PdfViewer) => {
   }
   function toggleMode() {
     setIsSingleMode(!isSingleMode);
+    setScale(1);
   }
 
-  // Prevent Hydration Mismatch
+  // Prevent Hydration Mismatch & Resize Observer
   useEffect(() => {
     setIsMounted(true);
+
+    // Logic auto-width 100% container
+    const observer = new ResizeObserver((entries) => {
+      if (entries[0]) {
+        setContainerWidth(entries[0].contentRect.width - 32);
+      }
+    });
+
+    if (containerRef.current) {
+      observer.observe(containerRef.current);
+    }
+
+    return () => observer.disconnect();
   }, []);
 
   return (
@@ -154,16 +208,27 @@ export const PdfViewer = (props: Props__PdfViewer) => {
       {!isMounted && <Skeleton w={"full"} h={"full"} />}
 
       {isMounted && (
-        <CContainer w={"full"} mx="auto" {...restProps}>
+        <CContainer flex={1} w={"full"} h={"full"} mx={"auto"} {...restProps}>
           {/* Toolbar */}
           <Toolbar
             utils={utils}
             isSingleMode={isSingleMode}
             toggleMode={toggleMode}
+            pageNumber={pageNumber}
+            numPages={numPages}
+            scale={scale}
+            flexShrink={0}
           />
 
           {/* Document Area */}
-          <CContainer className={"scrollX scrollY"} minH={"500px"}>
+          <CContainer
+            ref={containerRef}
+            className={"scrollX scrollY"}
+            flex={1}
+            minH={"500px"}
+            p={4}
+            position="relative"
+          >
             <Document
               file={fileUrl}
               onLoadSuccess={onDocumentLoadSuccess}
@@ -176,16 +241,44 @@ export const PdfViewer = (props: Props__PdfViewer) => {
                 />
               }
             >
-              <Page
-                pageNumber={pageNumber}
-                renderTextLayer={true}
-                renderAnnotationLayer={true}
-                width={Math.min(
-                  600,
-                  typeof window !== "undefined" ? window.innerWidth - 60 : 600
-                )}
-                scale={scale}
-              />
+              {containerWidth > 0 && (
+                <>
+                  {isSingleMode && (
+                    // Single Mode
+                    <Box mx={"auto"} width={"fit-content"}>
+                      <Page
+                        pageNumber={pageNumber}
+                        renderTextLayer={true}
+                        renderAnnotationLayer={true}
+                        width={containerWidth}
+                        scale={scale}
+                      />
+                    </Box>
+                  )}
+
+                  {!isSingleMode && (
+                    // Scroll Mode
+                    <Box
+                      display="flex"
+                      flexDirection="column"
+                      gap={4}
+                      alignItems="center"
+                    >
+                      {Array.from(new Array(numPages), (_, index) => (
+                        <Box key={`page_${index + 1}`}>
+                          <Page
+                            pageNumber={index + 1}
+                            renderTextLayer={true}
+                            renderAnnotationLayer={true}
+                            width={containerWidth}
+                            scale={scale}
+                          />
+                        </Box>
+                      ))}
+                    </Box>
+                  )}
+                </>
+              )}
             </Document>
           </CContainer>
         </CContainer>
