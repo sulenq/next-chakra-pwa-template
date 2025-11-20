@@ -28,6 +28,10 @@ const translations = {
     "title": "Connection Lost",
     "description": "It looks like you are offline. Check your internet connection and try again."
   },
+  "alert_pdf_failed_to_load": {
+    "title": "Failed to load PDF",
+    "description": "Check your internet connection or file URL."
+  },
   "alert_retry": {
     "title": "An error occurred",
     "description": "We're sorry. Please try again."

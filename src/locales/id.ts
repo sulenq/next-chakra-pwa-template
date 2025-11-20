@@ -28,6 +28,10 @@ const translations = {
     "title": "Koneksi Terputus",
     "description": "Sepertinya Anda sedang offline. Periksa koneksi internet Anda dan coba lagi."
   },
+  "alert_pdf_failed_to_load": {
+    "title": "Gagal memuat PDF",
+    "description": "Cek koneksi atau URL file."
+  },
   "alert_retry": {
     "title": "Terjadi kesalahan",
     "description": "Maaf, silakan coba lagi."

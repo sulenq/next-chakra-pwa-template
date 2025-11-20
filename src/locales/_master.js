@@ -965,6 +965,16 @@ export const alert_retry = {
     en: "We're sorry. Please try again.",
   },
 };
+export const alert_pdf_failed_to_load = {
+  title: {
+    id: "Gagal memuat PDF",
+    en: "Failed to load PDF",
+  },
+  description: {
+    id: "Cek koneksi atau URL file.",
+    en: "Check your internet connection or file URL.",
+  },
+};
 
 // Setting Page
 export const settings_dark_mode = {
