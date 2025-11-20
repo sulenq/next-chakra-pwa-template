@@ -62,32 +62,34 @@ const Toolbar = (props: Props__PDFToolbar) => {
   return (
     <HScroll className={"noScroll"} bg={"body"} {...restProps}>
       <HStack minW={"full"} w={"max"} gap={2} p={2}>
-        <HStack gap={0}>
-          <UtilBtn
-            onClick={utils.prevPage}
-            disabled={!isSingleMode || pageNumber <= 1}
-            tooltipContent={l.previous_page}
-          >
-            <Icon boxSize={5}>
-              <IconChevronLeft stroke={1.5} />
-            </Icon>
-          </UtilBtn>
+        {isSingleMode && (
+          <HStack gap={0}>
+            <UtilBtn
+              onClick={utils.prevPage}
+              disabled={!isSingleMode || pageNumber <= 1}
+              tooltipContent={l.previous_page}
+            >
+              <Icon boxSize={5}>
+                <IconChevronLeft stroke={1.5} />
+              </Icon>
+            </UtilBtn>
 
-          {/* Page Indicator */}
-          <Box fontWeight={"medium"} px={2} whiteSpace={"nowrap"}>
-            {pageNumber} / {numPages || "--"}
-          </Box>
+            {/* Page Indicator */}
+            <Box fontWeight={"medium"} px={2} whiteSpace={"nowrap"}>
+              {pageNumber} / {numPages || "--"}
+            </Box>
 
-          <UtilBtn
-            onClick={utils.nextPage}
-            disabled={!isSingleMode || pageNumber >= (numPages || 1)}
-            tooltipContent={l.next_page}
-          >
-            <Icon boxSize={5}>
-              <IconChevronRight stroke={1.5} />
-            </Icon>
-          </UtilBtn>
-        </HStack>
+            <UtilBtn
+              onClick={utils.nextPage}
+              disabled={!isSingleMode || pageNumber >= (numPages || 1)}
+              tooltipContent={l.next_page}
+            >
+              <Icon boxSize={5}>
+                <IconChevronRight stroke={1.5} />
+              </Icon>
+            </UtilBtn>
+          </HStack>
+        )}
 
         <UtilBtn onClick={utils.zoomOut} tooltipContent={l.zoom_out}>
           <Icon boxSize={5}>
