@@ -6,7 +6,6 @@ import { Document, Page, pdfjs } from "react-pdf";
 // react-pdf CSS
 import { Btn } from "@/components/ui/btn";
 import { CContainer } from "@/components/ui/c-container";
-import Spinner from "@/components/ui/spinner";
 import { Tooltip } from "@/components/ui/tooltip";
 import FeedbackState from "@/components/widget/FeedbackState";
 import HScroll from "@/components/widget/HScroll";
@@ -63,7 +62,7 @@ const Toolbar = (props: Props__PDFToolbar) => {
 
   return (
     <HScroll className={"noScroll"} bg={"body"} {...restProps}>
-      <HStack w={"max"} gap={2} p={2}>
+      <HStack minW={"full"} w={"max"} gap={2} p={2}>
         <HStack gap={0} mr={2} borderRightWidth={"1px"} pr={2}>
           <UtilBtn
             onClick={utils.prevPage}
@@ -148,7 +147,7 @@ const Toolbar = (props: Props__PDFToolbar) => {
 interface Props__PdfViewer extends StackProps {
   fileUrl: string;
 }
-export const PdfViewer = (props: Props__PdfViewer) => {
+export const PDFViewer = (props: Props__PdfViewer) => {
   // Props
   const { fileUrl, ...restProps } = props;
 
@@ -158,7 +157,6 @@ export const PdfViewer = (props: Props__PdfViewer) => {
   // States
   const [numPages, setNumPages] = useState<number | null>(null);
   const [pageNumber, setPageNumber] = useState<number>(1);
-  const [isMounted, setIsMounted] = useState(false);
   const [scale, setScale] = useState<number>(1);
   const [isSingleMode, setIsSingleMode] = useState(true);
 
@@ -185,14 +183,12 @@ export const PdfViewer = (props: Props__PdfViewer) => {
     setScale(1);
   }
 
-  // Prevent Hydration Mismatch & Resize Observer
+  // Resize Observer
   useEffect(() => {
-    setIsMounted(true);
-
     // Logic auto-width 100% container
     const observer = new ResizeObserver((entries) => {
       if (entries[0]) {
-        setContainerWidth(entries[0].contentRect.width - 32);
+        setContainerWidth(entries[0].contentRect.width);
       }
     });
 
@@ -205,84 +201,82 @@ export const PdfViewer = (props: Props__PdfViewer) => {
 
   return (
     <>
-      {!isMounted && <Skeleton w={"full"} h={"full"} />}
+      <CContainer flex={1} w={"full"} h={"full"} {...restProps}>
+        {/* Toolbar */}
+        <Toolbar
+          utils={utils}
+          isSingleMode={isSingleMode}
+          toggleMode={toggleMode}
+          pageNumber={pageNumber}
+          numPages={numPages}
+          scale={scale}
+          flexShrink={0}
+        />
 
-      {isMounted && (
-        <CContainer flex={1} w={"full"} h={"full"} mx={"auto"} {...restProps}>
-          {/* Toolbar */}
-          <Toolbar
-            utils={utils}
-            isSingleMode={isSingleMode}
-            toggleMode={toggleMode}
-            pageNumber={pageNumber}
-            numPages={numPages}
-            scale={scale}
-            flexShrink={0}
-          />
-
-          {/* Document Area */}
-          <CContainer
-            ref={containerRef}
-            className={"scrollX scrollY"}
-            flex={1}
-            minH={"500px"}
-            p={4}
-            position="relative"
+        {/* Document Area */}
+        <CContainer
+          ref={containerRef}
+          className={"scrollX scrollYAlt"}
+          flex={1}
+          minH={"200px"}
+          bg={"d0"}
+          p={2}
+          justify={"center"}
+          position={"relative"}
+        >
+          <Document
+            file={fileUrl}
+            onLoadSuccess={onDocumentLoadSuccess}
+            loading={<Skeleton flex={1} w={"full"} h={"full"} />}
+            error={
+              <FeedbackState
+                icon={<IconFileOff stroke={1.8} />}
+                title={l.alert_pdf_failed_to_load.title}
+                description={l.alert_pdf_failed_to_load.description}
+              />
+            }
           >
-            <Document
-              file={fileUrl}
-              onLoadSuccess={onDocumentLoadSuccess}
-              loading={<Spinner />}
-              error={
-                <FeedbackState
-                  icon={<IconFileOff stroke={1.8} />}
-                  title={l.alert_pdf_failed_to_load.title}
-                  description={l.alert_pdf_failed_to_load.description}
-                />
-              }
-            >
-              {containerWidth > 0 && (
-                <>
-                  {isSingleMode && (
-                    // Single Mode
-                    <Box mx={"auto"} width={"fit-content"}>
-                      <Page
-                        pageNumber={pageNumber}
-                        renderTextLayer={true}
-                        renderAnnotationLayer={true}
-                        width={containerWidth}
-                        scale={scale}
-                      />
-                    </Box>
-                  )}
+            {containerWidth > 0 && (
+              <>
+                {isSingleMode && (
+                  // Single Mode
+                  <Box mx={"auto"} width={"fit-content"}>
+                    <Page
+                      pageNumber={pageNumber}
+                      renderTextLayer={true}
+                      renderAnnotationLayer={true}
+                      width={containerWidth}
+                      scale={scale}
+                    />
+                  </Box>
+                )}
 
-                  {!isSingleMode && (
-                    // Scroll Mode
-                    <Box
-                      display="flex"
-                      flexDirection="column"
-                      gap={4}
-                      alignItems="center"
-                    >
-                      {Array.from(new Array(numPages), (_, index) => (
-                        <Box key={`page_${index + 1}`}>
-                          <Page
-                            pageNumber={index + 1}
-                            renderTextLayer={true}
-                            renderAnnotationLayer={true}
-                            width={containerWidth}
-                            scale={scale}
-                          />
-                        </Box>
-                      ))}
-                    </Box>
-                  )}
-                </>
-              )}
-            </Document>
-          </CContainer>
+                {!isSingleMode && (
+                  // Scroll Mode
+                  <Box
+                    display="flex"
+                    flexDirection="column"
+                    gap={4}
+                    alignItems="center"
+                  >
+                    {Array.from(new Array(numPages), (_, index) => (
+                      <Box key={`page_${index + 1}`}>
+                        <Page
+                          pageNumber={index + 1}
+                          renderTextLayer={true}
+                          renderAnnotationLayer={true}
+                          width={containerWidth}
+                          scale={scale}
+                        />
+                      </Box>
+                    ))}
+                  </Box>
+                )}
+              </>
+            )}
+          </Document>
         </CContainer>
-      )}
+      </CContainer>
     </>
   );
 };
