@@ -19,6 +19,10 @@
 }
 
 /* Custom Start*/
+.react-pdf__Document {
+  margin: auto;
+}
+
 .mapboxgl-ctrl-bottom-right,
 .mapboxgl-ctrl-bottom-left {
   display: none !important;
@@ -27,15 +31,18 @@
 .mapboxgl-ctrl-bottom-right {
   opacity: 0;
 }
+
 .timezones-list::-webkit-scrollbar-track {
   height: 100px !important;
   clip-path: inset(50px 0 50px 0) !important;
 }
+
 .chakra-menu__separator {
   background: var(--d2) !important;
   border-color: var(--d1) !important;
   margin: 4px 0;
 }
+
 .tox-platform-touch {
   width: 100% !important;
 }
