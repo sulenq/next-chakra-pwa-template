@@ -9,6 +9,7 @@ export interface BtnProps extends ButtonProps {
   children?: React.ReactNode;
   clicky?: boolean;
   iconButton?: boolean;
+  focusStyle?: boolean;
 }
 
 export const Btn = forwardRef<HTMLButtonElement, BtnProps>((props, ref) => {
@@ -19,6 +20,7 @@ export const Btn = forwardRef<HTMLButtonElement, BtnProps>((props, ref) => {
     iconButton = false,
     className = "",
     size,
+    focusStyle = true,
     ...restProps
   } = props;
 
@@ -61,8 +63,15 @@ export const Btn = forwardRef<HTMLButtonElement, BtnProps>((props, ref) => {
       className={resolvedClassName}
       size={size || (MAIN_BUTTON_SIZE as any)}
       rounded={themeConfig.radii.component}
-      _active={{ bg: activeBg }}
       outline={"none !important"}
+      _focus={
+        focusStyle
+          ? {
+              boxShadow: "0 0 0 2px {colors.gray.500}",
+            }
+          : {}
+      }
+      _active={{ bg: activeBg }}
       {...restProps}
     >
       {children}
@@ -75,11 +84,15 @@ export const Btn = forwardRef<HTMLButtonElement, BtnProps>((props, ref) => {
       fontWeight="medium"
       size={size || (MAIN_BUTTON_SIZE as any)}
       rounded={themeConfig.radii.component}
-      _active={{ bg: activeBg }}
       outline={"none !important"}
-      _focus={{
-        boxShadow: "0 0 0 2px {colors.gray.500}",
-      }}
+      _focus={
+        focusStyle
+          ? {
+              boxShadow: "0 0 0 2px {colors.gray.500}",
+            }
+          : {}
+      }
+      _active={{ bg: activeBg }}
       {...restProps}
     >
       {children}
