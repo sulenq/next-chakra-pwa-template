@@ -168,10 +168,11 @@ const ToastComponent = (props: any) => {
       h={expanded ? "max" : ""}
       {...restProps}
     >
-      {!expanded && <ToastIconComponent toast={toast} />}
+      {/* {!expanded && <ToastIconComponent toast={toast} />} */}
+      {<ToastIconComponent toast={toast} />}
 
       <CContainer gap={2}>
-        {expanded && <ToastIconComponent toast={toast} />}
+        {/* {expanded && <ToastIconComponent toast={toast} />} */}
 
         <CContainer gap={4}>
           <CContainer
@@ -212,11 +213,9 @@ const ToastComponent = (props: any) => {
             )}
           </CContainer>
 
-          {expanded && (
+          {toast.action && expanded && (
             <HStack flexShrink={0} justify={"end"}>
-              {toast.action && expanded && (
-                <ToastActionTriggerComponent toast={toast} />
-              )}
+              <ToastActionTriggerComponent toast={toast} />
             </HStack>
           )}
         </CContainer>
