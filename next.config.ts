@@ -46,11 +46,11 @@ const nextConfig: NextConfig = {
   },
   experimental: {
     optimizePackageImports: ["@chakra-ui/react"],
-    turbo: {
-      resolveAlias: {
-        canvas: "./src/libs/canvas-mock.js",
-      },
-    },
+    // turbo: {
+    //   resolveAlias: {
+    //     canvas: "./src/libs/canvas-mock.js",
+    //   },
+    // },
   },
 };
 

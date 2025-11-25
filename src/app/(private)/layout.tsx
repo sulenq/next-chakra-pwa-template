@@ -30,6 +30,7 @@ import { Tooltip, TooltipProps } from "@/components/ui/tooltip";
 import BackButton from "@/components/widget/BackButton";
 import Clock from "@/components/widget/Clock";
 import FeedbackNotFound from "@/components/widget/FeedbackNotFound";
+import HScroll from "@/components/widget/HScroll";
 import {
   BottomIndicator,
   DotIndicator,
@@ -200,212 +201,216 @@ const MobileLayout = (props: any) => {
       </CContainer>
 
       {/* Navs */}
-      <HStack
-        gap={4}
-        px={4}
-        pt={3}
-        pb={5}
-        borderTop={"1px solid"}
-        borderColor={"border.subtle"}
-        overflowX={"auto"}
-      >
-        {PRIVATE_NAVS.map((navItem, idx) => {
-          return (
-            <Fragment key={idx}>
-              {navItem.list.map((nav) => {
-                const isMainNavActive = pathname.includes(nav.path);
+      <HScroll>
+        <HStack
+          w={"max"}
+          gap={4}
+          px={4}
+          pt={3}
+          pb={5}
+          borderTop={"1px solid"}
+          borderColor={"border.subtle"}
+        >
+          {PRIVATE_NAVS.map((navItem, idx) => {
+            return (
+              <Fragment key={idx}>
+                {navItem.list.map((nav) => {
+                  const isMainNavActive = pathname.includes(nav.path);
 
-                return (
-                  <Fragment key={nav.path}>
-                    {!nav.subMenus && (
-                      <MobileNavLink
-                        key={nav.path}
-                        to={nav.subMenus ? "" : nav.path}
-                        color={isMainNavActive ? "" : "fg.muted"}
-                        flex={1}
-                      >
-                        <Icon boxSize={6}>
-                          <nav.icon stroke={1.5} />
-                        </Icon>
-
-                        <P
-                          textAlign={"center"}
-                          lineClamp={1}
-                          fontSize={MOBILE_NAV_LABEL_FONT_SIZE}
+                  return (
+                    <Fragment key={nav.path}>
+                      {!nav.subMenus && (
+                        <MobileNavLink
+                          key={nav.path}
+                          to={nav.subMenus ? "" : nav.path}
+                          color={isMainNavActive ? "" : "fg.muted"}
+                          flex={1}
                         >
-                          {pluckString(l, nav.labelKey)}
-                        </P>
+                          <Icon boxSize={6}>
+                            <nav.icon stroke={1.5} />
+                          </Icon>
 
-                        {isMainNavActive && <BottomIndicator />}
-                      </MobileNavLink>
-                    )}
+                          <P
+                            textAlign={"center"}
+                            lineClamp={1}
+                            fontSize={MOBILE_NAV_LABEL_FONT_SIZE}
+                          >
+                            {pluckString(l, nav.labelKey)}
+                          </P>
 
-                    {nav.subMenus && (
-                      <>
-                        <MenuRoot
-                          positioning={{
-                            placement: "top",
-                            offset: {
-                              mainAxis: MOBILE_POPOVER_MAIN_AXIS,
-                            },
-                          }}
-                        >
-                          <MenuTrigger asChild>
-                            <CContainer
-                              key={nav.path}
-                              minW={"50px"}
-                              align={"center"}
-                              gap={1}
-                              color={isMainNavActive ? "" : "fg.muted"}
-                              pos={"relative"}
-                              cursor={"pointer"}
-                              flex={1}
-                            >
-                              <Icon boxSize={6}>
-                                <nav.icon stroke={1.5} />
-                              </Icon>
+                          {isMainNavActive && <BottomIndicator />}
+                        </MobileNavLink>
+                      )}
 
-                              <P
-                                fontSize={MOBILE_NAV_LABEL_FONT_SIZE}
-                                textAlign={"center"}
-                                lineClamp={1}
+                      {nav.subMenus && (
+                        <>
+                          <MenuRoot
+                            positioning={{
+                              placement: "top",
+                              offset: {
+                                mainAxis: MOBILE_POPOVER_MAIN_AXIS,
+                              },
+                            }}
+                          >
+                            <MenuTrigger asChild>
+                              <CContainer
+                                key={nav.path}
+                                minW={"50px"}
+                                align={"center"}
+                                gap={1}
+                                color={isMainNavActive ? "" : "fg.muted"}
+                                pos={"relative"}
+                                cursor={"pointer"}
+                                flex={1}
                               >
-                                {pluckString(l, nav.labelKey)}
-                              </P>
+                                <Icon boxSize={6}>
+                                  <nav.icon stroke={1.5} />
+                                </Icon>
 
-                              {isMainNavActive && <BottomIndicator />}
-                            </CContainer>
-                          </MenuTrigger>
-
-                          <MenuContent>
-                            {nav.subMenus.map((menuItem, idx) => {
-                              return (
-                                <MenuItemGroup
-                                  key={idx}
-                                  title={
-                                    menuItem.groupLabelKey
-                                      ? pluckString(l, menuItem.groupLabelKey)
-                                      : ""
-                                  }
+                                <P
+                                  fontSize={MOBILE_NAV_LABEL_FONT_SIZE}
+                                  textAlign={"center"}
+                                  lineClamp={1}
                                 >
-                                  {menuItem.list.map((menu) => {
-                                    const isSubNavsActive =
-                                      pathname === menu.path;
+                                  {pluckString(l, nav.labelKey)}
+                                </P>
 
-                                    return (
-                                      <NavLink
-                                        key={menu.path}
-                                        w={"full"}
-                                        to={menu.path}
-                                      >
-                                        <MenuItem
-                                          value={menu.path}
-                                          h={"44px"}
-                                          px={3}
+                                {isMainNavActive && <BottomIndicator />}
+                              </CContainer>
+                            </MenuTrigger>
+
+                            <MenuContent>
+                              {nav.subMenus.map((menuItem, idx) => {
+                                return (
+                                  <MenuItemGroup
+                                    key={idx}
+                                    title={
+                                      menuItem.groupLabelKey
+                                        ? pluckString(l, menuItem.groupLabelKey)
+                                        : ""
+                                    }
+                                  >
+                                    {menuItem.list.map((menu) => {
+                                      const isSubNavsActive =
+                                        pathname === menu.path;
+
+                                      return (
+                                        <NavLink
+                                          key={menu.path}
+                                          w={"full"}
+                                          to={menu.path}
                                         >
-                                          {isSubNavsActive && <LeftIndicator />}
+                                          <MenuItem
+                                            value={menu.path}
+                                            h={"44px"}
+                                            px={3}
+                                          >
+                                            {isSubNavsActive && (
+                                              <LeftIndicator />
+                                            )}
 
-                                          <P lineClamp={1}>
-                                            {pluckString(l, menu.labelKey)}
-                                          </P>
-                                        </MenuItem>
-                                      </NavLink>
-                                    );
-                                  })}
-                                </MenuItemGroup>
-                              );
-                            })}
-                          </MenuContent>
-                        </MenuRoot>
-                      </>
-                    )}
-                  </Fragment>
-                );
-              })}
-            </Fragment>
-          );
-        })}
+                                            <P lineClamp={1}>
+                                              {pluckString(l, menu.labelKey)}
+                                            </P>
+                                          </MenuItem>
+                                        </NavLink>
+                                      );
+                                    })}
+                                  </MenuItemGroup>
+                                );
+                              })}
+                            </MenuContent>
+                          </MenuRoot>
+                        </>
+                      )}
+                    </Fragment>
+                  );
+                })}
+              </Fragment>
+            );
+          })}
 
-        <MobileNavLink
-          to={`/master-data`}
-          color={isInMasterDataRoute ? "" : "fg.muted"}
-          flex={1}
-        >
-          <Icon boxSize={6}>
-            <IconDatabase stroke={1.5} />
-          </Icon>
-
-          <P
-            textAlign={"center"}
-            lineClamp={1}
-            fontSize={MOBILE_NAV_LABEL_FONT_SIZE}
+          <MobileNavLink
+            to={`/master-data`}
+            color={isInMasterDataRoute ? "" : "fg.muted"}
+            flex={1}
           >
-            Master Data
-          </P>
+            <Icon boxSize={6}>
+              <IconDatabase stroke={1.5} />
+            </Icon>
 
-          {isInMasterDataRoute && <BottomIndicator />}
-        </MobileNavLink>
+            <P
+              textAlign={"center"}
+              lineClamp={1}
+              fontSize={MOBILE_NAV_LABEL_FONT_SIZE}
+            >
+              Master Data
+            </P>
 
-        <MobileNavLink
-          to={`/settings`}
-          color={isInSettingsRoute ? "" : "fg.muted"}
-          flex={1}
-        >
-          <Icon boxSize={6}>
-            <IconSettings stroke={1.5} />
-          </Icon>
+            {isInMasterDataRoute && <BottomIndicator />}
+          </MobileNavLink>
 
-          <P
-            textAlign={"center"}
-            lineClamp={1}
-            fontSize={MOBILE_NAV_LABEL_FONT_SIZE}
+          <MobileNavLink
+            to={`/settings`}
+            color={isInSettingsRoute ? "" : "fg.muted"}
+            flex={1}
           >
-            {l.settings}
-          </P>
+            <Icon boxSize={6}>
+              <IconSettings stroke={1.5} />
+            </Icon>
 
-          {isInSettingsRoute && <BottomIndicator />}
-        </MobileNavLink>
+            <P
+              textAlign={"center"}
+              lineClamp={1}
+              fontSize={MOBILE_NAV_LABEL_FONT_SIZE}
+            >
+              {l.settings}
+            </P>
 
-        <PopoverRoot
-          positioning={{
-            placement: "top",
-            offset: {
-              mainAxis: MOBILE_POPOVER_MAIN_AXIS,
-            },
-          }}
-        >
-          <PopoverTrigger asChild>
-            <MobileNavLink flex={1} color={"fg.muted"}>
-              {!user?.avatar?.filePath && (
-                <Icon boxSize={6}>
-                  <IconUser stroke={1.5} />
-                </Icon>
-              )}
+            {isInSettingsRoute && <BottomIndicator />}
+          </MobileNavLink>
 
-              {user?.avatar?.filePath && (
-                <Avatar
-                  src={imgUrl(user?.avatar?.filePath)}
-                  name={user?.name}
-                  size={"2xs"}
-                />
-              )}
+          <PopoverRoot
+            positioning={{
+              placement: "top",
+              offset: {
+                mainAxis: MOBILE_POPOVER_MAIN_AXIS,
+              },
+            }}
+          >
+            <PopoverTrigger asChild>
+              <MobileNavLink flex={1} color={"fg.muted"}>
+                {!user?.avatar?.filePath && (
+                  <Icon boxSize={6}>
+                    <IconUser stroke={1.5} />
+                  </Icon>
+                )}
 
-              <P
-                fontSize={MOBILE_NAV_LABEL_FONT_SIZE}
-                textAlign={"center"}
-                color={isInProfileRoute ? "" : "fg.muted"}
-                lineClamp={1}
-              >
-                {l.profile}
-              </P>
-            </MobileNavLink>
-          </PopoverTrigger>
+                {user?.avatar?.filePath && (
+                  <Avatar
+                    src={imgUrl(user?.avatar?.filePath)}
+                    name={user?.name}
+                    size={"2xs"}
+                  />
+                )}
 
-          <PopoverContent w={"200px"} zIndex={10}>
-            <MiniMyProfile />
-          </PopoverContent>
-        </PopoverRoot>
-      </HStack>
+                <P
+                  fontSize={MOBILE_NAV_LABEL_FONT_SIZE}
+                  textAlign={"center"}
+                  color={isInProfileRoute ? "" : "fg.muted"}
+                  lineClamp={1}
+                >
+                  {l.profile}
+                </P>
+              </MobileNavLink>
+            </PopoverTrigger>
+
+            <PopoverContent w={"200px"} zIndex={10}>
+              <MiniMyProfile />
+            </PopoverContent>
+          </PopoverRoot>
+        </HStack>
+      </HScroll>
     </CContainer>
   );
 };

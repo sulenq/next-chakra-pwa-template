@@ -163,7 +163,8 @@ const DemoIndexRoute = () => {
     {
       label: "Success",
       type: "success",
-      description: "Success description",
+      description:
+        "Success description Officia minim ullamco id deserunt velit minim incididunt minim irure occaecat dolore nostrud do dolore. Eu laboris voluptate proident officia dolore veniam nostrud consequat aute dolore veniam. Dolore Lorem enim sunt quis.",
     },
     {
       label: "Error",
