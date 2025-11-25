@@ -35,7 +35,7 @@ export const MenuTrigger = forwardRef<HTMLButtonElement, MenuTriggerProps>(
       <ChakraMenu.Trigger
         ref={ref}
         as={"div"}
-        _focus={{
+        _focusVisible={{
           border: "none !important",
           outline: "none !important",
           boxShadow: "none !important",
@@ -77,7 +77,7 @@ interface MenuContentProps extends ChakraMenu.ContentProps {
 export const MenuContent = forwardRef<HTMLDivElement, MenuContentProps>(
   function MenuContent(props, ref) {
     // Props
-    const { portalled = false, portalRef, ...restProps } = props;
+    const { portalled = true, portalRef, ...restProps } = props;
 
     // Contexts
     const { themeConfig } = useThemeConfig();
