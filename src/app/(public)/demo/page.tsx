@@ -279,12 +279,12 @@ const DemoIndexRoute = () => {
                     type: toast.type,
                     title: toast.label,
                     description: toast.description,
-                    action: {
-                      label: "Action",
-                      onClick: () => {
-                        console.log("action");
-                      },
-                    },
+                    // action: {
+                    //   label: "Action",
+                    //   onClick: () => {
+                    //     console.log("action");
+                    //   },
+                    // },
                   });
                 }}
                 variant={"outline"}
