@@ -10,7 +10,7 @@ const SelectWorkspaceCategory = (props: Props__SelectInput) => {
   const { ...restProps } = props;
 
   // Hooks
-  const { req, loading } = useRequest({
+  const { req, loading, error } = useRequest({
     id: "select_workspace_category",
     showLoadingToast: false,
     showSuccessToast: false,
@@ -23,7 +23,7 @@ const SelectWorkspaceCategory = (props: Props__SelectInput) => {
   // Utils
   function fetch() {
     const config = {
-      url: `/api/gis-bpn/master-data/categories/index`,
+      url: `/api/gis-bpn/master-data/categories/index1`,
       method: "GET",
       params: {
         with_trashed: 0,
@@ -57,6 +57,7 @@ const SelectWorkspaceCategory = (props: Props__SelectInput) => {
     <SelectInput
       title={capitalizeWords("Properties")}
       loading={loading}
+      error={error}
       selectOptions={selectOptions}
       fetch={fetch}
       {...restProps}

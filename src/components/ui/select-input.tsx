@@ -13,8 +13,10 @@ import { DisclosureHeaderContent } from "@/components/ui/disclosure-header-conte
 import { P } from "@/components/ui/p";
 import SearchInput from "@/components/ui/search-input";
 import { Tooltip } from "@/components/ui/tooltip";
-import { DotIndicator } from "@/components/widget/Indicator";
 import FeedbackNoData from "@/components/widget/FeedbackNoData";
+import FeedbackNotFound from "@/components/widget/FeedbackNotFound";
+import FeedbackRetry from "@/components/widget/FeedbackRetry";
+import { DotIndicator } from "@/components/widget/Indicator";
 import { Interface__SelectOption } from "@/constants/interfaces";
 import { Props__SelectInput, Props__SelectOptions } from "@/constants/props";
 import useLang from "@/context/useLang";
@@ -22,6 +24,7 @@ import { useThemeConfig } from "@/context/useThemeConfig";
 import useBackOnClose from "@/hooks/useBackOnClose";
 import { isEmptyArray } from "@/utils/array";
 import { back } from "@/utils/client";
+import { disclosureId } from "@/utils/disclosure";
 import { capitalizeWords } from "@/utils/string";
 import {
   Box,
@@ -32,7 +35,6 @@ import {
 } from "@chakra-ui/react";
 import { IconCaretDownFilled, IconReload } from "@tabler/icons-react";
 import { useEffect, useState } from "react";
-import { disclosureId } from "@/utils/disclosure";
 
 const SelectOptions = (props: Props__SelectOptions) => {
   // Props
@@ -71,7 +73,13 @@ const SelectOptions = (props: Props__SelectOptions) => {
         />
       </CContainer>
 
-      {isEmptyArray(resolvedSelectOptions) && <FeedbackNoData minH={"250px"} />}
+      {search && isEmptyArray(resolvedSelectOptions) && (
+        <FeedbackNotFound minH={"250px"} />
+      )}
+
+      {!search && isEmptyArray(resolvedSelectOptions) && (
+        <FeedbackNoData minH={"250px"} />
+      )}
 
       {!isEmptyArray(resolvedSelectOptions) && (
         <>
@@ -159,6 +167,7 @@ export const SelectInput = (props: Props__SelectInput) => {
     inputValue,
     onChange,
     loading,
+    error,
     selectOptions,
     placeholder,
     invalid,
@@ -269,12 +278,18 @@ export const SelectInput = (props: Props__SelectInput) => {
             {loading && <CSpinner />}
 
             {!loading && (
-              <SelectOptions
-                multiple={multiple}
-                selectOptions={selectOptions}
-                selected={selected}
-                setSelected={setSelected}
-              />
+              <>
+                {error && <FeedbackRetry onRetry={fetch} minH={"250px"} />}
+
+                {!error && (
+                  <SelectOptions
+                    multiple={multiple}
+                    selectOptions={selectOptions}
+                    selected={selected}
+                    setSelected={setSelected}
+                  />
+                )}
+              </>
             )}
           </DisclosureBody>
 

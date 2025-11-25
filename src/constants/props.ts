@@ -157,6 +157,7 @@ export interface Props__SelectInput extends Omit<BtnProps, "onChange"> {
   inputValue?: Interface__SelectOption[] | null;
   onChange?: (inputValue: Props__SelectInput["inputValue"]) => void;
   loading?: boolean;
+  error?: any;
   selectOptions?: Props__SelectInput["inputValue"];
   placeholder?: string;
   invalid?: boolean;
