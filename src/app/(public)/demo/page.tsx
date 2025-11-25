@@ -280,7 +280,7 @@ const DemoIndexRoute = () => {
                     title: toast.label,
                     description: toast.description,
                     action: {
-                      label: "Close",
+                      label: "Action",
                       onClick: () => {
                         console.log("action");
                       },

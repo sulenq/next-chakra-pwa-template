@@ -160,7 +160,7 @@ export default function useRequest<T = any>(props: Props) {
             id,
             title: resolvedLoadingMessage.title,
             description: resolvedLoadingMessage.description,
-            action: { label: "Close", onClick: () => {} },
+            // action: { label: "Close", onClick: () => {} },
           });
         }
 
@@ -188,7 +188,7 @@ export default function useRequest<T = any>(props: Props) {
               type: "success",
               title: resolvedSuccessMessage.title,
               description: resolvedSuccessMessage.description,
-              action: { label: "Close", onClick: () => {} },
+              // action: { label: "Close", onClick: () => {} },
             });
           } else {
             toaster.dismiss(id);
@@ -228,13 +228,13 @@ export default function useRequest<T = any>(props: Props) {
             toaster.update(id, {
               type: "error",
               ...toastProps,
-              action: { label: "Close", onClick: () => {} },
+              // action: { label: "Close", onClick: () => {} },
             });
           } else {
             toaster.create({
               type: "error",
               ...toastProps,
-              action: { label: "Close", onClick: () => {} },
+              // action: { label: "Close", onClick: () => {} },
             });
           }
         }

@@ -19,9 +19,11 @@ import {
   IconAlertTriangle,
   IconCircleCheck,
   IconInfoCircle,
+  IconX,
 } from "@tabler/icons-react";
 import { useState } from "react";
 import { useColorMode } from "./color-mode";
+import { Btn } from "@/components/ui/btn";
 
 const TOAST_PRESETS = {
   loading: {
@@ -95,6 +97,7 @@ export const toaster = createToaster({
   placement:
     isClient() && window.innerWidth < SM_SCREEN_W_NUMBER ? "top" : "bottom-end",
   pauseOnPageIdle: true,
+  duration: 999999,
 });
 
 const ToastIconComponent = (props: any) => {
@@ -168,13 +171,10 @@ const ToastComponent = (props: any) => {
       h={expanded ? "max" : ""}
       {...restProps}
     >
-      {/* {!expanded && <ToastIconComponent toast={toast} />} */}
-      {<ToastIconComponent toast={toast} />}
+      <ToastIconComponent toast={toast} />
 
       <CContainer gap={2}>
-        {/* {expanded && <ToastIconComponent toast={toast} />} */}
-
-        <CContainer gap={4}>
+        <CContainer>
           <CContainer
             flex={1}
             h={expanded ? "max" : ""}
@@ -213,19 +213,32 @@ const ToastComponent = (props: any) => {
             )}
           </CContainer>
 
-          {toast.action && expanded && (
+          {expanded && (
             <HStack flexShrink={0} justify={"end"}>
-              <ToastActionTriggerComponent toast={toast} />
+              {toast.action && expanded && (
+                <ToastActionTriggerComponent toast={toast} mt={4} />
+              )}
             </HStack>
           )}
         </CContainer>
       </CContainer>
 
-      {toast.action && !expanded && (
-        <ToastActionTriggerComponent toast={toast} />
-      )}
+      {/* {toast.meta?.closable && <Toast.CloseTrigger />} */}
 
-      {toast.meta?.closable && <Toast.CloseTrigger />}
+      <Btn
+        as={Toast.CloseTrigger}
+        iconButton
+        size={"2xs"}
+        variant={"subtle"}
+        rounded={"full"}
+        pos={"absolute"}
+        top={2}
+        right={2}
+      >
+        <Icon boxSize={4}>
+          <IconX />
+        </Icon>
+      </Btn>
     </Toast.Root>
   );
 };

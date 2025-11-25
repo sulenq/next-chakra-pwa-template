@@ -74,7 +74,7 @@ export const Btn = forwardRef<HTMLButtonElement, BtnProps>((props, ref) => {
       _focusVisible={
         focusStyle
           ? {
-              boxShadow: "0 0 0 2px {colors.gray.500}",
+              outline: "2px solid {colors.gray.500}",
             }
           : {}
       }
@@ -95,7 +95,7 @@ export const Btn = forwardRef<HTMLButtonElement, BtnProps>((props, ref) => {
       _focusVisible={
         focusStyle
           ? {
-              boxShadow: "0 0 0 2px {colors.gray.500}",
+              outline: "2px solid {colors.gray.500}",
             }
           : {}
       }

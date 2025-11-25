@@ -23,7 +23,7 @@ const SelectWorkspaceCategory = (props: Props__SelectInput) => {
   // Utils
   function fetch() {
     const config = {
-      url: `/api/gis-bpn/master-data/categories/index1`,
+      url: `/api/gis-bpn/master-data/categories/index`,
       method: "GET",
       params: {
         with_trashed: 0,
