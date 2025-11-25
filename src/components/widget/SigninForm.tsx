@@ -23,6 +23,7 @@ import { P } from "../ui/p";
 import { PasswordInput } from "../ui/password-input";
 import { StringInput } from "../ui/string-input";
 import ResetPasswordDisclosureTrigger from "./ResetPasswordDisclosure";
+import Logo from "@/components/widget/Logo";
 
 interface Props extends StackProps {}
 
@@ -260,7 +261,9 @@ export const SigninForm = (props: Props) => {
         <Signedin indexRoute={indexRoute} />
       ) : (
         <>
-          <CContainer gap={2} mb={2}>
+          <CContainer align={"center"} gap={2} mb={4}>
+            <Logo mb={2} />
+
             <H1 fontSize={"3xl"} fontWeight={"bold"} textAlign={"center"}>
               {APP.name}
             </H1>

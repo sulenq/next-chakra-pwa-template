@@ -7,11 +7,15 @@ import BrandWatermark from "@/components/widget/BrandWatermark";
 import Logo from "@/components/widget/Logo";
 import { SigninForm } from "@/components/widget/SigninForm";
 import { useThemeConfig } from "@/context/useThemeConfig";
+import { useIsSmScreenWidth } from "@/hooks/useIsSmScreenWidth";
 import { Box, HStack, SimpleGrid } from "@chakra-ui/react";
 
 export default function Page() {
   // Contexts
   const { themeConfig } = useThemeConfig();
+
+  // Hooks
+  const iss = useIsSmScreenWidth();
 
   return (
     <CContainer
@@ -50,16 +54,18 @@ export default function Page() {
         backdropFilter={"blur(70px)"}
         gap={4}
       >
-        <CContainer
-          bgPos={"center"}
-          bgSize={"cover"}
-          pos={"relative"}
-          overflow={"clip"}
-          rounded={themeConfig.radii.container}
-          maxH={"calc(100dvh - 16px)"}
-        >
-          <Logo color={"white"} />
-        </CContainer>
+        {!iss && (
+          <CContainer
+            bgPos={"center"}
+            bgSize={"cover"}
+            pos={"relative"}
+            overflow={"clip"}
+            rounded={themeConfig.radii.container}
+            maxH={"calc(100dvh - 16px)"}
+          >
+            <Logo color={"white"} />
+          </CContainer>
+        )}
 
         <CContainer
           p={8}

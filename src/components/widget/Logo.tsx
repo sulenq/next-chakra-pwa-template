@@ -5,7 +5,7 @@ import { Center } from "@chakra-ui/react";
 
 const Logo = (props: Props__Logo) => {
   // Props
-  const { color, size = 24 } = props;
+  const { color, size = 24, ...restProps } = props;
 
   // Contexts
   const { colorMode } = useColorMode();
@@ -21,7 +21,12 @@ const Logo = (props: Props__Logo) => {
     : themeConfig?.primaryColorHex;
 
   return (
-    <Center flexShrink={0} w={`${size + 8}px`} h={`${size + 8}px`}>
+    <Center
+      flexShrink={0}
+      w={`${size + 8}px`}
+      h={`${size + 8}px`}
+      {...restProps}
+    >
       <svg
         width={size}
         height={size}
