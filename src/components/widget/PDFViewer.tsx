@@ -219,8 +219,8 @@ export const PDFViewer = (props: Props__PdfViewer) => {
         className={"scrollX scrollYAlt"}
         flex={1}
         minH={"200px"}
-        // bg={"d1"}
-        p={2}
+        // bg={"bg.muted"}
+        // p={2}
         m={"auto"}
         position={"relative"}
       >
