@@ -40,8 +40,8 @@ const customConfig = defineConfig({
         placeholder: { value: "#96969691" },
         p: {
           50: { value: "#E0F7FF" },
-          100: { value: "#B3ECFF" },
-          200: { value: "#80E1FF" },
+          100: { value: "#cbf0fd" },
+          200: { value: "#8ee5ff" },
           300: { value: "#4DD6FF" },
           400: { value: "#26CBFF" },
           500: { value: "#00BFFF" },
@@ -401,19 +401,19 @@ const customConfig = defineConfig({
           },
           fg: {
             value: {
-              base: "{colors.p.500}",
+              base: "{colors.p.600}",
               _dark: "{colors.p.400}",
             },
           },
           muted: {
             value: {
-              base: "{colors.p.200}",
+              base: "{colors.p.500}",
               _dark: "{colors.p.800} ",
             },
           },
           subtle: {
             value: {
-              base: "{colors.p.50}",
+              base: "{colors.p.100}",
               _dark: "{colors.p.900}",
             },
           },

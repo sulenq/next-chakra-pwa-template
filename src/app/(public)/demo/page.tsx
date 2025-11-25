@@ -260,7 +260,7 @@ const DemoIndexRoute = () => {
           </P>
 
           <NavLink to="/dashboard">
-            <P color={"p.500"}>App Layout</P>
+            <P color={"p.fg"}>App Layout</P>
           </NavLink>
         </HStack>
 
