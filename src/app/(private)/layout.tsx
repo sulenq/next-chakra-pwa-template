@@ -792,6 +792,7 @@ const DesktopLayout = (props: any) => {
                                   clicky={false}
                                   variant={"ghost"}
                                   px={2}
+                                  pr={"10px"}
                                   pos={"relative"}
                                   bg={"transparent"}
                                   // color={
