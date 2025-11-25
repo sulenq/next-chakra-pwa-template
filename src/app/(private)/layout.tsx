@@ -56,7 +56,7 @@ import { getAuthToken, getUserData } from "@/utils/auth";
 import { setStorage } from "@/utils/client";
 import { pluckString } from "@/utils/string";
 import { getActiveNavs, imgUrl } from "@/utils/url";
-import { Center, HStack, Icon, Stack } from "@chakra-ui/react";
+import { Box, Center, HStack, Icon, Stack } from "@chakra-ui/react";
 import {
   IconBoxAlignLeft,
   IconCircleFilled,
@@ -588,6 +588,7 @@ const DesktopLayout = (props: any) => {
           p={2}
           pr={`calc(8px - ${FIREFOX_SCROLL_Y_CLASS_PR_PREFIX})`}
         >
+          {/* Utils */}
           {navsExpanded && (
             <CContainer mb={1}>
               <SearchInput
@@ -635,7 +636,11 @@ const DesktopLayout = (props: any) => {
                                 px={2}
                                 justifyContent={"start"}
                                 variant={"ghost"}
-                                colorPalette={NAVS_COLOR_PALETTE}
+                                color={
+                                  isMainNavsActive
+                                    ? `${themeConfig.colorPalette}.fg`
+                                    : ""
+                                }
                               >
                                 {isMainNavsActive && nav.icon && (
                                   <LeftIndicator />
@@ -690,6 +695,11 @@ const DesktopLayout = (props: any) => {
                                     variant={"ghost"}
                                     colorPalette={NAVS_COLOR_PALETTE}
                                     pos={"relative"}
+                                    color={
+                                      isMainNavsActive
+                                        ? `${themeConfig.colorPalette}.fg`
+                                        : ""
+                                    }
                                   >
                                     {isMainNavsActive && <LeftIndicator />}
 
@@ -735,7 +745,15 @@ const DesktopLayout = (props: any) => {
                                               },
                                             }}
                                           >
-                                            <MenuItem value={menu.path} px={3}>
+                                            <MenuItem
+                                              value={menu.path}
+                                              px={3}
+                                              color={
+                                                isSubNavsActive
+                                                  ? `${themeConfig.colorPalette}.fg`
+                                                  : ""
+                                              }
+                                            >
                                               {isSubNavsActive && (
                                                 <LeftIndicator />
                                               )}
@@ -756,13 +774,13 @@ const DesktopLayout = (props: any) => {
                         )}
 
                         {hasSubMenus && navsExpanded && (
-                          <AccordionRoot multiple>
+                          <AccordionRoot multiple defaultValue={[nav.path]}>
                             <AccordionItem
                               value={nav.path}
                               border={"none"}
                               rounded={themeConfig.radii.component}
                               _open={{
-                                bg: "d0",
+                                bg: "transparent",
                               }}
                             >
                               <NavTooltip
@@ -776,6 +794,11 @@ const DesktopLayout = (props: any) => {
                                   px={2}
                                   pos={"relative"}
                                   bg={"transparent"}
+                                  color={
+                                    isMainNavsActive
+                                      ? `${themeConfig.colorPalette}.fg`
+                                      : ""
+                                  }
                                   _hover={{
                                     bg: "bg.muted",
                                   }}
@@ -795,7 +818,7 @@ const DesktopLayout = (props: any) => {
                               </NavTooltip>
 
                               <AccordionItemContent p={0}>
-                                <CContainer gap={1} p={1}>
+                                <CContainer gap={1} pt={1}>
                                   {nav.subMenus?.map(
                                     (menuItem, menuItemIdx) => {
                                       return (
@@ -815,7 +838,10 @@ const DesktopLayout = (props: any) => {
                                             </P>
                                           )}
 
-                                          {menuItem.list.map((menu) => {
+                                          {menuItem.list.map((menu, idx) => {
+                                            const isFirstIdx = idx === 0;
+                                            const isLastIdx =
+                                              idx === menuItem.list.length - 1;
                                             const isSubNavsActive =
                                               pathname === menu.path;
 
@@ -839,32 +865,46 @@ const DesktopLayout = (props: any) => {
                                                     },
                                                   }}
                                                 >
-                                                  <Btn
-                                                    iconButton={
-                                                      navsExpanded
-                                                        ? false
-                                                        : true
-                                                    }
-                                                    clicky={false}
-                                                    w={"full"}
-                                                    gap={3}
-                                                    px={2}
-                                                    rounded={`calc(${themeConfig.radii.component})`}
-                                                    justifyContent={"start"}
-                                                    variant={"ghost"}
-                                                    colorPalette={
-                                                      NAVS_COLOR_PALETTE
-                                                    }
+                                                  <HStack
+                                                    pos={"relative"}
+                                                    pl={"8.5px"}
+                                                    gap={1}
                                                   >
-                                                    <Center boxSize={5}>
+                                                    {!isFirstIdx && (
+                                                      <Box
+                                                        flexShrink={0}
+                                                        w={"1px"}
+                                                        h={"calc(50% + 2px)"}
+                                                        pos={"absolute"}
+                                                        top={"-2px"}
+                                                        left={"18px"}
+                                                        bg={"d3"}
+                                                      />
+                                                    )}
+                                                    {!isLastIdx && (
+                                                      <Box
+                                                        flexShrink={0}
+                                                        w={"1px"}
+                                                        h={"calc(50% + 2px)"}
+                                                        pos={"absolute"}
+                                                        bottom={"-2px"}
+                                                        left={"18px"}
+                                                        bg={"d3"}
+                                                      />
+                                                    )}
+
+                                                    <Center
+                                                      flexShrink={0}
+                                                      boxSize={5}
+                                                      zIndex={2}
+                                                    >
                                                       <Icon
                                                         boxSize={2}
                                                         color={
                                                           isSubNavsActive
                                                             ? themeConfig.primaryColor
-                                                            : "d2"
+                                                            : "bg.emphasized"
                                                         }
-                                                        ml={"-6px"}
                                                       >
                                                         <IconCircleFilled
                                                           stroke={1.5}
@@ -872,16 +912,39 @@ const DesktopLayout = (props: any) => {
                                                       </Icon>
                                                     </Center>
 
-                                                    <P
-                                                      lineClamp={1}
-                                                      textAlign={"left"}
+                                                    <Btn
+                                                      iconButton={
+                                                        navsExpanded
+                                                          ? false
+                                                          : true
+                                                      }
+                                                      clicky={false}
+                                                      flex={1}
+                                                      gap={3}
+                                                      px={3}
+                                                      rounded={`calc(${themeConfig.radii.component})`}
+                                                      justifyContent={"start"}
+                                                      variant={"ghost"}
+                                                      colorPalette={
+                                                        NAVS_COLOR_PALETTE
+                                                      }
+                                                      color={
+                                                        isSubNavsActive
+                                                          ? `${themeConfig.colorPalette}.fg`
+                                                          : ""
+                                                      }
                                                     >
-                                                      {pluckString(
-                                                        l,
-                                                        menu.labelKey
-                                                      )}
-                                                    </P>
-                                                  </Btn>
+                                                      <P
+                                                        lineClamp={1}
+                                                        textAlign={"left"}
+                                                      >
+                                                        {pluckString(
+                                                          l,
+                                                          menu.labelKey
+                                                        )}
+                                                      </P>
+                                                    </Btn>
+                                                  </HStack>
                                                 </Tooltip>
                                               </NavLink>
                                             );
