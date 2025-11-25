@@ -419,12 +419,12 @@ const DesktopLayout = (props: any) => {
   const navsExpanded = useNavs((s) => s.navsExpanded);
   const toggleNavsExpanded = useNavs((s) => s.toggleNavsExpanded);
 
+  // Refs
+  const searchInputRef = useRef<HTMLInputElement>(null);
+
   // Hooks
   const pathname = usePathname();
   const { sw } = useScreen();
-
-  // Refs
-  const searchInputRef = useRef<HTMLInputElement>(null);
 
   // States
   const user = getUserData();
@@ -794,11 +794,11 @@ const DesktopLayout = (props: any) => {
                                   px={2}
                                   pos={"relative"}
                                   bg={"transparent"}
-                                  color={
-                                    isMainNavsActive
-                                      ? `${themeConfig.colorPalette}.fg`
-                                      : ""
-                                  }
+                                  // color={
+                                  //   isMainNavsActive
+                                  //     ? `${themeConfig.colorPalette}.fg`
+                                  //     : ""
+                                  // }
                                   _hover={{
                                     bg: "bg.muted",
                                   }}
@@ -928,11 +928,11 @@ const DesktopLayout = (props: any) => {
                                                       colorPalette={
                                                         NAVS_COLOR_PALETTE
                                                       }
-                                                      color={
-                                                        isSubNavsActive
-                                                          ? `${themeConfig.colorPalette}.fg`
-                                                          : ""
-                                                      }
+                                                      // color={
+                                                      //   isSubNavsActive
+                                                      //     ? `${themeConfig.colorPalette}.fg`
+                                                      //     : ""
+                                                      // }
                                                     >
                                                       <P
                                                         lineClamp={1}
