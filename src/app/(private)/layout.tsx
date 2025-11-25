@@ -636,11 +636,11 @@ const DesktopLayout = (props: any) => {
                                 px={2}
                                 justifyContent={"start"}
                                 variant={"ghost"}
-                                color={
-                                  isMainNavsActive
-                                    ? `${themeConfig.colorPalette}.fg`
-                                    : ""
-                                }
+                                // color={
+                                //   isMainNavsActive
+                                //     ? `${themeConfig.colorPalette}.fg`
+                                //     : ""
+                                // }
                               >
                                 {isMainNavsActive && nav.icon && (
                                   <LeftIndicator />
@@ -695,11 +695,11 @@ const DesktopLayout = (props: any) => {
                                     variant={"ghost"}
                                     colorPalette={NAVS_COLOR_PALETTE}
                                     pos={"relative"}
-                                    color={
-                                      isMainNavsActive
-                                        ? `${themeConfig.colorPalette}.fg`
-                                        : ""
-                                    }
+                                    // color={
+                                    //   isMainNavsActive
+                                    //     ? `${themeConfig.colorPalette}.fg`
+                                    //     : ""
+                                    // }
                                   >
                                     {isMainNavsActive && <LeftIndicator />}
 
@@ -748,11 +748,11 @@ const DesktopLayout = (props: any) => {
                                             <MenuItem
                                               value={menu.path}
                                               px={3}
-                                              color={
-                                                isSubNavsActive
-                                                  ? `${themeConfig.colorPalette}.fg`
-                                                  : ""
-                                              }
+                                              // color={
+                                              //   isSubNavsActive
+                                              //     ? `${themeConfig.colorPalette}.fg`
+                                              //     : ""
+                                              // }
                                             >
                                               {isSubNavsActive && (
                                                 <LeftIndicator />
