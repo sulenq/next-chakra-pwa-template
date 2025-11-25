@@ -9,7 +9,7 @@ const AdminDashboardRoute = () => {
     <SimpleGrid id="dashboard" columns={2} gap={4} px={4} pb={4}>
       <PDFViewer
         fileUrl={`/assets/dummy-pdf.pdf`}
-        h={`calc(100vh - ${TOP_BAR_H})`}
+        h={`calc(100vh - ${TOP_BAR_H} - 16px)`}
       />
     </SimpleGrid>
   );
