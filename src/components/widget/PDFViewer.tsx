@@ -211,6 +211,8 @@ export const PDFViewer = (props: Props__PdfViewer) => {
         numPages={numPages}
         scale={scale}
         flexShrink={0}
+        // borderBottom={"1px solid"}
+        borderColor={"border.muted"}
       />
 
       {/* Document Area */}
@@ -219,8 +221,7 @@ export const PDFViewer = (props: Props__PdfViewer) => {
         className={"scrollX scrollYAlt"}
         flex={1}
         minH={"200px"}
-        // bg={"bg.muted"}
-        // p={2}
+        bg={"bg.subtle"}
         m={"auto"}
         position={"relative"}
       >

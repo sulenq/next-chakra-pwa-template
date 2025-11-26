@@ -6,10 +6,10 @@ import { SimpleGrid } from "@chakra-ui/react";
 
 const AdminDashboardRoute = () => {
   return (
-    <SimpleGrid id="dashboard" columns={[1, null, 2]} gap={4} px={4} pb={4}>
+    <SimpleGrid id="dashboard" columns={[1, null, 2]} gap={4}>
       <PDFViewer
         fileUrl={`/assets/dummy-pdf.pdf`}
-        h={`calc(100vh - ${TOP_BAR_H} - 16px)`}
+        h={`calc(100vh - ${TOP_BAR_H})`}
       />
     </SimpleGrid>
   );
