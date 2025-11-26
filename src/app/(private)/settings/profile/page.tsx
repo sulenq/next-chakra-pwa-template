@@ -15,6 +15,7 @@ import { Img } from "@/components/ui/img";
 import { ImgInput } from "@/components/ui/img-input";
 import { P } from "@/components/ui/p";
 import { Skeleton } from "@/components/ui/skeleton";
+import Spinner from "@/components/ui/spinner";
 import { StringInput } from "@/components/ui/string-input";
 import BackButton from "@/components/widget/BackButton";
 import { ClampText } from "@/components/widget/ClampText";
@@ -543,7 +544,7 @@ export default function Page() {
       dataResource: false,
     });
   const render = {
-    loading: <Skeleton flex={1} />,
+    loading: <Spinner m={"auto"} />,
     error: <FeedbackRetry onRetry={onRetry} />,
     empty: <FeedbackNoData />,
     notFound: <FeedbackNotFound />,
@@ -560,6 +561,7 @@ export default function Page() {
 
   return (
     <>
+      {/* {render.loading} */}
       {initialLoading && render.loading}
       {!initialLoading && (
         <>
