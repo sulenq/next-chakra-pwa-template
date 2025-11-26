@@ -4,11 +4,11 @@ import { Props__DateTimePickerInput } from "@/constants/props";
 import { useThemeConfig } from "@/context/useThemeConfig";
 import { extractTime, getUserTimezone, makeUTCISODateTime } from "@/utils/time";
 import { Group, useFieldContext } from "@chakra-ui/react";
-import moment from "moment-timezone";
 import { useEffect, useState } from "react";
+import { parseISO } from "date-fns";
+import { toZonedTime, format as formatTz } from "date-fns-tz";
 
 export const DateTimePickerInput = (props: Props__DateTimePickerInput) => {
-  // Props
   const {
     id,
     title = {
@@ -24,15 +24,12 @@ export const DateTimePickerInput = (props: Props__DateTimePickerInput) => {
     ...restProps
   } = props;
 
-  // Contexts
   const { themeConfig } = useThemeConfig();
   const fc = useFieldContext();
 
-  // States
   const [date, setDate] = useState<string>("");
   const [time, setTime] = useState<string>("");
 
-  // set input value on date & time change
   useEffect(() => {
     if (date && time) {
       onChange?.(makeUTCISODateTime(date, time));
@@ -41,13 +38,15 @@ export const DateTimePickerInput = (props: Props__DateTimePickerInput) => {
     }
   }, [date, time]);
 
-  // set inputValue to date & time
   useEffect(() => {
     if (inputValue) {
       const userTzKey = getUserTimezone().key;
 
-      // convert UTC iso ke user tz
-      const localized = moment.utc(inputValue).tz(userTzKey).format();
+      const utcDate = parseISO(inputValue);
+      const localizedDate = toZonedTime(utcDate, userTzKey);
+      const localized = formatTz(localizedDate, "yyyy-MM-dd'T'HH:mm:ss", {
+        timeZone: userTzKey,
+      });
 
       setDate(localized);
       setTime(

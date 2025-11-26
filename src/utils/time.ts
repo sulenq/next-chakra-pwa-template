@@ -1,31 +1,34 @@
 import { Type__TimezoneObject } from "@/constants/types";
 import { getStorage } from "@/utils/client";
-
-import * as DnsTz from "date-fns-tz";
-
-// ----------------------------------------------------------------------
-// TIMEZONE UTILITIES
-// ----------------------------------------------------------------------
+import {
+  parseISO,
+  parse,
+  setHours,
+  setMinutes,
+  setSeconds,
+  startOfDay,
+  addSeconds,
+} from "date-fns";
+import { getTimezoneOffset, formatInTimeZone } from "date-fns-tz";
 
 export const getTimezoneOffsetMs = (timezoneKey: string): number => {
-  // Returns timezone offset in milliseconds
-  return DnsTz.getTimezoneOffset(timezoneKey) * 60 * 1000;
+  return getTimezoneOffset(timezoneKey);
 };
 
 export const getLocalTimezone = (): Type__TimezoneObject => {
   const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
   const autoTimezoneLabel = `Auto (${timezone})`;
 
-  const offsetMs = DnsTz.getTimezoneOffset(timezone) * 60 * 1000;
-  const offsetHours = offsetMs / 3600000;
+  const offsetMs = getTimezoneOffset(timezone);
+  const offsetMinutes = offsetMs / (60 * 1000);
+  const offsetHours = offsetMinutes / 60;
 
-  // Format offset (e.g., +07:00)
-  const formattedOffset = `UTC${DnsTz.format(new Date(), "xxx", {
-    timeZone: timezone,
-  })}`;
+  const offsetSign = offsetHours >= 0 ? "+" : "";
+  const formattedOffset = `UTC${offsetSign}${String(
+    Math.abs(offsetHours)
+  ).padStart(2, "0")}:00`;
 
-  // Get timezone abbreviation (e.g., WIB)
-  const abbreviation = DnsTz.format(new Date(), "z", { timeZone: timezone });
+  const abbreviation = formatInTimeZone(new Date(), timezone, "z");
 
   return {
     key: timezone,
@@ -56,38 +59,14 @@ export const getUserTimezone = (): Type__TimezoneObject => {
 export const getUserNow = () => {
   const userTz = getUserTimezone();
   const localTz = getLocalTimezone();
+
   const userOffset = getTimezoneOffsetMs(userTz.key);
   const localOffset = getTimezoneOffsetMs(localTz.key);
-  // Calculates 'now' adjusted for the user's selected timezone offset
+
   const now = new Date(new Date().getTime() - localOffset + userOffset);
 
   return now;
 };
-
-export const timezones = () => {
-  // Use native JS Intl API for the list of time zones
-  const allTimezones: string[] = Intl.supportedValuesOf("timeZone");
-
-  return allTimezones.map((tz: string) => {
-    // Note: DnsTz is still needed for offset calculations and formatting
-    const offsetMinutes = DnsTz.getTimezoneOffset(tz);
-
-    return {
-      key: tz,
-      label: tz,
-      offset: offsetMinutes / 60,
-      offsetMs: offsetMinutes * 60 * 1000,
-      formattedOffset: `UTC${DnsTz.format(new Date(), "xxx", {
-        timeZone: tz,
-      })}`,
-      localAbbr: DnsTz.format(new Date(), "z", { timeZone: tz }),
-    };
-  });
-};
-
-// ----------------------------------------------------------------------
-// ISO / TIME / DURATION UTILITIES
-// ----------------------------------------------------------------------
 
 export const getDurationByClock = (
   timeFrom: string,
@@ -97,7 +76,6 @@ export const getDurationByClock = (
   const timeEnd: Date = new Date(timeTo);
   const timeRange: number = timeEnd.getTime() - timeStart.getTime();
 
-  // Returns duration in seconds
   return timeRange / 1000;
 };
 
@@ -136,7 +114,7 @@ export const getSecondsFromTime = (time: string | undefined | null): number => {
 
 export const makeTime = (
   input: Date | string | number | undefined,
-  format: "HH:mm:ss" | "HH:mm" | "hh:mm A" = "HH:mm:ss"
+  formatString: "HH:mm:ss" | "HH:mm" | "hh:mm A" = "HH:mm:ss"
 ): string => {
   if (!input) return "";
 
@@ -145,13 +123,13 @@ export const makeTime = (
       ? new Date(input)
       : input;
 
-  if (isNaN(date.getTime())) return ""; // Handle invalid date
+  if (isNaN(date.getTime())) return "";
 
   const hh = date.getHours().toString().padStart(2, "0");
   const mm = date.getMinutes().toString().padStart(2, "0");
   const ss = date.getSeconds().toString().padStart(2, "0");
 
-  switch (format) {
+  switch (formatString) {
     case "HH:mm":
       return `${hh}:${mm}`;
     case "hh:mm A": {
@@ -164,12 +142,14 @@ export const makeTime = (
   }
 };
 
-export const makeLocalDateTime = (isoDate: string, time: string): Date => {
+export const makeDateTime = (isoDate: string, time: string): Date => {
   const [hours, minutes, seconds] = time.split(":").map(Number);
-  const dateTime = new Date(isoDate);
 
-  // Sets time components without affecting date components
-  dateTime.setHours(hours, minutes, seconds, 0);
+  let dateTime = new Date(isoDate);
+
+  dateTime = setHours(dateTime, hours);
+  dateTime = setMinutes(dateTime, minutes);
+  dateTime = setSeconds(dateTime, seconds);
 
   return dateTime;
 };
@@ -190,13 +170,15 @@ export const makeUTCISODateTime = (
   const timezoneKey = options?.timezoneKey || getUserTimezone().key;
   const normalizedTime = /^\d{2}:\d{2}$/.test(time) ? `${time}:00` : time;
 
-  const combinedDateTime = `${datePart}T${normalizedTime}`;
+  const dateTimeString = `${datePart} ${normalizedTime}`;
 
-  // Use formatTz to interpret the datetime string in the specified timezone,
-  // then immediately format it as UTC ISO string.
-  return DnsTz.format(combinedDateTime, "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", {
-    timeZone: timezoneKey,
-  });
+  const dateInZone = parse(dateTimeString, "yyyy-MM-dd HH:mm:ss", new Date());
+
+  const offsetMs = getTimezoneOffset(timezoneKey);
+
+  const utcDate = new Date(dateInZone.getTime() - offsetMs);
+
+  return utcDate.toISOString();
 };
 
 export const extractTime = (
@@ -205,10 +187,8 @@ export const extractTime = (
 ): string => {
   if (!input) return "";
 
-  // Converts input to ISO string for parsing
   const isoStr = typeof input === "string" ? input : input.toISOString();
 
-  // Regex capture HH:mm or HH:mm:ss from ISO string
   const regex = options.withSeconds ? /T(\d{2}:\d{2}:\d{2})/ : /T(\d{2}:\d{2})/;
   const match = isoStr.match(regex);
 
@@ -222,8 +202,37 @@ export const parseTimeToSeconds = (time: string): number => {
 };
 
 export const resetTime = (date: Date): Date => {
-  // Creates a new Date object at the start of the day (00:00:00)
-  return new Date(date.getFullYear(), date.getMonth(), date.getDate());
+  return startOfDay(date);
+};
+
+export const timezones = () => {
+  const timezonesArray = Intl.supportedValuesOf("timeZone");
+
+  return timezonesArray.map((tz) => {
+    const offsetMs = getTimezoneOffset(tz);
+    const offsetMinutes = offsetMs / (60 * 1000);
+    const offsetHours = offsetMinutes / 60;
+
+    let abbreviation = "";
+    try {
+      abbreviation = formatInTimeZone(new Date(), tz, "z");
+    } catch {
+      abbreviation = tz;
+    }
+
+    return {
+      key: tz,
+      label: tz,
+      offset: offsetHours,
+      offsetMs: offsetMs,
+      formattedOffset: `UTC${offsetHours >= 0 ? "+" : ""}${formatInTimeZone(
+        new Date(),
+        tz,
+        "HH:mm"
+      )}`,
+      localAbbr: abbreviation,
+    };
+  });
 };
 
 export const addSecondsToTime = (
@@ -233,8 +242,10 @@ export const addSecondsToTime = (
   if (!time) return "";
 
   const [h, m, s] = time.split(":").map(Number);
+
   const base = new Date();
   base.setHours(h, m, s, 0);
+
   const result = new Date(base.getTime() + secondsToAdd * 1000);
 
   const hh = String(result.getHours()).padStart(2, "0");
@@ -246,8 +257,10 @@ export const addSecondsToTime = (
 
 export const getRemainingSecondsUntil = (targetTime: string): number => {
   const [h, m, s] = targetTime.split(":").map(Number);
+
   const now = new Date();
   const target = new Date();
+
   target.setHours(h, m, s, 0);
 
   const diffMs = target.getTime() - now.getTime();
@@ -259,7 +272,9 @@ export const addSecondsToISODate = (
   isoDate: string,
   seconds: number
 ): string => {
-  const date = new Date(isoDate);
-  date.setSeconds(date.getSeconds() + seconds);
-  return date.toISOString();
+  const date = parseISO(isoDate);
+
+  const result = addSeconds(date, seconds);
+
+  return result.toISOString();
 };
