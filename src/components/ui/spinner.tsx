@@ -6,6 +6,10 @@ const Spinner = (props: Props) => {
   // Props
   const { ...restProps } = props;
 
+  // TODO buat 3 dots spinner, apply global, like in btn
+  // TODO cek mobile
+  // TODO
+
   return <ChakraSpinner {...restProps} />;
 };
 
