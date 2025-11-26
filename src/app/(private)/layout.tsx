@@ -51,7 +51,7 @@ import { getAuthToken, getUserData } from "@/utils/auth";
 import { setStorage } from "@/utils/client";
 import { pluckString } from "@/utils/string";
 import { getActiveNavs, imgUrl } from "@/utils/url";
-import { Box, Center, HStack, Icon, Stack } from "@chakra-ui/react";
+import { Box, Center, HStack, Icon } from "@chakra-ui/react";
 import {
   IconBoxAlignLeft,
   IconCircleFilled,
@@ -67,8 +67,8 @@ const NAVS_BG = "body";
 const NAVS_COLOR = "ibody";
 const NAVS_COLOR_PALETTE = "gray";
 const BG_CONTENT_CONTAINER = "body";
-const DESKTOP_POPOVER_MAIN_AXIS = 22;
-const DESKTOP_TOOLTIP_MAIN_AXIS = 16;
+const DESKTOP_POPOVER_MAIN_AXIS = 24;
+const DESKTOP_TOOLTIP_MAIN_AXIS = 24;
 const MOBILE_NAV_LABEL_FONT_SIZE = "sm";
 const MOBILE_POPOVER_MAIN_AXIS = 22;
 
@@ -479,15 +479,15 @@ const DesktopLayout = (props: any) => {
       {/* Sidebar */}
       <CContainer
         flexShrink={0}
-        w={navsExpanded ? "250px" : "54px"}
+        w={navsExpanded ? "250px" : "60px"}
         transition={"200ms"}
         borderRight={"1px solid"}
         borderColor={"border.muted"}
       >
-        <CContainer gap={1} p={2}>
+        <CContainer gap={1} px={3} py={2}>
           {!navsExpanded && (
             <NavLink to="/">
-              <Center w={"40px"} h={"40px"} mr={"auto"}>
+              <Center w={"36px"} h={"40px"} mr={"auto"}>
                 <Logo size={15} />
               </Center>
             </NavLink>
@@ -511,32 +511,31 @@ const DesktopLayout = (props: any) => {
               </NavLink>
             )}
 
-            <Stack flexDir={navsExpanded ? "row" : "column"} gap={1}>
-              {/* Toggle Side Navs */}
-              <Tooltip
-                content={navsExpanded ? l.minimize : l.maximize}
-                positioning={{
-                  placement: "right",
-                  offset: {
-                    mainAxis: DESKTOP_TOOLTIP_MAIN_AXIS,
-                  },
-                }}
+            {/* Toggle Side Navs */}
+            <Tooltip
+              content={navsExpanded ? l.minimize : l.maximize}
+              positioning={{
+                placement: "right",
+                offset: {
+                  mainAxis: DESKTOP_TOOLTIP_MAIN_AXIS,
+                },
+              }}
+            >
+              <Btn
+                order={navsExpanded ? 2 : 1}
+                iconButton
+                clicky={false}
+                w={"36px"}
+                variant={"ghost"}
+                colorPalette={NAVS_COLOR_PALETTE}
+                onClick={toggleNavsExpanded}
+                mr={navsExpanded ? "-3px" : ""}
               >
-                <Btn
-                  order={navsExpanded ? 2 : 1}
-                  iconButton
-                  clicky={false}
-                  w={"40px"}
-                  variant={"ghost"}
-                  colorPalette={NAVS_COLOR_PALETTE}
-                  onClick={toggleNavsExpanded}
-                >
-                  <Icon boxSize={5}>
-                    <IconBoxAlignLeft stroke={1.5} />
-                  </Icon>
-                </Btn>
-              </Tooltip>
-            </Stack>
+                <Icon boxSize={5}>
+                  <IconBoxAlignLeft stroke={1.5} />
+                </Icon>
+              </Btn>
+            </Tooltip>
           </HStack>
         </CContainer>
 
@@ -995,10 +994,10 @@ const DesktopLayout = (props: any) => {
           </CContainer>
         </CContainer>
 
-        <CContainer px={0} pb={2} gap={2}>
+        <CContainer>
           {navsExpanded && <Divider />}
 
-          <CContainer px={2}>
+          <CContainer p={3}>
             <PopoverRoot
               positioning={{
                 placement: "right-end",
