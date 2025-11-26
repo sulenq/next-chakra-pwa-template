@@ -10,8 +10,9 @@ import { ItemContainer } from "@/components/widget/ItemContainer";
 import { ItemHeaderContainer } from "@/components/widget/ItemHeaderContainer";
 import ItemHeaderTitle from "@/components/widget/ItemHeaderTitle";
 import { Limitation } from "@/components/widget/Limitation";
+import { MiniUser } from "@/components/widget/MiniUser";
 import { Pagination } from "@/components/widget/Pagination";
-import { dummyActivityLogs } from "@/constants/dummyData";
+import { dummyAllActivityLogs } from "@/constants/dummyData";
 import { Enum__ActivityAction } from "@/constants/enums";
 import { Interface__ActivityLog } from "@/constants/interfaces";
 import useLang from "@/context/useLang";
@@ -63,7 +64,7 @@ const ActivityLog = () => {
     page,
     setPage,
   } = useDataState<Interface__ActivityLog[]>({
-    initialData: dummyActivityLogs,
+    initialData: dummyAllActivityLogs,
     url: ``,
     dataResource: false,
   });
@@ -78,12 +79,15 @@ const ActivityLog = () => {
           return (
             <HStack
               key={`${log.id}-${idx}`}
+              gap={4}
+              p={4}
               justify={"space-between"}
               borderTop={idx === 0 ? "" : "1px solid"}
               borderColor={"border.subtle"}
-              p={4}
             >
-              <CContainer>
+              {log.user && <MiniUser user={log.user} w={"240px"} />}
+
+              <CContainer flex={1} w={"fit"}>
                 <P>{formatActivityLog(log)}</P>
 
                 <P color={"fg.subtle"}>

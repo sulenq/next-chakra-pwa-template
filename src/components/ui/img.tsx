@@ -28,15 +28,18 @@ export const Img = (props: Props__Img) => {
   const [currentSrc, setCurrentSrc] = useState(src || resolvedFallbackSrc);
 
   const handleError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+    // If the current source is not already the fallback, switch to the fallback source.
     if (currentSrc !== resolvedFallbackSrc) {
       setCurrentSrc(resolvedFallbackSrc);
     }
+    // Propagate the original error event if an external handler is provided
     if (onError) onError(e);
   };
 
   return (
     <CContainer
       w={"auto"}
+      h={"auto"}
       justify={"center"}
       align={"center"}
       pos={"relative"}

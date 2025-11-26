@@ -15,6 +15,7 @@ export interface Interface__ActivityLog extends Interface__CUD {
   userId: string;
   action: Enum__ActivityAction | string;
   metadata?: Record<string, any>;
+  user?: Interface__User;
 }
 export interface Interface__AuthLog extends Interface__CUD {
   id: string;

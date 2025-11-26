@@ -2,7 +2,7 @@
 
 import { Avatar } from "@/components/ui/avatar";
 import { CContainer } from "@/components/ui/c-container";
-import { P } from "@/components/ui/p";
+import { ClampText } from "@/components/widget/ClampText";
 import { ImgViewer } from "@/components/widget/ImgViewer";
 import { Interface__User } from "@/constants/interfaces";
 import { SVGS_PATH } from "@/constants/paths";
@@ -32,10 +32,10 @@ export const MiniUser = (props: Props) => {
       </ImgViewer>
 
       <CContainer>
-        <P lineHeight={1.2}>{user.name}</P>
-        <P fontSize={"sm"} color={"fg.subtle"}>
+        <ClampText lineHeight={1.2}>{user.name}</ClampText>
+        <ClampText fontSize={"sm"} color={"fg.subtle"}>
           {user?.email}
-        </P>
+        </ClampText>
       </CContainer>
     </HStack>
   );

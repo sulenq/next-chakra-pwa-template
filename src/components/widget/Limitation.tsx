@@ -51,7 +51,7 @@ export const Limitation = (props: Props_LimitationTableData) => {
               justifyContent={"space-between"}
             >
               {l}
-              {isActive && <DotIndicator mr={1} />}
+              {isActive && <DotIndicator mr={"2px"} />}
             </MenuItem>
           );
         })}
