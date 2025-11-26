@@ -106,7 +106,7 @@ const ActivityLog = () => {
   };
 
   return (
-    <ItemContainer>
+    <ItemContainer flex={1}>
       <ItemHeaderContainer>
         <HStack>
           <Icon boxSize={5}>
@@ -137,6 +137,7 @@ const ActivityLog = () => {
         p={2}
         borderTop={"1px solid"}
         borderColor={"border.muted"}
+        mt={"auto"}
       >
         <Limitation limit={limit} setLimit={setLimit} />
 
