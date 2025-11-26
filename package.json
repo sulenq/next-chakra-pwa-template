@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "d": "next dev",
+    "d": "next dev --turbo",
     "l": "node src/scripts/generate-translation.js",
     "s": "node src/scripts/generate-sitemap.js"
   },
