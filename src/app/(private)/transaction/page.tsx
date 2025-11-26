@@ -2,10 +2,12 @@
 
 import { DataTable } from "@/components/widget/DataTable";
 import { PageContainer, PageContent } from "@/components/widget/Page";
+import { HStack } from "@chakra-ui/react";
 import { IconPencil, IconRestore, IconTrash } from "@tabler/icons-react";
 import { useState } from "react";
 
 const DemoDataTable = () => {
+  // States
   const tableProps = {
     headers: [
       {
@@ -116,7 +118,6 @@ const DemoDataTable = () => {
       }),
     ],
   };
-
   const [limit, setLimit] = useState<number>(15);
   const [page, setPage] = useState<number>(1);
 
@@ -137,6 +138,7 @@ export default function Page() {
   return (
     <PageContainer>
       <PageContent>
+        <HStack></HStack>
         <DemoDataTable />
       </PageContent>
     </PageContainer>

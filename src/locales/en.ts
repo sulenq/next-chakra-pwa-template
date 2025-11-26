@@ -329,6 +329,7 @@ const translations = {
   "related_apps": "Related App",
   "reset": "Reset",
   "restore": "Restore",
+  "results": "Results",
   "retry": "Retry",
   "rounded": "Rounded",
   "saturday": "Saturday",

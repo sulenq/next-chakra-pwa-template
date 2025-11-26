@@ -329,6 +329,7 @@ const translations = {
   "related_apps": "Aplikasi Terkait",
   "reset": "Reset",
   "restore": "Pulihkan",
+  "results": "Hasil",
   "retry": "Coba lagi",
   "rounded": "Rounded",
   "saturday": "Sabtu",

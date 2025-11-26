@@ -81,8 +81,8 @@ export default function SearchInput(props: Props__SearchInput) {
           <StringInput
             ref={inputRef ? inputRef : null}
             pl={noIcon ? 4 : 10}
-            placeholder={placeholder || `${l.search} ${additionalPlaceholder}`}
             pr="40px"
+            placeholder={placeholder || `${l.search} ${additionalPlaceholder}`}
             onChange={(inputValue) => {
               const val = inputValue || "";
               setSearchTemp(val);
@@ -90,7 +90,13 @@ export default function SearchInput(props: Props__SearchInput) {
             }}
             inputValue={searchTemp}
             boxShadow="none !important"
-            borderColor={invalid ? "border.error" : "border.muted"}
+            borderColor={
+              invalid
+                ? "border.error"
+                : inputProps?.variant === "subtle"
+                ? ""
+                : "border.muted"
+            }
             {...inputProps}
           />
         </HStack>

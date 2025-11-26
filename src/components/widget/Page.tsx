@@ -14,7 +14,7 @@ export const PageContainer = forwardRef<HTMLDivElement, StackProps>(
         ref={ref}
         flex={1}
         gap={4}
-        p={[2, null, 4]}
+        // p={[1, null, 2]}
         pt={"0 !important"}
         overflow={"auto"}
         {...restProps}

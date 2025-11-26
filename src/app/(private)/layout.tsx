@@ -73,7 +73,7 @@ import { Fragment, useEffect, useRef, useState } from "react";
 const NAVS_BG = "body";
 const NAVS_COLOR = "ibody";
 const NAVS_COLOR_PALETTE = "gray";
-const BG_CONTENT_CONTAINER = "bgContent";
+const BG_CONTENT_CONTAINER = "body";
 const DESKTOP_POPOVER_MAIN_AXIS = 22;
 const DESKTOP_TOOLTIP_MAIN_AXIS = 16;
 const MOBILE_NAV_LABEL_FONT_SIZE = "sm";
@@ -528,6 +528,8 @@ const DesktopLayout = (props: any) => {
         flexShrink={0}
         w={navsExpanded ? "250px" : "54px"}
         transition={"200ms"}
+        borderRight={"1px solid"}
+        borderColor={"border.muted"}
       >
         <CContainer gap={1} p={2}>
           {!navsExpanded && (
@@ -591,7 +593,10 @@ const DesktopLayout = (props: any) => {
             <CContainer mb={1}>
               <SearchInput
                 inputRef={searchInputRef}
-                inputProps={{ variant: "flushed", rounded: 0 }}
+                inputProps={{
+                  variant: "subtle",
+                  bg: "d0",
+                }}
                 inputValue={search}
                 onChange={(inputValue) => {
                   setSearch(inputValue || "");
@@ -1039,65 +1044,67 @@ const DesktopLayout = (props: any) => {
           </CContainer>
         </CContainer>
 
-        <CContainer px={2} pb={2} gap={2}>
-          <Divider />
+        <CContainer px={0} pb={2} gap={2}>
+          {navsExpanded && <Divider />}
 
-          <PopoverRoot
-            positioning={{
-              placement: "right-end",
-              offset: { mainAxis: DESKTOP_POPOVER_MAIN_AXIS, crossAxis: -6 },
-            }}
-          >
-            <PopoverTrigger asChild>
-              <HStack
-                gap={4}
-                px={navsExpanded ? 2 : "7px"}
-                py={2}
-                rounded={themeConfig.radii.component}
-                cursor={"pointer"}
-                _hover={{
-                  bg: "gray.subtle",
-                }}
-                transition={"200ms"}
-                pos={"relative"}
-              >
-                {!user?.avatar?.filePath && (
-                  <Icon boxSize={5}>
-                    <IconUser stroke={1.5} />
-                  </Icon>
-                )}
-
-                {user?.avatar?.filePath && (
-                  <Avatar
-                    src={imgUrl(user?.avatar?.filePath)}
-                    name={user?.name}
-                    size={navsExpanded ? "md" : "2xs"}
-                  />
-                )}
-
-                {navsExpanded && (
-                  <>
-                    <CContainer>
-                      <P lineClamp={1} fontWeight={"semibold"}>
-                        {user?.name || "Signed out"}
-                      </P>
-                      <P lineClamp={1} color={"fg.subtle"}>
-                        {user?.email || user?.username || "-"}
-                      </P>
-                    </CContainer>
-
-                    <Icon boxSize={5} color={"fg.subtle"}>
-                      <IconSelector stroke={1.5} />
+          <CContainer px={2}>
+            <PopoverRoot
+              positioning={{
+                placement: "right-end",
+                offset: { mainAxis: DESKTOP_POPOVER_MAIN_AXIS, crossAxis: -6 },
+              }}
+            >
+              <PopoverTrigger asChild>
+                <HStack
+                  gap={4}
+                  px={navsExpanded ? 2 : "7px"}
+                  py={2}
+                  rounded={themeConfig.radii.component}
+                  cursor={"pointer"}
+                  _hover={{
+                    bg: "gray.subtle",
+                  }}
+                  transition={"200ms"}
+                  pos={"relative"}
+                >
+                  {!user?.avatar?.filePath && (
+                    <Icon boxSize={5}>
+                      <IconUser stroke={1.5} />
                     </Icon>
-                  </>
-                )}
-              </HStack>
-            </PopoverTrigger>
+                  )}
 
-            <PopoverContent w={"254px"} zIndex={10}>
-              <MiniMyProfile />
-            </PopoverContent>
-          </PopoverRoot>
+                  {user?.avatar?.filePath && (
+                    <Avatar
+                      src={imgUrl(user?.avatar?.filePath)}
+                      name={user?.name}
+                      size={navsExpanded ? "md" : "2xs"}
+                    />
+                  )}
+
+                  {navsExpanded && (
+                    <>
+                      <CContainer>
+                        <P lineClamp={1} fontWeight={"semibold"}>
+                          {user?.name || "Signed out"}
+                        </P>
+                        <P lineClamp={1} color={"fg.subtle"}>
+                          {user?.email || user?.username || "-"}
+                        </P>
+                      </CContainer>
+
+                      <Icon boxSize={5} color={"fg.subtle"}>
+                        <IconSelector stroke={1.5} />
+                      </Icon>
+                    </>
+                  )}
+                </HStack>
+              </PopoverTrigger>
+
+              <PopoverContent w={"254px"} zIndex={10}>
+                <MiniMyProfile />
+              </PopoverContent>
+            </PopoverRoot>
+          </CContainer>
         </CContainer>
       </CContainer>
 

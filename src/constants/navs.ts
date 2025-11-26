@@ -3,7 +3,7 @@ import {
   IconActivity,
   IconCurrencyEthereum,
   IconDatabase,
-  IconDeviceAnalytics,
+  IconHome2,
   IconLanguage,
   IconLayersIntersect,
   IconPalette,
@@ -21,7 +21,7 @@ export const PRIVATE_NAVS: Interface__NavItem[] = [
     groupLabelKey: "main",
     list: [
       {
-        icon: IconDeviceAnalytics,
+        icon: IconHome2,
         labelKey: "navs.dashboard",
         path: `/dashboard`,
       },

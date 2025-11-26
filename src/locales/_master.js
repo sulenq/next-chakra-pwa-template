@@ -819,6 +819,10 @@ export const fit_to_page = {
   id: "Menyesuaikan halaman",
   en: "Fit to page",
 };
+export const results = {
+  id: "Hasil",
+  en: "Results",
+};
 
 // Message
 export const msg_new_avatar_helper = {

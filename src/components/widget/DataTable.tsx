@@ -154,12 +154,12 @@ export const DataTable = (props: Props__DataTable) => {
   }
 
   // SX
-  const thHeight = "48px";
+  const thHeight = "42px";
   const thWidth = "52.4px";
   const thBg = "body";
   const thBorderColor = "border.muted";
   const tdBg = "body";
-  const tdMinH = "52px";
+  const tdMinH = "42px";
   const selectedColor =
     themeConfig.colorPalette === "gray"
       ? "d1"
