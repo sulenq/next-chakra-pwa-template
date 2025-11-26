@@ -518,7 +518,7 @@ const ActivityLog = () => {
       <HStack
         justify={"space-between"}
         wrap={"wrap"}
-        p={"6px"}
+        p={2}
         borderTop={"1px solid"}
         borderColor={"border.muted"}
       >
