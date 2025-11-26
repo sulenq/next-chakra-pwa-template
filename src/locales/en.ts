@@ -345,6 +345,7 @@ const translations = {
   "select_period": "Select period",
   "select_time": "Select time",
   "selected": "Selected",
+  "selected_date": "Selected date",
   "september": "September",
   "settings": "Settings",
   "settings_adaptive_dark_mode": {

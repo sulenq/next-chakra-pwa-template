@@ -345,6 +345,7 @@ const translations = {
   "select_period": "Pilih periode",
   "select_time": "Pilih waktu",
   "selected": "Dipilih",
+  "selected_date": "Tanggal dipilih",
   "september": "September",
   "settings": "Pengaturan",
   "settings_adaptive_dark_mode": {

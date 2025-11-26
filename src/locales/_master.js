@@ -823,6 +823,10 @@ export const results = {
   id: "Hasil",
   en: "Results",
 };
+export const selected_date = {
+  id: "Tanggal dipilih",
+  en: "Selected date",
+};
 
 // Message
 export const msg_new_avatar_helper = {

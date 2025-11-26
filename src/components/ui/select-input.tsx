@@ -60,15 +60,15 @@ const SelectOptions = (props: Props__SelectOptions) => {
 
   return (
     <CContainer {...restProps}>
-      <CContainer px={4} pt={2} pos={"sticky"} top={0} bg={"body"} zIndex={2}>
+      <CContainer px={4} pt={4} pos={"sticky"} top={0} bg={"body"} zIndex={2}>
         <SearchInput
           inputValue={search}
           onChange={(inputValue) => {
             setSearch(inputValue || "");
           }}
           inputProps={{
-            variant: "flushed",
-            rounded: 0,
+            variant: "subtle",
+            bg: "d0",
           }}
         />
       </CContainer>

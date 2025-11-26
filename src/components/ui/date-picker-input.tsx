@@ -267,6 +267,9 @@ const SelectedDateList = (props: Props__SelectedDateList) => {
   // Props
   const { id, selected, formattedSelectedLabel } = props;
 
+  // Contexts
+  const { l } = useLang();
+
   // Hooks
   const { open, onOpen, onClose } = useDisclosure();
   useBackOnClose(
@@ -286,17 +289,18 @@ const SelectedDateList = (props: Props__SelectedDateList) => {
         borderColor={"border.muted"}
         bg={"bg.muted"}
         p={2}
-        h={"40px"}
+        h={"36px"}
         rounded={6}
         cursor={"pointer"}
         onClick={onOpen}
       >
         <P
-          textAlign={"center"}
-          fontWeight={"medium"}
           maxW={"calc(100% - 16px)"}
-          mx={"auto"}
+          fontWeight={"medium"}
+          textAlign={"center"}
+          color={formattedSelectedLabel === l.selected_date ? "fg.subtle" : ""}
           truncate
+          mx={"auto"}
         >
           {formattedSelectedLabel}
         </P>
@@ -305,7 +309,7 @@ const SelectedDateList = (props: Props__SelectedDateList) => {
       <DisclosureRoot open={open} size={"xs"} scrollBehavior={"inside"}>
         <DisclosureContent>
           <DisclosureHeader>
-            <DisclosureHeaderContent title="Tanggal dipilih" />
+            <DisclosureHeaderContent title={capitalizeWords(l.selected_date)} />
           </DisclosureHeader>
 
           <DisclosureBody>
@@ -388,7 +392,7 @@ export const DatePickerInput = (props: Props__DatePickerInput) => {
             })
           )
           .join(", ")
-      : resolvedPlaceholder;
+      : l.selected_date;
   const formattedButtonLabel =
     inputValue && inputValue?.length > 0
       ? inputValue
