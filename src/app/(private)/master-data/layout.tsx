@@ -9,7 +9,6 @@ import SearchInput from "@/components/ui/search-input";
 import FeedbackNotFound from "@/components/widget/FeedbackNotFound";
 import { LeftIndicator } from "@/components/widget/Indicator";
 import { RouteContainer } from "@/components/widget/RouteContainer";
-import { TopBar } from "@/components/widget/TopBar";
 import { APP } from "@/constants/_meta";
 import { OTHER_PRIVATE_NAVS } from "@/constants/navs";
 import { Props__Layout } from "@/constants/props";
@@ -179,7 +178,7 @@ export default function Layout(props: Props__Layout) {
           {/* Content */}
           {showContent && (
             <CContainer flex={1}>
-              <TopBar />
+              {/* <TopBar /> */}
 
               <CContainer className={"scrollY"} flex={1}>
                 {children}
