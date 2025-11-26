@@ -1001,7 +1001,7 @@ const DesktopLayout = (props: any) => {
             <PopoverRoot
               positioning={{
                 placement: "right-end",
-                offset: { mainAxis: DESKTOP_POPOVER_MAIN_AXIS, crossAxis: -6 },
+                offset: { mainAxis: DESKTOP_POPOVER_MAIN_AXIS, crossAxis: 0 },
               }}
             >
               <PopoverTrigger asChild>
@@ -1050,7 +1050,7 @@ const DesktopLayout = (props: any) => {
                 </HStack>
               </PopoverTrigger>
 
-              <PopoverContent w={"254px"} zIndex={10}>
+              <PopoverContent w={"226px"} zIndex={10}>
                 <MiniMyProfile />
               </PopoverContent>
             </PopoverRoot>
