@@ -16,10 +16,13 @@ export interface Interface__ActivityLog extends Interface__CUD {
   action: Enum__ActivityAction | string;
   metadata?: Record<string, any>;
 }
-export interface Interface__SigninLog extends Interface__CUD {
+export interface Interface__AuthLog extends Interface__CUD {
   id: string;
   ip: string;
+  city: string;
+  countryCode: string;
   userAgent: string;
+  action: string; // "Sign in" | "Sign out" ;
 }
 export interface Interface__User extends Interface__CUD {
   id: string;

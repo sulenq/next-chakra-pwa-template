@@ -18,6 +18,7 @@ import { useColorMode } from "./color-mode";
 import { toaster } from "@/components/ui/toaster";
 import useLang from "@/context/useLang";
 import { interpolateString } from "@/utils/string";
+import { MAIN_INPUT_SIZE } from "@/constants/sizes";
 
 export const StringInput = forwardRef<HTMLInputElement, Props__StringInput>(
   (props, ref) => {
@@ -119,6 +120,7 @@ export const StringInput = forwardRef<HTMLInputElement, Props__StringInput>(
             color={"text"}
             pl={4}
             pr={clearable ? 10 : ""}
+            size={MAIN_INPUT_SIZE}
             {...restProps}
           />
 

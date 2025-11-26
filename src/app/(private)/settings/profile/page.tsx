@@ -17,6 +17,7 @@ import { P } from "@/components/ui/p";
 import { Skeleton } from "@/components/ui/skeleton";
 import { StringInput } from "@/components/ui/string-input";
 import BackButton from "@/components/widget/BackButton";
+import { ClampText } from "@/components/widget/ClampText";
 import FeedbackNoData from "@/components/widget/FeedbackNoData";
 import FeedbackNotFound from "@/components/widget/FeedbackNotFound";
 import FeedbackRetry from "@/components/widget/FeedbackRetry";
@@ -29,13 +30,13 @@ import { Pagination } from "@/components/widget/Pagination";
 import ResetPasswordDisclosureTrigger from "@/components/widget/ResetPasswordDisclosure";
 import {
   dummyActivityLogs,
-  dummySigninLogs,
+  dummyAuthLogs,
   dummyUser,
 } from "@/constants/dummyData";
 import { Enum__ActivityAction } from "@/constants/enums";
 import {
   Interface__ActivityLog,
-  Interface__SigninLog,
+  Interface__AuthLog,
   Interface__User,
 } from "@/constants/interfaces";
 import { SVGS_PATH } from "@/constants/paths";
@@ -48,8 +49,14 @@ import { isEmptyArray } from "@/utils/array";
 import { disclosureId } from "@/utils/disclosure";
 import { formatDate } from "@/utils/formatter";
 import { imgUrl } from "@/utils/url";
-import { HStack, Icon, useDisclosure } from "@chakra-ui/react";
-import { IconActivity, IconLogin2, IconUser } from "@tabler/icons-react";
+import { Circle, HStack, Icon, useDisclosure } from "@chakra-ui/react";
+import {
+  IconActivity,
+  IconArrowDownDashed,
+  IconArrowUpDashed,
+  IconLogin2,
+  IconUser,
+} from "@tabler/icons-react";
 import { useFormik } from "formik";
 import { useEffect } from "react";
 import * as yup from "yup";
@@ -284,7 +291,7 @@ const PersonalInformation = (props: Props__PersonalInformation) => {
   );
 };
 
-const SigninLog = () => {
+const AuthLog = () => {
   // Contexts
   const { l } = useLang();
 
@@ -299,8 +306,8 @@ const SigninLog = () => {
     pagination,
     page,
     setPage,
-  } = useDataState<Interface__SigninLog[]>({
-    initialData: dummySigninLogs,
+  } = useDataState<Interface__AuthLog[]>({
+    initialData: dummyAuthLogs,
     url: ``,
   });
   const render = {
@@ -311,14 +318,26 @@ const SigninLog = () => {
     loaded: (
       <>
         {data?.map((log, idx) => {
+          const isSignin = log?.action === "Sign in";
+
           return (
             <HStack
               key={`${log.id}-${idx}`}
+              gap={4}
+              p={4}
               justify={"space-between"}
               borderTop={idx === 0 ? "" : "1px solid"}
               borderColor={"border.subtle"}
-              p={4}
             >
+              <Circle p={1} bg={isSignin ? "bg.success" : "bg.error"}>
+                <Icon color={isSignin ? "fg.success" : "fg.error"}>
+                  {isSignin ? (
+                    <IconArrowDownDashed stroke={1.5} />
+                  ) : (
+                    <IconArrowUpDashed stroke={1.5} />
+                  )}
+                </Icon>
+              </Circle>
               <CContainer>
                 <P>
                   {formatDate(log?.createdAt, {
@@ -330,9 +349,9 @@ const SigninLog = () => {
                 <P color={"fg.subtle"}>{log?.ip}</P>
               </CContainer>
 
-              <P color={"fg.subtle"} textAlign={"right"}>
+              <ClampText color={"fg.subtle"} textAlign={"right"} lineClamp={2}>
                 {log?.userAgent}
-              </P>
+              </ClampText>
             </HStack>
           );
         })}
@@ -347,7 +366,7 @@ const SigninLog = () => {
           <Icon boxSize={5}>
             <IconLogin2 stroke={1.5} />
           </Icon>
-          <ItemHeaderTitle>{l.my_signin_history}</ItemHeaderTitle>
+          <ItemHeaderTitle>{l.my_auth_logs}</ItemHeaderTitle>
         </HStack>
       </ItemHeaderContainer>
 
@@ -475,7 +494,7 @@ const ActivityLog = () => {
           <Icon boxSize={5}>
             <IconActivity stroke={1.5} />
           </Icon>
-          <ItemHeaderTitle>{l.my_activity_history}</ItemHeaderTitle>
+          <ItemHeaderTitle>{l.my_activity_logs}</ItemHeaderTitle>
         </HStack>
       </ItemHeaderContainer>
 
@@ -530,7 +549,7 @@ export default function Page() {
       <CContainer flex={1} gap={4} pb={4}>
         <PersonalInformation initialData={data} />
 
-        <SigninLog />
+        <AuthLog />
 
         <ActivityLog />
       </CContainer>

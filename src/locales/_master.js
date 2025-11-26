@@ -687,6 +687,14 @@ export const activity_history = {
   id: "Riwayat aktivitas",
   en: "Activity history",
 };
+export const my_auth_logs = {
+  id: "Log autentikasi saya",
+  en: "My auth logs",
+};
+export const my_activity_logs = {
+  id: "Log aktivitas saya",
+  en: "My activity logs",
+};
 export const my_signin_history = {
   id: "Riwayat sign in saya",
   en: "My sign in history",
@@ -694,6 +702,10 @@ export const my_signin_history = {
 export const my_activity_history = {
   id: "Riwayat aktivitas saya",
   en: "My activity history",
+};
+export const activity_logs = {
+  id: "Log aktivitas",
+  en: "Activity logs",
 };
 export const activity = {
   id: "Aktivitas",

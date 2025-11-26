@@ -50,9 +50,10 @@ export const dummyUser = {
   updatedAt: "2025-11-12T04:20:00Z",
 };
 
-export const dummySigninLogs = [
+export const dummyAuthLogs = [
   {
     id: "sh_001",
+    action: "Sign out",
     ip: "192.168.1.10",
     city: "Jakarta",
     countryCode: "ID",
@@ -63,6 +64,7 @@ export const dummySigninLogs = [
   },
   {
     id: "sh_002",
+    action: "Sign in",
     ip: "10.0.0.5",
     city: "Jakarta",
     countryCode: "ID",
@@ -73,6 +75,7 @@ export const dummySigninLogs = [
   },
   {
     id: "sh_003",
+    action: "Sign in",
     ip: "36.72.11.88",
     city: "Jakarta",
     countryCode: "ID",
@@ -83,6 +86,7 @@ export const dummySigninLogs = [
   },
   {
     id: "sh_004",
+    action: "Sign out",
     ip: "172.16.0.22",
     city: "Jakarta",
     countryCode: "ID",
@@ -93,6 +97,7 @@ export const dummySigninLogs = [
   },
   {
     id: "sh_005",
+    action: "Sign in",
     ip: "103.110.7.51",
     city: "Jakarta",
     countryCode: "ID",
