@@ -1,5 +1,6 @@
 "use client";
 
+import { Btn } from "@/components/ui/btn";
 import { CContainer } from "@/components/ui/c-container";
 import Spinner from "@/components/ui/spinner";
 import { SM_SCREEN_W_NUMBER } from "@/constants/sizes";
@@ -23,7 +24,6 @@ import {
 } from "@tabler/icons-react";
 import { useState } from "react";
 import { useColorMode } from "./color-mode";
-import { Btn } from "@/components/ui/btn";
 
 const TOAST_PRESETS = {
   loading: {
@@ -83,8 +83,8 @@ const ToastIcon = (props: any) => {
       flexShrink={0}
       bg={preset.bg[colorMode]}
       rounded={"full"}
-      w={"32px"}
-      h={"32px"}
+      w={"28px"}
+      h={"28px"}
       ml={"-2px"}
       mt={"-2px"}
     >
@@ -224,20 +224,20 @@ const ToastComponent = (props: any) => {
 
       {/* {toast.meta?.closable && <Toast.CloseTrigger />} */}
 
-      <Btn
-        as={Toast.CloseTrigger}
-        iconButton
-        size={"2xs"}
-        variant={"subtle"}
-        rounded={"full"}
-        pos={"absolute"}
-        top={2}
-        right={2}
-      >
-        <Icon boxSize={4}>
-          <IconX />
-        </Icon>
-      </Btn>
+      <HStack pos={"absolute"} top={2} right={2}>
+        <Btn
+          as={Toast.CloseTrigger}
+          iconButton
+          size={"2xs"}
+          variant={"subtle"}
+          rounded={"full"}
+          pos={"static"}
+        >
+          <Icon boxSize={4}>
+            <IconX />
+          </Icon>
+        </Btn>
+      </HStack>
     </Toast.Root>
   );
 };
