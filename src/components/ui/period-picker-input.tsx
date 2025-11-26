@@ -1,16 +1,30 @@
 "use client";
 
+import { Btn } from "@/components/ui/btn";
+import {
+  DisclosureBody,
+  DisclosureContent,
+  DisclosureFooter,
+  DisclosureHeader,
+  DisclosureRoot,
+} from "@/components/ui/disclosure";
+import { DisclosureHeaderContent } from "@/components/ui/disclosure-header-content";
+import { Field, FieldsetRoot } from "@/components/ui/field";
+import { NumInput } from "@/components/ui/number-input";
+import { P } from "@/components/ui/p";
 import { Tooltip } from "@/components/ui/tooltip";
 import { Props__PeriodPickerInput } from "@/constants/props";
+import { C_ACTIVE_INDICATOR_SIZE } from "@/constants/sizes";
 import { Type__Period } from "@/constants/types";
 import useLang from "@/context/useLang";
 import { useThemeConfig } from "@/context/useThemeConfig";
 import useBackOnClose from "@/hooks/useBackOnClose";
 import { back } from "@/utils/client";
+import { disclosureId } from "@/utils/disclosure";
 import { formatDate } from "@/utils/formatter";
 import { capitalizeWords } from "@/utils/string";
+import { getLocalTimezone } from "@/utils/time";
 import {
-  FieldRoot,
   HStack,
   Icon,
   SimpleGrid,
@@ -19,21 +33,6 @@ import {
 } from "@chakra-ui/react";
 import { IconCircleFilled } from "@tabler/icons-react";
 import { useEffect, useState } from "react";
-import { Btn } from "./btn";
-import {
-  DisclosureBody,
-  DisclosureContent,
-  DisclosureFooter,
-  DisclosureHeader,
-  DisclosureRoot,
-} from "./disclosure";
-import { DisclosureHeaderContent } from "./disclosure-header-content";
-import { Field } from "./field";
-import { NumInput } from "./number-input";
-import { P } from "./p";
-import { C_ACTIVE_INDICATOR_SIZE } from "@/constants/sizes";
-import { disclosureId } from "@/utils/disclosure";
-import { getLocalTimezone } from "@/utils/time";
 
 const DEFAULT = {
   year: null,
@@ -148,7 +147,7 @@ export const PeriodPickerInput = (props: Props__PeriodPickerInput) => {
           </DisclosureHeader>
 
           <DisclosureBody>
-            <FieldRoot gap={4}>
+            <FieldsetRoot>
               <Field
                 label={l.year}
                 invalid={required && selected.year === null}
@@ -204,7 +203,7 @@ export const PeriodPickerInput = (props: Props__PeriodPickerInput) => {
                   })}
                 </SimpleGrid>
               </Field>
-            </FieldRoot>
+            </FieldsetRoot>
           </DisclosureBody>
 
           <DisclosureFooter>

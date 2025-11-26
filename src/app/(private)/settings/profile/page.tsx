@@ -10,7 +10,7 @@ import {
   DisclosureRoot,
 } from "@/components/ui/disclosure";
 import { DisclosureHeaderContent } from "@/components/ui/disclosure-header-content";
-import { Field } from "@/components/ui/field";
+import { Field, FieldsetRoot } from "@/components/ui/field";
 import { Img } from "@/components/ui/img";
 import { ImgInput } from "@/components/ui/img-input";
 import { P } from "@/components/ui/p";
@@ -48,7 +48,7 @@ import { isEmptyArray } from "@/utils/array";
 import { disclosureId } from "@/utils/disclosure";
 import { formatDate } from "@/utils/formatter";
 import { imgUrl } from "@/utils/url";
-import { FieldRoot, HStack, Icon, useDisclosure } from "@chakra-ui/react";
+import { HStack, Icon, useDisclosure } from "@chakra-ui/react";
 import { IconActivity, IconLogin2, IconUser } from "@tabler/icons-react";
 import { useFormik } from "formik";
 import { useEffect } from "react";
@@ -198,7 +198,7 @@ const PersonalInformation = (props: Props__PersonalInformation) => {
           onSubmit={formik.handleSubmit}
           {...restProps}
         >
-          <FieldRoot gap={4} disabled={loading}>
+          <FieldsetRoot gap={4} disabled={loading}>
             <Field
               invalid={!!formik.errors.avatar}
               errorText={`${formik.errors.avatar}`}
@@ -263,7 +263,7 @@ const PersonalInformation = (props: Props__PersonalInformation) => {
                 placeholder="example@email.com"
               />
             </Field>
-          </FieldRoot>
+          </FieldsetRoot>
 
           <HStack justify={"space-between"} mt={8}>
             <ResetPasswordDisclosureTrigger>

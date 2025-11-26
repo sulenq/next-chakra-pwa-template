@@ -11,7 +11,14 @@ import { useThemeConfig } from "@/context/useThemeConfig";
 import useRequest from "@/hooks/useRequest";
 import { getUserData } from "@/utils/auth";
 import { removeStorage, setStorage } from "@/utils/client";
-import { HStack, Icon, InputGroup, StackProps, VStack } from "@chakra-ui/react";
+import {
+  FieldsetRoot,
+  HStack,
+  Icon,
+  InputGroup,
+  StackProps,
+  VStack,
+} from "@chakra-ui/react";
 import { IconLock, IconUser } from "@tabler/icons-react";
 import { useFormik } from "formik";
 import { useRouter } from "next/navigation";
@@ -157,54 +164,55 @@ const BasicAuthForm = (props: any) => {
   return (
     <CContainer {...restProps}>
       <form id="signin_form" onSubmit={formik.handleSubmit}>
-        <Field
-          invalid={!!formik.errors.identifier}
-          errorText={formik.errors.identifier as string}
-          mb={4}
-        >
-          <InputGroup
-            w={"full"}
-            startElement={
-              <Icon boxSize={5}>
-                <IconUser stroke={1.5} />
-              </Icon>
-            }
+        <FieldsetRoot disabled={loading}>
+          <Field
+            invalid={!!formik.errors.identifier}
+            errorText={formik.errors.identifier as string}
           >
-            <StringInput
-              name="identifier"
-              onChange={(input) => {
-                formik.setFieldValue("identifier", input);
-              }}
-              inputValue={formik.values.identifier}
-              placeholder="Email"
-              pl={"40px !important"}
-            />
-          </InputGroup>
-        </Field>
+            <InputGroup
+              w={"full"}
+              startElement={
+                <Icon boxSize={5}>
+                  <IconUser stroke={1.5} />
+                </Icon>
+              }
+            >
+              <StringInput
+                name="identifier"
+                onChange={(input) => {
+                  formik.setFieldValue("identifier", input);
+                }}
+                inputValue={formik.values.identifier}
+                placeholder="Email"
+                pl={"40px !important"}
+              />
+            </InputGroup>
+          </Field>
 
-        <Field
-          invalid={!!formik.errors.password}
-          errorText={formik.errors.password as string}
-        >
-          <InputGroup
-            w={"full"}
-            startElement={
-              <Icon boxSize={5}>
-                <IconLock stroke={1.5} />
-              </Icon>
-            }
+          <Field
+            invalid={!!formik.errors.password}
+            errorText={formik.errors.password as string}
           >
-            <PasswordInput
-              name="password"
-              onChange={(input) => {
-                formik.setFieldValue("password", input);
-              }}
-              inputValue={formik.values.password}
-              placeholder="Password"
-              pl={"40px !important"}
-            />
-          </InputGroup>
-        </Field>
+            <InputGroup
+              w={"full"}
+              startElement={
+                <Icon boxSize={5}>
+                  <IconLock stroke={1.5} />
+                </Icon>
+              }
+            >
+              <PasswordInput
+                name="password"
+                onChange={(input) => {
+                  formik.setFieldValue("password", input);
+                }}
+                inputValue={formik.values.password}
+                placeholder="Password"
+                pl={"40px !important"}
+              />
+            </InputGroup>
+          </Field>
+        </FieldsetRoot>
 
         <Btn
           type="submit"
