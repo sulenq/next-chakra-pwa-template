@@ -97,7 +97,6 @@ export const toaster = createToaster({
   placement:
     isClient() && window.innerWidth < SM_SCREEN_W_NUMBER ? "top" : "bottom-end",
   pauseOnPageIdle: true,
-  duration: 999999,
 });
 
 const ToastIconComponent = (props: any) => {

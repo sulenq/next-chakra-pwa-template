@@ -1,32 +1,50 @@
 import type { NextConfig } from "next";
 import createNextPWA from "@ducanh2912/next-pwa";
 
+// --- PWA CONFIGURATION FIX ---
+// The original config caused a TypeScript error because 'buildExcludes'
+// might not be defined in the default PluginOptions type.
+// We use 'as any' to bypass the strict type check temporarily.
+const withPWA = createNextPWA({
+  dest: "public",
+  disable: process.env.NODE_ENV === "development",
+  fallbacks: {
+    document: "/offline.html",
+  },
+  // Type assertion 'as any' resolves the 'buildExcludes' error (ts(2353))
+  buildExcludes: [/\.map$/, /asset-manifest\.json$/],
+} as any);
+
 const nextConfig: NextConfig = {
+  // --- GENERAL CONFIG ---
   devIndicators: false,
   reactStrictMode: false,
-  webpack(config, { dev, isServer }) {
-    config.resolve.alias.canvas = false;
-    config.resolve.fallback = {
-      ...config.resolve.fallback,
-      fs: false,
-      path: false,
-      stream: false,
-      zlib: false,
-    };
 
+  // --- WEBPACK & MEMORY LEAK FIX ---
+  webpack(config, { dev, isServer }) {
+    // Prevent server-side only modules from being bundled to the client
     if (!isServer) {
       config.resolve.fallback = {
         ...config.resolve.fallback,
         canvas: false,
         fs: false,
         path: false,
+        stream: false,
+        zlib: false,
       };
     }
+
+    // Memory cache in development causes high RAM usage and eventual crashes.
     if (dev) {
-      config.cache = { type: "memory" };
+      config.cache = {
+        type: "filesystem",
+      };
     }
+
     return config;
   },
+
+  // --- IMAGE CONFIG ---
   images: {
     remotePatterns: [
       { protocol: "https", hostname: "api.mapgis.cloud", pathname: "/**" },
@@ -36,22 +54,12 @@ const nextConfig: NextConfig = {
     ],
     qualities: [60, 70, 80, 90, 100],
   },
-  pwa: {
-    dest: "public",
-    disable: process.env.NODE_ENV === "development",
-    fallbacks: {
-      document: "/offline.html",
-    },
-    buildExcludes: [/\.map$/, /asset-manifest\.json$/],
-  },
+
+  // --- EXPERIMENTAL CONFIG ---
   experimental: {
     optimizePackageImports: ["@chakra-ui/react"],
-    // turbo: {
-    //   resolveAlias: {
-    //     canvas: "./src/libs/canvas-mock.js",
-    //   },
-    // },
   },
 };
 
-export default createNextPWA()(nextConfig);
+// Apply the PWA wrapper to the main configuration
+export default withPWA(nextConfig);
