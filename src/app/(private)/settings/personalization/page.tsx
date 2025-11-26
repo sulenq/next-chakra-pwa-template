@@ -5,7 +5,6 @@ import { CContainer } from "@/components/ui/c-container";
 import { Checkbox } from "@/components/ui/checkbox";
 import { useColorMode } from "@/components/ui/color-mode";
 import { DatePickerInput } from "@/components/ui/date-picker-input";
-import { HelperText } from "@/components/ui/helper-text";
 import { P } from "@/components/ui/p";
 import { SelectInput } from "@/components/ui/select-input";
 import { StringInput } from "@/components/ui/string-input";
@@ -15,6 +14,7 @@ import { DotIndicator } from "@/components/widget/Indicator";
 import { ItemContainer } from "@/components/widget/ItemContainer";
 import { ItemHeaderContainer } from "@/components/widget/ItemHeaderContainer";
 import ItemHeaderTitle from "@/components/widget/ItemHeaderTitle";
+import { LocalSettingsHelperText } from "@/components/widget/LocalSettingsHelperText";
 import { SettingsItemContainer } from "@/components/widget/SettingsItemContainer";
 import { COLOR_PALETTES } from "@/constants/colors";
 import { Interface__SelectOption } from "@/constants/interfaces";
@@ -476,24 +476,17 @@ const ExampleUI = () => {
 };
 
 export default function Page() {
-  // Contexts
-  const { l } = useLang();
-
   return (
-    <CContainer>
-      <CContainer gap={4}>
-        <DarkMode />
+    <CContainer flex={1} gap={2} bg={"bgContent"}>
+      <DarkMode />
 
-        <Theme />
+      <Theme />
 
-        <Rounded />
+      <Rounded />
 
-        <ExampleUI />
-      </CContainer>
+      <ExampleUI />
 
-      <CContainer p={4}>
-        <HelperText>{l.msg_settings_saved_locally}</HelperText>
-      </CContainer>
+      <LocalSettingsHelperText />
     </CContainer>
   );
 }

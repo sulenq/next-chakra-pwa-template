@@ -205,7 +205,7 @@ const PersonalInformation = (props: Props__PersonalInformation) => {
           onSubmit={formik.handleSubmit}
           {...restProps}
         >
-          <FieldsetRoot gap={4} disabled={loading}>
+          <FieldsetRoot disabled={loading}>
             <Field
               invalid={!!formik.errors.avatar}
               errorText={`${formik.errors.avatar}`}
@@ -272,7 +272,7 @@ const PersonalInformation = (props: Props__PersonalInformation) => {
             </Field>
           </FieldsetRoot>
 
-          <HStack justify={"space-between"} mt={8}>
+          <HStack justify={"space-between"} mt={6}>
             <ResetPasswordDisclosureTrigger>
               <Btn variant={"outline"}>Reset password</Btn>
             </ResetPasswordDisclosureTrigger>
@@ -324,7 +324,8 @@ const AuthLog = () => {
             <HStack
               key={`${log.id}-${idx}`}
               gap={4}
-              p={4}
+              px={4}
+              py={2}
               justify={"space-between"}
               borderTop={idx === 0 ? "" : "1px solid"}
               borderColor={"border.subtle"}
@@ -464,7 +465,8 @@ const ActivityLog = () => {
               justify={"space-between"}
               borderTop={idx === 0 ? "" : "1px solid"}
               borderColor={"border.subtle"}
-              p={4}
+              px={4}
+              py={2}
             >
               <CContainer>
                 <P>{formatActivityLog(log)}</P>
@@ -546,7 +548,7 @@ export default function Page() {
     empty: <FeedbackNoData />,
     notFound: <FeedbackNotFound />,
     loaded: (
-      <CContainer flex={1} gap={4} pb={4}>
+      <CContainer flex={1} gap={2} bg={"bgContent"}>
         <PersonalInformation initialData={data} />
 
         <AuthLog />

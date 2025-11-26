@@ -8,7 +8,7 @@ import { formatDate } from "@/utils/formatter";
 
 export const Today = (props: Props__Today) => {
   // Props
-  const { dateVariant = "shortWeekdayDayShortMonthYear", ...restProps } = props;
+  const { dateVariant = "numeric", ...restProps } = props;
 
   // Contexts
   const tz = useTimezone((s) => s.timeZone);

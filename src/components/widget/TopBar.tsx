@@ -1,0 +1,90 @@
+import { ColorModeButton } from "@/components/ui/color-mode";
+import { P } from "@/components/ui/p";
+import BackButton from "@/components/widget/BackButton";
+import Clock from "@/components/widget/Clock";
+import { DotIndicator } from "@/components/widget/Indicator";
+import { Today } from "@/components/widget/Today";
+import { Interface__NavListItem } from "@/constants/interfaces";
+import useLang from "@/context/useLang";
+import useScreen from "@/hooks/useScreen";
+import { last } from "@/utils/array";
+import { pluckString } from "@/utils/string";
+import { getActiveNavs } from "@/utils/url";
+import { HStack, Icon } from "@chakra-ui/react";
+import { IconSlash } from "@tabler/icons-react";
+import { usePathname } from "next/navigation";
+
+export const NavBreadcrumb = (props: any) => {
+  // Props
+  const { backPath, resolvedActiveNavs, ...restProps } = props;
+
+  // Contexts
+  const { l } = useLang();
+
+  return (
+    <HStack {...restProps}>
+      {backPath && <BackButton iconButton clicky={false} backPath={backPath} />}
+
+      {resolvedActiveNavs.map((nav: Interface__NavListItem, idx: number) => {
+        return (
+          <HStack key={idx}>
+            {idx !== 0 && (
+              <>
+                {backPath && (
+                  <Icon boxSize={5} color={"fg.subtle"}>
+                    <IconSlash stroke={1.5} />
+                  </Icon>
+                )}
+
+                {!backPath && <DotIndicator color={"d4"} />}
+              </>
+            )}
+
+            <P fontSize={"lg"} fontWeight={"semibold"} lineClamp={1}>
+              {pluckString(l, nav.labelKey)}
+            </P>
+          </HStack>
+        );
+      })}
+    </HStack>
+  );
+};
+
+export const TopBar = () => {
+  // Hooks
+  const { sw } = useScreen();
+  const pathname = usePathname();
+
+  // States
+  const activeNavs = getActiveNavs(pathname);
+  const resolvedActiveNavs =
+    sw < 960 ? [activeNavs[activeNavs.length - 1]] : activeNavs;
+  const backPath = last(activeNavs)?.backPath;
+
+  return (
+    <HStack
+      gap={4}
+      h={"52px"}
+      p={4}
+      justify={"space-between"}
+      bg={"body"}
+      borderBottom={"1px solid"}
+      borderColor={"border.muted"}
+    >
+      <NavBreadcrumb
+        backPath={backPath}
+        resolvedActiveNavs={resolvedActiveNavs}
+      />
+
+      <HStack flexShrink={0} gap={1}>
+        <HStack mx={1}>
+          <Clock />
+
+          <Today />
+        </HStack>
+
+        <ColorModeButton rounded={"full"} size={"xs"} w={"32px"} h={"32px"} />
+      </HStack>
+    </HStack>
+  );
+};

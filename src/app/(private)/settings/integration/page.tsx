@@ -150,7 +150,7 @@ export default function Page() {
     empty: <FeedbackNoData />,
     notFound: <FeedbackNotFound />,
     loaded: (
-      <CContainer flex={1} gap={4} pb={4}>
+      <CContainer gap={4} bg={"bgContent"}>
         <APIKeys apiKeys={data?.apiKeys} />
       </CContainer>
     ),

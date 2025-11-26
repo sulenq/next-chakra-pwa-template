@@ -80,7 +80,8 @@ const ActivityLog = () => {
             <HStack
               key={`${log.id}-${idx}`}
               gap={4}
-              p={4}
+              px={4}
+              py={2}
               justify={"space-between"}
               borderTop={idx === 0 ? "" : "1px solid"}
               borderColor={"border.subtle"}
@@ -97,10 +98,6 @@ const ActivityLog = () => {
                   })}
                 </P>
               </CContainer>
-
-              <P color={"fg.subtle"} textAlign={"right"}>
-                {/* {log?.userAgent} */}
-              </P>
             </HStack>
           );
         })}
@@ -137,7 +134,7 @@ const ActivityLog = () => {
       <HStack
         justify={"space-between"}
         wrap={"wrap"}
-        p={"6px"}
+        p={2}
         borderTop={"1px solid"}
         borderColor={"border.muted"}
       >
@@ -155,7 +152,7 @@ const ActivityLog = () => {
 
 export default function Page() {
   return (
-    <CContainer flex={1} gap={4} pb={4}>
+    <CContainer flex={1} gap={4} bg={"bgContent"}>
       <ActivityLog />
     </CContainer>
   );

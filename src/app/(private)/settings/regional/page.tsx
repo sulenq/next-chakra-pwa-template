@@ -2,7 +2,6 @@
 
 import { Btn } from "@/components/ui/btn";
 import { CContainer } from "@/components/ui/c-container";
-import { HelperText } from "@/components/ui/helper-text";
 import { P } from "@/components/ui/p";
 import SearchInput from "@/components/ui/search-input";
 import { toaster } from "@/components/ui/toaster";
@@ -11,6 +10,7 @@ import { DotIndicator } from "@/components/widget/Indicator";
 import { ItemContainer } from "@/components/widget/ItemContainer";
 import { ItemHeaderContainer } from "@/components/widget/ItemHeaderContainer";
 import ItemHeaderTitle from "@/components/widget/ItemHeaderTitle";
+import { LocalSettingsHelperText } from "@/components/widget/LocalSettingsHelperText";
 import { DATE_FORMATS } from "@/constants/dateFormats";
 import { LANGUAGES } from "@/constants/languages";
 import { FIREFOX_SCROLL_Y_CLASS_PR_PREFIX } from "@/constants/sizes";
@@ -393,26 +393,19 @@ const UOMFormat = () => {
 };
 
 export default function Page() {
-  // Contexts
-  const { l } = useLang();
-
   return (
-    <CContainer>
-      <CContainer gap={4}>
-        <Language />
+    <CContainer flex={1} gap={2} bg={"bgContent"}>
+      <Language />
 
-        <Timezone />
+      <Timezone />
 
-        <DateFormat />
+      <DateFormat />
 
-        <TimeFormat />
+      <TimeFormat />
 
-        <UOMFormat />
-      </CContainer>
+      <UOMFormat />
 
-      <CContainer p={4}>
-        <HelperText>{l.msg_settings_saved_locally}</HelperText>
-      </CContainer>
+      <LocalSettingsHelperText />
     </CContainer>
   );
 }

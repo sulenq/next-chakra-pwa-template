@@ -1,5 +1,7 @@
 "use client";
 
+import { Btn } from "@/components/ui/btn";
+import { CContainer } from "@/components/ui/c-container";
 import {
   DisclosureBody,
   DisclosureContent,
@@ -8,29 +10,26 @@ import {
   DisclosureRoot,
 } from "@/components/ui/disclosure";
 import { DisclosureHeaderContent } from "@/components/ui/disclosure-header-content";
-import { HelperText } from "@/components/ui/helper-text";
-import { ItemContainer } from "@/components/widget/ItemContainer";
-import { ItemHeaderContainer } from "@/components/widget/ItemHeaderContainer";
+import { P } from "@/components/ui/p";
 import { Switch } from "@/components/ui/switch";
 import { toaster } from "@/components/ui/toaster";
-import { SettingsItemContainer } from "@/components/widget/SettingsItemContainer";
-import useLang from "@/context/useLang";
+import { ItemContainer } from "@/components/widget/ItemContainer";
+import { ItemHeaderContainer } from "@/components/widget/ItemHeaderContainer";
+import { LocalSettingsHelperText } from "@/components/widget/LocalSettingsHelperText";
 import { MicVolumeBar } from "@/components/widget/MicVolumeBar";
+import { SettingsItemContainer } from "@/components/widget/SettingsItemContainer";
 import useCameraPermission from "@/context/useCameraPermissions";
+import useLang from "@/context/useLang";
 import useLocationPermissions from "@/context/useLocationPermissions";
 import useMicPermissions from "@/context/useMicPermissions";
 import { useThemeConfig } from "@/context/useThemeConfig";
 import useBackOnClose from "@/hooks/useBackOnClose";
 import { startCamera, stopCamera } from "@/utils/camera";
-import { getAddress } from "@/utils/location";
-import { getLatLon } from "@/utils/location";
+import { disclosureId } from "@/utils/disclosure";
+import { getAddress, getLatLon } from "@/utils/location";
 import { HStack, Icon, useDisclosure } from "@chakra-ui/react";
 import { IconCamera, IconMapPin, IconMicrophone } from "@tabler/icons-react";
 import { useRef, useState } from "react";
-import { Btn } from "@/components/ui/btn";
-import { CContainer } from "@/components/ui/c-container";
-import { P } from "@/components/ui/p";
-import { disclosureId } from "@/utils/disclosure";
 
 const Camera = () => {
   // Contexts
@@ -84,7 +83,7 @@ const Camera = () => {
       <>
         <Btn
           size={"xs"}
-          variant={"outline"}
+          variant={"ghost"}
           onClick={onOpen}
           disabled={cameraPermissionsStatus !== "granted"}
         >
@@ -311,7 +310,7 @@ const Microphone = () => {
       <>
         <Btn
           size="xs"
-          variant="outline"
+          variant="ghost"
           onClick={onOpen}
           disabled={micPermissionsStatus !== "granted"}
         >
@@ -504,7 +503,7 @@ const Location = () => {
       <>
         <Btn
           size="xs"
-          variant="outline"
+          variant="ghost"
           onClick={onOpen}
           disabled={locationPermissionsStatus !== "granted"}
         >
@@ -611,22 +610,15 @@ const Location = () => {
 };
 
 export default function Page() {
-  // Contexts
-  const { l } = useLang();
-
   return (
-    <CContainer>
-      <CContainer gap={4}>
-        <Camera />
+    <CContainer flex={1} gap={2} bg={"bgContent"}>
+      <Camera />
 
-        <Microphone />
+      <Microphone />
 
-        <Location />
-      </CContainer>
+      <Location />
 
-      <HelperText px={2} my={4}>
-        {l.msg_settings_saved_locally}
-      </HelperText>
+      <LocalSettingsHelperText />
     </CContainer>
   );
 }

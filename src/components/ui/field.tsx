@@ -57,7 +57,7 @@ export interface Props__FieldsetRoot extends FieldsetRootProps {}
 export const FieldsetRoot = forwardRef<any, Props__FieldsetRoot>(
   function FieldsetRoot(props, ref) {
     return (
-      <ChakraFieldsetRoot ref={ref} gap={4} {...props}>
+      <ChakraFieldsetRoot ref={ref} {...props}>
         {props.children}
       </ChakraFieldsetRoot>
     );

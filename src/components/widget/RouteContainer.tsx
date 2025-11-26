@@ -15,7 +15,6 @@ export const RouteContainer = forwardRef<HTMLDivElement, Props>(
         ref={ref}
         className="route-container"
         flex={1}
-        p={4}
         pt={0}
         overflowY={"auto"}
         {...restProps}

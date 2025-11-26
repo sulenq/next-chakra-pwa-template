@@ -1,9 +1,8 @@
 "use client";
 
-import { forwardRef } from "react";
 import { CContainer } from "@/components/ui/c-container";
 import { Props__ItemContainer } from "@/constants/props";
-import { useThemeConfig } from "@/context/useThemeConfig";
+import { forwardRef } from "react";
 
 export const ItemContainer = forwardRef<HTMLDivElement, Props__ItemContainer>(
   (props, ref) => {
@@ -11,14 +10,14 @@ export const ItemContainer = forwardRef<HTMLDivElement, Props__ItemContainer>(
     const { children, scrollY = false, ...restProps } = props;
 
     // Contexts
-    const { themeConfig } = useThemeConfig();
+    // const { themeConfig } = useThemeConfig();
 
     return (
       <CContainer
         ref={ref} // <-- ref diterusin ke CContainer
         className={scrollY ? "scrollY" : ""}
         bg={"body"}
-        rounded={themeConfig.radii.container}
+        // rounded={themeConfig.radii.container}
         {...restProps}
       >
         {children}

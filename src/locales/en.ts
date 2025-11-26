@@ -372,7 +372,7 @@ const translations = {
       "index": "Main",
       "personalization": "Personalization",
       "regional": "Regional",
-      "permissions": "App permissions"
+      "app_permissions": "App permissions"
     },
     "system": {
       "index": "System",

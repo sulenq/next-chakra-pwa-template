@@ -2,20 +2,22 @@
 
 import { Btn } from "@/components/ui/btn";
 import { CContainer } from "@/components/ui/c-container";
+import { HelperText } from "@/components/ui/helper-text";
 import { NavLink } from "@/components/ui/nav-link";
 import { P } from "@/components/ui/p";
 import SearchInput from "@/components/ui/search-input";
 import FeedbackNotFound from "@/components/widget/FeedbackNotFound";
 import { LeftIndicator } from "@/components/widget/Indicator";
-import { ItemContainer } from "@/components/widget/ItemContainer";
 import { RouteContainer } from "@/components/widget/RouteContainer";
+import { TopBar } from "@/components/widget/TopBar";
+import { APP } from "@/constants/_meta";
 import { OTHER_PRIVATE_NAVS } from "@/constants/navs";
 import { Props__Layout } from "@/constants/props";
-import { FIREFOX_SCROLL_Y_CLASS_PR_PREFIX } from "@/constants/sizes";
 import useLang from "@/context/useLang";
 import { useSettingsRouteContainer } from "@/context/useSettingsRouteContainer";
 import { useContainerDimension } from "@/hooks/useContainerDimension";
 import { isEmptyArray } from "@/utils/array";
+import { formatAbsDate } from "@/utils/formatter";
 import { pluckString } from "@/utils/string";
 import { HStack, Icon } from "@chakra-ui/react";
 import { usePathname } from "next/navigation";
@@ -25,7 +27,7 @@ const SETTINGS_NAVS = OTHER_PRIVATE_NAVS[0].list[0].subMenus!;
 
 const NavsList = (props: any) => {
   // Props
-  const { search } = props;
+  const { search, ...restProps } = props;
 
   // Contexts
   const { l } = useLang();
@@ -54,7 +56,7 @@ const NavsList = (props: any) => {
   );
 
   return (
-    <CContainer gap={2}>
+    <CContainer gap={4} {...restProps}>
       {isEmptyArray(resolvedList) && <FeedbackNotFound />}
 
       {!isEmptyArray(resolvedList) &&
@@ -67,7 +69,6 @@ const NavsList = (props: any) => {
                   fontWeight={"semibold"}
                   color={"fg.subtle"}
                   ml={"10px"}
-                  mt={1}
                 >
                   {pluckString(l, navItem.groupLabelKey)}
                 </P>
@@ -122,7 +123,7 @@ export default function Layout(props: Props__Layout) {
   // States
   const [search, setSearch] = useState<string>("");
   const isSmContainer = containerDimension.width < 720;
-  const isAtSettingsIndexRoute = pathname === `/master-data`;
+  const isAtSettingsIndexRoute = pathname === `/settings`;
   const showSidebar =
     !isSmContainer || (isSmContainer && isAtSettingsIndexRoute);
   const showContent =
@@ -133,16 +134,9 @@ export default function Layout(props: Props__Layout) {
   }, [containerDimension]);
 
   return (
-    <RouteContainer id="master_data_route_container" ref={containerRef} p={0}>
+    <RouteContainer id="settings_route_container" ref={containerRef} p={0}>
       {containerDimension.width > 0 && (
-        <HStack
-          align={"stretch"}
-          flex={1}
-          gap={0}
-          overflowY={"auto"}
-          pl={showSidebar ? 4 : 0}
-          pr={showContent ? 0 : 4}
-        >
+        <HStack align={"stretch"} flex={1} gap={0} overflowY={"auto"}>
           {/* Sidebar */}
           {showSidebar && (
             <CContainer
@@ -150,34 +144,46 @@ export default function Layout(props: Props__Layout) {
               w={isSmContainer ? "full" : "250px"}
               h={"full"}
               maxH={"full"}
-              gap={4}
-              pb={4}
               overflowY={"auto"}
+              borderRight={isSmContainer ? "" : "1px solid"}
+              borderColor={"border.muted"}
             >
-              <ItemContainer scrollY p={"6px"} pr={0}>
-                <CContainer mb={[2, null, 1]}>
-                  <SearchInput
-                    inputProps={{ variant: "flushed", rounded: 0 }}
-                    inputValue={search}
-                    onChange={(inputValue) => {
-                      setSearch(inputValue || "");
-                    }}
-                  />
-                </CContainer>
+              <CContainer p={3} pb={1}>
+                <SearchInput
+                  inputProps={{
+                    variant: "subtle",
+                    bg: "d0",
+                  }}
+                  inputValue={search}
+                  onChange={(inputValue) => {
+                    setSearch(inputValue || "");
+                  }}
+                />
+              </CContainer>
 
-                <NavsList search={search} />
-              </ItemContainer>
+              <NavsList search={search} p={3} />
+
+              <HStack px={4} pb={4} justify={"space-between"} mt={"auto"}>
+                <HelperText>{`v${APP.version}`}</HelperText>
+
+                <HelperText>
+                  {`Last updated: 
+                ${formatAbsDate(APP.lastUpdated, {
+                  variant: "numeric",
+                })}`}
+                </HelperText>
+              </HStack>
             </CContainer>
           )}
 
           {/* Content */}
           {showContent && (
-            <CContainer
-              className={"scrollY"}
-              pl={4}
-              pr={`calc(16px - ${FIREFOX_SCROLL_Y_CLASS_PR_PREFIX})`}
-            >
-              {children}
+            <CContainer flex={1}>
+              <TopBar />
+
+              <CContainer className={"scrollY"} flex={1}>
+                {children}
+              </CContainer>
             </CContainer>
           )}
         </HStack>

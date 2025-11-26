@@ -372,7 +372,7 @@ const translations = {
       "index": "Utama",
       "personalization": "Personalisasi",
       "regional": "Regional",
-      "permissions": "Izin aplikasi"
+      "app_permissions": "Izin aplikasi"
     },
     "system": {
       "index": "Sistem",

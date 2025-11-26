@@ -7,7 +7,7 @@ import {
   IconLanguage,
   IconLayersIntersect,
   IconPalette,
-  IconReceipt,
+  IconReceipt2,
   IconSettings,
   IconShieldHalf,
   IconUser,
@@ -26,7 +26,7 @@ export const PRIVATE_NAVS: Interface__NavItem[] = [
         path: `/dashboard`,
       },
       {
-        icon: IconReceipt,
+        icon: IconReceipt2,
         labelKey: "navs.transaction",
         path: `/transaction`,
       },
@@ -103,8 +103,8 @@ export const OTHER_PRIVATE_NAVS: Interface__NavItem[] = [
               },
               {
                 icon: IconShieldHalf,
-                labelKey: "settings_navs.main.permissions",
-                path: `/settings/permissions`,
+                labelKey: "settings_navs.main.app_permissions",
+                path: `/settings/app-permissions`,
                 backPath: `/settings`,
               },
             ],

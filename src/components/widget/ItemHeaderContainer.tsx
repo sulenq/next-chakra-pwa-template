@@ -12,10 +12,10 @@ export const ItemHeaderContainer = ({
 }: Props) => {
   return (
     <HStack
-      h={"46px"}
+      h={"50px"}
       p={1}
       pl={4}
-      pr={withUtils ? "6px" : 4}
+      pr={withUtils ? 2 : 4}
       gap={4}
       wrap={"wrap"}
       borderBottom={"1px solid"}

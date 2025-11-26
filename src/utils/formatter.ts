@@ -90,16 +90,16 @@ export const formatDate = (
 
     switch (dateFormat.toLowerCase()) {
       case "dmy":
-        return `${dayVal}${basicVariant ? "-" : " "}${monthDisplay}${
-          basicVariant ? "-" : " "
+        return `${dayVal}${basicVariant ? "/" : " "}${monthDisplay}${
+          basicVariant ? "/" : " "
         }${yearVal}`;
       case "mdy":
-        return `${monthDisplay}${basicVariant ? "-" : " "}${dayVal}${
-          basicVariant ? "-" : ", "
+        return `${monthDisplay}${basicVariant ? "/" : " "}${dayVal}${
+          basicVariant ? "/" : ", "
         }${yearVal}`;
       case "ymd":
-        return `${yearVal}${basicVariant ? "-" : " "}${monthDisplay}${
-          basicVariant ? "-" : " "
+        return `${yearVal}${basicVariant ? "/" : " "}${monthDisplay}${
+          basicVariant ? "/" : " "
         }${dayVal}`;
       default:
         return `${dayVal} ${monthDisplay} ${yearVal}`;

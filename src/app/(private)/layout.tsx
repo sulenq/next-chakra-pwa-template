@@ -9,7 +9,6 @@ import {
 import { Avatar } from "@/components/ui/avatar";
 import { Btn } from "@/components/ui/btn";
 import { CContainer } from "@/components/ui/c-container";
-import { ColorModeButton } from "@/components/ui/color-mode";
 import { Divider } from "@/components/ui/divider";
 import {
   MenuContent,
@@ -27,21 +26,16 @@ import {
 } from "@/components/ui/popover";
 import SearchInput from "@/components/ui/search-input";
 import { Tooltip, TooltipProps } from "@/components/ui/tooltip";
-import BackButton from "@/components/widget/BackButton";
 import Clock from "@/components/widget/Clock";
 import FeedbackNotFound from "@/components/widget/FeedbackNotFound";
 import HScroll from "@/components/widget/HScroll";
-import {
-  BottomIndicator,
-  DotIndicator,
-  LeftIndicator,
-} from "@/components/widget/Indicator";
+import { BottomIndicator, LeftIndicator } from "@/components/widget/Indicator";
 import Logo from "@/components/widget/Logo";
 import { MiniMyProfile } from "@/components/widget/MiniMyProfile";
 import { Today } from "@/components/widget/Today";
+import { NavBreadcrumb, TopBar } from "@/components/widget/TopBar";
 import { VerifyingScreen } from "@/components/widget/VerifyingScreen";
 import { APP } from "@/constants/_meta";
-import { Interface__NavListItem } from "@/constants/interfaces";
 import { PRIVATE_NAVS } from "@/constants/navs";
 import { Props__Layout, Props__NavLink } from "@/constants/props";
 import { FIREFOX_SCROLL_Y_CLASS_PR_PREFIX } from "@/constants/sizes";
@@ -64,7 +58,6 @@ import {
   IconDatabase,
   IconSelector,
   IconSettings,
-  IconSlash,
   IconUser,
 } from "@tabler/icons-react";
 import { usePathname, useRouter } from "next/navigation";
@@ -95,41 +88,6 @@ const NavTooltip = (props: TooltipProps) => {
     >
       {children}
     </Tooltip>
-  );
-};
-const NavTitle = (props: any) => {
-  // Props
-  const { backPath, resolvedActiveNavs, ...restProps } = props;
-
-  // Contexts
-  const { l } = useLang();
-
-  return (
-    <HStack {...restProps}>
-      {backPath && <BackButton iconButton clicky={false} backPath={backPath} />}
-
-      {resolvedActiveNavs.map((nav: Interface__NavListItem, idx: number) => {
-        return (
-          <HStack key={idx}>
-            {idx !== 0 && (
-              <>
-                {backPath && (
-                  <Icon boxSize={5} color={"fg.subtle"}>
-                    <IconSlash stroke={1.5} />
-                  </Icon>
-                )}
-
-                {!backPath && <DotIndicator color={"d4"} />}
-              </>
-            )}
-
-            <P fontSize={"lg"} fontWeight={"semibold"} lineClamp={1}>
-              {pluckString(l, nav.labelKey)}
-            </P>
-          </HStack>
-        );
-      })}
-    </HStack>
   );
 };
 const MobileNavLink = (props: Props__NavLink) => {
@@ -189,7 +147,7 @@ const MobileLayout = (props: any) => {
           </HStack>
 
           <HStack gap={4} h={"52px"} p={4} justify={"space-between"}>
-            <NavTitle
+            <NavBreadcrumb
               backPath={backPath}
               resolvedActiveNavs={resolvedActiveNavs}
               ml={backPath ? -1 : 0}
@@ -429,14 +387,9 @@ const DesktopLayout = (props: any) => {
 
   // Hooks
   const pathname = usePathname();
-  const { sw } = useScreen();
 
   // States
   const user = getUserData();
-  const activeNavs = getActiveNavs(pathname);
-  const resolvedActiveNavs =
-    sw < 960 ? [activeNavs[activeNavs.length - 1]] : activeNavs;
-  const backPath = last(activeNavs)?.backPath;
   const [search, setSearch] = useState<string>("");
   const roleId = user?.role?.id;
   const q = (search ?? "").toLowerCase();
@@ -588,29 +541,27 @@ const DesktopLayout = (props: any) => {
         </CContainer>
 
         {/* Navs */}
-        <CContainer px={2}>
-          {navsExpanded && (
-            <CContainer mb={1}>
-              <SearchInput
-                inputRef={searchInputRef}
-                inputProps={{
-                  variant: "subtle",
-                  bg: "d0",
-                }}
-                inputValue={search}
-                onChange={(inputValue) => {
-                  setSearch(inputValue || "");
-                }}
-              />
-            </CContainer>
-          )}
-        </CContainer>
+        {navsExpanded && (
+          <CContainer p={3} pb={1}>
+            <SearchInput
+              inputRef={searchInputRef}
+              inputValue={search}
+              onChange={(inputValue) => {
+                setSearch(inputValue || "");
+              }}
+              inputProps={{
+                variant: "subtle",
+                bg: "d0",
+              }}
+            />
+          </CContainer>
+        )}
 
         <CContainer
           className="scrollY"
           flex={1}
-          p={2}
-          pr={`calc(8px - ${FIREFOX_SCROLL_Y_CLASS_PR_PREFIX})`}
+          p={3}
+          pr={`calc(12px - ${FIREFOX_SCROLL_Y_CLASS_PR_PREFIX})`}
         >
           <CContainer gap={1}>
             {isEmptyArray(resolvedNavs) && <FeedbackNotFound />}
@@ -795,7 +746,7 @@ const DesktopLayout = (props: any) => {
                           )}
 
                           {hasSubMenus && navsExpanded && (
-                            <AccordionRoot multiple defaultValue={[nav.path]}>
+                            <AccordionRoot multiple>
                               <AccordionItem
                                 value={nav.path}
                                 border={"none"}
@@ -1110,32 +1061,9 @@ const DesktopLayout = (props: any) => {
 
       {/* Content */}
       <CContainer bg={BG_CONTENT_CONTAINER} overflowY={"auto"} color={"ibody"}>
-        {/* Content header */}
-        <HStack gap={4} h={"52px"} p={4} justify={"space-between"}>
-          <NavTitle
-            backPath={backPath}
-            resolvedActiveNavs={resolvedActiveNavs}
-          />
+        <TopBar />
 
-          <HStack flexShrink={0} gap={1}>
-            <HStack mx={1}>
-              <Clock />
-
-              <Today />
-            </HStack>
-
-            <ColorModeButton
-              rounded={"full"}
-              size={"xs"}
-              w={"32px"}
-              h={"32px"}
-            />
-          </HStack>
-        </HStack>
-
-        <CContainer flex={1} overflowY={"auto"}>
-          {children}
-        </CContainer>
+        {children}
       </CContainer>
     </HStack>
   );
