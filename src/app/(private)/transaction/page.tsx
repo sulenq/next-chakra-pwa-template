@@ -1,7 +1,7 @@
 "use client";
 
-import { CContainer } from "@/components/ui/c-container";
 import { DataTable } from "@/components/widget/DataTable";
+import { PageContainer, PageContent } from "@/components/widget/Page";
 import { IconPencil, IconRestore, IconTrash } from "@tabler/icons-react";
 import { useState } from "react";
 
@@ -135,10 +135,10 @@ const DemoDataTable = () => {
 };
 export default function Page() {
   return (
-    <CContainer flex={1} p={4}>
-      <CContainer bg={"body"} gap={4}>
+    <PageContainer>
+      <PageContent>
         <DemoDataTable />
-      </CContainer>
-    </CContainer>
+      </PageContent>
+    </PageContainer>
   );
 }
