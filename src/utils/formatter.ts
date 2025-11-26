@@ -6,9 +6,10 @@ import {
 } from "@/constants/types";
 import { L_WEEKDAYS_0_BASED } from "@/constants/weekdays";
 import { getStorage } from "@/utils/client";
-import moment from "moment-timezone";
 import { isDateObject } from "./date";
 import { getTimezoneOffsetMs, getUserTimezone } from "./time";
+import { parseISO, isValid } from "date-fns";
+import { toZonedTime, format as formatTz } from "date-fns-tz";
 
 export const formatDate = (
   date?: Date | string | undefined,
@@ -25,36 +26,50 @@ export const formatDate = (
   const dateFormat = options.dateFormat || getStorage("dateFormat") || "dmy";
   const timezoneKey = options.timezoneKey || getUserTimezone().key;
 
-  let localDate: moment.Moment;
+  let baseDate: Date;
 
   if (isDateObject(date)) {
-    localDate = moment(date as Date).tz(timezoneKey);
+    baseDate = date as Date;
   } else if (typeof date === "string") {
     const s = date as string;
     const dateOnlyRegex = /^\d{4}-\d{2}-\d{2}$/;
-    const isoWithOffsetRegex = /Z|[+-]\d{2}:\d{2}$/i;
-    const isoWithoutOffsetRegex =
-      /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}(:\d{2}(\.\d+)?)?$/;
+
+    let parsed: Date;
 
     if (dateOnlyRegex.test(s)) {
-      localDate = moment.tz(s, "YYYY-MM-DD", timezoneKey);
-    } else if (isoWithOffsetRegex.test(s)) {
-      localDate = moment.parseZone(s).tz(timezoneKey);
-    } else if (isoWithoutOffsetRegex.test(s)) {
-      localDate = moment.tz(s, timezoneKey);
+      parsed = new Date(s);
     } else if (/^\d+$/.test(s)) {
-      localDate = moment(Number(s)).tz(timezoneKey);
+      // Handle string timestamps (number string)
+      parsed = new Date(Number(s));
     } else {
-      localDate = moment(s).tz(timezoneKey);
+      // Handle ISO strings with/without offset, and other date strings
+      parsed = parseISO(s);
     }
+
+    if (!isValid(parsed)) {
+      // Fallback untuk string tanggal yang sulit diurai
+      parsed = new Date(s);
+    }
+
+    baseDate = parsed;
   } else {
-    localDate = moment(date as any).tz(timezoneKey);
+    baseDate = new Date(date as any);
   }
 
-  const day = localDate.date();
-  const month = localDate.month(); // 0-based
-  const year = localDate.year();
-  const weekday = localDate.day();
+  if (!isValid(baseDate)) return "";
+
+  const zonedDate = toZonedTime(baseDate, timezoneKey);
+
+  // 'd' = day of month, 'M' = month (1-based), 'yyyy' = year, 'i' = weekday (1=Mon, 7=Sun)
+  const day = parseInt(formatTz(zonedDate, "d", { timeZone: timezoneKey }));
+  const month =
+    parseInt(formatTz(zonedDate, "M", { timeZone: timezoneKey })) - 1; // 0-based
+  const year = parseInt(formatTz(zonedDate, "yyyy", { timeZone: timezoneKey }));
+  // Weekday convertion ISO (1-7) ke 0-based (0=Sun, 6=Sat) yang digunakan L_WEEKDAYS_0_BASED
+  const isoWeekday = parseInt(
+    formatTz(zonedDate, "i", { timeZone: timezoneKey })
+  );
+  const weekday = isoWeekday === 7 ? 0 : isoWeekday;
 
   const monthName = L_MONTHS[month];
   const shortMonthName = monthName.substring(0, 3);
@@ -165,7 +180,8 @@ export const formatDate = (
 
   if (options.withTime) {
     const timeFormat = options.timeFormat || "HH:mm";
-    const timeStr = localDate.format(timeFormat);
+    // Mengganti localDate.format(timeFormat)
+    const timeStr = formatTz(zonedDate, timeFormat, { timeZone: timezoneKey });
     return `${formattedDate} ${timeStr}`;
   }
 

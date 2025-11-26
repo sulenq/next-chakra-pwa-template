@@ -41,7 +41,7 @@ export const DateTimePickerInput = (props: Props__DateTimePickerInput) => {
     }
   }, [date, time]);
 
-  // set inputValue to date & time on open
+  // set inputValue to date & time
   useEffect(() => {
     if (inputValue) {
       const userTzKey = getUserTimezone().key;
@@ -56,7 +56,7 @@ export const DateTimePickerInput = (props: Props__DateTimePickerInput) => {
         })
       );
     }
-  }, [open]);
+  }, []);
 
   return (
     <Group

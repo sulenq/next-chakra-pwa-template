@@ -1,26 +1,37 @@
 import { Type__TimezoneObject } from "@/constants/types";
 import { getStorage } from "@/utils/client";
-import moment from "moment-timezone";
+
+import * as DnsTz from "date-fns-tz";
+
+// ----------------------------------------------------------------------
+// TIMEZONE UTILITIES
+// ----------------------------------------------------------------------
 
 export const getTimezoneOffsetMs = (timezoneKey: string): number => {
-  return moment.tz(timezoneKey).utcOffset() * 60 * 1000;
+  // Returns timezone offset in milliseconds
+  return DnsTz.getTimezoneOffset(timezoneKey) * 60 * 1000;
 };
 
 export const getLocalTimezone = (): Type__TimezoneObject => {
-  const timezone = moment.tz.guess();
+  const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
   const autoTimezoneLabel = `Auto (${timezone})`;
-  const offsetMinutes = moment.tz(timezone).utcOffset();
-  const offsetHours = offsetMinutes / 60;
-  const formattedOffset = `UTC${offsetHours >= 0 ? "+" : ""}${String(
-    offsetHours
-  ).padStart(2, "0")}:00`;
-  const abbreviation = moment.tz(timezone).format("z");
+
+  const offsetMs = DnsTz.getTimezoneOffset(timezone) * 60 * 1000;
+  const offsetHours = offsetMs / 3600000;
+
+  // Format offset (e.g., +07:00)
+  const formattedOffset = `UTC${DnsTz.format(new Date(), "xxx", {
+    timeZone: timezone,
+  })}`;
+
+  // Get timezone abbreviation (e.g., WIB)
+  const abbreviation = DnsTz.format(new Date(), "z", { timeZone: timezone });
 
   return {
     key: timezone,
     label: autoTimezoneLabel,
     offset: offsetHours,
-    offsetMs: offsetMinutes * 60 * 1000,
+    offsetMs: offsetMs,
     formattedOffset,
     localAbbr: abbreviation,
   };
@@ -47,21 +58,46 @@ export const getUserNow = () => {
   const localTz = getLocalTimezone();
   const userOffset = getTimezoneOffsetMs(userTz.key);
   const localOffset = getTimezoneOffsetMs(localTz.key);
+  // Calculates 'now' adjusted for the user's selected timezone offset
   const now = new Date(new Date().getTime() - localOffset + userOffset);
 
   return now;
 };
+
+export const timezones = () => {
+  // Use native JS Intl API for the list of time zones
+  const allTimezones: string[] = Intl.supportedValuesOf("timeZone");
+
+  return allTimezones.map((tz: string) => {
+    // Note: DnsTz is still needed for offset calculations and formatting
+    const offsetMinutes = DnsTz.getTimezoneOffset(tz);
+
+    return {
+      key: tz,
+      label: tz,
+      offset: offsetMinutes / 60,
+      offsetMs: offsetMinutes * 60 * 1000,
+      formattedOffset: `UTC${DnsTz.format(new Date(), "xxx", {
+        timeZone: tz,
+      })}`,
+      localAbbr: DnsTz.format(new Date(), "z", { timeZone: tz }),
+    };
+  });
+};
+
+// ----------------------------------------------------------------------
+// ISO / TIME / DURATION UTILITIES
+// ----------------------------------------------------------------------
 
 export const getDurationByClock = (
   timeFrom: string,
   timeTo: string
 ): number => {
   const timeStart: Date = new Date(timeFrom);
-
   const timeEnd: Date = new Date(timeTo);
-
   const timeRange: number = timeEnd.getTime() - timeStart.getTime();
 
+  // Returns duration in seconds
   return timeRange / 1000;
 };
 
@@ -128,10 +164,11 @@ export const makeTime = (
   }
 };
 
-export const makeDateTime = (isoDate: string, time: string): Date => {
+export const makeLocalDateTime = (isoDate: string, time: string): Date => {
   const [hours, minutes, seconds] = time.split(":").map(Number);
   const dateTime = new Date(isoDate);
 
+  // Sets time components without affecting date components
   dateTime.setHours(hours, minutes, seconds, 0);
 
   return dateTime;
@@ -153,14 +190,13 @@ export const makeUTCISODateTime = (
   const timezoneKey = options?.timezoneKey || getUserTimezone().key;
   const normalizedTime = /^\d{2}:\d{2}$/.test(time) ? `${time}:00` : time;
 
-  const m = moment.tz(
-    `${datePart} ${normalizedTime}`,
-    "YYYY-MM-DD HH:mm:ss",
-    timezoneKey
-  );
+  const combinedDateTime = `${datePart}T${normalizedTime}`;
 
-  // convert to UTC ISO string (includes ms, ends with 'Z')
-  return m.utc().toISOString();
+  // Use formatTz to interpret the datetime string in the specified timezone,
+  // then immediately format it as UTC ISO string.
+  return DnsTz.format(combinedDateTime, "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", {
+    timeZone: timezoneKey,
+  });
 };
 
 export const extractTime = (
@@ -169,9 +205,10 @@ export const extractTime = (
 ): string => {
   if (!input) return "";
 
+  // Converts input to ISO string for parsing
   const isoStr = typeof input === "string" ? input : input.toISOString();
 
-  // regex capture HH:mm or HH:mm:ss
+  // Regex capture HH:mm or HH:mm:ss from ISO string
   const regex = options.withSeconds ? /T(\d{2}:\d{2}:\d{2})/ : /T(\d{2}:\d{2})/;
   const match = isoStr.match(regex);
 
@@ -185,23 +222,8 @@ export const parseTimeToSeconds = (time: string): number => {
 };
 
 export const resetTime = (date: Date): Date => {
+  // Creates a new Date object at the start of the day (00:00:00)
   return new Date(date.getFullYear(), date.getMonth(), date.getDate());
-};
-
-export const timezones = () => {
-  return moment.tz.names().map((tz) => {
-    const offsetMinutes = moment.tz(tz).utcOffset();
-    const abbreviation = moment.tz(tz).format("z");
-
-    return {
-      key: tz,
-      label: tz,
-      offset: offsetMinutes,
-      offsetMs: offsetMinutes * 60 * 1000,
-      formattedOffset: `UTC${moment.tz(tz).format("Z")}`,
-      localAbbr: abbreviation,
-    };
-  });
 };
 
 export const addSecondsToTime = (
@@ -210,17 +232,11 @@ export const addSecondsToTime = (
 ): string => {
   if (!time) return "";
 
-  // Parse HH:mm:ss
   const [h, m, s] = time.split(":").map(Number);
-
-  // Construct date from time
   const base = new Date();
   base.setHours(h, m, s, 0);
-
-  // Add seconds
   const result = new Date(base.getTime() + secondsToAdd * 1000);
 
-  // Format back to HH:mm:ss
   const hh = String(result.getHours()).padStart(2, "0");
   const mm = String(result.getMinutes()).padStart(2, "0");
   const ss = String(result.getSeconds()).padStart(2, "0");
@@ -229,20 +245,13 @@ export const addSecondsToTime = (
 };
 
 export const getRemainingSecondsUntil = (targetTime: string): number => {
-  // Parse target time
   const [h, m, s] = targetTime.split(":").map(Number);
-
-  // Get current time
   const now = new Date();
   const target = new Date();
-
-  // Set target time on today's date
   target.setHours(h, m, s, 0);
 
-  // Calculate difference in milliseconds
   const diffMs = target.getTime() - now.getTime();
 
-  // Convert to seconds
   return Math.floor(diffMs / 1000);
 };
 
@@ -251,8 +260,6 @@ export const addSecondsToISODate = (
   seconds: number
 ): string => {
   const date = new Date(isoDate);
-
   date.setSeconds(date.getSeconds() + seconds);
-
   return date.toISOString();
 };
