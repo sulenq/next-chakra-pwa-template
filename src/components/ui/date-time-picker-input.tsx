@@ -4,9 +4,9 @@ import { Props__DateTimePickerInput } from "@/constants/props";
 import { useThemeConfig } from "@/context/useThemeConfig";
 import { extractTime, getUserTimezone, makeUTCISODateTime } from "@/utils/time";
 import { Group, useFieldContext } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
 import { parseISO } from "date-fns";
-import { toZonedTime, format as formatTz } from "date-fns-tz";
+import { format as formatTz, toZonedTime } from "date-fns-tz";
+import { useEffect, useState } from "react";
 
 export const DateTimePickerInput = (props: Props__DateTimePickerInput) => {
   const {
@@ -75,6 +75,7 @@ export const DateTimePickerInput = (props: Props__DateTimePickerInput) => {
         onChange={(inputValue) => setDate(inputValue?.[0] || "")}
         invalid={false}
         required={required}
+        borderRight={"1px solid {colors.border.muted}"}
         showTimezone
       />
       <TimePickerInput

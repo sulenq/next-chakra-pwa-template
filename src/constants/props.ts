@@ -24,6 +24,7 @@ import { ImageProps } from "next/image";
 import { TextareaProps } from "node_modules/@chakra-ui/react/dist/types/components/editable/namespace";
 import { Dispatch, RefObject } from "react";
 import {
+  Type__BasicVariant,
   Type__DateVariant,
   Type__DisclosureSizes,
   Type__Period,
@@ -165,6 +166,7 @@ export interface Props__SelectInput extends Omit<BtnProps, "onChange"> {
   multiple?: boolean;
   fetch?: () => void;
   disclosureSize?: Type__DisclosureSizes;
+  variant?: Type__BasicVariant;
 }
 export interface Props__SelectOptions {
   multiple: Props__SelectInput["multiple"];
@@ -209,7 +211,7 @@ export interface Props__SearchInput
   debounceTime?: number;
   queryKey?: string;
   children?: React.ReactNode;
-  variant?: string;
+  variant?: Type__BasicVariant;
 }
 
 export interface Props__TextareaInput extends Omit<TextareaProps, "onChange"> {
@@ -218,7 +220,7 @@ export interface Props__TextareaInput extends Omit<TextareaProps, "onChange"> {
   invalid?: boolean;
   placeholder?: string;
   maxChar?: number;
-  variant?: string;
+  variant?: Type__BasicVariant;
 }
 
 export interface Props__FileInput
@@ -275,6 +277,7 @@ export interface Props__PeriodPickerInput extends Omit<BtnProps, "onChange"> {
   invalid?: boolean;
   disclosureSize?: Type__DisclosureSizes;
   multiple?: boolean;
+  variant?: Type__BasicVariant;
 }
 
 export interface Props__DatePickerInput extends Omit<BtnProps, "onChange"> {
@@ -288,6 +291,7 @@ export interface Props__DatePickerInput extends Omit<BtnProps, "onChange"> {
   invalid?: boolean;
   disclosureSize?: Type__DisclosureSizes;
   multiple?: boolean;
+  variant?: Type__BasicVariant;
 }
 export interface Props__DatePicker extends StackProps {
   inputValue?: string[];
@@ -313,6 +317,7 @@ export interface Props__TimePicker extends Omit<BtnProps, "onChange"> {
   required?: boolean;
   invalid?: boolean;
   disclosureSize?: Type__DisclosureSizes;
+  variant?: Type__BasicVariant;
 }
 export interface Props__DateTimePickerInput
   extends Omit<GroupProps, "title" | "placeholder" | "onChange"> {

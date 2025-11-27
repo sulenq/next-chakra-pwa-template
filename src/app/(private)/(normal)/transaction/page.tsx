@@ -140,11 +140,7 @@ export default function Page() {
   return (
     <PageContainer>
       <PageContent>
-        <HScroll
-          p={3}
-          // borderBottom={"1px solid"}
-          borderColor={"border.muted"}
-        >
+        <HScroll p={3}>
           <HStack minW={"full"} w={"max"}>
             <SearchInput />
           </HStack>

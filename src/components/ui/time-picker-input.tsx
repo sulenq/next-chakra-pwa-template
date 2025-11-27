@@ -56,6 +56,7 @@ export const TimePickerInput = (props: Props__TimePicker) => {
     required,
     invalid,
     disclosureSize = withSeconds ? "sm" : "xs",
+    variant = "subtle",
     ...restProps
   } = props;
 
@@ -190,9 +191,15 @@ export const TimePickerInput = (props: Props__TimePicker) => {
         <Btn
           w={"full"}
           clicky={false}
-          variant={"outline"}
+          variant={variant}
           border={"1px solid"}
-          borderColor={resolvedInvalid ? "border.error" : "border.muted"}
+          borderColor={
+            resolvedInvalid
+              ? "border.error"
+              : variant === "subtle"
+              ? "transparent"
+              : "border.muted"
+          }
           onClick={() => {
             if (inputValue) {
               setSelected(inputValue);

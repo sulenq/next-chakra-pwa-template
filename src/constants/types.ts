@@ -1,4 +1,8 @@
-import { ButtonProps, MenuItemProps } from "@chakra-ui/react";
+import { ButtonProps, ConditionalValue, MenuItemProps } from "@chakra-ui/react";
+
+export type Type__BasicVariant = ConditionalValue<
+  "outline" | "solid" | "subtle" | "surface" | "ghost" | "plain" | undefined
+>;
 
 export type Type__ExtendedPermissionState =
   | "prompt"

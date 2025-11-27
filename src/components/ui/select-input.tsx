@@ -175,6 +175,7 @@ export const SelectInput = (props: Props__SelectInput) => {
     multiple,
     disclosureSize = "xs",
     fetch,
+    variant = "subtle",
     ...restProps
   } = props;
 
@@ -188,6 +189,7 @@ export const SelectInput = (props: Props__SelectInput) => {
   useBackOnClose(disclosureId(id || "select-input"), open, onOpen, onClose);
 
   // States
+  const resolvedInvalid = invalid ?? fc?.invalid;
   const [selected, setSelected] = useState<Interface__SelectOption[]>([]);
   const resolvedPlaceholder = placeholder || `${l.select}`;
   const formattedButtonLabel =
@@ -223,9 +225,15 @@ export const SelectInput = (props: Props__SelectInput) => {
           w={"full"}
           size={"md"}
           clicky={false}
-          variant={"outline"}
+          variant={variant}
           justifyContent={"start"}
-          borderColor={invalid ?? fc?.invalid ? "border.error" : "border.muted"}
+          borderColor={
+            resolvedInvalid
+              ? "border.error"
+              : variant === "subtle"
+              ? "transparent"
+              : "border.muted"
+          }
           onClick={onOpen}
           {...restProps}
         >

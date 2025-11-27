@@ -50,6 +50,7 @@ export const PeriodPickerInput = (props: Props__PeriodPickerInput) => {
     required,
     invalid,
     disclosureSize = "xs",
+    variant = "subtle",
     ...restProps
   } = props;
   const resolvedId = id || `period-picker-input`;
@@ -119,10 +120,17 @@ export const PeriodPickerInput = (props: Props__PeriodPickerInput) => {
         <Btn
           w={"full"}
           clicky={false}
+          bg={variant === "subtle" ? "d0" : ""}
           variant={"subtle"}
           justifyContent={"start"}
           onClick={onOpen}
-          borderColor={resolvedInvalid ? "border.error" : "border.muted"}
+          borderColor={
+            resolvedInvalid
+              ? "border.error"
+              : variant === "subtle"
+              ? "transparent"
+              : "border.muted"
+          }
           {...restProps}
         >
           {!inputValue && <P color={"placeholder"}>{resolvedPlaceholder}</P>}
@@ -163,6 +171,7 @@ export const PeriodPickerInput = (props: Props__PeriodPickerInput) => {
                   max={9999}
                   placeholder={`${new Date().getFullYear()}`}
                   formatted={false}
+                  variant={"outline"}
                 />
               </Field>
 

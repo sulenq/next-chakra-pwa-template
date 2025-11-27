@@ -551,14 +551,14 @@ const customConfig = defineConfig({
           },
           muted: {
             value: {
-              base: "{colors.gray.200}",
-              _dark: "{colors.gray.800}",
+              base: "{colors.gray.100} !important",
+              _dark: "{colors.gray.900} !important",
             },
           },
           subtle: {
             value: {
-              base: "{colors.gray.100}",
-              _dark: "{colors.gray.900}",
+              base: "{colors.d0} !important",
+              _dark: "{colors.d0} !important",
             },
           },
           emphasized: { value: "{colors.gray.400}" },

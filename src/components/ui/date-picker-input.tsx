@@ -357,6 +357,7 @@ export const DatePickerInput = (props: Props__DatePickerInput) => {
     invalid,
     disclosureSize = "xs",
     multiple,
+    variant = "subtle",
     ...restProps
   } = props;
 
@@ -375,6 +376,7 @@ export const DatePickerInput = (props: Props__DatePickerInput) => {
   );
 
   // States
+  const resolvedInvalid = invalid ?? fc?.invalid;
   const [selected, setSelected] = useState<Date[]>([]);
   const [period, setPeriod] = useState<Type__Period>(DEFAULT_PERIOD);
   const userTz = getUserTimezone();
@@ -450,10 +452,16 @@ export const DatePickerInput = (props: Props__DatePickerInput) => {
           w={"full"}
           size={"md"}
           clicky={false}
-          variant={"outline"}
           justifyContent={"start"}
-          borderColor={invalid ?? fc?.invalid ? "border.error" : "border.muted"}
+          borderColor={
+            resolvedInvalid
+              ? "border.error"
+              : variant === "subtle"
+              ? "transparent"
+              : "border.muted"
+          }
           onClick={onOpen}
+          variant={variant}
           {...restProps}
         >
           <HStack w={"full"} justify={"space-between"}>
