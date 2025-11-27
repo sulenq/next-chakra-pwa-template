@@ -139,8 +139,8 @@ const DemoDataTable = () => {
 export default function Page() {
   return (
     <PageContainer>
-      <PageContent>
-        <HScroll p={3}>
+      <PageContent gap={3}>
+        <HScroll px={3} flexShrink={0}>
           <HStack minW={"full"} w={"max"}>
             <SearchInput />
           </HStack>

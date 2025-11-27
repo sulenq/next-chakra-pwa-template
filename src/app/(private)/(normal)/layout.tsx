@@ -24,14 +24,14 @@ export default function Layout(props: Props__Layout) {
   const title = pluckString(l, last<any>(activeNavs)?.labelKey);
 
   return (
-    <>
-      <CContainer pt={3} pb={1} px={4}>
+    <CContainer flex={1} overflow={"auto"}>
+      <CContainer flexShrink={0} py={3} px={4} overflow={"auto"}>
         <P fontSize={"2xl"} fontWeight={"semibold"}>
           {title}
         </P>
       </CContainer>
 
       {children}
-    </>
+    </CContainer>
   );
 }
