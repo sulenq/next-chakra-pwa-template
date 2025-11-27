@@ -31,6 +31,7 @@ export const Btn = forwardRef<HTMLButtonElement, BtnProps>((props, ref) => {
 
   // States, Refs
   const resolvedClassName = `${clicky ? "clicky" : ""} ${className}`.trim();
+  const isSubtle = props?.variant === "subtle";
 
   // Memoized Active Style
   const resolvedMutedColor = useColorModeValue(
@@ -88,9 +89,10 @@ export const Btn = forwardRef<HTMLButtonElement, BtnProps>((props, ref) => {
       className={resolvedClassName}
       fontSize={"md"}
       fontWeight="medium"
+      bg={isSubtle ? "d0" : ""}
       size={size || (MAIN_BUTTON_SIZE as any)}
       rounded={themeConfig.radii.component}
-      _hover={{ bg: activeBg }}
+      _hover={{ bg: isSubtle ? "d1" : activeBg }}
       _active={{ bg: activeBg }}
       _focusVisible={
         focusStyle
