@@ -1,11 +1,12 @@
 "use client";
 
-import { Box, HStack, Icon, Skeleton, StackProps } from "@chakra-ui/react";
+import { Box, HStack, Icon, StackProps } from "@chakra-ui/react";
 import { useEffect, useRef, useState } from "react";
 import { Document, Page, pdfjs } from "react-pdf";
 // react-pdf CSS
 import { Btn } from "@/components/ui/btn";
 import { CContainer } from "@/components/ui/c-container";
+import Spinner from "@/components/ui/spinner";
 import { Tooltip } from "@/components/ui/tooltip";
 import FeedbackState from "@/components/widget/FeedbackState";
 import HScroll from "@/components/widget/HScroll";
@@ -228,7 +229,7 @@ export const PDFViewer = (props: Props__PdfViewer) => {
         <Document
           file={fileUrl}
           onLoadSuccess={onDocumentLoadSuccess}
-          loading={<Skeleton flex={1} w={"full"} h={"full"} />}
+          loading={<Spinner />}
           error={
             <FeedbackState
               icon={<IconFileOff stroke={1.8} />}

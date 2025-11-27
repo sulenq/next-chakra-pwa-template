@@ -37,6 +37,7 @@ export const StringInput = forwardRef<HTMLInputElement, Props__StringInput>(
       flexGrow,
       flexBasis,
       maxChar = null,
+      variant = "subtle",
       ...restProps
     } = props;
 
@@ -107,9 +108,16 @@ export const StringInput = forwardRef<HTMLInputElement, Props__StringInput>(
             name={name}
             onChange={handleChange}
             value={inputValue}
+            bg={variant === "subtle" ? "d0" : ""}
             _placeholder={{ fontSize: "md" }}
             placeholder={placeholder}
-            borderColor={resolvedInvalid ? "border.error" : "border.muted"}
+            borderColor={
+              resolvedInvalid
+                ? "border.error"
+                : variant === "subtle"
+                ? "transparent"
+                : "border.muted"
+            }
             fontSize={"md"}
             fontWeight={"medium"}
             outline={"none !important"}

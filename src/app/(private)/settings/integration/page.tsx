@@ -99,6 +99,7 @@ const APIKeys = (props: any) => {
                 onChange={(inputValue) => {
                   formik.setFieldValue("mapboxToken", inputValue);
                 }}
+                // variant={"subtle"}
               />
             </Field>
 
@@ -112,6 +113,7 @@ const APIKeys = (props: any) => {
                 onChange={(inputValue) => {
                   formik.setFieldValue("tinyMceToken", inputValue);
                 }}
+                // variant={"subtle"}
               />
             </Field>
           </FieldsetRoot>
@@ -130,6 +132,7 @@ const APIKeys = (props: any) => {
     </ItemContainer>
   );
 };
+
 export default function Page() {
   // States
   const { error, initialLoading, data, onRetry } = useDataState<any>({

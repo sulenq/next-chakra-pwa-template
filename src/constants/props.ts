@@ -209,6 +209,7 @@ export interface Props__SearchInput
   debounceTime?: number;
   queryKey?: string;
   children?: React.ReactNode;
+  variant?: string;
 }
 
 export interface Props__TextareaInput extends Omit<TextareaProps, "onChange"> {
@@ -217,6 +218,7 @@ export interface Props__TextareaInput extends Omit<TextareaProps, "onChange"> {
   invalid?: boolean;
   placeholder?: string;
   maxChar?: number;
+  variant?: string;
 }
 
 export interface Props__FileInput

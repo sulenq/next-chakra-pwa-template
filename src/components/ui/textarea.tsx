@@ -14,13 +14,17 @@ export const Textarea = (props: Props__TextareaInput) => {
     invalid,
     placeholder = "Input text",
     maxChar = null,
+    variant = "subtle",
     ...restProps
   } = props;
 
   // Contexts
+  const { l } = useLang();
   const { themeConfig } = useThemeConfig();
   const fc = useFieldContext();
-  const { l } = useLang();
+
+  // States
+  const resolvedInvalid = invalid || fc?.invalid;
 
   // Utils
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -43,7 +47,14 @@ export const Textarea = (props: Props__TextareaInput) => {
   return (
     <ChakraTextarea
       name={name}
-      borderColor={invalid ?? fc?.invalid ? "border.error" : "border.muted"}
+      borderColor={
+        resolvedInvalid
+          ? "border.error"
+          : variant === "subtle"
+          ? "transparent"
+          : "border.muted"
+      }
+      bg={variant === "subtle" ? "d0" : ""}
       fontSize={"md"}
       fontWeight={"medium"}
       outline={"none !important"}
@@ -57,6 +68,7 @@ export const Textarea = (props: Props__TextareaInput) => {
       px={4}
       value={inputValue}
       autoresize
+      variant={variant as any}
       {...restProps}
     />
   );

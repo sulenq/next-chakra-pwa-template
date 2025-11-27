@@ -9,6 +9,7 @@ import { forwardRef } from "react";
 
 export interface Props__Field extends Omit<ChakraField.RootProps, "label"> {
   label?: React.ReactNode;
+  labelProps?: ChakraField.LabelProps;
   helperText?: React.ReactNode;
   errorText?: React.ReactNode;
   optionalText?: React.ReactNode;
@@ -20,6 +21,7 @@ export const Field = forwardRef<HTMLDivElement, Props__Field>(function Field(
 ) {
   const {
     label,
+    labelProps,
     children,
     helperText,
     errorText,
@@ -34,7 +36,7 @@ export const Field = forwardRef<HTMLDivElement, Props__Field>(function Field(
   return (
     <ChakraField.Root ref={ref} gap={2} {...rest}>
       {label && (
-        <ChakraField.Label fontSize={"md"}>
+        <ChakraField.Label fontSize={"md"} {...labelProps}>
           {label}
           {optional && (
             <Badge colorScheme="gray" color={"fg.muted"}>

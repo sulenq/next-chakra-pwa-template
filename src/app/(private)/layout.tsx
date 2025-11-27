@@ -159,16 +159,8 @@ const MobileLayout = (props: any) => {
       </CContainer>
 
       {/* Navs */}
-      <HScroll>
-        <HStack
-          w={"max"}
-          gap={4}
-          px={4}
-          pt={3}
-          pb={5}
-          borderTop={"1px solid"}
-          borderColor={"border.subtle"}
-        >
+      <HScroll borderTop={"1px solid"} borderColor={"border.subtle"}>
+        <HStack w={"max"} gap={4} px={4} pt={3} pb={5} mx={"auto"}>
           {PRIVATE_NAVS.map((navItem, idx) => {
             return (
               <Fragment key={idx}>
@@ -547,10 +539,6 @@ const DesktopLayout = (props: any) => {
               inputValue={search}
               onChange={(inputValue) => {
                 setSearch(inputValue || "");
-              }}
-              inputProps={{
-                variant: "subtle",
-                bg: "d0",
               }}
             />
           </CContainer>

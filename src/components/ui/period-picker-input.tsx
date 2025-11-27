@@ -119,7 +119,7 @@ export const PeriodPickerInput = (props: Props__PeriodPickerInput) => {
         <Btn
           w={"full"}
           clicky={false}
-          variant={"outline"}
+          variant={"subtle"}
           justifyContent={"start"}
           onClick={onOpen}
           borderColor={resolvedInvalid ? "border.error" : "border.muted"}

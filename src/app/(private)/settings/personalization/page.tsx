@@ -443,7 +443,11 @@ const ExampleUI = () => {
           Label
         </Btn>
 
-        <StringInput flex={"1 1 200px"} placeholder="example@email.com" />
+        <StringInput
+          flex={"1 1 200px"}
+          placeholder="example@email.com"
+          variant={"subtle"}
+        />
 
         <SelectInput
           id="example_select_religion"

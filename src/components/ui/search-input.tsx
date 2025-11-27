@@ -25,6 +25,7 @@ export default function SearchInput(props: Props__SearchInput) {
     noIcon = false,
     debounceTime = 500,
     queryKey = "q",
+    variant = "subtle",
     ...restProps
   } = props;
 
@@ -93,10 +94,11 @@ export default function SearchInput(props: Props__SearchInput) {
             borderColor={
               invalid
                 ? "border.error"
-                : inputProps?.variant === "subtle"
-                ? ""
+                : inputProps?.variant === "subtle" || variant === "subtle"
+                ? "transparent"
                 : "border.muted"
             }
+            variant={variant as any}
             {...inputProps}
           />
         </HStack>
