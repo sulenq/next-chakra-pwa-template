@@ -357,7 +357,7 @@ export const DatePickerInput = (props: Props__DatePickerInput) => {
     invalid,
     disclosureSize = "xs",
     multiple,
-    variant = "subtle",
+    variant = "outline",
     ...restProps
   } = props;
 

@@ -50,7 +50,7 @@ export const PeriodPickerInput = (props: Props__PeriodPickerInput) => {
     required,
     invalid,
     disclosureSize = "xs",
-    variant = "subtle",
+    variant = "outline",
     ...restProps
   } = props;
   const resolvedId = id || `period-picker-input`;
@@ -121,7 +121,7 @@ export const PeriodPickerInput = (props: Props__PeriodPickerInput) => {
           w={"full"}
           clicky={false}
           bg={variant === "subtle" ? "d0" : ""}
-          variant={"subtle"}
+          variant={variant}
           justifyContent={"start"}
           onClick={onOpen}
           borderColor={

@@ -56,7 +56,7 @@ export const TimePickerInput = (props: Props__TimePicker) => {
     required,
     invalid,
     disclosureSize = withSeconds ? "sm" : "xs",
-    variant = "subtle",
+    variant = "outline",
     ...restProps
   } = props;
 

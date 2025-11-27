@@ -4,7 +4,6 @@ import BackButton from "@/components/widget/BackButton";
 import Clock from "@/components/widget/Clock";
 import { DotIndicator } from "@/components/widget/Indicator";
 import { Today } from "@/components/widget/Today";
-import { APP } from "@/constants/_meta";
 import { Interface__NavListItem } from "@/constants/interfaces";
 import useLang from "@/context/useLang";
 import useScreen from "@/hooks/useScreen";
@@ -25,13 +24,11 @@ export const NavBreadcrumb = (props: any) => {
   const { l } = useLang();
 
   return (
-    <HStack ml={backPath ? "-4px" : ""} {...restProps}>
+    <HStack gap={1} ml={backPath ? "-4px" : ""} {...restProps}>
       {backPath && <BackButton iconButton clicky={false} backPath={backPath} />}
 
       <HStack color={"fg.subtle"} gap={0}>
-        <P fontSize={FONT_SIZE}>{APP.name}</P>
-
-        <Icon boxSize={5} color={"d4"}>
+        <Icon boxSize={5} color={"d4"} rotate={"-12deg"}>
           <IconSlash stroke={1.5} />
         </Icon>
 
@@ -41,7 +38,7 @@ export const NavBreadcrumb = (props: any) => {
               {idx !== 0 && (
                 <>
                   {backPath && (
-                    <Icon boxSize={5} color={"d4"}>
+                    <Icon boxSize={5} color={"d4"} rotate={"-12deg"}>
                       <IconSlash stroke={1.5} />
                     </Icon>
                   )}

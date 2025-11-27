@@ -14,7 +14,7 @@ export const Textarea = (props: Props__TextareaInput) => {
     invalid,
     placeholder = "Input text",
     maxChar = null,
-    variant = "subtle",
+    variant = "outline",
     ...restProps
   } = props;
 

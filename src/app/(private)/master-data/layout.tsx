@@ -155,10 +155,6 @@ export default function Layout(props: Props__Layout) {
 
               <CContainer p={3} pb={1}>
                 <SearchInput
-                  inputProps={{
-                    variant: "subtle",
-                    bg: "d0",
-                  }}
                   inputValue={search}
                   onChange={(inputValue) => {
                     setSearch(inputValue || "");

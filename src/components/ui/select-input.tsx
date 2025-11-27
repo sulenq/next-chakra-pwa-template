@@ -175,7 +175,7 @@ export const SelectInput = (props: Props__SelectInput) => {
     multiple,
     disclosureSize = "xs",
     fetch,
-    variant = "subtle",
+    variant = "outline",
     ...restProps
   } = props;
 
