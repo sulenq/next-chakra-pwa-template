@@ -4,6 +4,7 @@ import BackButton from "@/components/widget/BackButton";
 import Clock from "@/components/widget/Clock";
 import { DotIndicator } from "@/components/widget/Indicator";
 import { Today } from "@/components/widget/Today";
+import { APP } from "@/constants/_meta";
 import { Interface__NavListItem } from "@/constants/interfaces";
 import useLang from "@/context/useLang";
 import useScreen from "@/hooks/useScreen";
@@ -25,27 +26,33 @@ export const NavBreadcrumb = (props: any) => {
     <HStack {...restProps}>
       {backPath && <BackButton iconButton clicky={false} backPath={backPath} />}
 
-      {resolvedActiveNavs.map((nav: Interface__NavListItem, idx: number) => {
-        return (
-          <HStack key={idx}>
-            {idx !== 0 && (
-              <>
-                {backPath && (
-                  <Icon boxSize={5} color={"fg.subtle"}>
-                    <IconSlash stroke={1.5} />
-                  </Icon>
-                )}
+      <HStack color={"fg.subtle"} gap={0}>
+        <P>{APP.name}</P>
 
-                {!backPath && <DotIndicator color={"d4"} />}
-              </>
-            )}
+        <Icon boxSize={5} color={"d4"}>
+          <IconSlash stroke={1.5} />
+        </Icon>
 
-            <P fontSize={"lg"} fontWeight={"semibold"} lineClamp={1}>
-              {pluckString(l, nav.labelKey)}
-            </P>
-          </HStack>
-        );
-      })}
+        {resolvedActiveNavs.map((nav: Interface__NavListItem, idx: number) => {
+          return (
+            <HStack key={idx} gap={0} color={"fg.subtle"}>
+              {idx !== 0 && (
+                <>
+                  {backPath && (
+                    <Icon boxSize={5} color={"d4"}>
+                      <IconSlash stroke={1.5} />
+                    </Icon>
+                  )}
+
+                  {!backPath && <DotIndicator color={"d4"} mx={2} />}
+                </>
+              )}
+
+              <P lineClamp={1}>{pluckString(l, nav.labelKey)}</P>
+            </HStack>
+          );
+        })}
+      </HStack>
     </HStack>
   );
 };

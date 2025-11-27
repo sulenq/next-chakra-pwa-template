@@ -115,6 +115,7 @@ export default function Layout(props: Props__Layout) {
   const containerDimension = useContainerDimension(containerRef);
 
   // Contexts
+  const { l } = useLang();
   const setContainerDimension = useSettingsRouteContainer(
     (s) => s.setContainerDimension
   );
@@ -147,6 +148,12 @@ export default function Layout(props: Props__Layout) {
               borderRight={isSmContainer ? "" : "1px solid"}
               borderColor={"border.muted"}
             >
+              <CContainer px={4} pt={3} pb={1}>
+                <P fontSize={"2xl"} fontWeight={"semibold"}>
+                  {l.settings}
+                </P>
+              </CContainer>
+
               <CContainer p={3} pb={1}>
                 <SearchInput
                   inputProps={{
