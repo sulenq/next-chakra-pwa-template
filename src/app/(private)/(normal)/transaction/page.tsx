@@ -1,6 +1,8 @@
 "use client";
 
+import SearchInput from "@/components/ui/search-input";
 import { DataTable } from "@/components/widget/DataTable";
+import HScroll from "@/components/widget/HScroll";
 import { PageContainer, PageContent } from "@/components/widget/Page";
 import { HStack } from "@chakra-ui/react";
 import { IconPencil, IconRestore, IconTrash } from "@tabler/icons-react";
@@ -138,7 +140,16 @@ export default function Page() {
   return (
     <PageContainer>
       <PageContent>
-        <HStack></HStack>
+        <HScroll
+          p={3}
+          // borderBottom={"1px solid"}
+          borderColor={"border.muted"}
+        >
+          <HStack minW={"full"} w={"max"}>
+            <SearchInput />
+          </HStack>
+        </HScroll>
+
         <DemoDataTable />
       </PageContent>
     </PageContainer>

@@ -157,9 +157,10 @@ export const DataTable = (props: Props__DataTable) => {
   const thHeight = "42px";
   const thWidth = "52.4px";
   const thBg = "body";
-  const thBorderColor = "border.muted";
+  const thBorderColor = "border.subtle";
   const tdBg = "body";
   const tdMinH = "42px";
+  const footerBorderColor = "border.subtle";
   const selectedColor =
     themeConfig.colorPalette === "gray"
       ? "d1"
@@ -176,7 +177,6 @@ export const DataTable = (props: Props__DataTable) => {
       <CContainer
         ref={tableContainerRef}
         className="scrollX scrollYAlt"
-        borderColor={"border.muted"}
         minH={props?.minH || sh < 625 ? "400px" : ""}
         flex={1}
         {...restProps}
@@ -478,7 +478,7 @@ export const DataTable = (props: Props__DataTable) => {
           <HStack
             p={2}
             borderTop={"1px solid"}
-            borderColor={"border.muted"}
+            borderColor={footerBorderColor}
             justify={"space-between"}
           >
             <CContainer w={"fit"} mb={[1, null, 0]}>
