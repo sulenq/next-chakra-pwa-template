@@ -48,9 +48,13 @@ export default function Clock(props: Props__ClockProps) {
 
   return (
     <HStack {...restProps}>
-      {showTimezone && <P color={"fg.subtle"}>{tz.formattedOffset}</P>}
+      {showTimezone && (
+        <P color={"fg.subtle"} fontSize={props?.fontSize}>
+          {tz.formattedOffset}
+        </P>
+      )}
 
-      <P>{time}</P>
+      <P fontSize={props?.fontSize}>{time}</P>
     </HStack>
   );
 }

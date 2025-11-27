@@ -78,6 +78,7 @@ export const ColorModeButton = forwardRef<
           disabled={ADMActive}
           ref={ref}
           {...restProps}
+          boxSize={""}
         >
           <Icon boxSize={props.boxSize || 5}>
             {colorMode === "dark" ? (

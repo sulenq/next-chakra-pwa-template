@@ -15,6 +15,8 @@ import { HStack, Icon } from "@chakra-ui/react";
 import { IconSlash } from "@tabler/icons-react";
 import { usePathname } from "next/navigation";
 
+const FONT_SIZE = "sm";
+
 export const NavBreadcrumb = (props: any) => {
   // Props
   const { backPath, resolvedActiveNavs, ...restProps } = props;
@@ -23,11 +25,11 @@ export const NavBreadcrumb = (props: any) => {
   const { l } = useLang();
 
   return (
-    <HStack {...restProps}>
+    <HStack ml={backPath ? "-4px" : ""} {...restProps}>
       {backPath && <BackButton iconButton clicky={false} backPath={backPath} />}
 
       <HStack color={"fg.subtle"} gap={0}>
-        <P>{APP.name}</P>
+        <P fontSize={FONT_SIZE}>{APP.name}</P>
 
         <Icon boxSize={5} color={"d4"}>
           <IconSlash stroke={1.5} />
@@ -48,7 +50,9 @@ export const NavBreadcrumb = (props: any) => {
                 </>
               )}
 
-              <P lineClamp={1}>{pluckString(l, nav.labelKey)}</P>
+              <P fontSize={FONT_SIZE} lineClamp={1}>
+                {pluckString(l, nav.labelKey)}
+              </P>
             </HStack>
           );
         })}
@@ -85,12 +89,12 @@ export const TopBar = () => {
 
       <HStack flexShrink={0} gap={1}>
         <HStack mx={1}>
-          <Clock />
+          <Clock fontSize={FONT_SIZE} />
 
-          <Today />
+          <Today fontSize={FONT_SIZE} />
         </HStack>
 
-        <ColorModeButton rounded={"full"} size={"xs"} w={"32px"} h={"32px"} />
+        <ColorModeButton rounded={"full"} size={"2xs"} boxSize={4} />
       </HStack>
     </HStack>
   );

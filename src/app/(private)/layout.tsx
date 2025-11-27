@@ -133,20 +133,20 @@ const MobileLayout = (props: any) => {
       {/* Content */}
       <CContainer flex={1} bg={BG_CONTENT_CONTAINER} overflowY={"auto"}>
         {/* Content header */}
-        <CContainer>
+        <CContainer gap={4}>
           <HStack w={"full"} justify={"space-between"} pt={2} px={4}>
             <HStack>
-              <Logo size={15} />
+              <Logo size={15} ml={"-4px"} />
             </HStack>
 
             <HStack>
-              <Clock showTimezone={sw > 320} />
+              <Clock fontSize={"sm"} showTimezone={sw > 320} />
 
-              <Today dateVariant="numeric" />
+              <Today fontSize={"sm"} />
             </HStack>
           </HStack>
 
-          <HStack gap={4} h={"52px"} p={4} justify={"space-between"}>
+          <HStack gap={4} px={4} justify={"space-between"}>
             <NavBreadcrumb
               backPath={backPath}
               resolvedActiveNavs={resolvedActiveNavs}
