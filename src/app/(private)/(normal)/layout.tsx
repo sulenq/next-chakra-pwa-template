@@ -26,7 +26,7 @@ export default function Layout(props: Props__Layout) {
   return (
     <CContainer flex={1} overflow={"auto"}>
       <CContainer flexShrink={0} py={3} px={4} overflow={"auto"}>
-        <P fontSize={"2xl"} fontWeight={"semibold"}>
+        <P fontSize={"xl"} fontWeight={"semibold"}>
           {title}
         </P>
       </CContainer>

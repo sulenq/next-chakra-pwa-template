@@ -15,7 +15,7 @@ import { HStack, Icon } from "@chakra-ui/react";
 import { IconSlash } from "@tabler/icons-react";
 import { usePathname } from "next/navigation";
 
-const FONT_SIZE = "sm";
+const FONT_SIZE = "md";
 
 export const NavBreadcrumb = (props: any) => {
   // Props
@@ -94,7 +94,7 @@ export const TopBar = () => {
           <Today fontSize={FONT_SIZE} />
         </HStack>
 
-        <ColorModeButton rounded={"full"} size={"2xs"} boxSize={4} />
+        <ColorModeButton rounded={"full"} size={"xs"} />
       </HStack>
     </HStack>
   );

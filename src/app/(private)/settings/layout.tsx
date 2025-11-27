@@ -149,7 +149,7 @@ export default function Layout(props: Props__Layout) {
               borderColor={"border.muted"}
             >
               <CContainer px={4} pt={3} pb={1}>
-                <P fontSize={"2xl"} fontWeight={"semibold"}>
+                <P fontSize={"xl"} fontWeight={"semibold"}>
                   {l.settings}
                 </P>
               </CContainer>
