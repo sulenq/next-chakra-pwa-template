@@ -92,7 +92,7 @@ export const Btn = forwardRef<HTMLButtonElement, BtnProps>((props, ref) => {
       bg={isSubtle ? "d0" : ""}
       size={size || (MAIN_BUTTON_SIZE as any)}
       rounded={themeConfig.radii.component}
-      _hover={{ bg: isSubtle ? "d1" : activeBg }}
+      _hover={{ bg: isSubtle && !props.colorPalette ? "d1" : activeBg }}
       _active={{ bg: activeBg }}
       _focusVisible={
         focusStyle
