@@ -5,7 +5,7 @@ import { CContainer } from "@/components/ui/c-container";
 import { P } from "@/components/ui/p";
 import SearchInput from "@/components/ui/search-input";
 import { toaster } from "@/components/ui/toaster";
-import FeedbackNoData from "@/components/widget/FeedbackNoData";
+import FeedbackNotFound from "@/components/widget/FeedbackNotFound";
 import { DotIndicator } from "@/components/widget/Indicator";
 import { ItemContainer } from "@/components/widget/ItemContainer";
 import { ItemHeaderContainer } from "@/components/widget/ItemHeaderContainer";
@@ -28,6 +28,7 @@ import { useThemeConfig } from "@/context/useThemeConfig";
 import useTimeFormat from "@/context/useTimeFormat";
 import useTimezone from "@/context/useTimezone";
 import useUOM from "@/context/useUOM";
+import { useIsSmScreenWidth } from "@/hooks/useIsSmScreenWidth";
 import { isEmptyArray } from "@/utils/array";
 import { formatDate, formatTime } from "@/utils/formatter";
 import { capitalizeWords, pluckString } from "@/utils/string";
@@ -99,6 +100,9 @@ const Timezone = () => {
   const { l } = useLang();
   const { timeZone, setTimeZone } = useTimezone();
 
+  // Hooks
+  const iss = useIsSmScreenWidth();
+
   // States
   const localTz = getLocalTimezone();
   const timezones = TIME_ZONES;
@@ -124,41 +128,53 @@ const Timezone = () => {
           <ItemHeaderTitle>{capitalizeWords(l.timezone)}</ItemHeaderTitle>
         </HStack>
 
-        <Btn
-          size={"xs"}
-          variant={"outline"}
-          pl={2}
-          onClick={() => {
-            setTimeZone(localTz);
-            toaster.info({
-              title: l.info_timezone_auto.title,
-              description: `${localTz.key} ${localTz.formattedOffset} (${localTz.localAbbr})`,
-              action: {
-                label: "Close",
-                onClick: () => {},
-              },
-            });
-          }}
-        >
-          <Icon>
-            <IconSparkles />
-          </Icon>
-          Auto
-        </Btn>
+        <HStack>
+          {!iss && (
+            <SearchInput
+              onChange={(inputValue) => {
+                setSearch(inputValue || "");
+              }}
+              inputValue={search}
+              inputProps={{
+                size: "xs",
+              }}
+            />
+          )}
+
+          <Btn
+            size={"xs"}
+            variant={"outline"}
+            pl={2}
+            onClick={() => {
+              setTimeZone(localTz);
+              toaster.info({
+                title: l.info_timezone_auto.title,
+                description: `${localTz.key} ${localTz.formattedOffset} (${localTz.localAbbr})`,
+                action: {
+                  label: "Close",
+                  onClick: () => {},
+                },
+              });
+            }}
+          >
+            <Icon>
+              <IconSparkles />
+            </Icon>
+            Auto
+          </Btn>
+        </HStack>
       </ItemHeaderContainer>
 
       <CContainer>
-        <CContainer px={1} mt={1}>
-          <SearchInput
-            onChange={(inputValue) => {
-              setSearch(inputValue || "");
-            }}
-            inputValue={search}
-            inputProps={{
-              variant: "flushed",
-              rounded: 0,
-            }}
-          />
+        <CContainer p={3} pb={0}>
+          {iss && (
+            <SearchInput
+              onChange={(inputValue) => {
+                setSearch(inputValue || "");
+              }}
+              inputValue={search}
+            />
+          )}
         </CContainer>
 
         <CContainer
@@ -167,7 +183,7 @@ const Timezone = () => {
           p={2}
           pr={`calc(8px - ${FIREFOX_SCROLL_Y_CLASS_PR_PREFIX})`}
         >
-          {isEmptyArray(resolvedTimezones) && <FeedbackNoData />}
+          {isEmptyArray(resolvedTimezones) && <FeedbackNotFound />}
 
           {!isEmptyArray(resolvedTimezones) && (
             <SimpleGrid columns={[1, null, 2]} gap={2}>
