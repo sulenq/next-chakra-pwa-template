@@ -6,6 +6,8 @@ import { DataDisplayToggle } from "@/components/widget/DataDisplayToggle";
 import { DataTable } from "@/components/widget/DataTable";
 import HScroll from "@/components/widget/HScroll";
 import { PageContainer, PageContent } from "@/components/widget/Page";
+import { PageTitle } from "@/components/widget/Page";
+import { useIsSmScreenWidth } from "@/hooks/useIsSmScreenWidth";
 import { HStack, Icon } from "@chakra-ui/react";
 import {
   IconFilter2,
@@ -21,7 +23,30 @@ import { useState } from "react";
 const PREFIX_ID = "kmis_material";
 // type Interface__Data = Interface__KMISMaterial;
 
-const DemoDataTable = () => {
+const DataUtils = () => {
+  return (
+    <HStack>
+      <SearchInput
+        inputProps={{
+          size: "sm",
+        }}
+      />
+
+      <Btn iconButton variant={"outline"} size={"sm"}>
+        <Icon boxSize={5}>
+          <IconFilter2 stroke={1.5} />
+        </Icon>
+      </Btn>
+      <Btn iconButton variant={"outline"} size={"sm"}>
+        <Icon boxSize={5}>
+          <IconSortDescending stroke={1.5} />
+        </Icon>
+      </Btn>
+      <DataDisplayToggle iconButton navKey={PREFIX_ID} size={"sm"} />
+    </HStack>
+  );
+};
+const Data = () => {
   // States
   const tableProps = {
     headers: [
@@ -154,40 +179,34 @@ const DemoDataTable = () => {
     />
   );
 };
+
 export default function Page() {
+  // Hooks
+  const iss = useIsSmScreenWidth();
+
   return (
     <PageContainer>
+      <PageTitle justify={"space-between"} pr={3}>
+        <HStack>
+          {!iss && <DataUtils />}
+
+          <Btn size={"sm"} pl={3}>
+            <Icon>
+              <IconPlus stroke={1.5} />
+            </Icon>
+            Add
+          </Btn>
+        </HStack>
+      </PageTitle>
+
       <PageContent gap={1}>
         <HScroll px={3} flexShrink={0}>
           <HStack minW={"full"} w={"max"} justify={"space-between"}>
-            <HStack>
-              <SearchInput />
-
-              <Btn iconButton variant={"outline"}>
-                <Icon boxSize={5}>
-                  <IconFilter2 stroke={1.5} />
-                </Icon>
-              </Btn>
-              <Btn iconButton variant={"outline"}>
-                <Icon boxSize={5}>
-                  <IconSortDescending stroke={1.5} />
-                </Icon>
-              </Btn>
-              <DataDisplayToggle iconButton navKey={PREFIX_ID} />
-            </HStack>
-
-            <HStack>
-              <Btn pl={[5, null, 3]}>
-                <Icon>
-                  <IconPlus stroke={1.5} />
-                </Icon>
-                Add
-              </Btn>
-            </HStack>
+            {iss && <DataUtils />}
           </HStack>
         </HScroll>
 
-        <DemoDataTable />
+        <Data />
       </PageContent>
     </PageContainer>
   );

@@ -9,7 +9,7 @@ import SearchInput from "@/components/ui/search-input";
 import FeedbackNotFound from "@/components/widget/FeedbackNotFound";
 import { LeftIndicator } from "@/components/widget/Indicator";
 import { RouteContainer } from "@/components/widget/RouteContainer";
-import { PageTitle } from "@/components/widget/TopBar";
+import { PageTitle } from "@/components/widget/Page";
 import { APP } from "@/constants/_meta";
 import { OTHER_PRIVATE_NAVS } from "@/constants/navs";
 import { Props__Layout } from "@/constants/props";

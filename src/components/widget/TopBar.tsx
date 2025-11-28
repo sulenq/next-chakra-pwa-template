@@ -1,4 +1,3 @@
-import { CContainer } from "@/components/ui/c-container";
 import { ColorModeButton } from "@/components/ui/color-mode";
 import { P } from "@/components/ui/p";
 import BackButton from "@/components/widget/BackButton";
@@ -11,7 +10,7 @@ import useScreen from "@/hooks/useScreen";
 import { last } from "@/utils/array";
 import { pluckString } from "@/utils/string";
 import { getActiveNavs } from "@/utils/url";
-import { HStack, Icon, StackProps } from "@chakra-ui/react";
+import { HStack, Icon } from "@chakra-ui/react";
 import { IconSlash } from "@tabler/icons-react";
 import { usePathname } from "next/navigation";
 
@@ -58,33 +57,6 @@ export const NavBreadcrumb = (props: any) => {
         })}
       </HStack>
     </HStack>
-  );
-};
-
-export const PageTitle = (props: StackProps) => {
-  // Contexts
-  const { l } = useLang();
-
-  // Hooks
-  const pathname = usePathname();
-
-  // States
-  const activeNavs = getActiveNavs(pathname);
-  const title = pluckString(l, last<any>(activeNavs)?.labelKey);
-
-  return (
-    <CContainer
-      flexShrink={0}
-      pt={[2, null, 3]}
-      pb={3}
-      px={4}
-      overflow={"auto"}
-      {...props}
-    >
-      <P fontSize={"xl"} fontWeight={"semibold"}>
-        {title}
-      </P>
-    </CContainer>
   );
 };
 
