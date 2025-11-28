@@ -480,6 +480,7 @@ export const DataTable = (props: Props__DataTable) => {
             borderTop={"1px solid"}
             borderColor={footerBorderColor}
             justify={"space-between"}
+            wrap={"wrap"}
           >
             <CContainer w={"fit"} mb={[1, null, 0]}>
               <Limitation limit={limit} setLimit={setLimit} />
