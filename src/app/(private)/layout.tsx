@@ -542,7 +542,7 @@ const DesktopLayout = (props: any) => {
 
         {/* Navs */}
         {navsExpanded && (
-          <CContainer p={3} pb={1}>
+          <CContainer px={3} pt={2} pb={1}>
             <SearchInput
               inputRef={searchInputRef}
               inputValue={search}
