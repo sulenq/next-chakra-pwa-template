@@ -2,12 +2,23 @@
 
 import { Btn } from "@/components/ui/btn";
 import SearchInput from "@/components/ui/search-input";
+import { DataDisplayToggle } from "@/components/widget/DataDisplayToggle";
 import { DataTable } from "@/components/widget/DataTable";
 import HScroll from "@/components/widget/HScroll";
 import { PageContainer, PageContent } from "@/components/widget/Page";
-import { HStack } from "@chakra-ui/react";
-import { IconPencil, IconRestore, IconTrash } from "@tabler/icons-react";
+import { HStack, Icon } from "@chakra-ui/react";
+import {
+  IconFilter2,
+  IconPencil,
+  IconRestore,
+  IconSortDescending,
+  IconTrash,
+} from "@tabler/icons-react";
 import { useState } from "react";
+
+// const BASE_ENDPOINT = "/api/kmis/material";
+const PREFIX_ID = "kmis_material";
+// type Interface__Data = Interface__KMISMaterial;
 
 const DemoDataTable = () => {
   // States
@@ -151,9 +162,17 @@ export default function Page() {
             <SearchInput w={"fit"} />
 
             <HStack>
-              <Btn variant={"outline"}>Filter</Btn>
-              <Btn variant={"outline"}>Sort</Btn>
-              <Btn variant={"outline"}>Display</Btn>
+              <Btn iconButton variant={"outline"}>
+                <Icon boxSize={5}>
+                  <IconFilter2 stroke={1.5} />
+                </Icon>
+              </Btn>
+              <Btn iconButton variant={"outline"}>
+                <Icon boxSize={5}>
+                  <IconSortDescending stroke={1.5} />
+                </Icon>
+              </Btn>
+              <DataDisplayToggle iconButton navKey={PREFIX_ID} />
             </HStack>
           </HStack>
         </HScroll>

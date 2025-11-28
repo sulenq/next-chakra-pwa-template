@@ -1,16 +1,20 @@
 "use client";
 
-import { Btn } from "@/components/ui/btn";
-import { Icon } from "@chakra-ui/react";
-import { IconTable, IconLayoutGrid } from "@tabler/icons-react";
-import { useIsSmScreenWidth } from "@/hooks/useIsSmScreenWidth";
+import { Btn, BtnProps } from "@/components/ui/btn";
+import { Tooltip } from "@/components/ui/tooltip";
 import { useDataDisplay } from "@/context/useDataDisplay";
+import { useIsSmScreenWidth } from "@/hooks/useIsSmScreenWidth";
+import { Icon } from "@chakra-ui/react";
+import { IconLayoutGrid, IconTable } from "@tabler/icons-react";
 
-interface Props {
+interface Props__DataDisplayToggle extends BtnProps {
   navKey: string;
+  iconButton?: boolean;
 }
+export function DataDisplayToggle(props: Props__DataDisplayToggle) {
+  // Props
+  const { navKey, iconButton = false, ...restProps } = props;
 
-export function DataDisplayToggle({ navKey }: Props) {
   // Contexts
   const displays = useDataDisplay((s) => s.displays);
   const setDisplay = useDataDisplay((s) => s.setDisplay);
@@ -22,22 +26,24 @@ export function DataDisplayToggle({ navKey }: Props) {
   const displayTable = (displays[navKey] || "table") === "table";
 
   return (
-    <Btn
-      iconButton={iss}
-      size="md"
-      w={iss ? undefined : "100px"}
-      variant="outline"
-      onClick={() => setDisplay(navKey, displayTable ? "grid" : "table")}
-    >
-      <Icon>
-        {displayTable ? (
-          <IconTable stroke={1.5} />
-        ) : (
-          <IconLayoutGrid stroke={1.5} />
-        )}
-      </Icon>
+    <Tooltip content={displayTable ? "Table" : "Grid"}>
+      <Btn
+        iconButton={iss || iconButton}
+        w={iss || iconButton ? undefined : "100px"}
+        variant="outline"
+        onClick={() => setDisplay(navKey, displayTable ? "grid" : "table")}
+        {...restProps}
+      >
+        <Icon boxSize={5}>
+          {displayTable ? (
+            <IconTable stroke={1.5} />
+          ) : (
+            <IconLayoutGrid stroke={1.5} />
+          )}
+        </Icon>
 
-      {!iss && (displayTable ? "Table" : "Grid")}
-    </Btn>
+        {!iconButton && !iss && (displayTable ? "Table" : "Grid")}
+      </Btn>
+    </Tooltip>
   );
 }
