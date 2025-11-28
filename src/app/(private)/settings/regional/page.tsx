@@ -166,16 +166,16 @@ const Timezone = () => {
       </ItemHeaderContainer>
 
       <CContainer>
-        <CContainer p={3} pb={0}>
-          {iss && (
+        {iss && (
+          <CContainer p={3} pb={0}>
             <SearchInput
               onChange={(inputValue) => {
                 setSearch(inputValue || "");
               }}
               inputValue={search}
             />
-          )}
-        </CContainer>
+          </CContainer>
+        )}
 
         <CContainer
           className={"scrollY"}
