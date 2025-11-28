@@ -31,12 +31,6 @@ const customConfig = defineConfig({
         d3: { value: "#8a8a8a35" },
         d4: { value: "#8a8a8a45" },
         dt: { value: "#858585ff" },
-        gray: {
-          // 100: { value: "RED" },
-          200: { value: "#ebebec" },
-          800: { value: "#1f1f1f" },
-          900: { value: "#202020" },
-        },
         placeholder: { value: "#96969691" },
         p: {
           50: { value: "#E0F7FF" },
@@ -63,6 +57,12 @@ const customConfig = defineConfig({
           700: { value: "#00152b" },
           800: { value: "#001021" },
           900: { value: "#000a14" },
+        },
+        gray: {
+          // 100: { value: "RED" },
+          200: { value: "#ebebec" },
+          800: { value: "#1f1f1f" },
+          900: { value: "#202020" },
         },
         salmon: {
           50: { value: "#FFF5F0" },
