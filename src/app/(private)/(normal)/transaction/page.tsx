@@ -10,6 +10,7 @@ import { HStack, Icon } from "@chakra-ui/react";
 import {
   IconFilter2,
   IconPencil,
+  IconPlus,
   IconRestore,
   IconSortDescending,
   IconTrash,
@@ -159,9 +160,9 @@ export default function Page() {
       <PageContent gap={1}>
         <HScroll px={3} flexShrink={0}>
           <HStack minW={"full"} w={"max"} justify={"space-between"}>
-            <SearchInput w={"fit"} />
-
             <HStack>
+              <SearchInput />
+
               <Btn iconButton variant={"outline"}>
                 <Icon boxSize={5}>
                   <IconFilter2 stroke={1.5} />
@@ -173,6 +174,15 @@ export default function Page() {
                 </Icon>
               </Btn>
               <DataDisplayToggle iconButton navKey={PREFIX_ID} />
+            </HStack>
+
+            <HStack>
+              <Btn pl={[5, null, 3]}>
+                <Icon>
+                  <IconPlus stroke={1.5} />
+                </Icon>
+                Add
+              </Btn>
             </HStack>
           </HStack>
         </HScroll>

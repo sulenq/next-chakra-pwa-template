@@ -45,6 +45,14 @@ export const PRIVATE_NAVS: Interface__NavItem[] = [
                 labelKey: "navs.other.category",
                 path: `/other-navs/category`,
               },
+              {
+                labelKey: "navs.other.index",
+                path: `/other-navs/other`,
+              },
+              {
+                labelKey: "navs.other.index",
+                path: `/other-navs/other`,
+              },
             ],
           },
         ],

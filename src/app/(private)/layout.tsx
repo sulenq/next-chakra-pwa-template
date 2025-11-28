@@ -68,7 +68,7 @@ const NAVS_COLOR = "ibody";
 const NAVS_COLOR_PALETTE = "gray";
 const DESKTOP_BG_CONTENT_CONTAINER = "bgContent";
 const MOBILE_BG_CONTENT_CONTAINER = "body";
-const DESKTOP_POPOVER_MAIN_AXIS = 24;
+const DESKTOP_POPOVER_MAIN_AXIS = 16;
 const DESKTOP_TOOLTIP_MAIN_AXIS = 24;
 const MOBILE_NAV_LABEL_FONT_SIZE = "sm";
 const MOBILE_POPOVER_MAIN_AXIS = 22;
@@ -1048,7 +1048,7 @@ const DesktopLayout = (props: any) => {
                 </HStack>
               </PopoverTrigger>
 
-              <PopoverContent w={"226px"} zIndex={10}>
+              <PopoverContent w={"236px"} zIndex={10}>
                 <MiniMyProfile />
               </PopoverContent>
             </PopoverRoot>
