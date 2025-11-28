@@ -533,42 +533,42 @@ const customConfig = defineConfig({
             },
           },
         },
-        gray: {
-          solid: {
-            value: {
-              base: "{colors.gray.500} !important",
-              _dark: "{colors.gray.500} !important",
-            },
-          },
-          contrast: {
-            value: { base: "{colors.gray.50}", _dark: "{colors.gray.900}" },
-          },
-          fg: {
-            value: {
-              base: "{colors.gray.500}",
-              _dark: "{colors.gray.200}",
-            },
-          },
-          muted: {
-            value: {
-              base: "{colors.gray.200}",
-              _dark: "{colors.gray.800}",
-            },
-          },
-          subtle: {
-            value: {
-              base: "{colors.gray.100}",
-              _dark: "{colors.gray.900}",
-            },
-          },
-          emphasized: { value: "{colors.gray.400}" },
-          focusRing: {
-            value: {
-              base: "{colors.gray.500}",
-              _dark: "{colors.gray.700}",
-            },
-          },
-        },
+        // gray: {
+        //   solid: {
+        //     value: {
+        //       base: "{colors.gray.500} !important",
+        //       _dark: "{colors.gray.500} !important",
+        //     },
+        //   },
+        //   contrast: {
+        //     value: { base: "{colors.gray.50}", _dark: "{colors.gray.900}" },
+        //   },
+        //   fg: {
+        //     value: {
+        //       base: "{colors.gray.500}",
+        //       _dark: "{colors.gray.200}",
+        //     },
+        //   },
+        //   muted: {
+        //     value: {
+        //       base: "{colors.gray.200}",
+        //       _dark: "{colors.gray.800}",
+        //     },
+        //   },
+        //   subtle: {
+        //     value: {
+        //       base: "{colors.gray.100}",
+        //       _dark: "{colors.gray.900}",
+        //     },
+        //   },
+        //   emphasized: { value: "{colors.gray.400}" },
+        //   focusRing: {
+        //     value: {
+        //       base: "{colors.gray.500}",
+        //       _dark: "{colors.gray.700}",
+        //     },
+        //   },
+        // },
         brown: {
           solid: {
             value: {
