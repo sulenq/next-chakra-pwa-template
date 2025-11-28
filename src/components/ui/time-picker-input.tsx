@@ -206,7 +206,6 @@ export const TimePickerInput = (props: Props__TimePicker) => {
             }
             onOpen();
           }}
-          size={"md"}
           {...restProps}
         >
           <HStack w={"full"} justify={"space-between"}>

@@ -223,7 +223,6 @@ export const SelectInput = (props: Props__SelectInput) => {
       <Tooltip content={formattedButtonLabel}>
         <Btn
           w={"full"}
-          size={"md"}
           clicky={false}
           variant={variant}
           justifyContent={"start"}

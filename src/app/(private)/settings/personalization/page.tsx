@@ -417,18 +417,13 @@ const ExampleUI = () => {
       </ItemHeaderContainer>
 
       <HStack wrap={"wrap"} gapY={4} p={4}>
-        <Btn
-          flex={"1 1 100px"}
-          colorPalette={themeConfig.colorPalette}
-          size={"md"}
-        >
+        <Btn flex={"1 1 100px"} colorPalette={themeConfig.colorPalette}>
           Label
         </Btn>
 
         <Btn
           flex={"1 1 100px"}
           colorPalette={themeConfig.colorPalette}
-          size={"md"}
           variant={"outline"}
         >
           Label
@@ -437,17 +432,12 @@ const ExampleUI = () => {
         <Btn
           flex={"1 1 100px"}
           colorPalette={themeConfig.colorPalette}
-          size={"md"}
           variant={"subtle"}
         >
           Label
         </Btn>
 
-        <StringInput
-          flex={"1 1 200px"}
-          placeholder="example@email.com"
-          variant={"subtle"}
-        />
+        <StringInput flex={"1 1 200px"} placeholder="example@email.com" />
 
         <SelectInput
           id="example_select_religion"

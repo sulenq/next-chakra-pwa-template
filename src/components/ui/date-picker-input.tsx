@@ -450,7 +450,6 @@ export const DatePickerInput = (props: Props__DatePickerInput) => {
       >
         <Btn
           w={"full"}
-          size={"md"}
           clicky={false}
           justifyContent={"start"}
           borderColor={
