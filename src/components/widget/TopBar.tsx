@@ -24,7 +24,7 @@ export const NavBreadcrumb = (props: any) => {
   const { l } = useLang();
 
   return (
-    <HStack gap={1} ml={backPath ? "-4px" : ""} {...restProps}>
+    <HStack gap={1} ml={"-4px"} h={"36px"} {...restProps}>
       {backPath && <BackButton iconButton clicky={false} backPath={backPath} />}
 
       <HStack color={"fg.subtle"} gap={0}>
