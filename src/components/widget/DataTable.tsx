@@ -159,7 +159,7 @@ export const DataTable = (props: Props__DataTable) => {
   const thBg = "body";
   const thBorderColor = "border.subtle";
   const tdBg = "body";
-  const tdMinH = "42px";
+  const tdMinH = "46px";
   const footerBorderColor = "border.subtle";
   const selectedColor =
     themeConfig.colorPalette === "gray"
