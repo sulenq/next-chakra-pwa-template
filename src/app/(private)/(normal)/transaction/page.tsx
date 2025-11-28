@@ -1,5 +1,6 @@
 "use client";
 
+import { Btn } from "@/components/ui/btn";
 import SearchInput from "@/components/ui/search-input";
 import { DataTable } from "@/components/widget/DataTable";
 import HScroll from "@/components/widget/HScroll";
@@ -103,6 +104,11 @@ const DemoDataTable = () => {
           description: `Are you sure you want to delete?`,
           confirmLabel: "Delete",
           onConfrim: () => console.log("Confirmed delete"),
+          confirmButtonProps: {
+            colorPalette: "",
+            variant: "outline",
+            color: "fg.error",
+          },
         },
       }),
     ],
@@ -139,10 +145,16 @@ const DemoDataTable = () => {
 export default function Page() {
   return (
     <PageContainer>
-      <PageContent gap={3}>
+      <PageContent gap={1}>
         <HScroll px={3} flexShrink={0}>
-          <HStack minW={"full"} w={"max"}>
-            <SearchInput />
+          <HStack minW={"full"} w={"max"} justify={"space-between"}>
+            <SearchInput w={"fit"} />
+
+            <HStack>
+              <Btn variant={"outline"}>Filter</Btn>
+              <Btn variant={"outline"}>Sort</Btn>
+              <Btn variant={"outline"}>Display</Btn>
+            </HStack>
           </HStack>
         </HScroll>
 
