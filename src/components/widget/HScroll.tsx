@@ -92,7 +92,7 @@ const HScroll = ({ fRef, children, ...props }: Props) => {
       ref={hStackRef}
       overflowY="hidden"
       w="full"
-      className={`scrollX ${props.className ?? ""}`}
+      className={`noScroll ${props.className ?? ""}`}
       {...props}
     >
       {children}
