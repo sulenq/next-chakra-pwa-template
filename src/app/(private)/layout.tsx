@@ -63,10 +63,11 @@ import {
 import { usePathname, useRouter } from "next/navigation";
 import { Fragment, useEffect, useRef, useState } from "react";
 
-const NAVS_BG = "body";
+const DESKTOP_NAVS_BG = "bgContent";
 const NAVS_COLOR = "ibody";
 const NAVS_COLOR_PALETTE = "gray";
-const BG_CONTENT_CONTAINER = "body";
+const DESKTOP_BG_CONTENT_CONTAINER = "bgContent";
+const MOBILE_BG_CONTENT_CONTAINER = "body";
 const DESKTOP_POPOVER_MAIN_AXIS = 24;
 const DESKTOP_TOOLTIP_MAIN_AXIS = 24;
 const MOBILE_NAV_LABEL_FONT_SIZE = "sm";
@@ -131,9 +132,9 @@ const MobileLayout = (props: any) => {
   return (
     <CContainer flex={1} overflowY={"auto"} {...restProps}>
       {/* Content */}
-      <CContainer flex={1} bg={BG_CONTENT_CONTAINER} overflowY={"auto"}>
+      <CContainer flex={1} bg={MOBILE_BG_CONTENT_CONTAINER} overflowY={"auto"}>
         {/* Content header */}
-        <CContainer gap={4}>
+        <CContainer gap={2}>
           <HStack w={"full"} justify={"space-between"} pt={2} px={4}>
             <HStack>
               <Logo size={15} ml={"-4px"} />
@@ -146,11 +147,18 @@ const MobileLayout = (props: any) => {
             </HStack>
           </HStack>
 
-          <HStack gap={4} px={4} justify={"space-between"}>
+          <HStack
+            gap={4}
+            px={4}
+            pb={2}
+            borderBottom={"1px solid"}
+            borderColor={"border.muted"}
+            justify={"space-between"}
+          >
             <NavBreadcrumb
               backPath={backPath}
               resolvedActiveNavs={resolvedActiveNavs}
-              ml={backPath ? -1 : 0}
+              ml={backPath ? -2 : -1}
             />
           </HStack>
         </CContainer>
@@ -463,7 +471,7 @@ const DesktopLayout = (props: any) => {
       align={"stretch"}
       gap={0}
       h={"100dvh"}
-      bg={NAVS_BG}
+      bg={DESKTOP_NAVS_BG}
       color={NAVS_COLOR}
       overflowY={"auto"}
       {...restProps}
@@ -473,7 +481,8 @@ const DesktopLayout = (props: any) => {
         flexShrink={0}
         w={navsExpanded ? "250px" : "60px"}
         transition={"200ms"}
-        borderRight={"1px solid"}
+        py={3}
+        // borderRight={"1px solid"}
         borderColor={"border.muted"}
       >
         <CContainer gap={1} px={3} py={2}>
@@ -485,7 +494,7 @@ const DesktopLayout = (props: any) => {
             </NavLink>
           )}
 
-          <HStack justify={"space-between"}>
+          <HStack justify={"space-between"} h={"40px"}>
             {navsExpanded && (
               <NavLink to="/">
                 <HStack ml={"8px"} gap={3}>
@@ -982,10 +991,10 @@ const DesktopLayout = (props: any) => {
           </CContainer>
         </CContainer>
 
-        <CContainer>
+        <CContainer px={2}>
           {navsExpanded && <Divider />}
 
-          <CContainer p={3}>
+          <CContainer py={2}>
             <PopoverRoot
               positioning={{
                 placement: "right-end",
@@ -1002,6 +1011,7 @@ const DesktopLayout = (props: any) => {
                   _hover={{
                     bg: "gray.subtle",
                   }}
+                  justify={navsExpanded ? "" : "center"}
                   transition={"200ms"}
                   pos={"relative"}
                 >
@@ -1047,10 +1057,25 @@ const DesktopLayout = (props: any) => {
       </CContainer>
 
       {/* Content */}
-      <CContainer bg={BG_CONTENT_CONTAINER} overflowY={"auto"} color={"ibody"}>
-        <TopBar />
+      <CContainer
+        p={3}
+        pl={0}
+        bg={DESKTOP_BG_CONTENT_CONTAINER}
+        overflowY={"auto"}
+        color={"ibody"}
+      >
+        <CContainer
+          flex={1}
+          rounded={themeConfig.radii.container}
+          bg={"body"}
+          overflow={"auto"}
+          border={"1px solid"}
+          borderColor={"border.subtle"}
+        >
+          <TopBar />
 
-        {children}
+          {children}
+        </CContainer>
       </CContainer>
     </HStack>
   );
