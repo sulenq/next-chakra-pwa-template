@@ -284,6 +284,7 @@ const translations = {
   "name": "Name",
   "navigation": "Navigation",
   "navs": {
+    "home": "Home",
     "dashboard": "Dashboard",
     "transaction": "Transaction",
     "other": {

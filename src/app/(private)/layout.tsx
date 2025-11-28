@@ -55,7 +55,7 @@ import { Box, Center, HStack, Icon } from "@chakra-ui/react";
 import {
   IconBoxAlignLeft,
   IconCircleFilled,
-  IconDatabase,
+  IconServer2,
   IconSelector,
   IconSettings,
   IconUser,
@@ -294,7 +294,7 @@ const MobileLayout = (props: any) => {
             flex={1}
           >
             <Icon boxSize={6}>
-              <IconDatabase stroke={1.5} />
+              <IconServer2 stroke={1.5} />
             </Icon>
 
             <P
@@ -951,7 +951,7 @@ const DesktopLayout = (props: any) => {
                   {pathname.includes(`/master-data`) && <LeftIndicator />}
 
                   <Icon boxSize={5}>
-                    <IconDatabase stroke={1.5} />
+                    <IconServer2 stroke={1.5} />
                   </Icon>
 
                   {navsExpanded && (

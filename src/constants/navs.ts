@@ -1,13 +1,14 @@
 import { Interface__NavItem } from "@/constants/interfaces";
 import {
   IconActivity,
+  IconAnalyze,
   IconCurrencyEthereum,
-  IconDatabase,
   IconHome2,
   IconLanguage,
   IconLayersIntersect,
   IconPalette,
   IconReceipt2,
+  IconServer2,
   IconSettings,
   IconShieldHalf,
   IconUser,
@@ -22,6 +23,11 @@ export const PRIVATE_NAVS: Interface__NavItem[] = [
     list: [
       {
         icon: IconHome2,
+        labelKey: "navs.home",
+        path: `/home`,
+      },
+      {
+        icon: IconAnalyze,
         labelKey: "navs.dashboard",
         path: `/dashboard`,
       },
@@ -66,7 +72,7 @@ export const OTHER_PRIVATE_NAVS: Interface__NavItem[] = [
     groupLabelKey: "other",
     list: [
       {
-        icon: IconDatabase,
+        icon: IconServer2,
         labelKey: "navs.master_data",
         path: `/master-data`,
         subMenus: [

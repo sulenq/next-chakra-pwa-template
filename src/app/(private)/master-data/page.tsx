@@ -4,7 +4,7 @@ import { CContainer } from "@/components/ui/c-container";
 import FeedbackState from "@/components/widget/FeedbackState";
 import useLang from "@/context/useLang";
 import { useThemeConfig } from "@/context/useThemeConfig";
-import { IconDatabase } from "@tabler/icons-react";
+import { IconServer2 } from "@tabler/icons-react";
 
 const SettingsRoute = () => {
   // Contexts
@@ -22,7 +22,7 @@ const SettingsRoute = () => {
       rounded={themeConfig.radii.container}
     >
       <FeedbackState
-        icon={<IconDatabase stroke={1.8} />}
+        icon={<IconServer2 stroke={1.8} />}
         title={"Master Data"}
         description={l.msg_master_data_index_route}
       />

@@ -1,5 +1,9 @@
 // Navs
 export const navs = {
+  home: {
+    id: "Beranda",
+    en: "Home",
+  },
   dashboard: {
     id: "Dashboard",
     en: "Dashboard",
