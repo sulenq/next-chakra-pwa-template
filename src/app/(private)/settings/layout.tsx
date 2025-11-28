@@ -182,7 +182,7 @@ export default function Layout(props: Props__Layout) {
           {/* Content */}
           {showContent && (
             <CContainer className={"scrollY"} flex={1}>
-              <PageTitle />
+              {pathname !== `/settings` && <PageTitle />}
 
               <CContainer flex={1}>{children}</CContainer>
             </CContainer>
