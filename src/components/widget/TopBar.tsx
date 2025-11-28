@@ -76,6 +76,7 @@ export const TopBar = () => {
       gap={4}
       h={"52px"}
       p={4}
+      pr={"10px"}
       justify={"space-between"}
       bg={"body"}
       borderBottom={"1px solid"}
