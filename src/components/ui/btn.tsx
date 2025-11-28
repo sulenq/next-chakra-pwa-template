@@ -89,7 +89,7 @@ export const Btn = forwardRef<HTMLButtonElement, BtnProps>((props, ref) => {
       className={resolvedClassName}
       fontSize={"md"}
       fontWeight="medium"
-      bg={isSubtle ? "d0" : ""}
+      bg={isSubtle && !props.colorPalette ? "d0" : ""}
       size={size || (MAIN_BUTTON_SIZE as any)}
       rounded={themeConfig.radii.component}
       _hover={{ bg: isSubtle && !props.colorPalette ? "d1" : activeBg }}
