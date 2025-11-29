@@ -2,7 +2,6 @@ import { Interface__NavItem } from "@/constants/interfaces";
 import {
   IconActivity,
   IconAnalyze,
-  IconHome2,
   IconLanguage,
   IconLayersIntersect,
   IconMapPin,
@@ -14,6 +13,7 @@ import {
   IconUser,
   IconUserCog,
 } from "@tabler/icons-react";
+import { House } from "lucide-react";
 
 export const PRIVATE_ROUTE_INDEX = "/pvt";
 
@@ -22,7 +22,7 @@ export const PRIVATE_NAVS: Interface__NavItem[] = [
     groupLabelKey: "main",
     list: [
       {
-        icon: IconHome2,
+        icon: House,
         labelKey: "navs.home",
         path: `/home`,
       },
