@@ -68,7 +68,7 @@ const NAVS_COLOR = "ibody";
 const NAVS_COLOR_PALETTE = "gray";
 const DESKTOP_BG_CONTENT_CONTAINER = "bgContent";
 const MOBILE_BG_CONTENT_CONTAINER = "body";
-const DESKTOP_POPOVER_MAIN_AXIS = 16;
+const DESKTOP_POPOVER_MAIN_AXIS = 20;
 const DESKTOP_TOOLTIP_MAIN_AXIS = 24;
 const MOBILE_NAV_LABEL_FONT_SIZE = "sm";
 const MOBILE_POPOVER_MAIN_AXIS = 22;
@@ -998,13 +998,17 @@ const DesktopLayout = (props: any) => {
             <PopoverRoot
               positioning={{
                 placement: "right-end",
-                offset: { mainAxis: DESKTOP_POPOVER_MAIN_AXIS, crossAxis: 0 },
+                offset: {
+                  mainAxis: navsExpanded ? 16 : DESKTOP_POPOVER_MAIN_AXIS,
+                  crossAxis: 0,
+                },
               }}
             >
               <PopoverTrigger asChild>
                 <HStack
                   gap={4}
-                  px={navsExpanded ? 2 : "7px"}
+                  w={navsExpanded ? "full" : "36px"}
+                  px={navsExpanded ? 3 : "7px"}
                   py={2}
                   rounded={themeConfig.radii.component}
                   cursor={"pointer"}
@@ -1014,6 +1018,7 @@ const DesktopLayout = (props: any) => {
                   justify={navsExpanded ? "" : "center"}
                   transition={"200ms"}
                   pos={"relative"}
+                  mx={"auto"}
                 >
                   {!user?.avatar?.filePath && (
                     <Icon boxSize={5}>
@@ -1048,7 +1053,7 @@ const DesktopLayout = (props: any) => {
                 </HStack>
               </PopoverTrigger>
 
-              <PopoverContent w={"236px"} zIndex={10}>
+              <PopoverContent w={"235px"} zIndex={10}>
                 <MiniMyProfile />
               </PopoverContent>
             </PopoverRoot>
