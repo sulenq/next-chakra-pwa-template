@@ -33,7 +33,7 @@ import { BottomIndicator, LeftIndicator } from "@/components/widget/Indicator";
 import Logo from "@/components/widget/Logo";
 import { MiniMyProfile } from "@/components/widget/MiniMyProfile";
 import { Today } from "@/components/widget/Today";
-import { NavBreadcrumb, TopBar } from "@/components/widget/TopBar";
+import { NavBreadcrumb, TopBar } from "@/components/widget/Page";
 import { VerifyingScreen } from "@/components/widget/VerifyingScreen";
 import { APP } from "@/constants/_meta";
 import { PRIVATE_NAVS } from "@/constants/navs";
