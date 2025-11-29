@@ -608,7 +608,7 @@ const DesktopLayout = (props: any) => {
 
                                   {nav.icon && (
                                     <Icon boxSize={5}>
-                                      <nav.icon stroke={1.5} />
+                                      <nav.icon strokeWidth={1.5} />
                                     </Icon>
                                   )}
 
@@ -621,7 +621,7 @@ const DesktopLayout = (props: any) => {
                                           : "d2"
                                       }
                                     >
-                                      <IconCircleFilled stroke={1.5} />
+                                      <IconCircleFilled strokeWidth={1.5} />
                                     </Icon>
                                   )}
 
@@ -776,7 +776,7 @@ const DesktopLayout = (props: any) => {
 
                                     <HStack gap={4}>
                                       <Icon boxSize={5}>
-                                        <nav.icon stroke={1.5} />
+                                        <nav.icon />
                                       </Icon>
 
                                       <P lineClamp={1} textAlign={"left"}>

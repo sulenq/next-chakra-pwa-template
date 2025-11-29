@@ -2,10 +2,10 @@ import { Interface__NavItem } from "@/constants/interfaces";
 import {
   IconActivity,
   IconAnalyze,
-  IconCurrencyEthereum,
   IconHome2,
   IconLanguage,
   IconLayersIntersect,
+  IconMapPin,
   IconPalette,
   IconReceipt2,
   IconServer2,
@@ -37,7 +37,7 @@ export const PRIVATE_NAVS: Interface__NavItem[] = [
         path: `/transaction`,
       },
       {
-        icon: IconCurrencyEthereum,
+        icon: IconMapPin,
         labelKey: "navs.other.index",
         path: `/other-navs`,
         subMenus: [
