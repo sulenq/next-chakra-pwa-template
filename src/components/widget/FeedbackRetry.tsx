@@ -3,12 +3,13 @@
 import { Btn } from "@/components/ui/btn";
 import { CContainer } from "@/components/ui/c-container";
 import FeedbackState from "@/components/widget/FeedbackState";
+import { LucideIcon } from "@/components/widget/Icon";
 import { Props__FeedbackState } from "@/constants/props";
 import { MIN_H_FEEDBACK_CONTAINER } from "@/constants/sizes";
 import useLang from "@/context/useLang";
 import { useThemeConfig } from "@/context/useThemeConfig";
 import { Icon } from "@chakra-ui/react";
-import { IconAlertHexagon } from "@tabler/icons-react";
+import { OctagonX } from "lucide-react";
 
 interface Props extends Props__FeedbackState {
   onRetry?: () => void;
@@ -33,7 +34,7 @@ export default function FeedbackRetry(props: Props) {
       <FeedbackState
         icon={
           <Icon mb={title ? -2 : 0}>
-            {icon || <IconAlertHexagon stroke={1.8} />}
+            {icon || <LucideIcon icon={OctagonX} />}
           </Icon>
         }
         title={title ?? l.alert_retry.title}

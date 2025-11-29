@@ -20,6 +20,10 @@ import { Textarea } from "@/components/ui/textarea";
 import { TimePickerInput } from "@/components/ui/time-picker-input";
 import { toaster } from "@/components/ui/toaster";
 import { DataTable } from "@/components/widget/DataTable";
+import FeedbackForbidden from "@/components/widget/FeedbackForbidden";
+import FeedbackNoData from "@/components/widget/FeedbackNoData";
+import FeedbackNotFound from "@/components/widget/FeedbackNotFound";
+import FeedbackRetry from "@/components/widget/FeedbackRetry";
 import SelectWorkspaceCategory from "@/components/widget/SelectWorkspaceCategory";
 import VideoPlayer from "@/components/widget/VideoPlayer";
 import { OPTIONS_RELIGION } from "@/constants/selectOptions";
@@ -446,6 +450,24 @@ const DemoIndexRoute = () => {
               "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
             }
           />
+        </CContainer>
+      </SimpleGrid>
+
+      <SimpleGrid columns={[1, null, 2]} gap={8}>
+        <CContainer rounded={"md"} border={"1px solid {colors.border.muted}"}>
+          <FeedbackNoData />
+        </CContainer>
+
+        <CContainer rounded={"md"} border={"1px solid {colors.border.muted}"}>
+          <FeedbackNotFound />
+        </CContainer>
+
+        <CContainer rounded={"md"} border={"1px solid {colors.border.muted}"}>
+          <FeedbackForbidden />
+        </CContainer>
+
+        <CContainer rounded={"md"} border={"1px solid {colors.border.muted}"}>
+          <FeedbackRetry />
         </CContainer>
       </SimpleGrid>
 

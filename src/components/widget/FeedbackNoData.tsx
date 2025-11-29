@@ -1,11 +1,12 @@
 "use client";
 
 import { CContainer } from "@/components/ui/c-container";
+import { LucideIcon } from "@/components/widget/Icon";
 import { Props__FeedbackState } from "@/constants/props";
 import { MIN_H_FEEDBACK_CONTAINER } from "@/constants/sizes";
 import useLang from "@/context/useLang";
 import { Icon } from "@chakra-ui/react";
-import { IconDatabaseOff } from "@tabler/icons-react";
+import { ServerOff } from "lucide-react";
 import FeedbackState from "./FeedbackState";
 
 export default function FeedbackNoData(props: Props__FeedbackState) {
@@ -28,7 +29,7 @@ export default function FeedbackNoData(props: Props__FeedbackState) {
       <FeedbackState
         icon={
           <Icon mb={title ? -2 : 0}>
-            {icon || <IconDatabaseOff stroke={1.8} />}
+            {icon || <LucideIcon icon={ServerOff} />}
           </Icon>
         }
         title={title ?? l.alert_no_data.title}

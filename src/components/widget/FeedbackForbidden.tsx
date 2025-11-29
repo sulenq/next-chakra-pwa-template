@@ -2,11 +2,12 @@
 
 import { CContainer } from "@/components/ui/c-container";
 import FeedbackState from "@/components/widget/FeedbackState";
+import { LucideIcon } from "@/components/widget/Icon";
 import { Props__FeedbackState } from "@/constants/props";
 import { MIN_H_FEEDBACK_CONTAINER } from "@/constants/sizes";
 import useLang from "@/context/useLang";
 import { Icon } from "@chakra-ui/react";
-import { IconBan } from "@tabler/icons-react";
+import { BanIcon } from "lucide-react";
 
 export default function FeedbackForbidden(props: Props__FeedbackState) {
   // Props
@@ -26,7 +27,9 @@ export default function FeedbackForbidden(props: Props__FeedbackState) {
     >
       <FeedbackState
         icon={
-          <Icon mb={title ? -2 : 0}>{icon || <IconBan stroke={1.8} />}</Icon>
+          <Icon mb={title ? -2 : 0}>
+            {icon || <LucideIcon icon={BanIcon} />}
+          </Icon>
         }
         title={title ?? l.alert_forbidden.title}
         description={description ?? l.alert_forbidden.description}
