@@ -8,7 +8,7 @@ import { MIN_H_FEEDBACK_CONTAINER } from "@/constants/sizes";
 import useLang from "@/context/useLang";
 import { useThemeConfig } from "@/context/useThemeConfig";
 import { Icon } from "@chakra-ui/react";
-import { IconAlertTriangle } from "@tabler/icons-react";
+import { IconAlertHexagon } from "@tabler/icons-react";
 
 interface Props extends Props__FeedbackState {
   onRetry?: () => void;
@@ -33,7 +33,7 @@ export default function FeedbackRetry(props: Props) {
       <FeedbackState
         icon={
           <Icon mb={title ? -2 : 0}>
-            {icon || <IconAlertTriangle stroke={1.8} />}
+            {icon || <IconAlertHexagon stroke={1.8} />}
           </Icon>
         }
         title={title ?? l.alert_retry.title}

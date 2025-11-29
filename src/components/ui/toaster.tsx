@@ -17,7 +17,7 @@ import {
 } from "@chakra-ui/react";
 import {
   IconAlertCircle,
-  IconAlertTriangle,
+  IconAlertHexagon,
   IconCircleCheck,
   IconInfoCircle,
   IconX,
@@ -48,7 +48,7 @@ const TOAST_PRESETS = {
       light: "red.100",
       dark: "red.800",
     },
-    icon: <IconAlertTriangle stroke={1.6} size={21} />,
+    icon: <IconAlertHexagon stroke={1.6} size={21} />,
   },
   warning: {
     icon: <IconAlertCircle stroke={1.5} />,
