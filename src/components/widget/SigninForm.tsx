@@ -9,7 +9,7 @@ import useAuthMiddleware from "@/context/useAuthMiddleware";
 import useLang from "@/context/useLang";
 import { useThemeConfig } from "@/context/useThemeConfig";
 import useRequest from "@/hooks/useRequest";
-import { getUserData } from "@/utils/auth";
+import { getAuthToken, getUserData } from "@/utils/auth";
 import { removeStorage, setStorage } from "@/utils/client";
 import {
   FieldsetRoot,
@@ -251,7 +251,9 @@ export const SigninForm = (props: Props) => {
   // Contexts
   const { l } = useLang();
   const { themeConfig } = useThemeConfig();
-  const authToken = useAuthMiddleware((s) => s.verifiedAuthToken);
+  const authToken = getAuthToken();
+  const verifiedAuthToken = useAuthMiddleware((s) => s.verifiedAuthToken);
+  const resolvedAuthToken = authToken || verifiedAuthToken;
 
   // States
   const signinAPI = "/api/signin";
@@ -267,7 +269,7 @@ export const SigninForm = (props: Props) => {
       rounded={themeConfig.radii.container}
       {...restProps}
     >
-      {authToken ? (
+      {resolvedAuthToken ? (
         <Signedin indexRoute={indexRoute} />
       ) : (
         <>
