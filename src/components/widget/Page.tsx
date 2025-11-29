@@ -70,7 +70,12 @@ export const NavBreadcrumb = (props: any) => {
                   )}
 
                   {!backPath && (
-                    <DotIndicator color={"fg.subtle"} opacity={0.6} mx={2} />
+                    <DotIndicator
+                      boxSize={"5px"}
+                      color={"fg.subtle"}
+                      opacity={0.6}
+                      mx={2}
+                    />
                   )}
                 </>
               )}
