@@ -8,13 +8,12 @@ import { P } from "@/components/ui/p";
 import SearchInput from "@/components/ui/search-input";
 import FeedbackNotFound from "@/components/widget/FeedbackNotFound";
 import { LeftIndicator } from "@/components/widget/Indicator";
-import { RouteContainer } from "@/components/widget/RouteContainer";
-import { PageTitle } from "@/components/widget/Page";
+import { PageContainer, PageTitle } from "@/components/widget/Page";
 import { APP } from "@/constants/_meta";
 import { OTHER_PRIVATE_NAVS } from "@/constants/navs";
 import { Props__Layout } from "@/constants/props";
 import useLang from "@/context/useLang";
-import { useSettingsRouteContainer } from "@/context/useSettingsRouteContainer";
+import { useSettingsPageContainer } from "@/context/useSettingsPageContainer";
 import { useContainerDimension } from "@/hooks/useContainerDimension";
 import { isEmptyArray } from "@/utils/array";
 import { formatAbsDate } from "@/utils/formatter";
@@ -117,7 +116,7 @@ export default function Layout(props: Props__Layout) {
 
   // Contexts
   const { l } = useLang();
-  const setContainerDimension = useSettingsRouteContainer(
+  const setContainerDimension = useSettingsPageContainer(
     (s) => s.setContainerDimension
   );
 
@@ -135,7 +134,7 @@ export default function Layout(props: Props__Layout) {
   }, [containerDimension]);
 
   return (
-    <RouteContainer id="settings_route_container" ref={containerRef} p={0}>
+    <PageContainer id="settings_route_container" ref={containerRef} p={0}>
       {containerDimension.width > 0 && (
         <HStack align={"stretch"} flex={1} gap={0} overflowY={"auto"}>
           {/* Sidebar */}
@@ -189,6 +188,6 @@ export default function Layout(props: Props__Layout) {
           )}
         </HStack>
       )}
-    </RouteContainer>
+    </PageContainer>
   );
 }

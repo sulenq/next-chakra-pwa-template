@@ -8,7 +8,7 @@ interface Props {
   setContainerDimension: (dim: Type__ContainerDimension) => void;
 }
 
-export const useSettingsRouteContainer = create<Props>((set) => ({
+export const useSettingsPageContainer = create<Props>((set) => ({
   containerRef: null,
   setContainerRef: (ref) => set({ containerRef: ref }),
   containerDimension: {

@@ -18,6 +18,7 @@ export const PageContainer = forwardRef<HTMLDivElement, StackProps>(
     return (
       <CContainer
         ref={ref}
+        className="page-container"
         flex={1}
         pt={"0 !important"}
         overflow={"auto"}
