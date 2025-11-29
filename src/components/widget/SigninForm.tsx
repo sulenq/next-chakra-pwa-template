@@ -185,6 +185,7 @@ const BasicAuthForm = (props: any) => {
                 inputValue={formik.values.identifier}
                 placeholder="Email"
                 pl={"40px !important"}
+                variant={"subtle"}
               />
             </InputGroup>
           </Field>
@@ -209,6 +210,7 @@ const BasicAuthForm = (props: any) => {
                 inputValue={formik.values.password}
                 placeholder="Password"
                 pl={"40px !important"}
+                variant={"subtle"}
               />
             </InputGroup>
           </Field>

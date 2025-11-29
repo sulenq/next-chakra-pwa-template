@@ -66,10 +66,6 @@ const SelectOptions = (props: Props__SelectOptions) => {
           onChange={(inputValue) => {
             setSearch(inputValue || "");
           }}
-          inputProps={{
-            variant: "subtle",
-            bg: "d0",
-          }}
         />
       </CContainer>
 
