@@ -5,19 +5,18 @@ import SearchInput from "@/components/ui/search-input";
 import { DataDisplayToggle } from "@/components/widget/DataDisplayToggle";
 import { DataTable } from "@/components/widget/DataTable";
 import HScroll from "@/components/widget/HScroll";
-import { PageContainer, PageContent } from "@/components/widget/Page";
-import { PageTitle } from "@/components/widget/Page";
+import { LucideIcon } from "@/components/widget/Icon";
+import {
+  PageContainer,
+  PageContent,
+  PageTitle,
+} from "@/components/widget/Page";
+import { BASE_ICON_BOX_SIZE } from "@/constants/sizes";
 import { useThemeConfig } from "@/context/useThemeConfig";
 import { useIsSmScreenWidth } from "@/hooks/useIsSmScreenWidth";
 import { HStack, Icon } from "@chakra-ui/react";
-import {
-  IconFilter2,
-  IconPencil,
-  IconPlus,
-  IconRestore,
-  IconSortDescending,
-  IconTrash,
-} from "@tabler/icons-react";
+import { IconPencil, IconRestore, IconTrash } from "@tabler/icons-react";
+import { ArrowDownAz, ListFilterIcon, PlusIcon } from "lucide-react";
 import { useState } from "react";
 
 // const BASE_ENDPOINT = "/api/kmis/material";
@@ -31,8 +30,8 @@ const Create = () => {
   return (
     <>
       <Btn size={"sm"} pl={3} colorPalette={themeConfig.colorPalette}>
-        <Icon>
-          <IconPlus stroke={1.5} />
+        <Icon boxSize={BASE_ICON_BOX_SIZE}>
+          <LucideIcon icon={PlusIcon} />
         </Icon>
         Add
       </Btn>
@@ -49,13 +48,13 @@ const DataUtils = () => {
       />
 
       <Btn iconButton variant={"outline"} size={"sm"}>
-        <Icon boxSize={5}>
-          <IconFilter2 stroke={1.5} />
+        <Icon boxSize={BASE_ICON_BOX_SIZE}>
+          <LucideIcon icon={ListFilterIcon} />
         </Icon>
       </Btn>
       <Btn iconButton variant={"outline"} size={"sm"}>
-        <Icon boxSize={5}>
-          <IconSortDescending stroke={1.5} />
+        <Icon boxSize={BASE_ICON_BOX_SIZE}>
+          <LucideIcon icon={ArrowDownAz} />
         </Icon>
       </Btn>
       <DataDisplayToggle iconButton navKey={PREFIX_ID} size={"sm"} />

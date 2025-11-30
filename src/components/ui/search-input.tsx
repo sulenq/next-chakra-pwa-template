@@ -1,11 +1,12 @@
 "use client";
 
 import { StringInput } from "@/components/ui/string-input";
+import { LucideIcon } from "@/components/widget/Icon";
 import { Props__SearchInput } from "@/constants/props";
 import useLang from "@/context/useLang";
 import { useDebouncedCallback } from "@/hooks/useDebounceCallback";
 import { HStack, Icon, InputGroup } from "@chakra-ui/react";
-import { IconSearch } from "@tabler/icons-react";
+import { SearchIcon } from "lucide-react";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Tooltip } from "./tooltip";
@@ -72,7 +73,7 @@ export default function SearchInput(props: Props__SearchInput) {
         startElement={
           !noIcon && (
             <Icon boxSize={5} color="fg.subtle" {...iconProps}>
-              {icon || <IconSearch />}
+              {icon || <LucideIcon icon={SearchIcon} />}
             </Icon>
           )
         }

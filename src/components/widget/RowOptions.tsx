@@ -21,8 +21,10 @@ export const RowOptions = (props: Props_RowOptions) => {
 
   return (
     <MenuRoot lazyMount {...menuRootProps}>
-      <MenuTrigger asChild aria-label="row options">
+      <MenuTrigger className="clicky" asChild aria-label="row options">
         <Btn
+          className="clicky"
+          // transform={"translateY(2px)"}
           iconButton
           clicky={false}
           variant={"ghost"}

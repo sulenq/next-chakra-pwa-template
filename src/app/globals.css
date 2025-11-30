@@ -190,7 +190,7 @@ textarea::placeholder {
   transition: 200ms;
 }
 .clicky:active:not(:disabled) {
-  transform: translateY(2px);
+  transform: translateY(2px) !important;
 }
 .sm-clicky:active:not(:disabled) {
   transform: scale(0.9);

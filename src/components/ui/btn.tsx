@@ -17,7 +17,7 @@ export const Btn = forwardRef<HTMLButtonElement, BtnProps>((props, ref) => {
   // Props
   const {
     children,
-    clicky = true,
+    clicky = false,
     iconButton = false,
     className = "",
     size,
