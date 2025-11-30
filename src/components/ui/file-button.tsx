@@ -2,6 +2,7 @@
 
 import { FileIcon } from "@/components/ui/file-icon";
 import { P } from "@/components/ui/p";
+import { LucideIcon } from "@/components/widget/Icon";
 import { useThemeConfig } from "@/context/useThemeConfig";
 import type { ButtonProps, RecipeProps } from "@chakra-ui/react";
 import {
@@ -13,7 +14,8 @@ import {
   useFileUploadContext,
   useRecipe,
 } from "@chakra-ui/react";
-import { IconUpload, IconX } from "@tabler/icons-react";
+import { IconUpload } from "@tabler/icons-react";
+import { XIcon } from "lucide-react";
 import { forwardRef } from "react";
 
 export interface FileUploadRootProps extends ChakraFileUpload.RootProps {
@@ -144,7 +146,7 @@ const FileUploadItem = (props: FileUploadItemProps) => {
             mr={-2}
             my={"auto"}
           >
-            <IconX />
+            <LucideIcon icon={XIcon} />
           </IconButton>
         </ChakraFileUpload.ItemDeleteTrigger>
       )}

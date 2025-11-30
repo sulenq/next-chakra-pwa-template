@@ -7,6 +7,7 @@ import { DataTable } from "@/components/widget/DataTable";
 import HScroll from "@/components/widget/HScroll";
 import { PageContainer, PageContent } from "@/components/widget/Page";
 import { PageTitle } from "@/components/widget/Page";
+import { useThemeConfig } from "@/context/useThemeConfig";
 import { useIsSmScreenWidth } from "@/hooks/useIsSmScreenWidth";
 import { HStack, Icon } from "@chakra-ui/react";
 import {
@@ -23,6 +24,21 @@ import { useState } from "react";
 const PREFIX_ID = "kmis_material";
 // type Interface__Data = Interface__KMISMaterial;
 
+const Create = () => {
+  // Contexts
+  const { themeConfig } = useThemeConfig();
+
+  return (
+    <>
+      <Btn size={"sm"} pl={3} colorPalette={themeConfig.colorPalette}>
+        <Icon>
+          <IconPlus stroke={1.5} />
+        </Icon>
+        Add
+      </Btn>
+    </>
+  );
+};
 const DataUtils = () => {
   return (
     <HStack>
@@ -190,12 +206,7 @@ export default function Page() {
         <HStack>
           {!iss && <DataUtils />}
 
-          <Btn size={"sm"} pl={3}>
-            <Icon>
-              <IconPlus stroke={1.5} />
-            </Icon>
-            Add
-          </Btn>
+          <Create />
         </HStack>
       </PageTitle>
 

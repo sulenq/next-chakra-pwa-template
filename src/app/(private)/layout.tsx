@@ -32,8 +32,8 @@ import HScroll from "@/components/widget/HScroll";
 import { BottomIndicator, LeftIndicator } from "@/components/widget/Indicator";
 import Logo from "@/components/widget/Logo";
 import { MiniMyProfile } from "@/components/widget/MiniMyProfile";
-import { Today } from "@/components/widget/Today";
 import { NavBreadcrumb, TopBar } from "@/components/widget/Page";
+import { Today } from "@/components/widget/Today";
 import { VerifyingScreen } from "@/components/widget/VerifyingScreen";
 import { APP } from "@/constants/_meta";
 import { PRIVATE_NAVS } from "@/constants/navs";
@@ -55,8 +55,8 @@ import { Box, Center, HStack, Icon } from "@chakra-ui/react";
 import {
   IconBoxAlignLeft,
   IconCircleFilled,
-  IconServer2,
   IconSelector,
+  IconServer2,
   IconSettings,
   IconUser,
 } from "@tabler/icons-react";
@@ -556,6 +556,7 @@ const DesktopLayout = (props: any) => {
         <CContainer
           className="scrollY"
           flex={1}
+          gap={1}
           p={3}
           pr={`calc(12px - ${FIREFOX_SCROLL_Y_CLASS_PR_PREFIX})`}
         >
@@ -936,7 +937,7 @@ const DesktopLayout = (props: any) => {
               })}
           </CContainer>
 
-          <CContainer mt={"auto"} gap={2}>
+          <CContainer gap={1} mt={"auto"}>
             <NavLink to={`/master-data`} w={"full"}>
               <NavTooltip content={"Master Data"}>
                 <Btn
@@ -989,74 +990,74 @@ const DesktopLayout = (props: any) => {
               </NavTooltip>
             </NavLink>
           </CContainer>
-        </CContainer>
 
-        <CContainer px={2}>
-          {navsExpanded && <Divider />}
+          <CContainer>
+            {navsExpanded && <Divider my={2} />}
 
-          <CContainer py={2}>
-            <PopoverRoot
-              positioning={{
-                placement: "right-end",
-                offset: {
-                  mainAxis: navsExpanded ? 16 : DESKTOP_POPOVER_MAIN_AXIS,
-                  crossAxis: 0,
-                },
-              }}
-            >
-              <PopoverTrigger asChild>
-                <HStack
-                  gap={4}
-                  w={navsExpanded ? "full" : "36px"}
-                  px={navsExpanded ? 3 : "7px"}
-                  py={2}
-                  rounded={themeConfig.radii.component}
-                  cursor={"pointer"}
-                  _hover={{
-                    bg: "gray.subtle",
-                  }}
-                  justify={navsExpanded ? "" : "center"}
-                  transition={"200ms"}
-                  pos={"relative"}
-                  mx={"auto"}
-                >
-                  {!user?.avatar?.filePath && (
-                    <Icon boxSize={5}>
-                      <IconUser stroke={1.5} />
-                    </Icon>
-                  )}
-
-                  {user?.avatar?.filePath && (
-                    <Avatar
-                      src={imgUrl(user?.avatar?.filePath)}
-                      name={user?.name}
-                      size={navsExpanded ? "md" : "2xs"}
-                    />
-                  )}
-
-                  {navsExpanded && (
-                    <>
-                      <CContainer>
-                        <P lineClamp={1} fontWeight={"semibold"}>
-                          {user?.name || "Signed out"}
-                        </P>
-                        <P lineClamp={1} color={"fg.subtle"}>
-                          {user?.email || user?.username || "-"}
-                        </P>
-                      </CContainer>
-
-                      <Icon boxSize={5} color={"fg.subtle"}>
-                        <IconSelector stroke={1.5} />
+            <CContainer mt={1}>
+              <PopoverRoot
+                positioning={{
+                  placement: "right-end",
+                  offset: {
+                    mainAxis: DESKTOP_POPOVER_MAIN_AXIS,
+                    crossAxis: 4,
+                  },
+                }}
+              >
+                <PopoverTrigger asChild>
+                  <HStack
+                    gap={4}
+                    w={navsExpanded ? "full" : "36px"}
+                    px={navsExpanded ? 3 : "7px"}
+                    py={2}
+                    rounded={themeConfig.radii.component}
+                    cursor={"pointer"}
+                    _hover={{
+                      bg: "gray.subtle",
+                    }}
+                    justify={navsExpanded ? "" : "center"}
+                    transition={"200ms"}
+                    pos={"relative"}
+                    mx={"auto"}
+                  >
+                    {!user?.avatar?.filePath && (
+                      <Icon boxSize={5}>
+                        <IconUser stroke={1.5} />
                       </Icon>
-                    </>
-                  )}
-                </HStack>
-              </PopoverTrigger>
+                    )}
 
-              <PopoverContent w={"235px"} zIndex={10}>
-                <MiniMyProfile />
-              </PopoverContent>
-            </PopoverRoot>
+                    {user?.avatar?.filePath && (
+                      <Avatar
+                        src={imgUrl(user?.avatar?.filePath)}
+                        name={user?.name}
+                        size={navsExpanded ? "md" : "2xs"}
+                      />
+                    )}
+
+                    {navsExpanded && (
+                      <>
+                        <CContainer>
+                          <P lineClamp={1} fontWeight={"semibold"}>
+                            {user?.name || "Signed out"}
+                          </P>
+                          <P lineClamp={1} color={"fg.subtle"}>
+                            {user?.email || user?.username || "-"}
+                          </P>
+                        </CContainer>
+
+                        <Icon boxSize={5} color={"fg.subtle"}>
+                          <IconSelector stroke={1.5} />
+                        </Icon>
+                      </>
+                    )}
+                  </HStack>
+                </PopoverTrigger>
+
+                <PopoverContent w={"235px"} zIndex={10}>
+                  <MiniMyProfile />
+                </PopoverContent>
+              </PopoverRoot>
+            </CContainer>
           </CContainer>
         </CContainer>
       </CContainer>

@@ -3,6 +3,7 @@
 import { Btn } from "@/components/ui/btn";
 import { CContainer } from "@/components/ui/c-container";
 import Spinner from "@/components/ui/spinner";
+import { LucideIcon } from "@/components/widget/Icon";
 import { SM_SCREEN_W_NUMBER } from "@/constants/sizes";
 import { useThemeConfig } from "@/context/useThemeConfig";
 import { isClient } from "@/utils/client";
@@ -16,12 +17,12 @@ import {
   createToaster,
 } from "@chakra-ui/react";
 import {
-  IconAlertCircle,
-  IconAlertHexagon,
-  IconCircleCheck,
-  IconInfoCircle,
-  IconX,
-} from "@tabler/icons-react";
+  CircleAlertIcon,
+  CircleCheckIcon,
+  InfoIcon,
+  OctagonXIcon,
+  XIcon,
+} from "lucide-react";
 import { useState } from "react";
 import { useColorMode } from "./color-mode";
 
@@ -35,23 +36,23 @@ const TOAST_PRESETS = {
     },
   },
   success: {
+    icon: <LucideIcon icon={CircleCheckIcon} />,
     color: "fg.success",
     bg: {
       light: "green.100",
       dark: "green.800",
     },
-    icon: <IconCircleCheck stroke={1.5} />,
   },
   error: {
+    icon: <LucideIcon icon={OctagonXIcon} />,
     color: "fg.error",
     bg: {
       light: "red.100",
       dark: "red.800",
     },
-    icon: <IconAlertHexagon stroke={1.6} size={21} />,
   },
   warning: {
-    icon: <IconAlertCircle stroke={1.5} />,
+    icon: <LucideIcon icon={CircleAlertIcon} />,
     color: "fg.warning",
     bg: {
       light: "orange.100",
@@ -59,7 +60,7 @@ const TOAST_PRESETS = {
     },
   },
   info: {
-    icon: <IconInfoCircle stroke={1.5} />,
+    icon: <LucideIcon icon={InfoIcon} />,
     color: "current",
     bg: {
       light: "bg.muted",
@@ -234,7 +235,7 @@ const ToastComponent = (props: any) => {
           pos={"static"}
         >
           <Icon boxSize={4}>
-            <IconX />
+            <LucideIcon icon={XIcon} />
           </Icon>
         </Btn>
       </HStack>

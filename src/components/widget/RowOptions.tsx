@@ -6,9 +6,10 @@ import {
   MenuTrigger,
 } from "@/components/ui/menu";
 import { ConfirmationDisclosureTrigger } from "@/components/widget/ConfirmationDisclosure";
+import { LucideIcon } from "@/components/widget/Icon";
 import { Props_RowOptions } from "@/constants/props";
 import { Icon } from "@chakra-ui/react";
-import { IconDots } from "@tabler/icons-react";
+import { EllipsisIcon } from "lucide-react";
 import { Fragment } from "react";
 
 const ICON_BOX_SIZE = "18px";
@@ -32,7 +33,7 @@ export const RowOptions = (props: Props_RowOptions) => {
           {...restProps}
         >
           <Icon boxSize={5}>
-            <IconDots stroke={1.5} />
+            <LucideIcon icon={EllipsisIcon} />
           </Icon>
         </Btn>
       </MenuTrigger>

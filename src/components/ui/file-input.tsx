@@ -8,6 +8,7 @@ import { P } from "@/components/ui/p";
 import { toaster } from "@/components/ui/toaster";
 import { Tooltip } from "@/components/ui/tooltip";
 import { FileItem } from "@/components/widget/FIleItem";
+import { LucideIcon } from "@/components/widget/Icon";
 import { Interface__StorageFile } from "@/constants/interfaces";
 import {
   Props__FileInput,
@@ -19,7 +20,8 @@ import { isEmptyArray } from "@/utils/array";
 import { makeFileUrl } from "@/utils/file";
 import { formatBytes, formatNumber } from "@/utils/formatter";
 import { Center, Icon, useFieldContext } from "@chakra-ui/react";
-import { IconTrash, IconUpload, IconX } from "@tabler/icons-react";
+import { IconTrash, IconUpload } from "@tabler/icons-react";
+import { XIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 import {
   FileUploadDropzone,
@@ -49,7 +51,7 @@ const FileList = (props: any) => {
             actions={[
               {
                 type: "remove",
-                icon: <IconX />,
+                icon: <LucideIcon icon={XIcon} />,
                 onClick: () => {
                   const next = inputValue.filter(
                     (_file: File, i: number) => i !== idx

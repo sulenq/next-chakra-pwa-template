@@ -1,13 +1,15 @@
 import { Btn } from "@/components/ui/btn";
+import { LucideIcon } from "@/components/widget/Icon";
+import { Props__DisclosureHeaderContent } from "@/constants/props";
+import { useIsSmScreenWidth } from "@/hooks/useIsSmScreenWidth";
 import { back } from "@/utils/client";
 import { HStack, Icon } from "@chakra-ui/react";
-import { IconMaximize, IconMinimize, IconX } from "@tabler/icons-react";
+import { IconMaximize, IconMinimize } from "@tabler/icons-react";
+import { XIcon } from "lucide-react";
+import { useEffect, useState } from "react";
 import { DialogCloseTrigger } from "./dialog";
 import { DrawerCloseTrigger } from "./drawer";
 import { P } from "./p";
-import { Props__DisclosureHeaderContent } from "@/constants/props";
-import { useEffect, useState } from "react";
-import { useIsSmScreenWidth } from "@/hooks/useIsSmScreenWidth";
 
 export const DisclosureHeaderContent = (
   props: Props__DisclosureHeaderContent
@@ -111,7 +113,7 @@ export const DisclosureHeaderContent = (
                 onClick={handleBack}
               >
                 <Icon boxSize={4}>
-                  <IconX />
+                  <LucideIcon icon={XIcon} />
                 </Icon>
               </Btn>
             )}

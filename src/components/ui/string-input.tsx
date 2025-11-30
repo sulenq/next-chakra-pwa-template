@@ -1,9 +1,14 @@
 "use client";
 
 import { CContainer } from "@/components/ui/c-container";
+import { toaster } from "@/components/ui/toaster";
+import { LucideIcon } from "@/components/widget/Icon";
 import { Props__StringInput } from "@/constants/props";
+import { MAIN_INPUT_SIZE } from "@/constants/sizes";
+import useLang from "@/context/useLang";
 import { useThemeConfig } from "@/context/useThemeConfig";
 import { useMergedRefs } from "@/hooks/useMergeRefs";
+import { interpolateString } from "@/utils/string";
 import {
   Center,
   Input as ChakraInput,
@@ -12,13 +17,9 @@ import {
   useFieldContext,
 } from "@chakra-ui/react";
 import { css, Global } from "@emotion/react";
-import { IconX } from "@tabler/icons-react";
+import { XIcon } from "lucide-react";
 import { forwardRef, useRef } from "react";
 import { useColorMode } from "./color-mode";
-import { toaster } from "@/components/ui/toaster";
-import useLang from "@/context/useLang";
-import { interpolateString } from "@/utils/string";
-import { MAIN_INPUT_SIZE } from "@/constants/sizes";
 
 export const StringInput = forwardRef<HTMLInputElement, Props__StringInput>(
   (props, ref) => {
@@ -154,7 +155,7 @@ export const StringInput = forwardRef<HTMLInputElement, Props__StringInput>(
                 color={"fg.subtle"}
               >
                 <Icon boxSize={"18px"}>
-                  <IconX />
+                  <LucideIcon icon={XIcon} />
                 </Icon>
               </IconButton>
             </Center>

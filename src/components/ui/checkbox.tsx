@@ -2,7 +2,7 @@
 
 import { useThemeConfig } from "@/context/useThemeConfig";
 import { Checkbox as ChakraCheckbox, Icon } from "@chakra-ui/react";
-import { IconX } from "@tabler/icons-react";
+import { XIcon } from "lucide-react";
 import { forwardRef } from "react";
 
 export interface CheckboxProps extends ChakraCheckbox.RootProps {
@@ -57,7 +57,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
         >
           {checked && (
             <Icon boxSize={4} color={`${themeConfig.colorPalette}.contrast`}>
-              {icon || <IconX />}
+              {icon || <XIcon />}
             </Icon>
           )}
         </ChakraCheckbox.Control>

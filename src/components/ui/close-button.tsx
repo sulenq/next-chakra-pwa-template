@@ -1,9 +1,10 @@
+import { LucideIcon } from "@/components/widget/Icon";
 import type {
   ButtonProps as ChakraCloseButtonProps,
   IconProps,
 } from "@chakra-ui/react";
 import { IconButton as ChakraIconButton, Icon } from "@chakra-ui/react";
-import { IconX } from "@tabler/icons-react";
+import { XIcon } from "lucide-react";
 import { forwardRef } from "react";
 
 export interface CloseButtonProps extends ChakraCloseButtonProps {
@@ -23,7 +24,7 @@ export const CloseButton = forwardRef<HTMLButtonElement, CloseButtonProps>(
         {...restProps}
       >
         <Icon boxSize={"18px"} {...iconProps}>
-          {props.children ?? <IconX />}
+          {props.children ?? <LucideIcon icon={XIcon} />}
         </Icon>
       </ChakraIconButton>
     );
