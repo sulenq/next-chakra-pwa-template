@@ -461,7 +461,7 @@ const DesktopLayout = (props: any) => {
       <CContainer
         flexShrink={0}
         w={navsExpanded ? "250px" : "60px"}
-        transition={"2000ms"}
+        transition={"200ms"}
         py={3}
         // borderRight={"1px solid"}
         borderColor={"border.muted"}
@@ -743,6 +743,7 @@ const DesktopLayout = (props: any) => {
                                     clicky={false}
                                     variant={"ghost"}
                                     px={2}
+                                    justifyContent={"start"}
                                     pr={"10px"}
                                     pos={"relative"}
                                     bg={"transparent"}
@@ -970,7 +971,7 @@ const DesktopLayout = (props: any) => {
                   <HStack
                     gap={4}
                     w={navsExpanded ? "full" : "36px"}
-                    px={navsExpanded ? 3 : "7px"}
+                    px={2}
                     py={2}
                     rounded={themeConfig.radii.component}
                     cursor={"pointer"}
@@ -981,19 +982,11 @@ const DesktopLayout = (props: any) => {
                     transition={"200ms"}
                     pos={"relative"}
                   >
-                    {!user?.avatar?.filePath && (
-                      <Icon boxSize={BASE_ICON_BOX_SIZE}>
-                        <LucideIcon icon={UserIcon} />
-                      </Icon>
-                    )}
-
-                    {user?.avatar?.filePath && (
-                      <Avatar
-                        src={imgUrl(user?.avatar?.filePath)}
-                        name={user?.name}
-                        size={navsExpanded ? "md" : "2xs"}
-                      />
-                    )}
+                    <Avatar
+                      src={imgUrl(user?.avatar?.filePath)}
+                      name={user?.name}
+                      size={navsExpanded ? "md" : "2xs"}
+                    />
 
                     {navsExpanded && (
                       <>

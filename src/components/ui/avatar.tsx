@@ -33,7 +33,12 @@ export const Avatar = forwardRef<HTMLDivElement, AvatarProps>(function Avatar(
   } = props;
   return (
     <ChakraAvatar.Root ref={ref} {...rest}>
-      <AvatarFallback name={name} icon={icon} boxSize={iconBoxSize}>
+      <AvatarFallback
+        name={name}
+        icon={icon}
+        boxSize={iconBoxSize}
+        color={"fg.subtle"}
+      >
         {fallback}
       </AvatarFallback>
       <ChakraAvatar.Image src={src} srcSet={srcSet} loading={loading} />
