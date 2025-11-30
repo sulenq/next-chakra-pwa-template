@@ -461,7 +461,7 @@ const DesktopLayout = (props: any) => {
       <CContainer
         flexShrink={0}
         w={navsExpanded ? "250px" : "60px"}
-        transition={"200ms"}
+        transition={"2000ms"}
         py={3}
         // borderRight={"1px solid"}
         borderColor={"border.muted"}
