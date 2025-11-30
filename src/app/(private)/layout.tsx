@@ -60,8 +60,6 @@ import {
   IconBoxAlignLeft,
   IconCircleFilled,
   IconSelector,
-  IconServer2,
-  IconSettings,
 } from "@tabler/icons-react";
 import { UserIcon } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
@@ -129,8 +127,6 @@ const MobileLayout = (props: any) => {
   const resolvedActiveNavs =
     sw < 360 ? [activeNavs[activeNavs.length - 1]] : activeNavs;
   const backPath = last(activeNavs)?.backPath;
-  const isInSettingsRoute = pathname.includes(`/settings`);
-  const isInMasterDataRoute = pathname.includes(`/master-data`);
   const isInProfileRoute = pathname.includes(`/profile`);
 
   return (
@@ -188,8 +184,8 @@ const MobileLayout = (props: any) => {
                           color={isMainNavActive ? "" : "fg.muted"}
                           flex={1}
                         >
-                          <Icon boxSize={6}>
-                            <nav.icon stroke={1.5} />
+                          <Icon boxSize={5}>
+                            <LucideIcon icon={nav.icon} />
                           </Icon>
 
                           <P
@@ -225,8 +221,8 @@ const MobileLayout = (props: any) => {
                                 cursor={"pointer"}
                                 flex={1}
                               >
-                                <Icon boxSize={6}>
-                                  <nav.icon stroke={1.5} />
+                                <Icon boxSize={5}>
+                                  <LucideIcon icon={nav.icon} />
                                 </Icon>
 
                                 <P
@@ -292,45 +288,30 @@ const MobileLayout = (props: any) => {
             );
           })}
 
-          <MobileNavLink
-            to={`/master-data`}
-            color={isInMasterDataRoute ? "" : "fg.muted"}
-            flex={1}
-          >
-            <Icon boxSize={6}>
-              <IconServer2 stroke={1.5} />
-            </Icon>
+          {OTHER_PRIVATE_NAVS[0]?.list.map((nav) => {
+            return (
+              <MobileNavLink
+                key={nav.path}
+                to={nav.path}
+                color={pathname === nav.path ? "" : "fg.muted"}
+                flex={1}
+              >
+                <Icon boxSize={5}>
+                  <LucideIcon icon={nav.icon} />
+                </Icon>
 
-            <P
-              textAlign={"center"}
-              lineClamp={1}
-              fontSize={MOBILE_NAV_LABEL_FONT_SIZE}
-            >
-              Master Data
-            </P>
+                <P
+                  textAlign={"center"}
+                  lineClamp={1}
+                  fontSize={MOBILE_NAV_LABEL_FONT_SIZE}
+                >
+                  {pluckString(l, nav.labelKey)}
+                </P>
 
-            {isInMasterDataRoute && <BottomIndicator />}
-          </MobileNavLink>
-
-          <MobileNavLink
-            to={`/settings`}
-            color={isInSettingsRoute ? "" : "fg.muted"}
-            flex={1}
-          >
-            <Icon boxSize={6}>
-              <IconSettings stroke={1.5} />
-            </Icon>
-
-            <P
-              textAlign={"center"}
-              lineClamp={1}
-              fontSize={MOBILE_NAV_LABEL_FONT_SIZE}
-            >
-              {l.settings}
-            </P>
-
-            {isInSettingsRoute && <BottomIndicator />}
-          </MobileNavLink>
+                {pathname === nav.path && <BottomIndicator />}
+              </MobileNavLink>
+            );
+          })}
 
           <PopoverRoot
             positioning={{

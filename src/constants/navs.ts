@@ -1,7 +1,6 @@
 import { Interface__NavItem } from "@/constants/interfaces";
 import {
   ActivityIcon,
-  BanknoteArrowDownIcon,
   BlocksIcon,
   DatabaseIcon,
   House,
@@ -9,6 +8,7 @@ import {
   LayoutDashboardIcon,
   MapPinIcon,
   PaletteIcon,
+  ReceiptIcon,
   SettingsIcon,
   ShieldHalfIcon,
   UserCogIcon,
@@ -32,7 +32,7 @@ export const PRIVATE_NAVS: Interface__NavItem[] = [
         path: `/dashboard`,
       },
       {
-        icon: BanknoteArrowDownIcon,
+        icon: ReceiptIcon,
         labelKey: "navs.transaction",
         path: `/transaction`,
       },

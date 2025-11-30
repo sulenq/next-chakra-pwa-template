@@ -24,7 +24,8 @@ import { HStack, Icon } from "@chakra-ui/react";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
-const SETTINGS_NAVS = OTHER_PRIVATE_NAVS[0].list[0].subMenus!;
+const NAVS = OTHER_PRIVATE_NAVS[0].list[0].subMenus!;
+const ROOT_PATH = `/master-data`;
 
 const NavsList = (props: any) => {
   // Props
@@ -38,23 +39,20 @@ const NavsList = (props: any) => {
 
   // States
   const searchTerm = search.toLowerCase();
-  const resolvedList = SETTINGS_NAVS.reduce<typeof SETTINGS_NAVS>(
-    (acc, nav) => {
-      const filteredItems = nav.list.filter((item) =>
-        pluckString(l, item.labelKey).toLowerCase().includes(searchTerm)
-      );
+  const resolvedList = NAVS.reduce<typeof NAVS>((acc, nav) => {
+    const filteredItems = nav.list.filter((item) =>
+      pluckString(l, item.labelKey).toLowerCase().includes(searchTerm)
+    );
 
-      if (filteredItems.length > 0) {
-        acc.push({
-          ...nav,
-          list: filteredItems,
-        });
-      }
+    if (filteredItems.length > 0) {
+      acc.push({
+        ...nav,
+        list: filteredItems,
+      });
+    }
 
-      return acc;
-    },
-    [] as typeof SETTINGS_NAVS
-  );
+    return acc;
+  }, [] as typeof NAVS);
 
   return (
     <CContainer gap={4} {...restProps}>
@@ -124,7 +122,7 @@ export default function Layout(props: Props__Layout) {
   // States
   const [search, setSearch] = useState<string>("");
   const isSmContainer = containerDimension.width < 720;
-  const isAtSettingsIndexRoute = pathname === `/settings`;
+  const isAtSettingsIndexRoute = pathname === ROOT_PATH;
   const showSidebar =
     !isSmContainer || (isSmContainer && isAtSettingsIndexRoute);
   const showContent =
@@ -182,7 +180,7 @@ export default function Layout(props: Props__Layout) {
           {/* Content */}
           {showContent && (
             <CContainer className={"scrollY"} flex={1}>
-              {pathname !== `/master-data` && <PageTitle />}
+              {pathname !== ROOT_PATH && <PageTitle />}
 
               <CContainer flex={1}>{children}</CContainer>
             </CContainer>
