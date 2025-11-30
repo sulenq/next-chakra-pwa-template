@@ -286,7 +286,7 @@ const translations = {
   "navs": {
     "home": "Home",
     "dashboard": "Dashboard",
-    "transaction": "Transaction",
+    "user": "User",
     "other": {
       "index": "Other",
       "category": "Category",

@@ -4,8 +4,7 @@ import { Props__DisclosureHeaderContent } from "@/constants/props";
 import { useIsSmScreenWidth } from "@/hooks/useIsSmScreenWidth";
 import { back } from "@/utils/client";
 import { HStack, Icon } from "@chakra-ui/react";
-import { IconMaximize, IconMinimize } from "@tabler/icons-react";
-import { XIcon } from "lucide-react";
+import { MaximizeIcon, MinimizeIcon, XIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 import { DialogCloseTrigger } from "./dialog";
 import { DrawerCloseTrigger } from "./drawer";
@@ -65,11 +64,11 @@ export const DisclosureHeaderContent = (
               setMaximize((ps) => !ps);
             }}
           >
-            <Icon boxSize={4}>
+            <Icon boxSize={3.5}>
               {maximize ? (
-                <IconMinimize stroke={1.5} />
+                <LucideIcon icon={MinimizeIcon} />
               ) : (
-                <IconMaximize stroke={1.5} />
+                <LucideIcon icon={MaximizeIcon} />
               )}
             </Icon>
           </Btn>

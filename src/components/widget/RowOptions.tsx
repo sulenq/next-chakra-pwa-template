@@ -5,14 +5,28 @@ import {
   MenuRoot,
   MenuTrigger,
 } from "@/components/ui/menu";
+import { Tooltip, TooltipProps } from "@/components/ui/tooltip";
 import { ConfirmationDisclosureTrigger } from "@/components/widget/ConfirmationDisclosure";
-import { LucideIcon } from "@/components/widget/Icon";
 import { Props_RowOptions } from "@/constants/props";
 import { Icon } from "@chakra-ui/react";
-import { EllipsisIcon } from "lucide-react";
+import { IconDots } from "@tabler/icons-react";
 import { Fragment } from "react";
 
 const ICON_BOX_SIZE = "18px";
+
+export const RowMenuTooltip = (props: TooltipProps) => {
+  // Props
+  const { children, content, ...restProps } = props;
+  return (
+    <Tooltip
+      content={content}
+      positioning={{ placement: "right" }}
+      {...restProps}
+    >
+      {children}
+    </Tooltip>
+  );
+};
 
 export const RowOptions = (props: Props_RowOptions) => {
   // Props
@@ -21,10 +35,8 @@ export const RowOptions = (props: Props_RowOptions) => {
 
   return (
     <MenuRoot lazyMount {...menuRootProps}>
-      <MenuTrigger className="clicky" asChild aria-label="row options">
+      <MenuTrigger asChild aria-label="row options">
         <Btn
-          className="clicky"
-          // transform={"translateY(2px)"}
           iconButton
           clicky={false}
           variant={"ghost"}
@@ -35,7 +47,7 @@ export const RowOptions = (props: Props_RowOptions) => {
           {...restProps}
         >
           <Icon boxSize={5}>
-            <LucideIcon icon={EllipsisIcon} />
+            <IconDots stroke={1.5} />
           </Icon>
         </Btn>
       </MenuTrigger>
@@ -66,7 +78,7 @@ export const RowOptions = (props: Props_RowOptions) => {
                 title={confirmation.title}
                 description={confirmation.description}
                 confirmLabel={confirmation.confirmLabel}
-                onChange={confirmation.onChange}
+                onConfirm={confirmation.onConfirm}
                 confirmButtonProps={confirmation.confirmButtonProps}
                 loading={confirmation.loading}
                 disabled={disabled}

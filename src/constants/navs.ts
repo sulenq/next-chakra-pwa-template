@@ -8,11 +8,11 @@ import {
   LayoutDashboardIcon,
   MapPinIcon,
   PaletteIcon,
-  ReceiptIcon,
   SettingsIcon,
   ShieldHalfIcon,
   UserCogIcon,
   UserIcon,
+  UsersIcon,
 } from "lucide-react";
 
 export const PRIVATE_ROUTE_INDEX = "/pvt";
@@ -32,9 +32,9 @@ export const PRIVATE_NAVS: Interface__NavItem[] = [
         path: `/dashboard`,
       },
       {
-        icon: ReceiptIcon,
-        labelKey: "navs.transaction",
-        path: `/transaction`,
+        icon: UsersIcon,
+        labelKey: "navs.user",
+        path: `/user`,
       },
       {
         icon: MapPinIcon,

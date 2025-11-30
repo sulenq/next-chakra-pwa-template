@@ -107,7 +107,7 @@ export interface Interface__TableOption {
     title: string;
     description: string;
     confirmLabel: string;
-    onChange: () => void;
+    onConfirm: () => void;
     confirmButtonProps?: BtnProps;
     loading?: boolean;
     disabled?: boolean;

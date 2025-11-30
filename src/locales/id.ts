@@ -286,7 +286,7 @@ const translations = {
   "navs": {
     "home": "Beranda",
     "dashboard": "Dashboard",
-    "transaction": "Transaksi",
+    "user": "Pengguna",
     "other": {
       "index": "Lainya",
       "category": "Kategori",

@@ -50,7 +50,7 @@ export const dummyUser = {
   updatedAt: "2025-11-12T04:20:00Z",
 };
 
-const dummyUsers = [
+export const dummyUsers = [
   {
     id: "101",
     avatar: [

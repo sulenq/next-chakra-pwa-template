@@ -8,9 +8,9 @@ export const navs = {
     id: "Dashboard",
     en: "Dashboard",
   },
-  transaction: {
-    id: "Transaksi",
-    en: "Transaction",
+  user: {
+    id: "Pengguna",
+    en: "User",
   },
   other: {
     index: {
