@@ -4,7 +4,10 @@ import { Avatar } from "@/components/ui/avatar";
 import { Field } from "@/components/ui/field";
 import { H1 } from "@/components/ui/heading";
 import { NavLink } from "@/components/ui/nav-link";
+import { LucideIcon } from "@/components/widget/Icon";
+import Logo from "@/components/widget/Logo";
 import { APP } from "@/constants/_meta";
+import { BASE_ICON_BOX_SIZE } from "@/constants/sizes";
 import useAuthMiddleware from "@/context/useAuthMiddleware";
 import useLang from "@/context/useLang";
 import { useThemeConfig } from "@/context/useThemeConfig";
@@ -21,6 +24,7 @@ import {
 } from "@chakra-ui/react";
 import { IconLock, IconUser } from "@tabler/icons-react";
 import { useFormik } from "formik";
+import { LogInIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 import * as yup from "yup";
 import { Btn } from "../ui/btn";
@@ -30,7 +34,6 @@ import { P } from "../ui/p";
 import { PasswordInput } from "../ui/password-input";
 import { StringInput } from "../ui/string-input";
 import ResetPasswordDisclosureTrigger from "./ResetPasswordDisclosure";
-import Logo from "@/components/widget/Logo";
 
 interface Props extends StackProps {}
 
@@ -225,6 +228,9 @@ const BasicAuthForm = (props: any) => {
           loading={loading}
           colorPalette={themeConfig.colorPalette}
         >
+          <Icon boxSize={BASE_ICON_BOX_SIZE}>
+            <LucideIcon icon={LogInIcon} />
+          </Icon>
           Sign in
         </Btn>
 

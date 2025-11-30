@@ -6,6 +6,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import FeedbackNoData from "@/components/widget/FeedbackNoData";
 import FeedbackNotFound from "@/components/widget/FeedbackNotFound";
 import FeedbackRetry from "@/components/widget/FeedbackRetry";
+import { LucideIcon } from "@/components/widget/Icon";
 import { ItemContainer } from "@/components/widget/ItemContainer";
 import { ItemHeaderContainer } from "@/components/widget/ItemHeaderContainer";
 import ItemHeaderTitle from "@/components/widget/ItemHeaderTitle";
@@ -15,12 +16,13 @@ import { Pagination } from "@/components/widget/Pagination";
 import { dummyAllActivityLogs } from "@/constants/dummyData";
 import { Enum__ActivityAction } from "@/constants/enums";
 import { Interface__ActivityLog } from "@/constants/interfaces";
+import { BASE_ICON_BOX_SIZE } from "@/constants/sizes";
 import useLang from "@/context/useLang";
 import useDataState from "@/hooks/useDataState";
 import { isEmptyArray } from "@/utils/array";
 import { formatDate } from "@/utils/formatter";
 import { HStack, Icon } from "@chakra-ui/react";
-import { IconActivity } from "@tabler/icons-react";
+import { ActivityIcon } from "lucide-react";
 
 const ActivityLog = () => {
   // Contexts
@@ -109,8 +111,8 @@ const ActivityLog = () => {
     <ItemContainer flex={1}>
       <ItemHeaderContainer>
         <HStack>
-          <Icon boxSize={5}>
-            <IconActivity stroke={1.5} />
+          <Icon boxSize={BASE_ICON_BOX_SIZE}>
+            <LucideIcon icon={ActivityIcon} />
           </Icon>
           <ItemHeaderTitle>{l.activity_logs}</ItemHeaderTitle>
         </HStack>

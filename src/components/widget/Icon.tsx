@@ -6,7 +6,7 @@ interface Props__LucideIcon extends LucideProps {
 
 export function LucideIcon({
   icon: Icon,
-  size = 18,
+  size = 24,
   strokeWidth = 1.75,
   ...props
 }: Props__LucideIcon) {

@@ -22,6 +22,7 @@ import { ClampText } from "@/components/widget/ClampText";
 import FeedbackNoData from "@/components/widget/FeedbackNoData";
 import FeedbackNotFound from "@/components/widget/FeedbackNotFound";
 import FeedbackRetry from "@/components/widget/FeedbackRetry";
+import { LucideIcon } from "@/components/widget/Icon";
 import { ImgViewer } from "@/components/widget/ImgViewer";
 import { ItemContainer } from "@/components/widget/ItemContainer";
 import { ItemHeaderContainer } from "@/components/widget/ItemHeaderContainer";
@@ -41,6 +42,7 @@ import {
   Interface__User,
 } from "@/constants/interfaces";
 import { SVGS_PATH } from "@/constants/paths";
+import { BASE_ICON_BOX_SIZE } from "@/constants/sizes";
 import useLang from "@/context/useLang";
 import { useThemeConfig } from "@/context/useThemeConfig";
 import useBackOnClose from "@/hooks/useBackOnClose";
@@ -51,14 +53,14 @@ import { disclosureId } from "@/utils/disclosure";
 import { formatDate } from "@/utils/formatter";
 import { imgUrl } from "@/utils/url";
 import { Circle, HStack, Icon, useDisclosure } from "@chakra-ui/react";
-import {
-  IconActivity,
-  IconArrowDownDashed,
-  IconArrowUpDashed,
-  IconLogin2,
-  IconUser,
-} from "@tabler/icons-react";
 import { useFormik } from "formik";
+import {
+  ActivityIcon,
+  ArrowDown,
+  ArrowUp,
+  LogInIcon,
+  UserIcon,
+} from "lucide-react";
 import { useEffect } from "react";
 import * as yup from "yup";
 
@@ -193,8 +195,8 @@ const PersonalInformation = (props: Props__PersonalInformation) => {
     <ItemContainer>
       <ItemHeaderContainer>
         <HStack>
-          <Icon boxSize={5}>
-            <IconUser stroke={1.5} />
+          <Icon boxSize={BASE_ICON_BOX_SIZE}>
+            <LucideIcon icon={UserIcon} />
           </Icon>
           <ItemHeaderTitle>{l.personal_information}</ItemHeaderTitle>
         </HStack>
@@ -332,11 +334,14 @@ const AuthLog = () => {
               borderColor={"border.subtle"}
             >
               <Circle p={1} bg={isSignin ? "bg.success" : "bg.error"}>
-                <Icon color={isSignin ? "fg.success" : "fg.error"}>
+                <Icon
+                  boxSize={BASE_ICON_BOX_SIZE}
+                  color={isSignin ? "fg.success" : "fg.error"}
+                >
                   {isSignin ? (
-                    <IconArrowDownDashed stroke={1.5} />
+                    <LucideIcon icon={ArrowDown} />
                   ) : (
-                    <IconArrowUpDashed stroke={1.5} />
+                    <LucideIcon icon={ArrowUp} />
                   )}
                 </Icon>
               </Circle>
@@ -365,8 +370,8 @@ const AuthLog = () => {
     <ItemContainer>
       <ItemHeaderContainer>
         <HStack>
-          <Icon boxSize={5}>
-            <IconLogin2 stroke={1.5} />
+          <Icon boxSize={BASE_ICON_BOX_SIZE}>
+            <LucideIcon icon={LogInIcon} />
           </Icon>
           <ItemHeaderTitle>{l.my_auth_logs}</ItemHeaderTitle>
         </HStack>
@@ -390,7 +395,7 @@ const AuthLog = () => {
       <HStack
         justify={"space-between"}
         wrap={"wrap"}
-        p={"6px"}
+        p={2}
         borderTop={"1px solid"}
         borderColor={"border.muted"}
       >
@@ -494,8 +499,8 @@ const ActivityLog = () => {
     <ItemContainer>
       <ItemHeaderContainer>
         <HStack>
-          <Icon boxSize={5}>
-            <IconActivity stroke={1.5} />
+          <Icon boxSize={BASE_ICON_BOX_SIZE}>
+            <LucideIcon icon={ActivityIcon} />
           </Icon>
           <ItemHeaderTitle>{l.my_activity_logs}</ItemHeaderTitle>
         </HStack>

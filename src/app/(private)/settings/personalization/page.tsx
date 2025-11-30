@@ -10,6 +10,7 @@ import { SelectInput } from "@/components/ui/select-input";
 import { StringInput } from "@/components/ui/string-input";
 import { Switch } from "@/components/ui/switch";
 import { TimePickerInput } from "@/components/ui/time-picker-input";
+import { LucideIcon } from "@/components/widget/Icon";
 import { DotIndicator } from "@/components/widget/Indicator";
 import { ItemContainer } from "@/components/widget/ItemContainer";
 import { ItemHeaderContainer } from "@/components/widget/ItemHeaderContainer";
@@ -19,6 +20,7 @@ import { SettingsItemContainer } from "@/components/widget/SettingsItemContainer
 import { COLOR_PALETTES } from "@/constants/colors";
 import { Interface__SelectOption } from "@/constants/interfaces";
 import { OPTIONS_RELIGION } from "@/constants/selectOptions";
+import { BASE_ICON_BOX_SIZE } from "@/constants/sizes";
 import useADM from "@/context/useADM";
 import useLang from "@/context/useLang";
 import { useThemeConfig } from "@/context/useThemeConfig";
@@ -31,11 +33,11 @@ import {
   SimpleGrid,
 } from "@chakra-ui/react";
 import {
-  IconColorSwatch,
-  IconLayout,
-  IconMoon2,
-  IconRadiusTopLeft,
-} from "@tabler/icons-react";
+  EclipseIcon,
+  LayoutPanelLeftIcon,
+  SquareRoundCornerIcon,
+  SwatchBookIcon,
+} from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
 const ManualDarkModeSetting = () => {
@@ -163,8 +165,8 @@ const DarkMode = () => {
     <ItemContainer>
       <ItemHeaderContainer>
         <HStack>
-          <Icon boxSize={5}>
-            <IconMoon2 stroke={1.5} />
+          <Icon boxSize={BASE_ICON_BOX_SIZE}>
+            <LucideIcon icon={EclipseIcon} />
           </Icon>
 
           <ItemHeaderTitle>{l.dark_mode}</ItemHeaderTitle>
@@ -187,8 +189,8 @@ const Theme = () => {
     <ItemContainer>
       <ItemHeaderContainer>
         <HStack>
-          <Icon boxSize={5}>
-            <IconColorSwatch stroke={1.5} />
+          <Icon boxSize={BASE_ICON_BOX_SIZE}>
+            <LucideIcon icon={SwatchBookIcon} />
           </Icon>
           <ItemHeaderTitle>{l.theme}</ItemHeaderTitle>
         </HStack>
@@ -371,8 +373,8 @@ const Rounded = () => {
     <ItemContainer ref={containerRef}>
       <ItemHeaderContainer>
         <HStack>
-          <Icon boxSize={5}>
-            <IconRadiusTopLeft />
+          <Icon boxSize={BASE_ICON_BOX_SIZE}>
+            <LucideIcon icon={SquareRoundCornerIcon} />
           </Icon>
           <ItemHeaderTitle>{l.rounded}</ItemHeaderTitle>
         </HStack>
@@ -409,8 +411,8 @@ const ExampleUI = () => {
     <ItemContainer>
       <ItemHeaderContainer>
         <HStack>
-          <Icon boxSize={5}>
-            <IconLayout stroke={1.5} />
+          <Icon boxSize={BASE_ICON_BOX_SIZE}>
+            <LucideIcon icon={LayoutPanelLeftIcon} />
           </Icon>
           <ItemHeaderTitle>{l.example_UI}</ItemHeaderTitle>
         </HStack>

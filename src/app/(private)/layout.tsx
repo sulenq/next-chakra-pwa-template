@@ -29,6 +29,7 @@ import { Tooltip, TooltipProps } from "@/components/ui/tooltip";
 import Clock from "@/components/widget/Clock";
 import FeedbackNotFound from "@/components/widget/FeedbackNotFound";
 import HScroll from "@/components/widget/HScroll";
+import { LucideIcon } from "@/components/widget/Icon";
 import { BottomIndicator, LeftIndicator } from "@/components/widget/Indicator";
 import Logo from "@/components/widget/Logo";
 import { MiniMyProfile } from "@/components/widget/MiniMyProfile";
@@ -36,9 +37,12 @@ import { NavBreadcrumb, TopBar } from "@/components/widget/Page";
 import { Today } from "@/components/widget/Today";
 import { VerifyingScreen } from "@/components/widget/VerifyingScreen";
 import { APP } from "@/constants/_meta";
-import { PRIVATE_NAVS } from "@/constants/navs";
+import { OTHER_PRIVATE_NAVS, PRIVATE_NAVS } from "@/constants/navs";
 import { Props__Layout, Props__NavLink } from "@/constants/props";
-import { FIREFOX_SCROLL_Y_CLASS_PR_PREFIX } from "@/constants/sizes";
+import {
+  BASE_ICON_BOX_SIZE,
+  FIREFOX_SCROLL_Y_CLASS_PR_PREFIX,
+} from "@/constants/sizes";
 import useAuthMiddleware from "@/context/useAuthMiddleware";
 import useLang from "@/context/useLang";
 import useNavs from "@/context/useNavs";
@@ -58,8 +62,8 @@ import {
   IconSelector,
   IconServer2,
   IconSettings,
-  IconUser,
 } from "@tabler/icons-react";
+import { UserIcon } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
 import { Fragment, useEffect, useRef, useState } from "react";
 
@@ -340,7 +344,7 @@ const MobileLayout = (props: any) => {
               <MobileNavLink flex={1} color={"fg.muted"}>
                 {!user?.avatar?.filePath && (
                   <Icon boxSize={6}>
-                    <IconUser stroke={1.5} />
+                    <LucideIcon icon={UserIcon} />
                   </Icon>
                 )}
 
@@ -532,7 +536,7 @@ const DesktopLayout = (props: any) => {
                 onClick={toggleNavsExpanded}
                 mr={navsExpanded ? "-3px" : ""}
               >
-                <Icon boxSize={5}>
+                <Icon boxSize={BASE_ICON_BOX_SIZE}>
                   <IconBoxAlignLeft stroke={1.5} />
                 </Icon>
               </Btn>
@@ -608,8 +612,8 @@ const DesktopLayout = (props: any) => {
                                   )}
 
                                   {nav.icon && (
-                                    <Icon boxSize={5}>
-                                      <nav.icon strokeWidth={1.5} />
+                                    <Icon boxSize={BASE_ICON_BOX_SIZE}>
+                                      <LucideIcon icon={nav.icon} />
                                     </Icon>
                                   )}
 
@@ -622,7 +626,7 @@ const DesktopLayout = (props: any) => {
                                           : "d2"
                                       }
                                     >
-                                      <IconCircleFilled strokeWidth={1.5} />
+                                      <IconCircleFilled />
                                     </Icon>
                                   )}
 
@@ -666,8 +670,8 @@ const DesktopLayout = (props: any) => {
                                     >
                                       {isMainNavsActive && <LeftIndicator />}
 
-                                      <Icon boxSize={5}>
-                                        <nav.icon stroke={1.5} />
+                                      <Icon boxSize={BASE_ICON_BOX_SIZE}>
+                                        <LucideIcon icon={nav.icon} />
                                       </Icon>
                                     </Btn>
                                   </MenuTrigger>
@@ -776,8 +780,8 @@ const DesktopLayout = (props: any) => {
                                     {isMainNavsActive && <LeftIndicator />}
 
                                     <HStack gap={4}>
-                                      <Icon boxSize={5}>
-                                        <nav.icon />
+                                      <Icon boxSize={BASE_ICON_BOX_SIZE}>
+                                        <LucideIcon icon={nav.icon} />
                                       </Icon>
 
                                       <P lineClamp={1} textAlign={"left"}>
@@ -866,7 +870,9 @@ const DesktopLayout = (props: any) => {
 
                                                       <Center
                                                         flexShrink={0}
-                                                        boxSize={5}
+                                                        boxSize={
+                                                          BASE_ICON_BOX_SIZE
+                                                        }
                                                         zIndex={2}
                                                       >
                                                         <Icon
@@ -938,57 +944,35 @@ const DesktopLayout = (props: any) => {
           </CContainer>
 
           <CContainer gap={1} mt={"auto"}>
-            <NavLink to={`/master-data`} w={"full"}>
-              <NavTooltip content={"Master Data"}>
-                <Btn
-                  clicky={false}
-                  gap={4}
-                  justifyContent={"start"}
-                  variant={"ghost"}
-                  colorPalette={NAVS_COLOR_PALETTE}
-                  px={2}
-                  pos={"relative"}
-                >
-                  {pathname.includes(`/master-data`) && <LeftIndicator />}
+            {OTHER_PRIVATE_NAVS[0].list.map((nav) => {
+              return (
+                <NavLink key={nav.path} to={nav.path} w={"full"}>
+                  <NavTooltip content={pluckString(l, nav.labelKey)}>
+                    <Btn
+                      clicky={false}
+                      gap={4}
+                      justifyContent={"start"}
+                      variant={"ghost"}
+                      colorPalette={NAVS_COLOR_PALETTE}
+                      px={2}
+                      pos={"relative"}
+                    >
+                      {pathname.includes(nav.path) && <LeftIndicator />}
 
-                  <Icon boxSize={5}>
-                    <IconServer2 stroke={1.5} />
-                  </Icon>
+                      <Icon boxSize={BASE_ICON_BOX_SIZE}>
+                        <LucideIcon icon={nav.icon} />
+                      </Icon>
 
-                  {navsExpanded && (
-                    <P lineClamp={1} textAlign={"left"}>
-                      Master Data
-                    </P>
-                  )}
-                </Btn>
-              </NavTooltip>
-            </NavLink>
-
-            <NavLink to={`/settings`} w={"full"}>
-              <NavTooltip content={l.settings}>
-                <Btn
-                  clicky={false}
-                  gap={4}
-                  justifyContent={"start"}
-                  variant={"ghost"}
-                  colorPalette={NAVS_COLOR_PALETTE}
-                  px={2}
-                  pos={"relative"}
-                >
-                  {pathname.includes(`/settings`) && <LeftIndicator />}
-
-                  <Icon boxSize={5}>
-                    <IconSettings stroke={1.5} />
-                  </Icon>
-
-                  {navsExpanded && (
-                    <P lineClamp={1} textAlign={"left"}>
-                      {l.settings}
-                    </P>
-                  )}
-                </Btn>
-              </NavTooltip>
-            </NavLink>
+                      {navsExpanded && (
+                        <P lineClamp={1} textAlign={"left"}>
+                          {pluckString(l, nav.labelKey)}
+                        </P>
+                      )}
+                    </Btn>
+                  </NavTooltip>
+                </NavLink>
+              );
+            })}
           </CContainer>
 
           <CContainer>
@@ -1021,8 +1005,8 @@ const DesktopLayout = (props: any) => {
                     mx={"auto"}
                   >
                     {!user?.avatar?.filePath && (
-                      <Icon boxSize={5}>
-                        <IconUser stroke={1.5} />
+                      <Icon boxSize={BASE_ICON_BOX_SIZE}>
+                        <LucideIcon icon={UserIcon} />
                       </Icon>
                     )}
 
@@ -1045,7 +1029,7 @@ const DesktopLayout = (props: any) => {
                           </P>
                         </CContainer>
 
-                        <Icon boxSize={5} color={"fg.subtle"}>
+                        <Icon boxSize={BASE_ICON_BOX_SIZE} color={"fg.subtle"}>
                           <IconSelector stroke={1.5} />
                         </Icon>
                       </>

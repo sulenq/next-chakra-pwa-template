@@ -14,4 +14,4 @@ export const FIREFOX_SCROLL_Y_CLASS_PR_PREFIX = "6px";
 export const BLUR_RADIUS = "0px";
 export const TOP_BAR_H = "52px";
 export const TOP_TITLE_H = "60px";
-export const BASE_ICON_BOX_SIZE = 5;
+export const BASE_ICON_BOX_SIZE = 4.5;

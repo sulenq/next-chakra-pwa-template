@@ -7,8 +7,10 @@ import { Img } from "@/components/ui/img";
 import { NavLink } from "@/components/ui/nav-link";
 import { P } from "@/components/ui/p";
 import { ConfirmationDisclosureTrigger } from "@/components/widget/ConfirmationDisclosure";
+import { LucideIcon } from "@/components/widget/Icon";
 import { DotIndicator } from "@/components/widget/Indicator";
 import { SVGS_PATH } from "@/constants/paths";
+import { BASE_ICON_BOX_SIZE } from "@/constants/sizes";
 import useAuthMiddleware from "@/context/useAuthMiddleware";
 import useLang from "@/context/useLang";
 import { useThemeConfig } from "@/context/useThemeConfig";
@@ -16,7 +18,7 @@ import useRequest from "@/hooks/useRequest";
 import { getUserData } from "@/utils/auth";
 import { back, removeStorage } from "@/utils/client";
 import { Icon, StackProps } from "@chakra-ui/react";
-import { IconLogout, IconUser } from "@tabler/icons-react";
+import { LogOutIcon, UserIcon } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
 
 export const MiniMyProfile = (props: StackProps) => {
@@ -101,8 +103,8 @@ export const MiniMyProfile = (props: StackProps) => {
             justifyContent={"start"}
             pos={"relative"}
           >
-            <Icon boxSize={5}>
-              <IconUser stroke={1.5} />
+            <Icon boxSize={BASE_ICON_BOX_SIZE}>
+              <LucideIcon icon={UserIcon} />
             </Icon>
 
             {l.my_profile}
@@ -133,8 +135,8 @@ export const MiniMyProfile = (props: StackProps) => {
             color={"fg.error"}
             justifyContent={"start"}
           >
-            <Icon boxSize={5}>
-              <IconLogout stroke={1.5} />
+            <Icon boxSize={BASE_ICON_BOX_SIZE}>
+              <LucideIcon icon={LogOutIcon} />
             </Icon>
             Sign Out
           </Btn>

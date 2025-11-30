@@ -6,6 +6,7 @@ import { P } from "@/components/ui/p";
 import SearchInput from "@/components/ui/search-input";
 import { toaster } from "@/components/ui/toaster";
 import FeedbackNotFound from "@/components/widget/FeedbackNotFound";
+import { LucideIcon } from "@/components/widget/Icon";
 import { DotIndicator } from "@/components/widget/Indicator";
 import { ItemContainer } from "@/components/widget/ItemContainer";
 import { ItemHeaderContainer } from "@/components/widget/ItemHeaderContainer";
@@ -13,7 +14,10 @@ import ItemHeaderTitle from "@/components/widget/ItemHeaderTitle";
 import { LocalSettingsHelperText } from "@/components/widget/LocalSettingsHelperText";
 import { DATE_FORMATS } from "@/constants/dateFormats";
 import { LANGUAGES } from "@/constants/languages";
-import { FIREFOX_SCROLL_Y_CLASS_PR_PREFIX } from "@/constants/sizes";
+import {
+  BASE_ICON_BOX_SIZE,
+  FIREFOX_SCROLL_Y_CLASS_PR_PREFIX,
+} from "@/constants/sizes";
 import { TIME_FORMATS } from "@/constants/timeFormats";
 import { TIME_ZONES } from "@/constants/timezone";
 import {
@@ -34,14 +38,13 @@ import { formatDate, formatTime } from "@/utils/formatter";
 import { capitalizeWords, pluckString } from "@/utils/string";
 import { getLocalTimezone, makeTime } from "@/utils/time";
 import { chakra, HStack, Icon, SimpleGrid, Text } from "@chakra-ui/react";
+import { IconRulerMeasure, IconSparkles } from "@tabler/icons-react";
 import {
-  IconCalendar,
-  IconClock12,
-  IconLanguage,
-  IconRulerMeasure,
-  IconSparkles,
-  IconTimezone,
-} from "@tabler/icons-react";
+  CalendarIcon,
+  GlobeIcon,
+  LanguagesIcon,
+  RulerDimensionLineIcon,
+} from "lucide-react";
 import { useMemo, useState } from "react";
 
 const Language = () => {
@@ -53,8 +56,8 @@ const Language = () => {
     <ItemContainer>
       <ItemHeaderContainer>
         <HStack>
-          <Icon boxSize={5}>
-            <IconLanguage stroke={1.5} />
+          <Icon boxSize={BASE_ICON_BOX_SIZE}>
+            <LucideIcon icon={LanguagesIcon} />
           </Icon>
           <ItemHeaderTitle>{l.language}</ItemHeaderTitle>
         </HStack>
@@ -121,8 +124,8 @@ const Timezone = () => {
     <ItemContainer>
       <ItemHeaderContainer withUtils>
         <HStack>
-          <Icon boxSize={5}>
-            <IconTimezone stroke={1.5} />
+          <Icon boxSize={BASE_ICON_BOX_SIZE}>
+            <LucideIcon icon={GlobeIcon} />
           </Icon>
 
           <ItemHeaderTitle>{capitalizeWords(l.timezone)}</ItemHeaderTitle>
@@ -232,8 +235,8 @@ const DateFormat = () => {
     <ItemContainer>
       <ItemHeaderContainer>
         <HStack>
-          <Icon boxSize={5}>
-            <IconCalendar stroke={1.5} />
+          <Icon boxSize={BASE_ICON_BOX_SIZE}>
+            <LucideIcon icon={CalendarIcon} />
           </Icon>
           <ItemHeaderTitle>{l.date_format}</ItemHeaderTitle>
         </HStack>
@@ -295,8 +298,8 @@ const TimeFormat = () => {
     <ItemContainer>
       <ItemHeaderContainer>
         <HStack>
-          <Icon boxSize={5}>
-            <IconClock12 stroke={1.5} />
+          <Icon boxSize={BASE_ICON_BOX_SIZE}>
+            <LucideIcon icon={RulerDimensionLineIcon} />
           </Icon>
           <ItemHeaderTitle>{l.time_format}</ItemHeaderTitle>
         </HStack>

@@ -7,11 +7,13 @@ import { NavLink } from "@/components/ui/nav-link";
 import { P } from "@/components/ui/p";
 import SearchInput from "@/components/ui/search-input";
 import FeedbackNotFound from "@/components/widget/FeedbackNotFound";
+import { LucideIcon } from "@/components/widget/Icon";
 import { LeftIndicator } from "@/components/widget/Indicator";
 import { PageContainer, PageTitle } from "@/components/widget/Page";
 import { APP } from "@/constants/_meta";
 import { OTHER_PRIVATE_NAVS } from "@/constants/navs";
 import { Props__Layout } from "@/constants/props";
+import { BASE_ICON_BOX_SIZE } from "@/constants/sizes";
 import useLang from "@/context/useLang";
 import { useSettingsPageContainer } from "@/context/useSettingsPageContainer";
 import { useContainerDimension } from "@/hooks/useContainerDimension";
@@ -87,8 +89,8 @@ const NavsList = (props: any) => {
                     >
                       {isActive && <LeftIndicator />}
 
-                      <Icon boxSize={5}>
-                        <nav.icon stroke={1.5} />
+                      <Icon boxSize={BASE_ICON_BOX_SIZE}>
+                        <LucideIcon icon={nav.icon} />
                       </Icon>
 
                       <P textAlign={"left"}>{pluckString(l, nav.labelKey)}</P>

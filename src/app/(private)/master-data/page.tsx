@@ -2,9 +2,10 @@
 
 import { CContainer } from "@/components/ui/c-container";
 import FeedbackState from "@/components/widget/FeedbackState";
+import { LucideIcon } from "@/components/widget/Icon";
 import useLang from "@/context/useLang";
 import { useThemeConfig } from "@/context/useThemeConfig";
-import { IconServer2 } from "@tabler/icons-react";
+import { DatabaseIcon } from "lucide-react";
 
 const SettingsRoute = () => {
   // Contexts
@@ -22,7 +23,7 @@ const SettingsRoute = () => {
       rounded={themeConfig.radii.container}
     >
       <FeedbackState
-        icon={<IconServer2 stroke={1.8} />}
+        icon={<LucideIcon icon={DatabaseIcon} />}
         title={"Master Data"}
         description={l.msg_master_data_index_route}
       />

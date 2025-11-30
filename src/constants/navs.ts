@@ -1,19 +1,19 @@
 import { Interface__NavItem } from "@/constants/interfaces";
 import {
-  IconActivity,
-  IconAnalyze,
-  IconLanguage,
-  IconLayersIntersect,
-  IconMapPin,
-  IconPalette,
-  IconReceipt2,
-  IconServer2,
-  IconSettings,
-  IconShieldHalf,
-  IconUser,
-  IconUserCog,
-} from "@tabler/icons-react";
-import { House } from "lucide-react";
+  ActivityIcon,
+  BanknoteArrowDownIcon,
+  BlocksIcon,
+  DatabaseIcon,
+  House,
+  LanguagesIcon,
+  LayoutDashboardIcon,
+  MapPinIcon,
+  PaletteIcon,
+  SettingsIcon,
+  ShieldHalfIcon,
+  UserCogIcon,
+  UserIcon,
+} from "lucide-react";
 
 export const PRIVATE_ROUTE_INDEX = "/pvt";
 
@@ -27,17 +27,17 @@ export const PRIVATE_NAVS: Interface__NavItem[] = [
         path: `/home`,
       },
       {
-        icon: IconAnalyze,
+        icon: LayoutDashboardIcon,
         labelKey: "navs.dashboard",
         path: `/dashboard`,
       },
       {
-        icon: IconReceipt2,
+        icon: BanknoteArrowDownIcon,
         labelKey: "navs.transaction",
         path: `/transaction`,
       },
       {
-        icon: IconMapPin,
+        icon: MapPinIcon,
         labelKey: "navs.other.index",
         path: `/other-navs`,
         subMenus: [
@@ -68,7 +68,7 @@ export const OTHER_PRIVATE_NAVS: Interface__NavItem[] = [
     groupLabelKey: "other",
     list: [
       {
-        icon: IconServer2,
+        icon: DatabaseIcon,
         labelKey: "navs.master_data",
         path: `/master-data`,
         subMenus: [
@@ -76,7 +76,7 @@ export const OTHER_PRIVATE_NAVS: Interface__NavItem[] = [
             groupLabelKey: "master_data_navs.hr.index",
             list: [
               {
-                icon: IconUserCog,
+                icon: UserCogIcon,
                 labelKey: "master_data_navs.hr.employment_status",
                 path: `/master-data/employment-status`,
                 backPath: `/master-data`,
@@ -86,7 +86,7 @@ export const OTHER_PRIVATE_NAVS: Interface__NavItem[] = [
         ],
       },
       {
-        icon: IconSettings,
+        icon: SettingsIcon,
         labelKey: "navs.settings",
         path: `/settings`,
         subMenus: [
@@ -94,25 +94,25 @@ export const OTHER_PRIVATE_NAVS: Interface__NavItem[] = [
             groupLabelKey: "settings_navs.main.index",
             list: [
               {
-                icon: IconUser,
+                icon: UserIcon,
                 labelKey: "my_profile",
                 path: `/settings/profile`,
                 backPath: `/settings`,
               },
               {
-                icon: IconPalette,
+                icon: PaletteIcon,
                 labelKey: "settings_navs.main.personalization",
                 path: `/settings/personalization`,
                 backPath: `/settings`,
               },
               {
-                icon: IconLanguage,
+                icon: LanguagesIcon,
                 labelKey: "settings_navs.main.regional",
                 path: `/settings/regional`,
                 backPath: `/settings`,
               },
               {
-                icon: IconShieldHalf,
+                icon: ShieldHalfIcon,
                 labelKey: "settings_navs.main.app_permissions",
                 path: `/settings/app-permissions`,
                 backPath: `/settings`,
@@ -123,19 +123,19 @@ export const OTHER_PRIVATE_NAVS: Interface__NavItem[] = [
             groupLabelKey: "settings_navs.system.index",
             list: [
               {
-                icon: IconUserCog,
+                icon: UserCogIcon,
                 labelKey: "settings_navs.system.account_role",
                 path: `/settings/account-role`,
                 backPath: `/settings`,
               },
               {
-                icon: IconLayersIntersect,
+                icon: BlocksIcon,
                 labelKey: "settings_navs.system.integration",
                 path: `/settings/integration`,
                 backPath: `/settings`,
               },
               {
-                icon: IconActivity,
+                icon: ActivityIcon,
                 labelKey: "settings_navs.system.activity_log",
                 path: `/settings/activity-log`,
                 backPath: `/settings`,

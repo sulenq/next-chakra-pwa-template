@@ -2,9 +2,10 @@
 
 import { CContainer } from "@/components/ui/c-container";
 import FeedbackState from "@/components/widget/FeedbackState";
+import { LucideIcon } from "@/components/widget/Icon";
 import useLang from "@/context/useLang";
 import { useThemeConfig } from "@/context/useThemeConfig";
-import { IconSettings } from "@tabler/icons-react";
+import { SettingsIcon } from "lucide-react";
 
 const SettingsRoute = () => {
   // Contexts
@@ -22,7 +23,7 @@ const SettingsRoute = () => {
       rounded={themeConfig.radii.container}
     >
       <FeedbackState
-        icon={<IconSettings stroke={1.8} />}
+        icon={<LucideIcon icon={SettingsIcon} />}
         title={l.settings}
         description={l.msg_settings_index_route}
       />

@@ -8,17 +8,19 @@ import { Textarea } from "@/components/ui/textarea";
 import FeedbackNoData from "@/components/widget/FeedbackNoData";
 import FeedbackNotFound from "@/components/widget/FeedbackNotFound";
 import FeedbackRetry from "@/components/widget/FeedbackRetry";
+import { LucideIcon } from "@/components/widget/Icon";
 import { ItemContainer } from "@/components/widget/ItemContainer";
 import { ItemHeaderContainer } from "@/components/widget/ItemHeaderContainer";
 import ItemHeaderTitle from "@/components/widget/ItemHeaderTitle";
+import { BASE_ICON_BOX_SIZE } from "@/constants/sizes";
 import useLang from "@/context/useLang";
 import useRenderTrigger from "@/context/useRenderTrigger";
 import { useThemeConfig } from "@/context/useThemeConfig";
 import useDataState from "@/hooks/useDataState";
 import useRequest from "@/hooks/useRequest";
 import { FieldsetRoot, HStack, Icon } from "@chakra-ui/react";
-import { IconKey } from "@tabler/icons-react";
 import { useFormik } from "formik";
+import { KeyRoundIcon } from "lucide-react";
 import { useEffect } from "react";
 import * as yup from "yup";
 
@@ -79,8 +81,8 @@ const APIKeys = (props: any) => {
     <ItemContainer {...restProps}>
       <ItemHeaderContainer>
         <HStack>
-          <Icon boxSize={5}>
-            <IconKey stroke={1.5} />
+          <Icon boxSize={BASE_ICON_BOX_SIZE}>
+            <LucideIcon icon={KeyRoundIcon} />
           </Icon>
           <ItemHeaderTitle>API Keys</ItemHeaderTitle>
         </HStack>
