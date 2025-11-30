@@ -954,7 +954,6 @@ const DesktopLayout = (props: any) => {
           </CContainer>
 
           <CContainer>
-            {navsExpanded && <Divider my={2} />}
             <Divider my={2} />
 
             <CContainer mt={1}>
