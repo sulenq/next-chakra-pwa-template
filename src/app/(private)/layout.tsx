@@ -56,12 +56,8 @@ import { setStorage } from "@/utils/client";
 import { pluckString } from "@/utils/string";
 import { getActiveNavs, imgUrl } from "@/utils/url";
 import { Box, Center, HStack, Icon } from "@chakra-ui/react";
-import {
-  IconBoxAlignLeft,
-  IconCircleFilled,
-  IconSelector,
-} from "@tabler/icons-react";
-import { UserIcon } from "lucide-react";
+import { IconCircleFilled, IconSelector } from "@tabler/icons-react";
+import { SidebarCloseIcon, SidebarOpenIcon, UserIcon } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
 import { Fragment, useEffect, useRef, useState } from "react";
 
@@ -515,10 +511,11 @@ const DesktopLayout = (props: any) => {
                 variant={"ghost"}
                 colorPalette={NAVS_COLOR_PALETTE}
                 onClick={toggleNavsExpanded}
-                mr={navsExpanded ? "-3px" : ""}
               >
                 <Icon boxSize={BASE_ICON_BOX_SIZE}>
-                  <IconBoxAlignLeft stroke={1.5} />
+                  <LucideIcon
+                    icon={navsExpanded ? SidebarCloseIcon : SidebarOpenIcon}
+                  />
                 </Icon>
               </Btn>
             </Tooltip>
@@ -958,6 +955,7 @@ const DesktopLayout = (props: any) => {
 
           <CContainer>
             {navsExpanded && <Divider my={2} />}
+            <Divider my={2} />
 
             <CContainer mt={1}>
               <PopoverRoot
@@ -983,7 +981,6 @@ const DesktopLayout = (props: any) => {
                     justify={navsExpanded ? "" : "center"}
                     transition={"200ms"}
                     pos={"relative"}
-                    mx={"auto"}
                   >
                     {!user?.avatar?.filePath && (
                       <Icon boxSize={BASE_ICON_BOX_SIZE}>
