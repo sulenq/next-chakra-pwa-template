@@ -120,7 +120,7 @@ export const MiniMyProfile = (props: StackProps) => {
           title="Sign out"
           description={l.msg_signout}
           confirmLabel="Sign out"
-          onChange={onSignout}
+          onConfirm={onSignout}
           confirmButtonProps={{
             color: "fg.error",
             colorPalette: "gray",

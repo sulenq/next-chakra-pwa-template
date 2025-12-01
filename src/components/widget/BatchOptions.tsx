@@ -116,7 +116,7 @@ export const BatchOptions = (props: Props__BatchOptions) => {
                 title={confirmation.title}
                 description={confirmation.description}
                 confirmLabel={confirmation.confirmLabel}
-                onChange={confirmation.onChange}
+                onConfirm={confirmation.onConfirm}
                 confirmButtonProps={confirmation.confirmButtonProps}
                 loading={confirmation.loading}
                 disabled={disabled}

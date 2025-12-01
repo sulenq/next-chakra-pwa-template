@@ -12,6 +12,7 @@ import { DisclosureHeaderContent } from "@/components/ui/disclosure-header-conte
 import { FieldsetRoot } from "@/components/ui/field";
 import { MenuItem } from "@/components/ui/menu";
 import SearchInput from "@/components/ui/search-input";
+import { Tooltip } from "@/components/ui/tooltip";
 import { ConfirmationDisclosureTrigger } from "@/components/widget/ConfirmationDisclosure";
 import { DataDisplayToggle } from "@/components/widget/DataDisplayToggle";
 import { DataGrid } from "@/components/widget/DataGrid";
@@ -69,19 +70,52 @@ type Interface__Data = any;
 
 const Create = () => {
   // Contexts
+  const { l } = useLang();
   const { themeConfig } = useThemeConfig();
 
   return (
     <>
-      <Btn size={"sm"} pl={3} colorPalette={themeConfig.colorPalette}>
-        <Icon boxSize={BASE_ICON_BOX_SIZE}>
-          <LucideIcon icon={PlusIcon} />
-        </Icon>
-        Add
-      </Btn>
+      <Tooltip content={l.add}>
+        <Btn iconButton size={"sm"} colorPalette={themeConfig.colorPalette}>
+          <Icon boxSize={BASE_ICON_BOX_SIZE}>
+            <LucideIcon icon={PlusIcon} />
+          </Icon>
+          {/* Add */}
+        </Btn>
+      </Tooltip>
     </>
   );
 };
+const DataUtils = (props: any) => {
+  // Props
+  const { filter, setFilter, ...restProps } = props;
+
+  // TODO use filter state
+  console.debug({ filter, setFilter });
+
+  return (
+    <HStack {...restProps}>
+      <SearchInput
+        inputProps={{
+          size: "sm",
+        }}
+      />
+
+      <Btn iconButton variant={"outline"} size={"sm"}>
+        <Icon boxSize={BASE_ICON_BOX_SIZE}>
+          <LucideIcon icon={ListFilterIcon} />
+        </Icon>
+      </Btn>
+      <Btn iconButton variant={"outline"} size={"sm"}>
+        <Icon boxSize={BASE_ICON_BOX_SIZE}>
+          <LucideIcon icon={ArrowDownAz} />
+        </Icon>
+      </Btn>
+      <DataDisplayToggle iconButton navKey={PREFIX_ID} size={"sm"} />
+    </HStack>
+  );
+};
+
 const Update = (props: any) => {
   const ID = `${PREFIX_ID}_update`;
 
@@ -327,35 +361,6 @@ const Delete = (props: any) => {
   );
 };
 
-const DataUtils = (props: any) => {
-  // Props
-  const { filter, setFilter, ...restProps } = props;
-
-  // TODO use filter state
-  console.debug(filter, setFilter);
-
-  return (
-    <HStack {...restProps}>
-      <SearchInput
-        inputProps={{
-          size: "sm",
-        }}
-      />
-
-      <Btn iconButton variant={"outline"} size={"sm"}>
-        <Icon boxSize={BASE_ICON_BOX_SIZE}>
-          <LucideIcon icon={ListFilterIcon} />
-        </Icon>
-      </Btn>
-      <Btn iconButton variant={"outline"} size={"sm"}>
-        <Icon boxSize={BASE_ICON_BOX_SIZE}>
-          <LucideIcon icon={ArrowDownAz} />
-        </Icon>
-      </Btn>
-      <DataDisplayToggle iconButton navKey={PREFIX_ID} size={"sm"} />
-    </HStack>
-  );
-};
 const Data = (props: any) => {
   // Props
   const { filter, routeTitle } = props;
