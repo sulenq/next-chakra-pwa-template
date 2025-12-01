@@ -21,7 +21,13 @@ import { Icon, StackProps } from "@chakra-ui/react";
 import { LogOutIcon, UserIcon } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
 
-export const MiniMyProfile = (props: StackProps) => {
+interface Props__MiniMyProfile extends StackProps {
+  onClose?: () => void;
+}
+export const MiniMyProfile = (props: Props__MiniMyProfile) => {
+  // Props
+  const { onClose, ...restProps } = props;
+
   // Contexts
   const { l } = useLang();
   const { themeConfig } = useThemeConfig();
@@ -72,7 +78,7 @@ export const MiniMyProfile = (props: StackProps) => {
       rounded={themeConfig.radii.container}
       overflow={"clip"}
       color={"ibody"}
-      {...props}
+      {...restProps}
     >
       <CContainer>
         <Img
@@ -102,6 +108,9 @@ export const MiniMyProfile = (props: StackProps) => {
             variant={"ghost"}
             justifyContent={"start"}
             pos={"relative"}
+            onClick={() => {
+              onClose?.();
+            }}
           >
             <Icon boxSize={BASE_ICON_BOX_SIZE}>
               <LucideIcon icon={UserIcon} />
@@ -127,6 +136,7 @@ export const MiniMyProfile = (props: StackProps) => {
             variant: "outline",
           }}
           w={"full"}
+          onClick={onClose}
         >
           <Btn
             clicky={false}

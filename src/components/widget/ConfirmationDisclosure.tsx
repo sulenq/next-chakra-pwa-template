@@ -15,7 +15,7 @@ import { StackProps, useDisclosure } from "@chakra-ui/react";
 import BackButton from "./BackButton";
 import { disclosureId } from "@/utils/disclosure";
 
-interface DisclosureProps {
+interface Props__Disclosure {
   open: boolean;
   title: string;
   description: string;
@@ -25,7 +25,7 @@ interface DisclosureProps {
   loading?: boolean;
   addonElement?: any;
 }
-export const ConfirmationDisclosure = (props: DisclosureProps) => {
+export const ConfirmationDisclosure = (props: Props__Disclosure) => {
   // Props
   const {
     open,
@@ -71,7 +71,7 @@ export const ConfirmationDisclosure = (props: DisclosureProps) => {
   );
 };
 
-interface TriggerProps extends StackProps {
+interface Props__Trigger extends StackProps {
   children?: any;
   id: string;
   title: string;
@@ -82,8 +82,9 @@ interface TriggerProps extends StackProps {
   loading?: boolean;
   disabled?: any;
   addonElement?: any;
+  onClick?: () => void;
 }
-export const ConfirmationDisclosureTrigger = (props: TriggerProps) => {
+export const ConfirmationDisclosureTrigger = (props: Props__Trigger) => {
   // Props
   const {
     children,
@@ -96,6 +97,7 @@ export const ConfirmationDisclosureTrigger = (props: TriggerProps) => {
     loading,
     disabled,
     addonElement,
+    onClick,
     ...restProps
   } = props;
 
@@ -107,7 +109,16 @@ export const ConfirmationDisclosureTrigger = (props: TriggerProps) => {
     <>
       <CContainer
         w={"fit"}
-        onClick={disabled ? () => {} : onOpen}
+        onClick={
+          onClick
+            ? () => {
+                onClick();
+                onOpen();
+              }
+            : disabled
+            ? () => {}
+            : onOpen
+        }
         {...restProps}
       >
         {children}

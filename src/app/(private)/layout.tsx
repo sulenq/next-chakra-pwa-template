@@ -47,6 +47,7 @@ import useAuthMiddleware from "@/context/useAuthMiddleware";
 import useLang from "@/context/useLang";
 import useNavs from "@/context/useNavs";
 import { useThemeConfig } from "@/context/useThemeConfig";
+import useClickOutside from "@/hooks/useClickOutside";
 import { useIsSmScreenWidth } from "@/hooks/useIsSmScreenWidth";
 import useRequest from "@/hooks/useRequest";
 import useScreen from "@/hooks/useScreen";
@@ -103,6 +104,90 @@ const MobileNavLink = (props: Props__NavLink) => {
     >
       {children}
     </NavLink>
+  );
+};
+const DesktoMiniMyProfile = (props: any) => {
+  // Props
+  const { navsExpanded, ...restProps } = props;
+
+  // Contexts
+  const { themeConfig } = useThemeConfig();
+
+  // Refs
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  // Hooks
+  useClickOutside(containerRef, onClose);
+
+  // States
+  const user = getUserData();
+  const [open, setOpen] = useState<boolean>(false);
+
+  // Utils
+  function onOpen() {
+    setOpen(true);
+  }
+  function onClose() {
+    setOpen(false);
+  }
+
+  return (
+    <PopoverRoot
+      open={open}
+      positioning={{
+        placement: "right-end",
+        offset: {
+          mainAxis: DESKTOP_POPOVER_MAIN_AXIS,
+          crossAxis: 4,
+        },
+      }}
+      {...restProps}
+    >
+      <PopoverTrigger asChild>
+        <HStack
+          gap={4}
+          w={navsExpanded ? "full" : "36px"}
+          px={2}
+          py={2}
+          rounded={themeConfig.radii.component}
+          cursor={"pointer"}
+          _hover={{
+            bg: "gray.subtle",
+          }}
+          justify={navsExpanded ? "" : "center"}
+          transition={"200ms"}
+          pos={"relative"}
+          onClick={onOpen}
+        >
+          <Avatar
+            src={imgUrl(user?.avatar?.filePath)}
+            name={user?.name}
+            size={navsExpanded ? "md" : "2xs"}
+          />
+
+          {navsExpanded && (
+            <>
+              <CContainer>
+                <P lineClamp={1} fontWeight={"semibold"}>
+                  {user?.name || "Signed out"}
+                </P>
+                <P lineClamp={1} color={"fg.subtle"}>
+                  {user?.email || user?.username || "-"}
+                </P>
+              </CContainer>
+
+              <Icon boxSize={BASE_ICON_BOX_SIZE} color={"fg.subtle"}>
+                <IconSelector stroke={1.5} />
+              </Icon>
+            </>
+          )}
+        </HStack>
+      </PopoverTrigger>
+
+      <PopoverContent ref={containerRef} w={"235px"} zIndex={10}>
+        <MiniMyProfile onClose={onClose} />
+      </PopoverContent>
+    </PopoverRoot>
   );
 };
 
@@ -958,59 +1043,7 @@ const DesktopLayout = (props: any) => {
             <Divider my={2} />
 
             <CContainer mt={1}>
-              <PopoverRoot
-                positioning={{
-                  placement: "right-end",
-                  offset: {
-                    mainAxis: DESKTOP_POPOVER_MAIN_AXIS,
-                    crossAxis: 4,
-                  },
-                }}
-              >
-                <PopoverTrigger asChild>
-                  <HStack
-                    gap={4}
-                    w={navsExpanded ? "full" : "36px"}
-                    px={2}
-                    py={2}
-                    rounded={themeConfig.radii.component}
-                    cursor={"pointer"}
-                    _hover={{
-                      bg: "gray.subtle",
-                    }}
-                    justify={navsExpanded ? "" : "center"}
-                    transition={"200ms"}
-                    pos={"relative"}
-                  >
-                    <Avatar
-                      src={imgUrl(user?.avatar?.filePath)}
-                      name={user?.name}
-                      size={navsExpanded ? "md" : "2xs"}
-                    />
-
-                    {navsExpanded && (
-                      <>
-                        <CContainer>
-                          <P lineClamp={1} fontWeight={"semibold"}>
-                            {user?.name || "Signed out"}
-                          </P>
-                          <P lineClamp={1} color={"fg.subtle"}>
-                            {user?.email || user?.username || "-"}
-                          </P>
-                        </CContainer>
-
-                        <Icon boxSize={BASE_ICON_BOX_SIZE} color={"fg.subtle"}>
-                          <IconSelector stroke={1.5} />
-                        </Icon>
-                      </>
-                    )}
-                  </HStack>
-                </PopoverTrigger>
-
-                <PopoverContent w={"235px"} zIndex={10}>
-                  <MiniMyProfile />
-                </PopoverContent>
-              </PopoverRoot>
+              <DesktoMiniMyProfile navsExpanded={navsExpanded} />
             </CContainer>
           </CContainer>
         </CContainer>
