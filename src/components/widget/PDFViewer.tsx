@@ -10,18 +10,21 @@ import Spinner from "@/components/ui/spinner";
 import { Tooltip } from "@/components/ui/tooltip";
 import FeedbackState from "@/components/widget/FeedbackState";
 import HScroll from "@/components/widget/HScroll";
+import { LucideIcon } from "@/components/widget/Icon";
 import useLang from "@/context/useLang";
 import {
   IconArrowAutofitContent,
   IconArrowAutofitWidth,
-  IconChevronLeft,
-  IconChevronRight,
-  IconFile,
   IconFileOff,
-  IconFiles,
-  IconZoomIn,
-  IconZoomOut,
 } from "@tabler/icons-react";
+import {
+  ChevronLeftIcon,
+  ChevronRightIcon,
+  GalleryHorizontalIcon,
+  GalleryVerticalIcon,
+  ZoomInIcon,
+  ZoomOutIcon,
+} from "lucide-react";
 import "react-pdf/dist/Page/AnnotationLayer.css";
 import "react-pdf/dist/Page/TextLayer.css";
 
@@ -71,7 +74,7 @@ const Toolbar = (props: Props__PDFToolbar) => {
               tooltipContent={l.previous_page}
             >
               <Icon boxSize={5}>
-                <IconChevronLeft stroke={1.5} />
+                <LucideIcon icon={ChevronLeftIcon} />
               </Icon>
             </UtilBtn>
 
@@ -86,7 +89,7 @@ const Toolbar = (props: Props__PDFToolbar) => {
               tooltipContent={l.next_page}
             >
               <Icon boxSize={5}>
-                <IconChevronRight stroke={1.5} />
+                <LucideIcon icon={ChevronRightIcon} />
               </Icon>
             </UtilBtn>
           </HStack>
@@ -94,7 +97,7 @@ const Toolbar = (props: Props__PDFToolbar) => {
 
         <UtilBtn onClick={utils.zoomOut} tooltipContent={l.zoom_out}>
           <Icon boxSize={5}>
-            <IconZoomOut stroke={1.5} />
+            <LucideIcon icon={ZoomOutIcon} />
           </Icon>
         </UtilBtn>
 
@@ -105,13 +108,13 @@ const Toolbar = (props: Props__PDFToolbar) => {
 
         <UtilBtn onClick={utils.zoomIn} tooltipContent={l.zoom_in}>
           <Icon boxSize={5}>
-            <IconZoomIn stroke={1.5} />
+            <LucideIcon icon={ZoomInIcon} />
           </Icon>
         </UtilBtn>
 
         {/* <UtilBtn onClick={utils.resetZoom} tooltipContent={l.zoom_reset}>
           <Icon boxSize={5}>
-            <IconZoomReset stroke={1.5} />
+            <IconZoomReset  />
           </Icon>
         </UtilBtn> */}
 
@@ -134,9 +137,9 @@ const Toolbar = (props: Props__PDFToolbar) => {
         >
           <Icon boxSize={5}>
             {isSingleMode ? (
-              <IconFile stroke={1.5} />
+              <LucideIcon icon={GalleryHorizontalIcon} />
             ) : (
-              <IconFiles stroke={1.5} />
+              <LucideIcon icon={GalleryVerticalIcon} />
             )}
           </Icon>
           {isSingleMode ? "Single" : "Scroll"}
