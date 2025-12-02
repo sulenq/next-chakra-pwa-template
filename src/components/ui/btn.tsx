@@ -42,7 +42,7 @@ export const Btn = forwardRef<HTMLButtonElement, BtnProps>((props, ref) => {
     if (props.colorPalette) {
       switch (props?.variant) {
         default:
-          return `${props.colorPalette}.solid`;
+          return `${props.colorPalette}.600`;
         case "ghost":
         case "outline":
           return `${props.colorPalette}.subtle`;
