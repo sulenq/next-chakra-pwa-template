@@ -65,7 +65,7 @@ export const DataGridItem = (props: Props) => {
       flex={1}
       border={"1px solid"}
       borderColor={isRowSelected ? selectedColor : "d1"}
-      rounded={themeConfig.radii.component}
+      rounded={themeConfig.radii.container}
       overflow={"clip"}
       pos={"relative"}
       {...restProps}
@@ -133,7 +133,6 @@ export const DataGridItem = (props: Props) => {
       <HStack p={2}>
         <DataGridDetailDisclosureTrigger
           key={item.id}
-          className="lg-clicky"
           id={`${item.id}`}
           title={routeTitle}
           data={item}
@@ -144,7 +143,7 @@ export const DataGridItem = (props: Props) => {
           <Btn
             variant={"outline"}
             size={"sm"}
-            rounded={`calc(${themeConfig.radii.component} - 2px)`}
+            rounded={themeConfig.radii.component}
           >
             {l.view_more}
           </Btn>
@@ -156,7 +155,7 @@ export const DataGridItem = (props: Props) => {
             rowOptions={dataProps.rowOptions}
             size={"sm"}
             variant={"outline"}
-            rounded={`calc(${themeConfig.radii.component} - 2px)`}
+            rounded={themeConfig.radii.component}
             menuRootProps={{
               positioning: {
                 offset: {
