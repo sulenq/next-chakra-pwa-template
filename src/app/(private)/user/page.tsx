@@ -591,17 +591,17 @@ export default function Page() {
       </PageTitle>
 
       <PageContent gap={1}>
-        <HScroll px={3} flexShrink={0}>
-          <HStack minW={"full"} w={"max"} justify={"space-between"}>
-            {iss && (
+        {iss && (
+          <HScroll px={3} flexShrink={0}>
+            <HStack minW={"full"} w={"max"} justify={"space-between"}>
               <DataUtils
                 filter={filter}
                 setFilter={setFilter}
                 routeTitle={routeTitle}
               />
-            )}
-          </HStack>
-        </HScroll>
+            </HStack>
+          </HScroll>
+        )}
 
         <Data filter={filter} routeTitle={routeTitle} />
       </PageContent>
