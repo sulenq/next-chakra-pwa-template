@@ -1,7 +1,6 @@
 import { Btn } from "@/components/ui/btn";
 import { LucideIcon } from "@/components/widget/Icon";
 import { Props__DisclosureHeaderContent } from "@/constants/props";
-import { useIsSmScreenWidth } from "@/hooks/useIsSmScreenWidth";
 import { back } from "@/utils/client";
 import { HStack, Icon } from "@chakra-ui/react";
 import { MaximizeIcon, MinimizeIcon, XIcon } from "lucide-react";
@@ -26,7 +25,7 @@ export const DisclosureHeaderContent = (
   } = props;
 
   // Hooks
-  const iss = useIsSmScreenWidth();
+  // const iss = useIsSmScreenWidth();
 
   // States
   const [maximize, setMaximize] = useState(false);
@@ -50,16 +49,16 @@ export const DisclosureHeaderContent = (
         </P>
       )}
 
-      <HStack ml={"auto"}>
+      <HStack ml={"auto"} gap={[0, null, 2]}>
         {children}
 
-        {withMaximizeButton && !iss && (
+        {withMaximizeButton && (
           <Btn
             clicky={false}
             iconButton
             size={["xs", null, "2xs"]}
             rounded={"full"}
-            variant={"subtle"}
+            variant={["ghost", null, "subtle"]}
             onClick={() => {
               setMaximize((ps) => !ps);
             }}

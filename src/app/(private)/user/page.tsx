@@ -35,6 +35,7 @@ import {
   Interface__DataProps,
   Interface__RowOptionsTableOptionGenerator,
 } from "@/constants/interfaces";
+import { SVGS_PATH } from "@/constants/paths";
 import { BASE_ICON_BOX_SIZE, MENU_ICON_BOX_SIZE } from "@/constants/sizes";
 import { useDataDisplay } from "@/context/useDataDisplay";
 import useLang from "@/context/useLang";
@@ -129,6 +130,7 @@ const Update = (props: any) => {
   const setRt = useRenderTrigger((s) => s.setRt);
 
   // Hooks
+  const iss = useIsSmScreenWidth();
   const { open, onOpen, onClose } = useDisclosure();
   useBackOnClose(
     disclosureId(`${ID}-${resolvedData?.id}`),
@@ -195,7 +197,7 @@ const Update = (props: any) => {
       <DisclosureRoot open={open} lazyLoad size={maximize ? "full" : "xs"}>
         <DisclosureContent
           positionerProps={{
-            p: maximize ? 0 : 4,
+            p: !maximize && !iss ? 4 : 0,
           }}
         >
           <DisclosureHeader>
@@ -523,6 +525,9 @@ const Data = (props: any) => {
               key={resolvedItem.id}
               item={{
                 id: resolvedItem.id,
+                img: resolvedItem.avatar,
+                showImg: true,
+                imgFallbackSrc: `${SVGS_PATH}/no-avatar.svg`,
                 title: resolvedItem.name,
                 description: resolvedItem.email,
               }}

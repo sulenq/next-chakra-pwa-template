@@ -290,7 +290,7 @@ const translations = {
     "other": {
       "index": "Other",
       "category": "Category",
-      "user": "User"
+      "type": "Type"
     },
     "master_data": "Master Data",
     "settings": "Settings",

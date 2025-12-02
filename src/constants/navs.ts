@@ -44,8 +44,8 @@ export const PRIVATE_NAVS: Interface__NavItem[] = [
           {
             list: [
               {
-                labelKey: "navs.other.user",
-                path: `/other-navs/user`,
+                labelKey: "navs.other.type",
+                path: `/other-navs/type`,
               },
               {
                 labelKey: "navs.other.category",

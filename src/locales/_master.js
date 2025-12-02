@@ -21,9 +21,9 @@ export const navs = {
       id: "Kategori",
       en: "Category",
     },
-    user: {
-      id: "Pengguna",
-      en: "User",
+    type: {
+      id: "Tipe",
+      en: "Type",
     },
   },
   master_data: {

@@ -10,6 +10,7 @@ import {
   Interface__DataProps,
   Interface__FormattedTableRow,
 } from "@/constants/interfaces";
+import { FIREFOX_SCROLL_Y_CLASS_PR_PREFIX } from "@/constants/sizes";
 import { useThemeConfig } from "@/context/useThemeConfig";
 import { useContainerDimension } from "@/hooks/useContainerDimension";
 import { useIsSmScreenWidth } from "@/hooks/useIsSmScreenWidth";
@@ -112,7 +113,6 @@ export const DataGrid = (props: Props) => {
       <CContainer
         ref={containerRef}
         flex={1}
-        px={3}
         mt={3}
         overflowY={"auto"}
         pos={"relative"}
@@ -166,7 +166,13 @@ export const DataGrid = (props: Props) => {
           </HStack>
         </Presence>
 
-        <CContainer className="scrollY" flex={1} pb={3}>
+        <CContainer
+          className="scrollY"
+          flex={1}
+          pb={3}
+          px={3}
+          pr={`calc(12px - ${FIREFOX_SCROLL_Y_CLASS_PR_PREFIX})`}
+        >
           {containerWidth > 0 && (
             <SimpleGrid columns={gridCols} gap={4}>
               {data?.map((item, idx) => {

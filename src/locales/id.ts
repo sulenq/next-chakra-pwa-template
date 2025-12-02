@@ -290,7 +290,7 @@ const translations = {
     "other": {
       "index": "Lainya",
       "category": "Kategori",
-      "user": "Pengguna"
+      "type": "Tipe"
     },
     "master_data": "Master Data",
     "settings": "Pengaturan",
