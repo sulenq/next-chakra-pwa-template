@@ -523,8 +523,8 @@ const Data = (props: any) => {
               key={resolvedItem.id}
               item={{
                 id: resolvedItem.id,
-                title: resolvedItem.title,
-                description: resolvedItem.description,
+                title: resolvedItem.name,
+                description: resolvedItem.email,
               }}
               dataProps={dataProps}
               row={row}
