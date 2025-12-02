@@ -57,8 +57,13 @@ import { setStorage } from "@/utils/client";
 import { pluckString } from "@/utils/string";
 import { getActiveNavs, imgUrl } from "@/utils/url";
 import { Box, Center, HStack, Icon } from "@chakra-ui/react";
-import { IconCircleFilled, IconSelector } from "@tabler/icons-react";
-import { SidebarCloseIcon, SidebarOpenIcon, UserIcon } from "lucide-react";
+import { IconCircleFilled } from "@tabler/icons-react";
+import {
+  ChevronsUpDownIcon,
+  SidebarCloseIcon,
+  SidebarOpenIcon,
+  UserIcon,
+} from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
 import { Fragment, useEffect, useRef, useState } from "react";
 
@@ -147,7 +152,7 @@ const DesktoMiniMyProfile = (props: any) => {
         <HStack
           gap={4}
           w={navsExpanded ? "full" : "36px"}
-          px={2}
+          px={"6px"}
           py={2}
           rounded={themeConfig.radii.component}
           cursor={"pointer"}
@@ -163,6 +168,7 @@ const DesktoMiniMyProfile = (props: any) => {
             src={imgUrl(user?.avatar?.filePath)}
             name={user?.name}
             size={navsExpanded ? "md" : "2xs"}
+            mr={"auto"}
           />
 
           {navsExpanded && (
@@ -176,8 +182,8 @@ const DesktoMiniMyProfile = (props: any) => {
                 </P>
               </CContainer>
 
-              <Icon boxSize={BASE_ICON_BOX_SIZE} color={"fg.subtle"}>
-                <IconSelector stroke={1.5} />
+              <Icon boxSize={BASE_ICON_BOX_SIZE} color={"fg.subtle"} mr={1}>
+                <LucideIcon icon={ChevronsUpDownIcon} />
               </Icon>
             </>
           )}
@@ -622,6 +628,7 @@ const DesktopLayout = (props: any) => {
 
         <CContainer
           className="scrollY"
+          overflowX={"clip"}
           flex={1}
           gap={1}
           p={3}
