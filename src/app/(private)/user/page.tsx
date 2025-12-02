@@ -1,16 +1,8 @@
 "use client";
 
 import { Btn } from "@/components/ui/btn";
-import {
-  DisclosureBody,
-  DisclosureContent,
-  DisclosureFooter,
-  DisclosureHeader,
-  DisclosureRoot,
-} from "@/components/ui/disclosure";
-import { DisclosureHeaderContent } from "@/components/ui/disclosure-header-content";
-import { FieldsetRoot } from "@/components/ui/field";
 import { MenuItem } from "@/components/ui/menu";
+import { P } from "@/components/ui/p";
 import SearchInput from "@/components/ui/search-input";
 import { Tooltip } from "@/components/ui/tooltip";
 import { ConfirmationDisclosureTrigger } from "@/components/widget/ConfirmationDisclosure";
@@ -28,6 +20,7 @@ import {
   PageTitle,
 } from "@/components/widget/Page";
 import { RowMenuTooltip } from "@/components/widget/RowOptions";
+import { SimpleDisclosure } from "@/components/widget/SimpleDisclosure";
 import { TableSkeleton } from "@/components/widget/TableSkeleton";
 import { dummyUsers } from "@/constants/dummyData";
 import {
@@ -42,8 +35,8 @@ import useLang from "@/context/useLang";
 import useRenderTrigger from "@/context/useRenderTrigger";
 import { useThemeConfig } from "@/context/useThemeConfig";
 import useBackOnClose from "@/hooks/useBackOnClose";
+import { useContainerDimension } from "@/hooks/useContainerDimension";
 import useDataState from "@/hooks/useDataState";
-import { useIsSmScreenWidth } from "@/hooks/useIsSmScreenWidth";
 import useRequest from "@/hooks/useRequest";
 import { isEmptyArray, last } from "@/utils/array";
 import { back } from "@/utils/client";
@@ -62,7 +55,7 @@ import {
   UndoIcon,
 } from "lucide-react";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import * as yup from "yup";
 
 const BASE_ENDPOINT = ``;
@@ -130,7 +123,6 @@ const Update = (props: any) => {
   const setRt = useRenderTrigger((s) => s.setRt);
 
   // Hooks
-  const iss = useIsSmScreenWidth();
   const { open, onOpen, onClose } = useDisclosure();
   useBackOnClose(
     disclosureId(`${ID}-${resolvedData?.id}`),
@@ -149,7 +141,6 @@ const Update = (props: any) => {
   });
 
   // States
-  const [maximize, setMaximize] = useState<boolean>(false);
   const formik = useFormik({
     validateOnChange: false,
     initialValues: {},
@@ -194,29 +185,18 @@ const Update = (props: any) => {
         </MenuItem>
       </RowMenuTooltip>
 
-      <DisclosureRoot open={open} lazyLoad size={maximize ? "full" : "xs"}>
-        <DisclosureContent
-          positionerProps={{
-            p: !maximize && !iss ? 4 : 0,
-          }}
-        >
-          <DisclosureHeader>
-            <DisclosureHeaderContent
-              title={`Edit ${routeTitle}`}
-              withMaximizeButton
-              onMaximizeChange={(maximize) => {
-                setMaximize(maximize);
-              }}
-            />
-          </DisclosureHeader>
-
-          <DisclosureBody>
-            <form id={ID} onSubmit={formik.handleSubmit}>
-              <FieldsetRoot disabled={loading}></FieldsetRoot>
-            </form>
-          </DisclosureBody>
-
-          <DisclosureFooter>
+      <SimpleDisclosure
+        withMaximizeButton
+        open={open}
+        title={`Edit ${routeTitle}`}
+        bodyContent={
+          <P my={10} textAlign={"center"}>
+            body content here
+          </P>
+        }
+        footerContent={
+          <>
+            <Btn variant={"outline"}>2nd Btn</Btn>
             <Btn
               type="submit"
               form={ID}
@@ -225,9 +205,9 @@ const Update = (props: any) => {
             >
               {l.save}
             </Btn>
-          </DisclosureFooter>
-        </DisclosureContent>
-      </DisclosureRoot>
+          </>
+        }
+      />
     </>
   );
 };
@@ -567,10 +547,14 @@ export default function Page() {
   // Contexts
   const { l } = useLang();
 
+  // Refs
+  const containerRef = useRef<HTMLDivElement>(null);
+
   // Hooks
-  const iss = useIsSmScreenWidth();
+  const dimension = useContainerDimension(containerRef);
 
   // States
+  const isSmContainer = dimension.width < 600;
   const pathname = usePathname();
   const activeNav = getActiveNavs(pathname);
   const routeTitle = pluckString(l, last(activeNav)!.labelKey);
@@ -580,10 +564,10 @@ export default function Page() {
   const [filter, setFilter] = useState(DEFAULT_FILTER);
 
   return (
-    <PageContainer>
+    <PageContainer ref={containerRef}>
       <PageTitle justify={"space-between"} pr={3}>
         <HStack>
-          {!iss && (
+          {!isSmContainer && (
             <DataUtils
               filter={filter}
               setFilter={setFilter}
@@ -596,7 +580,7 @@ export default function Page() {
       </PageTitle>
 
       <PageContent gap={1}>
-        {iss && (
+        {isSmContainer && (
           <HScroll px={3} flexShrink={0}>
             <HStack minW={"full"} w={"max"} justify={"space-between"}>
               <DataUtils
