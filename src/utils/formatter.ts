@@ -145,6 +145,12 @@ export const formatDate = (
     case "dayShortMonth":
       formattedDate = `${day} ${shortMonthName}`;
       break;
+    case "weekday":
+      formattedDate = `${weekdayName}`;
+      break;
+    case "shortWeekday":
+      formattedDate = `${shortWeekdayName}`;
+      break;
     case "weekdayDayMonthYear":
       formattedDate = `${weekdayName}, ${formatDateString(
         year,

@@ -57,8 +57,8 @@ import {
   EditIcon,
   ListFilterIcon,
   PlusIcon,
-  RefreshCcwDotIcon,
   Trash2Icon,
+  UndoIcon,
 } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -285,7 +285,7 @@ const Restore = (props: any) => {
         <MenuItem value="restore" disabled={disabled}>
           {l.restore}
           <Icon boxSize={MENU_ICON_BOX_SIZE} ml={"auto"}>
-            <LucideIcon icon={RefreshCcwDotIcon} />
+            <LucideIcon icon={UndoIcon} />
           </Icon>
         </MenuItem>
       </RowMenuTooltip>

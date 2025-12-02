@@ -99,6 +99,8 @@ export type Type__DateVariant =
   | "shortMonthYear" // Jan 2025
   | "dayMonth" // 15 January
   | "dayShortMonth" // 15 Jan
+  | "weekday" // Wednesday
+  | "shortWeekday" // Wed
   | "weekdayDayMonthYear" // Wednesday, 15 January 2025
   | "weekdayDayShortMonthYear" // Wednesday, 15 Jan 2025
   | "shortWeekdayDayMonthYear" // Wed, 15 January 2025
