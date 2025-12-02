@@ -36,17 +36,13 @@ export const DataGridDetailDisclosure = (props: any) => {
           <DisclosureHeaderContent title={`Detail ${title}`} />
         </DisclosureHeader>
 
-        <DisclosureBody>
-          <CContainer>
+        <DisclosureBody pb={2}>
+          <CContainer mb={2}>
             <SearchInput
               queryKey="detail-search"
               inputValue={search}
               onChange={(inputValue) => {
                 setSearch(inputValue);
-              }}
-              inputProps={{
-                variant: "flushed",
-                rounded: 0,
               }}
             />
           </CContainer>

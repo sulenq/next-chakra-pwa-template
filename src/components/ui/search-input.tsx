@@ -24,7 +24,7 @@ export default function SearchInput(props: Props__SearchInput) {
     iconProps,
     invalid = false,
     noIcon = false,
-    debounceTime = 500,
+    debounceTime = 200,
     queryKey = "q",
     variant = "outline",
     ...restProps
