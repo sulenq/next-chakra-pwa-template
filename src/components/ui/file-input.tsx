@@ -20,8 +20,7 @@ import { isEmptyArray } from "@/utils/array";
 import { makeFileUrl } from "@/utils/file";
 import { formatBytes, formatNumber } from "@/utils/formatter";
 import { Center, Icon, useFieldContext } from "@chakra-ui/react";
-import { IconTrash, IconUpload } from "@tabler/icons-react";
-import { XIcon } from "lucide-react";
+import { TrashIcon, UploadIcon, XIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 import {
   FileUploadDropzone,
@@ -243,7 +242,7 @@ export const InputComponent = (props: Props__FileInputInputComponent) => {
                 }
               >
                 <Icon scale={0.8}>
-                  <IconUpload />
+                  <LucideIcon icon={UploadIcon} />
                 </Icon>{" "}
                 {label || "File upload"}
               </Btn>
@@ -316,7 +315,7 @@ export const FileInput = (props: Props__FileInput) => {
                   actions={[
                     {
                       type: "delete",
-                      icon: <IconTrash stroke={1.5} />,
+                      icon: <LucideIcon icon={TrashIcon} />,
                       onClick: () => {
                         setExisting((prev) =>
                           prev.filter((f) => f.id !== fileData.id)

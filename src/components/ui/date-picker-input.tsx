@@ -1,16 +1,19 @@
 "use client";
 
+import { LucideIcon } from "@/components/widget/Icon";
 import {
   Props__DatePicker,
   Props__DatePickerInput,
   Props__SelectedDateList,
 } from "@/constants/props";
+import { BASE_ICON_BOX_SIZE } from "@/constants/sizes";
 import { Type__Period } from "@/constants/types";
 import useLang from "@/context/useLang";
 import { useThemeConfig } from "@/context/useThemeConfig";
 import useBackOnClose from "@/hooks/useBackOnClose";
 import { isEmptyArray } from "@/utils/array";
 import { back } from "@/utils/client";
+import { disclosureId } from "@/utils/disclosure";
 import { formatAbsDate, formatDate } from "@/utils/formatter";
 import { capitalizeWords } from "@/utils/string";
 import {
@@ -28,12 +31,9 @@ import {
   useDisclosure,
   useFieldContext,
 } from "@chakra-ui/react";
-import {
-  IconCalendar,
-  IconCaretLeftFilled,
-  IconCaretRightFilled,
-} from "@tabler/icons-react";
+import { IconCaretLeftFilled, IconCaretRightFilled } from "@tabler/icons-react";
 import { addDays, startOfWeek } from "date-fns";
+import { CalendarIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 import BackButton from "../widget/BackButton";
 import FeedbackNoData from "../widget/FeedbackNoData";
@@ -50,7 +50,6 @@ import { DisclosureHeaderContent } from "./disclosure-header-content";
 import { P } from "./p";
 import { PeriodPickerInput } from "./period-picker-input";
 import { Tooltip } from "./tooltip";
-import { disclosureId } from "@/utils/disclosure";
 
 const DEFAULT_PERIOD = {
   month: new Date().getMonth(),
@@ -476,8 +475,13 @@ export const DatePickerInput = (props: Props__DatePickerInput) => {
               </P>
             )}
 
-            <Icon color={"fg.subtle"} flexShrink={0} mr={-1}>
-              <IconCalendar stroke={1.5} />
+            <Icon
+              boxSize={BASE_ICON_BOX_SIZE}
+              color={"fg.subtle"}
+              flexShrink={0}
+              mr={-1}
+            >
+              <LucideIcon icon={CalendarIcon} />
             </Icon>
           </HStack>
         </Btn>

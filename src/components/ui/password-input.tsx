@@ -1,11 +1,13 @@
 "use client";
 
 import { CContainer } from "@/components/ui/c-container";
+import { LucideIcon } from "@/components/widget/Icon";
 import { Props__PasswordInput } from "@/constants/props";
 import { Center, Icon, IconButton } from "@chakra-ui/react";
-import { IconEye, IconEyeOff } from "@tabler/icons-react";
+import { EyeIcon, EyeOffIcon } from "lucide-react";
 import { forwardRef, useState } from "react";
 import { StringInput } from "./string-input";
+import { BASE_ICON_BOX_SIZE } from "@/constants/sizes";
 
 export const PasswordInput = forwardRef<HTMLInputElement, Props__PasswordInput>(
   (props, ref) => {
@@ -72,11 +74,11 @@ export const PasswordInput = forwardRef<HTMLInputElement, Props__PasswordInput>(
             size={"sm"}
             color={"fg.subtle"}
           >
-            <Icon boxSize={5}>
+            <Icon boxSize={BASE_ICON_BOX_SIZE}>
               {showPassword ? (
-                <IconEye stroke={1.5} />
+                <LucideIcon icon={EyeIcon} />
               ) : (
-                <IconEyeOff stroke={1.5} />
+                <LucideIcon icon={EyeOffIcon} />
               )}
             </Icon>
           </IconButton>

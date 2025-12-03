@@ -4,7 +4,7 @@ import { CContainer } from "@/components/ui/c-container";
 import { toaster } from "@/components/ui/toaster";
 import { LucideIcon } from "@/components/widget/Icon";
 import { Props__StringInput } from "@/constants/props";
-import { MAIN_INPUT_SIZE } from "@/constants/sizes";
+import { BASE_ICON_BOX_SIZE, MAIN_INPUT_SIZE } from "@/constants/sizes";
 import useLang from "@/context/useLang";
 import { useThemeConfig } from "@/context/useThemeConfig";
 import { useMergedRefs } from "@/hooks/useMergeRefs";
@@ -154,7 +154,7 @@ export const StringInput = forwardRef<HTMLInputElement, Props__StringInput>(
                 size={"sm"}
                 color={"fg.subtle"}
               >
-                <Icon boxSize={"18px"}>
+                <Icon boxSize={BASE_ICON_BOX_SIZE}>
                   <LucideIcon icon={XIcon} />
                 </Icon>
               </IconButton>

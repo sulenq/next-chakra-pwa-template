@@ -14,8 +14,7 @@ import {
   useFileUploadContext,
   useRecipe,
 } from "@chakra-ui/react";
-import { IconUpload } from "@tabler/icons-react";
-import { XIcon } from "lucide-react";
+import { UploadIcon, XIcon } from "lucide-react";
 import { forwardRef } from "react";
 
 export interface FileUploadRootProps extends ChakraFileUpload.RootProps {
@@ -75,7 +74,7 @@ export const FileUploadDropzone = forwardRef<
     >
       {showIcon && (
         <Icon fontSize="2xl" color="fg.muted" opacity={disabled ? 0.4 : 1}>
-          {icon || <IconUpload />}
+          {icon || <LucideIcon icon={UploadIcon} />}
         </Icon>
       )}
 

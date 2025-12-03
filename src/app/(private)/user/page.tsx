@@ -51,7 +51,7 @@ import {
   EditIcon,
   ListFilterIcon,
   PlusIcon,
-  Trash2Icon,
+  TrashIcon,
   UndoIcon,
 } from "lucide-react";
 import { usePathname } from "next/navigation";
@@ -335,7 +335,7 @@ const Delete = (props: any) => {
         <MenuItem value="delete" color={"fg.error"} disabled={disabled}>
           {l.delete_}
           <Icon boxSize={MENU_ICON_BOX_SIZE} ml={"auto"}>
-            <LucideIcon icon={Trash2Icon} />
+            <LucideIcon icon={TrashIcon} />
           </Icon>
         </MenuItem>
       </RowMenuTooltip>

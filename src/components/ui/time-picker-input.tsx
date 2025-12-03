@@ -9,12 +9,15 @@ import {
 import { DisclosureHeaderContent } from "@/components/ui/disclosure-header-content";
 import { P } from "@/components/ui/p";
 import { StringInput } from "@/components/ui/string-input";
+import { LucideIcon } from "@/components/widget/Icon";
 import { Props__TimePicker } from "@/constants/props";
+import { BASE_ICON_BOX_SIZE } from "@/constants/sizes";
 import useLang from "@/context/useLang";
 import { useThemeConfig } from "@/context/useThemeConfig";
 import useBackOnClose from "@/hooks/useBackOnClose";
 import useScreen from "@/hooks/useScreen";
 import { back } from "@/utils/client";
+import { disclosureId } from "@/utils/disclosure";
 import { formatTime } from "@/utils/formatter";
 import { capitalizeWords } from "@/utils/string";
 import {
@@ -31,14 +34,10 @@ import {
   useFieldContext,
   VStack,
 } from "@chakra-ui/react";
-import {
-  IconCaretDownFilled,
-  IconCaretUpFilled,
-  IconClock,
-} from "@tabler/icons-react";
+import { IconCaretDownFilled, IconCaretUpFilled } from "@tabler/icons-react";
+import { ClockIcon } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { Tooltip } from "./tooltip";
-import { disclosureId } from "@/utils/disclosure";
 
 const DEFAULT = "00:00:00";
 
@@ -225,8 +224,8 @@ export const TimePickerInput = (props: Props__TimePicker) => {
               </P>
             )}
 
-            <Icon color={"fg.subtle"} mr={-1}>
-              <IconClock stroke={1.5} />
+            <Icon boxSize={BASE_ICON_BOX_SIZE} color={"fg.subtle"} mr={-1}>
+              <LucideIcon icon={ClockIcon} />
             </Icon>
           </HStack>
         </Btn>
