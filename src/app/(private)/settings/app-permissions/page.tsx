@@ -152,10 +152,6 @@ const Camera = () => {
                         toaster.error({
                           title: l.error_camera.title,
                           description: l.error_camera.description,
-                          action: {
-                            label: "Close",
-                            onClick: () => {},
-                          },
                         })
                     );
                   }
@@ -420,30 +416,18 @@ const Location = () => {
             toaster.error({
               title: l.errpr_location_support.title,
               description: l.errpr_location_support.description,
-              action: {
-                label: "Close",
-                onClick: () => {},
-              },
             });
             break;
           default:
             toaster.error({
               title: l.error_location.title,
               description: l.error_location.description,
-              action: {
-                label: "Close",
-                onClick: () => {},
-              },
             });
             break;
         }
         toaster.error({
           title: l.errpr_location_support.title,
           description: l.errpr_location_support.description,
-          action: {
-            label: "Close",
-            onClick: () => {},
-          },
         });
         return;
       });
@@ -489,10 +473,6 @@ const Location = () => {
             toaster.error({
               title: l.error_location.title,
               description: l.error_location.description,
-              action: {
-                label: "Close",
-                onClick: () => {},
-              },
             });
           })
           .finally(() => {

@@ -25,10 +25,6 @@ export default function useOfflineAlert(props: Props) {
       id: "success_online",
       title: l.success_online.title,
       description: l.success_online.description,
-      action: {
-        label: "Close",
-        onClick: () => {},
-      },
     });
   }
   function handleOffline() {

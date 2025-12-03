@@ -139,10 +139,6 @@ export const InputComponent = (props: Props__FileInputInputComponent) => {
       toaster.error({
         title,
         description,
-        action: {
-          label: "Close",
-          onClick: () => {},
-        },
       });
 
       // clear input by bumping key again (ensure dropzone/file input resets)
@@ -173,10 +169,6 @@ export const InputComponent = (props: Props__FileInputInputComponent) => {
           toaster.error({
             title: l.error_invalid_file.title,
             description: l.error_invalid_file.description,
-            action: {
-              label: "Close",
-              onClick: () => {},
-            },
           });
         }}
         maxFileSize={maxFileSize * 1024 * 1024}

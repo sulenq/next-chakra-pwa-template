@@ -156,10 +156,6 @@ const Timezone = () => {
               toaster.info({
                 title: l.info_timezone_auto.title,
                 description: `${localTz.key} ${localTz.formattedOffset} (${localTz.localAbbr})`,
-                action: {
-                  label: "Close",
-                  onClick: () => {},
-                },
               });
             }}
           >
