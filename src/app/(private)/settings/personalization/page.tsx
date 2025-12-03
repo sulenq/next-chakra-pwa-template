@@ -75,7 +75,7 @@ const ManualDarkModeSetting = () => {
 
   return (
     <SettingsItemContainer disabled={ADM}>
-      <CContainer>
+      <CContainer gap={1}>
         <P>{l.settings_dark_mode.title}</P>
         <P color={"fg.subtle"}>{l.settings_dark_mode.description}</P>
       </CContainer>
@@ -114,7 +114,7 @@ const ADMSetting = () => {
 
   return (
     <SettingsItemContainer>
-      <CContainer>
+      <CContainer gap={1}>
         <P>{l.settings_adaptive_dark_mode.title}</P>
         <P color={"fg.subtle"}>{l.settings_adaptive_dark_mode.description}</P>
       </CContainer>
