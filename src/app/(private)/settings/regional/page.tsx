@@ -47,6 +47,8 @@ import {
 } from "lucide-react";
 import { useMemo, useState } from "react";
 
+const NAVS_COLOR = "fg.muted";
+
 const Language = () => {
   // Contexts
   const { themeConfig } = useThemeConfig();
@@ -77,6 +79,7 @@ const Language = () => {
                 rounded={themeConfig.radii.component}
                 variant={"ghost"}
                 justifyContent={"start"}
+                color={isActive ? "" : NAVS_COLOR}
                 onClick={() => {
                   setLang(item.key as Type__LanguageOptions);
                 }}
@@ -200,6 +203,7 @@ const Timezone = () => {
                     variant={"ghost"}
                     justifyContent={"start"}
                     px={2}
+                    color={isActive ? "" : NAVS_COLOR}
                     onClick={() => {
                       setTimeZone(tz);
                     }}
@@ -253,6 +257,7 @@ const DateFormat = () => {
                 px={[3, null, 3]}
                 py={3}
                 rounded={themeConfig.radii.component}
+                color={isActive ? "" : NAVS_COLOR}
                 onClick={() => {
                   setDateFormat(item.key as Type__DateFormat);
                 }}
@@ -316,6 +321,7 @@ const TimeFormat = () => {
                 px={[3, null, 3]}
                 py={3}
                 rounded={themeConfig.radii.component}
+                color={isActive ? "" : NAVS_COLOR}
                 onClick={() => {
                   setTimeFormat(item.key);
                 }}
@@ -373,6 +379,7 @@ const UOMFormat = () => {
                 px={[3, null, 3]}
                 py={3}
                 rounded={themeConfig.radii.component}
+                color={isActive ? "" : NAVS_COLOR}
                 onClick={() => {
                   setUOM(item.key);
                 }}

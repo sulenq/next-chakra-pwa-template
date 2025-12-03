@@ -68,7 +68,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { Fragment, useEffect, useRef, useState } from "react";
 
 const DESKTOP_NAVS_BG = "bgContent";
-const NAVS_COLOR = "ibody";
+const NAVS_COLOR = "fg.muted";
 const NAVS_COLOR_PALETTE = "gray";
 const DESKTOP_BG_CONTENT_CONTAINER = "bgContent";
 const MOBILE_BG_CONTENT_CONTAINER = "body";
@@ -544,7 +544,6 @@ const DesktopLayout = (props: any) => {
       gap={0}
       h={"100dvh"}
       bg={DESKTOP_NAVS_BG}
-      color={NAVS_COLOR}
       overflowY={"auto"}
       {...restProps}
     >
@@ -602,6 +601,7 @@ const DesktopLayout = (props: any) => {
                 variant={"ghost"}
                 colorPalette={NAVS_COLOR_PALETTE}
                 onClick={toggleNavsExpanded}
+                color={"fg.muted"}
               >
                 <Icon boxSize={BASE_ICON_BOX_SIZE}>
                   <LucideIcon
@@ -671,11 +671,7 @@ const DesktopLayout = (props: any) => {
                                   px={2}
                                   justifyContent={"start"}
                                   variant={"ghost"}
-                                  // color={
-                                  //   isMainNavsActive
-                                  //     ? `${themeConfig.colorPalette}.fg`
-                                  //     : ""
-                                  // }
+                                  color={isMainNavsActive ? "" : NAVS_COLOR}
                                 >
                                   {isMainNavsActive && nav.icon && (
                                     <LeftIndicator />
@@ -732,11 +728,7 @@ const DesktopLayout = (props: any) => {
                                       variant={"ghost"}
                                       colorPalette={NAVS_COLOR_PALETTE}
                                       pos={"relative"}
-                                      // color={
-                                      //   isMainNavsActive
-                                      //     ? `${themeConfig.colorPalette}.fg`
-                                      //     : ""
-                                      // }
+                                      color={isMainNavsActive ? "" : NAVS_COLOR}
                                     >
                                       {isMainNavsActive && <LeftIndicator />}
 
@@ -788,11 +780,11 @@ const DesktopLayout = (props: any) => {
                                               <MenuItem
                                                 value={menu.path}
                                                 px={3}
-                                                // color={
-                                                //   isSubNavsActive
-                                                //     ? `${themeConfig.colorPalette}.fg`
-                                                //     : ""
-                                                // }
+                                                color={
+                                                  isSubNavsActive
+                                                    ? ""
+                                                    : NAVS_COLOR
+                                                }
                                               >
                                                 {isSubNavsActive && (
                                                   <LeftIndicator />
@@ -839,11 +831,7 @@ const DesktopLayout = (props: any) => {
                                     pr={"10px"}
                                     pos={"relative"}
                                     bg={"transparent"}
-                                    // color={
-                                    //   isMainNavsActive
-                                    //     ? `${themeConfig.colorPalette}.fg`
-                                    //     : ""
-                                    // }
+                                    color={isMainNavsActive ? "" : NAVS_COLOR}
                                     _hover={{
                                       bg: "bg.muted",
                                     }}
@@ -976,11 +964,11 @@ const DesktopLayout = (props: any) => {
                                                         colorPalette={
                                                           NAVS_COLOR_PALETTE
                                                         }
-                                                        // color={
-                                                        //   isSubNavsActive
-                                                        //     ? `${themeConfig.colorPalette}.fg`
-                                                        //     : ""
-                                                        // }
+                                                        color={
+                                                          isSubNavsActive
+                                                            ? ""
+                                                            : NAVS_COLOR
+                                                        }
                                                       >
                                                         <P
                                                           lineClamp={1}
@@ -1027,6 +1015,7 @@ const DesktopLayout = (props: any) => {
                       colorPalette={NAVS_COLOR_PALETTE}
                       px={2}
                       pos={"relative"}
+                      color={pathname.includes(nav.path) ? "" : NAVS_COLOR}
                     >
                       {pathname.includes(nav.path) && <LeftIndicator />}
 

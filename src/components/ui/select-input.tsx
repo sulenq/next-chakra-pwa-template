@@ -36,6 +36,8 @@ import {
 import { IconCaretDownFilled, IconReload } from "@tabler/icons-react";
 import { useEffect, useState } from "react";
 
+const NAVS_COLOR = "fg.muted";
+
 const SelectOptions = (props: Props__SelectOptions) => {
   // Props
   const { multiple, selectOptions, selected, setSelected, ...restProps } =
@@ -121,6 +123,7 @@ const SelectOptions = (props: Props__SelectOptions) => {
                   variant={"ghost"}
                   justifyContent={"start"}
                   size={"md"}
+                  color={isActive ? "" : NAVS_COLOR}
                   onClick={() => {
                     if (!multiple) {
                       setSelected([o]);

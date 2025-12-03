@@ -25,6 +25,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
 const NAVS = OTHER_PRIVATE_NAVS[0].list[1].subMenus!;
+const NAVS_COLOR = "fg.muted";
 const ROOT_PATH = `/settings`;
 
 const NavsList = (props: any) => {
@@ -83,6 +84,7 @@ const NavsList = (props: any) => {
                       justifyContent={"start"}
                       variant={"ghost"}
                       px={2}
+                      color={isActive ? "" : NAVS_COLOR}
                       pos={"relative"}
                     >
                       {isActive && <LeftIndicator />}
