@@ -19,8 +19,8 @@ import {
 import {
   CircleAlertIcon,
   CircleCheckIcon,
+  CircleXIcon,
   InfoIcon,
-  OctagonXIcon,
   XIcon,
 } from "lucide-react";
 import { useState } from "react";
@@ -44,7 +44,7 @@ const TOAST_PRESETS = {
     },
   },
   error: {
-    icon: <LucideIcon icon={OctagonXIcon} />,
+    icon: <LucideIcon icon={CircleXIcon} />,
     color: "fg.error",
     bg: {
       light: "red.100",

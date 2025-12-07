@@ -9,7 +9,7 @@ import { MIN_H_FEEDBACK_CONTAINER } from "@/constants/sizes";
 import useLang from "@/context/useLang";
 import { useThemeConfig } from "@/context/useThemeConfig";
 import { Icon } from "@chakra-ui/react";
-import { OctagonX } from "lucide-react";
+import { CircleXIcon } from "lucide-react";
 
 interface Props extends Props__FeedbackState {
   onRetry?: () => void;
@@ -34,7 +34,7 @@ export default function FeedbackRetry(props: Props) {
       <FeedbackState
         icon={
           <Icon mb={title ? -2 : 0}>
-            {icon || <LucideIcon icon={OctagonX} />}
+            {icon || <LucideIcon icon={CircleXIcon} />}
           </Icon>
         }
         title={title ?? l.alert_retry.title}
