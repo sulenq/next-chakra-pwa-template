@@ -42,18 +42,20 @@ export default function FeedbackRetry(props: Props) {
         maxW={"300px"}
       />
 
-      <Btn
-        className="clicky"
-        variant={"outline"}
-        colorPalette={themeConfig.colorPalette}
-        mx={"auto"}
-        size={"sm"}
-        onClick={onRetry}
-      >
-        {l.retry}
-      </Btn>
+      <CContainer gap={1} pb={4}>
+        <Btn
+          className="clicky"
+          variant={"outline"}
+          colorPalette={themeConfig.colorPalette}
+          mx={"auto"}
+          size={"sm"}
+          onClick={onRetry}
+        >
+          {l.retry}
+        </Btn>
 
-      {children}
+        {children}
+      </CContainer>
     </CContainer>
   );
 }
