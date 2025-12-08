@@ -177,7 +177,7 @@ const Update = (props: any) => {
   return (
     <>
       <RowMenuTooltip content={"Edit"}>
-        <MenuItem value="edit" onClick={onOpen}>
+        <MenuItem className="clicky" value="edit" onClick={onOpen}>
           Edit
           <Icon boxSize={MENU_ICON_BOX_SIZE} ml={"auto"}>
             <LucideIcon icon={EditIcon} />
@@ -264,7 +264,7 @@ const Restore = (props: any) => {
       disabled={disabled}
     >
       <RowMenuTooltip content={l.restore}>
-        <MenuItem value="restore" disabled={disabled}>
+        <MenuItem className="clicky" value="restore" disabled={disabled}>
           {l.restore}
           <Icon boxSize={MENU_ICON_BOX_SIZE} ml={"auto"}>
             <LucideIcon icon={UndoIcon} />
@@ -332,7 +332,12 @@ const Delete = (props: any) => {
       disabled={disabled}
     >
       <RowMenuTooltip content={l.delete_}>
-        <MenuItem value="delete" color={"fg.error"} disabled={disabled}>
+        <MenuItem
+          className="clicky"
+          value="delete"
+          color={"fg.error"}
+          disabled={disabled}
+        >
           {l.delete_}
           <Icon boxSize={MENU_ICON_BOX_SIZE} ml={"auto"}>
             <LucideIcon icon={TrashIcon} />

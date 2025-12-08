@@ -17,7 +17,7 @@ export const Btn = forwardRef<HTMLButtonElement, BtnProps>((props, ref) => {
   // Props
   const {
     children,
-    clicky = false,
+    clicky = true,
     iconButton = false,
     className = "",
     size,
@@ -86,7 +86,7 @@ export const Btn = forwardRef<HTMLButtonElement, BtnProps>((props, ref) => {
   ) : (
     <Button
       ref={ref}
-      // className={resolvedClassName}
+      className={resolvedClassName}
       fontSize={"md"}
       fontWeight="medium"
       bg={isSubtle && !props.colorPalette ? "d0" : ""}
