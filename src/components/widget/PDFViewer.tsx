@@ -79,7 +79,12 @@ const Toolbar = (props: Props__PDFToolbar) => {
             </UtilBtn>
 
             {/* Page Indicator */}
-            <Box fontWeight={"medium"} px={2} whiteSpace={"nowrap"}>
+            <Box
+              fontWeight={"medium"}
+              px={2}
+              whiteSpace={"nowrap"}
+              fontVariantNumeric={"tabular-nums"}
+            >
               {pageNumber} / {numPages || "--"}
             </Box>
 
