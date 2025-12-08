@@ -34,6 +34,77 @@ import { useThemeConfig } from "@/context/useThemeConfig";
 
 pdfjs.GlobalWorkerOptions.workerSrc = `https://unpkg.com/pdfjs-dist@4.4.168/build/pdf.worker.min.mjs`;
 
+const UtilBtn = (props: any) => {
+  const { tooltipContent, ...restProps } = props;
+
+  return (
+    <Tooltip content={tooltipContent}>
+      <Btn iconButton size={"sm"} variant={"ghost"} {...restProps} />
+    </Tooltip>
+  );
+};
+const PageJump = (props: any) => {
+  // Props
+  const { pageNumber, setPageNumber, numPages, ...restProps } = props;
+
+  // Contexts
+  const { themeConfig } = useThemeConfig();
+
+  // States
+  const [gotoPage, setGotoPage] = useState<number | null>(null);
+
+  return (
+    <MenuRoot
+      positioning={{
+        placement: "bottom",
+      }}
+    >
+      <MenuTrigger asChild>
+        <Btn
+          px={2}
+          variant={"ghost"}
+          fontWeight={"medium"}
+          whiteSpace={"nowrap"}
+          fontVariantNumeric={"tabular-nums"}
+          {...restProps}
+        >
+          {pageNumber} / {numPages || "?"}
+        </Btn>
+      </MenuTrigger>
+
+      <MenuContent p={0}>
+        <CContainer gap={2} p={2}>
+          <P fontSize={"sm"} fontWeight={"medium"} color={"fg.subtle"}>
+            Go to page
+          </P>
+
+          <NumInput
+            inputValue={gotoPage}
+            onChange={(inputValue) => {
+              setGotoPage(inputValue);
+            }}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") if (gotoPage) setPageNumber(gotoPage);
+            }}
+          />
+
+          <Btn
+            colorPalette={themeConfig.colorPalette}
+            disabled={gotoPage === null}
+            onClick={() => {
+              if (gotoPage) {
+                setPageNumber(gotoPage);
+              }
+            }}
+          >
+            Go
+          </Btn>
+        </CContainer>
+      </MenuContent>
+    </MenuRoot>
+  );
+};
+
 interface Props__PDFToolbar extends StackProps {
   utils: any;
   toggleMode: () => void;
@@ -59,78 +130,6 @@ const Toolbar = (props: Props__PDFToolbar) => {
   // Contexts
   const { l } = useLang();
 
-  // Components
-  const UtilBtn = (props: any) => {
-    const { tooltipContent, ...restProps } = props;
-
-    return (
-      <Tooltip content={tooltipContent}>
-        <Btn iconButton size={"sm"} variant={"ghost"} {...restProps} />
-      </Tooltip>
-    );
-  };
-  const PageJump = (props: any) => {
-    // Props
-    const { pageNumber, numPages, ...restProps } = props;
-
-    // Contexts
-    const { themeConfig } = useThemeConfig();
-
-    // States
-    const [gotoPage, setGotoPage] = useState<number | null>(null);
-
-    return (
-      <MenuRoot
-        positioning={{
-          placement: "bottom",
-        }}
-      >
-        <MenuTrigger asChild>
-          <Btn
-            px={2}
-            variant={"ghost"}
-            fontWeight={"medium"}
-            whiteSpace={"nowrap"}
-            fontVariantNumeric={"tabular-nums"}
-            {...restProps}
-          >
-            {pageNumber} / {numPages || "?"}
-          </Btn>
-        </MenuTrigger>
-
-        <MenuContent p={0}>
-          <CContainer gap={2} p={2}>
-            <P fontSize={"sm"} fontWeight={"medium"} color={"fg.subtle"}>
-              Go to page
-            </P>
-
-            <NumInput
-              inputValue={gotoPage}
-              onChange={(inputValue) => {
-                setGotoPage(inputValue);
-              }}
-              onKeyDown={(e) => {
-                if (e.key === "Enter") if (gotoPage) setPageNumber(gotoPage);
-              }}
-            />
-
-            <Btn
-              colorPalette={themeConfig.colorPalette}
-              disabled={gotoPage === null}
-              onClick={() => {
-                if (gotoPage) {
-                  setPageNumber(gotoPage);
-                }
-              }}
-            >
-              Go
-            </Btn>
-          </CContainer>
-        </MenuContent>
-      </MenuRoot>
-    );
-  };
-
   return (
     <HScroll className={"noScroll"} bg={"body"} {...restProps}>
       <HStack minW={"full"} w={"max"} gap={2} p={2}>
@@ -147,7 +146,11 @@ const Toolbar = (props: Props__PDFToolbar) => {
             </UtilBtn>
 
             {/* Page Indicator */}
-            <PageJump pageNumber={pageNumber} numPages={numPages} />
+            <PageJump
+              pageNumber={pageNumber}
+              setPageNumber={setPageNumber}
+              numPages={numPages}
+            />
 
             <UtilBtn
               onClick={utils.nextPage}
