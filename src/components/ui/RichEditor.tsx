@@ -12,7 +12,7 @@ export const RichEditor = (props: Props__RichEditor) => {
       apiKey={TINY_MCE_API_KEY}
       init={{
         height: 720,
-        menubar: true,
+        menubar: false,
         plugins: "lists link image table code help wordcount",
         toolbar:
           "undo redo | formatselect | bold italic backcolor | " +

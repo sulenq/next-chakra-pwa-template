@@ -43,6 +43,9 @@
   margin: 4px 0;
 }
 
+.tox-tinymce {
+  width: 100% !important;
+}
 .tox-platform-touch {
   width: 100% !important;
 }

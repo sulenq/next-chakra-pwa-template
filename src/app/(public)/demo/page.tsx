@@ -27,6 +27,7 @@ import FeedbackRetry from "@/components/widget/FeedbackRetry";
 import SelectWorkspaceCategory from "@/components/widget/SelectWorkspaceCategory";
 import VideoPlayer from "@/components/widget/VideoPlayer";
 import { OPTIONS_RELIGION } from "@/constants/selectOptions";
+import { useThemeConfig } from "@/context/useThemeConfig";
 import { HStack, SimpleGrid } from "@chakra-ui/react";
 import { IconPencilMinus, IconRestore, IconTrash } from "@tabler/icons-react";
 import { useFormik } from "formik";
@@ -256,6 +257,8 @@ const DemoIndexRoute = () => {
     },
   });
 
+  const { themeConfig } = useThemeConfig();
+
   return (
     <CContainer p={4} gap={8} mx={"auto"}>
       <HStack justify={"space-between"}>
@@ -263,14 +266,14 @@ const DemoIndexRoute = () => {
           <P whiteSpace={"nowrap"} fontSize={"xl"} fontWeight={"bold"}>
             Demo
           </P>
-
-          <NavLink to="/home">
-            <P color={"p.fg"}>App Layout</P>
-          </NavLink>
         </HStack>
 
         <ColorModeButton />
       </HStack>
+
+      <NavLink to="/home">
+        <Btn colorPalette={themeConfig.colorPalette}>App Layout</Btn>
+      </NavLink>
 
       <SimpleGrid columns={[1, null, 2]} gap={8}>
         <CContainer gap={4}>

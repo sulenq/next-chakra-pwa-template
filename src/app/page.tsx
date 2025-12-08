@@ -77,7 +77,8 @@ export default function Page() {
                 zIndex={4}
                 color={"body"}
               >
-                Fill the credentials with whatever you want and hit Sign in
+                User these credentials to sign in, Email: admin@gmail.com,
+                Password: nextlevel
               </P>
             </CContainer>
           </CContainer>

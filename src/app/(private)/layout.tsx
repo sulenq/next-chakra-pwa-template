@@ -67,8 +67,7 @@ import {
 import { usePathname, useRouter } from "next/navigation";
 import { Fragment, useEffect, useRef, useState } from "react";
 
-// TODO user api url
-const USER_PROFILE_URL = "";
+const USER_PROFILE_URL = "/api/get-user-profile";
 const DESKTOP_NAVS_BG = "bgContent";
 const NAVS_COLOR = "fg.muted";
 const NAVS_COLOR_PALETTE = "gray";

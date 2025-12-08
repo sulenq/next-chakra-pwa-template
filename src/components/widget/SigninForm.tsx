@@ -158,9 +158,6 @@ const BasicAuthForm = (props: any) => {
           },
         },
       });
-
-      // TODO remove on real dev
-      router.push(indexRoute);
     },
   });
 
@@ -262,8 +259,7 @@ export const SigninForm = (props: Props) => {
   const resolvedAuthToken = authToken || verifiedAuthToken;
 
   // States
-  // TODO sign in api url
-  const signinAPI = "";
+  const signinAPI = "/api/signin";
   const indexRoute = "/demo";
 
   return (
