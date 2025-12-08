@@ -62,7 +62,7 @@ const SelectOptions = (props: Props__SelectOptions) => {
 
   return (
     <CContainer {...restProps}>
-      <CContainer px={4} pt={4} pos={"sticky"} top={0} bg={"body"} zIndex={2}>
+      <CContainer px={4} pt={4} pos={"sticky"} top={0} bg={"body"} zIndex={3}>
         <SearchInput
           inputValue={search}
           onChange={(inputValue) => {
@@ -82,7 +82,7 @@ const SelectOptions = (props: Props__SelectOptions) => {
       {!isEmptyArray(resolvedSelectOptions) && (
         <>
           {multiple && (
-            <CContainer px={4} pt={4} zIndex={3}>
+            <CContainer px={4} pt={4} zIndex={2}>
               <Box
                 onClick={(e) => {
                   e.stopPropagation();

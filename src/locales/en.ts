@@ -73,7 +73,7 @@ const translations = {
   },
   "error_401_default": {
     "title": "Unauthorized",
-    "description": "You need to Sign in to access this."
+    "description": "Please sign in first to continue."
   },
   "error_402_default": {
     "title": "Payment required",

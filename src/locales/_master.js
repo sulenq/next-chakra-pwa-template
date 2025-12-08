@@ -1215,8 +1215,8 @@ export const error_400_default = {
 export const error_401_default = {
   title: { id: "Unauthorized", en: "Unauthorized" },
   description: {
-    id: "Kamu harus Sign in untuk mengakses ini.",
-    en: "You need to Sign in to access this.",
+    id: "Silakan masuk terlebih dahulu untuk melanjutkan akses.",
+    en: "Please sign in first to continue.",
   },
 };
 export const error_402_default = {

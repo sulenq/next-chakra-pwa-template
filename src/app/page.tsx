@@ -3,6 +3,7 @@
 import { CContainer } from "@/components/ui/c-container";
 import { ColorModeButton } from "@/components/ui/color-mode";
 import { LangMenu } from "@/components/ui/lang-menu";
+import { P } from "@/components/ui/p";
 import BrandWatermark from "@/components/widget/BrandWatermark";
 import Logo from "@/components/widget/Logo";
 import { SigninForm } from "@/components/widget/SigninForm";
@@ -25,20 +26,22 @@ export default function Page() {
       overflowY={"auto"}
     >
       <CContainer pos={"relative"} overflow={"clip"}>
-        <Box
-          w={"50%"}
-          aspectRatio={1.2}
-          rounded={"40%"}
-          bg={`${themeConfig.colorPalette}.300`}
-          animation={"rotate360 5s linear infinite"}
-        />
-        <Box
-          w={"50%"}
-          aspectRatio={1.2}
-          rounded={"40%"}
-          bg={`${themeConfig.colorPalette}.600`}
-          animation={"rotate360 5s linear infinite"}
-        />
+        <>
+          <Box
+            w={"50%"}
+            aspectRatio={1.2}
+            rounded={"40%"}
+            bg={`${themeConfig.colorPalette}.300`}
+            animation={"rotate360 5s linear infinite"}
+          />
+          <Box
+            w={"50%"}
+            aspectRatio={1.2}
+            rounded={"40%"}
+            bg={`${themeConfig.colorPalette}.600`}
+            animation={"rotate360 5s linear infinite"}
+          />
+        </>
       </CContainer>
 
       <SimpleGrid
@@ -62,8 +65,21 @@ export default function Page() {
             overflow={"clip"}
             rounded={themeConfig.radii.container}
             maxH={"calc(100dvh - 16px)"}
+            justify={"space-between"}
+            gap={8}
           >
             <Logo color={"white"} />
+
+            <CContainer p={4}>
+              <P
+                fontSize={"lg"}
+                fontWeight={"medium"}
+                zIndex={4}
+                color={"body"}
+              >
+                Fill the credentials with whatever you want and hit Sign in
+              </P>
+            </CContainer>
           </CContainer>
         )}
 

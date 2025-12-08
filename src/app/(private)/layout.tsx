@@ -67,6 +67,8 @@ import {
 import { usePathname, useRouter } from "next/navigation";
 import { Fragment, useEffect, useRef, useState } from "react";
 
+// TODO user api url
+const USER_PROFILE_URL = "";
 const DESKTOP_NAVS_BG = "bgContent";
 const NAVS_COLOR = "fg.muted";
 const NAVS_COLOR_PALETTE = "gray";
@@ -1119,7 +1121,7 @@ export default function Layout(props: Props__Layout) {
     if (!verificationStartedRef.current) {
       verificationStartedRef.current = true;
 
-      const config = { method: "GET", url: "/api/profile/get-user-profile" };
+      const config = { method: "GET", url: USER_PROFILE_URL };
 
       req({
         config,

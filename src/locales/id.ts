@@ -73,7 +73,7 @@ const translations = {
   },
   "error_401_default": {
     "title": "Unauthorized",
-    "description": "Kamu harus Sign in untuk mengakses ini."
+    "description": "Silakan masuk terlebih dahulu untuk melanjutkan akses."
   },
   "error_402_default": {
     "title": "Payment required",

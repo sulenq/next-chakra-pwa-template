@@ -262,7 +262,8 @@ export const SigninForm = (props: Props) => {
   const resolvedAuthToken = authToken || verifiedAuthToken;
 
   // States
-  const signinAPI = "/api/signin";
+  // TODO sign in api url
+  const signinAPI = "";
   const indexRoute = "/demo";
 
   return (

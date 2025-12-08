@@ -4,7 +4,6 @@ import {
   Interface__RequestState,
 } from "@/constants/interfaces";
 import useLang from "@/context/useLang";
-import { clearAuthToken } from "@/utils/auth";
 import { request } from "@/utils/request";
 import { useRouter } from "next/navigation";
 import { useCallback, useRef, useState } from "react";
@@ -210,11 +209,12 @@ export default function useRequest<T = any>(props: Props) {
         });
 
         switch (statusCode) {
-          case 401:
-          case 403:
-            clearAuthToken();
-            router?.push(signinPath);
-            break;
+          // TODO turn on in real dev
+          // case 401:
+          // case 403:
+          //   clearAuthToken();
+          //   router?.push(signinPath);
+          //   break;
           case 503:
             router?.push("/maintenance");
             break;
