@@ -70,14 +70,14 @@ export default function Page() {
           >
             <Logo color={"white"} />
 
-            <CContainer p={4}>
-              <P
-                fontSize={"lg"}
-                fontWeight={"medium"}
-                zIndex={4}
-                color={"body"}
-              >
-                User these credentials to sign in, Email: admin@gmail.com,
+            <CContainer p={4} color={"light"}>
+              <P fontSize={"lg"} fontWeight={"medium"}>
+                User these credentials to sign in,
+              </P>
+              <P fontSize={"lg"} fontWeight={"medium"}>
+                Email: admin@gmail.com
+              </P>
+              <P fontSize={"lg"} fontWeight={"medium"}>
                 Password: nextlevel
               </P>
             </CContainer>
