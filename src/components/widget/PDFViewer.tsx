@@ -53,6 +53,14 @@ const PageJump = (props: any) => {
   // States
   const [gotoPage, setGotoPage] = useState<number | null>(null);
 
+  // Utils
+  function handleJumpPage(gotoPage: number | null) {
+    if (gotoPage && gotoPage > 0 && gotoPage <= numPages) {
+      console.debug(gotoPage);
+      setPageNumber(gotoPage);
+    }
+  }
+
   return (
     <MenuRoot
       positioning={{
@@ -83,8 +91,9 @@ const PageJump = (props: any) => {
             onChange={(inputValue) => {
               setGotoPage(inputValue);
             }}
+            max={numPages}
             onKeyDown={(e) => {
-              if (e.key === "Enter") if (gotoPage) setPageNumber(gotoPage);
+              if (e.key === "Enter") handleJumpPage(gotoPage);
             }}
           />
 
@@ -92,9 +101,7 @@ const PageJump = (props: any) => {
             colorPalette={themeConfig.colorPalette}
             disabled={gotoPage === null}
             onClick={() => {
-              if (gotoPage) {
-                setPageNumber(gotoPage);
-              }
+              handleJumpPage(gotoPage);
             }}
           >
             Go
