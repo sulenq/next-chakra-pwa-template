@@ -94,7 +94,7 @@ const Toolbar = (props: Props__PDFToolbar) => {
             fontVariantNumeric={"tabular-nums"}
             {...restProps}
           >
-            {pageNumber} / {numPages || "--"}
+            {pageNumber} / {numPages || "?"}
           </Btn>
         </MenuTrigger>
 
@@ -105,10 +105,12 @@ const Toolbar = (props: Props__PDFToolbar) => {
             </P>
 
             <NumInput
-              px={2}
               inputValue={gotoPage}
               onChange={(inputValue) => {
                 setGotoPage(inputValue);
+              }}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") if (gotoPage) setPageNumber(gotoPage);
               }}
             />
 
