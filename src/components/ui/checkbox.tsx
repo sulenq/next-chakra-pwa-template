@@ -1,5 +1,6 @@
 "use client";
 
+import { useColorModeValue } from "@/components/ui/color-mode";
 import { useThemeConfig } from "@/context/useThemeConfig";
 import { Checkbox as ChakraCheckbox, Icon } from "@chakra-ui/react";
 import { XIcon } from "lucide-react";
@@ -28,8 +29,10 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
     // Contexts
     const { themeConfig } = useThemeConfig();
 
-    // Statesyawe
+    // States
     const isRoundedZero = themeConfig.radii.component === "0px";
+    const isColorPaletteGray = themeConfig.colorPalette === "gray";
+    const graySolidBg = useColorModeValue("dark", "light");
 
     return (
       <ChakraCheckbox.Root
@@ -43,7 +46,9 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
         <ChakraCheckbox.Control
           bg={
             restProps.bg || checked
-              ? themeConfig.primaryColor
+              ? isColorPaletteGray
+                ? graySolidBg
+                : themeConfig.primaryColor
               : subtle
               ? "bg.muted"
               : "transparent"

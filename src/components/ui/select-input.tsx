@@ -82,7 +82,7 @@ const SelectOptions = (props: Props__SelectOptions) => {
       {!isEmptyArray(resolvedSelectOptions) && (
         <>
           {multiple && (
-            <CContainer px={6} pt={4} zIndex={3}>
+            <CContainer px={4} pt={4} zIndex={3}>
               <Box
                 onClick={(e) => {
                   e.stopPropagation();
