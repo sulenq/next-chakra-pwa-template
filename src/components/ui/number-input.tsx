@@ -62,8 +62,11 @@ export const NumInput = forwardRef<HTMLInputElement, Props__NumInput>(
 
       let sanitizedInput = rawInput;
 
+      // FIX: remove existing formatting before parsing/formatting again
       if (integer) {
-        sanitizedInput = sanitizedInput.replace(/,/g, "");
+        sanitizedInput = sanitizedInput.replace(/[.,]/g, "");
+      } else {
+        sanitizedInput = sanitizedInput.replace(/\./g, "");
       }
 
       const commaIndex = sanitizedInput.indexOf(",");

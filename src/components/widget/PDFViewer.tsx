@@ -27,6 +27,10 @@ import {
 } from "lucide-react";
 import "react-pdf/dist/Page/AnnotationLayer.css";
 import "react-pdf/dist/Page/TextLayer.css";
+import { MenuContent, MenuRoot, MenuTrigger } from "@/components/ui/menu";
+import { NumInput } from "@/components/ui/number-input";
+import { P } from "@/components/ui/p";
+import { useThemeConfig } from "@/context/useThemeConfig";
 
 pdfjs.GlobalWorkerOptions.workerSrc = `https://unpkg.com/pdfjs-dist@4.4.168/build/pdf.worker.min.mjs`;
 
@@ -35,6 +39,7 @@ interface Props__PDFToolbar extends StackProps {
   toggleMode: () => void;
   isSingleMode: boolean;
   pageNumber: number;
+  setPageNumber: React.Dispatch<number>;
   numPages: number | null;
   scale: number;
 }
@@ -45,6 +50,7 @@ const Toolbar = (props: Props__PDFToolbar) => {
     toggleMode,
     isSingleMode,
     pageNumber,
+    setPageNumber,
     numPages,
     scale,
     ...restProps
@@ -54,12 +60,72 @@ const Toolbar = (props: Props__PDFToolbar) => {
   const { l } = useLang();
 
   // Components
-  const UtilBtn = (btnProps: any) => {
-    const { tooltipContent, ...restProps } = btnProps;
+  const UtilBtn = (props: any) => {
+    const { tooltipContent, ...restProps } = props;
+
     return (
       <Tooltip content={tooltipContent}>
         <Btn iconButton size={"sm"} variant={"ghost"} {...restProps} />
       </Tooltip>
+    );
+  };
+  const PageJump = (props: any) => {
+    // Props
+    const { pageNumber, numPages, ...restProps } = props;
+
+    // Contexts
+    const { themeConfig } = useThemeConfig();
+
+    // States
+    const [gotoPage, setGotoPage] = useState<number | null>(null);
+
+    return (
+      <MenuRoot
+        positioning={{
+          placement: "bottom",
+        }}
+      >
+        <MenuTrigger asChild>
+          <Btn
+            px={2}
+            variant={"ghost"}
+            fontWeight={"medium"}
+            whiteSpace={"nowrap"}
+            fontVariantNumeric={"tabular-nums"}
+            {...restProps}
+          >
+            {pageNumber} / {numPages || "--"}
+          </Btn>
+        </MenuTrigger>
+
+        <MenuContent p={0}>
+          <CContainer gap={2} p={2}>
+            <P fontSize={"sm"} fontWeight={"medium"} color={"fg.subtle"}>
+              Go to page
+            </P>
+
+            <NumInput
+              px={2}
+              inputValue={gotoPage}
+              onChange={(inputValue) => {
+                setGotoPage(inputValue);
+              }}
+            />
+
+            <Btn
+              colorPalette={themeConfig.colorPalette}
+              disabled={gotoPage === null}
+              onClick={() => {
+                if (gotoPage) {
+                  setPageNumber(gotoPage);
+                }
+              }}
+            >
+              Go
+            </Btn>
+          </CContainer>
+        </MenuContent>
+      </MenuRoot>
     );
   };
 
@@ -67,7 +133,7 @@ const Toolbar = (props: Props__PDFToolbar) => {
     <HScroll className={"noScroll"} bg={"body"} {...restProps}>
       <HStack minW={"full"} w={"max"} gap={2} p={2}>
         {isSingleMode && (
-          <HStack gap={0}>
+          <HStack gap={1}>
             <UtilBtn
               onClick={utils.prevPage}
               disabled={!isSingleMode || pageNumber <= 1}
@@ -79,14 +145,7 @@ const Toolbar = (props: Props__PDFToolbar) => {
             </UtilBtn>
 
             {/* Page Indicator */}
-            <Box
-              fontWeight={"medium"}
-              px={2}
-              whiteSpace={"nowrap"}
-              fontVariantNumeric={"tabular-nums"}
-            >
-              {pageNumber} / {numPages || "--"}
-            </Box>
+            <PageJump pageNumber={pageNumber} numPages={numPages} />
 
             <UtilBtn
               onClick={utils.nextPage}
@@ -217,6 +276,7 @@ export const PDFViewer = (props: Props__PdfViewer) => {
         isSingleMode={isSingleMode}
         toggleMode={toggleMode}
         pageNumber={pageNumber}
+        setPageNumber={setPageNumber}
         numPages={numPages}
         scale={scale}
         flexShrink={0}
