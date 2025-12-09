@@ -43,7 +43,7 @@ export const RowOptions = (props: Props_RowOptions) => {
       }}
       {...menuRootProps}
     >
-      <MenuTrigger aria-label="row-options">
+      <MenuTrigger asChild aria-label="row-options">
         <Btn
           iconButton
           variant={"ghost"}
