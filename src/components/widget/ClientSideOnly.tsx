@@ -1,17 +1,16 @@
 "use client";
 
+import { useColorMode } from "@/components/ui/color-mode";
+import { LoadingBar } from "@/components/widget/LoadingBar";
 import { APP } from "@/constants/_meta";
+import { SVGS_PATH } from "@/constants/paths";
+import useADM from "@/context/useADM";
 import { useFirefoxPaddingY } from "@/hooks/useFirefoxPaddingY";
 import useOfflineAlert from "@/hooks/useOfflineAlert";
 import { Center } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { Img } from "../ui/img";
 import GlobalDisclosure from "./GlobalDisclosure";
-import { useColorMode } from "@/components/ui/color-mode";
-import useADM from "@/context/useADM";
-import { LoadingBar } from "@/components/widget/LoadingBar";
-import { purgeDisclosureSearchParams } from "@/utils/disclosure";
-import { SVGS_PATH } from "@/constants/paths";
 
 interface Props {
   children: React.ReactNode;
@@ -61,7 +60,6 @@ export default function ClientSideOnly(props: Props) {
   useEffect(() => {
     mountedGlobal = true;
     setMounted(true);
-    purgeDisclosureSearchParams();
   }, []);
 
   // Handle offline alert

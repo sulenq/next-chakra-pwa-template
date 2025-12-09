@@ -184,7 +184,7 @@ export const PeriodPickerInput = (props: Props__PeriodPickerInput) => {
               >
                 <SimpleGrid w={"full"} columns={2} gap={2}>
                   {MONTHS.map((month, idx) => {
-                    const active = selected.month === idx;
+                    const isActive = selected.month === idx;
 
                     return (
                       <Btn
@@ -194,11 +194,12 @@ export const PeriodPickerInput = (props: Props__PeriodPickerInput) => {
                         onClick={() =>
                           setSelected((prev) => ({ ...prev, month: idx }))
                         }
+                        color={isActive ? "" : "fg.muted"}
                       >
                         <HStack w={"full"} justify={"space-between"}>
                           {month}
 
-                          {active && (
+                          {isActive && (
                             <Icon
                               color={themeConfig.primaryColor}
                               boxSize={C_ACTIVE_INDICATOR_SIZE}

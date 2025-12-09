@@ -226,9 +226,9 @@ export const DataGrid = (props: Props) => {
       {hasFooter && (
         <>
           <HStack
-            p={3}
+            p={2}
             borderTop={"1px solid"}
-            borderColor={"border.muted"}
+            borderColor={"border.subtle"}
             justify={"space-between"}
           >
             <CContainer w={"fit"} mb={[1, null, 0]}>

@@ -39,10 +39,9 @@ export const BatchOptions = (props: Props__BatchOptions) => {
 
   return (
     <MenuRoot lazyMount {...menuRootProps}>
-      <MenuTrigger asChild aria-label="batch options">
+      <MenuTrigger aria-label="batch options">
         <Btn
           iconButton
-          clicky={false}
           variant={"ghost"}
           size={"xs"}
           _open={{

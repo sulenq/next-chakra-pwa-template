@@ -40,7 +40,7 @@ const NAVS_COLOR = "fg.muted";
 
 const SelectOptions = (props: Props__SelectOptions) => {
   // Props
-  const { multiple, selectOptions, selected, setSelected, ...restProps } =
+  const { id, multiple, selectOptions, selected, setSelected, ...restProps } =
     props;
 
   // Contexts
@@ -68,6 +68,7 @@ const SelectOptions = (props: Props__SelectOptions) => {
           onChange={(inputValue) => {
             setSearch(inputValue || "");
           }}
+          queryKey={`q_${id}`}
         />
       </CContainer>
 
@@ -289,6 +290,7 @@ export const SelectInput = (props: Props__SelectInput) => {
 
                 {!error && (
                   <SelectOptions
+                    id={id}
                     multiple={multiple}
                     selectOptions={selectOptions}
                     selected={selected}

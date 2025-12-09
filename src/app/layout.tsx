@@ -5,6 +5,7 @@ import ClientSideOnly from "@/components/widget/ClientSideOnly";
 import { Metadata, Viewport } from "next";
 import { Figtree } from "next/font/google";
 import { APP } from "@/constants/_meta";
+import { disclosurePrefixId } from "@/utils/disclosure";
 
 interface Props {
   children: React.ReactNode;
@@ -66,6 +67,34 @@ const RootLayout = (props: Props) => {
       </head>
 
       <body>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+            (function() {
+              try {
+                var nav = performance.getEntriesByType("navigation")[0];
+                var isReload = nav && nav.type === "reload";
+                if (!isReload) return;
+
+                var url = new URL(window.location.href);
+                var changed = false;
+
+                url.searchParams.forEach(function(_, key) {
+                  if (key.startsWith("${disclosurePrefixId}")) {
+                    url.searchParams.delete(key);
+                    changed = true;
+                  }
+                });
+
+                if (changed) {
+                  var next = url.pathname + (url.search ? "?" + url.searchParams.toString() : "");
+                  window.history.replaceState({}, "", next);
+                }
+              } catch (_) {}
+            })();
+          `,
+          }}
+        />
         <Provider>
           <Toaster />
           <ClientSideOnly>{children}</ClientSideOnly>

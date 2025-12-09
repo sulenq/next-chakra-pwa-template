@@ -3,7 +3,7 @@
 import { Btn } from "@/components/ui/btn";
 import { CContainer } from "@/components/ui/c-container";
 import { Checkbox } from "@/components/ui/checkbox";
-import { useColorMode } from "@/components/ui/color-mode";
+import { useColorMode, useColorModeValue } from "@/components/ui/color-mode";
 import { DatePickerInput } from "@/components/ui/date-picker-input";
 import { P } from "@/components/ui/p";
 import { SelectInput } from "@/components/ui/select-input";
@@ -184,6 +184,7 @@ const Theme = () => {
   // Contexts
   const { l } = useLang();
   const { themeConfig, setThemeConfig } = useThemeConfig();
+  const graySolidBg = useColorModeValue("dark", "light");
 
   return (
     <ItemContainer>
@@ -200,6 +201,7 @@ const Theme = () => {
         <SimpleGrid columns={[3, null, 5, null, 10]} gap={2}>
           {COLOR_PALETTES.map((color, idx) => {
             const isActive = color.palette === themeConfig.colorPalette;
+            const isColorPaletteGray = color.palette === "gray";
 
             return (
               <Center
@@ -213,7 +215,9 @@ const Theme = () => {
                 onClick={() => {
                   setThemeConfig({
                     colorPalette: color.palette,
-                    primaryColor: `${color.palette}.500`,
+                    primaryColor: isColorPaletteGray
+                      ? graySolidBg
+                      : `${color.palette}.500`,
                     primaryColorHex: color.primaryHex,
                   });
                 }}
@@ -453,7 +457,7 @@ const ExampleUI = () => {
           multiple
         />
 
-        <DatePickerInput flex={"1 1 200px"} />
+        <DatePickerInput flex={"1 1 200px"} multiple />
 
         <TimePickerInput flex={"1 1 200px"} />
 

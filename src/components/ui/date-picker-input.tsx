@@ -182,6 +182,7 @@ const DatePicker = (props: Props__DatePicker) => {
         borderColor={"border.muted"}
         pb={2}
         mb={2}
+        color={"fg.muted"}
       >
         {WEEKDAYS.map((day, i) => (
           <P key={i} fontWeight={"medium"} textAlign={"center"}>
@@ -195,16 +196,18 @@ const DatePicker = (props: Props__DatePicker) => {
           <SimpleGrid columns={[7]} key={i} gap={2}>
             {weeks.map((date, ii) => {
               const today = new Date();
-              const dateSelected = selected.some(
+              const isDateSelected = selected.some(
                 (sd) =>
                   sd.getDate() === date.fullDate.getDate() &&
                   sd.getMonth() === date.month &&
                   sd.getFullYear() === date.year
               );
-              const dateToday =
+              const isDateToday =
                 date.date === today.getDate() &&
                 date.month === today.getMonth() &&
                 date.year === today.getFullYear();
+              const isOutsideMonthAndUnselected =
+                date.month !== period.month && !isDateSelected;
 
               return (
                 <Btn
@@ -233,23 +236,28 @@ const DatePicker = (props: Props__DatePicker) => {
                           );
                       setSelected(newSelectedDates);
                     } else {
-                      if (dateSelected) {
+                      if (isDateSelected) {
                         setSelected([]);
                       } else {
                         setSelected([date.fullDate]);
                       }
                     }
                   }}
-                  variant={dateSelected ? "outline" : "ghost"}
-                  borderColor={dateSelected ? themeConfig.primaryColor : ""}
+                  variant={isDateSelected ? "outline" : "ghost"}
+                  borderColor={isDateSelected ? themeConfig.primaryColor : ""}
                   aspectRatio={1}
                 >
                   <P
-                    opacity={
-                      date.month !== period.month && !dateSelected ? 0.3 : 1
+                    color={
+                      isOutsideMonthAndUnselected
+                        ? "fg.subtle"
+                        : isDateToday
+                        ? themeConfig.primaryColor
+                        : isDateSelected
+                        ? ""
+                        : "fg.muted"
                     }
-                    color={dateToday ? themeConfig.primaryColor : ""}
-                    fontWeight={dateToday ? "extrabold" : ""}
+                    fontWeight={isDateToday ? "extrabold" : ""}
                   >
                     {`${date.date}`}
                   </P>

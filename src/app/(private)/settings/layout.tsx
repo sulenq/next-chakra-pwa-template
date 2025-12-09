@@ -162,6 +162,7 @@ export default function Layout(props: Props__Layout) {
                   onChange={(inputValue) => {
                     setSearch(inputValue || "");
                   }}
+                  queryKey={"q_settings_navs"}
                 />
               </CContainer>
 

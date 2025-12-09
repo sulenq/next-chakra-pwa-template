@@ -28,10 +28,12 @@ export const Btn = forwardRef<HTMLButtonElement, BtnProps>((props, ref) => {
   // Contexts
   const { themeConfig } = useThemeConfig();
   const { colorMode } = useColorMode();
+  const graySolidActiveBg = useColorModeValue("gray.600", "gray.300");
 
-  // States, Refs
+  // States
   const resolvedClassName = `${clicky ? "clicky" : ""} ${className}`.trim();
   const isSubtle = props?.variant === "subtle";
+  const isColorPaletteGray = props?.colorPalette === "gray";
 
   // Memoized Active Style
   const resolvedMutedColor = useColorModeValue(
@@ -42,7 +44,9 @@ export const Btn = forwardRef<HTMLButtonElement, BtnProps>((props, ref) => {
     if (props.colorPalette) {
       switch (props?.variant) {
         default:
-          return `${props.colorPalette}.600`;
+          return isColorPaletteGray
+            ? graySolidActiveBg
+            : `${props.colorPalette}.600`;
         case "ghost":
         case "outline":
           return `${props.colorPalette}.subtle`;
@@ -79,6 +83,7 @@ export const Btn = forwardRef<HTMLButtonElement, BtnProps>((props, ref) => {
             }
           : {}
       }
+      transition={"200ms"}
       {...restProps}
     >
       {children}
@@ -101,6 +106,7 @@ export const Btn = forwardRef<HTMLButtonElement, BtnProps>((props, ref) => {
             }
           : {}
       }
+      transition={"200ms"}
       {...restProps}
     >
       {children}

@@ -1,4 +1,5 @@
 import { Btn } from "@/components/ui/btn";
+import { CContainer } from "@/components/ui/c-container";
 import {
   MenuContent,
   MenuItem,
@@ -10,7 +11,6 @@ import { ConfirmationDisclosureTrigger } from "@/components/widget/ConfirmationD
 import { Props_RowOptions } from "@/constants/props";
 import { Icon } from "@chakra-ui/react";
 import { IconDots } from "@tabler/icons-react";
-import { Fragment } from "react";
 
 const ICON_BOX_SIZE = "18px";
 
@@ -34,16 +34,21 @@ export const RowOptions = (props: Props_RowOptions) => {
     props;
 
   return (
-    <MenuRoot lazyMount {...menuRootProps}>
-      <MenuTrigger asChild aria-label="row options">
+    <MenuRoot
+      lazyMount
+      positioning={{
+        offset: {
+          crossAxis: 4,
+        },
+      }}
+      {...menuRootProps}
+    >
+      <MenuTrigger aria-label="row-options">
         <Btn
           iconButton
-          clicky={false}
           variant={"ghost"}
           size={"xs"}
-          _open={{
-            bg: "d0",
-          }}
+          _open={{ bg: "d0" }}
           {...restProps}
         >
           <Icon boxSize={5}>
@@ -52,7 +57,12 @@ export const RowOptions = (props: Props_RowOptions) => {
         </Btn>
       </MenuTrigger>
 
-      <MenuContent portalRef={tableContainerRef} zIndex={10} minW={"140px"}>
+      <MenuContent
+        portalRef={tableContainerRef}
+        zIndex={10}
+        minW={"140px"}
+        mr={1}
+      >
         {rowOptions?.map((item, idx) => {
           // if (item === "divider") return <MenuSeparator key={idx} />;
 
@@ -98,7 +108,7 @@ export const RowOptions = (props: Props_RowOptions) => {
           }
 
           if (override) {
-            return <Fragment key={idx}>{override}</Fragment>;
+            return <CContainer key={idx}>{override}</CContainer>;
           }
 
           return (
@@ -107,7 +117,9 @@ export const RowOptions = (props: Props_RowOptions) => {
               disabled={disabled}
               value={label}
               onClick={() => {
-                if (!disabled) onClick();
+                if (!disabled) {
+                  onClick();
+                }
               }}
               justifyContent="space-between"
               {...menuItemProps}

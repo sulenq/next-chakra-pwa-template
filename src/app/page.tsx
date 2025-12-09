@@ -5,7 +5,7 @@ import { ColorModeButton } from "@/components/ui/color-mode";
 import { LangMenu } from "@/components/ui/lang-menu";
 import { P } from "@/components/ui/p";
 import BrandWatermark from "@/components/widget/BrandWatermark";
-import Logo from "@/components/widget/Logo";
+import { Logo } from "@/components/widget/Logo";
 import { SigninForm } from "@/components/widget/SigninForm";
 import { useThemeConfig } from "@/context/useThemeConfig";
 import { useIsSmScreenWidth } from "@/hooks/useIsSmScreenWidth";

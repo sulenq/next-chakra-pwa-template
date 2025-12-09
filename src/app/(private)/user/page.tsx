@@ -59,7 +59,7 @@ import { useEffect, useRef, useState } from "react";
 import * as yup from "yup";
 
 const BASE_ENDPOINT = ``;
-const PREFIX_ID = `kmis_material`;
+const PREFIX_ID = `user`;
 type Interface__Data = any;
 
 const Create = () => {
@@ -90,6 +90,7 @@ const DataUtils = (props: any) => {
   return (
     <HStack {...restProps}>
       <SearchInput
+        queryKey="q_user"
         inputProps={{
           size: "sm",
         }}
@@ -177,7 +178,7 @@ const Update = (props: any) => {
   return (
     <>
       <RowMenuTooltip content={"Edit"}>
-        <MenuItem className="clicky" value="edit" onClick={onOpen}>
+        <MenuItem value="edit" onClick={onOpen}>
           Edit
           <Icon boxSize={MENU_ICON_BOX_SIZE} ml={"auto"}>
             <LucideIcon icon={EditIcon} />
@@ -264,7 +265,7 @@ const Restore = (props: any) => {
       disabled={disabled}
     >
       <RowMenuTooltip content={l.restore}>
-        <MenuItem className="clicky" value="restore" disabled={disabled}>
+        <MenuItem value="restore" disabled={disabled}>
           {l.restore}
           <Icon boxSize={MENU_ICON_BOX_SIZE} ml={"auto"}>
             <LucideIcon icon={UndoIcon} />
@@ -332,12 +333,7 @@ const Delete = (props: any) => {
       disabled={disabled}
     >
       <RowMenuTooltip content={l.delete_}>
-        <MenuItem
-          className="clicky"
-          value="delete"
-          color={"fg.error"}
-          disabled={disabled}
-        >
+        <MenuItem value="delete" color={"fg.error"} disabled={disabled}>
           {l.delete_}
           <Icon boxSize={MENU_ICON_BOX_SIZE} ml={"auto"}>
             <LucideIcon icon={TrashIcon} />
@@ -562,7 +558,7 @@ export default function Page() {
   const isSmContainer = dimension.width < 600;
   const pathname = usePathname();
   const activeNav = getActiveNavs(pathname);
-  const routeTitle = pluckString(l, last(activeNav)!.labelKey);
+  const routeTitle = pluckString(l, last(activeNav)?.labelKey || "");
   const DEFAULT_FILTER = {
     search: "",
   };

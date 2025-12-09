@@ -5,7 +5,7 @@ import { Field } from "@/components/ui/field";
 import { H1 } from "@/components/ui/heading";
 import { NavLink } from "@/components/ui/nav-link";
 import { LucideIcon } from "@/components/widget/Icon";
-import Logo from "@/components/widget/Logo";
+import { Logo } from "@/components/widget/Logo";
 import { APP } from "@/constants/_meta";
 import { BASE_ICON_BOX_SIZE } from "@/constants/sizes";
 import useAuthMiddleware from "@/context/useAuthMiddleware";

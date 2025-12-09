@@ -1,21 +1,21 @@
-export const disclosureIdPrefix = "disclosure";
+export const disclosurePrefixId = "disclosure";
 
-export const disclosureId = (id: string) => `${disclosureIdPrefix}-${id}`;
+export const disclosureId = (id: string) => `${disclosurePrefixId}-${id}`;
 
-export function purgeDisclosureSearchParams() {
-  if (typeof window === "undefined") return;
+// export function purgeDisclosureSearchParams() {
+//   if (typeof window === "undefined") return;
 
-  const url = new URL(window.location.href);
-  let changed = false;
+//   const url = new URL(window.location.href);
+//   let changed = false;
 
-  url.searchParams.forEach((_, key) => {
-    if (key.includes(disclosureIdPrefix)) {
-      url.searchParams.delete(key);
-      changed = true;
-    }
-  });
+//   url.searchParams.forEach((_, key) => {
+//     if (key.includes(disclosurePrefixId)) {
+//       url.searchParams.delete(key);
+//       changed = true;
+//     }
+//   });
 
-  if (changed) {
-    window.history.replaceState({}, "", url.toString());
-  }
-}
+//   if (changed) {
+//     window.history.replaceState({}, "", url.toString());
+//   }
+// }

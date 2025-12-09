@@ -169,6 +169,7 @@ export interface Props__SelectInput extends Omit<BtnProps, "onChange"> {
   variant?: Type__BasicVariant;
 }
 export interface Props__SelectOptions {
+  id: string;
   multiple: Props__SelectInput["multiple"];
   selectOptions: Props__SelectInput["inputValue"];
   selected: Interface__SelectOption[];
@@ -197,6 +198,7 @@ export interface Props__PasswordInput extends Omit<InputProps, "onChange"> {
 
 export interface Props__SearchInput
   extends Omit<InputGroupProps, "children" | "onChange"> {
+  queryKey: string;
   inputValue?: string;
   onChange?: (inputValue: string) => void;
   placeholder?: string;
@@ -209,7 +211,6 @@ export interface Props__SearchInput
   invalid?: boolean;
   noIcon?: boolean;
   debounceTime?: number;
-  queryKey?: string;
   children?: React.ReactNode;
   variant?: Type__BasicVariant;
 }

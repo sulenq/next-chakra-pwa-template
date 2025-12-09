@@ -327,6 +327,7 @@ const DemoIndexRoute = () => {
                   onChange={(input) => {
                     formik.setFieldValue("search", input);
                   }}
+                  queryKey={"q_demo"}
                 />
               </Field>
 

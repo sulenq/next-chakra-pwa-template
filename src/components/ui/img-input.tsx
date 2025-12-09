@@ -6,6 +6,7 @@ import { Img } from "@/components/ui/img";
 import { P } from "@/components/ui/p";
 import { FileItem } from "@/components/widget/FIleItem";
 import HScroll from "@/components/widget/HScroll";
+import { LucideIcon } from "@/components/widget/Icon";
 import { ImgViewer } from "@/components/widget/ImgViewer";
 import { Interface__StorageFile } from "@/constants/interfaces";
 import { Props__FileInput } from "@/constants/props";
@@ -14,7 +15,7 @@ import { useThemeConfig } from "@/context/useThemeConfig";
 import { isEmptyArray } from "@/utils/array";
 import { imgUrl } from "@/utils/url";
 import { Center, Circle, HStack, useFieldContext } from "@chakra-ui/react";
-import { IconTrash } from "@tabler/icons-react";
+import { TrashIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 
 export const ImgInput = (props: Props__FileInput) => {
@@ -82,7 +83,7 @@ export const ImgInput = (props: Props__FileInput) => {
                   actions={[
                     {
                       type: "delete",
-                      icon: <IconTrash stroke={1.5} />,
+                      icon: <LucideIcon icon={TrashIcon} />,
                       onClick: () => {
                         setExisting((prev) =>
                           prev.filter((f) => f.id !== fileData.id)

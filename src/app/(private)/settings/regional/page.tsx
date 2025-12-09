@@ -144,6 +144,7 @@ const Timezone = () => {
               inputProps={{
                 size: "xs",
               }}
+              queryKey={"q_timezone_settings"}
             />
           )}
 
@@ -175,6 +176,7 @@ const Timezone = () => {
                 setSearch(inputValue || "");
               }}
               inputValue={search}
+              queryKey={"q_timezone_settings"}
             />
           </CContainer>
         )}
