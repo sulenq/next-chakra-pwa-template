@@ -140,7 +140,7 @@ export const StringInput = forwardRef<HTMLInputElement, Props__StringInput>(
               zIndex={2}
               position={"absolute"}
               h={"full"}
-              right={1}
+              right={"2px"}
               top={0}
               {...clearButtonProps}
             >

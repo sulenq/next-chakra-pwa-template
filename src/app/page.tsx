@@ -67,10 +67,11 @@ export default function Page() {
             maxH={"calc(100dvh - 16px)"}
             justify={"space-between"}
             gap={8}
+            p={4}
           >
             <Logo color={"white"} />
 
-            <CContainer p={4} color={"light"}>
+            <CContainer color={"light"}>
               <P fontSize={"lg"} fontWeight={"medium"}>
                 User these credentials to sign in,
               </P>

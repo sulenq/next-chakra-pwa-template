@@ -53,8 +53,8 @@ export const BatchOptions = (props: Props__BatchOptions) => {
           {children ? (
             children
           ) : (
-            <Icon>
-              <IconMenu />
+            <Icon boxSize={5}>
+              <IconMenu stroke={1.5} />
             </Icon>
           )}
         </Btn>
