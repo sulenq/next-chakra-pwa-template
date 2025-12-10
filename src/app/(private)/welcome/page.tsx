@@ -1,8 +1,8 @@
 "use client";
 
 import { P } from "@/components/ui/p";
+import BrandWatermark from "@/components/widget/BrandWatermark";
 import { PageContainer } from "@/components/widget/Page";
-import { RandomQuote } from "@/components/widget/RandomQuote";
 import { APP } from "@/constants/_meta";
 import useLang from "@/context/useLang";
 import { interpolateString, pluckString } from "@/utils/string";
@@ -31,14 +31,7 @@ export default function Page() {
         </VStack>
 
         <VStack>
-          <RandomQuote
-            maxW={"500px"}
-            fontSize={"sm"}
-            textAlign={"center"}
-            minH={"18px"}
-          />
-
-          {/* <BrandWatermark /> */}
+          <BrandWatermark />
         </VStack>
       </VStack>
     </PageContainer>

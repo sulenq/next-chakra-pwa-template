@@ -6,6 +6,7 @@ import { LangMenu } from "@/components/ui/lang-menu";
 import { P } from "@/components/ui/p";
 import BrandWatermark from "@/components/widget/BrandWatermark";
 import { Logo } from "@/components/widget/Logo";
+import { RandomQuote } from "@/components/widget/RandomQuote";
 import { SigninForm } from "@/components/widget/SigninForm";
 import { useThemeConfig } from "@/context/useThemeConfig";
 import { useIsSmScreenWidth } from "@/hooks/useIsSmScreenWidth";
@@ -72,6 +73,13 @@ export default function Page() {
             <Logo color={"white"} />
 
             <CContainer color={"light"}>
+              <RandomQuote
+                fontSize={"lg"}
+                fontWeight={"medium"}
+                maxW={"500px"}
+                mb={4}
+              />
+
               <P fontSize={"lg"} fontWeight={"medium"}>
                 User these credentials to sign in,
               </P>
