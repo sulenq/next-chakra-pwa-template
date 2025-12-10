@@ -24,6 +24,7 @@ import FeedbackForbidden from "@/components/widget/FeedbackForbidden";
 import FeedbackNoData from "@/components/widget/FeedbackNoData";
 import FeedbackNotFound from "@/components/widget/FeedbackNotFound";
 import FeedbackRetry from "@/components/widget/FeedbackRetry";
+import { PDFViewer } from "@/components/widget/PDFViewer";
 import SelectWorkspaceCategory from "@/components/widget/SelectWorkspaceCategory";
 import VideoPlayer from "@/components/widget/VideoPlayer";
 import { OPTIONS_RELIGION } from "@/constants/selectOptions";
@@ -491,6 +492,12 @@ const DemoIndexRoute = () => {
       <CContainer border={"1px solid"} borderColor={"border.muted"}>
         <DemoDataTable />
       </CContainer>
+
+      <SimpleGrid columns={[1, null, 2]}>
+        <CContainer>
+          <PDFViewer flex={1} fileUrl={`/assets/dummy-pdf.pdf`} />
+        </CContainer>
+      </SimpleGrid>
     </CContainer>
   );
 };

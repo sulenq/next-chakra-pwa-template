@@ -223,9 +223,9 @@ export const SelectInput = (props: Props__SelectInput) => {
       <Tooltip content={formattedButtonLabel}>
         <Btn
           w={"full"}
-          clicky={false}
+          gap={4}
+          justifyContent={"space-between"}
           variant={variant}
-          justifyContent={"start"}
           borderColor={
             resolvedInvalid
               ? "border.error"
@@ -236,23 +236,21 @@ export const SelectInput = (props: Props__SelectInput) => {
           onClick={onOpen}
           {...restProps}
         >
-          <HStack w={"full"} justify={"space-between"}>
-            {!isEmptyArray(inputValue) && (
-              <P lineClamp={1} textAlign={"left"}>
-                {formattedButtonLabel}
-              </P>
-            )}
+          {!isEmptyArray(inputValue) && (
+            <P lineClamp={1} textAlign={"left"}>
+              {formattedButtonLabel}
+            </P>
+          )}
 
-            {isEmptyArray(inputValue) && (
-              <P color={"placeholder"} lineClamp={1} textAlign={"left"}>
-                {resolvedPlaceholder}
-              </P>
-            )}
+          {isEmptyArray(inputValue) && (
+            <P color={"placeholder"} lineClamp={1} textAlign={"left"}>
+              {resolvedPlaceholder}
+            </P>
+          )}
 
-            <Icon color={"fg.subtle"} flexShrink={0} boxSize={4} mr={"-2px"}>
-              <IconCaretDownFilled stroke={1.5} />
-            </Icon>
-          </HStack>
+          <Icon color={"fg.subtle"} flexShrink={0} boxSize={4} mr={"-2px"}>
+            <IconCaretDownFilled stroke={1.5} />
+          </Icon>
         </Btn>
       </Tooltip>
 

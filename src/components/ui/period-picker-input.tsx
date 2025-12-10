@@ -122,8 +122,8 @@ export const PeriodPickerInput = (props: Props__PeriodPickerInput) => {
       >
         <Btn
           w={"full"}
-          clicky={false}
           bg={variant === "subtle" ? "d0" : ""}
+          gap={4}
           variant={variant}
           justifyContent={"space-between"}
           onClick={onOpen}

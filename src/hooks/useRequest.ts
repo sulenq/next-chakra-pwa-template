@@ -11,6 +11,7 @@ import { useCallback, useRef, useState } from "react";
 
 interface Props {
   id: string;
+  absoluteUrl?: string;
   showLoadingToast?: boolean;
   showSuccessToast?: boolean;
   showErrorToast?: boolean;
@@ -28,6 +29,7 @@ interface Props {
 export default function useRequest<T = any>(props: Props) {
   const {
     id,
+    absoluteUrl,
     showLoadingToast = true,
     showSuccessToast = true,
     showErrorToast = true,
@@ -40,11 +42,11 @@ export default function useRequest<T = any>(props: Props) {
   // Contexts
   const { l } = useLang();
 
-  // Hooks
-  const router = useRouter();
-
   // Refs
   const abortControllerRef = useRef<AbortController | null>(null);
+
+  // Hooks
+  const router = useRouter();
 
   // States
   const [reqState, setReqState] = useState<Interface__RequestState<T>>({
@@ -54,7 +56,6 @@ export default function useRequest<T = any>(props: Props) {
     response: null,
   });
   const { loading, status, error, response } = reqState;
-
   const resolvedLoadingMessage = {
     title: loadingMessage?.title || l.loading_default.title,
     description: loadingMessage?.description || l.loading_default.description,
@@ -71,7 +72,6 @@ export default function useRequest<T = any>(props: Props) {
     },
     []
   );
-
   const resolveToastProps = (e: any) => {
     const statusCode = e.response?.status;
     const errorCase = e.response?.data?.case;
@@ -152,7 +152,6 @@ export default function useRequest<T = any>(props: Props) {
         }
     }
   };
-
   const req = useCallback(
     async ({ config, onResolve }: Interface__Req<T>) => {
       try {
@@ -166,7 +165,8 @@ export default function useRequest<T = any>(props: Props) {
 
         safeSetState({ loading: true, error: null, status: null });
 
-        config.url = `${process.env.NEXT_PUBLIC_API_BASE_URL}${config.url}`;
+        config.url =
+          absoluteUrl || `${process.env.NEXT_PUBLIC_API_BASE_URL}${config.url}`;
 
         if (abortControllerRef.current) abortControllerRef.current.abort();
         const abortController = new AbortController();
@@ -212,8 +212,10 @@ export default function useRequest<T = any>(props: Props) {
         switch (statusCode) {
           case 401:
           case 403:
-            clearAuthToken();
-            router?.push(signinPath);
+            if (!absoluteUrl) {
+              clearAuthToken();
+              router?.push(signinPath);
+            }
             break;
           case 503:
             router?.push("/maintenance");

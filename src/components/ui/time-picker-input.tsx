@@ -189,7 +189,8 @@ export const TimePickerInput = (props: Props__TimePicker) => {
       <Tooltip content={inputValue ? renderValue : resolvedPlaceholder}>
         <Btn
           w={"full"}
-          clicky={false}
+          gap={4}
+          justifyContent={"space-between"}
           variant={variant}
           border={"1px solid"}
           borderColor={
@@ -207,27 +208,25 @@ export const TimePickerInput = (props: Props__TimePicker) => {
           }}
           {...restProps}
         >
-          <HStack w={"full"} justify={"space-between"}>
-            {inputValue ? (
-              <P truncate fontVariantNumeric={"tabular-nums"}>
-                {withSeconds
-                  ? inputValue
-                  : formatTime(inputValue, { timezoneKey: "UTC" })}
-              </P>
-            ) : (
-              <P
-                truncate
-                color={props?._placeholder?.color || "var(--placeholder)"}
-                fontVariantNumeric={"tabular-nums"}
-              >
-                {resolvedPlaceholder}
-              </P>
-            )}
+          {inputValue ? (
+            <P truncate fontVariantNumeric={"tabular-nums"}>
+              {withSeconds
+                ? inputValue
+                : formatTime(inputValue, { timezoneKey: "UTC" })}
+            </P>
+          ) : (
+            <P
+              truncate
+              color={props?._placeholder?.color || "var(--placeholder)"}
+              fontVariantNumeric={"tabular-nums"}
+            >
+              {resolvedPlaceholder}
+            </P>
+          )}
 
-            <Icon boxSize={BASE_ICON_BOX_SIZE} color={"fg.subtle"} mr={-1}>
-              <LucideIcon icon={ClockIcon} />
-            </Icon>
-          </HStack>
+          <Icon boxSize={BASE_ICON_BOX_SIZE} color={"fg.subtle"} mr={-1}>
+            <LucideIcon icon={ClockIcon} />
+          </Icon>
         </Btn>
       </Tooltip>
 

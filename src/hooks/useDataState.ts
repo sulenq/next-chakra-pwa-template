@@ -62,8 +62,7 @@ const useDataState = <T = any>(props: Props<T>) => {
     limit,
     page,
   };
-  const paramsData = {
-    ...params,
+  const offsetData = {
     limit,
     page,
   };
@@ -71,7 +70,7 @@ const useDataState = <T = any>(props: Props<T>) => {
     url: url,
     method,
     data: payloadData,
-    params: dataResource ? paramsData : null,
+    params: { ...(dataResource ? offsetData : {}), ...params },
   };
 
   // Refs

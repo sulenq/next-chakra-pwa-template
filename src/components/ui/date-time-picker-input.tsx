@@ -9,6 +9,7 @@ import { format as formatTz, toZonedTime } from "date-fns-tz";
 import { useEffect, useState } from "react";
 
 export const DateTimePickerInput = (props: Props__DateTimePickerInput) => {
+  // Props
   const {
     id,
     title = {
@@ -17,27 +18,34 @@ export const DateTimePickerInput = (props: Props__DateTimePickerInput) => {
     },
     inputValue,
     onChange,
-    placeholder,
+    placeholder = {
+      date: "",
+      time: "",
+    },
     required,
     invalid,
     disclosureSize = "xs",
     ...restProps
   } = props;
 
+  // Contexts
   const { themeConfig } = useThemeConfig();
   const fc = useFieldContext();
 
+  // States
   const [date, setDate] = useState<string>("");
   const [time, setTime] = useState<string>("");
 
+  // handle on change
   useEffect(() => {
     if (date && time) {
       onChange?.(makeUTCISODateTime(date, time));
     } else {
-      onChange?.("");
+      onChange?.(null);
     }
   }, [date, time]);
 
+  // handle initial value
   useEffect(() => {
     if (inputValue) {
       const userTzKey = getUserTimezone().key;
@@ -61,31 +69,30 @@ export const DateTimePickerInput = (props: Props__DateTimePickerInput) => {
     <Group
       w={"full"}
       attached
-      border={invalid || fc.invalid ? "1px solid {colors.border.error}" : ""}
+      border={invalid || fc?.invalid ? "1px solid {colors.border.error}" : ""}
       rounded={themeConfig.radii.component}
       {...restProps}
     >
       <DatePickerInput
-        id={`${id}-date-picker-for-date-time-picker`}
         w={"50%"}
+        id={`${id}-date-picker-for-date-time-picker`}
+        inputValue={date ? [date] : null}
+        onChange={(inputValue) => setDate(inputValue?.[0] || "")}
         title={title?.date}
         placeholder={placeholder?.date}
         disclosureSize={disclosureSize}
-        inputValue={date ? [date] : []}
-        onChange={(inputValue) => setDate(inputValue?.[0] || "")}
         invalid={false}
         required={required}
-        borderRight={"1px solid {colors.border.muted}"}
         showTimezone
       />
       <TimePickerInput
-        id={`${id}-time-picker-for-date-time-picker}`}
         w={"50%"}
+        id={`${id}-time-picker-for-date-time-picker}`}
+        inputValue={time}
+        onChange={(inputValue) => setTime(inputValue || "")}
         title={title?.time}
         placeholder={placeholder?.time}
         disclosureSize={disclosureSize}
-        inputValue={time}
-        onChange={(inputValue) => setTime(inputValue || "")}
         invalid={false}
         required={required}
         showTimezone

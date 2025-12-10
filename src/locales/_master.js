@@ -838,68 +838,68 @@ export const msg_welcome_to_the_app = {
   en: "Welcome to ${appName}",
 };
 export const msg_welcome_1 = {
-  id: "Halo, semoga harimu berjalan lancar.",
-  en: "Hello, hope your day goes smoothly.",
+  id: "Semoga harimu berjalan lancar.",
+  en: "Hope your day goes smoothly.",
 };
 export const msg_welcome_2 = {
-  id: "Halo, semoga aktivitasmu hari ini menyenangkan.",
-  en: "Hello, hope your activities today go well.",
+  id: "Semoga aktivitasmu hari ini menyenangkan.",
+  en: "Hope your activities today go well.",
 };
 export const msg_welcome_3 = {
-  id: "Halo, semoga harimu produktif.",
-  en: "Hello, hope your day is productive.",
+  id: "Semoga harimu produktif.",
+  en: "Hope your day is productive.",
 };
 export const msg_welcome_4 = {
-  id: "Halo, semoga harimu penuh kemudahan.",
-  en: "Hello, hope your day goes easy.",
+  id: "Semoga harimu penuh kemudahan.",
+  en: "Hope your day goes easy.",
 };
 export const msg_welcome_5 = {
-  id: "Halo, semoga semuanya berjalan baik.",
-  en: "Hello, hope everything goes well.",
+  id: "Semuanya semoga berjalan baik.",
+  en: "Hope everything goes well.",
 };
 export const msg_welcome_6 = {
-  id: "Halo, semoga harimu menyenangkan.",
-  en: "Hello, hope you're having a pleasant day.",
+  id: "Semoga harimu menyenangkan.",
+  en: "Hope you're having a pleasant day.",
 };
 export const msg_welcome_7 = {
-  id: "Halo, semoga harimu membawa hasil yang baik.",
-  en: "Hello, hope your day brings good results.",
+  id: "Semoga harimu membawa hasil yang baik.",
+  en: "Hope your day brings good results.",
 };
 export const msg_welcome_8 = {
-  id: "Halo, semoga aktivitasmu hari ini lancar.",
-  en: "Hello, hope your activities run smoothly.",
+  id: "Semoga aktivitasmu hari ini lancar.",
+  en: "Hope your activities run smoothly.",
 };
 export const msg_welcome_9 = {
-  id: "Halo, semoga harimu penuh energi positif.",
-  en: "Hello, hope your day is filled with good energy.",
+  id: "Semoga harimu penuh energi positif.",
+  en: "Hope your day is filled with good energy.",
 };
 export const msg_welcome_10 = {
-  id: "Halo, semoga harimu dimulai dengan baik.",
-  en: "Hello, hope your day starts well.",
+  id: "Semoga harimu dimulai dengan baik.",
+  en: "Hope your day starts well.",
 };
 export const msg_welcome_11 = {
-  id: "Halo, semoga harimu berjalan sesuai rencana.",
-  en: "Hello, hope your day goes as planned.",
+  id: "Semoga harimu berjalan sesuai rencana.",
+  en: "Hope your day goes as planned.",
 };
 export const msg_welcome_12 = {
-  id: "Halo, semoga harimu ringan dan lancar.",
-  en: "Hello, hope your day feels light and smooth.",
+  id: "Semoga harimu ringan dan lancar.",
+  en: "Hope your day feels light and smooth.",
 };
 export const msg_welcome_13 = {
-  id: "Halo, semoga harimu membawa banyak kemudahan.",
-  en: "Hello, hope your day brings ease.",
+  id: "Semoga harimu membawa banyak kemudahan.",
+  en: "Hope your day brings ease.",
 };
 export const msg_welcome_14 = {
-  id: "Halo, semoga harimu penuh inspirasi.",
-  en: "Hello, hope your day is inspiring.",
+  id: "Semoga harimu penuh inspirasi.",
+  en: "Hope your day is inspiring.",
 };
 export const msg_welcome_15 = {
-  id: "Halo, semoga harimu memberi banyak hal baik.",
-  en: "Hello, hope your day gives you good things.",
+  id: "Semoga harimu memberi banyak hal baik.",
+  en: "Hope your day gives you good things.",
 };
 export const msg_welcome_16 = {
-  id: "Halo, semoga langkahmu hari ini dimudahkan.",
-  en: "Hello, hope your steps today come easy.",
+  id: "Semoga langkahmu hari ini dimudahkan.",
+  en: "Hope your steps today come easy.",
 };
 export const msg_new_avatar_helper = {
   id: "Direkomendasikan minimal 800 x 800 px",

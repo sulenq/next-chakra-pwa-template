@@ -3,7 +3,6 @@ import {
   ActivityIcon,
   BlocksIcon,
   DatabaseIcon,
-  House,
   LanguagesIcon,
   LayoutDashboardIcon,
   MapPinIcon,
@@ -21,12 +20,12 @@ export const PRIVATE_NAVS: Interface__NavItem[] = [
   {
     groupLabelKey: "main",
     list: [
-      {
-        icon: House,
-        labelKey: "navs.welcome",
-        path: `/welcome`,
-        allowedRoles: [],
-      },
+      // {
+      //   icon: House,
+      //   labelKey: "navs.welcome",
+      //   path: `/welcome`,
+      //   allowedRoles: [],
+      // },
       {
         icon: LayoutDashboardIcon,
         labelKey: "navs.dashboard",

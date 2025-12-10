@@ -23,7 +23,6 @@ import {
 } from "@/utils/time";
 import {
   Group,
-  HStack,
   Icon,
   List,
   SimpleGrid,
@@ -91,11 +90,10 @@ const PeriodPicker = (props: any) => {
     <Group w={"full"} {...restProps}>
       <Btn
         iconButton
-        clicky={false}
         variant={"outline"}
         bg={"transparent"}
         onClick={() => cycleMonth("decrement")}
-        size={"md"}
+        size={"sm"}
       >
         <Icon boxSize={4}>
           <IconCaretLeftFilled />
@@ -104,7 +102,7 @@ const PeriodPicker = (props: any) => {
 
       <PeriodPickerInput
         flex={1}
-        size={"md"}
+        size={"sm"}
         justifyContent="center"
         inputValue={period}
         invalid={false}
@@ -117,10 +115,9 @@ const PeriodPicker = (props: any) => {
 
       <Btn
         iconButton
-        clicky={false}
         variant={"outline"}
         onClick={() => cycleMonth("increment")}
-        size={"md"}
+        size={"sm"}
       >
         <Icon boxSize={4}>
           <IconCaretRightFilled />
@@ -366,6 +363,7 @@ export const DatePickerInput = (props: Props__DatePickerInput) => {
     disclosureSize = "xs",
     multiple,
     variant = "outline",
+    labelFormatVariant = "weekdayDayShortMonthYear",
     ...restProps
   } = props;
 
@@ -409,7 +407,7 @@ export const DatePickerInput = (props: Props__DatePickerInput) => {
           .map((date) =>
             formatAbsDate(new Date(date), {
               // withTime: true,
-              variant: "weekdayDayShortMonthYear",
+              variant: labelFormatVariant,
             })
           )
           .join(", ")
@@ -458,8 +456,8 @@ export const DatePickerInput = (props: Props__DatePickerInput) => {
       >
         <Btn
           w={"full"}
-          clicky={false}
-          justifyContent={"start"}
+          gap={4}
+          justifyContent={"space-between"}
           borderColor={
             resolvedInvalid
               ? "border.error"
@@ -471,28 +469,26 @@ export const DatePickerInput = (props: Props__DatePickerInput) => {
           variant={variant}
           {...restProps}
         >
-          <HStack w={"full"} justify={"space-between"}>
-            {!isEmptyArray(inputValue) && (
-              <P lineClamp={1} textAlign={"left"}>
-                {formattedButtonLabel}
-              </P>
-            )}
+          {!isEmptyArray(inputValue) && (
+            <P lineClamp={1} textAlign={"left"}>
+              {formattedButtonLabel}
+            </P>
+          )}
 
-            {isEmptyArray(inputValue) && (
-              <P color={"placeholder"} lineClamp={1} textAlign={"left"}>
-                {resolvedPlaceholder}
-              </P>
-            )}
+          {isEmptyArray(inputValue) && (
+            <P color={"placeholder"} lineClamp={1} textAlign={"left"}>
+              {resolvedPlaceholder}
+            </P>
+          )}
 
-            <Icon
-              boxSize={BASE_ICON_BOX_SIZE}
-              color={"fg.subtle"}
-              flexShrink={0}
-              mr={-1}
-            >
-              <LucideIcon icon={CalendarIcon} />
-            </Icon>
-          </HStack>
+          <Icon
+            boxSize={BASE_ICON_BOX_SIZE}
+            color={"fg.subtle"}
+            flexShrink={0}
+            mr={-1}
+          >
+            <LucideIcon icon={CalendarIcon} />
+          </Icon>
         </Btn>
       </Tooltip>
 

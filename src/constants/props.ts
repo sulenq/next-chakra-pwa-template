@@ -294,6 +294,7 @@ export interface Props__DatePickerInput extends Omit<BtnProps, "onChange"> {
   disclosureSize?: Type__DisclosureSizes;
   multiple?: boolean;
   variant?: Type__BasicVariant;
+  labelFormatVariant?: Type__DateVariant;
 }
 export interface Props__DatePicker extends StackProps {
   inputValue?: string[];
@@ -321,6 +322,26 @@ export interface Props__TimePicker extends Omit<BtnProps, "onChange"> {
   disclosureSize?: Type__DisclosureSizes;
   variant?: Type__BasicVariant;
 }
+export interface Props__DateRangePickerInput
+  extends Omit<GroupProps, "title" | "placeholder" | "onChange"> {
+  id?: string;
+  title?: {
+    startDate: string;
+    endDate: string;
+  };
+  inputValue?: {
+    startDate: string;
+    endDate: string;
+  } | null;
+  onChange?: (inputValue: Props__DateRangePickerInput["inputValue"]) => void;
+  placeholder?: {
+    startDate: string;
+    endDate: string;
+  };
+  required?: boolean;
+  invalid?: boolean;
+  disclosureSize?: Type__DisclosureSizes;
+}
 export interface Props__DateTimePickerInput
   extends Omit<GroupProps, "title" | "placeholder" | "onChange"> {
   id?: string;
@@ -328,7 +349,7 @@ export interface Props__DateTimePickerInput
     date: string;
     time: string;
   };
-  inputValue?: string;
+  inputValue?: string | null;
   onChange?: (inputValue: Props__DateTimePickerInput["inputValue"]) => void;
   placeholder?: {
     date: string;

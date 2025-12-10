@@ -89,12 +89,13 @@ const DataUtils = (props: any) => {
   console.debug({ filter, setFilter });
 
   return (
-    <HStack {...restProps}>
+    <HStack w={"full"} {...restProps}>
       <SearchInput
         queryKey="q_user"
         inputProps={{
           size: "sm",
         }}
+        minW={"200px"}
       />
 
       <Btn iconButton variant={"outline"} size={"sm"}>
@@ -586,7 +587,7 @@ export default function Page() {
         <PageContent gap={1}>
           {isSmContainer && (
             <HScroll px={3} flexShrink={0}>
-              <HStack minW={"full"} w={"max"} justify={"space-between"}>
+              <HStack minW={"full"} justify={"space-between"}>
                 <DataUtils
                   filter={filter}
                   setFilter={setFilter}
