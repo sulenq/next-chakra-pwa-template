@@ -831,6 +831,10 @@ export const selected_date = {
   id: "Tanggal dipilih",
   en: "Selected date",
 };
+export const calendar = {
+  id: "Kalender",
+  en: "Calendar",
+};
 
 // Message
 export const msg_welcome_to_the_app = {

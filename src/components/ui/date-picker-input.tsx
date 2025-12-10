@@ -50,12 +50,12 @@ import { P } from "./p";
 import { PeriodPickerInput } from "./period-picker-input";
 import { Tooltip } from "./tooltip";
 
-const DEFAULT_PERIOD = {
+export const DEFAULT_PERIOD = {
   month: new Date().getMonth(),
   year: new Date().getFullYear(),
 };
 
-const PeriodPicker = (props: any) => {
+export const PeriodPicker = (props: any) => {
   // Props
   const { period, setPeriod, ...restProps } = props;
 
@@ -126,7 +126,7 @@ const PeriodPicker = (props: any) => {
     </Group>
   );
 };
-const DatePicker = (props: Props__DatePicker) => {
+export const DatePicker = (props: Props__DatePicker) => {
   // Props
   const { period, selected, setSelected, multiple, ...restProps } = props;
 
@@ -194,7 +194,7 @@ const DatePicker = (props: Props__DatePicker) => {
           <SimpleGrid columns={[7]} key={i} gap={2}>
             {weeks.map((date, ii) => {
               const today = new Date();
-              const isDateSelected = selected.some(
+              const isDateSelected = selected?.some(
                 (sd) =>
                   sd.getDate() === date.fullDate.getDate() &&
                   sd.getMonth() === date.month &&
@@ -215,13 +215,13 @@ const DatePicker = (props: Props__DatePicker) => {
                   size={"md"}
                   onClick={() => {
                     if (multiple) {
-                      const newSelectedDates = selected.some(
+                      const newSelectedDates = selected?.some(
                         (sd) =>
                           sd.getDate() === date.fullDate.getDate() &&
                           sd.getMonth() === date.month &&
                           sd.getFullYear() === date.year
                       )
-                        ? selected.filter(
+                        ? selected?.filter(
                             (sd) =>
                               !(
                                 sd.getDate() === date.fullDate.getDate() &&
@@ -229,15 +229,16 @@ const DatePicker = (props: Props__DatePicker) => {
                                 sd.getFullYear() === date.year
                               )
                           )
-                        : [...selected, date.fullDate].sort(
+                        : [...(selected ?? []), date.fullDate].sort(
                             (a, b) => a.getTime() - b.getTime()
                           );
-                      setSelected(newSelectedDates);
+
+                      setSelected?.(newSelectedDates);
                     } else {
                       if (isDateSelected) {
-                        setSelected([]);
+                        setSelected?.([]);
                       } else {
-                        setSelected([date.fullDate]);
+                        setSelected?.([date.fullDate]);
                       }
                     }
                   }}

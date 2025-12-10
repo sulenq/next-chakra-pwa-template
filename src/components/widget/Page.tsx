@@ -4,6 +4,7 @@ import { CContainer } from "@/components/ui/c-container";
 import { ColorModeButton } from "@/components/ui/color-mode";
 import { P } from "@/components/ui/p";
 import BackButton from "@/components/widget/BackButton";
+import { CalendarDisclosureTrigger } from "@/components/widget/CalendarDisclosure";
 import { ClampText } from "@/components/widget/ClampText";
 import Clock from "@/components/widget/Clock";
 import { DotIndicator } from "@/components/widget/Indicator";
@@ -124,7 +125,9 @@ export const TopBar = () => {
         <HStack mx={1}>
           <Clock fontSize={FONT_SIZE} />
 
-          <Today fontSize={FONT_SIZE} />
+          <CalendarDisclosureTrigger>
+            <Today fontSize={FONT_SIZE} />
+          </CalendarDisclosureTrigger>
         </HStack>
 
         <ColorModeButton rounded={"full"} size={"xs"} />

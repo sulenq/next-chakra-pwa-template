@@ -299,9 +299,9 @@ export interface Props__DatePickerInput extends Omit<BtnProps, "onChange"> {
 export interface Props__DatePicker extends StackProps {
   inputValue?: string[];
   period: Type__Period;
-  selected: Date[];
-  setSelected: Dispatch<Date[]>;
-  multiple: boolean;
+  selected?: Date[];
+  setSelected?: Dispatch<Date[]>;
+  multiple?: boolean;
 }
 export interface Props__SelectedDateList {
   id?: string;

@@ -43,6 +43,7 @@ const translations = {
   "august": "August",
   "back": "Back",
   "before": "Before",
+  "calendar": "Calendar",
   "camera": "Camera",
   "cancel": "Cancel",
   "category": "Category",

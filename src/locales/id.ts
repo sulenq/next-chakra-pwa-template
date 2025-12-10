@@ -43,6 +43,7 @@ const translations = {
   "august": "Agustus",
   "back": "Kembali",
   "before": "Sebelum",
+  "calendar": "Kalender",
   "camera": "Kamera",
   "cancel": "Batal",
   "category": "Kategori",
