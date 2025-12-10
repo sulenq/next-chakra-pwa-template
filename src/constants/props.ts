@@ -25,6 +25,7 @@ import { TextareaProps } from "node_modules/@chakra-ui/react/dist/types/componen
 import { Dispatch, RefObject } from "react";
 import {
   Type__BasicVariant,
+  Type__ButtonSize,
   Type__DateVariant,
   Type__DisclosureSizes,
   Type__Period,
@@ -341,6 +342,7 @@ export interface Props__DateRangePickerInput
   required?: boolean;
   invalid?: boolean;
   disclosureSize?: Type__DisclosureSizes;
+  size?: Type__ButtonSize;
 }
 export interface Props__DateTimePickerInput
   extends Omit<GroupProps, "title" | "placeholder" | "onChange"> {
@@ -358,6 +360,7 @@ export interface Props__DateTimePickerInput
   required?: boolean;
   invalid?: boolean;
   disclosureSize?: Type__DisclosureSizes;
+  size?: Type__ButtonSize;
 }
 
 export interface Props__NumInput extends Omit<InputProps, "onChange"> {

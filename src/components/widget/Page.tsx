@@ -11,7 +11,6 @@ import { DotIndicator } from "@/components/widget/Indicator";
 import { Today } from "@/components/widget/Today";
 import { Interface__NavListItem } from "@/constants/interfaces";
 import useLang from "@/context/useLang";
-import { useThemeConfig } from "@/context/useThemeConfig";
 import useScreen from "@/hooks/useScreen";
 import { last } from "@/utils/array";
 import { pluckString } from "@/utils/string";
@@ -26,6 +25,7 @@ const FONT_SIZE = "md";
 
 export const PageContainer = forwardRef<HTMLDivElement, StackProps>(
   (props, ref) => {
+    // Props
     const { children, ...restProps } = props;
 
     return (
@@ -163,15 +163,14 @@ export const PageTitle = (props: StackProps) => {
 
 export const PageContent = forwardRef<HTMLDivElement, StackProps>(
   (props, ref) => {
+    // Props
     const { children, ...restProps } = props;
-    const { themeConfig } = useThemeConfig();
 
     return (
       <CContainer
         ref={ref}
         flex={1}
         bg={"body"}
-        rounded={themeConfig.radii.container}
         overflow={"auto"}
         {...restProps}
       >

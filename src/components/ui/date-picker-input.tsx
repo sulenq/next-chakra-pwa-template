@@ -30,7 +30,7 @@ import {
   useDisclosure,
   useFieldContext,
 } from "@chakra-ui/react";
-import { IconCaretLeftFilled, IconCaretRightFilled } from "@tabler/icons-react";
+import { IconCaretDownFilled, IconCaretUpFilled } from "@tabler/icons-react";
 import { addDays, startOfWeek } from "date-fns";
 import { CalendarIcon } from "lucide-react";
 import { useEffect, useState } from "react";
@@ -88,6 +88,18 @@ export const PeriodPicker = (props: any) => {
 
   return (
     <Group w={"full"} {...restProps}>
+      <PeriodPickerInput
+        flex={1}
+        size={"sm"}
+        inputValue={period}
+        invalid={false}
+        onChange={(inputValue) => {
+          setPeriod(inputValue);
+        }}
+        // withIcon={false}
+        required
+      />
+
       <Btn
         iconButton
         variant={"outline"}
@@ -96,22 +108,9 @@ export const PeriodPicker = (props: any) => {
         size={"sm"}
       >
         <Icon boxSize={4}>
-          <IconCaretLeftFilled />
+          <IconCaretDownFilled />
         </Icon>
       </Btn>
-
-      <PeriodPickerInput
-        flex={1}
-        size={"sm"}
-        justifyContent="center"
-        inputValue={period}
-        invalid={false}
-        onChange={(inputValue) => {
-          setPeriod(inputValue);
-        }}
-        withIcon={false}
-        required
-      />
 
       <Btn
         iconButton
@@ -120,7 +119,7 @@ export const PeriodPicker = (props: any) => {
         size={"sm"}
       >
         <Icon boxSize={4}>
-          <IconCaretRightFilled />
+          <IconCaretUpFilled />
         </Icon>
       </Btn>
     </Group>

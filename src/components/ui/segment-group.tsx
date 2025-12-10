@@ -10,7 +10,17 @@ interface Props extends Omit<SegmentGroupRootProps, "onChange"> {
 
 export const Segmented = (props: Props) => {
   // Props
-  const { items = [], inputValue, onChange, ...restProps } = props;
+  const { items = [], inputValue, onChange, size = "md", ...restProps } = props;
+
+  // States
+  const hBySize: Record<any, any> = {
+    xs: "32px",
+    sm: "36px",
+    md: "40px",
+    lg: "44px",
+    xl: "46px",
+    "2xl": "50px",
+  };
 
   return (
     <SegmentGroup.Root
@@ -24,8 +34,13 @@ export const Segmented = (props: Props) => {
         border={"1px solid"}
         borderColor={"border.muted"}
         bg={"bg.muted"}
+        h={hBySize[size as any]}
       />
-      <SegmentGroup.Items items={items} cursor={"pointer"} />
+      <SegmentGroup.Items
+        items={items}
+        cursor={"pointer"}
+        h={hBySize[size as any]}
+      />
     </SegmentGroup.Root>
   );
 };

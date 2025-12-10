@@ -14,11 +14,18 @@ export default function Page() {
 
   // States
   const variantNumber = Math.floor(Math.random() * 16) + 1;
+  // const user = getUserData();
 
   return (
     <PageContainer p={4}>
       <VStack flex={1} gap={1} justify={"center"} color={"fg.subtle"}>
         <VStack my={"auto"}>
+          {/* <Avatar
+            src={imgUrl(user?.avatar?.[0]?.filePath)}
+            size={"2xl"}
+            mb={4}
+          /> */}
+
           <P fontSize={"lg"} fontWeight={"medium"}>
             {interpolateString(pluckString(l, `msg_welcome_to_the_app`), {
               appName: APP.name,

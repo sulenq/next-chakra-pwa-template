@@ -25,6 +25,7 @@ export const DateTimePickerInput = (props: Props__DateTimePickerInput) => {
     required,
     invalid,
     disclosureSize = "xs",
+    size,
     ...restProps
   } = props;
 
@@ -84,6 +85,7 @@ export const DateTimePickerInput = (props: Props__DateTimePickerInput) => {
         invalid={false}
         required={required}
         showTimezone
+        size={size}
       />
       <TimePickerInput
         w={"50%"}
@@ -96,6 +98,7 @@ export const DateTimePickerInput = (props: Props__DateTimePickerInput) => {
         invalid={false}
         required={required}
         showTimezone
+        size={size}
       />
     </Group>
   );

@@ -1,5 +1,9 @@
 import { ButtonProps, ConditionalValue, MenuItemProps } from "@chakra-ui/react";
 
+export type Type__ButtonSize = ConditionalValue<
+  "sm" | "md" | "lg" | "xl" | "2xl" | "xs" | "2xs" | undefined
+>;
+
 export type Type__BasicVariant = ConditionalValue<
   "outline" | "solid" | "subtle" | "surface" | "ghost" | "plain" | undefined
 >;

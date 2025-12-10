@@ -25,6 +25,7 @@ export const DateRangePickerInput = (props: Props__DateRangePickerInput) => {
     required,
     invalid,
     disclosureSize = "xs",
+    size,
     ...restProps
   } = props;
 
@@ -78,6 +79,7 @@ export const DateRangePickerInput = (props: Props__DateRangePickerInput) => {
         disclosureSize={disclosureSize}
         invalid={false}
         required={required}
+        size={size}
       />
 
       <DatePickerInput
@@ -93,6 +95,7 @@ export const DateRangePickerInput = (props: Props__DateRangePickerInput) => {
         disclosureSize={disclosureSize}
         invalid={false}
         required={required}
+        size={size}
       />
     </Group>
   );

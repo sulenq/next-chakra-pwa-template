@@ -62,6 +62,9 @@ import * as yup from "yup";
 const BASE_ENDPOINT = ``;
 const PREFIX_ID = `user`;
 type Interface__Data = any;
+const DEFAULT_FILTER = {
+  search: "",
+};
 
 const Create = () => {
   // Contexts
@@ -562,9 +565,6 @@ export default function Page() {
   const pathname = usePathname();
   const activeNav = getActiveNavs(pathname);
   const routeTitle = pluckString(l, last(activeNav)?.labelKey || "");
-  const DEFAULT_FILTER = {
-    search: "",
-  };
   const [filter, setFilter] = useState(DEFAULT_FILTER);
 
   return (
