@@ -111,6 +111,7 @@ const PeriodPicker = (props: any) => {
         onChange={(inputValue) => {
           setPeriod(inputValue);
         }}
+        withIcon={false}
         required
       />
 

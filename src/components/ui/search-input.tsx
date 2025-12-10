@@ -3,6 +3,7 @@
 import { StringInput } from "@/components/ui/string-input";
 import { LucideIcon } from "@/components/widget/Icon";
 import { Props__SearchInput } from "@/constants/props";
+import { BASE_ICON_BOX_SIZE } from "@/constants/sizes";
 import useLang from "@/context/useLang";
 import { useDebouncedCallback } from "@/hooks/useDebounceCallback";
 import { HStack, Icon, InputGroup } from "@chakra-ui/react";
@@ -72,7 +73,12 @@ export default function SearchInput(props: Props__SearchInput) {
         w="full"
         startElement={
           !noIcon && (
-            <Icon boxSize={5} color="fg.subtle" {...iconProps}>
+            <Icon
+              boxSize={BASE_ICON_BOX_SIZE}
+              color="fg.subtle"
+              ml={"-4px"}
+              {...iconProps}
+            >
               {icon || <LucideIcon icon={SearchIcon} />}
             </Icon>
           )
@@ -82,7 +88,7 @@ export default function SearchInput(props: Props__SearchInput) {
         <HStack position="relative" w="full">
           <StringInput
             ref={inputRef ? inputRef : null}
-            pl={noIcon ? 4 : 10}
+            pl={noIcon ? 4 : 8}
             pr="40px"
             placeholder={placeholder || `${l.search} ${additionalPlaceholder}`}
             onChange={(inputValue) => {

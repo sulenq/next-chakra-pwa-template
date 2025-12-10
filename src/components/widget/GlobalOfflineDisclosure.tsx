@@ -56,7 +56,7 @@ const OfflineDisclosure = () => {
         </DisclosureBody>
 
         <DisclosureFooter>
-          <BackButton>Close</BackButton>
+          <BackButton />
           <Btn
             colorPalette={themeConfig.colorPalette}
             onClick={() => {

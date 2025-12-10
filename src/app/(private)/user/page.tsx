@@ -43,7 +43,8 @@ import { back } from "@/utils/client";
 import { disclosureId } from "@/utils/disclosure";
 import { formatDate } from "@/utils/formatter";
 import { capitalize, pluckString } from "@/utils/string";
-import { getActiveNavs } from "@/utils/url";
+import { isDimensionValid } from "@/utils/style";
+import { getActiveNavs, imgUrl } from "@/utils/url";
 import { HStack, Icon, useDisclosure } from "@chakra-ui/react";
 import { useFormik } from "formik";
 import {
@@ -506,7 +507,7 @@ const Data = (props: any) => {
               key={resolvedItem.id}
               item={{
                 id: resolvedItem.id,
-                img: resolvedItem.avatar,
+                img: imgUrl(resolvedItem.avatar?.[0]?.filePath),
                 showImg: true,
                 imgFallbackSrc: `${SVGS_PATH}/no-avatar.svg`,
                 title: resolvedItem.name,
@@ -555,6 +556,7 @@ export default function Page() {
   const dimension = useContainerDimension(containerRef);
 
   // States
+  const isValidDimension = isDimensionValid(dimension);
   const isSmContainer = dimension.width < 600;
   const pathname = usePathname();
   const activeNav = getActiveNavs(pathname);
@@ -580,21 +582,23 @@ export default function Page() {
         </HStack>
       </PageTitle>
 
-      <PageContent gap={1}>
-        {isSmContainer && (
-          <HScroll px={3} flexShrink={0}>
-            <HStack minW={"full"} w={"max"} justify={"space-between"}>
-              <DataUtils
-                filter={filter}
-                setFilter={setFilter}
-                routeTitle={routeTitle}
-              />
-            </HStack>
-          </HScroll>
-        )}
+      {isValidDimension && (
+        <PageContent gap={1}>
+          {isSmContainer && (
+            <HScroll px={3} flexShrink={0}>
+              <HStack minW={"full"} w={"max"} justify={"space-between"}>
+                <DataUtils
+                  filter={filter}
+                  setFilter={setFilter}
+                  routeTitle={routeTitle}
+                />
+              </HStack>
+            </HScroll>
+          )}
 
-        <Data filter={filter} routeTitle={routeTitle} />
-      </PageContent>
+          <Data filter={filter} routeTitle={routeTitle} />
+        </PageContent>
+      )}
     </PageContainer>
   );
 }

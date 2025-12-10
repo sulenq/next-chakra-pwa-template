@@ -13,8 +13,9 @@ import { Field, FieldsetRoot } from "@/components/ui/field";
 import { NumInput } from "@/components/ui/number-input";
 import { P } from "@/components/ui/p";
 import { Tooltip } from "@/components/ui/tooltip";
+import { LucideIcon } from "@/components/widget/Icon";
 import { Props__PeriodPickerInput } from "@/constants/props";
-import { C_ACTIVE_INDICATOR_SIZE } from "@/constants/sizes";
+import { BASE_ICON_BOX_SIZE, C_ACTIVE_INDICATOR_SIZE } from "@/constants/sizes";
 import { Type__Period } from "@/constants/types";
 import useLang from "@/context/useLang";
 import { useThemeConfig } from "@/context/useThemeConfig";
@@ -32,6 +33,7 @@ import {
   useFieldContext,
 } from "@chakra-ui/react";
 import { IconCircleFilled } from "@tabler/icons-react";
+import { CalendarClockIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 
 const DEFAULT = {
@@ -51,6 +53,7 @@ export const PeriodPickerInput = (props: Props__PeriodPickerInput) => {
     invalid,
     disclosureSize = "xs",
     variant = "outline",
+    withIcon = true,
     ...restProps
   } = props;
   const resolvedId = id || `period-picker-input`;
@@ -122,7 +125,7 @@ export const PeriodPickerInput = (props: Props__PeriodPickerInput) => {
           clicky={false}
           bg={variant === "subtle" ? "d0" : ""}
           variant={variant}
-          justifyContent={"start"}
+          justifyContent={"space-between"}
           onClick={onOpen}
           borderColor={
             resolvedInvalid
@@ -142,6 +145,12 @@ export const PeriodPickerInput = (props: Props__PeriodPickerInput) => {
                 timezoneKey: getLocalTimezone().key,
               })}
             </P>
+          )}
+
+          {withIcon && (
+            <Icon boxSize={BASE_ICON_BOX_SIZE} color={"fg.subtle"} mr={-1}>
+              <LucideIcon icon={CalendarClockIcon} />
+            </Icon>
           )}
         </Btn>
       </Tooltip>

@@ -228,6 +228,7 @@ const DemoIndexRoute = () => {
       search: "",
       textarea: "",
       number: null as any,
+      number2: null as any,
       period: null as any,
       date: null as any,
       time: null as any,
@@ -243,6 +244,7 @@ const DemoIndexRoute = () => {
       search: yup.string().required(),
       textarea: yup.string().required(),
       number: yup.number().required(),
+      number2: yup.number().required(),
       period: yup.object().required(),
       date: yup.array().required(),
       time: yup.string().required(),
@@ -271,7 +273,7 @@ const DemoIndexRoute = () => {
         <ColorModeButton />
       </HStack>
 
-      <NavLink to="/home">
+      <NavLink to="/welcome">
         <Btn colorPalette={themeConfig.colorPalette}>App Layout</Btn>
       </NavLink>
 
@@ -346,6 +348,17 @@ const DemoIndexRoute = () => {
                   onChange={(input) => {
                     formik.setFieldValue("number", input);
                   }}
+                />
+              </Field>
+
+              <Field invalid={!!formik.errors.number2}>
+                <NumInput
+                  integer={false}
+                  inputValue={formik.values.number2}
+                  onChange={(input) => {
+                    formik.setFieldValue("number2", input);
+                  }}
+                  placeholder="Input number decimal"
                 />
               </Field>
 

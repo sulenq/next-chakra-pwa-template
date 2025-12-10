@@ -14,6 +14,7 @@ import { Field, FieldsetRoot } from "@/components/ui/field";
 import { Img } from "@/components/ui/img";
 import { ImgInput } from "@/components/ui/img-input";
 import { P } from "@/components/ui/p";
+import SearchInput from "@/components/ui/search-input";
 import { Skeleton } from "@/components/ui/skeleton";
 import Spinner from "@/components/ui/spinner";
 import { StringInput } from "@/components/ui/string-input";
@@ -61,7 +62,7 @@ import {
   LogInIcon,
   UserIcon,
 } from "lucide-react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import * as yup from "yup";
 
 interface Props__AvatarInputDisclosureTrigger {
@@ -299,6 +300,7 @@ const AuthLog = () => {
   const { l } = useLang();
 
   // States
+  const [search, setSearch] = useState("");
   const {
     error,
     initialLoading,
@@ -310,8 +312,10 @@ const AuthLog = () => {
     page,
     setPage,
   } = useDataState<Interface__AuthLog[]>({
+    // TODO add url and set initial data to undefined
     initialData: dummyAuthLogs,
     url: ``,
+    dependencies: [search],
   });
   const render = {
     loading: <Skeleton flex={1} />,
@@ -368,12 +372,26 @@ const AuthLog = () => {
 
   return (
     <ItemContainer>
-      <ItemHeaderContainer>
+      <ItemHeaderContainer withUtils>
         <HStack>
           <Icon boxSize={BASE_ICON_BOX_SIZE}>
             <LucideIcon icon={LogInIcon} />
           </Icon>
+
           <ItemHeaderTitle>{l.my_auth_logs}</ItemHeaderTitle>
+        </HStack>
+
+        <HStack>
+          <SearchInput
+            onChange={(inputValue) => {
+              setSearch(inputValue || "");
+            }}
+            inputValue={search}
+            inputProps={{
+              size: "xs",
+            }}
+            queryKey={"q_my_log_auth"}
+          />
         </HStack>
       </ItemHeaderContainer>
 
@@ -416,6 +434,7 @@ const ActivityLog = () => {
   const { l } = useLang();
 
   // States
+  const [search, setSearch] = useState("");
   const activityFormatter: Record<
     string,
     (meta?: Record<string, any>) => string
@@ -453,9 +472,10 @@ const ActivityLog = () => {
     page,
     setPage,
   } = useDataState<Interface__ActivityLog[]>({
+    // TODO add url and set initial data to undefined
     initialData: dummyActivityLogs,
     url: ``,
-    dataResource: false,
+    dependencies: [search],
   });
   const render = {
     loading: <Skeleton flex={1} />,
@@ -497,12 +517,25 @@ const ActivityLog = () => {
 
   return (
     <ItemContainer>
-      <ItemHeaderContainer>
+      <ItemHeaderContainer withUtils>
         <HStack>
           <Icon boxSize={BASE_ICON_BOX_SIZE}>
             <LucideIcon icon={ActivityIcon} />
           </Icon>
           <ItemHeaderTitle>{l.my_activity_logs}</ItemHeaderTitle>
+        </HStack>
+
+        <HStack>
+          <SearchInput
+            onChange={(inputValue) => {
+              setSearch(inputValue || "");
+            }}
+            inputValue={search}
+            inputProps={{
+              size: "xs",
+            }}
+            queryKey={"q_my_log_auth"}
+          />
         </HStack>
       </ItemHeaderContainer>
 

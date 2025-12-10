@@ -471,67 +471,68 @@ const DesktopLayout = (props: any) => {
   const [search, setSearch] = useState<string>("");
   const roleId = user?.role?.id;
   const q = (search ?? "").toLowerCase();
+  const isAllowed = (item: { allowedRoles?: string[] }, roleId?: string) =>
+    !item.allowedRoles ||
+    item.allowedRoles.length === 0 ||
+    (roleId && item.allowedRoles.includes(roleId));
+
+  const qNormalized = q?.toLowerCase().trim();
+
   const resolvedNavs = PRIVATE_NAVS.map((nav) => {
-    // Case 1: search is empty
-    if (!q) {
-      const filteredList = nav.list
-        .map((item) => {
-          if (item.subMenus && item.subMenus.length > 0) {
-            const filteredSubs = item.subMenus.map((sub) => ({
-              ...sub,
-              list: (sub.list ?? []).filter(
-                (subItem) =>
-                  !subItem.allowedRoles ||
-                  subItem.allowedRoles.length === 0 ||
-                  (roleId && subItem.allowedRoles.includes(roleId))
-              ),
-            }));
+    const filteredList = nav.list
+      .map((item) => {
+        const labelMain = pluckString(l, item.labelKey)?.toLowerCase() || "";
+        const allowedMain = isAllowed(item, roleId);
 
-            const hasSubs = filteredSubs.some((s) => s.list.length > 0);
-            return hasSubs ? { ...item, subMenus: filteredSubs } : null;
-          }
+        if (!item.subMenus || item.subMenus.length === 0) {
+          if (!qNormalized) return allowedMain ? item : null;
+          const isMatchMain = qNormalized && labelMain.includes(qNormalized);
+          return allowedMain && isMatchMain ? item : null;
+        }
 
-          const allowed =
-            !item.allowedRoles ||
-            item.allowedRoles.length === 0 ||
-            (roleId && item.allowedRoles.includes(roleId));
+        const subsFilteredByRole = item.subMenus
+          .map((sub) => ({
+            ...sub,
+            list: (sub.list ?? []).filter((subItem) =>
+              isAllowed(subItem, roleId)
+            ),
+          }))
+          .filter((s) => (s.list ?? []).length > 0);
 
-          return allowed ? item : null;
-        })
-        .filter(Boolean) as typeof nav.list;
+        if (!qNormalized) {
+          if (allowedMain)
+            return subsFilteredByRole.length > 0
+              ? { ...item, subMenus: subsFilteredByRole }
+              : { ...item, subMenus: undefined };
+          return subsFilteredByRole.length > 0
+            ? { ...item, subMenus: subsFilteredByRole }
+            : null;
+        }
 
-      return filteredList.length > 0 ? { ...nav, list: filteredList } : null;
-    }
+        const isMatchMain = qNormalized && labelMain.includes(qNormalized);
 
-    // Case 2: search has value
-    const filteredList = nav.list.flatMap((item) => {
-      if (item.subMenus && item.subMenus.length > 0) {
-        // return only matched subItems, no parent
-        const matchedSubs = item.subMenus.flatMap((sub) =>
-          (sub.list ?? []).filter((subItem) => {
-            const allowed =
-              !subItem.allowedRoles ||
-              subItem.allowedRoles.length === 0 ||
-              (roleId && subItem.allowedRoles.includes(roleId));
+        if (isMatchMain && allowedMain) {
+          return subsFilteredByRole.length > 0
+            ? { ...item, subMenus: subsFilteredByRole }
+            : { ...item, subMenus: undefined };
+        }
 
-            if (!allowed) return false;
-            return pluckString(l, subItem.labelKey)?.toLowerCase().includes(q);
-          })
-        );
+        const matchedSubs = item.subMenus
+          .map((sub) => ({
+            ...sub,
+            list: (sub.list ?? []).filter((subItem) => {
+              if (!isAllowed(subItem, roleId)) return false;
+              const lbl = pluckString(l, subItem.labelKey)?.toLowerCase() || "";
+              return qNormalized && lbl.includes(qNormalized);
+            }),
+          }))
+          .filter((s) => (s.list ?? []).length > 0);
 
-        return matchedSubs;
-      }
-
-      const allowed =
-        !item.allowedRoles ||
-        item.allowedRoles.length === 0 ||
-        (roleId && item.allowedRoles.includes(roleId));
-
-      const matches =
-        allowed && pluckString(l, item.labelKey)?.toLowerCase().includes(q);
-
-      return matches ? [item] : [];
-    });
+        return matchedSubs.length > 0
+          ? { ...item, subMenus: matchedSubs }
+          : null;
+      })
+      .filter(Boolean) as typeof nav.list;
 
     return filteredList.length > 0 ? { ...nav, list: filteredList } : null;
   }).filter(Boolean) as typeof PRIVATE_NAVS;
@@ -574,7 +575,7 @@ const DesktopLayout = (props: any) => {
           <HStack justify={"space-between"} h={"40px"}>
             {navsExpanded && (
               <NavLink to="/">
-                <HStack ml={"8px"} gap={3}>
+                <HStack ml={"7px"} gap={3}>
                   <Logo size={15} />
 
                   <P
@@ -619,7 +620,6 @@ const DesktopLayout = (props: any) => {
           </HStack>
         </CContainer>
 
-        {/* Navs */}
         {navsExpanded && (
           <CContainer px={3} pt={2} pb={1}>
             <SearchInput
@@ -633,6 +633,7 @@ const DesktopLayout = (props: any) => {
           </CContainer>
         )}
 
+        {/* Navs */}
         <CContainer
           className="scrollY"
           overflowX={"clip"}
@@ -654,7 +655,7 @@ const DesktopLayout = (props: any) => {
                         fontWeight={"semibold"}
                         letterSpacing={"wide"}
                         color={"fg.subtle"}
-                        ml={"10px"}
+                        ml={1}
                       >
                         {pluckString(l, navItem.groupLabelKey)}
                       </P>
@@ -663,9 +664,10 @@ const DesktopLayout = (props: any) => {
                     {navItem.list.map((nav, idx) => {
                       const hasSubMenus = nav.subMenus;
                       const isMainNavsActive = pathname.includes(nav.path);
+                      const shouldShow = search ? true : idx > 0;
 
                       return (
-                        idx > 0 && (
+                        shouldShow && (
                           <Fragment key={nav.path}>
                             {!hasSubMenus && (
                               <NavLink key={nav.path} to={nav.path} w={"full"}>
@@ -876,7 +878,7 @@ const DesktopLayout = (props: any) => {
                                                   fontSize={"sm"}
                                                   fontWeight={"semibold"}
                                                   color={"fg.subtle"}
-                                                  ml={"12px"}
+                                                  ml={9}
                                                   mt={1}
                                                 >
                                                   {pluckString(

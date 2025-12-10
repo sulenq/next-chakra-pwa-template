@@ -2,7 +2,6 @@
 
 import { Btn } from "@/components/ui/btn";
 import { CContainer } from "@/components/ui/c-container";
-import { HelperText } from "@/components/ui/helper-text";
 import { NavLink } from "@/components/ui/nav-link";
 import { P } from "@/components/ui/p";
 import SearchInput from "@/components/ui/search-input";
@@ -10,7 +9,6 @@ import FeedbackNotFound from "@/components/widget/FeedbackNotFound";
 import { LucideIcon } from "@/components/widget/Icon";
 import { LeftIndicator } from "@/components/widget/Indicator";
 import { PageContainer, PageTitle } from "@/components/widget/Page";
-import { APP } from "@/constants/_meta";
 import { OTHER_PRIVATE_NAVS } from "@/constants/navs";
 import { Props__Layout } from "@/constants/props";
 import { BASE_ICON_BOX_SIZE } from "@/constants/sizes";
@@ -18,7 +16,6 @@ import useLang from "@/context/useLang";
 import { useMasterDataPageContainer } from "@/context/useMasterDataPageContainer";
 import { useContainerDimension } from "@/hooks/useContainerDimension";
 import { isEmptyArray } from "@/utils/array";
-import { formatAbsDate } from "@/utils/formatter";
 import { pluckString } from "@/utils/string";
 import { HStack, Icon } from "@chakra-ui/react";
 import { usePathname } from "next/navigation";
@@ -68,7 +65,7 @@ const NavsList = (props: any) => {
                   fontSize={"sm"}
                   fontWeight={"semibold"}
                   color={"fg.subtle"}
-                  ml={"10px"}
+                  ml={1}
                 >
                   {pluckString(l, navItem.groupLabelKey)}
                 </P>
@@ -166,17 +163,6 @@ export default function Layout(props: Props__Layout) {
               </CContainer>
 
               <NavsList search={search} p={3} />
-
-              <HStack px={4} pb={4} justify={"space-between"} mt={"auto"}>
-                <HelperText>{`v${APP.version}`}</HelperText>
-
-                <HelperText>
-                  {`Last updated: 
-                ${formatAbsDate(APP.lastUpdated, {
-                  variant: "numeric",
-                })}`}
-                </HelperText>
-              </HStack>
             </CContainer>
           )}
 

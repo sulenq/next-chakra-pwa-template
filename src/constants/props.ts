@@ -279,6 +279,7 @@ export interface Props__PeriodPickerInput extends Omit<BtnProps, "onChange"> {
   disclosureSize?: Type__DisclosureSizes;
   multiple?: boolean;
   variant?: Type__BasicVariant;
+  withIcon?: boolean;
 }
 
 export interface Props__DatePickerInput extends Omit<BtnProps, "onChange"> {

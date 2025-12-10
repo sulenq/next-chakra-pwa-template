@@ -68,7 +68,7 @@ const NavsList = (props: any) => {
                   fontSize={"sm"}
                   fontWeight={"semibold"}
                   color={"fg.subtle"}
-                  ml={"10px"}
+                  ml={1}
                 >
                   {pluckString(l, navItem.groupLabelKey)}
                 </P>

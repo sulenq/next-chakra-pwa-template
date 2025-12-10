@@ -154,12 +154,13 @@ export const DataTable = (props: Props__DataTable) => {
   }
 
   // SX
-  const thHeight = "42px";
-  const thWidth = "52.4px";
+  const optionsCellWidth = "44px";
+  const cellPx = 3;
+  const thHeight = "46px";
   const thBg = "body";
   const thBorderColor = "border.subtle";
-  const tdBg = "body";
   const tdMinH = "46px";
+  const tdBg = "body";
   const footerBorderColor = "border.subtle";
   const selectedColor =
     themeConfig.colorPalette === "gray"
@@ -167,7 +168,7 @@ export const DataTable = (props: Props__DataTable) => {
       : hexWithOpacity(themeConfig.primaryColorHex, 0.05);
   const tdBorderColor = "d1";
 
-  // set initial source of truth table data
+  // set initial table data source of truth
   useEffect(() => {
     setTableData([...rows]);
   }, [rows]);
@@ -195,7 +196,8 @@ export const DataTable = (props: Props__DataTable) => {
               {!isEmptyArray(batchOptions) && (
                 <Table.ColumnHeader
                   h={thHeight}
-                  w={thWidth}
+                  w={optionsCellWidth}
+                  maxW={optionsCellWidth}
                   minW={"0% !important"}
                   p={0}
                   position={"sticky"}
@@ -233,7 +235,7 @@ export const DataTable = (props: Props__DataTable) => {
                 <HStack
                   h={thHeight}
                   bg={thBg}
-                  px={4}
+                  px={cellPx}
                   py={3}
                   borderBottom={"1px solid"}
                   borderColor={thBorderColor}
@@ -255,7 +257,7 @@ export const DataTable = (props: Props__DataTable) => {
                   <HStack
                     h={thHeight}
                     bg={thBg}
-                    px={4}
+                    px={cellPx}
                     py={3}
                     pl={idx === 0 ? 4 : ""}
                     pr={
@@ -290,14 +292,15 @@ export const DataTable = (props: Props__DataTable) => {
                 <Table.ColumnHeader
                   position={"sticky"}
                   right={"0px"}
-                  w={thWidth}
+                  w={optionsCellWidth}
+                  maxW={optionsCellWidth}
                   p={0}
                   borderBottom={"none !important"}
                 >
                   <HStack
                     h={thHeight}
                     bg={thBg}
-                    px={4}
+                    px={cellPx}
                     pr={"18px"}
                     py={3}
                     borderBottom={"1px solid"}
@@ -334,6 +337,8 @@ export const DataTable = (props: Props__DataTable) => {
                   {!isEmptyArray(batchOptions) && (
                     <Table.Cell
                       minW={"0% !important"}
+                      maxW={optionsCellWidth}
+                      w={optionsCellWidth}
                       h={tdMinH}
                       p={0}
                       position={"sticky"}
@@ -373,7 +378,7 @@ export const DataTable = (props: Props__DataTable) => {
                   <Table.Cell whiteSpace={"nowrap"} p={0}>
                     <HStack
                       py={3}
-                      px={4}
+                      px={cellPx}
                       h={tdMinH}
                       bg={isRowSelected ? selectedColor : tdBg}
                       borderBottom={
@@ -403,7 +408,7 @@ export const DataTable = (props: Props__DataTable) => {
                     >
                       <HStack
                         py={3}
-                        px={4}
+                        px={cellPx}
                         h={tdMinH}
                         bg={isRowSelected ? selectedColor : tdBg}
                         borderBottom={
@@ -425,6 +430,8 @@ export const DataTable = (props: Props__DataTable) => {
                   {!isEmptyArray(rowOptions) && (
                     <Table.Cell
                       minW={"0% !important"}
+                      w={optionsCellWidth}
+                      maxW={optionsCellWidth}
                       h={tdMinH}
                       bg={"body"}
                       p={0}

@@ -540,39 +540,39 @@ const customConfig = defineConfig({
           //     _dark: "{colors.gray.500} !important",
           //   },
           // },
-          contrast: {
-            value: { base: "{colors.gray.50}", _dark: "{colors.gray.900}" },
-          },
-          fg: {
-            value: {
-              base: "{colors.gray.500}",
-              _dark: "{colors.gray.200}",
-            },
-          },
-          muted: {
-            value: {
-              base: "{colors.gray.200}",
-              _dark: "{colors.gray.800}",
-            },
-          },
-          subtle: {
-            value: {
-              base: "{colors.d0} !important",
-              _dark: "{colors.d0} !important",
-            },
-          },
-          emphasized: {
-            value: {
-              base: "{colors.gray.100}",
-              _dark: "{colors.gray.900}",
-            },
-          },
-          focusRing: {
-            value: {
-              base: "{colors.gray.500}",
-              _dark: "{colors.gray.700}",
-            },
-          },
+          // contrast: {
+          //   value: { base: "{colors.gray.50}", _dark: "{colors.gray.900}" },
+          // },
+          // fg: {
+          //   value: {
+          //     base: "{colors.gray.500}",
+          //     _dark: "{colors.gray.200}",
+          //   },
+          // },
+          // muted: {
+          //   value: {
+          //     base: "{colors.gray.200}",
+          //     _dark: "{colors.gray.800}",
+          //   },
+          // },
+          // subtle: {
+          //   value: {
+          //     base: "{colors.d0} !important",
+          //     _dark: "{colors.d0} !important",
+          //   },
+          // },
+          // emphasized: {
+          //   value: {
+          //     base: "{colors.gray.100}",
+          //     _dark: "{colors.gray.900}",
+          //   },
+          // },
+          // focusRing: {
+          //   value: {
+          //     base: "{colors.gray.500}",
+          //     _dark: "{colors.gray.700}",
+          //   },
+          // },
         },
         brown: {
           solid: {

@@ -3,7 +3,7 @@
 import { Btn } from "@/components/ui/btn";
 import { CContainer } from "@/components/ui/c-container";
 import { Checkbox } from "@/components/ui/checkbox";
-import { useColorMode, useColorModeValue } from "@/components/ui/color-mode";
+import { useColorMode } from "@/components/ui/color-mode";
 import { DatePickerInput } from "@/components/ui/date-picker-input";
 import { P } from "@/components/ui/p";
 import { SelectInput } from "@/components/ui/select-input";
@@ -184,7 +184,6 @@ const Theme = () => {
   // Contexts
   const { l } = useLang();
   const { themeConfig, setThemeConfig } = useThemeConfig();
-  const graySolidBg = useColorModeValue("dark", "light");
 
   return (
     <ItemContainer>
@@ -208,7 +207,7 @@ const Theme = () => {
                 key={idx}
                 w={"full"}
                 aspectRatio={1}
-                bg={`${color.palette}.500`}
+                bg={isColorPaletteGray ? "ibody" : `${color.palette}.500`}
                 rounded={themeConfig.radii.component}
                 cursor={"pointer"}
                 overflow={"clip"}
@@ -216,7 +215,7 @@ const Theme = () => {
                   setThemeConfig({
                     colorPalette: color.palette,
                     primaryColor: isColorPaletteGray
-                      ? graySolidBg
+                      ? "ibody"
                       : `${color.palette}.500`,
                     primaryColorHex: color.primaryHex,
                   });
@@ -234,7 +233,7 @@ const Theme = () => {
                 {isActive && (
                   <DotIndicator
                     pos={"absolute"}
-                    color={"light"}
+                    color={isColorPaletteGray ? "body" : "light"}
                     top={2}
                     right={2}
                   />

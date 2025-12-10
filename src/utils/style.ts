@@ -15,3 +15,7 @@ export function getGridColumns(
 
   return result;
 }
+
+export function isDimensionValid(dimension: { width: number; height: number }) {
+  return dimension.width > 0 && dimension.height > 0;
+}
