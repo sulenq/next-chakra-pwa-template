@@ -5,7 +5,7 @@ import { getAuthToken, setAuthToken } from "./auth";
 export const request = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
   headers: { Accept: "application/json" },
-  // withCredentials: true, // uncoment if use refresh token
+  withCredentials: true, // uncoment if use refresh token
 });
 
 // inject access token to request
