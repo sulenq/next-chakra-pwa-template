@@ -186,7 +186,7 @@ export const ImgInput = (props: Props__FileInput) => {
                           bg={"body"}
                           size={"20px"}
                           border={"1px solid"}
-                          borderColor={"d1"}
+                          borderColor={"border.subtle"}
                           pos={"absolute"}
                           top={"6px"}
                           left={"6px"}

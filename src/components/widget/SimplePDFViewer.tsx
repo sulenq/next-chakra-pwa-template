@@ -242,7 +242,7 @@
 //         utils={utils}
 //         toggleMode={toggleMode}
 //         isSingleMode={isSingleMode}
-//         borderColor={"d1"}
+//         borderColor={"border.subtle"}
 //       />
 
 //       {isSingleMode ? (

@@ -113,7 +113,6 @@ export const DataGrid = (props: Props) => {
       <CContainer
         ref={containerRef}
         flex={1}
-        mt={3}
         overflowY={"auto"}
         pos={"relative"}
         {...restProps}

@@ -62,7 +62,7 @@ export const DataGridDetailDisclosure = (props: any) => {
                       px={1}
                       py={3}
                       borderBottom={!isLast ? "1px solid" : ""}
-                      borderColor={"d1"}
+                      borderColor={"border.subtle"}
                       align={"start"}
                     >
                       <P fontWeight={"medium"} color={"fg.subtle"}>

@@ -342,8 +342,8 @@ const customConfig = defineConfig({
         border: {
           subtle: {
             value: {
-              base: "#f3f3f3ff !important",
-              _dark: "#1b1b1b !important",
+              base: "{colors.d1} !important",
+              _dark: "{colors.d1} !important",
             },
           },
           muted: {

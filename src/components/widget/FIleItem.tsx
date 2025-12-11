@@ -43,7 +43,7 @@ export const FileItem = (props: Props__FileItem) => {
                 size={"16px"}
                 bg={"body"}
                 border={"1px solid"}
-                borderColor={"d1"}
+                borderColor={"border.subtle"}
                 pos={"absolute"}
                 left={"-6px"}
                 top={"-6px"}

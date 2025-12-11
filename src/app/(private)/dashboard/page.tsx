@@ -2,9 +2,9 @@
 
 import { CContainer } from "@/components/ui/c-container";
 import { DateRangePickerInput } from "@/components/ui/date-range-picker-input";
-import { HelperText } from "@/components/ui/helper-text";
 import { P } from "@/components/ui/p";
 import { Segmented } from "@/components/ui/segment-group";
+import { ClampText } from "@/components/widget/ClampText";
 import HScroll from "@/components/widget/HScroll";
 import { LucideIcon } from "@/components/widget/Icon";
 import { InfoPopover } from "@/components/widget/InfoPopover";
@@ -66,7 +66,7 @@ const OverviewItem = (props: StackProps) => {
       p={4}
       pt={3}
       border={"1px solid"}
-      borderColor={"border.muted"}
+      borderColor={"border.subtle"}
       rounded={"md"}
       {...props}
     >
@@ -94,7 +94,9 @@ const OverviewItem = (props: StackProps) => {
           12.5%
         </Badge>
 
-        <HelperText>since last month</HelperText>
+        <ClampText fontSize={"sm"} color={"fg.subtle"}>
+          since last month
+        </ClampText>
       </HStack>
     </CContainer>
   );
