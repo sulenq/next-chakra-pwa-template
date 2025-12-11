@@ -151,7 +151,7 @@ export const PageTitle = (props: StackProps) => {
   const title = pluckString(l, last<any>(activeNavs)?.labelKey);
 
   return (
-    <HStack flexShrink={0} px={4} my={3} {...restProps}>
+    <HStack flexShrink={0} px={4} my={3} minH={"36px"} {...restProps}>
       <ClampText fontSize={"xl"} fontWeight={"semibold"}>
         {title}
       </ClampText>

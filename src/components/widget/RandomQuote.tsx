@@ -24,6 +24,7 @@ export const RandomQuote = (props: Props) => {
     async function load() {
       const config = {
         method: "GET",
+        withCredentials: false,
       };
       req({
         config,
