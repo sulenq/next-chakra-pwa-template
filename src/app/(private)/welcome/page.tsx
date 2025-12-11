@@ -16,8 +16,6 @@ export default function Page() {
   const variantNumber = Math.floor(Math.random() * 16) + 1;
   // const user = getUserData();
 
-  const userInput = `<img src="x"onerror="console.debug('HACKED:', localStorage.__auth_token)"/>`;
-
   return (
     <PageContainer p={4}>
       <VStack flex={1} gap={1} justify={"center"} color={"fg.subtle"}>
@@ -27,8 +25,6 @@ export default function Page() {
             size={"2xl"}
             mb={4}
           /> */}
-
-          <div dangerouslySetInnerHTML={{ __html: userInput }} />
 
           <P fontSize={"lg"} fontWeight={"medium"}>
             {interpolateString(pluckString(l, `msg_welcome_to_the_app`), {
