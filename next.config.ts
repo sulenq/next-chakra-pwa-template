@@ -47,6 +47,7 @@ const nextConfig: NextConfig = {
   // --- IMAGE CONFIG ---
   images: {
     remotePatterns: [
+      { protocol: "https", hostname: "apiweb.exium.id", pathname: "/**" },
       { protocol: "https", hostname: "api.mapgis.cloud", pathname: "/**" },
       { protocol: "https", hostname: "doc.rimbaexium.org", pathname: "/**" },
       { protocol: "https", hostname: "doc-rimba.exium.my.id", pathname: "/**" },
