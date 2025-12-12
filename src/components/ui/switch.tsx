@@ -12,14 +12,29 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(function Switch(
   props,
   ref
 ) {
-  const { inputProps, children, rootRef, trackLabel, thumbLabel, ...rest } =
-    props;
+  const {
+    checked,
+    inputProps,
+    children,
+    rootRef,
+    trackLabel,
+    thumbLabel,
+    ...restProps
+  } = props;
 
   return (
-    <ChakraSwitch.Root ref={rootRef} {...rest}>
+    <ChakraSwitch.Root
+      ref={rootRef}
+      checked={checked}
+      cursor={"pointer"}
+      {...restProps}
+    >
       <ChakraSwitch.HiddenInput ref={ref} {...inputProps} />
       <ChakraSwitch.Control>
-        <ChakraSwitch.Thumb boxShadow={"none !important"}>
+        <ChakraSwitch.Thumb
+          boxShadow={"none !important"}
+          bg={checked ? `${restProps?.colorPalette}.contrast` : "body"}
+        >
           {thumbLabel && (
             <ChakraSwitch.ThumbIndicator fallback={thumbLabel?.off}>
               {thumbLabel?.on}

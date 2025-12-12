@@ -1,5 +1,6 @@
 "use client";
 
+import { useThemeConfig } from "@/context/useThemeConfig";
 import { SegmentGroup, SegmentGroupRootProps } from "@chakra-ui/react";
 
 interface Props extends Omit<SegmentGroupRootProps, "onChange"> {
@@ -11,6 +12,9 @@ interface Props extends Omit<SegmentGroupRootProps, "onChange"> {
 export const Segmented = (props: Props) => {
   // Props
   const { items = [], inputValue, onChange, size = "md", ...restProps } = props;
+
+  // Contexts
+  const { themeConfig } = useThemeConfig();
 
   // States
   const hBySize: Record<any, any> = {
@@ -27,6 +31,8 @@ export const Segmented = (props: Props) => {
       value={inputValue}
       onValueChange={(e) => onChange?.(e.value as string)}
       bg={"body"}
+      rounded={themeConfig.radii.component}
+      overflow={"clip"}
       {...restProps}
     >
       <SegmentGroup.Indicator

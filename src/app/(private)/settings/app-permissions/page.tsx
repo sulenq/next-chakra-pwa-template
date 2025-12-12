@@ -88,6 +88,7 @@ const Camera = () => {
           variant={"ghost"}
           onClick={onOpen}
           disabled={cameraPermissionsStatus !== "granted"}
+          mr={2}
         >
           {l.try_camera}
         </Btn>
@@ -311,6 +312,7 @@ const Microphone = () => {
           variant="ghost"
           onClick={onOpen}
           disabled={micPermissionsStatus !== "granted"}
+          mr={2}
         >
           {l.try_mic}
         </Btn>
@@ -488,6 +490,7 @@ const Location = () => {
           variant="ghost"
           onClick={onOpen}
           disabled={locationPermissionsStatus !== "granted"}
+          mr={2}
         >
           {l.try_location}
         </Btn>
