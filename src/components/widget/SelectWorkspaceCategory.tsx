@@ -23,7 +23,7 @@ const SelectWorkspaceCategory = (props: Props__SelectInput) => {
   // Utils
   function fetch() {
     const config = {
-      url: `/api/gis-bpn/master-data/categories/index`,
+      url: `/api/get-list-jabatan`,
       method: "GET",
       params: {
         with_trashed: 0,

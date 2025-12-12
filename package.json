@@ -12,6 +12,7 @@
     "s": "node src/scripts/generate-sitemap.js"
   },
   "dependencies": {
+    "@chakra-ui/charts": "^3.30.0",
     "@chakra-ui/react": "^3.29.0",
     "@ducanh2912/next-pwa": "^10.2.9",
     "@embedpdf/core": "^1.4.1",
@@ -43,6 +44,7 @@
     "react-icons": "^5.5.0",
     "react-pdf": "9.1.1",
     "react-virtualized": "^9.22.6",
+    "recharts": "^3.5.1",
     "yup": "^1.7.1",
     "zustand": "^5.0.8"
   },

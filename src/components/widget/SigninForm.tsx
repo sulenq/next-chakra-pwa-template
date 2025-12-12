@@ -12,8 +12,8 @@ import useAuthMiddleware from "@/context/useAuthMiddleware";
 import useLang from "@/context/useLang";
 import { useThemeConfig } from "@/context/useThemeConfig";
 import useRequest from "@/hooks/useRequest";
-import { getAuthToken, getUserData } from "@/utils/auth";
-import { removeStorage, setStorage } from "@/utils/client";
+import { getAccessToken, getUserData, setUserData } from "@/utils/auth";
+import { removeStorage } from "@/utils/client";
 import {
   FieldsetRoot,
   HStack,
@@ -37,9 +37,13 @@ import ResetPasswordDisclosureTrigger from "./ResetPasswordDisclosure";
 
 interface Props extends StackProps {}
 
+const BASE_SIGNIN_API = `/api/login`;
+const SIGNOUT_API = "/api/rski/dashboard/logout";
+const INDEX_ROUTE = "/demo";
+
 const Signedin = (props: any) => {
   // Props
-  const { indexRoute, ...restProps } = props;
+  const { ...restProps } = props;
 
   // Contexts
   const { l } = useLang();
@@ -56,7 +60,7 @@ const Signedin = (props: any) => {
 
   // Utils
   function onSignout() {
-    const url = `/api/signout`;
+    const url = SIGNOUT_API;
 
     const config = {
       url,
@@ -67,7 +71,7 @@ const Signedin = (props: any) => {
       config,
       onResolve: {
         onSuccess: () => {
-          removeStorage("__auth_token");
+          removeStorage("__access_token");
           removeStorage("__user_data");
           removeAuth();
         },
@@ -85,7 +89,7 @@ const Signedin = (props: any) => {
       </VStack>
 
       <VStack>
-        <NavLink to={indexRoute}>
+        <NavLink to={INDEX_ROUTE}>
           <Btn w={"140px"} colorPalette={themeConfig.colorPalette}>
             {l.access} App
           </Btn>
@@ -105,13 +109,13 @@ const Signedin = (props: any) => {
 };
 const BasicAuthForm = (props: any) => {
   // Props
-  const { indexRoute, signinAPI, ...restProps } = props;
+  const { signinAPI, ...restProps } = props;
 
   // Contexts
   const { l } = useLang();
   const { themeConfig } = useThemeConfig();
 
-  const setAuthToken = useAuthMiddleware((s) => s.setAuthToken);
+  const setAccessToken = useAuthMiddleware((s) => s.setAccessToken);
   const setVerifiedAuthToken = useAuthMiddleware((s) => s.setVerifiedAuthToken);
   const setPermissions = useAuthMiddleware((s) => s.setPermissions);
 
@@ -149,12 +153,17 @@ const BasicAuthForm = (props: any) => {
         config,
         onResolve: {
           onSuccess: (r: any) => {
-            setStorage("__auth_token", r.data.data?.token);
-            setStorage("__user_data", JSON.stringify(r.data.data?.user));
-            setAuthToken(r.data.data?.token);
-            setVerifiedAuthToken(r.data.data?.token);
-            setPermissions(r.data.data?.permissions);
-            router.push(indexRoute);
+            const accessToken = r.data?.token;
+            const userData = r.data?.user?.data;
+            const permissionsData = r.data?.user?.data?.permissions;
+
+            setAccessToken(accessToken);
+            setUserData(userData);
+            setAccessToken(accessToken);
+            setVerifiedAuthToken(accessToken);
+            setPermissions(permissionsData);
+
+            router.push(INDEX_ROUTE);
           },
         },
       });
@@ -254,13 +263,12 @@ export const SigninForm = (props: Props) => {
   // Contexts
   const { l } = useLang();
   const { themeConfig } = useThemeConfig();
-  const authToken = getAuthToken();
+  const authToken = getAccessToken();
   const verifiedAuthToken = useAuthMiddleware((s) => s.verifiedAuthToken);
   const resolvedAuthToken = authToken || verifiedAuthToken;
 
   // States
-  const signinAPI = "/api/signin";
-  const indexRoute = "/demo";
+  const signinAPI = BASE_SIGNIN_API;
 
   return (
     <CContainer
@@ -273,7 +281,7 @@ export const SigninForm = (props: Props) => {
       {...restProps}
     >
       {resolvedAuthToken ? (
-        <Signedin indexRoute={indexRoute} />
+        <Signedin />
       ) : (
         <>
           <CContainer align={"center"} gap={2} mb={4}>
@@ -288,7 +296,7 @@ export const SigninForm = (props: Props) => {
             </P>
           </CContainer>
 
-          <BasicAuthForm signinAPI={signinAPI} indexRoute={indexRoute} />
+          <BasicAuthForm signinAPI={signinAPI} />
         </>
       )}
     </CContainer>

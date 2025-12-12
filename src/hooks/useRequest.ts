@@ -4,7 +4,7 @@ import {
   Interface__RequestState,
 } from "@/constants/interfaces";
 import useLang from "@/context/useLang";
-import { clearAuthToken } from "@/utils/auth";
+import { clearAccessToken, clearUserData } from "@/utils/auth";
 import { request } from "@/utils/request";
 import { useRouter } from "next/navigation";
 import { useCallback, useRef, useState } from "react";
@@ -213,7 +213,8 @@ export default function useRequest<T = any>(props: Props) {
           case 401:
           case 403:
             if (!absoluteUrl) {
-              clearAuthToken();
+              clearAccessToken();
+              clearUserData();
               router?.push(signinPath);
             }
             break;

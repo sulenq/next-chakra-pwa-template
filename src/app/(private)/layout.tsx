@@ -52,8 +52,12 @@ import { useIsSmScreenWidth } from "@/hooks/useIsSmScreenWidth";
 import useRequest from "@/hooks/useRequest";
 import useScreen from "@/hooks/useScreen";
 import { isEmptyArray, last } from "@/utils/array";
-import { getAuthToken, getUserData } from "@/utils/auth";
-import { setStorage } from "@/utils/client";
+import {
+  getAccessToken,
+  getUserData,
+  setAccessToken,
+  setUserData,
+} from "@/utils/auth";
 import { pluckString } from "@/utils/string";
 import { getActiveNavs, imgUrl } from "@/utils/url";
 import { Box, Center, HStack, Icon } from "@chakra-ui/react";
@@ -1088,7 +1092,7 @@ export default function Layout(props: Props__Layout) {
   const { ...restProps } = props;
 
   // Context / stores
-  const authToken = getAuthToken();
+  const authToken = getAccessToken();
   const verifiedAuthToken = useAuthMiddleware((s) => s.verifiedAuthToken);
   const setRole = useAuthMiddleware((s) => s.setRole);
   const setPermissions = useAuthMiddleware((s) => s.setPermissions);
@@ -1134,11 +1138,11 @@ export default function Layout(props: Props__Layout) {
         onResolve: {
           onSuccess: (r: any) => {
             const user = r.data.data;
-            setStorage("__auth_token", authToken, "local", 259200000);
-            setStorage("__user_data", JSON.stringify(user), "local", 259200000);
+            setAccessToken(authToken);
+            setUserData(user);
             setVerifiedAuthToken(authToken);
-            setRole(user.role);
-            setPermissions(user.role.permissions);
+            setRole(user?.role);
+            setPermissions(user?.role?.permissions);
           },
           onError: () => {
             setVerifiedAuthToken(null);

@@ -84,10 +84,10 @@ export default function Page() {
                 User these credentials to sign in,
               </P>
               <P fontSize={"lg"} fontWeight={"medium"}>
-                Email: admin@gmail.com
+                Email: super.admin
               </P>
               <P fontSize={"lg"} fontWeight={"medium"}>
-                Password: nextlevel
+                Password: superadmin123
               </P>
             </CContainer>
           </CContainer>

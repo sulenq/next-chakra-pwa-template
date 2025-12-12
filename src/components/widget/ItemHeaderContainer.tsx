@@ -12,11 +12,11 @@ export const ItemHeaderContainer = ({
 }: Props) => {
   return (
     <HStack
-      h={"50px"}
+      minH={"50px"}
       p={1}
       pl={4}
-      pr={withUtils ? 1 : 4}
-      gap={4}
+      pr={withUtils ? "6px" : 4}
+      gapX={4}
       wrap={"wrap"}
       borderBottom={"1px solid"}
       borderColor={borderless ? "transparent" : "border.subtle"}

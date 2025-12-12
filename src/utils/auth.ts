@@ -1,15 +1,15 @@
 import { getStorage, removeStorage, setStorage } from "@/utils/client";
 
-export function getAuthToken() {
-  return getStorage("__auth_token") || null;
+export function getAccessToken() {
+  return getStorage("__access_token") || null;
 }
 
-export function setAuthToken(token: string) {
-  setStorage("__auth_token", token);
+export function setAccessToken(token: string) {
+  setStorage("__access_token", token, "local", 259200000);
 }
 
-export function clearAuthToken() {
-  removeStorage("__auth_token");
+export function clearAccessToken() {
+  removeStorage("__access_token");
 }
 
 export function getUserData(): Record<string, any> | null {
@@ -24,9 +24,9 @@ export function getUserData(): Record<string, any> | null {
   }
 }
 
-export function setUserData(data: Record<string, any>) {
+export function setUserData(user: Record<string, any>) {
   try {
-    setStorage("__user_data", JSON.stringify(data));
+    setStorage("__user_data", JSON.stringify(user), "local", 259200000);
   } catch (e) {
     console.error("Failed to stringify user data:", e);
   }

@@ -1,9 +1,10 @@
-import { getStorage, removeStorage, setStorage } from "@/utils/client";
+import { setAccessToken } from "@/utils/auth";
+import { getStorage, removeStorage } from "@/utils/client";
 import { create } from "zustand";
 
 interface Props {
   authToken: string | null;
-  setAuthToken: (newState: Props["authToken"]) => void;
+  setAccessToken: (newState: Props["authToken"]) => void;
 
   verifiedAuthToken: string | null;
   role: object | null;
@@ -22,14 +23,13 @@ interface Props {
 }
 
 const useAuthMiddleware = create<Props>((set, get) => ({
-  authToken: getStorage("__auth_token"),
-  setAuthToken: (newState) => set(() => ({ authToken: newState })),
+  authToken: getStorage("__access_token"),
+  setAccessToken: (newState) => set(() => ({ authToken: newState })),
 
   verifiedAuthToken: null,
   setVerifiedAuthToken: (newState) =>
     set(() => {
-      if (typeof window !== "undefined")
-        setStorage("__auth_token", newState || "");
+      if (typeof window !== "undefined") setAccessToken(newState || "");
       return { verifiedAuthToken: newState };
     }),
 
@@ -50,12 +50,12 @@ const useAuthMiddleware = create<Props>((set, get) => ({
     get().removeRole();
     removeStorage("__user_data");
     get().setVerifiedAuthToken(null);
-    get().setAuthToken(null);
+    get().setAccessToken(null);
   },
 
   removeAuthToken: () => {
     if (typeof window !== "undefined") {
-      removeStorage("__auth_token");
+      removeStorage("__access_token");
     }
     set(() => ({ authToken: null, verifiedAuthToken: null }));
   },

@@ -60,7 +60,7 @@ export const MiniMyProfile = (props: Props__MiniMyProfile) => {
       config,
       onResolve: {
         onSuccess: () => {
-          removeStorage("__auth_token");
+          removeStorage("__access_token");
           removeStorage("__user_data");
           removeAuth();
           router.push("/");
