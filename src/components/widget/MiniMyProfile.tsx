@@ -21,6 +21,8 @@ import { Icon, StackProps } from "@chakra-ui/react";
 import { LogOutIcon, UserIcon } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
 
+const SIGNOUT_EP = "/api/rski/dashboard/logout";
+
 interface Props__MiniMyProfile extends StackProps {
   onClose?: () => void;
 }
@@ -50,7 +52,7 @@ export const MiniMyProfile = (props: Props__MiniMyProfile) => {
   function onSignout() {
     back();
 
-    const url = `/api/signout`;
+    const url = SIGNOUT_EP;
     const config = {
       url,
       method: "GET",

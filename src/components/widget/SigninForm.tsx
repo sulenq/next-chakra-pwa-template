@@ -37,8 +37,8 @@ import ResetPasswordDisclosureTrigger from "./ResetPasswordDisclosure";
 
 interface Props extends StackProps {}
 
-const BASE_SIGNIN_API = `/api/login`;
-const SIGNOUT_API = "/api/rski/dashboard/logout";
+const BASE_SIGNIN_EP = `/api/login`;
+const SIGNOUT_EP = "/api/rski/dashboard/logout";
 const INDEX_ROUTE = "/demo";
 
 const Signedin = (props: any) => {
@@ -60,7 +60,7 @@ const Signedin = (props: any) => {
 
   // Utils
   function onSignout() {
-    const url = SIGNOUT_API;
+    const url = SIGNOUT_EP;
 
     const config = {
       url,
@@ -268,7 +268,7 @@ export const SigninForm = (props: Props) => {
   const resolvedAuthToken = authToken || verifiedAuthToken;
 
   // States
-  const signinAPI = BASE_SIGNIN_API;
+  const signinAPI = BASE_SIGNIN_EP;
 
   return (
     <CContainer
