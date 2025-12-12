@@ -35,10 +35,10 @@ const SelectWorkspaceCategory = (props: Props__SelectInput) => {
       config,
       onResolve: {
         onSuccess: (r) => {
-          const newOptions = r?.data?.data?.data
-            ?.map((category: any) => ({
-              id: category?.id,
-              label: category?.label,
+          const newOptions = r?.data?.data
+            ?.map((item: any) => ({
+              id: item?.id,
+              label: item?.nama_jabatan,
             }))
             .sort((a: Interface__SelectOption, b: Interface__SelectOption) =>
               a.label.localeCompare(b.label)
