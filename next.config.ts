@@ -2,9 +2,6 @@ import type { NextConfig } from "next";
 import createNextPWA from "@ducanh2912/next-pwa";
 
 // --- PWA CONFIGURATION FIX ---
-// The original config caused a TypeScript error because 'buildExcludes'
-// might not be defined in the default PluginOptions type.
-// We use 'as any' to bypass the strict type check temporarily.
 const withPWA = createNextPWA({
   dest: "public",
   disable: process.env.NODE_ENV === "development",
@@ -34,7 +31,6 @@ const nextConfig: NextConfig = {
       };
     }
 
-    // Memory cache in development causes high RAM usage and eventual crashes.
     if (dev) {
       config.cache = {
         type: "filesystem",

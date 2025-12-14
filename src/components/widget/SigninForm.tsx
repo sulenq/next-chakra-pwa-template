@@ -12,7 +12,7 @@ import useAuthMiddleware from "@/context/useAuthMiddleware";
 import useLang from "@/context/useLang";
 import { useThemeConfig } from "@/context/useThemeConfig";
 import useRequest from "@/hooks/useRequest";
-import { getAccessToken, getUserData, setUserData } from "@/utils/auth";
+import { getAccessToken, getUserData } from "@/utils/auth";
 import { removeStorage } from "@/utils/client";
 import {
   FieldsetRoot,
@@ -115,13 +115,18 @@ const BasicAuthForm = (props: any) => {
   const { l } = useLang();
   const { themeConfig } = useThemeConfig();
 
-  const setAccessToken = useAuthMiddleware((s) => s.setAccessToken);
-  const setVerifiedAuthToken = useAuthMiddleware((s) => s.setVerifiedAuthToken);
-  const setPermissions = useAuthMiddleware((s) => s.setPermissions);
+  // TODO enable in real dev
+  // const setAccessToken = useAuthMiddleware((s) => s.setAccessToken);
+  // const setVerifiedAuthToken = useAuthMiddleware((s) => s.setVerifiedAuthToken);
+  // const setPermissions = useAuthMiddleware((s) => s.setPermissions);
 
   // Hooks
   const router = useRouter();
-  const { req, loading } = useRequest({
+  const {
+    // TODO enable in real dev
+    // req,
+    loading,
+  } = useRequest({
     id: "signin",
     loadingMessage: l.loading_signin,
     successMessage: l.success_signin,
@@ -135,43 +140,57 @@ const BasicAuthForm = (props: any) => {
       password: "",
     },
     validationSchema: yup.object().shape({
-      identifier: yup.string().required(l.msg_required_form),
-      password: yup.string().required(l.msg_required_form),
+      // TODO enable in real dev
+      // identifier: yup.string().required(l.msg_required_form),
+      // password: yup.string().required(l.msg_required_form),
     }),
     onSubmit: (values) => {
-      const payload = {
-        email: values.identifier,
-        password: values.password,
-      };
-      const config = {
-        method: "POST",
-        url: signinAPI,
-        data: payload,
-      };
+      console.debug(values, signinAPI);
 
-      req({
-        config,
-        onResolve: {
-          onSuccess: (r: any) => {
-            const accessToken = r.data?.token;
-            const userData = r.data?.user?.data;
-            const permissionsData = r.data?.user?.data?.permissions;
+      // TODO enable in real dev
+      // const payload = {
+      //   email: values.identifier,
+      //   password: values.password,
+      // };
+      // const config = {
+      //   method: "POST",
+      //   url: signinAPI,
+      //   data: payload,
+      // };
+      // req({
+      //   config,
+      //   onResolve: {
+      //     onSuccess: (r: any) => {
+      //       const accessToken = r.data?.token;
+      //       const userData = r.data?.user?.data;
+      //       const permissionsData = r.data?.user?.data?.permissions;
+      //       setAccessToken(accessToken);
+      //       setUserData(userData);
+      //       setAccessToken(accessToken);
+      //       setVerifiedAuthToken(accessToken);
+      //       setPermissions(permissionsData);
+      //       router.push(INDEX_ROUTE);
+      //     },
+      //   },
+      // });
 
-            setAccessToken(accessToken);
-            setUserData(userData);
-            setAccessToken(accessToken);
-            setVerifiedAuthToken(accessToken);
-            setPermissions(permissionsData);
-
-            router.push(INDEX_ROUTE);
-          },
-        },
-      });
+      router.push(INDEX_ROUTE);
     },
   });
 
   return (
     <CContainer {...restProps}>
+      {/* TODO disable in real dev */}
+      <P
+        maxW={"250px"}
+        fontWeight={"medium"}
+        textAlign={"center"}
+        mx={"auto"}
+        mb={2}
+      >
+        Just click the Sign In button to go to the demo page.
+      </P>
+
       <form id="signin_form" onSubmit={formik.handleSubmit}>
         <FieldsetRoot disabled={loading}>
           <Field

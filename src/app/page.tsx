@@ -80,7 +80,14 @@ export default function Page() {
                 mb={4}
               />
 
-              <P fontSize={"lg"} fontWeight={"medium"}>
+              <P>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio
+                magnam laudantium velit repellat assumenda maiores perspiciatis
+                delectus? Quae quo dignissimos tempore labore illo sapiente
+                voluptates, inventore, alias repudiandae laboriosam voluptatem.
+              </P>
+
+              {/* <P fontSize={"lg"} fontWeight={"medium"}>
                 User these credentials to sign in,
               </P>
               <P fontSize={"lg"} fontWeight={"medium"}>
@@ -88,7 +95,7 @@ export default function Page() {
               </P>
               <P fontSize={"lg"} fontWeight={"medium"}>
                 Password: superadmin123
-              </P>
+              </P> */}
             </CContainer>
           </CContainer>
         )}
