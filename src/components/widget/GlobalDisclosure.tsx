@@ -1,9 +1,9 @@
-import GlobalOfflineDisclosure from "./GlobalOfflineDisclosure";
+import { OfflineAlert } from "./OfflineAlert";
 
 const GlobalDisclosure = () => {
   return (
     <>
-      <GlobalOfflineDisclosure />
+      <OfflineAlert />
     </>
   );
 };

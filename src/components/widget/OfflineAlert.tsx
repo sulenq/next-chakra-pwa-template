@@ -19,7 +19,7 @@ import { Btn } from "../ui/btn";
 import { EmptyState } from "../ui/empty-state";
 import { disclosureId } from "@/utils/disclosure";
 
-const OfflineDisclosure = () => {
+export const OfflineAlert = () => {
   // Contexts
   const { offline } = useOffline();
   const { themeConfig } = useThemeConfig();
@@ -27,7 +27,7 @@ const OfflineDisclosure = () => {
 
   // Utils
   const { open, onOpen, onClose } = useDisclosure();
-  useBackOnClose(disclosureId("offline-disclosure"), open, onOpen, onClose);
+  useBackOnClose(disclosureId("offline-alert"), open, onOpen, onClose);
 
   useEffect(() => {
     if (offline) onOpen();
@@ -70,5 +70,3 @@ const OfflineDisclosure = () => {
     </DisclosureRoot>
   );
 };
-
-export default OfflineDisclosure;
