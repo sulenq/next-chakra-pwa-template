@@ -222,8 +222,9 @@ const Chart1 = (props: any) => {
                   isAnimationActive={false}
                   dataKey={chart.key(item.name)}
                   fill={chart.color(item.color)}
-                  opacity={isHighlighted ? 1 : 0.1}
-                  stroke={chart.color(item.color)}
+                  stroke={themeConfig.primaryColorHex}
+                  // stroke={chart.color(item.color)}
+                  opacity={isHighlighted ? 1 : 0.08}
                   strokeWidth={2}
                   zIndex={isHighlighted ? 3 : idx + 1}
                 >
