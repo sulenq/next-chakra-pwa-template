@@ -12,8 +12,10 @@ const SelectWorkspaceCategory = (props: Props__SelectInput) => {
   // Hooks
   const { req, loading, error } = useRequest({
     id: "select_workspace_category",
+    absoluteUrl: "https://zoo-animal-api.vercel.app/api/animals/rand/10",
     showLoadingToast: false,
     showSuccessToast: false,
+    showErrorToast: false,
   });
 
   // States
@@ -23,7 +25,6 @@ const SelectWorkspaceCategory = (props: Props__SelectInput) => {
   // Utils
   function fetch() {
     const config = {
-      url: `/api/get-list-jabatan`,
       method: "GET",
       params: {
         with_trashed: 0,
