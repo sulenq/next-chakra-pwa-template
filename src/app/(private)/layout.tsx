@@ -945,6 +945,7 @@ const DesktopLayout = (props: any) => {
                                                           BASE_ICON_BOX_SIZE
                                                         }
                                                         zIndex={2}
+                                                        ml={"1.5px"}
                                                       >
                                                         <Icon
                                                           boxSize={2}
