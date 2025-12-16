@@ -1,12 +1,13 @@
 import { Props__NumInput } from "@/constants/props";
 import { formatNumber } from "@/utils/formatter";
 import { parseNumber } from "@/utils/number";
-import { forwardRef, useEffect, useState } from "react";
+import { forwardRef, useEffect, useRef, useState } from "react";
 import { StringInput } from "./string-input";
+
+const MAX_INTEGER_DIGITS = 15;
 
 export const NumInput = forwardRef<HTMLInputElement, Props__NumInput>(
   (props, ref) => {
-    // Props
     const {
       inputValue,
       onChange,
@@ -21,12 +22,21 @@ export const NumInput = forwardRef<HTMLInputElement, Props__NumInput>(
       ...restProps
     } = props;
 
-    // States
     const [num, setNum] = useState<string>("");
+
+    const caretRef = useRef<number | null>(null);
+    const inputRef = useRef<HTMLInputElement | null>(null);
+
+    useEffect(() => {
+      if (typeof ref === "function") {
+        ref(inputRef.current);
+      } else if (ref) {
+        ref.current = inputRef.current;
+      }
+    }, [ref]);
 
     useEffect(() => {
       if (inputValue !== undefined && inputValue !== null) {
-        // if integer = true, round inputValue
         const valueToDisplay =
           integer && typeof inputValue === "number"
             ? Math.round(inputValue)
@@ -44,57 +54,46 @@ export const NumInput = forwardRef<HTMLInputElement, Props__NumInput>(
       }
     }, [inputValue, formatFunction, formatted, integer]);
 
-    // Utils
     function handleChange(rawInput?: string) {
       if (rawInput === undefined) return;
 
-      // case: nothing
+      if (inputRef.current) caretRef.current = inputRef.current.selectionStart;
+
       if (rawInput.trim() === "") {
         setNum("");
         onChange?.(null);
         return;
       }
 
-      const isValid = /^[0-9.,]+$/.test(rawInput);
-      if (!isValid) {
-        return;
-      }
+      if (!/^[0-9.,]+$/.test(rawInput)) return;
 
       let sanitizedInput = rawInput;
 
-      // FIX: remove existing formatting before parsing/formatting again
       if (integer) {
         sanitizedInput = sanitizedInput.replace(/[.,]/g, "");
       } else {
         sanitizedInput = sanitizedInput.replace(/\./g, "");
       }
 
-      const commaIndex = sanitizedInput.indexOf(",");
-      if (
-        !integer &&
-        commaIndex !== -1 &&
-        sanitizedInput.lastIndexOf(",") !== commaIndex
-      ) {
-        return;
+      if (integer) {
+        sanitizedInput = sanitizedInput.replace(/^0+(?=\d)/, "");
       }
 
-      if (sanitizedInput.length > 19) {
-        sanitizedInput = sanitizedInput.substring(0, 19);
-      }
+      const parts = sanitizedInput.split(",");
+      if (parts[0].length > MAX_INTEGER_DIGITS) return;
 
-      // Parse number
       let parsedValue = parseNumber(sanitizedInput);
 
       if (parsedValue !== undefined) {
         if (integer) parsedValue = Math.round(parsedValue!);
 
-        // max
+        if (!Number.isSafeInteger(parsedValue)) return;
+
         if (max !== undefined && parsedValue! > max) {
           parsedValue = max;
           sanitizedInput = String(max);
         }
 
-        // min
         if (min !== undefined && parsedValue! < min) {
           parsedValue = min;
           sanitizedInput = String(min);
@@ -107,24 +106,42 @@ export const NumInput = forwardRef<HTMLInputElement, Props__NumInput>(
         return;
       }
 
-      // thousand separator
       let formattedValue = sanitizedInput.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
       if (!integer && sanitizedInput.includes(",")) {
-        const parts = sanitizedInput.split(",");
-        if (parts.length === 2) {
-          formattedValue = `${parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ".")},${
-            parts[1]
-          }`;
-        }
+        const s = sanitizedInput.split(",");
+        formattedValue = `${s[0].replace(/\B(?=(\d{3})+(?!\d))/g, ".")},${
+          s[1]
+        }`;
       }
 
       setNum(formattedValue);
       if (parsedValue !== undefined) onChange?.(parsedValue);
+
+      requestAnimationFrame(() => {
+        if (!inputRef.current || caretRef.current === null) return;
+
+        const digitsBeforeCaret = rawInput
+          .slice(0, caretRef.current)
+          .replace(/[^0-9]/g, "").length;
+
+        let digitCount = 0;
+        let nextCaret = formattedValue.length;
+
+        for (let i = 0; i < formattedValue.length; i++) {
+          if (/[0-9]/.test(formattedValue[i])) digitCount++;
+          if (digitCount === digitsBeforeCaret) {
+            nextCaret = i + 1;
+            break;
+          }
+        }
+
+        inputRef.current.setSelectionRange(nextCaret, nextCaret);
+      });
     }
 
     return (
       <StringInput
-        ref={ref}
+        ref={inputRef}
         onChange={handleChange}
         inputValue={num}
         invalid={invalid}

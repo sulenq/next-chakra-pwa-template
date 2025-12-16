@@ -13,6 +13,8 @@
 * {
   font-optical-sizing: auto;
   box-sizing: border-box !important;
+  font-family: "Figtree", system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif !important;
 }
 *::selection {
   background: var(--d3);

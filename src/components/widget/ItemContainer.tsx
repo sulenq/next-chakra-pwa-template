@@ -8,7 +8,7 @@ import { forwardRef } from "react";
 export const ItemContainer = forwardRef<HTMLDivElement, Props__ItemContainer>(
   (props, ref) => {
     // Props
-    const { children, scrollY = false, ...restProps } = props;
+    const { children, scrollY = false, className, ...restProps } = props;
 
     // Contexts
     const { themeConfig } = useThemeConfig();
@@ -16,7 +16,7 @@ export const ItemContainer = forwardRef<HTMLDivElement, Props__ItemContainer>(
     return (
       <CContainer
         ref={ref}
-        className={scrollY ? "scrollY" : ""}
+        className={`${scrollY ? "scrollY" : ""} ${className}`}
         bg={"body"}
         rounded={themeConfig.radii.container}
         border={"1px solid"}

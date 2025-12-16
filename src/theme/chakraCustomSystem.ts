@@ -33,17 +33,17 @@ const customConfig = defineConfig({
         dt: { value: "#858585ff" },
         placeholder: { value: "#96969691" },
         p: {
-          50: { value: "#E0F7FF" },
-          100: { value: "#cbf0fd" },
-          200: { value: "#8ee5ff" },
-          300: { value: "#4DD6FF" },
-          400: { value: "#26CBFF" },
-          500: { value: "#00BFFF" },
-          "500a": { value: "#00BFFF20" },
-          600: { value: "#0099CC" },
-          700: { value: "#007399" },
-          800: { value: "#004D66" },
-          900: { value: "#002633" },
+          50: { value: "#E6FAFC" },
+          100: { value: "#C2F1F5" },
+          200: { value: "#8DE6EC" },
+          300: { value: "#57DBE3" },
+          400: { value: "#2FD4DD" },
+          500: { value: "#21D3E0" },
+          "500a": { value: "#21D3E020" },
+          600: { value: "#1AA8B2" },
+          700: { value: "#137D85" },
+          800: { value: "#0B5258" },
+          900: { value: "#04272B" },
         },
         s: {
           50: { value: "#eff2f6" },
@@ -361,7 +361,7 @@ const customConfig = defineConfig({
             },
           },
           contrast: {
-            value: { base: "{colors.light}", _dark: "{colors.light}" },
+            value: { base: "{colors.dark}", _dark: "{colors.light}" },
           },
           fg: {
             value: {
@@ -397,7 +397,7 @@ const customConfig = defineConfig({
             },
           },
           contrast: {
-            value: { base: "{colors.p.50}", _dark: "{colors.p.900}" },
+            value: { base: "{colors.p.900}", _dark: "{colors.p.900}" },
           },
           fg: {
             value: {
