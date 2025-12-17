@@ -1,6 +1,6 @@
 export const disclosurePrefixId = "disclosure";
 
-export const disclosureId = (id: string) => `${disclosurePrefixId}-${id}`;
+export const disclosureId = (id: string) => `${disclosurePrefixId}_${id}`;
 
 // export function purgeDisclosureSearchParams() {
 //   if (typeof window === "undefined") return;
