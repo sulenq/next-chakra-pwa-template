@@ -32,6 +32,7 @@ import { MenuContent, MenuRoot, MenuTrigger } from "@/components/ui/menu";
 import { NumInput } from "@/components/ui/number-input";
 import { P } from "@/components/ui/p";
 import { useThemeConfig } from "@/context/useThemeConfig";
+import { Props__PdfViewer } from "@/constants/props";
 
 pdfjs.GlobalWorkerOptions.workerSrc = `https://unpkg.com/pdfjs-dist@4.4.168/build/pdf.worker.min.mjs`;
 
@@ -234,10 +235,6 @@ const Toolbar = (props: Props__PDFToolbar) => {
   );
 };
 
-interface Props__PdfViewer extends StackProps {
-  fileUrl: string;
-  fileName?: string;
-}
 export const PDFViewer = (props: Props__PdfViewer) => {
   // Props
   const { fileUrl, fileName, ...restProps } = props;
