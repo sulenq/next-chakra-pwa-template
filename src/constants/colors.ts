@@ -161,7 +161,7 @@ export const LEGEND_COLOR_OPTIONS = [
 ];
 
 export const COLOR_PALETTES = [
-  { palette: "p", primaryHex: "#21D3E0" },
+  // { palette: "p", primaryHex: "#35AACE" },
 
   // Neutral & Dark Shades
   { palette: "gray", primaryHex: "#1B1B1B" },
@@ -170,12 +170,10 @@ export const COLOR_PALETTES = [
   { palette: "caramel", primaryHex: "#C47B27" },
   { palette: "cream", primaryHex: "#D7BF8C" },
 
-  // Reds & Pinks
+  // Reds
   { palette: "maroon", primaryHex: "#800000" },
   { palette: "red", primaryHex: "#FF0000" },
   { palette: "salmon", primaryHex: "#FF6242" },
-  { palette: "flamingoPink", primaryHex: "#FF478B" },
-  { palette: "bubblegumPink", primaryHex: "#FF4ABB" },
 
   // Oranges & Yellows
   { palette: "orange", primaryHex: "#FF8E62" },
@@ -203,4 +201,9 @@ export const COLOR_PALETTES = [
   { palette: "lavender", primaryHex: "#7A42FF" },
   { palette: "powderLavender", primaryHex: "#8E8CD8" },
   { palette: "purple", primaryHex: "#9C27B0" },
+
+  // Pinks
+  { palette: "bubblegumPink", primaryHex: "#FF4ABB" },
+  { palette: "flamingoPink", primaryHex: "#FF478B" },
+  { palette: "pink", primaryHex: "#ec4899" },
 ];
