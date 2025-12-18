@@ -238,7 +238,7 @@ const Chart1 = (props: any) => {
               cursor={{ stroke: chart.color("border") }}
               content={<Chart.Tooltip />}
             />
-            {chart.series.map((item, idx) => {
+            {chart.series.map((item) => {
               const isHighlighted = highlights.includes(
                 parseInt(item.name as string)
               );
@@ -247,13 +247,10 @@ const Chart1 = (props: any) => {
                 <Line
                   key={item.name}
                   dot={false}
-                  // isAnimationActive={false}
+                  animationDuration={200}
                   dataKey={chart.key(item.name)}
-                  // stroke={themeConfig.primaryColorHex}
                   stroke={chart.color(item.color)}
-                  // fill={chart.color(item.color)}
                   opacity={isHighlighted ? 1 : 0.08}
-                  zIndex={isHighlighted ? 3 : idx + 1}
                 >
                   {isHighlighted && showPointLabel && (
                     <LabelList
