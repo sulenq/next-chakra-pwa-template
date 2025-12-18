@@ -73,6 +73,8 @@ export interface Props__NavLink extends StackProps {
 }
 export interface Props__ItemContainer extends StackProps {
   scrollY?: boolean;
+  roundedless?: boolean;
+  borderless?: boolean;
 }
 export interface Props__ItemHeaderContainer extends StackProps {
   borderless?: boolean;

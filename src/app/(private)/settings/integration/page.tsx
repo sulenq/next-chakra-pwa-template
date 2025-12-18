@@ -78,7 +78,7 @@ const APIKeys = (props: any) => {
   }, [apiKeys]);
 
   return (
-    <ItemContainer {...restProps}>
+    <ItemContainer borderless roundedless {...restProps}>
       <ItemHeaderContainer>
         <HStack>
           <Icon boxSize={BASE_ICON_BOX_SIZE}>

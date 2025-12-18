@@ -162,7 +162,7 @@ const DarkMode = () => {
   }, [colorMode]);
 
   return (
-    <ItemContainer>
+    <ItemContainer borderless roundedless>
       <ItemHeaderContainer>
         <HStack>
           <Icon boxSize={BASE_ICON_BOX_SIZE}>
@@ -186,7 +186,7 @@ const Theme = () => {
   const { themeConfig, setThemeConfig } = useThemeConfig();
 
   return (
-    <ItemContainer>
+    <ItemContainer borderless roundedless>
       <ItemHeaderContainer>
         <HStack>
           <Icon boxSize={BASE_ICON_BOX_SIZE}>
@@ -373,7 +373,7 @@ const Rounded = () => {
   };
 
   return (
-    <ItemContainer ref={containerRef}>
+    <ItemContainer ref={containerRef} borderless roundedless>
       <ItemHeaderContainer>
         <HStack>
           <Icon boxSize={BASE_ICON_BOX_SIZE}>
@@ -411,7 +411,7 @@ const ExampleUI = () => {
   >(null);
 
   return (
-    <ItemContainer>
+    <ItemContainer borderless roundedless>
       <ItemHeaderContainer>
         <HStack>
           <Icon boxSize={BASE_ICON_BOX_SIZE}>
@@ -476,7 +476,7 @@ const ExampleUI = () => {
 
 export default function Page() {
   return (
-    <CContainer flex={1} gap={2} bg={"bgContent"}>
+    <CContainer flex={1} gap={3} bg={"bgContent"}>
       <DarkMode />
 
       <Theme />

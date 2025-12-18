@@ -168,7 +168,7 @@ const Camera = () => {
   };
 
   return (
-    <ItemContainer>
+    <ItemContainer borderless roundedless>
       <ItemHeaderContainer withUtils>
         <HStack>
           <Icon boxSize={BASE_ICON_BOX_SIZE}>
@@ -352,7 +352,7 @@ const Microphone = () => {
   };
 
   return (
-    <ItemContainer>
+    <ItemContainer borderless roundedless>
       <ItemHeaderContainer withUtils>
         <HStack>
           <Icon boxSize={BASE_ICON_BOX_SIZE}>
@@ -546,7 +546,7 @@ const Location = () => {
   };
 
   return (
-    <ItemContainer>
+    <ItemContainer borderless roundedless>
       <ItemHeaderContainer withUtils>
         <HStack>
           <Icon boxSize={BASE_ICON_BOX_SIZE}>
@@ -596,7 +596,7 @@ const Location = () => {
 
 export default function Page() {
   return (
-    <CContainer flex={1} gap={2} bg={"bgContent"}>
+    <CContainer flex={1} gap={3} bg={"bgContent"}>
       <Camera />
 
       <Microphone />

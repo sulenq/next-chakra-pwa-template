@@ -1,5 +1,6 @@
 "use client";
 
+import { Btn } from "@/components/ui/btn";
 import { CContainer } from "@/components/ui/c-container";
 import { DateRangePickerInput } from "@/components/ui/date-range-picker-input";
 import { P } from "@/components/ui/p";
@@ -34,6 +35,7 @@ import {
   LineChart,
   Tooltip,
   XAxis,
+  YAxis,
 } from "recharts";
 
 const DEFAULT_FILTER = {
@@ -120,21 +122,21 @@ const Chart1 = (props: any) => {
   // States
   const [timeFrame, setTimeFrame] = useState<string>("1D");
   const [showPointLabel, setShowPointLabel] = useState<boolean>(false);
-  const [highlight, setHighlight] = useState<string>(`${year}`);
+  const [highlights, setHighlights] = useState<number[]>([year]);
   const years = [year - 2, year - 1, year];
-  // const highestPeriod = (() => {
-  //   const totals = years.map((y) => {
-  //     const sum = data?.[timeFrame]
-  //       ?.map((item: any) => item[y])
-  //       .filter((v: any) => typeof v === "number")
-  //       .reduce((a: any, b: any) => a + b, 0);
+  const highestPeriod = (() => {
+    const totals = years.map((y) => {
+      const sum = data?.[timeFrame]
+        ?.map((item: any) => item[y])
+        .filter((v: any) => typeof v === "number")
+        .reduce((a: any, b: any) => a + b, 0);
 
-  //     return { year: y, sum: sum ?? -Infinity };
-  //   });
+      return { year: y, sum: sum ?? -Infinity };
+    });
 
-  //   const best = totals.reduce((a, b) => (b.sum > a.sum ? b : a));
-  //   return best.year;
-  // })();
+    const best = totals.reduce((a, b) => (b.sum > a.sum ? b : a));
+    return best.year;
+  })();
   const chart = useChart({
     data: data?.[timeFrame]?.map((item: any, idx: number) => {
       return {
@@ -172,13 +174,10 @@ const Chart1 = (props: any) => {
         </ItemHeaderTitle>
 
         <Segmented
-          w={"fit"}
-          items={years.map((y) => {
-            return `${y}`;
-          })}
-          inputValue={highlight}
+          items={["1D", "1W", "1M", "3M"]}
+          inputValue={timeFrame}
           onChange={(inputValue) => {
-            setHighlight(inputValue);
+            setTimeFrame(inputValue);
           }}
           size={"xs"}
           mr={2}
@@ -201,20 +200,22 @@ const Chart1 = (props: any) => {
               stroke={chart.color("border")}
               tickFormatter={(value) => value.slice(0, 3)}
             />
-            {/* <YAxis
-            axisLine={false}
-            tickLine={false}
-            tickMargin={10}
-            dataKey={highestPeriod}
-            stroke={chart.color("border")}
-          /> */}
+            <YAxis
+              axisLine={false}
+              tickLine={false}
+              tickMargin={10}
+              dataKey={highestPeriod}
+              stroke={chart.color("border")}
+            />
             <Tooltip
               animationDuration={100}
               cursor={{ stroke: chart.color("border") }}
               content={<Chart.Tooltip />}
             />
             {chart.series.map((item, idx) => {
-              const isHighlighted = item.name === highlight;
+              const isHighlighted = highlights.includes(
+                parseInt(item.name as string)
+              );
 
               return (
                 <Line
@@ -254,14 +255,31 @@ const Chart1 = (props: any) => {
             Point label
           </Switch>
 
-          <Segmented
-            items={["1D", "1W", "1M", "3M"]}
-            inputValue={timeFrame}
-            onChange={(inputValue) => {
-              setTimeFrame(inputValue);
-            }}
-            size={"xs"}
-          />
+          <HStack>
+            {years.map((year) => {
+              const isActive = highlights.includes(year);
+
+              return (
+                <Btn
+                  key={year}
+                  onClick={() => {
+                    const isHighlighted = highlights.includes(year);
+                    if (isHighlighted) {
+                      setHighlights(highlights.filter((y) => y !== year));
+                      return;
+                    } else {
+                      setHighlights([...highlights, year]);
+                    }
+                  }}
+                  size={"xs"}
+                  variant={isActive ? "subtle" : "outline"}
+                  color={isActive ? "" : "fg.subtle"}
+                >
+                  {year}
+                </Btn>
+              );
+            })}
+          </HStack>
         </HStack>
       </CContainer>
     </ItemContainer>

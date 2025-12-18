@@ -193,7 +193,7 @@ const PersonalInformation = (props: Props__PersonalInformation) => {
   }, [initialData]);
 
   return (
-    <ItemContainer>
+    <ItemContainer borderless roundedless>
       <ItemHeaderContainer>
         <HStack>
           <Icon boxSize={BASE_ICON_BOX_SIZE}>
@@ -371,7 +371,7 @@ const AuthLog = () => {
   };
 
   return (
-    <ItemContainer>
+    <ItemContainer borderless roundedless>
       <ItemHeaderContainer withUtils>
         <HStack>
           <Icon boxSize={BASE_ICON_BOX_SIZE}>
@@ -516,7 +516,7 @@ const ActivityLog = () => {
   };
 
   return (
-    <ItemContainer>
+    <ItemContainer borderless roundedless>
       <ItemHeaderContainer withUtils>
         <HStack>
           <Icon boxSize={BASE_ICON_BOX_SIZE}>
@@ -587,7 +587,7 @@ export default function Page() {
     empty: <FeedbackNoData />,
     notFound: <FeedbackNotFound />,
     loaded: (
-      <CContainer flex={1} gap={2} bg={"bgContent"}>
+      <CContainer flex={1} gap={3} bg={"bgContent"}>
         <PersonalInformation initialData={data} />
 
         <AuthLog />

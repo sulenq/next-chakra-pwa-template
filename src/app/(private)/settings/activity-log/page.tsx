@@ -108,7 +108,7 @@ const ActivityLog = () => {
   };
 
   return (
-    <ItemContainer flex={1}>
+    <ItemContainer borderless roundedless flex={1}>
       <ItemHeaderContainer>
         <HStack>
           <Icon boxSize={BASE_ICON_BOX_SIZE}>

@@ -55,7 +55,7 @@ const Language = () => {
   const { lang, setLang, l } = useLang();
 
   return (
-    <ItemContainer>
+    <ItemContainer borderless roundedless>
       <ItemHeaderContainer>
         <HStack>
           <Icon boxSize={BASE_ICON_BOX_SIZE}>
@@ -124,7 +124,7 @@ const Timezone = () => {
   }, [search, timezones]);
 
   return (
-    <ItemContainer>
+    <ItemContainer borderless roundedless>
       <ItemHeaderContainer withUtils>
         <HStack>
           <Icon boxSize={BASE_ICON_BOX_SIZE}>
@@ -234,7 +234,7 @@ const DateFormat = () => {
   const { dateFormat, setDateFormat } = useDateFormat();
 
   return (
-    <ItemContainer>
+    <ItemContainer borderless roundedless>
       <ItemHeaderContainer>
         <HStack>
           <Icon boxSize={BASE_ICON_BOX_SIZE}>
@@ -298,7 +298,7 @@ const TimeFormat = () => {
   const { timeFormat, setTimeFormat } = useTimeFormat();
 
   return (
-    <ItemContainer>
+    <ItemContainer borderless roundedless>
       <ItemHeaderContainer>
         <HStack>
           <Icon boxSize={BASE_ICON_BOX_SIZE}>
@@ -356,7 +356,7 @@ const UOMFormat = () => {
   const { UOM, setUOM } = useUOM();
 
   return (
-    <ItemContainer>
+    <ItemContainer borderless roundedless>
       <ItemHeaderContainer>
         <HStack>
           <Icon boxSize={5}>
@@ -418,7 +418,7 @@ const UOMFormat = () => {
 
 export default function Page() {
   return (
-    <CContainer flex={1} gap={2} bg={"bgContent"}>
+    <CContainer flex={1} gap={3} bg={"bgContent"}>
       <Language />
 
       <Timezone />
