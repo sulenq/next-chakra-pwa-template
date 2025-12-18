@@ -18,11 +18,13 @@ import {
   PageContent,
   PageTitle,
 } from "@/components/widget/Page";
+import { dummyChartData } from "@/constants/dummyData";
 import { MONTHS } from "@/constants/months";
 import useLang from "@/context/useLang";
 import { useThemeConfig } from "@/context/useThemeConfig";
 import { useContainerDimension } from "@/hooks/useContainerDimension";
 import { formatNumber } from "@/utils/formatter";
+import { capitalizeWords } from "@/utils/string";
 import { isDimensionValid } from "@/utils/style";
 import { Chart, useChart } from "@chakra-ui/charts";
 import { Badge, HStack, Icon, SimpleGrid, StackProps } from "@chakra-ui/react";
@@ -116,14 +118,14 @@ const Chart1 = (props: any) => {
   const { data, year, ...restProps } = props;
 
   // Contexts
-  const { lang } = useLang();
+  const { l, lang } = useLang();
   const { themeConfig } = useThemeConfig();
 
   // States
+  const years = [year - 2, year - 1, year];
   const [timeFrame, setTimeFrame] = useState<string>("1D");
   const [showPointLabel, setShowPointLabel] = useState<boolean>(false);
-  const [highlights, setHighlights] = useState<number[]>([year]);
-  const years = [year - 2, year - 1, year];
+  const [highlights, setHighlights] = useState<number[]>(years);
   const highestPeriod = (() => {
     const totals = years.map((y) => {
       const sum = data?.[timeFrame]
@@ -139,12 +141,31 @@ const Chart1 = (props: any) => {
   })();
   const chart = useChart({
     data: data?.[timeFrame]?.map((item: any, idx: number) => {
+      const getXAxisLabel = () => {
+        if (timeFrame === "3M") {
+          const slice = MONTHS[lang].slice(idx * 3, idx * 3 + 3);
+          return `${slice[0].slice(0, 3)} - ${slice[slice.length - 1].slice(
+            0,
+            3
+          )}`;
+        }
+
+        if (timeFrame === "1M") {
+          return MONTHS[lang][idx];
+        }
+
+        if (timeFrame === "1W") {
+          return `W${idx + 1}`;
+        }
+
+        return `D${idx + 1}`;
+      };
+
       return {
         ...(item[year - 2] !== undefined && { [year - 2]: item[year - 2] }),
         ...(item[year - 1] !== undefined && { [year - 1]: item[year - 1] }),
         ...(item[year] !== undefined && { [year]: item[year] }),
-        months: MONTHS[lang][idx],
-        monthsNumber: Array.from({ length: 12 }, (_, i) => i + 1)[idx],
+        [timeFrame]: getXAxisLabel(),
       };
     }),
 
@@ -196,9 +217,9 @@ const Chart1 = (props: any) => {
               horizontal={false}
             />
             <XAxis
-              dataKey={chart.key("months")}
+              dataKey={chart.key(timeFrame)}
               stroke={chart.color("border")}
-              tickFormatter={(value) => value.slice(0, 3)}
+              // tickFormatter={(value) => value.slice(0, 3)}
             />
             <YAxis
               axisLine={false}
@@ -206,6 +227,11 @@ const Chart1 = (props: any) => {
               tickMargin={10}
               dataKey={highestPeriod}
               stroke={chart.color("border")}
+              label={{
+                value: capitalizeWords(l.yearly_sales),
+                position: "left",
+                angle: -90,
+              }}
             />
             <Tooltip
               animationDuration={100}
@@ -220,7 +246,8 @@ const Chart1 = (props: any) => {
               return (
                 <Line
                   key={item.name}
-                  isAnimationActive={false}
+                  dot={false}
+                  // isAnimationActive={false}
                   dataKey={chart.key(item.name)}
                   // stroke={themeConfig.primaryColorHex}
                   stroke={chart.color(item.color)}
@@ -297,67 +324,7 @@ export default function Page() {
   const isValidDimension = isDimensionValid(dimension);
   const isSmContainer = dimension.width < 600;
   const [filter, setFilter] = useState<any>(DEFAULT_FILTER);
-  const data = {
-    "1D": [
-      { 2023: 14, 2024: 38, 2025: 22, month: "January" },
-      { 2023: 92, 2024: 41, 2025: 63, month: "February" },
-      { 2023: 55, 2024: 19, 2025: 117, month: "March" },
-      { 2023: 33, 2024: 72, 2025: 48, month: "April" },
-      { 2023: 101, 2024: 97, 2025: 66, month: "May" },
-      { 2023: 27, 2024: 43, 2025: 90, month: "June" },
-      { 2023: 63, 2024: 12, 2025: 145, month: "July" },
-      { 2023: 118, 2024: 58, 2025: 30, month: "August" },
-      { 2023: 44, 2024: 122, 2025: 52, month: "September" },
-      { 2023: 88, 2024: 77, 2025: 143, month: "October" },
-      { 2023: 12, 2024: 55, 2025: 31, month: "November" },
-      { 2023: 95, 2024: 14, 2025: 120, month: "December" },
-    ],
-
-    "1W": [
-      { 2023: 45, 2024: 12, 2025: 77, month: "January" },
-      { 2023: 73, 2024: 101, 2025: 18, month: "February" },
-      { 2023: 26, 2024: 88, 2025: 130, month: "March" },
-      { 2023: 140, 2024: 33, 2025: 51, month: "April" },
-      { 2023: 57, 2024: 69, 2025: 95, month: "May" },
-      { 2023: 108, 2024: 24, 2025: 63, month: "June" },
-      { 2023: 35, 2024: 115, 2025: 20, month: "July" },
-      { 2023: 120, 2024: 47, 2025: 99, month: "August" },
-      { 2023: 49, 2024: 141, 2025: 74, month: "September" },
-      { 2023: 88, 2024: 32, 2025: 138, month: "October" },
-      { 2023: 16, 2024: 72, 2025: 45, month: "November" },
-      { 2023: 134, 2024: 55, 2025: 112, month: "December" },
-    ],
-
-    "1M": [
-      { 2023: 68, 2024: 91, 2025: 34, month: "January" },
-      { 2023: 150, 2024: 30, 2025: 118, month: "February" },
-      { 2023: 48, 2024: 122, 2025: 19, month: "March" },
-      { 2023: 78, 2024: 66, 2025: 143, month: "April" },
-      { 2023: 15, 2024: 95, 2025: 50, month: "May" },
-      { 2023: 132, 2024: 57, 2025: 72, month: "June" },
-      { 2023: 41, 2024: 140, 2025: 82, month: "July" },
-      { 2023: 87, 2024: 38, 2025: 155, month: "August" },
-      { 2023: 123, 2024: 20, 2025: 92, month: "September" },
-      { 2023: 54, 2024: 160, 2025: 108, month: "October" },
-      { 2023: 32, 2024: 75, 2025: 135, month: "November" },
-      { 2023: 146, 2024: 112, 2025: 29, month: "December" },
-    ],
-
-    "3M": [
-      { 2023: 22, 2024: 130, 2025: 91, month: "January" },
-      { 2023: 175, 2024: 44, 2025: 88, month: "February" },
-      { 2023: 69, 2024: 158, 2025: 30, month: "March" },
-      { 2023: 128, 2024: 20, 2025: 155, month: "April" },
-      { 2023: 47, 2024: 98, 2025: 62, month: "May" },
-      { 2023: 105, 2024: 142, 2025: 18, month: "June" },
-      { 2023: 33, 2024: 68, 2025: 121, month: "July" },
-      { 2023: 160, 2024: 52, 2025: 147, month: "August" },
-      { 2023: 88, 2024: 30, 2025: 174, month: "September" },
-      { 2023: 140, 2024: 152, 2025: 55, month: "October" },
-      { 2023: 12, 2024: 85, 2025: 102, month: "November" },
-      { 2023: 115, 2024: 118, 2025: 66, month: "December" },
-    ],
-  };
+  const data = dummyChartData;
 
   return (
     <PageContainer ref={containerRef}>

@@ -835,6 +835,14 @@ export const calendar = {
   id: "Kalender",
   en: "Calendar",
 };
+export const sales = {
+  id: "Penjualan",
+  en: "Sales",
+};
+export const yearly_sales = {
+  id: "Penjualan tahunan",
+  en: "Yearly sales",
+};
 
 // Message
 export const msg_welcome_to_the_app = {

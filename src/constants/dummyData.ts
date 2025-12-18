@@ -1,3 +1,115 @@
+const generate1D = () => {
+  let v23 = 80;
+  let v24 = 90;
+  let v25 = 100;
+
+  return Array.from({ length: 366 }, (_, i) => {
+    v23 += Math.floor(Math.random() * 7 - 3);
+    v24 += Math.floor(Math.random() * 7 - 3);
+    v25 += Math.floor(Math.random() * 7 - 3);
+
+    v23 = Math.max(20, Math.min(160, v23));
+    v24 = Math.max(20, Math.min(160, v24));
+    v25 = Math.max(20, Math.min(160, v25));
+
+    return {
+      2023: v23,
+      2024: v24,
+      2025: v25,
+      day: i + 1,
+    };
+  });
+};
+const generate1W = () => {
+  let v23 = 90;
+  let v24 = 100;
+  let v25 = 110;
+
+  return Array.from({ length: 52 }, (_, i) => {
+    v23 += Math.floor(Math.random() * 9 - 4);
+    v24 += Math.floor(Math.random() * 9 - 4);
+    v25 += Math.floor(Math.random() * 9 - 4);
+
+    v23 = Math.max(30, Math.min(180, v23));
+    v24 = Math.max(30, Math.min(180, v24));
+    v25 = Math.max(30, Math.min(180, v25));
+
+    return {
+      2023: v23,
+      2024: v24,
+      2025: v25,
+      week: i + 1,
+    };
+  });
+};
+const generate1M = () => {
+  let v23 = 90;
+  let v24 = 100;
+  let v25 = 110;
+
+  return [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ].map((month) => {
+    v23 += Math.floor(Math.random() * 5 - 2);
+    v24 += Math.floor(Math.random() * 5 - 2);
+    v25 += Math.floor(Math.random() * 5 - 2);
+
+    v23 = Math.max(60, Math.min(140, v23));
+    v24 = Math.max(60, Math.min(140, v24));
+    v25 = Math.max(60, Math.min(140, v25));
+
+    return {
+      2023: v23,
+      2024: v24,
+      2025: v25,
+      month,
+    };
+  });
+};
+const generate3M = () => {
+  let v23 = 95;
+  let v24 = 105;
+  let v25 = 115;
+
+  return ["January", "April", "July", "October"].map((month) => {
+    v23 += Math.floor(Math.random() * 3 - 1);
+    v24 += Math.floor(Math.random() * 3 - 1);
+    v25 += Math.floor(Math.random() * 3 - 1);
+
+    v23 = Math.max(80, Math.min(130, v23));
+    v24 = Math.max(80, Math.min(130, v24));
+    v25 = Math.max(80, Math.min(130, v25));
+
+    return {
+      2023: v23,
+      2024: v24,
+      2025: v25,
+      month,
+    };
+  });
+};
+
+export const dummyChartData = {
+  "1D": generate1D(),
+
+  "1W": generate1W(),
+
+  "1M": generate1M(),
+
+  "3M": generate3M(),
+};
+
 export const dummyUser = {
   id: "1",
   avatar: [
