@@ -2,7 +2,6 @@
 
 import { CContainer } from "@/components/ui/c-container";
 import { Props__ItemContainer } from "@/constants/props";
-import { useThemeConfig } from "@/context/useThemeConfig";
 import { forwardRef } from "react";
 
 export const ItemContainer = forwardRef<HTMLDivElement, Props__ItemContainer>(
@@ -11,14 +10,14 @@ export const ItemContainer = forwardRef<HTMLDivElement, Props__ItemContainer>(
     const { children, scrollY = false, className, ...restProps } = props;
 
     // Contexts
-    const { themeConfig } = useThemeConfig();
+    // const { themeConfig } = useThemeConfig();
 
     return (
       <CContainer
         ref={ref}
         className={`${scrollY ? "scrollY" : ""} ${className}`}
         bg={"body"}
-        rounded={themeConfig.radii.container}
+        // rounded={themeConfig.radii.container}
         border={"1px solid"}
         borderColor={"border.subtle"}
         {...restProps}
