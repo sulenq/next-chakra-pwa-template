@@ -13,7 +13,7 @@ export const ItemContainer = forwardRef<HTMLDivElement, Props__ItemContainer>(
     // const { themeConfig } = useThemeConfig();
 
     return (
-      <CContainer
+      <CContainer 
         ref={ref}
         className={`${scrollY ? "scrollY" : ""} ${className}`}
         bg={"body"}
