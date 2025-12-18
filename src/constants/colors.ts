@@ -164,21 +164,21 @@ export const COLOR_PALETTES = [
   // { palette: "p", primaryHex: "#35AACE" },
 
   // Neutral & Dark Shades
-  { palette: "gray", primaryHex: "#1B1B1B" },
-  { palette: "brown", primaryHex: "#795548" },
+  { palette: "gray", primaryHex: "gray" },
+  { palette: "brown", primaryHex: "#030303ff" },
   { palette: "mocha", primaryHex: "#9F5D39" },
   { palette: "caramel", primaryHex: "#C47B27" },
   { palette: "cream", primaryHex: "#D7BF8C" },
 
   // Reds
   { palette: "maroon", primaryHex: "#800000" },
-  { palette: "red", primaryHex: "#FF0000" },
+  { palette: "red", primaryHex: "#ef4444" },
   { palette: "salmon", primaryHex: "#FF6242" },
 
   // Oranges & Yellows
   { palette: "orange", primaryHex: "#FF8E62" },
   { palette: "pastelSalmon", primaryHex: "#FF8E62" },
-  { palette: "yellow", primaryHex: "#f6e05e" },
+  { palette: "yellow", primaryHex: "#ffcc00" },
 
   // Greens
   { palette: "lime", primaryHex: "#CDDC39" },

@@ -221,11 +221,10 @@ const Chart1 = (props: any) => {
                   key={item.name}
                   isAnimationActive={false}
                   dataKey={chart.key(item.name)}
-                  fill={chart.color(item.color)}
-                  stroke={themeConfig.primaryColorHex}
-                  // stroke={chart.color(item.color)}
+                  // stroke={themeConfig.primaryColorHex}
+                  stroke={chart.color(item.color)}
+                  // fill={chart.color(item.color)}
                   opacity={isHighlighted ? 1 : 0.08}
-                  strokeWidth={2}
                   zIndex={isHighlighted ? 3 : idx + 1}
                 >
                   {isHighlighted && showPointLabel && (
