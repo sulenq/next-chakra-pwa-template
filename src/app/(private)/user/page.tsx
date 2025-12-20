@@ -330,15 +330,23 @@ const Delete = (props: any) => {
       confirmLabel={`${l.delete_}`}
       onConfirm={onDeactivate}
       confirmButtonProps={{
-        color: "fg.error",
-        colorPalette: "gray",
         variant: "outline",
+        _hover: {
+          color: "fg.error",
+        },
       }}
       loading={loading}
       disabled={disabled}
     >
       <RowMenuTooltip content={l.delete_}>
-        <MenuItem value="delete" color={"fg.error"} disabled={disabled}>
+        <MenuItem
+          value="delete"
+          disabled={disabled}
+          _hover={{
+            color: "fg.error",
+          }}
+          transition={"200ms"}
+        >
           {l.delete_}
           <Icon boxSize={MENU_ICON_BOX_SIZE} ml={"auto"}>
             <LucideIcon icon={TrashIcon} />

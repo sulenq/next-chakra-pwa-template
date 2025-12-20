@@ -7,6 +7,7 @@ import { DatePickerInput } from "@/components/ui/date-picker-input";
 import { DateTimePickerInput } from "@/components/ui/date-time-picker-input";
 import { Field } from "@/components/ui/field";
 import { FileInput } from "@/components/ui/file-input";
+import { MenuItem } from "@/components/ui/menu";
 import { NavLink } from "@/components/ui/nav-link";
 import { NumInput } from "@/components/ui/number-input";
 import { P } from "@/components/ui/p";
@@ -19,22 +20,109 @@ import { StringInput } from "@/components/ui/string-input";
 import { Textarea } from "@/components/ui/textarea";
 import { TimePickerInput } from "@/components/ui/time-picker-input";
 import { toaster } from "@/components/ui/toaster";
+import { ConfirmationDisclosureTrigger } from "@/components/widget/ConfirmationDisclosure";
 import { DataTable } from "@/components/widget/DataTable";
 import FeedbackForbidden from "@/components/widget/FeedbackForbidden";
 import FeedbackNoData from "@/components/widget/FeedbackNoData";
 import FeedbackNotFound from "@/components/widget/FeedbackNotFound";
 import FeedbackRetry from "@/components/widget/FeedbackRetry";
+import { LucideIcon } from "@/components/widget/Icon";
 import { PDFViewer } from "@/components/widget/PDFViewer";
+import { RowMenuTooltip } from "@/components/widget/RowOptions";
 import SelectWorkspaceCategory from "@/components/widget/SelectWorkspaceCategory";
 import VideoPlayer from "@/components/widget/VideoPlayer";
+import { Interface__FormattedTableRow } from "@/constants/interfaces";
 import { OPTIONS_RELIGION } from "@/constants/selectOptions";
+import { MENU_ICON_BOX_SIZE } from "@/constants/sizes";
+import useLang from "@/context/useLang";
+import useRenderTrigger from "@/context/useRenderTrigger";
 import { useThemeConfig } from "@/context/useThemeConfig";
-import { HStack, SimpleGrid } from "@chakra-ui/react";
+import useRequest from "@/hooks/useRequest";
+import { back } from "@/utils/client";
+import { capitalize } from "@/utils/string";
+import { HStack, Icon, SimpleGrid } from "@chakra-ui/react";
 import { IconPencilMinus, IconRestore, IconTrash } from "@tabler/icons-react";
 import { useFormik } from "formik";
+import { TrashIcon } from "lucide-react";
 import { useState } from "react";
 import * as yup from "yup";
 
+const Delete = (props: any) => {
+  const ID = `PREFIX_delete`;
+
+  // Props
+  const { deleteIds, clearSelectedRows, disabled, routeTitle } = props;
+
+  // Contexts
+  const { l } = useLang();
+  const setRt = useRenderTrigger((s) => s.setRt);
+
+  // Hooks
+  const { req, loading } = useRequest({
+    id: ID,
+    loadingMessage: {
+      title: capitalize(`${l.delete_} ${routeTitle}`),
+    },
+    successMessage: {
+      title: capitalize(`${l.delete_} ${routeTitle} ${l.successful}`),
+    },
+  });
+
+  // Utils
+  function onDeactivate() {
+    back();
+    req({
+      config: {
+        url: `/delete`,
+        method: "DELETE",
+        data: {
+          deleteIds: deleteIds,
+        },
+      },
+      onResolve: {
+        onSuccess: () => {
+          setRt((ps) => !ps);
+          clearSelectedRows?.();
+        },
+      },
+    });
+  }
+
+  return (
+    <ConfirmationDisclosureTrigger
+      w={"full"}
+      id={`${ID}-${deleteIds}`}
+      title={`${l.delete_} ${routeTitle}`}
+      description={l.msg_soft_delete}
+      confirmLabel={`${l.delete_}`}
+      onConfirm={onDeactivate}
+      confirmButtonProps={{
+        variant: "outline",
+        _hover: {
+          color: "fg.error",
+        },
+      }}
+      loading={loading}
+      disabled={disabled}
+    >
+      <RowMenuTooltip content={l.delete_}>
+        <MenuItem
+          value="delete"
+          disabled={disabled}
+          _hover={{
+            color: "fg.error",
+          }}
+          transition={"200ms"}
+        >
+          {l.delete_}
+          <Icon boxSize={MENU_ICON_BOX_SIZE} ml={"auto"}>
+            <LucideIcon icon={TrashIcon} />
+          </Icon>
+        </MenuItem>
+      </RowMenuTooltip>
+    </ConfirmationDisclosureTrigger>
+  );
+};
 const DemoDataTable = () => {
   const tableProps = {
     headers: [
@@ -118,18 +206,14 @@ const DemoDataTable = () => {
         icon: <IconRestore stroke={1.5} />,
         onClick: () => console.log("Restore"),
       }),
-      () => ({
-        label: "Delete",
-        icon: <IconTrash stroke={1.5} />,
-        menuItemProps: { color: "fg.error" },
-        onClick: () => console.log("Delete"),
-        confirmation: {
-          id: "deleteUsr",
-          title: "Delete User",
-          description: `Are you sure you want to delete?`,
-          confirmLabel: "Delete",
-          onConfrim: () => console.log("Confirmed delete"),
-        },
+      (row: Interface__FormattedTableRow<any>) => ({
+        override: (
+          <Delete
+            deleteIds={[row.data.id]}
+            disabled={!!row.data.deletedAt}
+            routeTitle={"User"}
+          />
+        ),
       }),
     ],
     batchOptions: [
