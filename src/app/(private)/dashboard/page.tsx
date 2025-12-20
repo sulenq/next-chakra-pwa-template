@@ -259,6 +259,9 @@ const Chart1 = (props: any) => {
               <XAxis
                 dataKey={chart.key(timeFrame)}
                 stroke={chart.color("border")}
+                tickFormatter={
+                  timeFrame === "1M" ? (value) => value.slice(0, 3) : undefined
+                }
               />
               <YAxis
                 axisLine={false}
