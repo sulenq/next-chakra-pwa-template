@@ -347,6 +347,7 @@ export const PDFViewer = (props: Props__PdfViewer) => {
               icon={<IconFileOff stroke={1.8} />}
               title={l.alert_pdf_failed_to_load.title}
               description={l.alert_pdf_failed_to_load.description}
+              m={"auto"}
             />
           }
         >

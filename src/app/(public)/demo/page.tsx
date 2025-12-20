@@ -579,7 +579,7 @@ const DemoIndexRoute = () => {
 
       <SimpleGrid columns={[1, null, 2]}>
         <CContainer>
-          <PDFViewer flex={1} fileUrl={`/assets/dummy-pdf.pdf`} />
+          <PDFViewer flex={1} fileUrl={`/assets/dummy-pdf2.pdf`} />
         </CContainer>
       </SimpleGrid>
     </CContainer>
