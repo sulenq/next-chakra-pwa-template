@@ -29,14 +29,7 @@ import { formatNumber } from "@/utils/formatter";
 import { capitalizeWords } from "@/utils/string";
 import { isDimensionValid } from "@/utils/style";
 import { Chart, useChart } from "@chakra-ui/charts";
-import {
-  Badge,
-  Group,
-  HStack,
-  Icon,
-  SimpleGrid,
-  StackProps,
-} from "@chakra-ui/react";
+import { Badge, HStack, Icon, SimpleGrid, StackProps } from "@chakra-ui/react";
 import { ArrowUpIcon } from "lucide-react";
 import { useRef, useState } from "react";
 import {
@@ -330,7 +323,7 @@ const Chart1 = (props: any) => {
             Point label
           </Switch>
 
-          <Group attached>
+          <HStack gap={1}>
             {chart.series.map((s) => {
               const year = parseInt(s.name as string);
               const isActive = highlights.includes(year);
@@ -347,7 +340,7 @@ const Chart1 = (props: any) => {
                     )
                   }
                   size={"xs"}
-                  variant={isActive ? "outline" : "outline"}
+                  variant={isActive ? "ghost" : "ghost"}
                   color={isActive ? "" : "fg.subtle"}
                 >
                   <DotIndicator color={isActive ? s.color : "d2"} mr={1} />
@@ -356,7 +349,7 @@ const Chart1 = (props: any) => {
                 </Btn>
               );
             })}
-          </Group>
+          </HStack>
         </HStack>
       </CContainer>
     </ItemContainer>
