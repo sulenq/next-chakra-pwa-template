@@ -9,6 +9,7 @@ import { Switch } from "@/components/ui/switch";
 import { ClampText } from "@/components/widget/ClampText";
 import HScroll from "@/components/widget/HScroll";
 import { LucideIcon } from "@/components/widget/Icon";
+import { DotIndicator } from "@/components/widget/Indicator";
 import { InfoPopover } from "@/components/widget/InfoPopover";
 import { ItemContainer } from "@/components/widget/ItemContainer";
 import { ItemHeaderContainer } from "@/components/widget/ItemHeaderContainer";
@@ -28,7 +29,14 @@ import { formatNumber } from "@/utils/formatter";
 import { capitalizeWords } from "@/utils/string";
 import { isDimensionValid } from "@/utils/style";
 import { Chart, useChart } from "@chakra-ui/charts";
-import { Badge, HStack, Icon, SimpleGrid, StackProps } from "@chakra-ui/react";
+import {
+  Badge,
+  Group,
+  HStack,
+  Icon,
+  SimpleGrid,
+  StackProps,
+} from "@chakra-ui/react";
 import { ArrowUpIcon } from "lucide-react";
 import { useRef, useState } from "react";
 import {
@@ -322,29 +330,33 @@ const Chart1 = (props: any) => {
             Point label
           </Switch>
 
-          <HStack>
-            {years.map((y) => {
-              const isActive = highlights.includes(y);
+          <Group attached>
+            {chart.series.map((s) => {
+              const year = parseInt(s.name as string);
+              const isActive = highlights.includes(year);
 
               return (
                 <Btn
-                  key={y}
+                  key={s.name}
+                  clicky={false}
                   onClick={() =>
                     setHighlights((prev) =>
-                      prev.includes(y)
-                        ? prev.filter((v) => v !== y)
-                        : [...prev, y]
+                      prev.includes(year)
+                        ? prev.filter((v) => v !== year)
+                        : [...prev, year]
                     )
                   }
                   size={"xs"}
-                  variant={isActive ? "subtle" : "outline"}
+                  variant={isActive ? "outline" : "outline"}
                   color={isActive ? "" : "fg.subtle"}
                 >
-                  {y}
+                  <DotIndicator color={isActive ? s.color : "d2"} mr={1} />
+
+                  {year}
                 </Btn>
               );
             })}
-          </HStack>
+          </Group>
         </HStack>
       </CContainer>
     </ItemContainer>
