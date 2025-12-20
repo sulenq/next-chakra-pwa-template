@@ -192,21 +192,39 @@ const Chart1 = (props: any) => {
   });
 
   // Utils
-  const handleWheel = (e: React.WheelEvent<HTMLDivElement>) => {
+  function handleWheel(e: React.WheelEvent<HTMLDivElement>) {
     e.preventDefault();
 
     setZoomWindow((prev) => {
       const next =
         e.deltaY < 0
-          ? Math.max(MIN_WINDOW, prev - 1)
-          : Math.min(MAX_WINDOW, prev + 1);
+          ? Math.max(MIN_WINDOW, prev - 5)
+          : Math.min(MAX_WINDOW, prev + 5);
 
       return next;
     });
-  };
-  const stopPan = () => {
+  }
+  function handlePointerDown(e: React.PointerEvent<HTMLDivElement>) {
+    if (!isPanningRef.current) return;
+
+    const deltaX = e.clientX - panStartXRef.current;
+    const sensitivity = Math.max(1, zoomWindow / 20);
+    const deltaOffset = Math.round(deltaX / sensitivity);
+    const resolvedOffset = offsetStartRef.current - deltaOffset;
+    if (resolvedOffset > 0) setOffset(offsetStartRef.current - deltaOffset);
+  }
+  function handlePointerMove(e: React.PointerEvent<HTMLDivElement>) {
+    if (!isPanningRef.current) return;
+
+    const deltaX = e.clientX - panStartXRef.current;
+    const sensitivity = Math.max(1, zoomWindow / 20);
+    const deltaOffset = Math.round(deltaX / sensitivity);
+    const resolvedOffset = offsetStartRef.current - deltaOffset;
+    if (resolvedOffset > 0) setOffset(offsetStartRef.current - deltaOffset);
+  }
+  function stopPan() {
     isPanningRef.current = false;
-  };
+  }
 
   return (
     <ItemContainer {...restProps}>
@@ -225,23 +243,8 @@ const Chart1 = (props: any) => {
       <CContainer>
         <CContainer
           onWheel={handleWheel}
-          onPointerDown={(e) => {
-            if (e.pointerType === "touch") e.preventDefault();
-
-            isPanningRef.current = true;
-            panStartXRef.current = e.clientX;
-            offsetStartRef.current = offset;
-          }}
-          onPointerMove={(e) => {
-            if (!isPanningRef.current) return;
-
-            const deltaX = e.clientX - panStartXRef.current;
-            const sensitivity = Math.max(1, zoomWindow / 20);
-            const deltaOffset = Math.round(deltaX / sensitivity);
-            const resolvedOffset = offsetStartRef.current - deltaOffset;
-            if (resolvedOffset > 0)
-              setOffset(offsetStartRef.current - deltaOffset);
-          }}
+          onPointerDown={handlePointerDown}
+          onPointerMove={handlePointerMove}
           onPointerUp={stopPan}
           onPointerCancel={stopPan}
           cursor={"grab !important"}
