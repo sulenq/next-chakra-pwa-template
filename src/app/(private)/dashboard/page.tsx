@@ -237,8 +237,9 @@ const Chart1 = (props: any) => {
             const deltaX = e.clientX - panStartXRef.current;
             const sensitivity = Math.max(1, zoomWindow / 20);
             const deltaOffset = Math.round(deltaX / sensitivity);
-
-            setOffset(offsetStartRef.current - deltaOffset);
+            const resolvedOffset = offsetStartRef.current - deltaOffset;
+            if (resolvedOffset > 0)
+              setOffset(offsetStartRef.current - deltaOffset);
           }}
           onPointerUp={stopPan}
           onPointerCancel={stopPan}
