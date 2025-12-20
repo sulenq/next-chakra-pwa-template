@@ -20,6 +20,7 @@ import {
 } from "@/components/widget/Page";
 import { dummyChartData } from "@/constants/dummyData";
 import { MONTHS } from "@/constants/months";
+import { Type__ChartData } from "@/constants/types";
 import useLang from "@/context/useLang";
 import { useThemeConfig } from "@/context/useThemeConfig";
 import { useContainerDimension } from "@/hooks/useContainerDimension";
@@ -121,44 +122,56 @@ const Chart1 = (props: any) => {
   const { l, lang } = useLang();
   const { themeConfig } = useThemeConfig();
 
+  // Refs
+  const isPanningRef = useRef<boolean>(false);
+  const panStartXRef = useRef<number>(0);
+  const offsetStartRef = useRef<number>(0);
+
   // States
   const years = [year - 2, year - 1, year];
   const [timeFrame, setTimeFrame] = useState<string>("1D");
   const [showPointLabel, setShowPointLabel] = useState<boolean>(false);
   const [highlights, setHighlights] = useState<number[]>(years);
+  const rawData: any[] = data?.[timeFrame] ?? [];
+  const MIN_WINDOW = 5;
+  const MAX_WINDOW = rawData.length;
+  const [zoomWindow, setZoomWindow] = useState<number>(rawData.length);
+  const [offset, setOffset] = useState<number>(0);
+  const clampedOffset = Math.max(
+    0,
+    Math.min(offset, rawData.length - zoomWindow)
+  );
+  const visibleData = rawData.slice(clampedOffset, clampedOffset + zoomWindow);
   const highestPeriod = (() => {
     const totals = years.map((y) => {
-      const sum = data?.[timeFrame]
-        ?.map((item: any) => item[y])
+      const sum = visibleData
+        .map((item: any) => item[y])
         .filter((v: any) => typeof v === "number")
-        .reduce((a: any, b: any) => a + b, 0);
+        .reduce((a: number, b: number) => a + b, 0);
 
       return { year: y, sum: sum ?? -Infinity };
     });
 
-    const best = totals.reduce((a, b) => (b.sum > a.sum ? b : a));
-    return best.year;
+    return totals.reduce((a, b) => (b.sum > a.sum ? b : a)).year;
   })();
-  const chart = useChart({
-    data: data?.[timeFrame]?.map((item: any, idx: number) => {
+  const chart = useChart<Type__ChartData>({
+    data: visibleData.map((item: any, idx: number) => {
+      const absoluteIndex = clampedOffset + idx;
       const getXAxisLabel = () => {
         if (timeFrame === "3M") {
-          const slice = MONTHS[lang].slice(idx * 3, idx * 3 + 3);
+          const slice = MONTHS[lang].slice(
+            absoluteIndex * 3,
+            absoluteIndex * 3 + 3
+          );
           return `${slice[0].slice(0, 3)} - ${slice[slice.length - 1].slice(
             0,
             3
           )}`;
         }
 
-        if (timeFrame === "1M") {
-          return MONTHS[lang][idx];
-        }
-
-        if (timeFrame === "1W") {
-          return `W${idx + 1}`;
-        }
-
-        return `D${idx + 1}`;
+        if (timeFrame === "1M") return MONTHS[lang][absoluteIndex];
+        if (timeFrame === "1W") return `W${absoluteIndex + 1}`;
+        return `D${absoluteIndex + 1}`;
       };
 
       return {
@@ -168,106 +181,132 @@ const Chart1 = (props: any) => {
         [timeFrame]: getXAxisLabel(),
       };
     }),
-
     series: years
-      .filter((year) => {
-        return data?.[timeFrame]?.some((item: any) => item[year] !== undefined);
-      })
-      .map((year, yidx) => {
-        return {
-          name: String(year),
-          color:
-            ["teal.solid", "purple.solid", "blue.solid"][yidx] ?? "gray.solid",
-        };
-      }),
+      .filter((y) => visibleData.some((item: any) => item[y] !== undefined))
+      .map((y, idx) => ({
+        name: String(y),
+        color:
+          ["teal.solid", "purple.solid", "blue.solid"][idx] ?? "gray.solid",
+      })),
   });
+
+  // Utils
+  const handleWheel = (e: React.WheelEvent<HTMLDivElement>) => {
+    e.preventDefault();
+
+    setZoomWindow((prev) => {
+      const next =
+        e.deltaY < 0
+          ? Math.max(MIN_WINDOW, prev - 1)
+          : Math.min(MAX_WINDOW, prev + 1);
+
+      return next;
+    });
+  };
+  const stopPan = () => {
+    isPanningRef.current = false;
+  };
 
   return (
     <ItemContainer {...restProps}>
       <ItemHeaderContainer borderless withUtils>
-        <ItemHeaderTitle
-          color={"fg.muted"}
-          popoverContent={
-            "Id enim cupidatat do do et consectetur voluptate voluptate nulla nulla amet nostrud quis non."
-          }
-        >
-          {"Chart Title"}
-        </ItemHeaderTitle>
+        <ItemHeaderTitle color={"fg.muted"}>{"Chart Title"}</ItemHeaderTitle>
 
         <Segmented
           items={["1D", "1W", "1M", "3M"]}
           inputValue={timeFrame}
-          onChange={(inputValue) => {
-            setTimeFrame(inputValue);
-          }}
+          onChange={setTimeFrame}
           size={"xs"}
           mr={2}
         />
       </ItemHeaderContainer>
 
       <CContainer>
-        <Chart.Root maxH="md" chart={chart}>
-          <LineChart
-            data={chart.data}
-            margin={{ left: 40, right: 40, top: 40 }}
-          >
-            <CartesianGrid
-              stroke={chart.color("border")}
-              strokeDasharray="4 4"
-              horizontal={false}
-            />
-            <XAxis
-              dataKey={chart.key(timeFrame)}
-              stroke={chart.color("border")}
-              // tickFormatter={(value) => value.slice(0, 3)}
-            />
-            <YAxis
-              axisLine={false}
-              tickLine={false}
-              tickMargin={10}
-              dataKey={highestPeriod}
-              stroke={chart.color("border")}
-              label={{
-                value: capitalizeWords(l.yearly_sales),
-                position: "left",
-                angle: -90,
-              }}
-            />
-            <Tooltip
-              animationDuration={100}
-              cursor={{ stroke: chart.color("border") }}
-              content={<Chart.Tooltip />}
-            />
-            {chart.series.map((item) => {
-              const isHighlighted = highlights.includes(
-                parseInt(item.name as string)
-              );
+        <CContainer
+          onWheel={handleWheel}
+          onPointerDown={(e) => {
+            if (e.pointerType === "touch") e.preventDefault();
 
-              return (
-                <Line
-                  key={item.name}
-                  dot={false}
-                  animationDuration={200}
-                  dataKey={chart.key(item.name)}
-                  stroke={chart.color(item.color)}
-                  opacity={isHighlighted ? 1 : 0.08}
-                >
-                  {isHighlighted && showPointLabel && (
-                    <LabelList
-                      dataKey={chart.key(item.name)}
-                      position="right"
-                      offset={10}
-                      style={{
-                        fontWeight: "600",
-                        fill: chart.color("fg.subtle"),
-                      }}
-                    />
-                  )}
-                </Line>
-              );
-            })}
-          </LineChart>
-        </Chart.Root>
+            isPanningRef.current = true;
+            panStartXRef.current = e.clientX;
+            offsetStartRef.current = offset;
+          }}
+          onPointerMove={(e) => {
+            if (!isPanningRef.current) return;
+
+            const deltaX = e.clientX - panStartXRef.current;
+            const sensitivity = Math.max(1, zoomWindow / 20);
+            const deltaOffset = Math.round(deltaX / sensitivity);
+
+            setOffset(offsetStartRef.current - deltaOffset);
+          }}
+          onPointerUp={stopPan}
+          onPointerCancel={stopPan}
+          cursor={"grab !important"}
+          userSelect={"none"}
+        >
+          <Chart.Root maxH="md" chart={chart} cursor={"grab !important"}>
+            <LineChart
+              data={chart.data}
+              margin={{ left: 40, right: 40, top: 40 }}
+            >
+              <CartesianGrid
+                stroke={chart.color("border")}
+                strokeDasharray="4 4"
+                horizontal={false}
+              />
+              <XAxis
+                dataKey={chart.key(timeFrame)}
+                stroke={chart.color("border")}
+              />
+              <YAxis
+                axisLine={false}
+                tickLine={false}
+                tickMargin={10}
+                dataKey={highestPeriod}
+                stroke={chart.color("border")}
+                label={{
+                  value: capitalizeWords(l.yearly_sales),
+                  position: "left",
+                  angle: -90,
+                }}
+              />
+              <Tooltip
+                animationDuration={100}
+                cursor={{ stroke: chart.color("border") }}
+                content={<Chart.Tooltip />}
+              />
+              {chart.series.map((item) => {
+                const isHighlighted = highlights.includes(
+                  parseInt(item.name as string)
+                );
+
+                return (
+                  <Line
+                    key={item.name}
+                    dot={false}
+                    animationDuration={200}
+                    dataKey={chart.key(item.name)}
+                    stroke={chart.color(item.color)}
+                    opacity={isHighlighted ? 1 : 0.08}
+                  >
+                    {isHighlighted && showPointLabel && (
+                      <LabelList
+                        dataKey={chart.key(item.name)}
+                        position="right"
+                        offset={10}
+                        style={{
+                          fontWeight: "600",
+                          fill: chart.color("fg.subtle"),
+                        }}
+                      />
+                    )}
+                  </Line>
+                );
+              })}
+            </LineChart>
+          </Chart.Root>
+        </CContainer>
 
         <HStack wrap={"wrap"} justify={"space-between"} px={2} my={2}>
           <Switch
@@ -280,26 +319,24 @@ const Chart1 = (props: any) => {
           </Switch>
 
           <HStack>
-            {years.map((year) => {
-              const isActive = highlights.includes(year);
+            {years.map((y) => {
+              const isActive = highlights.includes(y);
 
               return (
                 <Btn
-                  key={year}
-                  onClick={() => {
-                    const isHighlighted = highlights.includes(year);
-                    if (isHighlighted) {
-                      setHighlights(highlights.filter((y) => y !== year));
-                      return;
-                    } else {
-                      setHighlights([...highlights, year]);
-                    }
-                  }}
+                  key={y}
+                  onClick={() =>
+                    setHighlights((prev) =>
+                      prev.includes(y)
+                        ? prev.filter((v) => v !== y)
+                        : [...prev, y]
+                    )
+                  }
                   size={"xs"}
                   variant={isActive ? "subtle" : "outline"}
                   color={isActive ? "" : "fg.subtle"}
                 >
-                  {year}
+                  {y}
                 </Btn>
               );
             })}

@@ -1,5 +1,7 @@
 import { ButtonProps, ConditionalValue, MenuItemProps } from "@chakra-ui/react";
 
+export type Type__ChartData = Record<string, number | string>;
+
 export type Type__ButtonSize = ConditionalValue<
   "sm" | "md" | "lg" | "xl" | "2xl" | "xs" | "2xs" | undefined
 >;
