@@ -567,6 +567,7 @@ const DesktopLayout = (props: any) => {
         // borderRight={"1px solid"}
         borderColor={"border.muted"}
       >
+        {/* Logo & Sidebar Toggle */}
         <CContainer gap={1} px={3} py={2}>
           {!navsExpanded && (
             <NavLink to="/">
@@ -624,6 +625,7 @@ const DesktopLayout = (props: any) => {
           </HStack>
         </CContainer>
 
+        {/* Search */}
         {navsExpanded && (
           <CContainer px={3} pt={2} pb={1}>
             <SearchInput
@@ -637,7 +639,7 @@ const DesktopLayout = (props: any) => {
           </CContainer>
         )}
 
-        {/* Navs */}
+        {/* Navs List */}
         <CContainer
           className="scrollY"
           overflowX={"clip"}
@@ -1060,7 +1062,7 @@ const DesktopLayout = (props: any) => {
 
       {/* Content */}
       <CContainer
-        p={3}
+        // p={3}
         pl={0}
         bg={DESKTOP_BG_CONTENT_CONTAINER}
         overflowY={"auto"}
@@ -1068,11 +1070,11 @@ const DesktopLayout = (props: any) => {
       >
         <CContainer
           flex={1}
-          rounded={themeConfig.radii.container}
           bg={"body"}
-          overflow={"auto"}
-          border={"1px solid"}
+          // rounded={themeConfig.radii.container}
+          borderLeft={"1px solid"}
           borderColor={"border.muted"}
+          overflow={"auto"}
         >
           <TopBar />
 
