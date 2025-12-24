@@ -74,13 +74,16 @@ const DataUtils = (props: any) => {
   );
 };
 const OverviewItem = (props: StackProps) => {
+  // Contexts
+  const { themeConfig } = useThemeConfig();
+
   return (
     <CContainer
       p={4}
       pt={3}
       border={"1px solid"}
-      borderColor={"border.subtle"}
-      rounded={"md"}
+      borderColor={"border.muted"}
+      rounded={themeConfig.radii.component}
       {...props}
     >
       <HStack gap={1}>

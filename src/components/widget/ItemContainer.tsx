@@ -27,7 +27,7 @@ export const ItemContainer = forwardRef<HTMLDivElement, Props__ItemContainer>(
         bg={"body"}
         rounded={roundedless ? "" : themeConfig.radii.container}
         border={borderless ? "" : "1px solid"}
-        borderColor={"border.subtle"}
+        borderColor={"border.muted"}
         {...restProps}
       >
         {children}
