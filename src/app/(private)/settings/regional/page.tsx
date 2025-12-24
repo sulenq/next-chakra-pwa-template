@@ -134,7 +134,7 @@ const Timezone = () => {
           <ItemHeaderTitle>{capitalizeWords(l.timezone)}</ItemHeaderTitle>
         </HStack>
 
-        <HStack>
+        <HStack mr={2}>
           {!iss && (
             <SearchInput
               onChange={(inputValue) => {
@@ -304,6 +304,7 @@ const TimeFormat = () => {
           <Icon boxSize={BASE_ICON_BOX_SIZE}>
             <LucideIcon icon={RulerDimensionLineIcon} />
           </Icon>
+
           <ItemHeaderTitle>{l.time_format}</ItemHeaderTitle>
         </HStack>
       </ItemHeaderContainer>
