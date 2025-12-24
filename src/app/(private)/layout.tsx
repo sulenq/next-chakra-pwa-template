@@ -563,7 +563,7 @@ const DesktopLayout = (props: any) => {
         flexShrink={0}
         w={navsExpanded ? "250px" : "60px"}
         transition={"200ms"}
-        py={3}
+        // py={3}
         // borderRight={"1px solid"}
         borderColor={"border.muted"}
       >
