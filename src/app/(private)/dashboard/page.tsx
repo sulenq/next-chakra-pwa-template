@@ -386,7 +386,7 @@ export default function Page() {
       {isValidDimension && (
         <PageContent>
           {isSmContainer && (
-            <HScroll px={3} flexShrink={0}>
+            <HScroll px={3} flexShrink={0} mb={3}>
               <DataUtils filter={filter} setFilter={setFilter} w={"max"} />
             </HScroll>
           )}
