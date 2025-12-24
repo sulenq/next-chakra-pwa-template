@@ -313,7 +313,13 @@ export const PDFViewer = (props: Props__PdfViewer) => {
   }, []);
 
   return (
-    <CContainer flex={1} w={"full"} h={"full"} {...restProps}>
+    <CContainer
+      flex={1}
+      w={"full"}
+      h={"full"}
+      aspectRatio={3 / 4.5}
+      {...restProps}
+    >
       {/* Toolbar */}
       <Toolbar
         utils={utils}
