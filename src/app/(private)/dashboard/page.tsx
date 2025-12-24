@@ -205,13 +205,11 @@ const Chart1 = (props: any) => {
     });
   }
   function handlePointerDown(e: React.PointerEvent<HTMLDivElement>) {
-    if (!isPanningRef.current) return;
+    if (e.button !== 0) return;
 
-    const deltaX = e.clientX - panStartXRef.current;
-    const sensitivity = Math.max(1, zoomWindow / 20);
-    const deltaOffset = Math.round(deltaX / sensitivity);
-    const resolvedOffset = offsetStartRef.current - deltaOffset;
-    if (resolvedOffset > 0) setOffset(offsetStartRef.current - deltaOffset);
+    isPanningRef.current = true;
+    panStartXRef.current = e.clientX;
+    offsetStartRef.current = offset;
   }
   function handlePointerMove(e: React.PointerEvent<HTMLDivElement>) {
     if (!isPanningRef.current) return;
@@ -220,7 +218,10 @@ const Chart1 = (props: any) => {
     const sensitivity = Math.max(1, zoomWindow / 20);
     const deltaOffset = Math.round(deltaX / sensitivity);
     const resolvedOffset = offsetStartRef.current - deltaOffset;
-    if (resolvedOffset > 0) setOffset(offsetStartRef.current - deltaOffset);
+
+    if (resolvedOffset > 0) {
+      setOffset(offsetStartRef.current - deltaOffset);
+    }
   }
   function stopPan() {
     isPanningRef.current = false;
@@ -246,8 +247,8 @@ const Chart1 = (props: any) => {
           onPointerDown={handlePointerDown}
           onPointerMove={handlePointerMove}
           onPointerUp={stopPan}
+          onPointerLeave={stopPan}
           onPointerCancel={stopPan}
-          cursor={"grab !important"}
           userSelect={"none"}
         >
           <Chart.Root maxH="md" chart={chart} cursor={"grab !important"}>
