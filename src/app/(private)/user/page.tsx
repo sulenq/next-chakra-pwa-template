@@ -331,6 +331,7 @@ const Delete = (props: any) => {
       onConfirm={onDeactivate}
       confirmButtonProps={{
         variant: "outline",
+        colorPalette: "gray",
         _hover: {
           color: "fg.error",
         },
