@@ -1,4 +1,7 @@
 /* Global */
+nextjs-portal {
+  display: none !important;
+}
 #devtools-indicator {
   display: none !important;
 }

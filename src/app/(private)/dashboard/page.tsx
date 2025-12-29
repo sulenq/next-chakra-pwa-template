@@ -397,7 +397,7 @@ export default function Page() {
           <SimpleGrid
             w={"full"}
             columns={isSmContainer ? 2 : 4}
-            gap={isSmContainer ? 2 : 3}
+            gap={3}
             px={3}
             pos={"relative"}
           >
