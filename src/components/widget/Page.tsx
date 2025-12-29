@@ -167,13 +167,7 @@ export const PageContent = forwardRef<HTMLDivElement, StackProps>(
     const { children, ...restProps } = props;
 
     return (
-      <CContainer
-        ref={ref}
-        flex={1}
-        bg={"body"}
-        overflow={"auto"}
-        {...restProps}
-      >
+      <CContainer ref={ref} flex={1} bg={"body"} {...restProps}>
         {children}
       </CContainer>
     );

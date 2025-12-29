@@ -406,7 +406,7 @@ export default function Page() {
             })}
           </SimpleGrid>
 
-          <SimpleGrid columns={[1, null, 2]} p={3} gap={3}>
+          <SimpleGrid columns={isSmContainer ? 1 : 2} p={3} gap={3}>
             <Chart1 data={data} year={filter.year} />
 
             <Chart1 data={data} year={filter.year} />
