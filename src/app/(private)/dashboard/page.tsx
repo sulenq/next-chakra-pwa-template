@@ -34,6 +34,7 @@ import { ArrowUpIcon } from "lucide-react";
 import { useRef, useState } from "react";
 import {
   CartesianGrid,
+  Label,
   LabelList,
   Line,
   LineChart,
@@ -119,6 +120,9 @@ const OverviewItem = (props: StackProps) => {
 };
 
 const Chart1 = (props: any) => {
+  const ZOOM_STEP = 5;
+  const ZOOM_PIXEL_THRESHOLD = 20;
+
   // Props
   const { data, year, ...restProps } = props;
 
@@ -128,8 +132,13 @@ const Chart1 = (props: any) => {
 
   // Refs
   const isPanningRef = useRef<boolean>(false);
+  const activePointerTypeRef = useRef<"mouse" | "touch" | "pen" | null>(null);
   const panStartXRef = useRef<number>(0);
+  const panStartYRef = useRef<number>(0);
   const offsetStartRef = useRef<number>(0);
+  const zoomWindowStartRef = useRef<number>(0);
+  const pinchStartDistanceRef = useRef<number | null>(null);
+  const pinchStartZoomRef = useRef<number>(0);
 
   // States
   const years = [year - 2, year - 1, year];
@@ -141,11 +150,14 @@ const Chart1 = (props: any) => {
   const MAX_WINDOW = rawData.length;
   const [zoomWindow, setZoomWindow] = useState<number>(rawData.length);
   const [offset, setOffset] = useState<number>(0);
+
   const clampedOffset = Math.max(
     0,
     Math.min(offset, rawData.length - zoomWindow)
   );
+
   const visibleData = rawData.slice(clampedOffset, clampedOffset + zoomWindow);
+
   const highestPeriod = (() => {
     const totals = years.map((y) => {
       const sum = visibleData
@@ -158,15 +170,18 @@ const Chart1 = (props: any) => {
 
     return totals.reduce((a, b) => (b.sum > a.sum ? b : a)).year;
   })();
+
   const chart = useChart<Type__ChartData>({
     data: visibleData.map((item: any, idx: number) => {
       const absoluteIndex = clampedOffset + idx;
+
       const getXAxisLabel = () => {
         if (timeFrame === "3M") {
           const slice = MONTHS[lang].slice(
             absoluteIndex * 3,
             absoluteIndex * 3 + 3
           );
+
           return `${slice[0].slice(0, 3)} - ${slice[slice.length - 1].slice(
             0,
             3
@@ -175,6 +190,7 @@ const Chart1 = (props: any) => {
 
         if (timeFrame === "1M") return MONTHS[lang][absoluteIndex];
         if (timeFrame === "1W") return `W${absoluteIndex + 1}`;
+
         return `D${absoluteIndex + 1}`;
       };
 
@@ -194,40 +210,92 @@ const Chart1 = (props: any) => {
       })),
   });
 
-  // Utils
-  function handleWheel(e: React.WheelEvent<HTMLDivElement>) {
-    e.preventDefault();
-
-    setZoomWindow((prev) => {
-      const next =
-        e.deltaY < 0
-          ? Math.max(MIN_WINDOW, prev - 5)
-          : Math.min(MAX_WINDOW, prev + 5);
-
-      return next;
-    });
+  function applyZoom(nextZoom: number) {
+    setZoomWindow(Math.min(MAX_WINDOW, Math.max(MIN_WINDOW, nextZoom)));
   }
+
+  function computeZoomFromDrag(startZoom: number, deltaY: number) {
+    const steps = Math.floor(deltaY / ZOOM_PIXEL_THRESHOLD);
+    return startZoom - steps * ZOOM_STEP;
+  }
+
+  function computeZoomFromPinch(
+    startZoom: number,
+    startDist: number,
+    currentDist: number
+  ) {
+    const delta = startDist - currentDist;
+    const steps = Math.floor(delta / ZOOM_PIXEL_THRESHOLD);
+    return startZoom + steps * ZOOM_STEP;
+  }
+
   function handlePointerDown(e: React.PointerEvent<HTMLDivElement>) {
-    if (e.button !== 0) return;
+    if (e.pointerType === "mouse" && e.button !== 0) return;
 
+    activePointerTypeRef.current = e.pointerType;
     isPanningRef.current = true;
+
     panStartXRef.current = e.clientX;
+    panStartYRef.current = e.clientY;
     offsetStartRef.current = offset;
+    zoomWindowStartRef.current = zoomWindow;
   }
+
   function handlePointerMove(e: React.PointerEvent<HTMLDivElement>) {
     if (!isPanningRef.current) return;
+    if (activePointerTypeRef.current === "touch") return;
 
     const deltaX = e.clientX - panStartXRef.current;
-    const sensitivity = Math.max(1, zoomWindow / 20);
-    const deltaOffset = Math.round(deltaX / sensitivity);
-    const resolvedOffset = offsetStartRef.current - deltaOffset;
+    const deltaY = e.clientY - panStartYRef.current;
 
-    if (resolvedOffset > 0) {
-      setOffset(offsetStartRef.current - deltaOffset);
+    const panSensitivity = Math.max(1, zoomWindow / 20);
+    const deltaOffset = Math.round(deltaX / panSensitivity);
+    const nextOffset = offsetStartRef.current - deltaOffset;
+
+    if (nextOffset >= 0) {
+      setOffset(nextOffset);
     }
+
+    applyZoom(computeZoomFromDrag(zoomWindowStartRef.current, deltaY));
   }
+
   function stopPan() {
     isPanningRef.current = false;
+    activePointerTypeRef.current = null;
+  }
+
+  function getTouchDistance(touches: React.TouchList) {
+    const a = touches[0];
+    const b = touches[1];
+    const dx = a.clientX - b.clientX;
+    const dy = a.clientY - b.clientY;
+    return Math.sqrt(dx * dx + dy * dy);
+  }
+
+  function handleTouchStart(e: React.TouchEvent<HTMLDivElement>) {
+    if (e.touches.length !== 2) return;
+
+    pinchStartDistanceRef.current = getTouchDistance(e.touches);
+    pinchStartZoomRef.current = zoomWindow;
+  }
+
+  function handleTouchMove(e: React.TouchEvent<HTMLDivElement>) {
+    if (e.touches.length !== 2) return;
+    if (pinchStartDistanceRef.current === null) return;
+
+    e.preventDefault();
+
+    applyZoom(
+      computeZoomFromPinch(
+        pinchStartZoomRef.current,
+        pinchStartDistanceRef.current,
+        getTouchDistance(e.touches)
+      )
+    );
+  }
+
+  function handleTouchEnd() {
+    pinchStartDistanceRef.current = null;
   }
 
   return (
@@ -246,12 +314,14 @@ const Chart1 = (props: any) => {
 
       <CContainer>
         <CContainer
-          onWheel={handleWheel}
           onPointerDown={handlePointerDown}
           onPointerMove={handlePointerMove}
           onPointerUp={stopPan}
           onPointerLeave={stopPan}
           onPointerCancel={stopPan}
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
           userSelect={"none"}
         >
           <Chart.Root maxH="md" chart={chart} cursor={"grab !important"}>
@@ -264,6 +334,7 @@ const Chart1 = (props: any) => {
                 strokeDasharray="4 4"
                 horizontal={false}
               />
+
               <XAxis
                 dataKey={chart.key(timeFrame)}
                 stroke={chart.color("border")}
@@ -271,23 +342,29 @@ const Chart1 = (props: any) => {
                   timeFrame === "1M" ? (value) => value.slice(0, 3) : undefined
                 }
               />
+
               <YAxis
                 axisLine={false}
                 tickLine={false}
                 tickMargin={10}
                 dataKey={highestPeriod}
                 stroke={chart.color("border")}
-                label={{
-                  value: capitalizeWords(l.yearly_sales),
-                  position: "left",
-                  angle: -90,
-                }}
-              />
+              >
+                <Label
+                  value={capitalizeWords(l.yearly_sales)}
+                  angle={-90}
+                  position="insideLeft"
+                  textAnchor="middle"
+                  dx={-16}
+                />
+              </YAxis>
+
               <Tooltip
                 animationDuration={100}
                 cursor={{ stroke: chart.color("border") }}
                 content={<Chart.Tooltip />}
               />
+
               {chart.series.map((item) => {
                 const isHighlighted = highlights.includes(
                   parseInt(item.name as string)
@@ -347,11 +424,10 @@ const Chart1 = (props: any) => {
                     )
                   }
                   size={"xs"}
-                  variant={isActive ? "ghost" : "ghost"}
+                  variant={"ghost"}
                   color={isActive ? "" : "fg.subtle"}
                 >
                   <DotIndicator color={isActive ? s.color : "d2"} mr={1} />
-
                   {year}
                 </Btn>
               );

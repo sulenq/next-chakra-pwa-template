@@ -24,6 +24,8 @@ import { BASE_ICON_BOX_SIZE } from "@/constants/sizes";
 import useADM from "@/context/useADM";
 import useLang from "@/context/useLang";
 import { useThemeConfig } from "@/context/useThemeConfig";
+import { useContainerDimension } from "@/hooks/useContainerDimension";
+import { getGridColumns } from "@/utils/style";
 import {
   Box,
   Center,
@@ -181,12 +183,28 @@ const DarkMode = () => {
   );
 };
 const Theme = () => {
+  const GRID_COLS_BREAKPOINTS = {
+    0: 1,
+    350: 2,
+    580: 5,
+    1280: 10,
+  };
+
   // Contexts
   const { l } = useLang();
   const { themeConfig, setThemeConfig } = useThemeConfig();
 
+  // Refs
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  // Hooks
+  const dimensions = useContainerDimension(containerRef);
+
+  // States
+  const cols = getGridColumns(dimensions.width, GRID_COLS_BREAKPOINTS);
+
   return (
-    <ItemContainer borderless roundedless>
+    <ItemContainer ref={containerRef} borderless roundedless>
       <ItemHeaderContainer>
         <HStack>
           <Icon boxSize={BASE_ICON_BOX_SIZE}>
@@ -197,7 +215,7 @@ const Theme = () => {
       </ItemHeaderContainer>
 
       <CContainer gap={4} p={4}>
-        <SimpleGrid columns={[3, null, 5, null, 10]} gap={2}>
+        <SimpleGrid columns={cols} gap={2}>
           {COLOR_PALETTES.map((color, idx) => {
             const isActive = color.palette === themeConfig.colorPalette;
             const isColorPaletteGray = color.palette === "gray";
@@ -247,14 +265,25 @@ const Theme = () => {
   );
 };
 const Rounded = () => {
+  const GRID_COLS_BREAKPOINTS = {
+    0: 1,
+    350: 2,
+    580: 4,
+    1280: 8,
+  };
+
   // Contexts
   const { l } = useLang();
   const { themeConfig, setThemeConfig } = useThemeConfig();
 
-  // Hooks
+  // Refs
   const containerRef = useRef<HTMLDivElement>(null);
 
+  // Hooks
+  const dimensions = useContainerDimension(containerRef);
+
   // States
+  const cols = getGridColumns(dimensions.width, GRID_COLS_BREAKPOINTS);
   const roundedList = [
     {
       label: "None",
@@ -384,7 +413,7 @@ const Rounded = () => {
       </ItemHeaderContainer>
 
       <CContainer gap={4} p={4}>
-        <SimpleGrid columns={[2, null, 4, null, null, 6]} gap={4}>
+        <SimpleGrid columns={cols} gap={4}>
           {roundedList.map((item) => {
             const isActive = item.component === themeConfig.radii.component;
 

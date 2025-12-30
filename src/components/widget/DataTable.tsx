@@ -174,7 +174,7 @@ export const DataTable = (props: Props__DataTable) => {
   }, [rows]);
 
   return (
-    <>
+    <CContainer>
       <CContainer
         ref={tableContainerRef}
         className="scrollX scrollYAlt"
@@ -521,6 +521,6 @@ export const DataTable = (props: Props__DataTable) => {
           )}
         </>
       )}
-    </>
+    </CContainer>
   );
 };

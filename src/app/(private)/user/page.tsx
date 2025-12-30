@@ -360,7 +360,7 @@ const Delete = (props: any) => {
 
 const Data = (props: any) => {
   // Props
-  const { filter, routeTitle } = props;
+  const { filter, routeTitle, isSmContainer } = props;
 
   // Contexts
   // const { l } = useLang();
@@ -535,6 +535,7 @@ const Data = (props: any) => {
             />
           );
         }}
+        mt={isSmContainer ? 3 : 0}
       />
     ),
   };
@@ -606,7 +607,11 @@ export default function Page() {
             </HScroll>
           )}
 
-          <Data filter={filter} routeTitle={routeTitle} />
+          <Data
+            filter={filter}
+            routeTitle={routeTitle}
+            isSmContainer={isSmContainer}
+          />
         </PageContent>
       )}
     </PageContainer>

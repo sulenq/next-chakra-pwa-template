@@ -109,14 +109,8 @@ export const DataGrid = (props: Props) => {
   }
 
   return (
-    <>
-      <CContainer
-        ref={containerRef}
-        flex={1}
-        overflowY={"auto"}
-        pos={"relative"}
-        {...restProps}
-      >
+    <CContainer ref={containerRef} flex={1} overflowY={"auto"} {...restProps}>
+      <CContainer flex={1} overflowY={"auto"} pos={"relative"}>
         <Presence
           present={shouldShowBatch}
           animationName={{ _open: "fade-in", _closed: "fade-out" }}
@@ -262,6 +256,6 @@ export const DataGrid = (props: Props) => {
           )}
         </>
       )}
-    </>
+    </CContainer>
   );
 };

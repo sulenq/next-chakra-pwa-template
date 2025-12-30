@@ -61,7 +61,7 @@ const customConfig = defineConfig({
         gray: {
           // 100: { value: "red !important" },
           200: { value: "#ebebec" },
-          800: { value: "#1f1f1f" },
+          800: { value: "#222" },
           900: { value: "#202020" },
         },
         salmon: {
