@@ -5,6 +5,9 @@ nextjs-portal {
 #devtools-indicator {
   display: none !important;
 }
+.debug {
+  border: 2px solid red !important;
+}
 
 :root {
   font-family: var(--font-figtree), sans-serif;
