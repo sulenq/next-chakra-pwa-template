@@ -26,13 +26,18 @@ export default function Page() {
             mb={4}
           /> */}
 
-          <P fontSize={"lg"} fontWeight={"medium"}>
+          <P fontSize={"lg"} fontWeight={"medium"} textAlign={"center"}>
             {interpolateString(pluckString(l, `msg_welcome_to_the_app`), {
               appName: APP.name,
             })}
           </P>
 
-          <P fontSize={"xl"} fontWeight={"medium"} color={"ibody"}>
+          <P
+            fontSize={"xl"}
+            fontWeight={"medium"}
+            color={"ibody"}
+            textAlign={"center"}
+          >
             {pluckString(l, `msg_welcome_${variantNumber}`)}
           </P>
         </VStack>
