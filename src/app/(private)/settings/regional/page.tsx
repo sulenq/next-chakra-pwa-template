@@ -32,7 +32,7 @@ import { useThemeConfig } from "@/context/useThemeConfig";
 import useTimeFormat from "@/context/useTimeFormat";
 import useTimezone from "@/context/useTimezone";
 import useUOM from "@/context/useUOM";
-import { useIsSmScreenWidth } from "@/hooks/useIsSmScreenWidth";
+import { useContainerDimension } from "@/hooks/useContainerDimension";
 import { isEmptyArray } from "@/utils/array";
 import { formatDate, formatTime } from "@/utils/formatter";
 import { capitalizeWords, pluckString } from "@/utils/string";
@@ -45,7 +45,7 @@ import {
   LanguagesIcon,
   RulerDimensionLineIcon,
 } from "lucide-react";
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 
 const NAVS_COLOR = "fg.muted";
 
@@ -106,10 +106,14 @@ const Timezone = () => {
   const { l } = useLang();
   const { timeZone, setTimeZone } = useTimezone();
 
+  // Refs
+  const containerRef = useRef<HTMLDivElement>(null);
+
   // Hooks
-  const iss = useIsSmScreenWidth();
+  const dimensions = useContainerDimension(containerRef);
 
   // States
+  const isSmContainer = dimensions?.width < 600;
   const localTz = getLocalTimezone();
   const timezones = TIME_ZONES;
   const [search, setSearch] = useState("");
@@ -124,7 +128,7 @@ const Timezone = () => {
   }, [search, timezones]);
 
   return (
-    <ItemContainer borderless roundedless>
+    <ItemContainer ref={containerRef} borderless roundedless>
       <ItemHeaderContainer withUtils>
         <HStack>
           <Icon boxSize={BASE_ICON_BOX_SIZE}>
@@ -135,7 +139,7 @@ const Timezone = () => {
         </HStack>
 
         <HStack mr={2}>
-          {!iss && (
+          {!isSmContainer && (
             <SearchInput
               onChange={(inputValue) => {
                 setSearch(inputValue || "");
@@ -169,7 +173,7 @@ const Timezone = () => {
       </ItemHeaderContainer>
 
       <CContainer>
-        {iss && (
+        {isSmContainer && (
           <CContainer p={3} pb={0}>
             <SearchInput
               onChange={(inputValue) => {
