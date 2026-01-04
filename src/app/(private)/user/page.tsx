@@ -594,7 +594,7 @@ export default function Page() {
       </PageTitle>
 
       {isValidDimension && (
-        <PageContent gap={1}>
+        <PageContent overflow={"auto"}>
           {isSmContainer && (
             <HScroll px={3} flexShrink={0}>
               <HStack minW={"full"} justify={"space-between"}>

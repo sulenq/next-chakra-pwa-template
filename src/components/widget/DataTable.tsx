@@ -10,8 +10,8 @@ import { Interface__FormattedTableRow } from "@/constants/interfaces";
 import { Props__DataTable } from "@/constants/props";
 import { Type__SortHandler } from "@/constants/types";
 import { useThemeConfig } from "@/context/useThemeConfig";
+import { useContainerDimension } from "@/hooks/useContainerDimension";
 import { useIsSmScreenWidth } from "@/hooks/useIsSmScreenWidth";
-import useScreen from "@/hooks/useScreen";
 import { isEmptyArray } from "@/utils/array";
 import { hexWithOpacity } from "@/utils/color";
 import { Center, HStack, Table } from "@chakra-ui/react";
@@ -39,12 +39,12 @@ export const DataTable = (props: Props__DataTable) => {
   // Contexts
   const { themeConfig } = useThemeConfig();
 
-  // Hooks
-  const iss = useIsSmScreenWidth();
-  const { sh } = useScreen();
-
   // Refs
   const tableContainerRef = useRef<HTMLDivElement>(null);
+
+  // Hooks
+  const iss = useIsSmScreenWidth();
+  const dimensions = useContainerDimension(tableContainerRef);
 
   // States
   const [tableData, setTableData] = useState(rows);
@@ -174,14 +174,14 @@ export const DataTable = (props: Props__DataTable) => {
   }, [rows]);
 
   return (
-    <CContainer>
-      <CContainer
-        ref={tableContainerRef}
-        className="scrollX scrollYAlt"
-        minH={props?.minH || sh < 625 ? "400px" : ""}
-        flex={1}
-        {...restProps}
-      >
+    <CContainer
+      ref={tableContainerRef}
+      flex={1}
+      minH={props?.minH || dimensions?.height < 625 ? "400px" : ""}
+      overflow={"auto"}
+      {...restProps}
+    >
+      <CContainer className="scrollX scrollYAlt" flex={1}>
         <Table.Root
           w={headers.length > 1 ? "full" : "fit-content"}
           tableLayout={"auto"}

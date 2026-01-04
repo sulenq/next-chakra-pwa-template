@@ -72,7 +72,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { Fragment, useEffect, useRef, useState } from "react";
 
 const USER_PROFILE_URL = "/api/get-user-profile";
-const DESKTOP_NAVS_BG = "bgContent";
+const DESKTOP_NAVS_BG = "body";
 const NAVS_COLOR = "fg.muted";
 const NAVS_COLOR_PALETTE = "gray";
 const DESKTOP_BG_CONTENT_CONTAINER = "bgContent";

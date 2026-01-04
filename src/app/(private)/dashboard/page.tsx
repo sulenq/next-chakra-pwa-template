@@ -83,8 +83,9 @@ const OverviewItem = (props: StackProps) => {
       p={4}
       pt={3}
       border={"1px solid"}
-      borderColor={"border.muted"}
+      borderColor={"border.subtle"}
       rounded={themeConfig.radii.component}
+      bg={"body"}
       {...props}
     >
       <HStack gap={1}>
@@ -118,7 +119,6 @@ const OverviewItem = (props: StackProps) => {
     </CContainer>
   );
 };
-
 const Chart1 = (props: any) => {
   const ZOOM_STEP = 5;
   const ZOOM_PIXEL_THRESHOLD = 20;
@@ -150,14 +150,11 @@ const Chart1 = (props: any) => {
   const MAX_WINDOW = rawData.length;
   const [zoomWindow, setZoomWindow] = useState<number>(rawData.length);
   const [offset, setOffset] = useState<number>(0);
-
   const clampedOffset = Math.max(
     0,
     Math.min(offset, rawData.length - zoomWindow)
   );
-
   const visibleData = rawData.slice(clampedOffset, clampedOffset + zoomWindow);
-
   const highestPeriod = (() => {
     const totals = years.map((y) => {
       const sum = visibleData
@@ -170,7 +167,6 @@ const Chart1 = (props: any) => {
 
     return totals.reduce((a, b) => (b.sum > a.sum ? b : a)).year;
   })();
-
   const chart = useChart<Type__ChartData>({
     data: visibleData.map((item: any, idx: number) => {
       const absoluteIndex = clampedOffset + idx;
@@ -210,15 +206,14 @@ const Chart1 = (props: any) => {
       })),
   });
 
+  // Utils
   function applyZoom(nextZoom: number) {
     setZoomWindow(Math.min(MAX_WINDOW, Math.max(MIN_WINDOW, nextZoom)));
   }
-
   function computeZoomFromDrag(startZoom: number, deltaY: number) {
     const steps = Math.floor(deltaY / ZOOM_PIXEL_THRESHOLD);
     return startZoom - steps * ZOOM_STEP;
   }
-
   function computeZoomFromPinch(
     startZoom: number,
     startDist: number,
@@ -228,7 +223,6 @@ const Chart1 = (props: any) => {
     const steps = Math.floor(delta / ZOOM_PIXEL_THRESHOLD);
     return startZoom + steps * ZOOM_STEP;
   }
-
   function handlePointerDown(e: React.PointerEvent<HTMLDivElement>) {
     if (e.pointerType === "mouse" && e.button !== 0) return;
 
@@ -240,7 +234,6 @@ const Chart1 = (props: any) => {
     offsetStartRef.current = offset;
     zoomWindowStartRef.current = zoomWindow;
   }
-
   function handlePointerMove(e: React.PointerEvent<HTMLDivElement>) {
     if (!isPanningRef.current) return;
     if (activePointerTypeRef.current === "touch") return;
@@ -258,12 +251,10 @@ const Chart1 = (props: any) => {
 
     applyZoom(computeZoomFromDrag(zoomWindowStartRef.current, deltaY));
   }
-
   function stopPan() {
     isPanningRef.current = false;
     activePointerTypeRef.current = null;
   }
-
   function getTouchDistance(touches: React.TouchList) {
     const a = touches[0];
     const b = touches[1];
@@ -271,14 +262,12 @@ const Chart1 = (props: any) => {
     const dy = a.clientY - b.clientY;
     return Math.sqrt(dx * dx + dy * dy);
   }
-
   function handleTouchStart(e: React.TouchEvent<HTMLDivElement>) {
     if (e.touches.length !== 2) return;
 
     pinchStartDistanceRef.current = getTouchDistance(e.touches);
     pinchStartZoomRef.current = zoomWindow;
   }
-
   function handleTouchMove(e: React.TouchEvent<HTMLDivElement>) {
     if (e.touches.length !== 2) return;
     if (pinchStartDistanceRef.current === null) return;
@@ -293,13 +282,12 @@ const Chart1 = (props: any) => {
       )
     );
   }
-
   function handleTouchEnd() {
     pinchStartDistanceRef.current = null;
   }
 
   return (
-    <ItemContainer {...restProps}>
+    <ItemContainer borderColor={"border.subtle"} {...restProps}>
       <ItemHeaderContainer borderless withUtils>
         <ItemHeaderTitle color={"fg.muted"}>{"Chart Title"}</ItemHeaderTitle>
 
@@ -366,31 +354,33 @@ const Chart1 = (props: any) => {
               />
 
               {chart.series.map((item) => {
-                const isHighlighted = highlights.includes(
+                const isActive = highlights.includes(
                   parseInt(item.name as string)
                 );
 
                 return (
-                  <Line
-                    key={item.name}
-                    dot={false}
-                    animationDuration={200}
-                    dataKey={chart.key(item.name)}
-                    stroke={chart.color(item.color)}
-                    opacity={isHighlighted ? 1 : 0.08}
-                  >
-                    {isHighlighted && showPointLabel && (
-                      <LabelList
-                        dataKey={chart.key(item.name)}
-                        position="right"
-                        offset={10}
-                        style={{
-                          fontWeight: "600",
-                          fill: chart.color("fg.subtle"),
-                        }}
-                      />
-                    )}
-                  </Line>
+                  isActive && (
+                    <Line
+                      key={item.name}
+                      dot={false}
+                      animationDuration={200}
+                      dataKey={chart.key(item.name)}
+                      stroke={chart.color(item.color)}
+                      opacity={isActive ? 1 : 0.08}
+                    >
+                      {isActive && showPointLabel && (
+                        <LabelList
+                          dataKey={chart.key(item.name)}
+                          position="right"
+                          offset={10}
+                          style={{
+                            fontWeight: "600",
+                            fill: chart.color("fg.subtle"),
+                          }}
+                        />
+                      )}
+                    </Line>
+                  )
                 );
               })}
             </LineChart>
@@ -453,7 +443,7 @@ export default function Page() {
   const data = dummyChartData;
 
   return (
-    <PageContainer ref={containerRef}>
+    <PageContainer ref={containerRef} bg={"bgContent"}>
       <PageTitle justify={"space-between"} pr={3}>
         <HStack>
           {!isSmContainer && (
@@ -463,30 +453,32 @@ export default function Page() {
       </PageTitle>
 
       {isValidDimension && (
-        <PageContent>
+        <PageContent bg={"bgContent"}>
           {isSmContainer && (
             <HScroll px={3} flexShrink={0} mb={3}>
               <DataUtils filter={filter} setFilter={setFilter} w={"max"} />
             </HScroll>
           )}
 
-          <SimpleGrid
-            w={"full"}
-            columns={isSmContainer ? 2 : 4}
-            gap={3}
-            px={3}
-            pos={"relative"}
-          >
-            {Array.from({ length: 4 }).map((_, idx) => {
-              return <OverviewItem key={idx} />;
-            })}
-          </SimpleGrid>
+          <CContainer>
+            <SimpleGrid
+              w={"full"}
+              columns={isSmContainer ? 2 : 4}
+              gap={3}
+              px={3}
+              pos={"relative"}
+            >
+              {Array.from({ length: 4 }).map((_, idx) => {
+                return <OverviewItem key={idx} />;
+              })}
+            </SimpleGrid>
 
-          <SimpleGrid columns={isSmContainer ? 1 : 2} p={3} gap={3}>
-            <Chart1 data={data} year={filter.year} />
+            <SimpleGrid columns={isSmContainer ? 1 : 2} p={3} gap={3}>
+              <Chart1 data={data} year={filter.year} />
 
-            <Chart1 data={data} year={filter.year} />
-          </SimpleGrid>
+              <Chart1 data={data} year={filter.year} />
+            </SimpleGrid>
+          </CContainer>
         </PageContent>
       )}
     </PageContainer>

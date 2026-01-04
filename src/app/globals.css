@@ -224,7 +224,7 @@ textarea::placeholder {
 }
 .scrollY,
 .scrollYAlt {
-  overflow-y: scroll;
+  overflow-y: auto;
   scrollbar-gutter: auto;
 }
 
