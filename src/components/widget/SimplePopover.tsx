@@ -12,11 +12,11 @@ const SimplePopover = (props: Props) => {
   // Props
   const { children, content, ...restProps } = props;
 
-  // Hooks
-  const { open, onOpen, onClose } = useDisclosure();
-
   // Refs
   const containerRef = useRef<HTMLDivElement>(null);
+
+  // Hooks
+  const { open, onOpen, onClose } = useDisclosure();
 
   useClickOutside([containerRef], onClose);
 

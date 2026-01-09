@@ -403,7 +403,7 @@ const UOMFormat = () => {
                   {pluckString(l, item.descriptionKey)}
                 </P>
 
-                {/* Example */}
+                {/* Example */}q
                 <HStack wrap={"wrap"} mt={"auto"}>
                   <P color={"fg.subtle"}>{item.units.mass}</P>
                   <P color={"fg.subtle"}>{item.units.length}</P>

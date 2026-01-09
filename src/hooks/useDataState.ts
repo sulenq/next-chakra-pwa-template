@@ -42,6 +42,10 @@ const useDataState = <T = any>(props: Props<T>) => {
   // Contexts
   const setLoadingBar = useLoadingBar((s) => s.setLoadingBar);
 
+  // Refs
+  const abortControllerRef = useRef<AbortController | null>(null);
+  const latestUrlRef = useRef<string | null>(null);
+
   // States
   const [data, setData] = useState<T | undefined>(dummyData || initialData);
   const [initialLoading, setInitialLoading] = useState<boolean>(true);
@@ -72,10 +76,6 @@ const useDataState = <T = any>(props: Props<T>) => {
     data: payloadData,
     params: { ...(dataResource ? offsetData : {}), ...params },
   };
-
-  // Refs
-  const abortControllerRef = useRef<AbortController | null>(null);
-  const latestUrlRef = useRef<string | null>(null);
 
   // Utils
   function makeRequest() {

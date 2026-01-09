@@ -24,6 +24,7 @@ export const DialogRoot = (props: ChakraDialog.RootProps) => {
 
 export const DialogContent = forwardRef<HTMLDivElement, DialogContentProps>(
   function DialogContent(props, ref) {
+    // Props
     const {
       children,
       portalled = true,
