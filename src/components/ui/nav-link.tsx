@@ -7,7 +7,7 @@ import { CContainer } from "./c-container";
 
 export const NavLink = forwardRef<HTMLDivElement, Props__NavLink>(
   (props, ref) => {
-    const { children, to, external, ...restProps } = props;
+    const { children, to, external, onClick, ...restProps } = props;
     const router = useRouter();
 
     useEffect(() => {
@@ -16,8 +16,10 @@ export const NavLink = forwardRef<HTMLDivElement, Props__NavLink>(
       }
     }, [to, external, router]);
 
-    function handleOnClick() {
+    function handleOnClick(event: React.MouseEvent<HTMLDivElement>) {
       if (!to) return;
+
+      onClick?.(event);
 
       if (external) {
         window.open(to, "_blank", "noopener,noreferrer");

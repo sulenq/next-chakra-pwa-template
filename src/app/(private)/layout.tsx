@@ -73,7 +73,7 @@ import { Fragment, useEffect, useRef, useState } from "react";
 
 const USER_PROFILE_URL = "/api/get-user-profile";
 const DESKTOP_NAVS_BG = "body";
-const NAVS_COLOR = "fg.muted";
+const NAVS_COLOR = "ibody";
 const NAVS_COLOR_PALETTE = "gray";
 const DESKTOP_BG_CONTENT_CONTAINER = "bgContent";
 const MOBILE_BG_CONTENT_CONTAINER = "body";
@@ -390,7 +390,7 @@ const MobileLayout = (props: any) => {
               <MobileNavLink
                 key={nav.path}
                 to={nav.path}
-                color={pathname === nav.path ? "" : "fg.muted"}
+                color={pathname === nav.path ? "" : NAVS_COLOR}
                 flex={1}
               >
                 <Icon boxSize={5}>
@@ -419,7 +419,7 @@ const MobileLayout = (props: any) => {
             }}
           >
             <PopoverTrigger asChild>
-              <MobileNavLink flex={1} color={"fg.muted"}>
+              <MobileNavLink flex={1} color={NAVS_COLOR}>
                 {!user?.avatar?.filePath && (
                   <Icon boxSize={6}>
                     <LucideIcon icon={UserIcon} />
@@ -437,7 +437,7 @@ const MobileLayout = (props: any) => {
                 <P
                   fontSize={MOBILE_NAV_LABEL_FONT_SIZE}
                   textAlign={"center"}
-                  color={isInProfileRoute ? "" : "fg.muted"}
+                  color={isInProfileRoute ? "" : NAVS_COLOR}
                   lineClamp={1}
                 >
                   {l.profile}
@@ -613,7 +613,7 @@ const DesktopLayout = (props: any) => {
                 variant={"ghost"}
                 colorPalette={NAVS_COLOR_PALETTE}
                 onClick={toggleNavsExpanded}
-                color={"fg.muted"}
+                color={NAVS_COLOR}
               >
                 <Icon boxSize={BASE_ICON_BOX_SIZE}>
                   <LucideIcon
