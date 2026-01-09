@@ -2,109 +2,306 @@
 
 import { Btn } from "@/components/ui/btn";
 import { CContainer } from "@/components/ui/c-container";
+import {
+  DisclosureBody,
+  DisclosureContent,
+  DisclosureFooter,
+  DisclosureHeader,
+  DisclosureRoot,
+} from "@/components/ui/disclosure";
+import { DisclosureHeaderContent } from "@/components/ui/disclosure-header-content";
+import { Field, FieldsetRoot } from "@/components/ui/field";
+import { Img } from "@/components/ui/img";
+import { ImgInput } from "@/components/ui/img-input";
 import { P } from "@/components/ui/p";
 import SearchInput from "@/components/ui/search-input";
-import { toaster } from "@/components/ui/toaster";
+import { Skeleton } from "@/components/ui/skeleton";
+import Spinner from "@/components/ui/spinner";
+import { StringInput } from "@/components/ui/string-input";
+import BackButton from "@/components/widget/BackButton";
+import { ClampText } from "@/components/widget/ClampText";
+import FeedbackNoData from "@/components/widget/FeedbackNoData";
 import FeedbackNotFound from "@/components/widget/FeedbackNotFound";
+import FeedbackRetry from "@/components/widget/FeedbackRetry";
 import { LucideIcon } from "@/components/widget/Icon";
-import { DotIndicator } from "@/components/widget/Indicator";
+import { ImgViewer } from "@/components/widget/ImgViewer";
 import { ItemContainer } from "@/components/widget/ItemContainer";
 import { ItemHeaderContainer } from "@/components/widget/ItemHeaderContainer";
 import ItemHeaderTitle from "@/components/widget/ItemHeaderTitle";
-import { LocalSettingsHelperText } from "@/components/widget/LocalSettingsHelperText";
-import { DATE_FORMATS } from "@/constants/dateFormats";
-import { LANGUAGES } from "@/constants/languages";
+import { Limitation } from "@/components/widget/Limitation";
+import { Pagination } from "@/components/widget/Pagination";
+import ResetPasswordDisclosureTrigger from "@/components/widget/ResetPasswordDisclosure";
+import {
+  dummyActivityLogs,
+  dummyAuthLogs,
+  dummyUser,
+} from "@/constants/dummyData";
+import { Enum__ActivityAction } from "@/constants/enums";
+import {
+  Interface__ActivityLog,
+  Interface__AuthLog,
+  Interface__User,
+} from "@/constants/interfaces";
+import { SVGS_PATH } from "@/constants/paths";
 import {
   BASE_ICON_BOX_SIZE,
   FIREFOX_SCROLL_Y_CLASS_PR_PREFIX,
 } from "@/constants/sizes";
-import { TIME_FORMATS } from "@/constants/timeFormats";
-import { TIME_ZONES } from "@/constants/timezone";
-import {
-  Type__DateFormat,
-  Type__LanguageOptions,
-  Type__TimeFormat,
-} from "@/constants/types";
-import { UOM_FORMATS } from "@/constants/uomFormats";
-import useDateFormat from "@/context/useDateFormat";
 import useLang from "@/context/useLang";
 import { useThemeConfig } from "@/context/useThemeConfig";
-import useTimeFormat from "@/context/useTimeFormat";
-import useTimezone from "@/context/useTimezone";
-import useUOM from "@/context/useUOM";
+import useBackOnClose from "@/hooks/useBackOnClose";
 import { useContainerDimension } from "@/hooks/useContainerDimension";
+import useDataState from "@/hooks/useDataState";
+import useRequest from "@/hooks/useRequest";
 import { isEmptyArray } from "@/utils/array";
-import { formatDate, formatTime } from "@/utils/formatter";
-import { capitalizeWords, pluckString } from "@/utils/string";
-import { getLocalTimezone, makeTime } from "@/utils/time";
-import { chakra, HStack, Icon, SimpleGrid, Text } from "@chakra-ui/react";
-import { IconRulerMeasure, IconSparkles } from "@tabler/icons-react";
+import { disclosureId } from "@/utils/disclosure";
+import { formatDate } from "@/utils/formatter";
+import { imgUrl } from "@/utils/url";
+import { Circle, HStack, Icon, useDisclosure } from "@chakra-ui/react";
+import { useFormik } from "formik";
 import {
-  CalendarIcon,
-  GlobeIcon,
-  LanguagesIcon,
-  RulerDimensionLineIcon,
+  ActivityIcon,
+  ArrowDown,
+  ArrowUp,
+  LogInIcon,
+  UserIcon,
 } from "lucide-react";
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import * as yup from "yup";
 
-const NAVS_COLOR = "fg.muted";
+interface Props__AvatarInputDisclosureTrigger {
+  children: any;
+  formik: any;
+  user?: Interface__User;
+}
+const AvatarInputDisclosureTrigger = (
+  props: Props__AvatarInputDisclosureTrigger
+) => {
+  // Props
+  const { children, formik, user, ...restProps } = props;
 
-const Language = () => {
+  // Hooks
+  const { open, onOpen, onClose } = useDisclosure();
+  useBackOnClose(disclosureId(`avatar-input`), open, onOpen, onClose);
+
+  return (
+    <>
+      <CContainer w={"fit"} onClick={onOpen} {...restProps}>
+        {children}
+      </CContainer>
+
+      <DisclosureRoot open={open} lazyLoad size={"xs"}>
+        <DisclosureContent>
+          <DisclosureHeader>
+            <DisclosureHeaderContent title={`Avatar`} />
+          </DisclosureHeader>
+
+          <DisclosureBody>
+            <ImgInput
+              inputValue={formik.values.avatar}
+              onChange={(inputValue) => {
+                formik.setFieldValue(inputValue);
+              }}
+              existingFiles={user?.avatar}
+              onDeleteFile={(fileData) => {
+                formik.setFieldValue(
+                  "deleteAvatarIds",
+                  Array.from(
+                    new Set([...formik.values.deleteAvatarIds, fileData.id])
+                  )
+                );
+              }}
+              onUndoDeleteFile={(fileData) => {
+                formik.setFieldValue(
+                  "deleteAvatarIds",
+                  formik.values.deleteAvatarIds.filter(
+                    (id: string) => id !== fileData.id
+                  )
+                );
+              }}
+            />
+          </DisclosureBody>
+
+          <DisclosureFooter>
+            <BackButton />
+          </DisclosureFooter>
+        </DisclosureContent>
+      </DisclosureRoot>
+    </>
+  );
+};
+
+interface Props__PersonalInformation {
+  initialData?: Interface__User;
+}
+const PersonalInformation = (props: Props__PersonalInformation) => {
+  // Props
+  const { initialData, ...restProps } = props;
+
   // Contexts
+  const { l } = useLang();
   const { themeConfig } = useThemeConfig();
-  const { lang, setLang, l } = useLang();
+
+  // Hooks
+  const { req, loading } = useRequest({
+    id: "update_personal_info",
+    loadingMessage: {
+      title: `${l.saving} ${l.personal_information}`,
+    },
+    successMessage: {
+      title: `${l.personal_information} ${l.updated}`,
+    },
+  });
+
+  // States
+  const formik = useFormik({
+    validateOnChange: false,
+    initialValues: {
+      avatar: null as any,
+      deleteAvatarIds: [],
+      name: "",
+      email: "",
+    },
+    validationSchema: yup.object().shape({
+      name: yup.string().required(l.msg_required_form),
+      email: yup.string().required(l.msg_required_form),
+    }),
+    onSubmit: (values) => {
+      const config = {
+        url: `/update-users/${initialData?.id}`,
+        method: "PATCH",
+        data: {
+          avatar: values.avatar,
+          deleteAvatarIds: values.deleteAvatarIds,
+          name: values.name,
+          email: values.email,
+        },
+      };
+
+      req({
+        config,
+      });
+    },
+  });
+
+  // set initial values
+  useEffect(() => {
+    if (initialData) {
+      formik.setValues({
+        avatar: null,
+        deleteAvatarIds: [],
+        name: initialData.name,
+        email: initialData.email,
+      });
+    }
+  }, [initialData]);
 
   return (
     <ItemContainer borderless roundedless>
       <ItemHeaderContainer>
         <HStack>
           <Icon boxSize={BASE_ICON_BOX_SIZE}>
-            <LucideIcon icon={LanguagesIcon} />
+            <LucideIcon icon={UserIcon} />
           </Icon>
-          <ItemHeaderTitle>{l.language}</ItemHeaderTitle>
+          <ItemHeaderTitle>{l.personal_information}</ItemHeaderTitle>
         </HStack>
       </ItemHeaderContainer>
 
-      <CContainer gap={4} py={2}>
-        <HStack wrap={"wrap"} px={2}>
-          {LANGUAGES.map((item, i) => {
-            const isActive = lang === item.key;
+      <CContainer p={4}>
+        <form
+          id="personal_info_form"
+          onSubmit={formik.handleSubmit}
+          {...restProps}
+        >
+          <FieldsetRoot disabled={loading}>
+            <Field
+              invalid={!!formik.errors.avatar}
+              errorText={`${formik.errors.avatar}`}
+            >
+              <HStack gap={4}>
+                <ImgViewer
+                  src={imgUrl(initialData?.avatar?.[0]?.filePath)}
+                  key={imgUrl(initialData?.avatar?.[0]?.filePath)}
+                >
+                  <Img
+                    src={imgUrl(initialData?.avatar?.[0]?.filePath)}
+                    key={imgUrl(initialData?.avatar?.[0]?.filePath)}
+                    fallbackSrc={`${SVGS_PATH}/no-avatar.svg`}
+                    aspectRatio={1}
+                    w={"100px"}
+                    rounded={"full"}
+                  />
+                </ImgViewer>
 
-            return (
-              <Btn
-                key={i}
-                clicky={false}
-                flex={"1 1 180px"}
-                px={[3, null, 3]}
-                rounded={themeConfig.radii.component}
-                variant={"ghost"}
-                justifyContent={"start"}
-                color={isActive ? "" : NAVS_COLOR}
-                onClick={() => {
-                  setLang(item.key as Type__LanguageOptions);
+                <CContainer gap={2}>
+                  <AvatarInputDisclosureTrigger
+                    formik={formik}
+                    user={initialData}
+                  >
+                    <Btn variant={"outline"} size={"xs"}>
+                      {l.upload_new_avatar}
+                    </Btn>
+                  </AvatarInputDisclosureTrigger>
+
+                  <CContainer color={"fg.subtle"}>
+                    <P>{l.msg_new_avatar_helper}</P>
+                    <P>{`PNG, JPG ${l.is_allowed}`}</P>
+                  </CContainer>
+                </CContainer>
+              </HStack>
+            </Field>
+
+            <Field
+              label={l.name}
+              invalid={!!formik.errors.name}
+              errorText={`${formik.errors.name}`}
+            >
+              <StringInput
+                inputValue={formik.values.name}
+                onChange={(inputValue) => {
+                  formik.setFieldValue("name", inputValue);
                 }}
-                pos={"relative"}
-              >
-                <Text fontWeight={"medium"} truncate>
-                  {item.label}{" "}
-                  <chakra.span color={"fg.subtle"} mx={2} fontWeight={"normal"}>
-                    {item.code}
-                  </chakra.span>
-                </Text>
+                placeholder="Jolitos Kurniawan"
+              />
+            </Field>
 
-                {isActive && <DotIndicator />}
-              </Btn>
-            );
-          })}
-        </HStack>
+            <Field
+              label={"Email"}
+              invalid={!!formik.errors.email}
+              errorText={`${formik.errors.email}`}
+            >
+              <StringInput
+                inputValue={formik.values.email}
+                onChange={(inputValue) => {
+                  formik.setFieldValue("email", inputValue);
+                }}
+                placeholder="example@email.com"
+              />
+            </Field>
+          </FieldsetRoot>
+
+          <HStack justify={"space-between"} mt={6}>
+            <ResetPasswordDisclosureTrigger>
+              <Btn variant={"outline"}>Reset password</Btn>
+            </ResetPasswordDisclosureTrigger>
+
+            <Btn
+              type="submit"
+              form={"personal_info_form"}
+              colorPalette={themeConfig.colorPalette}
+            >
+              {l.save}
+            </Btn>
+          </HStack>
+        </form>
       </CContainer>
     </ItemContainer>
   );
 };
-const Timezone = () => {
+
+const AuthLog = () => {
   // Contexts
   const { l } = useLang();
-  const { timeZone, setTimeZone } = useTimezone();
 
   // Refs
   const containerRef = useRef<HTMLDivElement>(null);
@@ -114,31 +311,88 @@ const Timezone = () => {
 
   // States
   const isSmContainer = dimensions?.width < 600;
-  const localTz = getLocalTimezone();
-  const timezones = TIME_ZONES;
   const [search, setSearch] = useState("");
-  const resolvedTimezones = useMemo(() => {
-    if (!search) return timezones;
-    const searchTerm = search.toLowerCase().normalize("NFD");
-    return timezones.filter(({ key, formattedOffset, localAbbr }) =>
-      `${key} ${formattedOffset} ${localAbbr}`
-        .toLowerCase()
-        .includes(searchTerm)
-    );
-  }, [search, timezones]);
+  const {
+    error,
+    initialLoading,
+    data,
+    onRetry,
+    limit,
+    setLimit,
+    pagination,
+    page,
+    setPage,
+  } = useDataState<Interface__AuthLog[]>({
+    // TODO add url and set initial data to undefined
+    initialData: dummyAuthLogs,
+    url: ``,
+    dependencies: [search],
+  });
+  const render = {
+    loading: <Skeleton flex={1} />,
+    error: <FeedbackRetry onRetry={onRetry} />,
+    empty: <FeedbackNoData />,
+    notFound: <FeedbackNotFound />,
+    loaded: (
+      <>
+        {data?.map((log, idx) => {
+          const isSignin = log?.action === "Sign in";
+
+          return (
+            <HStack
+              key={`${log.id}-${idx}`}
+              gap={4}
+              px={4}
+              py={2}
+              justify={"space-between"}
+              borderTop={idx === 0 ? "" : "1px solid"}
+              borderColor={"border.subtle"}
+            >
+              <Circle p={1} bg={isSignin ? "bg.success" : "bg.error"}>
+                <Icon
+                  boxSize={BASE_ICON_BOX_SIZE}
+                  color={isSignin ? "fg.success" : "fg.error"}
+                >
+                  {isSignin ? (
+                    <LucideIcon icon={ArrowDown} />
+                  ) : (
+                    <LucideIcon icon={ArrowUp} />
+                  )}
+                </Icon>
+              </Circle>
+              <CContainer>
+                <P>
+                  {formatDate(log?.createdAt, {
+                    variant: "dayShortMonthYear",
+                    withTime: true,
+                  })}
+                </P>
+
+                <P color={"fg.subtle"}>{log?.ip}</P>
+              </CContainer>
+
+              <ClampText color={"fg.subtle"} textAlign={"right"} lineClamp={2}>
+                {log?.userAgent}
+              </ClampText>
+            </HStack>
+          );
+        })}
+      </>
+    ),
+  };
 
   return (
     <ItemContainer ref={containerRef} borderless roundedless>
       <ItemHeaderContainer withUtils>
         <HStack>
           <Icon boxSize={BASE_ICON_BOX_SIZE}>
-            <LucideIcon icon={GlobeIcon} />
+            <LucideIcon icon={LogInIcon} />
           </Icon>
 
-          <ItemHeaderTitle>{capitalizeWords(l.timezone)}</ItemHeaderTitle>
+          <ItemHeaderTitle>{l.my_auth_logs}</ItemHeaderTitle>
         </HStack>
 
-        <HStack mr={2}>
+        <HStack>
           {!isSmContainer && (
             <SearchInput
               onChange={(inputValue) => {
@@ -148,27 +402,9 @@ const Timezone = () => {
               inputProps={{
                 size: "xs",
               }}
-              queryKey={"q_timezone_settings"}
+              queryKey={"q_my_log_auth"}
             />
           )}
-
-          <Btn
-            size={"xs"}
-            variant={"outline"}
-            pl={2}
-            onClick={() => {
-              setTimeZone(localTz);
-              toaster.info({
-                title: l.info_timezone_auto.title,
-                description: `${localTz.key} ${localTz.formattedOffset} (${localTz.localAbbr})`,
-              });
-            }}
-          >
-            <Icon>
-              <IconSparkles />
-            </Icon>
-            Auto
-          </Btn>
         </HStack>
       </ItemHeaderContainer>
 
@@ -180,7 +416,7 @@ const Timezone = () => {
                 setSearch(inputValue || "");
               }}
               inputValue={search}
-              queryKey={"q_timezone_settings"}
+              queryKey={"q_my_log_auth"}
             />
           </CContainer>
         )}
@@ -191,250 +427,251 @@ const Timezone = () => {
           p={2}
           pr={`calc(8px - ${FIREFOX_SCROLL_Y_CLASS_PR_PREFIX})`}
         >
-          {isEmptyArray(resolvedTimezones) && <FeedbackNotFound />}
-
-          {!isEmptyArray(resolvedTimezones) && (
-            <SimpleGrid columns={[1, null, 2]} gap={2}>
-              {resolvedTimezones.map((tz, idx) => {
-                const isActive = timeZone.key === tz.key;
-
-                return (
-                  <Btn
-                    key={`${tz.key}-${idx}`}
-                    clicky={false}
-                    variant={"ghost"}
-                    justifyContent={"start"}
-                    px={2}
-                    color={isActive ? "" : NAVS_COLOR}
-                    onClick={() => {
-                      setTimeZone(tz);
-                    }}
-                    pos={"relative"}
-                  >
-                    <P textAlign={"left"} lineClamp={1}>
-                      {tz.key}
-                    </P>
-
-                    <P
-                      textAlign={"left"}
-                      color={"fg.subtle"}
-                    >{`${tz.formattedOffset} (${tz.localAbbr})`}</P>
-
-                    {isActive && <DotIndicator />}
-                  </Btn>
-                );
-              })}
-            </SimpleGrid>
+          {initialLoading && render.loading}
+          {!initialLoading && (
+            <>
+              {error && render.error}
+              {!error && (
+                <>
+                  {data && render.loaded}
+                  {(!data || isEmptyArray(data)) && render.empty}
+                </>
+              )}
+            </>
           )}
         </CContainer>
       </CContainer>
+
+      <HStack
+        justify={"space-between"}
+        wrap={"wrap"}
+        p={2}
+        borderTop={"1px solid"}
+        borderColor={"border.muted"}
+      >
+        <Limitation limit={limit} setLimit={setLimit} />
+
+        <Pagination
+          page={page}
+          setPage={setPage}
+          totalPage={pagination?.meta?.totalPage}
+        />
+      </HStack>
     </ItemContainer>
   );
 };
-const DateFormat = () => {
+
+const ActivityLog = () => {
   // Contexts
-  const { themeConfig } = useThemeConfig();
   const { l } = useLang();
-  const { dateFormat, setDateFormat } = useDateFormat();
 
-  return (
-    <ItemContainer borderless roundedless>
-      <ItemHeaderContainer>
-        <HStack>
-          <Icon boxSize={BASE_ICON_BOX_SIZE}>
-            <LucideIcon icon={CalendarIcon} />
-          </Icon>
-          <ItemHeaderTitle>{l.date_format}</ItemHeaderTitle>
-        </HStack>
-      </ItemHeaderContainer>
+  // Refs
+  const containerRef = useRef<HTMLDivElement>(null);
 
-      <CContainer gap={4} py={2}>
-        <SimpleGrid px={2} columns={[1, 2, 3]} gap={1}>
-          {DATE_FORMATS.map((item) => {
-            const isActive = item.key === dateFormat;
+  // Hooks
+  const dimensions = useContainerDimension(containerRef);
 
-            return (
-              <CContainer
-                key={item.key}
-                px={[3, null, 3]}
-                py={3}
-                rounded={themeConfig.radii.component}
-                color={isActive ? "" : NAVS_COLOR}
-                onClick={() => {
-                  setDateFormat(item.key as Type__DateFormat);
-                }}
-                cursor={"pointer"}
-                _hover={{ bg: "gray.subtle" }}
-                _active={{ bg: "gray.subtle" }}
-                transition={"200ms"}
-              >
-                <HStack>
-                  <P fontWeight={"medium"} truncate>
-                    {item.label}
-                  </P>
+  // States
+  const isSmContainer = dimensions?.width < 600;
+  const [search, setSearch] = useState("");
+  const activityFormatter: Record<
+    string,
+    (meta?: Record<string, any>) => string
+  > = {
+    // TODO create action sentence glosary
+    [Enum__ActivityAction.CREATE_WORKSPACE]: (meta) =>
+      `Created workspace "${meta?.workspaceName ?? "Unknown"}"`,
 
-                  {isActive && <DotIndicator />}
-                </HStack>
+    [Enum__ActivityAction.UPDATE_WORKSPACE]: (meta) =>
+      `Updated workspace "${meta?.workspaceName ?? "Unknown"}"`,
 
-                <P color={"fg.muted"} mb={2}>
-                  {item.description}
-                </P>
+    [Enum__ActivityAction.DELETE_WORKSPACE]: (meta) =>
+      `Deleted workspace "${meta?.workspaceName ?? "Unknown"}"`,
 
-                {/* Example */}
+    [Enum__ActivityAction.CREATE_LAYER]: (meta) =>
+      `Created layer "${meta?.layerName ?? "Unknown"}"`,
+
+    [Enum__ActivityAction.UPDATE_LAYER]: (meta) =>
+      `Updated layer "${meta?.layerName ?? "Unknown"}"`,
+
+    [Enum__ActivityAction.DELETE_LAYER]: (meta) =>
+      `Deleted layer "${meta?.layerName ?? "Unknown"}`,
+  };
+  const formatActivityLog = (log: Interface__ActivityLog): string => {
+    return activityFormatter[log.action as Enum__ActivityAction](log.metadata);
+  };
+  const {
+    error,
+    initialLoading,
+    data,
+    onRetry,
+    limit,
+    setLimit,
+    pagination,
+    page,
+    setPage,
+  } = useDataState<Interface__ActivityLog[]>({
+    // TODO add url and set initial data to undefined
+    initialData: dummyActivityLogs,
+    url: ``,
+    dependencies: [search],
+  });
+  const render = {
+    loading: <Skeleton flex={1} />,
+    error: <FeedbackRetry onRetry={onRetry} />,
+    empty: <FeedbackNoData />,
+    notFound: <FeedbackNotFound />,
+    loaded: (
+      <>
+        {data?.map((log, idx) => {
+          return (
+            <HStack
+              key={`${log.id}-${idx}`}
+              justify={"space-between"}
+              borderTop={idx === 0 ? "" : "1px solid"}
+              borderColor={"border.subtle"}
+              px={4}
+              py={2}
+            >
+              <CContainer>
+                <P>{formatActivityLog(log)}</P>
+
                 <P color={"fg.subtle"}>
-                  {formatDate(new Date().toISOString(), {
-                    variant: "weekdayDayShortMonthYear",
-                    dateFormat: item.key as Type__DateFormat,
+                  {formatDate(log?.createdAt, {
+                    variant: "dayShortMonthYear",
+                    withTime: true,
                   })}
                 </P>
               </CContainer>
-            );
-          })}
-        </SimpleGrid>
-      </CContainer>
-    </ItemContainer>
-  );
-};
-const TimeFormat = () => {
-  // Contexts
-  const { themeConfig } = useThemeConfig();
-  const { l } = useLang();
-  const { timeFormat, setTimeFormat } = useTimeFormat();
+
+              <P color={"fg.subtle"} textAlign={"right"}>
+                {/* {log?.userAgent} */}
+              </P>
+            </HStack>
+          );
+        })}
+      </>
+    ),
+  };
 
   return (
     <ItemContainer borderless roundedless>
-      <ItemHeaderContainer>
+      <ItemHeaderContainer withUtils>
         <HStack>
           <Icon boxSize={BASE_ICON_BOX_SIZE}>
-            <LucideIcon icon={RulerDimensionLineIcon} />
+            <LucideIcon icon={ActivityIcon} />
           </Icon>
-
-          <ItemHeaderTitle>{l.time_format}</ItemHeaderTitle>
+          <ItemHeaderTitle>{l.my_activity_logs}</ItemHeaderTitle>
         </HStack>
-      </ItemHeaderContainer>
 
-      <CContainer gap={4} py={2}>
-        <SimpleGrid px={2} columns={[1, 2]} gap={1}>
-          {TIME_FORMATS.map((item) => {
-            const isActive = item.key === timeFormat;
-
-            return (
-              <CContainer
-                key={item.key}
-                px={[3, null, 3]}
-                py={3}
-                rounded={themeConfig.radii.component}
-                color={isActive ? "" : NAVS_COLOR}
-                onClick={() => {
-                  setTimeFormat(item.key);
-                }}
-                cursor={"pointer"}
-                _hover={{ bg: "gray.subtle" }}
-                _active={{ bg: "gray.subtle" }}
-                transition={"200ms"}
-              >
-                <HStack>
-                  <P fontWeight={"medium"} truncate>
-                    {item.label}
-                  </P>
-
-                  {isActive && <DotIndicator />}
-                </HStack>
-
-                <P>
-                  {formatTime(makeTime(new Date().toISOString()), {
-                    timeFormat: item.key as Type__TimeFormat,
-                  })}
-                </P>
-              </CContainer>
-            );
-          })}
-        </SimpleGrid>
-      </CContainer>
-    </ItemContainer>
-  );
-};
-const UOMFormat = () => {
-  // Contexts
-  const { themeConfig } = useThemeConfig();
-  const { l } = useLang();
-  const { UOM, setUOM } = useUOM();
-
-  return (
-    <ItemContainer borderless roundedless>
-      <ItemHeaderContainer>
         <HStack>
-          <Icon boxSize={5}>
-            <IconRulerMeasure stroke={1.5} />
-          </Icon>
-          <ItemHeaderTitle>{l.UOM_format}</ItemHeaderTitle>
+          {!isSmContainer && (
+            <SearchInput
+              onChange={(inputValue) => {
+                setSearch(inputValue || "");
+              }}
+              inputValue={search}
+              inputProps={{
+                size: "xs",
+              }}
+              queryKey={"q_my_log_auth"}
+            />
+          )}
         </HStack>
       </ItemHeaderContainer>
 
-      <CContainer gap={4} py={2}>
-        <SimpleGrid px={2} columns={[1, 2, 3]} gap={1}>
-          {UOM_FORMATS.map((item) => {
-            const isActive = item.key === UOM;
+      <CContainer>
+        {isSmContainer && (
+          <CContainer p={3} pb={0}>
+            <SearchInput
+              onChange={(inputValue) => {
+                setSearch(inputValue || "");
+              }}
+              inputValue={search}
+              queryKey={"q_my_log_auth"}
+            />
+          </CContainer>
+        )}
 
-            return (
-              <CContainer
-                key={item.key}
-                px={[3, null, 3]}
-                py={3}
-                rounded={themeConfig.radii.component}
-                color={isActive ? "" : NAVS_COLOR}
-                onClick={() => {
-                  setUOM(item.key);
-                }}
-                cursor={"pointer"}
-                _hover={{ bg: "gray.subtle" }}
-                _active={{ bg: "gray.subtle" }}
-                transition={"200ms"}
-              >
-                <HStack>
-                  <P fontWeight={"medium"} truncate>
-                    {item.label}
-                  </P>
-
-                  {isActive && <DotIndicator />}
-                </HStack>
-
-                <P color={"fg.muted"} mb={2}>
-                  {pluckString(l, item.descriptionKey)}
-                </P>
-
-                {/* Example */}
-                <HStack wrap={"wrap"} mt={"auto"}>
-                  <P color={"fg.subtle"}>{item.units.mass}</P>
-                  <P color={"fg.subtle"}>{item.units.length}</P>
-                  <P color={"fg.subtle"}>{item.units.height}</P>
-                  <P color={"fg.subtle"}>{item.units.volume}</P>
-                  <P color={"fg.subtle"}>{item.units.area}</P>
-                  <P color={"fg.subtle"}>{item.units.speed}</P>
-                </HStack>
-              </CContainer>
-            );
-          })}
-        </SimpleGrid>
+        <CContainer
+          className={"scrollY"}
+          h={"310px"}
+          p={2}
+          pr={`calc(8px - ${FIREFOX_SCROLL_Y_CLASS_PR_PREFIX})`}
+        >
+          {initialLoading && render.loading}
+          {!initialLoading && (
+            <>
+              {error && render.error}
+              {!error && (
+                <>
+                  {data && render.loaded}
+                  {(!data || isEmptyArray(data)) && render.empty}
+                </>
+              )}
+            </>
+          )}
+        </CContainer>
       </CContainer>
+
+      <HStack
+        justify={"space-between"}
+        wrap={"wrap"}
+        p={2}
+        borderTop={"1px solid"}
+        borderColor={"border.muted"}
+      >
+        <Limitation limit={limit} setLimit={setLimit} />
+
+        <Pagination
+          page={page}
+          setPage={setPage}
+          totalPage={pagination?.meta?.totalPage}
+        />
+      </HStack>
     </ItemContainer>
   );
 };
 
 export default function Page() {
+  // States
+  const { error, initialLoading, data, onRetry } =
+    useDataState<Interface__User>({
+      initialData: dummyUser,
+      url: ``,
+      dataResource: false,
+    });
+  const render = {
+    loading: <Spinner m={"auto"} />,
+    error: <FeedbackRetry onRetry={onRetry} />,
+    empty: <FeedbackNoData />,
+    notFound: <FeedbackNotFound />,
+    loaded: (
+      <CContainer flex={1} gap={3} bg={"bgContent"}>
+        <PersonalInformation initialData={data} />
+
+        <AuthLog />
+
+        <ActivityLog />
+      </CContainer>
+    ),
+  };
+
   return (
-    <CContainer flex={1} gap={3} bg={"bgContent"}>
-      <Language />
-
-      <Timezone />
-
-      <DateFormat />
-
-      <TimeFormat />
-
-      <UOMFormat />
-
-      <LocalSettingsHelperText />
-    </CContainer>
+    <>
+      {/* {render.loading} */}
+      {initialLoading && render.loading}
+      {!initialLoading && (
+        <>
+          {error && render.error}
+          {!error && (
+            <>
+              {data && render.loaded}
+              {!data && render.empty}
+            </>
+          )}
+        </>
+      )}
+    </>
   );
 }
