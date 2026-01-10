@@ -2,7 +2,7 @@ import { useEffect, useState, useRef } from "react";
 
 export function useContainerDimension(
   ref: React.RefObject<HTMLDivElement | null> | null,
-  debounceDelay = 0
+  debounceDelay = 200
 ) {
   const [dimension, setDimension] = useState({ width: 0, height: 0 });
   const timeoutRef = useRef<NodeJS.Timeout | undefined>(undefined);
