@@ -11,7 +11,9 @@ import { DotIndicator } from "@/components/widget/Indicator";
 import { ItemContainer } from "@/components/widget/ItemContainer";
 import { ItemHeaderContainer } from "@/components/widget/ItemHeaderContainer";
 import ItemHeaderTitle from "@/components/widget/ItemHeaderTitle";
+import { Limitation } from "@/components/widget/Limitation";
 import { LocalSettingsHelperText } from "@/components/widget/LocalSettingsHelperText";
+import { Pagination } from "@/components/widget/Pagination";
 import { DATE_FORMATS } from "@/constants/dateFormats";
 import { LANGUAGES } from "@/constants/languages";
 import {
@@ -45,7 +47,7 @@ import {
   LanguagesIcon,
   RulerDimensionLineIcon,
 } from "lucide-react";
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 const NAVS_COLOR = "fg.muted";
 
@@ -102,6 +104,8 @@ const Language = () => {
   );
 };
 const Timezone = () => {
+  const LIMIT_OPTIONS = [14, 28, 56, 100];
+
   // Contexts
   const { l } = useLang();
   const { timeZone, setTimeZone } = useTimezone();
@@ -116,6 +120,8 @@ const Timezone = () => {
   const isSmContainer = dimensions?.width < 600;
   const localTz = getLocalTimezone();
   const timezones = TIME_ZONES;
+  const [limit, setLimit] = useState<number>([14, 28, 56, 100][0]);
+  const [page, setPage] = useState<number>(1);
   const [search, setSearch] = useState("");
   const resolvedTimezones = useMemo(() => {
     if (!search) return timezones;
@@ -126,6 +132,10 @@ const Timezone = () => {
         .includes(searchTerm)
     );
   }, [search, timezones]);
+
+  useEffect(() => {
+    setPage(1);
+  }, [search]);
 
   return (
     <ItemContainer ref={containerRef} borderless roundedless>
@@ -187,7 +197,7 @@ const Timezone = () => {
 
         <CContainer
           className={"scrollY"}
-          h={"310px"}
+          minH={"316px"}
           p={2}
           pr={`calc(8px - ${FIREFOX_SCROLL_Y_CLASS_PR_PREFIX})`}
         >
@@ -195,39 +205,69 @@ const Timezone = () => {
 
           {!isEmptyArray(resolvedTimezones) && (
             <SimpleGrid columns={[1, null, 2]} gap={2}>
-              {resolvedTimezones.map((tz, idx) => {
-                const isActive = timeZone.key === tz.key;
+              {resolvedTimezones
+                .slice((page - 1) * limit, page * limit)
+                .map((tz, idx) => {
+                  const isActive = timeZone.key === tz.key;
 
-                return (
-                  <Btn
-                    key={`${tz.key}-${idx}`}
-                    clicky={false}
-                    variant={"ghost"}
-                    justifyContent={"start"}
-                    px={2}
-                    color={isActive ? "" : NAVS_COLOR}
-                    onClick={() => {
-                      setTimeZone(tz);
-                    }}
-                    pos={"relative"}
-                  >
-                    <P textAlign={"left"} lineClamp={1}>
-                      {tz.key}
-                    </P>
+                  return (
+                    <Btn
+                      key={`${tz.key}-${idx}`}
+                      clicky={false}
+                      variant={"ghost"}
+                      justifyContent={"start"}
+                      px={2}
+                      color={isActive ? "" : NAVS_COLOR}
+                      onClick={() => {
+                        setTimeZone(tz);
+                      }}
+                      pos={"relative"}
+                    >
+                      <P textAlign={"left"} lineClamp={1}>
+                        {tz.key}
+                      </P>
 
-                    <P
-                      textAlign={"left"}
-                      color={"fg.subtle"}
-                    >{`${tz.formattedOffset} (${tz.localAbbr})`}</P>
+                      <P
+                        textAlign={"left"}
+                        color={"fg.subtle"}
+                      >{`${tz.formattedOffset} (${tz.localAbbr})`}</P>
 
-                    {isActive && <DotIndicator />}
-                  </Btn>
-                );
-              })}
+                      {isActive && <DotIndicator />}
+                    </Btn>
+                  );
+                })}
             </SimpleGrid>
           )}
         </CContainer>
       </CContainer>
+
+      <HStack
+        p={2}
+        borderTop={"1px solid"}
+        borderColor={"border.muted"}
+        justify={"space-between"}
+        wrap={"wrap"}
+      >
+        <CContainer w={"fit"} mb={[1, null, 0]}>
+          <Limitation
+            limit={limit}
+            setLimit={setLimit}
+            limitOptions={LIMIT_OPTIONS}
+          />
+        </CContainer>
+
+        <CContainer w={"fit"}>
+          <Pagination
+            page={page}
+            setPage={setPage}
+            totalPage={
+              Math.floor(resolvedTimezones.length / limit) === 0
+                ? undefined
+                : Math.floor(resolvedTimezones.length / limit)
+            }
+          />
+        </CContainer>
+      </HStack>
     </ItemContainer>
   );
 };

@@ -128,6 +128,7 @@ export interface Props__SortIcon extends IconProps {
 export interface Props_LimitationTableData {
   limit: number;
   setLimit: Dispatch<number>;
+  limitOptions?: number[];
 }
 export interface Props_PaginationTableData {
   page: number;

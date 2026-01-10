@@ -14,13 +14,13 @@ import { IconCaretDownFilled } from "@tabler/icons-react";
 
 export const Limitation = (props: Props_LimitationTableData) => {
   // Props
-  const { limit, setLimit } = props;
+  const { limit, setLimit, limitOptions: limitOptionsProps } = props;
 
   // Contexts
   const { l } = useLang();
 
   // States
-  const limitOptions = [15, 30, 50, 100];
+  const limitOptions = limitOptionsProps || [15, 30, 50, 100];
 
   return (
     <MenuRoot>
