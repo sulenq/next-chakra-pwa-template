@@ -120,7 +120,7 @@ const Timezone = () => {
   const isSmContainer = dimensions?.width < 600;
   const localTz = getLocalTimezone();
   const timezones = TIME_ZONES;
-  const [limit, setLimit] = useState<number>([14, 28, 56, 100][0]);
+  const [limit, setLimit] = useState<number>([14, 28, 56][0]);
   const [page, setPage] = useState<number>(1);
   const [search, setSearch] = useState("");
   const resolvedTimezones = useMemo(() => {
