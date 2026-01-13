@@ -187,7 +187,7 @@ const Theme = () => {
     0: 1,
     350: 2,
     580: 5,
-    1280: 10,
+    750: 10,
   };
 
   // Contexts
@@ -328,7 +328,7 @@ const Rounded = () => {
   ];
 
   // Component
-  const RoundedExampe = (props: any) => {
+  const RoundedExampel = (props: any) => {
     // Props
     const { preset, isActive } = props;
 
@@ -419,7 +419,7 @@ const Rounded = () => {
 
             return (
               <CContainer key={item.label}>
-                <RoundedExampe preset={item} isActive={isActive} />
+                <RoundedExampel preset={item} isActive={isActive} />
               </CContainer>
             );
           })}
