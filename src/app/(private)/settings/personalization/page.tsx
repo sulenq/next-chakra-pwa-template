@@ -182,7 +182,7 @@ const DarkMode = () => {
     </ItemContainer>
   );
 };
-const Theme = () => {
+const AccentColor = () => {
   const GRID_COLS_BREAKPOINTS = {
     0: 1,
     350: 2,
@@ -210,7 +210,7 @@ const Theme = () => {
           <Icon boxSize={BASE_ICON_BOX_SIZE}>
             <LucideIcon icon={SwatchBookIcon} />
           </Icon>
-          <ItemHeaderTitle>{l.theme}</ItemHeaderTitle>
+          <ItemHeaderTitle>{l.accent_color}</ItemHeaderTitle>
         </HStack>
       </ItemHeaderContainer>
 
@@ -508,7 +508,7 @@ export default function Page() {
     <CContainer flex={1} gap={3} bg={"bgContent"}>
       <DarkMode />
 
-      <Theme />
+      <AccentColor />
 
       <Rounded />
 

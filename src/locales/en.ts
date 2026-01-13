@@ -1,5 +1,6 @@
 const translations = {
   "UOM_format": "Unit format",
+  "accent_color": "Accent color",
   "access": "Access",
   "account_status": "Account status",
   "activate": "Activate",

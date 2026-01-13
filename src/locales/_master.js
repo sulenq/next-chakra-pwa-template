@@ -463,6 +463,10 @@ export const theme = {
   id: "Tema",
   en: "Theme",
 };
+export const accent_color = {
+  id: "Warna aksen",
+  en: "Accent color",
+};
 export const dark_mode = {
   id: "Mode gelap",
   en: "Dark mode",

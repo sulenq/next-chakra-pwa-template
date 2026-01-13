@@ -1,5 +1,6 @@
 const translations = {
   "UOM_format": "Format satuan",
+  "accent_color": "Warna aksen",
   "access": "Akses",
   "account_status": "Status akun",
   "activate": "Aktifkan",

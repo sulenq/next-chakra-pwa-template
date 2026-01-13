@@ -392,7 +392,7 @@ const AuthLog = () => {
           <ItemHeaderTitle>{l.my_auth_logs}</ItemHeaderTitle>
         </HStack>
 
-        <HStack>
+        <HStack mr={2}>
           {!isSmContainer && (
             <SearchInput
               onChange={(inputValue) => {
@@ -555,16 +555,17 @@ const ActivityLog = () => {
   };
 
   return (
-    <ItemContainer borderless roundedless>
+    <ItemContainer ref={containerRef} borderless roundedless>
       <ItemHeaderContainer withUtils>
         <HStack>
           <Icon boxSize={BASE_ICON_BOX_SIZE}>
             <LucideIcon icon={ActivityIcon} />
           </Icon>
+
           <ItemHeaderTitle>{l.my_activity_logs}</ItemHeaderTitle>
         </HStack>
 
-        <HStack>
+        <HStack mr={2}>
           {!isSmContainer && (
             <SearchInput
               onChange={(inputValue) => {
