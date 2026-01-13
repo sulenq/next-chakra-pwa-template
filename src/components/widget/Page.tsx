@@ -152,7 +152,7 @@ export const PageTitle = (props: StackProps) => {
 
   return (
     <HStack flexShrink={0} px={4} my={3} minH={"36px"} {...restProps}>
-      <ClampText fontSize={"xl"} fontWeight={"semibold"}>
+      <ClampText w={"fit"} fontSize={"xl"} fontWeight={"semibold"}>
         {title}
       </ClampText>
 
