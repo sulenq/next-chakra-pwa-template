@@ -5,6 +5,7 @@ import { MenuItem } from "@/components/ui/menu";
 import { P } from "@/components/ui/p";
 import SearchInput from "@/components/ui/search-input";
 import { Tooltip } from "@/components/ui/tooltip";
+import { AppIcon } from "@/components/widget/AppIcon";
 import { ConfirmationDisclosureTrigger } from "@/components/widget/ConfirmationDisclosure";
 import { DataDisplayToggle } from "@/components/widget/DataDisplayToggle";
 import { DataGrid } from "@/components/widget/DataGrid";
@@ -29,7 +30,7 @@ import {
   Interface__RowOptionsTableOptionGenerator,
 } from "@/constants/interfaces";
 import { SVGS_PATH } from "@/constants/paths";
-import { BASE_ICON_BOX_SIZE, MENU_ICON_BOX_SIZE } from "@/constants/sizes";
+import { BASE_ICON_BOX_SIZE } from "@/constants/sizes";
 import { useDataDisplay } from "@/context/useDataDisplay";
 import useLang from "@/context/useLang";
 import useRenderTrigger from "@/context/useRenderTrigger";
@@ -75,9 +76,7 @@ const Create = () => {
     <>
       <Tooltip content={l.add}>
         <Btn iconButton size={"sm"} colorPalette={themeConfig.colorPalette}>
-          <Icon boxSize={BASE_ICON_BOX_SIZE}>
-            <LucideIcon icon={PlusIcon} />
-          </Icon>
+          <AppIcon icon={PlusIcon} />
           {/* Add */}
         </Btn>
       </Tooltip>
@@ -184,10 +183,8 @@ const Update = (props: any) => {
     <>
       <RowMenuTooltip content={"Edit"}>
         <MenuItem value="edit" onClick={onOpen}>
+          <AppIcon icon={EditIcon} />
           Edit
-          <Icon boxSize={MENU_ICON_BOX_SIZE} ml={"auto"}>
-            <LucideIcon icon={EditIcon} />
-          </Icon>
         </MenuItem>
       </RowMenuTooltip>
 
@@ -271,10 +268,8 @@ const Restore = (props: any) => {
     >
       <RowMenuTooltip content={l.restore}>
         <MenuItem value="restore" disabled={disabled}>
+          <AppIcon icon={UndoIcon} />
           {l.restore}
-          <Icon boxSize={MENU_ICON_BOX_SIZE} ml={"auto"}>
-            <LucideIcon icon={UndoIcon} />
-          </Icon>
         </MenuItem>
       </RowMenuTooltip>
     </ConfirmationDisclosureTrigger>
@@ -348,10 +343,8 @@ const Delete = (props: any) => {
           }}
           transition={"200ms"}
         >
+          <AppIcon icon={TrashIcon} />
           {l.delete_}
-          <Icon boxSize={MENU_ICON_BOX_SIZE} ml={"auto"}>
-            <LucideIcon icon={TrashIcon} />
-          </Icon>
         </MenuItem>
       </RowMenuTooltip>
     </ConfirmationDisclosureTrigger>

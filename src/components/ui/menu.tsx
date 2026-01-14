@@ -115,7 +115,7 @@ export const MenuItem = forwardRef<HTMLDivElement, MenuItemProps>(
     return (
       <CContainer px={1}>
         <ChakraMenu.Item
-          gap={4}
+          gap={3}
           ref={ref}
           py={"8px !important"}
           cursor={"pointer"}
