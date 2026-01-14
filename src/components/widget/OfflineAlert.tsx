@@ -52,6 +52,7 @@ export const OfflineAlert = () => {
             description={l.alert_offline.description}
             maxW={"300px"}
             m={"auto"}
+            mb={12}
           />
         </DisclosureBody>
 
