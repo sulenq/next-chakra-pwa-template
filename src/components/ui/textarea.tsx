@@ -72,6 +72,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, Props__TextareaInput>(
         value={inputValue}
         autoresize
         variant={variant as any}
+        spellCheck={false}
         {...restProps}
       />
     );

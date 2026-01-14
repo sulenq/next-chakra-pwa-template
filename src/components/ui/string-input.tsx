@@ -131,6 +131,7 @@ export const StringInput = forwardRef<HTMLInputElement, Props__StringInput>(
             pr={clearable ? 10 : ""}
             size={MAIN_INPUT_SIZE}
             variant={variant}
+            spellCheck={false}
             {...restProps}
           />
 
