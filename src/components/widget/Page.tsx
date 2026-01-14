@@ -84,7 +84,7 @@ export const NavBreadcrumb = (props: any) => {
               )}
 
               <P fontSize={FONT_SIZE} lineClamp={1}>
-                {pluckString(l, nav.labelKey)}
+                {nav.label ? nav.label : pluckString(l, nav.labelKey)}
               </P>
             </HStack>
           );
@@ -94,13 +94,16 @@ export const NavBreadcrumb = (props: any) => {
   );
 };
 
-export const TopBar = () => {
+export const TopBar = (props: any) => {
+  // Props
+  const { navs } = props;
+
   // Hooks
   const { sw } = useScreen();
   const pathname = usePathname();
 
   // States
-  const activeNavs = getActiveNavs(pathname);
+  const activeNavs = getActiveNavs(pathname, navs);
   const resolvedActiveNavs =
     sw < 960 ? [activeNavs[activeNavs.length - 1]] : activeNavs;
   const backPath = last(activeNavs)?.backPath;

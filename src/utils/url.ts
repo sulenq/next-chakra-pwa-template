@@ -12,7 +12,8 @@ export function generateWAUrl(phone: string, message: string = ""): void {
 }
 
 export const getActiveNavs = (
-  pathname: string
+  pathname: string,
+  privateNavs?: Interface__NavItem[]
 ): Interface__NavItem["list"][number][] => {
   const findInList = (
     items: Interface__NavItem["list"]
@@ -31,13 +32,13 @@ export const getActiveNavs = (
     return null;
   };
 
-  // check PRIVATE_NAVS
-  for (const navGroup of PRIVATE_NAVS) {
+  const resolvedPrivateNavs = privateNavs ?? PRIVATE_NAVS;
+
+  for (const navGroup of resolvedPrivateNavs) {
     const result = findInList(navGroup.list);
     if (result) return result;
   }
 
-  // check OTHER_PRIVATE_NAVS
   for (const navGroup of OTHER_PRIVATE_NAVS) {
     const result = findInList(navGroup.list);
     if (result) return result;

@@ -57,6 +57,7 @@ export interface Interface__Role {
 export interface Interface__NavListItem {
   icon?: any;
   labelKey: string;
+  label?: string;
   path: string;
   backPath?: string;
   allowedRoles?: string[];
