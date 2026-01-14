@@ -18,7 +18,7 @@ const BrandWatermark = (props: Props) => {
       © {currentYear} powered by{" "}
       <Span fontWeight={"bold"}>
         <Link href={"https://exium.id"} target="_blank">
-          {APP.name}
+          {APP.poweredBy}
         </Link>
       </Span>
     </Text>
