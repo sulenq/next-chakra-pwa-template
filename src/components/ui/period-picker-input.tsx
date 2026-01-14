@@ -68,6 +68,8 @@ export const PeriodPickerInput = (props: Props__PeriodPickerInput) => {
   useBackOnClose(disclosureId(resolvedId), open, onOpen, onClose);
 
   // States
+  const isSubtleVariant = variant === "subtle";
+  const isGhostVariant = variant === "ghost";
   const resolvedInvalid = invalid ?? fc?.invalid;
   const resolvedPlaceholder = placeholder || l.select_period;
   const MONTHS = [
@@ -122,15 +124,16 @@ export const PeriodPickerInput = (props: Props__PeriodPickerInput) => {
       >
         <Btn
           w={"full"}
-          bg={variant === "subtle" ? "d0" : ""}
+          bg={isSubtleVariant ? "d0" : ""}
           gap={4}
           variant={variant}
           justifyContent={"space-between"}
           onClick={onOpen}
+          border={isGhostVariant ? "none" : ""}
           borderColor={
             resolvedInvalid
               ? "border.error"
-              : variant === "subtle"
+              : isSubtleVariant
               ? "transparent"
               : "border.muted"
           }

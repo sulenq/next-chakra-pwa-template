@@ -92,18 +92,18 @@ export const PeriodPicker = (props: any) => {
         flex={1}
         size={"sm"}
         inputValue={period}
+        variant={"ghost"}
         invalid={false}
         onChange={(inputValue) => {
           setPeriod(inputValue);
         }}
-        // withIcon={false}
+        withIcon={false}
         required
       />
 
       <Btn
         iconButton
-        variant={"outline"}
-        bg={"transparent"}
+        variant={"ghost"}
         onClick={() => cycleMonth("decrement")}
         size={"sm"}
       >
@@ -114,7 +114,7 @@ export const PeriodPicker = (props: any) => {
 
       <Btn
         iconButton
-        variant={"outline"}
+        variant={"ghost"}
         onClick={() => cycleMonth("increment")}
         size={"sm"}
       >
@@ -248,7 +248,7 @@ export const DatePicker = (props: Props__DatePicker) => {
                   <P
                     color={
                       isOutsideMonthAndUnselected
-                        ? "fg.subtle"
+                        ? "d4"
                         : isDateToday
                         ? themeConfig.primaryColor
                         : isDateSelected
