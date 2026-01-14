@@ -586,7 +586,7 @@ const DesktopLayout = (props: any) => {
           <HStack justify={"space-between"} h={"40px"}>
             {navsExpanded && (
               <NavLink to="/">
-                <HStack ml={"7px"} gap={3}>
+                <HStack ml={"6px"} gap={3}>
                   <Logo size={15} />
 
                   <P
