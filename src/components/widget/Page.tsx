@@ -13,7 +13,7 @@ import { Interface__NavListItem } from "@/constants/interfaces";
 import useLang from "@/context/useLang";
 import useScreen from "@/hooks/useScreen";
 import { last } from "@/utils/array";
-import { pluckString } from "@/utils/string";
+import { capitalizeWords, pluckString } from "@/utils/string";
 import { getActiveNavs } from "@/utils/url";
 import { HStack, Icon, StackProps } from "@chakra-ui/react";
 import { IconSlash } from "@tabler/icons-react";
@@ -153,7 +153,7 @@ export const PageTitle = (props: StackProps) => {
   return (
     <HStack flexShrink={0} px={4} my={3} minH={"36px"} {...restProps}>
       <ClampText w={"fit"} fontSize={"xl"} fontWeight={"semibold"}>
-        {title}
+        {capitalizeWords(title)}
       </ClampText>
 
       {children}
