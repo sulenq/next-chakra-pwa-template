@@ -73,7 +73,7 @@ import {
 import { IconCircleFilled } from "@tabler/icons-react";
 import {
   ChevronsUpDownIcon,
-  DatabaseIcon,
+  ServerIcon,
   SidebarCloseIcon,
   SidebarOpenIcon,
   UserIcon,
@@ -999,7 +999,7 @@ const DesktopLayout = (props: any) => {
                 >
                   {pathname.includes("/master-data") && <LeftIndicator />}
 
-                  <AppIcon icon={DatabaseIcon} />
+                  <AppIcon icon={ServerIcon} />
 
                   {navsExpanded && (
                     <P lineClamp={1} textAlign={"left"}>

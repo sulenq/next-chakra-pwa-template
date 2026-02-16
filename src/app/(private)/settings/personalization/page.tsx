@@ -23,6 +23,8 @@ import { OPTIONS_RELIGION } from "@/constants/selectOptions";
 import useADM from "@/context/useADM";
 import useLang from "@/context/useLang";
 import { useThemeConfig } from "@/context/useThemeConfig";
+import { formatTime } from "@/utils/formatter";
+import { interpolateString } from "@/utils/string";
 import { Box, Center, Circle, HStack, SimpleGrid } from "@chakra-ui/react";
 import {
   EclipseIcon,
@@ -108,7 +110,12 @@ const ADMSetting = () => {
     <SettingsItemContainer>
       <CContainer gap={1}>
         <P>{l.settings_adaptive_dark_mode.title}</P>
-        <P color={"fg.subtle"}>{l.settings_adaptive_dark_mode.description}</P>
+
+        <P color={"fg.subtle"}>
+          {interpolateString(l.settings_adaptive_dark_mode.description, {
+            timeRange: `${formatTime("18:00")} - ${formatTime("06:00")}`,
+          })}
+        </P>
       </CContainer>
 
       <Switch
@@ -168,6 +175,7 @@ const DarkMode = () => {
         <CContainer
           gap={4}
           p={3}
+          px={4}
           rounded={themeConfig.radii.container}
           border={"1px solid"}
           borderColor={"border.muted"}
@@ -265,46 +273,14 @@ const Rounded = () => {
 
   // States
   const roundedList = [
-    {
-      label: "None",
-      component: "0px",
-      container: "0px",
-    },
-    {
-      label: "XS",
-      component: "2px",
-      container: "4px",
-    },
-    {
-      label: "Sm",
-      component: "4px",
-      container: "6px",
-    },
-    {
-      label: "Md",
-      component: "6px",
-      container: "8px",
-    },
-    {
-      label: "Lg",
-      component: "8px",
-      container: "12px",
-    },
-    {
-      label: "XL",
-      component: "12px",
-      container: "16px",
-    },
-    {
-      label: "2XL",
-      component: "16px",
-      container: "20px",
-    },
-    {
-      label: "3XL",
-      component: "18px",
-      container: "22px",
-    },
+    { label: "None", component: "0px", container: "0px" },
+    { label: "XS", component: "2px", container: "4px" },
+    { label: "Sm", component: "4px", container: "8px" },
+    { label: "Md", component: "6px", container: "12px" },
+    { label: "Lg", component: "8px", container: "16px" },
+    { label: "XL", component: "12px", container: "20px" },
+    { label: "2XL", component: "16px", container: "24px" },
+    { label: "3XL", component: "24px", container: "28px" },
   ];
 
   // Component

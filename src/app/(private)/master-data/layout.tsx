@@ -25,7 +25,6 @@ import { useEffect, useRef, useState } from "react";
 const NAVS =
   OTHER_PRIVATE_NAVS[0].list.find((n) => n.path === "/master-data")?.subMenus ||
   [];
-const NAVS_COLOR = "fg.muted";
 const ROOT_PATH = `/master-data`;
 
 const NavsList = (props: any) => {
@@ -87,7 +86,6 @@ const NavsList = (props: any) => {
                       justifyContent={"start"}
                       variant={"ghost"}
                       px={2}
-                      color={isActive ? "" : NAVS_COLOR}
                       pos={"relative"}
                     >
                       {isActive && <LeftIndicator />}
@@ -175,7 +173,7 @@ export default function Layout(props: Props__Layout) {
           {/* Content */}
           {showContent && (
             <CContainer className={"scrollY"} flex={1}>
-              {pathname !== ROOT_PATH && <PageTitle />}
+              {pathname !== ROOT_PATH && <PageTitle mb={1} />}
 
               <CContainer flex={1}>{children}</CContainer>
             </CContainer>

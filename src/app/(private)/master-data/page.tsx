@@ -5,7 +5,7 @@ import FeedbackState from "@/components/widget/FeedbackState";
 import { LucideIcon } from "@/components/widget/Icon";
 import useLang from "@/context/useLang";
 import { useThemeConfig } from "@/context/useThemeConfig";
-import { DatabaseIcon } from "lucide-react";
+import { ServerIcon } from "lucide-react";
 
 const SettingsRoute = () => {
   // Contexts
@@ -23,7 +23,7 @@ const SettingsRoute = () => {
       rounded={themeConfig.radii.container}
     >
       <FeedbackState
-        icon={<LucideIcon icon={DatabaseIcon} />}
+        icon={<LucideIcon icon={ServerIcon} />}
         title={"Master Data"}
         description={l.msg_master_data_index_route}
       />

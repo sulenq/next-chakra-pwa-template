@@ -398,7 +398,7 @@ const AuthLog = () => {
           </CContainer>
 
           <CContainer
-            p={3}
+            px={3}
             // className={"scrollY"}
             // h={"318px"}
             // pr={`calc(8px - ${FIREFOX_SCROLL_Y_CLASS_PR_PREFIX})`}
@@ -555,7 +555,7 @@ const ActivityLog = () => {
           </CContainer>
 
           <CContainer
-            p={3}
+            px={3}
             // className={"scrollY"}
             // h={"318px"}
             // pr={`calc(8px - ${FIREFOX_SCROLL_Y_CLASS_PR_PREFIX})`}

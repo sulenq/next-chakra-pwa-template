@@ -181,6 +181,7 @@ const Camera = () => {
         <CContainer
           gap={4}
           p={3}
+          px={4}
           rounded={themeConfig.radii.container}
           border={"1px solid"}
           borderColor={"border.muted"}
@@ -371,6 +372,7 @@ const Microphone = () => {
         <CContainer
           gap={4}
           p={3}
+          px={4}
           rounded={themeConfig.radii.container}
           border={"1px solid"}
           borderColor={"border.muted"}
@@ -573,6 +575,7 @@ const Location = () => {
         <CContainer
           gap={4}
           p={3}
+          px={4}
           rounded={themeConfig.radii.container}
           border={"1px solid"}
           borderColor={"border.muted"}
