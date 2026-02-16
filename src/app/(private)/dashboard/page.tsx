@@ -83,7 +83,7 @@ const OverviewItem = (props: StackProps) => {
       p={4}
       pt={3}
       border={"1px solid"}
-      borderColor={"border.subtle"}
+      borderColor={"border.muted"}
       rounded={themeConfig.radii.component}
       bg={"body"}
       {...props}
@@ -287,7 +287,7 @@ const Chart1 = (props: any) => {
   }
 
   return (
-    <ItemContainer borderColor={"border.subtle"} {...restProps}>
+    <ItemContainer borderColor={"border.muted"} {...restProps}>
       <ItemHeaderContainer borderless withUtils>
         <ItemHeaderTitle color={"fg.muted"}>{"Chart Title"}</ItemHeaderTitle>
 

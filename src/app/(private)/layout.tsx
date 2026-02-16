@@ -197,124 +197,119 @@ const MobileLayout = (props: any) => {
           {PRIVATE_NAV_GROUPS.map((group, idx) => {
             return (
               <Fragment key={idx}>
-                {group.navs.map((nav, idx) => {
+                {group.navs.map((nav) => {
                   const isMainNavActive = pathname.includes(nav.path);
 
                   return (
-                    idx > 0 && (
-                      <Fragment key={nav.path}>
-                        {!nav.children && (
-                          <MobileNavLink
-                            key={nav.path}
-                            to={nav.children ? "" : nav.path}
-                            color={isMainNavActive ? "" : "fg.muted"}
-                            flex={1}
+                    <Fragment key={nav.path}>
+                      {!nav.children && (
+                        <MobileNavLink
+                          key={nav.path}
+                          to={nav.children ? "" : nav.path}
+                          color={isMainNavActive ? "" : "fg.muted"}
+                          flex={1}
+                        >
+                          <AppIcon icon={nav.icon} />
+
+                          <P
+                            textAlign={"center"}
+                            lineClamp={1}
+                            fontSize={MOBILE_NAV_LABEL_FONT_SIZE}
                           >
-                            <AppIcon icon={nav.icon} />
+                            {nav.label ?? pluckString(l, nav.labelKey) ?? "-"}
+                          </P>
 
-                            <P
-                              textAlign={"center"}
-                              lineClamp={1}
-                              fontSize={MOBILE_NAV_LABEL_FONT_SIZE}
-                            >
-                              {nav.label ?? pluckString(l, nav.labelKey) ?? "-"}
-                            </P>
+                          {isMainNavActive && <BottomIndicator />}
+                        </MobileNavLink>
+                      )}
 
-                            {isMainNavActive && <BottomIndicator />}
-                          </MobileNavLink>
-                        )}
+                      {nav.children && (
+                        <>
+                          <MenuRoot
+                            positioning={{
+                              placement: "top",
+                              offset: {
+                                mainAxis: MOBILE_POPOVER_MAIN_AXIS,
+                              },
+                            }}
+                          >
+                            <MenuTrigger asChild>
+                              <CContainer
+                                key={nav.path}
+                                minW={"50px"}
+                                align={"center"}
+                                gap={1}
+                                color={isMainNavActive ? "" : "fg.muted"}
+                                pos={"relative"}
+                                cursor={"pointer"}
+                                flex={1}
+                              >
+                                <AppIcon icon={nav.icon} />
 
-                        {nav.children && (
-                          <>
-                            <MenuRoot
-                              positioning={{
-                                placement: "top",
-                                offset: {
-                                  mainAxis: MOBILE_POPOVER_MAIN_AXIS,
-                                },
-                              }}
-                            >
-                              <MenuTrigger asChild>
-                                <CContainer
-                                  key={nav.path}
-                                  minW={"50px"}
-                                  align={"center"}
-                                  gap={1}
-                                  color={isMainNavActive ? "" : "fg.muted"}
-                                  pos={"relative"}
-                                  cursor={"pointer"}
-                                  flex={1}
+                                <P
+                                  fontSize={MOBILE_NAV_LABEL_FONT_SIZE}
+                                  textAlign={"center"}
+                                  lineClamp={1}
                                 >
-                                  <AppIcon icon={nav.icon} />
+                                  {nav.label ??
+                                    pluckString(l, nav.labelKey) ??
+                                    "-"}
+                                </P>
 
-                                  <P
-                                    fontSize={MOBILE_NAV_LABEL_FONT_SIZE}
-                                    textAlign={"center"}
-                                    lineClamp={1}
+                                {isMainNavActive && <BottomIndicator />}
+                              </CContainer>
+                            </MenuTrigger>
+
+                            <MenuContent>
+                              {nav.children.map((subGroup, idx) => {
+                                return (
+                                  <MenuItemGroup
+                                    key={idx}
+                                    title={
+                                      subGroup.groupLabelKey
+                                        ? pluckString(l, subGroup.groupLabelKey)
+                                        : ""
+                                    }
                                   >
-                                    {nav.label ??
-                                      pluckString(l, nav.labelKey) ??
-                                      "-"}
-                                  </P>
+                                    {subGroup.navs.map((subNav) => {
+                                      const isSubNavsActive =
+                                        pathname === subNav.path;
 
-                                  {isMainNavActive && <BottomIndicator />}
-                                </CContainer>
-                              </MenuTrigger>
-
-                              <MenuContent>
-                                {nav.children.map((subGroup, idx) => {
-                                  return (
-                                    <MenuItemGroup
-                                      key={idx}
-                                      title={
-                                        subGroup.groupLabelKey
-                                          ? pluckString(
-                                              l,
-                                              subGroup.groupLabelKey,
-                                            )
-                                          : ""
-                                      }
-                                    >
-                                      {subGroup.navs.map((subNav) => {
-                                        const isSubNavsActive =
-                                          pathname === subNav.path;
-
-                                        return (
-                                          <NavLink
-                                            key={subNav.path}
-                                            w={"full"}
-                                            to={subNav.path}
+                                      return (
+                                        <NavLink
+                                          key={subNav.path}
+                                          w={"full"}
+                                          to={subNav.path}
+                                        >
+                                          <MenuItem
+                                            value={subNav.path}
+                                            h={"44px"}
+                                            px={3}
                                           >
-                                            <MenuItem
-                                              value={subNav.path}
-                                              h={"44px"}
-                                              px={3}
-                                            >
-                                              {isSubNavsActive && (
-                                                <LeftIndicator />
-                                              )}
+                                            {isSubNavsActive && (
+                                              <LeftIndicator />
+                                            )}
 
-                                              <P lineClamp={1}>
-                                                {subNav.label ??
-                                                  pluckString(
-                                                    l,
-                                                    subNav.labelKey,
-                                                  ) ??
-                                                  "-"}
-                                              </P>
-                                            </MenuItem>
-                                          </NavLink>
-                                        );
-                                      })}
-                                    </MenuItemGroup>
-                                  );
-                                })}
-                              </MenuContent>
-                            </MenuRoot>
-                          </>
-                        )}
-                      </Fragment>
-                    )
+                                            <P lineClamp={1}>
+                                              {subNav.label ??
+                                                pluckString(
+                                                  l,
+                                                  subNav.labelKey,
+                                                ) ??
+                                                "-"}
+                                            </P>
+                                          </MenuItem>
+                                        </NavLink>
+                                      );
+                                    })}
+                                  </MenuItemGroup>
+                                );
+                              })}
+                            </MenuContent>
+                          </MenuRoot>
+                        </>
+                      )}
+                    </Fragment>
                   );
                 })}
               </Fragment>
