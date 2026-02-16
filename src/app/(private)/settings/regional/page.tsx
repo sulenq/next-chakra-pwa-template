@@ -183,7 +183,7 @@ const Timezone = () => {
           border={"1px solid"}
           borderColor={"border.muted"}
         >
-          <CContainer p={3} pb={2}>
+          <CContainer p={3}>
             <SearchInput
               onChange={(inputValue) => {
                 setSearch(inputValue || "");
@@ -195,7 +195,6 @@ const Timezone = () => {
 
           <CContainer
             className={"scrollY"}
-            minH={"316px"}
             p={3}
             pr={`calc(8px - ${FIREFOX_SCROLL_Y_CLASS_PR_PREFIX})`}
           >

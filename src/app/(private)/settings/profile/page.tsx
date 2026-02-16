@@ -398,7 +398,7 @@ const AuthLog = () => {
           border={"1px solid"}
           borderColor={"border.muted"}
         >
-          <CContainer p={3} pb={2}>
+          <CContainer p={3}>
             <SearchInput
               onChange={(inputValue) => {
                 setSearch(inputValue || "");
@@ -557,7 +557,7 @@ const ActivityLog = () => {
           border={"1px solid"}
           borderColor={"border.muted"}
         >
-          <CContainer p={3} pb={2}>
+          <CContainer p={3}>
             <SearchInput
               onChange={(inputValue) => {
                 setSearch(inputValue || "");
