@@ -10,7 +10,7 @@ import { ClampText } from "@/components/widget/ClampText";
 import FeedbackNotFound from "@/components/widget/FeedbackNotFound";
 import { LucideIcon } from "@/components/widget/Icon";
 import { LeftIndicator } from "@/components/widget/Indicator";
-import { PageContainer, PageTitle } from "@/components/widget/Page";
+import { PageContainer, PageTitle } from "@/components/widget/PageShell";
 import { APP } from "@/constants/_meta";
 import { OTHER_PRIVATE_NAVS } from "@/constants/navs";
 import { Props__Layout } from "@/constants/props";

@@ -3,7 +3,7 @@
 import { P } from "@/components/ui/p";
 import BrandWatermark from "@/components/widget/BrandWatermark";
 import { Logo } from "@/components/widget/Logo";
-import { PageContainer } from "@/components/widget/Page";
+import { PageContainer } from "@/components/widget/PageShell";
 import { VStack } from "@chakra-ui/react";
 
 export default function Page() {

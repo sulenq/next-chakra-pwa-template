@@ -13,6 +13,7 @@ import {
   Interface__NavItem,
   Interface__NavListItem,
 } from "@/constants/interfaces";
+import useADM from "@/context/useADM";
 import useLang from "@/context/useLang";
 import useScreen from "@/hooks/useScreen";
 import { last } from "@/utils/array";
@@ -104,6 +105,9 @@ export const TopBar = (props: Props__TopBar) => {
   // Props
   const { navs, ...restProps } = props;
 
+  // Contexts
+  const ADM = useADM((s) => s.ADM);
+
   // Hooks
   const { sw } = useScreen();
   const pathname = usePathname();
@@ -138,7 +142,7 @@ export const TopBar = (props: Props__TopBar) => {
           </CalendarDisclosureTrigger>
         </HStack>
 
-        <ColorModeButton rounded={"full"} size={"xs"} />
+        {!ADM && <ColorModeButton rounded={"full"} size={"xs"} />}
       </HStack>
     </HStack>
   );

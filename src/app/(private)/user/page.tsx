@@ -19,7 +19,7 @@ import {
   PageContainer,
   PageContent,
   PageTitle,
-} from "@/components/widget/Page";
+} from "@/components/widget/PageShell";
 import { RowMenuTooltip } from "@/components/widget/RowOptions";
 import { SimpleDisclosure } from "@/components/widget/SimpleDisclosure";
 import { TableSkeleton } from "@/components/widget/TableSkeleton";

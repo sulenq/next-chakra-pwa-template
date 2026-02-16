@@ -2,7 +2,7 @@
 
 import { P } from "@/components/ui/p";
 import BrandWatermark from "@/components/widget/BrandWatermark";
-import { PageContainer } from "@/components/widget/Page";
+import { PageContainer } from "@/components/widget/PageShell";
 import { APP } from "@/constants/_meta";
 import useLang from "@/context/useLang";
 import { interpolateString, pluckString } from "@/utils/string";

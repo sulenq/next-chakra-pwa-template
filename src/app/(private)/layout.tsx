@@ -35,7 +35,7 @@ import { LucideIcon } from "@/components/widget/Icon";
 import { BottomIndicator, LeftIndicator } from "@/components/widget/Indicator";
 import { Logo } from "@/components/widget/Logo";
 import { MiniMyProfile } from "@/components/widget/MiniMyProfile";
-import { NavBreadcrumb, TopBar } from "@/components/widget/Page";
+import { NavBreadcrumb, TopBar } from "@/components/widget/PageShell";
 import { Today } from "@/components/widget/Today";
 import { VerifyingScreen } from "@/components/widget/VerifyingScreen";
 import { APP } from "@/constants/_meta";
