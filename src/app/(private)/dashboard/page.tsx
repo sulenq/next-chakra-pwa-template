@@ -443,7 +443,7 @@ export default function Page() {
   const data = dummyChartData;
 
   return (
-    <PageContainer ref={containerRef} bg={"bgContent"}>
+    <PageContainer ref={containerRef}>
       <PageTitle justify={"space-between"} pr={3}>
         <HStack>
           {!isSmContainer && (
@@ -453,7 +453,7 @@ export default function Page() {
       </PageTitle>
 
       {isValidDimension && (
-        <PageContent bg={"bgContent"}>
+        <PageContent>
           {isSmContainer && (
             <HScroll px={3} flexShrink={0} mb={3}>
               <DataUtils filter={filter} setFilter={setFilter} w={"max"} />

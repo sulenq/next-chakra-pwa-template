@@ -12,7 +12,7 @@ import FeedbackNotFound from "@/components/widget/FeedbackNotFound";
 import { LeftIndicator } from "@/components/widget/Indicator";
 import { PageContainer, PageTitle } from "@/components/widget/PageShell";
 import { APP } from "@/constants/_meta";
-import { OTHER_PRIVATE_NAVS } from "@/constants/navs";
+import { OTHER_PRIVATE_NAV_GROUPS } from "@/constants/navs";
 import { Props__Layout } from "@/constants/props";
 import useLang from "@/context/useLang";
 import { useSettingsPageContainer } from "@/context/useSettingsPageContainer";
@@ -25,8 +25,8 @@ import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
 const NAVS =
-  OTHER_PRIVATE_NAVS[0].list.find((n) => n.path === "/settings")?.subMenus ||
-  [];
+  OTHER_PRIVATE_NAV_GROUPS[0].navs.find((n) => n.path === "/settings")
+    ?.children || [];
 const NAVS_COLOR = "ibody";
 const ROOT_PATH = `/settings`;
 
@@ -44,7 +44,7 @@ const NavsList = (props: any) => {
   const searchTerm = search.toLowerCase();
   const resolvedList = NAVS.reduce<typeof NAVS>(
     (acc, nav) => {
-      const filteredItems = nav.list.filter((item) =>
+      const filteredItems = nav.navs.filter((item) =>
         pluckString(l, item.labelKey).toLowerCase().includes(searchTerm),
       );
 
@@ -79,7 +79,7 @@ const NavsList = (props: any) => {
                 </P>
               )}
 
-              {navItem.list.map((nav) => {
+              {navItem.navs.map((nav) => {
                 const isActive = nav.path === pathname;
 
                 return (

@@ -54,19 +54,19 @@ export interface Interface__Role {
 }
 
 // Navs
-export interface Interface__NavListItem {
+export interface Interface__NavGroup {
+  groupLabelKey?: string;
+  navs: Interface__NavItem[];
+}
+export interface Interface__NavItem {
   icon?: any;
-  labelKey: string;
+  labelKey?: string;
   label?: string;
   path: string;
   backPath?: string;
   allowedRoles?: string[];
   allowedPermissions?: string[];
-  subMenus?: Interface__NavItem[];
-}
-export interface Interface__NavItem {
-  groupLabelKey?: string;
-  list: Interface__NavListItem[];
+  children?: Interface__NavGroup[];
 }
 
 // Data Table
@@ -118,11 +118,11 @@ export interface Interface__TableOption {
 }
 export type Interface__RowOptionsTableOptionGenerator<T = any> = (
   formattedRow: Interface__FormattedTableRow<T>,
-  overloads?: any
+  overloads?: any,
 ) => Interface__TableOption | null | false;
 export type Interface__BatchOptionsTableOptionGenerator<T = string[]> = (
   selectedRowIds: T,
-  overloads?: any
+  overloads?: any,
 ) => Interface__TableOption | null | false;
 
 // HTTP

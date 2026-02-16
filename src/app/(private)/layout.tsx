@@ -39,7 +39,7 @@ import { NavBreadcrumb, TopBar } from "@/components/widget/PageShell";
 import { Today } from "@/components/widget/Today";
 import { VerifyingScreen } from "@/components/widget/VerifyingScreen";
 import { APP } from "@/constants/_meta";
-import { OTHER_PRIVATE_NAVS, PRIVATE_NAVS } from "@/constants/navs";
+import { OTHER_PRIVATE_NAV_GROUPS, PRIVATE_NAV_GROUPS } from "@/constants/navs";
 import { Props__Layout } from "@/constants/props";
 import {
   BASE_ICON_BOX_SIZE,
@@ -194,19 +194,19 @@ const MobileLayout = (props: any) => {
       {/* Navs */}
       <HScroll borderTop={"1px solid"} borderColor={"border.subtle"}>
         <HStack w={"max"} gap={4} px={4} pt={3} pb={5} mx={"auto"}>
-          {PRIVATE_NAVS.map((navItem, idx) => {
+          {PRIVATE_NAV_GROUPS.map((group, idx) => {
             return (
               <Fragment key={idx}>
-                {navItem.list.map((nav, idx) => {
+                {group.navs.map((nav, idx) => {
                   const isMainNavActive = pathname.includes(nav.path);
 
                   return (
                     idx > 0 && (
                       <Fragment key={nav.path}>
-                        {!nav.subMenus && (
+                        {!nav.children && (
                           <MobileNavLink
                             key={nav.path}
-                            to={nav.subMenus ? "" : nav.path}
+                            to={nav.children ? "" : nav.path}
                             color={isMainNavActive ? "" : "fg.muted"}
                             flex={1}
                           >
@@ -217,14 +217,14 @@ const MobileLayout = (props: any) => {
                               lineClamp={1}
                               fontSize={MOBILE_NAV_LABEL_FONT_SIZE}
                             >
-                              {pluckString(l, nav.labelKey)}
+                              {nav.label ?? pluckString(l, nav.labelKey) ?? "-"}
                             </P>
 
                             {isMainNavActive && <BottomIndicator />}
                           </MobileNavLink>
                         )}
 
-                        {nav.subMenus && (
+                        {nav.children && (
                           <>
                             <MenuRoot
                               positioning={{
@@ -252,7 +252,9 @@ const MobileLayout = (props: any) => {
                                     textAlign={"center"}
                                     lineClamp={1}
                                   >
-                                    {pluckString(l, nav.labelKey)}
+                                    {nav.label ??
+                                      pluckString(l, nav.labelKey) ??
+                                      "-"}
                                   </P>
 
                                   {isMainNavActive && <BottomIndicator />}
@@ -260,31 +262,31 @@ const MobileLayout = (props: any) => {
                               </MenuTrigger>
 
                               <MenuContent>
-                                {nav.subMenus.map((menuItem, idx) => {
+                                {nav.children.map((subGroup, idx) => {
                                   return (
                                     <MenuItemGroup
                                       key={idx}
                                       title={
-                                        menuItem.groupLabelKey
+                                        subGroup.groupLabelKey
                                           ? pluckString(
                                               l,
-                                              menuItem.groupLabelKey,
+                                              subGroup.groupLabelKey,
                                             )
                                           : ""
                                       }
                                     >
-                                      {menuItem.list.map((menu) => {
+                                      {subGroup.navs.map((subNav) => {
                                         const isSubNavsActive =
-                                          pathname === menu.path;
+                                          pathname === subNav.path;
 
                                         return (
                                           <NavLink
-                                            key={menu.path}
+                                            key={subNav.path}
                                             w={"full"}
-                                            to={menu.path}
+                                            to={subNav.path}
                                           >
                                             <MenuItem
-                                              value={menu.path}
+                                              value={subNav.path}
                                               h={"44px"}
                                               px={3}
                                             >
@@ -293,7 +295,12 @@ const MobileLayout = (props: any) => {
                                               )}
 
                                               <P lineClamp={1}>
-                                                {pluckString(l, menu.labelKey)}
+                                                {subNav.label ??
+                                                  pluckString(
+                                                    l,
+                                                    subNav.labelKey,
+                                                  ) ??
+                                                  "-"}
                                               </P>
                                             </MenuItem>
                                           </NavLink>
@@ -314,7 +321,9 @@ const MobileLayout = (props: any) => {
             );
           })}
 
-          {OTHER_PRIVATE_NAVS[0]?.list.map((nav) => {
+          {OTHER_PRIVATE_NAV_GROUPS.find(
+            (group) => group.groupLabelKey === "other",
+          )?.navs.map((nav) => {
             return (
               <MobileNavLink
                 key={nav.path}
@@ -329,7 +338,7 @@ const MobileLayout = (props: any) => {
                   lineClamp={1}
                   fontSize={MOBILE_NAV_LABEL_FONT_SIZE}
                 >
-                  {pluckString(l, nav.labelKey)}
+                  {nav.label ?? pluckString(l, nav.labelKey) ?? "-"}
                 </P>
 
                 {pathname === nav.path && <BottomIndicator />}
@@ -399,37 +408,37 @@ const DesktopLayout = (props: any) => {
 
   const qNormalized = q?.toLowerCase().trim();
 
-  const resolvedNavs = PRIVATE_NAVS.map((nav) => {
-    const filteredList = nav.list
-      .map((item) => {
+  const resolvedNavs = PRIVATE_NAV_GROUPS.map((nav) => {
+    const filteredList = nav.navs
+      .map((nav) => {
         const labelMain =
-          item.label?.toLowerCase() ||
-          pluckString(l, item.labelKey)?.toLowerCase() ||
+          nav.label?.toLowerCase() ??
+          pluckString(l, nav.labelKey)?.toLowerCase() ??
           "";
-        const allowedMain = isAllowed(item, roleId);
+        const allowedMain = isAllowed(nav, roleId);
 
-        if (!item.subMenus || item.subMenus.length === 0) {
-          if (!qNormalized) return allowedMain ? item : null;
+        if (!nav.children || nav.children.length === 0) {
+          if (!qNormalized) return allowedMain ? nav : null;
           const isMatchMain = qNormalized && labelMain.includes(qNormalized);
-          return allowedMain && isMatchMain ? item : null;
+          return allowedMain && isMatchMain ? nav : null;
         }
 
-        const subsFilteredByRole = item.subMenus
+        const subsFilteredByRole = nav.children
           .map((sub) => ({
             ...sub,
-            list: (sub.list ?? []).filter((subItem) =>
+            list: (sub.navs ?? []).filter((subItem) =>
               isAllowed(subItem, roleId),
             ),
           }))
-          .filter((s) => (s.list ?? []).length > 0);
+          .filter((s) => (s.navs ?? []).length > 0);
 
         if (!qNormalized) {
           if (allowedMain)
             return subsFilteredByRole.length > 0
-              ? { ...item, subMenus: subsFilteredByRole }
-              : { ...item, subMenus: undefined };
+              ? { ...nav, children: subsFilteredByRole }
+              : { ...nav, children: undefined };
           return subsFilteredByRole.length > 0
-            ? { ...item, subMenus: subsFilteredByRole }
+            ? { ...nav, children: subsFilteredByRole }
             : null;
         }
 
@@ -437,14 +446,14 @@ const DesktopLayout = (props: any) => {
 
         if (isMatchMain && allowedMain) {
           return subsFilteredByRole.length > 0
-            ? { ...item, subMenus: subsFilteredByRole }
-            : { ...item, subMenus: undefined };
+            ? { ...nav, children: subsFilteredByRole }
+            : { ...nav, children: undefined };
         }
 
-        const matchedSubs = item.subMenus
+        const matchedSubs = nav.children
           .map((sub) => ({
             ...sub,
-            list: (sub.list ?? []).filter((subItem) => {
+            list: (sub.navs ?? []).filter((subItem) => {
               if (!isAllowed(subItem, roleId)) return false;
               const subLabel =
                 subItem.label?.toLowerCase() ||
@@ -453,16 +462,16 @@ const DesktopLayout = (props: any) => {
               return qNormalized && subLabel.includes(qNormalized);
             }),
           }))
-          .filter((s) => (s.list ?? []).length > 0);
+          .filter((s) => (s.navs ?? []).length > 0);
 
         return matchedSubs.length > 0
-          ? { ...item, subMenus: matchedSubs }
+          ? { ...nav, children: matchedSubs }
           : null;
       })
-      .filter(Boolean) as typeof nav.list;
+      .filter(Boolean) as typeof nav.navs;
 
     return filteredList.length > 0 ? { ...nav, list: filteredList } : null;
-  }).filter(Boolean) as typeof PRIVATE_NAVS;
+  }).filter(Boolean) as typeof PRIVATE_NAV_GROUPS;
 
   useEffect(() => {
     if (!navsExpanded) {
@@ -589,8 +598,8 @@ const DesktopLayout = (props: any) => {
                       </ClampText>
                     )}
 
-                    {navItem.list.map((nav) => {
-                      const hasSubMenus = nav.subMenus;
+                    {navItem.navs.map((nav) => {
+                      const hasSubMenus = nav.children;
                       const isMainNavsActive = pathname.includes(nav.path);
 
                       return (
@@ -684,21 +693,21 @@ const DesktopLayout = (props: any) => {
                                   </DesktopNavTooltip>
 
                                   <MenuContent>
-                                    {nav.subMenus?.map(
-                                      (menuItem, menuItemIdx) => (
+                                    {nav.children?.map(
+                                      (subGroup, menuItemIdx) => (
                                         <MenuItemGroup
                                           key={menuItemIdx}
                                           gap={1}
                                           title={
-                                            menuItem.groupLabelKey
+                                            subGroup.groupLabelKey
                                               ? pluckString(
                                                   l,
-                                                  menuItem.groupLabelKey,
+                                                  subGroup.groupLabelKey,
                                                 )
                                               : ""
                                           }
                                         >
-                                          {menuItem.list.map((menu) => {
+                                          {subGroup.navs.map((menu) => {
                                             const isSubNavsActive =
                                               pathname === menu.path;
 
@@ -799,13 +808,13 @@ const DesktopLayout = (props: any) => {
 
                                     <AccordionItemContent p={0}>
                                       <CContainer gap={1} pt={1}>
-                                        {nav.subMenus?.map(
-                                          (menuItem, menuItemIdx) => (
+                                        {nav.children?.map(
+                                          (subGroup, menuItemIdx) => (
                                             <CContainer
                                               key={menuItemIdx}
                                               gap={1}
                                             >
-                                              {menuItem.groupLabelKey && (
+                                              {subGroup.groupLabelKey && (
                                                 <ClampText
                                                   fontSize="sm"
                                                   fontWeight="semibold"
@@ -815,17 +824,17 @@ const DesktopLayout = (props: any) => {
                                                 >
                                                   {pluckString(
                                                     l,
-                                                    menuItem.groupLabelKey,
+                                                    subGroup.groupLabelKey,
                                                   )}
                                                 </ClampText>
                                               )}
 
-                                              {menuItem.list.map(
+                                              {subGroup.navs.map(
                                                 (menu, idx) => {
                                                   const isFirstIdx = idx === 0;
                                                   const isLastIdx =
                                                     idx ===
-                                                    menuItem.list.length - 1;
+                                                    subGroup.navs.length - 1;
                                                   const isSubNavsActive =
                                                     pathname === menu.path;
 
@@ -839,10 +848,12 @@ const DesktopLayout = (props: any) => {
                                                         content={
                                                           menu.label
                                                             ? menu.label
-                                                            : pluckString(
-                                                                l,
-                                                                menu.labelKey,
-                                                              )
+                                                            : menu.labelKey
+                                                              ? pluckString(
+                                                                  l,
+                                                                  menu.labelKey,
+                                                                )
+                                                              : "-"
                                                         }
                                                         positioning={{
                                                           placement: "right",
@@ -923,10 +934,12 @@ const DesktopLayout = (props: any) => {
                                                             >
                                                               {menu.label
                                                                 ? menu.label
-                                                                : pluckString(
-                                                                    l,
-                                                                    menu.labelKey,
-                                                                  )}
+                                                                : menu.labelKey
+                                                                  ? pluckString(
+                                                                      l,
+                                                                      menu.labelKey,
+                                                                    )
+                                                                  : "-"}
                                                             </P>
                                                           </Btn>
                                                         </HStack>
@@ -954,7 +967,7 @@ const DesktopLayout = (props: any) => {
           </CContainer>
 
           <CContainer gap={1} mt={"auto"}>
-            {/* {OTHER_PRIVATE_NAVS[0].list.map((nav) => {
+            {/* {OTHER_PRIVATE_NAV_GROUPS[0].navs.map((nav) => {
               return (
                 <NavLink key={nav.path} to={nav.path} w={"full"}>
                   <DesktopNavTooltip content={pluckString(l, nav.labelKey)}>

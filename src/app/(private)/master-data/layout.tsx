@@ -10,7 +10,7 @@ import FeedbackNotFound from "@/components/widget/FeedbackNotFound";
 import { LucideIcon } from "@/components/widget/Icon";
 import { LeftIndicator } from "@/components/widget/Indicator";
 import { PageContainer, PageTitle } from "@/components/widget/PageShell";
-import { OTHER_PRIVATE_NAVS } from "@/constants/navs";
+import { OTHER_PRIVATE_NAV_GROUPS } from "@/constants/navs";
 import { Props__Layout } from "@/constants/props";
 import { BASE_ICON_BOX_SIZE } from "@/constants/styles";
 import useLang from "@/context/useLang";
@@ -23,8 +23,8 @@ import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
 const NAVS =
-  OTHER_PRIVATE_NAVS[0].list.find((n) => n.path === "/master-data")?.subMenus ||
-  [];
+  OTHER_PRIVATE_NAV_GROUPS[0].navs.find((n) => n.path === "/master-data")
+    ?.children || [];
 const ROOT_PATH = `/master-data`;
 
 const NavsList = (props: any) => {
@@ -41,7 +41,7 @@ const NavsList = (props: any) => {
   const searchTerm = search.toLowerCase();
   const resolvedList = NAVS.reduce<typeof NAVS>(
     (acc, nav) => {
-      const filteredItems = nav.list.filter((item) =>
+      const filteredItems = nav.navs.filter((item) =>
         pluckString(l, item.labelKey).toLowerCase().includes(searchTerm),
       );
 
@@ -76,7 +76,7 @@ const NavsList = (props: any) => {
                 </P>
               )}
 
-              {navItem.list.map((nav) => {
+              {navItem.navs.map((nav) => {
                 const isActive = nav.path === pathname;
 
                 return (

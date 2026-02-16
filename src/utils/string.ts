@@ -29,7 +29,7 @@ export const capitalizeWords = (str: string): string => {
 
 export const interpolateString = (
   text: string,
-  variables: Record<string, string | number>
+  variables: Record<string, string | number>,
 ) => {
   let result = text;
 
@@ -41,7 +41,12 @@ export const interpolateString = (
   return result;
 };
 
-export const pluckString = (obj: Record<string, any>, key: string): string => {
+export const pluckString = (
+  obj: Record<string, any>,
+  key?: string | null,
+): string => {
+  if (!key) return "";
+
   return key.split(".").reduce<any>((acc, curr) => {
     if (acc && typeof acc === "object" && curr in acc) {
       return acc[curr];

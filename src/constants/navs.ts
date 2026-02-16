@@ -1,4 +1,4 @@
-import { Interface__NavItem } from "@/constants/interfaces";
+import { Interface__NavGroup } from "@/constants/interfaces";
 import {
   ActivityIcon,
   BlocksIcon,
@@ -14,12 +14,10 @@ import {
   UsersIcon,
 } from "lucide-react";
 
-export const PRIVATE_ROUTE_INDEX = "/pvt";
-
-export const PRIVATE_NAVS: Interface__NavItem[] = [
+export const PRIVATE_NAV_GROUPS: Interface__NavGroup[] = [
   {
     groupLabelKey: "main",
-    list: [
+    navs: [
       // {
       //   icon: House,
       //   labelKey: "navs.welcome",
@@ -43,9 +41,9 @@ export const PRIVATE_NAVS: Interface__NavItem[] = [
         labelKey: "navs.other.index",
         path: `/other-navs`,
         allowedRoles: [],
-        subMenus: [
+        children: [
           {
-            list: [
+            navs: [
               {
                 labelKey: "navs.other.type",
                 path: `/other-navs/type`,
@@ -69,19 +67,19 @@ export const PRIVATE_NAVS: Interface__NavItem[] = [
   },
 ];
 
-export const OTHER_PRIVATE_NAVS: Interface__NavItem[] = [
+export const OTHER_PRIVATE_NAV_GROUPS: Interface__NavGroup[] = [
   {
     groupLabelKey: "other",
-    list: [
+    navs: [
       {
         icon: DatabaseIcon,
         labelKey: "navs.master_data",
         path: `/master-data`,
         allowedRoles: [],
-        subMenus: [
+        children: [
           {
             groupLabelKey: "master_data_navs.hr.index",
-            list: [
+            navs: [
               {
                 icon: UserCogIcon,
                 labelKey: "master_data_navs.hr.employment_status",
@@ -98,10 +96,10 @@ export const OTHER_PRIVATE_NAVS: Interface__NavItem[] = [
         labelKey: "navs.settings",
         path: `/settings`,
         allowedRoles: [],
-        subMenus: [
+        children: [
           {
             groupLabelKey: "settings_navs.main.index",
-            list: [
+            navs: [
               {
                 icon: UserIcon,
                 labelKey: "my_profile",
@@ -134,7 +132,7 @@ export const OTHER_PRIVATE_NAVS: Interface__NavItem[] = [
           },
           {
             groupLabelKey: "settings_navs.system.index",
-            list: [
+            navs: [
               {
                 icon: UserCogIcon,
                 labelKey: "settings_navs.system.account_role",
