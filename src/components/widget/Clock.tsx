@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 
 export default function Clock(props: Props__ClockProps) {
   // Props
-  const { showSeconds = false, showTimezone = true, ...restProps } = props;
+  const { showSeconds = false, showTimezone = false, ...restProps } = props;
 
   // Contexts
   const tz = useTimezone((s) => s.timeZone);
@@ -18,7 +18,7 @@ export default function Clock(props: Props__ClockProps) {
     formatTime(utcTimeString(), {
       showSeconds: showSeconds,
       timezoneKey: tzKey,
-    })
+    }),
   );
 
   // Utils
@@ -38,7 +38,7 @@ export default function Clock(props: Props__ClockProps) {
         formatTime(utcTimeString(), {
           showSeconds: showSeconds,
           timezoneKey: tzKey,
-        })
+        }),
       );
 
     tick(); // immediate set to avoid waiting 1s
@@ -50,7 +50,7 @@ export default function Clock(props: Props__ClockProps) {
     <HStack {...restProps}>
       {showTimezone && (
         <P color={"fg.subtle"} fontSize={props?.fontSize}>
-          {tz.formattedOffset}
+          {tz.localAbbr}
         </P>
       )}
 

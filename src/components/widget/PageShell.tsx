@@ -45,7 +45,6 @@ export const PageContainer = forwardRef<HTMLDivElement, StackProps>(
     );
   },
 );
-PageContainer.displayName = "PageContainer";
 
 export const NavBreadcrumb = (props: any) => {
   // Props
@@ -135,7 +134,7 @@ export const TopBar = (props: Props__TopBar) => {
 
       <HStack flexShrink={0} gap={1}>
         <HStack mx={1}>
-          <Clock fontSize={FONT_SIZE} />
+          <Clock showTimezone fontSize={FONT_SIZE} />
 
           <CalendarDisclosureTrigger>
             <Today fontSize={FONT_SIZE} />
@@ -185,4 +184,6 @@ export const PageContent = forwardRef<HTMLDivElement, StackProps>(
     );
   },
 );
+
+PageContainer.displayName = "PageContainer";
 PageContent.displayName = "PageContent";

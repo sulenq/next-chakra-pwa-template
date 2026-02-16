@@ -16,7 +16,16 @@ export const getTimezoneOffsetMs = (timezoneKey: string): number => {
 };
 
 export const getLocalTimezone = (): Type__TimezoneObject => {
-  const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+  const detected = Intl.DateTimeFormat().resolvedOptions().timeZone;
+
+  const TZ_ALIAS: Record<string, string> = {
+    "Asia/Bangkok": "Asia/Jakarta",
+    "Asia/Ho_Chi_Minh": "Asia/Jakarta",
+    "Asia/Phnom_Penh": "Asia/Jakarta",
+    "Asia/Vientiane": "Asia/Jakarta",
+  };
+
+  const timezone = TZ_ALIAS[detected] ?? detected;
   const autoTimezoneLabel = `Auto (${timezone})`;
 
   const offsetMs = getTimezoneOffset(timezone);
