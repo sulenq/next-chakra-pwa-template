@@ -7,10 +7,11 @@ import {
   MenuTrigger,
 } from "@/components/ui/menu";
 import { Tooltip, TooltipProps } from "@/components/ui/tooltip";
+import { AppIcon } from "@/components/widget/AppIcon";
 import { ConfirmationDisclosureTrigger } from "@/components/widget/ConfirmationDisclosure";
 import { Props_RowOptions } from "@/constants/props";
 import { Icon } from "@chakra-ui/react";
-import { IconDots } from "@tabler/icons-react";
+import { EllipsisVerticalIcon } from "lucide-react";
 
 const ICON_BOX_SIZE = "18px";
 
@@ -51,9 +52,7 @@ export const RowOptions = (props: Props_RowOptions) => {
           _open={{ bg: "d0" }}
           {...restProps}
         >
-          <Icon boxSize={5}>
-            <IconDots stroke={1.5} />
-          </Icon>
+          <AppIcon icon={EllipsisVerticalIcon} />
         </Btn>
       </MenuTrigger>
 

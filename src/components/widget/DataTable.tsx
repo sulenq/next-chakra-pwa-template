@@ -154,7 +154,7 @@ export const DataTable = (props: Props__DataTable) => {
   }
 
   // SX
-  const optionsCellWidth = "44px";
+  const optionsCellWidth = "46px";
   const cellPx = 3;
   const thHeight = "46px";
   const thBg = "body";
@@ -441,7 +441,6 @@ export const DataTable = (props: Props__DataTable) => {
                     >
                       <Center
                         h={tdMinH}
-                        px={"10px"}
                         bg={isRowSelected ? selectedColor : tdBg}
                         borderBottom={
                           rowIdx !== resolvedTableData.length - 1
