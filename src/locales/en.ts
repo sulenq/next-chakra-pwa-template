@@ -222,6 +222,7 @@ const translations = {
     "title": "Upload file",
     "description": "Uploading file..."
   },
+  "local_timezone": "Local timezone",
   "location": "Location",
   "main": "Main",
   "main_page": "Main page",

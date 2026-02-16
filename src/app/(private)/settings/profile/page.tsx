@@ -18,12 +18,12 @@ import SearchInput from "@/components/ui/search-input";
 import { Skeleton } from "@/components/ui/skeleton";
 import Spinner from "@/components/ui/spinner";
 import { StringInput } from "@/components/ui/string-input";
+import { AppIcon } from "@/components/widget/AppIcon";
 import BackButton from "@/components/widget/BackButton";
 import { ClampText } from "@/components/widget/ClampText";
 import FeedbackNoData from "@/components/widget/FeedbackNoData";
 import FeedbackNotFound from "@/components/widget/FeedbackNotFound";
 import FeedbackRetry from "@/components/widget/FeedbackRetry";
-import { LucideIcon } from "@/components/widget/Icon";
 import { ImgViewer } from "@/components/widget/ImgViewer";
 import { ItemContainer } from "@/components/widget/ItemContainer";
 import { ItemHeaderContainer } from "@/components/widget/ItemHeaderContainer";
@@ -43,7 +43,6 @@ import {
   Interface__User,
 } from "@/constants/interfaces";
 import { SVGS_PATH } from "@/constants/paths";
-import { BASE_ICON_BOX_SIZE } from "@/constants/styles";
 import useLang from "@/context/useLang";
 import { useThemeConfig } from "@/context/useThemeConfig";
 import useBackOnClose from "@/hooks/useBackOnClose";
@@ -53,7 +52,7 @@ import { isEmptyArray } from "@/utils/array";
 import { disclosureId } from "@/utils/disclosure";
 import { formatDate } from "@/utils/formatter";
 import { imgUrl } from "@/utils/url";
-import { Circle, HStack, Icon, useDisclosure } from "@chakra-ui/react";
+import { Circle, HStack, useDisclosure } from "@chakra-ui/react";
 import { useFormik } from "formik";
 import {
   ActivityIcon,
@@ -197,9 +196,7 @@ const PersonalInformation = (props: Props__PersonalInformation) => {
     <ItemContainer borderless roundedless>
       <ItemHeaderContainer borderless>
         <HStack>
-          <Icon boxSize={BASE_ICON_BOX_SIZE}>
-            <LucideIcon icon={UserIcon} />
-          </Icon>
+          <AppIcon icon={UserIcon} />
           <ItemHeaderTitle>{l.personal_information}</ItemHeaderTitle>
         </HStack>
       </ItemHeaderContainer>
@@ -347,16 +344,10 @@ const AuthLog = () => {
               borderColor={"border.subtle"}
             >
               <Circle p={1} bg={isSignin ? "bg.success" : "bg.error"}>
-                <Icon
-                  boxSize={BASE_ICON_BOX_SIZE}
+                <AppIcon
+                  icon={isSignin ? ArrowDown : ArrowUp}
                   color={isSignin ? "fg.success" : "fg.error"}
-                >
-                  {isSignin ? (
-                    <LucideIcon icon={ArrowDown} />
-                  ) : (
-                    <LucideIcon icon={ArrowUp} />
-                  )}
-                </Icon>
+                />
               </Circle>
 
               <CContainer>
@@ -384,9 +375,7 @@ const AuthLog = () => {
     <ItemContainer ref={containerRef} borderless roundedless>
       <ItemHeaderContainer borderless>
         <HStack>
-          <Icon boxSize={BASE_ICON_BOX_SIZE}>
-            <LucideIcon icon={LogInIcon} />
-          </Icon>
+          <AppIcon icon={LogInIcon} />
 
           <ItemHeaderTitle>{l.my_auth_logs}</ItemHeaderTitle>
         </HStack>
@@ -543,9 +532,7 @@ const ActivityLog = () => {
     <ItemContainer ref={containerRef} borderless roundedless>
       <ItemHeaderContainer borderless>
         <HStack>
-          <Icon boxSize={BASE_ICON_BOX_SIZE}>
-            <LucideIcon icon={ActivityIcon} />
-          </Icon>
+          <AppIcon icon={ActivityIcon} />
 
           <ItemHeaderTitle>{l.my_activity_logs}</ItemHeaderTitle>
         </HStack>

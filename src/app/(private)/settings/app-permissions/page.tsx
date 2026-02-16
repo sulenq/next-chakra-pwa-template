@@ -13,13 +13,12 @@ import { DisclosureHeaderContent } from "@/components/ui/disclosure-header-conte
 import { P } from "@/components/ui/p";
 import { Switch } from "@/components/ui/switch";
 import { toaster } from "@/components/ui/toaster";
-import { LucideIcon } from "@/components/widget/Icon";
+import { AppIcon } from "@/components/widget/AppIcon";
 import { ItemContainer } from "@/components/widget/ItemContainer";
 import { ItemHeaderContainer } from "@/components/widget/ItemHeaderContainer";
 import { LocalSettingsHelperText } from "@/components/widget/LocalSettingsHelperText";
 import { MicVolumeBar } from "@/components/widget/MicVolumeBar";
 import { SettingsItemContainer } from "@/components/widget/SettingsItemContainer";
-import { BASE_ICON_BOX_SIZE } from "@/constants/styles";
 import useCameraPermission from "@/context/useCameraPermissions";
 import useLang from "@/context/useLang";
 import useLocationPermissions from "@/context/useLocationPermissions";
@@ -29,7 +28,7 @@ import useBackOnClose from "@/hooks/useBackOnClose";
 import { startCamera, stopCamera } from "@/utils/camera";
 import { disclosureId } from "@/utils/disclosure";
 import { getAddress, getLatLon } from "@/utils/location";
-import { HStack, Icon, useDisclosure } from "@chakra-ui/react";
+import { HStack, useDisclosure } from "@chakra-ui/react";
 import { CameraIcon, MapPinIcon, MicIcon } from "lucide-react";
 import { useRef, useState } from "react";
 
@@ -170,9 +169,8 @@ const Camera = () => {
     <ItemContainer borderless roundedless>
       <ItemHeaderContainer borderless>
         <HStack>
-          <Icon boxSize={BASE_ICON_BOX_SIZE}>
-            <LucideIcon icon={CameraIcon} />
-          </Icon>
+          <AppIcon icon={CameraIcon} />
+
           <P fontWeight={"semibold"}>{l.camera}</P>
         </HStack>
 
@@ -361,9 +359,8 @@ const Microphone = () => {
     <ItemContainer borderless roundedless>
       <ItemHeaderContainer borderless>
         <HStack>
-          <Icon boxSize={BASE_ICON_BOX_SIZE}>
-            <LucideIcon icon={MicIcon} />
-          </Icon>
+          <AppIcon icon={MicIcon} />
+
           <P fontWeight={"semibold"}>{l.mic}</P>
         </HStack>
 
@@ -564,9 +561,8 @@ const Location = () => {
     <ItemContainer borderless roundedless>
       <ItemHeaderContainer borderless>
         <HStack>
-          <Icon boxSize={BASE_ICON_BOX_SIZE}>
-            <LucideIcon icon={MapPinIcon} />
-          </Icon>
+          <AppIcon icon={MapPinIcon} />
+
           <P fontWeight={"semibold"}>{l.location}</P>
         </HStack>
 

@@ -111,6 +111,10 @@ export const settings_navs = {
 };
 
 // Semantic UI
+export const local_timezone = {
+  id: "Zona waktu lokal",
+  en: "Local timezone",
+};
 export const example_UI = {
   id: "Contoh UI",
   en: "Example UI",

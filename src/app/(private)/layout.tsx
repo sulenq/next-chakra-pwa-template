@@ -31,7 +31,6 @@ import { ClampText } from "@/components/widget/ClampText";
 import Clock from "@/components/widget/Clock";
 import FeedbackNotFound from "@/components/widget/FeedbackNotFound";
 import HScroll from "@/components/widget/HScroll";
-import { LucideIcon } from "@/components/widget/Icon";
 import { BottomIndicator, LeftIndicator } from "@/components/widget/Indicator";
 import { Logo } from "@/components/widget/Logo";
 import { MiniMyProfile } from "@/components/widget/MiniMyProfile";
@@ -211,9 +210,7 @@ const MobileLayout = (props: any) => {
                             color={isMainNavActive ? "" : "fg.muted"}
                             flex={1}
                           >
-                            <Icon boxSize={5}>
-                              <LucideIcon icon={nav.icon} />
-                            </Icon>
+                            <AppIcon icon={nav.icon} />
 
                             <P
                               textAlign={"center"}
@@ -248,9 +245,7 @@ const MobileLayout = (props: any) => {
                                   cursor={"pointer"}
                                   flex={1}
                                 >
-                                  <Icon boxSize={5}>
-                                    <LucideIcon icon={nav.icon} />
-                                  </Icon>
+                                  <AppIcon icon={nav.icon} />
 
                                   <P
                                     fontSize={MOBILE_NAV_LABEL_FONT_SIZE}
@@ -327,9 +322,7 @@ const MobileLayout = (props: any) => {
                 color={pathname === nav.path ? "" : MOBILE_NAVS_COLOR}
                 flex={1}
               >
-                <Icon boxSize={5}>
-                  <LucideIcon icon={nav.icon} />
-                </Icon>
+                <AppIcon icon={nav.icon} />
 
                 <P
                   textAlign={"center"}
@@ -545,11 +538,9 @@ const DesktopLayout = (props: any) => {
                 mt={navsExpanded ? 0 : 3}
                 transition={"0"}
               >
-                <Icon boxSize={BASE_ICON_BOX_SIZE}>
-                  <LucideIcon
-                    icon={navsExpanded ? SidebarCloseIcon : SidebarOpenIcon}
-                  />
-                </Icon>
+                <AppIcon
+                  icon={navsExpanded ? SidebarCloseIcon : SidebarOpenIcon}
+                />
               </Btn>
             </Tooltip>
           </HStack>
@@ -624,11 +615,7 @@ const DesktopLayout = (props: any) => {
                                     <LeftIndicator />
                                   )}
 
-                                  {nav.icon && (
-                                    <Icon boxSize={BASE_ICON_BOX_SIZE}>
-                                      <LucideIcon icon={nav.icon} />
-                                    </Icon>
-                                  )}
+                                  {nav.icon && <AppIcon icon={nav.icon} />}
 
                                   {!nav.icon && (
                                     <Icon
@@ -690,9 +677,7 @@ const DesktopLayout = (props: any) => {
                                           {isMainNavsActive && (
                                             <LeftIndicator />
                                           )}
-                                          <Icon boxSize={BASE_ICON_BOX_SIZE}>
-                                            <LucideIcon icon={nav.icon} />
-                                          </Icon>
+                                          <AppIcon icon={nav.icon} />
                                         </Btn>
                                       </MenuTrigger>
                                     </CContainer>
@@ -801,9 +786,8 @@ const DesktopLayout = (props: any) => {
                                       >
                                         {isMainNavsActive && <LeftIndicator />}
                                         <HStack gap={4}>
-                                          <Icon boxSize={BASE_ICON_BOX_SIZE}>
-                                            <LucideIcon icon={nav.icon} />
-                                          </Icon>
+                                          <AppIcon icon={nav.icon} />
+
                                           <P lineClamp={1} textAlign="left">
                                             {nav.label
                                               ? nav.label
@@ -986,9 +970,7 @@ const DesktopLayout = (props: any) => {
                     >
                       {pathname.includes(nav.path) && <LeftIndicator />}
 
-                      <Icon boxSize={BASE_ICON_BOX_SIZE}>
-                        <LucideIcon icon={nav.icon} />
-                      </Icon>
+                      <AppIcon icon={nav.icon} />
 
                       {navsExpanded && (
                         <P lineClamp={1} textAlign={"left"}>

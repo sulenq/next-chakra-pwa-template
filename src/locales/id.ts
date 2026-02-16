@@ -222,6 +222,7 @@ const translations = {
     "title": "Upload file",
     "description": "Sedang mengunggah file..."
   },
+  "local_timezone": "Zona waktu lokal",
   "location": "Lokasi",
   "main": "Utama",
   "main_page": "Halaman utama",

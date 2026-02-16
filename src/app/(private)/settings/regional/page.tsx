@@ -5,8 +5,8 @@ import { CContainer } from "@/components/ui/c-container";
 import { P } from "@/components/ui/p";
 import SearchInput from "@/components/ui/search-input";
 import { toaster } from "@/components/ui/toaster";
+import { AppIcon } from "@/components/widget/AppIcon";
 import FeedbackNotFound from "@/components/widget/FeedbackNotFound";
-import { LucideIcon } from "@/components/widget/Icon";
 import { DotIndicator } from "@/components/widget/Indicator";
 import { ItemContainer } from "@/components/widget/ItemContainer";
 import { ItemHeaderContainer } from "@/components/widget/ItemHeaderContainer";
@@ -16,10 +16,7 @@ import { LocalSettingsHelperText } from "@/components/widget/LocalSettingsHelper
 import { Pagination } from "@/components/widget/Pagination";
 import { DATE_FORMATS } from "@/constants/dateFormats";
 import { LANGUAGES } from "@/constants/languages";
-import {
-  BASE_ICON_BOX_SIZE,
-  FIREFOX_SCROLL_Y_CLASS_PR_PREFIX,
-} from "@/constants/styles";
+import { FIREFOX_SCROLL_Y_CLASS_PR_PREFIX } from "@/constants/styles";
 import { TIME_FORMATS } from "@/constants/timeFormats";
 import { TIME_ZONES } from "@/constants/timezone";
 import {
@@ -38,11 +35,11 @@ import { isEmptyArray } from "@/utils/array";
 import { formatDate, formatTime } from "@/utils/formatter";
 import { capitalizeWords, pluckString } from "@/utils/string";
 import { getLocalTimezone, makeTime } from "@/utils/time";
-import { chakra, HStack, Icon, SimpleGrid, Text } from "@chakra-ui/react";
-import { IconRulerMeasure, IconSparkles } from "@tabler/icons-react";
+import { chakra, HStack, SimpleGrid, Text } from "@chakra-ui/react";
 import {
   CalendarIcon,
   GlobeIcon,
+  HourglassIcon,
   LanguagesIcon,
   RulerDimensionLineIcon,
 } from "lucide-react";
@@ -59,9 +56,7 @@ const Language = () => {
     <ItemContainer borderless roundedless>
       <ItemHeaderContainer borderless>
         <HStack>
-          <Icon boxSize={BASE_ICON_BOX_SIZE}>
-            <LucideIcon icon={LanguagesIcon} />
-          </Icon>
+          <AppIcon icon={LanguagesIcon} />
           <ItemHeaderTitle>{l.language}</ItemHeaderTitle>
         </HStack>
       </ItemHeaderContainer>
@@ -149,9 +144,7 @@ const Timezone = () => {
     <ItemContainer ref={containerRef} borderless roundedless>
       <ItemHeaderContainer borderless>
         <HStack>
-          <Icon boxSize={BASE_ICON_BOX_SIZE}>
-            <LucideIcon icon={GlobeIcon} />
-          </Icon>
+          <AppIcon icon={GlobeIcon} />
 
           <ItemHeaderTitle>{capitalizeWords(l.timezone)}</ItemHeaderTitle>
         </HStack>
@@ -159,8 +152,7 @@ const Timezone = () => {
         <HStack>
           <Btn
             size={"xs"}
-            variant={"outline"}
-            pl={2}
+            variant={"ghost"}
             onClick={() => {
               setTimeZone(localTz);
               toaster.info({
@@ -169,9 +161,6 @@ const Timezone = () => {
               });
             }}
           >
-            <Icon>
-              <IconSparkles />
-            </Icon>
             Auto
           </Btn>
         </HStack>
@@ -279,9 +268,7 @@ const DateFormat = () => {
     <ItemContainer borderless roundedless>
       <ItemHeaderContainer borderless>
         <HStack>
-          <Icon boxSize={BASE_ICON_BOX_SIZE}>
-            <LucideIcon icon={CalendarIcon} />
-          </Icon>
+          <AppIcon icon={CalendarIcon} />
           <ItemHeaderTitle>{l.date_format}</ItemHeaderTitle>
         </HStack>
       </ItemHeaderContainer>
@@ -350,9 +337,7 @@ const TimeFormat = () => {
     <ItemContainer borderless roundedless>
       <ItemHeaderContainer borderless>
         <HStack>
-          <Icon boxSize={BASE_ICON_BOX_SIZE}>
-            <LucideIcon icon={RulerDimensionLineIcon} />
-          </Icon>
+          <AppIcon icon={HourglassIcon} />
 
           <ItemHeaderTitle>{l.time_format}</ItemHeaderTitle>
         </HStack>
@@ -416,9 +401,7 @@ const UOMFormat = () => {
     <ItemContainer borderless roundedless>
       <ItemHeaderContainer borderless>
         <HStack>
-          <Icon boxSize={5}>
-            <IconRulerMeasure stroke={1.5} />
-          </Icon>
+          <AppIcon icon={RulerDimensionLineIcon} />
           <ItemHeaderTitle>{l.UOM_format}</ItemHeaderTitle>
         </HStack>
       </ItemHeaderContainer>
