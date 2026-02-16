@@ -25,7 +25,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import SearchInput from "@/components/ui/search-input";
-import { Tooltip, TooltipProps } from "@/components/ui/tooltip";
+import { Tooltip } from "@/components/ui/tooltip";
 import { AppIcon } from "@/components/widget/AppIcon";
 import { ClampText } from "@/components/widget/ClampText";
 import Clock from "@/components/widget/Clock";
@@ -35,12 +35,13 @@ import { LucideIcon } from "@/components/widget/Icon";
 import { BottomIndicator, LeftIndicator } from "@/components/widget/Indicator";
 import { Logo } from "@/components/widget/Logo";
 import { MiniMyProfile } from "@/components/widget/MiniMyProfile";
+import { DesktopNavTooltip, MobileNavLink } from "@/components/widget/Navs";
 import { NavBreadcrumb, TopBar } from "@/components/widget/PageShell";
 import { Today } from "@/components/widget/Today";
 import { VerifyingScreen } from "@/components/widget/VerifyingScreen";
 import { APP } from "@/constants/_meta";
 import { OTHER_PRIVATE_NAVS, PRIVATE_NAVS } from "@/constants/navs";
-import { Props__Layout, Props__NavLink } from "@/constants/props";
+import { Props__Layout } from "@/constants/props";
 import {
   BASE_ICON_BOX_SIZE,
   FIREFOX_SCROLL_Y_CLASS_PR_PREFIX,
@@ -95,40 +96,6 @@ import {
 
 const USER_PROFILE_URL = "/api/get-user-profile";
 
-const NavTooltip = (props: TooltipProps) => {
-  // Props
-  const { children, ...restProps } = props;
-
-  return (
-    <Tooltip
-      positioning={{
-        placement: "right",
-        offset: {
-          mainAxis: DESKTOP_NAVS_TOOLTIP_MAIN_AXIS,
-        },
-      }}
-      {...restProps}
-    >
-      {children}
-    </Tooltip>
-  );
-};
-const MobileNavLink = (props: Props__NavLink) => {
-  // Props
-  const { children, ...restProps } = props;
-
-  return (
-    <NavLink
-      minW={"50px"}
-      align={"center"}
-      gap={1}
-      pos={"relative"}
-      {...restProps}
-    >
-      {children}
-    </NavLink>
-  );
-};
 const MiniMyProfilePopoverTrigger = (props: StackProps) => {
   // Refs
   const containerRef = useRef<HTMLDivElement>(null);
@@ -575,6 +542,8 @@ const DesktopLayout = (props: any) => {
                 colorPalette={NAVS_COLOR_PALETTE}
                 onClick={toggleNavsExpanded}
                 color={DESKTOP_NAVS_COLOR}
+                mt={navsExpanded ? 0 : 3}
+                transition={"0"}
               >
                 <Icon boxSize={BASE_ICON_BOX_SIZE}>
                   <LucideIcon
@@ -637,7 +606,7 @@ const DesktopLayout = (props: any) => {
                         <Fragment key={nav.path}>
                           {!hasSubMenus && (
                             <NavLink key={nav.path} to={nav.path} w={"full"}>
-                              <NavTooltip
+                              <DesktopNavTooltip
                                 content={pluckString(l, nav.labelKey)}
                               >
                                 <Btn
@@ -680,7 +649,7 @@ const DesktopLayout = (props: any) => {
                                     </P>
                                   )}
                                 </Btn>
-                              </NavTooltip>
+                              </DesktopNavTooltip>
                             </NavLink>
                           )}
 
@@ -695,7 +664,7 @@ const DesktopLayout = (props: any) => {
                                     },
                                   }}
                                 >
-                                  <NavTooltip
+                                  <DesktopNavTooltip
                                     content={
                                       nav.label
                                         ? nav.label
@@ -727,7 +696,7 @@ const DesktopLayout = (props: any) => {
                                         </Btn>
                                       </MenuTrigger>
                                     </CContainer>
-                                  </NavTooltip>
+                                  </DesktopNavTooltip>
 
                                   <MenuContent>
                                     {nav.subMenus?.map(
@@ -811,7 +780,7 @@ const DesktopLayout = (props: any) => {
                                     rounded={themeConfig.radii.component}
                                     _open={{ bg: "transparent" }}
                                   >
-                                    <NavTooltip
+                                    <DesktopNavTooltip
                                       content={pluckString(l, nav.labelKey)}
                                     >
                                       <Btn
@@ -842,7 +811,7 @@ const DesktopLayout = (props: any) => {
                                           </P>
                                         </HStack>
                                       </Btn>
-                                    </NavTooltip>
+                                    </DesktopNavTooltip>
 
                                     <AccordionItemContent p={0}>
                                       <CContainer gap={1} pt={1}>
@@ -1004,7 +973,7 @@ const DesktopLayout = (props: any) => {
             {/* {OTHER_PRIVATE_NAVS[0].list.map((nav) => {
               return (
                 <NavLink key={nav.path} to={nav.path} w={"full"}>
-                  <NavTooltip content={pluckString(l, nav.labelKey)}>
+                  <DesktopNavTooltip content={pluckString(l, nav.labelKey)}>
                     <Btn
                       clicky={false}
                       gap={4}
@@ -1027,13 +996,13 @@ const DesktopLayout = (props: any) => {
                         </P>
                       )}
                     </Btn>
-                  </NavTooltip>
+                  </DesktopNavTooltip>
                 </NavLink>
               );
             })} */}
 
             <NavLink key={"/master-data"} to={"/master-data"} w={"full"}>
-              <NavTooltip content={pluckString(l, "navs.master_data")}>
+              <DesktopNavTooltip content={pluckString(l, "navs.master_data")}>
                 <Btn
                   clicky={false}
                   gap={4}
@@ -1056,7 +1025,7 @@ const DesktopLayout = (props: any) => {
                     </P>
                   )}
                 </Btn>
-              </NavTooltip>
+              </DesktopNavTooltip>
             </NavLink>
           </CContainer>
         </CContainer>
