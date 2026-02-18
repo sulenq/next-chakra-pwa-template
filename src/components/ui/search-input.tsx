@@ -68,7 +68,7 @@ export default function SearchInput(props: Props__SearchInput) {
   }, [searchTemp, queryKey]);
 
   return (
-    <Tooltip content={tooltipLabel || placeholder || l.search}>
+    <Tooltip content={inputValue || tooltipLabel || placeholder || l.search}>
       <InputGroup
         w="full"
         startElement={

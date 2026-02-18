@@ -6,14 +6,17 @@ import { HelperText } from "@/components/ui/helper-text";
 import { NavLink } from "@/components/ui/nav-link";
 import { P } from "@/components/ui/p";
 import SearchInput from "@/components/ui/search-input";
+import { Tooltip } from "@/components/ui/tooltip";
 import { AppIcon } from "@/components/widget/AppIcon";
 import { ClampText } from "@/components/widget/ClampText";
 import FeedbackNotFound from "@/components/widget/FeedbackNotFound";
 import { LeftIndicator } from "@/components/widget/Indicator";
+import { MContainer } from "@/components/widget/MContainer";
 import { PageContainer, PageTitle } from "@/components/widget/PageShell";
 import { APP } from "@/constants/_meta";
 import { OTHER_PRIVATE_NAV_GROUPS } from "@/constants/navs";
 import { Props__Layout } from "@/constants/props";
+import { DESKTOP_NAVS_TOOLTIP_MAIN_AXIS } from "@/constants/styles";
 import useLang from "@/context/useLang";
 import { useSettingsPageContainer } from "@/context/useSettingsPageContainer";
 import { useContainerDimension } from "@/hooks/useContainerDimension";
@@ -61,7 +64,7 @@ const NavsList = (props: any) => {
   );
 
   return (
-    <CContainer gap={4} {...restProps}>
+    <MContainer className="scrollY" gap={4} {...restProps}>
       {isEmptyArray(resolvedList) && <FeedbackNotFound />}
 
       {!isEmptyArray(resolvedList) &&
@@ -83,28 +86,39 @@ const NavsList = (props: any) => {
                 const isActive = nav.path === pathname;
 
                 return (
-                  <NavLink key={nav.path} to={nav.path} w={"full"}>
-                    <Btn
-                      clicky={false}
-                      justifyContent={"start"}
-                      variant={"ghost"}
-                      px={2}
-                      color={isActive ? "" : NAVS_COLOR}
-                      pos={"relative"}
-                    >
-                      {isActive && <LeftIndicator />}
+                  <Tooltip
+                    key={nav.path}
+                    content={pluckString(l, nav.labelKey)}
+                    positioning={{
+                      placement: "right",
+                      offset: {
+                        mainAxis: DESKTOP_NAVS_TOOLTIP_MAIN_AXIS,
+                      },
+                    }}
+                  >
+                    <NavLink to={nav.path} w={"full"}>
+                      <Btn
+                        clicky={false}
+                        justifyContent={"start"}
+                        variant={"ghost"}
+                        px={2}
+                        color={isActive ? "" : NAVS_COLOR}
+                        pos={"relative"}
+                      >
+                        {isActive && <LeftIndicator />}
 
-                      <AppIcon icon={nav.icon} />
+                        <AppIcon icon={nav.icon} />
 
-                      <P textAlign={"left"}>{pluckString(l, nav.labelKey)}</P>
-                    </Btn>
-                  </NavLink>
+                        <P textAlign={"left"}>{pluckString(l, nav.labelKey)}</P>
+                      </Btn>
+                    </NavLink>
+                  </Tooltip>
                 );
               })}
             </CContainer>
           );
         })}
-    </CContainer>
+    </MContainer>
   );
 };
 
@@ -153,7 +167,7 @@ export default function Layout(props: Props__Layout) {
               // borderRight={isSmContainer ? "" : "1px solid"}
               borderColor={"border.muted"}
             >
-              <CContainer px={4} mt={3} mb={1}>
+              <CContainer px={4} mt={4} mb={1}>
                 <ClampText fontSize={"xl"} fontWeight={"semibold"}>
                   {l.settings}
                 </ClampText>
@@ -171,7 +185,7 @@ export default function Layout(props: Props__Layout) {
 
               <NavsList search={search} p={3} />
 
-              <HStack px={4} pb={4} justify={"space-between"} mt={"auto"}>
+              <HStack justify={"space-between"} px={4} py={4} mt={"auto"}>
                 <HelperText>{`v${APP.version}`}</HelperText>
 
                 <HelperText>
@@ -186,11 +200,11 @@ export default function Layout(props: Props__Layout) {
 
           {/* Content */}
           {showContent && (
-            <CContainer className={"scrollY"} flex={1}>
-              {pathname !== ROOT_PATH && <PageTitle mb={1} />}
+            <MContainer className={"scrollY"} flex={1}>
+              {pathname !== ROOT_PATH && <PageTitle mb={2} />}
 
               <CContainer flex={1}>{children}</CContainer>
-            </CContainer>
+            </MContainer>
           )}
         </HStack>
       )}

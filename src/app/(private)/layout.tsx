@@ -35,7 +35,11 @@ import { BottomIndicator, LeftIndicator } from "@/components/widget/Indicator";
 import { Logo } from "@/components/widget/Logo";
 import { MiniMyProfile } from "@/components/widget/MiniMyProfile";
 import { DesktopNavTooltip, MobileNavLink } from "@/components/widget/Navs";
-import { NavBreadcrumb, TopBar } from "@/components/widget/PageShell";
+import {
+  NavBreadcrumb,
+  RESOLVED_NAVS,
+  TopBar,
+} from "@/components/widget/PageShell";
 import { Today } from "@/components/widget/Today";
 import { VerifyingScreen } from "@/components/widget/VerifyingScreen";
 import { APP } from "@/constants/_meta";
@@ -91,7 +95,7 @@ import {
   MOBILE_NAVS_COLOR,
   MOBILE_POPOVER_MAIN_AXIS,
   NAVS_COLOR_PALETTE,
-} from "../../constants/styles";
+} from "@/constants/styles";
 
 const USER_PROFILE_URL = "/api/get-user-profile";
 
@@ -148,7 +152,7 @@ const MobileLayout = (props: any) => {
 
   // States
   const user = getUserData();
-  const activeNavs = getActiveNavs(pathname);
+  const activeNavs = getActiveNavs(pathname, RESOLVED_NAVS);
   const resolvedActiveNavs =
     sw < 360 ? [activeNavs[activeNavs.length - 1]] : activeNavs;
   const backPath = last(activeNavs)?.backPath;

@@ -35,19 +35,19 @@ export const PopoverContent = forwardRef<HTMLDivElement, PopoverContentProps>(
         <ChakraPopover.Positioner>
           <ChakraPopover.Content
             ref={ref}
+            className={"ss"}
             p={0}
             bg={"body"}
             border={"1px solid"}
             borderColor={"border.subtle"}
             rounded={themeConfig.radii.container}
             shadow={"none"}
-            className="ss"
             {...restProps}
           />
         </ChakraPopover.Positioner>
       </Portal>
     );
-  }
+  },
 );
 
 export const PopoverArrow = forwardRef<

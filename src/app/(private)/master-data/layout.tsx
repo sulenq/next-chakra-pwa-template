@@ -5,14 +5,19 @@ import { CContainer } from "@/components/ui/c-container";
 import { NavLink } from "@/components/ui/nav-link";
 import { P } from "@/components/ui/p";
 import SearchInput from "@/components/ui/search-input";
+import { Tooltip } from "@/components/ui/tooltip";
 import { ClampText } from "@/components/widget/ClampText";
 import FeedbackNotFound from "@/components/widget/FeedbackNotFound";
 import { LucideIcon } from "@/components/widget/Icon";
 import { LeftIndicator } from "@/components/widget/Indicator";
+import { MContainer } from "@/components/widget/MContainer";
 import { PageContainer, PageTitle } from "@/components/widget/PageShell";
-import { OTHER_PRIVATE_NAV_GROUPS } from "@/constants/navs";
+import { ADMIN_OTHER_PRIVATE_NAV_GROUPS } from "@/constants/navs";
 import { Props__Layout } from "@/constants/props";
-import { BASE_ICON_BOX_SIZE } from "@/constants/styles";
+import {
+  BASE_ICON_BOX_SIZE,
+  DESKTOP_NAVS_TOOLTIP_MAIN_AXIS,
+} from "@/constants/styles";
 import useLang from "@/context/useLang";
 import { useMasterDataPageContainer } from "@/context/useMasterDataPageContainer";
 import { useContainerDimension } from "@/hooks/useContainerDimension";
@@ -23,8 +28,9 @@ import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
 const NAVS =
-  OTHER_PRIVATE_NAV_GROUPS[0].navs.find((n) => n.path === "/master-data")
+  ADMIN_OTHER_PRIVATE_NAV_GROUPS[0].navs.find((n) => n.path === "/master-data")
     ?.children || [];
+const DESKTOP_NAVS_COLOR = "ibody";
 const ROOT_PATH = `/master-data`;
 
 const NavsList = (props: any) => {
@@ -58,7 +64,7 @@ const NavsList = (props: any) => {
   );
 
   return (
-    <CContainer gap={4} {...restProps}>
+    <MContainer className="scrollY" gap={4} {...restProps}>
       {isEmptyArray(resolvedList) && <FeedbackNotFound />}
 
       {!isEmptyArray(resolvedList) &&
@@ -80,36 +86,45 @@ const NavsList = (props: any) => {
                 const isActive = nav.path === pathname;
 
                 return (
-                  <NavLink key={nav.path} to={nav.path} w={"full"}>
-                    <Btn
-                      clicky={false}
-                      justifyContent={"start"}
-                      variant={"ghost"}
-                      px={2}
-                      pos={"relative"}
-                    >
-                      {isActive && <LeftIndicator />}
+                  <Tooltip
+                    key={nav.path}
+                    content={pluckString(l, nav.labelKey)}
+                    positioning={{
+                      placement: "right",
+                      offset: {
+                        mainAxis: DESKTOP_NAVS_TOOLTIP_MAIN_AXIS,
+                      },
+                    }}
+                  >
+                    <NavLink to={nav.path} w={"full"}>
+                      <Btn
+                        clicky={false}
+                        justifyContent={"start"}
+                        variant={"ghost"}
+                        px={2}
+                        color={isActive ? "" : DESKTOP_NAVS_COLOR}
+                        pos={"relative"}
+                      >
+                        {isActive && <LeftIndicator />}
 
-                      <Icon boxSize={BASE_ICON_BOX_SIZE}>
-                        <LucideIcon icon={nav.icon} />
-                      </Icon>
+                        <Icon boxSize={BASE_ICON_BOX_SIZE}>
+                          <LucideIcon icon={nav.icon} />
+                        </Icon>
 
-                      <P textAlign={"left"}>{pluckString(l, nav.labelKey)}</P>
-                    </Btn>
-                  </NavLink>
+                        <P textAlign={"left"}>{pluckString(l, nav.labelKey)}</P>
+                      </Btn>
+                    </NavLink>
+                  </Tooltip>
                 );
               })}
             </CContainer>
           );
         })}
-    </CContainer>
+    </MContainer>
   );
 };
 
-export default function Layout(props: Props__Layout) {
-  // Props
-  const { children } = props;
-
+export default function Layout({ children }: Props__Layout) {
   // Hooks
   const pathname = usePathname();
 
@@ -150,7 +165,7 @@ export default function Layout(props: Props__Layout) {
               // borderRight={isSmContainer ? "" : "1px solid"}
               borderColor={"border.muted"}
             >
-              <CContainer px={4} pt={3} pb={1}>
+              <CContainer px={4} mt={4} mb={1}>
                 <ClampText fontSize={"xl"} fontWeight={"semibold"}>
                   Master Data
                 </ClampText>
@@ -162,7 +177,7 @@ export default function Layout(props: Props__Layout) {
                   onChange={(inputValue) => {
                     setSearch(inputValue || "");
                   }}
-                  queryKey={"q_master_data_navs"}
+                  queryKey={"q_settings_navs"}
                 />
               </CContainer>
 
@@ -172,11 +187,11 @@ export default function Layout(props: Props__Layout) {
 
           {/* Content */}
           {showContent && (
-            <CContainer className={"scrollY"} flex={1}>
-              {pathname !== ROOT_PATH && <PageTitle mb={1} />}
+            <MContainer className={"scrollY"} flex={1}>
+              {pathname !== ROOT_PATH && <PageTitle mb={2} />}
 
               <CContainer flex={1}>{children}</CContainer>
-            </CContainer>
+            </MContainer>
           )}
         </HStack>
       )}

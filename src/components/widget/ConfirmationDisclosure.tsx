@@ -10,13 +10,13 @@ import {
 import { DisclosureHeaderContent } from "@/components/ui/disclosure-header-content";
 import { P } from "@/components/ui/p";
 import { useThemeConfig } from "@/context/useThemeConfig";
-import useBackOnClose from "@/hooks/useBackOnClose";
-import { StackProps, useDisclosure } from "@chakra-ui/react";
-import BackButton from "./BackButton";
+import usePopDisclosure from "@/hooks/usePopDisclosure";
 import { disclosureId } from "@/utils/disclosure";
+import { StackProps } from "@chakra-ui/react";
+import BackButton from "./BackButton";
 
 interface Props__Disclosure {
-  open: boolean;
+  isOpen: boolean;
   title: string;
   description: string;
   confirmLabel: string;
@@ -28,7 +28,7 @@ interface Props__Disclosure {
 export const ConfirmationDisclosure = (props: Props__Disclosure) => {
   // Props
   const {
-    open,
+    isOpen,
     title,
     description,
     confirmLabel,
@@ -42,7 +42,7 @@ export const ConfirmationDisclosure = (props: Props__Disclosure) => {
   const { themeConfig } = useThemeConfig();
 
   return (
-    <DisclosureRoot open={open} size={"xs"}>
+    <DisclosureRoot open={isOpen} lazyLoad size={"xs"}>
       <DisclosureContent>
         <DisclosureHeader>
           <DisclosureHeaderContent title={`${title}`} />
@@ -102,30 +102,29 @@ export const ConfirmationDisclosureTrigger = (props: Props__Trigger) => {
   } = props;
 
   // Hooks
-  const { open, onOpen, onClose } = useDisclosure();
-  useBackOnClose(disclosureId(`${id}`), open, onOpen, onClose);
+  const { isOpen, onOpen } = usePopDisclosure(disclosureId(`${id}`));
 
   return (
     <>
       <CContainer
         w={"fit"}
-        onClick={
-          onClick
-            ? () => {
-                onClick();
-                onOpen();
-              }
-            : disabled
-            ? () => {}
-            : onOpen
-        }
+        onClick={(e) => {
+          e.preventDefault();
+          e.stopPropagation();
+
+          if (disabled) return;
+
+          onClick?.();
+          onOpen();
+        }}
+        cursor={disabled ? "disabled" : "pointer"}
         {...restProps}
       >
         {children}
       </CContainer>
 
       <ConfirmationDisclosure
-        open={open}
+        isOpen={isOpen}
         title={title}
         description={description}
         confirmLabel={confirmLabel}

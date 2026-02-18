@@ -6,6 +6,7 @@ import {
 import { PopoverContent, PopoverRoot, PopoverTrigger } from "../ui/popover";
 import { ReactNode, useRef } from "react";
 import useClickOutside from "@/hooks/useClickOutside";
+import { useThemeConfig } from "@/context/useThemeConfig";
 
 interface Props extends Omit<TooltipContentProps, "content"> {
   children: ReactNode;
@@ -16,6 +17,9 @@ interface Props extends Omit<TooltipContentProps, "content"> {
 const SimplePopover = (props: Props) => {
   // Props
   const { children, content, rootProps, ...restProps } = props;
+
+  // Contexts
+  const { themeConfig } = useThemeConfig();
 
   // Hooks
   const { open, onOpen, onClose } = useDisclosure();
@@ -33,10 +37,11 @@ const SimplePopover = (props: Props) => {
 
       <PopoverContent
         ref={containerRef}
-        px={3}
-        py={2}
         w={"fit"}
         maxW={"240px"}
+        px={2}
+        py={1}
+        rounded={themeConfig.radii.component}
         onClick={(e) => {
           e.stopPropagation();
         }}

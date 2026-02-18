@@ -23,7 +23,7 @@ const customConfig = defineConfig({
     tokens: {
       colors: {
         light: { value: "#fff" },
-        dark: { value: "#151515" },
+        dark: { value: "#161616" },
         darktrans: { value: "#202020cf" },
         d0: { value: "#8a8a8a0f" },
         d1: { value: "#8a8a8a15" },
@@ -139,17 +139,17 @@ const customConfig = defineConfig({
           1000: { value: "#092214" },
           1100: { value: "#041009" },
         },
-        kemenkes: {
-          50: { value: "#E9FFF6" },
-          100: { value: "#CFFBE9" },
-          200: { value: "#A0F7DC" },
-          300: { value: "#6EE8CD" },
-          400: { value: "#47D1BF" },
-          500: { value: "#16B3AC" },
-          600: { value: "#109399" },
-          700: { value: "#0B7180" },
-          800: { value: "#075267" },
-          900: { value: "#043C55" },
+        tealBlue: {
+          50: { value: "#E6FAF8" },
+          100: { value: "#C4F1EC" },
+          200: { value: "#97E3DD" },
+          300: { value: "#69D2CD" },
+          400: { value: "#42BFC0" },
+          500: { value: "#1FA8B1" },
+          600: { value: "#188893" },
+          700: { value: "#126B76" },
+          800: { value: "#0C5059" },
+          900: { value: "#073C42" },
         },
         powderBlue: {
           50: { value: "#f0f8ff" },
@@ -333,7 +333,7 @@ const customConfig = defineConfig({
         text: { value: { base: "{colors.dark}", _dark: "#ddd" } },
         body: { value: { base: "{colors.light}", _dark: "{colors.dark}" } },
         bgContent: {
-          value: { base: "#fafafa", _dark: "#131313" },
+          value: { base: "#fafafa", _dark: "#141414" },
         },
         bodytrans: {
           value: { base: "{colors.light}aa", _dark: "{colors.dark}aa" },
@@ -1201,8 +1201,8 @@ const customConfig = defineConfig({
         teal: {
           solid: {
             value: {
-              base: "{colors.teal.500}",
-              _dark: "{colors.teal.500}",
+              base: "{colors.teal.500} !important",
+              _dark: "{colors.teal.500} !important",
             },
           },
           contrast: {
@@ -1234,42 +1234,42 @@ const customConfig = defineConfig({
             },
           },
         },
-        kemenkes: {
+        tealBlue: {
           solid: {
             value: {
-              base: "{colors.kemenkes.500}",
-              _dark: "{colors.kemenkes.500}",
+              base: "{colors.tealBlue.500}",
+              _dark: "{colors.tealBlue.500}",
             },
           },
           contrast: {
             value: {
-              base: "{colors.kemenkes.50}",
-              _dark: "{colors.kemenkes.900}",
+              base: "{colors.tealBlue.50}",
+              _dark: "{colors.tealBlue.900}",
             },
           },
           fg: {
             value: {
-              base: "{colors.kemenkes.500}",
-              _dark: "{colors.kemenkes.400}",
+              base: "{colors.tealBlue.500}",
+              _dark: "{colors.tealBlue.400}",
             },
           },
           muted: {
             value: {
-              base: "{colors.kemenkes.400}",
-              _dark: "{colors.kemenkes.400}",
+              base: "{colors.tealBlue.400}",
+              _dark: "{colors.tealBlue.400}",
             },
           },
           subtle: {
             value: {
-              base: "{colors.kemenkes.100}",
-              _dark: "{colors.kemenkes.900}",
+              base: "{colors.tealBlue.100}",
+              _dark: "{colors.tealBlue.900}",
             },
           },
-          emphasized: { value: "{colors.kemenkes.400}" },
+          emphasized: { value: "{colors.tealBlue.400}" },
           focusRing: {
             value: {
-              base: "{colors.kemenkes.500}",
-              _dark: "{colors.kemenkes.700}",
+              base: "{colors.tealBlue.500}",
+              _dark: "{colors.tealBlue.700}",
             },
           },
         },

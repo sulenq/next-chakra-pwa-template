@@ -1,9 +1,8 @@
 import { COLOR_PALETTES } from "@/constants/colors";
 import { IMAGES_PATH } from "@/constants/paths";
+import { ROUNDED_PRESETS } from "@/constants/presets";
 import { getStorage, setStorage } from "@/utils/client";
 import { create } from "zustand";
-
-const LOCAL_STORAGE_KEY = "theme_config";
 
 interface ThemeConfigProps {
   colorPalette: string;
@@ -16,15 +15,13 @@ interface ThemeConfigProps {
   };
 }
 
-const DEFAULT: ThemeConfigProps = {
+const LOCAL_STORAGE_KEY = "theme_config";
+export const DEFAULT: ThemeConfigProps = {
   colorPalette: COLOR_PALETTES[0].palette,
   primaryColor: `${COLOR_PALETTES[0].palette}.500`,
   primaryColorHex: COLOR_PALETTES[0].primaryHex,
   logo: `${IMAGES_PATH}/logo_graphic.png`,
-  radii: {
-    component: "6px",
-    container: "8px",
-  },
+  radii: ROUNDED_PRESETS[3],
 };
 
 interface Props {

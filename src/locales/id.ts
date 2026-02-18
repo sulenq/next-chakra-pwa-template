@@ -373,7 +373,7 @@ const translations = {
   "settings": "Pengaturan",
   "settings_adaptive_dark_mode": {
     "title": "Mode gelap adaptif",
-    "description": "UI mode gelap aktif saat malam hari ${timeRange}"
+    "description": "UI mode gelap aktif saat malam hari ${timeRange} (waktu lokal)"
   },
   "settings_camera": {
     "title": "Akses kamera",

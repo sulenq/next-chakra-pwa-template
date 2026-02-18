@@ -120,7 +120,7 @@ export const MenuItem = forwardRef<HTMLDivElement, MenuItemProps>(
           py={"8px !important"}
           cursor={"pointer"}
           fontSize={"md"}
-          rounded={themeConfig.radii.component}
+          rounded={`calc(${themeConfig.radii.component} + 2px)`}
           _hover={{
             bg: "bg.muted",
           }}
@@ -205,3 +205,20 @@ export const MenuRadioItemGroup = ChakraMenu.RadioItemGroup;
 export const MenuContextTrigger = ChakraMenu.ContextTrigger;
 export const MenuItemText = ChakraMenu.ItemText;
 export const MenuItemCommand = ChakraMenu.ItemCommand;
+
+export const Menu = {
+  Root: MenuRoot,
+  Trigger: MenuTrigger,
+  TriggerItem: MenuTriggerItem,
+  Content: MenuContent,
+  Item: MenuItem,
+  Arrow: MenuArrow,
+  CheckboxItem: MenuCheckboxItem,
+  RadioItem: MenuRadioItem,
+  ItemGroup: MenuItemGroup,
+  Separator: MenuSeparator,
+  RadioItemGroup: MenuRadioItemGroup,
+  ContextTrigger: MenuContextTrigger,
+  ItemText: MenuItemText,
+  ItemCommand: MenuItemCommand,
+};

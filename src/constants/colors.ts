@@ -14,7 +14,7 @@ export const COLORS: string[] = [
   "#E53E3E",
 ];
 
-export const ABS_COLORS = {
+export const ABS_COLOR = {
   green: "#22c55e",
   orange: "#F6AD55",
   red: "#ef4444",
@@ -161,49 +161,44 @@ export const LEGEND_COLOR_OPTIONS = [
 ];
 
 export const COLOR_PALETTES = [
-  // { palette: "p", primaryHex: "#35AACE" },
+  { palette: "gray", label: "Gray", primaryHex: "gray" },
+  { palette: "brown", label: "Brown", primaryHex: "#030303ff" },
+  { palette: "mocha", label: "Mocha", primaryHex: "#9F5D39" },
+  { palette: "caramel", label: "Caramel", primaryHex: "#C47B27" },
+  { palette: "cream", label: "Cream", primaryHex: "#D7BF8C" },
 
-  // Neutral & Dark Shades
-  { palette: "gray", primaryHex: "gray" },
-  { palette: "brown", primaryHex: "#030303ff" },
-  { palette: "mocha", primaryHex: "#9F5D39" },
-  { palette: "caramel", primaryHex: "#C47B27" },
-  { palette: "cream", primaryHex: "#D7BF8C" },
+  { palette: "maroon", label: "Maroon", primaryHex: "#800000" },
+  { palette: "red", label: "Red", primaryHex: "#ef4444" },
+  { palette: "salmon", label: "Salmon", primaryHex: "#FF6242" },
 
-  // Reds
-  { palette: "maroon", primaryHex: "#800000" },
-  { palette: "red", primaryHex: "#ef4444" },
-  { palette: "salmon", primaryHex: "#FF6242" },
+  { palette: "orange", label: "Orange", primaryHex: "#FF8E62" },
+  { palette: "pastelSalmon", label: "Pastel Salmon", primaryHex: "#FF8E62" },
+  { palette: "yellow", label: "Yellow", primaryHex: "#ffcc00" },
 
-  // Oranges & Yellows
-  { palette: "orange", primaryHex: "#FF8E62" },
-  { palette: "pastelSalmon", primaryHex: "#FF8E62" },
-  { palette: "yellow", primaryHex: "#ffcc00" },
+  { palette: "lime", label: "Lime", primaryHex: "#CDDC39" },
+  { palette: "olive", label: "Olive", primaryHex: "#879F30" },
+  { palette: "green", label: "Green", primaryHex: "#4CAF50" },
+  { palette: "jade", label: "Jade", primaryHex: "#00A86B" },
+  { palette: "teal", label: "Teal", primaryHex: "#009688" },
 
-  // Greens
-  { palette: "lime", primaryHex: "#CDDC39" },
-  { palette: "olive", primaryHex: "#879F30" },
-  { palette: "green", primaryHex: "#4CAF50" },
-  { palette: "jade", primaryHex: "#00A86B" },
-  { palette: "teal", primaryHex: "#009688" },
+  { palette: "tealBlue", label: "Teal Blue", primaryHex: "#16B3AC" },
+  { palette: "cyan", label: "Cyan", primaryHex: "#06b6d4" },
+  { palette: "powderBlue", label: "Powder Blue", primaryHex: "#769cc2" },
+  { palette: "sky", label: "Sky", primaryHex: "#0EA5E9" },
+  { palette: "blue", label: "Blue", primaryHex: "#3a72ed" },
+  { palette: "sapphire", label: "Sapphire", primaryHex: "#1939B7" },
+  { palette: "discord", label: "Discord", primaryHex: "#5865F2" },
+  { palette: "indigo", label: "Indigo", primaryHex: "#3F51B5" },
 
-  // Cyans & Blues
-  { palette: "kemenkes", primaryHex: "#16B3AC" },
-  { palette: "cyan", primaryHex: "#06b6d4" },
-  { palette: "powderBlue", primaryHex: "#769cc2" },
-  { palette: "sky", primaryHex: "#0EA5E9" },
-  { palette: "blue", primaryHex: "#3a72ed" },
-  { palette: "sapphire", primaryHex: "#1939B7" },
-  { palette: "discord", primaryHex: "#5865F2" },
-  { palette: "indigo", primaryHex: "#3F51B5" },
+  { palette: "lavender", label: "Lavender", primaryHex: "#7A42FF" },
+  {
+    palette: "powderLavender",
+    label: "Powder Lavender",
+    primaryHex: "#8E8CD8",
+  },
+  { palette: "purple", label: "Purple", primaryHex: "#9C27B0" },
 
-  // Purples & Lavenders
-  { palette: "lavender", primaryHex: "#7A42FF" },
-  { palette: "powderLavender", primaryHex: "#8E8CD8" },
-  { palette: "purple", primaryHex: "#9C27B0" },
-
-  // Pinks
-  { palette: "bubblegumPink", primaryHex: "#FF4ABB" },
-  { palette: "flamingoPink", primaryHex: "#FF478B" },
-  { palette: "pink", primaryHex: "#ec4899" },
+  { palette: "bubblegumPink", label: "Bubblegum Pink", primaryHex: "#FF4ABB" },
+  { palette: "flamingoPink", label: "Flamingo Pink", primaryHex: "#FF478B" },
+  { palette: "pink", label: "Pink", primaryHex: "#ec4899" },
 ];

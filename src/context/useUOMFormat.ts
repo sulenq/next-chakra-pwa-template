@@ -9,7 +9,7 @@ interface Props {
   setUOM: (newState: string) => void;
 }
 
-const useUOM = create<Props>((set) => {
+const useUOMFormat = create<Props>((set) => {
   const getStoredUOM = (): string => {
     try {
       const stored = getStorage(STORAGE_KEY);
@@ -34,4 +34,4 @@ const useUOM = create<Props>((set) => {
   };
 });
 
-export default useUOM;
+export default useUOMFormat;

@@ -10,6 +10,7 @@ import { SelectInput } from "@/components/ui/select-input";
 import { StringInput } from "@/components/ui/string-input";
 import { Switch } from "@/components/ui/switch";
 import { TimePickerInput } from "@/components/ui/time-picker-input";
+import { Tooltip } from "@/components/ui/tooltip";
 import { AppIcon } from "@/components/widget/AppIcon";
 import { DotIndicator } from "@/components/widget/Indicator";
 import { ItemContainer } from "@/components/widget/ItemContainer";
@@ -19,6 +20,7 @@ import { LocalSettingsHelperText } from "@/components/widget/LocalSettingsHelper
 import { ToggleSettingContainer } from "@/components/widget/SettingsShell";
 import { COLOR_PALETTES } from "@/constants/colors";
 import { Interface__SelectOption } from "@/constants/interfaces";
+import { ROUNDED_PRESETS } from "@/constants/presets";
 import { OPTIONS_RELIGION } from "@/constants/selectOptions";
 import useADM from "@/context/useADM";
 import useLang from "@/context/useLang";
@@ -214,47 +216,54 @@ const AccentColor = () => {
           borderColor={"border.muted"}
         >
           <SimpleGrid minChildWidth={"56px"} gap={2}>
-            {COLOR_PALETTES.map((color, idx) => {
+            {COLOR_PALETTES.map((color, index) => {
               const isActive = color.palette === themeConfig.colorPalette;
               const isColorPaletteGray = color.palette === "gray";
 
               return (
-                <Center
-                  key={idx}
-                  w={"full"}
-                  aspectRatio={1}
-                  bg={isColorPaletteGray ? "ibody" : `${color.palette}.500`}
-                  rounded={themeConfig.radii.component}
-                  cursor={"pointer"}
-                  overflow={"clip"}
-                  onClick={() => {
-                    setThemeConfig({
-                      colorPalette: color.palette,
-                      primaryColor: isColorPaletteGray
-                        ? "ibody"
-                        : `${color.palette}.500`,
-                      primaryColorHex: color.primaryHex,
-                    });
-                  }}
-                  pos={"relative"}
+                <Tooltip
+                  key={`${color.palette}-${index}`}
+                  content={color.label}
                 >
-                  {/* <P
-                  fontSize={"sm"}
-                  color={`${color.palette}.contrast`}
-                  textAlign={"center"}
-                >
-                  {color.palette}
-                </P> */}
+                  <Center
+                    w={"full"}
+                    aspectRatio={1}
+                    p={2}
+                    bg={isColorPaletteGray ? "ibody" : `${color.palette}.500`}
+                    rounded={themeConfig.radii.component}
+                    cursor={"pointer"}
+                    overflow={"clip"}
+                    onClick={() => {
+                      setThemeConfig({
+                        colorPalette: color.palette,
+                        primaryColor: isColorPaletteGray
+                          ? "ibody"
+                          : `${color.palette}.500`,
+                        primaryColorHex: color.primaryHex,
+                      });
+                    }}
+                    pos={"relative"}
+                  >
+                    {/* <P
+                    fontSize={"sm"}
+                    fontWeight={"medium"}
+                    color={`${color.palette}.contrast`}
+                    textAlign={"center"}
+                    lineClamp={1}
+                  >
+                    {color.label}
+                  </P> */}
 
-                  {isActive && (
-                    <DotIndicator
-                      pos={"absolute"}
-                      color={isColorPaletteGray ? "body" : "light"}
-                      top={2}
-                      right={2}
-                    />
-                  )}
-                </Center>
+                    {isActive && (
+                      <DotIndicator
+                        pos={"absolute"}
+                        color={isColorPaletteGray ? "body" : "light"}
+                        top={2}
+                        right={2}
+                      />
+                    )}
+                  </Center>
+                </Tooltip>
               );
             })}
           </SimpleGrid>
@@ -270,18 +279,6 @@ const Rounded = () => {
 
   // Refs
   const containerRef = useRef<HTMLDivElement>(null);
-
-  // States
-  const roundedList = [
-    { label: "None", component: "0px", container: "0px" },
-    { label: "XS", component: "2px", container: "4px" },
-    { label: "Sm", component: "4px", container: "8px" },
-    { label: "Md", component: "6px", container: "12px" },
-    { label: "Lg", component: "8px", container: "16px" },
-    { label: "XL", component: "12px", container: "20px" },
-    { label: "2XL", component: "16px", container: "24px" },
-    { label: "3XL", component: "24px", container: "28px" },
-  ];
 
   // Component
   const RoundedExampel = (props: any) => {
@@ -376,11 +373,11 @@ const Rounded = () => {
           borderColor={"border.muted"}
         >
           <SimpleGrid minChildWidth={"140px"} gap={4}>
-            {roundedList.map((item) => {
+            {ROUNDED_PRESETS.map((item, index) => {
               const isActive = item.component === themeConfig.radii.component;
 
               return (
-                <CContainer key={item.label}>
+                <CContainer key={`${item.label}-${index}`}>
                   <RoundedExampel preset={item} isActive={isActive} />
                 </CContainer>
               );

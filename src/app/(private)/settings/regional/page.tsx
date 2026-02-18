@@ -5,6 +5,7 @@ import { CContainer } from "@/components/ui/c-container";
 import { P } from "@/components/ui/p";
 import SearchInput from "@/components/ui/search-input";
 import { toaster } from "@/components/ui/toaster";
+import { Tooltip } from "@/components/ui/tooltip";
 import { AppIcon } from "@/components/widget/AppIcon";
 import FeedbackNotFound from "@/components/widget/FeedbackNotFound";
 import { DotIndicator } from "@/components/widget/Indicator";
@@ -16,7 +17,6 @@ import { LocalSettingsHelperText } from "@/components/widget/LocalSettingsHelper
 import { Pagination } from "@/components/widget/Pagination";
 import { DATE_FORMATS } from "@/constants/dateFormats";
 import { LANGUAGES } from "@/constants/languages";
-import { FIREFOX_SCROLL_Y_CLASS_PR_PREFIX } from "@/constants/styles";
 import { TIME_FORMATS } from "@/constants/timeFormats";
 import { TIME_ZONES } from "@/constants/timezone";
 import {
@@ -30,7 +30,7 @@ import useLang from "@/context/useLang";
 import { useThemeConfig } from "@/context/useThemeConfig";
 import useTimeFormat from "@/context/useTimeFormat";
 import useTimezone from "@/context/useTimezone";
-import useUOM from "@/context/useUOM";
+import useUOMFormat from "@/context/useUOMFormat";
 import { isEmptyArray } from "@/utils/array";
 import { formatDate, formatTime } from "@/utils/formatter";
 import { capitalizeWords, pluckString } from "@/utils/string";
@@ -110,7 +110,7 @@ const Language = () => {
   );
 };
 const Timezone = () => {
-  const LIMIT_OPTIONS = [14, 28, 56, 100];
+  const LIMIT_OPTIONS = [10, 20, 50, 100];
 
   // Contexts
   const { l } = useLang();
@@ -123,7 +123,7 @@ const Timezone = () => {
   // States
   const localTz = getLocalTimezone();
   const timezones = TIME_ZONES;
-  const [limit, setLimit] = useState<number>([14, 28, 56][0]);
+  const [limit, setLimit] = useState<number>(LIMIT_OPTIONS[0]);
   const [page, setPage] = useState<number>(1);
   const [search, setSearch] = useState("");
   const resolvedTimezones = useMemo(() => {
@@ -182,11 +182,7 @@ const Timezone = () => {
             />
           </CContainer>
 
-          <CContainer
-            className={"scrollY"}
-            px={3}
-            pr={`calc(8px - ${FIREFOX_SCROLL_Y_CLASS_PR_PREFIX})`}
-          >
+          <CContainer px={3}>
             {isEmptyArray(resolvedTimezones) && <FeedbackNotFound />}
 
             {!isEmptyArray(resolvedTimezones) && (
@@ -197,29 +193,33 @@ const Timezone = () => {
                     const isActive = timeZone.key === tz.key;
 
                     return (
-                      <Btn
+                      <Tooltip
                         key={`${tz.key}-${idx}`}
-                        clicky={false}
-                        variant={"ghost"}
-                        justifyContent={"start"}
-                        px={3}
-                        color={isActive ? "" : NAVS_COLOR}
-                        onClick={() => {
-                          setTimeZone(tz);
-                        }}
-                        pos={"relative"}
+                        content={`${tz.key} ${tz.localAbbr} (${tz.formattedOffset})`}
                       >
-                        <P textAlign={"left"} lineClamp={1}>
-                          {tz.key}
-                        </P>
+                        <Btn
+                          clicky={false}
+                          variant={"ghost"}
+                          justifyContent={"start"}
+                          px={3}
+                          color={isActive ? "" : NAVS_COLOR}
+                          onClick={() => {
+                            setTimeZone(tz);
+                          }}
+                          pos={"relative"}
+                        >
+                          <P textAlign={"left"} lineClamp={1}>
+                            {tz.key}
+                          </P>
 
-                        <P
-                          textAlign={"left"}
-                          color={"fg.subtle"}
-                        >{`${tz.formattedOffset} (${tz.localAbbr})`}</P>
+                          <P
+                            textAlign={"left"}
+                            color={"fg.subtle"}
+                          >{`${tz.localAbbr} (${tz.formattedOffset})`}</P>
 
-                        {isActive && <DotIndicator />}
-                      </Btn>
+                          {isActive && <DotIndicator />}
+                        </Btn>
+                      </Tooltip>
                     );
                   })}
               </SimpleGrid>
@@ -395,7 +395,7 @@ const UOMFormat = () => {
   // Contexts
   const { themeConfig } = useThemeConfig();
   const { l } = useLang();
-  const { UOM, setUOM } = useUOM();
+  const { UOM, setUOM } = useUOMFormat();
 
   return (
     <ItemContainer borderless roundedless>
@@ -446,12 +446,13 @@ const UOMFormat = () => {
 
                   {/* Example */}
                   <HStack wrap={"wrap"} mt={"auto"}>
-                    <P color={"fg.subtle"}>{item.units.mass}</P>
-                    <P color={"fg.subtle"}>{item.units.length}</P>
-                    <P color={"fg.subtle"}>{item.units.height}</P>
-                    <P color={"fg.subtle"}>{item.units.volume}</P>
-                    <P color={"fg.subtle"}>{item.units.area}</P>
-                    <P color={"fg.subtle"}>{item.units.speed}</P>
+                    {Object.keys(item.units).map((key) => {
+                      return (
+                        <P key={key} color={"fg.subtle"}>
+                          {item.units[key as keyof typeof item.units]}
+                        </P>
+                      );
+                    })}
                   </HStack>
                 </CContainer>
               );

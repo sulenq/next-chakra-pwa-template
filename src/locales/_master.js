@@ -1103,8 +1103,8 @@ export const settings_dark_mode = {
 export const settings_adaptive_dark_mode = {
   title: { id: "Mode gelap adaptif", en: "Adaptive dark mode" },
   description: {
-    id: "UI mode gelap aktif saat malam hari ${timeRange}",
-    en: "UI dark mode active at night ${timeRange}",
+    id: "UI mode gelap aktif saat malam hari ${timeRange} (waktu lokal)",
+    en: "UI dark mode active at night ${timeRange} (local time)",
   },
 };
 export const settings_camera = {

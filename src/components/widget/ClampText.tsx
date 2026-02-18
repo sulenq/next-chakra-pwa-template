@@ -9,8 +9,15 @@ export const ClampText = (props: TextProps) => {
   const { children, ...restProps } = props;
 
   return (
-    <SimplePopover content={<P>{children}</P>}>
-      <P w={"full"} lineClamp={1} cursor={"pointer"} {...restProps}>
+    <SimplePopover
+      content={children}
+      rootProps={{
+        positioning: {
+          placement: "bottom-start",
+        },
+      }}
+    >
+      <P w={"fit"} lineClamp={1} cursor={"pointer"} {...restProps}>
         {children}
       </P>
     </SimplePopover>

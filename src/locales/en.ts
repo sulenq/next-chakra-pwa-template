@@ -373,7 +373,7 @@ const translations = {
   "settings": "Settings",
   "settings_adaptive_dark_mode": {
     "title": "Adaptive dark mode",
-    "description": "UI dark mode active at night ${timeRange}"
+    "description": "UI dark mode active at night ${timeRange} (local time)"
   },
   "settings_camera": {
     "title": "Camera access",

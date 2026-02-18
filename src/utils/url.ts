@@ -1,5 +1,4 @@
 import { Interface__NavGroup } from "@/constants/interfaces";
-import { PRIVATE_NAV_GROUPS, OTHER_PRIVATE_NAV_GROUPS } from "@/constants/navs";
 
 export function generateWAUrl(phone: string, message: string = ""): void {
   const sanitizedPhone = phone.trim().replace(/[^0-9]/g, "");
@@ -13,7 +12,7 @@ export function generateWAUrl(phone: string, message: string = ""): void {
 
 export const getActiveNavs = (
   pathname: string,
-  privateNavs?: Interface__NavGroup[],
+  privateNavs: Interface__NavGroup[],
 ): Interface__NavGroup["navs"][number][] => {
   const findInList = (
     items: Interface__NavGroup["navs"],
@@ -32,14 +31,9 @@ export const getActiveNavs = (
     return null;
   };
 
-  const resolvedPrivateNavs = privateNavs ?? PRIVATE_NAV_GROUPS;
+  const resolvedPrivateNavs = privateNavs;
 
   for (const navGroup of resolvedPrivateNavs) {
-    const result = findInList(navGroup.navs);
-    if (result) return result;
-  }
-
-  for (const navGroup of OTHER_PRIVATE_NAV_GROUPS) {
     const result = findInList(navGroup.navs);
     if (result) return result;
   }
