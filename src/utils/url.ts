@@ -14,10 +14,10 @@ export function generateWAUrl(phone: string, message: string = ""): void {
 export const getActiveNavs = (
   pathname: string,
   privateNavs?: Interface__NavGroup[],
-): Interface__NavGroup["list"][number][] => {
+): Interface__NavGroup["navs"][number][] => {
   const findInList = (
-    items: Interface__NavGroup["list"],
-  ): Interface__NavGroup["list"][number][] | null => {
+    items: Interface__NavGroup["navs"],
+  ): Interface__NavGroup["navs"][number][] | null => {
     for (const item of items) {
       if (item.path === pathname) return [item];
       if (item.children) {
