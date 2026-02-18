@@ -9,10 +9,7 @@ import { ClampText } from "@/components/widget/ClampText";
 import Clock from "@/components/widget/Clock";
 import { DotIndicator } from "@/components/widget/Indicator";
 import { Today } from "@/components/widget/Today";
-import {
-  Interface__NavGroup,
-  Interface__NavItem,
-} from "@/constants/interfaces";
+import { Interface__NavGroup, Interface__Nav } from "@/constants/interfaces";
 import useADM from "@/context/useADM";
 import useLang from "@/context/useLang";
 import useScreen from "@/hooks/useScreen";
@@ -64,7 +61,7 @@ export const NavBreadcrumb = (props: any) => {
 
         {isEmptyArray(resolvedActiveNavs) && <P>{l.navs.welcome}</P>}
 
-        {resolvedActiveNavs.map((nav: Interface__NavItem, idx: number) => {
+        {resolvedActiveNavs.map((nav: Interface__Nav, idx: number) => {
           return (
             <HStack key={idx} gap={0} color={"fg.subtle"}>
               {idx !== 0 && (

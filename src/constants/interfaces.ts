@@ -56,9 +56,9 @@ export interface Interface__Role {
 // Navs
 export interface Interface__NavGroup {
   groupLabelKey?: string;
-  navs: Interface__NavItem[];
+  navs: Interface__Nav[];
 }
-export interface Interface__NavItem {
+export interface Interface__Nav {
   icon?: any;
   labelKey?: string;
   label?: string;
