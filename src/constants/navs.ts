@@ -16,7 +16,7 @@ import {
 
 export const PRIVATE_NAV_GROUPS: Interface__NavGroup[] = [
   {
-    groupLabelKey: "main",
+    labelKey: "main",
     navs: [
       // {
       //   icon: House,
@@ -69,7 +69,7 @@ export const PRIVATE_NAV_GROUPS: Interface__NavGroup[] = [
 
 export const OTHER_PRIVATE_NAV_GROUPS: Interface__NavGroup[] = [
   {
-    groupLabelKey: "other",
+    labelKey: "other",
     navs: [
       {
         icon: DatabaseIcon,
@@ -78,7 +78,7 @@ export const OTHER_PRIVATE_NAV_GROUPS: Interface__NavGroup[] = [
         allowedRoles: [],
         children: [
           {
-            groupLabelKey: "master_data_navs.hr.index",
+            labelKey: "master_data_navs.hr.index",
             navs: [
               {
                 icon: UserCogIcon,
@@ -98,7 +98,7 @@ export const OTHER_PRIVATE_NAV_GROUPS: Interface__NavGroup[] = [
         allowedRoles: [],
         children: [
           {
-            groupLabelKey: "settings_navs.main.index",
+            labelKey: "settings_navs.main.index",
             navs: [
               {
                 icon: UserIcon,
@@ -131,7 +131,7 @@ export const OTHER_PRIVATE_NAV_GROUPS: Interface__NavGroup[] = [
             ],
           },
           {
-            groupLabelKey: "settings_navs.system.index",
+            labelKey: "settings_navs.system.index",
             navs: [
               {
                 icon: UserCogIcon,

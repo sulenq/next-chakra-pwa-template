@@ -55,7 +55,7 @@ export interface Interface__Role {
 
 // Navs
 export interface Interface__NavGroup {
-  groupLabelKey?: string;
+  labelKey?: string;
   navs: Interface__Nav[];
 }
 export interface Interface__Nav {
@@ -67,6 +67,7 @@ export interface Interface__Nav {
   allowedRoles?: string[];
   allowedPermissions?: string[];
   children?: Interface__NavGroup[];
+  childrenInvisible?: boolean;
 }
 
 // Data Table

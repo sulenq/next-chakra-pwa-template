@@ -10,6 +10,7 @@ import Clock from "@/components/widget/Clock";
 import { DotIndicator } from "@/components/widget/Indicator";
 import { Today } from "@/components/widget/Today";
 import { Interface__NavGroup, Interface__Nav } from "@/constants/interfaces";
+import { OTHER_PRIVATE_NAV_GROUPS, PRIVATE_NAV_GROUPS } from "@/constants/navs";
 import useADM from "@/context/useADM";
 import useLang from "@/context/useLang";
 import useScreen from "@/hooks/useScreen";
@@ -23,6 +24,10 @@ import { usePathname } from "next/navigation";
 import { forwardRef } from "react";
 
 const FONT_SIZE = "md";
+export const RESOLVED_NAVS = [
+  ...PRIVATE_NAV_GROUPS,
+  ...OTHER_PRIVATE_NAV_GROUPS,
+];
 
 export const PageContainer = forwardRef<HTMLDivElement, StackProps>(
   (props, ref) => {
@@ -99,7 +104,7 @@ interface Props__TopBar extends StackProps {
 }
 export const TopBar = (props: Props__TopBar) => {
   // Props
-  const { navs, ...restProps } = props;
+  const { ...restProps } = props;
 
   // Contexts
   const ADM = useADM((s) => s.ADM);
@@ -109,7 +114,7 @@ export const TopBar = (props: Props__TopBar) => {
   const pathname = usePathname();
 
   // States
-  const activeNavs = getActiveNavs(pathname, navs);
+  const activeNavs = getActiveNavs(pathname, RESOLVED_NAVS);
   const resolvedActiveNavs =
     sw < 960 ? [activeNavs[activeNavs.length - 1]] : activeNavs;
   const backPath = last(activeNavs)?.backPath;

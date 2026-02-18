@@ -266,8 +266,8 @@ const MobileLayout = (props: any) => {
                                   <MenuItemGroup
                                     key={idx}
                                     title={
-                                      subGroup.groupLabelKey
-                                        ? pluckString(l, subGroup.groupLabelKey)
+                                      subGroup.labelKey
+                                        ? pluckString(l, subGroup.labelKey)
                                         : ""
                                     }
                                   >
@@ -317,7 +317,7 @@ const MobileLayout = (props: any) => {
           })}
 
           {OTHER_PRIVATE_NAV_GROUPS.find(
-            (group) => group.groupLabelKey === "other",
+            (group) => group.labelKey === "other",
           )?.navs.map((nav) => {
             return (
               <MobileNavLink
@@ -581,7 +581,7 @@ const DesktopLayout = (props: any) => {
               resolvedNavs.map((navItem, navItemIdx) => {
                 return (
                   <CContainer key={navItemIdx} gap={1}>
-                    {navsExpanded && navItem.groupLabelKey && (
+                    {navsExpanded && navItem.labelKey && (
                       <ClampText
                         fontSize={"sm"}
                         fontWeight={"semibold"}
@@ -589,7 +589,7 @@ const DesktopLayout = (props: any) => {
                         color={"fg.subtle"}
                         ml={1}
                       >
-                        {pluckString(l, navItem.groupLabelKey)}
+                        {pluckString(l, navItem.labelKey)}
                       </ClampText>
                     )}
 
@@ -694,10 +694,10 @@ const DesktopLayout = (props: any) => {
                                           key={menuItemIdx}
                                           gap={1}
                                           title={
-                                            subGroup.groupLabelKey
+                                            subGroup.labelKey
                                               ? pluckString(
                                                   l,
-                                                  subGroup.groupLabelKey,
+                                                  subGroup.labelKey,
                                                 )
                                               : ""
                                           }
@@ -809,7 +809,7 @@ const DesktopLayout = (props: any) => {
                                               key={menuItemIdx}
                                               gap={1}
                                             >
-                                              {subGroup.groupLabelKey && (
+                                              {subGroup.labelKey && (
                                                 <ClampText
                                                   fontSize="sm"
                                                   fontWeight="semibold"
@@ -819,7 +819,7 @@ const DesktopLayout = (props: any) => {
                                                 >
                                                   {pluckString(
                                                     l,
-                                                    subGroup.groupLabelKey,
+                                                    subGroup.labelKey,
                                                   )}
                                                 </ClampText>
                                               )}

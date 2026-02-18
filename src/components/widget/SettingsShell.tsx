@@ -4,7 +4,7 @@ interface Props extends StackProps {
   disabled?: boolean;
 }
 
-export const SettingsItemContainer = ({
+export const ToggleSettingContainer = ({
   children,
   disabled,
   ...props

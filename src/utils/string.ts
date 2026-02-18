@@ -42,10 +42,10 @@ export const interpolateString = (
 };
 
 export const pluckString = (
-  obj: Record<string, any>,
+  obj?: Record<string, any>,
   key?: string | null,
 ): string => {
-  if (!key) return "";
+  if (!obj || !key) return "";
 
   return key.split(".").reduce<any>((acc, curr) => {
     if (acc && typeof acc === "object" && curr in acc) {
