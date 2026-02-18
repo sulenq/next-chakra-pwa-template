@@ -421,7 +421,7 @@ const DesktopLayout = (props: any) => {
         const subsFilteredByRole = nav.children
           .map((sub) => ({
             ...sub,
-            list: (sub.navs ?? []).filter((subItem) =>
+            navs: (sub.navs ?? []).filter((subItem) =>
               isAllowed(subItem, roleId),
             ),
           }))
@@ -448,7 +448,7 @@ const DesktopLayout = (props: any) => {
         const matchedSubs = nav.children
           .map((sub) => ({
             ...sub,
-            list: (sub.navs ?? []).filter((subItem) => {
+            navs: (sub.navs ?? []).filter((subItem) => {
               if (!isAllowed(subItem, roleId)) return false;
               const subLabel =
                 subItem.label?.toLowerCase() ||
@@ -465,7 +465,7 @@ const DesktopLayout = (props: any) => {
       })
       .filter(Boolean) as typeof nav.navs;
 
-    return filteredList.length > 0 ? { ...nav, list: filteredList } : null;
+    return filteredList.length > 0 ? { ...nav, navs: filteredList } : null;
   }).filter(Boolean) as typeof PRIVATE_NAV_GROUPS;
 
   useEffect(() => {
