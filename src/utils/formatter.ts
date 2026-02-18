@@ -3,6 +3,7 @@ import {
   Type__DateFormat,
   Type__DateVariant,
   Type__TimeFormat,
+  Type__UnitKey,
 } from "@/constants/types";
 import { L_WEEKDAYS_0_BASED } from "@/constants/weekdays";
 import { getStorage } from "@/utils/client";
@@ -10,6 +11,8 @@ import { isValid, parseISO } from "date-fns";
 import { format as formatTz, toZonedTime } from "date-fns-tz";
 import { isDateObject } from "./date";
 import { getTimezoneOffsetMs, getUserTimezone } from "./time";
+import useUOMFormat from "@/context/useUOMFormat";
+import { UOM_FORMATS } from "@/constants/uomFormats";
 
 export const formatDate = (
   date?: Date | string | undefined,
@@ -376,3 +379,23 @@ export const formatDuration = (
       return "0 detik";
   }
 };
+
+export function formatUOM(
+  value: number | string | null | undefined,
+  unit: Type__UnitKey,
+  options?: Intl.NumberFormatOptions,
+) {
+  if (value === null || value === undefined || value === "") return "-";
+
+  const key = useUOMFormat.getState().UOM;
+
+  const format = UOM_FORMATS.find((f) => f.key === key) ?? UOM_FORMATS[0];
+  const unitLabel = format.units[unit];
+
+  const num =
+    typeof value === "number"
+      ? new Intl.NumberFormat(undefined, options).format(value)
+      : value;
+
+  return `${num} ${unitLabel}`;
+}

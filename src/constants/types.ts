@@ -1,5 +1,21 @@
 import { ButtonProps, ConditionalValue, MenuItemProps } from "@chakra-ui/react";
 
+export type Type__UnitKey =
+  | "mass"
+  | "length"
+  | "distance"
+  | "height"
+  | "area"
+  | "volume"
+  | "temperature"
+  | "speed"
+  | "energy"
+  | "power"
+  | "pressure"
+  | "data"
+  | "dataRate"
+  | "angle";
+
 export type Type__ChartData = Record<string, number | string>;
 
 export type Type__ButtonSize = ConditionalValue<
@@ -24,7 +40,7 @@ export type Type__ContainerDimension = {
 export type Type__SortHandler = (
   aValue: any,
   bValue: any,
-  direction: "asc" | "desc"
+  direction: "asc" | "desc",
 ) => number;
 
 export type Type__Period = {
