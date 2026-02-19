@@ -493,7 +493,7 @@ const DesktopLayout = (props: any) => {
         flexShrink={0}
         w={navsExpanded ? "250px" : "60px"}
         borderColor={"border.muted"}
-        bg={navsExpanded ? DESKTOP_NAVS_BG : "body"}
+        bg={navsExpanded ? "bgContent" : DESKTOP_NAVS_BG}
         transition={"200ms"}
       >
         {/* Logo & Sidebar Toggle */}
