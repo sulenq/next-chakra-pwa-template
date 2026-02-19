@@ -12,7 +12,7 @@ import { LucideIcon } from "@/components/widget/Icon";
 import { LeftIndicator } from "@/components/widget/Indicator";
 import { MContainer } from "@/components/widget/MContainer";
 import { PageContainer, PageTitle } from "@/components/widget/PageShell";
-import { ADMIN_OTHER_PRIVATE_NAV_GROUPS } from "@/constants/navs";
+import { OTHER_PRIVATE_NAV_GROUPS } from "@/constants/navs";
 import { Props__Layout } from "@/constants/props";
 import {
   BASE_ICON_BOX_SIZE,
@@ -28,7 +28,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
 const NAVS =
-  ADMIN_OTHER_PRIVATE_NAV_GROUPS[0].navs.find((n) => n.path === "/master-data")
+  OTHER_PRIVATE_NAV_GROUPS[0].navs.find((n) => n.path === "/master-data")
     ?.children || [];
 const DESKTOP_NAVS_COLOR = "ibody";
 const ROOT_PATH = `/master-data`;

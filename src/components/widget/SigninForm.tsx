@@ -171,6 +171,8 @@ const BasicAuthForm = (props: any) => {
           },
         },
       });
+
+      router.push(INDEX_ROUTE);
     },
   });
 

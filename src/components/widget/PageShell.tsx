@@ -11,12 +11,7 @@ import { DotIndicator } from "@/components/widget/Indicator";
 import SimplePopover from "@/components/widget/SimplePopover";
 import { Today } from "@/components/widget/Today";
 import { Interface__Nav } from "@/constants/interfaces";
-import {
-  ADMIN_OTHER_PRIVATE_NAV_GROUPS,
-  ADMIN_PRIVATE_NAV_GROUPS,
-  OTHER_PRIVATE_NAV_GROUPS,
-  PRIVATE_NAV_GROUPS,
-} from "@/constants/navs";
+import { OTHER_PRIVATE_NAV_GROUPS, PRIVATE_NAV_GROUPS } from "@/constants/navs";
 import useADM from "@/context/useADM";
 import { useBreadcrumbs } from "@/context/useBreadcrumbs";
 import useLang from "@/context/useLang";
@@ -33,8 +28,6 @@ const FONT_SIZE = "md";
 export const RESOLVED_NAVS = [
   ...PRIVATE_NAV_GROUPS,
   ...OTHER_PRIVATE_NAV_GROUPS,
-  ...ADMIN_PRIVATE_NAV_GROUPS,
-  ...ADMIN_OTHER_PRIVATE_NAV_GROUPS,
 ];
 
 export const ContainerLayout = forwardRef<HTMLDivElement, StackProps>(
