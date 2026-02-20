@@ -12,14 +12,14 @@ const usePopDisclosure = (id: string) => {
   const onOpen = useCallback(() => {
     const params = new URLSearchParams(searchParams.toString());
     params.set(id, "1");
-    router.push(`?${params.toString()}`);
+    router.push(`?${params.toString()}`, { scroll: false });
   }, [id, router, searchParams]);
 
   const onClose = useCallback(() => {
     const params = new URLSearchParams(searchParams.toString());
     params.delete(id);
     const query = params.toString();
-    router.push(query ? `?${query}` : "");
+    router.push(query ? `?${query}` : "", { scroll: false });
   }, [id, router, searchParams]);
 
   return {

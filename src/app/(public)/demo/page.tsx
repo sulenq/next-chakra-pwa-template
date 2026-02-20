@@ -48,7 +48,7 @@ import { useState } from "react";
 import * as yup from "yup";
 
 const Delete = (props: any) => {
-  const ID = `PREFIX_delete`;
+  const ID = `delete`;
 
   // Props
   const { deleteIds, clearSelectedRows, disabled, routeTitle } = props;
