@@ -140,16 +140,16 @@ const customConfig = defineConfig({
           1100: { value: "#041009" },
         },
         tealBlue: {
-          50: { value: "#E6FAF8" },
-          100: { value: "#C4F1EC" },
-          200: { value: "#97E3DD" },
-          300: { value: "#69D2CD" },
-          400: { value: "#42BFC0" },
-          500: { value: "#1FA8B1" },
-          600: { value: "#188893" },
-          700: { value: "#126B76" },
-          800: { value: "#0C5059" },
-          900: { value: "#073C42" },
+          50: { value: "#E6FBFD" },
+          100: { value: "#C2F3F8" },
+          200: { value: "#96E8F1" },
+          300: { value: "#63DAE8" },
+          400: { value: "#21D3E0" },
+          500: { value: "#1AB0BC" },
+          600: { value: "#148E97" },
+          700: { value: "#0F6E74" },
+          800: { value: "#0A4F52" },
+          900: { value: "#06383A" },
         },
         powderBlue: {
           50: { value: "#f0f8ff" },
@@ -1237,8 +1237,8 @@ const customConfig = defineConfig({
         tealBlue: {
           solid: {
             value: {
-              base: "{colors.tealBlue.500}",
-              _dark: "{colors.tealBlue.500}",
+              base: "{colors.tealBlue.500} !important",
+              _dark: "{colors.tealBlue.500} !important",
             },
           },
           contrast: {
@@ -1249,14 +1249,14 @@ const customConfig = defineConfig({
           },
           fg: {
             value: {
-              base: "{colors.tealBlue.500}",
-              _dark: "{colors.tealBlue.400}",
+              base: "{colors.tealBlue.600} !important",
+              _dark: "{colors.tealBlue.400} !important",
             },
           },
           muted: {
             value: {
-              base: "{colors.tealBlue.400}",
-              _dark: "{colors.tealBlue.400}",
+              base: "{colors.tealBlue.500} !important",
+              _dark: "{colors.tealBlue.500} !important",
             },
           },
           subtle: {

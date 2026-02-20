@@ -181,7 +181,7 @@ export const COLOR_PALETTES = [
   { palette: "jade", label: "Jade", primaryHex: "#00A86B" },
   { palette: "teal", label: "Teal", primaryHex: "#009688" },
 
-  { palette: "tealBlue", label: "Teal Blue", primaryHex: "#16B3AC" },
+  { palette: "tealBlue", label: "Teal Blue", primaryHex: "#1AB0BC" },
   { palette: "cyan", label: "Cyan", primaryHex: "#06b6d4" },
   { palette: "powderBlue", label: "Powder Blue", primaryHex: "#769cc2" },
   { palette: "sky", label: "Sky", primaryHex: "#0EA5E9" },
