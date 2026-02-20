@@ -44,7 +44,7 @@ import ResetPasswordDisclosureTrigger from "./ResetPasswordDisclosure";
 
 interface Props extends StackProps {}
 
-const INDEX_ROUTE = "/welcome";
+const INDEX_ROUTE = "/demo";
 
 const Signedin = (props: any) => {
   // Props
