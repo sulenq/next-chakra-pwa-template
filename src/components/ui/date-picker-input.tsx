@@ -91,6 +91,7 @@ export const PeriodPicker = (props: any) => {
       <PeriodPickerInput
         flex={1}
         size={"sm"}
+        px={3}
         inputValue={period}
         variant={"ghost"}
         invalid={false}
