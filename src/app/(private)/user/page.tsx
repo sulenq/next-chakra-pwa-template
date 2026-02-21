@@ -19,6 +19,7 @@ import {
   PageContainer,
   PageContent,
   PageTitle,
+  RESOLVED_NAVS,
 } from "@/components/widget/PageShell";
 import { RowMenuTooltip } from "@/components/widget/RowOptions";
 import { SimpleDisclosure } from "@/components/widget/SimpleDisclosure";
@@ -356,7 +357,7 @@ const Data = (props: any) => {
   const { filter, routeTitle, isSmContainer } = props;
 
   // Contexts
-  // const { l } = useLang();
+  const { l } = useLang();
   const displayMode = useDataDisplay((s) => s.getDisplay(PREFIX_ID));
   const displayTable = displayMode === "table";
 
@@ -411,7 +412,7 @@ const Data = (props: any) => {
             value: item.email,
           },
           {
-            td: formatDate(item.createdAt),
+            td: formatDate(item.createdAt, l),
             value: item.createdAt,
             dataType: "date",
           },
@@ -566,7 +567,7 @@ export default function Page() {
   const isValidDimension = isDimensionValid(dimension);
   const isSmContainer = dimension.width < 600;
   const pathname = usePathname();
-  const activeNav = getActiveNavs(pathname);
+  const activeNav = getActiveNavs(pathname, RESOLVED_NAVS);
   const routeTitle = pluckString(l, last(activeNav)?.labelKey || "");
   const [filter, setFilter] = useState(DEFAULT_FILTER);
 

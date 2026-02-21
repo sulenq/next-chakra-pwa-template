@@ -352,7 +352,7 @@ const AuthLog = () => {
 
               <CContainer>
                 <P>
-                  {formatDate(log?.createdAt, {
+                  {formatDate(log?.createdAt, l, {
                     variant: "dayShortMonthYear",
                     withTime: true,
                   })}
@@ -511,7 +511,7 @@ const ActivityLog = () => {
                 <P>{formatActivityLog(log)}</P>
 
                 <P color={"fg.subtle"}>
-                  {formatDate(log?.createdAt, {
+                  {formatDate(log?.createdAt, l, {
                     variant: "dayShortMonthYear",
                     withTime: true,
                   })}

@@ -20,7 +20,7 @@ import {
   PageTitle,
 } from "@/components/widget/PageShell";
 import { dummyChartData } from "@/constants/dummyData";
-import { MONTHS } from "@/constants/months";
+import { getMonthNames } from "@/constants/months";
 import { Type__ChartData } from "@/constants/types";
 import useLang from "@/context/useLang";
 import { useThemeConfig } from "@/context/useThemeConfig";
@@ -127,7 +127,7 @@ const Chart1 = (props: any) => {
   const { data, year, ...restProps } = props;
 
   // Contexts
-  const { l, lang } = useLang();
+  const { l } = useLang();
   const { themeConfig } = useThemeConfig();
 
   // Refs
@@ -172,8 +172,10 @@ const Chart1 = (props: any) => {
       const absoluteIndex = clampedOffset + idx;
 
       const getXAxisLabel = () => {
+        const monthNames = getMonthNames(l);
+
         if (timeFrame === "3M") {
-          const slice = MONTHS[lang].slice(
+          const slice = monthNames.slice(
             absoluteIndex * 3,
             absoluteIndex * 3 + 3,
           );
@@ -184,7 +186,7 @@ const Chart1 = (props: any) => {
           )}`;
         }
 
-        if (timeFrame === "1M") return MONTHS[lang][absoluteIndex];
+        if (timeFrame === "1M") return monthNames[absoluteIndex];
         if (timeFrame === "1W") return `W${absoluteIndex + 1}`;
 
         return `D${absoluteIndex + 1}`;

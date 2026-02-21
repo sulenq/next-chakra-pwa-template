@@ -5,7 +5,7 @@ const usePopDisclosure = (id: string) => {
   const router = useRouter();
   const searchParams = useSearchParams();
 
-  const isOpen = useMemo(() => {
+  const open = useMemo(() => {
     return searchParams.get(id) === "1";
   }, [searchParams, id]);
 
@@ -23,7 +23,7 @@ const usePopDisclosure = (id: string) => {
   }, [id, router, searchParams]);
 
   return {
-    isOpen,
+    open,
     onOpen,
     onClose,
   };

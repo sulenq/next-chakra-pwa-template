@@ -1,12 +1,13 @@
-import { L_MONTHS } from "@/constants/months";
+import { getMonthNames } from "@/constants/months";
 import {
   Type__DateFormat,
   Type__DateVariant,
+  Type__Locales,
   Type__TimeFormat,
   Type__UnitKey,
 } from "@/constants/types";
 import { UOM_FORMATS } from "@/constants/uomFormats";
-import useLang from "@/context/useLang";
+import { getWeekdayNames } from "@/constants/weekdays";
 import useUOMFormat from "@/context/useUOMFormat";
 import { getStorage } from "@/utils/client";
 import { isValid, parseISO } from "date-fns";
@@ -15,7 +16,8 @@ import { isDateObject } from "./date";
 import { getTimezoneOffsetMs, getUserTimezone } from "./time";
 
 export const formatDate = (
-  date?: Date | string | undefined,
+  date: Date | string | null | undefined,
+  locales: Type__Locales,
   options: {
     variant?: Type__DateVariant;
     withTime?: boolean;
@@ -25,17 +27,6 @@ export const formatDate = (
   } = {},
 ): string => {
   if (!date) return "";
-
-  const l = useLang.getState().l;
-  const L_WEEKDAYS_0_BASED = [
-    l.sunday,
-    l.monday,
-    l.tuesday,
-    l.wednesday,
-    l.thursday,
-    l.friday,
-    l.saturday,
-  ];
 
   const dateFormat = options.dateFormat || getStorage("dateFormat") || "dmy";
   const timezoneKey = options.timezoneKey || getUserTimezone().key;
@@ -79,15 +70,18 @@ export const formatDate = (
   const month =
     parseInt(formatTz(zonedDate, "M", { timeZone: timezoneKey })) - 1; // 0-based
   const year = parseInt(formatTz(zonedDate, "yyyy", { timeZone: timezoneKey }));
-  // Weekday convertion ISO (1-7) ke 0-based (0=Sun, 6=Sat) yang digunakan L_WEEKDAYS_0_BASED
   const isoWeekday = parseInt(
     formatTz(zonedDate, "i", { timeZone: timezoneKey }),
   );
+  // Weekday convertion ISO (1-7) to 0-based (0=Sun, 6=Sat)
   const weekday = isoWeekday === 7 ? 0 : isoWeekday;
 
-  const monthName = L_MONTHS[month];
+  const monthNames = getMonthNames(locales);
+  const monthName = monthNames[month];
   const shortMonthName = monthName.substring(0, 3);
-  const weekdayName = L_WEEKDAYS_0_BASED[weekday];
+
+  const weekdayNames = getWeekdayNames(locales);
+  const weekdayName = weekdayNames[weekday];
   const shortWeekdayName = weekdayName.substring(0, 3);
 
   const basicVariant = options.variant === "numeric";
@@ -221,10 +215,11 @@ export const formatDate = (
 };
 
 export const formatAbsDate = (
-  date?: Date | string,
-  options: Parameters<typeof formatDate>[1] = {},
+  date: Date | string | null | undefined,
+  locales: Type__Locales,
+  options: Parameters<typeof formatDate>[2] = {},
 ): string => {
-  return formatDate(date, {
+  return formatDate(date, locales, {
     timezoneKey: "UTC",
     ...options,
   });

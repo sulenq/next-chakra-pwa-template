@@ -190,7 +190,7 @@ export default function Layout(props: Props__Layout) {
 
                 <HelperText>
                   {`Last updated: 
-                ${formatAbsDate(APP.lastUpdated, {
+                ${formatAbsDate(APP.lastUpdated, l, {
                   variant: "numeric",
                 })}`}
                 </HelperText>

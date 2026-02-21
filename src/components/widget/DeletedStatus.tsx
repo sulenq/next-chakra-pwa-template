@@ -3,6 +3,7 @@
 import { P } from "@/components/ui/p";
 import { EmptyString } from "@/components/widget/EmptyString";
 import { DotIndicator } from "@/components/widget/Indicator";
+import useLang from "@/context/useLang";
 import { formatDate } from "@/utils/formatter";
 import { HStack, StackProps } from "@chakra-ui/react";
 
@@ -13,12 +14,17 @@ export const DeletedStatus = (props: Props) => {
   // Props
   const { deletedAt, ...restProps } = props;
 
+  // Contexts
+  const { l } = useLang();
+
   return (
     <>
       {deletedAt && (
         <HStack {...restProps}>
           <DotIndicator color={"fg.error"} />
-          <P>{formatDate(deletedAt, { variant: "numeric", withTime: true })}</P>
+          <P>
+            {formatDate(deletedAt, l, { variant: "numeric", withTime: true })}
+          </P>
         </HStack>
       )}
 

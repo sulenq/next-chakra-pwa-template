@@ -14,6 +14,7 @@ import { NumInput } from "@/components/ui/number-input";
 import { P } from "@/components/ui/p";
 import { Tooltip } from "@/components/ui/tooltip";
 import { LucideIcon } from "@/components/widget/Icon";
+import { getMonthNames } from "@/constants/months";
 import { Props__PeriodPickerInput } from "@/constants/props";
 import {
   BASE_ICON_BOX_SIZE,
@@ -22,19 +23,13 @@ import {
 import { Type__Period } from "@/constants/types";
 import useLang from "@/context/useLang";
 import { useThemeConfig } from "@/context/useThemeConfig";
-import useBackOnClose from "@/hooks/useBackOnClose";
+import usePopDisclosure from "@/hooks/usePopDisclosure";
 import { back } from "@/utils/client";
 import { disclosureId } from "@/utils/disclosure";
 import { formatDate } from "@/utils/formatter";
 import { capitalizeWords } from "@/utils/string";
 import { getLocalTimezone } from "@/utils/time";
-import {
-  HStack,
-  Icon,
-  SimpleGrid,
-  useDisclosure,
-  useFieldContext,
-} from "@chakra-ui/react";
+import { HStack, Icon, SimpleGrid, useFieldContext } from "@chakra-ui/react";
 import { IconCircleFilled } from "@tabler/icons-react";
 import { CalendarClockIcon } from "lucide-react";
 import { useEffect, useState } from "react";
@@ -66,30 +61,17 @@ export const PeriodPickerInput = (props: Props__PeriodPickerInput) => {
   const { themeConfig } = useThemeConfig();
   const fc = useFieldContext();
 
-  // Hooks
-  const { open, onOpen, onClose } = useDisclosure();
-  useBackOnClose(disclosureId(resolvedId), open, onOpen, onClose);
-
   // States
+  const { open, onOpen } = usePopDisclosure(disclosureId(resolvedId));
+  const [selected, setSelected] = useState<Type__Period>(DEFAULT);
+  const monthNames = getMonthNames(l);
+
+  // Derived States
   const isSubtleVariant = variant === "subtle";
   const isGhostVariant = variant === "ghost";
   const resolvedInvalid = invalid ?? fc?.invalid;
   const resolvedPlaceholder = placeholder || l.select_period;
-  const MONTHS = [
-    l.january,
-    l.february,
-    l.march,
-    l.april,
-    l.may,
-    l.june,
-    l.july,
-    l.august,
-    l.september,
-    l.october,
-    l.november,
-    l.december,
-  ];
-  const [selected, setSelected] = useState<Type__Period>(DEFAULT);
+
   const isEmpty = selected.year === null || selected.month === null;
   const isIncomplete =
     (selected.year === null && selected.month !== null) ||
@@ -119,7 +101,7 @@ export const PeriodPickerInput = (props: Props__PeriodPickerInput) => {
       <Tooltip
         content={
           !isEmpty
-            ? formatDate(new Date(selected.year!, selected.month!), {
+            ? formatDate(new Date(selected.year!, selected.month!), l, {
                 variant: "monthYear",
               })
             : resolvedPlaceholder
@@ -146,7 +128,7 @@ export const PeriodPickerInput = (props: Props__PeriodPickerInput) => {
 
           {inputValue && (
             <P>
-              {formatDate(new Date(inputValue.year!, inputValue.month!), {
+              {formatDate(new Date(inputValue.year!, inputValue.month!), l, {
                 variant: "monthYear",
                 timezoneKey: getLocalTimezone().key,
               })}
@@ -198,7 +180,7 @@ export const PeriodPickerInput = (props: Props__PeriodPickerInput) => {
                 }
               >
                 <SimpleGrid w={"full"} columns={2} gap={2}>
-                  {MONTHS.map((month, idx) => {
+                  {monthNames.map((month, idx) => {
                     const isActive = selected.month === idx;
 
                     return (

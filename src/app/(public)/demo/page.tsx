@@ -7,6 +7,7 @@ import { DatePickerInput } from "@/components/ui/date-picker-input";
 import { DateTimePickerInput } from "@/components/ui/date-time-picker-input";
 import { Field } from "@/components/ui/field";
 import { FileInput } from "@/components/ui/file-input";
+import { LangMenu } from "@/components/ui/lang-menu";
 import { MenuItem } from "@/components/ui/menu";
 import { NavLink } from "@/components/ui/nav-link";
 import { NumInput } from "@/components/ui/number-input";
@@ -355,233 +356,238 @@ const DemoIndexRoute = () => {
           </P>
         </HStack>
 
-        <ColorModeButton />
+        <HStack>
+          <LangMenu />
+          <ColorModeButton />
+        </HStack>
       </HStack>
 
       <NavLink to="/welcome">
         <Btn colorPalette={themeConfig.colorPalette}>App Layout</Btn>
       </NavLink>
 
-      <SimpleGrid columns={[1, null, 2]} gap={8}>
-        <CContainer gap={4}>
-          <HStack wrap={"wrap"}>
-            {toasters.map((toast) => (
-              <Btn
-                key={toast.label}
-                onClick={() => {
-                  toaster.create({
-                    type: toast.type,
-                    title: toast.label,
-                    description: toast.description,
-                    // action: {
-                    //   label: "Action",
-                    //   onClick: () => {
-                    //     console.log("action");
-                    //   },
-                    // },
-                  });
+      <>
+        <SimpleGrid columns={[1, null, 2]} gap={8}>
+          <CContainer gap={4}>
+            <HStack wrap={"wrap"}>
+              {toasters.map((toast) => (
+                <Btn
+                  key={toast.label}
+                  onClick={() => {
+                    toaster.create({
+                      type: toast.type,
+                      title: toast.label,
+                      description: toast.description,
+                      // action: {
+                      //   label: "Action",
+                      //   onClick: () => {
+                      //     console.log("action");
+                      //   },
+                      // },
+                    });
+                  }}
+                  variant={"outline"}
+                >
+                  {toast.label}
+                </Btn>
+              ))}
+            </HStack>
+
+            <form id="test" onSubmit={formik.handleSubmit}>
+              <CContainer gap={4}>
+                <Field invalid={!!formik.errors.string}>
+                  <StringInput
+                    inputValue={formik.values.string}
+                    onChange={(input) => {
+                      formik.setFieldValue("string", input);
+                    }}
+                  />
+                </Field>
+
+                <Field invalid={!!formik.errors.password}>
+                  <PasswordInput
+                    inputValue={formik.values.password}
+                    onChange={(input) => {
+                      formik.setFieldValue("password", input);
+                    }}
+                  />
+                </Field>
+
+                <Field invalid={!!formik.errors.search}>
+                  <SearchInput
+                    inputValue={formik.values.search}
+                    onChange={(input) => {
+                      formik.setFieldValue("search", input);
+                    }}
+                    queryKey={"q_demo"}
+                  />
+                </Field>
+
+                <Field invalid={!!formik.errors.textarea}>
+                  <Textarea
+                    inputValue={formik.values.textarea}
+                    onChange={(input) => {
+                      formik.setFieldValue("textarea", input);
+                    }}
+                  />
+                </Field>
+
+                <Field invalid={!!formik.errors.number}>
+                  <NumInput
+                    inputValue={formik.values.number}
+                    onChange={(input) => {
+                      formik.setFieldValue("number", input);
+                    }}
+                  />
+                </Field>
+
+                <Field invalid={!!formik.errors.number2}>
+                  <NumInput
+                    integer={false}
+                    inputValue={formik.values.number2}
+                    onChange={(input) => {
+                      formik.setFieldValue("number2", input);
+                    }}
+                    placeholder="Input number decimal"
+                  />
+                </Field>
+
+                <Field invalid={!!formik.errors.period}>
+                  <PeriodPickerInput
+                    inputValue={formik.values.period}
+                    onChange={(input) => {
+                      formik.setFieldValue("period", input);
+                    }}
+                  />
+                </Field>
+
+                <Field invalid={!!formik.errors.date}>
+                  <DatePickerInput
+                    inputValue={formik.values.date}
+                    onChange={(input) => {
+                      formik.setFieldValue("date", input);
+                    }}
+                  />
+                </Field>
+
+                <Field invalid={!!formik.errors.time}>
+                  <TimePickerInput
+                    inputValue={formik.values.time}
+                    onChange={(input) => {
+                      formik.setFieldValue("time", input);
+                    }}
+                  />
+                </Field>
+
+                <Field invalid={!!formik.errors.dateTime}>
+                  <DateTimePickerInput
+                    inputValue={formik.values.dateTime}
+                    onChange={(input) => {
+                      formik.setFieldValue("dateTime", input);
+                    }}
+                  />
+                </Field>
+
+                <Field invalid={!!formik.errors.select}>
+                  <SelectInput
+                    id="select-single"
+                    title={"Agama"}
+                    inputValue={formik.values.select}
+                    onChange={(input) => {
+                      formik.setFieldValue("select", input);
+                    }}
+                    selectOptions={OPTIONS_RELIGION}
+                  />
+                </Field>
+
+                <Field invalid={!!formik.errors.multiSelect}>
+                  <SelectInput
+                    id="select-multiple"
+                    title={"Agama"}
+                    inputValue={formik.values.multiSelect}
+                    onChange={(input) => {
+                      formik.setFieldValue("multiSelect", input);
+                    }}
+                    selectOptions={OPTIONS_RELIGION}
+                    multiple
+                  />
+                </Field>
+
+                <Field invalid={!!formik.errors.select}>
+                  <SelectWorkspaceCategory
+                    id={"select-workspace-category"}
+                    inputValue={formik.values.select}
+                    onChange={(input) => {
+                      formik.setFieldValue("select", input);
+                    }}
+                  />
+                </Field>
+
+                <Field label={"Dokumen Negara"} invalid={!!formik.errors.file}>
+                  <FileInput
+                    dropzone
+                    inputValue={formik.values.file}
+                    onChange={(input) => {
+                      formik.setFieldValue("file", input);
+                    }}
+                    existingFiles={existingFiles}
+                    maxFiles={5}
+                  />
+                </Field>
+              </CContainer>
+            </form>
+
+            <Btn type={"submit"} form="test">
+              Submit
+            </Btn>
+          </CContainer>
+
+          <CContainer gap={4}>
+            <Field invalid={!!formik.errors.richEditor}>
+              <RichEditor
+                inputValue={formik.values.richEditor}
+                onChange={(input) => {
+                  formik.setFieldValue("richEditor", input);
                 }}
-                variant={"outline"}
-              >
-                {toast.label}
-              </Btn>
-            ))}
-          </HStack>
+              />
+            </Field>
 
-          <form id="test" onSubmit={formik.handleSubmit}>
-            <CContainer gap={4}>
-              <Field invalid={!!formik.errors.string}>
-                <StringInput
-                  inputValue={formik.values.string}
-                  onChange={(input) => {
-                    formik.setFieldValue("string", input);
-                  }}
-                />
-              </Field>
-
-              <Field invalid={!!formik.errors.password}>
-                <PasswordInput
-                  inputValue={formik.values.password}
-                  onChange={(input) => {
-                    formik.setFieldValue("password", input);
-                  }}
-                />
-              </Field>
-
-              <Field invalid={!!formik.errors.search}>
-                <SearchInput
-                  inputValue={formik.values.search}
-                  onChange={(input) => {
-                    formik.setFieldValue("search", input);
-                  }}
-                  queryKey={"q_demo"}
-                />
-              </Field>
-
-              <Field invalid={!!formik.errors.textarea}>
-                <Textarea
-                  inputValue={formik.values.textarea}
-                  onChange={(input) => {
-                    formik.setFieldValue("textarea", input);
-                  }}
-                />
-              </Field>
-
-              <Field invalid={!!formik.errors.number}>
-                <NumInput
-                  inputValue={formik.values.number}
-                  onChange={(input) => {
-                    formik.setFieldValue("number", input);
-                  }}
-                />
-              </Field>
-
-              <Field invalid={!!formik.errors.number2}>
-                <NumInput
-                  integer={false}
-                  inputValue={formik.values.number2}
-                  onChange={(input) => {
-                    formik.setFieldValue("number2", input);
-                  }}
-                  placeholder="Input number decimal"
-                />
-              </Field>
-
-              <Field invalid={!!formik.errors.period}>
-                <PeriodPickerInput
-                  inputValue={formik.values.period}
-                  onChange={(input) => {
-                    formik.setFieldValue("period", input);
-                  }}
-                />
-              </Field>
-
-              <Field invalid={!!formik.errors.date}>
-                <DatePickerInput
-                  inputValue={formik.values.date}
-                  onChange={(input) => {
-                    formik.setFieldValue("date", input);
-                  }}
-                />
-              </Field>
-
-              <Field invalid={!!formik.errors.time}>
-                <TimePickerInput
-                  inputValue={formik.values.time}
-                  onChange={(input) => {
-                    formik.setFieldValue("time", input);
-                  }}
-                />
-              </Field>
-
-              <Field invalid={!!formik.errors.dateTime}>
-                <DateTimePickerInput
-                  inputValue={formik.values.dateTime}
-                  onChange={(input) => {
-                    formik.setFieldValue("dateTime", input);
-                  }}
-                />
-              </Field>
-
-              <Field invalid={!!formik.errors.select}>
-                <SelectInput
-                  id="select-single"
-                  title={"Agama"}
-                  inputValue={formik.values.select}
-                  onChange={(input) => {
-                    formik.setFieldValue("select", input);
-                  }}
-                  selectOptions={OPTIONS_RELIGION}
-                />
-              </Field>
-
-              <Field invalid={!!formik.errors.multiSelect}>
-                <SelectInput
-                  id="select-multiple"
-                  title={"Agama"}
-                  inputValue={formik.values.multiSelect}
-                  onChange={(input) => {
-                    formik.setFieldValue("multiSelect", input);
-                  }}
-                  selectOptions={OPTIONS_RELIGION}
-                  multiple
-                />
-              </Field>
-
-              <Field invalid={!!formik.errors.select}>
-                <SelectWorkspaceCategory
-                  id={"select-workspace-category"}
-                  inputValue={formik.values.select}
-                  onChange={(input) => {
-                    formik.setFieldValue("select", input);
-                  }}
-                />
-              </Field>
-
-              <Field label={"Dokumen Negara"} invalid={!!formik.errors.file}>
-                <FileInput
-                  dropzone
-                  inputValue={formik.values.file}
-                  onChange={(input) => {
-                    formik.setFieldValue("file", input);
-                  }}
-                  existingFiles={existingFiles}
-                  maxFiles={5}
-                />
-              </Field>
-            </CContainer>
-          </form>
-
-          <Btn type={"submit"} form="test">
-            Submit
-          </Btn>
-        </CContainer>
-
-        <CContainer gap={4}>
-          <Field invalid={!!formik.errors.richEditor}>
-            <RichEditor
-              inputValue={formik.values.richEditor}
-              onChange={(input) => {
-                formik.setFieldValue("richEditor", input);
-              }}
+            <VideoPlayer
+              src={
+                "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+              }
             />
-          </Field>
+          </CContainer>
+        </SimpleGrid>
 
-          <VideoPlayer
-            src={
-              "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
-            }
-          />
+        <SimpleGrid columns={[1, null, 2]} gap={8}>
+          <CContainer rounded={"md"} border={"1px solid {colors.border.muted}"}>
+            <FeedbackNoData />
+          </CContainer>
+
+          <CContainer rounded={"md"} border={"1px solid {colors.border.muted}"}>
+            <FeedbackNotFound />
+          </CContainer>
+
+          <CContainer rounded={"md"} border={"1px solid {colors.border.muted}"}>
+            <FeedbackForbidden />
+          </CContainer>
+
+          <CContainer rounded={"md"} border={"1px solid {colors.border.muted}"}>
+            <FeedbackRetry />
+          </CContainer>
+        </SimpleGrid>
+
+        <CContainer border={"1px solid"} borderColor={"border.muted"}>
+          <DemoDataTable />
         </CContainer>
-      </SimpleGrid>
 
-      <SimpleGrid columns={[1, null, 2]} gap={8}>
-        <CContainer rounded={"md"} border={"1px solid {colors.border.muted}"}>
-          <FeedbackNoData />
-        </CContainer>
-
-        <CContainer rounded={"md"} border={"1px solid {colors.border.muted}"}>
-          <FeedbackNotFound />
-        </CContainer>
-
-        <CContainer rounded={"md"} border={"1px solid {colors.border.muted}"}>
-          <FeedbackForbidden />
-        </CContainer>
-
-        <CContainer rounded={"md"} border={"1px solid {colors.border.muted}"}>
-          <FeedbackRetry />
-        </CContainer>
-      </SimpleGrid>
-
-      <CContainer border={"1px solid"} borderColor={"border.muted"}>
-        <DemoDataTable />
-      </CContainer>
-
-      <SimpleGrid columns={[1, null, 2]}>
-        <CContainer>
-          <PDFViewer fileUrl={`/assets/dummy-pdf.pdf`} flex={1} />
-        </CContainer>
-      </SimpleGrid>
+        <SimpleGrid columns={[1, null, 2]}>
+          <CContainer>
+            <PDFViewer fileUrl={`/assets/dummy-pdf.pdf`} flex={1} />
+          </CContainer>
+        </SimpleGrid>
+      </>
     </CContainer>
   );
 };

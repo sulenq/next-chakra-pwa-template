@@ -36,7 +36,7 @@ const DefaultFallback = () => {
 // persist mounted state across route changes
 let mountedGlobal = false;
 
-export default function ClientSideOnly(props: Props) {
+export default function ClientRoot(props: Props) {
   // Props
   const { children, fallback } = props;
 
@@ -65,6 +65,7 @@ export default function ClientSideOnly(props: Props) {
   // Handle offline alert
   useOfflineAlert({ mounted });
 
+  // Handle adaptive dark mode
   useEffect(() => {
     if (ADM) {
       const interval = setInterval(() => {

@@ -1,4 +1,8 @@
+import { translations } from "@/context/useLang";
 import { ButtonProps, ConditionalValue, MenuItemProps } from "@chakra-ui/react";
+
+export type Type__LangKey = keyof typeof translations; // "en" | "id"
+export type Type__Locales = (typeof translations)[Type__LangKey];
 
 export type Type__UnitKey =
   | "mass"

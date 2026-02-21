@@ -16,7 +16,7 @@ import { StackProps } from "@chakra-ui/react";
 import BackButton from "./BackButton";
 
 interface Props__Disclosure {
-  isOpen: boolean;
+  open: boolean;
   title: string;
   description: string;
   confirmLabel: string;
@@ -28,7 +28,7 @@ interface Props__Disclosure {
 export const ConfirmationDisclosure = (props: Props__Disclosure) => {
   // Props
   const {
-    isOpen,
+    open,
     title,
     description,
     confirmLabel,
@@ -42,7 +42,7 @@ export const ConfirmationDisclosure = (props: Props__Disclosure) => {
   const { themeConfig } = useThemeConfig();
 
   return (
-    <DisclosureRoot open={isOpen} lazyLoad size={"xs"}>
+    <DisclosureRoot open={open} lazyLoad size={"xs"}>
       <DisclosureContent>
         <DisclosureHeader>
           <DisclosureHeaderContent title={`${title}`} />
@@ -102,7 +102,7 @@ export const ConfirmationDisclosureTrigger = (props: Props__Trigger) => {
   } = props;
 
   // Hooks
-  const { isOpen, onOpen } = usePopDisclosure(disclosureId(`${id}`));
+  const { open, onOpen } = usePopDisclosure(disclosureId(`${id}`));
 
   return (
     <>
@@ -124,7 +124,7 @@ export const ConfirmationDisclosureTrigger = (props: Props__Trigger) => {
       </CContainer>
 
       <ConfirmationDisclosure
-        isOpen={isOpen}
+        open={open}
         title={title}
         description={description}
         confirmLabel={confirmLabel}
