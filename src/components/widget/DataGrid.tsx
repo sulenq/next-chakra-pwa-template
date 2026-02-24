@@ -12,7 +12,6 @@ import {
 } from "@/constants/interfaces";
 import { FIREFOX_SCROLL_Y_CLASS_PR_PREFIX } from "@/constants/styles";
 import { useThemeConfig } from "@/context/useThemeConfig";
-import { useContainerDimension } from "@/hooks/useContainerDimension";
 import { useIsSmScreenWidth } from "@/hooks/useIsSmScreenWidth";
 import { isEmptyArray } from "@/utils/array";
 import {
@@ -43,9 +42,8 @@ interface Props extends Omit<StackProps, "page"> {
   setPage?: (page: number) => void;
   totalPage?: number;
   footer?: React.ReactNode;
+  minChildWidth?: string;
 }
-
-const ITEM_MAX_W_NUMBER = 175;
 
 export const DataGrid = (props: Props) => {
   // Props
@@ -58,6 +56,7 @@ export const DataGrid = (props: Props) => {
     setPage,
     totalPage,
     footer,
+    minChildWidth = "180px",
     ...restProps
   } = props;
 
@@ -67,10 +66,8 @@ export const DataGrid = (props: Props) => {
   // Hooks
   const iss = useIsSmScreenWidth();
   const containerRef = useRef<HTMLDivElement>(null);
-  const { width: containerWidth } = useContainerDimension(containerRef);
 
   // States
-  const gridCols = Math.max(1, Math.floor(containerWidth / ITEM_MAX_W_NUMBER));
   const hasFooter = limit && setLimit && page && setPage;
   const [allRowsSelected, setAllRowsSelected] = useState<boolean>(false);
   const [selectedRows, setSelectedRows] = useState<any[]>([]);
@@ -114,7 +111,7 @@ export const DataGrid = (props: Props) => {
         <Presence
           present={shouldShowBatch}
           animationName={{ _open: "fade-in", _closed: "fade-out" }}
-          animationDuration="fast"
+          animationDuration="slow"
           unmountOnExit
           zIndex={10}
         >
@@ -166,53 +163,49 @@ export const DataGrid = (props: Props) => {
           px={3}
           pr={`calc(12px - ${FIREFOX_SCROLL_Y_CLASS_PR_PREFIX})`}
         >
-          {containerWidth > 0 && (
-            <SimpleGrid columns={gridCols} gap={4}>
-              {data?.map((item, idx) => {
-                const row = dataProps.rows?.[
-                  idx
-                ] as Interface__FormattedTableRow;
-                const details = row.columns.map((col, rowIdx) => {
-                  const label = dataProps.headers?.[rowIdx].th;
+          <SimpleGrid minChildWidth={minChildWidth} gap={4}>
+            {data?.map((item, idx) => {
+              const row = dataProps.rows?.[idx] as Interface__FormattedTableRow;
+              const details = row.columns.map((col, rowIdx) => {
+                const label = dataProps.headers?.[rowIdx].th;
 
-                  switch (col.dataType) {
-                    case "image":
-                      return {
-                        label,
-                        render: (
-                          <ImgViewer
-                            id={`img-${rowIdx}-${item?.id}`}
-                            src={col.value}
-                            w={"full"}
-                          >
-                            <Img src={col.value} w={"full"} fluid />
-                          </ImgViewer>
-                        ),
-                      };
+                switch (col.dataType) {
+                  case "image":
+                    return {
+                      label,
+                      render: (
+                        <ImgViewer
+                          id={`img-${rowIdx}-${item?.id}`}
+                          src={col.value}
+                          w={"full"}
+                        >
+                          <Img src={col.value} w={"full"} fluid />
+                        </ImgViewer>
+                      ),
+                    };
 
-                    default:
-                      return {
-                        label,
-                        render: col.td,
-                      };
-                  }
-                });
+                  default:
+                    return {
+                      label,
+                      render: col.td,
+                    };
+                }
+              });
 
-                return (
-                  <Fragment key={idx}>
-                    {props.gridItem({
-                      item,
-                      row,
-                      idx,
-                      details,
-                      selectedRows,
-                      toggleRowSelection,
-                    })}
-                  </Fragment>
-                );
-              })}
-            </SimpleGrid>
-          )}
+              return (
+                <Fragment key={idx}>
+                  {props.gridItem({
+                    item,
+                    row,
+                    idx,
+                    details,
+                    selectedRows,
+                    toggleRowSelection,
+                  })}
+                </Fragment>
+              );
+            })}
+          </SimpleGrid>
         </CContainer>
       </CContainer>
 

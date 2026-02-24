@@ -250,7 +250,7 @@ export interface Props__FileInput extends Omit<
   placeholder?: string;
   label?: string;
   dropzone?: boolean;
-  maxFileSize?: number;
+  maxFileSizeMB?: number;
   maxFiles?: number;
   description?: string;
   disabled?: boolean;

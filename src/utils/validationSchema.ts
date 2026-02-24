@@ -2,7 +2,7 @@ import JSZip from "jszip";
 import * as yup from "yup";
 
 type FileValidationParams = {
-  maxSizeMB?: number;
+  maxFileSizeMB?: number;
   allowedExtensions?: string[];
   min?: number;
   max?: number;
@@ -10,7 +10,7 @@ type FileValidationParams = {
 };
 
 export const fileValidation = ({
-  maxSizeMB = 10,
+  maxFileSizeMB = 10,
   allowedExtensions,
   min,
   max,
@@ -38,8 +38,8 @@ export const fileValidation = ({
     // file size check
     .test("fileSize", "file size too large", (value) => {
       if (!Array.isArray(value) || value.length === 0) return true;
-      if (maxSizeMB) {
-        const maxSizeBytes = maxSizeMB * 1024 * 1024;
+      if (maxFileSizeMB) {
+        const maxSizeBytes = maxFileSizeMB * 1024 * 1024;
         return value.every((file) => file.size <= maxSizeBytes);
       }
       return true;
@@ -61,7 +61,7 @@ export const fileValidation = ({
 
           return allowedExtensions.includes(fileExtension);
         });
-      }
+      },
     )
     // zip contents check
     .test(
@@ -97,7 +97,7 @@ export const fileValidation = ({
         }
 
         return true;
-      }
+      },
     );
 
 type min1FileParams = {

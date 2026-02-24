@@ -53,7 +53,7 @@ const FileList = (props: any) => {
                 icon: <LucideIcon icon={XIcon} />,
                 onClick: () => {
                   const next = inputValue.filter(
-                    (_file: File, i: number) => i !== idx
+                    (_file: File, i: number) => i !== idx,
                   );
                   onChange?.(next.length > 0 ? next : null);
                 },
@@ -78,7 +78,7 @@ export const InputComponent = (props: Props__FileInputInputComponent) => {
     placeholder,
     label,
     dropzone,
-    maxFileSize = 10,
+    maxFileSizeMB = 10,
     maxFiles = 1,
     description,
     disabled,
@@ -116,7 +116,7 @@ export const InputComponent = (props: Props__FileInputInputComponent) => {
   const resolvedDescription = singleFileInputted
     ? formatBytes(singleFile?.size)
     : description ||
-      `up to ${maxFileSize} mB, max ${maxFiles || 1} file${
+      `up to ${maxFileSizeMB} mB, max ${maxFiles || 1} file${
         maxFiles! > 1 ? "s" : ""
       } ${acceptPlaceholder ? `(${acceptPlaceholder})` : ""}`;
 
@@ -171,7 +171,7 @@ export const InputComponent = (props: Props__FileInputInputComponent) => {
             description: l.error_invalid_file.description,
           });
         }}
-        maxFileSize={maxFileSize * 1024 * 1024}
+        maxFileSizeMB={maxFileSizeMB * 1024 * 1024}
         maxFiles={maxFiles}
         gap={2}
         accept={accept}
@@ -205,7 +205,7 @@ export const InputComponent = (props: Props__FileInputInputComponent) => {
               description={resolvedDescription}
               border={"2px dashed"}
               borderColor={
-                invalid ?? fc?.invalid ? "border.error" : "border.muted"
+                (invalid ?? fc?.invalid) ? "border.error" : "border.muted"
               }
               disabled={resolvedDisabled}
               cursor={resolvedDisabled ? "disabled" : "pointer"}
@@ -230,7 +230,7 @@ export const InputComponent = (props: Props__FileInputInputComponent) => {
               <Btn
                 variant="outline"
                 borderColor={
-                  invalid ?? fc?.invalid ? "border.error" : "border.muted"
+                  (invalid ?? fc?.invalid) ? "border.error" : "border.muted"
                 }
               >
                 <Icon scale={0.8}>
@@ -245,7 +245,7 @@ export const InputComponent = (props: Props__FileInputInputComponent) => {
             <CContainer gap={2}>
               {(!isEmptyArray(existing) || !isEmptyArray(inputValue)) && (
                 <P fontSize={"sm"} color={"fg.subtle"}>{`Total : ${formatNumber(
-                  inputValue.length + existing.length
+                  inputValue.length + existing.length,
                 )}`}</P>
               )}
 
@@ -275,7 +275,7 @@ export const FileInput = (props: Props__FileInput) => {
   // States
   const resolvedDisabled = fc?.disabled;
   const [existing, setExisting] = useState<Interface__StorageFile[]>(
-    existingFiles || []
+    existingFiles || [],
   );
   const [deleted, setDeleted] = useState<Interface__StorageFile[]>([]);
 
@@ -310,7 +310,7 @@ export const FileInput = (props: Props__FileInput) => {
                       icon: <LucideIcon icon={TrashIcon} />,
                       onClick: () => {
                         setExisting((prev) =>
-                          prev.filter((f) => f.id !== fileData.id)
+                          prev.filter((f) => f.id !== fileData.id),
                         );
                         setDeleted((ps) => [...ps, fileData]);
                         onDeleteFile?.(fileData);
@@ -353,7 +353,7 @@ export const FileInput = (props: Props__FileInput) => {
                       onClick: () => {
                         setExisting((prev) => [...prev, fileData]);
                         setDeleted((ps) =>
-                          ps.filter((f) => f.id !== fileData.id)
+                          ps.filter((f) => f.id !== fileData.id),
                         );
                         onUndoDeleteFile?.(fileData);
                       },
