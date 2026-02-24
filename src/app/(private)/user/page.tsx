@@ -21,7 +21,7 @@ import {
   PageTitle,
   RESOLVED_NAVS,
 } from "@/components/widget/PageShell";
-import { RowMenuTooltip } from "@/components/widget/RowOptions";
+import { RowOptionMenuTooltip } from "@/components/widget/RowOptions";
 import { SimpleDisclosure } from "@/components/widget/SimpleDisclosure";
 import { TableSkeleton } from "@/components/widget/TableSkeleton";
 import { dummyUsers } from "@/constants/dummyData";
@@ -182,12 +182,12 @@ const Update = (props: any) => {
 
   return (
     <>
-      <RowMenuTooltip content={"Edit"}>
+      <RowOptionMenuTooltip content={"Edit"}>
         <MenuItem value="edit" onClick={onOpen}>
           <AppIcon icon={EditIcon} />
           Edit
         </MenuItem>
-      </RowMenuTooltip>
+      </RowOptionMenuTooltip>
 
       <SimpleDisclosure
         withMaximizeButton
@@ -267,12 +267,12 @@ const Restore = (props: any) => {
       loading={loading}
       disabled={disabled}
     >
-      <RowMenuTooltip content={l.restore}>
+      <RowOptionMenuTooltip content={l.restore}>
         <MenuItem value="restore" disabled={disabled}>
           <AppIcon icon={UndoIcon} />
           {l.restore}
         </MenuItem>
-      </RowMenuTooltip>
+      </RowOptionMenuTooltip>
     </ConfirmationDisclosureTrigger>
   );
 };
@@ -335,7 +335,7 @@ const Delete = (props: any) => {
       loading={loading}
       disabled={disabled}
     >
-      <RowMenuTooltip content={l.delete_}>
+      <RowOptionMenuTooltip content={l.delete_}>
         <MenuItem
           value="delete"
           disabled={disabled}
@@ -347,7 +347,7 @@ const Delete = (props: any) => {
           <AppIcon icon={TrashIcon} />
           {l.delete_}
         </MenuItem>
-      </RowMenuTooltip>
+      </RowOptionMenuTooltip>
     </ConfirmationDisclosureTrigger>
   );
 };
@@ -489,7 +489,7 @@ const Data = (props: any) => {
         setLimit={setLimit}
         page={page}
         setPage={setPage}
-        totalPage={pagination?.meta?.last_page}
+        totalPage={pagination?.meta?.lastPage}
       />
     ) : (
       <DataGrid
@@ -499,7 +499,7 @@ const Data = (props: any) => {
         setLimit={setLimit}
         page={page}
         setPage={setPage}
-        totalPage={pagination?.meta?.last_page}
+        totalPage={pagination?.meta?.lastPage}
         renderItem={({
           item,
           row,

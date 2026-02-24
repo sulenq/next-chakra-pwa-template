@@ -104,6 +104,7 @@ export interface Props__DataTable extends Omit<StackProps, "page"> {
   totalPage?: number;
   footer?: any;
   loading?: boolean;
+  contentContainerProps?: StackProps;
 }
 export interface Props__BatchOptions extends BtnProps {
   selectedRows: any[];
@@ -205,8 +206,10 @@ export interface Props__PasswordInput extends Omit<InputProps, "onChange"> {
   invalid?: boolean;
 }
 
-export interface Props__SearchInput
-  extends Omit<InputGroupProps, "children" | "onChange"> {
+export interface Props__SearchInput extends Omit<
+  InputGroupProps,
+  "children" | "onChange"
+> {
   queryKey: string;
   inputValue?: string;
   onChange?: (inputValue: string) => void;
@@ -233,8 +236,10 @@ export interface Props__TextareaInput extends Omit<TextareaProps, "onChange"> {
   variant?: Type__BasicVariant;
 }
 
-export interface Props__FileInput
-  extends Omit<FileUploadRootProps, "onChange"> {
+export interface Props__FileInput extends Omit<
+  FileUploadRootProps,
+  "onChange"
+> {
   id?: string;
   fRef?: any;
   inputValue?: File[];
@@ -253,8 +258,10 @@ export interface Props__FileInput
   onDeleteFile?: (file: Interface__StorageFile) => void;
   onUndoDeleteFile?: (file: Interface__StorageFile) => void;
 }
-export interface Props__FileInputInputComponent
-  extends Omit<Props__FileInput, "removed"> {
+export interface Props__FileInputInputComponent extends Omit<
+  Props__FileInput,
+  "removed"
+> {
   existing: Interface__StorageFile[];
   showDropzoneIcon?: boolean;
   showDropzoneLabel?: boolean;
@@ -331,8 +338,10 @@ export interface Props__TimePicker extends Omit<BtnProps, "onChange"> {
   disclosureSize?: Type__DisclosureSizes;
   variant?: Type__BasicVariant;
 }
-export interface Props__DateRangePickerInput
-  extends Omit<GroupProps, "title" | "placeholder" | "onChange"> {
+export interface Props__DateRangePickerInput extends Omit<
+  GroupProps,
+  "title" | "placeholder" | "onChange"
+> {
   id?: string;
   title?: {
     startDate: string;
@@ -352,8 +361,10 @@ export interface Props__DateRangePickerInput
   disclosureSize?: Type__DisclosureSizes;
   size?: Type__ButtonSize;
 }
-export interface Props__DateTimePickerInput
-  extends Omit<GroupProps, "title" | "placeholder" | "onChange"> {
+export interface Props__DateTimePickerInput extends Omit<
+  GroupProps,
+  "title" | "placeholder" | "onChange"
+> {
   id?: string;
   title?: {
     date: string;

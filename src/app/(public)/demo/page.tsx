@@ -21,6 +21,7 @@ import { StringInput } from "@/components/ui/string-input";
 import { Textarea } from "@/components/ui/textarea";
 import { TimePickerInput } from "@/components/ui/time-picker-input";
 import { toaster } from "@/components/ui/toaster";
+import Clock from "@/components/widget/Clock";
 import { ConfirmationDisclosureTrigger } from "@/components/widget/ConfirmationDisclosure";
 import { DataTable } from "@/components/widget/DataTable";
 import FeedbackForbidden from "@/components/widget/FeedbackForbidden";
@@ -29,8 +30,9 @@ import FeedbackNotFound from "@/components/widget/FeedbackNotFound";
 import FeedbackRetry from "@/components/widget/FeedbackRetry";
 import { LucideIcon } from "@/components/widget/Icon";
 import { PDFViewer } from "@/components/widget/PDFViewer";
-import { RowMenuTooltip } from "@/components/widget/RowOptions";
+import { RowOptionMenuTooltip } from "@/components/widget/RowOptions";
 import SelectWorkspaceCategory from "@/components/widget/SelectWorkspaceCategory";
+import { Today } from "@/components/widget/Today";
 import VideoPlayer from "@/components/widget/VideoPlayer";
 import { Interface__FormattedTableRow } from "@/constants/interfaces";
 import { OPTIONS_RELIGION } from "@/constants/selectOptions";
@@ -106,7 +108,7 @@ const Delete = (props: any) => {
       loading={loading}
       disabled={disabled}
     >
-      <RowMenuTooltip content={l.delete_}>
+      <RowOptionMenuTooltip content={l.delete_}>
         <MenuItem
           value="delete"
           disabled={disabled}
@@ -120,7 +122,7 @@ const Delete = (props: any) => {
             <LucideIcon icon={TrashIcon} />
           </Icon>
         </MenuItem>
-      </RowMenuTooltip>
+      </RowOptionMenuTooltip>
     </ConfirmationDisclosureTrigger>
   );
 };
@@ -357,6 +359,8 @@ const DemoIndexRoute = () => {
         </HStack>
 
         <HStack>
+          <Today />
+          <Clock showTimezone />
           <LangMenu />
           <ColorModeButton />
         </HStack>

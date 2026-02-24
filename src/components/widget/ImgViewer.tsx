@@ -69,6 +69,9 @@ export const ImgViewer = (props: Props) => {
                     e.stopPropagation();
                     back();
                   }}
+                  pos={"absolute"}
+                  top={4}
+                  right={4}
                 />
 
                 <Img
@@ -82,6 +85,7 @@ export const ImgViewer = (props: Props) => {
                   imageProps={{
                     unoptimized: true,
                   }}
+                  mt={["36px", null, "40px"]}
                 />
 
                 <NavLink to={src} w={"fit"} external>

@@ -96,6 +96,10 @@ export const PeriodPickerInput = (props: Props__PeriodPickerInput) => {
     back();
   };
 
+  // console.debug(new Date(selected.year!, selected.month!).getMonth());
+  // console.debug(new Date(selected.year!, selected.month!).getFullYear());
+  console.debug(new Date(selected.year!, selected.month!).toISOString());
+
   return (
     <>
       <Tooltip
@@ -179,7 +183,15 @@ export const PeriodPickerInput = (props: Props__PeriodPickerInput) => {
                   required && selected.month === null ? l.msg_required_form : ""
                 }
               >
-                <SimpleGrid w={"full"} columns={2} gap={2}>
+                <SimpleGrid
+                  w={"full"}
+                  columns={2}
+                  gap={2}
+                  p={1}
+                  rounded={themeConfig.radii.component}
+                  border={"1px solid"}
+                  borderColor={"border.muted"}
+                >
                   {monthNames.map((month, idx) => {
                     const isActive = selected.month === idx;
 
@@ -187,7 +199,7 @@ export const PeriodPickerInput = (props: Props__PeriodPickerInput) => {
                       <Btn
                         key={month}
                         clicky={false}
-                        variant={"outline"}
+                        variant={"ghost"}
                         onClick={() =>
                           setSelected((prev) => ({ ...prev, month: idx }))
                         }

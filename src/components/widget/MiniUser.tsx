@@ -27,13 +27,14 @@ export const MiniUser = (props: Props) => {
         <Avatar
           src={imgUrl(user?.avatar?.[0]?.filePath)}
           name={user.name}
-          size={"sm"}
+          size={"xs"}
         />
       </ImgViewer>
 
       <CContainer>
-        <ClampText lineHeight={1.2}>{user.name}</ClampText>
-        <ClampText fontSize={"sm"} color={"fg.subtle"}>
+        <ClampText lineHeight={1.4}>{user.name}</ClampText>
+
+        <ClampText fontSize={"sm"} color={"fg.subtle"} lineHeight={1.4}>
           {user?.email}
         </ClampText>
       </CContainer>

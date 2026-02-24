@@ -15,7 +15,7 @@ import { EllipsisVerticalIcon } from "lucide-react";
 
 const ICON_BOX_SIZE = "18px";
 
-export const RowMenuTooltip = (props: TooltipProps) => {
+export const RowOptionMenuTooltip = (props: TooltipProps) => {
   // Props
   const { children, content, ...restProps } = props;
   return (

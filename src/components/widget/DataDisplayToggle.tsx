@@ -28,10 +28,10 @@ export function DataDisplayToggle(props: Props__DataDisplayToggle) {
   const displayTable = (displays[navKey] || "table") === "table";
 
   return (
-    <Tooltip content={displayTable ? "Table mode" : "Grid mode"}>
+    <Tooltip content={displayTable ? "Table view" : "Grid view"}>
       <Btn
         iconButton={iss || iconButton}
-        w={iss || iconButton ? undefined : "100px"}
+        w={iss || iconButton ? "100px" : ""}
         variant="outline"
         onClick={() => setDisplay(navKey, displayTable ? "grid" : "table")}
         {...restProps}
@@ -44,7 +44,7 @@ export function DataDisplayToggle(props: Props__DataDisplayToggle) {
           )}
         </Icon>
 
-        {!iconButton && !iss && (displayTable ? "Table mode" : "Grid mode")}
+        {!iconButton && !iss && (displayTable ? "Table view" : "Grid view")}
       </Btn>
     </Tooltip>
   );

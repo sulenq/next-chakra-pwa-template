@@ -14,7 +14,7 @@ import { useContainerDimension } from "@/hooks/useContainerDimension";
 import { useIsSmScreenWidth } from "@/hooks/useIsSmScreenWidth";
 import { isEmptyArray } from "@/utils/array";
 import { hexWithOpacity } from "@/utils/color";
-import { Center, HStack, Table } from "@chakra-ui/react";
+import { Box, Center, HStack, Table } from "@chakra-ui/react";
 import { useEffect, useMemo, useRef, useState } from "react";
 
 export const DataTable = (props: Props__DataTable) => {
@@ -33,6 +33,7 @@ export const DataTable = (props: Props__DataTable) => {
     setPage,
     totalPage,
     footer,
+    contentContainerProps,
     ...restProps
   } = props;
 
@@ -154,7 +155,7 @@ export const DataTable = (props: Props__DataTable) => {
   }
 
   // SX
-  const optionsCellWidth = "46px";
+  const optionsCellWidth = "44px";
   const cellPx = 3;
   const thHeight = "46px";
   const thBg = "body";
@@ -181,7 +182,11 @@ export const DataTable = (props: Props__DataTable) => {
       overflow={"auto"}
       {...restProps}
     >
-      <CContainer className="scrollX scrollYAlt" flex={1}>
+      <CContainer
+        className="scrollX scrollYAlt"
+        flex={1}
+        {...contentContainerProps}
+      >
         <Table.Root
           w={headers.length > 1 ? "full" : "fit-content"}
           tableLayout={"auto"}
@@ -403,7 +408,6 @@ export const DataTable = (props: Props__DataTable) => {
                       whiteSpace={"nowrap"}
                       p={0}
                       fontSize={"md"}
-                      opacity={row.dim || col.dim ? 0.4 : 1}
                       {...col?.tableCellProps}
                     >
                       <HStack
@@ -422,7 +426,9 @@ export const DataTable = (props: Props__DataTable) => {
                         justify={col.align}
                         {...col?.wrapperProps}
                       >
-                        {col?.td}
+                        <Box opacity={row.dim || col.dim ? 0.4 : 1} w="full">
+                          {col?.td}
+                        </Box>
                       </HStack>
                     </Table.Cell>
                   ))}
@@ -441,6 +447,7 @@ export const DataTable = (props: Props__DataTable) => {
                     >
                       <Center
                         h={tdMinH}
+                        px={"10px"}
                         bg={isRowSelected ? selectedColor : tdBg}
                         borderBottom={
                           rowIdx !== resolvedTableData.length - 1
@@ -482,7 +489,7 @@ export const DataTable = (props: Props__DataTable) => {
       {hasFooter && (
         <>
           <HStack
-            p={3}
+            p={2}
             borderTop={"1px solid"}
             borderColor={footerBorderColor}
             justify={"space-between"}
