@@ -171,7 +171,7 @@ export const InputComponent = (props: Props__FileInputInputComponent) => {
             description: l.error_invalid_file.description,
           });
         }}
-        maxFileSizeMB={maxFileSizeMB * 1024 * 1024}
+        maxFileSize={maxFileSizeMB * 1024 * 1024}
         maxFiles={maxFiles}
         gap={2}
         accept={accept}

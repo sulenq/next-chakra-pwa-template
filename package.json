@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "eslint",
     "d": "next dev",
+    "t": "npx tsc --noEmit --watch --preserveWatchOutput",
     "l": "node src/scripts/generate-translation.js",
     "s": "node src/scripts/generate-sitemap.js"
   },

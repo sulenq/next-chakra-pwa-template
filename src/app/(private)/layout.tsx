@@ -43,11 +43,22 @@ import {
 import { Today } from "@/components/widget/Today";
 import { VerifyingScreen } from "@/components/widget/VerifyingScreen";
 import { APP } from "@/constants/_meta";
+import { AUTH_API_USER_PROFILE } from "@/constants/apis";
 import { OTHER_PRIVATE_NAV_GROUPS, PRIVATE_NAV_GROUPS } from "@/constants/navs";
 import { Props__Layout } from "@/constants/props";
 import {
   BASE_ICON_BOX_SIZE,
+  DESKTOP_CONTENT_CONTAINER_BG,
+  DESKTOP_NAVS_BG,
+  DESKTOP_NAVS_COLOR,
+  DESKTOP_NAVS_POPOVER_MAIN_AXIS,
+  DESKTOP_NAVS_TOOLTIP_MAIN_AXIS,
   FIREFOX_SCROLL_Y_CLASS_PR_PREFIX,
+  MOBILE_CONTENT_CONTAINER_BG,
+  MOBILE_NAV_LABEL_FONT_SIZE,
+  MOBILE_NAVS_COLOR,
+  MOBILE_POPOVER_MAIN_AXIS,
+  NAVS_COLOR_PALETTE,
 } from "@/constants/styles";
 import useAuthMiddleware from "@/context/useAuthMiddleware";
 import useLang from "@/context/useLang";
@@ -71,6 +82,7 @@ import {
   Center,
   HStack,
   Icon,
+  PopoverRootProps,
   StackProps,
   VStack,
 } from "@chakra-ui/react";
@@ -84,22 +96,16 @@ import {
 } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
 import { Fragment, useEffect, useRef, useState } from "react";
-import {
-  DESKTOP_CONTENT_CONTAINER_BG,
-  DESKTOP_NAVS_BG,
-  DESKTOP_NAVS_COLOR,
-  DESKTOP_NAVS_POPOVER_MAIN_AXIS,
-  DESKTOP_NAVS_TOOLTIP_MAIN_AXIS,
-  MOBILE_CONTENT_CONTAINER_BG,
-  MOBILE_NAV_LABEL_FONT_SIZE,
-  MOBILE_NAVS_COLOR,
-  MOBILE_POPOVER_MAIN_AXIS,
-  NAVS_COLOR_PALETTE,
-} from "@/constants/styles";
 
-const USER_PROFILE_URL = "/api/get-user-profile";
+interface Props__MiniMyProfilePopoverTrigger extends StackProps {
+  popoverRootProps?: Omit<PopoverRootProps, "children">;
+}
+const MiniMyProfilePopoverTrigger = (
+  props: Props__MiniMyProfilePopoverTrigger,
+) => {
+  // Props
+  const { popoverRootProps, ...restProps } = props;
 
-const MiniMyProfilePopoverTrigger = (props: StackProps) => {
   // Refs
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -118,18 +124,9 @@ const MiniMyProfilePopoverTrigger = (props: StackProps) => {
   }
 
   return (
-    <PopoverRoot
-      open={open}
-      positioning={{
-        placement: "right-end",
-        offset: {
-          mainAxis: DESKTOP_NAVS_POPOVER_MAIN_AXIS,
-          crossAxis: 4,
-        },
-      }}
-    >
+    <PopoverRoot open={open} {...popoverRootProps}>
       <PopoverTrigger asChild>
-        <CContainer w={"fit"} onClick={onOpen} {...props} />
+        <CContainer w={"fit"} onClick={onOpen} {...restProps} />
       </PopoverTrigger>
 
       <PopoverContent ref={containerRef} w={"235px"} zIndex={10}>
@@ -1146,7 +1143,7 @@ export default function Layout(props: Props__Layout) {
     if (!verificationStartedRef.current) {
       verificationStartedRef.current = true;
 
-      const config = { method: "GET", url: USER_PROFILE_URL };
+      const config = { method: "GET", url: AUTH_API_USER_PROFILE };
 
       req({
         config,

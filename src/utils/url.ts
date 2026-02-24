@@ -1,3 +1,4 @@
+import { RESOLVED_NAVS } from "@/components/widget/PageShell";
 import { Interface__NavGroup } from "@/constants/interfaces";
 
 export function generateWAUrl(phone: string, message: string = ""): void {
@@ -12,7 +13,7 @@ export function generateWAUrl(phone: string, message: string = ""): void {
 
 export const getActiveNavs = (
   pathname: string,
-  privateNavs: Interface__NavGroup[],
+  privateNavs?: Interface__NavGroup[],
 ): Interface__NavGroup["navs"][number][] => {
   const findInList = (
     items: Interface__NavGroup["navs"],
@@ -31,7 +32,7 @@ export const getActiveNavs = (
     return null;
   };
 
-  const resolvedPrivateNavs = privateNavs;
+  const resolvedPrivateNavs = privateNavs || RESOLVED_NAVS;
 
   for (const navGroup of resolvedPrivateNavs) {
     const result = findInList(navGroup.navs);

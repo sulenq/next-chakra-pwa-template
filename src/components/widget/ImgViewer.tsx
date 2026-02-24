@@ -69,6 +69,7 @@ export const ImgViewer = (props: Props) => {
                     e.stopPropagation();
                     back();
                   }}
+                  rounded={"full"}
                   pos={"absolute"}
                   top={4}
                   right={4}

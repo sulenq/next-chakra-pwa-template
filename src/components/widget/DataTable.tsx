@@ -183,7 +183,7 @@ export const DataTable = (props: Props__DataTable) => {
       {...restProps}
     >
       <CContainer
-        className="scrollX scrollYAlt"
+        className="scrollX scrollY"
         flex={1}
         {...contentContainerProps}
       >
