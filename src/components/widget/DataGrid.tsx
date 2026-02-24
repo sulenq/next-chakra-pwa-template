@@ -36,7 +36,7 @@ interface RenderItemProps {
 interface Props extends Omit<StackProps, "page"> {
   data?: any[];
   dataProps: Interface__DataProps;
-  renderItem: (props: RenderItemProps) => React.ReactNode;
+  gridItem: (props: RenderItemProps) => React.ReactNode;
   limit?: number;
   setLimit?: (limit: number) => void;
   page?: number;
@@ -200,7 +200,7 @@ export const DataGrid = (props: Props) => {
 
                 return (
                   <Fragment key={idx}>
-                    {props.renderItem({
+                    {props.gridItem({
                       item,
                       row,
                       idx,

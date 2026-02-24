@@ -500,7 +500,7 @@ const Data = (props: any) => {
         page={page}
         setPage={setPage}
         totalPage={pagination?.meta?.lastPage}
-        renderItem={({
+        gridItem={({
           item,
           row,
           details,
