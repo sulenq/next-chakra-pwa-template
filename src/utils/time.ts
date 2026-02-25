@@ -1,15 +1,18 @@
 import { Type__TimezoneObject } from "@/constants/types";
 import { getStorage } from "@/utils/client";
 import {
+  addSeconds,
   parseISO,
-  parse,
   setHours,
   setMinutes,
   setSeconds,
   startOfDay,
-  addSeconds,
 } from "date-fns";
-import { getTimezoneOffset, formatInTimeZone } from "date-fns-tz";
+import {
+  formatInTimeZone,
+  fromZonedTime,
+  getTimezoneOffset,
+} from "date-fns-tz";
 
 export const getTimezoneOffsetMs = (timezoneKey: string): number => {
   return getTimezoneOffset(timezoneKey);
@@ -163,7 +166,7 @@ export const makeDateTime = (isoDate: string, time: string): Date => {
   return dateTime;
 };
 
-export const makeISODateTime = (isoDate: string, time: string): string => {
+export const formatISODateTime = (isoDate: string, time: string): string => {
   const datePart = isoDate.split("T")[0];
   return `${datePart}T${time}Z`;
 };
@@ -175,19 +178,19 @@ export const makeUTCISODateTime = (
 ): string => {
   if (!isoDate || !time) return "";
 
-  const datePart = isoDate.split("T")[0];
-  const timezoneKey = options?.timezoneKey || getUserTimezone().key;
-  const normalizedTime = /^\d{2}:\d{2}$/.test(time) ? `${time}:00` : time;
+  const datePart = isoDate.trim().split("T")[0];
+  const timePart = time.trim().length === 5 ? `${time.trim()}:00` : time.trim();
+  const localISO = `${datePart}T${timePart}`;
 
-  const dateTimeString = `${datePart} ${normalizedTime}`;
+  const timezoneKey = options?.timezoneKey || getUserTimezone()?.key;
+  if (!timezoneKey) return "";
 
-  const dateInZone = parse(dateTimeString, "yyyy-MM-dd HH:mm:ss", new Date());
-
-  const offsetMs = getTimezoneOffset(timezoneKey);
-
-  const utcDate = new Date(dateInZone.getTime() - offsetMs);
-
-  return utcDate.toISOString();
+  try {
+    const utcDate = fromZonedTime(localISO, timezoneKey);
+    return utcDate.toISOString();
+  } catch {
+    return "";
+  }
 };
 
 export const dateNow = () => {

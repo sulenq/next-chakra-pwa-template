@@ -96,10 +96,6 @@ export const PeriodPickerInput = (props: Props__PeriodPickerInput) => {
     back();
   };
 
-  // console.debug(new Date(selected.year!, selected.month!).getMonth());
-  // console.debug(new Date(selected.year!, selected.month!).getFullYear());
-  console.debug(new Date(selected.year!, selected.month!).toISOString());
-
   return (
     <>
       <Tooltip

@@ -50,7 +50,6 @@ export const DateTimePickerInput = (props: Props__DateTimePickerInput) => {
   useEffect(() => {
     if (inputValue) {
       const userTzKey = getUserTimezone().key;
-
       const utcDate = parseISO(inputValue);
       const localizedDate = toZonedTime(utcDate, userTzKey);
       const localized = formatTz(localizedDate, "yyyy-MM-dd'T'HH:mm:ss", {
@@ -61,7 +60,7 @@ export const DateTimePickerInput = (props: Props__DateTimePickerInput) => {
       setTime(
         extractTime(localized, {
           withSeconds: true,
-        })
+        }),
       );
     }
   }, []);
