@@ -494,7 +494,13 @@ const DesktopLayout = (props: any) => {
         transition={"200ms"}
       >
         {/* Logo & Sidebar Toggle */}
-        <CContainer gap={1} px={3} py={2}>
+        <CContainer
+          h={navsExpanded ? "52px" : ""}
+          gap={1}
+          px={3}
+          pt={navsExpanded ? 0 : "6px"}
+          justify={"center"}
+        >
           {!navsExpanded && (
             <NavLink to="/">
               <Center w={"36px"} h={"40px"} mr={"auto"}>
@@ -540,11 +546,10 @@ const DesktopLayout = (props: any) => {
                 colorPalette={NAVS_COLOR_PALETTE}
                 onClick={toggleNavsExpanded}
                 color={DESKTOP_NAVS_COLOR}
-                mt={navsExpanded ? 0 : 3}
-                transition={"0"}
               >
                 <AppIcon
                   icon={navsExpanded ? SidebarCloseIcon : SidebarOpenIcon}
+                  boxSize={BASE_ICON_BOX_SIZE}
                 />
               </Btn>
             </Tooltip>

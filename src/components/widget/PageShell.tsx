@@ -117,7 +117,7 @@ export const NavBreadcrumb = (props: any) => {
           .join(" / ")}
         maxW={"400px"}
       >
-        <HStack color={"fg.subtle"} gap={0}>
+        <HStack color={"fg.subtle"} gap={0} ml={"-4px"}>
           <Icon boxSize={5} opacity={0.6} rotate={"-12deg"}>
             <IconSlash stroke={1.5} />
           </Icon>

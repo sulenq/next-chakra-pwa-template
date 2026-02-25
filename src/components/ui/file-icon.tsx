@@ -18,49 +18,48 @@ interface Props extends IconProps {
 
 export const FileIcon = forwardRef<SVGSVGElement, Props>(
   ({ name, mimeType, iconProps, ...restProps }, ref) => {
-    const extension = name?.toLowerCase().split(".").pop() as string;
-    const mime = mimeType?.toLowerCase();
+    const extension = name?.toLowerCase().split(".").pop() ?? "";
+    const mime = mimeType?.toLowerCase() ?? "";
 
     let iconColor = "current";
     let IconComponent = IconFile;
 
-    // Prioritize mimeType first, then fallback to extension
     switch (true) {
-      // PDF Files
-      case mime === "application/pdf" || extension === "pdf":
+      case ["application/pdf"].some((v) => mime.includes(v)) ||
+        ["pdf"].includes(extension):
         iconColor = "fg.error";
         IconComponent = IconFileTypePdf;
         break;
 
-      // Word Documents
-      case mime === "application/msword" ||
-        mime ===
-          "application/vnd.openxmlformats-officedocument.wordprocessingml.document" ||
-        ["doc", "docx"].includes(extension):
+      case [
+        "application/msword",
+        "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      ].some((v) => mime.includes(v)) || ["doc", "docx"].includes(extension):
         iconColor = "blue.500";
         IconComponent = IconFileTypeDoc;
         break;
 
-      // Excel Files
-      case mime === "application/vnd.ms-excel" ||
-        mime ===
-          "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ||
+      case [
+        "application/vnd.ms-excel",
+        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        "text/csv",
+      ].some((v) => mime.includes(v)) ||
         ["xls", "xlsx", "csv"].includes(extension):
-        iconColor = extension === "csv" ? "green.600" : "green.500";
-        IconComponent = extension === "csv" ? IconFileTypeCsv : IconFileTypeXls;
+        iconColor = ["csv"].includes(extension) ? "green.600" : "green.500";
+        IconComponent = ["csv"].includes(extension)
+          ? IconFileTypeCsv
+          : IconFileTypeXls;
         break;
 
-      // Images
-      case mime?.startsWith("image/") ||
+      case mime.includes("image/") ||
         ["jpg", "jpeg", "png", "gif", "webp", "svg"].includes(extension):
         iconColor = "purple.500";
         IconComponent = IconPhoto;
         break;
 
-      // ZIP Archives
-      case mime === "application/zip" ||
-        mime === "application/x-zip-compressed" ||
-        extension === "zip":
+      case ["application/zip", "application/x-zip"].some((v) =>
+        mime.includes(v),
+      ) || ["zip"].includes(extension):
         iconColor = "orange.500";
         IconComponent = IconFileZip;
         break;
@@ -71,7 +70,7 @@ export const FileIcon = forwardRef<SVGSVGElement, Props>(
         <IconComponent stroke={1.5} {...iconProps} />
       </ChakraIcon>
     );
-  }
+  },
 );
 
 FileIcon.displayName = "FileIcon";

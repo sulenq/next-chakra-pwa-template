@@ -251,7 +251,8 @@ export const formatNumber = (
   });
 };
 
-export const formatBytes = (bytes: number) => {
+export const formatBytes = (bytes?: number | null) => {
+  if (!bytes) return "-";
   if (bytes === 0) return "0 Bytes";
   const k = 1024;
   const sizes = ["Bytes", "kB", "MB", "GB", "TB", "PB"];
