@@ -29,7 +29,6 @@ import FeedbackNoData from "@/components/widget/FeedbackNoData";
 import FeedbackNotFound from "@/components/widget/FeedbackNotFound";
 import FeedbackRetry from "@/components/widget/FeedbackRetry";
 import { LucideIcon } from "@/components/widget/Icon";
-import { PDFViewer } from "@/components/widget/PDFViewer";
 import { RowOptionMenuTooltip } from "@/components/widget/RowOptions";
 import SelectWorkspaceCategory from "@/components/widget/SelectWorkspaceCategory";
 import { Today } from "@/components/widget/Today";
@@ -588,7 +587,7 @@ const DemoIndexRoute = () => {
 
         <SimpleGrid columns={[1, null, 2]}>
           <CContainer>
-            <PDFViewer fileUrl={`/assets/dummy-pdf.pdf`} flex={1} />
+            {/* <PDFViewer fileUrl={`/assets/dummy-pdf.pdf`} flex={1} /> */}
           </CContainer>
         </SimpleGrid>
       </>
