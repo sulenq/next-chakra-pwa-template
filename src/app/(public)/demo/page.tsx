@@ -4,7 +4,7 @@ import { CContainer } from "@/components/ui/c-container";
 import { ColorModeButton } from "@/components/ui/color-mode";
 import { LangMenu } from "@/components/ui/lang-menu";
 import Clock from "@/components/widget/Clock";
-import PdfViewer from "@/components/widget/pdf-viewer/PdfViewer";
+import { PDFViewer } from "@/components/widget/PdfViewer";
 import { Today } from "@/components/widget/Today";
 import { HStack } from "@chakra-ui/react";
 
@@ -613,7 +613,7 @@ const DemoIndexRoute = () => {
         <LangMenu />
         <ColorModeButton />
       </HStack>
-      <PdfViewer fileUrl={"/test.pdf"} />;
+      <PDFViewer fileUrl={"/test.pdf"} />;
     </CContainer>
   );
 };
