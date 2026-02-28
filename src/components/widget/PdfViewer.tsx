@@ -43,7 +43,6 @@ const PageJump = (props: any) => {
   // Utils
   function handleJumpPage(gotoPage: number | null) {
     if (gotoPage && gotoPage > 0 && gotoPage <= numPages) {
-      console.debug(gotoPage);
       setPageNumber(gotoPage);
     }
   }
@@ -79,6 +78,7 @@ const PageJump = (props: any) => {
               setGotoPage(inputValue);
             }}
             max={numPages}
+            placeholder={""}
             onKeyDown={(e) => {
               if (e.key === "Enter") handleJumpPage(gotoPage);
             }}
@@ -149,10 +149,6 @@ const Toolbar = (props: Props__PDFToolbar) => {
               </Icon>
             </UtilBtn>
 
-            {/* Page Indicator */}
-            {/* <Box fontWeight={"medium"} px={2} whiteSpace={"nowrap"}>
-              {pageNumber} / {numPages || "--"}
-            </Box> */}
             <PageJump
               pageNumber={pageNumber}
               setPageNumber={setPageNumber}
@@ -198,6 +194,7 @@ const Toolbar = (props: Props__PDFToolbar) => {
             <IconArrowAutofitWidth stroke={1.5} />
           </Icon>
         </UtilBtn>
+
         <UtilBtn onClick={utils.fitToPage} tooltipContent={l.fit_to_page}>
           <Icon boxSize={5}>
             <IconArrowAutofitContent stroke={1.5} />
@@ -213,10 +210,12 @@ const Toolbar = (props: Props__PDFToolbar) => {
             <IconDownload />
           </Icon>
         </UtilBtn>
+
         <UtilBtn
           iconButton={false}
           onClick={toggleMode}
           tooltipContent={"Mode"}
+          pl={3}
         >
           <Icon boxSize={5}>
             {isSingleMode ? (
