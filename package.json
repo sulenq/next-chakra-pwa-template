@@ -26,7 +26,6 @@
     "@tabler/icons-react": "^3.35.0",
     "@tinymce/tinymce-react": "^6.3.0",
     "axios": "^1.13.2",
-    "canvas": "^3.2.0",
     "date-fns": "^4.1.0",
     "date-fns-tz": "^3.2.0",
     "formik": "^2.4.9",
