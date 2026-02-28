@@ -1,3 +1,5 @@
+"use client";
+
 import { P } from "@/components/ui/p";
 import { Props__ClockProps } from "@/constants/props";
 import useTimezone from "@/context/useTimezone";
@@ -14,12 +16,8 @@ export default function Clock(props: Props__ClockProps) {
   const tzKey = tz?.key;
 
   // States
-  const [time, setTime] = useState(() =>
-    formatTime(utcTimeString(), {
-      showSeconds: showSeconds,
-      timezoneKey: tzKey,
-    }),
-  );
+  const [mounted, setMounted] = useState(false);
+  const [time, setTime] = useState("");
 
   // Utils
   function utcTimeString() {
@@ -31,20 +29,32 @@ export default function Clock(props: Props__ClockProps) {
     return `${hh}:${mm}:${ss}`;
   }
 
-  // handle tick
+  // Effect to handle mounting and ticking
   useEffect(() => {
-    const tick = () =>
+    setMounted(true);
+
+    const tick = () => {
       setTime(
         formatTime(utcTimeString(), {
-          showSeconds: showSeconds,
+          showSeconds,
           timezoneKey: tzKey,
         }),
       );
+    };
 
-    tick(); // immediate set to avoid waiting 1s
+    tick();
     const interval = setInterval(tick, 1000);
     return () => clearInterval(interval);
   }, [showSeconds, tzKey]);
+
+  // Prevent hydration mismatch by returning null during SSR and initial client pass
+  if (!mounted) {
+    return (
+      <HStack {...restProps} visibility="hidden">
+        <P fontSize={props?.fontSize}>00:00:00</P>
+      </HStack>
+    );
+  }
 
   return (
     <HStack {...restProps}>

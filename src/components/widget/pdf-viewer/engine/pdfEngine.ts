@@ -1,37 +1,64 @@
-let pdfjs: any = null;
+import type {
+  PDFDocumentProxy,
+  PDFPageProxy,
+  TextContent,
+} from "pdfjs-dist/types/src/display/api";
+
+let initialized = false;
 
 async function getPdfJs() {
-  if (pdfjs) return pdfjs;
+  if (typeof window === "undefined") return null;
 
-  if (typeof window === "undefined") {
-    throw new Error("pdfjs must run in browser");
+  const pdfjs = await import("pdfjs-dist");
+
+  if (!initialized) {
+    // Use matching CDN worker to avoid local file mismatch
+    const version = "5.3.93";
+    pdfjs.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${version}/pdf.worker.min.mjs`;
+    initialized = true;
   }
-
-  const mod = await import("pdfjs-dist/build/pdf.mjs");
-
-  pdfjs = mod;
-
-  pdfjs.GlobalWorkerOptions.workerSrc = new URL(
-    "pdfjs-dist/build/pdf.worker.min.mjs",
-    import.meta.url,
-  ).toString();
 
   return pdfjs;
 }
 
-export type PdfDoc = any;
+// ── Load document ──────────────────────────────────────────────
 
-export async function loadPdf(data: Uint8Array) {
+export async function loadPdf(data: Uint8Array): Promise<PDFDocumentProxy> {
   const pdfjs = await getPdfJs();
-  const loadingTask = pdfjs.getDocument({ data });
-  const doc = await loadingTask.promise;
-  return { doc };
+  if (!pdfjs) throw new Error("PDF.js cannot be loaded on the server");
+
+  try {
+    const loadingTask = pdfjs.getDocument({
+      data,
+      isEvalSupported: false,
+      useSystemFonts: true,
+    });
+    return loadingTask.promise;
+  } catch (e) {
+    console.error("[PDF] Error in getDocument:", e);
+    throw e;
+  }
 }
 
-export async function getPage(doc: PdfDoc, pageNumber: number) {
+// ── Page helpers ───────────────────────────────────────────────
+
+export async function getPage(
+  doc: PDFDocumentProxy,
+  pageNumber: number,
+): Promise<PDFPageProxy> {
   return doc.getPage(pageNumber);
 }
 
-export function destroyPdf(doc: PdfDoc) {
+export async function getPageTextContent(
+  page: PDFPageProxy,
+): Promise<TextContent> {
+  return page.getTextContent();
+}
+
+// ── Cleanup ────────────────────────────────────────────────────
+
+export function destroyPdf(doc: PDFDocumentProxy) {
   doc.destroy();
 }
+
+export type { PDFDocumentProxy, PDFPageProxy, TextContent };

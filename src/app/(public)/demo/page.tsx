@@ -1,7 +1,12 @@
-// "use client";
+"use client";
 
 import { CContainer } from "@/components/ui/c-container";
+import { ColorModeButton } from "@/components/ui/color-mode";
+import { LangMenu } from "@/components/ui/lang-menu";
+import Clock from "@/components/widget/Clock";
 import PdfViewer from "@/components/widget/pdf-viewer/PdfViewer";
+import { Today } from "@/components/widget/Today";
+import { HStack } from "@chakra-ui/react";
 
 // import { Btn } from "@/components/ui/btn";
 // import { CContainer } from "@/components/ui/c-container";
@@ -601,7 +606,13 @@ import PdfViewer from "@/components/widget/pdf-viewer/PdfViewer";
 
 const DemoIndexRoute = () => {
   return (
-    <CContainer className="debug">
+    <CContainer>
+      <HStack>
+        <Today />
+        <Clock showTimezone />
+        <LangMenu />
+        <ColorModeButton />
+      </HStack>
       <PdfViewer fileUrl={"/test.pdf"} />;
     </CContainer>
   );
