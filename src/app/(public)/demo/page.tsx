@@ -372,7 +372,7 @@ const DemoIndexRoute = () => {
         </HStack>
       </HStack>
 
-      <PDFViewer fileUrl={"/test.pdf"} />
+      <PDFViewer fileUrl={"/test.pdf"} maxH={"80svh"} />
 
       <NavLink to="/welcome">
         <Btn colorPalette={themeConfig.colorPalette}>App Layout</Btn>

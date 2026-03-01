@@ -360,7 +360,7 @@ export const PDFViewer = (props: Props__PdfViewer) => {
       {/* Document Area */}
       <CContainer
         ref={containerRef}
-        className={"scrollX scrollYAlt"}
+        className={"scrollX scrollY"}
         flex={1}
         minH={"200px"}
         bg={"d1"}
