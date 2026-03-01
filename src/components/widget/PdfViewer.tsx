@@ -10,6 +10,7 @@ import { Tooltip } from "@/components/ui/tooltip";
 import { AppIcon } from "@/components/widget/AppIcon";
 import FeedbackState from "@/components/widget/FeedbackState";
 import { HScroll } from "@/components/widget/HScroll";
+import { MContainer } from "@/components/widget/MContainer";
 import useLang from "@/context/useLang";
 import { useThemeConfig } from "@/context/useThemeConfig";
 import { Box, HStack, Icon, StackProps, VStack } from "@chakra-ui/react";
@@ -358,7 +359,7 @@ export const PDFViewer = (props: Props__PdfViewer) => {
       <Toolbar utils={utils} viewer={viewer} flexShrink={0} />
 
       {/* Document Area */}
-      <CContainer
+      <MContainer
         ref={containerRef}
         className={"scrollX scrollY"}
         flex={1}
@@ -422,7 +423,7 @@ export const PDFViewer = (props: Props__PdfViewer) => {
             </>
           )}
         </Document>
-      </CContainer>
+      </MContainer>
     </CContainer>
   );
 };
