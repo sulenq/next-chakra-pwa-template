@@ -13,6 +13,9 @@ const withPWA = createNextPWA({
 } as any);
 
 const nextConfig: NextConfig = {
+  // --- STANDALONE OUTPUT FOR DOCKER ---
+  output: "standalone",
+
   // --- GENERAL CONFIG ---
   devIndicators: false,
   reactStrictMode: false,
