@@ -183,7 +183,7 @@ export const DataTable = (props: Props__DataTable) => {
       {...restProps}
     >
       <CContainer
-        className="scrollX scrollY"
+        className="scrollX scrollYAlt"
         flex={1}
         {...contentContainerProps}
       >
@@ -402,6 +402,7 @@ export const DataTable = (props: Props__DataTable) => {
                     </HStack>
                   </Table.Cell>
 
+                  {/* Main Columns */}
                   {row.columns.map((col, colIndex) => (
                     <Table.Cell
                       key={colIndex}
@@ -433,6 +434,7 @@ export const DataTable = (props: Props__DataTable) => {
                     </Table.Cell>
                   ))}
 
+                  {/* Row Column */}
                   {!isEmptyArray(rowOptions) && (
                     <Table.Cell
                       minW={"0% !important"}

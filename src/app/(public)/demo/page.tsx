@@ -197,6 +197,384 @@ const DemoDataTable = () => {
           },
         ],
       },
+      {
+        id: "1",
+        idx: 1,
+        data: { name: "Alice Johnson", age: 28, joinDate: "2023-01-12" },
+        columns: [
+          {
+            td: "Alice Johnson",
+            value: "Alice Johnson",
+            dataType: "string",
+          },
+          { td: "28", value: 28, dataType: "number" },
+          {
+            td: "2023-01-12",
+            value: "2023-01-12",
+            dataType: "date",
+          },
+        ],
+      },
+      {
+        id: "3",
+        idx: 2,
+        data: { name: "Charlie Davis", age: 41, joinDate: "2021-05-17" },
+        columns: [
+          {
+            td: "Charlie Davis",
+            value: "Charlie Davis",
+            dataType: "string",
+          },
+          { td: "41", value: 41, dataType: "number" },
+          {
+            td: "2021-05-17",
+            value: "2021-05-17",
+            dataType: "date",
+          },
+        ],
+      },
+      {
+        id: "2",
+        idx: 3,
+        data: { name: "Bob Smith", age: 34, joinDate: "2022-09-30" },
+        columns: [
+          {
+            td: "Bob Smith",
+            value: "Bob Smith",
+            dataType: "string",
+          },
+          { td: "34", value: 34, dataType: "number" },
+          {
+            td: "2022-09-30",
+            value: "2022-09-30",
+            dataType: "date",
+          },
+        ],
+      },
+      {
+        id: "1",
+        idx: 1,
+        data: { name: "Alice Johnson", age: 28, joinDate: "2023-01-12" },
+        columns: [
+          {
+            td: "Alice Johnson",
+            value: "Alice Johnson",
+            dataType: "string",
+          },
+          { td: "28", value: 28, dataType: "number" },
+          {
+            td: "2023-01-12",
+            value: "2023-01-12",
+            dataType: "date",
+          },
+        ],
+      },
+      {
+        id: "3",
+        idx: 2,
+        data: { name: "Charlie Davis", age: 41, joinDate: "2021-05-17" },
+        columns: [
+          {
+            td: "Charlie Davis",
+            value: "Charlie Davis",
+            dataType: "string",
+          },
+          { td: "41", value: 41, dataType: "number" },
+          {
+            td: "2021-05-17",
+            value: "2021-05-17",
+            dataType: "date",
+          },
+        ],
+      },
+      {
+        id: "2",
+        idx: 3,
+        data: { name: "Bob Smith", age: 34, joinDate: "2022-09-30" },
+        columns: [
+          {
+            td: "Bob Smith",
+            value: "Bob Smith",
+            dataType: "string",
+          },
+          { td: "34", value: 34, dataType: "number" },
+          {
+            td: "2022-09-30",
+            value: "2022-09-30",
+            dataType: "date",
+          },
+        ],
+      },
+      {
+        id: "1",
+        idx: 1,
+        data: { name: "Alice Johnson", age: 28, joinDate: "2023-01-12" },
+        columns: [
+          {
+            td: "Alice Johnson",
+            value: "Alice Johnson",
+            dataType: "string",
+          },
+          { td: "28", value: 28, dataType: "number" },
+          {
+            td: "2023-01-12",
+            value: "2023-01-12",
+            dataType: "date",
+          },
+        ],
+      },
+      {
+        id: "3",
+        idx: 2,
+        data: { name: "Charlie Davis", age: 41, joinDate: "2021-05-17" },
+        columns: [
+          {
+            td: "Charlie Davis",
+            value: "Charlie Davis",
+            dataType: "string",
+          },
+          { td: "41", value: 41, dataType: "number" },
+          {
+            td: "2021-05-17",
+            value: "2021-05-17",
+            dataType: "date",
+          },
+        ],
+      },
+      {
+        id: "2",
+        idx: 3,
+        data: { name: "Bob Smith", age: 34, joinDate: "2022-09-30" },
+        columns: [
+          {
+            td: "Bob Smith",
+            value: "Bob Smith",
+            dataType: "string",
+          },
+          { td: "34", value: 34, dataType: "number" },
+          {
+            td: "2022-09-30",
+            value: "2022-09-30",
+            dataType: "date",
+          },
+        ],
+      },
+      {
+        id: "1",
+        idx: 1,
+        data: { name: "Alice Johnson", age: 28, joinDate: "2023-01-12" },
+        columns: [
+          {
+            td: "Alice Johnson",
+            value: "Alice Johnson",
+            dataType: "string",
+          },
+          { td: "28", value: 28, dataType: "number" },
+          {
+            td: "2023-01-12",
+            value: "2023-01-12",
+            dataType: "date",
+          },
+        ],
+      },
+      {
+        id: "3",
+        idx: 2,
+        data: { name: "Charlie Davis", age: 41, joinDate: "2021-05-17" },
+        columns: [
+          {
+            td: "Charlie Davis",
+            value: "Charlie Davis",
+            dataType: "string",
+          },
+          { td: "41", value: 41, dataType: "number" },
+          {
+            td: "2021-05-17",
+            value: "2021-05-17",
+            dataType: "date",
+          },
+        ],
+      },
+      {
+        id: "2",
+        idx: 3,
+        data: { name: "Bob Smith", age: 34, joinDate: "2022-09-30" },
+        columns: [
+          {
+            td: "Bob Smith",
+            value: "Bob Smith",
+            dataType: "string",
+          },
+          { td: "34", value: 34, dataType: "number" },
+          {
+            td: "2022-09-30",
+            value: "2022-09-30",
+            dataType: "date",
+          },
+        ],
+      },
+      {
+        id: "1",
+        idx: 1,
+        data: { name: "Alice Johnson", age: 28, joinDate: "2023-01-12" },
+        columns: [
+          {
+            td: "Alice Johnson",
+            value: "Alice Johnson",
+            dataType: "string",
+          },
+          { td: "28", value: 28, dataType: "number" },
+          {
+            td: "2023-01-12",
+            value: "2023-01-12",
+            dataType: "date",
+          },
+        ],
+      },
+      {
+        id: "3",
+        idx: 2,
+        data: { name: "Charlie Davis", age: 41, joinDate: "2021-05-17" },
+        columns: [
+          {
+            td: "Charlie Davis",
+            value: "Charlie Davis",
+            dataType: "string",
+          },
+          { td: "41", value: 41, dataType: "number" },
+          {
+            td: "2021-05-17",
+            value: "2021-05-17",
+            dataType: "date",
+          },
+        ],
+      },
+      {
+        id: "2",
+        idx: 3,
+        data: { name: "Bob Smith", age: 34, joinDate: "2022-09-30" },
+        columns: [
+          {
+            td: "Bob Smith",
+            value: "Bob Smith",
+            dataType: "string",
+          },
+          { td: "34", value: 34, dataType: "number" },
+          {
+            td: "2022-09-30",
+            value: "2022-09-30",
+            dataType: "date",
+          },
+        ],
+      },
+      {
+        id: "1",
+        idx: 1,
+        data: { name: "Alice Johnson", age: 28, joinDate: "2023-01-12" },
+        columns: [
+          {
+            td: "Alice Johnson",
+            value: "Alice Johnson",
+            dataType: "string",
+          },
+          { td: "28", value: 28, dataType: "number" },
+          {
+            td: "2023-01-12",
+            value: "2023-01-12",
+            dataType: "date",
+          },
+        ],
+      },
+      {
+        id: "3",
+        idx: 2,
+        data: { name: "Charlie Davis", age: 41, joinDate: "2021-05-17" },
+        columns: [
+          {
+            td: "Charlie Davis",
+            value: "Charlie Davis",
+            dataType: "string",
+          },
+          { td: "41", value: 41, dataType: "number" },
+          {
+            td: "2021-05-17",
+            value: "2021-05-17",
+            dataType: "date",
+          },
+        ],
+      },
+      {
+        id: "2",
+        idx: 3,
+        data: { name: "Bob Smith", age: 34, joinDate: "2022-09-30" },
+        columns: [
+          {
+            td: "Bob Smith",
+            value: "Bob Smith",
+            dataType: "string",
+          },
+          { td: "34", value: 34, dataType: "number" },
+          {
+            td: "2022-09-30",
+            value: "2022-09-30",
+            dataType: "date",
+          },
+        ],
+      },
+      {
+        id: "1",
+        idx: 1,
+        data: { name: "Alice Johnson", age: 28, joinDate: "2023-01-12" },
+        columns: [
+          {
+            td: "Alice Johnson",
+            value: "Alice Johnson",
+            dataType: "string",
+          },
+          { td: "28", value: 28, dataType: "number" },
+          {
+            td: "2023-01-12",
+            value: "2023-01-12",
+            dataType: "date",
+          },
+        ],
+      },
+      {
+        id: "3",
+        idx: 2,
+        data: { name: "Charlie Davis", age: 41, joinDate: "2021-05-17" },
+        columns: [
+          {
+            td: "Charlie Davis",
+            value: "Charlie Davis",
+            dataType: "string",
+          },
+          { td: "41", value: 41, dataType: "number" },
+          {
+            td: "2021-05-17",
+            value: "2021-05-17",
+            dataType: "date",
+          },
+        ],
+      },
+      {
+        id: "2",
+        idx: 3,
+        data: { name: "Bob Smith", age: 34, joinDate: "2022-09-30" },
+        columns: [
+          {
+            td: "Bob Smith",
+            value: "Bob Smith",
+            dataType: "string",
+          },
+          { td: "34", value: 34, dataType: "number" },
+          {
+            td: "2022-09-30",
+            value: "2022-09-30",
+            dataType: "date",
+          },
+        ],
+      },
     ],
     rowOptions: [
       () => ({
@@ -247,6 +625,7 @@ const DemoDataTable = () => {
       setLimit={setLimit}
       page={page}
       setPage={setPage}
+      maxH={"400px"}
     />
   );
 };
