@@ -16,7 +16,7 @@ import { ImgInput } from "@/components/ui/img-input";
 import { P } from "@/components/ui/p";
 import SearchInput from "@/components/ui/search-input";
 import { Skeleton } from "@/components/ui/skeleton";
-import Spinner from "@/components/ui/spinner";
+import { Spinner } from "@/components/ui/spinner";
 import { StringInput } from "@/components/ui/string-input";
 import { AppIcon } from "@/components/widget/AppIcon";
 import BackButton from "@/components/widget/BackButton";

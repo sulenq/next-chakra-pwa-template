@@ -5,7 +5,7 @@ import { InputComponent } from "@/components/ui/file-input";
 import { Img } from "@/components/ui/img";
 import { P } from "@/components/ui/p";
 import { FileItem } from "@/components/widget/FIleItem";
-import HScroll from "@/components/widget/HScroll";
+import { HScroll } from "@/components/widget/HScroll";
 import { LucideIcon } from "@/components/widget/Icon";
 import { ImgViewer } from "@/components/widget/ImgViewer";
 import { Interface__StorageFile } from "@/constants/interfaces";
@@ -38,7 +38,7 @@ export const ImgInput = (props: Props__FileInput) => {
   const [previewUrls, setPreviewUrls] = useState<string[]>([]);
   const resolvedDisabled = fc?.disabled;
   const [existing, setExisting] = useState<Interface__StorageFile[]>(
-    existingFiles || []
+    existingFiles || [],
   );
   const [deleted, setDeleted] = useState<Interface__StorageFile[]>([]);
   const shouldRenderPreview = !isEmptyArray(previewUrls);
@@ -49,7 +49,7 @@ export const ImgInput = (props: Props__FileInput) => {
       inputValueUrls = inputValue.map((f: any) => URL.createObjectURL(f));
     }
     const exsistingUrls = existing.map((f: Interface__StorageFile) =>
-      imgUrl(f.filePath)
+      imgUrl(f.filePath),
     ) as string[];
 
     setPreviewUrls([...exsistingUrls, ...inputValueUrls]);
@@ -86,7 +86,7 @@ export const ImgInput = (props: Props__FileInput) => {
                       icon: <LucideIcon icon={TrashIcon} />,
                       onClick: () => {
                         setExisting((prev) =>
-                          prev.filter((f) => f.id !== fileData.id)
+                          prev.filter((f) => f.id !== fileData.id),
                         );
                         setDeleted((ps) => [...ps, fileData]);
                         onDeleteFile?.(fileData);
@@ -129,7 +129,7 @@ export const ImgInput = (props: Props__FileInput) => {
                       onClick: () => {
                         setExisting((prev) => [...prev, fileData]);
                         setDeleted((ps) =>
-                          ps.filter((f) => f.id !== fileData.id)
+                          ps.filter((f) => f.id !== fileData.id),
                         );
                         onUndoDeleteFile?.(fileData);
                       },

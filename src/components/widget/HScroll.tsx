@@ -7,7 +7,7 @@ interface Props extends StackProps {
   children?: React.ReactNode;
 }
 
-const HScroll = ({ fRef, children, ...props }: Props) => {
+export const HScroll = ({ fRef, children, ...props }: Props) => {
   const localRef = useRef<HTMLDivElement | null>(null);
   const hStackRef = (fRef ?? localRef) as React.RefObject<HTMLDivElement>;
 
@@ -62,7 +62,8 @@ const HScroll = ({ fRef, children, ...props }: Props) => {
 
       // Normalize deltaMode: lines (1) vs pixels (0) vs page (2)
       let multiplier = 1;
-      if (ev.deltaMode === 1) multiplier = 16; // approximate line height
+      if (ev.deltaMode === 1)
+        multiplier = 16; // approximate line height
       else if (ev.deltaMode === 2) multiplier = window.innerHeight; // page
 
       // Tweak this factor to taste for sensitivity / inertia
@@ -99,5 +100,3 @@ const HScroll = ({ fRef, children, ...props }: Props) => {
     </CContainer>
   );
 };
-
-export default HScroll;

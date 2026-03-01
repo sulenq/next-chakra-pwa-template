@@ -2,9 +2,9 @@ import { back } from "@/utils/client";
 import { Icon } from "@chakra-ui/react";
 import { IconArrowLeft } from "@tabler/icons-react";
 import { useRouter } from "next/navigation";
-import { Btn, BtnProps } from "../ui/btn";
+import { Btn, Props__Btn } from "../ui/btn";
 
-interface Props extends BtnProps {
+interface Props extends Props__Btn {
   children?: any;
   iconButton?: boolean;
   backPath?: string;

@@ -1,5 +1,5 @@
 import { CContainer } from "@/components/ui/c-container";
-import Spinner from "@/components/ui/spinner";
+import { Spinner } from "@/components/ui/spinner";
 import { SpinnerProps, StackProps } from "@chakra-ui/react";
 
 interface Props extends StackProps {

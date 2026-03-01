@@ -2,7 +2,7 @@
 
 import { Btn } from "@/components/ui/btn";
 import { CContainer } from "@/components/ui/c-container";
-import Spinner from "@/components/ui/spinner";
+import { Spinner } from "@/components/ui/spinner";
 import { LucideIcon } from "@/components/widget/Icon";
 import { SM_SCREEN_W_NUMBER } from "@/constants/styles";
 import { useThemeConfig } from "@/context/useThemeConfig";

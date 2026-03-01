@@ -351,7 +351,13 @@ const DemoIndexRoute = () => {
 
   return (
     <CContainer p={4} gap={8} mx={"auto"}>
-      <HStack justify={"space-between"}>
+      <HStack
+        justify={"space-between"}
+        position={"sticky"}
+        top={0}
+        bg={"body"}
+        zIndex={99}
+      >
         <HStack gap={4}>
           <P whiteSpace={"nowrap"} fontSize={"xl"} fontWeight={"bold"}>
             Demo
@@ -365,6 +371,8 @@ const DemoIndexRoute = () => {
           <ColorModeButton />
         </HStack>
       </HStack>
+
+      <PDFViewer fileUrl={"/test.pdf"} />
 
       <NavLink to="/welcome">
         <Btn colorPalette={themeConfig.colorPalette}>App Layout</Btn>
@@ -586,7 +594,7 @@ const DemoIndexRoute = () => {
           <DemoDataTable />
         </CContainer>
 
-        <SimpleGrid columns={[1, null, 2]}>
+        <SimpleGrid columns={[1, null, 2]} gap={4}>
           <CContainer>
             <PDFViewer fileUrl={"/test.pdf"} />
           </CContainer>

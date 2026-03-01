@@ -30,7 +30,7 @@ import { AppIcon } from "@/components/widget/AppIcon";
 import { ClampText } from "@/components/widget/ClampText";
 import Clock from "@/components/widget/Clock";
 import FeedbackNotFound from "@/components/widget/FeedbackNotFound";
-import HScroll from "@/components/widget/HScroll";
+import { HScroll } from "@/components/widget/HScroll";
 import { BottomIndicator, LeftIndicator } from "@/components/widget/Indicator";
 import { Logo } from "@/components/widget/Logo";
 import { MiniMyProfile } from "@/components/widget/MiniMyProfile";

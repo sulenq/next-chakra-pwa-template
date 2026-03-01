@@ -1,4 +1,4 @@
-import { Btn, BtnProps } from "@/components/ui/btn";
+import { Btn, Props__Btn } from "@/components/ui/btn";
 import { CContainer } from "@/components/ui/c-container";
 import {
   DisclosureBody,
@@ -21,7 +21,7 @@ interface Props__Disclosure {
   description: string;
   confirmLabel: string;
   onConfirm: () => void;
-  confirmButtonProps?: BtnProps;
+  confirmButtonProps?: Props__Btn;
   loading?: boolean;
   addonElement?: any;
 }
@@ -78,7 +78,7 @@ interface Props__Trigger extends StackProps {
   description: string;
   confirmLabel: any;
   onConfirm: () => void;
-  confirmButtonProps?: BtnProps;
+  confirmButtonProps?: Props__Btn;
   loading?: boolean;
   disabled?: any;
   addonElement?: any;

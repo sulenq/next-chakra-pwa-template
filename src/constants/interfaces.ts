@@ -1,4 +1,4 @@
-import { BtnProps } from "@/components/ui/btn";
+import { Props__Btn } from "@/components/ui/btn";
 import { Enum__ActivityAction } from "@/constants/enums";
 import {
   MenuItemProps,
@@ -70,6 +70,28 @@ export interface Interface__Nav {
   childrenInvisible?: boolean;
 }
 
+// Pdf Viewer
+export interface Interface__PdfViewer {
+  pageWidth: number;
+  numPages: number | null;
+  page: number;
+  scale: number;
+  mode: "single" | "scroll";
+}
+export interface Interface__PdfViewerUtils {
+  setPageWidth: (width: number) => void;
+  setPage: (p: number) => void;
+  prevPage: () => void;
+  nextPage: () => void;
+  zoomIn: () => void;
+  zoomOut: () => void;
+  resetZoom: () => void;
+  fitToWidth: () => void;
+  fitToPage: () => void;
+  handleDownload: () => void;
+  toggleMode: () => void;
+}
+
 // Data Table
 export interface Interface__DataProps {
   headers?: Interface__FormattedTableHeader[];
@@ -110,7 +132,7 @@ export interface Interface__TableOption {
     description: string;
     confirmLabel: string;
     onConfirm: () => void;
-    confirmButtonProps?: BtnProps;
+    confirmButtonProps?: Props__Btn;
     loading?: boolean;
     disabled?: boolean;
   };

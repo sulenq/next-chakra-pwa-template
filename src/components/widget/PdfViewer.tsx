@@ -1,40 +1,79 @@
 "use client";
 
-import { Box, HStack, Icon, StackProps, VStack } from "@chakra-ui/react";
-import { useEffect, useRef, useState } from "react";
-import { Document, Page, pdfjs } from "react-pdf";
-import { Btn } from "@/components/ui/btn";
+import { Btn, Props__Btn } from "@/components/ui/btn";
 import { CContainer } from "@/components/ui/c-container";
 import { MenuContent, MenuRoot, MenuTrigger } from "@/components/ui/menu";
 import { NumInput } from "@/components/ui/number-input";
 import { P } from "@/components/ui/p";
-import Spinner from "@/components/ui/spinner";
+import { Spinner } from "@/components/ui/spinner";
 import { Tooltip } from "@/components/ui/tooltip";
+import { AppIcon } from "@/components/widget/AppIcon";
 import FeedbackState from "@/components/widget/FeedbackState";
-import HScroll from "@/components/widget/HScroll";
-import { Props__PdfViewer } from "@/constants/props";
+import { HScroll } from "@/components/widget/HScroll";
 import useLang from "@/context/useLang";
 import { useThemeConfig } from "@/context/useThemeConfig";
+import { Box, HStack, Icon, StackProps, VStack } from "@chakra-ui/react";
 import {
-  IconArrowAutofitContent,
   IconArrowAutofitWidth,
-  IconChevronLeft,
-  IconChevronRight,
   IconDownload,
   IconFile,
   IconFileOff,
   IconFiles,
+  IconZoomIn,
+  IconZoomOut,
 } from "@tabler/icons-react";
+import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { Document, Page, pdfjs } from "react-pdf";
 import "react-pdf/dist/Page/AnnotationLayer.css";
 import "react-pdf/dist/Page/TextLayer.css";
 
+export interface Interface__PdfViewer {
+  pageWidth: number;
+  numPages: number | null;
+  page: number;
+  scale: number;
+  mode: "single" | "scroll";
+}
+export interface Interface__PdfViewerUtils {
+  setPageWidth: (width: number) => void;
+  setPage: (p: number) => void;
+  prevPage: () => void;
+  nextPage: () => void;
+  zoomIn: () => void;
+  zoomOut: () => void;
+  resetZoom: () => void;
+  fitToWidth: () => void;
+  fitToPage: () => void;
+  handleDownload: () => void;
+  toggleMode: () => void;
+}
+
 pdfjs.GlobalWorkerOptions.workerSrc = "/pdf.worker.min.mjs";
 
-const PageJump = (props: any) => {
+interface Props__UtilBtn extends Props__Btn {
+  tooltipContent: string;
+}
+const UtilBtn = (btnProps: Props__UtilBtn) => {
+  const { tooltipContent, ...restProps } = btnProps;
+  return (
+    <Tooltip content={tooltipContent}>
+      <Btn iconButton size={"sm"} variant={"ghost"} {...restProps} />
+    </Tooltip>
+  );
+};
+
+interface Props__PageControl extends Omit<StackProps, "page"> {
+  page: number;
+  numPages: number;
+  utils: Interface__PdfViewerUtils;
+}
+const PageControl = (props: Props__PageControl) => {
   // Props
-  const { pageNumber, setPageNumber, numPages, ...restProps } = props;
+  const { utils, page, numPages, ...restProps } = props;
 
   // Contexts
+  const { l } = useLang();
   const { themeConfig } = useThemeConfig();
 
   // States
@@ -43,163 +82,145 @@ const PageJump = (props: any) => {
   // Utils
   function handleJumpPage(gotoPage: number | null) {
     if (gotoPage && gotoPage > 0 && gotoPage <= numPages) {
-      setPageNumber(gotoPage);
+      utils.setPage(gotoPage);
     }
   }
 
   return (
-    <MenuRoot
-      positioning={{
-        placement: "bottom",
-      }}
-    >
-      <MenuTrigger asChild>
-        <Btn
-          px={2}
-          variant={"ghost"}
-          fontWeight={"medium"}
-          whiteSpace={"nowrap"}
-          fontVariantNumeric={"tabular-nums"}
-          {...restProps}
-        >
-          {pageNumber} / {numPages || "?"}
-        </Btn>
-      </MenuTrigger>
+    <HStack gap={0} {...restProps}>
+      <UtilBtn
+        onClick={utils.prevPage}
+        disabled={page <= 1}
+        tooltipContent={l.previous_page}
+      >
+        <AppIcon icon={ChevronLeftIcon} />
+      </UtilBtn>
 
-      <MenuContent p={0}>
-        <CContainer gap={2} p={2}>
-          <P fontSize={"sm"} fontWeight={"medium"} color={"fg.subtle"}>
-            Go to page
-          </P>
-
-          <NumInput
-            inputValue={gotoPage}
-            onChange={(inputValue) => {
-              setGotoPage(inputValue);
-            }}
-            max={numPages}
-            placeholder={""}
-            onKeyDown={(e) => {
-              if (e.key === "Enter") handleJumpPage(gotoPage);
-            }}
-          />
-
+      <MenuRoot
+        positioning={{
+          placement: "bottom",
+        }}
+      >
+        <MenuTrigger asChild>
           <Btn
-            colorPalette={themeConfig.colorPalette}
-            disabled={gotoPage === null}
-            onClick={() => {
-              handleJumpPage(gotoPage);
-            }}
+            px={2}
+            variant={"ghost"}
+            fontWeight={"medium"}
+            whiteSpace={"nowrap"}
+            fontVariantNumeric={"tabular-nums"}
           >
-            Go
+            {page} / {numPages || "?"}
           </Btn>
-        </CContainer>
-      </MenuContent>
-    </MenuRoot>
+        </MenuTrigger>
+
+        <MenuContent p={0} minW={"100px"} maxW={"100px"}>
+          <CContainer gap={2} p={2}>
+            <P fontSize={"sm"} fontWeight={"medium"} color={"fg.subtle"}>
+              Go to page
+            </P>
+
+            <NumInput
+              inputValue={gotoPage}
+              onChange={(inputValue) => {
+                setGotoPage(inputValue);
+              }}
+              max={numPages}
+              placeholder={""}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") handleJumpPage(gotoPage);
+              }}
+              px={2}
+            />
+
+            <Btn
+              colorPalette={themeConfig.colorPalette}
+              disabled={gotoPage === null}
+              onClick={() => {
+                handleJumpPage(gotoPage);
+              }}
+            >
+              Go
+            </Btn>
+          </CContainer>
+        </MenuContent>
+      </MenuRoot>
+
+      <UtilBtn
+        onClick={utils.nextPage}
+        disabled={page >= (numPages || 1)}
+        tooltipContent={l.next_page}
+      >
+        <AppIcon icon={ChevronRightIcon} />
+      </UtilBtn>
+    </HStack>
   );
 };
 
-interface Props__PDFToolbar extends StackProps {
-  utils: any;
-  toggleMode: () => void;
-  isSingleMode: boolean;
-  pageNumber: number;
-  setPageNumber: React.Dispatch<number>;
-  numPages: number | null;
+interface Props__ZoomControl extends StackProps {
   scale: number;
+  utils: Interface__PdfViewerUtils;
 }
-const Toolbar = (props: Props__PDFToolbar) => {
+const ZoomControl = (props: Props__ZoomControl) => {
   // Props
-  const {
-    utils,
-    toggleMode,
-    isSingleMode,
-    pageNumber,
-    setPageNumber,
-    numPages,
-    // scale,
-    ...restProps
-  } = props;
+  const { utils, scale, ...restProps } = props;
 
   // Contexts
   const { l } = useLang();
 
-  // Components
-  const UtilBtn = (btnProps: any) => {
-    const { tooltipContent, ...restProps } = btnProps;
-    return (
-      <Tooltip content={tooltipContent}>
-        <Btn iconButton size={"sm"} variant={"ghost"} {...restProps} />
-      </Tooltip>
-    );
-  };
+  return (
+    <HStack gap={0} {...restProps}>
+      <UtilBtn onClick={utils.zoomOut} tooltipContent={l.zoom_out}>
+        <Icon boxSize={5}>
+          <IconZoomOut stroke={1.5} />
+        </Icon>
+      </UtilBtn>
+
+      <Box minW={"35px"} textAlign={"center"}>
+        {Math.round(scale * 100)}%
+      </Box>
+
+      <UtilBtn onClick={utils.zoomIn} tooltipContent={l.zoom_in}>
+        <Icon boxSize={5}>
+          <IconZoomIn stroke={1.5} />
+        </Icon>
+      </UtilBtn>
+
+      <UtilBtn onClick={utils.fitToWidth} tooltipContent={l.fit_to_width}>
+        <Icon boxSize={5}>
+          <IconArrowAutofitWidth stroke={1.5} />
+        </Icon>
+      </UtilBtn>
+
+      {/* 
+      <UtilBtn onClick={utils.fitToPage} tooltipContent={l.fit_to_page}>
+        <Icon boxSize={5}>
+          <IconArrowAutofitContent stroke={1.5} />
+        </Icon>
+      </UtilBtn> */}
+    </HStack>
+  );
+};
+
+interface Props__PDFToolbar extends StackProps {
+  viewer: Interface__PdfViewer;
+  utils: Interface__PdfViewerUtils;
+}
+const Toolbar = (props: Props__PDFToolbar) => {
+  // Props
+  const { viewer, utils, ...restProps } = props;
 
   return (
     <HScroll className={"noScroll"} bg={"body"} {...restProps}>
-      <HStack minW={"full"} w={"max"} gap={2} p={2}>
-        {isSingleMode && (
-          <HStack gap={0}>
-            <UtilBtn
-              onClick={utils.prevPage}
-              disabled={!isSingleMode || pageNumber <= 1}
-              tooltipContent={l.previous_page}
-            >
-              <Icon boxSize={5}>
-                <IconChevronLeft stroke={1.5} />
-              </Icon>
-            </UtilBtn>
-
-            <PageJump
-              pageNumber={pageNumber}
-              setPageNumber={setPageNumber}
-              numPages={numPages}
-            />
-
-            <UtilBtn
-              onClick={utils.nextPage}
-              disabled={!isSingleMode || pageNumber >= (numPages || 1)}
-              tooltipContent={l.next_page}
-            >
-              <Icon boxSize={5}>
-                <IconChevronRight stroke={1.5} />
-              </Icon>
-            </UtilBtn>
-          </HStack>
+      <HStack minW={"full"} w={"max"} gap={0} p={2}>
+        {viewer.mode === "single" && (
+          <PageControl
+            page={viewer.page}
+            numPages={viewer.numPages || 0}
+            utils={utils}
+          />
         )}
 
-        {/* <UtilBtn onClick={utils.zoomOut} tooltipContent={l.zoom_out}>
-          <Icon boxSize={5}>
-            <IconZoomOut stroke={1.5} />
-          </Icon>
-        </UtilBtn>
-
-        <Box minW={"35px"} textAlign={"center"}>
-          {Math.round(scale * 100)}%
-        </Box>
-
-        <UtilBtn onClick={utils.zoomIn} tooltipContent={l.zoom_in}>
-          <Icon boxSize={5}>
-            <IconZoomIn stroke={1.5} />
-          </Icon>
-        </UtilBtn> */}
-
-        {/* <UtilBtn onClick={utils.resetZoom} tooltipContent={l.zoom_reset}>
-          <Icon boxSize={5}>
-            <IconZoomReset stroke={1.5} />
-          </Icon>
-        </UtilBtn> */}
-
-        <UtilBtn onClick={utils.fitToWidth} tooltipContent={l.fit_to_width}>
-          <Icon boxSize={5}>
-            <IconArrowAutofitWidth stroke={1.5} />
-          </Icon>
-        </UtilBtn>
-
-        <UtilBtn onClick={utils.fitToPage} tooltipContent={l.fit_to_page}>
-          <Icon boxSize={5}>
-            <IconArrowAutofitContent stroke={1.5} />
-          </Icon>
-        </UtilBtn>
+        <ZoomControl scale={viewer.scale} utils={utils} />
 
         <UtilBtn
           onClick={utils.handleDownload}
@@ -213,24 +234,30 @@ const Toolbar = (props: Props__PDFToolbar) => {
 
         <UtilBtn
           iconButton={false}
-          onClick={toggleMode}
+          onClick={utils.toggleMode}
           tooltipContent={"Mode"}
           pl={3}
         >
           <Icon boxSize={5}>
-            {isSingleMode ? (
+            {viewer.mode === "single" ? (
               <IconFile stroke={1.5} />
             ) : (
               <IconFiles stroke={1.5} />
             )}
           </Icon>
-          {isSingleMode ? "Single" : "Scroll"}
+
+          {viewer.mode === "single" && "Single"}
+          {viewer.mode === "scroll" && "Scroll"}
         </UtilBtn>
       </HStack>
     </HScroll>
   );
 };
 
+export interface Props__PdfViewer extends StackProps {
+  fileUrl: string;
+  fileName?: string;
+}
 export const PDFViewer = (props: Props__PdfViewer) => {
   // Props
   const { fileUrl, fileName, ...restProps } = props;
@@ -238,66 +265,83 @@ export const PDFViewer = (props: Props__PdfViewer) => {
   // Contexts
   const { l } = useLang();
 
-  // States
-  const [numPages, setNumPages] = useState<number | null>(null);
-  const [pageNumber, setPageNumber] = useState<number>(1);
-  const [scale, setScale] = useState<number>(1);
-  const [isSingleMode, setIsSingleMode] = useState(true);
-
-  // Width Responsive State
-  const [containerWidth, setContainerWidth] = useState<number>(0);
+  // Refs
   const containerRef = useRef<HTMLDivElement>(null);
 
-  const utils = {
-    prevPage: () => setPageNumber((p) => Math.max(p - 1, 1)),
-    nextPage: () => setPageNumber((p) => Math.min(p + 1, numPages || 1)),
-    zoomIn: () => setScale((s) => Math.min(s + 0.1, 3)), // Max zoom 300%
-    zoomOut: () => setScale((s) => Math.max(s - 0.1, 0.5)), // Min zoom 50%
-    resetZoom: () => setScale(1),
-    fitToWidth: () => setScale(1),
-    fitToPage: () => setScale(0.6),
-    handleDownload: handleDownload,
+  // States
+  const [viewer, setViewer] = useState<Interface__PdfViewer>({
+    pageWidth: 0,
+    numPages: null as number | null,
+    page: 1,
+    scale: 1,
+    mode: "single" as "single" | "scroll",
+  });
+  const utils: Interface__PdfViewerUtils = {
+    setPageWidth: (width: number) =>
+      setViewer((ps) => ({ ...ps, pageWidth: width })),
+
+    setPage: (p: number) => setViewer((ps) => ({ ...ps, page: p })),
+
+    prevPage: () =>
+      setViewer((ps) => ({ ...ps, page: Math.max(ps.page - 1, 1) })),
+
+    nextPage: () =>
+      setViewer((ps) => ({
+        ...ps,
+        page: Math.min(ps.page + 1, ps.numPages || 1),
+      })),
+
+    zoomIn: () =>
+      setViewer((ps) => ({ ...ps, scale: Math.min(ps.scale + 0.1, 3) })),
+
+    zoomOut: () =>
+      setViewer((ps) => ({ ...ps, scale: Math.max(ps.scale - 0.1, 0.5) })),
+
+    resetZoom: () => setViewer((ps) => ({ ...ps, scale: 1 })),
+
+    fitToWidth: () => setViewer((ps) => ({ ...ps, scale: 1 })),
+
+    fitToPage: () => setViewer((ps) => ({ ...ps, scale: 0.6 })),
+
+    handleDownload: async () => {
+      const response = await fetch(fileUrl, {
+        credentials: "same-origin",
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to download file");
+      }
+
+      const blob = await response.blob();
+      const blobUrl = URL.createObjectURL(blob);
+
+      const link = document.createElement("a");
+      link.href = blobUrl;
+      link.download =
+        fileName ||
+        decodeURIComponent(fileUrl.split("/").pop() || "download.pdf");
+
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+
+      URL.revokeObjectURL(blobUrl);
+    },
+
+    toggleMode: () =>
+      setViewer((v) => ({
+        ...v,
+        mode: v.mode === "single" ? "scroll" : "single",
+        scale: 1,
+      })),
   };
-
-  // Utils
-  function onDocumentLoadSuccess({ numPages }: { numPages: number }) {
-    setNumPages(numPages);
-  }
-  function toggleMode() {
-    setIsSingleMode(!isSingleMode);
-    setScale(1);
-  }
-  async function handleDownload() {
-    const response = await fetch(fileUrl, {
-      credentials: "same-origin",
-    });
-
-    if (!response.ok) {
-      throw new Error("Failed to download file");
-    }
-
-    const blob = await response.blob();
-    const blobUrl = URL.createObjectURL(blob);
-
-    const link = document.createElement("a");
-    link.href = blobUrl;
-    link.download =
-      fileName ||
-      decodeURIComponent(fileUrl.split("/").pop() || "download.pdf");
-
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-
-    URL.revokeObjectURL(blobUrl);
-  }
 
   // Resize Observer
   useEffect(() => {
     // Logic auto-width 100% container
     const observer = new ResizeObserver((entries) => {
       if (entries[0]) {
-        setContainerWidth(entries[0].contentRect.width);
+        utils.setPageWidth(entries[0].contentRect.width);
       }
     });
 
@@ -311,16 +355,7 @@ export const PDFViewer = (props: Props__PdfViewer) => {
   return (
     <CContainer flex={1} w={"full"} h={"full"} {...restProps}>
       {/* Toolbar */}
-      <Toolbar
-        utils={utils}
-        isSingleMode={isSingleMode}
-        toggleMode={toggleMode}
-        pageNumber={pageNumber}
-        setPageNumber={setPageNumber}
-        numPages={numPages}
-        scale={scale}
-        flexShrink={0}
-      />
+      <Toolbar utils={utils} viewer={viewer} flexShrink={0} />
 
       {/* Document Area */}
       <CContainer
@@ -328,14 +363,16 @@ export const PDFViewer = (props: Props__PdfViewer) => {
         className={"scrollX scrollYAlt"}
         flex={1}
         minH={"200px"}
-        // bg={"d1"}
+        bg={"d1"}
         p={2}
         m={"auto"}
         position={"relative"}
       >
         <Document
           file={fileUrl}
-          onLoadSuccess={onDocumentLoadSuccess}
+          onLoadSuccess={({ numPages }) => {
+            setViewer((v) => ({ ...v, numPages }));
+          }}
           loading={<Spinner />}
           error={
             <FeedbackState
@@ -345,22 +382,22 @@ export const PDFViewer = (props: Props__PdfViewer) => {
             />
           }
         >
-          {containerWidth > 0 && (
+          {viewer.pageWidth > 0 && (
             <>
-              {isSingleMode && (
+              {viewer.mode === "single" && (
                 // Single Mode
                 <VStack minW={"full"} w={"max"}>
                   <Page
-                    pageNumber={pageNumber}
+                    pageNumber={viewer.page}
                     renderTextLayer={true}
                     renderAnnotationLayer={true}
-                    width={containerWidth}
-                    scale={scale}
+                    width={viewer.pageWidth}
+                    scale={viewer.scale}
                   />
                 </VStack>
               )}
 
-              {!isSingleMode && (
+              {viewer.mode === "scroll" && (
                 // Scroll Mode
                 <VStack
                   display={"flex"}
@@ -369,14 +406,14 @@ export const PDFViewer = (props: Props__PdfViewer) => {
                   w={"max"}
                   gap={4}
                 >
-                  {Array.from(new Array(numPages), (_, index) => (
+                  {Array.from(new Array(viewer.numPages), (_, index) => (
                     <Box key={`page_${index + 1}`}>
                       <Page
                         pageNumber={index + 1}
                         renderTextLayer={true}
                         renderAnnotationLayer={true}
-                        width={containerWidth}
-                        scale={scale}
+                        width={viewer.pageWidth}
+                        scale={viewer.scale}
                       />
                     </Box>
                   ))}

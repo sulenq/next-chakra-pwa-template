@@ -7,7 +7,7 @@ import { P } from "@/components/ui/p";
 import { Segmented } from "@/components/ui/segment-group";
 import { Switch } from "@/components/ui/switch";
 import { ClampText } from "@/components/widget/ClampText";
-import HScroll from "@/components/widget/HScroll";
+import { HScroll } from "@/components/widget/HScroll";
 import { LucideIcon } from "@/components/widget/Icon";
 import { DotIndicator } from "@/components/widget/Indicator";
 import { InfoPopover } from "@/components/widget/InfoPopover";

@@ -1,6 +1,6 @@
 "use client";
 
-import { Btn, BtnProps } from "@/components/ui/btn";
+import { Btn, Props__Btn } from "@/components/ui/btn";
 import { Tooltip } from "@/components/ui/tooltip";
 import { LucideIcon } from "@/components/widget/Icon";
 import { BASE_ICON_BOX_SIZE } from "@/constants/styles";
@@ -9,7 +9,7 @@ import { useIsSmScreenWidth } from "@/hooks/useIsSmScreenWidth";
 import { Icon } from "@chakra-ui/react";
 import { LayoutGridIcon, Table2Icon } from "lucide-react";
 
-interface Props__DataDisplayToggle extends BtnProps {
+interface Props__DataDisplayToggle extends Props__Btn {
   navKey: string;
   iconButton?: boolean;
 }

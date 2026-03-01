@@ -1,12 +1,12 @@
 "use client";
 
-import { Btn, BtnProps } from "@/components/ui/btn";
+import { Btn, Props__Btn } from "@/components/ui/btn";
 import { LucideIcon } from "@/components/widget/Icon";
 import SimplePopover from "@/components/widget/SimplePopover";
 import { Icon } from "@chakra-ui/react";
 import { InfoIcon } from "lucide-react";
 
-interface Props extends BtnProps {
+interface Props extends Props__Btn {
   popoverContent?: string;
 }
 

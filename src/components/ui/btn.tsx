@@ -6,14 +6,14 @@ import { useThemeConfig } from "@/context/useThemeConfig";
 import { Button, ButtonProps, IconButton } from "@chakra-ui/react";
 import { forwardRef, useMemo } from "react";
 
-export interface BtnProps extends ButtonProps {
+export interface Props__Btn extends ButtonProps {
   children?: React.ReactNode;
   clicky?: boolean;
   iconButton?: boolean;
   focusStyle?: boolean;
 }
 
-export const Btn = forwardRef<HTMLButtonElement, BtnProps>((props, ref) => {
+export const Btn = forwardRef<HTMLButtonElement, Props__Btn>((props, ref) => {
   // Props
   const {
     children,
