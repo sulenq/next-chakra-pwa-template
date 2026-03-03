@@ -24,6 +24,7 @@ export const BatchOptions = (props: Props__BatchOptions) => {
   // Props
   const {
     children,
+    iconButton = true,
     selectedRows,
     clearSelectedRows,
     batchOptions,
@@ -50,14 +51,9 @@ export const BatchOptions = (props: Props__BatchOptions) => {
           }}
           {...restProps}
         >
-          {children ? (
-            children
-          ) : (
-            <AppIcon icon={EllipsisIcon} />
-            // <Icon boxSize={5}>
-            //   <IconMenu stroke={1.5} />
-            // </Icon>
-          )}
+          {children ? children : <AppIcon icon={EllipsisIcon} />}
+
+          {!iconButton && "Batch Options"}
         </Btn>
       </MenuTrigger>
 

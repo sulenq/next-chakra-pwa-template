@@ -13,6 +13,7 @@ import { DisclosureHeaderContent } from "@/components/ui/disclosure-header-conte
 import { P } from "@/components/ui/p";
 import SearchInput from "@/components/ui/search-input";
 import { Tooltip } from "@/components/ui/tooltip";
+import { AppIcon } from "@/components/widget/AppIcon";
 import FeedbackNoData from "@/components/widget/FeedbackNoData";
 import FeedbackNotFound from "@/components/widget/FeedbackNotFound";
 import FeedbackRetry from "@/components/widget/FeedbackRetry";
@@ -33,7 +34,8 @@ import {
   useDisclosure,
   useFieldContext,
 } from "@chakra-ui/react";
-import { IconCaretDownFilled, IconReload } from "@tabler/icons-react";
+import { IconReload } from "@tabler/icons-react";
+import { ChevronDownIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 
 const NAVS_COLOR = "fg.muted";
@@ -248,9 +250,7 @@ export const SelectInput = (props: Props__SelectInput) => {
             </P>
           )}
 
-          <Icon color={"fg.subtle"} flexShrink={0} boxSize={4} mr={"-2px"}>
-            <IconCaretDownFilled stroke={1.5} />
-          </Icon>
+          <AppIcon icon={ChevronDownIcon} color={"fg.subtle"} />
         </Btn>
       </Tooltip>
 

@@ -2,7 +2,6 @@
 
 import { CContainer } from "@/components/ui/c-container";
 import { Img } from "@/components/ui/img";
-import { AppIcon } from "@/components/widget/AppIcon";
 import { BatchOptions } from "@/components/widget/BatchOptions";
 import { ImgViewer } from "@/components/widget/ImgViewer";
 import { Limitation } from "@/components/widget/Limitation";
@@ -16,7 +15,6 @@ import { useThemeConfig } from "@/context/useThemeConfig";
 import { useIsSmScreenWidth } from "@/hooks/useIsSmScreenWidth";
 import { isEmptyArray } from "@/utils/array";
 import { HStack, Presence, SimpleGrid, StackProps } from "@chakra-ui/react";
-import { EllipsisIcon } from "lucide-react";
 import { Fragment, useRef, useState } from "react";
 
 interface RenderItemProps {
@@ -141,10 +139,7 @@ export const DataGrid = (props: Props) => {
                     placement: "top",
                   },
                 }}
-              >
-                <AppIcon icon={EllipsisIcon} />
-                Batch options
-              </BatchOptions>
+              />
             </HStack>
           </HStack>
         </Presence>
