@@ -7,6 +7,7 @@ import {
   TableColumnHeaderProps,
 } from "@chakra-ui/react";
 import { AxiosRequestConfig, AxiosResponse } from "axios";
+import { LucideIcon } from "lucide-react";
 import { ReactNode } from "react";
 
 // Auth
@@ -59,7 +60,7 @@ export interface Interface__NavGroup {
   navs: Interface__Nav[];
 }
 export interface Interface__Nav {
-  icon?: any;
+  icon?: LucideIcon;
   labelKey?: string;
   label?: string;
   path: string;

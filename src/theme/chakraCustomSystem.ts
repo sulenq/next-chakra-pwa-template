@@ -23,7 +23,7 @@ const customConfig = defineConfig({
     tokens: {
       colors: {
         light: { value: "#fff" },
-        dark: { value: "#191919" },
+        dark: { value: "#181818" },
         darktrans: { value: "#202020cf" },
         d0: { value: "#8a8a8a0f" },
         d1: { value: "#8a8a8a15" },

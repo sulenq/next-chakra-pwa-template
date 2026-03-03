@@ -39,9 +39,17 @@ const translations = {
     "description": "Maaf, silakan coba lagi."
   },
   "all": "Semua",
+  "answer_success_rate": {
+    "title": "Tingkat keberhasilan jawaban",
+    "description": "Persentase jawaban yang berhasil dihasilkan"
+  },
   "apply": "Terapkan",
   "april": "April",
   "august": "Agustus",
+  "avg_response_time": {
+    "title": "Rata-rata waktu respons",
+    "description": "Waktu rata-rata sistem merespons permintaan"
+  },
   "back": "Kembali",
   "before": "Sebelum",
   "calendar": "Kalender",
@@ -475,7 +483,23 @@ const translations = {
   "timezone": "Zona waktu",
   "title": "Judul",
   "to": "Sampai",
+  "total_document": {
+    "title": "Total dokumen",
+    "description": "Jumlah seluruh dokumen dalam sistem"
+  },
+  "total_document_compared": {
+    "title": "Total dokumen dibandingkan",
+    "description": "Jumlah dokumen yang diproses untuk perbandingan"
+  },
   "total_material": "Total Materi",
+  "total_query_this_day": {
+    "title": "Total pertanyaan hari ini",
+    "description": "Jumlah pertanyaan yang dibuat hari ini"
+  },
+  "total_users": {
+    "title": "Total pengguna",
+    "description": "Jumlah seluruh pengguna terdaftar"
+  },
   "try_camera": "Coba Kamera",
   "try_location": "Coba Lokasi",
   "try_mic": "Coba Mic",

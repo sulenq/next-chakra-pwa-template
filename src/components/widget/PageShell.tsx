@@ -11,9 +11,9 @@ import { DotIndicator } from "@/components/widget/Indicator";
 import SimplePopover from "@/components/widget/SimplePopover";
 import { Today } from "@/components/widget/Today";
 import { Interface__Nav } from "@/constants/interfaces";
-import { OTHER_PRIVATE_NAV_GROUPS, PRIVATE_NAV_GROUPS } from "@/constants/navs";
 import { useBreadcrumbs } from "@/context/useBreadcrumbs";
 import useLang from "@/context/useLang";
+import { useContainerDimension } from "@/hooks/useContainerDimension";
 import useScreen from "@/hooks/useScreen";
 import { isEmptyArray, last } from "@/utils/array";
 import { capitalizeWords, pluckString } from "@/utils/string";
@@ -21,13 +21,17 @@ import { getActiveNavs } from "@/utils/url";
 import { HStack, Icon, StackProps } from "@chakra-ui/react";
 import { IconSlash } from "@tabler/icons-react";
 import { usePathname } from "next/navigation";
-import { forwardRef, useEffect } from "react";
+import {
+  createContext,
+  forwardRef,
+  useContext,
+  useEffect,
+  useImperativeHandle,
+  useMemo,
+  useRef,
+} from "react";
 
 const FONT_SIZE = "md";
-export const RESOLVED_NAVS = [
-  ...PRIVATE_NAV_GROUPS,
-  ...OTHER_PRIVATE_NAV_GROUPS,
-];
 
 export const ContainerLayout = forwardRef<HTMLDivElement, StackProps>(
   (props, ref) => {
@@ -48,21 +52,52 @@ export const ContainerLayout = forwardRef<HTMLDivElement, StackProps>(
   },
 );
 
+type PageContainerContextType = {
+  isValidDimension: boolean;
+  isSmContainer: boolean;
+};
+const PageContainerContext = createContext<PageContainerContextType | null>(
+  null,
+);
+export function usePageContainerContext() {
+  const context = useContext(PageContainerContext);
+  if (!context) {
+    throw new Error(
+      "usePageContainerContext must be used inside PageContainer",
+    );
+  }
+  return context;
+}
 export const PageContainer = forwardRef<HTMLDivElement, StackProps>(
-  (props, ref) => {
-    // Props
-    const { children, ...restProps } = props;
+  ({ children, ...restProps }, ref) => {
+    // Refs
+    const containerRef = useRef<HTMLDivElement>(null);
+
+    // Hooks
+    useImperativeHandle(ref, () => containerRef.current as HTMLDivElement);
+    const dimension = useContainerDimension(containerRef);
+
+    // States
+    const isValidDimension = dimension.width > 0 && dimension.height > 0;
+    const isSmContainer = dimension.width < 600;
+
+    const contextValue = useMemo(
+      () => ({ isValidDimension, isSmContainer }),
+      [isValidDimension, isSmContainer],
+    );
 
     return (
-      <CContainer
-        ref={ref}
-        className="page-container"
-        flex={1}
-        overflow={"auto"}
-        {...restProps}
-      >
-        {children}
-      </CContainer>
+      <PageContainerContext.Provider value={contextValue}>
+        <CContainer
+          ref={containerRef}
+          className="page-container"
+          flex={1}
+          overflow={"auto"}
+          {...restProps}
+        >
+          {children}
+        </CContainer>
+      </PageContainerContext.Provider>
     );
   },
 );
@@ -163,7 +198,7 @@ export const TopBar = () => {
   const pathname = usePathname();
 
   // States
-  const activeNavs = getActiveNavs(pathname, RESOLVED_NAVS);
+  const activeNavs = getActiveNavs(pathname);
   const resolvedActiveNavs =
     sw < 960 ? [activeNavs[activeNavs.length - 1]] : activeNavs;
   const backPath = last(activeNavs)?.backPath;
@@ -176,7 +211,6 @@ export const TopBar = () => {
       h={"52px"}
       gap={4}
       px={4}
-      pr={"10px"}
       justify={"space-between"}
       bg={"body"}
       // borderBottom={"1px solid"}
@@ -211,7 +245,7 @@ export const PageTitle = (props: StackProps) => {
   const pathname = usePathname();
 
   // States
-  const activeNavs = getActiveNavs(pathname, RESOLVED_NAVS);
+  const activeNavs = getActiveNavs(pathname);
   const title = pluckString(l, last<any>(activeNavs)?.labelKey);
 
   return (
@@ -220,7 +254,8 @@ export const PageTitle = (props: StackProps) => {
       w={"full"}
       minH={"36px"}
       px={4}
-      my={3}
+      mt={2}
+      mb={3}
       {...restProps}
     >
       <ClampText
@@ -238,12 +273,14 @@ export const PageTitle = (props: StackProps) => {
 
 export const PageContent = forwardRef<HTMLDivElement, StackProps>(
   (props, ref) => {
-    // Props
     const { children, ...restProps } = props;
+
+    // Consume context dari PageContainer
+    const { isValidDimension } = usePageContainerContext();
 
     return (
       <CContainer ref={ref} flex={1} bg={"body"} {...restProps}>
-        {children}
+        {isValidDimension ? children : null}
       </CContainer>
     );
   },

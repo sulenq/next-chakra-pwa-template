@@ -100,7 +100,7 @@ const generate3M = () => {
   });
 };
 
-export const dummyChartData = {
+export const DUMMT_CHART_DATA = {
   "1D": generate1D(),
 
   "1W": generate1W(),
@@ -109,7 +109,19 @@ export const dummyChartData = {
 
   "3M": generate3M(),
 };
-
+export const DUMMY_DASHBOARD_DATA = {
+  overview: {
+    totalUsers: 1284,
+    totalDocument: 356,
+    totalQueryThisDay: 742,
+    totalDOcumentCompared: 189,
+    AnswerSuccessRate: 0.94,
+    AvgResponseTime: 1820,
+  },
+  usage: DUMMT_CHART_DATA,
+  modelPerformance: {},
+  comparison: {},
+};
 export const dummyUser = {
   id: "1",
   avatar: [

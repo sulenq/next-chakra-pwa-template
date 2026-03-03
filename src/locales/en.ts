@@ -39,9 +39,17 @@ const translations = {
     "description": "We're sorry. Please try again."
   },
   "all": "All",
+  "answer_success_rate": {
+    "title": "Answer success rate",
+    "description": "Percentage of successfully generated answers"
+  },
   "apply": "Apply",
   "april": "April",
   "august": "August",
+  "avg_response_time": {
+    "title": "Average response time",
+    "description": "Average system response time"
+  },
   "back": "Back",
   "before": "Before",
   "calendar": "Calendar",
@@ -475,7 +483,23 @@ const translations = {
   "timezone": "Timezone",
   "title": "Title",
   "to": "To",
+  "total_document": {
+    "title": "Total documents",
+    "description": "Total documents in the system"
+  },
+  "total_document_compared": {
+    "title": "Total documents compared",
+    "description": "Documents processed for comparison"
+  },
   "total_material": "Total Material",
+  "total_query_this_day": {
+    "title": "Total queries today",
+    "description": "Number of queries created today"
+  },
+  "total_users": {
+    "title": "Total users",
+    "description": "Total registered users"
+  },
   "try_camera": "Try Camera",
   "try_location": "Try Location",
   "try_mic": "Try Mic",

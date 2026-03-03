@@ -1,5 +1,5 @@
-import { RESOLVED_NAVS } from "@/components/widget/PageShell";
 import { Interface__NavGroup } from "@/constants/interfaces";
+import { RESOLVED_NAVS } from "@/constants/navs";
 
 export function generateWAUrl(phone: string, message: string = ""): void {
   const sanitizedPhone = phone.trim().replace(/[^0-9]/g, "");

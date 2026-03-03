@@ -115,6 +115,48 @@ export const settings_navs = {
 };
 
 // Semantic UI
+export const total_users = {
+  title: { id: "Total pengguna", en: "Total users" },
+  description: {
+    id: "Jumlah seluruh pengguna terdaftar",
+    en: "Total registered users",
+  },
+};
+export const total_document = {
+  title: { id: "Total dokumen", en: "Total documents" },
+  description: {
+    id: "Jumlah seluruh dokumen dalam sistem",
+    en: "Total documents in the system",
+  },
+};
+export const total_query_this_day = {
+  title: { id: "Total pertanyaan hari ini", en: "Total queries today" },
+  description: {
+    id: "Jumlah pertanyaan yang dibuat hari ini",
+    en: "Number of queries created today",
+  },
+};
+export const total_document_compared = {
+  title: { id: "Total dokumen dibandingkan", en: "Total documents compared" },
+  description: {
+    id: "Jumlah dokumen yang diproses untuk perbandingan",
+    en: "Documents processed for comparison",
+  },
+};
+export const answer_success_rate = {
+  title: { id: "Tingkat keberhasilan jawaban", en: "Answer success rate" },
+  description: {
+    id: "Persentase jawaban yang berhasil dihasilkan",
+    en: "Percentage of successfully generated answers",
+  },
+};
+export const avg_response_time = {
+  title: { id: "Rata-rata waktu respons", en: "Average response time" },
+  description: {
+    id: "Waktu rata-rata sistem merespons permintaan",
+    en: "Average system response time",
+  },
+};
 export const local_timezone = {
   id: "Zona waktu lokal",
   en: "Local timezone",

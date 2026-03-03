@@ -155,3 +155,8 @@ export const OTHER_PRIVATE_NAV_GROUPS: Interface__NavGroup[] = [
     ],
   },
 ];
+
+export const RESOLVED_NAVS = [
+  ...PRIVATE_NAV_GROUPS,
+  ...OTHER_PRIVATE_NAV_GROUPS,
+];
