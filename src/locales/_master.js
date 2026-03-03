@@ -4,6 +4,10 @@ export const navs = {
     id: "Halaman utama",
     en: "Welcome screen",
   },
+  home: {
+    id: "Beranda",
+    en: "Home",
+  },
   dashboard: {
     id: "Dashboard",
     en: "Dashboard",

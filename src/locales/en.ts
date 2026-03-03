@@ -306,6 +306,7 @@ const translations = {
   "navigation": "Navigation",
   "navs": {
     "welcome": "Welcome screen",
+    "home": "Home",
     "dashboard": "Dashboard",
     "user": "User",
     "other": {

@@ -141,7 +141,12 @@ export const ProfileMenu = (props: Props__MiniMyProfile) => {
         })}
 
         {!ADM && (
-          <Btn variant={"ghost"} px={2} onClick={toggleColorMode}>
+          <Btn
+            clicky={false}
+            variant={"ghost"}
+            px={2}
+            onClick={toggleColorMode}
+          >
             <AppIcon icon={EclipseIcon} />
             Dark Mode
             <DotIndicator
