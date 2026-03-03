@@ -98,6 +98,9 @@ export const DataGrid = (props: Props) => {
     });
   }
 
+  // SX
+  const footerBorderColor = "border.subtle";
+
   return (
     <CContainer ref={containerRef} flex={1} overflowY={"auto"} {...restProps}>
       <CContainer flex={1} overflowY={"auto"} pos={"relative"}>
@@ -203,9 +206,10 @@ export const DataGrid = (props: Props) => {
       {hasFooter && (
         <>
           <HStack
-            p={2}
+            px={1}
+            py={3}
             borderTop={"1px solid"}
-            borderColor={"border.subtle"}
+            borderColor={footerBorderColor}
             justify={"space-between"}
           >
             <CContainer w={"fit"} mb={[1, null, 0]}>

@@ -250,7 +250,7 @@ export const SelectInput = (props: Props__SelectInput) => {
             </P>
           )}
 
-          <AppIcon icon={ChevronDownIcon} color={"fg.subtle"} />
+          <AppIcon icon={ChevronDownIcon} color={"fg.subtle"} mr={-1} />
         </Btn>
       </Tooltip>
 

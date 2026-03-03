@@ -3,7 +3,7 @@ import {
   ActivityIcon,
   BlocksIcon,
   BrushIcon,
-  ChartPieIcon,
+  ChartSplineIcon,
   DatabaseIcon,
   LanguagesIcon,
   MapPinIcon,
@@ -19,7 +19,7 @@ export const PRIVATE_NAV_GROUPS: Interface__NavGroup[] = [
     labelKey: "main",
     navs: [
       {
-        icon: ChartPieIcon,
+        icon: ChartSplineIcon,
         labelKey: "navs.dashboard",
         path: `/dashboard`,
         allowedRoles: [],

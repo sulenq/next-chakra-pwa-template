@@ -1,12 +1,11 @@
 "use client";
 
-import { LucideIcon } from "@/components/widget/Icon";
+import { AppIcon } from "@/components/widget/AppIcon";
 import {
   Props__DatePicker,
   Props__DatePickerInput,
   Props__SelectedDateList,
 } from "@/constants/props";
-import { BASE_ICON_BOX_SIZE } from "@/constants/styles";
 import { Type__Period } from "@/constants/types";
 import useLang from "@/context/useLang";
 import { useThemeConfig } from "@/context/useThemeConfig";
@@ -482,14 +481,7 @@ export const DatePickerInput = (props: Props__DatePickerInput) => {
             </P>
           )}
 
-          <Icon
-            boxSize={BASE_ICON_BOX_SIZE}
-            color={"fg.subtle"}
-            flexShrink={0}
-            mr={-1}
-          >
-            <LucideIcon icon={CalendarIcon} />
-          </Icon>
+          <AppIcon icon={CalendarIcon} color={"fg.subtle"} mr={-1} />
         </Btn>
       </Tooltip>
 

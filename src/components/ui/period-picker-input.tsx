@@ -13,13 +13,10 @@ import { Field, FieldsetRoot } from "@/components/ui/field";
 import { NumInput } from "@/components/ui/number-input";
 import { P } from "@/components/ui/p";
 import { Tooltip } from "@/components/ui/tooltip";
-import { LucideIcon } from "@/components/widget/Icon";
+import { AppIcon } from "@/components/widget/AppIcon";
 import { getMonthNames } from "@/constants/months";
 import { Props__PeriodPickerInput } from "@/constants/props";
-import {
-  BASE_ICON_BOX_SIZE,
-  C_ACTIVE_INDICATOR_SIZE,
-} from "@/constants/styles";
+import { C_ACTIVE_INDICATOR_SIZE } from "@/constants/styles";
 import { Type__Period } from "@/constants/types";
 import useLang from "@/context/useLang";
 import { useThemeConfig } from "@/context/useThemeConfig";
@@ -136,9 +133,7 @@ export const PeriodPickerInput = (props: Props__PeriodPickerInput) => {
           )}
 
           {withIcon && (
-            <Icon boxSize={BASE_ICON_BOX_SIZE} color={"fg.subtle"} mr={-1}>
-              <LucideIcon icon={CalendarClockIcon} />
-            </Icon>
+            <AppIcon icon={CalendarClockIcon} color={"fg.subtle"} mr={-1} />
           )}
         </Btn>
       </Tooltip>

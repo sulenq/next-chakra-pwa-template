@@ -975,11 +975,13 @@ const DesktopLayout = (props: any) => {
           </CContainer>
         </CContainer>
 
-        <CContainer px={3}>
-          <Divider />
-        </CContainer>
+        {isNavsExpanded && (
+          <CContainer px={3}>
+            <Divider />
+          </CContainer>
+        )}
 
-        <CContainer p={3}>
+        <CContainer p={3} pt={isNavsExpanded ? 3 : 0}>
           <ProfileMenuTrigger
             w={"full"}
             popoverRootProps={{
@@ -994,6 +996,7 @@ const DesktopLayout = (props: any) => {
             <HStack
               gap={4}
               w={isNavsExpanded ? "full" : "36px"}
+              h={isNavsExpanded ? "" : "36px"}
               px={"6px"}
               py={2}
               rounded={themeConfig.radii.component}

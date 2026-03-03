@@ -64,7 +64,7 @@ export const DataGridItem = (props: Props) => {
       key={item.id}
       flex={1}
       border={"1px solid"}
-      borderColor={isRowSelected ? selectedColor : "border.subtle"}
+      borderColor={isRowSelected ? selectedColor : "border.muted"}
       rounded={themeConfig.radii.container}
       overflow={"clip"}
       pos={"relative"}

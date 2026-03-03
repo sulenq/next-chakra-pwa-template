@@ -107,6 +107,7 @@ export const ProfileMenu = (props: Props__MiniMyProfile) => {
           src={user?.avatar || `${SVGS_PATH}/no-avatar.svg`}
           alt="avatar"
           aspectRatio={1}
+          rounded={themeConfig.radii.component}
         />
 
         <CContainer bg={"body"} p={4} borderColor={"border.muted"}>
@@ -213,7 +214,7 @@ export const ProfileMenuTrigger = (props: Props__ProfileMenuTrigger) => {
         <CContainer w={"fit"} onClick={onOpen} {...restProps} />
       </Popover.Trigger>
 
-      <Popover.Content ref={containerRef} w={"235px"} zIndex={10}>
+      <Popover.Content ref={containerRef} w={"225px"} zIndex={10}>
         <ProfileMenu onClose={onClose} />
       </Popover.Content>
     </Popover.Root>

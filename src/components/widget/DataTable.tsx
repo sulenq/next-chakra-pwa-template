@@ -154,6 +154,11 @@ export const DataTable = (props: Props__DataTable) => {
     });
   }
 
+  // set initial table data source of truth
+  useEffect(() => {
+    setTableData([...rows]);
+  }, [rows]);
+
   // SX
   const optionsCellWidth = "46px";
   const cellPx = 3;
@@ -168,11 +173,6 @@ export const DataTable = (props: Props__DataTable) => {
       ? "d1"
       : hexWithOpacity(themeConfig.primaryColorHex, 0.05);
   const tdBorderColor = "d1";
-
-  // set initial table data source of truth
-  useEffect(() => {
-    setTableData([...rows]);
-  }, [rows]);
 
   return (
     <CContainer
@@ -491,7 +491,8 @@ export const DataTable = (props: Props__DataTable) => {
       {hasFooter && (
         <>
           <HStack
-            p={2}
+            px={1}
+            py={3}
             borderTop={"1px solid"}
             borderColor={footerBorderColor}
             justify={"space-between"}
