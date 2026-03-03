@@ -2,6 +2,7 @@
 
 import { CContainer } from "@/components/ui/c-container";
 import { Img } from "@/components/ui/img";
+import { AppIcon } from "@/components/widget/AppIcon";
 import { BatchOptions } from "@/components/widget/BatchOptions";
 import { ImgViewer } from "@/components/widget/ImgViewer";
 import { Limitation } from "@/components/widget/Limitation";
@@ -14,14 +15,8 @@ import { FIREFOX_SCROLL_Y_CLASS_PR_PREFIX } from "@/constants/styles";
 import { useThemeConfig } from "@/context/useThemeConfig";
 import { useIsSmScreenWidth } from "@/hooks/useIsSmScreenWidth";
 import { isEmptyArray } from "@/utils/array";
-import {
-  HStack,
-  Icon,
-  Presence,
-  SimpleGrid,
-  StackProps,
-} from "@chakra-ui/react";
-import { IconMenu } from "@tabler/icons-react";
+import { HStack, Presence, SimpleGrid, StackProps } from "@chakra-ui/react";
+import { EllipsisIcon } from "lucide-react";
 import { Fragment, useRef, useState } from "react";
 
 interface RenderItemProps {
@@ -147,9 +142,7 @@ export const DataGrid = (props: Props) => {
                   },
                 }}
               >
-                <Icon>
-                  <IconMenu stroke={1.5} />
-                </Icon>
+                <AppIcon icon={EllipsisIcon} />
                 Batch options
               </BatchOptions>
             </HStack>
@@ -163,7 +156,10 @@ export const DataGrid = (props: Props) => {
           px={3}
           pr={`calc(12px - ${FIREFOX_SCROLL_Y_CLASS_PR_PREFIX})`}
         >
-          <SimpleGrid minChildWidth={minChildWidth} gap={4}>
+          <SimpleGrid
+            templateColumns={`repeat(auto-fill, minmax(${minChildWidth}, 1fr))`}
+            gap={4}
+          >
             {data?.map((item, idx) => {
               const row = dataProps.rows?.[idx] as Interface__FormattedTableRow;
               const details = row.columns.map((col, rowIdx) => {

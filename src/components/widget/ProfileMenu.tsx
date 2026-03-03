@@ -2,6 +2,7 @@
 
 import { Btn } from "@/components/ui/btn";
 import { CContainer } from "@/components/ui/c-container";
+import { useColorMode } from "@/components/ui/color-mode";
 import { Divider } from "@/components/ui/divider";
 import { Img } from "@/components/ui/img";
 import { NavLink } from "@/components/ui/nav-link";
@@ -10,8 +11,10 @@ import { Popover } from "@/components/ui/popover";
 import { AppIcon } from "@/components/widget/AppIcon";
 import { ConfirmationDisclosureTrigger } from "@/components/widget/ConfirmationDisclosure";
 import { LucideIcon } from "@/components/widget/Icon";
+import { DotIndicator } from "@/components/widget/Indicator";
 import { SVGS_PATH } from "@/constants/paths";
 import { BASE_ICON_BOX_SIZE } from "@/constants/styles";
+import useADM from "@/context/useADM";
 import useAuthMiddleware from "@/context/useAuthMiddleware";
 import useLang from "@/context/useLang";
 import { useThemeConfig } from "@/context/useThemeConfig";
@@ -21,7 +24,7 @@ import { getUserData } from "@/utils/auth";
 import { back, removeStorage } from "@/utils/client";
 import { pluckString } from "@/utils/string";
 import { Icon, PopoverRootProps, StackProps } from "@chakra-ui/react";
-import { LogOutIcon, SettingsIcon, UserIcon } from "lucide-react";
+import { EclipseIcon, LogOutIcon, SettingsIcon, UserIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useRef, useState } from "react";
 
@@ -50,8 +53,10 @@ export const ProfileMenu = (props: Props__MiniMyProfile) => {
   const { l } = useLang();
   const { themeConfig } = useThemeConfig();
   const removeAuth = useAuthMiddleware((s) => s.removeAuth);
+  const ADM = useADM((s) => s.ADM);
 
   // Hooks
+  const { colorMode, toggleColorMode } = useColorMode();
   const { req } = useRequest({
     id: "sign_out",
     loadingMessage: { ...l.loading_signout },
@@ -104,12 +109,7 @@ export const ProfileMenu = (props: Props__MiniMyProfile) => {
           aspectRatio={1}
         />
 
-        <CContainer
-          bg={"body"}
-          p={4}
-          // borderTop={"1px solid"}
-          borderColor={"border.muted"}
-        >
+        <CContainer bg={"body"} p={4} borderColor={"border.muted"}>
           <P fontWeight={"semibold"}>{user?.name || "Signed out"}</P>
           <P color={"fg.subtle"}>{user?.email || user?.username || "-"}</P>
         </CContainer>
@@ -138,6 +138,18 @@ export const ProfileMenu = (props: Props__MiniMyProfile) => {
             </NavLink>
           );
         })}
+
+        {!ADM && (
+          <Btn variant={"ghost"} px={2} onClick={toggleColorMode}>
+            <AppIcon icon={EclipseIcon} />
+            Dark Mode
+            <DotIndicator
+              color={colorMode === "dark" ? "fg.success" : "gray.muted"}
+              ml={"auto"}
+              mr={1}
+            />
+          </Btn>
+        )}
 
         <ConfirmationDisclosureTrigger
           id="signout"

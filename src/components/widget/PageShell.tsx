@@ -1,7 +1,6 @@
 "use client";
 
 import { CContainer } from "@/components/ui/c-container";
-import { ColorModeButton } from "@/components/ui/color-mode";
 import { P } from "@/components/ui/p";
 import BackButton from "@/components/widget/BackButton";
 import { CalendarDisclosureTrigger } from "@/components/widget/CalendarDisclosure";
@@ -12,7 +11,6 @@ import SimplePopover from "@/components/widget/SimplePopover";
 import { Today } from "@/components/widget/Today";
 import { Interface__Nav } from "@/constants/interfaces";
 import { OTHER_PRIVATE_NAV_GROUPS, PRIVATE_NAV_GROUPS } from "@/constants/navs";
-import useADM from "@/context/useADM";
 import { useBreadcrumbs } from "@/context/useBreadcrumbs";
 import useLang from "@/context/useLang";
 import useScreen from "@/hooks/useScreen";
@@ -159,9 +157,6 @@ export const NavBreadcrumb = (props: any) => {
 };
 
 export const TopBar = () => {
-  // Contexts
-  const ADM = useADM((s) => s.ADM);
-
   // Hooks
   const { sw } = useScreen();
   const pathname = usePathname();
@@ -199,8 +194,6 @@ export const TopBar = () => {
 
           <Clock showTimezone fontSize={FONT_SIZE} />
         </HStack>
-
-        {!ADM && <ColorModeButton rounded={"full"} size={"xs"} />}
       </HStack>
     </HStack>
   );
@@ -221,7 +214,14 @@ export const PageTitle = (props: StackProps) => {
   const title = pluckString(l, last<any>(activeNavs)?.labelKey);
 
   return (
-    <HStack flexShrink={0} w={"fit"} minH={"36px"} px={4} my={3} {...restProps}>
+    <HStack
+      flexShrink={0}
+      w={"full"}
+      minH={"36px"}
+      px={4}
+      my={3}
+      {...restProps}
+    >
       <ClampText
         fontSize={"xl"}
         fontWeight={"semibold"}

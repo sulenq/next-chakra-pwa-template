@@ -6,11 +6,12 @@ import {
   MenuTrigger,
 } from "@/components/ui/menu";
 import { P } from "@/components/ui/p";
+import { AppIcon } from "@/components/widget/AppIcon";
 import { DotIndicator } from "@/components/widget/Indicator";
 import { Props_LimitationTableData } from "@/constants/props";
 import useLang from "@/context/useLang";
-import { HStack, Icon } from "@chakra-ui/react";
-import { IconCaretDownFilled } from "@tabler/icons-react";
+import { HStack } from "@chakra-ui/react";
+import { ChevronDownIcon } from "lucide-react";
 
 export const Limitation = (props: Props_LimitationTableData) => {
   // Props
@@ -31,9 +32,7 @@ export const Limitation = (props: Props_LimitationTableData) => {
             <P>{`${limit}`}</P>
           </HStack>
 
-          <Icon boxSize={4} ml={1} color={"fg.subtle"}>
-            <IconCaretDownFilled />
-          </Icon>
+          <AppIcon icon={ChevronDownIcon} ml={1} color={"fg.subtle"} />
         </Btn>
       </MenuTrigger>
 

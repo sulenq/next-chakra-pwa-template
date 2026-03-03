@@ -155,7 +155,7 @@ export const DataTable = (props: Props__DataTable) => {
   }
 
   // SX
-  const optionsCellWidth = "44px";
+  const optionsCellWidth = "46px";
   const cellPx = 3;
   const thHeight = "46px";
   const thBg = "body";
@@ -492,7 +492,7 @@ export const DataTable = (props: Props__DataTable) => {
         <>
           <HStack
             p={2}
-            borderTop={"1px solid"}
+            // borderTop={"1px solid"}
             borderColor={footerBorderColor}
             justify={"space-between"}
             wrap={"wrap"}

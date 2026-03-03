@@ -8,13 +8,14 @@ import {
   MenuTrigger,
 } from "@/components/ui/menu";
 import { P } from "@/components/ui/p";
+import { AppIcon } from "@/components/widget/AppIcon";
 import { ConfirmationDisclosureTrigger } from "@/components/widget/ConfirmationDisclosure";
 import { DotIndicator } from "@/components/widget/Indicator";
 import { Props__BatchOptions } from "@/constants/props";
 import useLang from "@/context/useLang";
 import { useThemeConfig } from "@/context/useThemeConfig";
 import { Icon } from "@chakra-ui/react";
-import { IconMenu } from "@tabler/icons-react";
+import { EllipsisIcon } from "lucide-react";
 
 import { Fragment } from "react";
 const ICON_BOX_SIZE = "18px";
@@ -52,9 +53,10 @@ export const BatchOptions = (props: Props__BatchOptions) => {
           {children ? (
             children
           ) : (
-            <Icon boxSize={5}>
-              <IconMenu stroke={1.5} />
-            </Icon>
+            <AppIcon icon={EllipsisIcon} />
+            // <Icon boxSize={5}>
+            //   <IconMenu stroke={1.5} />
+            // </Icon>
           )}
         </Btn>
       </MenuTrigger>
@@ -77,7 +79,7 @@ export const BatchOptions = (props: Props__BatchOptions) => {
           <P>{l.select_all}</P>
 
           <DotIndicator
-            color={allRowsSelected ? themeConfig.primaryColor : "d2"}
+            color={allRowsSelected ? themeConfig.primaryColor : "gray.muted"}
             mr={1}
           />
         </MenuItem>
