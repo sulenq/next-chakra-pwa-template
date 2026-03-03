@@ -21,7 +21,8 @@ import { StringInput } from "@/components/ui/string-input";
 import { Textarea } from "@/components/ui/textarea";
 import { TimePickerInput } from "@/components/ui/time-picker-input";
 import { toaster } from "@/components/ui/toaster";
-import Clock from "@/components/widget/Clock";
+import { Tooltip } from "@/components/ui/tooltip";
+import { Clock } from "@/components/widget/Clock";
 import { ConfirmationDisclosureTrigger } from "@/components/widget/ConfirmationDisclosure";
 import { DataTable } from "@/components/widget/DataTable";
 import FeedbackForbidden from "@/components/widget/FeedbackForbidden";
@@ -29,8 +30,8 @@ import FeedbackNoData from "@/components/widget/FeedbackNoData";
 import FeedbackNotFound from "@/components/widget/FeedbackNotFound";
 import FeedbackRetry from "@/components/widget/FeedbackRetry";
 import { LucideIcon } from "@/components/widget/Icon";
+import { ContainerLayout } from "@/components/widget/PageShell";
 import { PDFViewer } from "@/components/widget/PdfViewer";
-import { RowOptionMenuTooltip } from "@/components/widget/RowOptions";
 import SelectWorkspaceCategory from "@/components/widget/SelectWorkspaceCategory";
 import { Today } from "@/components/widget/Today";
 import VideoPlayer from "@/components/widget/VideoPlayer";
@@ -100,21 +101,23 @@ const Delete = (props: any) => {
       confirmLabel={`${l.delete_}`}
       onConfirm={onDeactivate}
       confirmButtonProps={{
+        colorPalette: "gray",
         variant: "outline",
-        _hover: {
-          color: "fg.error",
-        },
+        color: "fg.error",
       }}
       loading={loading}
       disabled={disabled}
     >
-      <RowOptionMenuTooltip content={l.delete_}>
+      <Tooltip
+        content={l.delete_}
+        positioning={{
+          placement: "right",
+        }}
+      >
         <MenuItem
           value="delete"
           disabled={disabled}
-          _hover={{
-            color: "fg.error",
-          }}
+          color={"fg.error"}
           transition={"200ms"}
         >
           {l.delete_}
@@ -122,7 +125,7 @@ const Delete = (props: any) => {
             <LucideIcon icon={TrashIcon} />
           </Icon>
         </MenuItem>
-      </RowOptionMenuTooltip>
+      </Tooltip>
     </ConfirmationDisclosureTrigger>
   );
 };
@@ -729,7 +732,7 @@ const DemoIndexRoute = () => {
   const { themeConfig } = useThemeConfig();
 
   return (
-    <CContainer p={4} gap={8} mx={"auto"}>
+    <ContainerLayout p={4} gap={8} mx={"auto"}>
       <HStack
         justify={"space-between"}
         position={"sticky"}
@@ -984,7 +987,7 @@ const DemoIndexRoute = () => {
           </CContainer>
         </SimpleGrid>
       </>
-    </CContainer>
+    </ContainerLayout>
   );
 };
 

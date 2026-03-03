@@ -11,7 +11,6 @@ import { AppIcon } from "@/components/widget/AppIcon";
 import FeedbackState from "@/components/widget/FeedbackState";
 import { HScroll } from "@/components/widget/HScroll";
 import useLang from "@/context/useLang";
-import { useThemeConfig } from "@/context/useThemeConfig";
 import { Box, HStack, Icon, StackProps, VStack } from "@chakra-ui/react";
 import {
   IconArrowAutofitWidth,
@@ -56,7 +55,7 @@ interface Props__UtilBtn extends Props__Btn {
 }
 const UtilBtn = (btnProps: Props__UtilBtn) => {
   const { tooltipContent, ...restProps } = btnProps;
-  
+
   return (
     <Tooltip content={tooltipContent}>
       <Btn iconButton size={"sm"} variant={"ghost"} {...restProps} />
@@ -75,7 +74,6 @@ const PageControl = (props: Props__PageControl) => {
 
   // Contexts
   const { l } = useLang();
-  const { themeConfig } = useThemeConfig();
 
   // States
   const [gotoPage, setGotoPage] = useState<number | null>(null);
@@ -134,8 +132,8 @@ const PageControl = (props: Props__PageControl) => {
             />
 
             <Btn
-              colorPalette={themeConfig.colorPalette}
               disabled={gotoPage === null}
+              variant={"outline"}
               onClick={() => {
                 handleJumpPage(gotoPage);
               }}

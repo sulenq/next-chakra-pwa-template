@@ -7,7 +7,7 @@ import { formatTime } from "@/utils/formatter";
 import { HStack } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 
-export default function Clock(props: Props__ClockProps) {
+export const Clock = (props: Props__ClockProps) => {
   // Props
   const { showSeconds = false, showTimezone = false, ...restProps } = props;
 
@@ -67,4 +67,4 @@ export default function Clock(props: Props__ClockProps) {
       )}
     </HStack>
   );
-}
+};

@@ -21,7 +21,6 @@ import {
   PageTitle,
   RESOLVED_NAVS,
 } from "@/components/widget/PageShell";
-import { RowOptionMenuTooltip } from "@/components/widget/RowOptions";
 import { SimpleDisclosure } from "@/components/widget/SimpleDisclosure";
 import { TableSkeleton } from "@/components/widget/TableSkeleton";
 import { dummyUsers } from "@/constants/dummyData";
@@ -182,12 +181,17 @@ const Update = (props: any) => {
 
   return (
     <>
-      <RowOptionMenuTooltip content={"Edit"}>
+      <Tooltip
+        content={"Edit"}
+        positioning={{
+          placement: "right",
+        }}
+      >
         <MenuItem value="edit" onClick={onOpen}>
           <AppIcon icon={EditIcon} />
           Edit
         </MenuItem>
-      </RowOptionMenuTooltip>
+      </Tooltip>
 
       <SimpleDisclosure
         withMaximizeButton
@@ -267,12 +271,17 @@ const Restore = (props: any) => {
       loading={loading}
       disabled={disabled}
     >
-      <RowOptionMenuTooltip content={l.restore}>
+      <Tooltip
+        content={l.restore}
+        positioning={{
+          placement: "right",
+        }}
+      >
         <MenuItem value="restore" disabled={disabled}>
           <AppIcon icon={UndoIcon} />
           {l.restore}
         </MenuItem>
-      </RowOptionMenuTooltip>
+      </Tooltip>
     </ConfirmationDisclosureTrigger>
   );
 };
@@ -326,28 +335,29 @@ const Delete = (props: any) => {
       confirmLabel={`${l.delete_}`}
       onConfirm={onDeactivate}
       confirmButtonProps={{
-        variant: "outline",
         colorPalette: "gray",
-        _hover: {
-          color: "fg.error",
-        },
+        variant: "outline",
+        color: "fg.error",
       }}
       loading={loading}
       disabled={disabled}
     >
-      <RowOptionMenuTooltip content={l.delete_}>
+      <Tooltip
+        content={l.delete_}
+        positioning={{
+          placement: "right",
+        }}
+      >
         <MenuItem
           value="delete"
           disabled={disabled}
-          _hover={{
-            color: "fg.error",
-          }}
+          color={"fg.error"}
           transition={"200ms"}
         >
           <AppIcon icon={TrashIcon} />
           {l.delete_}
         </MenuItem>
-      </RowOptionMenuTooltip>
+      </Tooltip>
     </ConfirmationDisclosureTrigger>
   );
 };

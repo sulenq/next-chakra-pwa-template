@@ -23,7 +23,8 @@ import SearchInput from "@/components/ui/search-input";
 import { Tooltip } from "@/components/ui/tooltip";
 import { AppIcon } from "@/components/widget/AppIcon";
 import { ClampText } from "@/components/widget/ClampText";
-import Clock from "@/components/widget/Clock";
+import { Clock } from "@/components/widget/Clock";
+
 import FeedbackNotFound from "@/components/widget/FeedbackNotFound";
 import { HScroll } from "@/components/widget/HScroll";
 import { BottomIndicator, LeftIndicator } from "@/components/widget/Indicator";

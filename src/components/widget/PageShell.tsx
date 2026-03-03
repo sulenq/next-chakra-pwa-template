@@ -5,7 +5,8 @@ import { P } from "@/components/ui/p";
 import BackButton from "@/components/widget/BackButton";
 import { CalendarDisclosureTrigger } from "@/components/widget/CalendarDisclosure";
 import { ClampText } from "@/components/widget/ClampText";
-import Clock from "@/components/widget/Clock";
+import { Clock } from "@/components/widget/Clock";
+
 import { DotIndicator } from "@/components/widget/Indicator";
 import SimplePopover from "@/components/widget/SimplePopover";
 import { Today } from "@/components/widget/Today";
@@ -37,7 +38,7 @@ export const ContainerLayout = forwardRef<HTMLDivElement, StackProps>(
       <CContainer
         className="page-layout"
         ref={ref}
-        maxW={"720px"}
+        maxW={"1280px"}
         mx={"auto"}
         {...restProps}
       >
