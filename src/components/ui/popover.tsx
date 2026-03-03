@@ -91,3 +91,16 @@ export const PopoverFooter = ChakraPopover.Footer;
 export const PopoverHeader = ChakraPopover.Header;
 export const PopoverBody = ChakraPopover.Body;
 export const PopoverTrigger = ChakraPopover.Trigger;
+
+export const Popover = {
+  Root: PopoverRoot,
+  Content: PopoverContent,
+  Arrow: PopoverArrow,
+  CloseTrigger: PopoverCloseTrigger,
+  Title: PopoverTitle,
+  Description: PopoverDescription,
+  Footer: PopoverFooter,
+  Header: PopoverHeader,
+  Body: PopoverBody,
+  Trigger: PopoverTrigger,
+};

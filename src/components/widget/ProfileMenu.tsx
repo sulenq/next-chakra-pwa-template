@@ -6,11 +6,7 @@ import { Divider } from "@/components/ui/divider";
 import { Img } from "@/components/ui/img";
 import { NavLink } from "@/components/ui/nav-link";
 import { P } from "@/components/ui/p";
-import {
-  PopoverContent,
-  PopoverRoot,
-  PopoverTrigger,
-} from "@/components/ui/popover";
+import { Popover } from "@/components/ui/popover";
 import { AppIcon } from "@/components/widget/AppIcon";
 import { ConfirmationDisclosureTrigger } from "@/components/widget/ConfirmationDisclosure";
 import { LucideIcon } from "@/components/widget/Icon";
@@ -200,14 +196,14 @@ export const ProfileMenuTrigger = (props: Props__ProfileMenuTrigger) => {
   }
 
   return (
-    <PopoverRoot open={open} {...popoverRootProps}>
-      <PopoverTrigger asChild>
+    <Popover.Root open={open} {...popoverRootProps}>
+      <Popover.Trigger asChild>
         <CContainer w={"fit"} onClick={onOpen} {...restProps} />
-      </PopoverTrigger>
+      </Popover.Trigger>
 
-      <PopoverContent ref={containerRef} w={"235px"} zIndex={10}>
+      <Popover.Content ref={containerRef} w={"235px"} zIndex={10}>
         <ProfileMenu onClose={onClose} />
-      </PopoverContent>
-    </PopoverRoot>
+      </Popover.Content>
+    </Popover.Root>
   );
 };
