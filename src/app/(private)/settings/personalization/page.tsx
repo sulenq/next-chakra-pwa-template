@@ -86,6 +86,7 @@ const ManualDarkModeSetting = () => {
     </ToggleSettingContainer>
   );
 };
+
 const ADMSetting = () => {
   // Contexts
   const { themeConfig } = useThemeConfig();
@@ -131,7 +132,7 @@ const ADMSetting = () => {
   );
 };
 
-const DarkMode = () => {
+const DarkModeSection = () => {
   // Contexts
   const { l } = useLang();
   const { themeConfig } = useThemeConfig();
@@ -176,8 +177,8 @@ const DarkMode = () => {
       <CContainer px={4}>
         <CContainer
           gap={4}
-          p={3}
-          px={4}
+          p={4}
+          px={5}
           rounded={themeConfig.radii.container}
           border={"1px solid"}
           borderColor={"border.muted"}
@@ -189,7 +190,8 @@ const DarkMode = () => {
     </ItemContainer>
   );
 };
-const AccentColor = () => {
+
+const AccentColorSection = () => {
   // Contexts
   const { l } = useLang();
   const { themeConfig, setThemeConfig } = useThemeConfig();
@@ -210,7 +212,7 @@ const AccentColor = () => {
       <CContainer px={4}>
         <CContainer
           gap={4}
-          p={3}
+          p={4}
           rounded={themeConfig.radii.container}
           border={"1px solid"}
           borderColor={"border.muted"}
@@ -272,7 +274,8 @@ const AccentColor = () => {
     </ItemContainer>
   );
 };
-const Rounded = () => {
+
+const RoundedSection = () => {
   // Contexts
   const { l } = useLang();
   const { themeConfig, setThemeConfig } = useThemeConfig();
@@ -367,7 +370,7 @@ const Rounded = () => {
       <CContainer px={4}>
         <CContainer
           gap={4}
-          p={3}
+          p={4}
           rounded={themeConfig.radii.container}
           border={"1px solid"}
           borderColor={"border.muted"}
@@ -388,7 +391,8 @@ const Rounded = () => {
     </ItemContainer>
   );
 };
-const ExampleUI = () => {
+
+const ExampleUISection = () => {
   // Contexts
   const { l } = useLang();
   const { themeConfig } = useThemeConfig();
@@ -413,7 +417,7 @@ const ExampleUI = () => {
         <HStack
           wrap={"wrap"}
           gapY={4}
-          p={3}
+          p={4}
           rounded={themeConfig.radii.container}
           border={"1px solid"}
           borderColor={"border.muted"}
@@ -474,13 +478,13 @@ const ExampleUI = () => {
 export default function Page() {
   return (
     <CContainer flex={1} gap={3}>
-      <DarkMode />
+      <DarkModeSection />
 
-      <AccentColor />
+      <AccentColorSection />
 
-      <Rounded />
+      <RoundedSection />
 
-      <ExampleUI />
+      <ExampleUISection />
 
       <LocalSettingsHelperText />
     </CContainer>

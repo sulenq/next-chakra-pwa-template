@@ -180,8 +180,8 @@ const Camera = () => {
       <CContainer px={4}>
         <CContainer
           gap={4}
-          p={3}
-          px={4}
+          p={4}
+          px={5}
           rounded={themeConfig.radii.container}
           border={"1px solid"}
           borderColor={"border.muted"}
@@ -371,8 +371,8 @@ const Microphone = () => {
       <CContainer px={4}>
         <CContainer
           gap={4}
-          p={3}
-          px={4}
+          p={4}
+          px={5}
           rounded={themeConfig.radii.container}
           border={"1px solid"}
           borderColor={"border.muted"}
@@ -574,8 +574,8 @@ const Location = () => {
       <CContainer px={4}>
         <CContainer
           gap={4}
-          p={3}
-          px={4}
+          p={4}
+          px={5}
           rounded={themeConfig.radii.container}
           border={"1px solid"}
           borderColor={"border.muted"}

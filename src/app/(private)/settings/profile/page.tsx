@@ -202,7 +202,7 @@ const PersonalInformation = (props: Props__PersonalInformation) => {
       </ItemHeaderContainer>
 
       <CContainer px={4}>
-        <ItemContainer p={3}>
+        <ItemContainer p={5}>
           <form
             id="personal_info_form"
             onSubmit={formik.handleSubmit}
