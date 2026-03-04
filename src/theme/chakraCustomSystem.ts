@@ -1727,6 +1727,38 @@ const customConfig = defineConfig({
           },
         },
       },
+      shadows: {
+        xs: {
+          value: {
+            base: "0 1px 2px rgba(0,0,0,0.04)",
+            _dark: "0 1px 2px rgba(0,0,0,0.5)",
+          },
+        },
+        sm: {
+          value: {
+            base: "0 1px 2px rgba(0,0,0,0.05), 0 2px 4px rgba(0,0,0,0.04)",
+            _dark: "0 1px 2px rgba(0,0,0,0.55), 0 2px 4px rgba(0,0,0,0.5)",
+          },
+        },
+        md: {
+          value: {
+            base: "0 4px 8px rgba(0,0,0,0.06), 0 2px 4px rgba(0,0,0,0.04)",
+            _dark: "0 4px 8px rgba(0,0,0,0.6), 0 2px 4px rgba(0,0,0,0.55)",
+          },
+        },
+        lg: {
+          value: {
+            base: "0 8px 16px rgba(0,0,0,0.08), 0 4px 8px rgba(0,0,0,0.05)",
+            _dark: "0 8px 16px rgba(0,0,0,0.65), 0 4px 8px rgba(0,0,0,0.6)",
+          },
+        },
+        xl: {
+          value: {
+            base: "0 16px 32px rgba(0,0,0,0.12), 0 8px 16px rgba(0,0,0,0.08)",
+            _dark: "0 16px 32px rgba(0,0,0,0.7), 0 8px 16px rgba(0,0,0,0.65)",
+          },
+        },
+      },
     },
   },
 });
