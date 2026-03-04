@@ -100,7 +100,7 @@ const generate3M = () => {
   });
 };
 
-export const DUMMT_CHART_DATA = {
+export const DUMMY_CHART_DATA = {
   "1D": generate1D(),
 
   "1W": generate1W(),
@@ -118,7 +118,7 @@ export const DUMMY_DASHBOARD_DATA = {
     AnswerSuccessRate: 0.94,
     AvgResponseTime: 1820,
   },
-  usage: DUMMT_CHART_DATA,
+  usage: DUMMY_CHART_DATA,
   modelPerformance: {},
   comparison: {},
 };

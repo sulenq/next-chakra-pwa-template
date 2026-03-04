@@ -30,11 +30,7 @@ import { HScroll } from "@/components/widget/HScroll";
 import { BottomIndicator, LeftIndicator } from "@/components/widget/Indicator";
 import { Logo } from "@/components/widget/Logo";
 import { DesktopNavTooltip, MobileNavLink } from "@/components/widget/Navs";
-import {
-  NavBreadcrumb,
-  RESOLVED_NAVS,
-  TopBar,
-} from "@/components/widget/PageShell";
+import { NavBreadcrumb, TopBar } from "@/components/widget/PageShell";
 import { ProfileMenuTrigger } from "@/components/widget/ProfileMenu";
 import { Today } from "@/components/widget/Today";
 import { VerifyingScreen } from "@/components/widget/VerifyingScreen";
@@ -97,7 +93,7 @@ const MobileLayout = (props: any) => {
 
   // States
   const user = getUserData();
-  const activeNavs = getActiveNavs(pathname, RESOLVED_NAVS);
+  const activeNavs = getActiveNavs(pathname);
   const resolvedActiveNavs =
     sw < 360 ? [activeNavs[activeNavs.length - 1]] : activeNavs;
   const backPath = last(activeNavs)?.backPath;

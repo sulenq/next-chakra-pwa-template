@@ -6,24 +6,21 @@ import { NavLink } from "@/components/ui/nav-link";
 import { P } from "@/components/ui/p";
 import SearchInput from "@/components/ui/search-input";
 import { Tooltip } from "@/components/ui/tooltip";
+import { AppIcon } from "@/components/widget/AppIcon";
 import { ClampText } from "@/components/widget/ClampText";
 import FeedbackNotFound from "@/components/widget/FeedbackNotFound";
-import { LucideIcon } from "@/components/widget/Icon";
 import { LeftIndicator } from "@/components/widget/Indicator";
 import { MContainer } from "@/components/widget/MContainer";
 import { PageContainer, PageTitle } from "@/components/widget/PageShell";
 import { OTHER_PRIVATE_NAV_GROUPS } from "@/constants/navs";
 import { Props__Layout } from "@/constants/props";
-import {
-  BASE_ICON_BOX_SIZE,
-  DESKTOP_NAVS_TOOLTIP_MAIN_AXIS,
-} from "@/constants/styles";
+import { DESKTOP_NAVS_TOOLTIP_MAIN_AXIS } from "@/constants/styles";
 import useLang from "@/context/useLang";
 import { useMasterDataPageContainer } from "@/context/useMasterDataPageContainer";
 import { useContainerDimension } from "@/hooks/useContainerDimension";
 import { isEmptyArray } from "@/utils/array";
 import { pluckString } from "@/utils/string";
-import { HStack, Icon } from "@chakra-ui/react";
+import { HStack } from "@chakra-ui/react";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
@@ -107,9 +104,7 @@ const NavsList = (props: any) => {
                       >
                         {isActive && <LeftIndicator />}
 
-                        <Icon boxSize={BASE_ICON_BOX_SIZE}>
-                          <LucideIcon icon={nav.icon} />
-                        </Icon>
+                        <AppIcon icon={nav.icon} />
 
                         <P textAlign={"left"}>{pluckString(l, nav.labelKey)}</P>
                       </Btn>

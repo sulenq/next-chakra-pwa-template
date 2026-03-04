@@ -19,7 +19,6 @@ import {
   PageContainer,
   PageContent,
   PageTitle,
-  RESOLVED_NAVS,
 } from "@/components/widget/PageShell";
 import { SimpleDisclosure } from "@/components/widget/SimpleDisclosure";
 import { TableSkeleton } from "@/components/widget/TableSkeleton";
@@ -577,7 +576,7 @@ export default function Page() {
   const isValidDimension = isDimensionValid(dimension);
   const isSmContainer = dimension.width < 600;
   const pathname = usePathname();
-  const activeNav = getActiveNavs(pathname, RESOLVED_NAVS);
+  const activeNav = getActiveNavs(pathname);
   const routeTitle = pluckString(l, last(activeNav)?.labelKey || "");
   const [filter, setFilter] = useState(DEFAULT_FILTER);
 
