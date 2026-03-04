@@ -202,12 +202,7 @@ const PersonalInformation = (props: Props__PersonalInformation) => {
       </ItemHeaderContainer>
 
       <CContainer px={4}>
-        <CContainer
-          p={3}
-          rounded={themeConfig.radii.container}
-          border={"1px solid"}
-          borderColor={"border.muted"}
-        >
+        <ItemContainer p={3}>
           <form
             id="personal_info_form"
             onSubmit={formik.handleSubmit}
@@ -291,7 +286,7 @@ const PersonalInformation = (props: Props__PersonalInformation) => {
               </Btn>
             </HStack>
           </form>
-        </CContainer>
+        </ItemContainer>
       </CContainer>
     </ItemContainer>
   );
@@ -300,7 +295,6 @@ const PersonalInformation = (props: Props__PersonalInformation) => {
 const AuthLog = () => {
   // Contexts
   const { l } = useLang();
-  const { themeConfig } = useThemeConfig();
 
   // Refs
   const containerRef = useRef<HTMLDivElement>(null);
@@ -382,11 +376,7 @@ const AuthLog = () => {
       </ItemHeaderContainer>
 
       <CContainer px={4}>
-        <CContainer
-          rounded={themeConfig.radii.container}
-          border={"1px solid"}
-          borderColor={"border.muted"}
-        >
+        <ItemContainer>
           <CContainer p={3}>
             <SearchInput
               onChange={(inputValue) => {
@@ -432,7 +422,7 @@ const AuthLog = () => {
               totalPage={pagination?.meta?.totalPage}
             />
           </HStack>
-        </CContainer>
+        </ItemContainer>
       </CContainer>
     </ItemContainer>
   );
@@ -441,7 +431,6 @@ const AuthLog = () => {
 const ActivityLog = () => {
   // Contexts
   const { l } = useLang();
-  const { themeConfig } = useThemeConfig();
 
   // Refs
   const containerRef = useRef<HTMLDivElement>(null);
@@ -539,11 +528,7 @@ const ActivityLog = () => {
       </ItemHeaderContainer>
 
       <CContainer px={4}>
-        <CContainer
-          rounded={themeConfig.radii.container}
-          border={"1px solid"}
-          borderColor={"border.muted"}
-        >
+        <ItemContainer>
           <CContainer p={3}>
             <SearchInput
               onChange={(inputValue) => {
@@ -589,7 +574,7 @@ const ActivityLog = () => {
               totalPage={pagination?.meta?.totalPage}
             />
           </HStack>
-        </CContainer>
+        </ItemContainer>
       </CContainer>
     </ItemContainer>
   );

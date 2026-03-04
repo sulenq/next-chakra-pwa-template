@@ -167,9 +167,10 @@ export default function Layout(props: Props__Layout) {
               w={isSmContainer ? "full" : "250px"}
               h={"full"}
               maxH={"full"}
-              overflowY={"auto"}
+              // bg={"bgContent"}
               // borderRight={isSmContainer ? "" : "1px solid"}
               borderColor={"border.muted"}
+              overflowY={"auto"}
             >
               <CContainer px={4} mt={4} mb={1}>
                 <ClampText fontSize={"xl"} fontWeight={"semibold"}>

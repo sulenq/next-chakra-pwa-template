@@ -2,6 +2,7 @@
 
 import { CContainer } from "@/components/ui/c-container";
 import { P } from "@/components/ui/p";
+import SearchInput from "@/components/ui/search-input";
 import { Skeleton } from "@/components/ui/skeleton";
 import FeedbackNoData from "@/components/widget/FeedbackNoData";
 import FeedbackNotFound from "@/components/widget/FeedbackNotFound";
@@ -23,12 +24,14 @@ import { isEmptyArray } from "@/utils/array";
 import { formatDate } from "@/utils/formatter";
 import { HStack, Icon } from "@chakra-ui/react";
 import { ActivityIcon } from "lucide-react";
+import { useState } from "react";
 
 const ActivityLog = () => {
   // Contexts
   const { l } = useLang();
 
   // States
+  const [search, setSearch] = useState("");
   const activityFormatter: Record<
     string,
     (meta?: Record<string, any>) => string
@@ -109,8 +112,8 @@ const ActivityLog = () => {
   };
 
   return (
-    <ItemContainer borderless roundedless flex={1}>
-      <ItemHeaderContainer>
+    <ItemContainer borderless roundedless>
+      <ItemHeaderContainer borderless>
         <HStack>
           <Icon boxSize={BASE_ICON_BOX_SIZE}>
             <LucideIcon icon={ActivityIcon} />
@@ -119,44 +122,58 @@ const ActivityLog = () => {
         </HStack>
       </ItemHeaderContainer>
 
-      <CContainer minH={"300px"}>
-        {initialLoading && render.loading}
-        {!initialLoading && (
-          <>
-            {error && render.error}
-            {!error && (
+      <CContainer px={4}>
+        <ItemContainer>
+          <CContainer p={3}>
+            <SearchInput
+              onChange={(inputValue) => {
+                setSearch(inputValue || "");
+              }}
+              inputValue={search}
+              queryKey={"q_activity_auth"}
+            />
+          </CContainer>
+
+          <CContainer minH={"300px"}>
+            {initialLoading && render.loading}
+            {!initialLoading && (
               <>
-                {data && render.loaded}
-                {(!data || isEmptyArray(data)) && render.empty}
+                {error && render.error}
+                {!error && (
+                  <>
+                    {data && render.loaded}
+                    {(!data || isEmptyArray(data)) && render.empty}
+                  </>
+                )}
               </>
             )}
-          </>
-        )}
+          </CContainer>
+
+          <HStack
+            justify={"space-between"}
+            wrap={"wrap"}
+            p={3}
+            borderTop={"1px solid"}
+            borderColor={"border.muted"}
+            mt={"auto"}
+          >
+            <Limitation limit={limit} setLimit={setLimit} />
+
+            <Pagination
+              page={page}
+              setPage={setPage}
+              totalPage={pagination?.meta?.totalPage}
+            />
+          </HStack>
+        </ItemContainer>
       </CContainer>
-
-      <HStack
-        justify={"space-between"}
-        wrap={"wrap"}
-        p={2}
-        borderTop={"1px solid"}
-        borderColor={"border.muted"}
-        mt={"auto"}
-      >
-        <Limitation limit={limit} setLimit={setLimit} />
-
-        <Pagination
-          page={page}
-          setPage={setPage}
-          totalPage={pagination?.meta?.totalPage}
-        />
-      </HStack>
     </ItemContainer>
   );
 };
 
 export default function Page() {
   return (
-    <CContainer flex={1} gap={4} bg={"bgContent"}>
+    <CContainer flex={1} gap={4}>
       <ActivityLog />
     </CContainer>
   );
