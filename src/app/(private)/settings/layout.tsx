@@ -12,7 +12,11 @@ import { ClampText } from "@/components/widget/ClampText";
 import FeedbackNotFound from "@/components/widget/FeedbackNotFound";
 import { LeftIndicator } from "@/components/widget/Indicator";
 import { MContainer } from "@/components/widget/MContainer";
-import { PageContainer, PageTitle } from "@/components/widget/PageShell";
+import {
+  ContainerLayout,
+  PageContainer,
+  PageTitle,
+} from "@/components/widget/PageShell";
 import { APP } from "@/constants/_meta";
 import { OTHER_PRIVATE_NAV_GROUPS } from "@/constants/navs";
 import { Props__Layout } from "@/constants/props";
@@ -201,9 +205,14 @@ export default function Layout(props: Props__Layout) {
           {/* Content */}
           {showContent && (
             <MContainer className={"scrollY"} flex={1}>
-              {pathname !== ROOT_PATH && <PageTitle mb={2} />}
+              <ContainerLayout
+                flex={1}
+                // maxW={""}
+              >
+                {pathname !== ROOT_PATH && <PageTitle mb={2} />}
 
-              <CContainer flex={1}>{children}</CContainer>
+                <CContainer flex={1}>{children}</CContainer>
+              </ContainerLayout>
             </MContainer>
           )}
         </HStack>

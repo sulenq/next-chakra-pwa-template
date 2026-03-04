@@ -1036,21 +1036,16 @@ const DesktopLayout = (props: any) => {
       </CContainer>
 
       {/* Content */}
-      <CContainer
-        bg={DESKTOP_CONTENT_CONTAINER_BG}
-        overflowY={"auto"}
-        color={"ibody"}
-      >
+      <CContainer bg={DESKTOP_CONTENT_CONTAINER_BG} overflowY={"auto"}>
         <CContainer
           flex={1}
           bg={"body"}
+          color={"ibody"}
           // borderLeft={"1px solid"}
           borderColor={"border.muted"}
           overflow={"auto"}
         >
-          <TopBar
-          // borderBottom={"1px solid"} borderColor={"border.muted"}
-          />
+          <TopBar />
 
           {children}
         </CContainer>

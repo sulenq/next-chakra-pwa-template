@@ -42,7 +42,7 @@ export const ContainerLayout = forwardRef<HTMLDivElement, StackProps>(
       <CContainer
         className="page-layout"
         ref={ref}
-        maxW={"1280px"}
+        maxW={"720px"}
         mx={"auto"}
         {...restProps}
       >
