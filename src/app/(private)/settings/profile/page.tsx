@@ -202,77 +202,79 @@ const PersonalInformation = (props: Props__PersonalInformation) => {
       </ItemHeaderContainer>
 
       <CContainer px={4}>
-        <ItemContainer p={5}>
-          <form
-            id="personal_info_form"
-            onSubmit={formik.handleSubmit}
-            {...restProps}
-          >
-            <FieldsetRoot disabled={loading}>
-              <Field
-                invalid={!!formik.errors.avatar}
-                errorText={`${formik.errors.avatar}`}
-              >
-                <HStack gap={4}>
-                  <ImgViewer
-                    src={imgUrl(initialData?.avatar?.[0]?.filePath)}
-                    key={imgUrl(initialData?.avatar?.[0]?.filePath)}
-                  >
-                    <Img
+        <ItemContainer>
+          <CContainer p={4}>
+            <form
+              id="personal_info_form"
+              onSubmit={formik.handleSubmit}
+              {...restProps}
+            >
+              <FieldsetRoot disabled={loading}>
+                <Field
+                  invalid={!!formik.errors.avatar}
+                  errorText={`${formik.errors.avatar}`}
+                >
+                  <HStack gap={4}>
+                    <ImgViewer
                       src={imgUrl(initialData?.avatar?.[0]?.filePath)}
                       key={imgUrl(initialData?.avatar?.[0]?.filePath)}
-                      fallbackSrc={`${SVGS_PATH}/no-avatar.svg`}
-                      aspectRatio={1}
-                      w={"100px"}
-                      rounded={"full"}
-                    />
-                  </ImgViewer>
+                    >
+                      <Img
+                        src={imgUrl(initialData?.avatar?.[0]?.filePath)}
+                        key={imgUrl(initialData?.avatar?.[0]?.filePath)}
+                        fallbackSrc={`${SVGS_PATH}/no-avatar.svg`}
+                        aspectRatio={1}
+                        w={"100px"}
+                        rounded={"full"}
+                      />
+                    </ImgViewer>
 
-                  <CContainer gap={2}>
-                    <AvatarUploadTrigger formik={formik} user={initialData}>
-                      <Btn w={"fit"} variant={"outline"} size={"xs"}>
-                        {l.upload_new_avatar}
-                      </Btn>
-                    </AvatarUploadTrigger>
+                    <CContainer gap={2}>
+                      <AvatarUploadTrigger formik={formik} user={initialData}>
+                        <Btn w={"fit"} variant={"outline"} size={"xs"}>
+                          {l.upload_new_avatar}
+                        </Btn>
+                      </AvatarUploadTrigger>
 
-                    <CContainer color={"fg.subtle"}>
-                      <P>{l.msg_new_avatar_helper}</P>
-                      <P>{`PNG, JPG ${l.is_allowed}`}</P>
+                      <CContainer color={"fg.subtle"}>
+                        <P>{l.msg_new_avatar_helper}</P>
+                        <P>{`PNG, JPG ${l.is_allowed}`}</P>
+                      </CContainer>
                     </CContainer>
-                  </CContainer>
-                </HStack>
-              </Field>
+                  </HStack>
+                </Field>
 
-              <Field
-                label={l.name}
-                invalid={!!formik.errors.name}
-                errorText={`${formik.errors.name}`}
-              >
-                <StringInput
-                  inputValue={formik.values.name}
-                  onChange={(inputValue) => {
-                    formik.setFieldValue("name", inputValue);
-                  }}
-                  placeholder="Jolitos Kurniawan"
-                />
-              </Field>
+                <Field
+                  label={l.name}
+                  invalid={!!formik.errors.name}
+                  errorText={`${formik.errors.name}`}
+                >
+                  <StringInput
+                    inputValue={formik.values.name}
+                    onChange={(inputValue) => {
+                      formik.setFieldValue("name", inputValue);
+                    }}
+                    placeholder="Jolitos Kurniawan"
+                  />
+                </Field>
 
-              <Field
-                label={"Email"}
-                invalid={!!formik.errors.email}
-                errorText={`${formik.errors.email}`}
-              >
-                <StringInput
-                  inputValue={formik.values.email}
-                  onChange={(inputValue) => {
-                    formik.setFieldValue("email", inputValue);
-                  }}
-                  placeholder="example@email.com"
-                />
-              </Field>
-            </FieldsetRoot>
+                <Field
+                  label={"Email"}
+                  invalid={!!formik.errors.email}
+                  errorText={`${formik.errors.email}`}
+                >
+                  <StringInput
+                    inputValue={formik.values.email}
+                    onChange={(inputValue) => {
+                      formik.setFieldValue("email", inputValue);
+                    }}
+                    placeholder="example@email.com"
+                  />
+                </Field>
+              </FieldsetRoot>
+            </form>
 
-            <HStack justify={"space-between"} mt={6}>
+            <HStack justify={"space-between"} mt={8}>
               <ResetPasswordDisclosureTrigger>
                 <Btn variant={"outline"}>Reset password</Btn>
               </ResetPasswordDisclosureTrigger>
@@ -285,7 +287,7 @@ const PersonalInformation = (props: Props__PersonalInformation) => {
                 {l.save}
               </Btn>
             </HStack>
-          </form>
+          </CContainer>
         </ItemContainer>
       </CContainer>
     </ItemContainer>
@@ -377,7 +379,7 @@ const AuthLog = () => {
 
       <CContainer px={4}>
         <ItemContainer>
-          <CContainer p={3}>
+          <CContainer p={4}>
             <SearchInput
               onChange={(inputValue) => {
                 setSearch(inputValue || "");
@@ -529,7 +531,7 @@ const ActivityLog = () => {
 
       <CContainer px={4}>
         <ItemContainer>
-          <CContainer p={3}>
+          <CContainer p={4}>
             <SearchInput
               onChange={(inputValue) => {
                 setSearch(inputValue || "");
