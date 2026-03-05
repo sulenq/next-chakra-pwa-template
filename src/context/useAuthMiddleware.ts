@@ -8,11 +8,11 @@ import { removeStorage } from "@/utils/client";
 import { create } from "zustand";
 
 interface Props {
-  verifiedAuthToken: string | null;
+  verifiedAccessToken: string | null;
   role: object | null;
   permissions: number[] | null;
 
-  setVerifiedAuthToken: (newState: Props["verifiedAuthToken"]) => void;
+  setVerifiedAccessToken: (newState: Props["verifiedAccessToken"]) => void;
   setRole: (newState: Props["role"]) => void;
   setPermissions: (newState: Props["permissions"]) => void;
 
@@ -25,11 +25,11 @@ interface Props {
 }
 
 const useAuthMiddleware = create<Props>((set, get) => ({
-  verifiedAuthToken: getAccessToken(),
-  setVerifiedAuthToken: (newState) =>
+  verifiedAccessToken: getAccessToken(),
+  setVerifiedAccessToken: (newState) =>
     set(() => {
       if (typeof window !== "undefined") setAccessToken(newState || "");
-      return { verifiedAuthToken: newState };
+      return { verifiedAccessToken: newState };
     }),
 
   role: null,
@@ -46,7 +46,7 @@ const useAuthMiddleware = create<Props>((set, get) => ({
   removeAuth: () => {
     get().removePermissions();
     get().removeRole();
-    get().setVerifiedAuthToken(null);
+    get().setVerifiedAccessToken(null);
     clearAccessToken();
     clearUserData();
   },
@@ -55,7 +55,7 @@ const useAuthMiddleware = create<Props>((set, get) => ({
     if (typeof window !== "undefined") {
       removeStorage("__access_token");
     }
-    set(() => ({ authToken: null, verifiedAuthToken: null }));
+    set(() => ({ authToken: null, verifiedAccessToken: null }));
   },
 
   removePermissions: () => set(() => ({ permissions: undefined })),

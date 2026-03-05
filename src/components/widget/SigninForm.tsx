@@ -11,6 +11,7 @@ import { AUTH_API_SIGNIN, AUTH_API_SIGNOUT } from "@/constants/apis";
 import { BASE_ICON_BOX_SIZE } from "@/constants/styles";
 import useAuthMiddleware from "@/context/useAuthMiddleware";
 import useLang from "@/context/useLang";
+import useRenderTrigger from "@/context/useRenderTrigger";
 import { useThemeConfig } from "@/context/useThemeConfig";
 import useRequest from "@/hooks/useRequest";
 import {
@@ -41,19 +42,13 @@ import { PasswordInput } from "../ui/password-input";
 import { StringInput } from "../ui/string-input";
 import ResetPasswordDisclosureTrigger from "./ResetPasswordDisclosure";
 
-interface Props extends StackProps {}
-
 const INDEX_ROUTE = "/demo";
 
-const Signedin = (props: any) => {
-  // Props
-  const { ...restProps } = props;
-
+const SignoutButton = () => {
   // Contexts
+  const setRt = useRenderTrigger((s) => s.setRt);
   const { l } = useLang();
-  const { themeConfig } = useThemeConfig();
   const removeAuth = useAuthMiddleware((s) => s.removeAuth);
-  const user = getUserData();
 
   // Hooks
   const { req, loading } = useRequest({
@@ -77,6 +72,7 @@ const Signedin = (props: any) => {
           clearAccessToken();
           clearUserData();
           removeAuth();
+          setRt((ps) => !ps);
         },
         onError: () => {
           removeAuth();
@@ -86,12 +82,28 @@ const Signedin = (props: any) => {
   }
 
   return (
+    <Btn w={"140px"} variant={"ghost"} onClick={onSignout} loading={loading}>
+      Sign out
+    </Btn>
+  );
+};
+
+const Signedin = (props: any) => {
+  // Props
+  const { ...restProps } = props;
+
+  // Contexts
+  const { l } = useLang();
+  const { themeConfig } = useThemeConfig();
+  const user = getUserData();
+
+  return (
     <VStack gap={4} m={"auto"} {...restProps}>
       <Avatar size={"2xl"} src={user?.avatar?.[0]?.fileUrl} />
 
       <VStack gap={0}>
-        <P fontWeight={"semibold"}>Admin</P>
-        <P>admin@gmail.com</P>
+        <P fontWeight={"semibold"}>{user?.name}</P>
+        <P>{user?.email}</P>
       </VStack>
 
       <VStack>
@@ -101,18 +113,12 @@ const Signedin = (props: any) => {
           </Btn>
         </NavLink>
 
-        <Btn
-          w={"140px"}
-          variant={"ghost"}
-          onClick={onSignout}
-          loading={loading}
-        >
-          Sign in
-        </Btn>
+        <SignoutButton />
       </VStack>
     </VStack>
   );
 };
+
 const BasicAuthForm = (props: any) => {
   // Props
   const { signinAPI, ...restProps } = props;
@@ -121,7 +127,9 @@ const BasicAuthForm = (props: any) => {
   const { l } = useLang();
   const { themeConfig } = useThemeConfig();
 
-  const setVerifiedAuthToken = useAuthMiddleware((s) => s.setVerifiedAuthToken);
+  const setVerifiedAccessToken = useAuthMiddleware(
+    (s) => s.setVerifiedAccessToken,
+  );
   const setPermissions = useAuthMiddleware((s) => s.setPermissions);
 
   // Hooks
@@ -163,7 +171,7 @@ const BasicAuthForm = (props: any) => {
 
             setAccessToken(accessToken);
             setUserData(userData);
-            setVerifiedAuthToken(accessToken);
+            setVerifiedAccessToken(accessToken);
             setPermissions(permissionsData);
 
             router.push(INDEX_ROUTE);
@@ -261,14 +269,14 @@ const BasicAuthForm = (props: any) => {
   );
 };
 
-export const SigninForm = (props: Props) => {
+export const SigninForm = (props: StackProps) => {
   // Props
   const { ...restProps } = props;
 
   // Contexts
   const { l } = useLang();
   const { themeConfig } = useThemeConfig();
-  const verifiedAuthToken = useAuthMiddleware((s) => s.verifiedAuthToken);
+  const verifiedAccessToken = useAuthMiddleware((s) => s.verifiedAccessToken);
 
   // States
   const signinAPI = AUTH_API_SIGNIN;
@@ -283,7 +291,7 @@ export const SigninForm = (props: Props) => {
       rounded={themeConfig.radii.container}
       {...restProps}
     >
-      {verifiedAuthToken ? (
+      {verifiedAccessToken ? (
         <Signedin />
       ) : (
         <>
