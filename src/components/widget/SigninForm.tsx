@@ -16,7 +16,6 @@ import useRequest from "@/hooks/useRequest";
 import {
   clearAccessToken,
   clearUserData,
-  getAccessToken,
   getUserData,
   setAccessToken,
   setUserData,
@@ -269,9 +268,7 @@ export const SigninForm = (props: Props) => {
   // Contexts
   const { l } = useLang();
   const { themeConfig } = useThemeConfig();
-  const authToken = getAccessToken();
   const verifiedAuthToken = useAuthMiddleware((s) => s.verifiedAuthToken);
-  const resolvedAuthToken = authToken || verifiedAuthToken;
 
   // States
   const signinAPI = AUTH_API_SIGNIN;
@@ -286,7 +283,7 @@ export const SigninForm = (props: Props) => {
       rounded={themeConfig.radii.container}
       {...restProps}
     >
-      {resolvedAuthToken ? (
+      {verifiedAuthToken ? (
         <Signedin />
       ) : (
         <>

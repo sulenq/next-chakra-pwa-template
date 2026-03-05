@@ -1,4 +1,9 @@
-import { clearAccessToken, clearUserData, setAccessToken } from "@/utils/auth";
+import {
+  clearAccessToken,
+  clearUserData,
+  getAccessToken,
+  setAccessToken,
+} from "@/utils/auth";
 import { removeStorage } from "@/utils/client";
 import { create } from "zustand";
 
@@ -20,7 +25,7 @@ interface Props {
 }
 
 const useAuthMiddleware = create<Props>((set, get) => ({
-  verifiedAuthToken: null,
+  verifiedAuthToken: getAccessToken(),
   setVerifiedAuthToken: (newState) =>
     set(() => {
       if (typeof window !== "undefined") setAccessToken(newState || "");
