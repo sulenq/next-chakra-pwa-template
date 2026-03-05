@@ -90,7 +90,7 @@ const APIKeys = (props: any) => {
 
       <CContainer px={4}>
         <CContainer
-          p={3}
+          p={4}
           rounded={themeConfig.radii.container}
           border={"1px solid"}
           borderColor={"border.muted"}

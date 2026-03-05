@@ -149,14 +149,7 @@ const ActivityLog = () => {
             )}
           </CContainer>
 
-          <HStack
-            justify={"space-between"}
-            wrap={"wrap"}
-            p={3}
-            borderTop={"1px solid"}
-            borderColor={"border.muted"}
-            mt={"auto"}
-          >
+          <HStack justify={"space-between"} wrap={"wrap"} p={3} mt={"auto"}>
             <Limitation limit={limit} setLimit={setLimit} />
 
             <Pagination
