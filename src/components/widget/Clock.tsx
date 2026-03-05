@@ -16,7 +16,6 @@ export const Clock = (props: Props__ClockProps) => {
   const tzKey = tz?.key;
 
   // States
-  const [mounted, setMounted] = useState(false);
   const [time, setTime] = useState("");
 
   // Utils
@@ -31,8 +30,6 @@ export const Clock = (props: Props__ClockProps) => {
 
   // Effect to handle mounting and ticking
   useEffect(() => {
-    setMounted(true);
-
     const tick = () => {
       setTime(
         formatTime(utcTimeString(), {
@@ -46,15 +43,6 @@ export const Clock = (props: Props__ClockProps) => {
     const interval = setInterval(tick, 1000);
     return () => clearInterval(interval);
   }, [showSeconds, tzKey]);
-
-  // Prevent hydration mismatch by returning null during SSR and initial client pass
-  if (!mounted) {
-    return (
-      <HStack {...restProps} visibility="hidden">
-        <P fontSize={props?.fontSize}>00:00:00</P>
-      </HStack>
-    );
-  }
 
   return (
     <HStack {...restProps}>

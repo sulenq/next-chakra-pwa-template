@@ -732,7 +732,7 @@ const DemoIndexRoute = () => {
   const { themeConfig } = useThemeConfig();
 
   return (
-    <ContainerLayout p={4} gap={8} mx={"auto"}>
+    <ContainerLayout maxW={"1280px"} p={4} gap={8}>
       <HStack
         justify={"space-between"}
         position={"sticky"}
