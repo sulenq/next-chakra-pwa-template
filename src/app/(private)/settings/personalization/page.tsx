@@ -178,7 +178,6 @@ const DarkModeSection = () => {
         <CContainer
           gap={4}
           p={4}
-          px={5}
           rounded={themeConfig.radii.container}
           border={"1px solid"}
           borderColor={"border.muted"}
