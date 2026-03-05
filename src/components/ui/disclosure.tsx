@@ -146,7 +146,7 @@ const DisclosureHeader = ({ children, ...props }: DisclosureHeaderProps) => {
       p={3}
       pl={4}
       borderBottom={"1px solid"}
-      borderColor={children ? "d1" : ""}
+      borderColor={children ? "border.subtle" : ""}
       {...(props as DialogHeaderProps)}
     >
       {children}

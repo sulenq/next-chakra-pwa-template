@@ -379,7 +379,7 @@ const AuthLog = () => {
 
       <CContainer px={4}>
         <ItemContainer>
-          <CContainer p={4}>
+          <CContainer p={4} pb={3}>
             <SearchInput
               onChange={(inputValue) => {
                 setSearch(inputValue || "");
@@ -531,7 +531,7 @@ const ActivityLog = () => {
 
       <CContainer px={4}>
         <ItemContainer>
-          <CContainer p={4}>
+          <CContainer p={4} pb={3}>
             <SearchInput
               onChange={(inputValue) => {
                 setSearch(inputValue || "");
