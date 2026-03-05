@@ -11,8 +11,10 @@ type SelectOption = {
   value: string;
 };
 
-interface Props__Select
-  extends Omit<SelectRootProps, "value" | "onValueChange" | "collection"> {
+interface Props__Select extends Omit<
+  SelectRootProps,
+  "value" | "onValueChange" | "collection"
+> {
   inputValue: string;
   onValueChange: (value: string) => void;
   selectOptions: SelectOption[];
@@ -81,9 +83,9 @@ export default function Select(props: Props__Select) {
       <Portal container={portalRef} disabled={!portalled}>
         <ChakraSelect.Positioner>
           <ChakraSelect.Content
-            className="ss"
             rounded={themeConfig?.radii.container}
             minW={"80px"}
+            shadow={"soft"}
           >
             {collection.items.map((opt) => (
               <ChakraSelect.Item

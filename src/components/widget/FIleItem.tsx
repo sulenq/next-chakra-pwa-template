@@ -39,11 +39,11 @@ export const FileItem = (props: Props__FileItem) => {
 
             {idx !== undefined && (
               <Circle
-                className="ss"
                 size={"16px"}
                 bg={"body"}
                 border={"1px solid"}
                 borderColor={"border.subtle"}
+                shadow={"soft"}
                 pos={"absolute"}
                 left={"-6px"}
                 top={"-6px"}

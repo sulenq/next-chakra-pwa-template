@@ -182,11 +182,11 @@ export const ImgInput = (props: Props__FileInput) => {
                     >
                       <Center w={"fit"} mx={"auto"} pos={"relative"}>
                         <Circle
-                          className="ss"
                           bg={"body"}
                           size={"20px"}
                           border={"1px solid"}
                           borderColor={"border.subtle"}
+                          shadow={"soft"}
                           pos={"absolute"}
                           top={"6px"}
                           left={"6px"}

@@ -160,15 +160,15 @@ const ToastComponent = (props: any) => {
   return (
     <Toast.Root
       rounded={themeConfig?.radii?.container}
-      width={{ md: "sm" }}
-      boxShadow={"none"}
-      color={"current"}
+      h={expanded ? "max" : ""}
+      w={{ md: "sm" }}
       bg={"body !important"}
+      color={"current"}
+      p={"14px"}
       border={"1px solid"}
       borderColor={"border.subtle"}
-      p={"14px"}
-      className="ss"
-      h={expanded ? "max" : ""}
+      boxShadow={"none"}
+      shadow={"soft"}
       {...restProps}
     >
       <ToastIconComponent toast={toast} />

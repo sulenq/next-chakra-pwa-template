@@ -86,7 +86,6 @@ export const MenuContent = forwardRef<HTMLDivElement, MenuContentProps>(
         <ChakraMenu.Positioner>
           <ChakraMenu.Content
             ref={ref}
-            className={"ss"}
             w={"160px"}
             gap={1}
             px={0}
@@ -95,7 +94,7 @@ export const MenuContent = forwardRef<HTMLDivElement, MenuContentProps>(
             border={"1px solid"}
             borderColor={"d2"}
             rounded={themeConfig.radii.container}
-            boxShadow={"none"}
+            shadow={"soft"}
             {...restProps}
           />
         </ChakraMenu.Positioner>
