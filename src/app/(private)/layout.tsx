@@ -22,6 +22,7 @@ import { P } from "@/components/ui/p";
 import SearchInput from "@/components/ui/search-input";
 import { Tooltip } from "@/components/ui/tooltip";
 import { AppIcon } from "@/components/widget/AppIcon";
+import { AuthGuard } from "@/components/widget/AuthGuard";
 import { ClampText } from "@/components/widget/ClampText";
 import { Clock } from "@/components/widget/Clock";
 
@@ -33,9 +34,7 @@ import { DesktopNavTooltip, MobileNavLink } from "@/components/widget/Navs";
 import { NavBreadcrumb, TopBar } from "@/components/widget/PageShell";
 import { ProfileMenuTrigger } from "@/components/widget/ProfileMenu";
 import { Today } from "@/components/widget/Today";
-import { VerifyingScreen } from "@/components/widget/VerifyingScreen";
 import { APP } from "@/constants/_meta";
-import { AUTH_API_USER_PROFILE } from "@/constants/apis";
 import { OTHER_PRIVATE_NAV_GROUPS, PRIVATE_NAV_GROUPS } from "@/constants/navs";
 import { Props__Layout } from "@/constants/props";
 import {
@@ -52,20 +51,13 @@ import {
   MOBILE_POPOVER_MAIN_AXIS,
   NAVS_COLOR_PALETTE,
 } from "@/constants/styles";
-import useAuthMiddleware from "@/context/useAuthMiddleware";
 import useLang from "@/context/useLang";
 import useNavs from "@/context/useNavs";
 import { useThemeConfig } from "@/context/useThemeConfig";
 import { useIsSmScreenWidth } from "@/hooks/useIsSmScreenWidth";
-import useRequest from "@/hooks/useRequest";
 import useScreen from "@/hooks/useScreen";
 import { isEmptyArray, last } from "@/utils/array";
-import {
-  getAccessToken,
-  getUserData,
-  setAccessToken,
-  setUserData,
-} from "@/utils/auth";
+import { getUserData } from "@/utils/auth";
 import { pluckString } from "@/utils/string";
 import { getActiveNavs, imgUrl } from "@/utils/url";
 import { Box, Center, HStack, Icon, VStack } from "@chakra-ui/react";
@@ -77,7 +69,7 @@ import {
   SidebarOpenIcon,
   UserIcon,
 } from "lucide-react";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { Fragment, useEffect, useRef, useState } from "react";
 
 const MobileLayout = (props: any) => {
@@ -1055,90 +1047,15 @@ const DesktopLayout = (props: any) => {
 };
 
 export default function Layout(props: Props__Layout) {
-  // Toggle auth guard
-  const ENABLE_AUTH_GUARD =
-    process.env.NEXT_PUBLIC_ENABLE_AUTH_GUARD === "true";
-
-  // Props
   const { ...restProps } = props;
 
-  // Context / stores
-  const authToken = getAccessToken();
-  const verifiedAuthToken = useAuthMiddleware((s) => s.verifiedAuthToken);
-  const setRole = useAuthMiddleware((s) => s.setRole);
-  const setPermissions = useAuthMiddleware((s) => s.setPermissions);
-  const setVerifiedAuthToken = useAuthMiddleware((s) => s.setVerifiedAuthToken);
-
-  // Refs
-  const verificationStartedRef = useRef(false);
-
-  // Hooks
   const iss = useIsSmScreenWidth();
-  const router = useRouter();
-  const { req, loading } = useRequest({
-    id: "user-profile",
-    showLoadingToast: false,
-    showSuccessToast: false,
-    showErrorToast: false,
-  });
 
-  // If guard disabled -> render directly
-  if (!ENABLE_AUTH_GUARD) {
-    return (
+  return (
+    <AuthGuard>
       <CContainer id="app_layout" h={"100dvh"} {...restProps}>
         {iss ? <MobileLayout {...props} /> : <DesktopLayout {...props} />}
       </CContainer>
-    );
-  }
-
-  // If there's no token at all -> redirect immediately
-  if (!authToken) {
-    router.replace("/");
-    return <VerifyingScreen />;
-  }
-
-  // If token exists but not verified yet
-  if (authToken && !verifiedAuthToken) {
-    if (!verificationStartedRef.current) {
-      verificationStartedRef.current = true;
-
-      const config = { method: "GET", url: AUTH_API_USER_PROFILE };
-
-      req({
-        config,
-        onResolve: {
-          onSuccess: (r: any) => {
-            const user = r.data.data;
-            setAccessToken(authToken);
-            setUserData(user);
-            setVerifiedAuthToken(authToken);
-            setRole(user?.role);
-            setPermissions(user?.role?.permissions);
-          },
-          onError: () => {
-            setVerifiedAuthToken(null);
-          },
-        },
-      });
-    }
-
-    return <VerifyingScreen />;
-  }
-
-  // If request hook reports loading
-  if (loading) {
-    return <VerifyingScreen />;
-  }
-
-  // After verification, if still invalid -> redirect
-  if (!verifiedAuthToken) {
-    router.replace("/");
-    return <VerifyingScreen />;
-  }
-
-  return (
-    <CContainer id="app_layout" h={"100dvh"} {...restProps}>
-      {iss ? <MobileLayout {...props} /> : <DesktopLayout {...props} />}
-    </CContainer>
+    </AuthGuard>
   );
 }
