@@ -28,6 +28,7 @@ import {
   Type__ButtonSize,
   Type__DateVariant,
   Type__DisclosureSizes,
+  Type__InputSize,
   Type__Period,
 } from "./types";
 
@@ -225,6 +226,7 @@ export interface Props__SearchInput extends Omit<
   debounceTime?: number;
   children?: React.ReactNode;
   variant?: Type__BasicVariant;
+  size?: Type__InputSize;
 }
 
 export interface Props__TextareaInput extends Omit<TextareaProps, "onChange"> {

@@ -221,8 +221,8 @@ export const TopBar = () => {
         resolvedActiveNavs={resolvedActiveNavs}
       />
 
-      <HStack flexShrink={0} gap={1}>
-        <HStack mx={1}>
+      <HStack flexShrink={0} gap={4}>
+        <HStack flexShrink={0}>
           <CalendarDisclosureTrigger>
             <Today fontSize={FONT_SIZE} />
           </CalendarDisclosureTrigger>

@@ -28,6 +28,7 @@ export default function SearchInput(props: Props__SearchInput) {
     debounceTime = 200,
     queryKey = "q",
     variant = "outline",
+    size = "md",
     ...restProps
   } = props;
 
@@ -98,6 +99,7 @@ export default function SearchInput(props: Props__SearchInput) {
             }}
             inputValue={searchTemp}
             boxShadow="none !important"
+            size={size}
             borderColor={
               invalid
                 ? "border.error"
