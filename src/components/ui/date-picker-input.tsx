@@ -39,16 +39,14 @@ import {
 import {
   Group,
   GroupProps,
-  Icon,
   List,
   SimpleGrid,
   Stack,
   StackProps,
   useFieldContext,
 } from "@chakra-ui/react";
-import { IconCaretDownFilled, IconCaretUpFilled } from "@tabler/icons-react";
 import { addDays, startOfWeek } from "date-fns";
-import { CalendarIcon } from "lucide-react";
+import { CalendarIcon, ChevronDownIcon, ChevronUpIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 
 export const DEFAULT_PERIOD = {
@@ -113,9 +111,7 @@ export const PeriodPicker = (props: PeriodPickerProps) => {
         onClick={() => cycleMonth("decrement")}
         size={"sm"}
       >
-        <Icon boxSize={4}>
-          <IconCaretDownFilled />
-        </Icon>
+        <AppIcon icon={ChevronUpIcon} />
       </Btn>
 
       <Btn
@@ -124,9 +120,7 @@ export const PeriodPicker = (props: PeriodPickerProps) => {
         onClick={() => cycleMonth("increment")}
         size={"sm"}
       >
-        <Icon boxSize={4}>
-          <IconCaretUpFilled />
-        </Icon>
+        <AppIcon icon={ChevronDownIcon} />
       </Btn>
     </Group>
   );

@@ -22,6 +22,7 @@ import { TextareaInput } from "@/components/ui/textarea-input";
 import { TimePickerInput } from "@/components/ui/time-picker-input";
 import { toaster } from "@/components/ui/toaster";
 import { Tooltip } from "@/components/ui/tooltip";
+import { CalendarDisclosureTrigger } from "@/components/widget/CalendarDisclosure";
 import { Clock } from "@/components/widget/Clock";
 import { ConfirmationDisclosureTrigger } from "@/components/widget/ConfirmationDisclosure";
 import { DataTable } from "@/components/widget/DataTable";
@@ -747,7 +748,9 @@ const DemoIndexRoute = () => {
         </HStack>
 
         <HStack>
-          <Today />
+          <CalendarDisclosureTrigger>
+            <Today />
+          </CalendarDisclosureTrigger>
           <Clock showTimezone />
           <LangMenu />
           <ColorModeButton />

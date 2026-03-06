@@ -22,9 +22,7 @@ import { disclosureId } from "@/utils/disclosure";
 import { StackProps } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 
-interface Props extends StackProps {}
-
-export const CalendarDisclosureTrigger = (props: Props) => {
+export const CalendarDisclosureTrigger = (props: StackProps) => {
   // Hooks
   const { open, onOpen } = usePopDisclosure(disclosureId("calendar"));
 
@@ -37,9 +35,12 @@ export const CalendarDisclosureTrigger = (props: Props) => {
   );
 };
 
-export const CalendarDisclosure = (props: any) => {
+interface CalendarDisclosureProps {
+  open: boolean;
+}
+export const CalendarDisclosure = (props: CalendarDisclosureProps) => {
   // Props
-  const { open, ...restProps } = props;
+  const { open } = props;
 
   // Contexts
   const { t } = useLang();
@@ -55,7 +56,7 @@ export const CalendarDisclosure = (props: any) => {
   }, [open]);
 
   return (
-    <DisclosureRoot open={open} lazyLoad size={"xs"} {...restProps}>
+    <DisclosureRoot open={open} lazyLoad size={"xs"}>
       <DisclosureContent>
         <DisclosureHeader>
           <DisclosureHeaderContent title={t.calendar} />
