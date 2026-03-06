@@ -24,21 +24,35 @@ import useLang from "@/context/useLang";
 import useLocationPermissions from "@/context/useLocationPermissions";
 import useMicPermissions from "@/context/useMicPermissions";
 import { useThemeConfig } from "@/context/useThemeConfig";
-import useBackOnClose from "@/hooks/useBackOnClose";
+import usePopDisclosure from "@/hooks/usePopDisclosure";
 import { startCamera, stopCamera } from "@/utils/camera";
 import { disclosureId } from "@/utils/disclosure";
 import { getAddress, getLatLon } from "@/utils/location";
-import { HStack, useDisclosure } from "@chakra-ui/react";
+import { HStack } from "@chakra-ui/react";
 import { CameraIcon, MapPinIcon, MicIcon } from "lucide-react";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const Camera = () => {
   // Contexts
-  const { themeConfig } = useThemeConfig();
   const { l } = useLang();
+  const { themeConfig } = useThemeConfig();
   const { cameraPermissionsStatus } = useCameraPermission();
 
-  // Request permissions func
+  // States
+  const getBrowserSettingsLink = () => {
+    const userAgent = navigator.userAgent;
+    if (userAgent.includes("Chrome")) {
+      return l.msg_chrome_permissions_settings_link;
+    } else if (userAgent.includes("Firefox")) {
+      return l.msg_firefox_permissions_settings_link;
+    } else if (userAgent.includes("Edg")) {
+      return l.msg_edge_permissions_settings_link;
+    }
+
+    return l.msg_default_permissions_settings_link;
+  };
+
+  // Utils
   async function requestCameraMic() {
     try {
       const stream = await navigator.mediaDevices.getUserMedia({
@@ -51,34 +65,25 @@ const Camera = () => {
     }
   }
 
-  // Status helper text
-  const getBrowserSettingsLink = () => {
-    const userAgent = navigator.userAgent;
-    if (userAgent.includes("Chrome")) {
-      return l.msg_chrome_permissions_settings_link;
-    } else if (userAgent.includes("Firefox")) {
-      return l.msg_firefox_permissions_settings_link;
-    } else if (userAgent.includes("Edg")) {
-      return l.msg_edge_permissions_settings_link;
-    }
-    return l.msg_default_permissions_settings_link;
-  };
-
   // Components
   const Test = () => {
-    // Utils
-    const { open, onOpen, onClose } = useDisclosure();
-    function handleClose() {
-      stopCamera(videoRef, streamRef, () => setCameraOpen(false));
-      onClose();
-    }
-    useBackOnClose(disclosureId("camera-test"), open, onOpen, handleClose);
+    // Refs
+    const videoRef = useRef<HTMLVideoElement | null>(null);
+    const streamRef = useRef<MediaStream | null>(null);
+
+    // Hooks
+    const { open, onOpen } = usePopDisclosure(disclosureId("camera-test"));
 
     // States, Refs
     const [cameraOpen, setCameraOpen] = useState(false);
-    const videoRef = useRef<HTMLVideoElement | null>(null);
-    const streamRef = useRef<MediaStream | null>(null);
     const [loading, setLoading] = useState<boolean>(false);
+
+    // Cleanup
+    useEffect(() => {
+      return () => {
+        stopCamera(videoRef, streamRef, () => setCameraOpen(false));
+      };
+    }, []);
 
     return (
       <>
@@ -224,24 +229,11 @@ const Camera = () => {
 
 const Microphone = () => {
   // Contexts
-  const { themeConfig } = useThemeConfig();
   const { l } = useLang();
+  const { themeConfig } = useThemeConfig();
   const { micPermissionsStatus } = useMicPermissions();
 
-  // Request permissions func
-  async function requestMicPermission() {
-    try {
-      const stream = await navigator.mediaDevices.getUserMedia({
-        audio: true,
-      });
-
-      stream.getTracks().forEach((track) => track.stop());
-    } catch (error) {
-      console.error("Akses mikrofon ditolak:", error);
-    }
-  }
-
-  // Status helper text
+  // States
   const getBrowserSettingsLink = () => {
     const userAgent = navigator.userAgent;
     if (userAgent.includes("Chrome")) {
@@ -254,25 +246,35 @@ const Microphone = () => {
     return l.msg_default_permissions_settings_link;
   };
 
+  // Utils
+  async function requestMicPermission() {
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({
+        audio: true,
+      });
+
+      stream.getTracks().forEach((track) => track.stop());
+    } catch (error) {
+      console.error("Akses mikrofon ditolak:", error);
+    }
+  }
+
   // Components
   const Test = () => {
-    // States, Refs
-    const [micOpen, setMicOpen] = useState(false);
-    const [loading, setLoading] = useState(false);
-    const [analyser, setAnalyser] = useState<AnalyserNode | null>(null);
+    // Refs
     const streamRef = useRef<MediaStream | null>(null);
     const audioContextRef = useRef<AudioContext | null>(null);
 
-    // Utils
-    const { open, onOpen, onClose } = useDisclosure();
-    function handleClose() {
-      stopMicTest();
-      onClose();
-    }
-    useBackOnClose(disclosureId("mic-test"), open, onOpen, handleClose);
+    // Hooks
+    const { open, onOpen } = usePopDisclosure(disclosureId("mic-test"));
 
-    // Handle test mic
-    const startMicTest = async () => {
+    // States
+    const [micOpen, setMicOpen] = useState(false);
+    const [loading, setLoading] = useState(false);
+    const [analyser, setAnalyser] = useState<AnalyserNode | null>(null);
+
+    // Utils
+    async function startMicTest() {
       try {
         setLoading(true);
         const stream = await navigator.mediaDevices.getUserMedia({
@@ -294,9 +296,8 @@ const Microphone = () => {
         setLoading(false);
         console.error("Gagal mengakses mikrofon:", error);
       }
-    };
-
-    const stopMicTest = () => {
+    }
+    function stopMicTest() {
       if (streamRef.current) {
         streamRef.current.getTracks().forEach((t) => t.stop());
       }
@@ -308,7 +309,14 @@ const Microphone = () => {
 
       setMicOpen(false);
       setAnalyser(null);
-    };
+    }
+
+    // Cleanup
+    useEffect(() => {
+      return () => {
+        stopMicTest();
+      };
+    }, []);
 
     return (
       <>
@@ -414,12 +422,25 @@ const Microphone = () => {
 
 const Location = () => {
   // Contexts
-  const { themeConfig } = useThemeConfig();
   const { l } = useLang();
+  const { themeConfig } = useThemeConfig();
   const { locationPermissionsStatus } = useLocationPermissions();
 
-  // Request permissions func
-  const requestLocationPermission = () => {
+  // States
+  const getBrowserSettingsLink = () => {
+    const userAgent = navigator.userAgent;
+    if (userAgent.includes("Chrome")) {
+      return l.msg_chrome_permissions_settings_link;
+    } else if (userAgent.includes("Firefox")) {
+      return l.msg_firefox_permissions_settings_link;
+    } else if (userAgent.includes("Edg")) {
+      return l.msg_edge_permissions_settings_link;
+    }
+    return l.msg_default_permissions_settings_link;
+  };
+
+  // Utils
+  function requestLocationPermission() {
     getLatLon()
       .then((r) => {
         console.debug(r);
@@ -446,24 +467,14 @@ const Location = () => {
         });
         return;
       });
-  };
-
-  // Status helper text
-  const getBrowserSettingsLink = () => {
-    const userAgent = navigator.userAgent;
-    if (userAgent.includes("Chrome")) {
-      return l.msg_chrome_permissions_settings_link;
-    } else if (userAgent.includes("Firefox")) {
-      return l.msg_firefox_permissions_settings_link;
-    } else if (userAgent.includes("Edg")) {
-      return l.msg_edge_permissions_settings_link;
-    }
-    return l.msg_default_permissions_settings_link;
-  };
+  }
 
   // Components
   const Test = () => {
-    // States, Refs
+    // Hooks
+    const { open, onOpen } = usePopDisclosure(disclosureId("location-test"));
+
+    // States
     const [loading, setLoading] = useState(false);
     const [center, setCenter] = useState<{ lat: number; long: number } | null>(
       null,
@@ -471,10 +482,6 @@ const Location = () => {
     const [address, setAddress] = useState<string | null>(null);
 
     // Utils
-    const { open, onOpen, onClose } = useDisclosure();
-    useBackOnClose(disclosureId("location-test"), open, onOpen, onClose);
-
-    // Handle test
     function startLocationTest() {
       setLoading(true);
       getLatLon().then(({ coords }: any) => {

@@ -48,6 +48,11 @@ const nextConfig: NextConfig = {
   images: {
     remotePatterns: [
       { protocol: "https", hostname: "apiweb.exium.id", pathname: "/**" },
+      {
+        protocol: "https",
+        hostname: "api-landai.exium.my.id",
+        pathname: "/**",
+      },
       { protocol: "https", hostname: "images.unsplash.com", pathname: "/**" },
     ],
     qualities: [60, 70, 80, 90, 100],
