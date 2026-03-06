@@ -67,7 +67,7 @@ const NavsList = (props: any) => {
   );
 
   return (
-    <MContainer className="scrollY" gap={4} {...restProps}>
+    <CContainer gap={4} {...restProps}>
       {isEmptyArray(resolvedList) && <FeedbackNotFound />}
 
       {!isEmptyArray(resolvedList) &&
@@ -121,7 +121,7 @@ const NavsList = (props: any) => {
             </CContainer>
           );
         })}
-    </MContainer>
+    </CContainer>
   );
 };
 
@@ -184,18 +184,20 @@ export default function Layout(props: any) {
                 />
               </CContainer>
 
-              <NavsList search={search} p={3} />
+              <MContainer className="scrollY">
+                <NavsList search={search} p={3} />
 
-              <HStack justify={"space-between"} px={4} py={4} mt={"auto"}>
-                <HelperText>{`v${APP.version}`}</HelperText>
+                <CContainer p={4} mt={"auto"} gap={1}>
+                  <HelperText>{`v${APP.version}`}</HelperText>
 
-                <HelperText>
-                  {`Last updated: 
+                  <HelperText>
+                    {`Last updated: 
                 ${formatAbsDate(APP.lastUpdated, t, {
                   variant: "numeric",
                 })}`}
-                </HelperText>
-              </HStack>
+                  </HelperText>
+                </CContainer>
+              </MContainer>
             </CContainer>
           )}
 
