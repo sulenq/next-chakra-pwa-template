@@ -1,13 +1,17 @@
 import { Btn } from "@/components/ui/btn";
 import { P } from "@/components/ui/p";
 import { AppIcon } from "@/components/widget/AppIcon";
-import { Props_PaginationTableData } from "@/constants/props";
 import useLang from "@/context/useLang";
 import { formatNumber } from "@/utils/formatter";
 import { HStack } from "@chakra-ui/react";
 import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
 
-export const Pagination = (props: Props_PaginationTableData) => {
+export interface PaginationTableDataProps {
+  page: number;
+  setPage: React.Dispatch<number>;
+  totalPage?: number;
+}
+export const Pagination = (props: PaginationTableDataProps) => {
   // Props
   const { page, setPage, totalPage } = props;
 

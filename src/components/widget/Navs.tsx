@@ -1,6 +1,5 @@
-import { NavLink } from "@/components/ui/nav-link";
+import { NavLink, NavLinkProps } from "@/components/ui/nav-link";
 import { Tooltip, TooltipProps } from "@/components/ui/tooltip";
-import { Props__NavLink } from "@/constants/props";
 import { DESKTOP_NAVS_TOOLTIP_MAIN_AXIS } from "@/constants/styles";
 
 export const DesktopNavTooltip = (props: TooltipProps) => {
@@ -22,7 +21,7 @@ export const DesktopNavTooltip = (props: TooltipProps) => {
   );
 };
 
-export const MobileNavLink = (props: Props__NavLink) => {
+export const MobileNavLink = (props: NavLinkProps) => {
   // Props
   const { children, ...restProps } = props;
 

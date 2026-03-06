@@ -27,14 +27,14 @@ import { Document, Page, pdfjs } from "react-pdf";
 import "react-pdf/dist/Page/AnnotationLayer.css";
 import "react-pdf/dist/Page/TextLayer.css";
 
-export interface Interface__PdfViewer {
+export interface PdfViewer {
   pageWidth: number;
   numPages: number | null;
   page: number;
   scale: number;
   mode: "single" | "scroll";
 }
-export interface Interface__PdfViewerUtils {
+export interface PdfViewerUtils {
   setPageWidth: (width: number) => void;
   setPage: (p: number) => void;
   prevPage: () => void;
@@ -50,10 +50,10 @@ export interface Interface__PdfViewerUtils {
 
 pdfjs.GlobalWorkerOptions.workerSrc = "/pdf.worker.min.mjs";
 
-interface Props__UtilBtn extends BtnProps {
+interface UtilBtnProps extends BtnProps {
   tooltipContent: string;
 }
-const UtilBtn = (btnProps: Props__UtilBtn) => {
+const UtilBtn = (btnProps: UtilBtnProps) => {
   const { tooltipContent, ...restProps } = btnProps;
 
   return (
@@ -63,12 +63,12 @@ const UtilBtn = (btnProps: Props__UtilBtn) => {
   );
 };
 
-interface Props__PageControl extends Omit<StackProps, "page"> {
+interface PageControlProps extends Omit<StackProps, "page"> {
   page: number;
   numPages: number;
-  utils: Interface__PdfViewerUtils;
+  utils: PdfViewerUtils;
 }
-const PageControl = (props: Props__PageControl) => {
+const PageControl = (props: PageControlProps) => {
   // Props
   const { utils, page, numPages, ...restProps } = props;
 
@@ -155,11 +155,11 @@ const PageControl = (props: Props__PageControl) => {
   );
 };
 
-interface Props__ZoomControl extends StackProps {
+interface ZoomControlProps extends StackProps {
   scale: number;
-  utils: Interface__PdfViewerUtils;
+  utils: PdfViewerUtils;
 }
-const ZoomControl = (props: Props__ZoomControl) => {
+const ZoomControl = (props: ZoomControlProps) => {
   // Props
   const { utils, scale, ...restProps } = props;
 
@@ -200,11 +200,11 @@ const ZoomControl = (props: Props__ZoomControl) => {
   );
 };
 
-interface Props__PDFToolbar extends StackProps {
-  viewer: Interface__PdfViewer;
-  utils: Interface__PdfViewerUtils;
+interface PDFToolbarProps extends StackProps {
+  viewer: PdfViewer;
+  utils: PdfViewerUtils;
 }
-const Toolbar = (props: Props__PDFToolbar) => {
+const Toolbar = (props: PDFToolbarProps) => {
   // Props
   const { viewer, utils, ...restProps } = props;
 
@@ -253,11 +253,11 @@ const Toolbar = (props: Props__PDFToolbar) => {
   );
 };
 
-export interface Props__PdfViewer extends StackProps {
+export interface PdfViewerProps extends StackProps {
   fileUrl: string;
   fileName?: string;
 }
-export const PDFViewer = (props: Props__PdfViewer) => {
+export const PDFViewer = (props: PdfViewerProps) => {
   // Props
   const { fileUrl, fileName, ...restProps } = props;
 
@@ -268,14 +268,14 @@ export const PDFViewer = (props: Props__PdfViewer) => {
   const containerRef = useRef<HTMLDivElement>(null);
 
   // States
-  const [viewer, setViewer] = useState<Interface__PdfViewer>({
+  const [viewer, setViewer] = useState<PdfViewer>({
     pageWidth: 0,
     numPages: null as number | null,
     page: 1,
     scale: 1,
     mode: "single" as "single" | "scroll",
   });
-  const utils: Interface__PdfViewerUtils = {
+  const utils: PdfViewerUtils = {
     setPageWidth: (width: number) =>
       setViewer((ps) => ({ ...ps, pageWidth: width })),
 

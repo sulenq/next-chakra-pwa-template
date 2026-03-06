@@ -10,7 +10,7 @@ import { ImgViewer } from "@/components/widget/ImgViewer";
 import { RowOptions } from "@/components/widget/RowOptions";
 import {
   Interface__DataProps,
-  Interface__FormattedTableRow,
+  FormattedTableRow,
 } from "@/constants/interfaces";
 import useLang from "@/context/useLang";
 import { useThemeConfig } from "@/context/useThemeConfig";
@@ -30,9 +30,9 @@ interface Props extends StackProps {
   };
   dim?: boolean;
   dataProps: Interface__DataProps;
-  row: Interface__FormattedTableRow;
+  row: FormattedTableRow;
   selectedRows: string[];
-  toggleRowSelection: (row: Interface__FormattedTableRow) => void;
+  toggleRowSelection: (row: FormattedTableRow) => void;
   routeTitle: string;
   details: any;
 }

@@ -3,6 +3,11 @@
 import { Btn } from "@/components/ui/btn";
 import { CContainer } from "@/components/ui/c-container";
 import { CloseButton } from "@/components/ui/close-button";
+import {
+  FileUploadDropzone,
+  FileUploadRoot,
+  FileUploadTrigger,
+} from "@/components/ui/file-button";
 import { FileIcon } from "@/components/ui/file-icon";
 import { P } from "@/components/ui/p";
 import { toaster } from "@/components/ui/toaster";
@@ -10,23 +15,19 @@ import { Tooltip } from "@/components/ui/tooltip";
 import { FileItem } from "@/components/widget/FIleItem";
 import { LucideIcon } from "@/components/widget/Icon";
 import { Interface__StorageFile } from "@/constants/interfaces";
-import {
-  Props__FileInput,
-  Props__FileInputInputComponent,
-} from "@/constants/props";
 import useLang from "@/context/useLang";
 import { useThemeConfig } from "@/context/useThemeConfig";
 import { isEmptyArray } from "@/utils/array";
 import { makeFileUrl } from "@/utils/file";
 import { formatBytes, formatNumber } from "@/utils/formatter";
-import { Center, Icon, useFieldContext } from "@chakra-ui/react";
+import {
+  Center,
+  FileUploadRootProps,
+  Icon,
+  useFieldContext,
+} from "@chakra-ui/react";
 import { TrashIcon, UploadIcon, XIcon } from "lucide-react";
 import { useEffect, useState } from "react";
-import {
-  FileUploadDropzone,
-  FileUploadRoot,
-  FileUploadTrigger,
-} from "@/components/ui/file-button";
 
 const FileList = (props: any) => {
   // Props
@@ -65,7 +66,19 @@ const FileList = (props: any) => {
     </CContainer>
   );
 };
-export const InputComponent = (props: Props__FileInputInputComponent) => {
+
+export interface FileInputInputComponentProps extends Omit<
+  FileInputProps,
+  "removed"
+> {
+  existing: Interface__StorageFile[];
+  showDropzoneIcon?: boolean;
+  showDropzoneLabel?: boolean;
+  showDropzoneDescription?: boolean;
+  acceptPlaceholder?: string;
+  imgInput?: boolean;
+}
+export const FileInputComponent = (props: FileInputInputComponentProps) => {
   // Props
   const {
     fRef,
@@ -263,7 +276,26 @@ export const InputComponent = (props: Props__FileInputInputComponent) => {
   );
 };
 
-export const FileInput = (props: Props__FileInput) => {
+export interface FileInputProps extends Omit<FileUploadRootProps, "onChange"> {
+  id?: string;
+  fRef?: any;
+  inputValue?: File[];
+  onChange?: (inputValue: FileInputProps["inputValue"]) => void;
+  accept?: string;
+  acceptPlaceholder?: string;
+  invalid?: boolean;
+  placeholder?: string;
+  label?: string;
+  dropzone?: boolean;
+  maxFileSizeMB?: number;
+  maxFiles?: number;
+  description?: string;
+  disabled?: boolean;
+  existingFiles?: Interface__StorageFile[];
+  onDeleteFile?: (file: Interface__StorageFile) => void;
+  onUndoDeleteFile?: (file: Interface__StorageFile) => void;
+}
+export const FileInput = (props: FileInputProps) => {
   // Props
   const { existingFiles, onDeleteFile, onUndoDeleteFile, ...restProps } = props;
 
@@ -366,7 +398,7 @@ export const FileInput = (props: Props__FileInput) => {
         </CContainer>
       )}
 
-      <InputComponent existing={existing} {...restProps} />
+      <FileInputComponent existing={existing} {...restProps} />
     </CContainer>
   );
 };

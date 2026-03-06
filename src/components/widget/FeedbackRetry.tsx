@@ -2,20 +2,20 @@
 
 import { Btn } from "@/components/ui/btn";
 import { CContainer } from "@/components/ui/c-container";
-import FeedbackState from "@/components/widget/FeedbackState";
+import FeedbackState, {
+  FeedbackStateProps,
+} from "@/components/widget/FeedbackState";
 import { LucideIcon } from "@/components/widget/Icon";
-import { Props__FeedbackState } from "@/constants/props";
 import { MIN_H_FEEDBACK_CONTAINER } from "@/constants/styles";
 import useLang from "@/context/useLang";
 import { useThemeConfig } from "@/context/useThemeConfig";
 import { Icon } from "@chakra-ui/react";
 import { CircleXIcon } from "lucide-react";
 
-interface Props extends Props__FeedbackState {
+interface FeedbackRetryProps extends FeedbackStateProps {
   onRetry?: () => void;
 }
-
-export default function FeedbackRetry(props: Props) {
+export default function FeedbackRetry(props: FeedbackRetryProps) {
   // Props
   const { title, description, icon, onRetry, children, ...restProps } = props;
 

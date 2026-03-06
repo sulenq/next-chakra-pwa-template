@@ -19,7 +19,6 @@ import {
 } from "@/components/widget/PageShell";
 import { APP } from "@/constants/_meta";
 import { OTHER_PRIVATE_NAV_GROUPS } from "@/constants/navs";
-import { Props__Layout } from "@/constants/props";
 import { DESKTOP_NAVS_TOOLTIP_MAIN_AXIS } from "@/constants/styles";
 import useLang from "@/context/useLang";
 import { useSettingsPageContainer } from "@/context/useSettingsPageContainer";
@@ -126,10 +125,7 @@ const NavsList = (props: any) => {
   );
 };
 
-export default function Layout(props: Props__Layout) {
-  // Props
-  const { children } = props;
-
+export default function Layout(props: any) {
   // Hooks
   const pathname = usePathname();
 
@@ -212,7 +208,7 @@ export default function Layout(props: Props__Layout) {
               >
                 {pathname !== ROOT_PATH && <PageTitle mb={2} />}
 
-                <CContainer flex={1}>{children}</CContainer>
+                <CContainer flex={1} {...props} />
               </ContainerLayout>
             </MContainer>
           )}

@@ -1,9 +1,12 @@
-import { Props__RichEditor } from "@/constants/props";
 import { Editor as TinyMCEEditor } from "@tinymce/tinymce-react";
 
 const TINY_MCE_API_KEY = process.env.NEXT_PUBLIC_TINY_MCE_API_KEY || "";
 
-export const RichEditor = (props: Props__RichEditor) => {
+export interface RichEditorProps {
+  inputValue?: string;
+  onChange?: (inputValue: RichEditorProps["inputValue"]) => void;
+}
+export const RichEditor = (props: RichEditorProps) => {
   // Props
   const { inputValue = "", onChange, ...restProps } = props;
 

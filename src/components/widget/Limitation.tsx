@@ -8,12 +8,16 @@ import {
 import { P } from "@/components/ui/p";
 import { AppIcon } from "@/components/widget/AppIcon";
 import { DotIndicator } from "@/components/widget/Indicator";
-import { Props_LimitationTableData } from "@/constants/props";
 import useLang from "@/context/useLang";
 import { HStack } from "@chakra-ui/react";
 import { ChevronDownIcon } from "lucide-react";
 
-export const Limitation = (props: Props_LimitationTableData) => {
+export interface LimitationTableDataProps {
+  limit: number;
+  setLimit: React.Dispatch<number>;
+  limitOptions?: number[];
+}
+export const Limitation = (props: LimitationTableDataProps) => {
   // Props
   const { limit, setLimit, limitOptions: limitOptionsProps } = props;
 

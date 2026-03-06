@@ -1,4 +1,4 @@
-import { Btn } from "@/components/ui/btn";
+import { Btn, BtnProps } from "@/components/ui/btn";
 import { CContainer } from "@/components/ui/c-container";
 import {
   MenuContent,
@@ -6,30 +6,21 @@ import {
   MenuRoot,
   MenuTrigger,
 } from "@/components/ui/menu";
-import { Tooltip, TooltipProps } from "@/components/ui/tooltip";
 import { AppIcon } from "@/components/widget/AppIcon";
 import { ConfirmationDisclosureTrigger } from "@/components/widget/ConfirmationDisclosure";
-import { Props_RowOptions } from "@/constants/props";
-import { Icon } from "@chakra-ui/react";
+import {
+  FormattedTableRow,
+  RowOptionsTableOptionGenerator,
+} from "@/constants/interfaces";
+import { MenuRootProps } from "@chakra-ui/react";
 import { EllipsisVerticalIcon } from "lucide-react";
 
-const ICON_BOX_SIZE = "18px";
-
-//! Will be removed
-export const RowOptionMenuTooltip = (props: TooltipProps) => {
-  // Props
-  const { children, content, ...restProps } = props;
-  return (
-    <Tooltip
-      content={content}
-      positioning={{ placement: "right" }}
-      {...restProps}
-    >
-      {children}
-    </Tooltip>
-  );
-};
-
+export interface Props_RowOptions extends BtnProps {
+  row: FormattedTableRow;
+  rowOptions?: RowOptionsTableOptionGenerator<FormattedTableRow>[];
+  tableContainerRef?: React.RefObject<HTMLDivElement | null>;
+  menuRootProps?: Omit<MenuRootProps, "children">;
+}
 export const RowOptions = (props: Props_RowOptions) => {
   // Props
   const { row, rowOptions, tableContainerRef, menuRootProps, ...restProps } =
@@ -101,7 +92,7 @@ export const RowOptions = (props: Props_RowOptions) => {
                   justifyContent="space-between"
                 >
                   {label}
-                  {icon && <Icon boxSize={ICON_BOX_SIZE}>{icon}</Icon>}
+                  {icon && <AppIcon icon={icon} />}
                 </MenuItem>
               </ConfirmationDisclosureTrigger>
             );
@@ -125,7 +116,7 @@ export const RowOptions = (props: Props_RowOptions) => {
               {...menuItemProps}
             >
               {label}
-              {icon && <Icon boxSize={ICON_BOX_SIZE}>{icon}</Icon>}
+              {icon && <AppIcon icon={icon} />}
             </MenuItem>
           );
         })}

@@ -6,18 +6,46 @@ import { Limitation } from "@/components/widget/Limitation";
 import { Pagination } from "@/components/widget/Pagination";
 import { RowOptions } from "@/components/widget/RowOptions";
 import { SortIcon } from "@/components/widget/SortIcon";
-import { Interface__FormattedTableRow } from "@/constants/interfaces";
-import { Props__DataTable } from "@/constants/props";
+import {
+  BatchOptionsTableOptionGenerator,
+  FormattedTableHeader,
+  FormattedTableRow,
+  RowOptionsTableOptionGenerator,
+} from "@/constants/interfaces";
 import { Type__SortHandler } from "@/constants/types";
 import { useThemeConfig } from "@/context/useThemeConfig";
 import { useContainerDimension } from "@/hooks/useContainerDimension";
 import { useIsSmScreenWidth } from "@/hooks/useIsSmScreenWidth";
 import { isEmptyArray } from "@/utils/array";
 import { hexWithOpacity } from "@/utils/color";
-import { Box, Center, HStack, Table } from "@chakra-ui/react";
+import {
+  Box,
+  Center,
+  HStack,
+  StackProps,
+  Table,
+  TableRowProps,
+} from "@chakra-ui/react";
 import { useEffect, useMemo, useRef, useState } from "react";
 
-export const DataTable = (props: Props__DataTable) => {
+export interface DataTableProps extends Omit<StackProps, "page"> {
+  trBodyProps?: TableRowProps;
+  headers?: FormattedTableHeader[];
+  rows?: FormattedTableRow[];
+  rowOptions?: RowOptionsTableOptionGenerator[];
+  batchOptions?: BatchOptionsTableOptionGenerator[];
+  initialSortColumnIndex?: number;
+  initialSortOrder?: "asc" | "desc";
+  limit?: number;
+  setLimit?: React.Dispatch<number>;
+  page?: number;
+  setPage?: React.Dispatch<number>;
+  totalPage?: number;
+  footer?: any;
+  loading?: boolean;
+  contentContainerProps?: StackProps;
+}
+export const DataTable = (props: DataTableProps) => {
   // Props
   const {
     trBodyProps,
@@ -137,7 +165,7 @@ export const DataTable = (props: Props__DataTable) => {
     setAllRowsSelected(false);
     setSelectedRows([]);
   }
-  function toggleRowSelection(row: Interface__FormattedTableRow) {
+  function toggleRowSelection(row: FormattedTableRow) {
     const rowId = row.id;
     setSelectedRows((ps) => {
       const isSelected = ps.includes(rowId);

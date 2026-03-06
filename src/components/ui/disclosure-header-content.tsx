@@ -1,16 +1,24 @@
 import { Btn } from "@/components/ui/btn";
+import { DialogCloseTrigger } from "@/components/ui/dialog";
+import { DrawerCloseTrigger } from "@/components/ui/drawer";
+import { P } from "@/components/ui/p";
 import { LucideIcon } from "@/components/widget/Icon";
-import { Props__DisclosureHeaderContent } from "@/constants/props";
 import { back } from "@/utils/client";
 import { HStack, Icon } from "@chakra-ui/react";
 import { MaximizeIcon, MinimizeIcon, XIcon } from "lucide-react";
 import { useEffect, useState } from "react";
-import { DialogCloseTrigger } from "@/components/ui/dialog";
-import { DrawerCloseTrigger } from "@/components/ui/drawer";
-import { P } from "@/components/ui/p";
 
+export interface DisclosureHeaderContentProps {
+  title?: string;
+  withCloseButton?: boolean;
+  withMaximizeButton?: boolean;
+  onMaximizeChange?: (maximize: boolean) => void;
+  content?: any;
+  prefix?: "drawer" | "dialog";
+  children?: any;
+}
 export const DisclosureHeaderContent = (
-  props: Props__DisclosureHeaderContent,
+  props: DisclosureHeaderContentProps,
 ) => {
   // Props
   const {
@@ -24,16 +32,8 @@ export const DisclosureHeaderContent = (
     ...restProps
   } = props;
 
-  // Hooks
-  // const iss = useIsSmScreenWidth();
-
   // States
   const [maximize, setMaximize] = useState(false);
-
-  // Utils
-  function handleBack() {
-    back();
-  }
 
   useEffect(() => {
     onMaximizeChange?.(maximize);
@@ -80,7 +80,7 @@ export const DisclosureHeaderContent = (
                 {prefix === "dialog" && (
                   <DialogCloseTrigger
                     rounded={"full"}
-                    onClick={handleBack}
+                    onClick={back}
                     pos={"static"}
                     // top={"12px"}
                     // right={"12px"}
@@ -92,7 +92,7 @@ export const DisclosureHeaderContent = (
                 {prefix === "drawer" && (
                   <DrawerCloseTrigger
                     rounded={"full"}
-                    onClick={handleBack}
+                    onClick={back}
                     pos={"static"}
                     // top={3}
                     // right={"10px"}
@@ -108,7 +108,7 @@ export const DisclosureHeaderContent = (
                 rounded={"full"}
                 variant={["ghost", null, "subtle"]}
                 size={["xs", null, "2xs"]}
-                onClick={handleBack}
+                onClick={back}
               >
                 <Icon boxSize={4}>
                   <LucideIcon icon={XIcon} />

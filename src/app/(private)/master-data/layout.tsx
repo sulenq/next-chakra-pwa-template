@@ -13,7 +13,6 @@ import { LeftIndicator } from "@/components/widget/Indicator";
 import { MContainer } from "@/components/widget/MContainer";
 import { PageContainer, PageTitle } from "@/components/widget/PageShell";
 import { OTHER_PRIVATE_NAV_GROUPS } from "@/constants/navs";
-import { Props__Layout } from "@/constants/props";
 import { DESKTOP_NAVS_TOOLTIP_MAIN_AXIS } from "@/constants/styles";
 import useLang from "@/context/useLang";
 import { useMasterDataPageContainer } from "@/context/useMasterDataPageContainer";
@@ -119,7 +118,7 @@ const NavsList = (props: any) => {
   );
 };
 
-export default function Layout({ children }: Props__Layout) {
+export default function Layout(props: any) {
   // Hooks
   const pathname = usePathname();
 
@@ -185,7 +184,7 @@ export default function Layout({ children }: Props__Layout) {
             <MContainer className={"scrollY"} flex={1}>
               {pathname !== ROOT_PATH && <PageTitle mb={2} />}
 
-              <CContainer flex={1}>{children}</CContainer>
+              <CContainer flex={1} {...props} />
             </MContainer>
           )}
         </HStack>

@@ -1,6 +1,5 @@
-import { SelectInput } from "@/components/ui/select-input";
+import { Props__SelectInput, SelectInput } from "@/components/ui/select-input";
 import { Interface__SelectOption } from "@/constants/interfaces";
-import { Props__SelectInput } from "@/constants/props";
 import useRequest from "@/hooks/useRequest";
 import { capitalizeWords } from "@/utils/string";
 import { useEffect, useState } from "react";

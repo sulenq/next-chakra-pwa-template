@@ -1,11 +1,15 @@
 "use client";
 
-import { Props__NavLink } from "@/constants/props";
 import { useRouter } from "next/navigation";
 import { forwardRef, useEffect } from "react";
 import { CContainer } from "@/components/ui/c-container";
+import { StackProps } from "@chakra-ui/react";
 
-export const NavLink = forwardRef<HTMLDivElement, Props__NavLink>(
+export interface NavLinkProps extends StackProps {
+  to?: string;
+  external?: boolean;
+}
+export const NavLink = forwardRef<HTMLDivElement, NavLinkProps>(
   (props, ref) => {
     const { children, to, external, onClick, ...restProps } = props;
     const router = useRouter();
@@ -39,7 +43,7 @@ export const NavLink = forwardRef<HTMLDivElement, Props__NavLink>(
         {children}
       </CContainer>
     );
-  }
+  },
 );
 
 NavLink.displayName = "NavLink";

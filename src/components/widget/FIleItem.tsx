@@ -2,12 +2,21 @@ import { Btn } from "@/components/ui/btn";
 import { CContainer } from "@/components/ui/c-container";
 import { FileIcon } from "@/components/ui/file-icon";
 import { P } from "@/components/ui/p";
-import { Props__FileItem } from "@/constants/props";
 import { useThemeConfig } from "@/context/useThemeConfig";
-import { Center, Circle, HStack, Icon } from "@chakra-ui/react";
+import { Center, Circle, HStack, Icon, StackProps } from "@chakra-ui/react";
 import Link from "next/link";
 
-export const FileItem = (props: Props__FileItem) => {
+export interface FileItemProps extends StackProps {
+  fileData: any;
+  idx?: number;
+  actions?: {
+    type: "REMOVE" | "DELETE" | "UNDO_DELETE";
+    onClick: () => void;
+    label?: string;
+    icon?: React.ReactNode;
+  }[];
+}
+export const FileItem = (props: FileItemProps) => {
   // Props
   const { children, fileData, actions = [], idx, ...restProps } = props;
 

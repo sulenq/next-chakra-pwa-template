@@ -24,9 +24,9 @@ import { SimpleDisclosure } from "@/components/widget/SimpleDisclosure";
 import { TableSkeleton } from "@/components/widget/TableSkeleton";
 import { dummyUsers } from "@/constants/dummyData";
 import {
-  Interface__BatchOptionsTableOptionGenerator,
+  BatchOptionsTableOptionGenerator,
   Interface__DataProps,
-  Interface__RowOptionsTableOptionGenerator,
+  RowOptionsTableOptionGenerator,
 } from "@/constants/interfaces";
 import { SVGS_PATH } from "@/constants/paths";
 import { BASE_ICON_BOX_SIZE } from "@/constants/styles";
@@ -447,7 +447,7 @@ const Data = (props: any) => {
           />
         ),
       }),
-    ] as Interface__RowOptionsTableOptionGenerator<Interface__Data>[],
+    ] as RowOptionsTableOptionGenerator<Interface__Data>[],
     batchOptions: [
       (ids, { clearSelectedRows }) => ({
         override: (
@@ -479,7 +479,7 @@ const Data = (props: any) => {
           />
         ),
       }),
-    ] as Interface__BatchOptionsTableOptionGenerator[],
+    ] as BatchOptionsTableOptionGenerator[],
   };
   const render = {
     loading: <TableSkeleton />,

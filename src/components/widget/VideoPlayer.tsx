@@ -3,7 +3,6 @@
 import { Btn } from "@/components/ui/btn";
 import { CContainer } from "@/components/ui/c-container";
 import { P } from "@/components/ui/p";
-import { Props__VideoPlayer } from "@/constants/props";
 import useClickOutside from "@/hooks/useClickOutside";
 import {
   getVideoCurrentTime,
@@ -19,7 +18,14 @@ import {
   toggleFullscreen,
   toggleMute,
 } from "@/utils/video";
-import { chakra, HStack, Icon, Slider, Stack } from "@chakra-ui/react";
+import {
+  chakra,
+  HStack,
+  Icon,
+  Slider,
+  Stack,
+  StackProps,
+} from "@chakra-ui/react";
 import {
   IconMaximize,
   IconPlayerPauseFilled,
@@ -33,7 +39,15 @@ import { useEffect, useRef, useState } from "react";
 
 const VideoElement = chakra("video");
 
-export default function VideoPlayer(props: Props__VideoPlayer) {
+export interface VideoPlayerProps extends StackProps {
+  id?: string;
+  thumbnail?: string;
+  src?: string;
+  width?: number | string;
+  height?: number | string;
+  storageKey?: string;
+}
+export default function VideoPlayer(props: VideoPlayerProps) {
   // Props
   const { id, thumbnail, src, ...restProps } = props;
 
@@ -44,7 +58,7 @@ export default function VideoPlayer(props: Props__VideoPlayer) {
 
   // States
   const [resolvedThumbnail, setResolvedThumbnail] = useState<string>(
-    thumbnail || ""
+    thumbnail || "",
   );
   const [showControls, setShowControls] = useState<boolean>(false);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -126,7 +140,7 @@ export default function VideoPlayer(props: Props__VideoPlayer) {
     if (!video) return;
 
     const currentIndex = rates.findIndex(
-      (r) => parseFloat(r.value) === playbackRate
+      (r) => parseFloat(r.value) === playbackRate,
     );
 
     const nextIndex = (currentIndex + 1) % rates.length;

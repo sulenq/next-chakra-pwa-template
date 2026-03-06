@@ -1,11 +1,16 @@
 "use client";
 
 import { CContainer } from "@/components/ui/c-container";
-import { Props__ItemContainer } from "@/constants/props";
 import { useThemeConfig } from "@/context/useThemeConfig";
+import { StackProps } from "@chakra-ui/react";
 import { forwardRef } from "react";
 
-export const ItemContainer = forwardRef<HTMLDivElement, Props__ItemContainer>(
+export interface ItemContainerProps extends StackProps {
+  scrollY?: boolean;
+  roundedless?: boolean;
+  borderless?: boolean;
+}
+export const ItemContainer = forwardRef<HTMLDivElement, ItemContainerProps>(
   (props, ref) => {
     // Props
     const {
@@ -33,7 +38,7 @@ export const ItemContainer = forwardRef<HTMLDivElement, Props__ItemContainer>(
         {children}
       </CContainer>
     );
-  }
+  },
 );
 
 ItemContainer.displayName = "ItemContainer";

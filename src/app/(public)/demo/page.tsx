@@ -36,7 +36,7 @@ import { PDFViewer } from "@/components/widget/PdfViewer";
 import SelectWorkspaceCategory from "@/components/widget/SelectWorkspaceCategory";
 import { Today } from "@/components/widget/Today";
 import VideoPlayer from "@/components/widget/VideoPlayer";
-import { Interface__FormattedTableRow } from "@/constants/interfaces";
+import { FormattedTableRow } from "@/constants/interfaces";
 import { OPTIONS_RELIGION } from "@/constants/selectOptions";
 import { MENU_ICON_BOX_SIZE } from "@/constants/styles";
 import useLang from "@/context/useLang";
@@ -46,9 +46,8 @@ import useRequest from "@/hooks/useRequest";
 import { back } from "@/utils/client";
 import { capitalize } from "@/utils/string";
 import { HStack, Icon, SimpleGrid } from "@chakra-ui/react";
-import { IconPencilMinus, IconRestore, IconTrash } from "@tabler/icons-react";
 import { useFormik } from "formik";
-import { TrashIcon } from "lucide-react";
+import { PencilIcon, RefreshCcwDotIcon, TrashIcon } from "lucide-react";
 import { useState } from "react";
 import * as yup from "yup";
 
@@ -583,15 +582,15 @@ const DemoDataTable = () => {
     rowOptions: [
       () => ({
         label: "Edit",
-        icon: <IconPencilMinus stroke={1.5} />,
+        icon: PencilIcon,
         onClick: () => console.log("Edit"),
       }),
       () => ({
         label: "Restore",
-        icon: <IconRestore stroke={1.5} />,
+        icon: RefreshCcwDotIcon,
         onClick: () => console.log("Restore"),
       }),
-      (row: Interface__FormattedTableRow<any>) => ({
+      (row: FormattedTableRow<any>) => ({
         override: (
           <Delete
             deleteIds={[row.data.id]}
@@ -604,12 +603,12 @@ const DemoDataTable = () => {
     batchOptions: [
       (ids: string[]) => ({
         label: "Restore",
-        icon: <IconRestore stroke={1.5} />,
+        icon: RefreshCcwDotIcon,
         onClick: () => console.log("Restore", ids),
       }),
       (ids: string[]) => ({
         label: "Delete",
-        icon: <IconTrash stroke={1.5} />,
+        icon: TrashIcon,
         menuItemProps: { color: "fg.error" },
         onClick: () => console.log("Delete", ids),
       }),

@@ -1,4 +1,4 @@
-import { Btn } from "@/components/ui/btn";
+import { Btn, BtnProps } from "@/components/ui/btn";
 import { CContainer } from "@/components/ui/c-container";
 import {
   MenuContent,
@@ -11,15 +11,22 @@ import { P } from "@/components/ui/p";
 import { AppIcon } from "@/components/widget/AppIcon";
 import { ConfirmationDisclosureTrigger } from "@/components/widget/ConfirmationDisclosure";
 import { DotIndicator } from "@/components/widget/Indicator";
-import { Props__BatchOptions } from "@/constants/props";
+import { BatchOptionsTableOptionGenerator } from "@/constants/interfaces";
 import useLang from "@/context/useLang";
 import { useThemeConfig } from "@/context/useThemeConfig";
-import { Icon } from "@chakra-ui/react";
+import { MenuRootProps } from "@chakra-ui/react";
 import { EllipsisIcon } from "lucide-react";
-
 import { Fragment } from "react";
-const ICON_BOX_SIZE = "18px";
 
+export interface Props__BatchOptions extends BtnProps {
+  selectedRows: any[];
+  clearSelectedRows: () => void;
+  batchOptions?: BatchOptionsTableOptionGenerator[];
+  allRowsSelected: boolean;
+  handleSelectAllRows: (isChecked: boolean) => void;
+  tableContainerRef?: React.RefObject<HTMLDivElement | null>;
+  menuRootProps?: Omit<MenuRootProps, "children">;
+}
 export const BatchOptions = (props: Props__BatchOptions) => {
   // Props
   const {
@@ -126,7 +133,7 @@ export const BatchOptions = (props: Props__BatchOptions) => {
                   justifyContent="space-between"
                 >
                   {label}
-                  {icon && <Icon boxSize={ICON_BOX_SIZE}>{icon}</Icon>}
+                  {icon && <AppIcon icon={icon} />}
                 </MenuItem>
               </ConfirmationDisclosureTrigger>
             );
@@ -148,7 +155,7 @@ export const BatchOptions = (props: Props__BatchOptions) => {
               {...menuItemProps}
             >
               {label}
-              {icon && <Icon boxSize={ICON_BOX_SIZE}>{icon}</Icon>}
+              {icon && <AppIcon icon={icon} />}
             </MenuItem>
           );
         })}

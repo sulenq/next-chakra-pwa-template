@@ -2,10 +2,10 @@
 
 import { CContainer } from "@/components/ui/c-container";
 import { P } from "@/components/ui/p";
-import { Props__FeedbackState } from "@/constants/props";
+import { FeedbackStateProps } from "@/components/widget/FeedbackState";
 import useLang from "@/context/useLang";
 
-export default function FeedbackNotFound(props: Props__FeedbackState) {
+export default function FeedbackNotFound(props: FeedbackStateProps) {
   // Props
   const { children, ...restProps } = props;
 

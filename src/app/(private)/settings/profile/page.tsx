@@ -64,12 +64,12 @@ import {
 import React, { useEffect, useRef, useState } from "react";
 import * as yup from "yup";
 
-interface Props__AvatarInputDisclosureTrigger {
+interface AvatarInputDisclosureTriggerProps {
   children: React.ReactElement<any>;
   formik: any;
   user?: Interface__User;
 }
-const AvatarUploadTrigger = (props: Props__AvatarInputDisclosureTrigger) => {
+const AvatarUploadTrigger = (props: AvatarInputDisclosureTriggerProps) => {
   // Props
   const { children, formik, user } = props;
 
@@ -128,10 +128,10 @@ const AvatarUploadTrigger = (props: Props__AvatarInputDisclosureTrigger) => {
   );
 };
 
-interface Props__PersonalInformation {
+interface PersonalInformationProps {
   initialData?: Interface__User;
 }
-const PersonalInformation = (props: Props__PersonalInformation) => {
+const PersonalInformation = (props: PersonalInformationProps) => {
   // Props
   const { initialData, ...restProps } = props;
 

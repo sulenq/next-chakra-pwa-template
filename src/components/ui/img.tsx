@@ -2,11 +2,21 @@
 
 import { CContainer } from "@/components/ui/c-container";
 import { SVGS_PATH } from "@/constants/paths";
-import { Props__Img } from "@/constants/props";
-import Image from "next/image";
-import { useState, forwardRef } from "react";
+import { StackProps } from "@chakra-ui/react";
+import Image, { ImageProps } from "next/image";
+import { forwardRef, useState } from "react";
 
-export const Img = forwardRef<HTMLImageElement, Props__Img>((props, ref) => {
+export interface ImgProps extends StackProps {
+  src?: string;
+  alt?: string;
+  objectFit?: string;
+  objectPos?: string;
+  fluid?: boolean;
+  fallbackSrc?: string;
+  wide?: boolean;
+  imageProps?: Omit<ImageProps, "src" | "width" | "height" | "alt">;
+}
+export const Img = forwardRef<HTMLImageElement, ImgProps>((props, ref) => {
   const {
     src,
     alt,

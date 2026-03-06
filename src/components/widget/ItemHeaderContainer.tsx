@@ -1,6 +1,6 @@
 import { HStack, StackProps } from "@chakra-ui/react";
 
-interface Props extends StackProps {
+interface ItemHeaderContainerProps extends StackProps {
   borderless?: boolean;
   withUtils?: boolean;
 }
@@ -9,7 +9,7 @@ export const ItemHeaderContainer = ({
   borderless = false,
   withUtils = false,
   ...restProps
-}: Props) => {
+}: ItemHeaderContainerProps) => {
   return (
     <HStack
       minH={"50px"}

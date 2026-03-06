@@ -1,4 +1,4 @@
-import { Btn } from "@/components/ui/btn";
+import { Btn, BtnProps } from "@/components/ui/btn";
 import { CContainer } from "@/components/ui/c-container";
 import { CSpinner } from "@/components/ui/c-spinner";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -19,7 +19,7 @@ import FeedbackNotFound from "@/components/widget/FeedbackNotFound";
 import FeedbackRetry from "@/components/widget/FeedbackRetry";
 import { DotIndicator } from "@/components/widget/Indicator";
 import { Interface__SelectOption } from "@/constants/interfaces";
-import { Props__SelectInput } from "@/constants/props";
+import { ButtonVariant, DisclosureSizes } from "@/constants/types";
 import useLang from "@/context/useLang";
 import { useThemeConfig } from "@/context/useThemeConfig";
 import usePopDisclosure from "@/hooks/usePopDisclosure";
@@ -161,6 +161,22 @@ const SelectOptions = (props: SelectOptionsProps) => {
   );
 };
 
+export interface Props__SelectInput extends Omit<BtnProps, "onChange"> {
+  id: string;
+  title?: string;
+  inputValue?: Interface__SelectOption[] | null;
+  onChange?: (inputValue: Props__SelectInput["inputValue"]) => void;
+  loading?: boolean;
+  error?: any;
+  selectOptions?: Props__SelectInput["inputValue"];
+  placeholder?: string;
+  invalid?: boolean;
+  required?: boolean;
+  multiple?: boolean;
+  fetch?: () => void;
+  disclosureSize?: DisclosureSizes;
+  variant?: ButtonVariant;
+}
 export const SelectInput = (props: Props__SelectInput) => {
   // Props
   const {

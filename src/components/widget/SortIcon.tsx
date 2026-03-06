@@ -1,9 +1,13 @@
-import { Props__SortIcon } from "@/constants/props";
 import { useThemeConfig } from "@/context/useThemeConfig";
-import { Icon, VStack } from "@chakra-ui/react";
+import { Icon, IconProps, VStack } from "@chakra-ui/react";
 import { IconCaretDownFilled, IconCaretUpFilled } from "@tabler/icons-react";
 
-export const SortIcon = (props: Props__SortIcon) => {
+export interface SortIconProps extends IconProps {
+  columnIndex: number;
+  sortColumnIdx?: number;
+  direction: "asc" | "desc";
+}
+export const SortIcon = (props: SortIconProps) => {
   // Props
   const { columnIndex, sortColumnIdx, direction, ...restProps } = props;
 

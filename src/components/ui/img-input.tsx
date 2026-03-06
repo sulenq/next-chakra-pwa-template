@@ -1,7 +1,7 @@
 "use client";
 
 import { CContainer } from "@/components/ui/c-container";
-import { InputComponent } from "@/components/ui/file-input";
+import { FileInputComponent, FileInputProps } from "@/components/ui/file-input";
 import { Img } from "@/components/ui/img";
 import { P } from "@/components/ui/p";
 import { FileItem } from "@/components/widget/FIleItem";
@@ -9,7 +9,6 @@ import { HScroll } from "@/components/widget/HScroll";
 import { LucideIcon } from "@/components/widget/Icon";
 import { ImgViewer } from "@/components/widget/ImgViewer";
 import { Interface__StorageFile } from "@/constants/interfaces";
-import { Props__FileInput } from "@/constants/props";
 import useLang from "@/context/useLang";
 import { useThemeConfig } from "@/context/useThemeConfig";
 import { isEmptyArray } from "@/utils/array";
@@ -18,7 +17,7 @@ import { Center, Circle, HStack, useFieldContext } from "@chakra-ui/react";
 import { TrashIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 
-export const ImgInput = (props: Props__FileInput) => {
+export const ImgInput = (props: FileInputProps) => {
   // Props
   const {
     id,
@@ -142,7 +141,7 @@ export const ImgInput = (props: Props__FileInput) => {
         </CContainer>
       )}
 
-      <InputComponent
+      <FileInputComponent
         imgInput
         dropzone
         existing={existing}
@@ -204,7 +203,7 @@ export const ImgInput = (props: Props__FileInput) => {
             </HScroll>
           </>
         )}
-      </InputComponent>
+      </FileInputComponent>
     </CContainer>
   );
 };

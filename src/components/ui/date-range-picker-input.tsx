@@ -1,14 +1,37 @@
 "use client";
 
 import { DatePickerInput } from "@/components/ui/date-picker-input";
-import { Props__DateRangePickerInput } from "@/constants/props";
+import { ButtonSize, DisclosureSizes } from "@/constants/types";
 import useLang from "@/context/useLang";
 import { useThemeConfig } from "@/context/useThemeConfig";
 import { capitalize } from "@/utils/string";
-import { Group, useFieldContext } from "@chakra-ui/react";
+import { Group, GroupProps, useFieldContext } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 
-export const DateRangePickerInput = (props: Props__DateRangePickerInput) => {
+export interface DateRangePickerInputProps extends Omit<
+  GroupProps,
+  "title" | "placeholder" | "onChange"
+> {
+  id?: string;
+  title?: {
+    startDate: string;
+    endDate: string;
+  };
+  inputValue?: {
+    startDate: string;
+    endDate: string;
+  } | null;
+  onChange?: (inputValue: DateRangePickerInputProps["inputValue"]) => void;
+  placeholder?: {
+    startDate: string;
+    endDate: string;
+  };
+  required?: boolean;
+  invalid?: boolean;
+  disclosureSize?: DisclosureSizes;
+  size?: ButtonSize;
+}
+export const DateRangePickerInput = (props: DateRangePickerInputProps) => {
   // Props
   const {
     id,

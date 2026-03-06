@@ -95,19 +95,19 @@ export interface Interface__PdfViewerUtils {
 
 // Data Table
 export interface Interface__DataProps {
-  headers?: Interface__FormattedTableHeader[];
-  rows?: Interface__FormattedTableRow[];
-  rowOptions?: Interface__RowOptionsTableOptionGenerator[];
-  batchOptions?: Interface__BatchOptionsTableOptionGenerator[];
+  headers?: FormattedTableHeader[];
+  rows?: FormattedTableRow[];
+  rowOptions?: RowOptionsTableOptionGenerator[];
+  batchOptions?: BatchOptionsTableOptionGenerator[];
 }
-export interface Interface__FormattedTableHeader {
+export interface FormattedTableHeader {
   th: string;
   sortable?: boolean;
   headerProps?: TableColumnHeaderProps;
   wrapperProps?: StackProps;
   align?: string;
 }
-export interface Interface__FormattedTableRow<T = any> {
+export interface FormattedTableRow<T = any> {
   id: string;
   idx: number;
   data: T;
@@ -125,7 +125,7 @@ export interface Interface__FormattedTableRow<T = any> {
 export interface Interface__TableOption {
   disabled?: boolean;
   label?: string;
-  icon?: any;
+  icon?: LucideIcon;
   onClick?: () => void;
   confirmation?: {
     id: string;
@@ -140,11 +140,11 @@ export interface Interface__TableOption {
   menuItemProps?: Partial<MenuItemProps>;
   override?: ReactNode;
 }
-export type Interface__RowOptionsTableOptionGenerator<T = any> = (
-  formattedRow: Interface__FormattedTableRow<T>,
+export type RowOptionsTableOptionGenerator<T = any> = (
+  formattedRow: FormattedTableRow<T>,
   overloads?: any,
 ) => Interface__TableOption | null | false;
-export type Interface__BatchOptionsTableOptionGenerator<T = string[]> = (
+export type BatchOptionsTableOptionGenerator<T = string[]> = (
   selectedRowIds: T,
   overloads?: any,
 ) => Interface__TableOption | null | false;

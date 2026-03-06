@@ -1,13 +1,16 @@
 "use client";
 
 import { P } from "@/components/ui/p";
-import { Props__ClockProps } from "@/constants/props";
 import useTimezone from "@/context/useTimezone";
 import { formatTime } from "@/utils/formatter";
-import { HStack } from "@chakra-ui/react";
+import { HStack, StackProps } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 
-export const Clock = (props: Props__ClockProps) => {
+export interface ClockPropsProps extends StackProps {
+  showSeconds?: boolean;
+  showTimezone?: boolean;
+}
+export const Clock = (props: ClockPropsProps) => {
   // Props
   const { showSeconds = false, showTimezone = false, ...restProps } = props;
 

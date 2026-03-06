@@ -36,7 +36,6 @@ import { ProfileMenuTrigger } from "@/components/widget/ProfileMenu";
 import { Today } from "@/components/widget/Today";
 import { APP } from "@/constants/_meta";
 import { OTHER_PRIVATE_NAV_GROUPS, PRIVATE_NAV_GROUPS } from "@/constants/navs";
-import { Props__Layout } from "@/constants/props";
 import {
   BASE_ICON_BOX_SIZE,
   DESKTOP_CONTENT_CONTAINER_BG,
@@ -1046,14 +1045,12 @@ const DesktopLayout = (props: any) => {
   );
 };
 
-export default function Layout(props: Props__Layout) {
-  const { ...restProps } = props;
-
+export default function Layout(props: any) {
   const iss = useIsSmScreenWidth();
 
   return (
     <AuthGuard>
-      <CContainer id="app-layout" h={"100dvh"} {...restProps}>
+      <CContainer id="app-layout" h={"100dvh"}>
         {iss ? <MobileLayout {...props} /> : <DesktopLayout {...props} />}
       </CContainer>
     </AuthGuard>

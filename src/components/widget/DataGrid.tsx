@@ -8,7 +8,7 @@ import { Limitation } from "@/components/widget/Limitation";
 import { Pagination } from "@/components/widget/Pagination";
 import {
   Interface__DataProps,
-  Interface__FormattedTableRow,
+  FormattedTableRow,
 } from "@/constants/interfaces";
 import { FIREFOX_SCROLL_Y_CLASS_PR_PREFIX } from "@/constants/styles";
 import { useThemeConfig } from "@/context/useThemeConfig";
@@ -19,11 +19,11 @@ import { Fragment, useRef, useState } from "react";
 
 interface RenderItemProps {
   item: any;
-  row: Interface__FormattedTableRow;
+  row: FormattedTableRow;
   idx: number;
   details: any;
   selectedRows: string[];
-  toggleRowSelection: (row: Interface__FormattedTableRow) => void;
+  toggleRowSelection: (row: FormattedTableRow) => void;
 }
 interface Props extends Omit<StackProps, "page"> {
   data?: any[];
@@ -81,7 +81,7 @@ export const DataGrid = (props: Props) => {
     setAllRowsSelected(false);
     setSelectedRows([]);
   }
-  function toggleRowSelection(row: Interface__FormattedTableRow) {
+  function toggleRowSelection(row: FormattedTableRow) {
     const rowId = row.id;
     setSelectedRows((ps) => {
       const isSelected = ps.includes(rowId);
@@ -159,7 +159,7 @@ export const DataGrid = (props: Props) => {
             gap={4}
           >
             {data?.map((item, idx) => {
-              const row = dataProps.rows?.[idx] as Interface__FormattedTableRow;
+              const row = dataProps.rows?.[idx] as FormattedTableRow;
               const details = row.columns.map((col, rowIdx) => {
                 const label = dataProps.headers?.[rowIdx].th;
 
