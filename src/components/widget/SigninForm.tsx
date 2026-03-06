@@ -120,13 +120,14 @@ const Signedin = (props: any) => {
 };
 
 const BasicAuthForm = (props: any) => {
+  const ID = "signin-form";
+
   // Props
   const { signinAPI, ...restProps } = props;
 
   // Contexts
   const { l } = useLang();
   const { themeConfig } = useThemeConfig();
-
   const setVerifiedAccessToken = useAuthMiddleware(
     (s) => s.setVerifiedAccessToken,
   );
@@ -183,7 +184,7 @@ const BasicAuthForm = (props: any) => {
 
   return (
     <CContainer {...restProps}>
-      <form id="signin_form" onSubmit={formik.handleSubmit}>
+      <form id={ID} onSubmit={formik.handleSubmit}>
         <FieldsetRoot disabled={loading}>
           <Field
             invalid={!!formik.errors.identifier}
@@ -238,7 +239,7 @@ const BasicAuthForm = (props: any) => {
 
         <Btn
           type="submit"
-          form="signin_form"
+          form={ID}
           w={"full"}
           mt={6}
           size={"lg"}

@@ -141,7 +141,7 @@ const PersonalInformation = (props: Props__PersonalInformation) => {
 
   // Hooks
   const { req, loading } = useRequest({
-    id: "update_personal_info",
+    id: "update-personal-info",
     loadingMessage: {
       title: `${l.saving} ${l.personal_information}`,
     },
@@ -206,7 +206,7 @@ const PersonalInformation = (props: Props__PersonalInformation) => {
         <ItemContainer>
           <CContainer p={4}>
             <form
-              id="personal_info_form"
+              id="personal-info-form"
               onSubmit={formik.handleSubmit}
               {...restProps}
             >
@@ -282,7 +282,7 @@ const PersonalInformation = (props: Props__PersonalInformation) => {
 
               <Btn
                 type="submit"
-                form={"personal_info_form"}
+                form={"personal-info-form"}
                 colorPalette={themeConfig.colorPalette}
               >
                 {l.save}
@@ -386,16 +386,11 @@ const AuthLog = () => {
                 setSearch(inputValue || "");
               }}
               inputValue={search}
-              queryKey={"q_my_log_auth"}
+              queryKey={"q-my-log-auth"}
             />
           </CContainer>
 
-          <CContainer
-            px={3}
-            // className={"scrollY"}
-            // h={"318px"}
-            // pr={`calc(8px - ${FIREFOX_SCROLL_Y_CLASS_PR_PREFIX})`}
-          >
+          <CContainer px={3}>
             {initialLoading && render.loading}
             {!initialLoading && (
               <>
@@ -538,16 +533,11 @@ const ActivityLog = () => {
                 setSearch(inputValue || "");
               }}
               inputValue={search}
-              queryKey={"q_my_log_auth"}
+              queryKey={"q-my-log-auth"}
             />
           </CContainer>
 
-          <CContainer
-            px={3}
-            // className={"scrollY"}
-            // h={"318px"}
-            // pr={`calc(8px - ${FIREFOX_SCROLL_Y_CLASS_PR_PREFIX})`}
-          >
+          <CContainer px={3}>
             {initialLoading && render.loading}
             {!initialLoading && (
               <>

@@ -39,7 +39,7 @@ export const DataGridDetailDisclosure = (props: any) => {
         <DisclosureBody pb={2}>
           <CContainer mb={2}>
             <SearchInput
-              queryKey="q_detail_grid"
+              queryKey={"q-detail-grid"}
               inputValue={search}
               onChange={(inputValue) => {
                 setSearch(inputValue);

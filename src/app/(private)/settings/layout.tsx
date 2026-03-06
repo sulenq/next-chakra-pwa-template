@@ -157,7 +157,7 @@ export default function Layout(props: Props__Layout) {
   }, [containerDimension]);
 
   return (
-    <PageContainer id="settings_route_container" ref={containerRef} p={0}>
+    <PageContainer id="settings-route-container" ref={containerRef} p={0}>
       {containerDimension.width > 0 && (
         <HStack align={"stretch"} flex={1} gap={0} overflowY={"auto"}>
           {/* Sidebar */}
@@ -184,7 +184,7 @@ export default function Layout(props: Props__Layout) {
                   onChange={(inputValue) => {
                     setSearch(inputValue || "");
                   }}
-                  queryKey={"q_settings_navs"}
+                  queryKey={"q-settings-navs"}
                 />
               </CContainer>
 

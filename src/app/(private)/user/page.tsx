@@ -92,7 +92,7 @@ const DataUtils = (props: any) => {
   return (
     <HStack w={"full"} {...restProps}>
       <SearchInput
-        queryKey="q_user"
+        queryKey="q-user"
         inputProps={{
           size: "sm",
         }}

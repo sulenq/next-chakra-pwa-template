@@ -58,7 +58,7 @@ export const ProfileMenu = (props: Props__MiniMyProfile) => {
   // Hooks
   const { colorMode, toggleColorMode } = useColorMode();
   const { req } = useRequest({
-    id: "sign_out",
+    id: "sign-out",
     loadingMessage: { ...l.loading_signout },
     successMessage: { ...l.success_signout },
   });

@@ -82,7 +82,7 @@ export const ImgInput = (props: Props__FileInput) => {
                   fileData={fileData}
                   actions={[
                     {
-                      type: "delete",
+                      type: "DELETE",
                       icon: <LucideIcon icon={TrashIcon} />,
                       onClick: () => {
                         setExisting((prev) =>
@@ -124,7 +124,7 @@ export const ImgInput = (props: Props__FileInput) => {
                   fileData={fileData}
                   actions={[
                     {
-                      type: "undo_delete",
+                      type: "UNDO_DELETE",
                       label: "Undo",
                       onClick: () => {
                         setExisting((prev) => [...prev, fileData]);

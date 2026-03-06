@@ -130,7 +130,7 @@ const ActivityLog = () => {
                 setSearch(inputValue || "");
               }}
               inputValue={search}
-              queryKey={"q_activity_auth"}
+              queryKey={"q-activity-auth"}
             />
           </CContainer>
 

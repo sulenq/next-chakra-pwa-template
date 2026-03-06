@@ -70,7 +70,7 @@ export const PeriodPickerInput = (props: PeriodPickerInputProps) => {
 
   // Hooks
   const { open, onOpen } = usePopDisclosure(
-    disclosureId(id || "period_picker_input"),
+    disclosureId(id || "period-picker-input"),
   );
 
   // States

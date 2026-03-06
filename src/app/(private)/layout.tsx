@@ -1053,7 +1053,7 @@ export default function Layout(props: Props__Layout) {
 
   return (
     <AuthGuard>
-      <CContainer id="app_layout" h={"100dvh"} {...restProps}>
+      <CContainer id="app-layout" h={"100dvh"} {...restProps}>
         {iss ? <MobileLayout {...props} /> : <DesktopLayout {...props} />}
       </CContainer>
     </AuthGuard>

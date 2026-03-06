@@ -100,7 +100,6 @@ const SelectOptions = (props: SelectOptionsProps) => {
                 w={"fit-content"}
               >
                 <Checkbox
-                  name="select_all"
                   onChange={(e: any) => {
                     setSelectAll(e.target.checked);
                     e.stopPropagation();

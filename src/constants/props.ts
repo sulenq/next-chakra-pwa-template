@@ -212,7 +212,7 @@ export interface Props__FileItem extends StackProps {
   fileData: any;
   idx?: number;
   actions?: {
-    type: "remove" | "delete" | "undo_delete";
+    type: "REMOVE" | "DELETE" | "UNDO_DELETE";
     onClick: () => void;
     label?: string;
     icon?: React.ReactNode;

@@ -95,7 +95,7 @@ const APIKeys = (props: any) => {
           border={"1px solid"}
           borderColor={"border.muted"}
         >
-          <form id="api_keys_form" onSubmit={formik.handleSubmit}>
+          <form id={"api-keys-form"} onSubmit={formik.handleSubmit}>
             <FieldsetRoot disabled={loading}>
               <Field
                 label={"Mapbox Token"}
@@ -130,7 +130,7 @@ const APIKeys = (props: any) => {
           <HStack justify={"end"} mt={8}>
             <Btn
               type="submit"
-              form="api_keys_form"
+              form="api-keys-form"
               colorPalette={themeConfig.colorPalette}
             >
               {l.save}

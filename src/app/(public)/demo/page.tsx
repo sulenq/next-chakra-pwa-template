@@ -785,7 +785,7 @@ const DemoIndexRoute = () => {
               ))}
             </HStack>
 
-            <form id="test" onSubmit={formik.handleSubmit}>
+            <form id={"test"} onSubmit={formik.handleSubmit}>
               <CContainer gap={4}>
                 <Field invalid={!!formik.errors.string}>
                   <StringInput
@@ -811,7 +811,7 @@ const DemoIndexRoute = () => {
                     onChange={(input) => {
                       formik.setFieldValue("search", input);
                     }}
-                    queryKey={"q_demo"}
+                    queryKey={"q-demo"}
                   />
                 </Field>
 

@@ -52,7 +52,7 @@ export function LoadingBar(props: BoxProps) {
 
   return (
     <Box
-      id="loading_bar"
+      id={"loading-bar"}
       w={"full"}
       h={"3px"}
       bg={"transparent"}

@@ -31,6 +31,8 @@ import { BackButton } from "./BackButton";
 import usePopDisclosure from "@/hooks/usePopDisclosure";
 import { disclosureId } from "@/utils/disclosure";
 
+const ID = "forgot-password";
+
 const Step1 = (props: any) => {
   // Props
   const { setStep, setEmail } = props;
@@ -41,7 +43,7 @@ const Step1 = (props: any) => {
 
   // Hooks
   const { req, loading } = useRequest({
-    id: "forgot_password",
+    id: ID,
   });
 
   // States
@@ -125,7 +127,7 @@ const Step2 = (props: any) => {
 
   // Hooks
   const { req, loading } = useRequest({
-    id: "forgot_password",
+    id: ID,
   });
 
   // States
@@ -229,7 +231,7 @@ const Step3 = (props: any) => {
 
   // Hooks
   const { req, loading } = useRequest({
-    id: "forgot_password",
+    id: ID,
   });
 
   // States

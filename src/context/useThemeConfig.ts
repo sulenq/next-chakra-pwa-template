@@ -15,7 +15,7 @@ interface ThemeConfigProps {
   };
 }
 
-const LOCAL_STORAGE_KEY = "theme_config";
+const LOCAL_STORAGE_KEY = "theme-config";
 
 export const DEFAULT: ThemeConfigProps = {
   colorPalette: COLOR_PALETTES[0].palette,

@@ -178,7 +178,7 @@ const Timezone = () => {
                 setSearch(inputValue || "");
               }}
               inputValue={search}
-              queryKey={"q_timezone_settings"}
+              queryKey={"q-timezone-settings"}
             />
           </CContainer>
 
