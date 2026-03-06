@@ -25,11 +25,11 @@ import { AppIcon } from "@/components/widget/AppIcon";
 import { AuthGuard } from "@/components/widget/AuthGuard";
 import { ClampText } from "@/components/widget/ClampText";
 import { Clock } from "@/components/widget/Clock";
-
 import FeedbackNotFound from "@/components/widget/FeedbackNotFound";
 import { HScroll } from "@/components/widget/HScroll";
 import { BottomIndicator, LeftIndicator } from "@/components/widget/Indicator";
 import { Logo } from "@/components/widget/Logo";
+import { MContainer } from "@/components/widget/MContainer";
 import { DesktopNavTooltip, MobileNavLink } from "@/components/widget/Navs";
 import { NavBreadcrumb, TopBar } from "@/components/widget/PageShell";
 import { ProfileMenuTrigger } from "@/components/widget/ProfileMenu";
@@ -424,9 +424,9 @@ const DesktopLayout = (props: any) => {
       <CContainer
         flexShrink={0}
         w={isNavsExpanded ? "250px" : "60px"}
+        bg={isNavsExpanded ? "bgContent" : DESKTOP_NAVS_BG}
         // borderRight={isNavsExpanded ? "" : "1px solid"}
         borderColor={"border.muted"}
-        bg={isNavsExpanded ? "bgContent" : DESKTOP_NAVS_BG}
         transition={"200ms"}
       >
         {/* Logo & Sidebar Toggle */}
@@ -507,7 +507,7 @@ const DesktopLayout = (props: any) => {
         )}
 
         {/* Navs List */}
-        <CContainer
+        <MContainer
           className="scrollY"
           overflowX={"clip"}
           flex={1}
@@ -960,7 +960,7 @@ const DesktopLayout = (props: any) => {
               </DesktopNavTooltip>
             </NavLink>
           </CContainer>
-        </CContainer>
+        </MContainer>
 
         {isNavsExpanded && (
           <CContainer px={3}>
