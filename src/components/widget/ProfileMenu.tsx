@@ -119,6 +119,23 @@ export const ProfileMenu = (props: Props__MiniMyProfile) => {
       <Divider />
 
       <CContainer gap={1} p={"6px"}>
+        {!ADM && (
+          <Btn
+            clicky={false}
+            variant={"ghost"}
+            px={2}
+            onClick={toggleColorMode}
+          >
+            <AppIcon icon={EclipseIcon} />
+            Dark Mode
+            <DotIndicator
+              color={colorMode === "dark" ? "fg.success" : "gray.muted"}
+              ml={"auto"}
+              mr={1}
+            />
+          </Btn>
+        )}
+
         {MENUS.map((menu) => {
           return (
             <NavLink key={menu.path} to={menu.path} w={"full"}>
@@ -139,23 +156,6 @@ export const ProfileMenu = (props: Props__MiniMyProfile) => {
             </NavLink>
           );
         })}
-
-        {!ADM && (
-          <Btn
-            clicky={false}
-            variant={"ghost"}
-            px={2}
-            onClick={toggleColorMode}
-          >
-            <AppIcon icon={EclipseIcon} />
-            Dark Mode
-            <DotIndicator
-              color={colorMode === "dark" ? "fg.success" : "gray.muted"}
-              ml={"auto"}
-              mr={1}
-            />
-          </Btn>
-        )}
 
         <ConfirmationDisclosureTrigger
           id="signout"
