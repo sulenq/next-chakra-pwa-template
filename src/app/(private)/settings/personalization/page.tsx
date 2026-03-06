@@ -218,7 +218,7 @@ const AccentColorSection = () => {
         >
           <SimpleGrid minChildWidth={"56px"} gap={2}>
             {COLOR_PALETTES.map((color, index) => {
-              const isActive = color.palette === themeConfig.colorPalette;
+              const isSelected = color.palette === themeConfig.colorPalette;
               const isColorPaletteGray = color.palette === "gray";
 
               return (
@@ -255,7 +255,7 @@ const AccentColorSection = () => {
                     {color.label}
                   </P> */}
 
-                    {isActive && (
+                    {isSelected && (
                       <DotIndicator
                         pos={"absolute"}
                         color={isColorPaletteGray ? "body" : "light"}
@@ -282,79 +282,16 @@ const RoundedSection = () => {
   // Refs
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // Component
-  const RoundedExampel = (props: any) => {
-    // Props
-    const { preset, isActive } = props;
-
-    // Utils
-    function handleOnClick() {
-      setThemeConfig({
-        ...themeConfig,
-        radii: {
-          component: preset.component,
-          container: preset.container,
-        },
-      });
-    }
-
-    return (
-      <CContainer
-        gap={2}
-        aspectRatio={1}
-        p={2}
-        rounded={preset.container}
-        border={"1px solid"}
-        borderColor={"border.emphasized"}
-        cursor={"pointer"}
-        onClick={handleOnClick}
-        pos={"relative"}
-      >
-        <HStack pl={1}>
-          <P>{preset.label}</P>
-
-          {isActive && <DotIndicator />}
-
-          <Circle
-            w={"24px"}
-            h={"24px"}
-            bg={"d1"}
-            border={"1px solid"}
-            borderColor={"border.muted"}
-            ml={"auto"}
-          />
-        </HStack>
-
-        <Box
-          flex={1}
-          rounded={preset.component}
-          border={"1px solid"}
-          borderColor={"border.muted"}
-          bg={"d1"}
-        />
-
-        <HStack justify={"end"}>
-          <Box
-            w={"30%"}
-            h={"30px"}
-            rounded={preset.component}
-            border={"1px solid"}
-            borderColor={"border.muted"}
-            bg={"d1"}
-          />
-
-          <Box
-            w={"30%"}
-            h={"30px"}
-            rounded={preset.component}
-            border={"1px solid"}
-            borderColor={"border.muted"}
-            bg={"d1"}
-          />
-        </HStack>
-      </CContainer>
-    );
-  };
+  // Utils
+  function handleOnClick(preset: (typeof ROUNDED_PRESETS)[number]) {
+    setThemeConfig((state) => ({
+      ...state,
+      radii: {
+        component: preset.component,
+        container: preset.container,
+      },
+    }));
+  }
 
   return (
     <ItemContainer ref={containerRef} borderless roundedless>
@@ -375,12 +312,68 @@ const RoundedSection = () => {
           borderColor={"border.muted"}
         >
           <SimpleGrid minChildWidth={"140px"} gap={4}>
-            {ROUNDED_PRESETS.map((item, index) => {
-              const isActive = item.component === themeConfig.radii.component;
+            {ROUNDED_PRESETS.map((preset, index) => {
+              const isSelected =
+                preset.component === themeConfig.radii.component;
 
               return (
-                <CContainer key={`${item.label}-${index}`}>
-                  <RoundedExampel preset={item} isActive={isActive} />
+                <CContainer key={`${preset.label}-${index}`}>
+                  <CContainer
+                    gap={2}
+                    aspectRatio={1}
+                    p={2}
+                    rounded={preset.container}
+                    border={"1px solid"}
+                    borderColor={"border.emphasized"}
+                    cursor={"pointer"}
+                    onClick={() => {
+                      handleOnClick(preset);
+                    }}
+                    pos={"relative"}
+                  >
+                    <HStack pl={1}>
+                      <P>{preset.label}</P>
+
+                      {isSelected && <DotIndicator />}
+
+                      <Circle
+                        w={"24px"}
+                        h={"24px"}
+                        bg={"d1"}
+                        border={"1px solid"}
+                        borderColor={"border.muted"}
+                        ml={"auto"}
+                      />
+                    </HStack>
+
+                    <Box
+                      flex={1}
+                      rounded={preset.component}
+                      border={"1px solid"}
+                      borderColor={"border.muted"}
+                      bg={"d1"}
+                    />
+
+                    <HStack justify={"end"}>
+                      <Box
+                        w={"30%"}
+                        h={"30px"}
+                        rounded={preset.component}
+                        border={"1px solid"}
+                        borderColor={"border.muted"}
+                        bg={"d1"}
+                      />
+
+                      <Box
+                        w={"30%"}
+                        h={"30px"}
+                        rounded={preset.component}
+                        border={"1px solid"}
+                        borderColor={"border.muted"}
+                        bg={"d1"}
+                      />
+                    </HStack>
+                  </CContainer>
                 </CContainer>
               );
             })}

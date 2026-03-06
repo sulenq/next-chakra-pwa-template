@@ -71,7 +71,7 @@ const Language = () => {
         >
           <HStack wrap={"wrap"}>
             {LANGUAGES.map((item, i) => {
-              const isActive = lang === item.key;
+              const isSelected = lang === item.key;
 
               return (
                 <Btn
@@ -82,7 +82,7 @@ const Language = () => {
                   rounded={themeConfig.radii.component}
                   variant={"ghost"}
                   justifyContent={"start"}
-                  color={isActive ? "" : NAVS_COLOR}
+                  color={isSelected ? "" : NAVS_COLOR}
                   onClick={() => {
                     setLang(item.key as Type__LanguageOptions);
                   }}
@@ -99,7 +99,7 @@ const Language = () => {
                     </chakra.span>
                   </Text>
 
-                  {isActive && <DotIndicator />}
+                  {isSelected && <DotIndicator />}
                 </Btn>
               );
             })}
@@ -190,7 +190,7 @@ const Timezone = () => {
                 {resolvedTimezones
                   .slice((page - 1) * limit, page * limit)
                   .map((tz, idx) => {
-                    const isActive = timeZone.key === tz.key;
+                    const isSelected = timeZone.key === tz.key;
 
                     return (
                       <Tooltip
@@ -202,7 +202,7 @@ const Timezone = () => {
                           variant={"ghost"}
                           justifyContent={"start"}
                           px={3}
-                          color={isActive ? "" : NAVS_COLOR}
+                          color={isSelected ? "" : NAVS_COLOR}
                           onClick={() => {
                             setTimeZone(tz);
                           }}
@@ -217,7 +217,7 @@ const Timezone = () => {
                             color={"fg.subtle"}
                           >{`${tz.localAbbr} (${tz.formattedOffset})`}</P>
 
-                          {isActive && <DotIndicator />}
+                          {isSelected && <DotIndicator />}
                         </Btn>
                       </Tooltip>
                     );
@@ -283,14 +283,14 @@ const DateFormat = () => {
         >
           <SimpleGrid columns={[1, 2, 3]} gap={2}>
             {DATE_FORMATS.map((item) => {
-              const isActive = item.key === dateFormat;
+              const isSelected = item.key === dateFormat;
 
               return (
                 <CContainer
                   key={item.key}
                   p={3}
                   rounded={themeConfig.radii.component}
-                  color={isActive ? "" : NAVS_COLOR}
+                  color={isSelected ? "" : NAVS_COLOR}
                   onClick={() => {
                     setDateFormat(item.key as Type__DateFormat);
                   }}
@@ -304,7 +304,7 @@ const DateFormat = () => {
                       {item.label}
                     </P>
 
-                    {isActive && <DotIndicator />}
+                    {isSelected && <DotIndicator />}
                   </HStack>
 
                   <P color={"fg.muted"} mb={2}>
@@ -353,14 +353,14 @@ const TimeFormat = () => {
         >
           <SimpleGrid columns={[1, 2]} gap={2}>
             {TIME_FORMATS.map((item) => {
-              const isActive = item.key === timeFormat;
+              const isSelected = item.key === timeFormat;
 
               return (
                 <CContainer
                   key={item.key}
                   p={3}
                   rounded={themeConfig.radii.component}
-                  color={isActive ? "" : NAVS_COLOR}
+                  color={isSelected ? "" : NAVS_COLOR}
                   onClick={() => {
                     setTimeFormat(item.key);
                   }}
@@ -374,7 +374,7 @@ const TimeFormat = () => {
                       {item.label}
                     </P>
 
-                    {isActive && <DotIndicator />}
+                    {isSelected && <DotIndicator />}
                   </HStack>
 
                   <P>
@@ -416,14 +416,14 @@ const UOMFormat = () => {
         >
           <SimpleGrid columns={[1, 2, 3]} gap={2}>
             {UOM_FORMATS.map((item) => {
-              const isActive = item.key === UOM;
+              const isSelected = item.key === UOM;
 
               return (
                 <CContainer
                   key={item.key}
                   p={3}
                   rounded={themeConfig.radii.component}
-                  color={isActive ? "" : NAVS_COLOR}
+                  color={isSelected ? "" : NAVS_COLOR}
                   onClick={() => {
                     setUOM(item.key);
                   }}
@@ -437,7 +437,7 @@ const UOMFormat = () => {
                       {item.label}
                     </P>
 
-                    {isActive && <DotIndicator />}
+                    {isSelected && <DotIndicator />}
                   </HStack>
 
                   <P color={"fg.muted"} mb={2}>

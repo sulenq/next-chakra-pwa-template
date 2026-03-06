@@ -118,7 +118,7 @@ const SelectOptions = (props: SelectOptionsProps) => {
 
           <CContainer p={4} gap={2}>
             {resolvedSelectOptions?.map((o) => {
-              const isActive = selected?.some((s) => s.id === o.id);
+              const isSelected = selected?.some((s) => s.id === o.id);
 
               return (
                 <Btn
@@ -127,7 +127,7 @@ const SelectOptions = (props: SelectOptionsProps) => {
                   variant={"ghost"}
                   justifyContent={"start"}
                   size={"md"}
-                  color={isActive ? "" : NAVS_COLOR}
+                  color={isSelected ? "" : NAVS_COLOR}
                   onClick={() => {
                     if (!multiple) {
                       setSelected([o]);
@@ -148,9 +148,9 @@ const SelectOptions = (props: SelectOptionsProps) => {
                   <HStack w={"full"} justify={"space-between"}>
                     <P textAlign={"left"}>{o.label}</P>
 
-                    {isActive && <DotIndicator />}
+                    {isSelected && <DotIndicator />}
 
-                    {!isActive && multiple && <DotIndicator color={"d2"} />}
+                    {!isSelected && multiple && <DotIndicator color={"d2"} />}
                   </HStack>
                 </Btn>
               );

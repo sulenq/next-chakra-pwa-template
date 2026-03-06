@@ -16,6 +16,7 @@ interface ThemeConfigProps {
 }
 
 const LOCAL_STORAGE_KEY = "theme_config";
+
 export const DEFAULT: ThemeConfigProps = {
   colorPalette: COLOR_PALETTES[0].palette,
   primaryColor: `${COLOR_PALETTES[0].palette}.500`,
@@ -26,7 +27,11 @@ export const DEFAULT: ThemeConfigProps = {
 
 interface Props {
   themeConfig: ThemeConfigProps;
-  setThemeConfig: (config: Partial<ThemeConfigProps>) => void;
+  setThemeConfig: (
+    config:
+      | Partial<ThemeConfigProps>
+      | ((prev: ThemeConfigProps) => Partial<ThemeConfigProps>),
+  ) => void;
 }
 
 export const useThemeConfig = create<Props>((set) => {
@@ -37,8 +42,12 @@ export const useThemeConfig = create<Props>((set) => {
     themeConfig: initial,
     setThemeConfig: (config) => {
       set((state) => {
-        const newConfig = { ...state.themeConfig, ...config };
+        const update =
+          typeof config === "function" ? config(state.themeConfig) : config;
+
+        const newConfig = { ...state.themeConfig, ...update };
         setStorage(LOCAL_STORAGE_KEY, JSON.stringify(newConfig));
+
         return { themeConfig: newConfig };
       });
     },

@@ -38,7 +38,7 @@ export const Limitation = (props: Props_LimitationTableData) => {
 
       <MenuContent w={"120px"}>
         {limitOptions.map((l) => {
-          const isActive = limit === l;
+          const isSelected = limit === l;
 
           return (
             <MenuItem
@@ -50,7 +50,7 @@ export const Limitation = (props: Props_LimitationTableData) => {
               justifyContent={"space-between"}
             >
               {l}
-              {isActive && <DotIndicator mr={"2px"} />}
+              {isSelected && <DotIndicator mr={"2px"} />}
             </MenuItem>
           );
         })}
