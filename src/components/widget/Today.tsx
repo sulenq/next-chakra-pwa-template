@@ -12,13 +12,13 @@ export const Today = (props: Props__Today) => {
   const { dateVariant = "numeric", ...restProps } = props;
 
   // Contexts
-  const { l } = useLang();
+  const { t } = useLang();
   const tz = useTimezone((s) => s.timeZone);
   const dateFormat = useDateFormat((s) => s.dateFormat);
 
   return (
     <P {...restProps}>
-      {formatDate(new Date().toISOString(), l, {
+      {formatDate(new Date().toISOString(), t, {
         variant: dateVariant,
         dateFormat: dateFormat,
         timezoneKey: tz.key,

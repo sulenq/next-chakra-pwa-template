@@ -71,5 +71,5 @@ export const maskEmail = (email?: string) => {
 };
 
 export const getL = () => {
-  return useLang.getState().l;
+  return useLang.getState().t;
 };

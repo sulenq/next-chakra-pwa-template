@@ -33,7 +33,7 @@ export const ImgViewer = (props: Props) => {
   } = props;
 
   // Contexts
-  const { l } = useLang();
+  const { t } = useLang();
 
   // Hooks
   const { open, onOpen } = usePopDisclosure(disclosureId(id || `${src}`));
@@ -95,7 +95,7 @@ export const ImgViewer = (props: Props) => {
                     colorPalette={"light"}
                     pr={3}
                   >
-                    {l.open}
+                    {t.open}
                     <Icon>
                       <IconArrowUpRight stroke={1.5} />
                     </Icon>

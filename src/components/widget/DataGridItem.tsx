@@ -52,7 +52,7 @@ export const DataGridItem = (props: Props) => {
   } = props;
 
   // Contexts
-  const { l } = useLang();
+  const { t } = useLang();
   const { themeConfig } = useThemeConfig();
 
   // States
@@ -145,7 +145,7 @@ export const DataGridItem = (props: Props) => {
             size={"sm"}
             rounded={themeConfig.radii.component}
           >
-            {l.view_more}
+            {t.view_more}
           </Btn>
         </DataGridDetailDisclosureTrigger>
 

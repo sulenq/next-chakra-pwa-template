@@ -54,7 +54,7 @@ export const StringInput = forwardRef<HTMLInputElement, StringInputProps>(
     } = props;
 
     // Contexts
-    const { l } = useLang();
+    const { t } = useLang();
     const { themeConfig } = useThemeConfig();
     const fc = useFieldContext();
 
@@ -70,7 +70,7 @@ export const StringInput = forwardRef<HTMLInputElement, StringInputProps>(
     const disabled = fc?.disabled;
 
     // Derived Values
-    const resolvedPlaceholder = placeholder ?? l.text_input;
+    const resolvedPlaceholder = placeholder ?? t.text_input;
     const resolvedInvalid = invalid || fc?.invalid;
 
     // Utils
@@ -81,8 +81,8 @@ export const StringInput = forwardRef<HTMLInputElement, StringInputProps>(
       if (maxChar !== null && value.length > maxChar) {
         value = value.slice(0, maxChar);
         toaster.create({
-          title: l.info_max_char_reached.title,
-          description: interpolateString(l.info_max_char_reached.description, {
+          title: t.info_max_char_reached.title,
+          description: interpolateString(t.info_max_char_reached.description, {
             maxChar: maxChar,
           }),
         });

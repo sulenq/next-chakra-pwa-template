@@ -10,7 +10,7 @@ import { VStack } from "@chakra-ui/react";
 
 export default function Page() {
   // Contexts
-  const { l } = useLang();
+  const { t } = useLang();
 
   // States
   const variantNumber = Math.floor(Math.random() * 16) + 1;
@@ -27,7 +27,7 @@ export default function Page() {
           /> */}
 
           <P fontSize={"lg"} fontWeight={"medium"} textAlign={"center"}>
-            {interpolateString(pluckString(l, `msg_welcome_to_the_app`), {
+            {interpolateString(pluckString(t, `msg_welcome_to_the_app`), {
               appName: APP.name,
             })}
           </P>
@@ -38,7 +38,7 @@ export default function Page() {
             color={"ibody"}
             textAlign={"center"}
           >
-            {pluckString(l, `msg_welcome_${variantNumber}`)}
+            {pluckString(t, `msg_welcome_${variantNumber}`)}
           </P>
         </VStack>
 

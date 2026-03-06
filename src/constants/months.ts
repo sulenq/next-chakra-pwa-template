@@ -1,16 +1,16 @@
-export const getMonthNames = (l: any) => {
+export const getMonthNames = (t: any) => {
   return [
-    l.january,
-    l.february,
-    l.march,
-    l.april,
-    l.may,
-    l.june,
-    l.july,
-    l.august,
-    l.september,
-    l.october,
-    l.november,
-    l.december,
+    t.january,
+    t.february,
+    t.march,
+    t.april,
+    t.may,
+    t.june,
+    t.july,
+    t.august,
+    t.september,
+    t.october,
+    t.november,
+    t.december,
   ];
 };

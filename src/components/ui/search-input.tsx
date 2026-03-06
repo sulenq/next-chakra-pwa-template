@@ -61,7 +61,7 @@ export default function SearchInput(props: SearchInputProps) {
   } = props;
 
   // Contexts
-  const { l } = useLang();
+  const { t } = useLang();
 
   // Hooks
   const searchParams = useSearchParams();
@@ -74,8 +74,8 @@ export default function SearchInput(props: SearchInputProps) {
 
   // Derived Values
   const resolvedPlacholder = additionalPlaceholder
-    ? `${l.search} ${additionalPlaceholder}`
-    : (placeholder ?? l.search);
+    ? `${t.search} ${additionalPlaceholder}`
+    : (placeholder ?? t.search);
 
   // Utils
   function handleChange(inputValue: string) {
@@ -106,7 +106,7 @@ export default function SearchInput(props: SearchInputProps) {
   }, [searchTemp, queryKey]);
 
   return (
-    <Tooltip content={inputValue || tooltipLabel || placeholder || l.search}>
+    <Tooltip content={inputValue || tooltipLabel || placeholder || t.search}>
       <InputGroup
         w="full"
         startElement={

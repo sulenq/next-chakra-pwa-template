@@ -11,7 +11,7 @@ import { HStack, VStack } from "@chakra-ui/react";
 
 export default function MaintenanceRoute() {
   // Contexts
-  const { l } = useLang();
+  const { t } = useLang();
   const { themeConfig } = useThemeConfig();
 
   return (
@@ -30,12 +30,12 @@ export default function MaintenanceRoute() {
         </P>
 
         <P textAlign={"center"} mb={4} maxW={"450px"} color={"fg.subtle"}>
-          {l.maintenance_route.description}
+          {t.maintenance_route.description}
         </P>
 
         <NavLink to={"/"} w={"fit"}>
           <Btn colorPalette={themeConfig.colorPalette} px={8}>
-            {l.main_page}
+            {t.main_page}
           </Btn>
         </NavLink>
       </VStack>

@@ -69,7 +69,7 @@ export const TimePickerInput = (props: TimePickerInputProps) => {
   // Contexts
   const fc = useFieldContext();
   const { themeConfig } = useThemeConfig();
-  const { l } = useLang();
+  const { t } = useLang();
 
   // Hooks
   const { open, onOpen } = usePopDisclosure(
@@ -108,7 +108,7 @@ export const TimePickerInput = (props: TimePickerInputProps) => {
   const userTz = getUserTimezone();
 
   // Derived Values
-  const resolvedPlaceholder = placeholder || l.select_time;
+  const resolvedPlaceholder = placeholder || t.select_time;
   const resolvedInvalid = invalid ?? fc?.invalid;
 
   // Utils
@@ -244,7 +244,7 @@ export const TimePickerInput = (props: TimePickerInputProps) => {
         <DisclosureContent>
           <DisclosureHeader>
             <DisclosureHeaderContent
-              title={capitalizeWords(title || l.select_time)}
+              title={capitalizeWords(title || t.select_time)}
             />
           </DisclosureHeader>
 
@@ -528,7 +528,7 @@ export const TimePickerInput = (props: TimePickerInputProps) => {
               disabled={required ? !selected : false}
               colorPalette={themeConfig.colorPalette}
             >
-              {l.confirm}
+              {t.confirm}
             </Btn>
           </DisclosureFooter>
         </DisclosureContent>

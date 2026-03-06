@@ -129,46 +129,46 @@ const Overview = (props: OverviewProps) => {
   const { data, ...restProps } = props;
 
   // Contexts
-  const { l } = useLang();
+  const { t } = useLang();
   const { isSmContainer } = usePageContainerContext();
 
   // States
   const resolvedData = [
     {
       icon: UsersIcon,
-      title: l.total_users.title,
-      description: l.total_users.description,
+      title: t.total_users.title,
+      description: t.total_users.description,
       value: formatNumber(data.totalUsers),
     },
     {
       icon: FilesIcon,
-      title: l.total_document.title,
-      description: l.total_document.description,
+      title: t.total_document.title,
+      description: t.total_document.description,
       value: formatNumber(data.totalDocument),
     },
     {
       icon: MessageCircleIcon,
-      title: l.total_query_this_day.title,
-      description: l.total_query_this_day.description,
+      title: t.total_query_this_day.title,
+      description: t.total_query_this_day.description,
       value: formatNumber(data.totalQueryThisDay),
     },
     {
       icon: GitCompareIcon,
-      title: l.total_document_compared.title,
-      description: l.total_document_compared.description,
+      title: t.total_document_compared.title,
+      description: t.total_document_compared.description,
       value: formatNumber(data.totalDOcumentCompared),
     },
     {
       icon: CheckCheckIcon,
-      title: l.answer_success_rate.title,
-      description: l.answer_success_rate.description,
+      title: t.answer_success_rate.title,
+      description: t.answer_success_rate.description,
       value: `${data.AnswerSuccessRate}%`,
     },
     {
       icon: ClockFadingIcon,
-      title: l.avg_response_time.title,
-      description: l.avg_response_time.description,
-      value: formatDuration(data.AvgResponseTime, l),
+      title: t.avg_response_time.title,
+      description: t.avg_response_time.description,
+      value: formatDuration(data.AvgResponseTime, t),
     },
   ];
 
@@ -202,7 +202,7 @@ const Chart1 = (props: any) => {
   const { data, year, ...restProps } = props;
 
   // Contexts
-  const { l } = useLang();
+  const { t } = useLang();
   const { themeConfig } = useThemeConfig();
 
   // Refs
@@ -247,7 +247,7 @@ const Chart1 = (props: any) => {
       const absoluteIndex = clampedOffset + idx;
 
       const getXAxisLabel = () => {
-        const monthNames = getMonthNames(l);
+        const monthNames = getMonthNames(t);
 
         if (timeFrame === "3M") {
           const slice = monthNames.slice(
@@ -423,7 +423,7 @@ const Chart1 = (props: any) => {
                 stroke={chart.color("border")}
               >
                 <Label
-                  value={capitalizeWords(l.yearly_sales)}
+                  value={capitalizeWords(t.yearly_sales)}
                   angle={-90}
                   position="insideLeft"
                   textAnchor="middle"

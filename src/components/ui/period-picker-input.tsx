@@ -64,7 +64,7 @@ export const PeriodPickerInput = (props: PeriodPickerInputProps) => {
   } = props;
 
   // Contexts
-  const { l } = useLang();
+  const { t } = useLang();
   const { themeConfig } = useThemeConfig();
   const fc = useFieldContext();
 
@@ -77,7 +77,7 @@ export const PeriodPickerInput = (props: PeriodPickerInputProps) => {
   const [selected, setSelected] = useState<Period>(DEFAULT);
 
   // Constants
-  const monthNames = getMonthNames(l);
+  const monthNames = getMonthNames(t);
 
   // Derived Values
   const isSubtleVariant = variant === "subtle";
@@ -86,7 +86,7 @@ export const PeriodPickerInput = (props: PeriodPickerInputProps) => {
   const isIncomplete =
     (selected.year === null && selected.month !== null) ||
     (selected.year !== null && selected.month === null);
-  const resolvedPlaceholder = placeholder || l.select_period;
+  const resolvedPlaceholder = placeholder || t.select_period;
   const resolvedInvalid = invalid ?? fc?.invalid;
 
   // Utils
@@ -119,7 +119,7 @@ export const PeriodPickerInput = (props: PeriodPickerInputProps) => {
       <Tooltip
         content={
           !isEmpty
-            ? formatDate(new Date(selected.year!, selected.month!), l, {
+            ? formatDate(new Date(selected.year!, selected.month!), t, {
                 variant: "monthYear",
               })
             : resolvedPlaceholder
@@ -146,7 +146,7 @@ export const PeriodPickerInput = (props: PeriodPickerInputProps) => {
 
           {inputValue && (
             <P>
-              {formatDate(new Date(inputValue.year!, inputValue.month!), l, {
+              {formatDate(new Date(inputValue.year!, inputValue.month!), t, {
                 variant: "monthYear",
                 timezoneKey: getLocalTimezone().key,
               })}
@@ -163,17 +163,17 @@ export const PeriodPickerInput = (props: PeriodPickerInputProps) => {
         <DisclosureContent>
           <DisclosureHeader>
             <DisclosureHeaderContent
-              title={capitalizeWords(title || l.select_period)}
+              title={capitalizeWords(title || t.select_period)}
             />
           </DisclosureHeader>
 
           <DisclosureBody>
             <FieldsetRoot>
               <Field
-                label={l.month}
+                label={t.month}
                 invalid={required && selected.month === null}
                 errorText={
-                  required && selected.month === null ? l.msg_required_form : ""
+                  required && selected.month === null ? t.msg_required_form : ""
                 }
               >
                 <SimpleGrid w={"full"} columns={2} gap={2}>
@@ -202,10 +202,10 @@ export const PeriodPickerInput = (props: PeriodPickerInputProps) => {
               </Field>
 
               <Field
-                label={l.year}
+                label={t.year}
                 invalid={required && selected.year === null}
                 errorText={
-                  required && selected.year === null ? l.msg_required_form : ""
+                  required && selected.year === null ? t.msg_required_form : ""
                 }
               >
                 <NumInput
@@ -238,7 +238,7 @@ export const PeriodPickerInput = (props: PeriodPickerInputProps) => {
               colorPalette={themeConfig.colorPalette}
               disabled={(required && isEmpty) || isIncomplete}
             >
-              {l.confirm}
+              {t.confirm}
             </Btn>
           </DisclosureFooter>
         </DisclosureContent>

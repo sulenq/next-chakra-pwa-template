@@ -29,7 +29,7 @@ const APIKeys = (props: any) => {
   const { apiKeys, ...restProps } = props;
 
   // Contexts
-  const { l } = useLang();
+  const { t } = useLang();
   const { themeConfig } = useThemeConfig();
   const setRt = useRenderTrigger((s) => s.setRt);
 
@@ -46,8 +46,8 @@ const APIKeys = (props: any) => {
       tinyMceToken: "",
     },
     validationSchema: yup.object().shape({
-      mapboxToken: yup.string().required(l.msg_required_form),
-      tinyMceToken: yup.string().required(l.msg_required_form),
+      mapboxToken: yup.string().required(t.msg_required_form),
+      tinyMceToken: yup.string().required(t.msg_required_form),
     }),
     onSubmit: (values) => {
       // console.debug(values);
@@ -133,7 +133,7 @@ const APIKeys = (props: any) => {
               form="api-keys-form"
               colorPalette={themeConfig.colorPalette}
             >
-              {l.save}
+              {t.save}
             </Btn>
           </HStack>
         </CContainer>

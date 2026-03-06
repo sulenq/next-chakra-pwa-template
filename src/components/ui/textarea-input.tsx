@@ -22,7 +22,7 @@ export const TextareaInput = forwardRef<
   HTMLTextAreaElement,
   TextareaInputProps
 >((props, ref) => {
-  const { l } = useLang();
+  const { t } = useLang();
   const { themeConfig } = useThemeConfig();
 
   // Props
@@ -31,7 +31,7 @@ export const TextareaInput = forwardRef<
     onChange,
     inputValue,
     invalid,
-    placeholder = l.text_input,
+    placeholder = t.text_input,
     maxChar = null,
     variant = "outline",
     ...restProps
@@ -51,8 +51,8 @@ export const TextareaInput = forwardRef<
     if (maxChar !== null && value.length > maxChar) {
       value = value.slice(0, maxChar);
       toaster.create({
-        title: l.info_max_char_reached.title,
-        description: interpolateString(l.info_max_char_reached.description, {
+        title: t.info_max_char_reached.title,
+        description: interpolateString(t.info_max_char_reached.description, {
           maxChar: maxChar,
         }),
       });

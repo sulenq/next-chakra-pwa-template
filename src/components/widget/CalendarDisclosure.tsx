@@ -42,7 +42,7 @@ export const CalendarDisclosure = (props: any) => {
   const { open, ...restProps } = props;
 
   // Contexts
-  const { l } = useLang();
+  const { t } = useLang();
 
   // States
   const [selected, setSelected] = useState<Date[]>([]);
@@ -58,7 +58,7 @@ export const CalendarDisclosure = (props: any) => {
     <DisclosureRoot open={open} lazyLoad size={"xs"} {...restProps}>
       <DisclosureContent>
         <DisclosureHeader>
-          <DisclosureHeaderContent title={l.calendar} />
+          <DisclosureHeaderContent title={t.calendar} />
         </DisclosureHeader>
 
         <DisclosureBody>

@@ -10,7 +10,7 @@ export default function FeedbackNotFound(props: Props__FeedbackState) {
   const { children, ...restProps } = props;
 
   // Hooks
-  const { l } = useLang();
+  const { t } = useLang();
 
   return (
     <CContainer
@@ -23,7 +23,7 @@ export default function FeedbackNotFound(props: Props__FeedbackState) {
       gap={1}
       {...restProps}
     >
-      <P textAlign={"center"}>{l.alert_not_found.title}</P>
+      <P textAlign={"center"}>{t.alert_not_found.title}</P>
 
       {children}
     </CContainer>

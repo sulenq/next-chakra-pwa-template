@@ -28,7 +28,7 @@ import { useState } from "react";
 
 const ActivityLog = () => {
   // Contexts
-  const { l } = useLang();
+  const { t } = useLang();
 
   // States
   const [search, setSearch] = useState("");
@@ -97,7 +97,7 @@ const ActivityLog = () => {
                 <P>{formatActivityLog(log)}</P>
 
                 <P color={"fg.subtle"}>
-                  {formatDate(log?.createdAt, l, {
+                  {formatDate(log?.createdAt, t, {
                     variant: "dayShortMonthYear",
 
                     withTime: true,
@@ -118,7 +118,7 @@ const ActivityLog = () => {
           <Icon boxSize={BASE_ICON_BOX_SIZE}>
             <LucideIcon icon={ActivityIcon} />
           </Icon>
-          <ItemHeaderTitle>{l.activity_logs}</ItemHeaderTitle>
+          <ItemHeaderTitle>{t.activity_logs}</ItemHeaderTitle>
         </HStack>
       </ItemHeaderContainer>
 

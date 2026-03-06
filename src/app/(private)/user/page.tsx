@@ -68,12 +68,12 @@ const DEFAULT_FILTER = {
 
 const Create = () => {
   // Contexts
-  const { l } = useLang();
+  const { t } = useLang();
   const { themeConfig } = useThemeConfig();
 
   return (
     <>
-      <Tooltip content={l.add}>
+      <Tooltip content={t.add}>
         <Btn iconButton size={"sm"} colorPalette={themeConfig.colorPalette}>
           <AppIcon icon={PlusIcon} />
           {/* Add */}
@@ -122,7 +122,7 @@ const Update = (props: any) => {
   const resolvedData = data as Interface__Data;
 
   // Contexts
-  const { l } = useLang();
+  const { t } = useLang();
   const { themeConfig } = useThemeConfig();
   const setRt = useRenderTrigger((s) => s.setRt);
 
@@ -137,7 +137,7 @@ const Update = (props: any) => {
       title: capitalize(`Edit ${routeTitle}`),
     },
     successMessage: {
-      title: capitalize(`Edit ${routeTitle} ${l.successful}`),
+      title: capitalize(`Edit ${routeTitle} ${t.successful}`),
     },
   });
 
@@ -207,7 +207,7 @@ const Update = (props: any) => {
               colorPalette={themeConfig.colorPalette}
               loading={loading}
             >
-              {l.save}
+              {t.save}
             </Btn>
           </>
         }
@@ -222,17 +222,17 @@ const Restore = (props: any) => {
   const { restoreIds, clearSelectedRows, disabled, routeTitle } = props;
 
   // Contexts
-  const { l } = useLang();
+  const { t } = useLang();
   const setRt = useRenderTrigger((s) => s.setRt);
 
   // Hooks
   const { req, loading } = useRequest({
     id: ID,
     loadingMessage: {
-      title: capitalize(`${l.restore} ${routeTitle}`),
+      title: capitalize(`${t.restore} ${routeTitle}`),
     },
     successMessage: {
-      title: capitalize(`${l.restore} ${routeTitle} ${l.successful}`),
+      title: capitalize(`${t.restore} ${routeTitle} ${t.successful}`),
     },
   });
 
@@ -260,22 +260,22 @@ const Restore = (props: any) => {
     <ConfirmationDisclosureTrigger
       w={"full"}
       id={`${ID}-${restoreIds}`}
-      title={`${l.restore} ${routeTitle}`}
-      description={l.msg_activate}
-      confirmLabel={`${l.restore}`}
+      title={`${t.restore} ${routeTitle}`}
+      description={t.msg_activate}
+      confirmLabel={`${t.restore}`}
       onConfirm={onActivate}
       loading={loading}
       disabled={disabled}
     >
       <Tooltip
-        content={l.restore}
+        content={t.restore}
         positioning={{
           placement: "right",
         }}
       >
         <MenuItem value="restore" disabled={disabled}>
           <AppIcon icon={UndoIcon} />
-          {l.restore}
+          {t.restore}
         </MenuItem>
       </Tooltip>
     </ConfirmationDisclosureTrigger>
@@ -288,17 +288,17 @@ const Delete = (props: any) => {
   const { deleteIds, clearSelectedRows, disabled, routeTitle } = props;
 
   // Contexts
-  const { l } = useLang();
+  const { t } = useLang();
   const setRt = useRenderTrigger((s) => s.setRt);
 
   // Hooks
   const { req, loading } = useRequest({
     id: ID,
     loadingMessage: {
-      title: capitalize(`${l.delete_} ${routeTitle}`),
+      title: capitalize(`${t.delete_} ${routeTitle}`),
     },
     successMessage: {
-      title: capitalize(`${l.delete_} ${routeTitle} ${l.successful}`),
+      title: capitalize(`${t.delete_} ${routeTitle} ${t.successful}`),
     },
   });
 
@@ -326,9 +326,9 @@ const Delete = (props: any) => {
     <ConfirmationDisclosureTrigger
       w={"full"}
       id={`${ID}-${deleteIds}`}
-      title={`${l.delete_} ${routeTitle}`}
-      description={l.msg_soft_delete}
-      confirmLabel={`${l.delete_}`}
+      title={`${t.delete_} ${routeTitle}`}
+      description={t.msg_soft_delete}
+      confirmLabel={`${t.delete_}`}
       onConfirm={onDeactivate}
       confirmButtonProps={{
         colorPalette: "gray",
@@ -339,7 +339,7 @@ const Delete = (props: any) => {
       disabled={disabled}
     >
       <Tooltip
-        content={l.delete_}
+        content={t.delete_}
         positioning={{
           placement: "right",
         }}
@@ -351,7 +351,7 @@ const Delete = (props: any) => {
           transition={"200ms"}
         >
           <AppIcon icon={TrashIcon} />
-          {l.delete_}
+          {t.delete_}
         </MenuItem>
       </Tooltip>
     </ConfirmationDisclosureTrigger>
@@ -363,7 +363,7 @@ const Data = (props: any) => {
   const { filter, routeTitle, isSmContainer } = props;
 
   // Contexts
-  const { l } = useLang();
+  const { t } = useLang();
   const displayMode = useDataDisplay((s) => s.getDisplay(PREFIX_ID));
   const displayTable = displayMode === "table";
 
@@ -418,7 +418,7 @@ const Data = (props: any) => {
             value: item.email,
           },
           {
-            td: formatDate(item.createdAt, l),
+            td: formatDate(item.createdAt, t),
             value: item.createdAt,
             dataType: "date",
           },
@@ -561,7 +561,7 @@ const Data = (props: any) => {
 
 export default function Page() {
   // Contexts
-  const { l } = useLang();
+  const { t } = useLang();
 
   // Refs
   const containerRef = useRef<HTMLDivElement>(null);
@@ -574,7 +574,7 @@ export default function Page() {
   const isSmContainer = dimension.width < 600;
   const pathname = usePathname();
   const activeNav = getActiveNavs(pathname);
-  const routeTitle = pluckString(l, last(activeNav)?.labelKey || "");
+  const routeTitle = pluckString(t, last(activeNav)?.labelKey || "");
   const [filter, setFilter] = useState(DEFAULT_FILTER);
 
   return (

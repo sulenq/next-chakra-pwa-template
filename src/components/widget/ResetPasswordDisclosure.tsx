@@ -38,7 +38,7 @@ const Step1 = (props: any) => {
   const { setStep, setEmail } = props;
 
   // Contexts
-  const { l } = useLang();
+  const { t } = useLang();
   const { themeConfig } = useThemeConfig();
 
   // Hooks
@@ -51,7 +51,7 @@ const Step1 = (props: any) => {
     validateOnChange: false,
     initialValues: { email: "" },
     validationSchema: yup.object().shape({
-      email: yup.string().email().required(l.msg_required_form),
+      email: yup.string().email().required(t.msg_required_form),
     }),
     onSubmit: (values) => {
       // console.log(values);
@@ -99,7 +99,7 @@ const Step1 = (props: any) => {
             </Field>
           </form>
 
-          <HelperText>{l.msg_reset_password_step_1}</HelperText>
+          <HelperText>{t.msg_reset_password_step_1}</HelperText>
         </CContainer>
       </DisclosureBody>
 
@@ -111,7 +111,7 @@ const Step1 = (props: any) => {
           onClick={formik.submitForm}
           loading={loading}
         >
-          {l.recieve} OTP
+          {t.recieve} OTP
         </Btn>
       </DisclosureFooter>
     </>
@@ -122,7 +122,7 @@ const Step2 = (props: any) => {
   const { email, setOtp, setStep } = props;
 
   // Contexts
-  const { l } = useLang();
+  const { t } = useLang();
   const { themeConfig } = useThemeConfig();
 
   // Hooks
@@ -135,8 +135,8 @@ const Step2 = (props: any) => {
     validateOnChange: false,
     initialValues: { email: email, otp: "" },
     validationSchema: yup.object().shape({
-      email: yup.string().email().required(l.msg_required_form),
-      otp: yup.string().email().required(l.msg_required_form),
+      email: yup.string().email().required(t.msg_required_form),
+      otp: yup.string().email().required(t.msg_required_form),
     }),
     onSubmit: (values) => {
       // console.log(values);
@@ -200,10 +200,10 @@ const Step2 = (props: any) => {
             </Field>
           </form>
 
-          <HelperText color={"fg.subtle"}>{`${l.otp_sent_to} ${maskEmail(
+          <HelperText color={"fg.subtle"}>{`${t.otp_sent_to} ${maskEmail(
             email,
           )}`}</HelperText>
-          <HelperText>{l.msg_reset_password_step_2}</HelperText>
+          <HelperText>{t.msg_reset_password_step_2}</HelperText>
         </CContainer>
       </DisclosureBody>
 
@@ -215,7 +215,7 @@ const Step2 = (props: any) => {
           onClick={formik.submitForm}
           loading={loading}
         >
-          {l.verify} OTP
+          {t.verify} OTP
         </Btn>
       </DisclosureFooter>
     </>
@@ -226,7 +226,7 @@ const Step3 = (props: any) => {
   const { email, otp } = props;
 
   // Contexts
-  const { l } = useLang();
+  const { t } = useLang();
   const { themeConfig } = useThemeConfig();
 
   // Hooks
@@ -244,15 +244,15 @@ const Step3 = (props: any) => {
       password_confirmation: "",
     },
     validationSchema: yup.object().shape({
-      email: yup.string().email().required(l.msg_required_form),
-      otp: yup.string().required(l.msg_required_form),
-      password: yup.string().required(l.msg_required_form),
+      email: yup.string().email().required(t.msg_required_form),
+      otp: yup.string().required(t.msg_required_form),
+      password: yup.string().required(t.msg_required_form),
       password_confirmation: yup
         .string()
-        .required(l.msg_required_form)
+        .required(t.msg_required_form)
         .oneOf(
           [yup.ref("password"), ""],
-          l.msg_password_confirmation_not_match,
+          t.msg_password_confirmation_not_match,
         ),
     }),
     onSubmit: (values) => {
@@ -301,7 +301,7 @@ const Step3 = (props: any) => {
             </Field>
 
             <Field
-              label={l.password_confirmation}
+              label={t.password_confirmation}
               invalid={!!formik.errors.password_confirmation}
               errorText={formik.errors.password_confirmation as string}
               mb={4}
@@ -315,7 +315,7 @@ const Step3 = (props: any) => {
             </Field>
           </form>
 
-          <HelperText>{l.msg_reset_password_step_3}</HelperText>
+          <HelperText>{t.msg_reset_password_step_3}</HelperText>
         </CContainer>
       </DisclosureBody>
 
@@ -330,7 +330,7 @@ const Step3 = (props: any) => {
             !!!(formik.values.password && formik.values.password_confirmation)
           }
         >
-          {l.save}
+          {t.save}
         </Btn>
       </DisclosureFooter>
     </>

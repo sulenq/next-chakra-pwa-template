@@ -25,11 +25,11 @@ const LANGUAGES = [
 
 export const LangMenu = ({ ...props }: Props) => {
   // Contexts
-  const { l, lang, setLang } = useLang();
+  const { t, lang, setLang } = useLang();
   const { themeConfig } = useThemeConfig();
 
   return (
-    <Tooltip content={l.language}>
+    <Tooltip content={t.language}>
       <MenuRoot>
         <MenuTrigger asChild>
           <Btn

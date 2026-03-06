@@ -136,17 +136,17 @@ const PersonalInformation = (props: Props__PersonalInformation) => {
   const { initialData, ...restProps } = props;
 
   // Contexts
-  const { l } = useLang();
+  const { t } = useLang();
   const { themeConfig } = useThemeConfig();
 
   // Hooks
   const { req, loading } = useRequest({
     id: "update-personal-info",
     loadingMessage: {
-      title: `${l.saving} ${l.personal_information}`,
+      title: `${t.saving} ${t.personal_information}`,
     },
     successMessage: {
-      title: `${l.personal_information} ${l.updated}`,
+      title: `${t.personal_information} ${t.updated}`,
     },
   });
 
@@ -160,8 +160,8 @@ const PersonalInformation = (props: Props__PersonalInformation) => {
       email: "",
     },
     validationSchema: yup.object().shape({
-      name: yup.string().required(l.msg_required_form),
-      email: yup.string().required(l.msg_required_form),
+      name: yup.string().required(t.msg_required_form),
+      email: yup.string().required(t.msg_required_form),
     }),
     onSubmit: (values) => {
       const config = {
@@ -198,7 +198,7 @@ const PersonalInformation = (props: Props__PersonalInformation) => {
       <ItemHeaderContainer borderless>
         <HStack>
           <AppIcon icon={UserIcon} />
-          <ItemHeaderTitle>{l.personal_information}</ItemHeaderTitle>
+          <ItemHeaderTitle>{t.personal_information}</ItemHeaderTitle>
         </HStack>
       </ItemHeaderContainer>
 
@@ -233,20 +233,20 @@ const PersonalInformation = (props: Props__PersonalInformation) => {
                     <CContainer gap={2}>
                       <AvatarUploadTrigger formik={formik} user={initialData}>
                         <Btn w={"fit"} variant={"outline"} size={"xs"}>
-                          {l.upload_new_avatar}
+                          {t.upload_new_avatar}
                         </Btn>
                       </AvatarUploadTrigger>
 
                       <CContainer color={"fg.subtle"}>
-                        <P>{l.msg_new_avatar_helper}</P>
-                        <P>{`PNG, JPG ${l.is_allowed}`}</P>
+                        <P>{t.msg_new_avatar_helper}</P>
+                        <P>{`PNG, JPG ${t.is_allowed}`}</P>
                       </CContainer>
                     </CContainer>
                   </HStack>
                 </Field>
 
                 <Field
-                  label={l.name}
+                  label={t.name}
                   invalid={!!formik.errors.name}
                   errorText={`${formik.errors.name}`}
                 >
@@ -285,7 +285,7 @@ const PersonalInformation = (props: Props__PersonalInformation) => {
                 form={"personal-info-form"}
                 colorPalette={themeConfig.colorPalette}
               >
-                {l.save}
+                {t.save}
               </Btn>
             </HStack>
           </CContainer>
@@ -297,7 +297,7 @@ const PersonalInformation = (props: Props__PersonalInformation) => {
 
 const AuthLog = () => {
   // Contexts
-  const { l } = useLang();
+  const { t } = useLang();
 
   // Refs
   const containerRef = useRef<HTMLDivElement>(null);
@@ -349,7 +349,7 @@ const AuthLog = () => {
 
               <CContainer>
                 <P>
-                  {formatDate(log?.createdAt, l, {
+                  {formatDate(log?.createdAt, t, {
                     variant: "dayShortMonthYear",
                     withTime: true,
                   })}
@@ -374,7 +374,7 @@ const AuthLog = () => {
         <HStack>
           <AppIcon icon={LogInIcon} />
 
-          <ItemHeaderTitle>{l.my_auth_logs}</ItemHeaderTitle>
+          <ItemHeaderTitle>{t.my_auth_logs}</ItemHeaderTitle>
         </HStack>
       </ItemHeaderContainer>
 
@@ -428,7 +428,7 @@ const AuthLog = () => {
 
 const ActivityLog = () => {
   // Contexts
-  const { l } = useLang();
+  const { t } = useLang();
 
   // Refs
   const containerRef = useRef<HTMLDivElement>(null);
@@ -498,7 +498,7 @@ const ActivityLog = () => {
                 <P>{formatActivityLog(log)}</P>
 
                 <P color={"fg.subtle"}>
-                  {formatDate(log?.createdAt, l, {
+                  {formatDate(log?.createdAt, t, {
                     variant: "dayShortMonthYear",
                     withTime: true,
                   })}
@@ -521,7 +521,7 @@ const ActivityLog = () => {
         <HStack>
           <AppIcon icon={ActivityIcon} />
 
-          <ItemHeaderTitle>{l.my_activity_logs}</ItemHeaderTitle>
+          <ItemHeaderTitle>{t.my_activity_logs}</ItemHeaderTitle>
         </HStack>
       </ItemHeaderContainer>
 

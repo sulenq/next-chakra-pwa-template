@@ -39,7 +39,7 @@ import { useEffect, useRef, useState } from "react";
 const ManualDarkModeSetting = () => {
   // Contexts
   const { themeConfig } = useThemeConfig();
-  const { l } = useLang();
+  const { t } = useLang();
   const { colorMode, setColorMode } = useColorMode();
   const { ADM } = useADM();
 
@@ -72,8 +72,8 @@ const ManualDarkModeSetting = () => {
   return (
     <ToggleSettingContainer disabled={ADM}>
       <CContainer gap={1}>
-        <P>{l.settings_dark_mode.title}</P>
-        <P color={"fg.subtle"}>{l.settings_dark_mode.description}</P>
+        <P>{t.settings_dark_mode.title}</P>
+        <P color={"fg.subtle"}>{t.settings_dark_mode.description}</P>
       </CContainer>
 
       <Switch
@@ -90,7 +90,7 @@ const ManualDarkModeSetting = () => {
 const ADMSetting = () => {
   // Contexts
   const { themeConfig } = useThemeConfig();
-  const { l } = useLang();
+  const { t } = useLang();
   const { ADM, setADM } = useADM();
 
   // States, Refs
@@ -112,10 +112,10 @@ const ADMSetting = () => {
   return (
     <ToggleSettingContainer>
       <CContainer gap={1}>
-        <P>{l.settings_adaptive_dark_mode.title}</P>
+        <P>{t.settings_adaptive_dark_mode.title}</P>
 
         <P color={"fg.subtle"}>
-          {interpolateString(l.settings_adaptive_dark_mode.description, {
+          {interpolateString(t.settings_adaptive_dark_mode.description, {
             timeRange: `${formatTime("18:00")} - ${formatTime("06:00")}`,
           })}
         </P>
@@ -134,7 +134,7 @@ const ADMSetting = () => {
 
 const DarkModeSection = () => {
   // Contexts
-  const { l } = useLang();
+  const { t } = useLang();
   const { themeConfig } = useThemeConfig();
   const { colorMode, setColorMode } = useColorMode();
 
@@ -170,7 +170,7 @@ const DarkModeSection = () => {
         <HStack>
           <AppIcon icon={EclipseIcon} />
 
-          <ItemHeaderTitle>{l.dark_mode}</ItemHeaderTitle>
+          <ItemHeaderTitle>{t.dark_mode}</ItemHeaderTitle>
         </HStack>
       </ItemHeaderContainer>
 
@@ -192,7 +192,7 @@ const DarkModeSection = () => {
 
 const AccentColorSection = () => {
   // Contexts
-  const { l } = useLang();
+  const { t } = useLang();
   const { themeConfig, setThemeConfig } = useThemeConfig();
 
   // Refs
@@ -204,7 +204,7 @@ const AccentColorSection = () => {
         <HStack>
           <AppIcon icon={SwatchBookIcon} />
 
-          <ItemHeaderTitle>{l.accent_color}</ItemHeaderTitle>
+          <ItemHeaderTitle>{t.accent_color}</ItemHeaderTitle>
         </HStack>
       </ItemHeaderContainer>
 
@@ -276,7 +276,7 @@ const AccentColorSection = () => {
 
 const RoundedSection = () => {
   // Contexts
-  const { l } = useLang();
+  const { t } = useLang();
   const { themeConfig, setThemeConfig } = useThemeConfig();
 
   // Refs
@@ -299,7 +299,7 @@ const RoundedSection = () => {
         <HStack>
           <AppIcon icon={SquareRoundCornerIcon} />
 
-          <ItemHeaderTitle>{l.rounded}</ItemHeaderTitle>
+          <ItemHeaderTitle>{t.rounded}</ItemHeaderTitle>
         </HStack>
       </ItemHeaderContainer>
 
@@ -386,7 +386,7 @@ const RoundedSection = () => {
 
 const ExampleUISection = () => {
   // Contexts
-  const { l } = useLang();
+  const { t } = useLang();
   const { themeConfig } = useThemeConfig();
 
   // States
@@ -401,7 +401,7 @@ const ExampleUISection = () => {
         <HStack>
           <AppIcon icon={LayoutPanelLeftIcon} />
 
-          <ItemHeaderTitle>{l.example_UI}</ItemHeaderTitle>
+          <ItemHeaderTitle>{t.example_UI}</ItemHeaderTitle>
         </HStack>
       </ItemHeaderContainer>
 

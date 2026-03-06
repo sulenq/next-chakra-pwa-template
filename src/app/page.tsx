@@ -14,7 +14,7 @@ import { Box, HStack, SimpleGrid } from "@chakra-ui/react";
 
 export default function Page() {
   // Contexts
-  const { l } = useLang();
+  const { t } = useLang();
   const { themeConfig } = useThemeConfig();
 
   // Hooks
@@ -108,7 +108,7 @@ export default function Page() {
                     mb={4}
                   /> */}
 
-                  <P>{l.msg_app_desc}</P>
+                  <P>{t.msg_app_desc}</P>
                 </CContainer>
               </CContainer>
             </CContainer>

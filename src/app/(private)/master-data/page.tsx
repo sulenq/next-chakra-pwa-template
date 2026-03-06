@@ -9,7 +9,7 @@ import { ServerIcon } from "lucide-react";
 
 const SettingsRoute = () => {
   // Contexts
-  const { l } = useLang();
+  const { t } = useLang();
   const { themeConfig } = useThemeConfig();
 
   return (
@@ -25,7 +25,7 @@ const SettingsRoute = () => {
       <FeedbackState
         icon={<LucideIcon icon={ServerIcon} />}
         title={"Master Data"}
-        description={l.msg_master_data_index_route}
+        description={t.msg_master_data_index_route}
       />
     </CContainer>
   );

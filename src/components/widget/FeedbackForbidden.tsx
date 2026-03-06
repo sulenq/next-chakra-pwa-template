@@ -14,7 +14,7 @@ export default function FeedbackForbidden(props: Props__FeedbackState) {
   const { title, description, icon, children, ...restProps } = props;
 
   // Hooks
-  const { l } = useLang();
+  const { t } = useLang();
 
   return (
     <CContainer
@@ -31,8 +31,8 @@ export default function FeedbackForbidden(props: Props__FeedbackState) {
             {icon || <LucideIcon icon={BanIcon} />}
           </Icon>
         }
-        title={title ?? l.alert_forbidden.title}
-        description={description ?? l.alert_forbidden.description}
+        title={title ?? t.alert_forbidden.title}
+        description={description ?? t.alert_forbidden.description}
         maxW={"300px"}
       />
 

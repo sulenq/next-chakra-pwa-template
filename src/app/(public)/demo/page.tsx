@@ -58,17 +58,17 @@ const Delete = (props: any) => {
   const { deleteIds, clearSelectedRows, disabled, routeTitle } = props;
 
   // Contexts
-  const { l } = useLang();
+  const { t } = useLang();
   const setRt = useRenderTrigger((s) => s.setRt);
 
   // Hooks
   const { req, loading } = useRequest({
     id: ID,
     loadingMessage: {
-      title: capitalize(`${l.delete_} ${routeTitle}`),
+      title: capitalize(`${t.delete_} ${routeTitle}`),
     },
     successMessage: {
-      title: capitalize(`${l.delete_} ${routeTitle} ${l.successful}`),
+      title: capitalize(`${t.delete_} ${routeTitle} ${t.successful}`),
     },
   });
 
@@ -96,9 +96,9 @@ const Delete = (props: any) => {
     <ConfirmationDisclosureTrigger
       w={"full"}
       id={`${ID}-${deleteIds}`}
-      title={`${l.delete_} ${routeTitle}`}
-      description={l.msg_soft_delete}
-      confirmLabel={`${l.delete_}`}
+      title={`${t.delete_} ${routeTitle}`}
+      description={t.msg_soft_delete}
+      confirmLabel={`${t.delete_}`}
       onConfirm={onDeactivate}
       confirmButtonProps={{
         colorPalette: "gray",
@@ -109,7 +109,7 @@ const Delete = (props: any) => {
       disabled={disabled}
     >
       <Tooltip
-        content={l.delete_}
+        content={t.delete_}
         positioning={{
           placement: "right",
         }}
@@ -120,7 +120,7 @@ const Delete = (props: any) => {
           color={"fg.error"}
           transition={"200ms"}
         >
-          {l.delete_}
+          {t.delete_}
           <Icon boxSize={MENU_ICON_BOX_SIZE} ml={"auto"}>
             <LucideIcon icon={TrashIcon} />
           </Icon>

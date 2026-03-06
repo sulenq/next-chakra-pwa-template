@@ -30,7 +30,7 @@ export const ImgInput = (props: Props__FileInput) => {
   } = props;
 
   // Contexts
-  const { l } = useLang();
+  const { t } = useLang();
   const { themeConfig } = useThemeConfig();
   const fc = useFieldContext();
 
@@ -71,7 +71,7 @@ export const ImgInput = (props: Props__FileInput) => {
             cursor={resolvedDisabled ? "disabled" : "auto"}
           >
             <P fontWeight={"medium"} pl={1}>
-              {l.uploaded_file}
+              {t.uploaded_file}
             </P>
 
             {existing?.map((fileData: any, idx: number) => {
@@ -114,7 +114,7 @@ export const ImgInput = (props: Props__FileInput) => {
             cursor={resolvedDisabled ? "disabled" : "auto"}
           >
             <P fontWeight={"medium"} pl={1}>
-              {l.deleted_file}
+              {t.deleted_file}
             </P>
 
             {deleted?.map((fileData: any, idx: number) => {

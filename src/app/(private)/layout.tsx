@@ -77,7 +77,7 @@ const MobileLayout = (props: any) => {
   const { children, ...restProps } = props;
 
   // Contexts
-  const { l } = useLang();
+  const { t } = useLang();
 
   // Hooks
   const pathname = usePathname();
@@ -153,7 +153,7 @@ const MobileLayout = (props: any) => {
                             lineClamp={1}
                             fontSize={MOBILE_NAV_LABEL_FONT_SIZE}
                           >
-                            {nav.label ?? pluckString(l, nav.labelKey) ?? "-"}
+                            {nav.label ?? pluckString(t, nav.labelKey) ?? "-"}
                           </P>
 
                           {isMainNavActive && <BottomIndicator />}
@@ -189,7 +189,7 @@ const MobileLayout = (props: any) => {
                                   lineClamp={1}
                                 >
                                   {nav.label ??
-                                    pluckString(l, nav.labelKey) ??
+                                    pluckString(t, nav.labelKey) ??
                                     "-"}
                                 </P>
 
@@ -204,7 +204,7 @@ const MobileLayout = (props: any) => {
                                     key={idx}
                                     title={
                                       subGroup.labelKey
-                                        ? pluckString(l, subGroup.labelKey)
+                                        ? pluckString(t, subGroup.labelKey)
                                         : ""
                                     }
                                   >
@@ -230,7 +230,7 @@ const MobileLayout = (props: any) => {
                                             <P lineClamp={1}>
                                               {subNav.label ??
                                                 pluckString(
-                                                  l,
+                                                  t,
                                                   subNav.labelKey,
                                                 ) ??
                                                 "-"}
@@ -270,7 +270,7 @@ const MobileLayout = (props: any) => {
                   lineClamp={1}
                   fontSize={MOBILE_NAV_LABEL_FONT_SIZE}
                 >
-                  {nav.label ?? pluckString(l, nav.labelKey) ?? "-"}
+                  {nav.label ?? pluckString(t, nav.labelKey) ?? "-"}
                 </P>
 
                 {pathname === nav.path && <BottomIndicator />}
@@ -303,7 +303,7 @@ const MobileLayout = (props: any) => {
                 color={isInProfileRoute ? "" : MOBILE_NAVS_COLOR}
                 lineClamp={1}
               >
-                {l.profile}
+                {t.profile}
               </P>
             </VStack>
           </ProfileMenuTrigger>
@@ -317,7 +317,7 @@ const DesktopLayout = (props: any) => {
   const { children, ...restProps } = props;
 
   // Contexts
-  const { l } = useLang();
+  const { t } = useLang();
   const { themeConfig } = useThemeConfig();
   const isNavsExpanded = useNavs((s) => s.isNavsExpanded);
   const toggleNavsExpanded = useNavs((s) => s.toggleNavsExpanded);
@@ -345,7 +345,7 @@ const DesktopLayout = (props: any) => {
       .map((nav) => {
         const labelMain =
           nav.label?.toLowerCase() ??
-          pluckString(l, nav.labelKey)?.toLowerCase() ??
+          pluckString(t, nav.labelKey)?.toLowerCase() ??
           "";
         const allowedMain = isAllowed(nav, roleId);
 
@@ -389,7 +389,7 @@ const DesktopLayout = (props: any) => {
               if (!isAllowed(subItem, roleId)) return false;
               const subLabel =
                 subItem.label?.toLowerCase() ||
-                pluckString(l, subItem.labelKey)?.toLowerCase() ||
+                pluckString(t, subItem.labelKey)?.toLowerCase() ||
                 "";
               return qNormalized && subLabel.includes(qNormalized);
             }),
@@ -466,7 +466,7 @@ const DesktopLayout = (props: any) => {
 
             {/* Toggle Side Navs */}
             <Tooltip
-              content={isNavsExpanded ? l.minimize : l.maximize}
+              content={isNavsExpanded ? t.minimize : t.maximize}
               positioning={{
                 placement: "right",
                 offset: {
@@ -532,7 +532,7 @@ const DesktopLayout = (props: any) => {
                         color={"fg.subtle"}
                         ml={1}
                       >
-                        {pluckString(l, navItem.labelKey)}
+                        {pluckString(t, navItem.labelKey)}
                       </ClampText>
                     )}
 
@@ -545,7 +545,7 @@ const DesktopLayout = (props: any) => {
                           {!hasSubMenus && (
                             <NavLink key={nav.path} to={nav.path} w={"full"}>
                               <DesktopNavTooltip
-                                content={pluckString(l, nav.labelKey)}
+                                content={pluckString(t, nav.labelKey)}
                               >
                                 <Btn
                                   iconButton={isNavsExpanded ? false : true}
@@ -579,7 +579,7 @@ const DesktopLayout = (props: any) => {
 
                                   {isNavsExpanded && (
                                     <P lineClamp={1} textAlign={"left"}>
-                                      {pluckString(l, nav.labelKey)}
+                                      {pluckString(t, nav.labelKey)}
                                     </P>
                                   )}
                                 </Btn>
@@ -602,7 +602,7 @@ const DesktopLayout = (props: any) => {
                                     content={
                                       nav.label
                                         ? nav.label
-                                        : pluckString(l, nav.labelKey)
+                                        : pluckString(t, nav.labelKey)
                                     }
                                   >
                                     <CContainer>
@@ -639,7 +639,7 @@ const DesktopLayout = (props: any) => {
                                           title={
                                             subGroup.labelKey
                                               ? pluckString(
-                                                  l,
+                                                  t,
                                                   subGroup.labelKey,
                                                 )
                                               : ""
@@ -660,7 +660,7 @@ const DesktopLayout = (props: any) => {
                                                     menu.label
                                                       ? menu.label
                                                       : pluckString(
-                                                          l,
+                                                          t,
                                                           menu.labelKey,
                                                         )
                                                   }
@@ -685,7 +685,7 @@ const DesktopLayout = (props: any) => {
                                                       {menu.label
                                                         ? menu.label
                                                         : pluckString(
-                                                            l,
+                                                            t,
                                                             menu.labelKey,
                                                           )}
                                                     </P>
@@ -713,7 +713,7 @@ const DesktopLayout = (props: any) => {
                                     _open={{ bg: "transparent" }}
                                   >
                                     <DesktopNavTooltip
-                                      content={pluckString(l, nav.labelKey)}
+                                      content={pluckString(t, nav.labelKey)}
                                     >
                                       <Btn
                                         as={AccordionItemTrigger}
@@ -738,7 +738,7 @@ const DesktopLayout = (props: any) => {
                                           <P lineClamp={1} textAlign="left">
                                             {nav.label
                                               ? nav.label
-                                              : pluckString(l, nav.labelKey)}
+                                              : pluckString(t, nav.labelKey)}
                                           </P>
                                         </HStack>
                                       </Btn>
@@ -761,7 +761,7 @@ const DesktopLayout = (props: any) => {
                                                   mt={1}
                                                 >
                                                   {pluckString(
-                                                    l,
+                                                    t,
                                                     subGroup.labelKey,
                                                   )}
                                                 </ClampText>
@@ -788,7 +788,7 @@ const DesktopLayout = (props: any) => {
                                                             ? menu.label
                                                             : menu.labelKey
                                                               ? pluckString(
-                                                                  l,
+                                                                  t,
                                                                   menu.labelKey,
                                                                 )
                                                               : "-"
@@ -874,7 +874,7 @@ const DesktopLayout = (props: any) => {
                                                                 ? menu.label
                                                                 : menu.labelKey
                                                                   ? pluckString(
-                                                                      l,
+                                                                      t,
                                                                       menu.labelKey,
                                                                     )
                                                                   : "-"}
@@ -908,7 +908,7 @@ const DesktopLayout = (props: any) => {
             {/* {OTHER_PRIVATE_NAV_GROUPS[0].navs.map((nav) => {
               return (
                 <NavLink key={nav.path} to={nav.path} w={"full"}>
-                  <DesktopNavTooltip content={pluckString(l, nav.labelKey)}>
+                  <DesktopNavTooltip content={pluckString(t, nav.labelKey)}>
                     <Btn
                       clicky={false}
                       gap={4}
@@ -925,7 +925,7 @@ const DesktopLayout = (props: any) => {
 
                       {isNavsExpanded && (
                         <P lineClamp={1} textAlign={"left"}>
-                          {pluckString(l, nav.labelKey)}
+                          {pluckString(t, nav.labelKey)}
                         </P>
                       )}
                     </Btn>
@@ -935,7 +935,7 @@ const DesktopLayout = (props: any) => {
             })} */}
 
             <NavLink key={"/master-data"} to={"/master-data"} w={"full"}>
-              <DesktopNavTooltip content={pluckString(l, "navs.master_data")}>
+              <DesktopNavTooltip content={pluckString(t, "navs.master_data")}>
                 <Btn
                   clicky={false}
                   gap={4}
@@ -954,7 +954,7 @@ const DesktopLayout = (props: any) => {
 
                   {isNavsExpanded && (
                     <P lineClamp={1} textAlign={"left"}>
-                      {pluckString(l, "navs.master_data")}
+                      {pluckString(t, "navs.master_data")}
                     </P>
                   )}
                 </Btn>

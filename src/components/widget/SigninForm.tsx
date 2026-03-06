@@ -47,14 +47,14 @@ const INDEX_ROUTE = "/demo";
 const SignoutButton = () => {
   // Contexts
   const setRt = useRenderTrigger((s) => s.setRt);
-  const { l } = useLang();
+  const { t } = useLang();
   const removeAuth = useAuthMiddleware((s) => s.removeAuth);
 
   // Hooks
   const { req, loading } = useRequest({
     id: "signout",
-    loadingMessage: l.loading_signout,
-    successMessage: l.success_signout,
+    loadingMessage: t.loading_signout,
+    successMessage: t.success_signout,
   });
 
   // Utils
@@ -93,7 +93,7 @@ const Signedin = (props: any) => {
   const { ...restProps } = props;
 
   // Contexts
-  const { l } = useLang();
+  const { t } = useLang();
   const { themeConfig } = useThemeConfig();
   const user = getUserData();
 
@@ -109,7 +109,7 @@ const Signedin = (props: any) => {
       <VStack>
         <NavLink to={INDEX_ROUTE}>
           <Btn w={"140px"} colorPalette={themeConfig.colorPalette}>
-            {l.access} App
+            {t.access} App
           </Btn>
         </NavLink>
 
@@ -126,7 +126,7 @@ const BasicAuthForm = (props: any) => {
   const { signinAPI, ...restProps } = props;
 
   // Contexts
-  const { l } = useLang();
+  const { t } = useLang();
   const { themeConfig } = useThemeConfig();
   const setVerifiedAccessToken = useAuthMiddleware(
     (s) => s.setVerifiedAccessToken,
@@ -137,8 +137,8 @@ const BasicAuthForm = (props: any) => {
   const router = useRouter();
   const { req, loading } = useRequest({
     id: "signin",
-    loadingMessage: l.loading_signin,
-    successMessage: l.success_signin,
+    loadingMessage: t.loading_signin,
+    successMessage: t.success_signin,
   });
 
   // States
@@ -149,8 +149,8 @@ const BasicAuthForm = (props: any) => {
       password: "",
     },
     validationSchema: yup.object().shape({
-      identifier: yup.string().required(l.msg_required_form),
-      password: yup.string().required(l.msg_required_form),
+      identifier: yup.string().required(t.msg_required_form),
+      password: yup.string().required(t.msg_required_form),
     }),
     onSubmit: (values) => {
       const payload = {
@@ -273,7 +273,7 @@ export const SigninForm = (props: StackProps) => {
   const { ...restProps } = props;
 
   // Contexts
-  const { l } = useLang();
+  const { t } = useLang();
   const { themeConfig } = useThemeConfig();
   const verifiedAccessToken = useAuthMiddleware((s) => s.verifiedAccessToken);
 
@@ -302,7 +302,7 @@ export const SigninForm = (props: StackProps) => {
             </H1>
 
             <P textAlign={"center"} color={"fg.subtle"}>
-              {l.msg_signin}
+              {t.msg_signin}
             </P>
           </CContainer>
 

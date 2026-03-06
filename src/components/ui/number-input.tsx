@@ -46,7 +46,7 @@ export const NumInput = forwardRef<HTMLInputElement, NumInputProps>(
     } = props;
 
     // Contexts
-    const { l } = useLang();
+    const { t } = useLang();
 
     // Refs
     const caretRef = useRef<number | null>(null);
@@ -61,7 +61,7 @@ export const NumInput = forwardRef<HTMLInputElement, NumInputProps>(
     const decimalSep = isID ? "," : ".";
     const thousandSep = isID ? "." : ",";
     const resolvedPlaceholder =
-      placeholder ?? (integer ? l.number_input : l.decimal_input);
+      placeholder ?? (integer ? t.number_input : t.decimal_input);
 
     // Utils
     function handleChange(rawInput?: string) {

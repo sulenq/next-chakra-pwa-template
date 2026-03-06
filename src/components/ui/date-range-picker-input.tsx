@@ -30,7 +30,7 @@ export const DateRangePickerInput = (props: Props__DateRangePickerInput) => {
   } = props;
 
   // Contexts
-  const { l } = useLang();
+  const { t } = useLang();
   const { themeConfig } = useThemeConfig();
   const fc = useFieldContext();
 
@@ -75,7 +75,7 @@ export const DateRangePickerInput = (props: Props__DateRangePickerInput) => {
         }}
         labelFormatVariant={"numeric"}
         title={title?.startDate}
-        placeholder={placeholder?.startDate || l.start_date}
+        placeholder={placeholder?.startDate || t.start_date}
         disclosureSize={disclosureSize}
         invalid={false}
         required={required}
@@ -90,8 +90,8 @@ export const DateRangePickerInput = (props: Props__DateRangePickerInput) => {
           setEndDate(inputValue?.[0]);
         }}
         labelFormatVariant={"numeric"}
-        title={title?.endDate || capitalize(`${l.select} ${l.end_date}`)}
-        placeholder={placeholder?.endDate || l.end_date}
+        title={title?.endDate || capitalize(`${t.select} ${t.end_date}`)}
+        placeholder={placeholder?.endDate || t.end_date}
         disclosureSize={disclosureSize}
         invalid={false}
         required={required}

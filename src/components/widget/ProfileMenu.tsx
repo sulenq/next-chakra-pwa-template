@@ -50,7 +50,7 @@ export const ProfileMenu = (props: Props__MiniMyProfile) => {
   const { onClose, ...restProps } = props;
 
   // Contexts
-  const { l } = useLang();
+  const { t } = useLang();
   const { themeConfig } = useThemeConfig();
   const removeAuth = useAuthMiddleware((s) => s.removeAuth);
   const ADM = useADM((s) => s.ADM);
@@ -59,8 +59,8 @@ export const ProfileMenu = (props: Props__MiniMyProfile) => {
   const { colorMode, toggleColorMode } = useColorMode();
   const { req } = useRequest({
     id: "sign-out",
-    loadingMessage: { ...l.loading_signout },
-    successMessage: { ...l.success_signout },
+    loadingMessage: { ...t.loading_signout },
+    successMessage: { ...t.success_signout },
   });
   const router = useRouter();
   router.prefetch("/");
@@ -151,7 +151,7 @@ export const ProfileMenu = (props: Props__MiniMyProfile) => {
               >
                 <AppIcon icon={menu.icon} />
 
-                {pluckString(l, menu.labelKey)}
+                {pluckString(t, menu.labelKey)}
               </Btn>
             </NavLink>
           );
@@ -160,7 +160,7 @@ export const ProfileMenu = (props: Props__MiniMyProfile) => {
         <ConfirmationDisclosureTrigger
           id="signout"
           title="Sign out"
-          description={l.msg_signout}
+          description={t.msg_signout}
           confirmLabel="Sign out"
           onConfirm={onSignout}
           confirmButtonProps={{

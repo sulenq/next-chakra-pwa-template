@@ -111,7 +111,7 @@ export const NavBreadcrumb = (props: any) => {
   } = props;
 
   // Contexts
-  const { l } = useLang();
+  const { t } = useLang();
   const breadcrumbs = useBreadcrumbs((s) => s.breadcrumbs);
   const setBreadcrumbs = useBreadcrumbs((s) => s.setBreadcrumbs);
 
@@ -146,7 +146,7 @@ export const NavBreadcrumb = (props: any) => {
       <SimplePopover
         content={currentActiveNavs
           .map((nav) => {
-            return nav?.label || pluckString(l, nav?.labelKey);
+            return nav?.label || pluckString(t, nav?.labelKey);
           })
           .join(" / ")}
         maxW={"400px"}
@@ -156,7 +156,7 @@ export const NavBreadcrumb = (props: any) => {
             <IconSlash stroke={1.5} />
           </Icon>
 
-          {/* {isEmptyArray(resolvedActiveNavs) && <P>{l.navs.welcome}</P>} */}
+          {/* {isEmptyArray(resolvedActiveNavs) && <P>{t.navs.welcome}</P>} */}
 
           {activeNavs.map((nav: Interface__Nav, idx: number) => {
             return (
@@ -181,7 +181,7 @@ export const NavBreadcrumb = (props: any) => {
                 )}
 
                 <P fontSize={FONT_SIZE} lineClamp={1}>
-                  {nav?.label ? nav?.label : pluckString(l, nav.labelKey)}
+                  {nav?.label ? nav?.label : pluckString(t, nav.labelKey)}
                 </P>
               </HStack>
             );
@@ -239,14 +239,14 @@ export const PageTitle = (props: StackProps) => {
   const { children, ...restProps } = props;
 
   // Contexts
-  const { l } = useLang();
+  const { t } = useLang();
 
   // Hooks
   const pathname = usePathname();
 
   // States
   const activeNavs = getActiveNavs(pathname);
-  const title = pluckString(l, last<any>(activeNavs)?.labelKey);
+  const title = pluckString(t, last<any>(activeNavs)?.labelKey);
 
   return (
     <HStack

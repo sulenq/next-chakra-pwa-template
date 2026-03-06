@@ -50,14 +50,14 @@ const NAVS_COLOR = "fg.muted";
 const Language = () => {
   // Contexts
   const { themeConfig } = useThemeConfig();
-  const { lang, setLang, l } = useLang();
+  const { lang, setLang, t } = useLang();
 
   return (
     <ItemContainer borderless roundedless>
       <ItemHeaderContainer borderless>
         <HStack>
           <AppIcon icon={LanguagesIcon} />
-          <ItemHeaderTitle>{l.language}</ItemHeaderTitle>
+          <ItemHeaderTitle>{t.language}</ItemHeaderTitle>
         </HStack>
       </ItemHeaderContainer>
 
@@ -113,7 +113,7 @@ const Timezone = () => {
   const LIMIT_OPTIONS = [10, 20, 50, 100];
 
   // Contexts
-  const { l } = useLang();
+  const { t } = useLang();
   const { themeConfig } = useThemeConfig();
   const { timeZone, setTimeZone } = useTimezone();
 
@@ -146,7 +146,7 @@ const Timezone = () => {
         <HStack>
           <AppIcon icon={GlobeIcon} />
 
-          <ItemHeaderTitle>{capitalizeWords(l.timezone)}</ItemHeaderTitle>
+          <ItemHeaderTitle>{capitalizeWords(t.timezone)}</ItemHeaderTitle>
         </HStack>
 
         <HStack>
@@ -156,7 +156,7 @@ const Timezone = () => {
             onClick={() => {
               setTimeZone(localTz);
               toaster.info({
-                title: l.info_timezone_auto.title,
+                title: t.info_timezone_auto.title,
                 description: `${localTz.key} ${localTz.formattedOffset} (${localTz.localAbbr})`,
               });
             }}
@@ -261,7 +261,7 @@ const Timezone = () => {
 const DateFormat = () => {
   // Contexts
   const { themeConfig } = useThemeConfig();
-  const { l } = useLang();
+  const { t } = useLang();
   const { dateFormat, setDateFormat } = useDateFormat();
 
   return (
@@ -269,7 +269,7 @@ const DateFormat = () => {
       <ItemHeaderContainer borderless>
         <HStack>
           <AppIcon icon={CalendarIcon} />
-          <ItemHeaderTitle>{l.date_format}</ItemHeaderTitle>
+          <ItemHeaderTitle>{t.date_format}</ItemHeaderTitle>
         </HStack>
       </ItemHeaderContainer>
 
@@ -313,7 +313,7 @@ const DateFormat = () => {
 
                   {/* Example */}
                   <P color={"fg.subtle"}>
-                    {formatDate(new Date().toISOString(), l, {
+                    {formatDate(new Date().toISOString(), t, {
                       variant: "weekdayDayShortMonthYear",
                       dateFormat: item.key as Type__DateFormat,
                     })}
@@ -330,7 +330,7 @@ const DateFormat = () => {
 const TimeFormat = () => {
   // Contexts
   const { themeConfig } = useThemeConfig();
-  const { l } = useLang();
+  const { t } = useLang();
   const { timeFormat, setTimeFormat } = useTimeFormat();
 
   return (
@@ -339,7 +339,7 @@ const TimeFormat = () => {
         <HStack>
           <AppIcon icon={HourglassIcon} />
 
-          <ItemHeaderTitle>{l.time_format}</ItemHeaderTitle>
+          <ItemHeaderTitle>{t.time_format}</ItemHeaderTitle>
         </HStack>
       </ItemHeaderContainer>
 
@@ -394,7 +394,7 @@ const TimeFormat = () => {
 const UOMFormat = () => {
   // Contexts
   const { themeConfig } = useThemeConfig();
-  const { l } = useLang();
+  const { t } = useLang();
   const { UOM, setUOM } = useUOMFormat();
 
   return (
@@ -402,7 +402,7 @@ const UOMFormat = () => {
       <ItemHeaderContainer borderless>
         <HStack>
           <AppIcon icon={RulerDimensionLineIcon} />
-          <ItemHeaderTitle>{l.UOM_format}</ItemHeaderTitle>
+          <ItemHeaderTitle>{t.UOM_format}</ItemHeaderTitle>
         </HStack>
       </ItemHeaderContainer>
 
@@ -441,7 +441,7 @@ const UOMFormat = () => {
                   </HStack>
 
                   <P color={"fg.muted"} mb={2}>
-                    {pluckString(l, item.descriptionKey)}
+                    {pluckString(t, item.descriptionKey)}
                   </P>
 
                   {/* Example */}

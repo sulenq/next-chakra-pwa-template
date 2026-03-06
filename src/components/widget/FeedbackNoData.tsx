@@ -14,7 +14,7 @@ export default function FeedbackNoData(props: Props__FeedbackState) {
   const { title, description, icon, children, ...restProps } = props;
 
   // Contexts
-  const { l } = useLang();
+  const { t } = useLang();
 
   return (
     <CContainer
@@ -32,8 +32,8 @@ export default function FeedbackNoData(props: Props__FeedbackState) {
             {icon || <LucideIcon icon={ServerOff} />}
           </Icon>
         }
-        title={title ?? l.alert_no_data.title}
-        description={description ?? l.alert_no_data.description}
+        title={title ?? t.alert_no_data.title}
+        description={description ?? t.alert_no_data.description}
         maxW={"300px"}
       />
 

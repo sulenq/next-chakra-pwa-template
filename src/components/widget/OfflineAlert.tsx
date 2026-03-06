@@ -24,7 +24,7 @@ export const OfflineAlert = () => {
   // Contexts
   const { offline } = useOffline();
   const { themeConfig } = useThemeConfig();
-  const { l } = useLang();
+  const { t } = useLang();
 
   // Utils
   const { open, onOpen } = usePopDisclosure(disclosureId("offline-alert"));
@@ -48,8 +48,8 @@ export const OfflineAlert = () => {
                 <IconAccessPointOff />
               </Icon>
             }
-            title={l.alert_offline.title}
-            description={l.alert_offline.description}
+            title={t.alert_offline.title}
+            description={t.alert_offline.description}
             maxW={"300px"}
             m={"auto"}
             mb={12}

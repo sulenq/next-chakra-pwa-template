@@ -144,7 +144,7 @@ export const DatePicker = (props: DatePickerProps) => {
   const { period, selected, setSelected, multiple, ...restProps } = props;
 
   // Contexts
-  const { l } = useLang();
+  const { t } = useLang();
   const { themeConfig } = useThemeConfig();
 
   // Constants
@@ -174,7 +174,7 @@ export const DatePicker = (props: DatePickerProps) => {
 
     return weekDates;
   };
-  const weekdays = getWeekdayNames(l);
+  const weekdays = getWeekdayNames(t);
 
   return (
     <CContainer {...restProps}>
@@ -285,7 +285,7 @@ const SelectedDateList = (props: SelectedDateListProps) => {
   const { id, selected, formattedSelected } = props;
 
   // Contexts
-  const { l } = useLang();
+  const { t } = useLang();
 
   // Hooks
   const { open, onOpen } = usePopDisclosure(
@@ -311,7 +311,7 @@ const SelectedDateList = (props: SelectedDateListProps) => {
           maxW={"calc(100% - 16px)"}
           fontWeight={"medium"}
           textAlign={"center"}
-          color={formattedSelected === l.selected_date ? "fg.subtle" : ""}
+          color={formattedSelected === t.selected_date ? "fg.subtle" : ""}
           truncate
           mx={"auto"}
         >
@@ -322,7 +322,7 @@ const SelectedDateList = (props: SelectedDateListProps) => {
       <DisclosureRoot open={open} size={"xs"} scrollBehavior={"inside"}>
         <DisclosureContent>
           <DisclosureHeader>
-            <DisclosureHeaderContent title={capitalizeWords(l.selected_date)} />
+            <DisclosureHeaderContent title={capitalizeWords(t.selected_date)} />
           </DisclosureHeader>
 
           <DisclosureBody>
@@ -333,7 +333,7 @@ const SelectedDateList = (props: SelectedDateListProps) => {
                   selected.map((item, i) => {
                     return (
                       <List.Item key={i}>
-                        {formatDate(item, l, {
+                        {formatDate(item, t, {
                           variant:
                             selected.length > 1
                               ? "weekdayDayShortMonthYear"
@@ -390,7 +390,7 @@ export const DatePickerInput = (props: DatePickerInputProps) => {
   } = props;
 
   // Contexts
-  const { l } = useLang();
+  const { t } = useLang();
   const { themeConfig } = useThemeConfig();
   const fc = useFieldContext();
 
@@ -409,25 +409,25 @@ export const DatePickerInput = (props: DatePickerInputProps) => {
   const localTzOffsetInMs = getTimezoneOffsetMs(localTz.key);
 
   // Derived Values
-  const resolvedPlaceholder = placeholder ?? l.select_date;
+  const resolvedPlaceholder = placeholder ?? t.select_date;
   const resolvedInvalid = invalid ?? fc?.invalid;
   const formattedSelected =
     selected && selected?.length > 0
       ? selected
           .map((date) =>
-            formatDate(new Date(date), l, {
+            formatDate(new Date(date), t, {
               variant: "shortWeekdayDayShortMonthYear",
               timezoneKey: localTz.key,
               // withTime: true,
             }),
           )
           .join(", ")
-      : l.selected_date;
+      : t.selected_date;
   const formattedButtonLabel =
     inputValue && inputValue?.length > 0
       ? inputValue
           .map((date) =>
-            formatAbsDate(new Date(date), l, {
+            formatAbsDate(new Date(date), t, {
               variant: labelFormatVariant,
               // withTime: true,
             }),
@@ -511,7 +511,7 @@ export const DatePickerInput = (props: DatePickerInputProps) => {
         <DisclosureContent>
           <DisclosureHeader>
             <DisclosureHeaderContent
-              title={capitalizeWords(title || l.select_date)}
+              title={capitalizeWords(title || t.select_date)}
             />
           </DisclosureHeader>
 
@@ -569,7 +569,7 @@ export const DatePickerInput = (props: DatePickerInputProps) => {
               disabled={required && isEmptyArray(selected)}
               onClick={handleConfirm}
             >
-              {l.confirm}
+              {t.confirm}
             </Btn>
           </DisclosureFooter>
         </DisclosureContent>

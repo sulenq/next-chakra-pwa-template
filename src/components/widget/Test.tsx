@@ -12,9 +12,9 @@ export const Test = (props: Props) => {
   const { ...restProps } = props;
 
   // Contexts
-  const { l } = useLang();
+  const { t } = useLang();
 
-  const monthNames = getMonthNames(l);
+  const monthNames = getMonthNames(t);
 
   return <CContainer {...restProps}>{monthNames[0]}</CContainer>;
 };

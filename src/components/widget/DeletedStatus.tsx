@@ -15,7 +15,7 @@ export const DeletedStatus = (props: Props) => {
   const { deletedAt, ...restProps } = props;
 
   // Contexts
-  const { l } = useLang();
+  const { t } = useLang();
 
   return (
     <>
@@ -23,7 +23,7 @@ export const DeletedStatus = (props: Props) => {
         <HStack {...restProps}>
           <DotIndicator color={"fg.error"} />
           <P>
-            {formatDate(deletedAt, l, { variant: "numeric", withTime: true })}
+            {formatDate(deletedAt, t, { variant: "numeric", withTime: true })}
           </P>
         </HStack>
       )}

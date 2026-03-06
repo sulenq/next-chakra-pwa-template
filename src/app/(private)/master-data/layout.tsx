@@ -35,7 +35,7 @@ const NavsList = (props: any) => {
   const { search, ...restProps } = props;
 
   // Contexts
-  const { l } = useLang();
+  const { t } = useLang();
 
   // Hooks
   const pathname = usePathname();
@@ -45,7 +45,7 @@ const NavsList = (props: any) => {
   const resolvedList = NAVS.reduce<typeof NAVS>(
     (acc, group) => {
       const filteredItems = group.navs.filter((item) =>
-        pluckString(l, item.labelKey).toLowerCase().includes(searchTerm),
+        pluckString(t, item.labelKey).toLowerCase().includes(searchTerm),
       );
 
       if (filteredItems.length > 0) {
@@ -75,7 +75,7 @@ const NavsList = (props: any) => {
                   color={"fg.subtle"}
                   ml={1}
                 >
-                  {pluckString(l, navItem.labelKey)}
+                  {pluckString(t, navItem.labelKey)}
                 </P>
               )}
 
@@ -85,7 +85,7 @@ const NavsList = (props: any) => {
                 return (
                   <Tooltip
                     key={nav.path}
-                    content={pluckString(l, nav.labelKey)}
+                    content={pluckString(t, nav.labelKey)}
                     positioning={{
                       placement: "right",
                       offset: {
@@ -106,7 +106,7 @@ const NavsList = (props: any) => {
 
                         <AppIcon icon={nav.icon} />
 
-                        <P textAlign={"left"}>{pluckString(l, nav.labelKey)}</P>
+                        <P textAlign={"left"}>{pluckString(t, nav.labelKey)}</P>
                       </Btn>
                     </NavLink>
                   </Tooltip>

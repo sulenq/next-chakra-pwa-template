@@ -73,7 +73,7 @@ const PageControl = (props: Props__PageControl) => {
   const { utils, page, numPages, ...restProps } = props;
 
   // Contexts
-  const { l } = useLang();
+  const { t } = useLang();
 
   // States
   const [gotoPage, setGotoPage] = useState<number | null>(null);
@@ -90,7 +90,7 @@ const PageControl = (props: Props__PageControl) => {
       <UtilBtn
         onClick={utils.prevPage}
         disabled={page <= 1}
-        tooltipContent={l.previous_page}
+        tooltipContent={t.previous_page}
       >
         <AppIcon icon={ChevronLeftIcon} />
       </UtilBtn>
@@ -147,7 +147,7 @@ const PageControl = (props: Props__PageControl) => {
       <UtilBtn
         onClick={utils.nextPage}
         disabled={page >= (numPages || 1)}
-        tooltipContent={l.next_page}
+        tooltipContent={t.next_page}
       >
         <AppIcon icon={ChevronRightIcon} />
       </UtilBtn>
@@ -164,11 +164,11 @@ const ZoomControl = (props: Props__ZoomControl) => {
   const { utils, scale, ...restProps } = props;
 
   // Contexts
-  const { l } = useLang();
+  const { t } = useLang();
 
   return (
     <HStack gap={0} {...restProps}>
-      <UtilBtn onClick={utils.zoomOut} tooltipContent={l.zoom_out}>
+      <UtilBtn onClick={utils.zoomOut} tooltipContent={t.zoom_out}>
         <Icon boxSize={5}>
           <IconZoomOut stroke={1.5} />
         </Icon>
@@ -178,20 +178,20 @@ const ZoomControl = (props: Props__ZoomControl) => {
         {Math.round(scale * 100)}%
       </Box>
 
-      <UtilBtn onClick={utils.zoomIn} tooltipContent={l.zoom_in}>
+      <UtilBtn onClick={utils.zoomIn} tooltipContent={t.zoom_in}>
         <Icon boxSize={5}>
           <IconZoomIn stroke={1.5} />
         </Icon>
       </UtilBtn>
 
-      <UtilBtn onClick={utils.fitToWidth} tooltipContent={l.fit_to_width}>
+      <UtilBtn onClick={utils.fitToWidth} tooltipContent={t.fit_to_width}>
         <Icon boxSize={5}>
           <IconArrowAutofitWidth stroke={1.5} />
         </Icon>
       </UtilBtn>
 
       {/* 
-      <UtilBtn onClick={utils.fitToPage} tooltipContent={l.fit_to_page}>
+      <UtilBtn onClick={utils.fitToPage} tooltipContent={t.fit_to_page}>
         <Icon boxSize={5}>
           <IconArrowAutofitContent stroke={1.5} />
         </Icon>
@@ -262,7 +262,7 @@ export const PDFViewer = (props: Props__PdfViewer) => {
   const { fileUrl, fileName, ...restProps } = props;
 
   // Contexts
-  const { l } = useLang();
+  const { t } = useLang();
 
   // Refs
   const containerRef = useRef<HTMLDivElement>(null);
@@ -375,8 +375,8 @@ export const PDFViewer = (props: Props__PdfViewer) => {
           error={
             <FeedbackState
               icon={<IconFileOff stroke={1.8} />}
-              title={l.alert_pdf_failed_to_load.title}
-              description={l.alert_pdf_failed_to_load.description}
+              title={t.alert_pdf_failed_to_load.title}
+              description={t.alert_pdf_failed_to_load.description}
             />
           }
         >

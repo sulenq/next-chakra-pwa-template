@@ -12,7 +12,7 @@ export const Pagination = (props: Props_PaginationTableData) => {
   const { page, setPage, totalPage } = props;
 
   // Contexts
-  const { l } = useLang();
+  const { t } = useLang();
 
   // States
   // const [pageTemp, setPageTemp] = useState<number | null | undefined>(page);
@@ -50,7 +50,7 @@ export const Pagination = (props: Props_PaginationTableData) => {
       <HStack whiteSpace={"nowrap"}>
         <P>{formatNumber(page)}</P>
 
-        <P>{l.of}</P>
+        <P>{t.of}</P>
 
         <P>{formatNumber(totalPage) || "?"}</P>
       </HStack>

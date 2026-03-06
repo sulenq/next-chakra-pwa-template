@@ -18,7 +18,7 @@ export const Limitation = (props: Props_LimitationTableData) => {
   const { limit, setLimit, limitOptions: limitOptionsProps } = props;
 
   // Contexts
-  const { l } = useLang();
+  const { t } = useLang();
 
   // States
   const limitOptions = limitOptionsProps || [15, 30, 50, 100];
@@ -28,7 +28,7 @@ export const Limitation = (props: Props_LimitationTableData) => {
       <MenuTrigger asChild>
         <Btn clicky={false} size={"xs"} variant={"ghost"} pl={"8px"} pr={"6px"}>
           <HStack>
-            <P>{l.show}</P>
+            <P>{t.show}</P>
             <P>{`${limit}`}</P>
           </HStack>
 
@@ -37,19 +37,19 @@ export const Limitation = (props: Props_LimitationTableData) => {
       </MenuTrigger>
 
       <MenuContent w={"120px"}>
-        {limitOptions.map((l) => {
-          const isSelected = limit === l;
+        {limitOptions.map((t) => {
+          const isSelected = limit === t;
 
           return (
             <MenuItem
-              key={l}
-              value={`${l}`}
+              key={t}
+              value={`${t}`}
               onClick={() => {
-                setLimit(l);
+                setLimit(t);
               }}
               justifyContent={"space-between"}
             >
-              {l}
+              {t}
               {isSelected && <DotIndicator mr={"2px"} />}
             </MenuItem>
           );

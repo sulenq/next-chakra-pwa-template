@@ -13,7 +13,7 @@ export const translations = {
 
 interface Props {
   lang: keyof typeof translations;
-  l: (typeof translations)[keyof typeof translations];
+  t: (typeof translations)[keyof typeof translations];
   setLang: (newState: keyof typeof translations) => void;
 }
 
@@ -34,14 +34,14 @@ const useLang = create<Props>((set) => {
 
   return {
     lang: lang,
-    l: translations[lang],
+    t: translations[lang],
     setLang: (newState) =>
       set((state) => {
         if (state.lang !== newState) {
           setStorage(STORAGE_KEY, newState);
           return {
             lang: newState,
-            l: translations[newState],
+            t: translations[newState],
           };
         }
         return state;

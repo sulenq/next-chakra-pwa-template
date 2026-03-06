@@ -21,7 +21,7 @@ export default function FeedbackRetry(props: Props) {
 
   // Contexts
   const { themeConfig } = useThemeConfig();
-  const { l } = useLang();
+  const { t } = useLang();
 
   return (
     <CContainer
@@ -37,8 +37,8 @@ export default function FeedbackRetry(props: Props) {
             {icon || <LucideIcon icon={CircleXIcon} />}
           </Icon>
         }
-        title={title ?? l.alert_retry.title}
-        description={description ?? l.alert_retry.description}
+        title={title ?? t.alert_retry.title}
+        description={description ?? t.alert_retry.description}
         maxW={"300px"}
       />
 
@@ -51,7 +51,7 @@ export default function FeedbackRetry(props: Props) {
           size={"sm"}
           onClick={onRetry}
         >
-          {l.retry}
+          {t.retry}
         </Btn>
 
         {children}

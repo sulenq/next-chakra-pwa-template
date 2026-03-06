@@ -9,7 +9,7 @@ import { SettingsIcon } from "lucide-react";
 
 const SettingsRoute = () => {
   // Contexts
-  const { l } = useLang();
+  const { t } = useLang();
   const { themeConfig } = useThemeConfig();
 
   return (
@@ -24,8 +24,8 @@ const SettingsRoute = () => {
     >
       <FeedbackState
         icon={<LucideIcon icon={SettingsIcon} />}
-        title={l.settings}
-        description={l.msg_settings_index_route}
+        title={t.settings}
+        description={t.msg_settings_index_route}
       />
     </CContainer>
   );

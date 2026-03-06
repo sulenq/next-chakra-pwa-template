@@ -41,7 +41,7 @@ export default function useRequest<T = any>(props: Props) {
   } = props;
 
   // Contexts
-  const { l } = useLang();
+  const { t } = useLang();
 
   // Refs
   const abortControllerRef = useRef<AbortController | null>(null);
@@ -58,12 +58,12 @@ export default function useRequest<T = any>(props: Props) {
   });
   const { loading, status, error, response } = reqState;
   const resolvedLoadingMessage = {
-    title: loadingMessage?.title || l.loading_default.title,
-    description: loadingMessage?.description || l.loading_default.description,
+    title: loadingMessage?.title || t.loading_default.title,
+    description: loadingMessage?.description || t.loading_default.description,
   };
   const resolvedSuccessMessage = {
-    title: successMessage?.title || l.success_default.title,
-    description: successMessage?.description || l.success_default.description,
+    title: successMessage?.title || t.success_default.title,
+    description: successMessage?.description || t.success_default.description,
   };
 
   // Utils
@@ -71,7 +71,7 @@ export default function useRequest<T = any>(props: Props) {
     (update: Partial<Interface__RequestState<T>>) => {
       setReqState((prev) => ({ ...prev, ...update }));
     },
-    []
+    [],
   );
   const resolveToastProps = (e: any) => {
     const statusCode = e.response?.status;
@@ -79,7 +79,7 @@ export default function useRequest<T = any>(props: Props) {
 
     // Handle network-level errors first
     if (e.code === "ERR_NETWORK") {
-      return l.error_network;
+      return t.error_network;
     }
 
     // Check if a custom error message is provided for this status code and case
@@ -90,8 +90,8 @@ export default function useRequest<T = any>(props: Props) {
       // Fallback to default custom message for this status code
       return (
         errorMessage[statusCode].default || {
-          title: l.error_default.title,
-          description: l.error_default.description,
+          title: t.error_default.title,
+          description: t.error_default.description,
         }
       );
     }
@@ -101,55 +101,55 @@ export default function useRequest<T = any>(props: Props) {
       case 400:
         switch (errorCase) {
           case "VALIDATION_FAILED":
-            return l.error_422_default;
+            return t.error_422_default;
           case "INVALID_CREDENTIALS":
-            return l.error_signin_wrong_credentials;
+            return t.error_signin_wrong_credentials;
           default:
-            return l.error_400_default;
+            return t.error_400_default;
         }
 
       case 401:
         switch (errorCase) {
           case "FORBIDDEN_ROLE":
-            return l.error_signin_wrong_credentials;
+            return t.error_signin_wrong_credentials;
           default:
-            return l.error_401_default;
+            return t.error_401_default;
         }
 
       case 403:
         switch (errorCase) {
           default:
-            return l.error_403_default;
+            return t.error_403_default;
         }
 
       case 404:
         switch (errorCase) {
           default:
-            return l.error_404_default;
+            return t.error_404_default;
         }
 
       case 422:
         switch (errorCase) {
           default:
-            return l.error_422_default;
+            return t.error_422_default;
         }
 
       case 429:
         switch (errorCase) {
           default:
-            return l.error_429_default;
+            return t.error_429_default;
         }
 
       case 500:
         switch (errorCase) {
           default:
-            return l.error_500_default;
+            return t.error_500_default;
         }
 
       default:
         switch (errorCase) {
           default:
-            return l.error_default;
+            return t.error_default;
         }
     }
   };
@@ -253,10 +253,10 @@ export default function useRequest<T = any>(props: Props) {
       resolvedSuccessMessage,
       signinPath,
       errorMessage,
-      l,
+      t,
       router,
       safeSetState,
-    ]
+    ],
   );
 
   return { req, loading, status, error, response, setReqState };

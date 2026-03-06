@@ -6,11 +6,11 @@ import useLang from "@/context/useLang";
 
 export const LocalSettingsHelperText = () => {
   // Contexts
-  const { l } = useLang();
+  const { t } = useLang();
 
   return (
     <CContainer flex={1} p={4} bg={"body"}>
-      <HelperText>{l.msg_settings_saved_locally}</HelperText>
+      <HelperText>{t.msg_settings_saved_locally}</HelperText>
     </CContainer>
   );
 };

@@ -34,7 +34,7 @@ import { useEffect, useRef, useState } from "react";
 
 const Camera = () => {
   // Contexts
-  const { l } = useLang();
+  const { t } = useLang();
   const { themeConfig } = useThemeConfig();
   const { cameraPermissionsStatus } = useCameraPermission();
 
@@ -42,14 +42,14 @@ const Camera = () => {
   const getBrowserSettingsLink = () => {
     const userAgent = navigator.userAgent;
     if (userAgent.includes("Chrome")) {
-      return l.msg_chrome_permissions_settings_link;
+      return t.msg_chrome_permissions_settings_link;
     } else if (userAgent.includes("Firefox")) {
-      return l.msg_firefox_permissions_settings_link;
+      return t.msg_firefox_permissions_settings_link;
     } else if (userAgent.includes("Edg")) {
-      return l.msg_edge_permissions_settings_link;
+      return t.msg_edge_permissions_settings_link;
     }
 
-    return l.msg_default_permissions_settings_link;
+    return t.msg_default_permissions_settings_link;
   };
 
   // Utils
@@ -93,13 +93,13 @@ const Camera = () => {
           onClick={onOpen}
           disabled={cameraPermissionsStatus !== "granted"}
         >
-          {l.try_camera}
+          {t.try_camera}
         </Btn>
 
         <DisclosureRoot open={open} lazyLoad size={"xs"}>
           <DisclosureContent>
             <DisclosureHeader>
-              <DisclosureHeaderContent title={`${l.try_camera}`} />
+              <DisclosureHeaderContent title={`${t.try_camera}`} />
             </DisclosureHeader>
 
             <DisclosureBody p={"0 !important"}>
@@ -136,7 +136,7 @@ const Camera = () => {
                 }}
                 disabled={!cameraOpen}
               >
-                {l.close} {l.camera.toLowerCase()}
+                {t.close} {t.camera.toLowerCase()}
               </Btn>
               <Btn
                 colorPalette={themeConfig.colorPalette}
@@ -154,14 +154,14 @@ const Camera = () => {
                       },
                       () =>
                         toaster.error({
-                          title: l.error_camera.title,
-                          description: l.error_camera.description,
+                          title: t.error_camera.title,
+                          description: t.error_camera.description,
                         }),
                     );
                   }
                 }}
               >
-                {l.open} {l.camera.toLowerCase()}
+                {t.open} {t.camera.toLowerCase()}
               </Btn>
             </DisclosureFooter>
           </DisclosureContent>
@@ -176,7 +176,7 @@ const Camera = () => {
         <HStack>
           <AppIcon icon={CameraIcon} />
 
-          <P fontWeight={"semibold"}>{l.camera}</P>
+          <P fontWeight={"semibold"}>{t.camera}</P>
         </HStack>
 
         <Test />
@@ -192,8 +192,8 @@ const Camera = () => {
         >
           <ToggleSettingContainer>
             <CContainer>
-              <P>{l.settings_camera.title}</P>
-              <P color={"fg.subtle"}>{l.settings_camera.description}</P>
+              <P>{t.settings_camera.title}</P>
+              <P color={"fg.subtle"}>{t.settings_camera.description}</P>
             </CContainer>
 
             <Switch
@@ -212,12 +212,12 @@ const Camera = () => {
             <CContainer>
               <P color={"fg.subtle"}>
                 {cameraPermissionsStatus === "granted"
-                  ? l.msg_permissions_granted_helper
-                  : l.msg_permissions_denied_helper}
+                  ? t.msg_permissions_granted_helper
+                  : t.msg_permissions_denied_helper}
               </P>
               <P color={"fg.subtle"}>
                 {`${getBrowserSettingsLink()}
-              ${l.camera}`}
+              ${t.camera}`}
               </P>
             </CContainer>
           )}
@@ -229,7 +229,7 @@ const Camera = () => {
 
 const Microphone = () => {
   // Contexts
-  const { l } = useLang();
+  const { t } = useLang();
   const { themeConfig } = useThemeConfig();
   const { micPermissionsStatus } = useMicPermissions();
 
@@ -237,13 +237,13 @@ const Microphone = () => {
   const getBrowserSettingsLink = () => {
     const userAgent = navigator.userAgent;
     if (userAgent.includes("Chrome")) {
-      return l.msg_chrome_permissions_settings_link;
+      return t.msg_chrome_permissions_settings_link;
     } else if (userAgent.includes("Firefox")) {
-      return l.msg_firefox_permissions_settings_link;
+      return t.msg_firefox_permissions_settings_link;
     } else if (userAgent.includes("Edg")) {
-      return l.msg_edge_permissions_settings_link;
+      return t.msg_edge_permissions_settings_link;
     }
-    return l.msg_default_permissions_settings_link;
+    return t.msg_default_permissions_settings_link;
   };
 
   // Utils
@@ -326,13 +326,13 @@ const Microphone = () => {
           onClick={onOpen}
           disabled={micPermissionsStatus !== "granted"}
         >
-          {l.try_mic}
+          {t.try_mic}
         </Btn>
 
         <DisclosureRoot open={open} lazyLoad size="xs">
           <DisclosureContent>
             <DisclosureHeader>
-              <DisclosureHeaderContent title={l.try_mic} />
+              <DisclosureHeaderContent title={t.try_mic} />
             </DisclosureHeader>
 
             <DisclosureBody>
@@ -346,7 +346,7 @@ const Microphone = () => {
 
             <DisclosureFooter>
               <Btn variant="outline" onClick={stopMicTest} disabled={!micOpen}>
-                {l.close} {l.mic.toLowerCase()}
+                {t.close} {t.mic.toLowerCase()}
               </Btn>
               <Btn
                 colorPalette={themeConfig.colorPalette}
@@ -354,7 +354,7 @@ const Microphone = () => {
                 loading={loading}
                 onClick={startMicTest}
               >
-                {l.open} {l.mic.toLowerCase()}
+                {t.open} {t.mic.toLowerCase()}
               </Btn>
             </DisclosureFooter>
           </DisclosureContent>
@@ -369,7 +369,7 @@ const Microphone = () => {
         <HStack>
           <AppIcon icon={MicIcon} />
 
-          <P fontWeight={"semibold"}>{l.mic}</P>
+          <P fontWeight={"semibold"}>{t.mic}</P>
         </HStack>
 
         <Test />
@@ -385,8 +385,8 @@ const Microphone = () => {
         >
           <ToggleSettingContainer>
             <CContainer>
-              <P>{l.settings_mic.title}</P>
-              <P color={"fg.subtle"}>{l.settings_mic.description}</P>
+              <P>{t.settings_mic.title}</P>
+              <P color={"fg.subtle"}>{t.settings_mic.description}</P>
             </CContainer>
 
             <Switch
@@ -405,12 +405,12 @@ const Microphone = () => {
             <CContainer>
               <P color={"fg.subtle"}>
                 {micPermissionsStatus === "granted"
-                  ? l.msg_permissions_granted_helper
-                  : l.msg_permissions_denied_helper}
+                  ? t.msg_permissions_granted_helper
+                  : t.msg_permissions_denied_helper}
               </P>
               <P color={"fg.subtle"}>
                 {`${getBrowserSettingsLink()}
-              ${l.mic}`}
+              ${t.mic}`}
               </P>
             </CContainer>
           )}
@@ -422,7 +422,7 @@ const Microphone = () => {
 
 const Location = () => {
   // Contexts
-  const { l } = useLang();
+  const { t } = useLang();
   const { themeConfig } = useThemeConfig();
   const { locationPermissionsStatus } = useLocationPermissions();
 
@@ -430,13 +430,13 @@ const Location = () => {
   const getBrowserSettingsLink = () => {
     const userAgent = navigator.userAgent;
     if (userAgent.includes("Chrome")) {
-      return l.msg_chrome_permissions_settings_link;
+      return t.msg_chrome_permissions_settings_link;
     } else if (userAgent.includes("Firefox")) {
-      return l.msg_firefox_permissions_settings_link;
+      return t.msg_firefox_permissions_settings_link;
     } else if (userAgent.includes("Edg")) {
-      return l.msg_edge_permissions_settings_link;
+      return t.msg_edge_permissions_settings_link;
     }
-    return l.msg_default_permissions_settings_link;
+    return t.msg_default_permissions_settings_link;
   };
 
   // Utils
@@ -450,20 +450,20 @@ const Location = () => {
         switch (error.code) {
           case error.POSITION_UNAVAILABLE:
             toaster.error({
-              title: l.errpr_location_support.title,
-              description: l.errpr_location_support.description,
+              title: t.errpr_location_support.title,
+              description: t.errpr_location_support.description,
             });
             break;
           default:
             toaster.error({
-              title: l.error_location.title,
-              description: l.error_location.description,
+              title: t.error_location.title,
+              description: t.error_location.description,
             });
             break;
         }
         toaster.error({
-          title: l.errpr_location_support.title,
-          description: l.errpr_location_support.description,
+          title: t.errpr_location_support.title,
+          description: t.errpr_location_support.description,
         });
         return;
       });
@@ -488,13 +488,13 @@ const Location = () => {
         setCenter({ lat: coords.latitude, long: coords.longitude });
         getAddress(coords.latitude, coords.longitude)
           .then((data) => {
-            setAddress(data.display_name || l.address_not_found);
+            setAddress(data.display_name || t.address_not_found);
           })
           .catch((error) => {
             console.error("Gagal mendapatkan alamat:", error);
             toaster.error({
-              title: l.error_location.title,
-              description: l.error_location.description,
+              title: t.error_location.title,
+              description: t.error_location.description,
             });
           })
           .finally(() => {
@@ -511,17 +511,17 @@ const Location = () => {
           onClick={onOpen}
           disabled={locationPermissionsStatus !== "granted"}
         >
-          {l.try_location}
+          {t.try_location}
         </Btn>
 
         <DisclosureRoot open={open} lazyLoad size="xs">
           <DisclosureContent>
             <DisclosureHeader>
-              <DisclosureHeaderContent title={l.try_location} />
+              <DisclosureHeaderContent title={t.try_location} />
             </DisclosureHeader>
 
             <DisclosureBody>
-              {!address && <P>{l.msg_location_test_helper}</P>}
+              {!address && <P>{t.msg_location_test_helper}</P>}
 
               {address && center && (
                 <CContainer gap={2}>
@@ -541,7 +541,7 @@ const Location = () => {
 
                   <HStack align={"start"}>
                     <P w={"100px"} color={"fg.muted"} flexShrink={0}>
-                      {l.address}
+                      {t.address}
                     </P>
                     <P>{address}</P>
                   </HStack>
@@ -555,7 +555,7 @@ const Location = () => {
                 loading={loading}
                 onClick={startLocationTest}
               >
-                {l.get} {l.location.toLowerCase()}
+                {t.get} {t.location.toLowerCase()}
               </Btn>
             </DisclosureFooter>
           </DisclosureContent>
@@ -570,7 +570,7 @@ const Location = () => {
         <HStack>
           <AppIcon icon={MapPinIcon} />
 
-          <P fontWeight={"semibold"}>{l.location}</P>
+          <P fontWeight={"semibold"}>{t.location}</P>
         </HStack>
 
         <Test />
@@ -586,8 +586,8 @@ const Location = () => {
         >
           <ToggleSettingContainer>
             <CContainer>
-              <P>{l.settings_location.title}</P>
-              <P color={"fg.subtle"}>{l.settings_location.description}</P>
+              <P>{t.settings_location.title}</P>
+              <P color={"fg.subtle"}>{t.settings_location.description}</P>
             </CContainer>
 
             <Switch
@@ -606,11 +606,11 @@ const Location = () => {
             <CContainer>
               <P color={"fg.subtle"}>
                 {locationPermissionsStatus === "granted"
-                  ? l.msg_permissions_granted_helper
-                  : l.msg_permissions_denied_helper}
+                  ? t.msg_permissions_granted_helper
+                  : t.msg_permissions_denied_helper}
               </P>
               <P color={"fg.subtle"}>
-                {`${getBrowserSettingsLink()} ${l.location}`}
+                {`${getBrowserSettingsLink()} ${t.location}`}
               </P>
             </CContainer>
           )}

@@ -47,7 +47,7 @@ const SelectOptions = (props: SelectOptionsProps) => {
     props;
 
   // Contexts
-  const { l } = useLang();
+  const { t } = useLang();
   const { themeConfig } = useThemeConfig();
 
   // States
@@ -109,7 +109,7 @@ const SelectOptions = (props: SelectOptionsProps) => {
                   size={"md"}
                   colorPalette={themeConfig.colorPalette}
                 >
-                  <P>{l.select_all}</P>
+                  <P>{t.select_all}</P>
                 </Checkbox>
               </Box>
             </CContainer>
@@ -182,7 +182,7 @@ export const SelectInput = (props: Props__SelectInput) => {
   } = props;
 
   // Contexts
-  const { l } = useLang();
+  const { t } = useLang();
   const { themeConfig } = useThemeConfig();
   const fc = useFieldContext();
 
@@ -194,7 +194,7 @@ export const SelectInput = (props: Props__SelectInput) => {
 
   // Derived Values
   const resolvedPlaceholder =
-    placeholder ?? (multiple ? l.select_one_or_more : l.select);
+    placeholder ?? (multiple ? t.select_one_or_more : t.select);
   const resolvedInvalid = invalid ?? fc?.invalid;
   const formattedButtonLabel =
     inputValue && !isEmptyArray(inputValue)
@@ -260,7 +260,7 @@ export const SelectInput = (props: Props__SelectInput) => {
         <DisclosureContent>
           <DisclosureHeader>
             <DisclosureHeaderContent
-              title={capitalizeWords(`${l.select} ${title}`)}
+              title={capitalizeWords(`${t.select} ${title}`)}
             >
               {fetch && (
                 <Btn
@@ -315,7 +315,7 @@ export const SelectInput = (props: Props__SelectInput) => {
               disabled={required && isEmptyArray(selected)}
               onClick={handleConfirm}
             >
-              {l.confirm}
+              {t.confirm}
             </Btn>
           </DisclosureFooter>
         </DisclosureContent>

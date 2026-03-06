@@ -92,7 +92,7 @@ export const InputComponent = (props: Props__FileInputInputComponent) => {
   } = props;
 
   // Contexts
-  const { l } = useLang();
+  const { t } = useLang();
   const fc = useFieldContext();
 
   // States
@@ -112,7 +112,7 @@ export const InputComponent = (props: Props__FileInputInputComponent) => {
   ) : undefined;
   const resolvedLabel = singleFileInputted
     ? singleFile?.name
-    : placeholder || l.msg_file_input_dropzone;
+    : placeholder || t.msg_file_input_dropzone;
   const resolvedDescription = singleFileInputted
     ? formatBytes(singleFile?.size)
     : description ||
@@ -133,8 +133,8 @@ export const InputComponent = (props: Props__FileInputInputComponent) => {
 
     // Reject if total existing + new exceeds maxFiles
     if (maxFiles && existingCount + files.length > maxFiles) {
-      const title = l.error_invalid_file.title;
-      const description = l.error_invalid_file.description;
+      const title = t.error_invalid_file.title;
+      const description = t.error_invalid_file.description;
 
       toaster.error({
         title,
@@ -167,8 +167,8 @@ export const InputComponent = (props: Props__FileInputInputComponent) => {
         onFileChange={handleFileChange}
         onFileReject={() => {
           toaster.error({
-            title: l.error_invalid_file.title,
-            description: l.error_invalid_file.description,
+            title: t.error_invalid_file.title,
+            description: t.error_invalid_file.description,
           });
         }}
         maxFileSize={maxFileSizeMB * 1024 * 1024}
@@ -268,7 +268,7 @@ export const FileInput = (props: Props__FileInput) => {
   const { existingFiles, onDeleteFile, onUndoDeleteFile, ...restProps } = props;
 
   // Contexts
-  const { l } = useLang();
+  const { t } = useLang();
   const { themeConfig } = useThemeConfig();
   const fc = useFieldContext();
 
@@ -295,7 +295,7 @@ export const FileInput = (props: Props__FileInput) => {
             cursor={resolvedDisabled ? "disabled" : "auto"}
           >
             <P fontWeight={"medium"} pl={1}>
-              {l.uploaded_file}
+              {t.uploaded_file}
             </P>
 
             {existing?.map((fileData: any, idx: number) => {
@@ -338,7 +338,7 @@ export const FileInput = (props: Props__FileInput) => {
             cursor={resolvedDisabled ? "disabled" : "auto"}
           >
             <P fontWeight={"medium"} pl={1}>
-              {l.deleted_file}
+              {t.deleted_file}
             </P>
 
             {deleted?.map((fileData: any, idx: number) => {

@@ -11,7 +11,7 @@ import { HStack, VStack } from "@chakra-ui/react";
 
 export default function NotFoundRoute() {
   // Contexts
-  const { l } = useLang();
+  const { t } = useLang();
   const { themeConfig } = useThemeConfig();
 
   return (
@@ -30,11 +30,11 @@ export default function NotFoundRoute() {
         </P>
 
         <P textAlign={"center"} mb={4} maxW={"450px"} color={"fg.subtle"}>
-          {l.missing_route.description}
+          {t.missing_route.description}
         </P>
 
         <NavLink to={"/"} w={"fit"}>
-          <Btn colorPalette={themeConfig.colorPalette}>{l.main_page}</Btn>
+          <Btn colorPalette={themeConfig.colorPalette}>{t.main_page}</Btn>
         </NavLink>
       </VStack>
 

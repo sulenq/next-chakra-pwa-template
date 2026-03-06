@@ -36,7 +36,7 @@ export const BatchOptions = (props: Props__BatchOptions) => {
   } = props;
 
   // Contexts
-  const { l } = useLang();
+  const { t } = useLang();
   const { themeConfig } = useThemeConfig();
 
   return (
@@ -60,7 +60,7 @@ export const BatchOptions = (props: Props__BatchOptions) => {
       <MenuContent portalRef={tableContainerRef} zIndex={10} minW={"140px"}>
         <CContainer px={3} py={1}>
           <P fontSize={"sm"} opacity={0.5} fontWeight={500}>
-            {`${selectedRows.length} ${l.selected.toLowerCase()}`}
+            {`${selectedRows.length} ${t.selected.toLowerCase()}`}
           </P>
         </CContainer>
 
@@ -72,7 +72,7 @@ export const BatchOptions = (props: Props__BatchOptions) => {
           }}
           closeOnSelect={false}
         >
-          <P>{l.select_all}</P>
+          <P>{t.select_all}</P>
 
           <DotIndicator
             color={allRowsSelected ? themeConfig.primaryColor : "gray.muted"}

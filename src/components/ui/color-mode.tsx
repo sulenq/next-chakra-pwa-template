@@ -54,7 +54,7 @@ export const ColorModeButton = forwardRef<
   const { tooltipProps, ...restProps } = props;
 
   // Hooks
-  const { l } = useLang();
+  const { t } = useLang();
   const { toggleColorMode } = useColorMode();
 
   // Contexts
@@ -67,7 +67,7 @@ export const ColorModeButton = forwardRef<
   return (
     <ClientOnly fallback={<Skeleton boxSize="8" />}>
       <Tooltip
-        content={ADMActive ? l.msg_ADM_active : l.msg_toggle_dark_mode}
+        content={ADMActive ? t.msg_ADM_active : t.msg_toggle_dark_mode}
         {...tooltipProps}
       >
         <IconButton
@@ -107,7 +107,7 @@ export const LightMode = React.forwardRef<HTMLSpanElement, SpanProps>(
         {...props}
       />
     );
-  }
+  },
 );
 
 export const DarkMode = React.forwardRef<HTMLSpanElement, SpanProps>(
@@ -123,5 +123,5 @@ export const DarkMode = React.forwardRef<HTMLSpanElement, SpanProps>(
         {...props}
       />
     );
-  }
+  },
 );

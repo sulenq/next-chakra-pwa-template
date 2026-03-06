@@ -12,7 +12,7 @@ export default function useOfflineAlert(props: Props) {
   const { mounted } = props;
 
   // Contexts
-  const { l } = useLang();
+  const { t } = useLang();
   const { setOffline } = useOffline();
 
   // Refs
@@ -23,8 +23,8 @@ export default function useOfflineAlert(props: Props) {
     setOffline(false);
     toaster.success({
       id: "success-online",
-      title: l.success_online.title,
-      description: l.success_online.description,
+      title: t.success_online.title,
+      description: t.success_online.description,
     });
   }
   function handleOffline() {
