@@ -919,6 +919,17 @@ const DemoIndexRoute = () => {
 
                 <Field label={"Dokumen Negara"} invalid={!!formik.errors.file}>
                   <FileInput
+                    inputValue={formik.values.file}
+                    onChange={(input) => {
+                      formik.setFieldValue("file", input);
+                    }}
+                    existingFiles={existingFiles}
+                    maxFiles={5}
+                  />
+                </Field>
+
+                <Field label={"Dokumen Negara"} invalid={!!formik.errors.file}>
+                  <FileInput
                     dropzone
                     inputValue={formik.values.file}
                     onChange={(input) => {

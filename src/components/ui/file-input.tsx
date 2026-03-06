@@ -24,12 +24,18 @@ import {
   Center,
   FileUploadRootProps,
   Icon,
+  StackProps,
   useFieldContext,
 } from "@chakra-ui/react";
 import { TrashIcon, UploadIcon, XIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 
-const FileList = (props: any) => {
+interface FileListProps extends Omit<StackProps, "onChange"> {
+  inputValue: File[] | null;
+  onChange?: (inputValue: FileInputProps["inputValue"]) => void;
+  existing: Interface__StorageFile[];
+}
+const FileList = (props: FileListProps) => {
   // Props
   const { inputValue, onChange, existing, ...restProps } = props;
 
@@ -111,12 +117,13 @@ export const FileInputComponent = (props: FileInputInputComponentProps) => {
   // States
   const [key, setKey] = useState<number>(1);
 
-  // normalize existing to array (prevent undefined issues)
-  const existingArr = Array.isArray(existing)
+  // Constants
+
+  // Derived Values
+  const existingArr = Array.isArray(existing) // normalize existing to array (prevent undefined issues)
     ? existing
     : ([] as Interface__StorageFile[]);
   const existingCount = existingArr.length;
-
   const singleFile = inputValue?.[0] as File;
   const singleFileInputted =
     maxFiles === 1 && (!isEmptyArray(inputValue) as boolean);
@@ -132,10 +139,8 @@ export const FileInputComponent = (props: FileInputInputComponentProps) => {
       `up to ${maxFileSizeMB} mB, max ${maxFiles || 1} file${
         maxFiles! > 1 ? "s" : ""
       } ${acceptPlaceholder ? `(${acceptPlaceholder})` : ""}`;
-
-  // disable if disabled prop true or already have maxFiles existing
   const resolvedDisabled =
-    fc?.disabled || disabled || existingCount >= maxFiles;
+    fc?.disabled || disabled || existingCount >= maxFiles; // disable if disabled prop true or already have maxFiles existing
 
   // Utils
   function handleFileChange(details: any) {
@@ -163,7 +168,7 @@ export const FileInputComponent = (props: FileInputInputComponentProps) => {
     onChange?.(files.length > 0 ? files : undefined);
   }
 
-  // clear input when resolvedDisabled = true
+  // Clear input when resolvedDisabled = true
   useEffect(() => {
     if (resolvedDisabled) {
       onChange?.(undefined);
@@ -248,7 +253,7 @@ export const FileInputComponent = (props: FileInputInputComponentProps) => {
               >
                 <Icon scale={0.8}>
                   <LucideIcon icon={UploadIcon} />
-                </Icon>{" "}
+                </Icon>
                 {label || "File upload"}
               </Btn>
             </FileUploadTrigger>
@@ -265,7 +270,6 @@ export const FileInputComponent = (props: FileInputInputComponentProps) => {
               <FileList
                 inputValue={inputValue}
                 onChange={onChange}
-                setKey={setKey}
                 existing={existing}
               />
             </CContainer>
@@ -279,7 +283,7 @@ export const FileInputComponent = (props: FileInputInputComponentProps) => {
 export interface FileInputProps extends Omit<FileUploadRootProps, "onChange"> {
   id?: string;
   fRef?: any;
-  inputValue?: File[];
+  inputValue?: File[] | null;
   onChange?: (inputValue: FileInputProps["inputValue"]) => void;
   accept?: string;
   acceptPlaceholder?: string;
