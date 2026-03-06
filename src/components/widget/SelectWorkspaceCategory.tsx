@@ -42,7 +42,7 @@ const SelectWorkspaceCategory = (props: Props__SelectInput) => {
               label: item?.nama_jabatan,
             }))
             .sort((a: Interface__SelectOption, b: Interface__SelectOption) =>
-              a.label.localeCompare(b.label)
+              a.label.localeCompare(b.label),
             );
           setSelectOptions(newOptions);
         },
@@ -59,8 +59,8 @@ const SelectWorkspaceCategory = (props: Props__SelectInput) => {
       title={capitalizeWords("Properties")}
       loading={loading}
       error={error}
-      selectOptions={selectOptions}
       fetch={fetch}
+      selectOptions={selectOptions}
       {...restProps}
     />
   );
