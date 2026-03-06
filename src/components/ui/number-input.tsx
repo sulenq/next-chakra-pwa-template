@@ -1,17 +1,38 @@
-import { Props__NumInput } from "@/constants/props";
+"use client";
+
+import { StringInput } from "@/components/ui/string-input";
+import useLang from "@/context/useLang";
+import { useMergedRefs } from "@/hooks/useMergeRefs";
 import { formatNumber } from "@/utils/formatter";
 import { parseNumber } from "@/utils/number";
+import { InputProps, StackProps } from "@chakra-ui/react";
 import { forwardRef, useEffect, useRef, useState } from "react";
-import { StringInput } from "./string-input";
 
 const MAX_INTEGER_DIGITS = 15;
 
-export const NumInput = forwardRef<HTMLInputElement, Props__NumInput>(
+export interface NumInputProps extends Omit<InputProps, "onChange"> {
+  inputValue?: number | null;
+  onChange?: (inputValue: number | null) => void;
+  placeholder?: string;
+  invalid?: boolean;
+  containerProps?: StackProps;
+  formatFunction?: (inputValue: number | null) => string;
+  formatted?: boolean;
+  integer?: boolean;
+  min?: number;
+  max?: number;
+  locale?: "id-ID" | "en-US";
+  maxFractionDigits?: number;
+  clearButtonProps?: StackProps;
+  clearable?: boolean;
+}
+export const NumInput = forwardRef<HTMLInputElement, NumInputProps>(
   (props, ref) => {
+    // Props
     const {
       inputValue,
       onChange,
-      placeholder = "Input number",
+      placeholder,
       invalid,
       containerProps,
       formatFunction,
@@ -19,139 +40,180 @@ export const NumInput = forwardRef<HTMLInputElement, Props__NumInput>(
       integer = true,
       min = 0,
       max,
+      locale = "id-ID",
+      maxFractionDigits = 4,
       ...restProps
     } = props;
 
-    const [num, setNum] = useState<string>("");
+    // Contexts
+    const { l } = useLang();
 
+    // Refs
     const caretRef = useRef<number | null>(null);
     const inputRef = useRef<HTMLInputElement | null>(null);
+    const mergeRef = useMergedRefs(inputRef, ref);
 
-    useEffect(() => {
-      if (typeof ref === "function") {
-        ref(inputRef.current);
-      } else if (ref) {
-        ref.current = inputRef.current;
-      }
-    }, [ref]);
+    // States
+    const [numString, setNumString] = useState<string>("");
 
-    useEffect(() => {
-      if (inputValue !== undefined && inputValue !== null) {
-        const valueToDisplay =
-          integer && typeof inputValue === "number"
-            ? Math.round(inputValue)
-            : inputValue;
+    // Derived Values
+    const isID = locale === "id-ID";
+    const decimalSep = isID ? "," : ".";
+    const thousandSep = isID ? "." : ",";
+    const resolvedPlaceholder =
+      placeholder ?? (integer ? l.number_input : l.decimal_input);
 
-        const formattedValue = !formatted
-          ? valueToDisplay.toString()
-          : formatFunction
-          ? formatFunction(valueToDisplay)
-          : formatNumber(valueToDisplay);
-
-        setNum(formattedValue || "");
-      } else {
-        setNum("");
-      }
-    }, [inputValue, formatFunction, formatted, integer]);
-
+    // Utils
     function handleChange(rawInput?: string) {
       if (rawInput === undefined) return;
-
       if (inputRef.current) caretRef.current = inputRef.current.selectionStart;
 
       if (rawInput.trim() === "") {
-        setNum("");
+        setNumString("");
         onChange?.(null);
         return;
       }
 
-      if (!/^[0-9.,]+$/.test(rawInput)) return;
+      // 1. Sanitize: Remove all thousand separators
+      const escapedThousand = thousandSep === "." ? "\\." : thousandSep;
+      let cleanNode = rawInput.replace(new RegExp(escapedThousand, "g"), "");
 
-      let sanitizedInput = rawInput;
-
+      // 2. Mode enforcement
       if (integer) {
-        sanitizedInput = sanitizedInput.replace(/[.,]/g, "");
+        cleanNode = cleanNode.replace(/[^0-9]/g, "");
       } else {
-        sanitizedInput = sanitizedInput.replace(/\./g, "");
+        const escapedDecimal = decimalSep === "." ? "\\." : decimalSep;
+
+        cleanNode = cleanNode.replace(
+          new RegExp(`[^0-9${escapedDecimal}]`, "g"),
+          "",
+        );
+
+        const decimalCount = (
+          cleanNode.match(new RegExp(escapedDecimal, "g")) || []
+        ).length;
+
+        if (decimalCount > 1) return;
       }
 
-      if (integer) {
-        sanitizedInput = sanitizedInput.replace(/^0+(?=\d)/, "");
+      // 3. Leading Zeros
+      if (
+        cleanNode.length > 1 &&
+        cleanNode.startsWith("0") &&
+        cleanNode[1] !== decimalSep
+      ) {
+        cleanNode = cleanNode.replace(/^0+/, "");
+        if (cleanNode === "" || cleanNode.startsWith(decimalSep))
+          cleanNode = "0" + cleanNode;
       }
 
-      const parts = sanitizedInput.split(",");
-      if (parts[0].length > MAX_INTEGER_DIGITS) return;
+      // 4. Split for processing
+      const parts = cleanNode.split(decimalSep);
+      const intPart = parts[0];
+      let decPart = parts[1];
 
-      let parsedValue = parseNumber(sanitizedInput);
+      if (intPart.length > MAX_INTEGER_DIGITS) return;
 
-      if (parsedValue !== undefined) {
-        if (integer) parsedValue = Math.round(parsedValue!);
+      if (!integer && decPart !== undefined) {
+        decPart = decPart.slice(0, maxFractionDigits);
+        cleanNode = `${intPart}${decimalSep}${decPart}`;
+      }
 
-        if (!Number.isSafeInteger(parsedValue)) return;
+      // 5. Create numeric value for Backend (always dot-based)
+      let numericValue: number | null = null;
 
-        if (max !== undefined && parsedValue! > max) {
-          parsedValue = max;
-          sanitizedInput = String(max);
+      if (intPart || decPart !== undefined) {
+        const normalized =
+          decPart !== undefined ? `${intPart}.${decPart}` : intPart;
+
+        const parsed = Number(normalized);
+
+        if (!Number.isNaN(parsed)) {
+          numericValue = parsed;
+
+          if (integer) numericValue = Math.round(numericValue);
+          if (max !== undefined && numericValue > max) numericValue = max;
+          if (min !== undefined && numericValue < min) numericValue = min;
         }
-
-        if (min !== undefined && parsedValue! < min) {
-          parsedValue = min;
-          sanitizedInput = String(min);
-        }
       }
 
-      if (!formatted) {
-        setNum(sanitizedInput);
-        if (parsedValue !== undefined) onChange?.(parsedValue);
-        return;
+      // 6. Visual Formatting
+      let displayValue = cleanNode;
+      if (formatted) {
+        const formattedInt = intPart.replace(
+          /\B(?=(\d{3})+(?!\d))/g,
+          thousandSep,
+        );
+        displayValue =
+          decPart !== undefined
+            ? `${formattedInt}${decimalSep}${decPart}`
+            : formattedInt;
       }
 
-      let formattedValue = sanitizedInput.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-      if (!integer && sanitizedInput.includes(",")) {
-        const s = sanitizedInput.split(",");
-        formattedValue = `${s[0].replace(/\B(?=(\d{3})+(?!\d))/g, ".")},${
-          s[1]
-        }`;
+      setNumString(displayValue);
+
+      // 7. Prevent '1,2' -> '12' by not updating parent on hanging decimal
+      if (!cleanNode.endsWith(decimalSep) && numericValue !== null) {
+        onChange?.(numericValue);
       }
 
-      setNum(formattedValue);
-      if (parsedValue !== undefined) onChange?.(parsedValue);
-
+      // 8. Caret positioning
       requestAnimationFrame(() => {
         if (!inputRef.current || caretRef.current === null) return;
-
-        const digitsBeforeCaret = rawInput
+        const rawCharsBefore = rawInput
           .slice(0, caretRef.current)
-          .replace(/[^0-9]/g, "").length;
+          .replace(new RegExp(escapedThousand, "g"), "");
+        const charsCountBefore = rawCharsBefore.length;
 
-        let digitCount = 0;
-        let nextCaret = formattedValue.length;
-
-        for (let i = 0; i < formattedValue.length; i++) {
-          if (/[0-9]/.test(formattedValue[i])) digitCount++;
-          if (digitCount === digitsBeforeCaret) {
-            nextCaret = i + 1;
-            break;
-          }
+        let newPos = 0;
+        let foundChars = 0;
+        for (let i = 0; i < displayValue.length; i++) {
+          if (displayValue[i] !== thousandSep) foundChars++;
+          newPos = i + 1;
+          if (foundChars >= charsCountBefore) break;
         }
-
-        inputRef.current.setSelectionRange(nextCaret, nextCaret);
+        inputRef.current.setSelectionRange(newPos, newPos);
       });
     }
 
+    // Sync external prop to internal state
+    useEffect(() => {
+      if (inputValue !== undefined && inputValue !== null) {
+        const val = integer ? Math.round(inputValue) : inputValue;
+
+        // Guard: Don't overwrite if numeric value is identical and user is typing a decimal
+        const currentInternal = parseNumber(
+          numString
+            .replace(new RegExp(`\\${thousandSep}`, "g"), "")
+            .replace(decimalSep, "."),
+        );
+        if (currentInternal === val && numString.includes(decimalSep)) return;
+
+        const formattedValue = !formatted
+          ? val.toString().replace(".", decimalSep)
+          : formatFunction
+            ? formatFunction(val)
+            : formatNumber(val, locale);
+
+        setNumString(formattedValue || "");
+      } else {
+        if (numString !== "") setNumString("");
+      }
+    }, [inputValue, locale, formatted, integer]);
+
     return (
       <StringInput
-        ref={inputRef}
+        ref={mergeRef}
         onChange={handleChange}
-        inputValue={num}
+        inputValue={numString}
         invalid={invalid}
-        placeholder={placeholder}
+        placeholder={resolvedPlaceholder}
         containerProps={containerProps}
-        fontVariantNumeric={"tabular-nums"}
+        fontVariantNumeric="tabular-nums"
         {...restProps}
       />
     );
-  }
+  },
 );
 
 NumInput.displayName = "NumInput";

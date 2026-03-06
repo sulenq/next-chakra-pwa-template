@@ -1,6 +1,6 @@
 "use client";
 
-import { Btn } from "@/components/ui/btn";
+import { Btn, BtnProps } from "@/components/ui/btn";
 import {
   DisclosureBody,
   DisclosureContent,
@@ -14,10 +14,9 @@ import { NumInput } from "@/components/ui/number-input";
 import { P } from "@/components/ui/p";
 import { Tooltip } from "@/components/ui/tooltip";
 import { AppIcon } from "@/components/widget/AppIcon";
+import { DotIndicator } from "@/components/widget/Indicator";
 import { getMonthNames } from "@/constants/months";
-import { Props__PeriodPickerInput } from "@/constants/props";
-import { C_ACTIVE_INDICATOR_SIZE } from "@/constants/styles";
-import { Type__Period } from "@/constants/types";
+import { ButtonVariant, DisclosureSizes, Period } from "@/constants/types";
 import useLang from "@/context/useLang";
 import { useThemeConfig } from "@/context/useThemeConfig";
 import usePopDisclosure from "@/hooks/usePopDisclosure";
@@ -26,8 +25,7 @@ import { disclosureId } from "@/utils/disclosure";
 import { formatDate } from "@/utils/formatter";
 import { capitalizeWords } from "@/utils/string";
 import { getLocalTimezone } from "@/utils/time";
-import { HStack, Icon, SimpleGrid, useFieldContext } from "@chakra-ui/react";
-import { IconCircleFilled } from "@tabler/icons-react";
+import { HStack, SimpleGrid, useFieldContext } from "@chakra-ui/react";
 import { CalendarClockIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 
@@ -36,7 +34,20 @@ const DEFAULT = {
   month: null,
 };
 
-export const PeriodPickerInput = (props: Props__PeriodPickerInput) => {
+export interface PeriodPickerInputProps extends Omit<BtnProps, "onChange"> {
+  id?: string;
+  title?: string;
+  inputValue?: Period | null;
+  onChange?: (inputValue?: PeriodPickerInputProps["inputValue"]) => void;
+  placeholder?: string;
+  required?: boolean;
+  invalid?: boolean;
+  disclosureSize?: DisclosureSizes;
+  multiple?: boolean;
+  variant?: ButtonVariant;
+  withIcon?: boolean;
+}
+export const PeriodPickerInput = (props: PeriodPickerInputProps) => {
   // Props
   const {
     id,
@@ -51,28 +62,47 @@ export const PeriodPickerInput = (props: Props__PeriodPickerInput) => {
     withIcon = true,
     ...restProps
   } = props;
-  const resolvedId = id || `period-picker-input`;
 
   // Contexts
   const { l } = useLang();
   const { themeConfig } = useThemeConfig();
   const fc = useFieldContext();
 
+  // Hooks
+  const { open, onOpen } = usePopDisclosure(
+    disclosureId(id || "period_picker_input"),
+  );
+
   // States
-  const { open, onOpen } = usePopDisclosure(disclosureId(resolvedId));
-  const [selected, setSelected] = useState<Type__Period>(DEFAULT);
+  const [selected, setSelected] = useState<Period>(DEFAULT);
+
+  // Constants
   const monthNames = getMonthNames(l);
 
-  // Derived States
+  // Derived Values
   const isSubtleVariant = variant === "subtle";
   const isGhostVariant = variant === "ghost";
-  const resolvedInvalid = invalid ?? fc?.invalid;
-  const resolvedPlaceholder = placeholder || l.select_period;
-
   const isEmpty = selected.year === null || selected.month === null;
   const isIncomplete =
     (selected.year === null && selected.month !== null) ||
     (selected.year !== null && selected.month === null);
+  const resolvedPlaceholder = placeholder || l.select_period;
+  const resolvedInvalid = invalid ?? fc?.invalid;
+
+  // Utils
+  function handleConfirm() {
+    if (!isEmpty) {
+      onChange?.({ month: selected.month, year: selected.year });
+    } else {
+      onChange?.(null);
+    }
+    back();
+  }
+  function handleEnterToConfirm(e: React.KeyboardEvent<HTMLInputElement>) {
+    if (e.key === "Enter") {
+      handleConfirm();
+    }
+  }
 
   // handle initial value on open
   useEffect(() => {
@@ -83,15 +113,6 @@ export const PeriodPickerInput = (props: Props__PeriodPickerInput) => {
       });
     }
   }, [open, inputValue]);
-
-  const handleConfirm = () => {
-    if (!isEmpty) {
-      onChange?.({ month: selected.month, year: selected.year });
-    } else {
-      onChange?.(null);
-    }
-    back();
-  };
 
   return (
     <>
@@ -149,6 +170,38 @@ export const PeriodPickerInput = (props: Props__PeriodPickerInput) => {
           <DisclosureBody>
             <FieldsetRoot>
               <Field
+                label={l.month}
+                invalid={required && selected.month === null}
+                errorText={
+                  required && selected.month === null ? l.msg_required_form : ""
+                }
+              >
+                <SimpleGrid w={"full"} columns={2} gap={2}>
+                  {monthNames.map((month, idx) => {
+                    const isSelected = selected.month === idx;
+
+                    return (
+                      <Btn
+                        key={month}
+                        clicky={false}
+                        variant={"outline"}
+                        onClick={() =>
+                          setSelected((prev) => ({ ...prev, month: idx }))
+                        }
+                        color={isSelected ? "" : "fg.muted"}
+                      >
+                        <HStack w={"full"} justify={"space-between"}>
+                          {month}
+
+                          {isSelected && <DotIndicator />}
+                        </HStack>
+                      </Btn>
+                    );
+                  })}
+                </SimpleGrid>
+              </Field>
+
+              <Field
                 label={l.year}
                 invalid={required && selected.year === null}
                 errorText={
@@ -160,58 +213,12 @@ export const PeriodPickerInput = (props: Props__PeriodPickerInput) => {
                   onChange={(val) =>
                     setSelected((prev) => ({ ...prev, year: val! }))
                   }
+                  onKeyDown={handleEnterToConfirm}
                   max={9999}
                   placeholder={`${new Date().getFullYear()}`}
                   formatted={false}
                   variant={"outline"}
                 />
-              </Field>
-
-              <Field
-                label={l.month}
-                invalid={required && selected.month === null}
-                errorText={
-                  required && selected.month === null ? l.msg_required_form : ""
-                }
-              >
-                <SimpleGrid
-                  w={"full"}
-                  columns={2}
-                  gap={2}
-                  p={1}
-                  rounded={themeConfig.radii.component}
-                  border={"1px solid"}
-                  borderColor={"border.muted"}
-                >
-                  {monthNames.map((month, idx) => {
-                    const isActive = selected.month === idx;
-
-                    return (
-                      <Btn
-                        key={month}
-                        clicky={false}
-                        variant={"ghost"}
-                        onClick={() =>
-                          setSelected((prev) => ({ ...prev, month: idx }))
-                        }
-                        color={isActive ? "" : "fg.muted"}
-                      >
-                        <HStack w={"full"} justify={"space-between"}>
-                          {month}
-
-                          {isActive && (
-                            <Icon
-                              color={themeConfig.primaryColor}
-                              boxSize={C_ACTIVE_INDICATOR_SIZE}
-                            >
-                              <IconCircleFilled />
-                            </Icon>
-                          )}
-                        </HStack>
-                      </Btn>
-                    );
-                  })}
-                </SimpleGrid>
               </Field>
             </FieldsetRoot>
           </DisclosureBody>

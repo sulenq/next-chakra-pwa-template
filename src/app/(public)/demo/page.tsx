@@ -18,7 +18,7 @@ import { RichEditor } from "@/components/ui/RichEditor";
 import SearchInput from "@/components/ui/search-input";
 import { SelectInput } from "@/components/ui/select-input";
 import { StringInput } from "@/components/ui/string-input";
-import { Textarea } from "@/components/ui/textarea";
+import { TextareaInput } from "@/components/ui/textarea-input";
 import { TimePickerInput } from "@/components/ui/time-picker-input";
 import { toaster } from "@/components/ui/toaster";
 import { Tooltip } from "@/components/ui/tooltip";
@@ -698,7 +698,7 @@ const DemoIndexRoute = () => {
       search: "",
       textarea: "",
       number: null as any,
-      number2: null as any,
+      number2: 1.2,
       period: null as any,
       date: null as any,
       time: null as any,
@@ -738,7 +738,7 @@ const DemoIndexRoute = () => {
         position={"sticky"}
         top={0}
         bg={"body"}
-        zIndex={99}
+        zIndex={1000}
       >
         <HStack gap={4}>
           <P whiteSpace={"nowrap"} fontSize={"xl"} fontWeight={"bold"}>
@@ -816,7 +816,7 @@ const DemoIndexRoute = () => {
                 </Field>
 
                 <Field invalid={!!formik.errors.textarea}>
-                  <Textarea
+                  <TextareaInput
                     inputValue={formik.values.textarea}
                     onChange={(input) => {
                       formik.setFieldValue("textarea", input);
@@ -836,11 +836,11 @@ const DemoIndexRoute = () => {
                 <Field invalid={!!formik.errors.number2}>
                   <NumInput
                     integer={false}
+                    // locale="en-US"
                     inputValue={formik.values.number2}
                     onChange={(input) => {
                       formik.setFieldValue("number2", input);
                     }}
-                    placeholder="Input number decimal"
                   />
                 </Field>
 

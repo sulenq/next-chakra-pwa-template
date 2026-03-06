@@ -1,4 +1,4 @@
-import { Btn } from "@/components/ui/btn";
+import { Btn, BtnProps } from "@/components/ui/btn";
 import {
   DisclosureBody,
   DisclosureContent,
@@ -9,12 +9,13 @@ import {
 import { DisclosureHeaderContent } from "@/components/ui/disclosure-header-content";
 import { P } from "@/components/ui/p";
 import { StringInput } from "@/components/ui/string-input";
+import { Tooltip } from "@/components/ui/tooltip";
 import { LucideIcon } from "@/components/widget/Icon";
-import { Props__TimePicker } from "@/constants/props";
 import { BASE_ICON_BOX_SIZE } from "@/constants/styles";
+import { ButtonVariant, DisclosureSizes } from "@/constants/types";
 import useLang from "@/context/useLang";
 import { useThemeConfig } from "@/context/useThemeConfig";
-import useBackOnClose from "@/hooks/useBackOnClose";
+import usePopDisclosure from "@/hooks/usePopDisclosure";
 import useScreen from "@/hooks/useScreen";
 import { back } from "@/utils/client";
 import { disclosureId } from "@/utils/disclosure";
@@ -26,22 +27,28 @@ import {
   getSecondsFromTime,
   getUserTimezone,
 } from "@/utils/time";
-import {
-  HStack,
-  Icon,
-  Stack,
-  useDisclosure,
-  useFieldContext,
-  VStack,
-} from "@chakra-ui/react";
+import { HStack, Icon, Stack, useFieldContext, VStack } from "@chakra-ui/react";
 import { IconCaretDownFilled, IconCaretUpFilled } from "@tabler/icons-react";
 import { ClockIcon } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
-import { Tooltip } from "./tooltip";
 
 const DEFAULT = "00:00:00";
 
-export const TimePickerInput = (props: Props__TimePicker) => {
+export interface TimePickerInputProps extends Omit<BtnProps, "onChange"> {
+  id?: string;
+  name?: string;
+  title?: string;
+  inputValue?: string | null;
+  onChange?: (inputValue?: TimePickerInputProps["inputValue"]) => void;
+  withSeconds?: boolean;
+  showTimezone?: boolean;
+  placeholder?: string;
+  required?: boolean;
+  invalid?: boolean;
+  disclosureSize?: DisclosureSizes;
+  variant?: ButtonVariant;
+}
+export const TimePickerInput = (props: TimePickerInputProps) => {
   // Props
   const {
     id,
@@ -64,20 +71,14 @@ export const TimePickerInput = (props: Props__TimePicker) => {
   const { themeConfig } = useThemeConfig();
   const { l } = useLang();
 
-  // States
-  const resolvedInvalid = invalid ?? fc?.invalid;
-  const userTz = getUserTimezone();
-  const resolvedPlaceholder = placeholder || l.select_time;
-  const [selected, setSelected] = useState<string | null | undefined>(
-    inputValue,
+  // Hooks
+  const { open, onOpen } = usePopDisclosure(
+    disclosureId(id || "time-picker-input"),
   );
-  const [hours, setHours] = useState<number>(getHoursFromTime(inputValue));
-  const [minutes, setMinutes] = useState<number>(
-    getMinutesFromTime(inputValue),
-  );
-  const [seconds, setSeconds] = useState<number>(
-    getSecondsFromTime(inputValue),
-  );
+  const { sw } = useScreen();
+  const wrapped = sw < 450 && withSeconds;
+
+  // Refs
   const intervalIncrementRef = useRef<ReturnType<typeof setInterval> | null>(
     null,
   );
@@ -90,37 +91,27 @@ export const TimePickerInput = (props: Props__TimePicker) => {
   const timeoutDecrementRef = useRef<ReturnType<typeof setTimeout> | null>(
     null,
   );
-  const renderValue = formatTime(inputValue);
+
+  // States
+  const [selected, setSelected] = useState<string | null | undefined>(
+    inputValue,
+  );
+  const [hours, setHours] = useState<number>(getHoursFromTime(inputValue));
+  const [minutes, setMinutes] = useState<number>(
+    getMinutesFromTime(inputValue),
+  );
+  const [seconds, setSeconds] = useState<number>(
+    getSecondsFromTime(inputValue),
+  );
+
+  // Constants
+  const userTz = getUserTimezone();
+
+  // Derived Values
+  const resolvedPlaceholder = placeholder || l.select_time;
+  const resolvedInvalid = invalid ?? fc?.invalid;
 
   // Utils
-  const { open, onOpen, onClose } = useDisclosure();
-  useBackOnClose(
-    disclosureId(id || `time-picker${name ? `-${name}` : ""}`),
-    open,
-    onOpen,
-    onClose,
-  );
-  const { sw } = useScreen();
-  const wrapped = sw < 450 && withSeconds;
-
-  // Update hours, minutes, seconds when inputValue changes
-  useEffect(() => {
-    if (inputValue) {
-      setHours(getHoursFromTime(inputValue));
-      setMinutes(getMinutesFromTime(inputValue));
-      setSeconds(getSecondsFromTime(inputValue));
-    }
-  }, [inputValue]);
-
-  // Update selected value when hours, minutes, or seconds change
-  useEffect(() => {
-    const fHours = String(hours).padStart(2, "0");
-    const fMinutes = String(minutes).padStart(2, "0");
-    const fSeconds = String(seconds).padStart(2, "0");
-    setSelected(`${fHours}:${fMinutes}:${fSeconds}`);
-  }, [hours, minutes, seconds]);
-
-  // Handle increment, decrement
   function handleHoldIncrement(type: string) {
     if (timeoutIncrementRef.current || intervalIncrementRef.current) return;
 
@@ -171,27 +162,46 @@ export const TimePickerInput = (props: Props__TimePicker) => {
       intervalDecrementRef.current = null;
     }
   }
-
-  // Handle confirm selected
-  function onConfirmSelected() {
+  function handleConfirm() {
     if (!required) {
-      if (selected) {
-        onChange?.(selected);
-      } else {
-        onChange?.(null);
-      }
+      onChange?.(selected ?? null);
       back();
     }
   }
+  function handleEnterToConfirm(e: React.KeyboardEvent<HTMLInputElement>) {
+    if (e.key === "Enter") {
+      handleConfirm();
+    }
+  }
+
+  // Update hours, minutes, seconds when inputValue changes
+  useEffect(() => {
+    if (inputValue) {
+      setHours(getHoursFromTime(inputValue));
+      setMinutes(getMinutesFromTime(inputValue));
+      setSeconds(getSecondsFromTime(inputValue));
+    }
+  }, [inputValue]);
+
+  // Update selected value when hours, minutes, or seconds change
+  useEffect(() => {
+    const fHours = String(hours).padStart(2, "0");
+    const fMinutes = String(minutes).padStart(2, "0");
+    const fSeconds = String(seconds).padStart(2, "0");
+    setSelected(`${fHours}:${fMinutes}:${fSeconds}`);
+  }, [hours, minutes, seconds]);
 
   return (
     <>
-      <Tooltip content={inputValue ? renderValue : resolvedPlaceholder}>
+      <Tooltip
+        content={inputValue ? formatTime(inputValue) : resolvedPlaceholder}
+      >
         <Btn
-          w={"full"}
-          gap={4}
+          name={name}
           justifyContent={"space-between"}
+          gap={4}
           variant={variant}
+          w={"full"}
           border={"1px solid"}
           borderColor={
             resolvedInvalid
@@ -271,23 +281,23 @@ export const TimePickerInput = (props: Props__TimePicker) => {
                 <VStack my={4}>
                   <StringInput
                     clearable={false}
-                    name="jam"
+                    name={"hour"}
+                    inputValue={
+                      selected ? String(hours).padStart(2, "0") : "--"
+                    }
                     onChange={(input) => {
                       if (parseInt(input as string) < 24) {
                         setHours(parseInt(input as string));
                       }
                     }}
-                    inputValue={
-                      selected ? String(hours).padStart(2, "0") : "--"
-                    }
+                    onKeyDown={handleEnterToConfirm}
+                    h={"64px"}
                     fontSize={"64px !important"}
                     fontWeight={"400"}
                     fontVariantNumeric={"tabular-nums"}
-                    h={"64px"}
                     textAlign={"center"}
                     border={"none !important"}
                     _focus={{ border: "none !important" }}
-                    className="num"
                   />
                   {/* <P textAlign={"center"}>Jam</P> */}
                 </VStack>
@@ -344,23 +354,23 @@ export const TimePickerInput = (props: Props__TimePicker) => {
                 <VStack my={4}>
                   <StringInput
                     clearable={false}
-                    name="menit"
+                    name={"minute"}
+                    inputValue={
+                      selected ? String(minutes).padStart(2, "0") : "--"
+                    }
                     onChange={(input) => {
                       if (parseInt(input as string) < 60) {
                         setMinutes(parseInt(input as string));
                       }
                     }}
-                    inputValue={
-                      selected ? String(minutes).padStart(2, "0") : "--"
-                    }
+                    onKeyDown={handleEnterToConfirm}
+                    h={"64px"}
                     fontSize={"64px !important"}
                     fontWeight={"400"}
                     fontVariantNumeric={"tabular-nums"}
-                    h={"64px"}
                     textAlign={"center"}
                     border={"none !important"}
                     _focus={{ border: "none !important" }}
-                    className="num"
                   />
                   {/* <P textAlign={"center"}>Menit</P> */}
                 </VStack>
@@ -418,23 +428,23 @@ export const TimePickerInput = (props: Props__TimePicker) => {
                     <VStack my={4}>
                       <StringInput
                         clearable={false}
-                        name="detik"
+                        name={"second"}
+                        inputValue={
+                          selected ? String(seconds).padStart(2, "0") : "--"
+                        }
                         onChange={(input) => {
                           if (parseInt(input as string) < 60) {
                             setSeconds(parseInt(input as string));
                           }
                         }}
-                        inputValue={
-                          selected ? String(seconds).padStart(2, "0") : "--"
-                        }
+                        onKeyDown={handleEnterToConfirm}
+                        h={"64px"}
                         fontSize={"64px !important"}
                         fontWeight={"400"}
                         fontVariantNumeric={"tabular-nums"}
-                        h={"64px"}
                         textAlign={"center"}
                         border={"none !important"}
                         _focus={{ border: "none !important" }}
-                        className="num"
                       />
                       {/* <P textAlign={"center"}>Detik</P> */}
                     </VStack>
@@ -514,7 +524,7 @@ export const TimePickerInput = (props: Props__TimePicker) => {
                 : "Reset"}
             </Btn>
             <Btn
-              onClick={onConfirmSelected}
+              onClick={handleConfirm}
               disabled={required ? !selected : false}
               colorPalette={themeConfig.colorPalette}
             >

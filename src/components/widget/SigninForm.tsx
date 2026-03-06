@@ -178,8 +178,6 @@ const BasicAuthForm = (props: any) => {
           },
         },
       });
-
-      router.push(INDEX_ROUTE);
     },
   });
 
@@ -310,6 +308,12 @@ export const SigninForm = (props: StackProps) => {
           <BasicAuthForm signinAPI={signinAPI} />
         </>
       )}
+
+      <NavLink to={INDEX_ROUTE} mx={"auto"}>
+        <Btn variant={"ghost"} colorPalette={themeConfig.colorPalette}>
+          Demo Page
+        </Btn>
+      </NavLink>
     </CContainer>
   );
 };

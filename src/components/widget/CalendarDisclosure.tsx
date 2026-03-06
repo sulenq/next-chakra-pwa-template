@@ -15,7 +15,7 @@ import {
   DisclosureRoot,
 } from "@/components/ui/disclosure";
 import { DisclosureHeaderContent } from "@/components/ui/disclosure-header-content";
-import { Type__Period } from "@/constants/types";
+import { Period } from "@/constants/types";
 import useLang from "@/context/useLang";
 import useBackOnClose from "@/hooks/useBackOnClose";
 import { disclosureId } from "@/utils/disclosure";
@@ -47,7 +47,7 @@ export const CalendarDisclosure = (props: any) => {
 
   // States
   const [selected, setSelected] = useState<Date[]>([]);
-  const [period, setPeriod] = useState<Type__Period>(DEFAULT_PERIOD);
+  const [period, setPeriod] = useState<Period>(DEFAULT_PERIOD);
 
   useEffect(() => {
     if (open) {

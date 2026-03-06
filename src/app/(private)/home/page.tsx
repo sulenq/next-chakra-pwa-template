@@ -168,7 +168,7 @@ const Overview = (props: OverviewProps) => {
       icon: ClockFadingIcon,
       title: l.avg_response_time.title,
       description: l.avg_response_time.description,
-      value: formatDuration(data.AvgResponseTime),
+      value: formatDuration(data.AvgResponseTime, l),
     },
   ];
 

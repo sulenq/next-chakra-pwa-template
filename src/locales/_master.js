@@ -115,6 +115,22 @@ export const settings_navs = {
 };
 
 // Semantic UI
+export const type_here = {
+  id: "Tulis disini",
+  en: "Type here",
+};
+export const text_input = {
+  id: "Input teks",
+  en: "Input teks",
+};
+export const number_input = {
+  id: "Input angka",
+  en: "Input number",
+};
+export const decimal_input = {
+  id: "Input desimal",
+  en: "Input decimal",
+};
 export const total_users = {
   title: { id: "Total pengguna", en: "Total users" },
   description: {
@@ -360,6 +376,14 @@ export const of = {
 export const select = {
   id: "Pilih",
   en: "Select",
+};
+export const select_one_or_more = {
+  id: "Pilih satu atau lebih",
+  en: "Select one or more",
+};
+export const select_multiple = {
+  id: "Pilih beberapa",
+  en: "Select multiple",
 };
 export const selected = {
   id: "Dipilih",

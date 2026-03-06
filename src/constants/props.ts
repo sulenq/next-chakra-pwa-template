@@ -1,4 +1,4 @@
-import { Props__Btn } from "@/components/ui/btn";
+import { BtnProps } from "@/components/ui/btn";
 import {
   Interface__BatchOptionsTableOptionGenerator,
   Interface__FormattedTableHeader,
@@ -13,23 +13,18 @@ import {
   FileUploadRootProps,
   GroupProps,
   IconProps,
-  InputGroupProps,
-  InputProps,
   MenuRootProps,
   StackProps,
   TableRowProps,
   TextProps,
 } from "@chakra-ui/react";
 import { ImageProps } from "next/image";
-import { TextareaProps } from "node_modules/@chakra-ui/react/dist/types/components/editable/namespace";
 import { Dispatch, RefObject } from "react";
 import {
-  Type__BasicVariant,
-  Type__ButtonSize,
-  Type__DateVariant,
-  Type__DisclosureSizes,
-  Type__InputSize,
-  Type__Period,
+  ButtonSize,
+  ButtonVariant,
+  DateVariant,
+  DisclosureSizes,
 } from "./types";
 
 export interface Props__PdfViewer extends StackProps {
@@ -66,7 +61,7 @@ export interface Props__Layout {
   children: React.ReactNode;
 }
 export interface Props__Today extends TextProps {
-  dateVariant?: Type__DateVariant;
+  dateVariant?: DateVariant;
 }
 export interface Props__NavLink extends StackProps {
   to?: string;
@@ -107,7 +102,7 @@ export interface Props__DataTable extends Omit<StackProps, "page"> {
   loading?: boolean;
   contentContainerProps?: StackProps;
 }
-export interface Props__BatchOptions extends Props__Btn {
+export interface Props__BatchOptions extends BtnProps {
   selectedRows: any[];
   clearSelectedRows: () => void;
   batchOptions?: Interface__BatchOptionsTableOptionGenerator[];
@@ -116,7 +111,7 @@ export interface Props__BatchOptions extends Props__Btn {
   tableContainerRef?: RefObject<HTMLDivElement | null>;
   menuRootProps?: Omit<MenuRootProps, "children">;
 }
-export interface Props_RowOptions extends Props__Btn {
+export interface Props_RowOptions extends BtnProps {
   row: Interface__FormattedTableRow;
   rowOptions?: Interface__RowOptionsTableOptionGenerator<Interface__FormattedTableRow>[];
   tableContainerRef?: RefObject<HTMLDivElement | null>;
@@ -163,7 +158,7 @@ export interface Props__FeedbackState extends StackProps {
   icon?: any;
 }
 
-export interface Props__SelectInput extends Omit<Props__Btn, "onChange"> {
+export interface Props__SelectInput extends Omit<BtnProps, "onChange"> {
   id: string;
   title?: string;
   inputValue?: Interface__SelectOption[] | null;
@@ -176,66 +171,8 @@ export interface Props__SelectInput extends Omit<Props__Btn, "onChange"> {
   required?: boolean;
   multiple?: boolean;
   fetch?: () => void;
-  disclosureSize?: Type__DisclosureSizes;
-  variant?: Type__BasicVariant;
-}
-export interface Props__SelectOptions {
-  id: string;
-  multiple: Props__SelectInput["multiple"];
-  selectOptions: Props__SelectInput["inputValue"];
-  selected: Interface__SelectOption[];
-  setSelected: Dispatch<Props__SelectOptions["selected"]>;
-}
-
-export interface Props__StringInput extends Omit<InputProps, "onChange"> {
-  inputValue?: string;
-  onChange?: (inputValue: string) => void;
-  placeholder?: string;
-  containerProps?: StackProps;
-  invalid?: boolean;
-  clearable?: boolean;
-  clearButtonProps?: StackProps;
-  maxChar?: number;
-}
-
-export interface Props__PasswordInput extends Omit<InputProps, "onChange"> {
-  name?: string;
-  onChange?: (inputValue: string) => void;
-  inputValue?: string | undefined;
-  placeholder?: string;
-  containerProps?: StackProps;
-  invalid?: boolean;
-}
-
-export interface Props__SearchInput extends Omit<
-  InputGroupProps,
-  "children" | "onChange"
-> {
-  queryKey: string;
-  inputValue?: string;
-  onChange?: (inputValue: string) => void;
-  placeholder?: string;
-  additionalPlaceholder?: string;
-  tooltipLabel?: string;
-  inputRef?: any;
-  inputProps?: Props__StringInput;
-  icon?: any;
-  iconProps?: IconProps;
-  invalid?: boolean;
-  noIcon?: boolean;
-  debounceTime?: number;
-  children?: React.ReactNode;
-  variant?: Type__BasicVariant;
-  size?: Type__InputSize;
-}
-
-export interface Props__TextareaInput extends Omit<TextareaProps, "onChange"> {
-  inputValue?: string;
-  onChange?: (inputValue: string) => void;
-  invalid?: boolean;
-  placeholder?: string;
-  maxChar?: number;
-  variant?: Type__BasicVariant;
+  disclosureSize?: DisclosureSizes;
+  variant?: ButtonVariant;
 }
 
 export interface Props__FileInput extends Omit<
@@ -286,60 +223,6 @@ export interface Props__FileList extends Omit<StackProps, "onChange"> {
   onChange?: Props__FileInput["onChange"];
 }
 
-export interface Props__PeriodPickerInput extends Omit<Props__Btn, "onChange"> {
-  id?: string;
-  title?: string;
-  inputValue?: Type__Period | null;
-  onChange?: (inputValue?: Props__PeriodPickerInput["inputValue"]) => void;
-  placeholder?: string;
-  required?: boolean;
-  invalid?: boolean;
-  disclosureSize?: Type__DisclosureSizes;
-  multiple?: boolean;
-  variant?: Type__BasicVariant;
-  withIcon?: boolean;
-}
-
-export interface Props__DatePickerInput extends Omit<Props__Btn, "onChange"> {
-  id?: string;
-  title?: string;
-  inputValue?: string[] | null;
-  onChange?: (inputValue: Props__DatePickerInput["inputValue"]) => void;
-  showTimezone?: boolean;
-  placeholder?: string;
-  required?: boolean;
-  invalid?: boolean;
-  disclosureSize?: Type__DisclosureSizes;
-  multiple?: boolean;
-  variant?: Type__BasicVariant;
-  labelFormatVariant?: Type__DateVariant;
-}
-export interface Props__DatePicker extends StackProps {
-  inputValue?: string[];
-  period: Type__Period;
-  selected?: Date[];
-  setSelected?: Dispatch<Date[]>;
-  multiple?: boolean;
-}
-export interface Props__SelectedDateList {
-  id?: string;
-  selected: Date[];
-  formattedSelectedLabel: string;
-}
-export interface Props__TimePicker extends Omit<Props__Btn, "onChange"> {
-  id?: string;
-  name?: string;
-  title?: string;
-  inputValue?: string | null;
-  onChange?: (inputValue?: Props__TimePicker["inputValue"]) => void;
-  withSeconds?: boolean;
-  showTimezone?: boolean;
-  placeholder?: string;
-  required?: boolean;
-  invalid?: boolean;
-  disclosureSize?: Type__DisclosureSizes;
-  variant?: Type__BasicVariant;
-}
 export interface Props__DateRangePickerInput extends Omit<
   GroupProps,
   "title" | "placeholder" | "onChange"
@@ -360,41 +243,6 @@ export interface Props__DateRangePickerInput extends Omit<
   };
   required?: boolean;
   invalid?: boolean;
-  disclosureSize?: Type__DisclosureSizes;
-  size?: Type__ButtonSize;
-}
-export interface Props__DateTimePickerInput extends Omit<
-  GroupProps,
-  "title" | "placeholder" | "onChange"
-> {
-  id?: string;
-  title?: {
-    date: string;
-    time: string;
-  };
-  inputValue?: string | null;
-  onChange?: (inputValue: Props__DateTimePickerInput["inputValue"]) => void;
-  placeholder?: {
-    date: string;
-    time: string;
-  };
-  required?: boolean;
-  invalid?: boolean;
-  disclosureSize?: Type__DisclosureSizes;
-  size?: Type__ButtonSize;
-}
-
-export interface Props__NumInput extends Omit<InputProps, "onChange"> {
-  inputValue?: number | null;
-  onChange?: (inputValue: number | null) => void;
-  placeholder?: string;
-  invalid?: boolean;
-  containerProps?: StackProps;
-  formatFunction?: (inputValue: number | null) => string;
-  formatted?: boolean;
-  integer?: boolean;
-  min?: number;
-  max?: number;
-  clearButtonProps?: StackProps;
-  clearable?: boolean;
+  disclosureSize?: DisclosureSizes;
+  size?: ButtonSize;
 }

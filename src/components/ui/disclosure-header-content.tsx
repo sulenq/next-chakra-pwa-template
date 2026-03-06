@@ -10,7 +10,7 @@ import { DrawerCloseTrigger } from "./drawer";
 import { P } from "./p";
 
 export const DisclosureHeaderContent = (
-  props: Props__DisclosureHeaderContent
+  props: Props__DisclosureHeaderContent,
 ) => {
   // Props
   const {

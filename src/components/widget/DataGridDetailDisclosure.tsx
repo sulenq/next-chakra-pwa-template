@@ -11,7 +11,7 @@ import {
 import { DisclosureHeaderContent } from "@/components/ui/disclosure-header-content";
 import { P } from "@/components/ui/p";
 import SearchInput from "@/components/ui/search-input";
-import BackButton from "@/components/widget/BackButton";
+import { BackButton } from "@/components/widget/BackButton";
 import FeedbackNotFound from "@/components/widget/FeedbackNotFound";
 import useBackOnClose from "@/hooks/useBackOnClose";
 import { isEmptyArray } from "@/utils/array";

@@ -19,7 +19,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { Spinner } from "@/components/ui/spinner";
 import { StringInput } from "@/components/ui/string-input";
 import { AppIcon } from "@/components/widget/AppIcon";
-import BackButton from "@/components/widget/BackButton";
+import { BackButton } from "@/components/widget/BackButton";
 import { ClampText } from "@/components/widget/ClampText";
 import FeedbackNoData from "@/components/widget/FeedbackNoData";
 import FeedbackNotFound from "@/components/widget/FeedbackNotFound";

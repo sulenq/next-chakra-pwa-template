@@ -1,10 +1,10 @@
-import { Type__UnitKey } from "@/constants/types";
+import { UnitKey } from "@/constants/types";
 
 export const UOM_FORMATS: {
   key: string;
   label: string;
   descriptionKey: string;
-  units: Record<Type__UnitKey, string>;
+  units: Record<UnitKey, string>;
 }[] = [
   {
     key: "metric",

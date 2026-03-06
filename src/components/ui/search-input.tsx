@@ -1,18 +1,46 @@
 "use client";
 
-import { StringInput } from "@/components/ui/string-input";
+import { StringInput, StringInputProps } from "@/components/ui/string-input";
 import { LucideIcon } from "@/components/widget/Icon";
-import { Props__SearchInput } from "@/constants/props";
 import { BASE_ICON_BOX_SIZE } from "@/constants/styles";
+import { InputSize, InputVariant } from "@/constants/types";
 import useLang from "@/context/useLang";
 import { useDebouncedCallback } from "@/hooks/useDebounceCallback";
-import { HStack, Icon, InputGroup } from "@chakra-ui/react";
+import {
+  HStack,
+  Icon,
+  IconProps,
+  InputGroup,
+  InputGroupProps,
+} from "@chakra-ui/react";
 import { SearchIcon } from "lucide-react";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
-import { Tooltip } from "./tooltip";
+import { Tooltip } from "@/components/ui/tooltip";
 
-export default function SearchInput(props: Props__SearchInput) {
+export interface SearchInputProps extends Omit<
+  InputGroupProps,
+  "children" | "onChange"
+> {
+  queryKey: string;
+  inputValue?: string;
+  onChange?: (inputValue: string) => void;
+  placeholder?: string;
+  additionalPlaceholder?: string;
+  tooltipLabel?: string;
+  inputRef?: any;
+  inputProps?: StringInputProps;
+  icon?: any;
+  iconProps?: IconProps;
+  invalid?: boolean;
+  noIcon?: boolean;
+  debounceTime?: number;
+  children?: React.ReactNode;
+  variant?: InputVariant;
+  size?: InputSize;
+}
+export default function SearchInput(props: SearchInputProps) {
+  // Props
   const {
     inputRef,
     inputValue,
@@ -35,16 +63,25 @@ export default function SearchInput(props: Props__SearchInput) {
   // Contexts
   const { l } = useLang();
 
-  // Next navigation utils
-  const searchParams = useSearchParams();
-
   // Hooks
+  const searchParams = useSearchParams();
   const debounced = useDebouncedCallback((inputValue: string) => {
     onChange?.(inputValue);
   }, debounceTime);
 
   // States
   const [searchTemp, setSearchTemp] = useState<string>("");
+
+  // Derived Values
+  const resolvedPlacholder = additionalPlaceholder
+    ? `${l.search} ${additionalPlaceholder}`
+    : (placeholder ?? l.search);
+
+  // Utils
+  function handleChange(inputValue: string) {
+    setSearchTemp(inputValue);
+    debounced(inputValue);
+  }
 
   // Initialize from URL or prop
   useEffect(() => {
@@ -76,7 +113,7 @@ export default function SearchInput(props: Props__SearchInput) {
           !noIcon && (
             <Icon
               boxSize={BASE_ICON_BOX_SIZE}
-              color="fg.subtle"
+              color={"fg.subtle"}
               ml={"-4px"}
               {...iconProps}
             >
@@ -86,19 +123,14 @@ export default function SearchInput(props: Props__SearchInput) {
         }
         {...restProps}
       >
-        <HStack position="relative" w="full">
+        <HStack position={"relative"} w={"full"}>
           <StringInput
             ref={inputRef ? inputRef : null}
             pl={noIcon ? 4 : 8}
-            pr="40px"
-            placeholder={placeholder || `${l.search} ${additionalPlaceholder}`}
-            onChange={(inputValue) => {
-              const val = inputValue || "";
-              setSearchTemp(val);
-              debounced(val);
-            }}
+            pr={"40px"}
+            placeholder={resolvedPlacholder}
+            onChange={handleChange}
             inputValue={searchTemp}
-            boxShadow="none !important"
             size={size}
             borderColor={
               invalid
@@ -107,7 +139,7 @@ export default function SearchInput(props: Props__SearchInput) {
                   ? "transparent"
                   : "border.muted"
             }
-            variant={variant as any}
+            variant={variant}
             {...inputProps}
           />
         </HStack>

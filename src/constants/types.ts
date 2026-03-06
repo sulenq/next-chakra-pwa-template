@@ -1,10 +1,11 @@
 import { translations } from "@/context/useLang";
 import { ButtonProps, ConditionalValue, MenuItemProps } from "@chakra-ui/react";
 
-export type Type__LangKey = keyof typeof translations; // "en" | "id"
-export type Type__Locales = (typeof translations)[Type__LangKey];
+export type LangKey = keyof typeof translations; // currently "en" | "id"
 
-export type Type__UnitKey =
+export type Translations = (typeof translations)[LangKey];
+
+export type UnitKey =
   | "mass"
   | "length"
   | "distance"
@@ -22,15 +23,19 @@ export type Type__UnitKey =
 
 export type Type__ChartData = Record<string, number | string>;
 
-export type Type__InputSize = ConditionalValue<
+export type InputSize = ConditionalValue<
   "sm" | "md" | "lg" | "xl" | "2xl" | "xs" | "2xs" | undefined
 >;
 
-export type Type__ButtonSize = ConditionalValue<
+export type InputVariant = ConditionalValue<
+  "outline" | "subtle" | "flushed" | undefined
+>;
+
+export type ButtonSize = ConditionalValue<
   "sm" | "md" | "lg" | "xl" | "2xl" | "xs" | "2xs" | undefined
 >;
 
-export type Type__BasicVariant = ConditionalValue<
+export type ButtonVariant = ConditionalValue<
   "outline" | "solid" | "subtle" | "surface" | "ghost" | "plain" | undefined
 >;
 
@@ -51,7 +56,7 @@ export type Type__SortHandler = (
   direction: "asc" | "desc",
 ) => number;
 
-export type Type__Period = {
+export type Period = {
   month: number | null; // 0 = Jan
   year: number | null;
 };
@@ -76,7 +81,7 @@ export type Type__TimeFormat = "24-hour" | "12-hour";
 
 export type Type__DateFormat = "dmy" | "mdy" | "ymd";
 
-export type Type__DisclosureSizes = "xs" | "sm" | "md" | "lg" | "xl";
+export type DisclosureSizes = "xs" | "sm" | "md" | "lg" | "xl";
 
 export type Type__DateRange = {
   from: Date | string | undefined;
@@ -116,7 +121,7 @@ export type Type__TableOptions = (
   | "divider"
 )[];
 
-export type Type__DateVariant =
+export type DateVariant =
   | "numeric" // 15-1-2025
   | "day" // 15
   | "month" // January

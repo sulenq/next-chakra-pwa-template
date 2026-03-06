@@ -1,4 +1,4 @@
-import { Props__Btn } from "@/components/ui/btn";
+import { BtnProps } from "@/components/ui/btn";
 import { Enum__ActivityAction } from "@/constants/enums";
 import {
   MenuItemProps,
@@ -133,7 +133,7 @@ export interface Interface__TableOption {
     description: string;
     confirmLabel: string;
     onConfirm: () => void;
-    confirmButtonProps?: Props__Btn;
+    confirmButtonProps?: BtnProps;
     loading?: boolean;
     disabled?: boolean;
   };

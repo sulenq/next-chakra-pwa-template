@@ -1,12 +1,12 @@
 "use client";
 
 import { useRef, useState, useEffect } from "react";
-import { Btn, Props__Btn } from "@/components/ui/btn";
+import { Btn, BtnProps } from "@/components/ui/btn";
 
 type DefaultPos = "top-left" | "top-right" | "bottom-left" | "bottom-right";
 type AllowedSnap = ("left" | "right")[];
 
-interface Props extends Props__Btn {
+interface Props extends BtnProps {
   children: React.ReactNode;
   defaultPos?: DefaultPos;
   allowedSnap?: AllowedSnap;

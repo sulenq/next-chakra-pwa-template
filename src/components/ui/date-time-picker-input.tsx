@@ -1,14 +1,37 @@
 import { DatePickerInput } from "@/components/ui/date-picker-input";
-import { TimePickerInput } from "@/components/ui/time-picker-input";
-import { Props__DateTimePickerInput } from "@/constants/props";
+import {
+  TimePickerInput,
+  TimePickerInputProps,
+} from "@/components/ui/time-picker-input";
+import { ButtonSize, DisclosureSizes } from "@/constants/types";
 import { useThemeConfig } from "@/context/useThemeConfig";
 import { extractTime, getUserTimezone, makeUTCISODateTime } from "@/utils/time";
-import { Group, useFieldContext } from "@chakra-ui/react";
+import { Group, GroupProps, useFieldContext } from "@chakra-ui/react";
 import { parseISO } from "date-fns";
 import { format as formatTz, toZonedTime } from "date-fns-tz";
 import { useEffect, useState } from "react";
 
-export const DateTimePickerInput = (props: Props__DateTimePickerInput) => {
+export interface DateTimePickerInputProps extends Omit<
+  GroupProps,
+  "title" | "placeholder" | "onChange"
+> {
+  id?: string;
+  title?: {
+    date: string;
+    time: string;
+  };
+  inputValue?: string | null;
+  onChange?: (inputValue: DateTimePickerInputProps["inputValue"]) => void;
+  placeholder?: {
+    date: string;
+    time: string;
+  };
+  required?: boolean;
+  invalid?: boolean;
+  disclosureSize?: DisclosureSizes;
+  size?: ButtonSize;
+}
+export const DateTimePickerInput = (props: DateTimePickerInputProps) => {
   // Props
   const {
     id,
@@ -36,6 +59,11 @@ export const DateTimePickerInput = (props: Props__DateTimePickerInput) => {
   // States
   const [date, setDate] = useState<string>("");
   const [time, setTime] = useState<string>("");
+
+  // Utils
+  function handleConfirm(inputValue: TimePickerInputProps["inputValue"]) {
+    setTime(inputValue || "");
+  }
 
   // handle on change
   useEffect(() => {
@@ -90,7 +118,7 @@ export const DateTimePickerInput = (props: Props__DateTimePickerInput) => {
         w={"50%"}
         id={`${id}-time-picker-for-date-time-picker}`}
         inputValue={time}
-        onChange={(inputValue) => setTime(inputValue || "")}
+        onChange={handleConfirm}
         title={title?.time}
         placeholder={placeholder?.time}
         disclosureSize={disclosureSize}

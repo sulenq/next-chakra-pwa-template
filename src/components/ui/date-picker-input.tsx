@@ -1,15 +1,32 @@
 "use client";
 
-import { AppIcon } from "@/components/widget/AppIcon";
+import { Btn, BtnProps } from "@/components/ui/btn";
+import { CContainer } from "@/components/ui/c-container";
 import {
-  Props__DatePicker,
-  Props__DatePickerInput,
-  Props__SelectedDateList,
-} from "@/constants/props";
-import { Type__Period } from "@/constants/types";
+  DisclosureBody,
+  DisclosureContent,
+  DisclosureFooter,
+  DisclosureHeader,
+  DisclosureRoot,
+} from "@/components/ui/disclosure";
+import { DisclosureHeaderContent } from "@/components/ui/disclosure-header-content";
+import { P } from "@/components/ui/p";
+import { PeriodPickerInput } from "@/components/ui/period-picker-input";
+import { Tooltip } from "@/components/ui/tooltip";
+import { AppIcon } from "@/components/widget/AppIcon";
+import { BackButton } from "@/components/widget/BackButton";
+import FeedbackNoData from "@/components/widget/FeedbackNoData";
+import {
+  ButtonVariant,
+  DateVariant,
+  DisclosureSizes,
+  Period,
+} from "@/constants/types";
+import { getWeekdayNames } from "@/constants/weekdays";
 import useLang from "@/context/useLang";
 import { useThemeConfig } from "@/context/useThemeConfig";
 import useBackOnClose from "@/hooks/useBackOnClose";
+import usePopDisclosure from "@/hooks/usePopDisclosure";
 import { isEmptyArray } from "@/utils/array";
 import { back } from "@/utils/client";
 import { disclosureId } from "@/utils/disclosure";
@@ -22,10 +39,12 @@ import {
 } from "@/utils/time";
 import {
   Group,
+  GroupProps,
   Icon,
   List,
   SimpleGrid,
   Stack,
+  StackProps,
   useDisclosure,
   useFieldContext,
 } from "@chakra-ui/react";
@@ -33,28 +52,17 @@ import { IconCaretDownFilled, IconCaretUpFilled } from "@tabler/icons-react";
 import { addDays, startOfWeek } from "date-fns";
 import { CalendarIcon } from "lucide-react";
 import { useEffect, useState } from "react";
-import BackButton from "../widget/BackButton";
-import FeedbackNoData from "../widget/FeedbackNoData";
-import { Btn } from "./btn";
-import { CContainer } from "./c-container";
-import {
-  DisclosureBody,
-  DisclosureContent,
-  DisclosureFooter,
-  DisclosureHeader,
-  DisclosureRoot,
-} from "./disclosure";
-import { DisclosureHeaderContent } from "./disclosure-header-content";
-import { P } from "./p";
-import { PeriodPickerInput } from "./period-picker-input";
-import { Tooltip } from "./tooltip";
 
 export const DEFAULT_PERIOD = {
   month: new Date().getMonth(),
   year: new Date().getFullYear(),
 };
 
-export const PeriodPicker = (props: any) => {
+interface PeriodPickerProps extends GroupProps {
+  period: Period;
+  setPeriod: React.Dispatch<Period>;
+}
+export const PeriodPicker = (props: PeriodPickerProps) => {
   // Props
   const { period, setPeriod, ...restProps } = props;
 
@@ -95,7 +103,7 @@ export const PeriodPicker = (props: any) => {
         variant={"ghost"}
         invalid={false}
         onChange={(inputValue) => {
-          setPeriod(inputValue);
+          if (inputValue) setPeriod(inputValue);
         }}
         withIcon={false}
         required
@@ -125,7 +133,15 @@ export const PeriodPicker = (props: any) => {
     </Group>
   );
 };
-export const DatePicker = (props: Props__DatePicker) => {
+
+export interface DatePickerProps extends StackProps {
+  inputValue?: string[];
+  period: Period;
+  selected?: Date[];
+  setSelected?: React.Dispatch<Date[]>;
+  multiple?: boolean;
+}
+export const DatePicker = (props: DatePickerProps) => {
   // Props
   const { period, selected, setSelected, multiple, ...restProps } = props;
 
@@ -133,7 +149,7 @@ export const DatePicker = (props: Props__DatePicker) => {
   const { l } = useLang();
   const { themeConfig } = useThemeConfig();
 
-  // States
+  // Constants
   const fullDates = () => {
     const firstDayOfMonth = new Date(period.year!, period.month!, 1);
 
@@ -160,15 +176,7 @@ export const DatePicker = (props: Props__DatePicker) => {
 
     return weekDates;
   };
-  const WEEKDAYS = [
-    l.monday,
-    l.tuesday,
-    l.wednesday,
-    l.thursday,
-    l.friday,
-    l.saturday,
-    l.sunday,
-  ];
+  const weekdays = getWeekdayNames(l);
 
   return (
     <CContainer {...restProps}>
@@ -181,16 +189,16 @@ export const DatePicker = (props: Props__DatePicker) => {
         mb={2}
         color={"fg.muted"}
       >
-        {WEEKDAYS.map((day, i) => (
-          <P key={i} fontWeight={"medium"} textAlign={"center"}>
-            {day.substring(0, 2)}
+        {weekdays.map((weekday, index) => (
+          <P key={index} fontWeight={"medium"} textAlign={"center"}>
+            {weekday.substring(0, 2)}
           </P>
         ))}
       </SimpleGrid>
 
       <CContainer gap={2}>
-        {fullDates().map((weeks, i) => (
-          <SimpleGrid columns={[7]} key={i} gap={2}>
+        {fullDates().map((weeks, index) => (
+          <SimpleGrid columns={[7]} key={index} gap={2}>
             {weeks.map((date, ii) => {
               const today = new Date();
               const isDateSelected = selected?.some(
@@ -268,9 +276,15 @@ export const DatePicker = (props: Props__DatePicker) => {
     </CContainer>
   );
 };
-const SelectedDateList = (props: Props__SelectedDateList) => {
+
+export interface SelectedDateListProps {
+  id?: string;
+  selected: Date[];
+  formattedSelected: string;
+}
+const SelectedDateList = (props: SelectedDateListProps) => {
   // Props
-  const { id, selected, formattedSelectedLabel } = props;
+  const { id, selected, formattedSelected } = props;
 
   // Contexts
   const { l } = useLang();
@@ -284,7 +298,7 @@ const SelectedDateList = (props: Props__SelectedDateList) => {
     onClose,
   );
 
-  // States
+  // Constants
   const userTz = getUserTimezone();
 
   return (
@@ -303,11 +317,11 @@ const SelectedDateList = (props: Props__SelectedDateList) => {
           maxW={"calc(100% - 16px)"}
           fontWeight={"medium"}
           textAlign={"center"}
-          color={formattedSelectedLabel === l.selected_date ? "fg.subtle" : ""}
+          color={formattedSelected === l.selected_date ? "fg.subtle" : ""}
           truncate
           mx={"auto"}
         >
-          {formattedSelectedLabel}
+          {formattedSelected}
         </P>
       </CContainer>
 
@@ -349,7 +363,21 @@ const SelectedDateList = (props: Props__SelectedDateList) => {
   );
 };
 
-export const DatePickerInput = (props: Props__DatePickerInput) => {
+export interface DatePickerInputProps extends Omit<BtnProps, "onChange"> {
+  id?: string;
+  title?: string;
+  inputValue?: string[] | null;
+  onChange?: (inputValue: DatePickerInputProps["inputValue"]) => void;
+  showTimezone?: boolean;
+  placeholder?: string;
+  required?: boolean;
+  invalid?: boolean;
+  disclosureSize?: DisclosureSizes;
+  multiple?: boolean;
+  variant?: ButtonVariant;
+  labelFormatVariant?: DateVariant;
+}
+export const DatePickerInput = (props: DatePickerInputProps) => {
   // Props
   const {
     id,
@@ -363,7 +391,7 @@ export const DatePickerInput = (props: Props__DatePickerInput) => {
     disclosureSize = "xs",
     multiple,
     variant = "outline",
-    labelFormatVariant = "weekdayDayShortMonthYear",
+    labelFormatVariant = "shortWeekdayDayShortMonthYear",
     ...restProps
   } = props;
 
@@ -373,28 +401,28 @@ export const DatePickerInput = (props: Props__DatePickerInput) => {
   const fc = useFieldContext();
 
   // Hooks
-  const { open, onOpen, onClose } = useDisclosure();
-  useBackOnClose(
-    disclosureId(id || `date-picker-input`),
-    open,
-    onOpen,
-    onClose,
+  const { open, onOpen } = usePopDisclosure(
+    disclosureId(id || "date-picker-input"),
   );
 
   // States
-  const resolvedInvalid = invalid ?? fc?.invalid;
   const [selected, setSelected] = useState<Date[]>([]);
-  const [period, setPeriod] = useState<Type__Period>(DEFAULT_PERIOD);
+  const [period, setPeriod] = useState<Period>(DEFAULT_PERIOD);
+
+  // Constants
   const userTz = getUserTimezone();
   const localTz = getLocalTimezone();
   const localTzOffsetInMs = getTimezoneOffsetMs(localTz.key);
-  const resolvedPlaceholder = placeholder || l.select_date;
-  const formattedSelectedLabel =
+
+  // Derived Values
+  const resolvedPlaceholder = placeholder ?? l.select_date;
+  const resolvedInvalid = invalid ?? fc?.invalid;
+  const formattedSelected =
     selected && selected?.length > 0
       ? selected
           .map((date) =>
             formatDate(new Date(date), l, {
-              variant: "weekdayDayShortMonthYear",
+              variant: "shortWeekdayDayShortMonthYear",
               timezoneKey: localTz.key,
               // withTime: true,
             }),
@@ -414,7 +442,7 @@ export const DatePickerInput = (props: Props__DatePickerInput) => {
       : resolvedPlaceholder;
 
   // Utils
-  function onConfirmSelected() {
+  function handleConfirm() {
     if (!required) {
       if (!isEmptyArray(selected)) {
         onChange?.(
@@ -507,7 +535,7 @@ export const DatePickerInput = (props: Props__DatePickerInput) => {
               <SelectedDateList
                 id={id}
                 selected={selected}
-                formattedSelectedLabel={formattedSelectedLabel}
+                formattedSelected={formattedSelected}
               />
             </CContainer>
           </DisclosureBody>
@@ -545,7 +573,7 @@ export const DatePickerInput = (props: Props__DatePickerInput) => {
             <Btn
               colorPalette={themeConfig.colorPalette}
               disabled={required && isEmptyArray(selected)}
-              onClick={onConfirmSelected}
+              onClick={handleConfirm}
             >
               {l.confirm}
             </Btn>

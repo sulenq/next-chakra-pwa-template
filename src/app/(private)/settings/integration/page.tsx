@@ -4,7 +4,7 @@ import { Btn } from "@/components/ui/btn";
 import { CContainer } from "@/components/ui/c-container";
 import { Field } from "@/components/ui/field";
 import { Skeleton } from "@/components/ui/skeleton";
-import { Textarea } from "@/components/ui/textarea";
+import { TextareaInput } from "@/components/ui/textarea-input";
 import FeedbackNoData from "@/components/widget/FeedbackNoData";
 import FeedbackNotFound from "@/components/widget/FeedbackNotFound";
 import FeedbackRetry from "@/components/widget/FeedbackRetry";
@@ -102,7 +102,7 @@ const APIKeys = (props: any) => {
                 invalid={!!formik.errors.mapboxToken}
                 errorText={formik.errors.mapboxToken as string}
               >
-                <Textarea
+                <TextareaInput
                   inputValue={formik.values.mapboxToken}
                   onChange={(inputValue) => {
                     formik.setFieldValue("mapboxToken", inputValue);
@@ -116,7 +116,7 @@ const APIKeys = (props: any) => {
                 invalid={!!formik.errors.tinyMceToken}
                 errorText={formik.errors.tinyMceToken as string}
               >
-                <Textarea
+                <TextareaInput
                   inputValue={formik.values.tinyMceToken}
                   onChange={(inputValue) => {
                     formik.setFieldValue("tinyMceToken", inputValue);

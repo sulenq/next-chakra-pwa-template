@@ -2,15 +2,29 @@
 
 import { CContainer } from "@/components/ui/c-container";
 import { LucideIcon } from "@/components/widget/Icon";
-import { Props__PasswordInput } from "@/constants/props";
-import { Center, Icon, IconButton } from "@chakra-ui/react";
+import { BASE_ICON_BOX_SIZE } from "@/constants/styles";
+import {
+  Center,
+  Icon,
+  IconButton,
+  InputProps,
+  StackProps,
+} from "@chakra-ui/react";
 import { EyeIcon, EyeOffIcon } from "lucide-react";
 import { forwardRef, useState } from "react";
-import { StringInput } from "./string-input";
-import { BASE_ICON_BOX_SIZE } from "@/constants/styles";
+import { StringInput } from "@/components/ui/string-input";
 
-export const PasswordInput = forwardRef<HTMLInputElement, Props__PasswordInput>(
+export interface PasswordInputProps extends Omit<InputProps, "onChange"> {
+  name?: string;
+  onChange?: (inputValue: string) => void;
+  inputValue?: string | undefined;
+  placeholder?: string;
+  containerProps?: StackProps;
+  invalid?: boolean;
+}
+export const PasswordInput = forwardRef<HTMLInputElement, PasswordInputProps>(
   (props, ref) => {
+    // Props
     const {
       name,
       onChange,
@@ -18,24 +32,28 @@ export const PasswordInput = forwardRef<HTMLInputElement, Props__PasswordInput>(
       placeholder = "••••••••",
       containerProps,
       invalid,
-      flex,
-      flexShrink,
-      flexGrow,
-      flexBasis,
       ...restProps
     } = props;
 
     // States
-    const [showPassword, setShowPassword] = useState<boolean>(false);
+    const [isPasswordVisible, setIsPasswordVisible] = useState<boolean>(false);
+
+    // Utils
+    function togglePasswordVisibility() {
+      setIsPasswordVisible((prev) => !prev);
+    }
+    function handleChange(inputValue: string) {
+      if (onChange) onChange(inputValue);
+    }
 
     return (
       <CContainer
-        w={restProps?.w || "full"}
-        h={restProps?.h}
-        flex={flex}
-        flexShrink={flexShrink}
-        flexGrow={flexGrow}
-        flexBasis={flexBasis}
+        flex={restProps.flex}
+        flexShrink={restProps.flexShrink}
+        flexGrow={restProps.flexGrow}
+        flexBasis={restProps.flexBasis}
+        w={restProps.w || "full"}
+        h={restProps.h}
         position={"relative"}
         display={"inline-flex"}
         {...containerProps}
@@ -44,12 +62,10 @@ export const PasswordInput = forwardRef<HTMLInputElement, Props__PasswordInput>(
           ref={ref}
           name={name}
           placeholder={placeholder}
-          onChange={(inputValue) => {
-            if (onChange) onChange(inputValue);
-          }}
           inputValue={inputValue}
-          type={showPassword ? "text" : "password"}
+          onChange={handleChange}
           pr={20}
+          type={isPasswordVisible ? "text" : "password"}
           invalid={invalid}
           clearButtonProps={{
             right: 8,
@@ -59,23 +75,21 @@ export const PasswordInput = forwardRef<HTMLInputElement, Props__PasswordInput>(
 
         <Center
           flexShrink={0}
-          zIndex={2}
-          position={"absolute"}
           h={"full"}
+          position={"absolute"}
           right={"2px"}
           top={0}
+          zIndex={2}
         >
           <IconButton
             aria-label="clear input"
-            onClick={() => {
-              setShowPassword((ps) => !ps);
-            }}
+            onClick={togglePasswordVisibility}
             variant={"plain"}
             size={"sm"}
             color={"fg.subtle"}
           >
             <Icon boxSize={BASE_ICON_BOX_SIZE}>
-              {showPassword ? (
+              {isPasswordVisible ? (
                 <LucideIcon icon={EyeIcon} />
               ) : (
                 <LucideIcon icon={EyeOffIcon} />

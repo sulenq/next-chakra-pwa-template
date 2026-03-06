@@ -42,7 +42,7 @@ export default function FeedbackRetry(props: Props) {
         maxW={"300px"}
       />
 
-      <CContainer gap={1} pb={4}>
+      <CContainer gap={1}>
         <Btn
           className="clicky"
           variant={"ghost"}

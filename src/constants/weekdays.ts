@@ -1,21 +1,16 @@
-import { Type__Locales } from "@/constants/types";
+import { Translations } from "@/constants/types";
 import { getL } from "@/utils/string";
 const l = getL();
 
-export const getWeekdayNames = (l: Type__Locales) => {
+export const getWeekdayNames = (l: Translations) => {
   return [
-    l.january,
-    l.february,
-    l.march,
-    l.april,
-    l.may,
-    l.june,
-    l.july,
-    l.august,
-    l.september,
-    l.october,
-    l.november,
-    l.december,
+    l.sunday,
+    l.monday,
+    l.tuesday,
+    l.wednesday,
+    l.thursday,
+    l.friday,
+    l.saturday,
   ];
 };
 

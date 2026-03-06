@@ -2,7 +2,7 @@
 
 import { CContainer } from "@/components/ui/c-container";
 import { P } from "@/components/ui/p";
-import BackButton from "@/components/widget/BackButton";
+import { BackButton } from "@/components/widget/BackButton";
 import { CalendarDisclosureTrigger } from "@/components/widget/CalendarDisclosure";
 import { ClampText } from "@/components/widget/ClampText";
 import { Clock } from "@/components/widget/Clock";
@@ -14,6 +14,7 @@ import { Interface__Nav } from "@/constants/interfaces";
 import { useBreadcrumbs } from "@/context/useBreadcrumbs";
 import useLang from "@/context/useLang";
 import { useContainerDimension } from "@/hooks/useContainerDimension";
+import { useMergedRefs } from "@/hooks/useMergeRefs";
 import useScreen from "@/hooks/useScreen";
 import { isEmptyArray, last } from "@/utils/array";
 import { capitalizeWords, pluckString } from "@/utils/string";
@@ -26,7 +27,6 @@ import {
   forwardRef,
   useContext,
   useEffect,
-  useImperativeHandle,
   useMemo,
   useRef,
 } from "react";
@@ -72,9 +72,9 @@ export const PageContainer = forwardRef<HTMLDivElement, StackProps>(
   ({ children, ...restProps }, ref) => {
     // Refs
     const containerRef = useRef<HTMLDivElement>(null);
+    const mergeRef = useMergedRefs(containerRef, ref);
 
     // Hooks
-    useImperativeHandle(ref, () => containerRef.current as HTMLDivElement);
     const dimension = useContainerDimension(containerRef);
 
     // States
@@ -89,7 +89,7 @@ export const PageContainer = forwardRef<HTMLDivElement, StackProps>(
     return (
       <PageContainerContext.Provider value={contextValue}>
         <CContainer
-          ref={containerRef}
+          ref={mergeRef}
           className="page-container"
           flex={1}
           overflow={"auto"}

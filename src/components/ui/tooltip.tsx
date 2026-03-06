@@ -46,11 +46,14 @@ export const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>(
               ref={ref}
               w={"fit"}
               maxW={"240px"}
+              bg={"body"}
+              color={"ibody"}
               px={2}
               py={1}
               rounded={themeConfig.radii.component}
-              bg={"body"}
-              color={"ibody"}
+              border={"1px solid"}
+              borderColor={"border.subtle"}
+              shadow={"soft"}
               {...contentProps}
             >
               {showArrow && (

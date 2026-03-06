@@ -1,10 +1,10 @@
 import { getMonthNames } from "@/constants/months";
 import {
   Type__DateFormat,
-  Type__DateVariant,
-  Type__Locales,
+  DateVariant,
+  Translations,
   Type__TimeFormat,
-  Type__UnitKey,
+  UnitKey,
 } from "@/constants/types";
 import { UOM_FORMATS } from "@/constants/uomFormats";
 import { getWeekdayNames } from "@/constants/weekdays";
@@ -17,9 +17,9 @@ import { getTimezoneOffsetMs, getUserTimezone } from "./time";
 
 export const formatDate = (
   date: Date | string | null | undefined,
-  locales: Type__Locales,
+  t: Translations,
   options: {
-    variant?: Type__DateVariant;
+    variant?: DateVariant;
     withTime?: boolean;
     timeFormat?: string; // default HH:mm
     dateFormat?: Type__DateFormat;
@@ -76,11 +76,11 @@ export const formatDate = (
   // Weekday convertion ISO (1-7) to 0-based (0=Sun, 6=Sat)
   const weekday = isoWeekday === 7 ? 0 : isoWeekday;
 
-  const monthNames = getMonthNames(locales);
+  const monthNames = getMonthNames(t);
   const monthName = monthNames[month];
   const shortMonthName = monthName.substring(0, 3);
 
-  const weekdayNames = getWeekdayNames(locales);
+  const weekdayNames = getWeekdayNames(t);
   const weekdayName = weekdayNames[weekday];
   const shortWeekdayName = weekdayName.substring(0, 3);
 
@@ -216,10 +216,10 @@ export const formatDate = (
 
 export const formatAbsDate = (
   date: Date | string | null | undefined,
-  locales: Type__Locales,
+  t: Translations,
   options: Parameters<typeof formatDate>[2] = {},
 ): string => {
-  return formatDate(date, locales, {
+  return formatDate(date, t, {
     timezoneKey: "UTC",
     ...options,
   });
@@ -236,18 +236,23 @@ export const formatNumber = (
   let num: number;
 
   if (typeof numParam === "string") {
-    const normalized = numParam.replace(/\./g, "").replace(",", ".");
+    // Determine separators based on locale
+    const isID = locale === "id-ID";
+    // If ID: remove dots, change comma to dot. If EN: remove commas.
+    const normalized = isID
+      ? numParam.replace(/\./g, "").replace(",", ".")
+      : numParam.replace(/,/g, "");
+
     num = Number(normalized);
     if (isNaN(num)) return "-";
   } else {
     num = numParam;
   }
 
-  const isInteger = Number.isInteger(num);
-
+  // Use native toLocaleString with dynamic locale
   return num.toLocaleString(locale, {
-    minimumFractionDigits: isInteger ? 0 : 0,
-    maximumFractionDigits: isInteger ? 0 : maxFractionDigits,
+    minimumFractionDigits: 0,
+    maximumFractionDigits: maxFractionDigits,
   });
 };
 
@@ -331,20 +336,21 @@ export const formatTime = (
 
 export const formatDuration = (
   seconds: number | undefined,
-  format: "long" | "short" | "digital" = "long",
+  t: Translations,
+  format: "long" | "short" | "digital" = "short",
 ): string => {
   if (!seconds) return "0 s";
 
   switch (format) {
     case "long": {
-      const jam = Math.floor(seconds / 3600);
-      const menit = Math.floor((seconds % 3600) / 60);
-      const detik = seconds % 60;
+      const hour = Math.floor(seconds / 3600);
+      const minute = Math.floor((seconds % 3600) / 60);
+      const second = seconds % 60;
 
       let result = "";
-      if (jam > 0) result += `${jam} h`;
-      if (menit > 0) result += ` ${menit} m`;
-      if (detik > 0) result += ` ${detik} s`;
+      if (hour > 0) result += `${hour} ${t.hour.toLowerCase()}`;
+      if (minute > 0) result += ` ${minute} ${t.minute.toLowerCase()}`;
+      if (second > 0) result += ` ${second} ${t.second.toLowerCase()}`;
 
       return result.trim();
     }
@@ -355,12 +361,12 @@ export const formatDuration = (
       const remainingSeconds = seconds % 60;
 
       const formattedHours =
-        hours > 0 ? `${String(hours).padStart(2, "0")}j` : "";
+        hours > 0 ? `${String(hours).padStart(2, "0")}h` : "";
       const formattedMinutes =
         minutes > 0 ? `${String(minutes).padStart(2, "0")}m` : "";
       const formattedSeconds =
         remainingSeconds > 0
-          ? `${String(remainingSeconds).padStart(2, "0")}d`
+          ? `${String(remainingSeconds).padStart(2, "0")}s`
           : "";
 
       return [formattedHours, formattedMinutes, formattedSeconds]
@@ -382,13 +388,13 @@ export const formatDuration = (
     }
 
     default:
-      return "0 detik";
+      return "-";
   }
 };
 
 export const formatUOM = (
   value: number | string | null | undefined,
-  unit: Type__UnitKey,
+  unit: UnitKey,
   options?: Intl.NumberFormatOptions & { compact?: boolean },
 ) => {
   if (value === null || value === undefined || value === "") return "-";

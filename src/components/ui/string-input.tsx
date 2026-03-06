@@ -1,9 +1,9 @@
 "use client";
 
 import { CContainer } from "@/components/ui/c-container";
+import { useColorMode } from "@/components/ui/color-mode";
 import { toaster } from "@/components/ui/toaster";
 import { LucideIcon } from "@/components/widget/Icon";
-import { Props__StringInput } from "@/constants/props";
 import { BASE_ICON_BOX_SIZE, MAIN_INPUT_SIZE } from "@/constants/styles";
 import useLang from "@/context/useLang";
 import { useThemeConfig } from "@/context/useThemeConfig";
@@ -14,21 +14,32 @@ import {
   Input as ChakraInput,
   Icon,
   IconButton,
+  InputProps,
+  StackProps,
   useFieldContext,
 } from "@chakra-ui/react";
 import { css, Global } from "@emotion/react";
 import { XIcon } from "lucide-react";
 import { forwardRef, useRef } from "react";
-import { useColorMode } from "./color-mode";
 
-export const StringInput = forwardRef<HTMLInputElement, Props__StringInput>(
+export interface StringInputProps extends Omit<InputProps, "onChange"> {
+  inputValue?: string;
+  onChange?: (inputValue: string) => void;
+  placeholder?: string;
+  containerProps?: StackProps;
+  invalid?: boolean;
+  clearable?: boolean;
+  clearButtonProps?: StackProps;
+  maxChar?: number;
+}
+export const StringInput = forwardRef<HTMLInputElement, StringInputProps>(
   (props, ref) => {
     // Props
     const {
       name,
       onChange,
       inputValue,
-      placeholder = "Input text",
+      placeholder,
       containerProps,
       invalid,
       clearable = true,
@@ -44,30 +55,23 @@ export const StringInput = forwardRef<HTMLInputElement, Props__StringInput>(
 
     // Contexts
     const { l } = useLang();
-    const { colorMode } = useColorMode();
     const { themeConfig } = useThemeConfig();
     const fc = useFieldContext();
 
     // Refs
     const isFirstRender = useRef(true);
-    const localInputRef = useRef<HTMLInputElement>(null);
-    const mergedRef = useMergedRefs(ref, localInputRef);
+    const inputRef = useRef<HTMLInputElement>(null);
+    const mergeRef = useMergedRefs(inputRef, ref);
 
-    // States
-    const resolvedInvalid = invalid || fc?.invalid;
+    // Hooks
+    const { colorMode } = useColorMode();
+
+    // Constants
     const disabled = fc?.disabled;
 
-    // Styles
-    const darkLightColorManual = colorMode === "light" ? "#fff" : "var(--dark)";
-    const styles = css`
-      input:-webkit-autofill,
-      input:-webkit-autofill:hover,
-      input:-webkit-autofill:focus,
-      input:-webkit-autofill:active {
-        -webkit-box-shadow: 0 0 0 30px ${darkLightColorManual} inset !important;
-        box-shadow: 0 0 0 30px ${darkLightColorManual} inset !important;
-      }
-    `;
+    // Derived Values
+    const resolvedPlaceholder = placeholder ?? l.text_input;
+    const resolvedInvalid = invalid || fc?.invalid;
 
     // Utils
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -88,6 +92,21 @@ export const StringInput = forwardRef<HTMLInputElement, Props__StringInput>(
       if (isFirstRender.current) isFirstRender.current = false;
     };
 
+    // SX
+    const color =
+      colorMode === "light"
+        ? "var(--chakra-colors-light)"
+        : "var(--chakra-colors-dark)";
+    const styles = css`
+      input:-webkit-autofill,
+      input:-webkit-autofill:hover,
+      input:-webkit-autofill:focus,
+      input:-webkit-autofill:active {
+        -webkit-box-shadow: 0 0 0 30px ${color} inset !important;
+        box-shadow: 0 0 0 30px ${color} inset !important;
+      }
+    `;
+
     return (
       <>
         <Global styles={styles} />
@@ -105,13 +124,13 @@ export const StringInput = forwardRef<HTMLInputElement, Props__StringInput>(
           {...containerProps}
         >
           <ChakraInput
-            ref={mergedRef}
+            ref={mergeRef}
             name={name}
             onChange={handleChange}
             value={inputValue}
             bg={variant === "subtle" ? "d0" : ""}
             _placeholder={{ fontSize: "md" }}
-            placeholder={placeholder}
+            placeholder={resolvedPlaceholder}
             borderColor={
               resolvedInvalid
                 ? "border.error"
@@ -149,7 +168,7 @@ export const StringInput = forwardRef<HTMLInputElement, Props__StringInput>(
                 aria-label="clear input"
                 onClick={() => {
                   onChange?.("");
-                  localInputRef.current?.focus(); // back to input after clear
+                  inputRef.current?.focus(); // back to input after clear
                 }}
                 variant={"plain"}
                 size={"sm"}

@@ -2,16 +2,16 @@ import { back } from "@/utils/client";
 import { Icon } from "@chakra-ui/react";
 import { IconArrowLeft } from "@tabler/icons-react";
 import { useRouter } from "next/navigation";
-import { Btn, Props__Btn } from "../ui/btn";
+import { Btn, BtnProps } from "../ui/btn";
 
-interface Props extends Props__Btn {
+interface Props extends BtnProps {
   children?: any;
   iconButton?: boolean;
   backPath?: string;
   onBack?: () => void;
 }
 
-const BackButton = ({
+export const BackButton = ({
   children,
   iconButton = false,
   backPath,
@@ -52,5 +52,3 @@ const BackButton = ({
     </Btn>
   );
 };
-
-export default BackButton;

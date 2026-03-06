@@ -19,28 +19,29 @@ import FeedbackNotFound from "@/components/widget/FeedbackNotFound";
 import FeedbackRetry from "@/components/widget/FeedbackRetry";
 import { DotIndicator } from "@/components/widget/Indicator";
 import { Interface__SelectOption } from "@/constants/interfaces";
-import { Props__SelectInput, Props__SelectOptions } from "@/constants/props";
+import { Props__SelectInput } from "@/constants/props";
 import useLang from "@/context/useLang";
 import { useThemeConfig } from "@/context/useThemeConfig";
-import useBackOnClose from "@/hooks/useBackOnClose";
+import usePopDisclosure from "@/hooks/usePopDisclosure";
 import { isEmptyArray } from "@/utils/array";
 import { back } from "@/utils/client";
 import { disclosureId } from "@/utils/disclosure";
 import { capitalizeWords } from "@/utils/string";
-import {
-  Box,
-  HStack,
-  Icon,
-  useDisclosure,
-  useFieldContext,
-} from "@chakra-ui/react";
+import { Box, HStack, Icon, useFieldContext } from "@chakra-ui/react";
 import { IconReload } from "@tabler/icons-react";
 import { ChevronDownIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 
 const NAVS_COLOR = "fg.muted";
 
-const SelectOptions = (props: Props__SelectOptions) => {
+export interface SelectOptionsProps {
+  id: string;
+  multiple: Props__SelectInput["multiple"];
+  selectOptions: Props__SelectInput["inputValue"];
+  selected: Interface__SelectOption[];
+  setSelected: React.Dispatch<SelectOptionsProps["selected"]>;
+}
+const SelectOptions = (props: SelectOptionsProps) => {
   // Props
   const { id, multiple, selectOptions, selected, setSelected, ...restProps } =
     props;
@@ -187,20 +188,22 @@ export const SelectInput = (props: Props__SelectInput) => {
   const fc = useFieldContext();
 
   // Hooks
-  const { open, onOpen, onClose } = useDisclosure();
-  useBackOnClose(disclosureId(id || "select-input"), open, onOpen, onClose);
+  const { open, onOpen } = usePopDisclosure(disclosureId(id || "select-input"));
 
   // States
-  const resolvedInvalid = invalid ?? fc?.invalid;
   const [selected, setSelected] = useState<Interface__SelectOption[]>([]);
-  const resolvedPlaceholder = placeholder || `${l.select}`;
+
+  // Derived Values
+  const resolvedPlaceholder =
+    placeholder ?? (multiple ? l.select_one_or_more : l.select);
+  const resolvedInvalid = invalid ?? fc?.invalid;
   const formattedButtonLabel =
     inputValue && !isEmptyArray(inputValue)
       ? inputValue.map((o) => o.label).join(", ")
       : resolvedPlaceholder;
 
   // Utils
-  function onConfirmSelected() {
+  function handleConfirm() {
     if (!required) {
       if (!isEmptyArray(selected)) {
         onChange?.(selected);
@@ -211,7 +214,7 @@ export const SelectInput = (props: Props__SelectInput) => {
     }
   }
 
-  // set selected on open
+  // Set initial selected on open
   useEffect(() => {
     if (inputValue && !isEmptyArray(inputValue)) {
       setSelected(inputValue);
@@ -311,7 +314,7 @@ export const SelectInput = (props: Props__SelectInput) => {
             <Btn
               colorPalette={themeConfig.colorPalette}
               disabled={required && isEmptyArray(selected)}
-              onClick={onConfirmSelected}
+              onClick={handleConfirm}
             >
               {l.confirm}
             </Btn>

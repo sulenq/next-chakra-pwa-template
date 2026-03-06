@@ -1,6 +1,6 @@
 "use client";
 
-import { Btn, Props__Btn } from "@/components/ui/btn";
+import { Btn, BtnProps } from "@/components/ui/btn";
 import { CContainer } from "@/components/ui/c-container";
 import { MenuContent, MenuRoot, MenuTrigger } from "@/components/ui/menu";
 import { NumInput } from "@/components/ui/number-input";
@@ -50,7 +50,7 @@ export interface Interface__PdfViewerUtils {
 
 pdfjs.GlobalWorkerOptions.workerSrc = "/pdf.worker.min.mjs";
 
-interface Props__UtilBtn extends Props__Btn {
+interface Props__UtilBtn extends BtnProps {
   tooltipContent: string;
 }
 const UtilBtn = (btnProps: Props__UtilBtn) => {

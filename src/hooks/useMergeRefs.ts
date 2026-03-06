@@ -1,17 +1,19 @@
-import { useCallback } from "react";
+import { useCallback, useRef, Ref, RefObject } from "react";
 
-export function useMergedRefs<T>(...refs: any[]) {
-  return useCallback(
-    (el: T) => {
-      refs.forEach((ref) => {
-        if (!ref) return;
-        if (typeof ref === "function") {
-          ref(el);
-        } else {
-          ref.current = el;
-        }
-      });
-    },
-    [refs]
-  );
+export function useMergedRefs<T>(...refs: Ref<T>[]) {
+  const refsRef = useRef(refs);
+
+  refsRef.current = refs;
+
+  return useCallback((node: T | null) => {
+    for (const ref of refsRef.current) {
+      if (!ref) continue;
+
+      if (typeof ref === "function") {
+        ref(node);
+      } else {
+        (ref as RefObject<T | null>).current = node;
+      }
+    }
+  }, []);
 }
