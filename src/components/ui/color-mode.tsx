@@ -9,7 +9,7 @@ import type { ThemeProviderProps } from "next-themes";
 import { ThemeProvider, useTheme } from "next-themes";
 import * as React from "react";
 import { forwardRef } from "react";
-import { Tooltip, TooltipProps } from "./tooltip";
+import { Tooltip, TooltipProps } from "@/components/ui/tooltip";
 
 export interface ColorModeProviderProps extends ThemeProviderProps {}
 interface ColorModeButtonProps extends Omit<IconButtonProps, "aria-label"> {

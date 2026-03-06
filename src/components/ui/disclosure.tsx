@@ -48,7 +48,7 @@ import {
   DrawerHeaderProps,
   HStack,
 } from "@chakra-ui/react";
-import { CContainer } from "./c-container";
+import { CContainer } from "@/components/ui/c-container";
 
 const DisclosureRoot = ({ children, ...props }: any) => {
   // Utils

@@ -5,9 +5,9 @@ import { back } from "@/utils/client";
 import { HStack, Icon } from "@chakra-ui/react";
 import { MaximizeIcon, MinimizeIcon, XIcon } from "lucide-react";
 import { useEffect, useState } from "react";
-import { DialogCloseTrigger } from "./dialog";
-import { DrawerCloseTrigger } from "./drawer";
-import { P } from "./p";
+import { DialogCloseTrigger } from "@/components/ui/dialog";
+import { DrawerCloseTrigger } from "@/components/ui/drawer";
+import { P } from "@/components/ui/p";
 
 export const DisclosureHeaderContent = (
   props: Props__DisclosureHeaderContent,

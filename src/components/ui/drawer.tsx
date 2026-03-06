@@ -7,7 +7,7 @@ import {
   Portal,
 } from "@chakra-ui/react";
 import { forwardRef } from "react";
-import { CloseButton } from "./close-button";
+import { CloseButton } from "@/components/ui/close-button";
 import { BLUR_RADIUS } from "@/constants/styles";
 
 export interface DrawerContentProps extends ChakraDrawer.ContentProps {

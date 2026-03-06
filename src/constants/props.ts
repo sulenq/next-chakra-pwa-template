@@ -25,7 +25,7 @@ import {
   ButtonVariant,
   DateVariant,
   DisclosureSizes,
-} from "./types";
+} from "@/constants/types";
 
 export interface Props__PdfViewer extends StackProps {
   fileUrl: string;

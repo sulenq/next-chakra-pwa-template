@@ -20,13 +20,13 @@ import {
 import { useFormik } from "formik";
 import { useEffect, useState } from "react";
 import * as yup from "yup";
-import { Btn } from "../ui/btn";
-import { DisclosureHeaderContent } from "../ui/disclosure-header-content";
-import { Field } from "../ui/field";
-import { HelperText } from "../ui/helper-text";
-import { PasswordInput } from "../ui/password-input";
-import { StringInput } from "../ui/string-input";
-import { BackButton } from "./BackButton";
+import { Btn } from "@/components/ui/btn";
+import { DisclosureHeaderContent } from "@/components/ui/disclosure-header-content";
+import { Field } from "@/components/ui/field";
+import { HelperText } from "@/components/ui/helper-text";
+import { PasswordInput } from "@/components/ui/password-input";
+import { StringInput } from "@/components/ui/string-input";
+import { BackButton } from "@/components/widget/BackButton";
 
 import usePopDisclosure from "@/hooks/usePopDisclosure";
 import { disclosureId } from "@/utils/disclosure";

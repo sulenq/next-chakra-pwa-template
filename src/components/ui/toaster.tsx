@@ -24,7 +24,7 @@ import {
   XIcon,
 } from "lucide-react";
 import { useState } from "react";
-import { useColorMode } from "./color-mode";
+import { useColorMode } from "@/components/ui/color-mode";
 
 const TOAST_PRESETS = {
   loading: {

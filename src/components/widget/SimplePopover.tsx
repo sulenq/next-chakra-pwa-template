@@ -3,7 +3,7 @@ import {
   TooltipContentProps,
   useDisclosure,
 } from "@chakra-ui/react";
-import { PopoverContent, PopoverRoot, PopoverTrigger } from "../ui/popover";
+import { PopoverContent, PopoverRoot, PopoverTrigger } from "@/components/ui/popover";
 import { ReactNode, useRef } from "react";
 import useClickOutside from "@/hooks/useClickOutside";
 import { useThemeConfig } from "@/context/useThemeConfig";

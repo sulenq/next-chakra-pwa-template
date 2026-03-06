@@ -26,7 +26,7 @@ import {
   FileUploadDropzone,
   FileUploadRoot,
   FileUploadTrigger,
-} from "../ui/file-button";
+} from "@/components/ui/file-button";
 
 const FileList = (props: any) => {
   // Props

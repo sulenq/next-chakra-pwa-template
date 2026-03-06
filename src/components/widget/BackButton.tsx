@@ -2,7 +2,7 @@ import { back } from "@/utils/client";
 import { Icon } from "@chakra-ui/react";
 import { IconArrowLeft } from "@tabler/icons-react";
 import { useRouter } from "next/navigation";
-import { Btn, BtnProps } from "../ui/btn";
+import { Btn, BtnProps } from "@/components/ui/btn";
 
 interface Props extends BtnProps {
   children?: any;

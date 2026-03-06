@@ -2,11 +2,11 @@
 
 import { ButtonProps, Icon, MenuPositioner, Portal } from "@chakra-ui/react";
 import { IconCheck, IconChevronDown } from "@tabler/icons-react";
-import useLang from "../../context/useLang";
-import { MenuContent, MenuItem, MenuRoot, MenuTrigger } from "./menu";
-import { Tooltip } from "./tooltip";
+import useLang from "@/context/useLang";
+import { MenuContent, MenuItem, MenuRoot, MenuTrigger } from "@/components/ui/menu";
+import { Tooltip } from "@/components/ui/tooltip";
 import { useThemeConfig } from "@/context/useThemeConfig";
-import { Btn } from "./btn";
+import { Btn } from "@/components/ui/btn";
 
 interface Props extends ButtonProps {}
 

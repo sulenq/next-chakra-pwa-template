@@ -3,7 +3,7 @@
 import { Props__NavLink } from "@/constants/props";
 import { useRouter } from "next/navigation";
 import { forwardRef, useEffect } from "react";
-import { CContainer } from "./c-container";
+import { CContainer } from "@/components/ui/c-container";
 
 export const NavLink = forwardRef<HTMLDivElement, Props__NavLink>(
   (props, ref) => {

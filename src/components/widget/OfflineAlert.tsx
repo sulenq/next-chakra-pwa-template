@@ -11,14 +11,14 @@ import {
   DisclosureFooter,
   DisclosureHeader,
   DisclosureRoot,
-} from "../ui/disclosure";
-import { DisclosureHeaderContent } from "../ui/disclosure-header-content";
-import { BackButton } from "./BackButton";
+} from "@/components/ui/disclosure";
+import { DisclosureHeaderContent } from "@/components/ui/disclosure-header-content";
+import { BackButton } from "@/components/widget/BackButton";
 
 import usePopDisclosure from "@/hooks/usePopDisclosure";
 import { disclosureId } from "@/utils/disclosure";
-import { Btn } from "../ui/btn";
-import { EmptyState } from "../ui/empty-state";
+import { Btn } from "@/components/ui/btn";
+import { EmptyState } from "@/components/ui/empty-state";
 
 export const OfflineAlert = () => {
   // Contexts

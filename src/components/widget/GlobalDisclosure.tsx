@@ -1,4 +1,4 @@
-import { OfflineAlert } from "./OfflineAlert";
+import { OfflineAlert } from "@/components/widget/OfflineAlert";
 
 const GlobalDisclosure = () => {
   return (

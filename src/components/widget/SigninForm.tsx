@@ -34,13 +34,13 @@ import { useFormik } from "formik";
 import { LogInIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 import * as yup from "yup";
-import { Btn } from "../ui/btn";
-import { CContainer } from "../ui/c-container";
-import { Divider } from "../ui/divider";
-import { P } from "../ui/p";
-import { PasswordInput } from "../ui/password-input";
-import { StringInput } from "../ui/string-input";
-import ResetPasswordDisclosureTrigger from "./ResetPasswordDisclosure";
+import { Btn } from "@/components/ui/btn";
+import { CContainer } from "@/components/ui/c-container";
+import { Divider } from "@/components/ui/divider";
+import { P } from "@/components/ui/p";
+import { PasswordInput } from "@/components/ui/password-input";
+import { StringInput } from "@/components/ui/string-input";
+import ResetPasswordDisclosureTrigger from "@/components/widget/ResetPasswordDisclosure";
 
 const INDEX_ROUTE = "/demo";
 

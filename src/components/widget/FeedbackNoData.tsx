@@ -7,7 +7,7 @@ import { MIN_H_FEEDBACK_CONTAINER } from "@/constants/styles";
 import useLang from "@/context/useLang";
 import { Icon } from "@chakra-ui/react";
 import { ServerOff } from "lucide-react";
-import FeedbackState from "./FeedbackState";
+import FeedbackState from "@/components/widget/FeedbackState";
 
 export default function FeedbackNoData(props: Props__FeedbackState) {
   // Props
