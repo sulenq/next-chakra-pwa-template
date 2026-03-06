@@ -1,8 +1,8 @@
-import { useThemeConfig } from "@/context/useThemeConfig";
-import useBackOnClose from "@/hooks/useBackOnClose";
+import useOffline from "@/context/disclosure/useOffilne";
 import useLang from "@/context/useLang";
+import { useThemeConfig } from "@/context/useThemeConfig";
 import { back } from "@/utils/client";
-import { Icon, useDisclosure } from "@chakra-ui/react";
+import { Icon } from "@chakra-ui/react";
 import { IconAccessPointOff } from "@tabler/icons-react";
 import { useEffect } from "react";
 import {
@@ -13,12 +13,12 @@ import {
   DisclosureRoot,
 } from "../ui/disclosure";
 import { DisclosureHeaderContent } from "../ui/disclosure-header-content";
-import useOffline from "@/context/disclosure/useOffilne";
 import { BackButton } from "./BackButton";
 
+import usePopDisclosure from "@/hooks/usePopDisclosure";
+import { disclosureId } from "@/utils/disclosure";
 import { Btn } from "../ui/btn";
 import { EmptyState } from "../ui/empty-state";
-import { disclosureId } from "@/utils/disclosure";
 
 export const OfflineAlert = () => {
   // Contexts
@@ -27,8 +27,7 @@ export const OfflineAlert = () => {
   const { l } = useLang();
 
   // Utils
-  const { open, onOpen, onClose } = useDisclosure();
-  useBackOnClose(disclosureId("offline-alert"), open, onOpen, onClose);
+  const { open, onOpen } = usePopDisclosure(disclosureId("offline-alert"));
 
   useEffect(() => {
     if (offline) onOpen();

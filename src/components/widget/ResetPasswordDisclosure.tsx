@@ -8,7 +8,6 @@ import {
 } from "@/components/ui/disclosure";
 import useLang from "@/context/useLang";
 import { useThemeConfig } from "@/context/useThemeConfig";
-import useBackOnClose from "@/hooks/useBackOnClose";
 import useRequest from "@/hooks/useRequest";
 import { back } from "@/utils/client";
 import { maskEmail } from "@/utils/string";
@@ -17,7 +16,6 @@ import {
   PinInputHiddenInput,
   PinInputInput,
   PinInputRoot,
-  useDisclosure,
 } from "@chakra-ui/react";
 import { useFormik } from "formik";
 import { useEffect, useState } from "react";
@@ -30,6 +28,7 @@ import { PasswordInput } from "../ui/password-input";
 import { StringInput } from "../ui/string-input";
 import { BackButton } from "./BackButton";
 
+import usePopDisclosure from "@/hooks/usePopDisclosure";
 import { disclosureId } from "@/utils/disclosure";
 
 const Step1 = (props: any) => {
@@ -341,8 +340,7 @@ const ResetPasswordDisclosureTrigger = (props: any) => {
   const { children, ...restProps } = props;
 
   // Hooks
-  const { open, onOpen, onClose } = useDisclosure();
-  useBackOnClose(disclosureId(`reset-password`), open, onOpen, onClose);
+  const { open, onOpen } = usePopDisclosure(disclosureId("reset-password"));
 
   // States
   const [otp, setOtp] = useState<string>("");

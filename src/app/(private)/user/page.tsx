@@ -34,9 +34,9 @@ import { useDataDisplay } from "@/context/useDataDisplay";
 import useLang from "@/context/useLang";
 import useRenderTrigger from "@/context/useRenderTrigger";
 import { useThemeConfig } from "@/context/useThemeConfig";
-import useBackOnClose from "@/hooks/useBackOnClose";
 import { useContainerDimension } from "@/hooks/useContainerDimension";
 import useDataState from "@/hooks/useDataState";
+import usePopDisclosure from "@/hooks/usePopDisclosure";
 import useRequest from "@/hooks/useRequest";
 import { isEmptyArray, last } from "@/utils/array";
 import { back } from "@/utils/client";
@@ -45,7 +45,7 @@ import { formatDate } from "@/utils/formatter";
 import { capitalize, pluckString } from "@/utils/string";
 import { isDimensionValid } from "@/utils/style";
 import { getActiveNavs, imgUrl } from "@/utils/url";
-import { HStack, Icon, useDisclosure } from "@chakra-ui/react";
+import { HStack, Icon } from "@chakra-ui/react";
 import { useFormik } from "formik";
 import {
   ArrowDownAz,
@@ -127,13 +127,10 @@ const Update = (props: any) => {
   const setRt = useRenderTrigger((s) => s.setRt);
 
   // Hooks
-  const { open, onOpen, onClose } = useDisclosure();
-  useBackOnClose(
+  const { open, onOpen } = usePopDisclosure(
     disclosureId(`${ID}-${resolvedData?.id}`),
-    open,
-    onOpen,
-    onClose,
   );
+
   const { req, loading } = useRequest({
     id: ID,
     loadingMessage: {

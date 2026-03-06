@@ -502,7 +502,7 @@ const DesktopLayout = (props: any) => {
               onChange={(inputValue) => {
                 setSearch(inputValue || "");
               }}
-              queryKey={"q_sidebar_navs"}
+              queryKey={"q-sidebar-navs"}
             />
           </CContainer>
         )}

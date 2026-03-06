@@ -25,7 +25,6 @@ import {
 import { getWeekdayNames } from "@/constants/weekdays";
 import useLang from "@/context/useLang";
 import { useThemeConfig } from "@/context/useThemeConfig";
-import useBackOnClose from "@/hooks/useBackOnClose";
 import usePopDisclosure from "@/hooks/usePopDisclosure";
 import { isEmptyArray } from "@/utils/array";
 import { back } from "@/utils/client";
@@ -45,7 +44,6 @@ import {
   SimpleGrid,
   Stack,
   StackProps,
-  useDisclosure,
   useFieldContext,
 } from "@chakra-ui/react";
 import { IconCaretDownFilled, IconCaretUpFilled } from "@tabler/icons-react";
@@ -290,12 +288,8 @@ const SelectedDateList = (props: SelectedDateListProps) => {
   const { l } = useLang();
 
   // Hooks
-  const { open, onOpen, onClose } = useDisclosure();
-  useBackOnClose(
+  const { open, onOpen } = usePopDisclosure(
     disclosureId(`${id}-selected-date-list`),
-    open,
-    onOpen,
-    onClose,
   );
 
   // Constants

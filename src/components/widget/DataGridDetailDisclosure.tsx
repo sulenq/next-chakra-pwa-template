@@ -13,10 +13,10 @@ import { P } from "@/components/ui/p";
 import SearchInput from "@/components/ui/search-input";
 import { BackButton } from "@/components/widget/BackButton";
 import FeedbackNotFound from "@/components/widget/FeedbackNotFound";
-import useBackOnClose from "@/hooks/useBackOnClose";
+import usePopDisclosure from "@/hooks/usePopDisclosure";
 import { isEmptyArray } from "@/utils/array";
 import { disclosureId } from "@/utils/disclosure";
-import { StackProps, useDisclosure } from "@chakra-ui/react";
+import { StackProps } from "@chakra-ui/react";
 import { useState } from "react";
 
 export const DataGridDetailDisclosure = (props: any) => {
@@ -100,8 +100,9 @@ export const DataGridDetailDisclosureTrigger = (props: TirggerProps) => {
   const { children, id, title, data, details, ...restProps } = props;
 
   // Hooks
-  const { open, onOpen, onClose } = useDisclosure();
-  useBackOnClose(disclosureId(`data-grid-detail-${id}`), open, onOpen, onClose);
+  const { open, onOpen } = usePopDisclosure(
+    disclosureId(`data-grid-detail-${id}`),
+  );
 
   return (
     <>

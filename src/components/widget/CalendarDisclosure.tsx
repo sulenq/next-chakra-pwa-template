@@ -17,17 +17,16 @@ import {
 import { DisclosureHeaderContent } from "@/components/ui/disclosure-header-content";
 import { Period } from "@/constants/types";
 import useLang from "@/context/useLang";
-import useBackOnClose from "@/hooks/useBackOnClose";
+import usePopDisclosure from "@/hooks/usePopDisclosure";
 import { disclosureId } from "@/utils/disclosure";
-import { StackProps, useDisclosure } from "@chakra-ui/react";
+import { StackProps } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 
 interface Props extends StackProps {}
 
 export const CalendarDisclosureTrigger = (props: Props) => {
   // Hooks
-  const { open, onOpen, onClose } = useDisclosure();
-  useBackOnClose(disclosureId(`calendar`), open, onOpen, onClose);
+  const { open, onOpen } = usePopDisclosure(disclosureId("calendar"));
 
   return (
     <>

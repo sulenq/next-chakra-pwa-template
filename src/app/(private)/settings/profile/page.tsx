@@ -45,14 +45,14 @@ import {
 import { SVGS_PATH } from "@/constants/paths";
 import useLang from "@/context/useLang";
 import { useThemeConfig } from "@/context/useThemeConfig";
-import useBackOnClose from "@/hooks/useBackOnClose";
 import useDataState from "@/hooks/useDataState";
+import usePopDisclosure from "@/hooks/usePopDisclosure";
 import useRequest from "@/hooks/useRequest";
 import { isEmptyArray } from "@/utils/array";
 import { disclosureId } from "@/utils/disclosure";
 import { formatDate } from "@/utils/formatter";
 import { imgUrl } from "@/utils/url";
-import { Circle, HStack, useDisclosure } from "@chakra-ui/react";
+import { Circle, HStack } from "@chakra-ui/react";
 import { useFormik } from "formik";
 import {
   ActivityIcon,
@@ -70,10 +70,11 @@ interface Props__AvatarInputDisclosureTrigger {
   user?: Interface__User;
 }
 const AvatarUploadTrigger = (props: Props__AvatarInputDisclosureTrigger) => {
+  // Props
   const { children, formik, user } = props;
 
-  const { open, onOpen, onClose } = useDisclosure();
-  useBackOnClose(disclosureId(`avatar-input`), open, onOpen, onClose);
+  // Hooks
+  const { open, onOpen } = usePopDisclosure(disclosureId("avatar-input"));
 
   const trigger = React.cloneElement(children, {
     onClick: (...args: any[]) => {

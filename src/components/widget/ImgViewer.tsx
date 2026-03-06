@@ -8,10 +8,10 @@ import { Img } from "@/components/ui/img";
 import { NavLink } from "@/components/ui/nav-link";
 import { SVGS_PATH } from "@/constants/paths";
 import useLang from "@/context/useLang";
-import useBackOnClose from "@/hooks/useBackOnClose";
+import usePopDisclosure from "@/hooks/usePopDisclosure";
 import { back } from "@/utils/client";
 import { disclosureId } from "@/utils/disclosure";
-import { Icon, StackProps, useDisclosure } from "@chakra-ui/react";
+import { Icon, StackProps } from "@chakra-ui/react";
 import { IconArrowUpRight } from "@tabler/icons-react";
 
 interface Props extends StackProps {
@@ -36,8 +36,7 @@ export const ImgViewer = (props: Props) => {
   const { l } = useLang();
 
   // Hooks
-  const { open, onOpen, onClose } = useDisclosure();
-  useBackOnClose(disclosureId(id || `${src}`), open, onOpen, onClose);
+  const { open, onOpen } = usePopDisclosure(disclosureId(id || `${src}`));
 
   return (
     <>
