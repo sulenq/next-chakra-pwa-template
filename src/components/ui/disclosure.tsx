@@ -1,5 +1,6 @@
 "use client";
 
+import { CContainer } from "@/components/ui/c-container";
 import {
   DialogActionTrigger,
   DialogBackdrop,
@@ -24,10 +25,7 @@ import {
   DrawerRoot,
   DrawerTrigger,
 } from "@/components/ui/drawer";
-import {
-  FIREFOX_SCROLL_Y_CLASS_PR_PREFIX,
-  SM_SCREEN_W_NUMBER,
-} from "@/constants/styles";
+import { SM_SCREEN_W_NUMBER } from "@/constants/styles";
 import { useThemeConfig } from "@/context/useThemeConfig";
 import { useIsSmScreenWidth } from "@/hooks/useIsSmScreenWidth";
 import useScreen from "@/hooks/useScreen";
@@ -48,7 +46,6 @@ import {
   DrawerHeaderProps,
   HStack,
 } from "@chakra-ui/react";
-import { CContainer } from "@/components/ui/c-container";
 
 const DisclosureRoot = ({ children, ...props }: any) => {
   // Utils
@@ -162,8 +159,8 @@ const DisclosureBody = ({ children, ...props }: DisclosureBodyProps) => {
 
   return iss ? (
     <DrawerBody
-      pl={4}
-      pr={`calc(16px - ${FIREFOX_SCROLL_Y_CLASS_PR_PREFIX})`}
+      px={4}
+      // pr={`calc(16px - ${FIREFOX_SCROLL_Y_CLASS_PR_PREFIX})`}
       py={2}
       className={props.className || "scrollY"}
       bg={"body"}
@@ -173,8 +170,8 @@ const DisclosureBody = ({ children, ...props }: DisclosureBodyProps) => {
     </DrawerBody>
   ) : (
     <DialogBody
-      pl={4}
-      pr={`calc(16px - ${FIREFOX_SCROLL_Y_CLASS_PR_PREFIX})`}
+      px={4}
+      // pr={`calc(16px - ${FIREFOX_SCROLL_Y_CLASS_PR_PREFIX})`}
       py={4}
       className={props.className || "scrollY"}
       bg={"body"}

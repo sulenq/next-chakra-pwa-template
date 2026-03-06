@@ -8,6 +8,7 @@ import { ClampText } from "@/components/widget/ClampText";
 import { Clock } from "@/components/widget/Clock";
 
 import { DotIndicator } from "@/components/widget/Indicator";
+import { MContainer, MContainerProps } from "@/components/widget/MContainer";
 import SimplePopover from "@/components/widget/SimplePopover";
 import { Today } from "@/components/widget/Today";
 import { Interface__Nav } from "@/constants/interfaces";
@@ -244,7 +245,7 @@ export const PageTitle = (props: StackProps) => {
   // Hooks
   const pathname = usePathname();
 
-  // States
+  // Constants
   const activeNavs = getActiveNavs(pathname);
   const title = pluckString(t, last<any>(activeNavs)?.labelKey);
 
@@ -254,8 +255,7 @@ export const PageTitle = (props: StackProps) => {
       w={"full"}
       minH={"36px"}
       px={4}
-      mt={2}
-      mb={3}
+      my={2}
       {...restProps}
     >
       <ClampText
@@ -271,17 +271,18 @@ export const PageTitle = (props: StackProps) => {
   );
 };
 
-export const PageContent = forwardRef<HTMLDivElement, StackProps>(
+export const PageContent = forwardRef<HTMLDivElement, MContainerProps>(
   (props, ref) => {
+    // Props
     const { children, ...restProps } = props;
 
-    // Consume context dari PageContainer
+    // Contexts
     const { isValidDimension } = usePageContainerContext();
 
     return (
-      <CContainer ref={ref} flex={1} bg={"body"} {...restProps}>
+      <MContainer ref={ref} flex={1} bg={"body"} {...restProps}>
         {isValidDimension ? children : null}
-      </CContainer>
+      </MContainer>
     );
   },
 );

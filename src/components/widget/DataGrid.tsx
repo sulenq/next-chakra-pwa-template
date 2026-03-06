@@ -7,10 +7,9 @@ import { ImgViewer } from "@/components/widget/ImgViewer";
 import { Limitation } from "@/components/widget/Limitation";
 import { Pagination } from "@/components/widget/Pagination";
 import {
-  Interface__DataProps,
   FormattedTableRow,
+  Interface__DataProps,
 } from "@/constants/interfaces";
-import { FIREFOX_SCROLL_Y_CLASS_PR_PREFIX } from "@/constants/styles";
 import { useThemeConfig } from "@/context/useThemeConfig";
 import { useIsSmScreenWidth } from "@/hooks/useIsSmScreenWidth";
 import { isEmptyArray } from "@/utils/array";
@@ -152,7 +151,7 @@ export const DataGrid = (props: Props) => {
           flex={1}
           pb={3}
           px={3}
-          pr={`calc(12px - ${FIREFOX_SCROLL_Y_CLASS_PR_PREFIX})`}
+          // pr={`calc(12px - ${FIREFOX_SCROLL_Y_CLASS_PR_PREFIX})`}
         >
           <SimpleGrid
             templateColumns={`repeat(auto-fill, minmax(${minChildWidth}, 1fr))`}

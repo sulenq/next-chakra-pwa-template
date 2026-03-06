@@ -43,7 +43,6 @@ import {
   DESKTOP_NAVS_COLOR,
   DESKTOP_NAVS_POPOVER_MAIN_AXIS,
   DESKTOP_NAVS_TOOLTIP_MAIN_AXIS,
-  FIREFOX_SCROLL_Y_CLASS_PR_PREFIX,
   MOBILE_CONTENT_CONTAINER_BG,
   MOBILE_NAV_LABEL_FONT_SIZE,
   MOBILE_NAVS_COLOR,
@@ -431,8 +430,8 @@ const DesktopLayout = (props: any) => {
       >
         {/* Logo & Sidebar Toggle */}
         <CContainer
-          h={isNavsExpanded ? "52px" : ""}
-          gap={1}
+          h={isNavsExpanded ? "52px" : "fit"}
+          gap={isNavsExpanded ? 1 : 3}
           px={3}
           pt={isNavsExpanded ? 0 : "6px"}
           justify={"center"}
@@ -513,10 +512,10 @@ const DesktopLayout = (props: any) => {
           flex={1}
           gap={1}
           p={3}
-          pr={`calc(12px - ${FIREFOX_SCROLL_Y_CLASS_PR_PREFIX})`}
+          // pr={`calc(12px - ${FIREFOX_SCROLL_Y_CLASS_PR_PREFIX})`}
         >
           {/* Private Navs */}
-          <CContainer gap={1} mt={isNavsExpanded ? "12px" : 0}>
+          <CContainer gap={1}>
             {isEmptyArray(resolvedNavs) && <FeedbackNotFound />}
 
             {!isEmptyArray(resolvedNavs) &&
