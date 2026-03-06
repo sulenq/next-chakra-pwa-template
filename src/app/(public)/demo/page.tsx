@@ -706,6 +706,7 @@ const DemoIndexRoute = () => {
       select: null as any,
       multiSelect: null as any,
       file: null as any,
+      file2: null as any,
       richEditor: null as any,
     },
     validationSchema: yup.object({
@@ -919,9 +920,9 @@ const DemoIndexRoute = () => {
 
                 <Field label={"Dokumen Negara"} invalid={!!formik.errors.file}>
                   <FileInput
-                    inputValue={formik.values.file}
+                    inputValue={formik.values.file2}
                     onChange={(input) => {
-                      formik.setFieldValue("file", input);
+                      formik.setFieldValue("file2", input);
                     }}
                     existingFiles={existingFiles}
                     maxFiles={5}
