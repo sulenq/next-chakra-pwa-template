@@ -72,6 +72,7 @@ export const StringInput = forwardRef<HTMLInputElement, StringInputProps>(
     // Derived Values
     const resolvedPlaceholder = placeholder ?? t.text_input;
     const resolvedInvalid = invalid || fc?.invalid;
+    const isColorPaletteGray = themeConfig.colorPalette === "gray";
 
     // Utils
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -141,7 +142,11 @@ export const StringInput = forwardRef<HTMLInputElement, StringInputProps>(
             fontSize={"md"}
             fontWeight={"medium"}
             outline={"none !important"}
-            _focus={{ borderColor: themeConfig.primaryColor }}
+            _focus={{
+              borderColor: isColorPaletteGray
+                ? "ibody"
+                : themeConfig.primaryColor,
+            }}
             rounded={themeConfig.radii.component}
             autoComplete="off"
             transition={"200ms"}
