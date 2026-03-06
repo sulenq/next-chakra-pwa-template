@@ -28,7 +28,8 @@ import { Field } from "../ui/field";
 import { HelperText } from "../ui/helper-text";
 import { PasswordInput } from "../ui/password-input";
 import { StringInput } from "../ui/string-input";
-import BackButton from "./BackButton";
+import { BackButton } from "./BackButton";
+
 import { disclosureId } from "@/utils/disclosure";
 
 const Step1 = (props: any) => {
@@ -199,7 +200,7 @@ const Step2 = (props: any) => {
           </form>
 
           <HelperText color={"fg.subtle"}>{`${l.otp_sent_to} ${maskEmail(
-            email
+            email,
           )}`}</HelperText>
           <HelperText>{l.msg_reset_password_step_2}</HelperText>
         </CContainer>
@@ -250,7 +251,7 @@ const Step3 = (props: any) => {
         .required(l.msg_required_form)
         .oneOf(
           [yup.ref("password"), ""],
-          l.msg_password_confirmation_not_match
+          l.msg_password_confirmation_not_match,
         ),
     }),
     onSubmit: (values) => {

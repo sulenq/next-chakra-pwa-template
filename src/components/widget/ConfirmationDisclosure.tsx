@@ -13,7 +13,7 @@ import { useThemeConfig } from "@/context/useThemeConfig";
 import usePopDisclosure from "@/hooks/usePopDisclosure";
 import { disclosureId } from "@/utils/disclosure";
 import { StackProps } from "@chakra-ui/react";
-import BackButton from "./BackButton";
+import { BackButton } from "./BackButton";
 
 interface Props__Disclosure {
   open: boolean;

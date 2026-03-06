@@ -14,7 +14,8 @@ import {
 } from "../ui/disclosure";
 import { DisclosureHeaderContent } from "../ui/disclosure-header-content";
 import useOffline from "@/context/disclosure/useOffilne";
-import BackButton from "./BackButton";
+import { BackButton } from "./BackButton";
+
 import { Btn } from "../ui/btn";
 import { EmptyState } from "../ui/empty-state";
 import { disclosureId } from "@/utils/disclosure";
