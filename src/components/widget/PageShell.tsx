@@ -255,7 +255,7 @@ export const PageTitle = (props: StackProps) => {
       w={"full"}
       minH={"36px"}
       px={4}
-      my={2}
+      my={0}
       {...restProps}
     >
       <ClampText

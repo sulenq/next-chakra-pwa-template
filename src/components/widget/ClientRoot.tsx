@@ -1,16 +1,15 @@
 "use client";
 
 import { useColorMode } from "@/components/ui/color-mode";
+import { Img } from "@/components/ui/img";
+import GlobalDisclosure from "@/components/widget/GlobalDisclosure";
 import { LoadingBar } from "@/components/widget/LoadingBar";
 import { APP } from "@/constants/_meta";
 import { SVGS_PATH } from "@/constants/paths";
 import useADM from "@/context/useADM";
-import { useFirefoxScrollbarPadding } from "@/hooks/useFirefoxScrollbarPadding";
 import useOfflineAlert from "@/hooks/useOfflineAlert";
 import { Center } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
-import { Img } from "@/components/ui/img";
-import GlobalDisclosure from "@/components/widget/GlobalDisclosure";
 
 interface Props {
   children: React.ReactNode;
@@ -45,7 +44,7 @@ export default function ClientRoot(props: Props) {
   const ADM = useADM((s) => s.ADM);
 
   // Hooks
-  useFirefoxScrollbarPadding();
+  // useFirefoxScrollbarPadding();
 
   // States
   const [mounted, setMounted] = useState(mountedGlobal);

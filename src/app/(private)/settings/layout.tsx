@@ -163,18 +163,17 @@ export default function Layout(props: any) {
               w={isSmContainer ? "full" : "250px"}
               h={"full"}
               maxH={"full"}
-              // bg={"bgContent"}
               // borderRight={isSmContainer ? "" : "1px solid"}
               borderColor={"border.muted"}
               overflowY={"auto"}
             >
-              <CContainer px={4} mt={4} mb={1}>
+              <HStack minH={"36px"} px={4}>
                 <ClampText fontSize={"xl"} fontWeight={"semibold"}>
                   {t.settings}
                 </ClampText>
-              </CContainer>
+              </HStack>
 
-              <CContainer p={3} pb={1}>
+              <CContainer px={3} py={2}>
                 <SearchInput
                   inputValue={search}
                   onChange={(inputValue) => {
@@ -184,8 +183,8 @@ export default function Layout(props: any) {
                 />
               </CContainer>
 
-              <MContainer className="scrollY">
-                <NavsList search={search} p={3} />
+              <MContainer className={"scrollY"} flex={1}>
+                <NavsList search={search} px={3} py={2} />
 
                 <CContainer p={4} mt={"auto"} gap={1}>
                   <HelperText>{`v${APP.version}`}</HelperText>
@@ -208,7 +207,7 @@ export default function Layout(props: any) {
                 flex={1}
                 // maxW={""}
               >
-                {pathname !== ROOT_PATH && <PageTitle mb={2} />}
+                {pathname !== ROOT_PATH && <PageTitle />}
 
                 <CContainer flex={1} {...props} />
               </ContainerLayout>

@@ -48,6 +48,7 @@ import {
   MOBILE_NAVS_COLOR,
   MOBILE_POPOVER_MAIN_AXIS,
   NAVS_COLOR_PALETTE,
+  TOP_BAR_H,
 } from "@/constants/styles";
 import useLang from "@/context/useLang";
 import useNavs from "@/context/useNavs";
@@ -430,21 +431,22 @@ const DesktopLayout = (props: any) => {
       >
         {/* Logo & Sidebar Toggle */}
         <CContainer
-          h={isNavsExpanded ? "52px" : "fit"}
-          gap={isNavsExpanded ? 1 : 3}
-          px={3}
-          pt={isNavsExpanded ? 0 : "6px"}
           justify={"center"}
+          gap={isNavsExpanded ? 1 : 3}
+          h={isNavsExpanded ? TOP_BAR_H : "fit"}
+          p={3}
         >
+          {/* Logo Only */}
           {!isNavsExpanded && (
             <NavLink to="/">
-              <Center w={"36px"} h={"40px"} mr={"auto"}>
+              <Center w={"36px"} h={"28px"} ml={"-0.5px"}>
                 <Logo size={15} />
               </Center>
             </NavLink>
           )}
 
-          <HStack justify={"space-between"} h={"40px"}>
+          <HStack justify={"space-between"}>
+            {/* Logo & App Name */}
             {isNavsExpanded && (
               <NavLink to="/">
                 <HStack ml={"6px"} gap={3}>
@@ -493,7 +495,7 @@ const DesktopLayout = (props: any) => {
 
         {/* Search */}
         {isNavsExpanded && (
-          <CContainer px={3} pt={2} pb={1}>
+          <CContainer px={3} py={2}>
             <SearchInput
               inputRef={searchInputRef}
               inputValue={search}
@@ -511,7 +513,8 @@ const DesktopLayout = (props: any) => {
           overflowX={"clip"}
           flex={1}
           gap={1}
-          p={3}
+          px={3}
+          py={2}
           // pr={`calc(12px - ${FIREFOX_SCROLL_Y_CLASS_PR_PREFIX})`}
         >
           {/* Private Navs */}
@@ -967,7 +970,7 @@ const DesktopLayout = (props: any) => {
           </CContainer>
         )}
 
-        <CContainer p={3} pt={isNavsExpanded ? 3 : 0}>
+        <CContainer p={3}>
           <ProfileMenuTrigger
             w={"full"}
             popoverRootProps={{
