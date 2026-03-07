@@ -22,7 +22,7 @@ import { TextareaInput } from "@/components/ui/textarea-input";
 import { TimePickerInput } from "@/components/ui/time-picker-input";
 import { toaster } from "@/components/ui/toaster";
 import { Tooltip } from "@/components/ui/tooltip";
-import { CalendarDisclosureTrigger } from "@/components/widgets/CalendarDisclosure";
+import { CalendarDisclosureTrigger } from "@/components/widgets/Calendar";
 import { Clock } from "@/components/widgets/Clock";
 import { ConfirmationDisclosureTrigger } from "@/components/widgets/ConfirmationDisclosure";
 import { DataTable } from "@/components/widgets/DataTable";

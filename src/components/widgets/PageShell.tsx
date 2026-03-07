@@ -3,7 +3,7 @@
 import { CContainer } from "@/components/ui/c-container";
 import { P, PProps } from "@/components/ui/p";
 import { BackButton } from "@/components/widgets/BackButton";
-import { CalendarDisclosureTrigger } from "@/components/widgets/CalendarDisclosure";
+import { CalendarDisclosureTrigger } from "@/components/widgets/Calendar";
 import { ClampText } from "@/components/widgets/ClampText";
 import { Clock } from "@/components/widgets/Clock";
 
