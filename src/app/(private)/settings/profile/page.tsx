@@ -30,7 +30,7 @@ import { ItemHeaderContainer } from "@/components/widget/ItemHeaderContainer";
 import ItemHeaderTitle from "@/components/widget/ItemHeaderTitle";
 import { Limitation } from "@/components/widget/Limitation";
 import { Pagination } from "@/components/widget/Pagination";
-import ResetPasswordDisclosureTrigger from "@/components/widget/ResetPasswordDisclosure";
+import ResetPasswordDisclosureTrigger from "@/components/features/auth/ResetPassword";
 import {
   dummyActivityLogs,
   dummyAuthLogs,

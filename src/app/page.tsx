@@ -6,7 +6,7 @@ import { LangMenu } from "@/components/ui/lang-menu";
 import { P } from "@/components/ui/p";
 import BrandWatermark from "@/components/widget/BrandWatermark";
 import { Logo } from "@/components/widget/Logo";
-import { SigninForm } from "@/components/widget/SigninForm";
+import { SigninForm } from "@/components/features/auth/SigninForm";
 import useLang from "@/context/useLang";
 import { useThemeConfig } from "@/context/useThemeConfig";
 import { useIsSmScreenWidth } from "@/hooks/useIsSmScreenWidth";
