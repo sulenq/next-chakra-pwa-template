@@ -1,10 +1,9 @@
 "use client";
 
-import { P } from "@/components/ui/p";
+import { P, PProps } from "@/components/ui/p";
 import SimplePopover from "@/components/widget/SimplePopover";
-import { TextProps } from "@chakra-ui/react";
 
-export const ClampText = (props: TextProps) => {
+export const ClampText = (props: PProps) => {
   // Props
   const { children, ...restProps } = props;
 

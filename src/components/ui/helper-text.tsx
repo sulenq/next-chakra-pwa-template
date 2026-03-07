@@ -1,7 +1,6 @@
-import { P } from "@/components/ui/p";
-import { TextProps } from "@chakra-ui/react";
+import { P, PProps } from "@/components/ui/p";
 
-export const HelperText = ({ children, ...restProps }: TextProps) => {
+export const HelperText = ({ children, ...restProps }: PProps) => {
   return (
     <P fontSize={"sm"} color={"fg.subtle"} lineHeight={1.2} {...restProps}>
       {children}

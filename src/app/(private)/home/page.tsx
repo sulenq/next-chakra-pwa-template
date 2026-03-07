@@ -104,7 +104,7 @@ const OverviewItem = (props: OverviewItemProps) => {
       </HStack>
 
       <P fontSize={"2xl"} fontWeight={"medium"}>
-        {item.value}
+        {`${item.value}`}
       </P>
 
       <HStack mt={2}>
