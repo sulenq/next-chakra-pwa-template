@@ -22,7 +22,7 @@ import { P } from "@/components/ui/p";
 import SearchInput from "@/components/ui/search-input";
 import { Tooltip } from "@/components/ui/tooltip";
 import { AppIcon } from "@/components/widgets/AppIcon";
-import { AuthGuard } from "@/components/widgets/AuthGuard";
+import { AuthGuard } from "@/features/auth/AuthGuard";
 import { ClampText } from "@/components/widgets/ClampText";
 import { Clock } from "@/components/widgets/Clock";
 import FeedbackNotFound from "@/components/widgets/FeedbackNotFound";
