@@ -1,7 +1,9 @@
 "use client";
 
 import { CContainer } from "@/components/ui/c-container";
+import { Divider } from "@/components/ui/divider";
 import { Img } from "@/components/ui/img";
+import { P } from "@/components/ui/p";
 import { BatchOptions } from "@/components/widget/BatchOptions";
 import { ImgViewer } from "@/components/widget/ImgViewer";
 import { Limitation } from "@/components/widget/Limitation";
@@ -10,13 +12,14 @@ import {
   FormattedTableRow,
   Interface__DataProps,
 } from "@/constants/interfaces";
+import useLang from "@/context/useLang";
 import { useThemeConfig } from "@/context/useThemeConfig";
 import { useIsSmScreenWidth } from "@/hooks/useIsSmScreenWidth";
 import { isEmptyArray } from "@/utils/array";
 import { HStack, Presence, SimpleGrid, StackProps } from "@chakra-ui/react";
-import { Fragment, useRef, useState } from "react";
+import { Fragment, useState } from "react";
 
-interface RenderItemProps {
+export interface GridItemProps {
   item: any;
   row: FormattedTableRow;
   idx: number;
@@ -24,10 +27,11 @@ interface RenderItemProps {
   selectedRows: string[];
   toggleRowSelection: (row: FormattedTableRow) => void;
 }
-interface Props extends Omit<StackProps, "page"> {
+
+interface DataGridProps extends Omit<StackProps, "page"> {
   data?: any[];
   dataProps: Interface__DataProps;
-  gridItem: (props: RenderItemProps) => React.ReactNode;
+  gridItem: (props: GridItemProps) => React.ReactNode;
   limit?: number;
   setLimit?: (limit: number) => void;
   page?: number;
@@ -36,8 +40,7 @@ interface Props extends Omit<StackProps, "page"> {
   footer?: React.ReactNode;
   minChildWidth?: string;
 }
-
-export const DataGrid = (props: Props) => {
+export const DataGrid = (props: DataGridProps) => {
   // Props
   const {
     data,
@@ -53,16 +56,18 @@ export const DataGrid = (props: Props) => {
   } = props;
 
   // Contexts
+  const { t } = useLang();
   const { themeConfig } = useThemeConfig();
 
   // Hooks
   const iss = useIsSmScreenWidth();
-  const containerRef = useRef<HTMLDivElement>(null);
 
   // States
-  const hasFooter = limit && setLimit && page && setPage;
   const [allRowsSelected, setAllRowsSelected] = useState<boolean>(false);
   const [selectedRows, setSelectedRows] = useState<any[]>([]);
+
+  // Derived Values
+  const hasFooter = limit && setLimit && page && setPage;
   const shouldShowBatch =
     dataProps?.batchOptions && !isEmptyArray(selectedRows);
 
@@ -101,7 +106,7 @@ export const DataGrid = (props: Props) => {
   const footerBorderColor = "border.subtle";
 
   return (
-    <CContainer ref={containerRef} flex={1} overflowY={"auto"} {...restProps}>
+    <CContainer flex={1} overflowY={"auto"} {...restProps}>
       <CContainer flex={1} overflowY={"auto"} pos={"relative"}>
         <Presence
           present={shouldShowBatch}
@@ -121,12 +126,20 @@ export const DataGrid = (props: Props) => {
             pointerEvents={"none"}
           >
             <HStack
+              gap={1}
               bg={"body"}
+              p={1}
               border={"1px solid"}
               borderColor={"border.muted"}
-              rounded={themeConfig.radii.component}
+              rounded={themeConfig.radii.container}
               pointerEvents={"auto"}
             >
+              <P
+                mx={4}
+              >{`${selectedRows.length} ${t.selected.toLowerCase()}`}</P>
+
+              <Divider dir={"vertical"} h={"30px"} />
+
               <BatchOptions
                 iconButton={false}
                 size={"md"}
@@ -139,6 +152,9 @@ export const DataGrid = (props: Props) => {
                 menuRootProps={{
                   positioning: {
                     placement: "top",
+                    offset: {
+                      mainAxis: 12,
+                    },
                   },
                 }}
               />

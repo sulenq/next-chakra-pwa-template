@@ -6,11 +6,10 @@ import { HStack, Icon, StackProps } from "@chakra-ui/react";
 import { IconChevronRight } from "@tabler/icons-react";
 import { Fragment } from "react";
 
-interface Props extends StackProps {
+interface BreadcrumbsProps extends StackProps {
   links: { label: string; path: string }[];
 }
-
-export const Breadcrumbs = (props: Props) => {
+export const Breadcrumbs = (props: BreadcrumbsProps) => {
   // Props
   const { links, ...restProps } = props;
 

@@ -18,7 +18,7 @@ import { isEmptyArray } from "@/utils/array";
 import { Box, HStack, StackProps } from "@chakra-ui/react";
 import React from "react";
 
-interface Props extends StackProps {
+interface DataGridItemProps extends StackProps {
   item: {
     id: string;
     img?: string;
@@ -36,8 +36,7 @@ interface Props extends StackProps {
   routeTitle: string;
   details: any;
 }
-
-export const DataGridItem = (props: Props) => {
+export const DataGridItem = (props: DataGridItemProps) => {
   // Props
   const {
     item,

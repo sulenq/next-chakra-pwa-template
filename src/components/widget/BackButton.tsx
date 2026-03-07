@@ -4,20 +4,19 @@ import { IconArrowLeft } from "@tabler/icons-react";
 import { useRouter } from "next/navigation";
 import { Btn, BtnProps } from "@/components/ui/btn";
 
-interface Props extends BtnProps {
+interface BackButtonProps extends BtnProps {
   children?: any;
   iconButton?: boolean;
   backPath?: string;
   onBack?: () => void;
 }
-
 export const BackButton = ({
   children,
   iconButton = false,
   backPath,
   onBack,
   ...props
-}: Props) => {
+}: BackButtonProps) => {
   const router = useRouter();
   router.prefetch(backPath || "");
 

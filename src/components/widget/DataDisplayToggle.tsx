@@ -8,10 +8,10 @@ import { useDataDisplay } from "@/context/useDataDisplay";
 import { Icon } from "@chakra-ui/react";
 import { LayoutGridIcon, Table2Icon } from "lucide-react";
 
-interface Props__DataDisplayToggle extends BtnProps {
+interface DataDisplayToggleProps extends BtnProps {
   navKey: string;
 }
-export function DataDisplayToggle(props: Props__DataDisplayToggle) {
+export function DataDisplayToggle(props: DataDisplayToggleProps) {
   // Props
   const { navKey, ...restProps } = props;
 

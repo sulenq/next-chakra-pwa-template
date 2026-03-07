@@ -5,9 +5,25 @@ export interface DividerProps extends BoxProps {
 }
 export const Divider = ({ dir = "horizontal", ...props }: DividerProps) => {
   switch (dir) {
-    default:
-      return <Box w={"1px"} h={"full"} bg={"border.subtle"} {...props} />;
     case "horizontal":
-      return <Box w={"full"} h={"1px"} bg={"border.subtle"} {...props} />;
+      return (
+        <Box
+          flexShrink={0}
+          w={"full"}
+          h={"1px"}
+          bg={"border.subtle"}
+          {...props}
+        />
+      );
+    case "vertical":
+      return (
+        <Box
+          flexShrink={0}
+          w={"1px"}
+          h={"full"}
+          bg={"border.subtle"}
+          {...props}
+        />
+      );
   }
 };

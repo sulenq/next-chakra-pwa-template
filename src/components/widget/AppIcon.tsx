@@ -5,12 +5,11 @@ import { BASE_ICON_BOX_SIZE } from "@/constants/styles";
 import { Icon, IconProps } from "@chakra-ui/react";
 import { type LucideIcon, type LucideProps } from "lucide-react";
 
-interface Props extends IconProps {
+export interface AppIconProps extends IconProps {
   icon?: LucideIcon;
   lucideIconProps?: LucideProps;
 }
-
-export const AppIcon = (props: Props) => {
+export const AppIcon = (props: AppIconProps) => {
   // Props
   const { icon, lucideIconProps, ...restProps } = props;
 

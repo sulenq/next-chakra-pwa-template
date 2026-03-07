@@ -18,7 +18,7 @@ import { MenuRootProps } from "@chakra-ui/react";
 import { EllipsisIcon } from "lucide-react";
 import { Fragment } from "react";
 
-export interface Props__BatchOptions extends BtnProps {
+export interface BatchOptionsProps extends BtnProps {
   selectedRows: any[];
   clearSelectedRows: () => void;
   batchOptions?: BatchOptionsTableOptionGenerator[];
@@ -27,7 +27,7 @@ export interface Props__BatchOptions extends BtnProps {
   tableContainerRef?: React.RefObject<HTMLDivElement | null>;
   menuRootProps?: Omit<MenuRootProps, "children">;
 }
-export const BatchOptions = (props: Props__BatchOptions) => {
+export const BatchOptions = (props: BatchOptionsProps) => {
   // Props
   const {
     children,
@@ -47,10 +47,18 @@ export const BatchOptions = (props: Props__BatchOptions) => {
   const { themeConfig } = useThemeConfig();
 
   return (
-    <MenuRoot lazyMount {...menuRootProps}>
+    <MenuRoot
+      lazyMount
+      positioning={{
+        offset: {
+          mainAxis: 6,
+        },
+      }}
+      {...menuRootProps}
+    >
       <MenuTrigger asChild aria-label="batch options">
         <Btn
-          iconButton
+          iconButton={iconButton}
           variant={"ghost"}
           size={"xs"}
           _open={{

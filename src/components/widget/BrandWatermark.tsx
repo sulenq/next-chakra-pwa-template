@@ -4,9 +4,7 @@ import { APP } from "@/constants/_meta";
 import { Span, Text, TextProps } from "@chakra-ui/react";
 import Link from "next/link";
 
-interface Props extends TextProps {}
-
-const BrandWatermark = (props: Props) => {
+const BrandWatermark = (props: TextProps) => {
   // Props
   const { ...restProps } = props;
 

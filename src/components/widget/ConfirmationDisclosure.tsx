@@ -15,7 +15,7 @@ import { disclosureId } from "@/utils/disclosure";
 import { StackProps } from "@chakra-ui/react";
 import { BackButton } from "@/components/widget/BackButton";
 
-interface Props__Disclosure {
+interface ConfirmationDisclosureProps {
   open: boolean;
   title: string;
   description: string;
@@ -25,7 +25,7 @@ interface Props__Disclosure {
   loading?: boolean;
   addonElement?: any;
 }
-export const ConfirmationDisclosure = (props: Props__Disclosure) => {
+export const ConfirmationDisclosure = (props: ConfirmationDisclosureProps) => {
   // Props
   const {
     open,

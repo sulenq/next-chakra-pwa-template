@@ -19,7 +19,15 @@ import { disclosureId } from "@/utils/disclosure";
 import { StackProps } from "@chakra-ui/react";
 import { useState } from "react";
 
-export const DataGridDetailDisclosure = (props: any) => {
+interface DataGridDetailDisclosureProps extends StackProps {
+  open: boolean;
+  title: string;
+  data: any;
+  details: any;
+}
+export const DataGridDetailDisclosure = (
+  props: DataGridDetailDisclosureProps,
+) => {
   // Props
   const { open, title, data, details } = props;
 
@@ -39,7 +47,7 @@ export const DataGridDetailDisclosure = (props: any) => {
         <DisclosureBody pb={2}>
           <CContainer mb={2}>
             <SearchInput
-              queryKey={"q-detail-grid"}
+              queryKey={"q-data-grid-detail"}
               inputValue={search}
               onChange={(inputValue) => {
                 setSearch(inputValue);
@@ -86,7 +94,7 @@ export const DataGridDetailDisclosure = (props: any) => {
   );
 };
 
-interface TirggerProps extends StackProps {
+interface DataGridDetailDisclosureTriggerProps extends StackProps {
   id: string;
   title: string;
   data: any;
@@ -95,7 +103,9 @@ interface TirggerProps extends StackProps {
     render: any;
   }[];
 }
-export const DataGridDetailDisclosureTrigger = (props: TirggerProps) => {
+export const DataGridDetailDisclosureTrigger = (
+  props: DataGridDetailDisclosureTriggerProps,
+) => {
   // Props
   const { children, id, title, data, details, ...restProps } = props;
 
