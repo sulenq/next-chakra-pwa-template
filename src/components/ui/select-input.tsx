@@ -36,8 +36,8 @@ const NAVS_COLOR = "fg.muted";
 
 export interface SelectOptionsProps {
   id: string;
-  multiple: Props__SelectInput["multiple"];
-  selectOptions: Props__SelectInput["inputValue"];
+  multiple: SelectInputProps["multiple"];
+  selectOptions: SelectInputProps["inputValue"];
   selected: Interface__SelectOption[];
   setSelected: React.Dispatch<SelectOptionsProps["selected"]>;
 }
@@ -161,14 +161,14 @@ const SelectOptions = (props: SelectOptionsProps) => {
   );
 };
 
-export interface Props__SelectInput extends Omit<BtnProps, "onChange"> {
+export interface SelectInputProps extends Omit<BtnProps, "onChange"> {
   id: string;
   title?: string;
   inputValue?: Interface__SelectOption[] | null;
-  onChange?: (inputValue: Props__SelectInput["inputValue"]) => void;
+  onChange?: (inputValue: SelectInputProps["inputValue"]) => void;
   loading?: boolean;
   error?: any;
-  selectOptions?: Props__SelectInput["inputValue"];
+  selectOptions?: SelectInputProps["inputValue"];
   placeholder?: string;
   invalid?: boolean;
   required?: boolean;
@@ -177,7 +177,7 @@ export interface Props__SelectInput extends Omit<BtnProps, "onChange"> {
   disclosureSize?: DisclosureSizes;
   variant?: ButtonVariant;
 }
-export const SelectInput = (props: Props__SelectInput) => {
+export const SelectInput = (props: SelectInputProps) => {
   // Props
   const {
     id,

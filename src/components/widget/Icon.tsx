@@ -1,14 +1,11 @@
 import { type LucideIcon, type LucideProps } from "lucide-react";
 
-interface Props__LucideIcon extends LucideProps {
-  icon: LucideIcon;
+interface LucideIconProps extends LucideProps {
+  icon?: LucideIcon;
 }
+export function LucideIcon(props: LucideIconProps) {
+  // Props
+  const { icon: Icon, size = 24, strokeWidth = 1.75, ...restProps } = props;
 
-export function LucideIcon({
-  icon: Icon,
-  size = 24,
-  strokeWidth = 1.75,
-  ...props
-}: Props__LucideIcon) {
-  return <Icon size={size} strokeWidth={strokeWidth} {...props} />;
+  return Icon && <Icon size={size} strokeWidth={strokeWidth} {...restProps} />;
 }

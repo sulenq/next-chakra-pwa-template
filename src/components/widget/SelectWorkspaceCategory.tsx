@@ -1,10 +1,10 @@
-import { Props__SelectInput, SelectInput } from "@/components/ui/select-input";
+import { SelectInput, SelectInputProps } from "@/components/ui/select-input";
 import { Interface__SelectOption } from "@/constants/interfaces";
 import useRequest from "@/hooks/useRequest";
 import { capitalizeWords } from "@/utils/string";
 import { useEffect, useState } from "react";
 
-const SelectWorkspaceCategory = (props: Props__SelectInput) => {
+const SelectWorkspaceCategory = (props: SelectInputProps) => {
   // Props
   const { ...restProps } = props;
 

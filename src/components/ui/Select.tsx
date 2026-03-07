@@ -11,7 +11,7 @@ type SelectOption = {
   value: string;
 };
 
-interface Props__Select extends Omit<
+interface SelectProps extends Omit<
   SelectRootProps,
   "value" | "onValueChange" | "collection"
 > {
@@ -25,7 +25,7 @@ interface Props__Select extends Omit<
   portalRef?: React.RefObject<HTMLElement | null>;
 }
 
-export default function Select(props: Props__Select) {
+export default function Select(props: SelectProps) {
   // Props
   const {
     inputValue,

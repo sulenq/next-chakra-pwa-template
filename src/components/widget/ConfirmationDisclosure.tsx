@@ -71,7 +71,7 @@ export const ConfirmationDisclosure = (props: ConfirmationDisclosureProps) => {
   );
 };
 
-interface Props__Trigger extends StackProps {
+interface ConfirmationDisclosureTriggerProps extends StackProps {
   children?: any;
   id: string;
   title: string;
@@ -84,7 +84,9 @@ interface Props__Trigger extends StackProps {
   addonElement?: any;
   onClick?: () => void;
 }
-export const ConfirmationDisclosureTrigger = (props: Props__Trigger) => {
+export const ConfirmationDisclosureTrigger = (
+  props: ConfirmationDisclosureTriggerProps,
+) => {
   // Props
   const {
     children,

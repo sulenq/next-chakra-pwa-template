@@ -1,13 +1,12 @@
-import { P } from "@/components/ui/p";
+import { P, PProps } from "@/components/ui/p";
 import { InfoPopover } from "@/components/widget/InfoPopover";
-import { HStack, TextProps } from "@chakra-ui/react";
+import { HStack } from "@chakra-ui/react";
 
-export interface Props__ItemHeaderTitle extends TextProps {
+export interface ItemHeaderTitleProps extends PProps {
   popoverContent?: string;
   autoHeight?: boolean;
 }
-
-const ItemHeaderTitle = (props: Props__ItemHeaderTitle) => {
+const ItemHeaderTitle = (props: ItemHeaderTitleProps) => {
   // Props
   const { children, popoverContent, autoHeight, ...restProps } = props;
 

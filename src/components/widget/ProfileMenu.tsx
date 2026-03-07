@@ -42,10 +42,10 @@ const MENUS = [
   },
 ];
 
-interface Props__MiniMyProfile extends StackProps {
+interface ProfileMenuProps extends StackProps {
   onClose?: () => void;
 }
-export const ProfileMenu = (props: Props__MiniMyProfile) => {
+export const ProfileMenu = (props: ProfileMenuProps) => {
   // Props
   const { onClose, ...restProps } = props;
 
@@ -189,10 +189,10 @@ export const ProfileMenu = (props: Props__MiniMyProfile) => {
   );
 };
 
-interface Props__ProfileMenuTrigger extends StackProps {
+interface ProfileMenuTriggerProps extends StackProps {
   popoverRootProps?: Omit<PopoverRootProps, "children">;
 }
-export const ProfileMenuTrigger = (props: Props__ProfileMenuTrigger) => {
+export const ProfileMenuTrigger = (props: ProfileMenuTriggerProps) => {
   // Props
   const { popoverRootProps, ...restProps } = props;
 

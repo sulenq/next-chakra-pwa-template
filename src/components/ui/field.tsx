@@ -2,12 +2,12 @@ import useLang from "@/context/useLang";
 import {
   Badge,
   Field as ChakraField,
-  FieldsetRootProps,
   FieldsetRoot as ChakraFieldsetRoot,
+  FieldsetRootProps,
 } from "@chakra-ui/react";
 import { forwardRef } from "react";
 
-export interface Props__Field extends Omit<ChakraField.RootProps, "label"> {
+export interface FieldProps extends Omit<ChakraField.RootProps, "label"> {
   label?: React.ReactNode;
   labelProps?: ChakraField.LabelProps;
   helperText?: React.ReactNode;
@@ -15,7 +15,7 @@ export interface Props__Field extends Omit<ChakraField.RootProps, "label"> {
   optionalText?: React.ReactNode;
   optional?: boolean;
 }
-export const Field = forwardRef<HTMLDivElement, Props__Field>(
+export const Field = forwardRef<HTMLDivElement, FieldProps>(
   function Field(props, ref) {
     const {
       label,
@@ -56,8 +56,7 @@ export const Field = forwardRef<HTMLDivElement, Props__Field>(
   },
 );
 
-export interface Props__FieldsetRoot extends FieldsetRootProps {}
-export const FieldsetRoot = forwardRef<any, Props__FieldsetRoot>(
+export const FieldsetRoot = forwardRef<any, FieldsetRootProps>(
   function FieldsetRoot(props, ref) {
     return (
       <ChakraFieldsetRoot ref={ref} {...props}>
