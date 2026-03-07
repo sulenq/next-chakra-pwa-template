@@ -577,6 +577,7 @@ const PageScreen = () => {
     </PageContent>
   );
 };
+
 export default function Page() {
   return (
     <PageContainer>

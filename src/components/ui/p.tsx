@@ -4,11 +4,10 @@ import { Text, TextProps } from "@chakra-ui/react";
 import parse, { domToReact } from "html-react-parser";
 import { forwardRef } from "react";
 
-interface Props extends TextProps {
-  children?: any;
+export interface PProps extends TextProps {
+  children?: string;
 }
-
-export const P = forwardRef<HTMLParagraphElement, Props>((props, ref) => {
+export const P = forwardRef<HTMLParagraphElement, PProps>((props, ref) => {
   // Props
   const { children = "", ...restProps } = props;
 

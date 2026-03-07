@@ -1,7 +1,7 @@
 "use client";
 
 import { CContainer } from "@/components/ui/c-container";
-import { P } from "@/components/ui/p";
+import { P, PProps } from "@/components/ui/p";
 import { BackButton } from "@/components/widget/BackButton";
 import { CalendarDisclosureTrigger } from "@/components/widget/CalendarDisclosure";
 import { ClampText } from "@/components/widget/ClampText";
@@ -12,6 +12,7 @@ import { MContainer, MContainerProps } from "@/components/widget/MContainer";
 import SimplePopover from "@/components/widget/SimplePopover";
 import { Today } from "@/components/widget/Today";
 import { Interface__Nav } from "@/constants/interfaces";
+import { TOP_BAR_H } from "@/constants/styles";
 import { useBreadcrumbs } from "@/context/useBreadcrumbs";
 import useLang from "@/context/useLang";
 import { useContainerDimension } from "@/hooks/useContainerDimension";
@@ -235,9 +236,9 @@ export const TopBar = () => {
   );
 };
 
-export const PageTitle = (props: StackProps) => {
+export const PageHeader = (props: StackProps) => {
   // Props
-  const { children, ...restProps } = props;
+  const { children, title, ...restProps } = props;
 
   // Contexts
   const { t } = useLang();
@@ -247,27 +248,32 @@ export const PageTitle = (props: StackProps) => {
 
   // Constants
   const activeNavs = getActiveNavs(pathname);
-  const title = pluckString(t, last<any>(activeNavs)?.labelKey);
+  const navTitle = pluckString(t, last<any>(activeNavs)?.labelKey);
+
+  // Derived Values
+  const resolvedTitle = title || navTitle;
 
   return (
-    <HStack
-      flexShrink={0}
-      w={"full"}
-      minH={"36px"}
-      px={4}
-      my={0}
-      {...restProps}
-    >
-      <ClampText
-        fontSize={"xl"}
-        fontWeight={"semibold"}
-        textAlign={restProps.textAlign}
-      >
-        {capitalizeWords(title)}
-      </ClampText>
+    <HStack flexShrink={0} w={"full"} minH={TOP_BAR_H} px={4} {...restProps}>
+      <PageTitle>{resolvedTitle}</PageTitle>
 
       {children}
     </HStack>
+  );
+};
+
+export const PageTitle = (props: PProps) => {
+  // Props
+  const { children = "", ...restProps } = props;
+
+  return (
+    <ClampText
+      fontSize={"xl"}
+      fontWeight={"semibold"}
+      textAlign={restProps.textAlign}
+    >
+      {capitalizeWords(children)}
+    </ClampText>
   );
 };
 

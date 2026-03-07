@@ -478,11 +478,12 @@ const DesktopLayout = (props: any) => {
                 order={isNavsExpanded ? 2 : 1}
                 iconButton
                 clicky={false}
-                w={"36px"}
                 variant={"ghost"}
                 colorPalette={NAVS_COLOR_PALETTE}
-                onClick={toggleNavsExpanded}
+                w={"36px"}
                 color={DESKTOP_NAVS_COLOR}
+                mt={2}
+                onClick={toggleNavsExpanded}
               >
                 <AppIcon
                   icon={isNavsExpanded ? SidebarCloseIcon : SidebarOpenIcon}
@@ -498,11 +499,11 @@ const DesktopLayout = (props: any) => {
           <CContainer px={3} py={2}>
             <SearchInput
               inputRef={searchInputRef}
+              queryKey={"q-sidebar-navs"}
               inputValue={search}
               onChange={(inputValue) => {
                 setSearch(inputValue || "");
               }}
-              queryKey={"q-sidebar-navs"}
             />
           </CContainer>
         )}

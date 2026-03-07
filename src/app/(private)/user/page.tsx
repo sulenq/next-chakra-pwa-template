@@ -18,7 +18,7 @@ import { LucideIcon } from "@/components/widget/Icon";
 import {
   PageContainer,
   PageContent,
-  PageTitle,
+  PageHeader,
 } from "@/components/widget/PageShell";
 import { SimpleDisclosure } from "@/components/widget/SimpleDisclosure";
 import { TableSkeleton } from "@/components/widget/TableSkeleton";
@@ -579,7 +579,7 @@ export default function Page() {
 
   return (
     <PageContainer ref={containerRef}>
-      <PageTitle justify={"space-between"}>
+      <PageHeader justify={"space-between"}>
         <HStack>
           {!isSmContainer && (
             <DataUtils
@@ -591,7 +591,7 @@ export default function Page() {
 
           <Create />
         </HStack>
-      </PageTitle>
+      </PageHeader>
 
       {isValidDimension && (
         <PageContent pt={2} overflow={"auto"}>

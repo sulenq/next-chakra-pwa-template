@@ -2,7 +2,7 @@
 
 import { StringInput, StringInputProps } from "@/components/ui/string-input";
 import { LucideIcon } from "@/components/widget/Icon";
-import { BASE_ICON_BOX_SIZE } from "@/constants/styles";
+import { BASE_ICON_BOX_SIZE, MAIN_INPUT_SIZE } from "@/constants/styles";
 import { InputSize, InputVariant } from "@/constants/types";
 import useLang from "@/context/useLang";
 import { useDebouncedCallback } from "@/hooks/useDebounceCallback";
@@ -56,7 +56,7 @@ export default function SearchInput(props: SearchInputProps) {
     debounceTime = 200,
     queryKey = "q",
     variant = "outline",
-    size = "md",
+    size = MAIN_INPUT_SIZE,
     ...restProps
   } = props;
 

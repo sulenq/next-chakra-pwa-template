@@ -8,14 +8,13 @@ import { P } from "@/components/ui/p";
 import SearchInput from "@/components/ui/search-input";
 import { Tooltip } from "@/components/ui/tooltip";
 import { AppIcon } from "@/components/widget/AppIcon";
-import { ClampText } from "@/components/widget/ClampText";
 import FeedbackNotFound from "@/components/widget/FeedbackNotFound";
 import { LeftIndicator } from "@/components/widget/Indicator";
 import { MContainer } from "@/components/widget/MContainer";
 import {
   ContainerLayout,
   PageContainer,
-  PageTitle,
+  PageHeader,
 } from "@/components/widget/PageShell";
 import { APP } from "@/constants/_meta";
 import { OTHER_PRIVATE_NAV_GROUPS } from "@/constants/navs";
@@ -167,19 +166,15 @@ export default function Layout(props: any) {
               borderColor={"border.muted"}
               overflowY={"auto"}
             >
-              <HStack minH={"36px"} px={4}>
-                <ClampText fontSize={"xl"} fontWeight={"semibold"}>
-                  {t.settings}
-                </ClampText>
-              </HStack>
+              <PageHeader title={t.settings} />
 
               <CContainer px={3} py={2}>
                 <SearchInput
+                  queryKey={"q-settings-navs"}
                   inputValue={search}
                   onChange={(inputValue) => {
                     setSearch(inputValue || "");
                   }}
-                  queryKey={"q-settings-navs"}
                 />
               </CContainer>
 
@@ -207,7 +202,7 @@ export default function Layout(props: any) {
                 flex={1}
                 // maxW={""}
               >
-                {pathname !== ROOT_PATH && <PageTitle />}
+                {pathname !== ROOT_PATH && <PageHeader />}
 
                 <CContainer flex={1} {...props} />
               </ContainerLayout>
