@@ -3,10 +3,10 @@
 import { CContainer } from "@/components/ui/c-container";
 import { useColorMode } from "@/components/ui/color-mode";
 import { toaster } from "@/components/ui/toaster";
-import { LucideIcon } from "@/components/widget/Icon";
+import { LucideIcon } from "@/components/widgets/Icon";
 import { BASE_ICON_BOX_SIZE, MAIN_INPUT_SIZE } from "@/constants/styles";
-import useLang from "@/context/useLang";
-import { useThemeConfig } from "@/context/useThemeConfig";
+import useLang from "@/contexts/useLang";
+import { useThemeConfig } from "@/contexts/useThemeConfig";
 import { useMergedRefs } from "@/hooks/useMergeRefs";
 import { interpolateString } from "@/utils/string";
 import {

@@ -4,7 +4,7 @@ import {
   TimePickerInputProps,
 } from "@/components/ui/time-picker-input";
 import { ButtonSize, DisclosureSizes } from "@/constants/types";
-import { useThemeConfig } from "@/context/useThemeConfig";
+import { useThemeConfig } from "@/contexts/useThemeConfig";
 import { extractTime, getUserTimezone, makeUTCISODateTime } from "@/utils/time";
 import { Group, GroupProps, useFieldContext } from "@chakra-ui/react";
 import { parseISO } from "date-fns";

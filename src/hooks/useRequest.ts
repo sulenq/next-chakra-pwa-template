@@ -3,7 +3,7 @@ import {
   Interface__Req,
   Interface__RequestState,
 } from "@/constants/interfaces";
-import useLang from "@/context/useLang";
+import useLang from "@/contexts/useLang";
 import { clearAccessToken, clearUserData } from "@/utils/auth";
 import { request } from "@/utils/request";
 import { useRouter } from "next/navigation";

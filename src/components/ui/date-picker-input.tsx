@@ -13,9 +13,9 @@ import { DisclosureHeaderContent } from "@/components/ui/disclosure-header-conte
 import { P } from "@/components/ui/p";
 import { PeriodPickerInput } from "@/components/ui/period-picker-input";
 import { Tooltip } from "@/components/ui/tooltip";
-import { AppIcon } from "@/components/widget/AppIcon";
-import { BackButton } from "@/components/widget/BackButton";
-import FeedbackNoData from "@/components/widget/FeedbackNoData";
+import { AppIcon } from "@/components/widgets/AppIcon";
+import { BackButton } from "@/components/widgets/BackButton";
+import FeedbackNoData from "@/components/widgets/FeedbackNoData";
 import {
   ButtonVariant,
   DateVariant,
@@ -23,8 +23,8 @@ import {
   Period,
 } from "@/constants/types";
 import { getWeekdayNames } from "@/constants/weekdays";
-import useLang from "@/context/useLang";
-import { useThemeConfig } from "@/context/useThemeConfig";
+import useLang from "@/contexts/useLang";
+import { useThemeConfig } from "@/contexts/useThemeConfig";
 import usePopDisclosure from "@/hooks/usePopDisclosure";
 import { isEmptyArray } from "@/utils/array";
 import { back } from "@/utils/client";

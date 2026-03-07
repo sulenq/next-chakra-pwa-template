@@ -1,10 +1,10 @@
 "use client";
 
 import { CContainer } from "@/components/ui/c-container";
-import FeedbackState from "@/components/widget/FeedbackState";
-import { LucideIcon } from "@/components/widget/Icon";
-import useLang from "@/context/useLang";
-import { useThemeConfig } from "@/context/useThemeConfig";
+import FeedbackState from "@/components/widgets/FeedbackState";
+import { LucideIcon } from "@/components/widgets/Icon";
+import useLang from "@/contexts/useLang";
+import { useThemeConfig } from "@/contexts/useThemeConfig";
 import { SettingsIcon } from "lucide-react";
 
 const SettingsRoute = () => {

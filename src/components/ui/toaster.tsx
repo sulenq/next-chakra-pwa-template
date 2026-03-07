@@ -3,9 +3,9 @@
 import { Btn } from "@/components/ui/btn";
 import { CContainer } from "@/components/ui/c-container";
 import { Spinner } from "@/components/ui/spinner";
-import { LucideIcon } from "@/components/widget/Icon";
+import { LucideIcon } from "@/components/widgets/Icon";
 import { SM_SCREEN_W_NUMBER } from "@/constants/styles";
-import { useThemeConfig } from "@/context/useThemeConfig";
+import { useThemeConfig } from "@/contexts/useThemeConfig";
 import { isClient } from "@/utils/client";
 import {
   Center,

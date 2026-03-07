@@ -10,11 +10,11 @@ import { DisclosureHeaderContent } from "@/components/ui/disclosure-header-conte
 import { P } from "@/components/ui/p";
 import { StringInput } from "@/components/ui/string-input";
 import { Tooltip } from "@/components/ui/tooltip";
-import { LucideIcon } from "@/components/widget/Icon";
+import { LucideIcon } from "@/components/widgets/Icon";
 import { BASE_ICON_BOX_SIZE } from "@/constants/styles";
 import { ButtonVariant, DisclosureSizes } from "@/constants/types";
-import useLang from "@/context/useLang";
-import { useThemeConfig } from "@/context/useThemeConfig";
+import useLang from "@/contexts/useLang";
+import { useThemeConfig } from "@/contexts/useThemeConfig";
 import usePopDisclosure from "@/hooks/usePopDisclosure";
 import useScreen from "@/hooks/useScreen";
 import { back } from "@/utils/client";

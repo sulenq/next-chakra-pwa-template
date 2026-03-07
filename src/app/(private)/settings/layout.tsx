@@ -7,20 +7,20 @@ import { NavLink } from "@/components/ui/nav-link";
 import { P } from "@/components/ui/p";
 import SearchInput from "@/components/ui/search-input";
 import { Tooltip } from "@/components/ui/tooltip";
-import { AppIcon } from "@/components/widget/AppIcon";
-import FeedbackNotFound from "@/components/widget/FeedbackNotFound";
-import { LeftIndicator } from "@/components/widget/Indicator";
-import { MContainer } from "@/components/widget/MContainer";
+import { AppIcon } from "@/components/widgets/AppIcon";
+import FeedbackNotFound from "@/components/widgets/FeedbackNotFound";
+import { LeftIndicator } from "@/components/widgets/Indicator";
+import { MContainer } from "@/components/widgets/MContainer";
 import {
   ContainerLayout,
   PageContainer,
   PageHeader,
-} from "@/components/widget/PageShell";
+} from "@/components/widgets/PageShell";
 import { APP } from "@/constants/_meta";
 import { OTHER_PRIVATE_NAV_GROUPS } from "@/constants/navs";
 import { DESKTOP_NAVS_TOOLTIP_MAIN_AXIS } from "@/constants/styles";
-import useLang from "@/context/useLang";
-import { useSettingsPageContainer } from "@/context/useSettingsPageContainer";
+import useLang from "@/contexts/useLang";
+import { useSettingsPageContainer } from "@/contexts/useSettingsPageContainer";
 import { useContainerDimension } from "@/hooks/useContainerDimension";
 import { isEmptyArray } from "@/utils/array";
 import { formatAbsDate } from "@/utils/formatter";

@@ -1,10 +1,10 @@
 "use client";
 
 import { P } from "@/components/ui/p";
-import BrandWatermark from "@/components/widget/BrandWatermark";
-import { PageContainer } from "@/components/widget/PageShell";
+import BrandWatermark from "@/components/widgets/BrandWatermark";
+import { PageContainer } from "@/components/widgets/PageShell";
 import { APP } from "@/constants/_meta";
-import useLang from "@/context/useLang";
+import useLang from "@/contexts/useLang";
 import { interpolateString, pluckString } from "@/utils/string";
 import { VStack } from "@chakra-ui/react";
 

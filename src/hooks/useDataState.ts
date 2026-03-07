@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import useRequest from "@/hooks/useRequest";
-import useRenderTrigger from "@/context/useRenderTrigger";
-import { useLoadingBar } from "@/context/useLoadingBar";
+import useRenderTrigger from "@/contexts/useRenderTrigger";
+import { useLoadingBar } from "@/contexts/useLoadingBar";
 
 interface Props<T> {
   initialData?: T;
@@ -112,7 +112,7 @@ const useDataState = <T = any>(props: Props<T>) => {
                   ? Array.isArray(r?.data?.data)
                     ? r?.data?.data
                     : r?.data?.data?.data
-                  : r?.data?.data
+                  : r?.data?.data,
               );
             }
           },

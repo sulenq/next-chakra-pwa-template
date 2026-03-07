@@ -1,7 +1,7 @@
 "use client";
 
-import useADM from "@/context/useADM";
-import useLang from "@/context/useLang";
+import useADM from "@/contexts/useADM";
+import useLang from "@/contexts/useLang";
 import type { IconButtonProps, SpanProps } from "@chakra-ui/react";
 import { ClientOnly, Icon, IconButton, Skeleton, Span } from "@chakra-ui/react";
 import { IconMoon2, IconSun } from "@tabler/icons-react";

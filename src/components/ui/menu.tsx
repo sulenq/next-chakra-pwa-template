@@ -1,7 +1,7 @@
 "use client";
 
 import { CContainer } from "@/components/ui/c-container";
-import { useThemeConfig } from "@/context/useThemeConfig";
+import { useThemeConfig } from "@/contexts/useThemeConfig";
 import {
   AbsoluteCenter,
   Menu as ChakraMenu,

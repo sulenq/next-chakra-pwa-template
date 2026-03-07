@@ -1,6 +1,6 @@
 import { toaster } from "@/components/ui/toaster";
-import useOffline from "@/context/disclosure/useOffilne";
-import useLang from "@/context/useLang";
+import useOffline from "@/contexts/disclosure/useOffilne";
+import useLang from "@/contexts/useLang";
 import { useEffect, useRef } from "react";
 
 interface Props {

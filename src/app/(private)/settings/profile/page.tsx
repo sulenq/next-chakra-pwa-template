@@ -18,19 +18,19 @@ import SearchInput from "@/components/ui/search-input";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Spinner } from "@/components/ui/spinner";
 import { StringInput } from "@/components/ui/string-input";
-import { AppIcon } from "@/components/widget/AppIcon";
-import { BackButton } from "@/components/widget/BackButton";
-import { ClampText } from "@/components/widget/ClampText";
-import FeedbackNoData from "@/components/widget/FeedbackNoData";
-import FeedbackNotFound from "@/components/widget/FeedbackNotFound";
-import FeedbackRetry from "@/components/widget/FeedbackRetry";
-import { ImgViewer } from "@/components/widget/ImgViewer";
-import { ItemContainer } from "@/components/widget/ItemContainer";
-import { ItemHeaderContainer } from "@/components/widget/ItemHeaderContainer";
-import ItemHeaderTitle from "@/components/widget/ItemHeaderTitle";
-import { Limitation } from "@/components/widget/Limitation";
-import { Pagination } from "@/components/widget/Pagination";
-import ResetPasswordDisclosureTrigger from "@/components/features/auth/ResetPassword";
+import { AppIcon } from "@/components/widgets/AppIcon";
+import { BackButton } from "@/components/widgets/BackButton";
+import { ClampText } from "@/components/widgets/ClampText";
+import FeedbackNoData from "@/components/widgets/FeedbackNoData";
+import FeedbackNotFound from "@/components/widgets/FeedbackNotFound";
+import FeedbackRetry from "@/components/widgets/FeedbackRetry";
+import { ImgViewer } from "@/components/widgets/ImgViewer";
+import { ItemContainer } from "@/components/widgets/ItemContainer";
+import { ItemHeaderContainer } from "@/components/widgets/ItemHeaderContainer";
+import ItemHeaderTitle from "@/components/widgets/ItemHeaderTitle";
+import { Limitation } from "@/components/widgets/Limitation";
+import { Pagination } from "@/components/widgets/Pagination";
+import ResetPasswordDisclosureTrigger from "@/features/auth/ResetPassword";
 import {
   dummyActivityLogs,
   dummyAuthLogs,
@@ -43,8 +43,8 @@ import {
   Interface__User,
 } from "@/constants/interfaces";
 import { SVGS_PATH } from "@/constants/paths";
-import useLang from "@/context/useLang";
-import { useThemeConfig } from "@/context/useThemeConfig";
+import useLang from "@/contexts/useLang";
+import { useThemeConfig } from "@/contexts/useThemeConfig";
 import useDataState from "@/hooks/useDataState";
 import usePopDisclosure from "@/hooks/usePopDisclosure";
 import useRequest from "@/hooks/useRequest";

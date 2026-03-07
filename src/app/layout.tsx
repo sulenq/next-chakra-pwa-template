@@ -1,7 +1,7 @@
 import { Provider } from "@/components/ui/provider";
 import { Toaster } from "@/components/ui/toaster";
 import "@/app/globals.css";
-import ClientRoot from "@/components/widget/ClientRoot";
+import ClientRoot from "@/components/widgets/ClientRoot";
 import { Metadata, Viewport } from "next";
 import { Figtree } from "next/font/google";
 import { APP } from "@/constants/_meta";

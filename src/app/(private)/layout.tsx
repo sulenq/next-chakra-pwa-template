@@ -21,19 +21,19 @@ import { NavLink } from "@/components/ui/nav-link";
 import { P } from "@/components/ui/p";
 import SearchInput from "@/components/ui/search-input";
 import { Tooltip } from "@/components/ui/tooltip";
-import { AppIcon } from "@/components/widget/AppIcon";
-import { AuthGuard } from "@/components/widget/AuthGuard";
-import { ClampText } from "@/components/widget/ClampText";
-import { Clock } from "@/components/widget/Clock";
-import FeedbackNotFound from "@/components/widget/FeedbackNotFound";
-import { HScroll } from "@/components/widget/HScroll";
-import { BottomIndicator, LeftIndicator } from "@/components/widget/Indicator";
-import { Logo } from "@/components/widget/Logo";
-import { MContainer } from "@/components/widget/MContainer";
-import { DesktopNavTooltip, MobileNavLink } from "@/components/widget/Navs";
-import { NavBreadcrumb, TopBar } from "@/components/widget/PageShell";
-import { ProfileMenuTrigger } from "@/components/widget/ProfileMenu";
-import { Today } from "@/components/widget/Today";
+import { AppIcon } from "@/components/widgets/AppIcon";
+import { AuthGuard } from "@/components/widgets/AuthGuard";
+import { ClampText } from "@/components/widgets/ClampText";
+import { Clock } from "@/components/widgets/Clock";
+import FeedbackNotFound from "@/components/widgets/FeedbackNotFound";
+import { HScroll } from "@/components/widgets/HScroll";
+import { BottomIndicator, LeftIndicator } from "@/components/widgets/Indicator";
+import { Logo } from "@/components/widgets/Logo";
+import { MContainer } from "@/components/widgets/MContainer";
+import { DesktopNavTooltip, MobileNavLink } from "@/components/widgets/Navs";
+import { NavBreadcrumb, TopBar } from "@/components/widgets/PageShell";
+import { ProfileMenuTrigger } from "@/components/widgets/ProfileMenu";
+import { Today } from "@/components/widgets/Today";
 import { APP } from "@/constants/_meta";
 import { OTHER_PRIVATE_NAV_GROUPS, PRIVATE_NAV_GROUPS } from "@/constants/navs";
 import {
@@ -50,9 +50,9 @@ import {
   NAVS_COLOR_PALETTE,
   TOP_BAR_H,
 } from "@/constants/styles";
-import useLang from "@/context/useLang";
-import useNavs from "@/context/useNavs";
-import { useThemeConfig } from "@/context/useThemeConfig";
+import useLang from "@/contexts/useLang";
+import useNavs from "@/contexts/useNavs";
+import { useThemeConfig } from "@/contexts/useThemeConfig";
 import { useIsSmScreenWidth } from "@/hooks/useIsSmScreenWidth";
 import useScreen from "@/hooks/useScreen";
 import { isEmptyArray, last } from "@/utils/array";

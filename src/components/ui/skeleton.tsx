@@ -1,6 +1,6 @@
 "use client";
 
-import { useThemeConfig } from "@/context/useThemeConfig";
+import { useThemeConfig } from "@/contexts/useThemeConfig";
 import { Skeleton as ChakraSkeleton, SkeletonProps } from "@chakra-ui/react";
 
 interface Props extends SkeletonProps {}

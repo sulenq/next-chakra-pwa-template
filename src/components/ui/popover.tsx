@@ -7,7 +7,7 @@ import {
 } from "@chakra-ui/react";
 import { forwardRef } from "react";
 import { CloseButton } from "@/components/ui/close-button";
-import { useThemeConfig } from "@/context/useThemeConfig";
+import { useThemeConfig } from "@/contexts/useThemeConfig";
 
 interface PopoverContentProps extends ChakraPopover.ContentProps {
   portalled?: boolean;

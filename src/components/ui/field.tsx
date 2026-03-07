@@ -1,4 +1,4 @@
-import useLang from "@/context/useLang";
+import useLang from "@/contexts/useLang";
 import {
   Badge,
   Field as ChakraField,

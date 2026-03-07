@@ -1,7 +1,7 @@
 "use client";
 
 import { CContainer } from "@/components/ui/c-container";
-import { LucideIcon } from "@/components/widget/Icon";
+import { LucideIcon } from "@/components/widgets/Icon";
 import { BASE_ICON_BOX_SIZE } from "@/constants/styles";
 import {
   Center,

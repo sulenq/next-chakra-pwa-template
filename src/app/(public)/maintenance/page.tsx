@@ -4,9 +4,9 @@ import { Btn } from "@/components/ui/btn";
 import { Divider } from "@/components/ui/divider";
 import { NavLink } from "@/components/ui/nav-link";
 import { P } from "@/components/ui/p";
-import BrandWatermark from "@/components/widget/BrandWatermark";
-import useLang from "@/context/useLang";
-import { useThemeConfig } from "@/context/useThemeConfig";
+import BrandWatermark from "@/components/widgets/BrandWatermark";
+import useLang from "@/contexts/useLang";
+import { useThemeConfig } from "@/contexts/useThemeConfig";
 import { HStack, VStack } from "@chakra-ui/react";
 
 export default function MaintenanceRoute() {

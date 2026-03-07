@@ -1,10 +1,10 @@
 "use client";
 
 import { StringInput, StringInputProps } from "@/components/ui/string-input";
-import { LucideIcon } from "@/components/widget/Icon";
+import { LucideIcon } from "@/components/widgets/Icon";
 import { BASE_ICON_BOX_SIZE, MAIN_INPUT_SIZE } from "@/constants/styles";
 import { InputSize, InputVariant } from "@/constants/types";
-import useLang from "@/context/useLang";
+import useLang from "@/contexts/useLang";
 import { useDebouncedCallback } from "@/hooks/useDebounceCallback";
 import {
   HStack,

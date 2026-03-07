@@ -1,4 +1,4 @@
-import { LucideIcon } from "@/components/widget/Icon";
+import { LucideIcon } from "@/components/widgets/Icon";
 import type {
   ButtonProps as ChakraCloseButtonProps,
   IconProps,
@@ -28,5 +28,5 @@ export const CloseButton = forwardRef<HTMLButtonElement, CloseButtonProps>(
         </Icon>
       </ChakraIconButton>
     );
-  }
+  },
 );

@@ -6,24 +6,24 @@ import { P } from "@/components/ui/p";
 import { Segmented } from "@/components/ui/segment-group";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Switch } from "@/components/ui/switch";
-import { AppIcon } from "@/components/widget/AppIcon";
-import { ClampText } from "@/components/widget/ClampText";
-import FeedbackNoData from "@/components/widget/FeedbackNoData";
-import FeedbackRetry from "@/components/widget/FeedbackRetry";
-import { DotIndicator } from "@/components/widget/Indicator";
-import { ItemContainer } from "@/components/widget/ItemContainer";
-import { ItemHeaderContainer } from "@/components/widget/ItemHeaderContainer";
-import ItemHeaderTitle from "@/components/widget/ItemHeaderTitle";
+import { AppIcon } from "@/components/widgets/AppIcon";
+import { ClampText } from "@/components/widgets/ClampText";
+import FeedbackNoData from "@/components/widgets/FeedbackNoData";
+import FeedbackRetry from "@/components/widgets/FeedbackRetry";
+import { DotIndicator } from "@/components/widgets/Indicator";
+import { ItemContainer } from "@/components/widgets/ItemContainer";
+import { ItemHeaderContainer } from "@/components/widgets/ItemHeaderContainer";
+import ItemHeaderTitle from "@/components/widgets/ItemHeaderTitle";
 import {
   PageContainer,
   PageContent,
   usePageContainerContext,
-} from "@/components/widget/PageShell";
+} from "@/components/widgets/PageShell";
 import { DUMMY_DASHBOARD_DATA } from "@/constants/dummyData";
 import { getMonthNames } from "@/constants/months";
 import { Type__ChartData } from "@/constants/types";
-import useLang from "@/context/useLang";
-import { useThemeConfig } from "@/context/useThemeConfig";
+import useLang from "@/contexts/useLang";
+import { useThemeConfig } from "@/contexts/useThemeConfig";
 import useDataState from "@/hooks/useDataState";
 import { formatDuration, formatNumber } from "@/utils/formatter";
 import { isObjectDeepEmpty } from "@/utils/object";

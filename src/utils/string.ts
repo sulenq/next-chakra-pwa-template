@@ -1,4 +1,4 @@
-import useLang from "@/context/useLang";
+import useLang from "@/contexts/useLang";
 
 export function capitalize(string: string) {
   if (typeof string !== "string" || string.length === 0) return "";

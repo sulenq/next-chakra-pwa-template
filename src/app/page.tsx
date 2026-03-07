@@ -4,11 +4,11 @@ import { CContainer } from "@/components/ui/c-container";
 import { ColorModeButton } from "@/components/ui/color-mode";
 import { LangMenu } from "@/components/ui/lang-menu";
 import { P } from "@/components/ui/p";
-import BrandWatermark from "@/components/widget/BrandWatermark";
-import { Logo } from "@/components/widget/Logo";
-import { SigninForm } from "@/components/features/auth/SigninForm";
-import useLang from "@/context/useLang";
-import { useThemeConfig } from "@/context/useThemeConfig";
+import BrandWatermark from "@/components/widgets/BrandWatermark";
+import { Logo } from "@/components/widgets/Logo";
+import { SigninForm } from "@/features/auth/SigninForm";
+import useLang from "@/contexts/useLang";
+import { useThemeConfig } from "@/contexts/useThemeConfig";
 import { useIsSmScreenWidth } from "@/hooks/useIsSmScreenWidth";
 import { Box, HStack, SimpleGrid } from "@chakra-ui/react";
 

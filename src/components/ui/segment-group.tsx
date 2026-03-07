@@ -1,6 +1,6 @@
 "use client";
 
-import { useThemeConfig } from "@/context/useThemeConfig";
+import { useThemeConfig } from "@/contexts/useThemeConfig";
 import { SegmentGroup, SegmentGroupRootProps } from "@chakra-ui/react";
 
 interface Props extends Omit<SegmentGroupRootProps, "onChange"> {

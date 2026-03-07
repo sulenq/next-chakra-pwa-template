@@ -1,7 +1,7 @@
 "use client";
 
 import { StringInput } from "@/components/ui/string-input";
-import useLang from "@/context/useLang";
+import useLang from "@/contexts/useLang";
 import { useMergedRefs } from "@/hooks/useMergeRefs";
 import { formatNumber } from "@/utils/formatter";
 import { parseNumber } from "@/utils/number";

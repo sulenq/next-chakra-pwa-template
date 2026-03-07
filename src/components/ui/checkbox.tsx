@@ -1,7 +1,7 @@
 "use client";
 
 import { useColorModeValue } from "@/components/ui/color-mode";
-import { useThemeConfig } from "@/context/useThemeConfig";
+import { useThemeConfig } from "@/contexts/useThemeConfig";
 import { Checkbox as ChakraCheckbox, Icon } from "@chakra-ui/react";
 import { XIcon } from "lucide-react";
 import { forwardRef } from "react";

@@ -5,23 +5,23 @@ import { MenuItem } from "@/components/ui/menu";
 import { P } from "@/components/ui/p";
 import SearchInput from "@/components/ui/search-input";
 import { Tooltip } from "@/components/ui/tooltip";
-import { AppIcon } from "@/components/widget/AppIcon";
-import { ConfirmationDisclosureTrigger } from "@/components/widget/ConfirmationDisclosure";
-import { DataDisplayToggle } from "@/components/widget/DataDisplayToggle";
-import { DataGrid } from "@/components/widget/DataGrid";
-import { DataGridItem } from "@/components/widget/DataGridItem";
-import { DataTable } from "@/components/widget/DataTable";
-import FeedbackNoData from "@/components/widget/FeedbackNoData";
-import FeedbackRetry from "@/components/widget/FeedbackRetry";
-import { HScroll } from "@/components/widget/HScroll";
-import { LucideIcon } from "@/components/widget/Icon";
+import { AppIcon } from "@/components/widgets/AppIcon";
+import { ConfirmationDisclosureTrigger } from "@/components/widgets/ConfirmationDisclosure";
+import { DataDisplayToggle } from "@/components/widgets/DataDisplayToggle";
+import { DataGrid } from "@/components/widgets/DataGrid";
+import { DataGridItem } from "@/components/widgets/DataGridItem";
+import { DataTable } from "@/components/widgets/DataTable";
+import FeedbackNoData from "@/components/widgets/FeedbackNoData";
+import FeedbackRetry from "@/components/widgets/FeedbackRetry";
+import { HScroll } from "@/components/widgets/HScroll";
+import { LucideIcon } from "@/components/widgets/Icon";
 import {
   PageContainer,
   PageContent,
   PageHeader,
-} from "@/components/widget/PageShell";
-import { SimpleDisclosure } from "@/components/widget/SimpleDisclosure";
-import { TableSkeleton } from "@/components/widget/TableSkeleton";
+} from "@/components/widgets/PageShell";
+import { SimpleDisclosure } from "@/components/widgets/SimpleDisclosure";
+import { TableSkeleton } from "@/components/widgets/TableSkeleton";
 import { dummyUsers } from "@/constants/dummyData";
 import {
   BatchOptionsTableOptionGenerator,
@@ -30,10 +30,10 @@ import {
 } from "@/constants/interfaces";
 import { SVGS_PATH } from "@/constants/paths";
 import { BASE_ICON_BOX_SIZE } from "@/constants/styles";
-import { useDataDisplay } from "@/context/useDataDisplay";
-import useLang from "@/context/useLang";
-import useRenderTrigger from "@/context/useRenderTrigger";
-import { useThemeConfig } from "@/context/useThemeConfig";
+import { useDataDisplay } from "@/contexts/useDataDisplay";
+import useLang from "@/contexts/useLang";
+import useRenderTrigger from "@/contexts/useRenderTrigger";
+import { useThemeConfig } from "@/contexts/useThemeConfig";
 import { useContainerDimension } from "@/hooks/useContainerDimension";
 import useDataState from "@/hooks/useDataState";
 import usePopDisclosure from "@/hooks/usePopDisclosure";
