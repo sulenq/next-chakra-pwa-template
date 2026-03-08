@@ -4,13 +4,13 @@ import { P } from "@/components/ui/p";
 import BrandWatermark from "@/components/widgets/BrandWatermark";
 import { PageContainer } from "@/components/widgets/PageShell";
 import { APP } from "@/constants/_meta";
-import useLang from "@/contexts/useLang";
+import useLocale from "@/contexts/useLocale";
 import { interpolateString, pluckString } from "@/utils/string";
 import { VStack } from "@chakra-ui/react";
 
 export default function Page() {
   // Contexts
-  const { t } = useLang();
+  const { t } = useLocale();
 
   // States
   const variantNumber = Math.floor(Math.random() * 16) + 1;

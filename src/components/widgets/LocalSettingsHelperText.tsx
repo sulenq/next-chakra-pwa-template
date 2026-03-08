@@ -2,11 +2,11 @@
 
 import { CContainer } from "@/components/ui/c-container";
 import { HelperText } from "@/components/ui/helper-text";
-import useLang from "@/contexts/useLang";
+import useLocale from "@/contexts/useLocale";
 
 export const LocalSettingsHelperText = () => {
   // Contexts
-  const { t } = useLang();
+  const { t } = useLocale();
 
   return (
     <CContainer flex={1} p={4} bg={"body"}>

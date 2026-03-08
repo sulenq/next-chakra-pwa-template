@@ -6,7 +6,7 @@ import FeedbackState, {
 } from "@/components/widgets/FeedbackState";
 import { LucideIcon } from "@/components/widgets/Icon";
 import { MIN_H_FEEDBACK_CONTAINER } from "@/constants/styles";
-import useLang from "@/contexts/useLang";
+import useLocale from "@/contexts/useLocale";
 import { Icon } from "@chakra-ui/react";
 import { ServerOff } from "lucide-react";
 
@@ -15,7 +15,7 @@ export default function FeedbackNoData(props: FeedbackStateProps) {
   const { title, description, icon, children, ...restProps } = props;
 
   // Contexts
-  const { t } = useLang();
+  const { t } = useLocale();
 
   return (
     <CContainer

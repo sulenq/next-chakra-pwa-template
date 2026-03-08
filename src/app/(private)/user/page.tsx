@@ -30,7 +30,7 @@ import {
 import { SVGS_PATH } from "@/constants/paths";
 import { BASE_ICON_BOX_SIZE } from "@/constants/styles";
 import { useDataDisplay } from "@/contexts/useDataDisplay";
-import useLang from "@/contexts/useLang";
+import useLocale from "@/contexts/useLocale";
 import useRenderTrigger from "@/contexts/useRenderTrigger";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
 import { useContainerDimension } from "@/hooks/useContainerDimension";
@@ -67,7 +67,7 @@ const DEFAULT_FILTER = {
 
 const Create = () => {
   // Contexts
-  const { t } = useLang();
+  const { t } = useLocale();
   const { themeConfig } = useThemeConfig();
 
   return (
@@ -122,7 +122,7 @@ const Update = (props: any) => {
   const resolvedData = data as Interface__Data;
 
   // Contexts
-  const { t } = useLang();
+  const { t } = useLocale();
   const { themeConfig } = useThemeConfig();
   const setRt = useRenderTrigger((s) => s.setRt);
 
@@ -223,7 +223,7 @@ const Restore = (props: any) => {
   const { restoreIds, clearSelectedRows, disabled, routeTitle } = props;
 
   // Contexts
-  const { t } = useLang();
+  const { t } = useLocale();
   const setRt = useRenderTrigger((s) => s.setRt);
 
   // Hooks
@@ -290,7 +290,7 @@ const Delete = (props: any) => {
   const { deleteIds, clearSelectedRows, disabled, routeTitle } = props;
 
   // Contexts
-  const { t } = useLang();
+  const { t } = useLocale();
   const setRt = useRenderTrigger((s) => s.setRt);
 
   // Hooks
@@ -365,7 +365,7 @@ const Data = (props: any) => {
   const { filter, routeTitle, isSmContainer } = props;
 
   // Contexts
-  const { t } = useLang();
+  const { t } = useLocale();
   const displayMode = useDataDisplay((s) => s.getDisplay(PREFIX_ID));
   const displayTable = displayMode === "table";
 
@@ -563,7 +563,7 @@ const Data = (props: any) => {
 
 export default function Page() {
   // Contexts
-  const { t } = useLang();
+  const { t } = useLocale();
 
   // Refs
   const containerRef = useRef<HTMLDivElement>(null);

@@ -10,7 +10,7 @@ import { APP } from "@/constants/_meta";
 import { AUTH_API_SIGNIN, AUTH_API_SIGNOUT } from "@/constants/apis";
 import { BASE_ICON_BOX_SIZE } from "@/constants/styles";
 import useAuthMiddleware from "@/contexts/useAuthMiddleware";
-import useLang from "@/contexts/useLang";
+import useLocale from "@/contexts/useLocale";
 import useRenderTrigger from "@/contexts/useRenderTrigger";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
 import useRequest from "@/hooks/useRequest";
@@ -47,7 +47,7 @@ const INDEX_ROUTE = "/demo";
 const SignoutButton = () => {
   // Contexts
   const setRt = useRenderTrigger((s) => s.setRt);
-  const { t } = useLang();
+  const { t } = useLocale();
   const removeAuth = useAuthMiddleware((s) => s.removeAuth);
 
   // Hooks
@@ -93,7 +93,7 @@ const Signedin = (props: any) => {
   const { ...restProps } = props;
 
   // Contexts
-  const { t } = useLang();
+  const { t } = useLocale();
   const { themeConfig } = useThemeConfig();
   const user = getUserData();
 
@@ -126,7 +126,7 @@ const BasicAuthForm = (props: any) => {
   const { signinAPI, ...restProps } = props;
 
   // Contexts
-  const { t } = useLang();
+  const { t } = useLocale();
   const { themeConfig } = useThemeConfig();
   const setVerifiedAccessToken = useAuthMiddleware(
     (s) => s.setVerifiedAccessToken,
@@ -273,7 +273,7 @@ export const SigninForm = (props: StackProps) => {
   const { ...restProps } = props;
 
   // Contexts
-  const { t } = useLang();
+  const { t } = useLocale();
   const { themeConfig } = useThemeConfig();
   const verifiedAccessToken = useAuthMiddleware((s) => s.verifiedAccessToken);
 

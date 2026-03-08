@@ -5,13 +5,13 @@ import { Divider } from "@/components/ui/divider";
 import { NavLink } from "@/components/ui/nav-link";
 import { P } from "@/components/ui/p";
 import BrandWatermark from "@/components/widgets/BrandWatermark";
-import useLang from "@/contexts/useLang";
+import useLocale from "@/contexts/useLocale";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
 import { HStack, VStack } from "@chakra-ui/react";
 
 export default function NotFoundRoute() {
   // Contexts
-  const { t } = useLang();
+  const { t } = useLocale();
   const { themeConfig } = useThemeConfig();
 
   return (

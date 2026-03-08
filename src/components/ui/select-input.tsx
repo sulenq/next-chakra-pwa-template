@@ -13,7 +13,7 @@ import FeedbackRetry from "@/components/widgets/FeedbackRetry";
 import { DotIndicator } from "@/components/widgets/Indicator";
 import { Interface__SelectOption } from "@/constants/interfaces";
 import { ButtonVariant, DisclosureSizes } from "@/constants/types";
-import useLang from "@/contexts/useLang";
+import useLocale from "@/contexts/useLocale";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
 import usePopDisclosure from "@/hooks/usePopDisclosure";
 import { isEmptyArray } from "@/utils/array";
@@ -40,7 +40,7 @@ const SelectOptions = (props: SelectOptionsProps) => {
     props;
 
   // Contexts
-  const { t } = useLang();
+  const { t } = useLocale();
   const { themeConfig } = useThemeConfig();
 
   // States
@@ -191,7 +191,7 @@ export const SelectInput = (props: SelectInputProps) => {
   } = props;
 
   // Contexts
-  const { t } = useLang();
+  const { t } = useLocale();
   const { themeConfig } = useThemeConfig();
   const fc = useFieldContext();
 

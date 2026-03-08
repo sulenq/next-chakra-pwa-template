@@ -14,7 +14,7 @@ import { Today } from "@/components/widgets/Today";
 import { Interface__Nav } from "@/constants/interfaces";
 import { TOP_BAR_H } from "@/constants/styles";
 import { useBreadcrumbs } from "@/contexts/useBreadcrumbs";
-import useLang from "@/contexts/useLang";
+import useLocale from "@/contexts/useLocale";
 import { useContainerDimension } from "@/hooks/useContainerDimension";
 import { useMergedRefs } from "@/hooks/useMergeRefs";
 import useScreen from "@/hooks/useScreen";
@@ -113,7 +113,7 @@ export const NavBreadcrumb = (props: any) => {
   } = props;
 
   // Contexts
-  const { t } = useLang();
+  const { t } = useLocale();
   const breadcrumbs = useBreadcrumbs((s) => s.breadcrumbs);
   const setBreadcrumbs = useBreadcrumbs((s) => s.setBreadcrumbs);
 
@@ -241,7 +241,7 @@ export const PageHeader = (props: StackProps) => {
   const { children, title, ...restProps } = props;
 
   // Contexts
-  const { t } = useLang();
+  const { t } = useLocale();
 
   // Hooks
   const pathname = usePathname();

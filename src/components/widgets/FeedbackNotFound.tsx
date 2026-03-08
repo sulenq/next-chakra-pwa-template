@@ -3,14 +3,14 @@
 import { CContainer } from "@/components/ui/c-container";
 import { P } from "@/components/ui/p";
 import { FeedbackStateProps } from "@/components/widgets/FeedbackState";
-import useLang from "@/contexts/useLang";
+import useLocale from "@/contexts/useLocale";
 
 export default function FeedbackNotFound(props: FeedbackStateProps) {
   // Props
   const { children, ...restProps } = props;
 
   // Contexts
-  const { t } = useLang();
+  const { t } = useLocale();
 
   return (
     <CContainer

@@ -7,7 +7,7 @@ import { DialogBody, DialogContent, DialogRoot } from "@/components/ui/dialog";
 import { Img } from "@/components/ui/img";
 import { NavLink } from "@/components/ui/nav-link";
 import { SVGS_PATH } from "@/constants/paths";
-import useLang from "@/contexts/useLang";
+import useLocale from "@/contexts/useLocale";
 import usePopDisclosure from "@/hooks/usePopDisclosure";
 import { back } from "@/utils/client";
 import { disclosureId } from "@/utils/disclosure";
@@ -33,7 +33,7 @@ export const ImgViewer = (props: Props) => {
   } = props;
 
   // Contexts
-  const { t } = useLang();
+  const { t } = useLocale();
 
   // Hooks
   const { open, onOpen } = usePopDisclosure(disclosureId(id || `${src}`));

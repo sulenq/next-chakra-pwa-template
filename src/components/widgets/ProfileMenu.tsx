@@ -16,7 +16,7 @@ import { SVGS_PATH } from "@/constants/paths";
 import { BASE_ICON_BOX_SIZE } from "@/constants/styles";
 import useADM from "@/contexts/useADM";
 import useAuthMiddleware from "@/contexts/useAuthMiddleware";
-import useLang from "@/contexts/useLang";
+import useLocale from "@/contexts/useLocale";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
 import useClickOutside from "@/hooks/useClickOutside";
 import useRequest from "@/hooks/useRequest";
@@ -50,7 +50,7 @@ export const ProfileMenu = (props: ProfileMenuProps) => {
   const { onClose, ...restProps } = props;
 
   // Contexts
-  const { t } = useLang();
+  const { t } = useLocale();
   const { themeConfig } = useThemeConfig();
   const removeAuth = useAuthMiddleware((s) => s.removeAuth);
   const ADM = useADM((s) => s.ADM);

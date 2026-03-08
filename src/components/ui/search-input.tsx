@@ -4,7 +4,7 @@ import { StringInput, StringInputProps } from "@/components/ui/string-input";
 import { LucideIcon } from "@/components/widgets/Icon";
 import { BASE_ICON_BOX_SIZE, MAIN_INPUT_SIZE } from "@/constants/styles";
 import { InputSize, InputVariant } from "@/constants/types";
-import useLang from "@/contexts/useLang";
+import useLocale from "@/contexts/useLocale";
 import { useDebouncedCallback } from "@/hooks/useDebounceCallback";
 import {
   HStack,
@@ -61,7 +61,7 @@ export default function SearchInput(props: SearchInputProps) {
   } = props;
 
   // Contexts
-  const { t } = useLang();
+  const { t } = useLocale();
 
   // Hooks
   const searchParams = useSearchParams();

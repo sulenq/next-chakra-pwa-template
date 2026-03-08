@@ -24,7 +24,7 @@ import {
 } from "@/constants/types";
 import { UOM_FORMATS } from "@/constants/uomFormats";
 import useDateFormat from "@/contexts/useDateFormat";
-import useLang from "@/contexts/useLang";
+import useLocale from "@/contexts/useLocale";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
 import useTimeFormat from "@/contexts/useTimeFormat";
 import useTimezone from "@/contexts/useTimezone";
@@ -48,7 +48,7 @@ const NAVS_COLOR = "fg.muted";
 const Language = () => {
   // Contexts
   const { themeConfig } = useThemeConfig();
-  const { t, lang, setLang } = useLang();
+  const { t, locale, setLocale } = useLocale();
 
   return (
     <Item.Container borderless roundedless>
@@ -69,7 +69,7 @@ const Language = () => {
         >
           <HStack wrap={"wrap"}>
             {LANGUAGES.map((item, i) => {
-              const isSelected = lang === item.key;
+              const isSelected = locale === item.key;
 
               return (
                 <Btn
@@ -82,7 +82,7 @@ const Language = () => {
                   justifyContent={"start"}
                   color={isSelected ? "" : NAVS_COLOR}
                   onClick={() => {
-                    setLang(item.key as Type__LanguageOptions);
+                    setLocale(item.key as Type__LanguageOptions);
                   }}
                   pos={"relative"}
                 >
@@ -113,7 +113,7 @@ const Timezone = () => {
   const LIMIT_OPTIONS = [10, 20, 50, 100];
 
   // Contexts
-  const { t } = useLang();
+  const { t } = useLocale();
   const { themeConfig } = useThemeConfig();
   const { timeZone, setTimeZone } = useTimezone();
 
@@ -261,7 +261,7 @@ const Timezone = () => {
 
 const DateFormat = () => {
   // Contexts
-  const { t } = useLang();
+  const { t } = useLocale();
   const { themeConfig } = useThemeConfig();
   const { dateFormat, setDateFormat } = useDateFormat();
 
@@ -331,7 +331,7 @@ const DateFormat = () => {
 
 const TimeFormat = () => {
   // Contexts
-  const { t } = useLang();
+  const { t } = useLocale();
   const { themeConfig } = useThemeConfig();
   const { timeFormat, setTimeFormat } = useTimeFormat();
 
@@ -397,7 +397,7 @@ const TimeFormat = () => {
 const UOMFormat = () => {
   // Contexts
   const { themeConfig } = useThemeConfig();
-  const { t } = useLang();
+  const { t } = useLocale();
   const { UOM, setUOM } = useUOMFormat();
 
   return (

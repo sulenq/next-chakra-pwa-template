@@ -2,19 +2,19 @@
 
 import { CContainer } from "@/components/ui/c-container";
 import { ColorModeButton } from "@/components/ui/color-mode";
-import { LangMenu } from "@/components/ui/lang-menu";
+import { LangMenu } from "@/components/ui/locale-menu";
 import { P } from "@/components/ui/p";
 import BrandWatermark from "@/components/widgets/BrandWatermark";
 import { Logo } from "@/components/widgets/Logo";
 import { SigninForm } from "@/features/auth/SigninForm";
-import useLang from "@/contexts/useLang";
+import useLocale from "@/contexts/useLocale";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
 import { useIsSmScreenWidth } from "@/hooks/useIsSmScreenWidth";
 import { Box, HStack, SimpleGrid } from "@chakra-ui/react";
 
 export default function Page() {
   // Contexts
-  const { t } = useLang();
+  const { t } = useLocale();
   const { themeConfig } = useThemeConfig();
 
   // Hooks

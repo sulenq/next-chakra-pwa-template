@@ -20,7 +20,7 @@ import {
 import { DUMMY_DASHBOARD_DATA } from "@/constants/dummyData";
 import { getMonthNames } from "@/constants/months";
 import { Type__ChartData } from "@/constants/types";
-import useLang from "@/contexts/useLang";
+import useLocale from "@/contexts/useLocale";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
 import useDataState from "@/hooks/useDataState";
 import { formatDuration, formatNumber } from "@/utils/formatter";
@@ -127,7 +127,7 @@ const Overview = (props: OverviewProps) => {
   const { data, ...restProps } = props;
 
   // Contexts
-  const { t } = useLang();
+  const { t } = useLocale();
   const { isSmContainer } = usePageContainerContext();
 
   // States
@@ -200,7 +200,7 @@ const Chart1 = (props: any) => {
   const { data, year, ...restProps } = props;
 
   // Contexts
-  const { t } = useLang();
+  const { t } = useLocale();
   const { themeConfig } = useThemeConfig();
 
   // Refs

@@ -20,7 +20,7 @@ import {
   FormattedTableRow,
   Interface__DataProps,
 } from "@/constants/interfaces";
-import useLang from "@/contexts/useLang";
+import useLocale from "@/contexts/useLocale";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
 import { useIsSmScreenWidth } from "@/hooks/useIsSmScreenWidth";
 import usePopDisclosure from "@/hooks/usePopDisclosure";
@@ -77,7 +77,7 @@ export const DataGridItem = (props: DataGridItemProps) => {
   } = props;
 
   // Contexts
-  const { t } = useLang();
+  const { t } = useLocale();
   const { themeConfig } = useThemeConfig();
 
   // Constants
@@ -332,7 +332,7 @@ const DataGridDisplay = (props: DataGridProps) => {
   } = props;
 
   // Contexts
-  const { t } = useLang();
+  const { t } = useLocale();
   const { themeConfig } = useThemeConfig();
 
   // Hooks

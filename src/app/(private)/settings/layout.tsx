@@ -19,7 +19,7 @@ import {
 import { APP } from "@/constants/_meta";
 import { OTHER_PRIVATE_NAV_GROUPS } from "@/constants/navs";
 import { DESKTOP_NAVS_TOOLTIP_MAIN_AXIS } from "@/constants/styles";
-import useLang from "@/contexts/useLang";
+import useLocale from "@/contexts/useLocale";
 import { useSettingsPageContainer } from "@/contexts/useSettingsPageContainer";
 import { useContainerDimension } from "@/hooks/useContainerDimension";
 import { isEmptyArray } from "@/utils/array";
@@ -40,7 +40,7 @@ const NavsList = (props: any) => {
   const { search, ...restProps } = props;
 
   // Contexts
-  const { t } = useLang();
+  const { t } = useLocale();
 
   // Hooks
   const pathname = usePathname();
@@ -133,7 +133,7 @@ export default function Layout(props: any) {
   const containerDimension = useContainerDimension(containerRef);
 
   // Contexts
-  const { t } = useLang();
+  const { t } = useLocale();
   const setContainerDimension = useSettingsPageContainer(
     (s) => s.setContainerDimension,
   );

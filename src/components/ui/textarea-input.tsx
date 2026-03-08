@@ -1,6 +1,6 @@
 import { toaster } from "@/components/ui/toaster";
 import { InputVariant } from "@/constants/types";
-import useLang from "@/contexts/useLang";
+import useLocale from "@/contexts/useLocale";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
 import { interpolateString } from "@/utils/string";
 import {
@@ -22,7 +22,7 @@ export const TextareaInput = forwardRef<
   HTMLTextAreaElement,
   TextareaInputProps
 >((props, ref) => {
-  const { t } = useLang();
+  const { t } = useLocale();
   const { themeConfig } = useThemeConfig();
 
   // Props

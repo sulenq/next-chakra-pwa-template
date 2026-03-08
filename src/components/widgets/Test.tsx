@@ -2,7 +2,7 @@
 
 import { CContainer } from "@/components/ui/c-container";
 import { getMonthNames } from "@/constants/months";
-import useLang from "@/contexts/useLang";
+import useLocale from "@/contexts/useLocale";
 import { StackProps } from "@chakra-ui/react";
 
 interface Props extends StackProps {}
@@ -12,7 +12,7 @@ export const Test = (props: Props) => {
   const { ...restProps } = props;
 
   // Contexts
-  const { t } = useLang();
+  const { t } = useLocale();
 
   const monthNames = getMonthNames(t);
 

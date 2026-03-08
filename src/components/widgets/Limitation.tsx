@@ -8,7 +8,7 @@ import {
 import { P } from "@/components/ui/p";
 import { AppIcon } from "@/components/widgets/AppIcon";
 import { DotIndicator } from "@/components/widgets/Indicator";
-import useLang from "@/contexts/useLang";
+import useLocale from "@/contexts/useLocale";
 import { HStack } from "@chakra-ui/react";
 import { ChevronDownIcon } from "lucide-react";
 
@@ -22,7 +22,7 @@ export const Limitation = (props: LimitationTableDataProps) => {
   const { limit, setLimit, limitOptions: limitOptionsProps } = props;
 
   // Contexts
-  const { t } = useLang();
+  const { t } = useLocale();
 
   // States
   const limitOptions = limitOptionsProps || [15, 30, 50, 100];

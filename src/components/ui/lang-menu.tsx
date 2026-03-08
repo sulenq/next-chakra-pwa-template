@@ -2,7 +2,7 @@
 
 import { ButtonProps, Icon, MenuPositioner, Portal } from "@chakra-ui/react";
 import { IconCheck, IconChevronDown } from "@tabler/icons-react";
-import useLang from "@/contexts/useLang";
+import useLocale from "@/contexts/useLocale";
 import {
   MenuContent,
   MenuItem,
@@ -30,7 +30,7 @@ const LANGUAGES = [
 
 export const LangMenu = ({ ...props }: Props) => {
   // Contexts
-  const { t, lang, setLang } = useLang();
+  const { t, locale, setLocale } = useLocale();
   const { themeConfig } = useThemeConfig();
 
   return (
@@ -46,7 +46,7 @@ export const LangMenu = ({ ...props }: Props) => {
             size="sm"
             {...props}
           >
-            {lang.toUpperCase()}
+            {locale.toUpperCase()}
             <IconChevronDown stroke={1.5} />
           </Btn>
         </MenuTrigger>
@@ -55,13 +55,13 @@ export const LangMenu = ({ ...props }: Props) => {
           <MenuPositioner>
             <MenuContent zIndex={2000}>
               {LANGUAGES.map((item, i) => {
-                const active = item.key === lang;
+                const active = item.key === locale;
 
                 return (
                   <MenuItem
                     key={i}
                     value={item.key}
-                    onClick={() => setLang(item.key as any)}
+                    onClick={() => setLocale(item.key as any)}
                     fontWeight={active ? "medium" : "normal"}
                   >
                     {item.label}

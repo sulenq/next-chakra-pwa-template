@@ -5,7 +5,7 @@ import { useColorMode } from "@/components/ui/color-mode";
 import { toaster } from "@/components/ui/toaster";
 import { LucideIcon } from "@/components/widgets/Icon";
 import { BASE_ICON_BOX_SIZE, MAIN_INPUT_SIZE } from "@/constants/styles";
-import useLang from "@/contexts/useLang";
+import useLocale from "@/contexts/useLocale";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
 import { useMergedRefs } from "@/hooks/useMergeRefs";
 import { interpolateString } from "@/utils/string";
@@ -54,7 +54,7 @@ export const StringInput = forwardRef<HTMLInputElement, StringInputProps>(
     } = props;
 
     // Contexts
-    const { t } = useLang();
+    const { t } = useLocale();
     const { themeConfig } = useThemeConfig();
     const fc = useFieldContext();
 

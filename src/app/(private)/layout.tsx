@@ -50,7 +50,7 @@ import {
   NAVS_COLOR_PALETTE,
   TOP_BAR_H,
 } from "@/constants/styles";
-import useLang from "@/contexts/useLang";
+import useLocale from "@/contexts/useLocale";
 import useNavs from "@/contexts/useNavs";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
 import { useIsSmScreenWidth } from "@/hooks/useIsSmScreenWidth";
@@ -76,7 +76,7 @@ const MobileLayout = (props: any) => {
   const { children, ...restProps } = props;
 
   // Contexts
-  const { t } = useLang();
+  const { t } = useLocale();
 
   // Hooks
   const pathname = usePathname();
@@ -316,7 +316,7 @@ const DesktopLayout = (props: any) => {
   const { children, ...restProps } = props;
 
   // Contexts
-  const { t } = useLang();
+  const { t } = useLocale();
   const { themeConfig } = useThemeConfig();
   const isNavsExpanded = useNavs((s) => s.isNavsExpanded);
   const toggleNavsExpanded = useNavs((s) => s.toggleNavsExpanded);

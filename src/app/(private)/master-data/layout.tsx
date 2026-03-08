@@ -14,7 +14,7 @@ import { MContainer } from "@/components/widgets/MContainer";
 import { PageContainer, PageTitle } from "@/components/widgets/PageShell";
 import { OTHER_PRIVATE_NAV_GROUPS } from "@/constants/navs";
 import { DESKTOP_NAVS_TOOLTIP_MAIN_AXIS } from "@/constants/styles";
-import useLang from "@/contexts/useLang";
+import useLocale from "@/contexts/useLocale";
 import { useMasterDataPageContainer } from "@/contexts/useMasterDataPageContainer";
 import { useContainerDimension } from "@/hooks/useContainerDimension";
 import { isEmptyArray } from "@/utils/array";
@@ -34,7 +34,7 @@ const NavsList = (props: any) => {
   const { search, ...restProps } = props;
 
   // Contexts
-  const { t } = useLang();
+  const { t } = useLocale();
 
   // Hooks
   const pathname = usePathname();

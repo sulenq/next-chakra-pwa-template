@@ -1,6 +1,6 @@
 import { toaster } from "@/components/ui/toaster";
 import useOffline from "@/contexts/disclosure/useOffilne";
-import useLang from "@/contexts/useLang";
+import useLocale from "@/contexts/useLocale";
 import { useEffect, useRef } from "react";
 
 interface Props {
@@ -12,7 +12,7 @@ export default function useOfflineAlert(props: Props) {
   const { mounted } = props;
 
   // Contexts
-  const { t } = useLang();
+  const { t } = useLocale();
   const { setOffline } = useOffline();
 
   // Refs

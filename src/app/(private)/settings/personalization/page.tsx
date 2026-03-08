@@ -21,7 +21,7 @@ import { Interface__SelectOption } from "@/constants/interfaces";
 import { ROUNDED_PRESETS } from "@/constants/presets";
 import { OPTIONS_RELIGION } from "@/constants/selectOptions";
 import useADM from "@/contexts/useADM";
-import useLang from "@/contexts/useLang";
+import useLocale from "@/contexts/useLocale";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
 import { formatTime } from "@/utils/formatter";
 import { interpolateString } from "@/utils/string";
@@ -37,7 +37,7 @@ import { useEffect, useRef, useState } from "react";
 const ManualDarkModeSetting = () => {
   // Contexts
   const { themeConfig } = useThemeConfig();
-  const { t } = useLang();
+  const { t } = useLocale();
   const { colorMode, setColorMode } = useColorMode();
   const { ADM } = useADM();
 
@@ -88,7 +88,7 @@ const ManualDarkModeSetting = () => {
 const ADMSetting = () => {
   // Contexts
   const { themeConfig } = useThemeConfig();
-  const { t } = useLang();
+  const { t } = useLocale();
   const { ADM, setADM } = useADM();
 
   // States, Refs
@@ -132,7 +132,7 @@ const ADMSetting = () => {
 
 const DarkModeSection = () => {
   // Contexts
-  const { t } = useLang();
+  const { t } = useLocale();
   const { themeConfig } = useThemeConfig();
   const { colorMode, setColorMode } = useColorMode();
 
@@ -190,7 +190,7 @@ const DarkModeSection = () => {
 
 const AccentColorSection = () => {
   // Contexts
-  const { t } = useLang();
+  const { t } = useLocale();
   const { themeConfig, setThemeConfig } = useThemeConfig();
 
   // Refs
@@ -274,7 +274,7 @@ const AccentColorSection = () => {
 
 const RoundedSection = () => {
   // Contexts
-  const { t } = useLang();
+  const { t } = useLocale();
   const { themeConfig, setThemeConfig } = useThemeConfig();
 
   // Refs
@@ -384,7 +384,7 @@ const RoundedSection = () => {
 
 const ExampleUISection = () => {
   // Contexts
-  const { t } = useLang();
+  const { t } = useLocale();
   const { themeConfig } = useThemeConfig();
 
   // States

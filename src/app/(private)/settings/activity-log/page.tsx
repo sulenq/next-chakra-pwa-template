@@ -16,7 +16,7 @@ import { dummyAllActivityLogs } from "@/constants/dummyData";
 import { Enum__ActivityAction } from "@/constants/enums";
 import { Interface__ActivityLog } from "@/constants/interfaces";
 import { BASE_ICON_BOX_SIZE } from "@/constants/styles";
-import useLang from "@/contexts/useLang";
+import useLocale from "@/contexts/useLocale";
 import useDataState from "@/hooks/useDataState";
 import { isEmptyArray } from "@/utils/array";
 import { formatDate } from "@/utils/formatter";
@@ -26,7 +26,7 @@ import { useState } from "react";
 
 const ActivityLog = () => {
   // Contexts
-  const { t } = useLang();
+  const { t } = useLocale();
 
   // States
   const [search, setSearch] = useState("");

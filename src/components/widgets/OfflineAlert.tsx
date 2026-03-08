@@ -1,5 +1,5 @@
 import useOffline from "@/contexts/disclosure/useOffilne";
-import useLang from "@/contexts/useLang";
+import useLocale from "@/contexts/useLocale";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
 import { back } from "@/utils/client";
 import { Icon } from "@chakra-ui/react";
@@ -15,7 +15,7 @@ import { EmptyState } from "@/components/ui/empty-state";
 
 export const OfflineAlert = () => {
   // Contexts
-  const { t } = useLang();
+  const { t } = useLocale();
   const { themeConfig } = useThemeConfig();
   const { offline } = useOffline();
 

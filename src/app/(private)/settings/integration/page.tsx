@@ -11,7 +11,7 @@ import FeedbackRetry from "@/components/widgets/FeedbackRetry";
 import { LucideIcon } from "@/components/widgets/Icon";
 import { Item } from "@/components/widgets/Item";
 import { BASE_ICON_BOX_SIZE } from "@/constants/styles";
-import useLang from "@/contexts/useLang";
+import useLocale from "@/contexts/useLocale";
 import useRenderTrigger from "@/contexts/useRenderTrigger";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
 import useDataState from "@/hooks/useDataState";
@@ -27,7 +27,7 @@ const APIKeys = (props: any) => {
   const { apiKeys, ...restProps } = props;
 
   // Contexts
-  const { t } = useLang();
+  const { t } = useLocale();
   const { themeConfig } = useThemeConfig();
   const setRt = useRenderTrigger((s) => s.setRt);
 

@@ -3,7 +3,7 @@ import {
   Interface__Req,
   Interface__RequestState,
 } from "@/constants/interfaces";
-import useLang from "@/contexts/useLang";
+import useLocale from "@/contexts/useLocale";
 import { clearAccessToken, clearUserData } from "@/utils/auth";
 import { request } from "@/utils/request";
 import { useRouter } from "next/navigation";
@@ -41,7 +41,7 @@ export default function useRequest<T = any>(props: Props) {
   } = props;
 
   // Contexts
-  const { t } = useLang();
+  const { t } = useLocale();
 
   // Refs
   const abortControllerRef = useRef<AbortController | null>(null);

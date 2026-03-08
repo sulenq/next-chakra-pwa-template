@@ -1,4 +1,4 @@
-import useLang from "@/contexts/useLang";
+import useLocale from "@/contexts/useLocale";
 import {
   Badge,
   Field as ChakraField,
@@ -29,7 +29,7 @@ export const Field = forwardRef<HTMLDivElement, FieldProps>(
     } = props;
 
     // Hooks
-    const { t } = useLang();
+    const { t } = useLocale();
 
     return (
       <ChakraField.Root ref={ref} gap={2} {...rest}>

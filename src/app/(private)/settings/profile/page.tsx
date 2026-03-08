@@ -31,7 +31,7 @@ import {
   Interface__User,
 } from "@/constants/interfaces";
 import { SVGS_PATH } from "@/constants/paths";
-import useLang from "@/contexts/useLang";
+import useLocale from "@/contexts/useLocale";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
 import ResetPasswordDisclosureTrigger from "@/features/auth/ResetPassword";
 import useDataState from "@/hooks/useDataState";
@@ -59,7 +59,7 @@ const PersonalInformation = (props: PersonalInformationProps) => {
   const { initialData, ...restProps } = props;
 
   // Contexts
-  const { t } = useLang();
+  const { t } = useLocale();
   const { themeConfig } = useThemeConfig();
 
   // Hooks
@@ -220,7 +220,7 @@ const PersonalInformation = (props: PersonalInformationProps) => {
 
 const AuthLog = () => {
   // Contexts
-  const { t } = useLang();
+  const { t } = useLocale();
 
   // Refs
   const containerRef = useRef<HTMLDivElement>(null);
@@ -351,7 +351,7 @@ const AuthLog = () => {
 
 const ActivityLog = () => {
   // Contexts
-  const { t } = useLang();
+  const { t } = useLocale();
 
   // Refs
   const containerRef = useRef<HTMLDivElement>(null);

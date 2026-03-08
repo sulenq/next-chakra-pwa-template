@@ -1,7 +1,7 @@
 "use client";
 
 import useADM from "@/contexts/useADM";
-import useLang from "@/contexts/useLang";
+import useLocale from "@/contexts/useLocale";
 import type { IconButtonProps, SpanProps } from "@chakra-ui/react";
 import { ClientOnly, Icon, IconButton, Skeleton, Span } from "@chakra-ui/react";
 import { IconMoon2, IconSun } from "@tabler/icons-react";
@@ -54,7 +54,7 @@ export const ColorModeButton = forwardRef<
   const { tooltipProps, ...restProps } = props;
 
   // Hooks
-  const { t } = useLang();
+  const { t } = useLocale();
   const { toggleColorMode } = useColorMode();
 
   // Contexts

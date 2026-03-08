@@ -3,7 +3,7 @@ import { create } from "zustand";
 import en from "@/locales/en";
 import id from "@/locales/id";
 
-const STORAGE_KEY = "lang";
+const STORAGE_KEY = "locale";
 const DEFAULT: keyof typeof translations = "en";
 
 export const translations = {
@@ -12,12 +12,12 @@ export const translations = {
 };
 
 interface Props {
-  lang: keyof typeof translations;
   t: (typeof translations)[keyof typeof translations];
-  setLang: (newState: keyof typeof translations) => void;
+  locale: keyof typeof translations;
+  setLocale: (newState: keyof typeof translations) => void;
 }
 
-const useLang = create<Props>((set) => {
+const useLocale = create<Props>((set) => {
   const getStoredLang = (): keyof typeof translations => {
     try {
       const stored = getStorage(STORAGE_KEY);
@@ -30,17 +30,17 @@ const useLang = create<Props>((set) => {
     return DEFAULT;
   };
 
-  const lang = getStoredLang();
+  const locale = getStoredLang();
 
   return {
-    lang: lang,
-    t: translations[lang],
-    setLang: (newState) =>
+    locale: locale,
+    t: translations[locale],
+    setLocale: (newState) =>
       set((state) => {
-        if (state.lang !== newState) {
+        if (state.locale !== newState) {
           setStorage(STORAGE_KEY, newState);
           return {
-            lang: newState,
+            locale: newState,
             t: translations[newState],
           };
         }
@@ -49,4 +49,4 @@ const useLang = create<Props>((set) => {
   };
 });
 
-export default useLang;
+export default useLocale;

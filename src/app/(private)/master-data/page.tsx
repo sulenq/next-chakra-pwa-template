@@ -3,13 +3,13 @@
 import { CContainer } from "@/components/ui/c-container";
 import FeedbackState from "@/components/widgets/FeedbackState";
 import { LucideIcon } from "@/components/widgets/Icon";
-import useLang from "@/contexts/useLang";
+import useLocale from "@/contexts/useLocale";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
 import { ServerIcon } from "lucide-react";
 
 const SettingsRoute = () => {
   // Contexts
-  const { t } = useLang();
+  const { t } = useLocale();
   const { themeConfig } = useThemeConfig();
 
   return (

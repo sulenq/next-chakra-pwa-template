@@ -9,7 +9,7 @@ import { HScroll } from "@/components/widgets/HScroll";
 import { LucideIcon } from "@/components/widgets/Icon";
 import { ImgViewer } from "@/components/widgets/ImgViewer";
 import { Interface__StorageFile } from "@/constants/interfaces";
-import useLang from "@/contexts/useLang";
+import useLocale from "@/contexts/useLocale";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
 import { isEmptyArray } from "@/utils/array";
 import { imgUrl } from "@/utils/url";
@@ -29,7 +29,7 @@ export const ImgInput = (props: FileInputProps) => {
   } = props;
 
   // Contexts
-  const { t } = useLang();
+  const { t } = useLocale();
   const { themeConfig } = useThemeConfig();
   const fc = useFieldContext();
 

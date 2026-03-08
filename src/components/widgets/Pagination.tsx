@@ -1,7 +1,7 @@
 import { Btn } from "@/components/ui/btn";
 import { P } from "@/components/ui/p";
 import { AppIcon } from "@/components/widgets/AppIcon";
-import useLang from "@/contexts/useLang";
+import useLocale from "@/contexts/useLocale";
 import { formatNumber } from "@/utils/formatter";
 import { HStack } from "@chakra-ui/react";
 import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
@@ -16,7 +16,7 @@ export const Pagination = (props: PaginationTableDataProps) => {
   const { page, setPage, totalPage } = props;
 
   // Contexts
-  const { t } = useLang();
+  const { t } = useLocale();
 
   // States
   // const [pageTemp, setPageTemp] = useState<number | null | undefined>(page);

@@ -3,7 +3,7 @@
 import { P } from "@/components/ui/p";
 import { DateVariant } from "@/constants/types";
 import useDateFormat from "@/contexts/useDateFormat";
-import useLang from "@/contexts/useLang";
+import useLocale from "@/contexts/useLocale";
 import useTimezone from "@/contexts/useTimezone";
 import { formatDate } from "@/utils/formatter";
 import { TextProps } from "@chakra-ui/react";
@@ -16,7 +16,7 @@ export const Today = (props: TodayProps) => {
   const { dateVariant = "numeric", ...restProps } = props;
 
   // Contexts
-  const { t } = useLang();
+  const { t } = useLocale();
   const tz = useTimezone((s) => s.timeZone);
   const dateFormat = useDateFormat((s) => s.dateFormat);
 

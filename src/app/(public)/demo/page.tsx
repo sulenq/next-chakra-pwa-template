@@ -7,7 +7,7 @@ import { DatePickerInput } from "@/components/ui/date-picker-input";
 import { DateTimePickerInput } from "@/components/ui/date-time-picker-input";
 import { Field } from "@/components/ui/field";
 import { FileInput } from "@/components/ui/file-input";
-import { LangMenu } from "@/components/ui/lang-menu";
+import { LangMenu } from "@/components/ui/locale-menu";
 import { MenuItem } from "@/components/ui/menu";
 import { NavLink } from "@/components/ui/nav-link";
 import { NumInput } from "@/components/ui/number-input";
@@ -39,7 +39,7 @@ import VideoPlayer from "@/components/widgets/VideoPlayer";
 import { FormattedTableRow } from "@/constants/interfaces";
 import { OPTIONS_RELIGION } from "@/constants/selectOptions";
 import { MENU_ICON_BOX_SIZE } from "@/constants/styles";
-import useLang from "@/contexts/useLang";
+import useLocale from "@/contexts/useLocale";
 import useRenderTrigger from "@/contexts/useRenderTrigger";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
 import useRequest from "@/hooks/useRequest";
@@ -58,7 +58,7 @@ const Delete = (props: any) => {
   const { deleteIds, clearSelectedRows, disabled, routeTitle } = props;
 
   // Contexts
-  const { t } = useLang();
+  const { t } = useLocale();
   const setRt = useRenderTrigger((s) => s.setRt);
 
   // Hooks

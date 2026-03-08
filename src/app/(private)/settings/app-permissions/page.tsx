@@ -12,7 +12,7 @@ import { LocalSettingsHelperText } from "@/components/widgets/LocalSettingsHelpe
 import { MicVolumeBar } from "@/components/widgets/MicVolumeBar";
 import { ToggleSettingContainer } from "@/components/widgets/SettingsShell";
 import useCameraPermission from "@/contexts/useCameraPermissions";
-import useLang from "@/contexts/useLang";
+import useLocale from "@/contexts/useLocale";
 import useLocationPermissions from "@/contexts/useLocationPermissions";
 import useMicPermissions from "@/contexts/useMicPermissions";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
@@ -26,7 +26,7 @@ import { useEffect, useRef, useState } from "react";
 
 const Camera = () => {
   // Contexts
-  const { t } = useLang();
+  const { t } = useLocale();
   const { themeConfig } = useThemeConfig();
   const { cameraPermissionsStatus } = useCameraPermission();
 
@@ -221,7 +221,7 @@ const Camera = () => {
 
 const Microphone = () => {
   // Contexts
-  const { t } = useLang();
+  const { t } = useLocale();
   const { themeConfig } = useThemeConfig();
   const { micPermissionsStatus } = useMicPermissions();
 
@@ -414,7 +414,7 @@ const Microphone = () => {
 
 const Location = () => {
   // Contexts
-  const { t } = useLang();
+  const { t } = useLocale();
   const { themeConfig } = useThemeConfig();
   const { locationPermissionsStatus } = useLocationPermissions();
 

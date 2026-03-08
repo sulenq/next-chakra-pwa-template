@@ -10,7 +10,7 @@ import { Tooltip } from "@/components/ui/tooltip";
 import { AppIcon } from "@/components/widgets/AppIcon";
 import FeedbackState from "@/components/widgets/FeedbackState";
 import { HScroll } from "@/components/widgets/HScroll";
-import useLang from "@/contexts/useLang";
+import useLocale from "@/contexts/useLocale";
 import { Box, HStack, Icon, StackProps, VStack } from "@chakra-ui/react";
 import {
   IconArrowAutofitWidth,
@@ -73,7 +73,7 @@ const PageControl = (props: PageControlProps) => {
   const { utils, page, numPages, ...restProps } = props;
 
   // Contexts
-  const { t } = useLang();
+  const { t } = useLocale();
 
   // States
   const [gotoPage, setGotoPage] = useState<number | null>(null);
@@ -164,7 +164,7 @@ const ZoomControl = (props: ZoomControlProps) => {
   const { utils, scale, ...restProps } = props;
 
   // Contexts
-  const { t } = useLang();
+  const { t } = useLocale();
 
   return (
     <HStack gap={0} {...restProps}>
@@ -262,7 +262,7 @@ export const PDFViewer = (props: PdfViewerProps) => {
   const { fileUrl, fileName, ...restProps } = props;
 
   // Contexts
-  const { t } = useLang();
+  const { t } = useLocale();
 
   // Refs
   const containerRef = useRef<HTMLDivElement>(null);

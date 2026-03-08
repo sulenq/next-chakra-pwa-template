@@ -6,7 +6,7 @@ import { Tooltip } from "@/components/ui/tooltip";
 import { LucideIcon } from "@/components/widgets/Icon";
 import { BASE_ICON_BOX_SIZE } from "@/constants/styles";
 import { ButtonVariant, DisclosureSizes } from "@/constants/types";
-import useLang from "@/contexts/useLang";
+import useLocale from "@/contexts/useLocale";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
 import usePopDisclosure from "@/hooks/usePopDisclosure";
 import useScreen from "@/hooks/useScreen";
@@ -62,7 +62,7 @@ export const TimePickerInput = (props: TimePickerInputProps) => {
   // Contexts
   const fc = useFieldContext();
   const { themeConfig } = useThemeConfig();
-  const { t } = useLang();
+  const { t } = useLocale();
 
   // Hooks
   const { open, onOpen } = usePopDisclosure(

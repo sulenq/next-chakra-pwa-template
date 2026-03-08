@@ -12,7 +12,7 @@ import { AppIcon } from "@/components/widgets/AppIcon";
 import { Confirmation } from "@/components/widgets/Confirmation";
 import { DotIndicator } from "@/components/widgets/Indicator";
 import { BatchOptionsTableOptionGenerator } from "@/constants/interfaces";
-import useLang from "@/contexts/useLang";
+import useLocale from "@/contexts/useLocale";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
 import { MenuRootProps } from "@chakra-ui/react";
 import { EllipsisIcon } from "lucide-react";
@@ -43,7 +43,7 @@ export const BatchOptions = (props: BatchOptionsProps) => {
   } = props;
 
   // Contexts
-  const { t } = useLang();
+  const { t } = useLocale();
   const { themeConfig } = useThemeConfig();
 
   return (
