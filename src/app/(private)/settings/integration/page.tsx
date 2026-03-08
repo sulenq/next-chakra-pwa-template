@@ -9,9 +9,7 @@ import FeedbackNoData from "@/components/widgets/FeedbackNoData";
 import FeedbackNotFound from "@/components/widgets/FeedbackNotFound";
 import FeedbackRetry from "@/components/widgets/FeedbackRetry";
 import { LucideIcon } from "@/components/widgets/Icon";
-import { ItemContainer } from "@/components/widgets/ItemContainer";
-import { ItemHeaderContainer } from "@/components/widgets/ItemHeaderContainer";
-import ItemHeaderTitle from "@/components/widgets/ItemHeaderTitle";
+import { Item } from "@/components/widgets/Item";
 import { BASE_ICON_BOX_SIZE } from "@/constants/styles";
 import useLang from "@/contexts/useLang";
 import useRenderTrigger from "@/contexts/useRenderTrigger";
@@ -78,15 +76,15 @@ const APIKeys = (props: any) => {
   }, [apiKeys]);
 
   return (
-    <ItemContainer borderless roundedless {...restProps}>
-      <ItemHeaderContainer borderless>
+    <Item.Container borderless roundedless {...restProps}>
+      <Item.HeaderContainer borderless>
         <HStack>
           <Icon boxSize={BASE_ICON_BOX_SIZE}>
             <LucideIcon icon={KeyRoundIcon} />
           </Icon>
-          <ItemHeaderTitle>API Keys</ItemHeaderTitle>
+          <Item.HeaderTitle>API Keys</Item.HeaderTitle>
         </HStack>
-      </ItemHeaderContainer>
+      </Item.HeaderContainer>
 
       <CContainer px={4}>
         <CContainer
@@ -138,7 +136,7 @@ const APIKeys = (props: any) => {
           </HStack>
         </CContainer>
       </CContainer>
-    </ItemContainer>
+    </Item.Container>
   );
 };
 

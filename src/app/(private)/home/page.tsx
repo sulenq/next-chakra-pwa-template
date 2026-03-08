@@ -11,9 +11,7 @@ import { ClampText } from "@/components/widgets/ClampText";
 import FeedbackNoData from "@/components/widgets/FeedbackNoData";
 import FeedbackRetry from "@/components/widgets/FeedbackRetry";
 import { DotIndicator } from "@/components/widgets/Indicator";
-import { ItemContainer } from "@/components/widgets/ItemContainer";
-import { ItemHeaderContainer } from "@/components/widgets/ItemHeaderContainer";
-import ItemHeaderTitle from "@/components/widgets/ItemHeaderTitle";
+import { Item } from "@/components/widgets/Item";
 import {
   PageContainer,
   PageContent,
@@ -90,7 +88,7 @@ const OverviewItem = (props: OverviewItemProps) => {
       {...restProps}
     >
       <HStack gap={1}>
-        <ItemHeaderTitle
+        <Item.HeaderTitle
           autoHeight
           color={"fg.muted"}
           popoverContent={
@@ -98,7 +96,7 @@ const OverviewItem = (props: OverviewItemProps) => {
           }
         >
           {"Chart Title"}
-        </ItemHeaderTitle>
+        </Item.HeaderTitle>
 
         <AppIcon icon={item.icon} boxSize={6} ml={"auto"} />
       </HStack>
@@ -364,16 +362,16 @@ const Chart1 = (props: any) => {
   }
 
   return (
-    <ItemContainer borderColor={"border.muted"} {...restProps}>
-      <ItemHeaderContainer borderless withUtils>
-        <ItemHeaderTitle
+    <Item.Container borderColor={"border.muted"} {...restProps}>
+      <Item.HeaderContainer borderless>
+        <Item.HeaderTitle
           color={"fg.muted"}
           popoverContent={
             "Lorem ipsum dolor sit amet consectetur adipisicing elit."
           }
         >
           {"Chart Title"}
-        </ItemHeaderTitle>
+        </Item.HeaderTitle>
 
         <Segmented
           items={["1D", "1W", "1M", "3M"]}
@@ -382,7 +380,7 @@ const Chart1 = (props: any) => {
           size={"xs"}
           mr={2}
         />
-      </ItemHeaderContainer>
+      </Item.HeaderContainer>
 
       <CContainer>
         <CContainer
@@ -509,7 +507,7 @@ const Chart1 = (props: any) => {
           </HStack>
         </HStack>
       </CContainer>
-    </ItemContainer>
+    </Item.Container>
   );
 };
 

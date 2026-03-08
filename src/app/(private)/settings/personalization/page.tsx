@@ -13,9 +13,7 @@ import { TimePickerInput } from "@/components/ui/time-picker-input";
 import { Tooltip } from "@/components/ui/tooltip";
 import { AppIcon } from "@/components/widgets/AppIcon";
 import { DotIndicator } from "@/components/widgets/Indicator";
-import { ItemContainer } from "@/components/widgets/ItemContainer";
-import { ItemHeaderContainer } from "@/components/widgets/ItemHeaderContainer";
-import ItemHeaderTitle from "@/components/widgets/ItemHeaderTitle";
+import { Item } from "@/components/widgets/Item";
 import { LocalSettingsHelperText } from "@/components/widgets/LocalSettingsHelperText";
 import { ToggleSettingContainer } from "@/components/widgets/SettingsShell";
 import { COLOR_PALETTES } from "@/constants/colors";
@@ -165,14 +163,14 @@ const DarkModeSection = () => {
   }, [colorMode]);
 
   return (
-    <ItemContainer borderless roundedless>
-      <ItemHeaderContainer borderless>
+    <Item.Container borderless roundedless>
+      <Item.HeaderContainer borderless>
         <HStack>
           <AppIcon icon={EclipseIcon} />
 
-          <ItemHeaderTitle>{t.dark_mode}</ItemHeaderTitle>
+          <Item.HeaderTitle>{t.dark_mode}</Item.HeaderTitle>
         </HStack>
-      </ItemHeaderContainer>
+      </Item.HeaderContainer>
 
       <CContainer px={4}>
         <CContainer
@@ -186,7 +184,7 @@ const DarkModeSection = () => {
           <ADMSetting />
         </CContainer>
       </CContainer>
-    </ItemContainer>
+    </Item.Container>
   );
 };
 
@@ -199,14 +197,14 @@ const AccentColorSection = () => {
   const containerRef = useRef<HTMLDivElement>(null);
 
   return (
-    <ItemContainer ref={containerRef} borderless roundedless>
-      <ItemHeaderContainer borderless>
+    <Item.Container ref={containerRef} borderless roundedless>
+      <Item.HeaderContainer borderless>
         <HStack>
           <AppIcon icon={SwatchBookIcon} />
 
-          <ItemHeaderTitle>{t.accent_color}</ItemHeaderTitle>
+          <Item.HeaderTitle>{t.accent_color}</Item.HeaderTitle>
         </HStack>
-      </ItemHeaderContainer>
+      </Item.HeaderContainer>
 
       <CContainer px={4}>
         <CContainer
@@ -270,7 +268,7 @@ const AccentColorSection = () => {
           </SimpleGrid>
         </CContainer>
       </CContainer>
-    </ItemContainer>
+    </Item.Container>
   );
 };
 
@@ -294,14 +292,14 @@ const RoundedSection = () => {
   }
 
   return (
-    <ItemContainer ref={containerRef} borderless roundedless>
-      <ItemHeaderContainer borderless>
+    <Item.Container ref={containerRef} borderless roundedless>
+      <Item.HeaderContainer borderless>
         <HStack>
           <AppIcon icon={SquareRoundCornerIcon} />
 
-          <ItemHeaderTitle>{t.rounded}</ItemHeaderTitle>
+          <Item.HeaderTitle>{t.rounded}</Item.HeaderTitle>
         </HStack>
-      </ItemHeaderContainer>
+      </Item.HeaderContainer>
 
       <CContainer px={4}>
         <CContainer
@@ -380,7 +378,7 @@ const RoundedSection = () => {
           </SimpleGrid>
         </CContainer>
       </CContainer>
-    </ItemContainer>
+    </Item.Container>
   );
 };
 
@@ -396,14 +394,14 @@ const ExampleUISection = () => {
   >(null);
 
   return (
-    <ItemContainer borderless roundedless>
-      <ItemHeaderContainer borderless>
+    <Item.Container borderless roundedless>
+      <Item.HeaderContainer borderless>
         <HStack>
           <AppIcon icon={LayoutPanelLeftIcon} />
 
-          <ItemHeaderTitle>{t.example_UI}</ItemHeaderTitle>
+          <Item.HeaderTitle>{t.example_UI}</Item.HeaderTitle>
         </HStack>
-      </ItemHeaderContainer>
+      </Item.HeaderContainer>
 
       <CContainer px={4}>
         <HStack
@@ -463,7 +461,7 @@ const ExampleUISection = () => {
           <Switch colorPalette={themeConfig.colorPalette} />
         </HStack>
       </CContainer>
-    </ItemContainer>
+    </Item.Container>
   );
 };
 

@@ -16,9 +16,7 @@ import FeedbackNoData from "@/components/widgets/FeedbackNoData";
 import FeedbackNotFound from "@/components/widgets/FeedbackNotFound";
 import FeedbackRetry from "@/components/widgets/FeedbackRetry";
 import { ImgViewer } from "@/components/widgets/ImgViewer";
-import { ItemContainer } from "@/components/widgets/ItemContainer";
-import { ItemHeaderContainer } from "@/components/widgets/ItemHeaderContainer";
-import ItemHeaderTitle from "@/components/widgets/ItemHeaderTitle";
+import { Item } from "@/components/widgets/Item";
 import { Limitation } from "@/components/widgets/Limitation";
 import { Pagination } from "@/components/widgets/Pagination";
 import {
@@ -119,16 +117,16 @@ const PersonalInformation = (props: PersonalInformationProps) => {
   }, [initialData]);
 
   return (
-    <ItemContainer borderless roundedless>
-      <ItemHeaderContainer borderless>
+    <Item.Container borderless roundedless>
+      <Item.HeaderContainer borderless>
         <HStack>
           <AppIcon icon={UserIcon} />
-          <ItemHeaderTitle>{t.personal_information}</ItemHeaderTitle>
+          <Item.HeaderTitle>{t.personal_information}</Item.HeaderTitle>
         </HStack>
-      </ItemHeaderContainer>
+      </Item.HeaderContainer>
 
       <CContainer px={4}>
-        <ItemContainer>
+        <Item.Container>
           <CContainer p={4}>
             <form
               id="personal-info-form"
@@ -214,9 +212,9 @@ const PersonalInformation = (props: PersonalInformationProps) => {
               </Btn>
             </HStack>
           </CContainer>
-        </ItemContainer>
+        </Item.Container>
       </CContainer>
-    </ItemContainer>
+    </Item.Container>
   );
 };
 
@@ -294,17 +292,17 @@ const AuthLog = () => {
   };
 
   return (
-    <ItemContainer ref={containerRef} borderless roundedless>
-      <ItemHeaderContainer borderless>
+    <Item.Container ref={containerRef} borderless roundedless>
+      <Item.HeaderContainer borderless>
         <HStack>
           <AppIcon icon={LogInIcon} />
 
-          <ItemHeaderTitle>{t.my_auth_logs}</ItemHeaderTitle>
+          <Item.HeaderTitle>{t.my_auth_logs}</Item.HeaderTitle>
         </HStack>
-      </ItemHeaderContainer>
+      </Item.HeaderContainer>
 
       <CContainer px={4}>
-        <ItemContainer>
+        <Item.Container>
           <CContainer p={4} pb={3}>
             <SearchInput
               onChange={(inputValue) => {
@@ -345,9 +343,9 @@ const AuthLog = () => {
               totalPage={pagination?.meta?.totalPage}
             />
           </HStack>
-        </ItemContainer>
+        </Item.Container>
       </CContainer>
-    </ItemContainer>
+    </Item.Container>
   );
 };
 
@@ -441,17 +439,17 @@ const ActivityLog = () => {
   };
 
   return (
-    <ItemContainer ref={containerRef} borderless roundedless>
-      <ItemHeaderContainer borderless>
+    <Item.Container ref={containerRef} borderless roundedless>
+      <Item.HeaderContainer borderless>
         <HStack>
           <AppIcon icon={ActivityIcon} />
 
-          <ItemHeaderTitle>{t.my_activity_logs}</ItemHeaderTitle>
+          <Item.HeaderTitle>{t.my_activity_logs}</Item.HeaderTitle>
         </HStack>
-      </ItemHeaderContainer>
+      </Item.HeaderContainer>
 
       <CContainer px={4}>
-        <ItemContainer>
+        <Item.Container>
           <CContainer p={4} pb={3}>
             <SearchInput
               onChange={(inputValue) => {
@@ -492,9 +490,9 @@ const ActivityLog = () => {
               totalPage={pagination?.meta?.totalPage}
             />
           </HStack>
-        </ItemContainer>
+        </Item.Container>
       </CContainer>
-    </ItemContainer>
+    </Item.Container>
   );
 };
 

@@ -8,9 +8,7 @@ import FeedbackNoData from "@/components/widgets/FeedbackNoData";
 import FeedbackNotFound from "@/components/widgets/FeedbackNotFound";
 import FeedbackRetry from "@/components/widgets/FeedbackRetry";
 import { LucideIcon } from "@/components/widgets/Icon";
-import { ItemContainer } from "@/components/widgets/ItemContainer";
-import { ItemHeaderContainer } from "@/components/widgets/ItemHeaderContainer";
-import ItemHeaderTitle from "@/components/widgets/ItemHeaderTitle";
+import { Item } from "@/components/widgets/Item";
 import { Limitation } from "@/components/widgets/Limitation";
 import { MiniUser } from "@/components/widgets/MiniUser";
 import { Pagination } from "@/components/widgets/Pagination";
@@ -112,18 +110,18 @@ const ActivityLog = () => {
   };
 
   return (
-    <ItemContainer borderless roundedless>
-      <ItemHeaderContainer borderless>
+    <Item.Container borderless roundedless>
+      <Item.HeaderContainer borderless>
         <HStack>
           <Icon boxSize={BASE_ICON_BOX_SIZE}>
             <LucideIcon icon={ActivityIcon} />
           </Icon>
-          <ItemHeaderTitle>{t.activity_logs}</ItemHeaderTitle>
+          <Item.HeaderTitle>{t.activity_logs}</Item.HeaderTitle>
         </HStack>
-      </ItemHeaderContainer>
+      </Item.HeaderContainer>
 
       <CContainer px={4}>
-        <ItemContainer>
+        <Item.Container>
           <CContainer p={4} pb={3}>
             <SearchInput
               onChange={(inputValue) => {
@@ -158,9 +156,9 @@ const ActivityLog = () => {
               totalPage={pagination?.meta?.totalPage}
             />
           </HStack>
-        </ItemContainer>
+        </Item.Container>
       </CContainer>
-    </ItemContainer>
+    </Item.Container>
   );
 };
 

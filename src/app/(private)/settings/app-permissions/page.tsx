@@ -7,8 +7,7 @@ import { P } from "@/components/ui/p";
 import { Switch } from "@/components/ui/switch";
 import { toaster } from "@/components/ui/toaster";
 import { AppIcon } from "@/components/widgets/AppIcon";
-import { ItemContainer } from "@/components/widgets/ItemContainer";
-import { ItemHeaderContainer } from "@/components/widgets/ItemHeaderContainer";
+import { Item } from "@/components/widgets/Item";
 import { LocalSettingsHelperText } from "@/components/widgets/LocalSettingsHelperText";
 import { MicVolumeBar } from "@/components/widgets/MicVolumeBar";
 import { ToggleSettingContainer } from "@/components/widgets/SettingsShell";
@@ -164,8 +163,8 @@ const Camera = () => {
   };
 
   return (
-    <ItemContainer borderless roundedless>
-      <ItemHeaderContainer borderless>
+    <Item.Container borderless roundedless>
+      <Item.HeaderContainer borderless>
         <HStack>
           <AppIcon icon={CameraIcon} />
 
@@ -173,7 +172,7 @@ const Camera = () => {
         </HStack>
 
         <Test />
-      </ItemHeaderContainer>
+      </Item.HeaderContainer>
 
       <CContainer px={4}>
         <CContainer
@@ -216,7 +215,7 @@ const Camera = () => {
           )}
         </CContainer>
       </CContainer>
-    </ItemContainer>
+    </Item.Container>
   );
 };
 
@@ -357,8 +356,8 @@ const Microphone = () => {
   };
 
   return (
-    <ItemContainer borderless roundedless>
-      <ItemHeaderContainer borderless>
+    <Item.Container borderless roundedless>
+      <Item.HeaderContainer borderless>
         <HStack>
           <AppIcon icon={MicIcon} />
 
@@ -366,7 +365,7 @@ const Microphone = () => {
         </HStack>
 
         <Test />
-      </ItemHeaderContainer>
+      </Item.HeaderContainer>
 
       <CContainer px={4}>
         <CContainer
@@ -409,7 +408,7 @@ const Microphone = () => {
           )}
         </CContainer>
       </CContainer>
-    </ItemContainer>
+    </Item.Container>
   );
 };
 
@@ -558,8 +557,8 @@ const Location = () => {
   };
 
   return (
-    <ItemContainer borderless roundedless>
-      <ItemHeaderContainer borderless>
+    <Item.Container borderless roundedless>
+      <Item.HeaderContainer borderless>
         <HStack>
           <AppIcon icon={MapPinIcon} />
 
@@ -567,7 +566,7 @@ const Location = () => {
         </HStack>
 
         <Test />
-      </ItemHeaderContainer>
+      </Item.HeaderContainer>
 
       <CContainer px={4}>
         <CContainer
@@ -609,7 +608,7 @@ const Location = () => {
           )}
         </CContainer>
       </CContainer>
-    </ItemContainer>
+    </Item.Container>
   );
 };
 

@@ -9,9 +9,7 @@ import { Tooltip } from "@/components/ui/tooltip";
 import { AppIcon } from "@/components/widgets/AppIcon";
 import FeedbackNotFound from "@/components/widgets/FeedbackNotFound";
 import { DotIndicator } from "@/components/widgets/Indicator";
-import { ItemContainer } from "@/components/widgets/ItemContainer";
-import { ItemHeaderContainer } from "@/components/widgets/ItemHeaderContainer";
-import ItemHeaderTitle from "@/components/widgets/ItemHeaderTitle";
+import { Item } from "@/components/widgets/Item";
 import { Limitation } from "@/components/widgets/Limitation";
 import { LocalSettingsHelperText } from "@/components/widgets/LocalSettingsHelperText";
 import { Pagination } from "@/components/widgets/Pagination";
@@ -53,13 +51,13 @@ const Language = () => {
   const { lang, setLang, t } = useLang();
 
   return (
-    <ItemContainer borderless roundedless>
-      <ItemHeaderContainer borderless>
+    <Item.Container borderless roundedless>
+      <Item.HeaderContainer borderless>
         <HStack>
           <AppIcon icon={LanguagesIcon} />
-          <ItemHeaderTitle>{t.language}</ItemHeaderTitle>
+          <Item.HeaderTitle>{t.language}</Item.HeaderTitle>
         </HStack>
-      </ItemHeaderContainer>
+      </Item.HeaderContainer>
 
       <CContainer px={4}>
         <CContainer
@@ -106,7 +104,7 @@ const Language = () => {
           </HStack>
         </CContainer>
       </CContainer>
-    </ItemContainer>
+    </Item.Container>
   );
 };
 const Timezone = () => {
@@ -141,12 +139,12 @@ const Timezone = () => {
   }, [search, limit]);
 
   return (
-    <ItemContainer ref={containerRef} borderless roundedless>
-      <ItemHeaderContainer borderless>
+    <Item.Container ref={containerRef} borderless roundedless>
+      <Item.HeaderContainer borderless>
         <HStack>
           <AppIcon icon={GlobeIcon} />
 
-          <ItemHeaderTitle>{capitalizeWords(t.timezone)}</ItemHeaderTitle>
+          <Item.HeaderTitle>{capitalizeWords(t.timezone)}</Item.HeaderTitle>
         </HStack>
 
         <HStack>
@@ -164,7 +162,7 @@ const Timezone = () => {
             Auto
           </Btn>
         </HStack>
-      </ItemHeaderContainer>
+      </Item.HeaderContainer>
 
       <CContainer px={4}>
         <CContainer
@@ -255,7 +253,7 @@ const Timezone = () => {
           </HStack>
         </CContainer>
       </CContainer>
-    </ItemContainer>
+    </Item.Container>
   );
 };
 const DateFormat = () => {
@@ -265,13 +263,13 @@ const DateFormat = () => {
   const { dateFormat, setDateFormat } = useDateFormat();
 
   return (
-    <ItemContainer borderless roundedless>
-      <ItemHeaderContainer borderless>
+    <Item.Container borderless roundedless>
+      <Item.HeaderContainer borderless>
         <HStack>
           <AppIcon icon={CalendarIcon} />
-          <ItemHeaderTitle>{t.date_format}</ItemHeaderTitle>
+          <Item.HeaderTitle>{t.date_format}</Item.HeaderTitle>
         </HStack>
-      </ItemHeaderContainer>
+      </Item.HeaderContainer>
 
       <CContainer px={4}>
         <CContainer
@@ -324,7 +322,7 @@ const DateFormat = () => {
           </SimpleGrid>
         </CContainer>
       </CContainer>
-    </ItemContainer>
+    </Item.Container>
   );
 };
 const TimeFormat = () => {
@@ -334,14 +332,14 @@ const TimeFormat = () => {
   const { timeFormat, setTimeFormat } = useTimeFormat();
 
   return (
-    <ItemContainer borderless roundedless>
-      <ItemHeaderContainer borderless>
+    <Item.Container borderless roundedless>
+      <Item.HeaderContainer borderless>
         <HStack>
           <AppIcon icon={HourglassIcon} />
 
-          <ItemHeaderTitle>{t.time_format}</ItemHeaderTitle>
+          <Item.HeaderTitle>{t.time_format}</Item.HeaderTitle>
         </HStack>
-      </ItemHeaderContainer>
+      </Item.HeaderContainer>
 
       <CContainer px={4}>
         <CContainer
@@ -388,7 +386,7 @@ const TimeFormat = () => {
           </SimpleGrid>
         </CContainer>
       </CContainer>
-    </ItemContainer>
+    </Item.Container>
   );
 };
 const UOMFormat = () => {
@@ -398,13 +396,13 @@ const UOMFormat = () => {
   const { UOM, setUOM } = useUOMFormat();
 
   return (
-    <ItemContainer borderless roundedless>
-      <ItemHeaderContainer borderless>
+    <Item.Container borderless roundedless>
+      <Item.HeaderContainer borderless>
         <HStack>
           <AppIcon icon={RulerDimensionLineIcon} />
-          <ItemHeaderTitle>{t.UOM_format}</ItemHeaderTitle>
+          <Item.HeaderTitle>{t.UOM_format}</Item.HeaderTitle>
         </HStack>
-      </ItemHeaderContainer>
+      </Item.HeaderContainer>
 
       <CContainer px={4}>
         <CContainer
@@ -460,7 +458,7 @@ const UOMFormat = () => {
           </SimpleGrid>
         </CContainer>
       </CContainer>
-    </ItemContainer>
+    </Item.Container>
   );
 };
 

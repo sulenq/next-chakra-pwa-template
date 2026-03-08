@@ -9,7 +9,6 @@ import { AppIcon } from "@/components/widgets/AppIcon";
 import { Confirmation } from "@/components/widgets/Confirmation";
 import { DataDisplayToggle } from "@/components/widgets/DataDisplayToggle";
 import { DataGrid } from "@/components/widgets/DataGrid";
-import { DataGridItem } from "@/components/widgets/DataGridItem";
 import { DataTable } from "@/components/widgets/DataTable";
 import FeedbackNoData from "@/components/widgets/FeedbackNoData";
 import FeedbackRetry from "@/components/widgets/FeedbackRetry";
@@ -82,6 +81,7 @@ const Create = () => {
     </>
   );
 };
+
 const DataUtils = (props: any) => {
   // Props
   const { filter, setFilter, ...restProps } = props;
@@ -215,6 +215,7 @@ const Update = (props: any) => {
     </>
   );
 };
+
 const Restore = (props: any) => {
   const ID = `${PREFIX_ID}_restore`;
 
@@ -281,6 +282,7 @@ const Restore = (props: any) => {
     </Confirmation.Trigger>
   );
 };
+
 const Delete = (props: any) => {
   const ID = `${PREFIX_ID}_delete`;
 
@@ -516,7 +518,7 @@ const Data = (props: any) => {
           const resolvedItem: Interface__Data = item;
 
           return (
-            <DataGridItem
+            <DataGrid.Item
               key={resolvedItem.id}
               item={{
                 id: resolvedItem.id,
