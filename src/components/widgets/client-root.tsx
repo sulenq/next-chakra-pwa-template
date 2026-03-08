@@ -7,7 +7,6 @@ import { LoadingBar } from "@/components/widgets/loading-bar";
 import { APP } from "@/constants/_meta";
 import { SVGS_PATH } from "@/constants/paths";
 import useADM from "@/contexts/useADM";
-import useOfflineAlert from "@/hooks/useOfflineAlert";
 import { Center } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 
@@ -59,9 +58,6 @@ export default function ClientRoot(props: ClientRootProps) {
     mountedGlobal = true;
     setMounted(true);
   }, []);
-
-  // Handle offline alert
-  useOfflineAlert({ mounted });
 
   // Handle adaptive dark mode
   useEffect(() => {

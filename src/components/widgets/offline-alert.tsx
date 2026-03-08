@@ -1,31 +1,71 @@
-import useOffline from "@/contexts/disclosure/useOffilne";
+import { Btn } from "@/components/ui/btn";
+import { Disclosure } from "@/components/ui/disclosure";
+import { EmptyState } from "@/components/ui/empty-state";
+import { toaster } from "@/components/ui/toaster";
+import { BackButton } from "@/components/widgets/back-button";
+import { useAlerts } from "@/contexts/useAlerts";
 import { useLocale } from "@/contexts/useLocale";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
-import { back } from "@/utils/client";
-import { Icon } from "@chakra-ui/react";
+import { Icon, useDisclosure } from "@chakra-ui/react";
 import { IconAccessPointOff } from "@tabler/icons-react";
-import { useEffect } from "react";
-import { Disclosure } from "@/components/ui/disclosure";
-import { BackButton } from "@/components/widgets/back-button";
-
-import { usePopDisclosure } from "@/hooks/usePopDisclosure";
-import { disclosureId } from "@/utils/disclosure";
-import { Btn } from "@/components/ui/btn";
-import { EmptyState } from "@/components/ui/empty-state";
+import { useEffect, useRef } from "react";
 
 export const OfflineAlert = () => {
   // Contexts
   const { t } = useLocale();
   const { themeConfig } = useThemeConfig();
-  const { offline } = useOffline();
+  const isOffline = useAlerts((s) => s.alerts["offline"] ?? false);
+  const showAlert = useAlerts((s) => s.showAlert);
+  const hideAlert = useAlerts((s) => s.hideAlert);
 
-  // Utils
-  const { open, onOpen } = usePopDisclosure(disclosureId("offline-alert"));
+  // Refs
+  const lastStatus = useRef(navigator.onLine);
 
+  // Hooks
+  const { open, onOpen, onClose } = useDisclosure();
+
+  // Handler
   useEffect(() => {
-    if (offline) onOpen();
-    if (!offline && open) back();
-  }, [offline]);
+    function handleOnline() {
+      if (!lastStatus.current) {
+        lastStatus.current = true;
+
+        hideAlert("offline");
+
+        toaster.success({
+          id: "success-online",
+          title: t.success_online.title,
+          description: t.success_online.description,
+        });
+      }
+    }
+
+    function handleOffline() {
+      if (lastStatus.current) {
+        lastStatus.current = false;
+        showAlert("offline");
+      }
+    }
+
+    window.addEventListener("online", handleOnline);
+    window.addEventListener("offline", handleOffline);
+
+    if (!navigator.onLine) handleOffline();
+
+    return () => {
+      window.removeEventListener("online", handleOnline);
+      window.removeEventListener("offline", handleOffline);
+    };
+  }, [showAlert, hideAlert, t]);
+
+  // State handler
+  useEffect(() => {
+    if (isOffline) {
+      onOpen();
+    } else {
+      onClose();
+    }
+  }, [isOffline]);
 
   return (
     <Disclosure.Root open={open} lazyLoad size={"xs"} role={"alertdialog"}>
