@@ -14,7 +14,7 @@ export default function FeedbackForbidden(props: FeedbackStateProps) {
   // Props
   const { title, description, icon, children, ...restProps } = props;
 
-  // Hooks
+  // Contexts
   const { t } = useLang();
 
   return (

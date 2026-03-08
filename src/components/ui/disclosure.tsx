@@ -1,5 +1,6 @@
 "use client";
 
+import { Btn } from "@/components/ui/btn";
 import { CContainer } from "@/components/ui/c-container";
 import {
   DialogActionTrigger,
@@ -25,6 +26,8 @@ import {
   DrawerRoot,
   DrawerTrigger,
 } from "@/components/ui/drawer";
+import { P } from "@/components/ui/p";
+import { AppIcon } from "@/components/widgets/AppIcon";
 import { SM_SCREEN_W_NUMBER } from "@/constants/styles";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
 import { useIsSmScreenWidth } from "@/hooks/useIsSmScreenWidth";
@@ -46,6 +49,8 @@ import {
   DrawerHeaderProps,
   HStack,
 } from "@chakra-ui/react";
+import { MaximizeIcon, MinimizeIcon, XIcon } from "lucide-react";
+import { useEffect, useState } from "react";
 
 const DisclosureRoot = ({ children, ...props }: any) => {
   // Utils
@@ -148,6 +153,115 @@ const DisclosureHeader = ({ children, ...props }: DisclosureHeaderProps) => {
     >
       {children}
     </DialogHeader>
+  );
+};
+
+export interface DisclosureHeaderContentProps {
+  title?: string;
+  withCloseButton?: boolean;
+  withMaximizeButton?: boolean;
+  onMaximizeChange?: (maximize: boolean) => void;
+  content?: any;
+  prefix?: "drawer" | "dialog";
+  children?: any;
+}
+export const DisclosureHeaderContent = (
+  props: DisclosureHeaderContentProps,
+) => {
+  // Props
+  const {
+    title,
+    withCloseButton = true,
+    withMaximizeButton = false,
+    onMaximizeChange,
+    prefix,
+    content,
+    children,
+    ...restProps
+  } = props;
+
+  // States
+  const [maximize, setMaximize] = useState(false);
+
+  useEffect(() => {
+    onMaximizeChange?.(maximize);
+  }, [maximize]);
+
+  return (
+    <HStack justify={"space-between"} w={"full"} {...restProps}>
+      {content ? (
+        content
+      ) : (
+        <P fontWeight={"semibold"} ml={!prefix ? [0, null, 0] : ""}>
+          {title}
+        </P>
+      )}
+
+      <HStack ml={"auto"} gap={[0, null, 2]}>
+        {children}
+
+        {withMaximizeButton && (
+          <Btn
+            clicky={false}
+            iconButton
+            size={["xs", null, "2xs"]}
+            rounded={"full"}
+            variant={["ghost", null, "subtle"]}
+            onClick={() => {
+              setMaximize((ps) => !ps);
+            }}
+          >
+            <AppIcon
+              icon={maximize ? MinimizeIcon : MaximizeIcon}
+              boxSize={3.5}
+            />
+          </Btn>
+        )}
+
+        {withCloseButton && (
+          <>
+            {prefix && (
+              <>
+                {prefix === "dialog" && (
+                  <DialogCloseTrigger
+                    rounded={"full"}
+                    onClick={back}
+                    pos={"static"}
+                    // top={"12px"}
+                    // right={"12px"}
+                    // mt={"-2px"}
+                    // mr={"-6px"}
+                  />
+                )}
+
+                {prefix === "drawer" && (
+                  <DrawerCloseTrigger
+                    rounded={"full"}
+                    onClick={back}
+                    pos={"static"}
+                    // top={3}
+                    // right={"10px"}
+                  />
+                )}
+              </>
+            )}
+
+            {!prefix && (
+              <Btn
+                iconButton
+                clicky={false}
+                rounded={"full"}
+                variant={["ghost", null, "subtle"]}
+                size={["xs", null, "2xs"]}
+                onClick={back}
+              >
+                <AppIcon icon={XIcon} boxSize={4} />
+              </Btn>
+            )}
+          </>
+        )}
+      </HStack>
+    </HStack>
   );
 };
 
@@ -274,14 +388,15 @@ const DisclosureCloseTrigger = ({
   );
 };
 
-export {
-  DisclosureActionTrigger,
-  DisclosureBackdrop,
-  DisclosureBody,
-  DisclosureCloseTrigger,
-  DisclosureContent,
-  DisclosureFooter,
-  DisclosureHeader,
-  DisclosureRoot,
-  DisclosureTrigger,
+export const Disclosure = {
+  Root: DisclosureRoot,
+  Content: DisclosureContent,
+  Header: DisclosureHeader,
+  HeaderContent: DisclosureHeaderContent,
+  Body: DisclosureBody,
+  Footer: DisclosureFooter,
+  Backdrop: DisclosureBackdrop,
+  Trigger: DisclosureTrigger,
+  ActionTrigger: DisclosureActionTrigger,
+  CloseTrigger: DisclosureCloseTrigger,
 };

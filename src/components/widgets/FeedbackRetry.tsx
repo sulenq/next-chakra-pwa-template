@@ -20,8 +20,8 @@ export default function FeedbackRetry(props: FeedbackRetryProps) {
   const { title, description, icon, onRetry, children, ...restProps } = props;
 
   // Contexts
-  const { themeConfig } = useThemeConfig();
   const { t } = useLang();
+  const { themeConfig } = useThemeConfig();
 
   return (
     <CContainer

@@ -2,11 +2,9 @@
 
 import { Btn, BtnProps } from "@/components/ui/btn";
 import { Tooltip } from "@/components/ui/tooltip";
-import { LucideIcon } from "@/components/widgets/Icon";
-import { BASE_ICON_BOX_SIZE } from "@/constants/styles";
+import { AppIcon } from "@/components/widgets/AppIcon";
 import { useDataDisplay } from "@/contexts/useDataDisplay";
-import { Icon } from "@chakra-ui/react";
-import { LayoutGridIcon, Table2Icon } from "lucide-react";
+import { LayoutGridIcon, TableIcon } from "lucide-react";
 
 interface DataDisplayToggleProps extends BtnProps {
   navKey: string;
@@ -19,7 +17,7 @@ export function DataDisplayToggle(props: DataDisplayToggleProps) {
   const displays = useDataDisplay((s) => s.displays);
   const setDisplay = useDataDisplay((s) => s.setDisplay);
 
-  // States
+  // Derived Values
   const displayTable = (displays[navKey] || "table") === "table";
 
   return (
@@ -30,13 +28,7 @@ export function DataDisplayToggle(props: DataDisplayToggleProps) {
         onClick={() => setDisplay(navKey, displayTable ? "grid" : "table")}
         {...restProps}
       >
-        <Icon boxSize={BASE_ICON_BOX_SIZE}>
-          {displayTable ? (
-            <LucideIcon icon={Table2Icon} />
-          ) : (
-            <LucideIcon icon={LayoutGridIcon} />
-          )}
-        </Icon>
+        <AppIcon icon={displayTable ? TableIcon : LayoutGridIcon} />
       </Btn>
     </Tooltip>
   );

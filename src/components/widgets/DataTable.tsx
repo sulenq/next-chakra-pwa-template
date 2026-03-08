@@ -45,7 +45,7 @@ export interface DataTableProps extends Omit<StackProps, "page"> {
   loading?: boolean;
   contentContainerProps?: StackProps;
 }
-export const DataTable = (props: DataTableProps) => {
+export const DataTableDisplay = (props: DataTableProps) => {
   // Props
   const {
     trBodyProps,
@@ -559,4 +559,8 @@ export const DataTable = (props: DataTableProps) => {
       )}
     </CContainer>
   );
+};
+
+export const DataTable = {
+  Display: DataTableDisplay,
 };

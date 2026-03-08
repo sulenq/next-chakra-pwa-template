@@ -9,7 +9,7 @@ import { NavLink } from "@/components/ui/nav-link";
 import { P } from "@/components/ui/p";
 import { Popover } from "@/components/ui/popover";
 import { AppIcon } from "@/components/widgets/AppIcon";
-import { ConfirmationDisclosureTrigger } from "@/components/widgets/ConfirmationDisclosure";
+import { Confirmation } from "@/components/widgets/Confirmation";
 import { LucideIcon } from "@/components/widgets/Icon";
 import { DotIndicator } from "@/components/widgets/Indicator";
 import { SVGS_PATH } from "@/constants/paths";
@@ -157,7 +157,7 @@ export const ProfileMenu = (props: ProfileMenuProps) => {
           );
         })}
 
-        <ConfirmationDisclosureTrigger
+        <Confirmation.Trigger
           id="signout"
           title="Sign out"
           description={t.msg_signout}
@@ -183,7 +183,7 @@ export const ProfileMenu = (props: ProfileMenuProps) => {
             </Icon>
             Sign Out
           </Btn>
-        </ConfirmationDisclosureTrigger>
+        </Confirmation.Trigger>
       </CContainer>
     </CContainer>
   );

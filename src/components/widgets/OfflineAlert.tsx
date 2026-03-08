@@ -5,14 +5,7 @@ import { back } from "@/utils/client";
 import { Icon } from "@chakra-ui/react";
 import { IconAccessPointOff } from "@tabler/icons-react";
 import { useEffect } from "react";
-import {
-  DisclosureBody,
-  DisclosureContent,
-  DisclosureFooter,
-  DisclosureHeader,
-  DisclosureRoot,
-} from "@/components/ui/disclosure";
-import { DisclosureHeaderContent } from "@/components/ui/disclosure-header-content";
+import { Disclosure } from "@/components/ui/disclosure";
 import { BackButton } from "@/components/widgets/BackButton";
 
 import usePopDisclosure from "@/hooks/usePopDisclosure";
@@ -22,9 +15,9 @@ import { EmptyState } from "@/components/ui/empty-state";
 
 export const OfflineAlert = () => {
   // Contexts
-  const { offline } = useOffline();
-  const { themeConfig } = useThemeConfig();
   const { t } = useLang();
+  const { themeConfig } = useThemeConfig();
+  const { offline } = useOffline();
 
   // Utils
   const { open, onOpen } = usePopDisclosure(disclosureId("offline-alert"));
@@ -35,13 +28,13 @@ export const OfflineAlert = () => {
   }, [offline]);
 
   return (
-    <DisclosureRoot open={open} lazyLoad size={"xs"} role={"alertdialog"}>
-      <DisclosureContent>
-        <DisclosureHeader border={"none"}>
-          <DisclosureHeaderContent title={``} />
-        </DisclosureHeader>
+    <Disclosure.Root open={open} lazyLoad size={"xs"} role={"alertdialog"}>
+      <Disclosure.Content>
+        <Disclosure.Header border={"none"}>
+          <Disclosure.HeaderContent title={``} />
+        </Disclosure.Header>
 
-        <DisclosureBody>
+        <Disclosure.Body>
           <EmptyState
             icon={
               <Icon>
@@ -54,9 +47,9 @@ export const OfflineAlert = () => {
             m={"auto"}
             mb={12}
           />
-        </DisclosureBody>
+        </Disclosure.Body>
 
-        <DisclosureFooter>
+        <Disclosure.Footer>
           <BackButton />
           <Btn
             colorPalette={themeConfig.colorPalette}
@@ -66,8 +59,8 @@ export const OfflineAlert = () => {
           >
             Refresh
           </Btn>
-        </DisclosureFooter>
-      </DisclosureContent>
-    </DisclosureRoot>
+        </Disclosure.Footer>
+      </Disclosure.Content>
+    </Disclosure.Root>
   );
 };

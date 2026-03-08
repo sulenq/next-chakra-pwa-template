@@ -1,11 +1,11 @@
+import { Btn } from "@/components/ui/btn";
 import { CContainer } from "@/components/ui/c-container";
-import {
-  DisclosureBody,
-  DisclosureContent,
-  DisclosureFooter,
-  DisclosureHeader,
-  DisclosureRoot,
-} from "@/components/ui/disclosure";
+import { Disclosure } from "@/components/ui/disclosure";
+import { Field } from "@/components/ui/field";
+import { HelperText } from "@/components/ui/helper-text";
+import { PasswordInput } from "@/components/ui/password-input";
+import { StringInput } from "@/components/ui/string-input";
+import { BackButton } from "@/components/widgets/BackButton";
 import useLang from "@/contexts/useLang";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
 import useRequest from "@/hooks/useRequest";
@@ -20,13 +20,6 @@ import {
 import { useFormik } from "formik";
 import { useEffect, useState } from "react";
 import * as yup from "yup";
-import { Btn } from "@/components/ui/btn";
-import { DisclosureHeaderContent } from "@/components/ui/disclosure-header-content";
-import { Field } from "@/components/ui/field";
-import { HelperText } from "@/components/ui/helper-text";
-import { PasswordInput } from "@/components/ui/password-input";
-import { StringInput } from "@/components/ui/string-input";
-import { BackButton } from "@/components/widgets/BackButton";
 
 import usePopDisclosure from "@/hooks/usePopDisclosure";
 import { disclosureId } from "@/utils/disclosure";
@@ -79,7 +72,7 @@ const Step1 = (props: any) => {
 
   return (
     <>
-      <DisclosureBody>
+      <Disclosure.Body>
         <CContainer>
           <form>
             <Field
@@ -101,11 +94,9 @@ const Step1 = (props: any) => {
 
           <HelperText>{t.msg_reset_password_step_1}</HelperText>
         </CContainer>
-      </DisclosureBody>
-
-      <DisclosureFooter>
+      </Disclosure.Body>
+      <Disclosure.Footer>
         <BackButton />
-
         <Btn
           colorPalette={themeConfig.colorPalette}
           onClick={formik.submitForm}
@@ -113,7 +104,7 @@ const Step1 = (props: any) => {
         >
           {t.recieve} OTP
         </Btn>
-      </DisclosureFooter>
+      </Disclosure.Footer>
     </>
   );
 };
@@ -164,7 +155,7 @@ const Step2 = (props: any) => {
 
   return (
     <>
-      <DisclosureBody>
+      <Disclosure.Body>
         <CContainer>
           <form>
             <Field
@@ -205,11 +196,9 @@ const Step2 = (props: any) => {
           )}`}</HelperText>
           <HelperText>{t.msg_reset_password_step_2}</HelperText>
         </CContainer>
-      </DisclosureBody>
-
-      <DisclosureFooter>
+      </Disclosure.Body>
+      <Disclosure.Footer>
         <BackButton />
-
         <Btn
           colorPalette={themeConfig.colorPalette}
           onClick={formik.submitForm}
@@ -217,7 +206,7 @@ const Step2 = (props: any) => {
         >
           {t.verify} OTP
         </Btn>
-      </DisclosureFooter>
+      </Disclosure.Footer>
     </>
   );
 };
@@ -283,7 +272,7 @@ const Step3 = (props: any) => {
 
   return (
     <>
-      <DisclosureBody>
+      <Disclosure.Body>
         <CContainer>
           <form>
             <Field
@@ -317,11 +306,9 @@ const Step3 = (props: any) => {
 
           <HelperText>{t.msg_reset_password_step_3}</HelperText>
         </CContainer>
-      </DisclosureBody>
-
-      <DisclosureFooter>
+      </Disclosure.Body>
+      <Disclosure.Footer>
         <BackButton />
-
         <Btn
           colorPalette={themeConfig.colorPalette}
           onClick={formik.submitForm}
@@ -332,7 +319,7 @@ const Step3 = (props: any) => {
         >
           {t.save}
         </Btn>
-      </DisclosureFooter>
+      </Disclosure.Footer>
     </>
   );
 };
@@ -342,7 +329,7 @@ const ResetPasswordDisclosureTrigger = (props: any) => {
   const { children, ...restProps } = props;
 
   // Hooks
-  const { open, onOpen } = usePopDisclosure(disclosureId("reset-password"));
+  const { open, onOpen } = usePopDisclosure(disclosureId("rese.t-password"));
 
   // States
   const [otp, setOtp] = useState<string>("");
@@ -364,15 +351,15 @@ const ResetPasswordDisclosureTrigger = (props: any) => {
         {children}
       </CContainer>
 
-      <DisclosureRoot open={open} lazyLoad size={"xs"}>
-        <DisclosureContent>
-          <DisclosureHeader>
-            <DisclosureHeaderContent title={`Reset Password`} />
-          </DisclosureHeader>
+      <Disclosure.Root open={open} lazyLoad size={"xs"}>
+        <Disclosure.Content>
+          <Disclosure.Header>
+            <Disclosure.HeaderContent title={`Reset Password`} />
+          </Disclosure.Header>
 
           {STEP_SECTION[step as keyof typeof STEP_SECTION]}
-        </DisclosureContent>
-      </DisclosureRoot>
+        </Disclosure.Content>
+      </Disclosure.Root>
     </>
   );
 };

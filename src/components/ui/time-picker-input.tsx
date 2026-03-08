@@ -1,12 +1,5 @@
 import { Btn, BtnProps } from "@/components/ui/btn";
-import {
-  DisclosureBody,
-  DisclosureContent,
-  DisclosureFooter,
-  DisclosureHeader,
-  DisclosureRoot,
-} from "@/components/ui/disclosure";
-import { DisclosureHeaderContent } from "@/components/ui/disclosure-header-content";
+import { Disclosure } from "@/components/ui/disclosure";
 import { P } from "@/components/ui/p";
 import { StringInput } from "@/components/ui/string-input";
 import { Tooltip } from "@/components/ui/tooltip";
@@ -240,15 +233,15 @@ export const TimePickerInput = (props: TimePickerInputProps) => {
         </Btn>
       </Tooltip>
 
-      <DisclosureRoot open={open} size={disclosureSize}>
-        <DisclosureContent>
-          <DisclosureHeader>
-            <DisclosureHeaderContent
+      <Disclosure.Root open={open} size={disclosureSize}>
+        <Disclosure.Content>
+          <Disclosure.Header>
+            <Disclosure.HeaderContent
               title={capitalizeWords(title || t.select_time)}
             />
-          </DisclosureHeader>
+          </Disclosure.Header>
 
-          <DisclosureBody>
+          <Disclosure.Body>
             {/* Main layout for hours, minutes, (optional) seconds */}
             <HStack
               justify={"space-between"}
@@ -471,9 +464,9 @@ export const TimePickerInput = (props: TimePickerInputProps) => {
                 </>
               )}
             </HStack>
-          </DisclosureBody>
+          </Disclosure.Body>
 
-          <DisclosureFooter>
+          <Disclosure.Footer>
             {showTimezone && (
               <Stack
                 flexDir={["row", null, "column"]}
@@ -530,9 +523,9 @@ export const TimePickerInput = (props: TimePickerInputProps) => {
             >
               {t.confirm}
             </Btn>
-          </DisclosureFooter>
-        </DisclosureContent>
-      </DisclosureRoot>
+          </Disclosure.Footer>
+        </Disclosure.Content>
+      </Disclosure.Root>
     </>
   );
 };

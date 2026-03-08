@@ -3,7 +3,7 @@
 import { CContainer } from "@/components/ui/c-container";
 import { P, PProps } from "@/components/ui/p";
 import { BackButton } from "@/components/widgets/BackButton";
-import { CalendarDisclosureTrigger } from "@/components/widgets/Calendar";
+import { Calendar } from "@/components/widgets/Calendar";
 import { ClampText } from "@/components/widgets/ClampText";
 import { Clock } from "@/components/widgets/Clock";
 
@@ -225,9 +225,9 @@ export const TopBar = () => {
 
       <HStack flexShrink={0} gap={4}>
         <HStack flexShrink={0}>
-          <CalendarDisclosureTrigger>
+          <Calendar.Trigger>
             <Today fontSize={FONT_SIZE} />
-          </CalendarDisclosureTrigger>
+          </Calendar.Trigger>
 
           <Clock showTimezone fontSize={FONT_SIZE} />
         </HStack>

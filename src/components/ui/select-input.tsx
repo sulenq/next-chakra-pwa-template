@@ -2,14 +2,7 @@ import { Btn, BtnProps } from "@/components/ui/btn";
 import { CContainer } from "@/components/ui/c-container";
 import { CSpinner } from "@/components/ui/c-spinner";
 import { Checkbox } from "@/components/ui/checkbox";
-import {
-  DisclosureBody,
-  DisclosureContent,
-  DisclosureFooter,
-  DisclosureHeader,
-  DisclosureRoot,
-} from "@/components/ui/disclosure";
-import { DisclosureHeaderContent } from "@/components/ui/disclosure-header-content";
+import { Disclosure } from "@/components/ui/disclosure";
 import { P } from "@/components/ui/p";
 import SearchInput from "@/components/ui/search-input";
 import { Tooltip } from "@/components/ui/tooltip";
@@ -272,10 +265,10 @@ export const SelectInput = (props: SelectInputProps) => {
         </Btn>
       </Tooltip>
 
-      <DisclosureRoot open={open} lazyLoad size={disclosureSize}>
-        <DisclosureContent>
-          <DisclosureHeader>
-            <DisclosureHeaderContent
+      <Disclosure.Root open={open} lazyLoad size={disclosureSize}>
+        <Disclosure.Content>
+          <Disclosure.Header>
+            <Disclosure.HeaderContent
               title={capitalizeWords(`${t.select} ${title}`)}
             >
               {fetch && (
@@ -294,10 +287,10 @@ export const SelectInput = (props: SelectInputProps) => {
                   </Icon>
                 </Btn>
               )}
-            </DisclosureHeaderContent>
-          </DisclosureHeader>
+            </Disclosure.HeaderContent>
+          </Disclosure.Header>
 
-          <DisclosureBody p={0} overflowY={"auto"} className="noScroll">
+          <Disclosure.Body p={0} overflowY={"auto"} className="noScroll">
             {loading && <CSpinner />}
 
             {!loading && (
@@ -315,9 +308,9 @@ export const SelectInput = (props: SelectInputProps) => {
                 )}
               </>
             )}
-          </DisclosureBody>
+          </Disclosure.Body>
 
-          <DisclosureFooter>
+          <Disclosure.Footer>
             <Btn
               variant={"outline"}
               onClick={() => {
@@ -333,9 +326,9 @@ export const SelectInput = (props: SelectInputProps) => {
             >
               {t.confirm}
             </Btn>
-          </DisclosureFooter>
-        </DisclosureContent>
-      </DisclosureRoot>
+          </Disclosure.Footer>
+        </Disclosure.Content>
+      </Disclosure.Root>
     </>
   );
 };

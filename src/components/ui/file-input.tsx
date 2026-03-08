@@ -28,7 +28,7 @@ import {
   useFieldContext,
 } from "@chakra-ui/react";
 import { TrashIcon, UploadIcon, XIcon } from "lucide-react";
-import { useEffect, useState } from "react";
+import { forwardRef, useEffect, useState } from "react";
 
 interface FileListProps extends Omit<StackProps, "onChange"> {
   inputValue: File[] | null;
@@ -84,10 +84,12 @@ export interface FileInputInputComponentProps extends Omit<
   acceptPlaceholder?: string;
   imgInput?: boolean;
 }
-export const FileInputComponent = (props: FileInputInputComponentProps) => {
+export const FIleInputRoot = forwardRef<
+  HTMLInputElement,
+  FileInputInputComponentProps
+>((props, ref) => {
   // Props
   const {
-    fRef,
     children,
     onChange,
     inputValue,
@@ -179,8 +181,8 @@ export const FileInputComponent = (props: FileInputInputComponentProps) => {
   return (
     <>
       <FileUploadRoot
+        ref={ref}
         key={`${key}`}
-        ref={fRef}
         alignItems="stretch"
         onFileChange={handleFileChange}
         onFileReject={() => {
@@ -278,11 +280,10 @@ export const FileInputComponent = (props: FileInputInputComponentProps) => {
       </FileUploadRoot>
     </>
   );
-};
+});
 
 export interface FileInputProps extends Omit<FileUploadRootProps, "onChange"> {
   id?: string;
-  fRef?: any;
   inputValue?: File[] | null;
   onChange?: (inputValue: FileInputProps["inputValue"]) => void;
   accept?: string;
@@ -299,110 +300,119 @@ export interface FileInputProps extends Omit<FileUploadRootProps, "onChange"> {
   onDeleteFile?: (file: Interface__StorageFile) => void;
   onUndoDeleteFile?: (file: Interface__StorageFile) => void;
 }
-export const FileInput = (props: FileInputProps) => {
-  // Props
-  const { existingFiles, onDeleteFile, onUndoDeleteFile, ...restProps } = props;
 
-  // Contexts
-  const { t } = useLang();
-  const { themeConfig } = useThemeConfig();
-  const fc = useFieldContext();
+export const FileInput = forwardRef<HTMLInputElement, FileInputProps>(
+  (props, ref) => {
+    // Props
+    const { existingFiles, onDeleteFile, onUndoDeleteFile, ...restProps } =
+      props;
 
-  // States
-  const resolvedDisabled = fc?.disabled;
-  const [existing, setExisting] = useState<Interface__StorageFile[]>(
-    existingFiles || [],
-  );
-  const [deleted, setDeleted] = useState<Interface__StorageFile[]>([]);
+    // Contexts
+    const { t } = useLang();
+    const { themeConfig } = useThemeConfig();
+    const fc = useFieldContext();
 
-  return (
-    <CContainer gap={3}>
-      {!isEmptyArray(existing) && (
-        <CContainer
-          p={2}
-          gap={3}
-          border={"2px dashed"}
-          borderColor={"border.muted"}
-          rounded={themeConfig.radii.container}
-        >
+    // States
+    const [existing, setExisting] = useState<Interface__StorageFile[]>(
+      existingFiles || [],
+    );
+    const [deleted, setDeleted] = useState<Interface__StorageFile[]>([]);
+
+    // Constants
+    const resolvedDisabled = fc?.disabled;
+
+    return (
+      <CContainer gap={3}>
+        {!isEmptyArray(existing) && (
           <CContainer
-            gap={2}
-            opacity={resolvedDisabled ? 0.5 : 1}
-            cursor={resolvedDisabled ? "disabled" : "auto"}
+            p={2}
+            gap={3}
+            border={"2px dashed"}
+            borderColor={"border.muted"}
+            rounded={themeConfig.radii.container}
           >
-            <P fontWeight={"medium"} pl={1}>
-              {t.uploaded_file}
-            </P>
+            <CContainer
+              gap={2}
+              opacity={resolvedDisabled ? 0.5 : 1}
+              cursor={resolvedDisabled ? "disabled" : "auto"}
+            >
+              <P fontWeight={"medium"} pl={1}>
+                {t.uploaded_file}
+              </P>
 
-            {existing?.map((fileData: any, idx: number) => {
-              return (
-                <FileItem
-                  key={idx}
-                  idx={idx}
-                  fileData={fileData}
-                  actions={[
-                    {
-                      type: "DELETE",
-                      icon: <LucideIcon icon={TrashIcon} />,
-                      onClick: () => {
-                        setExisting((prev) =>
-                          prev.filter((f) => f.id !== fileData.id),
-                        );
-                        setDeleted((ps) => [...ps, fileData]);
-                        onDeleteFile?.(fileData);
+              {existing?.map((fileData: any, idx: number) => {
+                return (
+                  <FileItem
+                    key={idx}
+                    idx={idx}
+                    fileData={fileData}
+                    actions={[
+                      {
+                        type: "DELETE",
+                        icon: <LucideIcon icon={TrashIcon} />,
+                        onClick: () => {
+                          setExisting((prev) =>
+                            prev.filter((f) => f.id !== fileData.id),
+                          );
+                          setDeleted((ps) => [...ps, fileData]);
+                          onDeleteFile?.(fileData);
+                        },
                       },
-                    },
-                  ]}
-                />
-              );
-            })}
+                    ]}
+                  />
+                );
+              })}
+            </CContainer>
           </CContainer>
-        </CContainer>
-      )}
+        )}
 
-      {!isEmptyArray(deleted) && (
-        <CContainer
-          p={2}
-          gap={3}
-          border={"2px dashed"}
-          borderColor={"border.muted"}
-          rounded={themeConfig.radii.container}
-        >
+        {!isEmptyArray(deleted) && (
           <CContainer
-            gap={2}
-            opacity={resolvedDisabled ? 0.5 : 1}
-            cursor={resolvedDisabled ? "disabled" : "auto"}
+            p={2}
+            gap={3}
+            border={"2px dashed"}
+            borderColor={"border.muted"}
+            rounded={themeConfig.radii.container}
           >
-            <P fontWeight={"medium"} pl={1}>
-              {t.deleted_file}
-            </P>
+            <CContainer
+              gap={2}
+              opacity={resolvedDisabled ? 0.5 : 1}
+              cursor={resolvedDisabled ? "disabled" : "auto"}
+            >
+              <P fontWeight={"medium"} pl={1}>
+                {t.deleted_file}
+              </P>
 
-            {deleted?.map((fileData: any, idx: number) => {
-              return (
-                <FileItem
-                  key={idx}
-                  fileData={fileData}
-                  actions={[
-                    {
-                      type: "UNDO_DELETE",
-                      label: "Undo",
-                      onClick: () => {
-                        setExisting((prev) => [...prev, fileData]);
-                        setDeleted((ps) =>
-                          ps.filter((f) => f.id !== fileData.id),
-                        );
-                        onUndoDeleteFile?.(fileData);
+              {deleted?.map((fileData: any, idx: number) => {
+                return (
+                  <FileItem
+                    key={idx}
+                    fileData={fileData}
+                    actions={[
+                      {
+                        type: "UNDO_DELETE",
+                        label: "Undo",
+                        onClick: () => {
+                          setExisting((prev) => [...prev, fileData]);
+                          setDeleted((ps) =>
+                            ps.filter((f) => f.id !== fileData.id),
+                          );
+                          onUndoDeleteFile?.(fileData);
+                        },
                       },
-                    },
-                  ]}
-                />
-              );
-            })}
+                    ]}
+                  />
+                );
+              })}
+            </CContainer>
           </CContainer>
-        </CContainer>
-      )}
+        )}
 
-      <FileInputComponent existing={existing} {...restProps} />
-    </CContainer>
-  );
-};
+        <FIleInputRoot ref={ref} existing={existing} {...restProps} />
+      </CContainer>
+    );
+  },
+);
+
+FileInput.displayName = "FileInput";
+FIleInputRoot.displayName = "FIleInputRoot";

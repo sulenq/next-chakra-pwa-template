@@ -2,14 +2,7 @@
 
 import { Btn, BtnProps } from "@/components/ui/btn";
 import { CContainer } from "@/components/ui/c-container";
-import {
-  DisclosureBody,
-  DisclosureContent,
-  DisclosureFooter,
-  DisclosureHeader,
-  DisclosureRoot,
-} from "@/components/ui/disclosure";
-import { DisclosureHeaderContent } from "@/components/ui/disclosure-header-content";
+import { Disclosure } from "@/components/ui/disclosure";
 import { P } from "@/components/ui/p";
 import { PeriodPickerInput } from "@/components/ui/period-picker-input";
 import { Tooltip } from "@/components/ui/tooltip";
@@ -313,13 +306,15 @@ const SelectedDateList = (props: SelectedDateListProps) => {
         </P>
       </CContainer>
 
-      <DisclosureRoot open={open} size={"xs"} scrollBehavior={"inside"}>
-        <DisclosureContent>
-          <DisclosureHeader>
-            <DisclosureHeaderContent title={capitalizeWords(t.selected_date)} />
-          </DisclosureHeader>
+      <Disclosure.Root open={open} size={"xs"} scrollBehavior={"inside"}>
+        <Disclosure.Content>
+          <Disclosure.Header>
+            <Disclosure.HeaderContent
+              title={capitalizeWords(t.selected_date)}
+            />
+          </Disclosure.Header>
 
-          <DisclosureBody>
+          <Disclosure.Body>
             <CContainer px={2} pl={4} pt={1}>
               <List.Root gap={2}>
                 {isEmptyArray(selected) && <FeedbackNoData />}
@@ -340,13 +335,13 @@ const SelectedDateList = (props: SelectedDateListProps) => {
                   })}
               </List.Root>
             </CContainer>
-          </DisclosureBody>
+          </Disclosure.Body>
 
-          <DisclosureFooter>
+          <Disclosure.Footer>
             <BackButton />
-          </DisclosureFooter>
-        </DisclosureContent>
-      </DisclosureRoot>
+          </Disclosure.Footer>
+        </Disclosure.Content>
+      </Disclosure.Root>
     </>
   );
 };
@@ -501,15 +496,15 @@ export const DatePickerInput = (props: DatePickerInputProps) => {
         </Btn>
       </Tooltip>
 
-      <DisclosureRoot open={open} lazyLoad size={disclosureSize}>
-        <DisclosureContent>
-          <DisclosureHeader>
-            <DisclosureHeaderContent
+      <Disclosure.Root open={open} lazyLoad size={disclosureSize}>
+        <Disclosure.Content>
+          <Disclosure.Header>
+            <Disclosure.HeaderContent
               title={capitalizeWords(title || t.select_date)}
             />
-          </DisclosureHeader>
+          </Disclosure.Header>
 
-          <DisclosureBody>
+          <Disclosure.Body>
             <CContainer gap={4}>
               <PeriodPicker period={period} setPeriod={setPeriod} zIndex={2} />
 
@@ -526,9 +521,9 @@ export const DatePickerInput = (props: DatePickerInputProps) => {
                 formattedSelected={formattedSelected}
               />
             </CContainer>
-          </DisclosureBody>
+          </Disclosure.Body>
 
-          <DisclosureFooter>
+          <Disclosure.Footer>
             {showTimezone && (
               <Stack
                 flexDir={["row", null, "column"]}
@@ -565,9 +560,9 @@ export const DatePickerInput = (props: DatePickerInputProps) => {
             >
               {t.confirm}
             </Btn>
-          </DisclosureFooter>
-        </DisclosureContent>
-      </DisclosureRoot>
+          </Disclosure.Footer>
+        </Disclosure.Content>
+      </Disclosure.Root>
     </>
   );
 };

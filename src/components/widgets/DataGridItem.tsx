@@ -5,7 +5,7 @@ import { CContainer } from "@/components/ui/c-container";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Img } from "@/components/ui/img";
 import { ClampText } from "@/components/widgets/ClampText";
-import { DataGridDetailDisclosureTrigger } from "@/components/widgets/DataGridDetailDisclosure";
+import { DataGrid } from "@/components/widgets/DataGrid";
 import { ImgViewer } from "@/components/widgets/ImgViewer";
 import { RowOptions } from "@/components/widgets/RowOptions";
 import {
@@ -130,7 +130,7 @@ export const DataGridItem = (props: DataGridItemProps) => {
       </CContainer>
 
       <HStack p={2}>
-        <DataGridDetailDisclosureTrigger
+        <DataGrid.DetailTrigger
           key={item.id}
           id={`${item.id}`}
           title={routeTitle}
@@ -146,7 +146,7 @@ export const DataGridItem = (props: DataGridItemProps) => {
           >
             {t.view_more}
           </Btn>
-        </DataGridDetailDisclosureTrigger>
+        </DataGrid.DetailTrigger>
 
         {!isEmptyArray(dataProps.rowOptions) && (
           <RowOptions

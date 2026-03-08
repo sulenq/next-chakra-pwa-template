@@ -1,14 +1,7 @@
 "use client";
 
 import { Btn, BtnProps } from "@/components/ui/btn";
-import {
-  DisclosureBody,
-  DisclosureContent,
-  DisclosureFooter,
-  DisclosureHeader,
-  DisclosureRoot,
-} from "@/components/ui/disclosure";
-import { DisclosureHeaderContent } from "@/components/ui/disclosure-header-content";
+import { Disclosure } from "@/components/ui/disclosure";
 import { Field, FieldsetRoot } from "@/components/ui/field";
 import { NumInput } from "@/components/ui/number-input";
 import { P } from "@/components/ui/p";
@@ -159,15 +152,15 @@ export const PeriodPickerInput = (props: PeriodPickerInputProps) => {
         </Btn>
       </Tooltip>
 
-      <DisclosureRoot open={open} lazyLoad size={disclosureSize}>
-        <DisclosureContent>
-          <DisclosureHeader>
-            <DisclosureHeaderContent
+      <Disclosure.Root open={open} lazyLoad size={disclosureSize}>
+        <Disclosure.Content>
+          <Disclosure.Header>
+            <Disclosure.HeaderContent
               title={capitalizeWords(title || t.select_period)}
             />
-          </DisclosureHeader>
+          </Disclosure.Header>
 
-          <DisclosureBody>
+          <Disclosure.Body>
             <FieldsetRoot>
               <Field
                 label={t.month}
@@ -221,9 +214,9 @@ export const PeriodPickerInput = (props: PeriodPickerInputProps) => {
                 />
               </Field>
             </FieldsetRoot>
-          </DisclosureBody>
+          </Disclosure.Body>
 
-          <DisclosureFooter>
+          <Disclosure.Footer>
             <Btn
               variant={"outline"}
               onClick={() => {
@@ -240,9 +233,9 @@ export const PeriodPickerInput = (props: PeriodPickerInputProps) => {
             >
               {t.confirm}
             </Btn>
-          </DisclosureFooter>
-        </DisclosureContent>
-      </DisclosureRoot>
+          </Disclosure.Footer>
+        </Disclosure.Content>
+      </Disclosure.Root>
     </>
   );
 };

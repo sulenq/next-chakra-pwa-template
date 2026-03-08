@@ -6,14 +6,7 @@ import {
   DEFAULT_PERIOD,
   PeriodPicker,
 } from "@/components/ui/date-picker-input";
-import {
-  DisclosureBody,
-  DisclosureContent,
-  DisclosureFooter,
-  DisclosureHeader,
-  DisclosureRoot,
-} from "@/components/ui/disclosure";
-import { DisclosureHeaderContent } from "@/components/ui/disclosure-header-content";
+import { Disclosure } from "@/components/ui/disclosure";
 import { BackButton } from "@/components/widgets/BackButton";
 import { Period } from "@/constants/types";
 import useLang from "@/contexts/useLang";
@@ -22,7 +15,7 @@ import { disclosureId } from "@/utils/disclosure";
 import { StackProps } from "@chakra-ui/react";
 import { useState } from "react";
 
-export const Calendar = () => {
+const CalendarUI = () => {
   // States
   const [selected, setSelected] = useState<Date[]>([]);
   const [period, setPeriod] = useState<Period>(DEFAULT_PERIOD);
@@ -42,7 +35,7 @@ export const Calendar = () => {
 interface CalendarDisclosureProps {
   open: boolean;
 }
-export const CalendarDisclosure = (props: CalendarDisclosureProps) => {
+const CalendarContent = (props: CalendarDisclosureProps) => {
   // Props
   const { open } = props;
 
@@ -50,25 +43,25 @@ export const CalendarDisclosure = (props: CalendarDisclosureProps) => {
   const { t } = useLang();
 
   return (
-    <DisclosureRoot open={open} lazyLoad size={"xs"}>
-      <DisclosureContent>
-        <DisclosureHeader>
-          <DisclosureHeaderContent title={t.calendar} />
-        </DisclosureHeader>
+    <Disclosure.Root open={open} lazyLoad size={"xs"}>
+      <Disclosure.Content>
+        <Disclosure.Header>
+          <Disclosure.HeaderContent title={t.calendar} />
+        </Disclosure.Header>
 
-        <DisclosureBody>
-          <Calendar />
-        </DisclosureBody>
+        <Disclosure.Body>
+          <CalendarUI />
+        </Disclosure.Body>
 
-        <DisclosureFooter>
+        <Disclosure.Footer>
           <BackButton />
-        </DisclosureFooter>
-      </DisclosureContent>
-    </DisclosureRoot>
+        </Disclosure.Footer>
+      </Disclosure.Content>
+    </Disclosure.Root>
   );
 };
 
-export const CalendarDisclosureTrigger = (props: StackProps) => {
+const CalendarTrigger = (props: StackProps) => {
   // Hooks
   const { open, onOpen } = usePopDisclosure(disclosureId("calendar"));
 
@@ -76,7 +69,12 @@ export const CalendarDisclosureTrigger = (props: StackProps) => {
     <>
       <CContainer w={"fit"} onClick={onOpen} cursor={"pointer"} {...props} />
 
-      <CalendarDisclosure open={open} />
+      <CalendarContent open={open} />
     </>
   );
+};
+
+export const Calendar = {
+  UI: CalendarUI,
+  Trigger: CalendarTrigger,
 };

@@ -6,7 +6,7 @@ import { P } from "@/components/ui/p";
 import SearchInput from "@/components/ui/search-input";
 import { Tooltip } from "@/components/ui/tooltip";
 import { AppIcon } from "@/components/widgets/AppIcon";
-import { ConfirmationDisclosureTrigger } from "@/components/widgets/ConfirmationDisclosure";
+import { Confirmation } from "@/components/widgets/Confirmation";
 import { DataDisplayToggle } from "@/components/widgets/DataDisplayToggle";
 import { DataGrid } from "@/components/widgets/DataGrid";
 import { DataGridItem } from "@/components/widgets/DataGridItem";
@@ -257,7 +257,7 @@ const Restore = (props: any) => {
   }
 
   return (
-    <ConfirmationDisclosureTrigger
+    <Confirmation.Trigger
       w={"full"}
       id={`${ID}-${restoreIds}`}
       title={`${t.restore} ${routeTitle}`}
@@ -278,7 +278,7 @@ const Restore = (props: any) => {
           {t.restore}
         </MenuItem>
       </Tooltip>
-    </ConfirmationDisclosureTrigger>
+    </Confirmation.Trigger>
   );
 };
 const Delete = (props: any) => {
@@ -323,7 +323,7 @@ const Delete = (props: any) => {
   }
 
   return (
-    <ConfirmationDisclosureTrigger
+    <Confirmation.Trigger
       w={"full"}
       id={`${ID}-${deleteIds}`}
       title={`${t.delete_} ${routeTitle}`}
@@ -354,7 +354,7 @@ const Delete = (props: any) => {
           {t.delete_}
         </MenuItem>
       </Tooltip>
-    </ConfirmationDisclosureTrigger>
+    </Confirmation.Trigger>
   );
 };
 
@@ -486,7 +486,7 @@ const Data = (props: any) => {
     error: <FeedbackRetry onRetry={onRetry} />,
     empty: <FeedbackNoData />,
     loaded: displayTable ? (
-      <DataTable
+      <DataTable.Display
         headers={dataProps.headers}
         rows={dataProps.rows}
         rowOptions={dataProps.rowOptions}
@@ -498,7 +498,7 @@ const Data = (props: any) => {
         totalPage={pagination?.meta?.lastPage}
       />
     ) : (
-      <DataGrid
+      <DataGrid.Display
         data={data}
         dataProps={dataProps}
         limit={limit}

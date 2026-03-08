@@ -1,7 +1,7 @@
 "use client";
 
 import { CContainer } from "@/components/ui/c-container";
-import { FileInputComponent, FileInputProps } from "@/components/ui/file-input";
+import { FIleInputRoot, FileInputProps } from "@/components/ui/file-input";
 import { Img } from "@/components/ui/img";
 import { P } from "@/components/ui/p";
 import { FileItem } from "@/components/widgets/FIleItem";
@@ -141,7 +141,7 @@ export const ImgInput = (props: FileInputProps) => {
         </CContainer>
       )}
 
-      <FileInputComponent
+      <FIleInputRoot
         imgInput
         dropzone
         existing={existing}
@@ -203,7 +203,7 @@ export const ImgInput = (props: FileInputProps) => {
             </HScroll>
           </>
         )}
-      </FileInputComponent>
+      </FIleInputRoot>
     </CContainer>
   );
 };

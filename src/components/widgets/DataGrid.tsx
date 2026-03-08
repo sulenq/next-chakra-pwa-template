@@ -1,10 +1,14 @@
 "use client";
 
 import { CContainer } from "@/components/ui/c-container";
+import { Disclosure } from "@/components/ui/disclosure";
 import { Divider } from "@/components/ui/divider";
 import { Img } from "@/components/ui/img";
 import { P } from "@/components/ui/p";
+import SearchInput from "@/components/ui/search-input";
+import { BackButton } from "@/components/widgets/BackButton";
 import { BatchOptions } from "@/components/widgets/BatchOptions";
+import FeedbackNotFound from "@/components/widgets/FeedbackNotFound";
 import { ImgViewer } from "@/components/widgets/ImgViewer";
 import { Limitation } from "@/components/widgets/Limitation";
 import { Pagination } from "@/components/widgets/Pagination";
@@ -15,7 +19,9 @@ import {
 import useLang from "@/contexts/useLang";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
 import { useIsSmScreenWidth } from "@/hooks/useIsSmScreenWidth";
+import usePopDisclosure from "@/hooks/usePopDisclosure";
 import { isEmptyArray } from "@/utils/array";
+import { disclosureId } from "@/utils/disclosure";
 import { HStack, Presence, SimpleGrid, StackProps } from "@chakra-ui/react";
 import { Fragment, useState } from "react";
 
@@ -27,6 +33,113 @@ export interface GridItemProps {
   selectedRows: string[];
   toggleRowSelection: (row: FormattedTableRow) => void;
 }
+
+interface DataGridDetailDisclosureProps extends StackProps {
+  open: boolean;
+  title: string;
+  data: any;
+  details: any;
+}
+const DataGridDetailContent = (props: DataGridDetailDisclosureProps) => {
+  // Props
+  const { open, title, data, details } = props;
+
+  // States
+  const [search, setSearch] = useState<string>("");
+  const resolvedDetails = details.filter((detail: any) => {
+    return detail?.label?.toLowerCase()?.includes(search?.toLowerCase());
+  });
+
+  return (
+    <Disclosure.Root open={open} lazyLoad size={"xs"}>
+      <Disclosure.Content>
+        <Disclosure.Header>
+          <Disclosure.HeaderContent title={`Detail ${title}`} />
+        </Disclosure.Header>
+
+        <Disclosure.Body pb={2}>
+          <CContainer mb={2}>
+            <SearchInput
+              queryKey={"q-data-grid-detail"}
+              inputValue={search}
+              onChange={(inputValue) => {
+                setSearch(inputValue);
+              }}
+            />
+          </CContainer>
+
+          <CContainer>
+            {data && (
+              <>
+                {isEmptyArray(resolvedDetails) && <FeedbackNotFound />}
+
+                {resolvedDetails?.map((detail: any, idx: number) => {
+                  const isLast = idx === resolvedDetails.length - 1;
+
+                  return (
+                    <CContainer
+                      key={idx}
+                      gap={2}
+                      px={1}
+                      py={3}
+                      borderBottom={!isLast ? "1px solid" : ""}
+                      borderColor={"border.subtle"}
+                      align={"start"}
+                    >
+                      <P fontWeight={"medium"} color={"fg.subtle"}>
+                        {detail.label}
+                      </P>
+
+                      {detail.render}
+                    </CContainer>
+                  );
+                })}
+              </>
+            )}
+          </CContainer>
+        </Disclosure.Body>
+
+        <Disclosure.Footer>
+          <BackButton />
+        </Disclosure.Footer>
+      </Disclosure.Content>
+    </Disclosure.Root>
+  );
+};
+
+interface DataGridDetailDisclosureTriggerProps extends StackProps {
+  id: string;
+  title: string;
+  data: any;
+  details: {
+    label: string;
+    render: any;
+  }[];
+}
+const DataGridDetailTrigger = (props: DataGridDetailDisclosureTriggerProps) => {
+  // Props
+  const { children, id, title, data, details, ...restProps } = props;
+
+  // Hooks
+  const { open, onOpen } = usePopDisclosure(
+    disclosureId(`data-grid-detail-${id}`),
+  );
+
+  return (
+    <>
+      <CContainer w={"fit"} onClick={onOpen} {...restProps}>
+        {children}
+      </CContainer>
+
+      <DataGridDetailContent
+        open={open}
+        title={title}
+        data={data}
+        details={details}
+      />
+    </>
+  );
+};
 
 interface DataGridProps extends Omit<StackProps, "page"> {
   data?: any[];
@@ -40,7 +153,7 @@ interface DataGridProps extends Omit<StackProps, "page"> {
   footer?: React.ReactNode;
   minChildWidth?: string;
 }
-export const DataGrid = (props: DataGridProps) => {
+const DataGridDisplay = (props: DataGridProps) => {
   // Props
   const {
     data,
@@ -260,4 +373,9 @@ export const DataGrid = (props: DataGridProps) => {
       )}
     </CContainer>
   );
+};
+
+export const DataGrid = {
+  Display: DataGridDisplay,
+  DetailTrigger: DataGridDetailTrigger,
 };

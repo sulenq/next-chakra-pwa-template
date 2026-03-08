@@ -9,7 +9,7 @@ export default function FeedbackNotFound(props: FeedbackStateProps) {
   // Props
   const { children, ...restProps } = props;
 
-  // Hooks
+  // Contexts
   const { t } = useLang();
 
   return (

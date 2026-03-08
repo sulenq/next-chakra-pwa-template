@@ -2,6 +2,7 @@ import { Heading, HeadingProps } from "@chakra-ui/react";
 import { forwardRef } from "react";
 
 export const H1 = forwardRef<HTMLHeadingElement, HeadingProps>((props, ref) => {
+  // Props
   const { children, ...restProps } = props;
 
   return (
@@ -13,6 +14,7 @@ export const H1 = forwardRef<HTMLHeadingElement, HeadingProps>((props, ref) => {
 H1.displayName = "H1";
 
 export const H2 = forwardRef<HTMLHeadingElement, HeadingProps>((props, ref) => {
+  // Props
   const { children, ...restProps } = props;
 
   return (
@@ -24,6 +26,7 @@ export const H2 = forwardRef<HTMLHeadingElement, HeadingProps>((props, ref) => {
 H2.displayName = "H2";
 
 export const H3 = forwardRef<HTMLHeadingElement, HeadingProps>((props, ref) => {
+  // Props
   const { children, ...restProps } = props;
 
   return (
@@ -35,6 +38,7 @@ export const H3 = forwardRef<HTMLHeadingElement, HeadingProps>((props, ref) => {
 H3.displayName = "H3";
 
 export const H4 = forwardRef<HTMLHeadingElement, HeadingProps>((props, ref) => {
+  // Props
   const { children, ...restProps } = props;
 
   return (
@@ -46,6 +50,7 @@ export const H4 = forwardRef<HTMLHeadingElement, HeadingProps>((props, ref) => {
 H4.displayName = "H4";
 
 export const H5 = forwardRef<HTMLHeadingElement, HeadingProps>((props, ref) => {
+  // Props
   const { children, ...restProps } = props;
 
   return (
@@ -57,6 +62,7 @@ export const H5 = forwardRef<HTMLHeadingElement, HeadingProps>((props, ref) => {
 H5.displayName = "H5";
 
 export const H6 = forwardRef<HTMLHeadingElement, HeadingProps>((props, ref) => {
+  // Props
   const { children, ...restProps } = props;
 
   return (

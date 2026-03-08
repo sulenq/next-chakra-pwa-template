@@ -2,14 +2,7 @@
 
 import { Btn } from "@/components/ui/btn";
 import { CContainer } from "@/components/ui/c-container";
-import {
-  DisclosureBody,
-  DisclosureContent,
-  DisclosureFooter,
-  DisclosureHeader,
-  DisclosureRoot,
-} from "@/components/ui/disclosure";
-import { DisclosureHeaderContent } from "@/components/ui/disclosure-header-content";
+import { Disclosure } from "@/components/ui/disclosure";
 import { P } from "@/components/ui/p";
 import { Switch } from "@/components/ui/switch";
 import { toaster } from "@/components/ui/toaster";
@@ -96,13 +89,13 @@ const Camera = () => {
           {t.try_camera}
         </Btn>
 
-        <DisclosureRoot open={open} lazyLoad size={"xs"}>
-          <DisclosureContent>
-            <DisclosureHeader>
-              <DisclosureHeaderContent title={`${t.try_camera}`} />
-            </DisclosureHeader>
+        <Disclosure.Root open={open} lazyLoad size={"xs"}>
+          <Disclosure.Content>
+            <Disclosure.Header>
+              <Disclosure.HeaderContent title={`${t.try_camera}`} />
+            </Disclosure.Header>
 
-            <DisclosureBody p={"0 !important"}>
+            <Disclosure.Body p={"0 !important"}>
               <div
                 style={{
                   position: "relative",
@@ -126,9 +119,9 @@ const Camera = () => {
                   }}
                 />
               </div>
-            </DisclosureBody>
+            </Disclosure.Body>
 
-            <DisclosureFooter>
+            <Disclosure.Footer>
               <Btn
                 variant="outline"
                 onClick={() => {
@@ -163,9 +156,9 @@ const Camera = () => {
               >
                 {t.open} {t.camera.toLowerCase()}
               </Btn>
-            </DisclosureFooter>
-          </DisclosureContent>
-        </DisclosureRoot>
+            </Disclosure.Footer>
+          </Disclosure.Content>
+        </Disclosure.Root>
       </>
     );
   };
@@ -329,22 +322,22 @@ const Microphone = () => {
           {t.try_mic}
         </Btn>
 
-        <DisclosureRoot open={open} lazyLoad size="xs">
-          <DisclosureContent>
-            <DisclosureHeader>
-              <DisclosureHeaderContent title={t.try_mic} />
-            </DisclosureHeader>
+        <Disclosure.Root open={open} lazyLoad size="xs">
+          <Disclosure.Content>
+            <Disclosure.Header>
+              <Disclosure.HeaderContent title={t.try_mic} />
+            </Disclosure.Header>
 
-            <DisclosureBody>
+            <Disclosure.Body>
               <CContainer py={4}>
                 <P mb={2}>Volume</P>
 
                 {/* Ini progress bar real-time */}
                 <MicVolumeBar analyser={analyser} />
               </CContainer>
-            </DisclosureBody>
+            </Disclosure.Body>
 
-            <DisclosureFooter>
+            <Disclosure.Footer>
               <Btn variant="outline" onClick={stopMicTest} disabled={!micOpen}>
                 {t.close} {t.mic.toLowerCase()}
               </Btn>
@@ -356,9 +349,9 @@ const Microphone = () => {
               >
                 {t.open} {t.mic.toLowerCase()}
               </Btn>
-            </DisclosureFooter>
-          </DisclosureContent>
-        </DisclosureRoot>
+            </Disclosure.Footer>
+          </Disclosure.Content>
+        </Disclosure.Root>
       </>
     );
   };
@@ -514,13 +507,13 @@ const Location = () => {
           {t.try_location}
         </Btn>
 
-        <DisclosureRoot open={open} lazyLoad size="xs">
-          <DisclosureContent>
-            <DisclosureHeader>
-              <DisclosureHeaderContent title={t.try_location} />
-            </DisclosureHeader>
+        <Disclosure.Root open={open} lazyLoad size="xs">
+          <Disclosure.Content>
+            <Disclosure.Header>
+              <Disclosure.HeaderContent title={t.try_location} />
+            </Disclosure.Header>
 
-            <DisclosureBody>
+            <Disclosure.Body>
               {!address && <P>{t.msg_location_test_helper}</P>}
 
               {address && center && (
@@ -547,9 +540,9 @@ const Location = () => {
                   </HStack>
                 </CContainer>
               )}
-            </DisclosureBody>
+            </Disclosure.Body>
 
-            <DisclosureFooter>
+            <Disclosure.Footer>
               <Btn
                 colorPalette={themeConfig.colorPalette}
                 loading={loading}
@@ -557,9 +550,9 @@ const Location = () => {
               >
                 {t.get} {t.location.toLowerCase()}
               </Btn>
-            </DisclosureFooter>
-          </DisclosureContent>
-        </DisclosureRoot>
+            </Disclosure.Footer>
+          </Disclosure.Content>
+        </Disclosure.Root>
       </>
     );
   };

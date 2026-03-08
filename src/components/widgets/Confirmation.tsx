@@ -1,13 +1,6 @@
 import { Btn, BtnProps } from "@/components/ui/btn";
 import { CContainer } from "@/components/ui/c-container";
-import {
-  DisclosureBody,
-  DisclosureContent,
-  DisclosureFooter,
-  DisclosureHeader,
-  DisclosureRoot,
-} from "@/components/ui/disclosure";
-import { DisclosureHeaderContent } from "@/components/ui/disclosure-header-content";
+import { Disclosure } from "@/components/ui/disclosure";
 import { P } from "@/components/ui/p";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
 import usePopDisclosure from "@/hooks/usePopDisclosure";
@@ -15,7 +8,7 @@ import { disclosureId } from "@/utils/disclosure";
 import { StackProps } from "@chakra-ui/react";
 import { BackButton } from "@/components/widgets/BackButton";
 
-interface ConfirmationDisclosureProps {
+interface ConfirmationProps {
   open: boolean;
   title: string;
   description: string;
@@ -25,7 +18,7 @@ interface ConfirmationDisclosureProps {
   loading?: boolean;
   addonElement?: any;
 }
-export const ConfirmationDisclosure = (props: ConfirmationDisclosureProps) => {
+const ConfirmationContent = (props: ConfirmationProps) => {
   // Props
   const {
     open,
@@ -42,19 +35,19 @@ export const ConfirmationDisclosure = (props: ConfirmationDisclosureProps) => {
   const { themeConfig } = useThemeConfig();
 
   return (
-    <DisclosureRoot open={open} lazyLoad size={"xs"}>
-      <DisclosureContent>
-        <DisclosureHeader>
-          <DisclosureHeaderContent title={`${title}`} />
-        </DisclosureHeader>
+    <Disclosure.Root open={open} lazyLoad size={"xs"}>
+      <Disclosure.Content>
+        <Disclosure.Header>
+          <Disclosure.HeaderContent title={`${title}`} />
+        </Disclosure.Header>
 
-        <DisclosureBody>
+        <Disclosure.Body>
           <P>{description}</P>
 
           {addonElement}
-        </DisclosureBody>
+        </Disclosure.Body>
 
-        <DisclosureFooter>
+        <Disclosure.Footer>
           <BackButton disabled={loading} />
 
           <Btn
@@ -65,28 +58,46 @@ export const ConfirmationDisclosure = (props: ConfirmationDisclosureProps) => {
           >
             {confirmLabel}
           </Btn>
-        </DisclosureFooter>
-      </DisclosureContent>
-    </DisclosureRoot>
+        </Disclosure.Footer>
+      </Disclosure.Content>
+    </Disclosure.Root>
   );
 };
 
-interface ConfirmationDisclosureTriggerProps extends StackProps {
+interface ConfirmationTriggerProps extends StackProps {
   children?: any;
+
+  /** Unique identifier used internally to control the disclosure instance */
   id: string;
+
+  /** Title displayed in the confirmation header */
   title: string;
+
+  /** Description message explaining the action that requires confirmation */
   description: string;
+
+  /** Label displayed on the confirm action button */
   confirmLabel: any;
+
+  /** Callback executed when the confirm button is pressed */
   onConfirm: () => void;
+
+  /** Additional props forwarded to the confirm button */
   confirmButtonProps?: BtnProps;
+
+  /** Shows loading state on the confirm button and disables actions */
   loading?: boolean;
+
+  /** Disables the trigger interaction */
   disabled?: any;
+
+  /** Optional element rendered inside the confirmation body (e.g. warning, extra info, form field) */
   addonElement?: any;
+
+  /** Optional callback executed before the disclosure is opened */
   onClick?: () => void;
 }
-export const ConfirmationDisclosureTrigger = (
-  props: ConfirmationDisclosureTriggerProps,
-) => {
+const ConfirmationTrigger = (props: ConfirmationTriggerProps) => {
   // Props
   const {
     children,
@@ -125,7 +136,7 @@ export const ConfirmationDisclosureTrigger = (
         {children}
       </CContainer>
 
-      <ConfirmationDisclosure
+      <ConfirmationContent
         open={open}
         title={title}
         description={description}
@@ -137,4 +148,14 @@ export const ConfirmationDisclosureTrigger = (
       />
     </>
   );
+};
+
+export const Confirmation = {
+  /**
+   * Trigger element that opens the confirmation disclosure (dialog/drawer based on vieport).
+   *
+   * The children act as the clickable element.
+   * When clicked, a confirmation disclosure will appear.
+   */
+  Trigger: ConfirmationTrigger,
 };

@@ -22,9 +22,9 @@ import { TextareaInput } from "@/components/ui/textarea-input";
 import { TimePickerInput } from "@/components/ui/time-picker-input";
 import { toaster } from "@/components/ui/toaster";
 import { Tooltip } from "@/components/ui/tooltip";
-import { CalendarDisclosureTrigger } from "@/components/widgets/Calendar";
+import { Calendar } from "@/components/widgets/Calendar";
 import { Clock } from "@/components/widgets/Clock";
-import { ConfirmationDisclosureTrigger } from "@/components/widgets/ConfirmationDisclosure";
+import { Confirmation } from "@/components/widgets/Confirmation";
 import { DataTable } from "@/components/widgets/DataTable";
 import FeedbackForbidden from "@/components/widgets/FeedbackForbidden";
 import FeedbackNoData from "@/components/widgets/FeedbackNoData";
@@ -93,7 +93,7 @@ const Delete = (props: any) => {
   }
 
   return (
-    <ConfirmationDisclosureTrigger
+    <Confirmation.Trigger
       w={"full"}
       id={`${ID}-${deleteIds}`}
       title={`${t.delete_} ${routeTitle}`}
@@ -126,7 +126,7 @@ const Delete = (props: any) => {
           </Icon>
         </MenuItem>
       </Tooltip>
-    </ConfirmationDisclosureTrigger>
+    </Confirmation.Trigger>
   );
 };
 const DemoDataTable = () => {
@@ -619,7 +619,7 @@ const DemoDataTable = () => {
   const [page, setPage] = useState<number>(1);
 
   return (
-    <DataTable
+    <DataTable.Display
       headers={tableProps.headers}
       rows={tableProps.rows}
       rowOptions={tableProps.rowOptions}
@@ -748,9 +748,9 @@ const DemoIndexRoute = () => {
         </HStack>
 
         <HStack>
-          <CalendarDisclosureTrigger>
+          <Calendar.Trigger>
             <Today />
-          </CalendarDisclosureTrigger>
+          </Calendar.Trigger>
           <Clock showTimezone />
           <LangMenu />
           <ColorModeButton />

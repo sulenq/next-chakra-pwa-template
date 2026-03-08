@@ -6,13 +6,13 @@ import { Btn, BtnProps } from "@/components/ui/btn";
 type DefaultPos = "top-left" | "top-right" | "bottom-left" | "bottom-right";
 type AllowedSnap = ("left" | "right")[];
 
-interface Props extends BtnProps {
+interface DraggableBtnProps extends BtnProps {
   children: React.ReactNode;
   defaultPos?: DefaultPos;
   allowedSnap?: AllowedSnap;
 }
-
-export const DraggableBtn = (props: Props) => {
+export const DraggableBtn = (props: DraggableBtnProps) => {
+  // Props
   const {
     children,
     defaultPos = "bottom-left",
@@ -21,14 +21,34 @@ export const DraggableBtn = (props: Props) => {
     ...restProps
   } = props;
 
+  // Refs
   const btnRef = useRef<HTMLButtonElement>(null);
 
+  // States
   const [pos, setPos] = useState({ x: 16, y: 16 });
   const [dragging, setDragging] = useState(false);
   const [offset, setOffset] = useState({ x: 0, y: 0 });
   const [moved, setMoved] = useState(false); // track if actually dragged
 
-  // set initial position
+  // Utils
+  function handleMouseDown(e: React.MouseEvent) {
+    if (!btnRef.current) return;
+    const rect = btnRef.current.getBoundingClientRect();
+    setDragging(true);
+    setMoved(false); // reset moved flag
+    setOffset({ x: e.clientX - rect.left, y: e.clientY - rect.top });
+  }
+  function handleClick(e: React.MouseEvent) {
+    // ignore click if drag occurred
+    if (moved) {
+      e.preventDefault();
+      e.stopPropagation();
+      return;
+    }
+    onClick?.(e as any);
+  }
+
+  // Set initial position
   useEffect(() => {
     const setInitialPos = () => {
       if (!btnRef.current) return;
@@ -51,7 +71,7 @@ export const DraggableBtn = (props: Props) => {
     return () => window.removeEventListener("resize", setInitialPos);
   }, [defaultPos]);
 
-  // drag logic + snapping
+  // Drag logic + snapping
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       if (!dragging) return;
@@ -99,24 +119,6 @@ export const DraggableBtn = (props: Props) => {
       window.removeEventListener("mouseup", handleMouseUp);
     };
   }, [dragging, offset, allowedSnap, pos]);
-
-  const handleMouseDown = (e: React.MouseEvent) => {
-    if (!btnRef.current) return;
-    const rect = btnRef.current.getBoundingClientRect();
-    setDragging(true);
-    setMoved(false); // reset moved flag
-    setOffset({ x: e.clientX - rect.left, y: e.clientY - rect.top });
-  };
-
-  const handleClick = (e: React.MouseEvent) => {
-    // ignore click if drag occurred
-    if (moved) {
-      e.preventDefault();
-      e.stopPropagation();
-      return;
-    }
-    onClick?.(e as any);
-  };
 
   return (
     <Btn

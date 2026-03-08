@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/menu";
 import { P } from "@/components/ui/p";
 import { AppIcon } from "@/components/widgets/AppIcon";
-import { ConfirmationDisclosureTrigger } from "@/components/widgets/ConfirmationDisclosure";
+import { Confirmation } from "@/components/widgets/Confirmation";
 import { DotIndicator } from "@/components/widgets/Indicator";
 import { BatchOptionsTableOptionGenerator } from "@/constants/interfaces";
 import useLang from "@/contexts/useLang";
@@ -121,7 +121,7 @@ export const BatchOptions = (props: BatchOptionsProps) => {
 
           if (confirmation) {
             return (
-              <ConfirmationDisclosureTrigger
+              <Confirmation.Trigger
                 key={idx}
                 w="full"
                 id={`confirmation-batch-${idx}`}
@@ -143,7 +143,7 @@ export const BatchOptions = (props: BatchOptionsProps) => {
                   {label}
                   {icon && <AppIcon icon={icon} />}
                 </MenuItem>
-              </ConfirmationDisclosureTrigger>
+              </Confirmation.Trigger>
             );
           }
 

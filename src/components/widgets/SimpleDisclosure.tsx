@@ -1,17 +1,10 @@
 "use client";
 
-import {
-  DisclosureBody,
-  DisclosureContent,
-  DisclosureFooter,
-  DisclosureHeader,
-  DisclosureRoot,
-} from "@/components/ui/disclosure";
-import { DisclosureHeaderContent } from "@/components/ui/disclosure-header-content";
+import { Disclosure } from "@/components/ui/disclosure";
 import { useIsSmScreenWidth } from "@/hooks/useIsSmScreenWidth";
 import { useState } from "react";
 
-interface Props {
+interface SimpleDisclosureProps {
   open: boolean;
   title: string;
   bodyContent?: any;
@@ -21,8 +14,7 @@ interface Props {
   footerProps?: any;
   withMaximizeButton?: boolean;
 }
-
-export const SimpleDisclosure = (props: Props) => {
+export const SimpleDisclosure = (props: SimpleDisclosureProps) => {
   // Props
   const {
     open,
@@ -43,31 +35,31 @@ export const SimpleDisclosure = (props: Props) => {
   const [maximize, setMaximize] = useState<boolean>(false);
 
   return (
-    <DisclosureRoot
+    <Disclosure.Root
       open={open}
       lazyLoad
       size={maximize ? "full" : "xs"}
       {...restProps}
     >
-      <DisclosureContent
+      <Disclosure.Content
         positionerProps={{
           p: !maximize && !iss ? 4 : 0,
         }}
       >
-        <DisclosureHeader {...headerProps}>
-          <DisclosureHeaderContent
+        <Disclosure.Header {...headerProps}>
+          <Disclosure.HeaderContent
             title={title}
             withMaximizeButton={withMaximizeButton}
             onMaximizeChange={(maximize) => {
               setMaximize(maximize);
             }}
           />
-        </DisclosureHeader>
+        </Disclosure.Header>
 
-        <DisclosureBody {...bodyProps}>{bodyContent}</DisclosureBody>
+        <Disclosure.Body {...bodyProps}>{bodyContent}</Disclosure.Body>
 
-        <DisclosureFooter {...footerProps}>{footerContent}</DisclosureFooter>
-      </DisclosureContent>
-    </DisclosureRoot>
+        <Disclosure.Footer {...footerProps}>{footerContent}</Disclosure.Footer>
+      </Disclosure.Content>
+    </Disclosure.Root>
   );
 };

@@ -7,7 +7,7 @@ import {
   MenuTrigger,
 } from "@/components/ui/menu";
 import { AppIcon } from "@/components/widgets/AppIcon";
-import { ConfirmationDisclosureTrigger } from "@/components/widgets/ConfirmationDisclosure";
+import { Confirmation } from "@/components/widgets/Confirmation";
 import {
   FormattedTableRow,
   RowOptionsTableOptionGenerator,
@@ -72,7 +72,7 @@ export const RowOptions = (props: Props_RowOptions) => {
 
           if (confirmation) {
             return (
-              <ConfirmationDisclosureTrigger
+              <Confirmation.Trigger
                 key={idx}
                 w="full"
                 id={`${row.id}-confirmation-${idx}`}
@@ -94,7 +94,7 @@ export const RowOptions = (props: Props_RowOptions) => {
                   {label}
                   {icon && <AppIcon icon={icon} />}
                 </MenuItem>
-              </ConfirmationDisclosureTrigger>
+              </Confirmation.Trigger>
             );
           }
 

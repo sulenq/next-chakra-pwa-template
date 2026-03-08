@@ -1,9 +1,8 @@
 "use client";
 
-import { P } from "@/components/ui/p";
-import { TextProps } from "@chakra-ui/react";
+import { P, PProps } from "@/components/ui/p";
 
-export const EmptyString = (props: TextProps) => {
+export const EmptyString = (props: PProps) => {
   return (
     <P color={"fg.subtle"} {...props}>
       -

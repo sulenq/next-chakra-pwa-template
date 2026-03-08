@@ -1,25 +1,16 @@
 "use client";
 
+import { AvatarUploadTrigger } from "@/components/ui/avatar";
 import { Btn } from "@/components/ui/btn";
 import { CContainer } from "@/components/ui/c-container";
-import {
-  DisclosureBody,
-  DisclosureContent,
-  DisclosureFooter,
-  DisclosureHeader,
-  DisclosureRoot,
-} from "@/components/ui/disclosure";
-import { DisclosureHeaderContent } from "@/components/ui/disclosure-header-content";
 import { Field, FieldsetRoot } from "@/components/ui/field";
 import { Img } from "@/components/ui/img";
-import { ImgInput } from "@/components/ui/img-input";
 import { P } from "@/components/ui/p";
 import SearchInput from "@/components/ui/search-input";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Spinner } from "@/components/ui/spinner";
 import { StringInput } from "@/components/ui/string-input";
 import { AppIcon } from "@/components/widgets/AppIcon";
-import { BackButton } from "@/components/widgets/BackButton";
 import { ClampText } from "@/components/widgets/ClampText";
 import FeedbackNoData from "@/components/widgets/FeedbackNoData";
 import FeedbackNotFound from "@/components/widgets/FeedbackNotFound";
@@ -30,7 +21,6 @@ import { ItemHeaderContainer } from "@/components/widgets/ItemHeaderContainer";
 import ItemHeaderTitle from "@/components/widgets/ItemHeaderTitle";
 import { Limitation } from "@/components/widgets/Limitation";
 import { Pagination } from "@/components/widgets/Pagination";
-import ResetPasswordDisclosureTrigger from "@/features/auth/ResetPassword";
 import {
   dummyActivityLogs,
   dummyAuthLogs,
@@ -45,11 +35,10 @@ import {
 import { SVGS_PATH } from "@/constants/paths";
 import useLang from "@/contexts/useLang";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
+import ResetPasswordDisclosureTrigger from "@/features/auth/ResetPassword";
 import useDataState from "@/hooks/useDataState";
-import usePopDisclosure from "@/hooks/usePopDisclosure";
 import useRequest from "@/hooks/useRequest";
 import { isEmptyArray } from "@/utils/array";
-import { disclosureId } from "@/utils/disclosure";
 import { formatDate } from "@/utils/formatter";
 import { imgUrl } from "@/utils/url";
 import { Circle, HStack } from "@chakra-ui/react";
@@ -61,72 +50,8 @@ import {
   LogInIcon,
   UserIcon,
 } from "lucide-react";
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import * as yup from "yup";
-
-interface AvatarInputDisclosureTriggerProps {
-  children: React.ReactElement<any>;
-  formik: any;
-  user?: Interface__User;
-}
-const AvatarUploadTrigger = (props: AvatarInputDisclosureTriggerProps) => {
-  // Props
-  const { children, formik, user } = props;
-
-  // Hooks
-  const { open, onOpen } = usePopDisclosure(disclosureId("avatar-input"));
-
-  const trigger = React.cloneElement(children, {
-    onClick: (...args: any[]) => {
-      children.props?.onClick?.(...args);
-      onOpen();
-    },
-  });
-
-  return (
-    <>
-      {trigger}
-
-      <DisclosureRoot open={open} lazyLoad size={"xs"}>
-        <DisclosureContent>
-          <DisclosureHeader>
-            <DisclosureHeaderContent title={`Avatar`} />
-          </DisclosureHeader>
-
-          <DisclosureBody>
-            <ImgInput
-              inputValue={formik.values.avatar}
-              onChange={(inputValue) => {
-                formik.setFieldValue(inputValue);
-              }}
-              existingFiles={user?.avatar}
-              onDeleteFile={(fileData) => {
-                formik.setFieldValue(
-                  "deleteAvatarIds",
-                  Array.from(
-                    new Set([...formik.values.deleteAvatarIds, fileData.id]),
-                  ),
-                );
-              }}
-              onUndoDeleteFile={(fileData) => {
-                formik.setFieldValue(
-                  "deleteAvatarIds",
-                  formik.values.deleteAvatarIds.filter(
-                    (id: string) => id !== fileData.id,
-                  ),
-                );
-              }}
-            />
-          </DisclosureBody>
-
-          <DisclosureFooter>
-            <BackButton />
-          </DisclosureFooter>
-        </DisclosureContent>
-      </DisclosureRoot>
-    </>
-  );
-};
 
 interface PersonalInformationProps {
   initialData?: Interface__User;
