@@ -1,8 +1,8 @@
 "use client";
 
 import { P } from "@/components/ui/p";
-import { EmptyString } from "@/components/widgets/EmptyString";
-import { DotIndicator } from "@/components/widgets/Indicator";
+import { EmptyString } from "@/components/widgets/empty-string";
+import { DotIndicator } from "@/components/widgets/indicator";
 import useLocale from "@/contexts/useLocale";
 import { formatDate } from "@/utils/formatter";
 import { HStack, StackProps } from "@chakra-ui/react";

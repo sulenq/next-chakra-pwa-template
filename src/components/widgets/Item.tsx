@@ -2,7 +2,7 @@
 
 import { CContainer } from "@/components/ui/c-container";
 import { P, PProps } from "@/components/ui/p";
-import { InfoPopover } from "@/components/widgets/InfoPopover";
+import { InfoPopover } from "@/components/widgets/info-popover";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
 import { HStack, StackProps } from "@chakra-ui/react";
 import { forwardRef } from "react";

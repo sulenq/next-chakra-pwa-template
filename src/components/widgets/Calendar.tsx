@@ -7,7 +7,7 @@ import {
   PeriodPicker,
 } from "@/components/ui/date-picker-input";
 import { Disclosure } from "@/components/ui/disclosure";
-import { BackButton } from "@/components/widgets/BackButton";
+import { BackButton } from "@/components/widgets/back-button";
 import { Period } from "@/constants/types";
 import useLocale from "@/contexts/useLocale";
 import usePopDisclosure from "@/hooks/usePopDisclosure";

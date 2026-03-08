@@ -7,9 +7,9 @@ import { NumInput } from "@/components/ui/number-input";
 import { P } from "@/components/ui/p";
 import { Spinner } from "@/components/ui/spinner";
 import { Tooltip } from "@/components/ui/tooltip";
-import { AppIcon } from "@/components/widgets/AppIcon";
-import FeedbackState from "@/components/widgets/FeedbackState";
-import { HScroll } from "@/components/widgets/HScroll";
+import { AppIcon } from "@/components/widgets/app-icon";
+import FeedbackState from "@/components/widgets/feedback-state";
+import { HScroll } from "@/components/widgets/h-scroll";
 import useLocale from "@/contexts/useLocale";
 import { Box, HStack, Icon, StackProps, VStack } from "@chakra-ui/react";
 import {

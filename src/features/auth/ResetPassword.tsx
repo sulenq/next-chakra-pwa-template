@@ -5,7 +5,7 @@ import { Field } from "@/components/ui/field";
 import { HelperText } from "@/components/ui/helper-text";
 import { PasswordInput } from "@/components/ui/password-input";
 import { StringInput } from "@/components/ui/string-input";
-import { BackButton } from "@/components/widgets/BackButton";
+import { BackButton } from "@/components/widgets/back-button";
 import useLocale from "@/contexts/useLocale";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
 import useRequest from "@/hooks/useRequest";

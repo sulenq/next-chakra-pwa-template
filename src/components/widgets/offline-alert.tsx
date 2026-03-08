@@ -6,7 +6,7 @@ import { Icon } from "@chakra-ui/react";
 import { IconAccessPointOff } from "@tabler/icons-react";
 import { useEffect } from "react";
 import { Disclosure } from "@/components/ui/disclosure";
-import { BackButton } from "@/components/widgets/BackButton";
+import { BackButton } from "@/components/widgets/back-button";
 
 import usePopDisclosure from "@/hooks/usePopDisclosure";
 import { disclosureId } from "@/utils/disclosure";

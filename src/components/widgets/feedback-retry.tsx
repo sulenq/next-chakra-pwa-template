@@ -4,8 +4,8 @@ import { Btn } from "@/components/ui/btn";
 import { CContainer } from "@/components/ui/c-container";
 import FeedbackState, {
   FeedbackStateProps,
-} from "@/components/widgets/FeedbackState";
-import { LucideIcon } from "@/components/widgets/Icon";
+} from "@/components/widgets/feedback-state";
+import { LucideIcon } from "@/components/widgets/icon";
 import { MIN_H_FEEDBACK_CONTAINER } from "@/constants/styles";
 import useLocale from "@/contexts/useLocale";
 import { useThemeConfig } from "@/contexts/useThemeConfig";

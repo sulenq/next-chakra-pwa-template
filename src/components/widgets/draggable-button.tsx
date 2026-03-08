@@ -11,7 +11,7 @@ interface DraggableBtnProps extends BtnProps {
   defaultPos?: DefaultPos;
   allowedSnap?: AllowedSnap;
 }
-export const DraggableBtn = (props: DraggableBtnProps) => {
+export const DraggableButton = (props: DraggableBtnProps) => {
   // Props
   const {
     children,

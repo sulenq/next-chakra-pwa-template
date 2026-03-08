@@ -2,15 +2,15 @@
 
 import { CContainer } from "@/components/ui/c-container";
 import { P, PProps } from "@/components/ui/p";
-import { BackButton } from "@/components/widgets/BackButton";
-import { Calendar } from "@/components/widgets/Calendar";
-import { ClampText } from "@/components/widgets/ClampText";
-import { Clock } from "@/components/widgets/Clock";
+import { BackButton } from "@/components/widgets/back-button";
+import { Calendar } from "@/components/widgets/calendar";
+import { ClampText } from "@/components/widgets/clamp-text";
+import { Clock } from "@/components/widgets/clock";
 
-import { DotIndicator } from "@/components/widgets/Indicator";
-import { MContainer, MContainerProps } from "@/components/widgets/MContainer";
-import SimplePopover from "@/components/widgets/SimplePopover";
-import { Today } from "@/components/widgets/Today";
+import { DotIndicator } from "@/components/widgets/indicator";
+import { MContainer, MContainerProps } from "@/components/widgets/m-container";
+import SimplePopover from "@/components/widgets/simple-popover";
+import { Today } from "@/components/widgets/today";
 import { Interface__Nav } from "@/constants/interfaces";
 import { TOP_BAR_H } from "@/constants/styles";
 import { useBreadcrumbs } from "@/contexts/useBreadcrumbs";

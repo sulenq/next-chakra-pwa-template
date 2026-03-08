@@ -1,7 +1,7 @@
 "use client";
 
 import { P, PProps } from "@/components/ui/p";
-import SimplePopover from "@/components/widgets/SimplePopover";
+import SimplePopover from "@/components/widgets/simple-popover";
 
 export const ClampText = (props: PProps) => {
   // Props

@@ -8,14 +8,14 @@ import { Divider } from "@/components/ui/divider";
 import { Img } from "@/components/ui/img";
 import { P } from "@/components/ui/p";
 import SearchInput from "@/components/ui/search-input";
-import { BackButton } from "@/components/widgets/BackButton";
-import { BatchOptions } from "@/components/widgets/BatchOptions";
-import { ClampText } from "@/components/widgets/ClampText";
-import FeedbackNotFound from "@/components/widgets/FeedbackNotFound";
-import { ImgViewer } from "@/components/widgets/ImgViewer";
-import { Limitation } from "@/components/widgets/Limitation";
-import { Pagination } from "@/components/widgets/Pagination";
-import { RowOptions } from "@/components/widgets/RowOptions";
+import { BackButton } from "@/components/widgets/back-button";
+import { BatchOptions } from "@/components/widgets/batch-option";
+import { ClampText } from "@/components/widgets/clamp-text";
+import FeedbackNotFound from "@/components/widgets/feedback-not-found";
+import { ImgViewer } from "@/components/widgets/img-viewer";
+import { Limitation } from "@/components/widgets/limitation";
+import { Pagination } from "@/components/widgets/pagination";
+import { RowOptions } from "@/components/widgets/row-options";
 import {
   FormattedTableRow,
   Interface__DataProps,

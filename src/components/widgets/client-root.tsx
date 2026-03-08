@@ -2,8 +2,8 @@
 
 import { useColorMode } from "@/components/ui/color-mode";
 import { Img } from "@/components/ui/img";
-import { GlobalDisclosure } from "@/components/widgets/GlobalDisclosure";
-import { LoadingBar } from "@/components/widgets/LoadingBar";
+import { GlobalDisclosure } from "@/components/widgets/global-disclosure";
+import { LoadingBar } from "@/components/widgets/loading-bar";
 import { APP } from "@/constants/_meta";
 import { SVGS_PATH } from "@/constants/paths";
 import useADM from "@/contexts/useADM";

@@ -2,7 +2,7 @@ import { Btn } from "@/components/ui/btn";
 import { DialogCloseTrigger } from "@/components/ui/dialog";
 import { DrawerCloseTrigger } from "@/components/ui/drawer";
 import { P } from "@/components/ui/p";
-import { LucideIcon } from "@/components/widgets/Icon";
+import { LucideIcon } from "@/components/widgets/icon";
 import { back } from "@/utils/client";
 import { HStack, Icon } from "@chakra-ui/react";
 import { MaximizeIcon, MinimizeIcon, XIcon } from "lucide-react";

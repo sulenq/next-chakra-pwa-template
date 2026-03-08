@@ -6,8 +6,8 @@ import {
   MenuRoot,
   MenuTrigger,
 } from "@/components/ui/menu";
-import { AppIcon } from "@/components/widgets/AppIcon";
-import { Confirmation } from "@/components/widgets/Confirmation";
+import { AppIcon } from "@/components/widgets/app-icon";
+import { Confirmation } from "@/components/widgets/confirmation";
 import {
   FormattedTableRow,
   RowOptionsTableOptionGenerator,

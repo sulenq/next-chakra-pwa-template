@@ -6,7 +6,7 @@ import { useThemeConfig } from "@/contexts/useThemeConfig";
 import usePopDisclosure from "@/hooks/usePopDisclosure";
 import { disclosureId } from "@/utils/disclosure";
 import { StackProps } from "@chakra-ui/react";
-import { BackButton } from "@/components/widgets/BackButton";
+import { BackButton } from "@/components/widgets/back-button";
 
 interface ConfirmationProps {
   open: boolean;

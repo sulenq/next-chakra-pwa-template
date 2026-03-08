@@ -3,7 +3,7 @@ import { Disclosure } from "@/components/ui/disclosure";
 import { P } from "@/components/ui/p";
 import { StringInput } from "@/components/ui/string-input";
 import { Tooltip } from "@/components/ui/tooltip";
-import { LucideIcon } from "@/components/widgets/Icon";
+import { LucideIcon } from "@/components/widgets/icon";
 import { BASE_ICON_BOX_SIZE } from "@/constants/styles";
 import { ButtonVariant, DisclosureSizes } from "@/constants/types";
 import useLocale from "@/contexts/useLocale";

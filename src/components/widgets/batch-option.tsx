@@ -8,9 +8,9 @@ import {
   MenuTrigger,
 } from "@/components/ui/menu";
 import { P } from "@/components/ui/p";
-import { AppIcon } from "@/components/widgets/AppIcon";
-import { Confirmation } from "@/components/widgets/Confirmation";
-import { DotIndicator } from "@/components/widgets/Indicator";
+import { AppIcon } from "@/components/widgets/app-icon";
+import { Confirmation } from "@/components/widgets/confirmation";
+import { DotIndicator } from "@/components/widgets/indicator";
 import { BatchOptionsTableOptionGenerator } from "@/constants/interfaces";
 import useLocale from "@/contexts/useLocale";
 import { useThemeConfig } from "@/contexts/useThemeConfig";

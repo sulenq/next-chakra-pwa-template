@@ -1,11 +1,11 @@
 import { CContainer } from "@/components/ui/c-container";
 import { Checkbox } from "@/components/ui/checkbox";
 import { P } from "@/components/ui/p";
-import { BatchOptions } from "@/components/widgets/BatchOptions";
-import { Limitation } from "@/components/widgets/Limitation";
-import { Pagination } from "@/components/widgets/Pagination";
-import { RowOptions } from "@/components/widgets/RowOptions";
-import { SortIcon } from "@/components/widgets/SortIcon";
+import { BatchOptions } from "@/components/widgets/batch-option";
+import { Limitation } from "@/components/widgets/limitation";
+import { Pagination } from "@/components/widgets/pagination";
+import { RowOptions } from "@/components/widgets/row-options";
+import { SortIcon } from "@/components/widgets/sort-icon";
 import {
   BatchOptionsTableOptionGenerator,
   FormattedTableHeader,

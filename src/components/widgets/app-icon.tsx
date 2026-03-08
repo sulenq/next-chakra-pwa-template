@@ -1,6 +1,6 @@
 "use client";
 
-import { LucideIcon as LucideIconComponent } from "@/components/widgets/Icon";
+import { LucideIcon as LucideIconComponent } from "@/components/widgets/icon";
 import { BASE_ICON_BOX_SIZE } from "@/constants/styles";
 import { Icon, IconProps } from "@chakra-ui/react";
 import { type LucideIcon, type LucideProps } from "lucide-react";

@@ -27,7 +27,7 @@ import {
   DrawerTrigger,
 } from "@/components/ui/drawer";
 import { P } from "@/components/ui/p";
-import { AppIcon } from "@/components/widgets/AppIcon";
+import { AppIcon } from "@/components/widgets/app-icon";
 import { SM_SCREEN_W_NUMBER } from "@/constants/styles";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
 import { useIsSmScreenWidth } from "@/hooks/useIsSmScreenWidth";

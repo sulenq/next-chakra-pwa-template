@@ -1,8 +1,8 @@
 "use client";
 
 import { Btn, BtnProps } from "@/components/ui/btn";
-import { LucideIcon } from "@/components/widgets/Icon";
-import SimplePopover from "@/components/widgets/SimplePopover";
+import { LucideIcon } from "@/components/widgets/icon";
+import SimplePopover from "@/components/widgets/simple-popover";
 import { Icon } from "@chakra-ui/react";
 import { InfoIcon } from "lucide-react";
 

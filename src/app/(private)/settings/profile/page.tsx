@@ -10,15 +10,15 @@ import SearchInput from "@/components/ui/search-input";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Spinner } from "@/components/ui/spinner";
 import { StringInput } from "@/components/ui/string-input";
-import { AppIcon } from "@/components/widgets/AppIcon";
-import { ClampText } from "@/components/widgets/ClampText";
-import FeedbackNoData from "@/components/widgets/FeedbackNoData";
-import FeedbackNotFound from "@/components/widgets/FeedbackNotFound";
-import FeedbackRetry from "@/components/widgets/FeedbackRetry";
-import { ImgViewer } from "@/components/widgets/ImgViewer";
-import { Item } from "@/components/widgets/Item";
-import { Limitation } from "@/components/widgets/Limitation";
-import { Pagination } from "@/components/widgets/Pagination";
+import { AppIcon } from "@/components/widgets/app-icon";
+import { ClampText } from "@/components/widgets/clamp-text";
+import FeedbackNoData from "@/components/widgets/feedback-no-data";
+import FeedbackNotFound from "@/components/widgets/feedback-not-found";
+import FeedbackRetry from "@/components/widgets/feedback-retry";
+import { ImgViewer } from "@/components/widgets/img-viewer";
+import { Item } from "@/components/widgets/item";
+import { Limitation } from "@/components/widgets/limitation";
+import { Pagination } from "@/components/widgets/pagination";
 import {
   dummyActivityLogs,
   dummyAuthLogs,

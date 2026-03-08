@@ -2,7 +2,7 @@
 
 import { FileIcon } from "@/components/ui/file-icon";
 import { P } from "@/components/ui/p";
-import { LucideIcon } from "@/components/widgets/Icon";
+import { LucideIcon } from "@/components/widgets/icon";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
 import type { ButtonProps, RecipeProps } from "@chakra-ui/react";
 import {

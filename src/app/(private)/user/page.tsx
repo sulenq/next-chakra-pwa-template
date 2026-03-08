@@ -5,22 +5,22 @@ import { MenuItem } from "@/components/ui/menu";
 import { P } from "@/components/ui/p";
 import SearchInput from "@/components/ui/search-input";
 import { Tooltip } from "@/components/ui/tooltip";
-import { AppIcon } from "@/components/widgets/AppIcon";
-import { Confirmation } from "@/components/widgets/Confirmation";
-import { DataDisplayToggle } from "@/components/widgets/DataDisplayToggle";
-import { DataGrid } from "@/components/widgets/DataGrid";
-import { DataTable } from "@/components/widgets/DataTable";
-import FeedbackNoData from "@/components/widgets/FeedbackNoData";
-import FeedbackRetry from "@/components/widgets/FeedbackRetry";
-import { HScroll } from "@/components/widgets/HScroll";
-import { LucideIcon } from "@/components/widgets/Icon";
+import { AppIcon } from "@/components/widgets/app-icon";
+import { Confirmation } from "@/components/widgets/confirmation";
+import { DataDisplayToggle } from "@/components/widgets/data-display-toggle";
+import { DataGrid } from "@/components/widgets/data-grid";
+import { DataTable } from "@/components/widgets/data-table";
+import FeedbackNoData from "@/components/widgets/feedback-no-data";
+import FeedbackRetry from "@/components/widgets/feedback-retry";
+import { HScroll } from "@/components/widgets/h-scroll";
+import { LucideIcon } from "@/components/widgets/icon";
 import {
   PageContainer,
   PageContent,
   PageHeader,
-} from "@/components/widgets/PageShell";
-import { SimpleDisclosure } from "@/components/widgets/SimpleDisclosure";
-import { TableSkeleton } from "@/components/widgets/TableSkeleton";
+} from "@/components/widgets/page-shell";
+import { SimpleDisclosure } from "@/components/widgets/simple-disclosure";
+import { TableSkeleton } from "@/components/widgets/table-skeleton";
 import { dummyUsers } from "@/constants/dummyData";
 import {
   BatchOptionsTableOptionGenerator,

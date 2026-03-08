@@ -2,8 +2,8 @@
 
 import { Avatar } from "@/components/ui/avatar";
 import { CContainer } from "@/components/ui/c-container";
-import { ClampText } from "@/components/widgets/ClampText";
-import { ImgViewer } from "@/components/widgets/ImgViewer";
+import { ClampText } from "@/components/widgets/clamp-text";
+import { ImgViewer } from "@/components/widgets/img-viewer";
 import { Interface__User } from "@/constants/interfaces";
 import { SVGS_PATH } from "@/constants/paths";
 import { imgUrl } from "@/utils/url";

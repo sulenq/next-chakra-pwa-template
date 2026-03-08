@@ -4,7 +4,7 @@ import { CContainer } from "@/components/ui/c-container";
 import { Disclosure } from "@/components/ui/disclosure";
 import { FileInputProps } from "@/components/ui/file-input";
 import { ImgInput } from "@/components/ui/img-input";
-import { BackButton } from "@/components/widgets/BackButton";
+import { BackButton } from "@/components/widgets/back-button";
 import { Interface__User } from "@/constants/interfaces";
 import usePopDisclosure from "@/hooks/usePopDisclosure";
 import { disclosureId } from "@/utils/disclosure";

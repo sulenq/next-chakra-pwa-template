@@ -1,4 +1,4 @@
-import { VerifyingScreen } from "@/components/widgets/VerifyingScreen";
+import { VerifyingScreen } from "@/components/widgets/verifying-screen";
 import { AUTH_API_USER_PROFILE } from "@/constants/apis";
 import useAuthMiddleware from "@/contexts/useAuthMiddleware";
 import useRequest from "@/hooks/useRequest";

@@ -6,17 +6,17 @@ import { P } from "@/components/ui/p";
 import { Segmented } from "@/components/ui/segment-group";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Switch } from "@/components/ui/switch";
-import { AppIcon } from "@/components/widgets/AppIcon";
-import { ClampText } from "@/components/widgets/ClampText";
-import FeedbackNoData from "@/components/widgets/FeedbackNoData";
-import FeedbackRetry from "@/components/widgets/FeedbackRetry";
-import { DotIndicator } from "@/components/widgets/Indicator";
-import { Item } from "@/components/widgets/Item";
+import { AppIcon } from "@/components/widgets/app-icon";
+import { ClampText } from "@/components/widgets/clamp-text";
+import FeedbackNoData from "@/components/widgets/feedback-no-data";
+import FeedbackRetry from "@/components/widgets/feedback-retry";
+import { DotIndicator } from "@/components/widgets/indicator";
+import { Item } from "@/components/widgets/item";
 import {
   PageContainer,
   PageContent,
   usePageContainerContext,
-} from "@/components/widgets/PageShell";
+} from "@/components/widgets/page-shell";
 import { DUMMY_DASHBOARD_DATA } from "@/constants/dummyData";
 import { getMonthNames } from "@/constants/months";
 import { Type__ChartData } from "@/constants/types";
