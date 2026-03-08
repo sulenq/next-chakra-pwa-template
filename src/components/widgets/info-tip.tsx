@@ -2,7 +2,7 @@
 
 import { Btn, BtnProps } from "@/components/ui/btn";
 import { LucideIcon } from "@/components/widgets/icon";
-import SimplePopover from "@/components/widgets/simple-popover";
+import ToggleTip from "@/components/widgets/toggle-tip";
 import { Icon } from "@chakra-ui/react";
 import { InfoIcon } from "lucide-react";
 
@@ -10,12 +10,12 @@ interface Props extends BtnProps {
   popoverContent?: string;
 }
 
-export const InfoPopover = (props: Props) => {
+export const InfoTip = (props: Props) => {
   // Props
   const { popoverContent, ...restProps } = props;
 
   return (
-    <SimplePopover content={popoverContent}>
+    <ToggleTip content={popoverContent}>
       <Btn
         clicky={false}
         iconButton
@@ -29,6 +29,6 @@ export const InfoPopover = (props: Props) => {
           <LucideIcon icon={InfoIcon} />
         </Icon>
       </Btn>
-    </SimplePopover>
+    </ToggleTip>
   );
 };

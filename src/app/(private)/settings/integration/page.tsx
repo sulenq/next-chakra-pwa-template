@@ -152,6 +152,8 @@ export default function Page() {
     url: ``,
     dataResource: false,
   });
+
+  // Render State Map
   const render = {
     loading: <Skeleton flex={1} />,
     error: <FeedbackRetry onRetry={onRetry} />,

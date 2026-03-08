@@ -30,6 +30,23 @@ const ActivityLog = () => {
 
   // States
   const [search, setSearch] = useState("");
+  const {
+    error,
+    initialLoading,
+    data,
+    onRetry,
+    limit,
+    setLimit,
+    pagination,
+    page,
+    setPage,
+  } = useDataState<Interface__ActivityLog[]>({
+    initialData: dummyAllActivityLogs,
+    url: ``,
+    dataResource: false,
+  });
+
+  // Derived Values
   const activityFormatter: Record<
     string,
     (meta?: Record<string, any>) => string
@@ -56,21 +73,8 @@ const ActivityLog = () => {
   const formatActivityLog = (log: Interface__ActivityLog): string => {
     return activityFormatter[log.action as Enum__ActivityAction](log.metadata);
   };
-  const {
-    error,
-    initialLoading,
-    data,
-    onRetry,
-    limit,
-    setLimit,
-    pagination,
-    page,
-    setPage,
-  } = useDataState<Interface__ActivityLog[]>({
-    initialData: dummyAllActivityLogs,
-    url: ``,
-    dataResource: false,
-  });
+
+  // Render State Map
   const render = {
     loading: <Skeleton flex={1} />,
     error: <FeedbackRetry onRetry={onRetry} />,

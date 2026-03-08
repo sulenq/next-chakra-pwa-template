@@ -18,7 +18,7 @@ interface Props extends Omit<TooltipContentProps, "content"> {
   rootProps?: Omit<PopoverRootProps, "children">;
 }
 
-const SimplePopover = (props: Props) => {
+const ToggleTip = (props: Props) => {
   // Props
   const { children, content, rootProps, ...restProps } = props;
 
@@ -57,4 +57,4 @@ const SimplePopover = (props: Props) => {
   );
 };
 
-export default SimplePopover;
+export default ToggleTip;

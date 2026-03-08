@@ -1,14 +1,14 @@
 "use client";
 
 import { P, PProps } from "@/components/ui/p";
-import SimplePopover from "@/components/widgets/simple-popover";
+import ToggleTip from "@/components/widgets/toggle-tip";
 
 export const ClampText = (props: PProps) => {
   // Props
   const { children, ...restProps } = props;
 
   return (
-    <SimplePopover
+    <ToggleTip
       content={children}
       rootProps={{
         positioning: {
@@ -19,6 +19,6 @@ export const ClampText = (props: PProps) => {
       <P w={"fit"} lineClamp={1} cursor={"pointer"} {...restProps}>
         {children}
       </P>
-    </SimplePopover>
+    </ToggleTip>
   );
 };

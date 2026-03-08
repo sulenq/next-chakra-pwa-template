@@ -389,6 +389,8 @@ const Data = (props: any) => {
     },
     dependencies: [filter],
   });
+
+  // Derived Values
   const dataProps: Interface__DataProps = {
     headers: [
       {
@@ -483,6 +485,8 @@ const Data = (props: any) => {
       }),
     ] as BatchOptionsTableOptionGenerator[],
   };
+
+  // Render State Map
   const render = {
     loading: <TableSkeleton />,
     error: <FeedbackRetry onRetry={onRetry} />,

@@ -2,7 +2,7 @@
 
 import { CContainer } from "@/components/ui/c-container";
 import { P, PProps } from "@/components/ui/p";
-import { InfoPopover } from "@/components/widgets/info-popover";
+import { InfoTip } from "@/components/widgets/info-tip";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
 import { HStack, StackProps } from "@chakra-ui/react";
 import { forwardRef } from "react";
@@ -86,7 +86,7 @@ const ItemHeaderTitle = forwardRef<HTMLDivElement, ItemHeaderTitleProps>(
           {children}
         </P>
 
-        {popoverContent && <InfoPopover popoverContent={popoverContent} />}
+        {popoverContent && <InfoTip popoverContent={popoverContent} />}
       </HStack>
     );
   },

@@ -243,6 +243,8 @@ const AuthLog = () => {
     url: ``,
     dependencies: [search],
   });
+
+  // Render State Map
   const render = {
     loading: <Skeleton flex={1} />,
     error: <FeedbackRetry onRetry={onRetry} />,
@@ -400,6 +402,8 @@ const ActivityLog = () => {
     url: ``,
     dependencies: [search],
   });
+
+  // Render State Map
   const render = {
     loading: <Skeleton flex={1} />,
     error: <FeedbackRetry onRetry={onRetry} />,
@@ -504,6 +508,8 @@ export default function Page() {
       url: ``,
       dataResource: false,
     });
+
+  // Render State Map
   const render = {
     loading: <Spinner m={"auto"} />,
     error: <FeedbackRetry onRetry={onRetry} />,

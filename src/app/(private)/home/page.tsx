@@ -543,6 +543,8 @@ const PageScreen = () => {
     // url: ``,
     dataResource: false,
   });
+
+  // Render State Map
   const render = {
     loading: <Skeleton />,
     error: <FeedbackRetry onRetry={onRetry} />,

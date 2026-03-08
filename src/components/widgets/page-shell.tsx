@@ -9,7 +9,7 @@ import { Clock } from "@/components/widgets/clock";
 
 import { DotIndicator } from "@/components/widgets/indicator";
 import { MContainer, MContainerProps } from "@/components/widgets/m-container";
-import SimplePopover from "@/components/widgets/simple-popover";
+import ToggleTip from "@/components/widgets/toggle-tip";
 import { Today } from "@/components/widgets/today";
 import { Interface__Nav } from "@/constants/interfaces";
 import { TOP_BAR_H } from "@/constants/styles";
@@ -145,7 +145,7 @@ export const NavBreadcrumb = (props: any) => {
     <HStack gap={1} ml={"-4px"} h={"36px"} cursor={"pointer"} {...restProps}>
       {backPath && <BackButton iconButton clicky={false} backPath={backPath} />}
 
-      <SimplePopover
+      <ToggleTip
         content={currentActiveNavs
           .map((nav) => {
             return nav?.label || pluckString(t, nav?.labelKey);
@@ -189,7 +189,7 @@ export const NavBreadcrumb = (props: any) => {
             );
           })}
         </HStack>
-      </SimplePopover>
+      </ToggleTip>
     </HStack>
   );
 };
