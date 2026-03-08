@@ -48,7 +48,7 @@ const NAVS_COLOR = "fg.muted";
 const Language = () => {
   // Contexts
   const { themeConfig } = useThemeConfig();
-  const { lang, setLang, t } = useLang();
+  const { t, lang, setLang } = useLang();
 
   return (
     <Item.Container borderless roundedless>
@@ -87,10 +87,11 @@ const Language = () => {
                   pos={"relative"}
                 >
                   <Text fontWeight={"medium"} truncate>
-                    {item.label}{" "}
+                    {item.label}
+
                     <chakra.span
                       color={"fg.subtle"}
-                      mx={2}
+                      ml={2}
                       fontWeight={"normal"}
                     >
                       {item.code}
@@ -107,6 +108,7 @@ const Language = () => {
     </Item.Container>
   );
 };
+
 const Timezone = () => {
   const LIMIT_OPTIONS = [10, 20, 50, 100];
 
@@ -256,10 +258,11 @@ const Timezone = () => {
     </Item.Container>
   );
 };
+
 const DateFormat = () => {
   // Contexts
-  const { themeConfig } = useThemeConfig();
   const { t } = useLang();
+  const { themeConfig } = useThemeConfig();
   const { dateFormat, setDateFormat } = useDateFormat();
 
   return (
@@ -325,10 +328,11 @@ const DateFormat = () => {
     </Item.Container>
   );
 };
+
 const TimeFormat = () => {
   // Contexts
-  const { themeConfig } = useThemeConfig();
   const { t } = useLang();
+  const { themeConfig } = useThemeConfig();
   const { timeFormat, setTimeFormat } = useTimeFormat();
 
   return (
@@ -389,6 +393,7 @@ const TimeFormat = () => {
     </Item.Container>
   );
 };
+
 const UOMFormat = () => {
   // Contexts
   const { themeConfig } = useThemeConfig();
