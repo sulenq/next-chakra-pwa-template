@@ -33,7 +33,7 @@ import {
 import { SVGS_PATH } from "@/constants/paths";
 import { useLocale } from "@/contexts/useLocale";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
-import ResetPasswordDisclosureTrigger from "@/features/auth/ResetPassword";
+import ResetPasswordDisclosureTrigger from "@/features/auth/reset-password";
 import useFetchData from "@/hooks/useFetchData";
 import { useRequest } from "@/hooks/useRequest";
 import { isEmptyArray } from "@/utils/array";

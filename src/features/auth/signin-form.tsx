@@ -40,7 +40,7 @@ import { Divider } from "@/components/ui/divider";
 import { P } from "@/components/ui/p";
 import { PasswordInput } from "@/components/ui/password-input";
 import { StringInput } from "@/components/ui/string-input";
-import ResetPasswordDisclosureTrigger from "@/features/auth/ResetPassword";
+import ResetPasswordDisclosureTrigger from "@/features/auth/reset-password";
 
 const INDEX_ROUTE = "/demo";
 
