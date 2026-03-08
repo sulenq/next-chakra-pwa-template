@@ -6,11 +6,10 @@ import ToggleTip from "@/components/widgets/toggle-tip";
 import { Icon } from "@chakra-ui/react";
 import { InfoIcon } from "lucide-react";
 
-interface Props extends BtnProps {
+interface InfoTooltipProps extends BtnProps {
   popoverContent?: string;
 }
-
-export const InfoTip = (props: Props) => {
+export const InfoTip = (props: InfoTooltipProps) => {
   // Props
   const { popoverContent, ...restProps } = props;
 

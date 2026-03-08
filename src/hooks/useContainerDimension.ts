@@ -1,8 +1,8 @@
 import { useEffect, useState, useRef } from "react";
 
-export function useContainerDimension(
+export const useContainerDimension = (
   ref: React.RefObject<HTMLDivElement | null> | null,
-) {
+) => {
   const [dimension, setDimension] = useState({ width: 0, height: 0 });
   const frameRef = useRef<number | null>(null);
 
@@ -33,4 +33,4 @@ export function useContainerDimension(
   }, [ref]);
 
   return dimension;
-}
+};

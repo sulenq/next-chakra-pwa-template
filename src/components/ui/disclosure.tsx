@@ -31,7 +31,7 @@ import { AppIcon } from "@/components/widgets/app-icon";
 import { SM_SCREEN_W_NUMBER } from "@/constants/styles";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
 import { useIsSmScreenWidth } from "@/hooks/useIsSmScreenWidth";
-import useScreen from "@/hooks/useScreen";
+import { useScreen } from "@/hooks/useScreen";
 import { back } from "@/utils/client";
 import {
   Box,

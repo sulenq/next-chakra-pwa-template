@@ -1,13 +1,12 @@
 import { toaster } from "@/components/ui/toaster";
 import useOffline from "@/contexts/disclosure/useOffilne";
-import useLocale from "@/contexts/useLocale";
+import { useLocale } from "@/contexts/useLocale";
 import { useEffect, useRef } from "react";
 
-interface Props {
+type OfflineAlertStore = {
   mounted: boolean;
-}
-
-export default function useOfflineAlert(props: Props) {
+};
+export default function useOfflineAlert(props: OfflineAlertStore) {
   // Props
   const { mounted } = props;
 

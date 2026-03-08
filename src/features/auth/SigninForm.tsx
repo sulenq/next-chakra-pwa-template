@@ -9,11 +9,11 @@ import { Logo } from "@/components/widgets/logo";
 import { APP } from "@/constants/_meta";
 import { AUTH_API_SIGNIN, AUTH_API_SIGNOUT } from "@/constants/apis";
 import { BASE_ICON_BOX_SIZE } from "@/constants/styles";
-import useAuthMiddleware from "@/contexts/useAuthMiddleware";
-import useLocale from "@/contexts/useLocale";
+import { useAuthMiddleware } from "@/contexts/useAuthMiddleware";
+import { useLocale } from "@/contexts/useLocale";
 import useRenderTrigger from "@/contexts/useRenderTrigger";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
-import useRequest from "@/hooks/useRequest";
+import { useRequest } from "@/hooks/useRequest";
 import {
   clearAccessToken,
   clearUserData,

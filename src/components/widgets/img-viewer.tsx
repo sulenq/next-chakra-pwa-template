@@ -7,21 +7,20 @@ import { DialogBody, DialogContent, DialogRoot } from "@/components/ui/dialog";
 import { Img } from "@/components/ui/img";
 import { NavLink } from "@/components/ui/nav-link";
 import { SVGS_PATH } from "@/constants/paths";
-import useLocale from "@/contexts/useLocale";
-import usePopDisclosure from "@/hooks/usePopDisclosure";
+import { useLocale } from "@/contexts/useLocale";
+import { usePopDisclosure } from "@/hooks/usePopDisclosure";
 import { back } from "@/utils/client";
 import { disclosureId } from "@/utils/disclosure";
 import { Icon, StackProps } from "@chakra-ui/react";
 import { IconArrowUpRight } from "@tabler/icons-react";
 
-interface Props extends StackProps {
+interface ImgViewerProps extends StackProps {
   id?: string;
   src?: string;
   fallbackSrc?: string;
   disabled?: boolean;
 }
-
-export const ImgViewer = (props: Props) => {
+export const ImgViewer = (props: ImgViewerProps) => {
   // Props
   const {
     children,

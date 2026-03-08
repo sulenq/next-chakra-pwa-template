@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from "react";
-import useRequest from "@/hooks/useRequest";
+import { useRequest } from "@/hooks/useRequest";
 import useRenderTrigger from "@/contexts/useRenderTrigger";
 import { useLoadingBar } from "@/contexts/useLoadingBar";
 
-interface Props<T> {
+interface UseFetchDataOptions<T> {
   initialData?: T;
   dummyData?: T;
   url?: string;
@@ -20,8 +20,7 @@ interface Props<T> {
   // withLimit?: boolean;
   // withPagination?: boolean;
 }
-
-const useDataState = <T = any>(props: Props<T>) => {
+const useFetchData = <T = any>(props: UseFetchDataOptions<T>) => {
   // Props
   const {
     initialData,
@@ -212,4 +211,4 @@ const useDataState = <T = any>(props: Props<T>) => {
   };
 };
 
-export default useDataState;
+export default useFetchData;

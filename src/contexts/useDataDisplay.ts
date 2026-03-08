@@ -3,7 +3,7 @@ import { persist } from "zustand/middleware";
 
 type DataDisplay = "table" | "grid";
 
-const STORAGE_KEY = "dataDisplay";
+const STORAGE_KEY = "data-display";
 
 interface DataDisplayState {
   displays: Record<string, DataDisplay>;
@@ -29,6 +29,6 @@ export const useDataDisplay = create<DataDisplayState>()(
     }),
     {
       name: STORAGE_KEY,
-    }
-  )
+    },
+  ),
 );

@@ -4,7 +4,7 @@ import { P } from "@/components/ui/p";
 import BrandWatermark from "@/components/widgets/brand-watermark";
 import { PageContainer } from "@/components/widgets/page-shell";
 import { APP } from "@/constants/_meta";
-import useLocale from "@/contexts/useLocale";
+import { useLocale } from "@/contexts/useLocale";
 import { interpolateString, pluckString } from "@/utils/string";
 import { VStack } from "@chakra-ui/react";
 

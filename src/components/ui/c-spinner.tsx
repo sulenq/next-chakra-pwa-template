@@ -2,11 +2,10 @@ import { CContainer } from "@/components/ui/c-container";
 import { Spinner } from "@/components/ui/spinner";
 import { SpinnerProps, StackProps } from "@chakra-ui/react";
 
-interface Props extends StackProps {
+interface CSpinner extends StackProps {
   spinnerProps?: SpinnerProps;
 }
-
-export const CSpinner = ({ spinnerProps, ...props }: Props) => {
+export const CSpinner = ({ spinnerProps, ...props }: CSpinner) => {
   return (
     <CContainer
       minH={"300px"}

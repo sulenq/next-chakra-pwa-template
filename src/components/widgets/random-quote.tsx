@@ -1,15 +1,10 @@
 "use client";
 
+import { P, PProps } from "@/components/ui/p";
+import { useRequest } from "@/hooks/useRequest";
 import { useEffect, useState } from "react";
-import { P } from "@/components/ui/p";
-import { TextProps } from "@chakra-ui/react";
-import useRequest from "@/hooks/useRequest";
 
-interface Props extends TextProps {}
-
-export const RandomQuote = (props: Props) => {
-  const { ...restProps } = props;
-
+export const RandomQuote = (props: PProps) => {
   const [quote, setQuote] = useState<string>("");
 
   const { req, loading, error } = useRequest({
@@ -40,8 +35,8 @@ export const RandomQuote = (props: Props) => {
     load();
   }, []);
 
-  if (loading) return <P {...restProps}>...</P>;
-  if (error) return <P {...restProps}>Failed to load quote</P>;
+  if (loading) return <P {...props}>...</P>;
+  if (error) return <P {...props}>Failed to load quote</P>;
 
-  return <P {...restProps}>{quote}</P>;
+  return <P {...props}>{quote}</P>;
 };

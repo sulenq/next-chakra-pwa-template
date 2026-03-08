@@ -14,7 +14,7 @@ import { MContainer } from "@/components/widgets/m-container";
 import { PageContainer, PageTitle } from "@/components/widgets/page-shell";
 import { OTHER_PRIVATE_NAV_GROUPS } from "@/constants/navs";
 import { DESKTOP_NAVS_TOOLTIP_MAIN_AXIS } from "@/constants/styles";
-import useLocale from "@/contexts/useLocale";
+import { useLocale } from "@/contexts/useLocale";
 import { useMasterDataPageContainer } from "@/contexts/useMasterDataPageContainer";
 import { useContainerDimension } from "@/hooks/useContainerDimension";
 import { isEmptyArray } from "@/utils/array";

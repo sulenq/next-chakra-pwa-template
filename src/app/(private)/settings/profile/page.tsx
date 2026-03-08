@@ -31,11 +31,11 @@ import {
   Interface__User,
 } from "@/constants/interfaces";
 import { SVGS_PATH } from "@/constants/paths";
-import useLocale from "@/contexts/useLocale";
+import { useLocale } from "@/contexts/useLocale";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
 import ResetPasswordDisclosureTrigger from "@/features/auth/ResetPassword";
-import useDataState from "@/hooks/useDataState";
-import useRequest from "@/hooks/useRequest";
+import useFetchData from "@/hooks/useFetchData";
+import { useRequest } from "@/hooks/useRequest";
 import { isEmptyArray } from "@/utils/array";
 import { formatDate } from "@/utils/formatter";
 import { imgUrl } from "@/utils/url";
@@ -237,7 +237,7 @@ const AuthLog = () => {
     pagination,
     page,
     setPage,
-  } = useDataState<Interface__AuthLog[]>({
+  } = useFetchData<Interface__AuthLog[]>({
     // TODO add url and set initial data to undefined
     initialData: dummyAuthLogs,
     url: ``,
@@ -396,7 +396,7 @@ const ActivityLog = () => {
     pagination,
     page,
     setPage,
-  } = useDataState<Interface__ActivityLog[]>({
+  } = useFetchData<Interface__ActivityLog[]>({
     // TODO add url and set initial data to undefined
     initialData: dummyActivityLogs,
     url: ``,
@@ -503,7 +503,7 @@ const ActivityLog = () => {
 export default function Page() {
   // States
   const { error, initialLoading, data, onRetry } =
-    useDataState<Interface__User>({
+    useFetchData<Interface__User>({
       initialData: dummyUser,
       url: ``,
       dataResource: false,

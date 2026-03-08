@@ -1,11 +1,10 @@
 import { create } from "zustand";
 
-interface Props {
+type MicPermissions = {
   micPermissionsStatus: PermissionState;
   updateMicPermissionsStatus: () => void;
-}
-
-const useMicPermissions = create<Props>((set) => {
+};
+export const useMicPermissions = create<MicPermissions>((set) => {
   let initialStatus: PermissionState = "prompt";
 
   if (typeof navigator !== "undefined" && navigator.permissions) {
@@ -35,5 +34,3 @@ const useMicPermissions = create<Props>((set) => {
     },
   };
 });
-
-export default useMicPermissions;

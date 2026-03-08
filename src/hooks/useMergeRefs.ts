@@ -1,6 +1,6 @@
 import { useCallback, useRef, Ref, RefObject } from "react";
 
-export function useMergedRefs<T>(...refs: Ref<T>[]) {
+export const useMergedRefs = <T>(...refs: Ref<T>[]) => {
   const refsRef = useRef(refs);
 
   refsRef.current = refs;
@@ -16,4 +16,4 @@ export function useMergedRefs<T>(...refs: Ref<T>[]) {
       }
     }
   }, []);
-}
+};

@@ -6,7 +6,7 @@ import { FileInputProps } from "@/components/ui/file-input";
 import { ImgInput } from "@/components/ui/img-input";
 import { BackButton } from "@/components/widgets/back-button";
 import { Interface__User } from "@/constants/interfaces";
-import usePopDisclosure from "@/hooks/usePopDisclosure";
+import { usePopDisclosure } from "@/hooks/usePopDisclosure";
 import { disclosureId } from "@/utils/disclosure";
 import { getInitials } from "@/utils/string";
 import type { GroupProps, SlotRecipeProps } from "@chakra-ui/react";

@@ -7,14 +7,16 @@ import {
 import { removeStorage } from "@/utils/client";
 import { create } from "zustand";
 
-interface Props {
+type AuthMiddlewareStore = {
   verifiedAccessToken: string | null;
   role: object | null;
   permissions: number[] | null;
 
-  setVerifiedAccessToken: (newState: Props["verifiedAccessToken"]) => void;
-  setRole: (newState: Props["role"]) => void;
-  setPermissions: (newState: Props["permissions"]) => void;
+  setVerifiedAccessToken: (
+    newState: AuthMiddlewareStore["verifiedAccessToken"],
+  ) => void;
+  setRole: (newState: AuthMiddlewareStore["role"]) => void;
+  setPermissions: (newState: AuthMiddlewareStore["permissions"]) => void;
 
   hasPermissions: (allowedPermissions: number[]) => boolean;
 
@@ -22,9 +24,8 @@ interface Props {
   removeAuthToken: () => void;
   removePermissions: () => void;
   removeRole: () => void;
-}
-
-const useAuthMiddleware = create<Props>((set, get) => ({
+};
+export const useAuthMiddleware = create<AuthMiddlewareStore>((set, get) => ({
   verifiedAccessToken: getAccessToken(),
   setVerifiedAccessToken: (newState) =>
     set(() => {
@@ -62,5 +63,3 @@ const useAuthMiddleware = create<Props>((set, get) => ({
 
   removeRole: () => set(() => ({ role: undefined })),
 }));
-
-export default useAuthMiddleware;

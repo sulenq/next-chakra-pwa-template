@@ -4,12 +4,11 @@ import { create } from "zustand";
 const STORAGE_KEY = "uom";
 const DEFAULT = "metric";
 
-interface Props {
+type UOMFormatStore = {
   UOM: string;
   setUOM: (newState: string) => void;
-}
-
-const useUOMFormat = create<Props>((set) => {
+};
+const useUOMFormat = create<UOMFormatStore>((set) => {
   const getStoredUOM = (): string => {
     try {
       const stored = getStorage(STORAGE_KEY);

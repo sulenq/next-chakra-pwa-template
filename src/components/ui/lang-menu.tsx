@@ -1,8 +1,6 @@
 "use client";
 
-import { ButtonProps, Icon, MenuPositioner, Portal } from "@chakra-ui/react";
-import { IconCheck, IconChevronDown } from "@tabler/icons-react";
-import useLocale from "@/contexts/useLocale";
+import { Btn, BtnProps } from "@/components/ui/btn";
 import {
   MenuContent,
   MenuItem,
@@ -10,10 +8,10 @@ import {
   MenuTrigger,
 } from "@/components/ui/menu";
 import { Tooltip } from "@/components/ui/tooltip";
+import { useLocale } from "@/contexts/useLocale";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
-import { Btn } from "@/components/ui/btn";
-
-interface Props extends ButtonProps {}
+import { Icon, MenuPositioner, Portal } from "@chakra-ui/react";
+import { IconCheck, IconChevronDown } from "@tabler/icons-react";
 
 const LANGUAGES = [
   {
@@ -28,7 +26,7 @@ const LANGUAGES = [
   },
 ];
 
-export const LangMenu = ({ ...props }: Props) => {
+export const LangMenu = (props: BtnProps) => {
   // Contexts
   const { t, locale, setLocale } = useLocale();
   const { themeConfig } = useThemeConfig();

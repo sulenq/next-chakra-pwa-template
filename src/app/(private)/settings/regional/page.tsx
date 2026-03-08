@@ -24,7 +24,7 @@ import {
 } from "@/constants/types";
 import { UOM_FORMATS } from "@/constants/uomFormats";
 import useDateFormat from "@/contexts/useDateFormat";
-import useLocale from "@/contexts/useLocale";
+import { useLocale } from "@/contexts/useLocale";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
 import useTimeFormat from "@/contexts/useTimeFormat";
 import useTimezone from "@/contexts/useTimezone";

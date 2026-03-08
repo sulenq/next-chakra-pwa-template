@@ -5,12 +5,11 @@ import { create } from "zustand";
 
 const STORAGE_KEY = "timezone";
 
-interface Props {
+type TimezoneStore = {
   timeZone: Type__TimezoneObject;
   setTimeZone: (newState: Type__TimezoneObject) => void;
-}
-
-const useTimezone = create<Props>((set) => {
+};
+const useTimezone = create<TimezoneStore>((set) => {
   const getStoredTimeZone = (): Type__TimezoneObject => {
     try {
       const rawStored = getStorage(STORAGE_KEY);

@@ -1,26 +1,30 @@
-import { useCallback, useMemo } from "react";
+import { useCallback } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 
-const usePopDisclosure = (id: string) => {
+export const usePopDisclosure = (id: string) => {
   const router = useRouter();
   const searchParams = useSearchParams();
 
-  const open = useMemo(() => {
-    return searchParams.get(id) === "1";
-  }, [searchParams, id]);
+  const open = searchParams.get(id) === "1";
+
+  const updateParams = useCallback(
+    (updater: (params: URLSearchParams) => void) => {
+      const params = new URLSearchParams(searchParams.toString());
+      updater(params);
+
+      const query = params.toString();
+      router.push(query ? `?${query}` : "", { scroll: false });
+    },
+    [router, searchParams],
+  );
 
   const onOpen = useCallback(() => {
-    const params = new URLSearchParams(searchParams.toString());
-    params.set(id, "1");
-    router.push(`?${params.toString()}`, { scroll: false });
-  }, [id, router, searchParams]);
+    updateParams((params) => params.set(id, "1"));
+  }, [id, updateParams]);
 
   const onClose = useCallback(() => {
-    const params = new URLSearchParams(searchParams.toString());
-    params.delete(id);
-    const query = params.toString();
-    router.push(query ? `?${query}` : "", { scroll: false });
-  }, [id, router, searchParams]);
+    updateParams((params) => params.delete(id));
+  }, [id, updateParams]);
 
   return {
     open,
@@ -28,5 +32,3 @@ const usePopDisclosure = (id: string) => {
     onClose,
   };
 };
-
-export default usePopDisclosure;

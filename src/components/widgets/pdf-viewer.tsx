@@ -10,7 +10,7 @@ import { Tooltip } from "@/components/ui/tooltip";
 import { AppIcon } from "@/components/widgets/app-icon";
 import FeedbackState from "@/components/widgets/feedback-state";
 import { HScroll } from "@/components/widgets/h-scroll";
-import useLocale from "@/contexts/useLocale";
+import { useLocale } from "@/contexts/useLocale";
 import { Box, HStack, Icon, StackProps, VStack } from "@chakra-ui/react";
 import {
   IconArrowAutofitWidth,

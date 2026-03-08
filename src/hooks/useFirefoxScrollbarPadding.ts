@@ -1,9 +1,9 @@
 import { FIREFOX_SCROLL_Y_CLASS_PR_PREFIX } from "@/constants/styles";
 import { useEffect } from "react";
 
-export function useFirefoxScrollbarPadding(
+export const useFirefoxScrollbarPadding = (
   extraPaddingPx: string = FIREFOX_SCROLL_Y_CLASS_PR_PREFIX,
-) {
+) => {
   useEffect(() => {
     if (!navigator.userAgent.toLowerCase().includes("firefox")) return;
 
@@ -29,4 +29,4 @@ export function useFirefoxScrollbarPadding(
 
     return () => observer.disconnect();
   }, [extraPaddingPx]);
-}
+};

@@ -6,9 +6,9 @@ import { HelperText } from "@/components/ui/helper-text";
 import { PasswordInput } from "@/components/ui/password-input";
 import { StringInput } from "@/components/ui/string-input";
 import { BackButton } from "@/components/widgets/back-button";
-import useLocale from "@/contexts/useLocale";
+import { useLocale } from "@/contexts/useLocale";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
-import useRequest from "@/hooks/useRequest";
+import { useRequest } from "@/hooks/useRequest";
 import { back } from "@/utils/client";
 import { maskEmail } from "@/utils/string";
 import {
@@ -21,7 +21,7 @@ import { useFormik } from "formik";
 import { useEffect, useState } from "react";
 import * as yup from "yup";
 
-import usePopDisclosure from "@/hooks/usePopDisclosure";
+import { usePopDisclosure } from "@/hooks/usePopDisclosure";
 import { disclosureId } from "@/utils/disclosure";
 
 const ID = "forgot-password";

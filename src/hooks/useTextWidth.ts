@@ -1,6 +1,6 @@
 import { useLayoutEffect, useRef, useState } from "react";
 
-function useTextWidth(text: string, font: string) {
+export const useTextWidth = (text: string, font: string) => {
   const spanRef = useRef<HTMLSpanElement | null>(null);
   const [width, setWidth] = useState(0);
 
@@ -21,6 +21,4 @@ function useTextWidth(text: string, font: string) {
   }, [text, font]);
 
   return width;
-}
-
-export default useTextWidth;
+};

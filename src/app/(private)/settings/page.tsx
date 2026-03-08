@@ -3,7 +3,7 @@
 import { CContainer } from "@/components/ui/c-container";
 import FeedbackState from "@/components/widgets/feedback-state";
 import { LucideIcon } from "@/components/widgets/icon";
-import useLocale from "@/contexts/useLocale";
+import { useLocale } from "@/contexts/useLocale";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
 import { SettingsIcon } from "lucide-react";
 

@@ -1,32 +1,34 @@
 import { create } from "zustand";
 
-interface AlertsState {
+type AlertsStore = {
   alerts: Record<string, boolean>;
-  initAlert: (key: string) => void;
   showAlert: (key: string) => void;
   hideAlert: (key: string) => void;
-}
-
-export const useAlerts = create<AlertsState>((set) => ({
+};
+export const useAlerts = create<AlertsStore>((set) => ({
   alerts: {},
 
-  initAlert: (key: string) => {
-    const hide = localStorage.getItem(key);
-    set((state) => ({
-      alerts: { ...state.alerts, [key]: hide !== "true" },
-    }));
-  },
+  showAlert: (key: string) =>
+    set((state) => {
+      const hidden = localStorage.getItem(key) === "true";
 
-  showAlert: (key: string) => {
-    set((state) => ({
-      alerts: { ...state.alerts, [key]: true },
-    }));
-  },
+      return {
+        alerts: {
+          ...state.alerts,
+          [key]: !hidden,
+        },
+      };
+    }),
 
-  hideAlert: (key: string) => {
-    localStorage.setItem(key, "true");
-    set((state) => ({
-      alerts: { ...state.alerts, [key]: false },
-    }));
-  },
+  hideAlert: (key: string) =>
+    set((state) => {
+      localStorage.setItem(key, "true");
+
+      return {
+        alerts: {
+          ...state.alerts,
+          [key]: false,
+        },
+      };
+    }),
 }));

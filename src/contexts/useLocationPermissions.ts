@@ -1,11 +1,10 @@
 import { create } from "zustand";
 
-interface Props {
+type LocationPermissions = {
   locationPermissionsStatus: PermissionState;
   updateLocationPermissionsStatus: () => void;
-}
-
-const useLocationPermissions = create<Props>((set) => {
+};
+export const useLocationPermissions = create<LocationPermissions>((set) => {
   let initialStatus: PermissionState = "prompt";
 
   if (typeof navigator !== "undefined" && navigator.permissions) {
@@ -36,5 +35,3 @@ const useLocationPermissions = create<Props>((set) => {
     },
   };
 });
-
-export default useLocationPermissions;

@@ -7,10 +7,6 @@ import { Figtree } from "next/font/google";
 import { APP } from "@/constants/_meta";
 import { disclosurePrefixId } from "@/utils/disclosure";
 
-interface Props {
-  children: React.ReactNode;
-}
-
 export const metadata: Metadata = {
   applicationName: APP.name,
   title: {
@@ -61,10 +57,7 @@ const figtree = Figtree({
   display: "swap",
 });
 
-const RootLayout = (props: Props) => {
-  // Props
-  const { children } = props;
-
+const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <html suppressHydrationWarning className={figtree.className}>
       <head>

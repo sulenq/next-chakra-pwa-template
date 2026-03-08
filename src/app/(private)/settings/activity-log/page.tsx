@@ -16,8 +16,8 @@ import { dummyAllActivityLogs } from "@/constants/dummyData";
 import { Enum__ActivityAction } from "@/constants/enums";
 import { Interface__ActivityLog } from "@/constants/interfaces";
 import { BASE_ICON_BOX_SIZE } from "@/constants/styles";
-import useLocale from "@/contexts/useLocale";
-import useDataState from "@/hooks/useDataState";
+import { useLocale } from "@/contexts/useLocale";
+import useFetchData from "@/hooks/useFetchData";
 import { isEmptyArray } from "@/utils/array";
 import { formatDate } from "@/utils/formatter";
 import { HStack, Icon } from "@chakra-ui/react";
@@ -40,7 +40,7 @@ const ActivityLog = () => {
     pagination,
     page,
     setPage,
-  } = useDataState<Interface__ActivityLog[]>({
+  } = useFetchData<Interface__ActivityLog[]>({
     initialData: dummyAllActivityLogs,
     url: ``,
     dataResource: false,

@@ -30,13 +30,13 @@ import {
 import { SVGS_PATH } from "@/constants/paths";
 import { BASE_ICON_BOX_SIZE } from "@/constants/styles";
 import { useDataDisplay } from "@/contexts/useDataDisplay";
-import useLocale from "@/contexts/useLocale";
+import { useLocale } from "@/contexts/useLocale";
 import useRenderTrigger from "@/contexts/useRenderTrigger";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
 import { useContainerDimension } from "@/hooks/useContainerDimension";
-import useDataState from "@/hooks/useDataState";
-import usePopDisclosure from "@/hooks/usePopDisclosure";
-import useRequest from "@/hooks/useRequest";
+import useFetchData from "@/hooks/useFetchData";
+import { usePopDisclosure } from "@/hooks/usePopDisclosure";
+import { useRequest } from "@/hooks/useRequest";
 import { isEmptyArray, last } from "@/utils/array";
 import { back } from "@/utils/client";
 import { disclosureId } from "@/utils/disclosure";
@@ -380,7 +380,7 @@ const Data = (props: any) => {
     page,
     setPage,
     pagination,
-  } = useDataState<Interface__Data[]>({
+  } = useFetchData<Interface__Data[]>({
     initialData: dummyUsers,
     url: ``, // TODO fetch data url
     params: {

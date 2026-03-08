@@ -3,13 +3,13 @@ import {
   Interface__Req,
   Interface__RequestState,
 } from "@/constants/interfaces";
-import useLocale from "@/contexts/useLocale";
+import { useLocale } from "@/contexts/useLocale";
 import { clearAccessToken, clearUserData } from "@/utils/auth";
 import { request } from "@/utils/request";
 import { useRouter } from "next/navigation";
 import { useCallback, useRef, useState } from "react";
 
-interface Props {
+interface UseRequestOptions {
   id: string;
   absoluteUrl?: string;
   showLoadingToast?: boolean;
@@ -26,7 +26,7 @@ interface Props {
   signinPath?: string;
 }
 
-export default function useRequest<T = any>(props: Props) {
+export const useRequest = <T = any>(props: UseRequestOptions) => {
   // Props
   const {
     id,
@@ -260,4 +260,4 @@ export default function useRequest<T = any>(props: Props) {
   );
 
   return { req, loading, status, error, response, setReqState };
-}
+};

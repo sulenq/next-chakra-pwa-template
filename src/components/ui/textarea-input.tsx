@@ -1,6 +1,6 @@
 import { toaster } from "@/components/ui/toaster";
 import { InputVariant } from "@/constants/types";
-import useLocale from "@/contexts/useLocale";
+import { useLocale } from "@/contexts/useLocale";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
 import { interpolateString } from "@/utils/string";
 import {

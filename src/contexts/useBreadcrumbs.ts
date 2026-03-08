@@ -5,13 +5,11 @@ type BreadcrumbsState = {
   backPath?: string;
   activeNavs: Interface__Nav[];
 };
-
-interface State_Actions {
+interface BreadcrumbsStore {
   breadcrumbs: BreadcrumbsState;
   setBreadcrumbs: (partial: Partial<BreadcrumbsState>) => void;
 }
-
-export const useBreadcrumbs = create<State_Actions>((set) => ({
+export const useBreadcrumbs = create<BreadcrumbsStore>((set) => ({
   breadcrumbs: {
     backPath: undefined,
     activeNavs: [],

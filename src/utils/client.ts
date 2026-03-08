@@ -8,7 +8,7 @@ export function setStorage(
   key: string,
   value: string,
   type: "local" | "session" = "local",
-  expireInMs?: number
+  expireInMs?: number,
 ): void {
   if (!isClient()) return;
   const storage = type === "local" ? localStorage : sessionStorage;
@@ -21,7 +21,7 @@ export function setStorage(
 
 export const getStorage = (
   key: string,
-  type: "local" | "session" = "local"
+  type: "local" | "session" = "local",
 ): string | null => {
   if (!isClient()) return null;
   const storage = type === "local" ? localStorage : sessionStorage;
@@ -42,7 +42,7 @@ export const getStorage = (
 
 export function removeStorage(
   key: string,
-  type: "local" | "session" = "local"
+  type: "local" | "session" = "local",
 ): void {
   if (!isClient()) return;
   const storage = type === "local" ? localStorage : sessionStorage;

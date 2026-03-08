@@ -21,7 +21,7 @@ import { Interface__SelectOption } from "@/constants/interfaces";
 import { ROUNDED_PRESETS } from "@/constants/presets";
 import { OPTIONS_RELIGION } from "@/constants/selectOptions";
 import useADM from "@/contexts/useADM";
-import useLocale from "@/contexts/useLocale";
+import { useLocale } from "@/contexts/useLocale";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
 import { formatTime } from "@/utils/formatter";
 import { interpolateString } from "@/utils/string";

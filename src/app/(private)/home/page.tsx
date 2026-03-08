@@ -20,9 +20,9 @@ import {
 import { DUMMY_DASHBOARD_DATA } from "@/constants/dummyData";
 import { getMonthNames } from "@/constants/months";
 import { Type__ChartData } from "@/constants/types";
-import useLocale from "@/contexts/useLocale";
+import { useLocale } from "@/contexts/useLocale";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
-import useDataState from "@/hooks/useDataState";
+import useFetchData from "@/hooks/useFetchData";
 import { formatDuration, formatNumber } from "@/utils/formatter";
 import { isObjectDeepEmpty } from "@/utils/object";
 import { capitalizeWords } from "@/utils/string";
@@ -538,7 +538,7 @@ const Usage = (props: any) => {
 const PageScreen = () => {
   // States
   const [filter] = useState<any>(DEFAULT_FILTER);
-  const { initialLoading, error, data, onRetry } = useDataState<any>({
+  const { initialLoading, error, data, onRetry } = useFetchData<any>({
     initialData: DUMMY_DASHBOARD_DATA,
     // url: ``,
     dataResource: false,

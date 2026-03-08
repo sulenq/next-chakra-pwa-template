@@ -9,11 +9,10 @@ import { SVGS_PATH } from "@/constants/paths";
 import { imgUrl } from "@/utils/url";
 import { HStack, StackProps } from "@chakra-ui/react";
 
-interface Props extends StackProps {
+interface MiniUserProps extends StackProps {
   user: Interface__User;
 }
-
-export const MiniUser = (props: Props) => {
+export const MiniUser = (props: MiniUserProps) => {
   // Props
   const { user, ...restProps } = props;
 

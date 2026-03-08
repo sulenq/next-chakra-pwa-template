@@ -7,7 +7,7 @@ import { P } from "@/components/ui/p";
 import BrandWatermark from "@/components/widgets/brand-watermark";
 import { Logo } from "@/components/widgets/logo";
 import { SigninForm } from "@/features/auth/SigninForm";
-import useLocale from "@/contexts/useLocale";
+import { useLocale } from "@/contexts/useLocale";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
 import { useIsSmScreenWidth } from "@/hooks/useIsSmScreenWidth";
 import { Box, HStack, SimpleGrid } from "@chakra-ui/react";

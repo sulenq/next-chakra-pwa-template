@@ -3,16 +3,9 @@
 import { useThemeConfig } from "@/contexts/useThemeConfig";
 import { Skeleton as ChakraSkeleton, SkeletonProps } from "@chakra-ui/react";
 
-interface Props extends SkeletonProps {}
-
-export const Skeleton = (props: Props) => {
-  // Props
-  const { ...restProps } = props;
-
+export const Skeleton = (props: SkeletonProps) => {
   // Contexts
   const { themeConfig } = useThemeConfig();
 
-  return (
-    <ChakraSkeleton rounded={themeConfig.radii.component} {...restProps} />
-  );
+  return <ChakraSkeleton rounded={themeConfig.radii.component} {...props} />;
 };

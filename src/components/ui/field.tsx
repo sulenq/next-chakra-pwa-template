@@ -1,4 +1,4 @@
-import useLocale from "@/contexts/useLocale";
+import { useLocale } from "@/contexts/useLocale";
 import {
   Badge,
   Field as ChakraField,

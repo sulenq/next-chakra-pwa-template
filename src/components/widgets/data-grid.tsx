@@ -20,10 +20,10 @@ import {
   FormattedTableRow,
   Interface__DataProps,
 } from "@/constants/interfaces";
-import useLocale from "@/contexts/useLocale";
+import { useLocale } from "@/contexts/useLocale";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
 import { useIsSmScreenWidth } from "@/hooks/useIsSmScreenWidth";
-import usePopDisclosure from "@/hooks/usePopDisclosure";
+import { usePopDisclosure } from "@/hooks/usePopDisclosure";
 import { isEmptyArray } from "@/utils/array";
 import { disclosureId } from "@/utils/disclosure";
 import {

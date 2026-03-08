@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 
 interface Screen {
@@ -6,7 +5,7 @@ interface Screen {
   sh: number;
 }
 
-const useScreen = (timeout: number = 200) => {
+export const useScreen = (timeout: number = 200) => {
   const [screen, setScreen] = useState<Screen>({
     sw: window.innerWidth,
     sh: window.innerHeight,
@@ -27,9 +26,7 @@ const useScreen = (timeout: number = 200) => {
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  }, [timeout]); 
+  }, [timeout]);
 
   return screen;
 };
-
-export default useScreen;

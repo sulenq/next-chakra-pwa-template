@@ -12,7 +12,7 @@ import { AppIcon } from "@/components/widgets/app-icon";
 import { Confirmation } from "@/components/widgets/confirmation";
 import { DotIndicator } from "@/components/widgets/indicator";
 import { BatchOptionsTableOptionGenerator } from "@/constants/interfaces";
-import useLocale from "@/contexts/useLocale";
+import { useLocale } from "@/contexts/useLocale";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
 import { MenuRootProps } from "@chakra-ui/react";
 import { EllipsisIcon } from "lucide-react";

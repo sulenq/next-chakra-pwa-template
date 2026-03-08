@@ -10,13 +10,12 @@ import {
 } from "@tabler/icons-react";
 import { forwardRef } from "react";
 
-interface Props extends IconProps {
+interface FileIconProps extends IconProps {
   name?: string;
   mimeType?: string;
   iconProps?: any;
 }
-
-export const FileIcon = forwardRef<SVGSVGElement, Props>(
+export const FileIcon = forwardRef<SVGSVGElement, FileIconProps>(
   ({ name, mimeType, iconProps, ...restProps }, ref) => {
     const extension = name?.toLowerCase().split(".").pop() ?? "";
     const mime = mimeType?.toLowerCase() ?? "";

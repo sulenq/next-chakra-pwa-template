@@ -11,11 +11,6 @@ import useOfflineAlert from "@/hooks/useOfflineAlert";
 import { Center } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 
-interface Props {
-  children: React.ReactNode;
-  fallback?: React.ReactNode;
-}
-
 const DefaultFallback = () => {
   return (
     <Center w={"100w"} minH={"100dvh"} color={"fg.subtle"}>
@@ -35,7 +30,11 @@ const DefaultFallback = () => {
 // persist mounted state across route changes
 let mountedGlobal = false;
 
-export default function ClientRoot(props: Props) {
+interface ClientRootProps {
+  children: React.ReactNode;
+  fallback?: React.ReactNode;
+}
+export default function ClientRoot(props: ClientRootProps) {
   // Props
   const { children, fallback } = props;
 

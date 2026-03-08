@@ -1,14 +1,14 @@
 import { useEffect, RefObject } from "react";
 
-const useClickOutside = <T extends HTMLElement | null>(
+export const useClickOutside = <T extends HTMLElement | null>(
   refs: RefObject<T> | RefObject<T>[],
-  callback: () => void
+  callback: () => void,
 ): void => {
   useEffect(() => {
     function handleClickOutside(event: MouseEvent | TouchEvent): void {
       const refArray = Array.isArray(refs) ? refs : [refs];
       const isOutside = refArray.every(
-        (ref) => ref.current && !ref.current.contains(event.target as Node)
+        (ref) => ref.current && !ref.current.contains(event.target as Node),
       );
 
       if (isOutside) {
@@ -25,5 +25,3 @@ const useClickOutside = <T extends HTMLElement | null>(
     };
   }, [refs, callback]);
 };
-
-export default useClickOutside;

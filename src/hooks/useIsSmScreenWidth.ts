@@ -1,5 +1,5 @@
 import { SM_SCREEN_W_NUMBER } from "@/constants/styles";
-import useScreen from "@/hooks/useScreen";
+import { useScreen } from "@/hooks/useScreen";
 
 export const useIsSmScreenWidth = () => {
   const { sw } = useScreen();

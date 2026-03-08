@@ -1,18 +1,17 @@
 import { create } from "zustand";
 import { getStorage, setStorage } from "@/utils/client";
 
-interface Props {
-  isNavsExpanded: boolean;
-  setNavsExpanded: (newState: boolean | ((prev: boolean) => boolean)) => void;
-  toggleNavsExpanded: () => void;
-}
-
 const STORAGE_KEY = "isNavsExpanded";
 
 const initialValue =
   getStorage(STORAGE_KEY) === null ? true : getStorage(STORAGE_KEY) === "true";
 
-const useNavs = create<Props>((set, get) => {
+type NavsStore = {
+  isNavsExpanded: boolean;
+  setNavsExpanded: (newState: boolean | ((prev: boolean) => boolean)) => void;
+  toggleNavsExpanded: () => void;
+};
+const useNavs = create<NavsStore>((set, get) => {
   return {
     isNavsExpanded: initialValue,
     setNavsExpanded: (newState) => {

@@ -1,11 +1,10 @@
 import { create } from "zustand";
 
-interface Props {
+type OfflineStore = {
   offline: boolean;
   setOffline: (newState: any) => void;
-}
-
-const useOffline = create<Props>((set) => {
+};
+const useOffline = create<OfflineStore>((set) => {
   return {
     offline: false,
     setOffline: (newState: any) => set({ offline: newState }),

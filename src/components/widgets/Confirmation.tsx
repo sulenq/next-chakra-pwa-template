@@ -3,7 +3,7 @@ import { CContainer } from "@/components/ui/c-container";
 import { Disclosure } from "@/components/ui/disclosure";
 import { P } from "@/components/ui/p";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
-import usePopDisclosure from "@/hooks/usePopDisclosure";
+import { usePopDisclosure } from "@/hooks/usePopDisclosure";
 import { disclosureId } from "@/utils/disclosure";
 import { StackProps } from "@chakra-ui/react";
 import { BackButton } from "@/components/widgets/back-button";

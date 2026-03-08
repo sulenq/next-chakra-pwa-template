@@ -1,11 +1,10 @@
 import { create } from "zustand";
 
-interface Props {
+type RenderTrigger2Store = {
   rt2: boolean;
   setRt2: (rt2: boolean | ((prev: boolean) => boolean)) => void;
-}
-
-const useRenderTrigger = create<Props>((set, get) => ({
+};
+const useRenderTrigger = create<RenderTrigger2Store>((set, get) => ({
   rt2: false,
   setRt2: (rt2) => {
     if (typeof rt2 === "function") {

@@ -11,11 +11,11 @@ import FeedbackRetry from "@/components/widgets/feedback-retry";
 import { LucideIcon } from "@/components/widgets/icon";
 import { Item } from "@/components/widgets/item";
 import { BASE_ICON_BOX_SIZE } from "@/constants/styles";
-import useLocale from "@/contexts/useLocale";
+import { useLocale } from "@/contexts/useLocale";
 import useRenderTrigger from "@/contexts/useRenderTrigger";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
-import useDataState from "@/hooks/useDataState";
-import useRequest from "@/hooks/useRequest";
+import useFetchData from "@/hooks/useFetchData";
+import { useRequest } from "@/hooks/useRequest";
 import { FieldsetRoot, HStack, Icon } from "@chakra-ui/react";
 import { useFormik } from "formik";
 import { KeyRoundIcon } from "lucide-react";
@@ -142,7 +142,7 @@ const APIKeys = (props: any) => {
 
 export default function Page() {
   // States
-  const { error, initialLoading, data, onRetry } = useDataState<any>({
+  const { error, initialLoading, data, onRetry } = useFetchData<any>({
     initialData: {
       apiKeys: {
         mapboxToken: "some token",

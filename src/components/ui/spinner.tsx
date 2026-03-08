@@ -1,14 +1,7 @@
 import { Spinner as ChakraSpinner, SpinnerProps } from "@chakra-ui/react";
 
-interface Props extends SpinnerProps {}
-
-export const Spinner = (props: Props) => {
-  // Props
-  const { ...restProps } = props;
-
+export const Spinner = (props: SpinnerProps) => {
   // TODO buat 3 dots spinner, apply global, like in btn
-  // TODO cek mobile
-  // TODO
 
-  return <ChakraSpinner {...restProps} />;
+  return <ChakraSpinner {...props} />;
 };

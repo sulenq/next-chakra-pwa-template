@@ -1,15 +1,14 @@
 import { getStorage, setStorage } from "@/utils/client";
 import { create } from "zustand";
 
-const STORAGE_KEY = "timeFormat";
+const STORAGE_KEY = "time-format";
 const DEFAULT = "24-hour";
 
-interface Props {
+type TimeFormatStore = {
   timeFormat: string;
   setTimeFormat: (newState: string) => void;
-}
-
-const useTimeFormat = create<Props>((set) => {
+};
+const useTimeFormat = create<TimeFormatStore>((set) => {
   const getStoredFormat = (): string => {
     try {
       const stored = getStorage(STORAGE_KEY);

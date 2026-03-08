@@ -1,6 +1,6 @@
 "use client";
 
-import useScreen from "@/hooks/useScreen";
+import { useScreen } from "@/hooks/useScreen";
 import { back } from "@/utils/client";
 import {
   Dialog as ChakraDialog,

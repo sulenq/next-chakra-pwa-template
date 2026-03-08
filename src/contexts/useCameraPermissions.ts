@@ -1,11 +1,10 @@
 import { create } from "zustand";
 
-interface Props {
+type CameraPermissionStore = {
   cameraPermissionsStatus: PermissionState;
   updateCameraPermissionsStatus: () => void;
-}
-
-const useCameraPermission = create<Props>((set) => {
+};
+export const useCameraPermission = create<CameraPermissionStore>((set) => {
   let initialStatus: PermissionState = "prompt";
 
   if (typeof navigator !== "undefined" && navigator.permissions) {
@@ -35,5 +34,3 @@ const useCameraPermission = create<Props>((set) => {
     },
   };
 });
-
-export default useCameraPermission;

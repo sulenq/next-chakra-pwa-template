@@ -4,7 +4,7 @@ import { ROUNDED_PRESETS } from "@/constants/presets";
 import { getStorage, setStorage } from "@/utils/client";
 import { create } from "zustand";
 
-interface ThemeConfigProps {
+interface ThemeConfig {
   colorPalette: string;
   primaryColor: string;
   primaryColorHex: string;
@@ -17,7 +17,7 @@ interface ThemeConfigProps {
 
 const LOCAL_STORAGE_KEY = "theme-config";
 
-export const DEFAULT: ThemeConfigProps = {
+export const DEFAULT: ThemeConfig = {
   colorPalette: COLOR_PALETTES[0].palette,
   primaryColor: `${COLOR_PALETTES[0].palette}.500`,
   primaryColorHex: COLOR_PALETTES[0].primaryHex,
@@ -25,16 +25,15 @@ export const DEFAULT: ThemeConfigProps = {
   radii: ROUNDED_PRESETS[3],
 };
 
-interface Props {
-  themeConfig: ThemeConfigProps;
+type ThemeConfigStore = {
+  themeConfig: ThemeConfig;
   setThemeConfig: (
     config:
-      | Partial<ThemeConfigProps>
-      | ((prev: ThemeConfigProps) => Partial<ThemeConfigProps>),
+      | Partial<ThemeConfig>
+      | ((prev: ThemeConfig) => Partial<ThemeConfig>),
   ) => void;
-}
-
-export const useThemeConfig = create<Props>((set) => {
+};
+export const useThemeConfig = create<ThemeConfigStore>((set) => {
   const stored = getStorage(LOCAL_STORAGE_KEY);
   const initial = stored ? JSON.parse(stored) : DEFAULT;
 

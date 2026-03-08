@@ -1,6 +1,14 @@
 import { useState, useEffect, useRef } from "react";
 
-function useResizeObserver(inputId?: string) {
+function debounce<T extends (...args: any[]) => void>(func: T, delay: number) {
+  let timeout: ReturnType<typeof setTimeout>;
+  return function (...args: Parameters<T>) {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => func(...args), delay);
+  };
+}
+
+export const useResizeObserver = (inputId?: string) => {
   const [dimensions, setDimensions] = useState<{
     width: number;
     height: number;
@@ -39,14 +47,4 @@ function useResizeObserver(inputId?: string) {
   }, [inputId]);
 
   return { ref: inputId ? null : ref, dimensions };
-}
-
-function debounce<T extends (...args: any[]) => void>(func: T, delay: number) {
-  let timeout: ReturnType<typeof setTimeout>;
-  return function (...args: Parameters<T>) {
-    clearTimeout(timeout);
-    timeout = setTimeout(() => func(...args), delay);
-  };
-}
-
-export default useResizeObserver;
+};

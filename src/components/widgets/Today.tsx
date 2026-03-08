@@ -3,7 +3,7 @@
 import { P } from "@/components/ui/p";
 import { DateVariant } from "@/constants/types";
 import useDateFormat from "@/contexts/useDateFormat";
-import useLocale from "@/contexts/useLocale";
+import { useLocale } from "@/contexts/useLocale";
 import useTimezone from "@/contexts/useTimezone";
 import { formatDate } from "@/utils/formatter";
 import { TextProps } from "@chakra-ui/react";

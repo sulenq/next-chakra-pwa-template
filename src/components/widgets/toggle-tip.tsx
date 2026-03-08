@@ -9,16 +9,15 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { ReactNode, useRef } from "react";
-import useClickOutside from "@/hooks/useClickOutside";
+import { useClickOutside } from "@/hooks/useClickOutside";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
 
-interface Props extends Omit<TooltipContentProps, "content"> {
+interface ToggleTipProps extends Omit<TooltipContentProps, "content"> {
   children: ReactNode;
   content?: ReactNode;
   rootProps?: Omit<PopoverRootProps, "children">;
 }
-
-const ToggleTip = (props: Props) => {
+const ToggleTip = (props: ToggleTipProps) => {
   // Props
   const { children, content, rootProps, ...restProps } = props;
 

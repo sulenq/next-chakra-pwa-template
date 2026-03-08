@@ -8,7 +8,7 @@ import {
 import { P } from "@/components/ui/p";
 import { AppIcon } from "@/components/widgets/app-icon";
 import { DotIndicator } from "@/components/widgets/indicator";
-import useLocale from "@/contexts/useLocale";
+import { useLocale } from "@/contexts/useLocale";
 import { HStack } from "@chakra-ui/react";
 import { ChevronDownIcon } from "lucide-react";
 

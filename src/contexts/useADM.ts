@@ -4,12 +4,11 @@ import { create } from "zustand";
 const STORAGE_KEY = "adm";
 const DEFAULT = false;
 
-interface Props {
+type ADMStore = {
   ADM: boolean;
   setADM: (newState: boolean) => void;
-}
-
-const useADM = create<Props>((set) => {
+};
+const useADM = create<ADMStore>((set) => {
   const stored = getStorage(STORAGE_KEY);
   const initial = stored === null ? DEFAULT : stored === "true";
 

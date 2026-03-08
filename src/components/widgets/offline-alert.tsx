@@ -1,5 +1,5 @@
 import useOffline from "@/contexts/disclosure/useOffilne";
-import useLocale from "@/contexts/useLocale";
+import { useLocale } from "@/contexts/useLocale";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
 import { back } from "@/utils/client";
 import { Icon } from "@chakra-ui/react";
@@ -8,7 +8,7 @@ import { useEffect } from "react";
 import { Disclosure } from "@/components/ui/disclosure";
 import { BackButton } from "@/components/widgets/back-button";
 
-import usePopDisclosure from "@/hooks/usePopDisclosure";
+import { usePopDisclosure } from "@/hooks/usePopDisclosure";
 import { disclosureId } from "@/utils/disclosure";
 import { Btn } from "@/components/ui/btn";
 import { EmptyState } from "@/components/ui/empty-state";

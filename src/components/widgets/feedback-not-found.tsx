@@ -3,7 +3,7 @@
 import { CContainer } from "@/components/ui/c-container";
 import { P } from "@/components/ui/p";
 import { FeedbackStateProps } from "@/components/widgets/feedback-state";
-import useLocale from "@/contexts/useLocale";
+import { useLocale } from "@/contexts/useLocale";
 
 export default function FeedbackNotFound(props: FeedbackStateProps) {
   // Props

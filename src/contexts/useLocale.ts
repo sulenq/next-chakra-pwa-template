@@ -11,13 +11,12 @@ export const translations = {
   en,
 };
 
-interface Props {
+type LocaleStore = {
   t: (typeof translations)[keyof typeof translations];
   locale: keyof typeof translations;
   setLocale: (newState: keyof typeof translations) => void;
-}
-
-const useLocale = create<Props>((set) => {
+};
+export const useLocale = create<LocaleStore>((set) => {
   const getStoredLang = (): keyof typeof translations => {
     try {
       const stored = getStorage(STORAGE_KEY);
@@ -48,5 +47,3 @@ const useLocale = create<Props>((set) => {
       }),
   };
 });
-
-export default useLocale;

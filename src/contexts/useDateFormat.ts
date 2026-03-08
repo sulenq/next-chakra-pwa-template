@@ -2,15 +2,14 @@ import { Type__DateFormat } from "@/constants/types";
 import { getStorage, setStorage } from "@/utils/client";
 import { create } from "zustand";
 
-const STORAGE_KEY = "dateFormat";
+const STORAGE_KEY = "date-format";
 const DEFAULT = "dmy";
 
-interface Props {
+interface DateFormatStore {
   dateFormat: Type__DateFormat;
   setDateFormat: (newState: Type__DateFormat) => void;
 }
-
-const useDateFormat = create<Props>((set) => {
+const useDateFormat = create<DateFormatStore>((set) => {
   const getStoredFormat = (): Type__DateFormat => {
     try {
       const stored = getStorage(STORAGE_KEY);
