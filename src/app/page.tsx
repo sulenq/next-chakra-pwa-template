@@ -2,7 +2,7 @@
 
 import { CContainer } from "@/components/ui/c-container";
 import { ColorModeButton } from "@/components/ui/color-mode";
-import { LangMenu } from "@/components/ui/locale-menu";
+import { LangMenu } from "@/components/ui/lang-menu";
 import { P } from "@/components/ui/p";
 import BrandWatermark from "@/components/widgets/BrandWatermark";
 import { Logo } from "@/components/widgets/Logo";
