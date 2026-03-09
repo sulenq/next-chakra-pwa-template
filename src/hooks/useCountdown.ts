@@ -49,20 +49,20 @@ export function useCountdown(options: UseCountdownOptions) {
     return clear;
   }, [isRunning, duration, precision]);
 
-  const start = () => setIsRunning(true);
-
-  const stop = () => {
+  function startCountdown() {
+    setIsRunning(true);
+  }
+  function stopCountdown() {
     clear();
     setIsRunning(false);
-  };
-
-  const reset = () => {
+  }
+  function resetCountdown() {
     clear();
     setCountdown(duration);
     setIsRunning(false);
-  };
+  }
 
-  const isFinished = countdown === 0;
+  const isCountdownFinished = countdown === 0;
 
   const formattedCountdown = countdown.toLocaleString(locale, {
     minimumFractionDigits: precision,
@@ -73,9 +73,9 @@ export function useCountdown(options: UseCountdownOptions) {
     countdown,
     formattedCountdown,
     isRunning,
-    isFinished,
-    start,
-    stop,
-    reset,
+    isCountdownFinished,
+    startCountdown,
+    stopCountdown,
+    resetCountdown,
   };
 }
