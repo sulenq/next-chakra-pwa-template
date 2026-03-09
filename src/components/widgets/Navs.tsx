@@ -227,15 +227,17 @@ export const DesktopNavs = (props: DesktopNavsProps) => {
                                 px={2}
                                 justifyContent={"start"}
                                 variant={"ghost"}
-                                color={
-                                  isMainNavsActive ? "" : DESKTOP_NAVS_COLOR
-                                }
                               >
                                 {isMainNavsActive && nav.icon && (
                                   <LeftIndicator />
                                 )}
 
-                                {nav.icon && <AppIcon icon={nav.icon} />}
+                                {nav.icon && (
+                                  <AppIcon
+                                    icon={nav.icon}
+                                    color={isMainNavsActive ? "" : "fg.muted"}
+                                  />
+                                )}
 
                                 {!nav.icon && (
                                   <Icon

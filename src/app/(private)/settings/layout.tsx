@@ -32,7 +32,7 @@ import { useEffect, useRef, useState } from "react";
 const NAVS =
   OTHER_PRIVATE_NAV_GROUPS[0].navs.find((n) => n.path === "/settings")
     ?.children || [];
-const NAVS_COLOR = "ibody";
+const NAVS_COLOR = "fg.muted";
 const ROOT_PATH = `/settings`;
 
 const NavsList = (props: any) => {
@@ -104,12 +104,14 @@ const NavsList = (props: any) => {
                         justifyContent={"start"}
                         variant={"ghost"}
                         px={2}
-                        color={isActive ? "" : NAVS_COLOR}
                         pos={"relative"}
                       >
                         {isActive && <LeftIndicator />}
 
-                        <AppIcon icon={nav.icon} />
+                        <AppIcon
+                          icon={nav.icon}
+                          color={isActive ? "" : NAVS_COLOR}
+                        />
 
                         <P textAlign={"left"}>{pluckString(t, nav.labelKey)}</P>
                       </Btn>
