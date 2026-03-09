@@ -7,7 +7,7 @@ import { Disclosure } from "@/components/ui/disclosure";
 import { Divider } from "@/components/ui/divider";
 import { Img } from "@/components/ui/img";
 import { P } from "@/components/ui/p";
-import SearchInput from "@/components/ui/search-input";
+import { SearchInput } from "@/components/ui/search-input";
 import { BackButton } from "@/components/widgets/back-button";
 import { BatchOptions } from "@/components/widgets/batch-option";
 import { ClampText } from "@/components/widgets/clamp-text";

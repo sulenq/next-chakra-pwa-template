@@ -119,8 +119,6 @@ export const FIleInputRoot = forwardRef<
   // States
   const [key, setKey] = useState<number>(1);
 
-  // Constants
-
   // Derived Values
   const existingArr = Array.isArray(existing) // normalize existing to array (prevent undefined issues)
     ? existing

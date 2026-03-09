@@ -39,7 +39,7 @@ export interface SearchInputProps extends Omit<
   variant?: InputVariant;
   size?: InputSize;
 }
-export default function SearchInput(props: SearchInputProps) {
+export const SearchInput = (props: SearchInputProps) => {
   // Props
   const {
     inputRef,
@@ -146,4 +146,4 @@ export default function SearchInput(props: SearchInputProps) {
       </InputGroup>
     </Tooltip>
   );
-}
+};

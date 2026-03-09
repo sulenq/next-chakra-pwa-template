@@ -1,10 +1,10 @@
 "use client";
 
-import { Accordion, HStack } from "@chakra-ui/react";
+import { Accordion as ChakraAccordion, HStack } from "@chakra-ui/react";
 import { forwardRef } from "react";
 import { LuChevronDown } from "react-icons/lu";
 
-interface AccordionItemTriggerProps extends Accordion.ItemTriggerProps {
+interface AccordionItemTriggerProps extends ChakraAccordion.ItemTriggerProps {
   indicatorPlacement?: "start" | "end" | "none";
 }
 
@@ -14,36 +14,45 @@ export const AccordionItemTrigger = forwardRef<
 >(function AccordionItemTrigger(props, ref) {
   const { children, indicatorPlacement = "end", ...rest } = props;
   return (
-    <Accordion.ItemTrigger {...rest} ref={ref}>
+    <ChakraAccordion.ItemTrigger {...rest} ref={ref}>
       {indicatorPlacement === "start" && (
-        <Accordion.ItemIndicator rotate={{ base: "-90deg", _open: "0deg" }}>
+        <ChakraAccordion.ItemIndicator
+          rotate={{ base: "-90deg", _open: "0deg" }}
+        >
           <LuChevronDown />
-        </Accordion.ItemIndicator>
+        </ChakraAccordion.ItemIndicator>
       )}
       <HStack gap="4" flex="1" textAlign="start" width="full">
         {children}
       </HStack>
       {indicatorPlacement === "end" && (
-        <Accordion.ItemIndicator>
+        <ChakraAccordion.ItemIndicator>
           <LuChevronDown />
-        </Accordion.ItemIndicator>
+        </ChakraAccordion.ItemIndicator>
       )}
-    </Accordion.ItemTrigger>
+    </ChakraAccordion.ItemTrigger>
   );
 });
 
-interface AccordionItemContentProps extends Accordion.ItemContentProps {}
+interface AccordionItemContentProps extends ChakraAccordion.ItemContentProps {}
 
 export const AccordionItemContent = forwardRef<
   HTMLDivElement,
   AccordionItemContentProps
 >(function AccordionItemContent(props, ref) {
   return (
-    <Accordion.ItemContent rounded={"0 !important"}>
-      <Accordion.ItemBody {...props} ref={ref} />
-    </Accordion.ItemContent>
+    <ChakraAccordion.ItemContent rounded={"0 !important"}>
+      <ChakraAccordion.ItemBody {...props} ref={ref} />
+    </ChakraAccordion.ItemContent>
   );
 });
 
-export const AccordionRoot = Accordion.Root;
-export const AccordionItem = Accordion.Item;
+export const AccordionRoot = ChakraAccordion.Root;
+export const AccordionItem = ChakraAccordion.Item;
+
+export const Accordion = {
+  Root: AccordionRoot,
+  Item: AccordionItem,
+  ItemTrigger: AccordionItemTrigger,
+  ItemContent: AccordionItemContent,
+};

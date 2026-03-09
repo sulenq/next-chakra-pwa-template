@@ -2,7 +2,7 @@
 
 import { CContainer } from "@/components/ui/c-container";
 import { P } from "@/components/ui/p";
-import SearchInput from "@/components/ui/search-input";
+import { SearchInput } from "@/components/ui/search-input";
 import { Skeleton } from "@/components/ui/skeleton";
 import FeedbackNoData from "@/components/widgets/feedback-no-data";
 import FeedbackNotFound from "@/components/widgets/feedback-not-found";
@@ -17,7 +17,7 @@ import { Enum__ActivityAction } from "@/constants/enums";
 import { Interface__ActivityLog } from "@/constants/interfaces";
 import { BASE_ICON_BOX_SIZE } from "@/constants/styles";
 import { useLocale } from "@/contexts/useLocale";
-import useFetchData from "@/hooks/useFetchData";
+import { useFetchData } from "@/hooks/useFetchData";
 import { isEmptyArray } from "@/utils/array";
 import { formatDate } from "@/utils/formatter";
 import { HStack, Icon } from "@chakra-ui/react";

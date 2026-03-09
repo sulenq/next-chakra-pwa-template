@@ -15,7 +15,7 @@ import { P } from "@/components/ui/p";
 import { PasswordInput } from "@/components/ui/password-input";
 import { PeriodPickerInput } from "@/components/ui/period-picker-input";
 import { RichEditor } from "@/components/ui/RichEditor";
-import SearchInput from "@/components/ui/search-input";
+import { SearchInput } from "@/components/ui/search-input";
 import { SelectInput } from "@/components/ui/select-input";
 import { StringInput } from "@/components/ui/string-input";
 import { TextareaInput } from "@/components/ui/textarea-input";

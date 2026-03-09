@@ -3,7 +3,7 @@
 import { Btn } from "@/components/ui/btn";
 import { MenuItem } from "@/components/ui/menu";
 import { P } from "@/components/ui/p";
-import SearchInput from "@/components/ui/search-input";
+import { SearchInput } from "@/components/ui/search-input";
 import { Tooltip } from "@/components/ui/tooltip";
 import { AppIcon } from "@/components/widgets/app-icon";
 import { Confirmation } from "@/components/widgets/confirmation";
@@ -34,7 +34,7 @@ import { useLocale } from "@/contexts/useLocale";
 import useRenderTrigger from "@/contexts/useRenderTrigger";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
 import { useContainerDimension } from "@/hooks/useContainerDimension";
-import useFetchData from "@/hooks/useFetchData";
+import { useFetchData } from "@/hooks/useFetchData";
 import { usePopDisclosure } from "@/hooks/usePopDisclosure";
 import { useRequest } from "@/hooks/useRequest";
 import { isEmptyArray, last } from "@/utils/array";

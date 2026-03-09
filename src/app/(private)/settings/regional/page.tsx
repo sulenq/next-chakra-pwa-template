@@ -3,7 +3,7 @@
 import { Btn } from "@/components/ui/btn";
 import { CContainer } from "@/components/ui/c-container";
 import { P } from "@/components/ui/p";
-import SearchInput from "@/components/ui/search-input";
+import { SearchInput } from "@/components/ui/search-input";
 import { toaster } from "@/components/ui/toaster";
 import { Tooltip } from "@/components/ui/tooltip";
 import { AppIcon } from "@/components/widgets/app-icon";

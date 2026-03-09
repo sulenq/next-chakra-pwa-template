@@ -134,7 +134,7 @@ export const DatePicker = (props: DatePickerProps) => {
   const { t } = useLocale();
   const { themeConfig } = useThemeConfig();
 
-  // Constants
+  // Derived States
   const fullDates = () => {
     const firstDayOfMonth = new Date(period.year!, period.month!, 1);
 

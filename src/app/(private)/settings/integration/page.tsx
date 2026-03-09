@@ -14,7 +14,7 @@ import { BASE_ICON_BOX_SIZE } from "@/constants/styles";
 import { useLocale } from "@/contexts/useLocale";
 import useRenderTrigger from "@/contexts/useRenderTrigger";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
-import useFetchData from "@/hooks/useFetchData";
+import { useFetchData } from "@/hooks/useFetchData";
 import { useRequest } from "@/hooks/useRequest";
 import { FieldsetRoot, HStack, Icon } from "@chakra-ui/react";
 import { useFormik } from "formik";

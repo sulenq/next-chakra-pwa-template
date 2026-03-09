@@ -20,7 +20,7 @@ interface UseFetchDataOptions<T> {
   // withLimit?: boolean;
   // withPagination?: boolean;
 }
-const useFetchData = <T = any>(props: UseFetchDataOptions<T>) => {
+export const useFetchData = <T = any>(props: UseFetchDataOptions<T>) => {
   // Props
   const {
     initialData,
@@ -210,5 +210,3 @@ const useFetchData = <T = any>(props: UseFetchDataOptions<T>) => {
     status,
   };
 };
-
-export default useFetchData;

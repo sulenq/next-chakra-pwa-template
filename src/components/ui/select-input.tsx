@@ -4,7 +4,7 @@ import { CSpinner } from "@/components/ui/c-spinner";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Disclosure } from "@/components/ui/disclosure";
 import { P } from "@/components/ui/p";
-import SearchInput from "@/components/ui/search-input";
+import { SearchInput } from "@/components/ui/search-input";
 import { Tooltip } from "@/components/ui/tooltip";
 import { AppIcon } from "@/components/widgets/app-icon";
 import FeedbackNoData from "@/components/widgets/feedback-no-data";

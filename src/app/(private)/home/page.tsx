@@ -22,7 +22,7 @@ import { getMonthNames } from "@/constants/months";
 import { Type__ChartData } from "@/constants/types";
 import { useLocale } from "@/contexts/useLocale";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
-import useFetchData from "@/hooks/useFetchData";
+import { useFetchData } from "@/hooks/useFetchData";
 import { formatDuration, formatNumber } from "@/utils/formatter";
 import { isObjectDeepEmpty } from "@/utils/object";
 import { capitalizeWords } from "@/utils/string";

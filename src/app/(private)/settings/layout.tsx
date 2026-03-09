@@ -5,7 +5,7 @@ import { CContainer } from "@/components/ui/c-container";
 import { HelperText } from "@/components/ui/helper-text";
 import { NavLink } from "@/components/ui/nav-link";
 import { P } from "@/components/ui/p";
-import SearchInput from "@/components/ui/search-input";
+import { SearchInput } from "@/components/ui/search-input";
 import { Tooltip } from "@/components/ui/tooltip";
 import { AppIcon } from "@/components/widgets/app-icon";
 import FeedbackNotFound from "@/components/widgets/feedback-not-found";
