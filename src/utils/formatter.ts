@@ -14,6 +14,7 @@ import { isValid, parseISO } from "date-fns";
 import { format as formatTz, toZonedTime } from "date-fns-tz";
 import { isDateObject } from "@/utils/date";
 import { getTimezoneOffsetMs, getUserTimezone } from "@/utils/time";
+import { NUMBER_LOCALE } from "@/constants/styles";
 
 export const formatDate = (
   date: Date | string | null | undefined,
@@ -227,7 +228,7 @@ export const formatAbsDate = (
 
 export const formatNumber = (
   numParam: number | string | undefined | null,
-  locale = "id-ID",
+  locale = NUMBER_LOCALE,
   maxFractionDigits = 4,
 ): string => {
   if (numParam === null || numParam === undefined || numParam === "")
@@ -236,23 +237,18 @@ export const formatNumber = (
   let num: number;
 
   if (typeof numParam === "string") {
-    // Determine separators based on locale
-    const isID = locale === "id-ID";
-    // If ID: remove dots, change comma to dot. If EN: remove commas.
-    const normalized = isID
-      ? numParam.replace(/\./g, "").replace(",", ".")
-      : numParam.replace(/,/g, "");
-
+    const normalized = numParam.replace(/\./g, "").replace(",", ".");
     num = Number(normalized);
     if (isNaN(num)) return "-";
   } else {
     num = numParam;
   }
 
-  // Use native toLocaleString with dynamic locale
+  const isInteger = Number.isInteger(num);
+
   return num.toLocaleString(locale, {
-    minimumFractionDigits: 0,
-    maximumFractionDigits: maxFractionDigits,
+    minimumFractionDigits: isInteger ? 0 : 0,
+    maximumFractionDigits: isInteger ? 0 : maxFractionDigits,
   });
 };
 
