@@ -17,7 +17,6 @@ import {
   DESKTOP_NAVS_COLOR,
   DESKTOP_NAVS_POPOVER_MAIN_AXIS,
   DESKTOP_NAVS_TOOLTIP_MAIN_AXIS,
-  NAVS_COLOR_PALETTE,
 } from "@/constants/styles";
 import { useLocale } from "@/contexts/useLocale";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
@@ -50,7 +49,7 @@ export const DesktopNavTooltip = (props: TooltipProps) => {
 
 interface DesktopNavsProps extends StackProps {
   navs: Interface__NavGroup[];
-  isNavsExpanded?: boolean;
+  navsExpanded?: boolean;
   showSearch?: boolean;
   addonElement?: any;
 }
@@ -58,7 +57,7 @@ export const DesktopNavs = (props: DesktopNavsProps) => {
   // Props
   const {
     navs,
-    isNavsExpanded = false,
+    navsExpanded = false,
     showSearch = true,
     addonElement,
     ...restProps
@@ -156,17 +155,17 @@ export const DesktopNavs = (props: DesktopNavsProps) => {
     .filter(Boolean) as Interface__NavGroup[];
 
   useEffect(() => {
-    if (!isNavsExpanded) {
+    if (!navsExpanded) {
       setSearch("");
     } else {
       searchInputRef.current?.focus();
     }
-  }, [isNavsExpanded]);
+  }, [navsExpanded]);
 
   return (
     <CContainer {...restProps}>
       {/* Search */}
-      {isNavsExpanded && showSearch && (
+      {navsExpanded && showSearch && (
         <CContainer px={3} py={2}>
           <SearchInput
             inputRef={searchInputRef}
@@ -197,7 +196,7 @@ export const DesktopNavs = (props: DesktopNavsProps) => {
             resolvedNavs.map((navItem, navItemIdx) => {
               return (
                 <CContainer key={navItemIdx} gap={1}>
-                  {isNavsExpanded && navItem.labelKey && (
+                  {navsExpanded && navItem.labelKey && (
                     <ClampText
                       fontSize={"sm"}
                       fontWeight={"semibold"}
@@ -221,12 +220,17 @@ export const DesktopNavs = (props: DesktopNavsProps) => {
                               content={pluckString(t, nav.labelKey)}
                             >
                               <Btn
-                                iconButton={isNavsExpanded ? false : true}
+                                iconButton={navsExpanded ? false : true}
                                 clicky={false}
                                 gap={4}
                                 px={2}
                                 justifyContent={"start"}
-                                variant={"ghost"}
+                                variant={isMainNavsActive ? "subtle" : "ghost"}
+                                colorPalette={
+                                  isMainNavsActive
+                                    ? themeConfig.colorPalette
+                                    : ""
+                                }
                               >
                                 {isMainNavsActive && nav.icon && (
                                   <LeftIndicator />
@@ -235,7 +239,9 @@ export const DesktopNavs = (props: DesktopNavsProps) => {
                                 {nav.icon && (
                                   <AppIcon
                                     icon={nav.icon}
-                                    color={isMainNavsActive ? "" : "fg.muted"}
+                                    color={
+                                      isMainNavsActive ? "" : DESKTOP_NAVS_COLOR
+                                    }
                                   />
                                 )}
 
@@ -252,9 +258,9 @@ export const DesktopNavs = (props: DesktopNavsProps) => {
                                   </Icon>
                                 )}
 
-                                {isNavsExpanded && (
+                                {navsExpanded && (
                                   <P lineClamp={1} textAlign={"left"}>
-                                    {pluckString(t, nav.labelKey)}
+                                    {nav.label || pluckString(t, nav.labelKey)}
                                   </P>
                                 )}
                               </Btn>
@@ -264,7 +270,7 @@ export const DesktopNavs = (props: DesktopNavsProps) => {
 
                         {hasSubMenus && (
                           <>
-                            {!isNavsExpanded && (
+                            {!navsExpanded && (
                               <Menu.Root
                                 positioning={{
                                   placement: "right-start",
@@ -275,9 +281,7 @@ export const DesktopNavs = (props: DesktopNavsProps) => {
                               >
                                 <DesktopNavTooltip
                                   content={
-                                    nav.label
-                                      ? nav.label
-                                      : pluckString(t, nav.labelKey)
+                                    nav.label || pluckString(t, nav.labelKey)
                                   }
                                 >
                                   <CContainer>
@@ -287,17 +291,26 @@ export const DesktopNavs = (props: DesktopNavsProps) => {
                                         clicky={false}
                                         px={2}
                                         justifyContent="start"
-                                        variant="ghost"
-                                        colorPalette={NAVS_COLOR_PALETTE}
-                                        pos="relative"
-                                        color={
-                                          isMainNavsActive
-                                            ? ""
-                                            : DESKTOP_NAVS_COLOR
+                                        variant={
+                                          isMainNavsActive ? "subtle" : "ghost"
                                         }
+                                        colorPalette={
+                                          isMainNavsActive
+                                            ? themeConfig.colorPalette
+                                            : ""
+                                        }
+                                        pos="relative"
                                       >
                                         {isMainNavsActive && <LeftIndicator />}
-                                        <AppIcon icon={nav.icon} />
+
+                                        <AppIcon
+                                          icon={nav.icon}
+                                          color={
+                                            isMainNavsActive
+                                              ? ""
+                                              : DESKTOP_NAVS_COLOR
+                                          }
+                                        />
                                       </Btn>
                                     </Menu.Trigger>
                                   </CContainer>
@@ -315,55 +328,73 @@ export const DesktopNavs = (props: DesktopNavsProps) => {
                                             : ""
                                         }
                                       >
-                                        {subGroup.navs.map((menu) => {
-                                          const isSubNavsActive =
-                                            pathname === menu.path;
+                                        <CContainer gap={1}>
+                                          {subGroup.navs.map((menu) => {
+                                            const isSubNavsActive =
+                                              pathname === menu.path;
 
-                                          return (
-                                            <NavLink
-                                              key={menu.path}
-                                              to={menu.path}
-                                              w="full"
-                                            >
-                                              <Tooltip
-                                                content={
-                                                  menu.label
-                                                    ? menu.label
-                                                    : pluckString(
-                                                        t,
-                                                        menu.labelKey,
-                                                      )
-                                                }
-                                                positioning={{
-                                                  placement: "right",
-                                                  offset: { mainAxis: 12 },
-                                                }}
+                                            return (
+                                              <NavLink
+                                                key={menu.path}
+                                                to={menu.path}
+                                                w="full"
                                               >
-                                                <Menu.Item
-                                                  value={menu.path}
-                                                  px={3}
-                                                  color={
-                                                    isSubNavsActive
-                                                      ? ""
-                                                      : DESKTOP_NAVS_COLOR
-                                                  }
-                                                >
-                                                  {isSubNavsActive && (
-                                                    <LeftIndicator />
-                                                  )}
-                                                  <P lineClamp={1}>
-                                                    {menu.label
+                                                <Tooltip
+                                                  content={
+                                                    menu.label
                                                       ? menu.label
                                                       : pluckString(
                                                           t,
                                                           menu.labelKey,
-                                                        )}
-                                                  </P>
-                                                </Menu.Item>
-                                              </Tooltip>
-                                            </NavLink>
-                                          );
-                                        })}
+                                                        )
+                                                  }
+                                                  positioning={{
+                                                    placement: "right",
+                                                    offset: { mainAxis: 12 },
+                                                  }}
+                                                >
+                                                  <Menu.Item
+                                                    value={menu.path}
+                                                    asChild
+                                                  >
+                                                    <Btn
+                                                      clicky={false}
+                                                      variant={
+                                                        isSubNavsActive
+                                                          ? "subtle"
+                                                          : "ghost"
+                                                      }
+                                                      colorPalette={
+                                                        isSubNavsActive
+                                                          ? themeConfig.colorPalette
+                                                          : ""
+                                                      }
+                                                      color={
+                                                        isSubNavsActive
+                                                          ? "colorPalette.fg"
+                                                          : DESKTOP_NAVS_COLOR
+                                                      }
+                                                      px={3}
+                                                      justifyContent={"start"}
+                                                    >
+                                                      {isSubNavsActive && (
+                                                        <LeftIndicator />
+                                                      )}
+
+                                                      <P lineClamp={1}>
+                                                        {menu.label ||
+                                                          pluckString(
+                                                            t,
+                                                            menu.labelKey,
+                                                          )}
+                                                      </P>
+                                                    </Btn>
+                                                  </Menu.Item>
+                                                </Tooltip>
+                                              </NavLink>
+                                            );
+                                          })}
+                                        </CContainer>
                                       </Menu.ItemGroup>
                                     ),
                                   )}
@@ -371,7 +402,7 @@ export const DesktopNavs = (props: DesktopNavsProps) => {
                               </Menu.Root>
                             )}
 
-                            {isNavsExpanded && (
+                            {navsExpanded && (
                               <Accordion.Root
                                 multiple
                                 value={search ? [nav.path] : undefined}
@@ -385,33 +416,56 @@ export const DesktopNavs = (props: DesktopNavsProps) => {
                                   <DesktopNavTooltip
                                     content={pluckString(t, nav.labelKey)}
                                   >
-                                    <Btn
-                                      as={Accordion.ItemTrigger}
-                                      clicky={false}
-                                      variant="ghost"
-                                      px={2}
-                                      justifyContent="start"
-                                      pr="10px"
-                                      pos="relative"
-                                      bg="transparent"
-                                      color={
-                                        isMainNavsActive
-                                          ? ""
-                                          : DESKTOP_NAVS_COLOR
-                                      }
-                                      _hover={{ bg: "bg.muted" }}
+                                    <Accordion.ItemTrigger
+                                      indicatorPlacement={"none"}
+                                      as={HStack}
+                                      p={0}
                                     >
-                                      {isMainNavsActive && <LeftIndicator />}
-                                      <HStack gap={4}>
-                                        <AppIcon icon={nav.icon} />
+                                      <Btn
+                                        clicky={false}
+                                        justifyContent="start"
+                                        variant={
+                                          isMainNavsActive ? "subtle" : "ghost"
+                                        }
+                                        colorPalette={
+                                          isMainNavsActive
+                                            ? themeConfig.colorPalette
+                                            : ""
+                                        }
+                                        w={"full"}
+                                        px={2}
+                                        pr={"10px"}
+                                        pos={"relative"}
+                                      >
+                                        {isMainNavsActive && <LeftIndicator />}
 
-                                        <P lineClamp={1} textAlign="left">
-                                          {nav.label
-                                            ? nav.label
-                                            : pluckString(t, nav.labelKey)}
-                                        </P>
-                                      </HStack>
-                                    </Btn>
+                                        <HStack gap={4}>
+                                          <AppIcon
+                                            icon={nav.icon}
+                                            color={
+                                              isMainNavsActive
+                                                ? ""
+                                                : DESKTOP_NAVS_COLOR
+                                            }
+                                          />
+
+                                          <P lineClamp={1} textAlign="left">
+                                            {nav.label
+                                              ? nav.label
+                                              : pluckString(t, nav.labelKey)}
+                                          </P>
+                                        </HStack>
+
+                                        <Accordion.ItemIndicator
+                                          color={
+                                            isMainNavsActive
+                                              ? `${themeConfig.colorPalette}.fg`
+                                              : ""
+                                          }
+                                          ml={"auto"}
+                                        />
+                                      </Btn>
+                                    </Accordion.ItemTrigger>
                                   </DesktopNavTooltip>
 
                                   <Accordion.ItemContent p={0}>
@@ -518,17 +572,19 @@ export const DesktopNavs = (props: DesktopNavsProps) => {
                                                       <Btn
                                                         clicky={false}
                                                         flex={1}
+                                                        justifyContent={"start"}
                                                         gap={3}
+                                                        variant={"ghost"}
+                                                        colorPalette={
+                                                          isSubNavsActive
+                                                            ? themeConfig.colorPalette
+                                                            : ""
+                                                        }
                                                         px={3}
                                                         rounded={`calc(${themeConfig.radii.component})`}
-                                                        justifyContent="start"
-                                                        variant="ghost"
-                                                        colorPalette={
-                                                          NAVS_COLOR_PALETTE
-                                                        }
                                                         color={
                                                           isSubNavsActive
-                                                            ? ""
+                                                            ? undefined
                                                             : DESKTOP_NAVS_COLOR
                                                         }
                                                       >

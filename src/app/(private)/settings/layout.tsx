@@ -1,146 +1,38 @@
 "use client";
 
-import { Btn } from "@/components/ui/btn";
 import { CContainer } from "@/components/ui/c-container";
 import { HelperText } from "@/components/ui/helper-text";
-import { NavLink } from "@/components/ui/nav-link";
-import { P } from "@/components/ui/p";
-import { SearchInput } from "@/components/ui/search-input";
-import { Tooltip } from "@/components/ui/tooltip";
-import { AppIcon } from "@/components/widgets/app-icon";
-import FeedbackNotFound from "@/components/widgets/feedback-not-found";
-import { LeftIndicator } from "@/components/widgets/indicator";
 import { MContainer } from "@/components/widgets/m-container";
+import { DesktopNavs } from "@/components/widgets/navs";
 import {
   ContainerLayout,
   PageContainer,
   PageHeader,
+  usePageContainerContext,
 } from "@/components/widgets/page-shell";
 import { APP } from "@/constants/_meta";
 import { OTHER_PRIVATE_NAV_GROUPS } from "@/constants/navs";
-import { DESKTOP_NAVS_TOOLTIP_MAIN_AXIS } from "@/constants/styles";
 import { useLocale } from "@/contexts/useLocale";
-import { useContainerDimension } from "@/hooks/useContainerDimension";
-import { isEmptyArray } from "@/utils/array";
 import { formatAbsDate } from "@/utils/formatter";
-import { pluckString } from "@/utils/string";
 import { HStack } from "@chakra-ui/react";
 import { usePathname } from "next/navigation";
-import { useRef, useState } from "react";
 
 const NAVS =
   OTHER_PRIVATE_NAV_GROUPS[0].navs.find((n) => n.path === "/settings")
     ?.children || [];
-const NAVS_COLOR = "fg.muted";
 const ROOT_PATH = `/settings`;
 
-const NavsList = (props: any) => {
-  // Props
-  const { search, ...restProps } = props;
-
-  // Contexts
-  const { t } = useLocale();
-
-  // Hooks
-  const pathname = usePathname();
-
-  // States
-  const searchTerm = search.toLowerCase();
-  const resolvedList = NAVS.reduce<typeof NAVS>(
-    (acc, group) => {
-      const filteredItems = group.navs.filter((item) =>
-        pluckString(t, item.labelKey).toLowerCase().includes(searchTerm),
-      );
-
-      if (filteredItems.length > 0) {
-        acc.push({
-          ...group,
-          navs: filteredItems,
-        });
-      }
-
-      return acc;
-    },
-    [] as typeof NAVS,
-  );
-
-  return (
-    <CContainer gap={4} {...restProps}>
-      {isEmptyArray(resolvedList) && <FeedbackNotFound />}
-
-      {!isEmptyArray(resolvedList) &&
-        resolvedList.map((navItem, navItemIdx) => {
-          return (
-            <CContainer key={navItemIdx} gap={1}>
-              {navItem.labelKey && (
-                <P
-                  fontSize={"sm"}
-                  fontWeight={"semibold"}
-                  color={"fg.subtle"}
-                  ml={1}
-                >
-                  {pluckString(t, navItem.labelKey)}
-                </P>
-              )}
-
-              {navItem.navs.map((nav) => {
-                const isActive = nav.path === pathname;
-
-                return (
-                  <Tooltip
-                    key={nav.path}
-                    content={pluckString(t, nav.labelKey)}
-                    positioning={{
-                      placement: "right",
-                      offset: {
-                        mainAxis: DESKTOP_NAVS_TOOLTIP_MAIN_AXIS,
-                      },
-                    }}
-                  >
-                    <NavLink to={nav.path} w={"full"}>
-                      <Btn
-                        clicky={false}
-                        justifyContent={"start"}
-                        variant={"ghost"}
-                        px={2}
-                        pos={"relative"}
-                      >
-                        {isActive && <LeftIndicator />}
-
-                        <AppIcon
-                          icon={nav.icon}
-                          color={isActive ? "" : NAVS_COLOR}
-                        />
-
-                        <P textAlign={"left"}>{pluckString(t, nav.labelKey)}</P>
-                      </Btn>
-                    </NavLink>
-                  </Tooltip>
-                );
-              })}
-            </CContainer>
-          );
-        })}
-    </CContainer>
-  );
-};
-
-export default function Layout(props: any) {
+const PageScreen = ({ children }: { children: React.ReactNode }) => {
   // Hooks
   const pathname = usePathname();
 
   // Refs
-  const containerRef = useRef<HTMLDivElement>(null);
-  const containerDimension = useContainerDimension(containerRef);
+  const { isSmContainer } = usePageContainerContext();
 
   // Contexts
   const { t } = useLocale();
 
-  // States
-  const [search, setSearch] = useState<string>("");
-
   // Derived Values
-  const isSmContainer = containerDimension.width < 720;
   const isAtSettingsIndexRoute = pathname === ROOT_PATH;
   const showSidebar =
     !isSmContainer || (isSmContainer && isAtSettingsIndexRoute);
@@ -148,35 +40,24 @@ export default function Layout(props: any) {
     !isSmContainer || (isSmContainer && !isAtSettingsIndexRoute);
 
   return (
-    <PageContainer id="settings-route-container" ref={containerRef} p={0}>
-      <HStack align={"stretch"} flex={1} gap={0} overflowY={"auto"}>
-        {/* Sidebar */}
-        {showSidebar && (
-          <CContainer
-            flexShrink={0}
-            w={isSmContainer ? "full" : "250px"}
-            h={"full"}
-            maxH={"full"}
-            // borderRight={isSmContainer ? "" : "1px solid"}
-            borderColor={"border.muted"}
-            overflowY={"auto"}
-          >
-            <PageHeader title={t.settings} />
+    <HStack align={"stretch"} flex={1} gap={0} overflowY={"auto"}>
+      {/* Sidebar */}
+      {showSidebar && (
+        <CContainer
+          flexShrink={0}
+          w={isSmContainer ? "full" : "250px"}
+          h={"full"}
+          maxH={"full"}
+          // borderRight={isSmContainer ? "" : "1px solid"}
+          borderColor={"border.muted"}
+          overflowY={"auto"}
+        >
+          <PageHeader title={t.settings} />
 
-            <CContainer px={3} py={2}>
-              <SearchInput
-                queryKey={"q-settings-navs"}
-                inputValue={search}
-                onChange={(inputValue) => {
-                  setSearch(inputValue || "");
-                }}
-              />
-            </CContainer>
-
-            <MContainer className={"scrollY"} flex={1}>
-              <NavsList search={search} px={3} py={2} />
-
-              <CContainer p={4} mt={"auto"} gap={1}>
+          <DesktopNavs
+            navs={NAVS}
+            addonElement={
+              <CContainer mt={"auto"} gap={1}>
                 <HelperText>{`v${APP.version}`}</HelperText>
 
                 <HelperText>
@@ -186,24 +67,35 @@ export default function Layout(props: any) {
                 })}`}
                 </HelperText>
               </CContainer>
-            </MContainer>
-          </CContainer>
-        )}
+            }
+            navsExpanded
+            flex={1}
+            mb={1}
+          />
+        </CContainer>
+      )}
 
-        {/* Content */}
-        {showContent && (
-          <MContainer className={"scrollY"} flex={1}>
-            <ContainerLayout
-              flex={1}
-              // maxW={""}
-            >
-              {pathname !== ROOT_PATH && <PageHeader />}
+      {/* Content */}
+      {showContent && (
+        <MContainer className={"scrollY"} flex={1}>
+          <ContainerLayout
+            flex={1}
+            // maxW={""}
+          >
+            {pathname !== ROOT_PATH && <PageHeader />}
 
-              <CContainer flex={1} {...props} />
-            </ContainerLayout>
-          </MContainer>
-        )}
-      </HStack>
+            <CContainer flex={1}>{children}</CContainer>
+          </ContainerLayout>
+        </MContainer>
+      )}
+    </HStack>
+  );
+};
+
+export default function Layout({ children }: { children: React.ReactNode }) {
+  return (
+    <PageContainer className={"settings-route-container"}>
+      <PageScreen>{children}</PageScreen>
     </PageContainer>
   );
 }

@@ -106,7 +106,7 @@ export const MenuContent = forwardRef<HTMLDivElement, MenuContentProps>(
 export const MenuItem = forwardRef<HTMLDivElement, MenuItemProps>(
   function MenuItem(props, ref) {
     //Props
-    const { children, ...restProps } = props;
+    const { children, asChild, ...restProps } = props;
 
     // Contexts
     const { themeConfig } = useThemeConfig();
@@ -116,13 +116,20 @@ export const MenuItem = forwardRef<HTMLDivElement, MenuItemProps>(
         <ChakraMenu.Item
           gap={3}
           ref={ref}
-          py={"8px !important"}
+          py={asChild ? undefined : "8px !important"}
           cursor={"pointer"}
-          fontSize={"md"}
-          rounded={`calc(${themeConfig.radii.component} + 2px)`}
-          _hover={{
-            bg: "bg.muted",
-          }}
+          fontSize={asChild ? undefined : "md"}
+          rounded={
+            asChild ? undefined : `calc(${themeConfig.radii.component} + 2px)`
+          }
+          _hover={
+            asChild
+              ? undefined
+              : {
+                  bg: "bg.muted",
+                }
+          }
+          asChild={asChild}
           {...restProps}
         >
           {children}

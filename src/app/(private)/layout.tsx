@@ -40,7 +40,6 @@ import {
   MOBILE_NAV_LABEL_FONT_SIZE,
   MOBILE_NAVS_COLOR,
   MOBILE_POPOVER_MAIN_AXIS,
-  NAVS_COLOR_PALETTE,
   TOP_BAR_H,
 } from "@/constants/styles";
 import { useLocale } from "@/contexts/useLocale";
@@ -333,8 +332,9 @@ const DesktopLayout = (props: any) => {
       <CContainer
         flexShrink={0}
         w={isNavsExpanded ? "250px" : "60px"}
-        bg={isNavsExpanded ? "bgContent" : DESKTOP_NAVS_BG}
-        // borderRight={isNavsExpanded ? "" : "1px solid"}
+        // bg={isNavsExpanded ? "item" : DESKTOP_NAVS_BG}
+        // borderRight={isNavsExpanded ? "1px solid" : ""}
+        bg={DESKTOP_NAVS_BG}
         borderColor={"border.muted"}
         transition={"200ms"}
       >
@@ -388,7 +388,6 @@ const DesktopLayout = (props: any) => {
                 iconButton
                 clicky={false}
                 variant={"ghost"}
-                colorPalette={NAVS_COLOR_PALETTE}
                 w={"36px"}
                 color={DESKTOP_NAVS_COLOR}
                 onClick={toggleNavsExpanded}
@@ -404,28 +403,36 @@ const DesktopLayout = (props: any) => {
 
         <DesktopNavs
           navs={PRIVATE_NAV_GROUPS}
-          isNavsExpanded={isNavsExpanded}
+          navsExpanded={isNavsExpanded}
           addonElement={
             <CContainer gap={1} mt={"auto"}>
               <NavLink key={"/master-data"} to={"/master-data"} w={"full"}>
                 <DesktopNavTooltip content={pluckString(t, "navs.master_data")}>
                   <Btn
                     clicky={false}
-                    gap={4}
                     justifyContent={"start"}
-                    variant={"ghost"}
-                    colorPalette={NAVS_COLOR_PALETTE}
+                    gap={4}
+                    variant={
+                      pathname.includes("/master-data") ? "subtle" : "ghost"
+                    }
+                    colorPalette={
+                      pathname.includes("/master-data")
+                        ? themeConfig.colorPalette
+                        : ""
+                    }
                     px={2}
                     pos={"relative"}
-                    color={
-                      pathname.includes("/master-data")
-                        ? ""
-                        : DESKTOP_NAVS_COLOR
-                    }
                   >
                     {pathname.includes("/master-data") && <LeftIndicator />}
 
-                    <AppIcon icon={ServerIcon} />
+                    <AppIcon
+                      icon={ServerIcon}
+                      color={
+                        pathname.includes("/master-data")
+                          ? ""
+                          : DESKTOP_NAVS_COLOR
+                      }
+                    />
 
                     {isNavsExpanded && (
                       <P lineClamp={1} textAlign={"left"}>
@@ -438,6 +445,7 @@ const DesktopLayout = (props: any) => {
             </CContainer>
           }
           flex={1}
+          mb={1}
         />
 
         {isNavsExpanded && (

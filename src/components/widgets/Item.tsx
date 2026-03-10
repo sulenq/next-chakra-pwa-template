@@ -31,10 +31,10 @@ const ItemContainer = forwardRef<HTMLDivElement, ItemContainerProps>(
       <CContainer
         ref={ref}
         className={`${scrollY ? "scrollY" : ""} ${className}`}
-        bg={"body"}
+        bg={"item"}
         rounded={roundedless ? "" : themeConfig.radii.container}
         border={borderless ? "" : "1px solid"}
-        borderColor={"border.muted"}
+        borderColor={"border.subtle"}
         {...restProps}
       >
         {children}

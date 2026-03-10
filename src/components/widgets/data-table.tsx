@@ -213,6 +213,7 @@ export const DataTableDisplay = (props: DataTableProps) => {
       <CContainer
         className="scrollX scrollYAlt"
         flex={1}
+        rounded={themeConfig.radii.container}
         {...contentContainerProps}
       >
         <Table.Root

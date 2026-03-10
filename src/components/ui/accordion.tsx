@@ -8,7 +8,7 @@ interface AccordionItemTriggerProps extends ChakraAccordion.ItemTriggerProps {
   indicatorPlacement?: "start" | "end" | "none";
 }
 
-export const AccordionItemTrigger = forwardRef<
+const AccordionItemTrigger = forwardRef<
   HTMLButtonElement,
   AccordionItemTriggerProps
 >(function AccordionItemTrigger(props, ref) {
@@ -22,9 +22,11 @@ export const AccordionItemTrigger = forwardRef<
           <LuChevronDown />
         </ChakraAccordion.ItemIndicator>
       )}
+
       <HStack gap="4" flex="1" textAlign="start" width="full">
         {children}
       </HStack>
+
       {indicatorPlacement === "end" && (
         <ChakraAccordion.ItemIndicator>
           <LuChevronDown />
@@ -36,7 +38,7 @@ export const AccordionItemTrigger = forwardRef<
 
 interface AccordionItemContentProps extends ChakraAccordion.ItemContentProps {}
 
-export const AccordionItemContent = forwardRef<
+const AccordionItemContent = forwardRef<
   HTMLDivElement,
   AccordionItemContentProps
 >(function AccordionItemContent(props, ref) {
@@ -47,12 +49,14 @@ export const AccordionItemContent = forwardRef<
   );
 });
 
-export const AccordionRoot = ChakraAccordion.Root;
-export const AccordionItem = ChakraAccordion.Item;
+const AccordionRoot = ChakraAccordion.Root;
+const AccordionItem = ChakraAccordion.Item;
+const AccordionItemIndicator = ChakraAccordion.ItemIndicator;
 
 export const Accordion = {
   Root: AccordionRoot,
   Item: AccordionItem,
   ItemTrigger: AccordionItemTrigger,
+  ItemIndicator: AccordionItemIndicator,
   ItemContent: AccordionItemContent,
 };

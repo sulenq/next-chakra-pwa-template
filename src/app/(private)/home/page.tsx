@@ -74,19 +74,8 @@ const OverviewItem = (props: OverviewItemProps) => {
   // Props
   const { item, ...restProps } = props;
 
-  // Contexts
-  const { themeConfig } = useThemeConfig();
-
   return (
-    <CContainer
-      gap={1}
-      p={4}
-      border={"1px solid"}
-      borderColor={"border.muted"}
-      rounded={themeConfig.radii.component}
-      // bg={"item"}
-      {...restProps}
-    >
+    <Item.Container gap={1} p={4} {...restProps}>
       <HStack gap={1}>
         <Item.HeaderTitle
           autoHeight
@@ -115,7 +104,7 @@ const OverviewItem = (props: OverviewItemProps) => {
           since last month
         </ClampText>
       </HStack>
-    </CContainer>
+    </Item.Container>
   );
 };
 
@@ -180,7 +169,7 @@ const Overview = (props: OverviewProps) => {
 
       <SimpleGrid
         columns={isSmContainer ? 2 : 3}
-        gap={3}
+        gap={4}
         pos={"relative"}
         {...restProps}
       >
@@ -362,7 +351,7 @@ const Chart1 = (props: any) => {
   }
 
   return (
-    <Item.Container borderColor={"border.muted"} {...restProps}>
+    <Item.Container {...restProps}>
       <Item.HeaderContainer borderless>
         <Item.HeaderTitle
           color={"fg.muted"}
@@ -526,7 +515,7 @@ const Usage = (props: any) => {
         </P>
       </HStack>
 
-      <SimpleGrid columns={isSmContainer ? 1 : 2} gap={3} {...restProps}>
+      <SimpleGrid columns={isSmContainer ? 1 : 2} gap={4} {...restProps}>
         <Chart1 data={data} year={filter.year} />
 
         <Chart1 data={data} year={filter.year} />
@@ -561,7 +550,7 @@ const PageScreen = () => {
   };
 
   return (
-    <PageContent>
+    <PageContent pb={4}>
       {initialLoading && render.loading}
       {!initialLoading && (
         <>

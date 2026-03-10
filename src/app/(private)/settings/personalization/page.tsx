@@ -133,7 +133,6 @@ const ADMSetting = () => {
 const DarkModeSection = () => {
   // Contexts
   const { t } = useLocale();
-  const { themeConfig } = useThemeConfig();
   const { colorMode, setColorMode } = useColorMode();
 
   // States, Refs
@@ -163,7 +162,7 @@ const DarkModeSection = () => {
   }, [colorMode]);
 
   return (
-    <Item.Container borderless roundedless>
+    <CContainer>
       <Item.HeaderContainer borderless>
         <HStack>
           <AppIcon icon={EclipseIcon} />
@@ -173,18 +172,13 @@ const DarkModeSection = () => {
       </Item.HeaderContainer>
 
       <CContainer px={4}>
-        <CContainer
-          gap={4}
-          p={4}
-          rounded={themeConfig.radii.container}
-          border={"1px solid"}
-          borderColor={"border.muted"}
-        >
+        <Item.Container gap={4} p={4}>
           <ManualDarkModeSetting />
+
           <ADMSetting />
-        </CContainer>
+        </Item.Container>
       </CContainer>
-    </Item.Container>
+    </CContainer>
   );
 };
 
@@ -197,7 +191,7 @@ const AccentColorSection = () => {
   const containerRef = useRef<HTMLDivElement>(null);
 
   return (
-    <Item.Container ref={containerRef} borderless roundedless>
+    <CContainer ref={containerRef}>
       <Item.HeaderContainer borderless>
         <HStack>
           <AppIcon icon={SwatchBookIcon} />
@@ -207,13 +201,7 @@ const AccentColorSection = () => {
       </Item.HeaderContainer>
 
       <CContainer px={4}>
-        <CContainer
-          gap={4}
-          p={4}
-          rounded={themeConfig.radii.container}
-          border={"1px solid"}
-          borderColor={"border.muted"}
-        >
+        <Item.Container gap={4} p={4}>
           <SimpleGrid minChildWidth={"56px"} gap={2}>
             {COLOR_PALETTES.map((color, index) => {
               const isSelected = color.palette === themeConfig.colorPalette;
@@ -266,9 +254,9 @@ const AccentColorSection = () => {
               );
             })}
           </SimpleGrid>
-        </CContainer>
+        </Item.Container>
       </CContainer>
-    </Item.Container>
+    </CContainer>
   );
 };
 
@@ -292,7 +280,7 @@ const RoundedSection = () => {
   }
 
   return (
-    <Item.Container ref={containerRef} borderless roundedless>
+    <CContainer ref={containerRef}>
       <Item.HeaderContainer borderless>
         <HStack>
           <AppIcon icon={SquareRoundCornerIcon} />
@@ -302,13 +290,7 @@ const RoundedSection = () => {
       </Item.HeaderContainer>
 
       <CContainer px={4}>
-        <CContainer
-          gap={4}
-          p={4}
-          rounded={themeConfig.radii.container}
-          border={"1px solid"}
-          borderColor={"border.muted"}
-        >
+        <Item.Container gap={4} p={4}>
           <SimpleGrid minChildWidth={"140px"} gap={4}>
             {ROUNDED_PRESETS.map((preset, index) => {
               const isSelected =
@@ -376,9 +358,9 @@ const RoundedSection = () => {
               );
             })}
           </SimpleGrid>
-        </CContainer>
+        </Item.Container>
       </CContainer>
-    </Item.Container>
+    </CContainer>
   );
 };
 
@@ -394,7 +376,7 @@ const ExampleUISection = () => {
   >(null);
 
   return (
-    <Item.Container borderless roundedless>
+    <CContainer>
       <Item.HeaderContainer borderless>
         <HStack>
           <AppIcon icon={LayoutPanelLeftIcon} />
@@ -404,64 +386,59 @@ const ExampleUISection = () => {
       </Item.HeaderContainer>
 
       <CContainer px={4}>
-        <HStack
-          wrap={"wrap"}
-          gapY={4}
-          p={4}
-          rounded={themeConfig.radii.container}
-          border={"1px solid"}
-          borderColor={"border.muted"}
-        >
-          <Btn flex={"1 1 100px"} colorPalette={themeConfig.colorPalette}>
-            Label
-          </Btn>
+        <Item.Container p={4}>
+          <HStack wrap={"wrap"} gapY={4}>
+            <Btn flex={"1 1 100px"} colorPalette={themeConfig.colorPalette}>
+              Label
+            </Btn>
 
-          <Btn
-            flex={"1 1 100px"}
-            colorPalette={themeConfig.colorPalette}
-            variant={"outline"}
-          >
-            Label
-          </Btn>
+            <Btn
+              flex={"1 1 100px"}
+              colorPalette={themeConfig.colorPalette}
+              variant={"outline"}
+            >
+              Label
+            </Btn>
 
-          <Btn
-            flex={"1 1 100px"}
-            colorPalette={themeConfig.colorPalette}
-            variant={"subtle"}
-          >
-            Label
-          </Btn>
+            <Btn
+              flex={"1 1 100px"}
+              colorPalette={themeConfig.colorPalette}
+              variant={"subtle"}
+            >
+              Label
+            </Btn>
 
-          <StringInput flex={"1 1 200px"} placeholder="example@email.com" />
+            <StringInput flex={"1 1 200px"} placeholder="example@email.com" />
 
-          <SelectInput
-            id="example-select-religion"
-            flex={"1 1 200px"}
-            name="select1"
-            selectOptions={OPTIONS_RELIGION}
-            onChange={(inputValue) => {
-              setSelect(inputValue);
-            }}
-            inputValue={select}
-            multiple
-          />
+            <SelectInput
+              id="example-select-religion"
+              flex={"1 1 200px"}
+              name="select1"
+              selectOptions={OPTIONS_RELIGION}
+              onChange={(inputValue) => {
+                setSelect(inputValue);
+              }}
+              inputValue={select}
+              multiple
+            />
 
-          <DatePickerInput flex={"1 1 200px"} multiple />
+            <DatePickerInput flex={"1 1 200px"} multiple />
 
-          <TimePickerInput flex={"1 1 200px"} />
+            <TimePickerInput flex={"1 1 200px"} />
 
-          <Checkbox
-            checked={checked}
-            onChange={(e: any) => setChecked(!e.target.checked)}
-            colorPalette={themeConfig.colorPalette}
-            variant={"solid"}
-            size={"lg"}
-          ></Checkbox>
+            <Checkbox
+              checked={checked}
+              onChange={(e: any) => setChecked(!e.target.checked)}
+              colorPalette={themeConfig.colorPalette}
+              variant={"solid"}
+              size={"lg"}
+            ></Checkbox>
 
-          <Switch colorPalette={themeConfig.colorPalette} />
-        </HStack>
+            <Switch colorPalette={themeConfig.colorPalette} />
+          </HStack>
+        </Item.Container>
       </CContainer>
-    </Item.Container>
+    </CContainer>
   );
 };
 

@@ -22,8 +22,8 @@ const customConfig = defineConfig({
     },
     tokens: {
       colors: {
-        light: { value: "#fff" },
-        dark: { value: "#191919" },
+        light: { value: "#fafafa" },
+        dark: { value: "#161616" },
         darktrans: { value: "#202020cf" },
         d0: { value: "#8a8a8a0f" },
         d1: { value: "#8a8a8a15" },
@@ -34,8 +34,8 @@ const customConfig = defineConfig({
         placeholder: { value: "#96969691" },
 
         gray: {
-          50: { value: "#fafafa" },
-          100: { value: "#f5f5f5" },
+          50: { value: "#f4f4f4" },
+          100: { value: "#f1f1f1" },
           200: { value: "#e4e4e4" },
           300: { value: "#d4d4d4" },
           400: { value: "#a1a1a1" },
@@ -43,8 +43,8 @@ const customConfig = defineConfig({
           600: { value: "#525252" },
           700: { value: "#3f3f3f" },
           800: { value: "#272727" },
-          900: { value: "#202020" },
-          950: { value: "#111111" },
+          900: { value: "#242424" },
+          950: { value: "#202020" },
         },
 
         cream: {
@@ -471,19 +471,19 @@ const customConfig = defineConfig({
           value: { base: "{colors.light}aa", _dark: "{colors.dark}aa" },
         },
         ibody: { value: { base: "{colors.dark}", _dark: "{colors.light}" } },
-        item: { value: { base: "#fafafa", _dark: "#1d1d1d" } },
+        item: { value: { base: "#ffffff", _dark: "#181818" } },
 
         border: {
           subtle: {
             value: {
-              base: "{colors.d1} !important",
-              _dark: "{colors.d1} !important",
+              base: "#f1f1f1 !important",
+              _dark: "#242424 !important",
             },
           },
           muted: {
             value: {
               base: "#ebebec !important",
-              _dark: "#242424 !important",
+              _dark: "#202020 !important",
             },
           },
         },

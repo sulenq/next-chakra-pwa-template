@@ -35,75 +35,6 @@ import {
 
 const FONT_SIZE = "md";
 
-export const ContainerLayout = forwardRef<HTMLDivElement, StackProps>(
-  (props, ref) => {
-    // Props
-    const { children, ...restProps } = props;
-
-    return (
-      <CContainer
-        className="page-layout"
-        ref={ref}
-        maxW={"720px"}
-        mx={"auto"}
-        {...restProps}
-      >
-        {children}
-      </CContainer>
-    );
-  },
-);
-
-type PageContainerContextType = {
-  isValidDimension: boolean;
-  isSmContainer: boolean;
-};
-const PageContainerContext = createContext<PageContainerContextType | null>(
-  null,
-);
-export function usePageContainerContext() {
-  const context = useContext(PageContainerContext);
-  if (!context) {
-    throw new Error(
-      "usePageContainerContext must be used inside PageContainer",
-    );
-  }
-  return context;
-}
-export const PageContainer = forwardRef<HTMLDivElement, StackProps>(
-  ({ children, ...restProps }, ref) => {
-    // Refs
-    const containerRef = useRef<HTMLDivElement>(null);
-    const mergeRef = useMergedRefs(containerRef, ref);
-
-    // Hooks
-    const dimension = useContainerDimension(containerRef);
-
-    // States
-    const isValidDimension = dimension.width > 0 && dimension.height > 0;
-    const isSmContainer = dimension.width < 600;
-
-    const contextValue = useMemo(
-      () => ({ isValidDimension, isSmContainer }),
-      [isValidDimension, isSmContainer],
-    );
-
-    return (
-      <PageContainerContext.Provider value={contextValue}>
-        <CContainer
-          ref={mergeRef}
-          className="page-container"
-          flex={1}
-          overflow={"auto"}
-          {...restProps}
-        >
-          {children}
-        </CContainer>
-      </PageContainerContext.Provider>
-    );
-  },
-);
-
 export const NavBreadcrumb = (props: any) => {
   // Props
   const {
@@ -236,6 +167,75 @@ export const TopBar = () => {
   );
 };
 
+export const ContainerLayout = forwardRef<HTMLDivElement, StackProps>(
+  (props, ref) => {
+    // Props
+    const { children, ...restProps } = props;
+
+    return (
+      <CContainer
+        className="page-layout"
+        ref={ref}
+        maxW={"720px"}
+        mx={"auto"}
+        {...restProps}
+      >
+        {children}
+      </CContainer>
+    );
+  },
+);
+
+type PageContainerContextType = {
+  isValidDimension: boolean;
+  isSmContainer: boolean;
+};
+const PageContainerContext = createContext<PageContainerContextType | null>(
+  null,
+);
+export function usePageContainerContext() {
+  const context = useContext(PageContainerContext);
+  if (!context) {
+    throw new Error(
+      "usePageContainerContext must be used inside PageContainer",
+    );
+  }
+  return context;
+}
+export const PageContainer = forwardRef<HTMLDivElement, StackProps>(
+  ({ children, ...restProps }, ref) => {
+    // Refs
+    const containerRef = useRef<HTMLDivElement>(null);
+    const mergeRef = useMergedRefs(containerRef, ref);
+
+    // Hooks
+    const dimension = useContainerDimension(containerRef);
+
+    // States
+    const isValidDimension = dimension.width > 0 && dimension.height > 0;
+    const isSmContainer = dimension.width < 600;
+
+    const contextValue = useMemo(
+      () => ({ isValidDimension, isSmContainer }),
+      [isValidDimension, isSmContainer],
+    );
+
+    return (
+      <PageContainerContext.Provider value={contextValue}>
+        <CContainer
+          ref={mergeRef}
+          className="page-container"
+          flex={1}
+          overflow={"auto"}
+          {...restProps}
+        >
+          {children}
+        </CContainer>
+      </PageContainerContext.Provider>
+    );
+  },
+);
+
 export const PageHeader = (props: StackProps) => {
   // Props
   const { children, title, ...restProps } = props;
@@ -296,3 +296,10 @@ export const PageContent = forwardRef<HTMLDivElement, MContainerProps>(
 ContainerLayout.displayName = "ContainerLayout";
 PageContainer.displayName = "PageContainer";
 PageContent.displayName = "PageContent";
+
+export const Page = {
+  Container: PageContainer,
+  Content: PageContent,
+  Header: PageHeader,
+  Title: PageTitle,
+};

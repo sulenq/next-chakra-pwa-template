@@ -18,6 +18,7 @@ import {
   PageContainer,
   PageContent,
   PageHeader,
+  usePageContainerContext,
 } from "@/components/widgets/page-shell";
 import { SimpleDisclosure } from "@/components/widgets/simple-disclosure";
 import { TableSkeleton } from "@/components/widgets/table-skeleton";
@@ -33,7 +34,6 @@ import { useDataDisplay } from "@/contexts/useDataDisplay";
 import { useLocale } from "@/contexts/useLocale";
 import useRenderTrigger from "@/contexts/useRenderTrigger";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
-import { useContainerDimension } from "@/hooks/useContainerDimension";
 import { useFetchData } from "@/hooks/useFetchData";
 import { usePopDisclosure } from "@/hooks/usePopDisclosure";
 import { useRequest } from "@/hooks/useRequest";
@@ -42,7 +42,6 @@ import { back } from "@/utils/client";
 import { disclosureId } from "@/utils/disclosure";
 import { formatDate } from "@/utils/formatter";
 import { capitalize, pluckString } from "@/utils/string";
-import { isDimensionValid } from "@/utils/style";
 import { getActiveNavs, imgUrl } from "@/utils/url";
 import { HStack, Icon } from "@chakra-ui/react";
 import { useFormik } from "formik";
@@ -55,7 +54,7 @@ import {
   UndoIcon,
 } from "lucide-react";
 import { usePathname } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import * as yup from "yup";
 
 const BASE_ENDPOINT = ``;
@@ -565,26 +564,21 @@ const Data = (props: any) => {
   );
 };
 
-export default function Page() {
+const PageScreen = () => {
   // Contexts
   const { t } = useLocale();
 
-  // Refs
-  const containerRef = useRef<HTMLDivElement>(null);
-
   // Hooks
-  const dimension = useContainerDimension(containerRef);
+  const { isSmContainer } = usePageContainerContext();
 
   // States
-  const isValidDimension = isDimensionValid(dimension);
-  const isSmContainer = dimension.width < 600;
   const pathname = usePathname();
   const activeNav = getActiveNavs(pathname);
   const routeTitle = pluckString(t, last(activeNav)?.labelKey || "");
   const [filter, setFilter] = useState(DEFAULT_FILTER);
 
   return (
-    <PageContainer ref={containerRef}>
+    <>
       <PageHeader justify={"space-between"}>
         <HStack>
           {!isSmContainer && (
@@ -599,27 +593,32 @@ export default function Page() {
         </HStack>
       </PageHeader>
 
-      {isValidDimension && (
-        <PageContent pt={2} overflow={"auto"}>
-          {isSmContainer && (
-            <HScroll px={3} flexShrink={0}>
-              <HStack minW={"full"} justify={"space-between"}>
-                <DataUtils
-                  filter={filter}
-                  setFilter={setFilter}
-                  routeTitle={routeTitle}
-                />
-              </HStack>
-            </HScroll>
-          )}
+      <PageContent gap={4} pt={2} overflow={"auto"}>
+        {isSmContainer && (
+          <HScroll flexShrink={0} px={3}>
+            <HStack minW={"full"} justify={"space-between"}>
+              <DataUtils
+                filter={filter}
+                setFilter={setFilter}
+                routeTitle={routeTitle}
+              />
+            </HStack>
+          </HScroll>
+        )}
 
-          <Data
-            filter={filter}
-            routeTitle={routeTitle}
-            isSmContainer={isSmContainer}
-          />
-        </PageContent>
-      )}
+        <Data
+          filter={filter}
+          routeTitle={routeTitle}
+          isSmContainer={isSmContainer}
+        />
+      </PageContent>
+    </>
+  );
+};
+export default function Page() {
+  return (
+    <PageContainer>
+      <PageScreen />
     </PageContainer>
   );
 }
