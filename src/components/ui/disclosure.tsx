@@ -180,6 +180,9 @@ export const DisclosureHeaderContent = (
     ...restProps
   } = props;
 
+  // Hooks
+  const iss = useIsSmScreenWidth();
+
   // States
   const [maximize, setMaximize] = useState(false);
 
@@ -206,7 +209,7 @@ export const DisclosureHeaderContent = (
             iconButton
             size={["xs", null, "2xs"]}
             rounded={"full"}
-            variant={["ghost", null, "subtle"]}
+            variant={iss ? "ghost" : "subtle"}
             onClick={() => {
               setMaximize((ps) => !ps);
             }}
@@ -220,38 +223,12 @@ export const DisclosureHeaderContent = (
 
         {withCloseButton && (
           <>
-            {prefix && (
-              <>
-                {prefix === "dialog" && (
-                  <DialogCloseTrigger
-                    rounded={"full"}
-                    onClick={back}
-                    pos={"static"}
-                    // top={"12px"}
-                    // right={"12px"}
-                    // mt={"-2px"}
-                    // mr={"-6px"}
-                  />
-                )}
-
-                {prefix === "drawer" && (
-                  <DrawerCloseTrigger
-                    rounded={"full"}
-                    onClick={back}
-                    pos={"static"}
-                    // top={3}
-                    // right={"10px"}
-                  />
-                )}
-              </>
-            )}
-
             {!prefix && (
               <Btn
                 iconButton
                 clicky={false}
                 rounded={"full"}
-                variant={["ghost", null, "subtle"]}
+                variant={iss ? "ghost" : "subtle"}
                 size={["xs", null, "2xs"]}
                 onClick={back}
               >

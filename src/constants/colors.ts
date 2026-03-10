@@ -162,17 +162,19 @@ export const LEGEND_COLOR_OPTIONS = [
 
 export const COLOR_PALETTES = [
   { palette: "gray", label: "Default", primaryHex: "gray" },
-  { palette: "brown", label: "Brown", primaryHex: "#795548" },
-  { palette: "mocha", label: "Mocha", primaryHex: "#9F5D39" },
-  { palette: "caramel", label: "Caramel", primaryHex: "#C47B27" },
+
   { palette: "cream", label: "Cream", primaryHex: "#D7BF8C" },
+  { palette: "caramel", label: "Caramel", primaryHex: "#C47B27" },
+  { palette: "mocha", label: "Mocha", primaryHex: "#9F5D39" },
+  { palette: "brown", label: "Brown", primaryHex: "#795548" },
 
   { palette: "maroon", label: "Maroon", primaryHex: "#800000" },
   { palette: "red", label: "Red", primaryHex: "#ef4444" },
   { palette: "salmon", label: "Salmon", primaryHex: "#FF6242" },
 
+  { palette: "pastelOrange", label: "Pastel Orange", primaryHex: "#FF8E62" },
   { palette: "orange", label: "Orange", primaryHex: "#FF8E62" },
-  { palette: "pastelSalmon", label: "Pastel Salmon", primaryHex: "#FF8E62" },
+  { palette: "gold", label: "Gold", primaryHex: "#D1B000" },
   { palette: "yellow", label: "Yellow", primaryHex: "#ffcc00" },
 
   { palette: "lime", label: "Lime", primaryHex: "#CDDC39" },
@@ -187,18 +189,17 @@ export const COLOR_PALETTES = [
   { palette: "sky", label: "Sky", primaryHex: "#0EA5E9" },
   { palette: "blue", label: "Blue", primaryHex: "#3a72ed" },
   { palette: "sapphire", label: "Sapphire", primaryHex: "#1939B7" },
-  { palette: "discord", label: "Discord", primaryHex: "#5865F2" },
   { palette: "indigo", label: "Indigo", primaryHex: "#3F51B5" },
+  { palette: "discord", label: "Discord", primaryHex: "#5865F2" },
 
-  { palette: "lavender", label: "Lavender", primaryHex: "#7A42FF" },
   {
     palette: "powderLavender",
     label: "Powder Lavender",
     primaryHex: "#8E8CD8",
   },
+  { palette: "lavender", label: "Lavender", primaryHex: "#7A42FF" },
   { palette: "purple", label: "Purple", primaryHex: "#9C27B0" },
 
   { palette: "bubblegumPink", label: "Bubblegum Pink", primaryHex: "#FF4ABB" },
-  { palette: "flamingoPink", label: "Flamingo Pink", primaryHex: "#FF478B" },
   { palette: "pink", label: "Pink", primaryHex: "#ec4899" },
 ];
