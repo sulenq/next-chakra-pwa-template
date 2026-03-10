@@ -12,7 +12,7 @@ export function useCountdown(options: UseCountdownOptions) {
   const {
     duration,
     autoStart = false,
-    precision = 2,
+    precision = 0,
     locale = NUMBER_LOCALE,
   } = options;
 

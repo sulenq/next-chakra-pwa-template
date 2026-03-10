@@ -5,18 +5,23 @@ import { P } from "@/components/ui/p";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
 import { usePopDisclosure } from "@/hooks/usePopDisclosure";
 import { disclosureId } from "@/utils/disclosure";
-import { StackProps } from "@chakra-ui/react";
+import { Box, StackProps } from "@chakra-ui/react";
 import { BackButton } from "@/components/widgets/back-button";
+import { useCountdown } from "@/hooks/useCountdown";
+import { useEffect } from "react";
+import { Tooltip } from "@/components/ui/tooltip";
 
 interface ConfirmationProps {
   open: boolean;
   title: string;
   description: string;
   confirmLabel: string;
-  onConfirm: () => void;
   confirmButtonProps?: BtnProps;
+  confirmCountdown?: string;
+  isCountdownFinished?: boolean;
   loading?: boolean;
   addonElement?: any;
+  onConfirm: () => void;
 }
 const ConfirmationContent = (props: ConfirmationProps) => {
   // Props
@@ -25,6 +30,8 @@ const ConfirmationContent = (props: ConfirmationProps) => {
     title,
     description,
     confirmLabel,
+    confirmCountdown,
+    isCountdownFinished,
     onConfirm,
     confirmButtonProps,
     loading = false,
@@ -50,14 +57,36 @@ const ConfirmationContent = (props: ConfirmationProps) => {
         <Disclosure.Footer>
           <BackButton disabled={loading} />
 
-          <Btn
-            onClick={onConfirm}
-            loading={loading}
-            colorPalette={themeConfig.colorPalette}
-            {...confirmButtonProps}
-          >
-            {confirmLabel}
-          </Btn>
+          <Box pos={"relative"}>
+            <Btn
+              w={"120px"}
+              onClick={onConfirm}
+              loading={loading}
+              colorPalette={themeConfig.colorPalette}
+              fontVariantNumeric={"tabular-nums"}
+              disabled={!isCountdownFinished}
+              {...confirmButtonProps}
+            >
+              <Tooltip content={confirmLabel}>
+                <P lineClamp={1} opacity={isCountdownFinished ? 1 : 0.3}>
+                  {confirmLabel}
+                </P>
+              </Tooltip>
+            </Btn>
+
+            <P
+              pos={"absolute"}
+              top={"50%"}
+              left={"50%"}
+              transform={"translate(-50%, -50%)"}
+              fontVariantNumeric={"tabular-nums"}
+              pointerEvents={"none"}
+              opacity={isCountdownFinished ? 0 : 1}
+              lineClamp={1}
+            >
+              {`${confirmCountdown}`}
+            </P>
+          </Box>
         </Disclosure.Footer>
       </Disclosure.Content>
     </Disclosure.Root>
@@ -79,8 +108,8 @@ interface ConfirmationTriggerProps extends StackProps {
   /** Label displayed on the confirm action button */
   confirmLabel: any;
 
-  /** Callback executed when the confirm button is pressed */
-  onConfirm: () => void;
+  /** Number of seconds to wait before executing the confirmation action */
+  confirmCountdownDuration?: number;
 
   /** Additional props forwarded to the confirm button */
   confirmButtonProps?: BtnProps;
@@ -94,10 +123,16 @@ interface ConfirmationTriggerProps extends StackProps {
   /** Optional element rendered inside the confirmation body (e.g. warning, extra info, form field) */
   addonElement?: any;
 
+  /** Callback executed when the confirm button is pressed */
+  onConfirm: () => void;
+
   /** Optional callback executed before the disclosure is opened */
-  onClick?: () => void;
+  onOpen?: () => void;
+
+  /** Optional callback executed before the disclosure is closed */
+  onClose?: () => void;
 }
-const ConfirmationTrigger = (props: ConfirmationTriggerProps) => {
+export const ConfirmationTrigger = (props: ConfirmationTriggerProps) => {
   // Props
   const {
     children,
@@ -105,17 +140,47 @@ const ConfirmationTrigger = (props: ConfirmationTriggerProps) => {
     title,
     description,
     confirmLabel,
-    onConfirm,
+    confirmCountdownDuration = 0,
     confirmButtonProps,
     loading,
     disabled,
     addonElement,
-    onClick,
+    onConfirm,
+    onOpen,
+    onClose,
     ...restProps
   } = props;
 
   // Hooks
-  const { open, onOpen } = usePopDisclosure(disclosureId(`${id}`));
+  const { open, onOpen: openDisclosure } = usePopDisclosure(
+    disclosureId(`${id}`),
+  );
+  const {
+    formattedCountdown,
+    startCountdown,
+    stopCountdown,
+    resetCountdown,
+    isCountdownFinished,
+  } = useCountdown({
+    duration: confirmCountdownDuration,
+  });
+
+  useEffect(() => {
+    if (open) {
+      onOpen?.();
+
+      if (confirmCountdownDuration) {
+        startCountdown();
+      }
+    } else {
+      onClose?.();
+
+      if (confirmCountdownDuration) {
+        stopCountdown();
+        resetCountdown();
+      }
+    }
+  }, [open, onClose]);
 
   return (
     <>
@@ -127,8 +192,8 @@ const ConfirmationTrigger = (props: ConfirmationTriggerProps) => {
 
           if (disabled) return;
 
-          onClick?.();
-          onOpen();
+          openDisclosure();
+          onOpen?.();
         }}
         cursor={disabled ? "disabled" : "pointer"}
         {...restProps}
@@ -141,6 +206,8 @@ const ConfirmationTrigger = (props: ConfirmationTriggerProps) => {
         title={title}
         description={description}
         confirmLabel={confirmLabel}
+        confirmCountdown={`${formattedCountdown}s`}
+        isCountdownFinished={isCountdownFinished}
         onConfirm={onConfirm}
         confirmButtonProps={confirmButtonProps}
         loading={loading}

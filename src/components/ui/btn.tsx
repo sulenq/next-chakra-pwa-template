@@ -5,14 +5,14 @@ import { useThemeConfig } from "@/contexts/useThemeConfig";
 import { Button, ButtonProps, IconButton } from "@chakra-ui/react";
 import { forwardRef } from "react";
 
-export interface Props__Btn extends ButtonProps {
+export interface BtnProps extends ButtonProps {
   children?: React.ReactNode;
   clicky?: boolean;
   iconButton?: boolean;
   focusStyle?: boolean;
 }
 
-export const Btn = forwardRef<HTMLButtonElement, Props__Btn>((props, ref) => {
+export const Btn = forwardRef<HTMLButtonElement, BtnProps>((props, ref) => {
   // Props
   const {
     children,
@@ -75,7 +75,7 @@ export const Btn = forwardRef<HTMLButtonElement, Props__Btn>((props, ref) => {
   );
 });
 
-export const PBtn = forwardRef<HTMLButtonElement, Props__Btn>((props, ref) => {
+export const PBtn = forwardRef<HTMLButtonElement, BtnProps>((props, ref) => {
   // Contexts
   const { themeConfig } = useThemeConfig();
 
