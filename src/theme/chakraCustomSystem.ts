@@ -23,7 +23,7 @@ const customConfig = defineConfig({
     tokens: {
       colors: {
         light: { value: "#fff" },
-        dark: { value: "#181818" },
+        dark: { value: "#191919" },
         darktrans: { value: "#202020cf" },
         d0: { value: "#8a8a8a0f" },
         d1: { value: "#8a8a8a15" },
@@ -40,216 +40,6 @@ const customConfig = defineConfig({
           900: { value: "#202020" },
         },
 
-        salmon: {
-          50: { value: "#FFF5F0" },
-          100: { value: "#FFE0DA" },
-          200: { value: "#FFC1B3" },
-          300: { value: "#FFA18D" },
-          400: { value: "#FF8267" },
-          500: { value: "#FF6242" },
-          600: { value: "#E64F2A" },
-          700: { value: "#B33F20" },
-          800: { value: "#802F16" },
-          900: { value: "#4D1F0D" },
-          950: { value: "#2B0F08" },
-        },
-
-        pastelSalmon: {
-          50: { value: "#FFF8F5" },
-          100: { value: "#FFECE6" },
-          200: { value: "#FFD4C1" },
-          300: { value: "#FFBDA1" },
-          400: { value: "#FFA581" },
-          500: { value: "#FF8E62" },
-          600: { value: "#E67C4F" },
-          700: { value: "#B3623F" },
-          800: { value: "#80482F" },
-          900: { value: "#4D2E1F" },
-          950: { value: "#2A1710" },
-        },
-
-        yellow: {
-          50: { value: "#fffdea" },
-          100: { value: "#fff6b3" },
-          200: { value: "#ffeb80" },
-          300: { value: "#ffe14d" },
-          400: { value: "#ffd633" },
-          500: { value: "#ffcc00" },
-          600: { value: "#e6b800" },
-          700: { value: "#cc9f00" },
-          800: { value: "#997700" },
-          900: { value: "#665000" },
-          950: { value: "#332800" },
-        },
-
-        lime: {
-          50: { value: "#F9FBE7" },
-          100: { value: "#F0F4C3" },
-          200: { value: "#E6EE9C" },
-          300: { value: "#DCE775" },
-          400: { value: "#D4E157" },
-          500: { value: "#CDDC39" },
-          600: { value: "#C0CA33" },
-          700: { value: "#AFB42B" },
-          800: { value: "#9E9D24" },
-          900: { value: "#827717" },
-          950: { value: "#3F3A0C" },
-        },
-
-        olive: {
-          50: { value: "#F2F4E7" },
-          100: { value: "#DDE3C4" },
-          200: { value: "#C7D29F" },
-          300: { value: "#B1C17A" },
-          400: { value: "#9CB055" },
-          500: { value: "#879F30" },
-          600: { value: "#758B2B" },
-          700: { value: "#637726" },
-          800: { value: "#506321" },
-          900: { value: "#3D4F1C" },
-          950: { value: "#2A3613" },
-        },
-
-        jade: {
-          50: { value: "#E8FAF1" },
-          100: { value: "#C9F1DB" },
-          200: { value: "#9DE9C2" },
-          300: { value: "#6FDEA5" },
-          400: { value: "#46D58D" },
-          500: { value: "#2ECC71" },
-          600: { value: "#26A75C" },
-          700: { value: "#1E8449" },
-          800: { value: "#166037" },
-          900: { value: "#0F3E23" },
-          950: { value: "#092214" },
-        },
-
-        tealBlue: {
-          50: { value: "#E6FAF8" },
-          100: { value: "#C4F1EC" },
-          200: { value: "#97E3DD" },
-          300: { value: "#69D2CD" },
-          400: { value: "#42BFC0" },
-          500: { value: "#1FA8B1" },
-          600: { value: "#188893" },
-          700: { value: "#126B76" },
-          800: { value: "#0C5059" },
-          900: { value: "#073C42" },
-          950: { value: "#031E20" },
-        },
-
-        powderBlue: {
-          50: { value: "#f0f8ff" },
-          100: { value: "#dceefc" },
-          200: { value: "#c1def7" },
-          300: { value: "#9ecaf0" },
-          400: { value: "#7fb4e6" },
-          500: { value: "#649fd9" },
-          600: { value: "#4f86bf" },
-          700: { value: "#3f6ba1" },
-          800: { value: "#325382" },
-          900: { value: "#223758" },
-          950: { value: "#141C2E" },
-        },
-
-        sky: {
-          50: { value: "#F0F9FF" },
-          100: { value: "#E0F2FE" },
-          200: { value: "#BAE6FD" },
-          300: { value: "#7DD3FC" },
-          400: { value: "#38BDF8" },
-          500: { value: "#0EA5E9" },
-          600: { value: "#0284C7" },
-          700: { value: "#0369A1" },
-          800: { value: "#075985" },
-          900: { value: "#083654" },
-          950: { value: "#041A2B" },
-        },
-
-        indigo: {
-          50: { value: "#E8EAF6" },
-          100: { value: "#C5CAE9" },
-          200: { value: "#9FA8DA" },
-          300: { value: "#7986CB" },
-          400: { value: "#5C6BC0" },
-          500: { value: "#3F51B5" },
-          600: { value: "#3949AB" },
-          700: { value: "#303F9F" },
-          800: { value: "#283593" },
-          900: { value: "#141A63" },
-          950: { value: "#0C0F3D" },
-        },
-
-        discord: {
-          50: { value: "#EDEFFD" },
-          100: { value: "#D0D6FA" },
-          200: { value: "#B3BCF7" },
-          300: { value: "#96A3F4" },
-          400: { value: "#7989F1" },
-          500: { value: "#5865F2" },
-          600: { value: "#4A55D2" },
-          700: { value: "#3C46B2" },
-          800: { value: "#2E3792" },
-          900: { value: "#181C5D" },
-          950: { value: "#0D1038" },
-        },
-
-        lavender: {
-          50: { value: "#F5F0FF" },
-          100: { value: "#E6DAFF" },
-          200: { value: "#CBB3FF" },
-          300: { value: "#AF8DFF" },
-          400: { value: "#9567FF" },
-          500: { value: "#7A42FF" },
-          600: { value: "#6720E6" },
-          700: { value: "#5314B3" },
-          800: { value: "#3F0F80" },
-          900: { value: "#2A0A4D" },
-          950: { value: "#160626" },
-        },
-
-        powderLavender: {
-          50: { value: "#F0F0FF" },
-          100: { value: "#E2E1FF" },
-          200: { value: "#CECDFF" },
-          300: { value: "#BAB8FF" },
-          400: { value: "#A6A3FF" },
-          500: { value: "#8E8CD8" },
-          600: { value: "#7A78C2" },
-          700: { value: "#6361A3" },
-          800: { value: "#4D4B84" },
-          900: { value: "#2A2948" },
-          950: { value: "#161533" },
-        },
-
-        flamingoPink: {
-          50: { value: "#FFEFF4" },
-          100: { value: "#FFD6E3" },
-          200: { value: "#FFB3CD" },
-          300: { value: "#FF8FB7" },
-          400: { value: "#FF6BA1" },
-          500: { value: "#FF478B" },
-          600: { value: "#E63E7D" },
-          700: { value: "#B33063" },
-          800: { value: "#80234A" },
-          900: { value: "#4D162F" },
-          950: { value: "#2B0A1A" },
-        },
-
-        bubblegumPink: {
-          50: { value: "#FFF0FA" },
-          100: { value: "#FFD9F2" },
-          200: { value: "#FFB6E4" },
-          300: { value: "#FF92D7" },
-          400: { value: "#FF6EC9" },
-          500: { value: "#FF4ABB" },
-          600: { value: "#E642A8" },
-          700: { value: "#B33283" },
-          800: { value: "#80235E" },
-          900: { value: "#4D163A" },
-          950: { value: "#2A0A1F" },
-        },
-
         brown: {
           50: { value: "#EFEBE9" },
           100: { value: "#D7CCC8" },
@@ -261,7 +51,7 @@ const customConfig = defineConfig({
           700: { value: "#5D4037" },
           800: { value: "#3E2723" },
           900: { value: "#2A1916" },
-          950: { value: "#140C0A" },
+          950: { value: "#201210" },
         },
 
         mocha: {
@@ -275,7 +65,7 @@ const customConfig = defineConfig({
           700: { value: "#6B3D25" },
           800: { value: "#512D1A" },
           900: { value: "#371E10" },
-          950: { value: "#1F1209" },
+          950: { value: "#2A170B" },
         },
 
         caramel: {
@@ -289,7 +79,7 @@ const customConfig = defineConfig({
           700: { value: "#834F19" },
           800: { value: "#623913" },
           900: { value: "#41240C" },
-          950: { value: "#261407" },
+          950: { value: "#311A09" },
         },
 
         cream: {
@@ -303,7 +93,7 @@ const customConfig = defineConfig({
           700: { value: "#8A7A58" },
           800: { value: "#63573E" },
           900: { value: "#3D3424" },
-          950: { value: "#1F1910" },
+          950: { value: "#2A2317" },
         },
 
         maroon: {
@@ -317,7 +107,217 @@ const customConfig = defineConfig({
           700: { value: "#5A1313" },
           800: { value: "#3A0D0D" },
           900: { value: "#1A0000" },
-          950: { value: "#0D0000" },
+          950: { value: "#0A0000" },
+        },
+
+        red: {
+          50: { value: "#fef2f2" },
+          100: { value: "#fee2e2" },
+          200: { value: "#fecaca" },
+          300: { value: "#fca5a5" },
+          400: { value: "#f87171" },
+          500: { value: "#ef4444" },
+          600: { value: "#dc2626" },
+          700: { value: "#991919" },
+          800: { value: "#511111" },
+          900: { value: "#300c0c" },
+          950: { value: "#1f0808" },
+        },
+
+        salmon: {
+          50: { value: "#FFF5F0" },
+          100: { value: "#FFE0DA" },
+          200: { value: "#FFC1B3" },
+          300: { value: "#FFA18D" },
+          400: { value: "#FF8267" },
+          500: { value: "#FF6242" },
+          600: { value: "#E64F2A" },
+          700: { value: "#B33F20" },
+          800: { value: "#802F16" },
+          900: { value: "#4D1F0D" },
+          950: { value: "#341306" },
+        },
+
+        orange: {
+          50: { value: "#fff7ed" },
+          100: { value: "#ffedd5" },
+          200: { value: "#fed7aa" },
+          300: { value: "#fdba74" },
+          400: { value: "#fb923c" },
+          500: { value: "#f97316" },
+          600: { value: "#ea580c" },
+          700: { value: "#92310a" },
+          800: { value: "#6c2710" },
+          900: { value: "#3b1106" },
+          950: { value: "#220a04" },
+        },
+
+        pastelSalmon: {
+          50: { value: "#FFF8F5" },
+          100: { value: "#FFECE6" },
+          200: { value: "#FFD4C1" },
+          300: { value: "#FFBDA1" },
+          400: { value: "#FFA581" },
+          500: { value: "#FF8E62" },
+          600: { value: "#E67C4F" },
+          700: { value: "#B3623F" },
+          800: { value: "#80482F" },
+          900: { value: "#4D2E1F" },
+          950: { value: "#342117" },
+        },
+
+        yellow: {
+          50: { value: "#fffdea" },
+          100: { value: "#fff6b3" },
+          200: { value: "#ffeb80" },
+          300: { value: "#ffe14d" },
+          400: { value: "#ffd633" },
+          500: { value: "#ffcc00" },
+          600: { value: "#e6b800" },
+          700: { value: "#cc9f00" },
+          800: { value: "#997700" },
+          900: { value: "#665000" },
+          950: { value: "#4D3D00" },
+        },
+
+        lime: {
+          50: { value: "#F9FBE7" },
+          100: { value: "#F0F4C3" },
+          200: { value: "#E6EE9C" },
+          300: { value: "#DCE775" },
+          400: { value: "#D4E157" },
+          500: { value: "#CDDC39" },
+          600: { value: "#C0CA33" },
+          700: { value: "#AFB42B" },
+          800: { value: "#9E9D24" },
+          900: { value: "#827717" },
+          950: { value: "#746411" },
+        },
+
+        olive: {
+          50: { value: "#F2F4E7" },
+          100: { value: "#DDE3C4" },
+          200: { value: "#C7D29F" },
+          300: { value: "#B1C17A" },
+          400: { value: "#9CB055" },
+          500: { value: "#879F30" },
+          600: { value: "#758B2B" },
+          700: { value: "#637726" },
+          800: { value: "#506321" },
+          900: { value: "#3D4F1C" },
+          950: { value: "#34451A" },
+        },
+
+        green: {
+          50: { value: "#f0fdf4" },
+          100: { value: "#dcfce7" },
+          200: { value: "#bbf7d0" },
+          300: { value: "#86efac" },
+          400: { value: "#4ade80" },
+          500: { value: "#22c55e" },
+          600: { value: "#16a34a" },
+          700: { value: "#116932" },
+          800: { value: "#124a28" },
+          900: { value: "#042713" },
+          950: { value: "#03190c" },
+        },
+
+        jade: {
+          50: { value: "#E8FAF1" },
+          100: { value: "#C9F1DB" },
+          200: { value: "#9DE9C2" },
+          300: { value: "#6FDEA5" },
+          400: { value: "#46D58D" },
+          500: { value: "#2ECC71" },
+          600: { value: "#26A75C" },
+          700: { value: "#1E8449" },
+          800: { value: "#166037" },
+          900: { value: "#0F3E23" },
+          950: { value: "#0C2D19" },
+        },
+
+        teal: {
+          50: { value: "#f0fdfa" },
+          100: { value: "#ccfbf1" },
+          200: { value: "#99f6e4" },
+          300: { value: "#5eead4" },
+          400: { value: "#2dd4bf" },
+          500: { value: "#14b8a6" },
+          600: { value: "#0d9488" },
+          700: { value: "#0c5d56" },
+          800: { value: "#114240" },
+          900: { value: "#032726" },
+          950: { value: "#021716" },
+        },
+
+        tealBlue: {
+          50: { value: "#E6FAF8" },
+          100: { value: "#C4F1EC" },
+          200: { value: "#97E3DD" },
+          300: { value: "#69D2CD" },
+          400: { value: "#42BFC0" },
+          500: { value: "#1FA8B1" },
+          600: { value: "#188893" },
+          700: { value: "#126B76" },
+          800: { value: "#0C5059" },
+          900: { value: "#073C42" },
+          950: { value: "#053237" },
+        },
+
+        cyan: {
+          50: { value: "#ecfeff" },
+          100: { value: "#cffafe" },
+          200: { value: "#a5f3fc" },
+          300: { value: "#67e8f9" },
+          400: { value: "#22d3ee" },
+          500: { value: "#06b6d4" },
+          600: { value: "#0891b2" },
+          700: { value: "#0c5c72" },
+          800: { value: "#134152" },
+          900: { value: "#072a38" },
+          950: { value: "#051b24" },
+        },
+
+        powderBlue: {
+          50: { value: "#f0f8ff" },
+          100: { value: "#dceefc" },
+          200: { value: "#c1def7" },
+          300: { value: "#9ecaf0" },
+          400: { value: "#7fb4e6" },
+          500: { value: "#649fd9" },
+          600: { value: "#4f86bf" },
+          700: { value: "#3f6ba1" },
+          800: { value: "#325382" },
+          900: { value: "#223758" },
+          950: { value: "#1A2943" },
+        },
+
+        sky: {
+          50: { value: "#F0F9FF" },
+          100: { value: "#E0F2FE" },
+          200: { value: "#BAE6FD" },
+          300: { value: "#7DD3FC" },
+          400: { value: "#38BDF8" },
+          500: { value: "#0EA5E9" },
+          600: { value: "#0284C7" },
+          700: { value: "#0369A1" },
+          800: { value: "#075985" },
+          900: { value: "#083654" },
+          950: { value: "#09253C" },
+        },
+
+        blue: {
+          50: { value: "#eff6ff" },
+          100: { value: "#dbeafe" },
+          200: { value: "#bfdbfe" },
+          300: { value: "#a3cfff" },
+          400: { value: "#60a5fa" },
+          500: { value: "#3b82f6" },
+          600: { value: "#2563eb" },
+          700: { value: "#173da6" },
+          800: { value: "#1a3478" },
+          900: { value: "#14204a" },
+          950: { value: "#0c142e" },
         },
 
         sapphire: {
@@ -332,7 +332,119 @@ const customConfig = defineConfig({
           700: { value: "#10237B" },
           800: { value: "#0C1A5C" },
           900: { value: "#07103D" },
-          950: { value: "#03081F" },
+          950: { value: "#050B2E" },
+        },
+
+        discord: {
+          50: { value: "#EDEFFD" },
+          100: { value: "#D0D6FA" },
+          200: { value: "#B3BCF7" },
+          300: { value: "#96A3F4" },
+          400: { value: "#7989F1" },
+          500: { value: "#5865F2" },
+          600: { value: "#4A55D2" },
+          700: { value: "#3C46B2" },
+          800: { value: "#2E3792" },
+          900: { value: "#181C5D" },
+          950: { value: "#0D0F43" },
+        },
+
+        indigo: {
+          50: { value: "#E8EAF6" },
+          100: { value: "#C5CAE9" },
+          200: { value: "#9FA8DA" },
+          300: { value: "#7986CB" },
+          400: { value: "#5C6BC0" },
+          500: { value: "#3F51B5" },
+          600: { value: "#3949AB" },
+          700: { value: "#303F9F" },
+          800: { value: "#283593" },
+          900: { value: "#141A63" },
+          950: { value: "#0A0D4B" },
+        },
+
+        lavender: {
+          50: { value: "#F5F0FF" },
+          100: { value: "#E6DAFF" },
+          200: { value: "#CBB3FF" },
+          300: { value: "#AF8DFF" },
+          400: { value: "#9567FF" },
+          500: { value: "#7A42FF" },
+          600: { value: "#6720E6" },
+          700: { value: "#5314B3" },
+          800: { value: "#3F0F80" },
+          900: { value: "#2A0A4D" },
+          950: { value: "#200834" },
+        },
+
+        powderLavender: {
+          50: { value: "#F0F0FF" },
+          100: { value: "#E2E1FF" },
+          200: { value: "#CECDFF" },
+          300: { value: "#BAB8FF" },
+          400: { value: "#A6A3FF" },
+          500: { value: "#8E8CD8" },
+          600: { value: "#7A78C2" },
+          700: { value: "#6361A3" },
+          800: { value: "#4D4B84" },
+          900: { value: "#2A2948" },
+          950: { value: "#19182A" },
+        },
+
+        purple: {
+          50: { value: "#faf5ff" },
+          100: { value: "#f3e8ff" },
+          200: { value: "#e9d5ff" },
+          300: { value: "#d8b4fe" },
+          400: { value: "#c084fc" },
+          500: { value: "#a855f7" },
+          600: { value: "#9333ea" },
+          700: { value: "#641ba3" },
+          800: { value: "#4a1772" },
+          900: { value: "#2f0553" },
+          950: { value: "#1a032e" },
+        },
+
+        bubblegumPink: {
+          50: { value: "#FFF0FA" },
+          100: { value: "#FFD9F2" },
+          200: { value: "#FFB6E4" },
+          300: { value: "#FF92D7" },
+          400: { value: "#FF6EC9" },
+          500: { value: "#FF4ABB" },
+          600: { value: "#E642A8" },
+          700: { value: "#B33283" },
+          800: { value: "#80235E" },
+          900: { value: "#4D163A" },
+          950: { value: "#341028" },
+        },
+
+        flamingoPink: {
+          50: { value: "#FFEFF4" },
+          100: { value: "#FFD6E3" },
+          200: { value: "#FFB3CD" },
+          300: { value: "#FF8FB7" },
+          400: { value: "#FF6BA1" },
+          500: { value: "#FF478B" },
+          600: { value: "#E63E7D" },
+          700: { value: "#B33063" },
+          800: { value: "#80234A" },
+          900: { value: "#4D162F" },
+          950: { value: "#341022" },
+        },
+
+        pink: {
+          50: { value: "#fdf2f8" },
+          100: { value: "#fce7f3" },
+          200: { value: "#fbcfe8" },
+          300: { value: "#f9a8d4" },
+          400: { value: "#f472b6" },
+          500: { value: "#ec4899" },
+          600: { value: "#db2777" },
+          700: { value: "#a41752" },
+          800: { value: "#6d0e34" },
+          900: { value: "#45061f" },
+          950: { value: "#2c0514" },
         },
       },
       fontSizes: {
@@ -358,14 +470,14 @@ const customConfig = defineConfig({
         border: {
           subtle: {
             value: {
-              base: "#efeff0 !important",
-              _dark: "#1f1f1f !important",
+              base: "{colors.d1} !important",
+              _dark: "{colors.d1} !important",
             },
           },
           muted: {
             value: {
               base: "#ebebec !important",
-              _dark: "#222222 !important",
+              _dark: "#242424 !important",
             },
           },
         },
@@ -473,8 +585,8 @@ const customConfig = defineConfig({
           },
           subtle: {
             value: {
-              base: "{colors.brown.100}",
-              _dark: "{colors.brown.900}",
+              base: "{colors.brown.50}",
+              _dark: "{colors.brown.950}",
             },
           },
           emphasized: { value: "{colors.brown.400}" },
@@ -516,8 +628,8 @@ const customConfig = defineConfig({
           },
           subtle: {
             value: {
-              base: "{colors.mocha.100}",
-              _dark: "{colors.mocha.900}",
+              base: "{colors.mocha.50}",
+              _dark: "{colors.mocha.950}",
             },
           },
           emphasized: { value: "{colors.mocha.400}" },
@@ -562,8 +674,8 @@ const customConfig = defineConfig({
           },
           subtle: {
             value: {
-              base: "{colors.caramel.100}",
-              _dark: "{colors.caramel.900}",
+              base: "{colors.caramel.50}",
+              _dark: "{colors.caramel.950}",
             },
           },
           emphasized: { value: "{colors.caramel.400}" },
@@ -605,8 +717,8 @@ const customConfig = defineConfig({
           },
           subtle: {
             value: {
-              base: "{colors.cream.100}",
-              _dark: "{colors.cream.900}",
+              base: "{colors.cream.50}",
+              _dark: "{colors.cream.950}",
             },
           },
           emphasized: { value: "{colors.cream.400}" },
@@ -648,8 +760,8 @@ const customConfig = defineConfig({
           },
           subtle: {
             value: {
-              base: "{colors.maroon.100}",
-              _dark: "{colors.maroon.900}",
+              base: "{colors.maroon.50}",
+              _dark: "{colors.maroon.950}",
             },
           },
           emphasized: { value: "{colors.maroon.400}" },
@@ -691,8 +803,8 @@ const customConfig = defineConfig({
           },
           subtle: {
             value: {
-              base: "{colors.red.100}",
-              _dark: "{colors.red.900}",
+              base: "{colors.red.50}",
+              _dark: "{colors.red.950}",
             },
           },
           emphasized: { value: "{colors.red.400}" },
@@ -734,8 +846,8 @@ const customConfig = defineConfig({
           },
           subtle: {
             value: {
-              base: "{colors.salmon.100}",
-              _dark: "{colors.salmon.900}",
+              base: "{colors.salmon.50}",
+              _dark: "{colors.salmon.950}",
             },
           },
           emphasized: { value: "{colors.salmon.400}" },
@@ -777,8 +889,8 @@ const customConfig = defineConfig({
           },
           subtle: {
             value: {
-              base: "{colors.orange.100}",
-              _dark: "{colors.orange.900}",
+              base: "{colors.orange.50}",
+              _dark: "{colors.orange.950}",
             },
           },
           emphasized: { value: "{colors.orange.400}" },
@@ -823,8 +935,8 @@ const customConfig = defineConfig({
           },
           subtle: {
             value: {
-              base: "{colors.pastelSalmon.100}",
-              _dark: "{colors.pastelSalmon.900}",
+              base: "{colors.pastelSalmon.50}",
+              _dark: "{colors.pastelSalmon.950}",
             },
           },
           emphasized: { value: "{colors.pastelSalmon.400}" },
@@ -866,8 +978,8 @@ const customConfig = defineConfig({
           },
           subtle: {
             value: {
-              base: "{colors.yellow.100}",
-              _dark: "{colors.yellow.900}",
+              base: "{colors.yellow.50}",
+              _dark: "{colors.yellow.950}",
             },
           },
           emphasized: { value: "{colors.yellow.400}" },
@@ -909,8 +1021,8 @@ const customConfig = defineConfig({
           },
           subtle: {
             value: {
-              base: "{colors.lime.100}",
-              _dark: "{colors.lime.900}",
+              base: "{colors.lime.50}",
+              _dark: "{colors.lime.950}",
             },
           },
           emphasized: { value: "{colors.lime.400}" },
@@ -952,8 +1064,8 @@ const customConfig = defineConfig({
           },
           subtle: {
             value: {
-              base: "{colors.olive.100}",
-              _dark: "{colors.olive.900}",
+              base: "{colors.olive.50}",
+              _dark: "{colors.olive.950}",
             },
           },
           emphasized: { value: "{colors.olive.400}" },
@@ -995,8 +1107,8 @@ const customConfig = defineConfig({
           },
           subtle: {
             value: {
-              base: "{colors.green.100}",
-              _dark: "{colors.green.900}",
+              base: "{colors.green.50}",
+              _dark: "{colors.green.950}",
             },
           },
           emphasized: { value: "{colors.green.400}" },
@@ -1038,8 +1150,8 @@ const customConfig = defineConfig({
           },
           subtle: {
             value: {
-              base: "{colors.jade.100}",
-              _dark: "{colors.jade.900}",
+              base: "{colors.jade.50}",
+              _dark: "{colors.jade.950}",
             },
           },
           emphasized: { value: "{colors.jade.400}" },
@@ -1081,8 +1193,8 @@ const customConfig = defineConfig({
           },
           subtle: {
             value: {
-              base: "{colors.teal.100}",
-              _dark: "{colors.teal.900}",
+              base: "{colors.teal.50}",
+              _dark: "{colors.teal.950}",
             },
           },
           emphasized: { value: "{colors.teal.400}" },
@@ -1127,8 +1239,8 @@ const customConfig = defineConfig({
           },
           subtle: {
             value: {
-              base: "{colors.tealBlue.100}",
-              _dark: "{colors.tealBlue.900}",
+              base: "{colors.tealBlue.50}",
+              _dark: "{colors.tealBlue.950}",
             },
           },
           emphasized: { value: "{colors.tealBlue.400}" },
@@ -1142,6 +1254,49 @@ const customConfig = defineConfig({
             value: {
               base: "{colors.tealBlue.500}",
               _dark: "{colors.tealBlue.500}",
+            },
+          },
+        },
+
+        cyan: {
+          solid: {
+            value: {
+              base: "{colors.cyan.500} !important",
+              _dark: "{colors.cyan.500}",
+            },
+          },
+          contrast: {
+            value: { base: "{colors.cyan.50}", _dark: "{colors.cyan.900}" },
+          },
+          fg: {
+            value: {
+              base: "{colors.cyan.600} !important",
+              _dark: "{colors.cyan.500} !important",
+            },
+          },
+          muted: {
+            value: {
+              base: "{colors.cyan.500} !important",
+              _dark: "{colors.cyan.800} !important",
+            },
+          },
+          subtle: {
+            value: {
+              base: "{colors.cyan.50}",
+              _dark: "{colors.cyan.950}",
+            },
+          },
+          emphasized: { value: "{colors.cyan.400}" },
+          focusRing: {
+            value: {
+              base: "{colors.cyan.500}",
+              _dark: "{colors.cyan.700}",
+            },
+          },
+          border: {
+            value: {
+              base: "{colors.cyan.500}",
+              _dark: "{colors.cyan.500}",
             },
           },
         },
@@ -1173,8 +1328,8 @@ const customConfig = defineConfig({
           },
           subtle: {
             value: {
-              base: "{colors.powderBlue.100}",
-              _dark: "{colors.powderBlue.900}",
+              base: "{colors.powderBlue.50}",
+              _dark: "{colors.powderBlue.950}",
             },
           },
           emphasized: { value: "{colors.powderBlue.400}" },
@@ -1188,49 +1343,6 @@ const customConfig = defineConfig({
             value: {
               base: "{colors.powderBlue.500}",
               _dark: "{colors.powderBlue.500}",
-            },
-          },
-        },
-
-        cyan: {
-          solid: {
-            value: {
-              base: "{colors.cyan.500} !important",
-              _dark: "{colors.cyan.500}",
-            },
-          },
-          contrast: {
-            value: { base: "{colors.cyan.50}", _dark: "{colors.cyan.900}" },
-          },
-          fg: {
-            value: {
-              base: "{colors.cyan.600} !important",
-              _dark: "{colors.cyan.500} !important",
-            },
-          },
-          muted: {
-            value: {
-              base: "{colors.cyan.500} !important",
-              _dark: "{colors.cyan.800} !important",
-            },
-          },
-          subtle: {
-            value: {
-              base: "{colors.cyan.100}",
-              _dark: "{colors.cyan.900}",
-            },
-          },
-          emphasized: { value: "{colors.cyan.400}" },
-          focusRing: {
-            value: {
-              base: "{colors.cyan.500}",
-              _dark: "{colors.cyan.700}",
-            },
-          },
-          border: {
-            value: {
-              base: "{colors.cyan.500}",
-              _dark: "{colors.cyan.500}",
             },
           },
         },
@@ -1259,8 +1371,8 @@ const customConfig = defineConfig({
           },
           subtle: {
             value: {
-              base: "{colors.sky.100}",
-              _dark: "{colors.sky.900}",
+              base: "{colors.sky.50}",
+              _dark: "{colors.sky.950}",
             },
           },
           emphasized: { value: "{colors.sky.400}" },
@@ -1302,8 +1414,8 @@ const customConfig = defineConfig({
           },
           subtle: {
             value: {
-              base: "{colors.blue.100}",
-              _dark: "{colors.blue.900}",
+              base: "{colors.blue.50}",
+              _dark: "{colors.blue.950}",
             },
           },
           emphasized: { value: "{colors.blue.400}" },
@@ -1348,8 +1460,8 @@ const customConfig = defineConfig({
           },
           subtle: {
             value: {
-              base: "{colors.sapphire.100}",
-              _dark: "{colors.sapphire.900}",
+              base: "{colors.sapphire.50}",
+              _dark: "{colors.sapphire.950}",
             },
           },
           emphasized: { value: "{colors.sapphire.400}" },
@@ -1394,8 +1506,8 @@ const customConfig = defineConfig({
           },
           subtle: {
             value: {
-              base: "{colors.discord.100}",
-              _dark: "{colors.discord.900}",
+              base: "{colors.discord.50}",
+              _dark: "{colors.discord.950}",
             },
           },
           emphasized: { value: "{colors.discord.400}" },
@@ -1437,8 +1549,8 @@ const customConfig = defineConfig({
           },
           subtle: {
             value: {
-              base: "{colors.indigo.100}",
-              _dark: "{colors.indigo.900}",
+              base: "{colors.indigo.50}",
+              _dark: "{colors.indigo.950}",
             },
           },
           emphasized: { value: "{colors.indigo.400}" },
@@ -1483,8 +1595,8 @@ const customConfig = defineConfig({
           },
           subtle: {
             value: {
-              base: "{colors.lavender.100}",
-              _dark: "{colors.lavender.900}",
+              base: "{colors.lavender.50}",
+              _dark: "{colors.lavender.950}",
             },
           },
           emphasized: { value: "{colors.lavender.400}" },
@@ -1517,20 +1629,20 @@ const customConfig = defineConfig({
           },
           fg: {
             value: {
-              base: "{colors.powderLavender.500}",
+              base: "{colors.powderLavender.600}",
               _dark: "{colors.powderLavender.400}",
             },
           },
           muted: {
             value: {
               base: "{colors.powderLavender.200}",
-              _dark: "{colors.powderLavender.800}",
+              _dark: "{colors.powderLavender.900}",
             },
           },
           subtle: {
             value: {
-              base: "{colors.powderLavender.100}",
-              _dark: "{colors.powderLavender.900}",
+              base: "{colors.powderLavender.50}",
+              _dark: "{colors.powderLavender.950}",
             },
           },
           emphasized: { value: "{colors.powderLavender.400}" },
@@ -1572,8 +1684,8 @@ const customConfig = defineConfig({
           },
           subtle: {
             value: {
-              base: "{colors.purple.100}",
-              _dark: "{colors.purple.900}",
+              base: "{colors.purple.50}",
+              _dark: "{colors.purple.950}",
             },
           },
           emphasized: { value: "{colors.purple.400}" },
@@ -1588,52 +1700,6 @@ const customConfig = defineConfig({
             value: {
               base: "{colors.purple.500}",
               _dark: "{colors.purple.500}",
-            },
-          },
-        },
-
-        flamingoPink: {
-          solid: {
-            value: {
-              base: "{colors.flamingoPink.500}",
-              _dark: "{colors.flamingoPink.500}",
-            },
-          },
-          contrast: {
-            value: {
-              base: "{colors.flamingoPink.50}",
-              _dark: "{colors.flamingoPink.100}",
-            },
-          },
-          fg: {
-            value: {
-              base: "{colors.flamingoPink.500}",
-              _dark: "{colors.flamingoPink.400}",
-            },
-          },
-          muted: {
-            value: {
-              base: "{colors.flamingoPink.400}",
-              _dark: "{colors.flamingoPink.400}",
-            },
-          },
-          subtle: {
-            value: {
-              base: "{colors.flamingoPink.100}",
-              _dark: "{colors.flamingoPink.900}",
-            },
-          },
-          emphasized: { value: "{colors.flamingoPink.400}" },
-          focusRing: {
-            value: {
-              base: "{colors.flamingoPink.500}",
-              _dark: "{colors.flamingoPink.700}",
-            },
-          },
-          border: {
-            value: {
-              base: "{colors.flamingoPink.500}",
-              _dark: "{colors.flamingoPink.500}",
             },
           },
         },
@@ -1665,8 +1731,8 @@ const customConfig = defineConfig({
           },
           subtle: {
             value: {
-              base: "{colors.bubblegumPink.100}",
-              _dark: "{colors.bubblegumPink.900}",
+              base: "{colors.bubblegumPink.50}",
+              _dark: "{colors.bubblegumPink.950}",
             },
           },
           emphasized: { value: "{colors.bubblegumPink.400}" },
@@ -1680,6 +1746,52 @@ const customConfig = defineConfig({
             value: {
               base: "{colors.bubblegumPink.500}",
               _dark: "{colors.bubblegumPink.500}",
+            },
+          },
+        },
+
+        flamingoPink: {
+          solid: {
+            value: {
+              base: "{colors.flamingoPink.500}",
+              _dark: "{colors.flamingoPink.500}",
+            },
+          },
+          contrast: {
+            value: {
+              base: "{colors.flamingoPink.50}",
+              _dark: "{colors.flamingoPink.100}",
+            },
+          },
+          fg: {
+            value: {
+              base: "{colors.flamingoPink.500}",
+              _dark: "{colors.flamingoPink.400}",
+            },
+          },
+          muted: {
+            value: {
+              base: "{colors.flamingoPink.400}",
+              _dark: "{colors.flamingoPink.400}",
+            },
+          },
+          subtle: {
+            value: {
+              base: "{colors.flamingoPink.50}",
+              _dark: "{colors.flamingoPink.950}",
+            },
+          },
+          emphasized: { value: "{colors.flamingoPink.400}" },
+          focusRing: {
+            value: {
+              base: "{colors.flamingoPink.500}",
+              _dark: "{colors.flamingoPink.700}",
+            },
+          },
+          border: {
+            value: {
+              base: "{colors.flamingoPink.500}",
+              _dark: "{colors.flamingoPink.500}",
             },
           },
         },
@@ -1708,8 +1820,8 @@ const customConfig = defineConfig({
           },
           subtle: {
             value: {
-              base: "{colors.pink.100}",
-              _dark: "{colors.pink.900}",
+              base: "{colors.pink.50}",
+              _dark: "{colors.pink.950}",
             },
           },
           emphasized: { value: "{colors.pink.400}" },

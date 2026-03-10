@@ -161,7 +161,7 @@ export const LEGEND_COLOR_OPTIONS = [
 ];
 
 export const COLOR_PALETTES = [
-  { palette: "gray", label: "Gray", primaryHex: "gray" },
+  { palette: "gray", label: "Default", primaryHex: "gray" },
   { palette: "brown", label: "Brown", primaryHex: "#795548" },
   { palette: "mocha", label: "Mocha", primaryHex: "#9F5D39" },
   { palette: "caramel", label: "Caramel", primaryHex: "#C47B27" },
@@ -181,7 +181,7 @@ export const COLOR_PALETTES = [
   { palette: "jade", label: "Jade", primaryHex: "#00A86B" },
   { palette: "teal", label: "Teal", primaryHex: "#009688" },
 
-  { palette: "tealBlue", label: "Teal Blue", primaryHex: "#1AB0BC" },
+  { palette: "tealBlue", label: "Teal Blue", primaryHex: "#16B3AC" },
   { palette: "cyan", label: "Cyan", primaryHex: "#06b6d4" },
   { palette: "powderBlue", label: "Powder Blue", primaryHex: "#769cc2" },
   { palette: "sky", label: "Sky", primaryHex: "#0EA5E9" },
