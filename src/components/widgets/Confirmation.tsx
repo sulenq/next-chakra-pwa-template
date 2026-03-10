@@ -68,7 +68,7 @@ const ConfirmationContent = (props: ConfirmationProps) => {
               {...confirmButtonProps}
             >
               <Tooltip content={confirmLabel}>
-                <P lineClamp={1} opacity={isCountdownFinished ? 1 : 0.3}>
+                <P lineClamp={1} opacity={isCountdownFinished ? 1 : 0.25}>
                   {confirmLabel}
                 </P>
               </Tooltip>
