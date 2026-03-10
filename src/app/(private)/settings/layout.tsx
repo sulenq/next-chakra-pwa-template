@@ -20,14 +20,13 @@ import { APP } from "@/constants/_meta";
 import { OTHER_PRIVATE_NAV_GROUPS } from "@/constants/navs";
 import { DESKTOP_NAVS_TOOLTIP_MAIN_AXIS } from "@/constants/styles";
 import { useLocale } from "@/contexts/useLocale";
-import { useSettingsPageContainer } from "@/contexts/useSettingsPageContainer";
 import { useContainerDimension } from "@/hooks/useContainerDimension";
 import { isEmptyArray } from "@/utils/array";
 import { formatAbsDate } from "@/utils/formatter";
 import { pluckString } from "@/utils/string";
 import { HStack } from "@chakra-ui/react";
 import { usePathname } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 
 const NAVS =
   OTHER_PRIVATE_NAV_GROUPS[0].navs.find((n) => n.path === "/settings")
@@ -136,12 +135,11 @@ export default function Layout(props: any) {
 
   // Contexts
   const { t } = useLocale();
-  const setContainerDimension = useSettingsPageContainer(
-    (s) => s.setContainerDimension,
-  );
 
   // States
   const [search, setSearch] = useState<string>("");
+
+  // Derived Values
   const isSmContainer = containerDimension.width < 720;
   const isAtSettingsIndexRoute = pathname === ROOT_PATH;
   const showSidebar =
@@ -149,69 +147,63 @@ export default function Layout(props: any) {
   const showContent =
     !isSmContainer || (isSmContainer && !isAtSettingsIndexRoute);
 
-  useEffect(() => {
-    setContainerDimension(containerDimension);
-  }, [containerDimension]);
-
   return (
     <PageContainer id="settings-route-container" ref={containerRef} p={0}>
-      {containerDimension.width > 0 && (
-        <HStack align={"stretch"} flex={1} gap={0} overflowY={"auto"}>
-          {/* Sidebar */}
-          {showSidebar && (
-            <CContainer
-              flexShrink={0}
-              w={isSmContainer ? "full" : "250px"}
-              h={"full"}
-              maxH={"full"}
-              // borderRight={isSmContainer ? "" : "1px solid"}
-              borderColor={"border.muted"}
-              overflowY={"auto"}
-            >
-              <PageHeader title={t.settings} />
+      <HStack align={"stretch"} flex={1} gap={0} overflowY={"auto"}>
+        {/* Sidebar */}
+        {showSidebar && (
+          <CContainer
+            flexShrink={0}
+            w={isSmContainer ? "full" : "250px"}
+            h={"full"}
+            maxH={"full"}
+            // borderRight={isSmContainer ? "" : "1px solid"}
+            borderColor={"border.muted"}
+            overflowY={"auto"}
+          >
+            <PageHeader title={t.settings} />
 
-              <CContainer px={3} py={2}>
-                <SearchInput
-                  queryKey={"q-settings-navs"}
-                  inputValue={search}
-                  onChange={(inputValue) => {
-                    setSearch(inputValue || "");
-                  }}
-                />
-              </CContainer>
+            <CContainer px={3} py={2}>
+              <SearchInput
+                queryKey={"q-settings-navs"}
+                inputValue={search}
+                onChange={(inputValue) => {
+                  setSearch(inputValue || "");
+                }}
+              />
+            </CContainer>
 
-              <MContainer className={"scrollY"} flex={1}>
-                <NavsList search={search} px={3} py={2} />
+            <MContainer className={"scrollY"} flex={1}>
+              <NavsList search={search} px={3} py={2} />
 
-                <CContainer p={4} mt={"auto"} gap={1}>
-                  <HelperText>{`v${APP.version}`}</HelperText>
+              <CContainer p={4} mt={"auto"} gap={1}>
+                <HelperText>{`v${APP.version}`}</HelperText>
 
-                  <HelperText>
-                    {`Last updated: 
+                <HelperText>
+                  {`Last updated: 
                 ${formatAbsDate(APP.lastUpdated, t, {
                   variant: "numeric",
                 })}`}
-                  </HelperText>
-                </CContainer>
-              </MContainer>
-            </CContainer>
-          )}
-
-          {/* Content */}
-          {showContent && (
-            <MContainer className={"scrollY"} flex={1}>
-              <ContainerLayout
-                flex={1}
-                // maxW={""}
-              >
-                {pathname !== ROOT_PATH && <PageHeader />}
-
-                <CContainer flex={1} {...props} />
-              </ContainerLayout>
+                </HelperText>
+              </CContainer>
             </MContainer>
-          )}
-        </HStack>
-      )}
+          </CContainer>
+        )}
+
+        {/* Content */}
+        {showContent && (
+          <MContainer className={"scrollY"} flex={1}>
+            <ContainerLayout
+              flex={1}
+              // maxW={""}
+            >
+              {pathname !== ROOT_PATH && <PageHeader />}
+
+              <CContainer flex={1} {...props} />
+            </ContainerLayout>
+          </MContainer>
+        )}
+      </HStack>
     </PageContainer>
   );
 }

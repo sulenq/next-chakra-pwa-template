@@ -1620,7 +1620,7 @@ const customConfig = defineConfig({
           contrast: {
             value: {
               base: "{colors.discord.50}",
-              _dark: "{colors.discord.900}",
+              _dark: "{colors.discord.100}",
             },
           },
           fg: {
