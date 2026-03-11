@@ -6,7 +6,6 @@ export const MOBILE_NAV_LABEL_FONT_SIZE = "xs";
 export const MOBILE_NAVS_COLOR = "fg.muted";
 export const DESKTOP_NAVS_COLOR = "fg.muted";
 export const DESKTOP_NAVS_BG = "body";
-export const DESKTOP_CONTENT_CONTAINER_BG = "bgContent";
 
 // Sizes
 export const MAIN_BUTTON_SIZE = ["md", null, "sm"] as any;

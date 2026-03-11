@@ -31,7 +31,6 @@ import { APP } from "@/constants/_meta";
 import { OTHER_PRIVATE_NAV_GROUPS, PRIVATE_NAV_GROUPS } from "@/constants/navs";
 import {
   BASE_ICON_BOX_SIZE,
-  DESKTOP_CONTENT_CONTAINER_BG,
   DESKTOP_NAVS_COLOR,
   DESKTOP_NAVS_POPOVER_MAIN_AXIS,
   DESKTOP_NAVS_TOOLTIP_MAIN_AXIS,
@@ -333,7 +332,7 @@ const DesktopLayout = (props: any) => {
         w={isNavsExpanded ? "250px" : "60px"}
         // bg={isNavsExpanded ? "item" : DESKTOP_NAVS_BG}
         // borderRight={isNavsExpanded ? "1px solid" : ""}
-        borderRight={"1px solid"}
+        // borderRight={"1px solid"}
         bg={"body"}
         borderColor={"border.muted"}
         transition={"200ms"}
@@ -348,8 +347,8 @@ const DesktopLayout = (props: any) => {
           {/* Logo Only */}
           {!isNavsExpanded && (
             <NavLink to="/">
-              <Center w={"36px"} h={"28px"} ml={"-0.5px"}>
-                <Logo size={15} />
+              <Center w={"36px"} h={"28px"} ml={"1px"}>
+                <Logo size={18} />
               </Center>
             </NavLink>
           )}
@@ -359,7 +358,7 @@ const DesktopLayout = (props: any) => {
             {isNavsExpanded && (
               <NavLink to="/">
                 <HStack ml={"6px"} gap={3}>
-                  <Logo size={15} />
+                  <Logo size={18} />
 
                   <P
                     w={"full"}
@@ -513,11 +512,9 @@ const DesktopLayout = (props: any) => {
       </CContainer>
 
       {/* Content */}
-      <CContainer bg={DESKTOP_CONTENT_CONTAINER_BG} overflowY={"auto"}>
+      <CContainer overflowY={"auto"}>
         <CContainer
           flex={1}
-          bg={"body"}
-          color={"ibody"}
           // borderLeft={"1px solid"}
           borderColor={"border.muted"}
           overflow={"auto"}
