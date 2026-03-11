@@ -477,13 +477,13 @@ const customConfig = defineConfig({
           subtle: {
             value: {
               base: "#f1f1f1 !important",
-              _dark: "#202020 !important",
+              _dark: "#1c1c1c !important",
             },
           },
           muted: {
             value: {
               base: "#ebebec !important",
-              _dark: "#242424 !important",
+              _dark: "#202020 !important",
             },
           },
         },
@@ -1883,9 +1883,9 @@ const customConfig = defineConfig({
       shadows: {
         soft: {
           value: {
-            base: "0 4px 12px rgba(0,0,0,0.06), 0 1px 4px rgba(0,0,0,0.04) !important",
+            base: "0 4px 8px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04) !important",
             _dark:
-              "0 4px 12px rgba(0,0,0,0.24), 0 1px 4px rgba(0,0,0,0.18) !important",
+              "0 4px 8px rgba(0,0,0,0.24), 0 1px 2px rgba(0,0,0,0.18) !important",
           },
         },
       },

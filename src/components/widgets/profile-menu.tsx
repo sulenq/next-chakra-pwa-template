@@ -169,7 +169,7 @@ export const ProfileMenu = (props: ProfileMenuProps) => {
             variant: "outline",
           }}
           w={"full"}
-          onClick={onClose}
+          onClose={onClose}
         >
           <Btn
             clicky={false}
@@ -200,27 +200,27 @@ export const ProfileMenuTrigger = (props: ProfileMenuTriggerProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
 
   // Hooks
-  useClickOutside(containerRef, onClose);
+  useClickOutside(containerRef, handleClose);
 
   // States
   const [open, setOpen] = useState<boolean>(false);
 
   // Utils
-  function onOpen() {
+  function handleOpen() {
     setOpen(true);
   }
-  function onClose() {
+  function handleClose() {
     setOpen(false);
   }
 
   return (
     <Popover.Root open={open} {...popoverRootProps}>
       <Popover.Trigger asChild>
-        <CContainer w={"fit"} onClick={onOpen} {...restProps} />
+        <CContainer w={"fit"} onClick={handleOpen} {...restProps} />
       </Popover.Trigger>
 
       <Popover.Content ref={containerRef} w={"225px"} zIndex={10}>
-        <ProfileMenu onClose={onClose} />
+        <ProfileMenu onClose={handleClose} />
       </Popover.Content>
     </Popover.Root>
   );

@@ -59,7 +59,6 @@ const ConfirmationContent = (props: ConfirmationProps) => {
 
           <Box pos={"relative"}>
             <Btn
-              w={"120px"}
               onClick={onConfirm}
               loading={loading}
               colorPalette={themeConfig.colorPalette}

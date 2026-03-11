@@ -333,7 +333,7 @@ const DesktopLayout = (props: any) => {
         w={isNavsExpanded ? "250px" : "60px"}
         // bg={isNavsExpanded ? "item" : DESKTOP_NAVS_BG}
         // borderRight={isNavsExpanded ? "1px solid" : ""}
-        bg={"item"}
+        bg={"body"}
         borderColor={"border.muted"}
         transition={"200ms"}
       >
