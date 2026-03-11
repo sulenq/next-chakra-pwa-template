@@ -38,10 +38,11 @@ export const Segmented = (props: SegmentedProps) => {
     >
       <SegmentGroup.Indicator
         shadow={"none"}
+        h={hBySize[size as any]}
         // border={"1px solid"}
         borderColor={"border.muted"}
         bg={"bg.muted"}
-        h={hBySize[size as any]}
+        rounded={themeConfig.radii.component}
       />
       <SegmentGroup.Items
         items={items}

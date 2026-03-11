@@ -127,9 +127,6 @@ interface ConfirmationTriggerProps extends StackProps {
 
   /** Optional callback executed before the disclosure is opened */
   onOpen?: () => void;
-
-  /** Optional callback executed before the disclosure is closed */
-  onClose?: () => void;
 }
 export const ConfirmationTrigger = (props: ConfirmationTriggerProps) => {
   // Props
@@ -146,7 +143,6 @@ export const ConfirmationTrigger = (props: ConfirmationTriggerProps) => {
     addonElement,
     onConfirm,
     onOpen,
-    onClose,
     ...restProps
   } = props;
 
@@ -172,14 +168,12 @@ export const ConfirmationTrigger = (props: ConfirmationTriggerProps) => {
         startCountdown();
       }
     } else {
-      onClose?.();
-
       if (confirmCountdownDuration) {
         stopCountdown();
         resetCountdown();
       }
     }
-  }, [open, onClose]);
+  }, [open]);
 
   return (
     <>

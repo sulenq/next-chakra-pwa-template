@@ -29,7 +29,7 @@ import {
   RowOptionsTableOptionGenerator,
 } from "@/constants/interfaces";
 import { SVGS_PATH } from "@/constants/paths";
-import { BASE_ICON_BOX_SIZE, R_SPACING_MD } from "@/constants/styles";
+import { BASE_ICON_BOX_SIZE } from "@/constants/styles";
 import { useDataDisplay } from "@/contexts/useDataDisplay";
 import { useLocale } from "@/contexts/useLocale";
 import useRenderTrigger from "@/contexts/useRenderTrigger";
@@ -501,7 +501,6 @@ const Data = (props: any) => {
         page={page}
         setPage={setPage}
         totalPage={pagination?.meta?.lastPage}
-        px={R_SPACING_MD}
       />
     ) : (
       <DataGrid.Display

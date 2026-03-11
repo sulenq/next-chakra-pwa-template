@@ -160,7 +160,7 @@ export default function Page() {
     empty: <FeedbackNoData />,
     notFound: <FeedbackNotFound />,
     loaded: (
-      <CContainer gap={4} bg={"bgContent"}>
+      <CContainer gap={4}>
         <APIKeys apiKeys={data?.apiKeys} />
       </CContainer>
     ),

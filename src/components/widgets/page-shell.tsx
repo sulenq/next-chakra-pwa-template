@@ -8,13 +8,14 @@ import { ClampText } from "@/components/widgets/clamp-text";
 import { Clock } from "@/components/widgets/clock";
 
 import { DotIndicator } from "@/components/widgets/indicator";
-import { MContainer, MContainerProps } from "@/components/widgets/m-container";
-import ToggleTip from "@/components/widgets/toggle-tip";
+import { MContainerProps } from "@/components/widgets/m-container";
 import { Today } from "@/components/widgets/today";
+import ToggleTip from "@/components/widgets/toggle-tip";
 import { Interface__Nav } from "@/constants/interfaces";
 import { R_SPACING_MD, TOP_BAR_H } from "@/constants/styles";
 import { useBreadcrumbs } from "@/contexts/useBreadcrumbs";
 import { useLocale } from "@/contexts/useLocale";
+import { useThemeConfig } from "@/contexts/useThemeConfig";
 import { useContainerDimension } from "@/hooks/useContainerDimension";
 import { useMergedRefs } from "@/hooks/useMergeRefs";
 import { useScreen } from "@/hooks/useScreen";
@@ -126,6 +127,9 @@ export const NavBreadcrumb = (props: any) => {
 };
 
 export const TopBar = () => {
+  // Contexts
+  const { themeConfig } = useThemeConfig();
+
   // Hooks
   const { sw } = useScreen();
   const pathname = usePathname();
@@ -152,6 +156,7 @@ export const TopBar = () => {
       <NavBreadcrumb
         backPath={backPath}
         resolvedActiveNavs={resolvedActiveNavs}
+        ml={themeConfig.radii.container}
       />
 
       <HStack flexShrink={0} gap={4}>
@@ -272,11 +277,15 @@ export const PageTitle = (props: PProps) => {
   // Props
   const { children = "", ...restProps } = props;
 
+  // Contexts
+  const { themeConfig } = useThemeConfig();
+
   return (
     <ClampText
       fontSize={"xl"}
       fontWeight={"semibold"}
       textAlign={restProps.textAlign}
+      ml={themeConfig.radii.container}
     >
       {capitalizeWords(children)}
     </ClampText>
@@ -292,9 +301,9 @@ export const PageContent = forwardRef<HTMLDivElement, MContainerProps>(
     const { isValidDimension } = usePageContainerContext();
 
     return (
-      <MContainer ref={ref} flex={1} bg={"body"} {...restProps}>
+      <CContainer ref={ref} flex={1} bg={"body"} {...restProps}>
         {isValidDimension ? children : null}
-      </MContainer>
+      </CContainer>
     );
   },
 );

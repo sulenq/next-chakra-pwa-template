@@ -43,11 +43,11 @@ const MENUS = [
 ];
 
 interface ProfileMenuProps extends StackProps {
-  onClose?: () => void;
+  handleClose?: () => void;
 }
 export const ProfileMenu = (props: ProfileMenuProps) => {
   // Props
-  const { onClose, ...restProps } = props;
+  const { handleClose, ...restProps } = props;
 
   // Contexts
   const { t } = useLocale();
@@ -146,7 +146,7 @@ export const ProfileMenu = (props: ProfileMenuProps) => {
                 justifyContent={"start"}
                 pos={"relative"}
                 onClick={() => {
-                  onClose?.();
+                  handleClose?.();
                 }}
               >
                 <AppIcon icon={menu.icon} />
@@ -162,14 +162,16 @@ export const ProfileMenu = (props: ProfileMenuProps) => {
           title="Sign out"
           description={t.msg_signout}
           confirmLabel="Sign out"
-          onConfirm={onSignout}
+          onConfirm={() => {
+            onSignout();
+            handleClose?.();
+          }}
           confirmButtonProps={{
             color: "fg.error",
             colorPalette: "gray",
             variant: "outline",
           }}
           w={"full"}
-          onClose={onClose}
         >
           <Btn
             clicky={false}
@@ -220,7 +222,7 @@ export const ProfileMenuTrigger = (props: ProfileMenuTriggerProps) => {
       </Popover.Trigger>
 
       <Popover.Content ref={containerRef} w={"225px"} zIndex={10}>
-        <ProfileMenu onClose={handleClose} />
+        <ProfileMenu handleClose={handleClose} />
       </Popover.Content>
     </Popover.Root>
   );

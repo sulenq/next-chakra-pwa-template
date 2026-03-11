@@ -23,7 +23,7 @@ const customConfig = defineConfig({
     tokens: {
       colors: {
         light: { value: "#fcfcfc" },
-        dark: { value: "#161616" },
+        dark: { value: "#151515" },
         darktrans: { value: "#202020cf" },
         d0: { value: "#8a8a8a0f" },
         d1: { value: "#8a8a8a15" },
@@ -33,8 +33,22 @@ const customConfig = defineConfig({
         dt: { value: "#858585ff" },
         placeholder: { value: "#96969691" },
 
+        neutral: {
+          50: { value: "#ffffff" },
+          100: { value: "#fcfcfc" },
+          200: { value: "#eeeeee" },
+          300: { value: "#dcdcdc" },
+          400: { value: "#b5b5b5" },
+          500: { value: "#8a8a8a" },
+          600: { value: "#6a6a6a" },
+          700: { value: "#4f4f4f" },
+          800: { value: "#303030" },
+          900: { value: "#181818" },
+          950: { value: "#151515" },
+        },
+
         gray: {
-          50: { value: "#f4f4f4" },
+          50: { value: "#fafafa" },
           100: { value: "#f1f1f1" },
           200: { value: "#eaeaea" },
           300: { value: "#d4d4d4" },
@@ -44,7 +58,7 @@ const customConfig = defineConfig({
           700: { value: "#3f3f3f" },
           800: { value: "#272727" },
           900: { value: "#242424" },
-          950: { value: "#202020" },
+          950: { value: "#1c1c1c" },
         },
 
         cream: {
@@ -462,16 +476,35 @@ const customConfig = defineConfig({
     },
     semanticTokens: {
       colors: {
-        text: { value: { base: "{colors.dark}", _dark: "#ddd" } },
-        body: { value: { base: "{colors.light}", _dark: "{colors.dark}" } },
+        text: { value: { base: "{colors.neutral.950}", _dark: "#ddd" } },
+
+        body: {
+          value: {
+            base: "{colors.neutral.50}",
+            _dark: "{colors.neutral.950}",
+          },
+        },
+
+        ibody: {
+          value: {
+            base: "{colors.neutral.950}",
+            _dark: "{colors.neutral.50}",
+          },
+        },
+
+        item: {
+          value: {
+            base: "{colors.neutral.100}",
+            _dark: "{colors.neutral.900}",
+          },
+        },
+
         bgContent: {
-          value: { base: "#fafafa", _dark: "#161616" },
+          value: {
+            base: "{colors.neutral.200}",
+            _dark: "{colors.neutral.800}",
+          },
         },
-        bodytrans: {
-          value: { base: "{colors.light}aa", _dark: "{colors.dark}aa" },
-        },
-        ibody: { value: { base: "{colors.dark}", _dark: "{colors.light}" } },
-        item: { value: { base: "#ffffff", _dark: "#181818" } },
 
         border: {
           subtle: {
@@ -526,45 +559,45 @@ const customConfig = defineConfig({
         },
 
         gray: {
-          // solid: {
-          //   value: {
-          //     base: "{colors.gray.500} !important",
-          //     _dark: "{colors.gray.500} !important",
-          //   },
-          // },
-          // contrast: {
-          //   value: { base: "{colors.gray.50}", _dark: "{colors.gray.900}" },
-          // },
-          // fg: {
-          //   value: {
-          //     base: "{colors.gray.500}",
-          //     _dark: "{colors.gray.200}",
-          //   },
-          // },
-          // muted: {
-          //   value: {
-          //     base: "{colors.gray.200}",
-          //     _dark: "{colors.gray.800}",
-          //   },
-          // },
-          // subtle: {
-          //   value: {
-          //     base: "#f5f5f5 !important",
-          //     _dark: "#202020 !important",
-          //   },
-          // },
-          // emphasized: {
-          //   value: {
-          //     base: "{colors.gray.100}",
-          //     _dark: "{colors.gray.900}",
-          //   },
-          // },
-          // focusRing: {
-          //   value: {
-          //     base: "{colors.gray.500}",
-          //     _dark: "{colors.gray.700}",
-          //   },
-          // },
+          subtle: {
+            value: {
+              base: "{colors.gray.50} !important",
+              _dark: "{colors.gray.950} !important",
+            },
+          },
+          muted: {
+            value: {
+              base: "{colors.gray.100} !important",
+              _dark: "{colors.gray.900} !important",
+            },
+          },
+          emphasized: {
+            value: {
+              base: "{colors.gray.200}",
+              _dark: "{colors.gray.800}",
+            },
+          },
+        },
+
+        bg: {
+          subtle: {
+            value: {
+              base: "{colors.gray.50} !important",
+              _dark: "{colors.gray.950} !important",
+            },
+          },
+          muted: {
+            value: {
+              base: "{colors.gray.100} !important",
+              _dark: "{colors.gray.900} !important",
+            },
+          },
+          emphasized: {
+            value: {
+              base: "{colors.gray.200}",
+              _dark: "{colors.gray.800}",
+            },
+          },
         },
 
         cream: {

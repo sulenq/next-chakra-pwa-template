@@ -66,8 +66,8 @@ export const DataTableDisplay = (props: DataTableProps) => {
     p,
     px,
     py,
-    pl = R_SPACING_MD,
-    pr = R_SPACING_MD,
+    pl = "6px",
+    pr = 0,
     pt,
     pb,
     ...restProps
@@ -196,32 +196,35 @@ export const DataTableDisplay = (props: DataTableProps) => {
   }, [rows]);
 
   // SX
-  const optionsCellWidth = "46px";
+  const optionsCellW = "46px";
   const cellPx = 3;
-  const thHeight = "46px";
-  const thBg = "body";
-  const thBorderColor = "border.subtle";
+  const thHeight = "42px";
+  const thBg = "bg.subtle";
+  const thBorderColor = "transparent";
   const tdMinH = "46px";
   const tdBg = "body";
-  const footerBorderColor = "border.subtle";
+  const footerBorderColor = "border.muted";
   const selectedColor =
     themeConfig.colorPalette === "gray"
-      ? "d1"
+      ? "border.subtle"
       : hexWithOpacity(themeConfig.primaryColorHex, 0.05);
-  const tdBorderColor = "d1";
+  const tdBorderColor = "border.subtle";
+  const footerBg = "body";
 
   return (
     <CContainer
       ref={tableContainerRef}
       flex={1}
       minH={props?.minH || dimensions?.height < 625 ? "400px" : ""}
+      pt={2}
       overflow={"auto"}
       {...restProps}
     >
       <CContainer
         className="scrollX scrollYAlt"
         flex={1}
-        rounded={themeConfig.radii.container}
+        px={R_SPACING_MD}
+        // rounded={themeConfig.radii.container}
         {...contentContainerProps}
       >
         <Table.Root
@@ -233,18 +236,19 @@ export const DataTableDisplay = (props: DataTableProps) => {
               position={"sticky"}
               top={0}
               zIndex={3}
+              bg={"transparent !important"}
               borderColor={thBorderColor}
             >
               {!isEmptyArray(batchOptions) && (
                 <Table.ColumnHeader
                   h={thHeight}
-                  w={optionsCellWidth}
-                  maxW={optionsCellWidth}
+                  w={optionsCellW}
+                  maxW={optionsCellW}
                   minW={"0% !important"}
+                  borderBottom={"none !important"}
                   p={0}
                   position={"sticky"}
                   left={0}
-                  borderBottom={"none !important"}
                 >
                   <Center
                     h={thHeight}
@@ -252,6 +256,8 @@ export const DataTableDisplay = (props: DataTableProps) => {
                     pl={pl}
                     borderBottom={"1px solid"}
                     borderColor={thBorderColor}
+                    roundedTopLeft={themeConfig.radii.component}
+                    roundedBottomLeft={themeConfig.radii.component}
                     bg={thBg}
                   >
                     <BatchOptions
@@ -335,8 +341,8 @@ export const DataTableDisplay = (props: DataTableProps) => {
                 <Table.ColumnHeader
                   position={"sticky"}
                   right={"0px"}
-                  w={optionsCellWidth}
-                  maxW={optionsCellWidth}
+                  w={optionsCellW}
+                  maxW={optionsCellW}
                   p={0}
                   borderBottom={"none !important"}
                 >
@@ -348,6 +354,8 @@ export const DataTableDisplay = (props: DataTableProps) => {
                     py={3}
                     borderBottom={"1px solid"}
                     borderColor={thBorderColor}
+                    roundedTopRight={themeConfig.radii.component}
+                    roundedBottomRight={themeConfig.radii.component}
                     pos={"relative"}
                   >
                     {/* <Box
@@ -379,8 +387,8 @@ export const DataTableDisplay = (props: DataTableProps) => {
                   {!isEmptyArray(batchOptions) && (
                     <Table.Cell
                       minW={"0% !important"}
-                      maxW={optionsCellWidth}
-                      w={optionsCellWidth}
+                      maxW={optionsCellW}
+                      w={optionsCellW}
                       h={tdMinH}
                       p={0}
                       position={"sticky"}
@@ -476,8 +484,8 @@ export const DataTableDisplay = (props: DataTableProps) => {
                   {!isEmptyArray(rowOptions) && (
                     <Table.Cell
                       minW={"0% !important"}
-                      w={optionsCellWidth}
-                      maxW={optionsCellWidth}
+                      w={optionsCellW}
+                      maxW={optionsCellW}
                       h={tdMinH}
                       bg={"body"}
                       p={0}
@@ -531,6 +539,8 @@ export const DataTableDisplay = (props: DataTableProps) => {
         <>
           <HStack
             p={3}
+            px={R_SPACING_MD}
+            bg={footerBg}
             borderTop={"1px solid"}
             borderColor={footerBorderColor}
             justify={"space-between"}
