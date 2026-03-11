@@ -368,7 +368,7 @@ const Chart1 = (props: any) => {
           inputValue={timeFrame}
           onChange={setTimeFrame}
           size={"xs"}
-          mr={2}
+          mr={-2}
         />
       </Item.HeaderContainer>
 

@@ -477,13 +477,13 @@ const customConfig = defineConfig({
           subtle: {
             value: {
               base: "#f1f1f1 !important",
-              _dark: "#242424 !important",
+              _dark: "#202020 !important",
             },
           },
           muted: {
             value: {
               base: "#ebebec !important",
-              _dark: "#202020 !important",
+              _dark: "#242424 !important",
             },
           },
         },

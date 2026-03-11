@@ -33,7 +33,6 @@ export const Segmented = (props: SegmentedProps) => {
       rounded={themeConfig.radii.component}
       overflow={"clip"}
       shadow={"none"}
-      border={"1px solid"}
       borderColor={"border.muted !important"}
       {...restProps}
     >
