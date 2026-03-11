@@ -1254,8 +1254,8 @@ const customConfig = defineConfig({
         teal: {
           solid: {
             value: {
-              base: "{colors.teal.500}",
-              _dark: "{colors.teal.600}",
+              base: "{colors.teal.500} !important",
+              _dark: "{colors.teal.600} !important",
             },
           },
           contrast: {
