@@ -738,7 +738,7 @@ const DemoIndexRoute = () => {
         justify={"space-between"}
         position={"sticky"}
         top={0}
-        bg={"body"}
+        bg={"bg.body"}
         zIndex={1000}
       >
         <HStack gap={4}>

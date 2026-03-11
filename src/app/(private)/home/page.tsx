@@ -15,11 +15,11 @@ import { Item } from "@/components/widgets/item";
 import {
   PageContainer,
   PageContent,
+  TopBar,
   usePageContainerContext,
 } from "@/components/widgets/page-shell";
 import { DUMMY_DASHBOARD_DATA } from "@/constants/dummyData";
 import { getMonthNames } from "@/constants/months";
-import { R_SPACING_MD } from "@/constants/styles";
 import { Type__ChartData } from "@/constants/types";
 import { useLocale } from "@/contexts/useLocale";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
@@ -61,6 +61,7 @@ const DEFAULT_FILTER = {
   endDate: null,
   year: new Date().getFullYear(),
 };
+const GAP = 1;
 
 interface OverviewItemProps extends StackProps {
   item: {
@@ -161,7 +162,7 @@ const Overview = (props: OverviewProps) => {
   ];
 
   return (
-    <CContainer px={R_SPACING_MD}>
+    <CContainer>
       <HStack minH={"36px"} mt={2} mb={3}>
         <P fontSize={"xl"} fontWeight={"semibold"}>
           Overview
@@ -170,7 +171,7 @@ const Overview = (props: OverviewProps) => {
 
       <SimpleGrid
         columns={isSmContainer ? 2 : 3}
-        gap={4}
+        gap={GAP}
         pos={"relative"}
         {...restProps}
       >
@@ -509,14 +510,14 @@ const Usage = (props: any) => {
   const { isSmContainer } = usePageContainerContext();
 
   return (
-    <CContainer px={R_SPACING_MD}>
+    <CContainer>
       <HStack minH={"36px"} mt={2} mb={3}>
         <P fontSize={"xl"} fontWeight={"semibold"}>
           Usage
         </P>
       </HStack>
 
-      <SimpleGrid columns={isSmContainer ? 1 : 2} gap={4} {...restProps}>
+      <SimpleGrid columns={isSmContainer ? 1 : 2} gap={GAP} {...restProps}>
         <Chart1 data={data} year={filter.year} />
 
         <Chart1 data={data} year={filter.year} />
@@ -551,20 +552,24 @@ const PageScreen = () => {
   };
 
   return (
-    <PageContent pb={R_SPACING_MD}>
-      {initialLoading && render.loading}
-      {!initialLoading && (
-        <>
-          {error && render.error}
-          {!error && (
-            <>
-              {isObjectDeepEmpty(data) && render.empty}
-              {!isObjectDeepEmpty(data) && render.loaded}
-            </>
-          )}
-        </>
-      )}
-    </PageContent>
+    <>
+      <TopBar />
+
+      <PageContent>
+        {initialLoading && render.loading}
+        {!initialLoading && (
+          <>
+            {error && render.error}
+            {!error && (
+              <>
+                {isObjectDeepEmpty(data) && render.empty}
+                {!isObjectDeepEmpty(data) && render.loaded}
+              </>
+            )}
+          </>
+        )}
+      </PageContent>
+    </>
   );
 };
 

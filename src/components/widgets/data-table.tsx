@@ -12,7 +12,6 @@ import {
   FormattedTableRow,
   RowOptionsTableOptionGenerator,
 } from "@/constants/interfaces";
-import { R_SPACING_MD } from "@/constants/styles";
 import { Type__SortHandler } from "@/constants/types";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
 import { useContainerDimension } from "@/hooks/useContainerDimension";
@@ -198,18 +197,19 @@ export const DataTableDisplay = (props: DataTableProps) => {
   // SX
   const optionsCellW = "46px";
   const cellPx = 3;
-  const thHeight = "42px";
+  const tableContainerBg = "bg.body";
+  const thHeight = "45px";
   const thBg = "bg.subtle";
   const thBorderColor = "transparent";
   const tdMinH = "46px";
-  const tdBg = "body";
+  const tdBg = "bg.body";
   const footerBorderColor = "border.muted";
   const selectedColor =
     themeConfig.colorPalette === "gray"
       ? "border.subtle"
       : hexWithOpacity(themeConfig.primaryColorHex, 0.05);
   const tdBorderColor = "border.subtle";
-  const footerBg = "body";
+  const footerBg = "bg.body";
 
   return (
     <CContainer
@@ -217,14 +217,16 @@ export const DataTableDisplay = (props: DataTableProps) => {
       flex={1}
       minH={props?.minH || dimensions?.height < 625 ? "400px" : ""}
       pt={2}
+      rounded={themeConfig.radii.container}
       overflow={"auto"}
       {...restProps}
     >
       <CContainer
         className="scrollX scrollYAlt"
         flex={1}
-        px={R_SPACING_MD}
-        // rounded={themeConfig.radii.container}
+        bg={tableContainerBg}
+        roundedTopLeft={themeConfig.radii.container}
+        roundedTopRight={themeConfig.radii.container}
         {...contentContainerProps}
       >
         <Table.Root
@@ -361,7 +363,7 @@ export const DataTableDisplay = (props: DataTableProps) => {
                     {/* <Box
                       h={tdMinH}
                       w={"6px"}
-                      bg={"body"}
+                      bg={"bg.body"}
                       pos={"absolute"}
                       right={"-6px"}
                     /> */}
@@ -381,7 +383,7 @@ export const DataTableDisplay = (props: DataTableProps) => {
                   key={rowIdx}
                   role="group"
                   position={"relative"}
-                  bg={"body"}
+                  bg={"bg.body"}
                   {...trBodyProps}
                 >
                   {!isEmptyArray(batchOptions) && (
@@ -393,7 +395,7 @@ export const DataTableDisplay = (props: DataTableProps) => {
                       p={0}
                       position={"sticky"}
                       left={0}
-                      bg={"body"}
+                      bg={"bg.body"}
                       zIndex={2}
                     >
                       <Center
@@ -487,7 +489,7 @@ export const DataTableDisplay = (props: DataTableProps) => {
                       w={optionsCellW}
                       maxW={optionsCellW}
                       h={tdMinH}
-                      bg={"body"}
+                      bg={"bg.body"}
                       p={0}
                       position={"sticky"}
                       right={"0"}
@@ -514,7 +516,7 @@ export const DataTableDisplay = (props: DataTableProps) => {
                         {/* <Box
                           h={tdMinH}
                           w={"6px"}
-                          bg={"body"}
+                          bg={"bg.body"}
                           pos={"absolute"}
                           right={"-6px"}
                         /> */}
@@ -523,7 +525,7 @@ export const DataTableDisplay = (props: DataTableProps) => {
                           row={row}
                           rowOptions={rowOptions}
                           tableContainerRef={tableContainerRef}
-                          color={"ibody"}
+                          color={"fg.ibody"}
                         />
                       </Center>
                     </Table.Cell>
@@ -538,8 +540,8 @@ export const DataTableDisplay = (props: DataTableProps) => {
       {hasFooter && (
         <>
           <HStack
-            p={3}
-            px={R_SPACING_MD}
+            // h={footerH}
+            p={1.5}
             bg={footerBg}
             borderTop={"1px solid"}
             borderColor={footerBorderColor}

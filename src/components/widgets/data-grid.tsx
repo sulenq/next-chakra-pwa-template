@@ -14,6 +14,7 @@ import { ClampText } from "@/components/widgets/clamp-text";
 import FeedbackNotFound from "@/components/widgets/feedback-not-found";
 import { ImgViewer } from "@/components/widgets/img-viewer";
 import { Limitation } from "@/components/widgets/limitation";
+import { MContainer } from "@/components/widgets/m-container";
 import { Pagination } from "@/components/widgets/pagination";
 import { RowOptions } from "@/components/widgets/row-options";
 import {
@@ -91,9 +92,10 @@ export const DataGridItem = (props: DataGridItemProps) => {
     <CContainer
       key={item.id}
       flex={1}
-      border={"1px solid"}
+      // border={"1px solid"}
       borderColor={isRowSelected ? selectedColor : "border.muted"}
       rounded={themeConfig.radii.container}
+      bg={"bg.body"}
       overflow={"clip"}
       pos={"relative"}
       {...restProps}
@@ -116,22 +118,24 @@ export const DataGridItem = (props: DataGridItemProps) => {
       </Box>
 
       {item.showImg && (
-        <ImgViewer
-          id={`img-${row?.idx}-${item?.id}`}
-          w={"full"}
-          src={item.img}
-          aspectRatio={1.1}
-          fallbackSrc={item.imgFallbackSrc}
-          opacity={dim || row.dim ? 0.4 : 1}
-        >
-          <Img
-            key={item.img}
+        <CContainer p={1}>
+          <ImgViewer
+            id={`img-${row?.idx}-${item?.id}`}
+            w={"full"}
             src={item.img}
             aspectRatio={1.1}
-            rounded={themeConfig.radii.component}
             fallbackSrc={item.imgFallbackSrc}
-          />
-        </ImgViewer>
+            opacity={dim || row.dim ? 0.4 : 1}
+          >
+            <Img
+              key={item.img}
+              src={item.img}
+              aspectRatio={1.1}
+              rounded={themeConfig.radii.component}
+              fallbackSrc={item.imgFallbackSrc}
+            />
+          </ImgViewer>
+        </CContainer>
       )}
 
       <CContainer
@@ -330,7 +334,7 @@ const DataGridDisplay = (props: DataGridProps) => {
     footer,
     minChildWidth = "180px",
     p,
-    px = R_SPACING_MD,
+    px,
     py,
     pl,
     pr,
@@ -390,132 +394,135 @@ const DataGridDisplay = (props: DataGridProps) => {
   const footerBorderColor = "border.subtle";
 
   return (
-    <CContainer flex={1} overflowY={"auto"} {...restProps}>
-      <CContainer flex={1} overflowY={"auto"} pos={"relative"}>
-        {/* Batch Options */}
-        <Presence
-          present={shouldShowBatch}
-          animationName={{ _open: "fade-in", _closed: "fade-out" }}
-          animationDuration="slow"
-          unmountOnExit
-          zIndex={10}
+    <CContainer flex={1} overflowY={"auto"} pos={"relative"} {...restProps}>
+      {/* Batch Options */}
+      <Presence
+        present={shouldShowBatch}
+        animationName={{ _open: "fade-in", _closed: "fade-out" }}
+        animationDuration="slow"
+        unmountOnExit
+        zIndex={10}
+      >
+        <HStack
+          w={"full"}
+          justify={"center"}
+          p={3}
+          pos={"absolute"}
+          bottom={0}
+          left={0}
+          zIndex={2}
+          pointerEvents={"none"}
         >
           <HStack
-            w={"full"}
-            justify={"center"}
-            p={3}
-            pos={"absolute"}
-            bottom={0}
-            left={0}
-            zIndex={2}
-            pointerEvents={"none"}
+            gap={1}
+            bg={"bg.body"}
+            p={1}
+            border={"1px solid"}
+            borderColor={"border.muted"}
+            rounded={themeConfig.radii.container}
+            pointerEvents={"auto"}
           >
-            <HStack
-              gap={1}
-              bg={"body"}
-              p={1}
-              border={"1px solid"}
-              borderColor={"border.muted"}
-              rounded={themeConfig.radii.container}
-              pointerEvents={"auto"}
-            >
-              <P
-                mx={4}
-              >{`${selectedRows.length} ${t.selected.toLowerCase()}`}</P>
+            <P mx={4}>{`${selectedRows.length} ${t.selected.toLowerCase()}`}</P>
 
-              <Divider dir={"vertical"} h={"30px"} />
+            <Divider dir={"vertical"} h={"30px"} />
 
-              <BatchOptions
-                iconButton={false}
-                size={"md"}
-                selectedRows={selectedRows}
-                clearSelectedRows={handleClearSelectedRows}
-                batchOptions={dataProps?.batchOptions}
-                allRowsSelected={allRowsSelected}
-                handleSelectAllRows={handleSelectAllRows}
-                pl={3}
-                menuRootProps={{
-                  positioning: {
-                    placement: "top",
-                    offset: {
-                      mainAxis: 12,
-                    },
+            <BatchOptions
+              iconButton={false}
+              size={"md"}
+              selectedRows={selectedRows}
+              clearSelectedRows={handleClearSelectedRows}
+              batchOptions={dataProps?.batchOptions}
+              allRowsSelected={allRowsSelected}
+              handleSelectAllRows={handleSelectAllRows}
+              pl={3}
+              menuRootProps={{
+                positioning: {
+                  placement: "top",
+                  offset: {
+                    mainAxis: 12,
                   },
-                }}
-              />
-            </HStack>
+                },
+              }}
+            />
           </HStack>
-        </Presence>
+        </HStack>
+      </Presence>
 
-        <CContainer
-          className={"scrollY"}
-          flex={1}
-          p={p}
-          px={px}
-          py={py}
-          pl={pl}
-          pr={pr}
-          pt={pt}
-          pb={pb}
-          // pr={`calc(12px - ${FIREFOX_SCROLL_Y_CLASS_PR_PREFIX})`}
+      <MContainer
+        className={"scrollY"}
+        flex={1}
+        p={p}
+        px={px}
+        py={py}
+        pl={pl}
+        pr={pr}
+        pt={pt}
+        pb={pb}
+        rounded={themeConfig.radii.container}
+        // pr={`calc(12px - ${FIREFOX_SCROLL_Y_CLASS_PR_PREFIX})`}
+      >
+        <SimpleGrid
+          templateColumns={`repeat(auto-fill, minmax(${minChildWidth}, 1fr))`}
+          gap={1}
+          pb={"45px"}
         >
-          <SimpleGrid
-            templateColumns={`repeat(auto-fill, minmax(${minChildWidth}, 1fr))`}
-            gap={4}
-          >
-            {data?.map((item, idx) => {
-              const row = dataProps.rows?.[idx] as FormattedTableRow;
-              const details = row.columns.map((col, rowIdx) => {
-                const label = dataProps.headers?.[rowIdx].th;
+          {data?.map((item, idx) => {
+            const row = dataProps.rows?.[idx] as FormattedTableRow;
+            const details = row.columns.map((col, rowIdx) => {
+              const label = dataProps.headers?.[rowIdx].th;
 
-                switch (col.dataType) {
-                  case "image":
-                    return {
-                      label,
-                      render: (
-                        <ImgViewer
-                          id={`img-${rowIdx}-${item?.id}`}
-                          src={col.value}
-                          w={"full"}
-                        >
-                          <Img src={col.value} w={"full"} fluid />
-                        </ImgViewer>
-                      ),
-                    };
+              switch (col.dataType) {
+                case "image":
+                  return {
+                    label,
+                    render: (
+                      <ImgViewer
+                        id={`img-${rowIdx}-${item?.id}`}
+                        src={col.value}
+                        w={"full"}
+                      >
+                        <Img src={col.value} w={"full"} fluid />
+                      </ImgViewer>
+                    ),
+                  };
 
-                  default:
-                    return {
-                      label,
-                      render: col.td,
-                    };
-                }
-              });
+                default:
+                  return {
+                    label,
+                    render: col.td,
+                  };
+              }
+            });
 
-              return (
-                <Fragment key={idx}>
-                  {props.gridItem({
-                    item,
-                    row,
-                    idx,
-                    details,
-                    selectedRows,
-                    toggleRowSelection,
-                  })}
-                </Fragment>
-              );
-            })}
-          </SimpleGrid>
-        </CContainer>
-      </CContainer>
+            return (
+              <Fragment key={idx}>
+                {props.gridItem({
+                  item,
+                  row,
+                  idx,
+                  details,
+                  selectedRows,
+                  toggleRowSelection,
+                })}
+              </Fragment>
+            );
+          })}
+        </SimpleGrid>
+      </MContainer>
 
       {hasFooter && (
         <>
           <HStack
-            p={3}
-            px={R_SPACING_MD}
+            w={"full"}
+            p={1.5}
+            bg={"bg.body"}
             borderTop={"1px solid"}
             borderColor={footerBorderColor}
+            rounded={themeConfig.radii.container}
             justify={"space-between"}
+            pos={"absolute"}
+            left={0}
+            bottom={0}
           >
             <CContainer w={"fit"} mb={[1, null, 0]}>
               <Limitation limit={limit} setLimit={setLimit} />

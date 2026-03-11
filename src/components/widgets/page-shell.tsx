@@ -145,18 +145,16 @@ export const TopBar = () => {
   return (
     <HStack
       flexShrink={0}
-      h={"52px"}
-      gap={4}
-      px={R_SPACING_MD}
       justify={"space-between"}
-      bg={"body"}
+      gap={4}
+      h={"52px"}
+      px={themeConfig.radii.container}
       // borderBottom={"1px solid"}
       borderColor={"border.muted"}
     >
       <NavBreadcrumb
         backPath={backPath}
         resolvedActiveNavs={resolvedActiveNavs}
-        ml={themeConfig.radii.container}
       />
 
       <HStack flexShrink={0} gap={4}>
@@ -231,6 +229,7 @@ export const PageContainer = forwardRef<HTMLDivElement, StackProps>(
           ref={mergeRef}
           className="page-container"
           flex={1}
+          p={R_SPACING_MD}
           overflow={"auto"}
           {...restProps}
         >
@@ -259,13 +258,7 @@ export const PageHeader = (props: StackProps) => {
   const resolvedTitle = title || navTitle;
 
   return (
-    <HStack
-      flexShrink={0}
-      w={"full"}
-      minH={TOP_BAR_H}
-      px={R_SPACING_MD}
-      {...restProps}
-    >
+    <HStack flexShrink={0} w={"full"} minH={TOP_BAR_H} {...restProps}>
       <PageTitle>{resolvedTitle}</PageTitle>
 
       {children}
@@ -301,7 +294,7 @@ export const PageContent = forwardRef<HTMLDivElement, MContainerProps>(
     const { isValidDimension } = usePageContainerContext();
 
     return (
-      <CContainer ref={ref} flex={1} bg={"body"} {...restProps}>
+      <CContainer ref={ref} flex={1} {...restProps}>
         {isValidDimension ? children : null}
       </CContainer>
     );

@@ -74,7 +74,7 @@ export const DialogContent = forwardRef<HTMLDivElement, DialogContentProps>(
             }}
             minH={sh < 500 ? "90dvh" : ""}
             maxH={"full"}
-            bg="body"
+            bg="bg.body"
             shadow="none"
             onClick={(e) => {
               e.stopPropagation();

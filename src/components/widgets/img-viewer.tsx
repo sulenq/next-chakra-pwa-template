@@ -77,7 +77,7 @@ export const ImgViewer = (props: ImgViewerProps) => {
                   src={src || fallbackSrc || `${SVGS_PATH}/no-img.svg`}
                   fluid
                   h={"80vh"}
-                  bg={"body"}
+                  bg={"bg.body"}
                   onClick={(e) => {
                     e.stopPropagation();
                   }}

@@ -21,12 +21,17 @@ export default function Page() {
   const iss = useIsSmScreenWidth();
 
   return (
-    <CContainer h={"100dvh"} align={"start"} overflowY={"auto"}>
+    <CContainer
+      align={"start"}
+      h={"100dvh"}
+      bg={"bg.canvas"}
+      overflowY={"auto"}
+    >
       <CContainer
         flex={1}
         maxW={"1200px"}
         maxH={"720px"}
-        bg={"body"}
+        bg={"bg.body"}
         m={"auto"}
         rounded={themeConfig.radii.container}
       >
@@ -112,7 +117,7 @@ export default function Page() {
           <CContainer
             p={4}
             gap={16}
-            bg={"body"}
+            bg={"bg.body"}
             rounded={themeConfig.radii.container}
           >
             <HStack justify={"center"}>

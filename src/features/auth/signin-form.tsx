@@ -252,8 +252,8 @@ const BasicAuthForm = (props: any) => {
           Sign in
         </Btn>
 
-        <HStack mt={4}>
-          <Divider h={"1px"} w={"full"} />
+        <HStack w={"full"} mt={4}>
+          <Divider flex={1} />
 
           <ResetPasswordDisclosureTrigger>
             <Btn variant={"ghost"} color={themeConfig.primaryColor}>
@@ -261,7 +261,7 @@ const BasicAuthForm = (props: any) => {
             </Btn>
           </ResetPasswordDisclosureTrigger>
 
-          <Divider h={"1px"} w={"full"} />
+          <Divider flex={1} />
         </HStack>
       </form>
     </CContainer>

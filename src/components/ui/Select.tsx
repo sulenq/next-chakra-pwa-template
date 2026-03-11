@@ -92,7 +92,7 @@ export default function Select(props: SelectProps) {
                 item={opt}
                 key={opt.value}
                 rounded={themeConfig?.radii.component}
-                color={"ibody"}
+                color={"fg.ibody"}
               >
                 {opt.label}
                 <ChakraSelect.ItemIndicator />

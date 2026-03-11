@@ -136,7 +136,7 @@ const DisclosureHeader = ({ children, ...props }: DisclosureHeaderProps) => {
       px={4}
       pt={2}
       pb={4}
-      bg={"body"}
+      bg={"bg.body"}
       // borderBottom={"1px solid"}
       borderColor={children ? "d1" : ""}
       {...(props as DrawerHeaderProps)}
@@ -254,7 +254,7 @@ const DisclosureBody = ({ children, ...props }: DisclosureBodyProps) => {
       // pr={`calc(16px - ${FIREFOX_SCROLL_Y_CLASS_PR_PREFIX})`}
       py={2}
       className={props.className || "scrollY"}
-      bg={"body"}
+      bg={"bg.body"}
       {...(props as DrawerHeaderProps)}
     >
       {children}
@@ -265,7 +265,7 @@ const DisclosureBody = ({ children, ...props }: DisclosureBodyProps) => {
       // pr={`calc(16px - ${FIREFOX_SCROLL_Y_CLASS_PR_PREFIX})`}
       py={4}
       className={props.className || "scrollY"}
-      bg={"body"}
+      bg={"bg.body"}
       {...(props as DialogBodyProps)}
     >
       {children}
@@ -284,7 +284,7 @@ const DisclosureFooter = ({ children, ...props }: DisclosureFooterProps) => {
       px={4}
       pt={5}
       pb={6}
-      bg={"body"}
+      bg={"bg.body"}
       // borderTop={"1px solid"}
       borderColor={"border.subtle"}
       {...(props as DrawerHeaderProps)}

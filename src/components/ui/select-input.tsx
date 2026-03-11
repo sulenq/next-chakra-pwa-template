@@ -58,7 +58,14 @@ const SelectOptions = (props: SelectOptionsProps) => {
 
   return (
     <CContainer {...restProps}>
-      <CContainer px={4} pt={4} pos={"sticky"} top={0} bg={"body"} zIndex={3}>
+      <CContainer
+        px={4}
+        pt={4}
+        pos={"sticky"}
+        top={0}
+        bg={"bg.body"}
+        zIndex={3}
+      >
         <SearchInput
           inputValue={search}
           onChange={(inputValue) => {

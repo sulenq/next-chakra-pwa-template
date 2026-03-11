@@ -67,7 +67,7 @@ export const FileUploadDropzone = forwardRef<
     <ChakraFileUpload.Dropzone
       ref={ref}
       cursor={"pointer"}
-      bg={"body"}
+      bg={"bg.body"}
       overflow={"auto"}
       p={imgInput ? 0 : 4}
       {...rest}
@@ -119,7 +119,7 @@ const FileUploadItem = (props: FileUploadItemProps) => {
       file={file}
       py={2}
       h={"54px"}
-      bg={"body"}
+      bg={"bg.body"}
       rounded={themeConfig.radii.component}
     >
       <ChakraFileUpload.ItemPreview asChild>

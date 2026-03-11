@@ -7,7 +7,7 @@ const customConfig = defineConfig({
   },
   globalCss: {
     "html, body": {
-      bg: "body",
+      bg: "bg.body",
     },
     "div, span, section, article, li, ul, ol, a, label, strong, em": {
       fontSize: "md",
@@ -35,8 +35,8 @@ const customConfig = defineConfig({
 
         neutral: {
           50: { value: "#ffffff" },
-          100: { value: "#fcfcfc" },
-          200: { value: "#eeeeee" },
+          100: { value: "#f0f0f0" },
+          200: { value: "#ececee" },
           300: { value: "#dcdcdc" },
           400: { value: "#b5b5b5" },
           500: { value: "#8a8a8a" },
@@ -44,7 +44,7 @@ const customConfig = defineConfig({
           700: { value: "#4f4f4f" },
           800: { value: "#303030" },
           900: { value: "#181818" },
-          950: { value: "#151515" },
+          950: { value: "#131313" },
         },
 
         gray: {
@@ -58,7 +58,7 @@ const customConfig = defineConfig({
           700: { value: "#3f3f3f" },
           800: { value: "#272727" },
           900: { value: "#242424" },
-          950: { value: "#1c1c1c" },
+          950: { value: "#202020" },
         },
 
         cream: {
@@ -481,7 +481,7 @@ const customConfig = defineConfig({
         body: {
           value: {
             base: "{colors.neutral.50}",
-            _dark: "{colors.neutral.950}",
+            _dark: "{colors.neutral.900}",
           },
         },
 
@@ -502,7 +502,49 @@ const customConfig = defineConfig({
         bgContent: {
           value: {
             base: "{colors.neutral.200}",
-            _dark: "{colors.neutral.800}",
+            _dark: "{colors.neutral.950}",
+          },
+        },
+
+        bg: {
+          canvas: {
+            value: {
+              base: "{colors.neutral.100}",
+              _dark: "{colors.neutral.950}",
+            },
+          },
+          body: {
+            value: {
+              base: "{colors.neutral.50}",
+              _dark: "{colors.neutral.900}",
+            },
+          },
+          subtle: {
+            value: {
+              base: "{colors.gray.50} !important",
+              _dark: "{colors.gray.950} !important",
+            },
+          },
+          muted: {
+            value: {
+              base: "{colors.gray.100} !important",
+              _dark: "{colors.gray.900} !important",
+            },
+          },
+          emphasized: {
+            value: {
+              base: "{colors.gray.200}",
+              _dark: "{colors.gray.800}",
+            },
+          },
+        },
+
+        fg: {
+          ibody: {
+            value: {
+              base: "{colors.neutral.900}",
+              _dark: "{colors.neutral.50}",
+            },
           },
         },
 
@@ -515,7 +557,7 @@ const customConfig = defineConfig({
           },
           muted: {
             value: {
-              base: "#ebebec !important",
+              base: "#e1e1e1 !important",
               _dark: "#202020 !important",
             },
           },
@@ -559,27 +601,6 @@ const customConfig = defineConfig({
         },
 
         gray: {
-          subtle: {
-            value: {
-              base: "{colors.gray.50} !important",
-              _dark: "{colors.gray.950} !important",
-            },
-          },
-          muted: {
-            value: {
-              base: "{colors.gray.100} !important",
-              _dark: "{colors.gray.900} !important",
-            },
-          },
-          emphasized: {
-            value: {
-              base: "{colors.gray.200}",
-              _dark: "{colors.gray.800}",
-            },
-          },
-        },
-
-        bg: {
           subtle: {
             value: {
               base: "{colors.gray.50} !important",
@@ -1916,7 +1937,7 @@ const customConfig = defineConfig({
       shadows: {
         soft: {
           value: {
-            base: "0 4px 8px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04) !important",
+            base: "0 4px 8px rgba(0,0,0,0.03), 0 1px 2px rgba(0,0,0,0.02) !important",
             _dark:
               "0 4px 8px rgba(0,0,0,0.24), 0 1px 2px rgba(0,0,0,0.18) !important",
           },

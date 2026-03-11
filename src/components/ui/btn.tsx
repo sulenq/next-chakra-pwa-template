@@ -29,6 +29,8 @@ export const Btn = forwardRef<HTMLButtonElement, BtnProps>((props, ref) => {
   const { themeConfig } = useThemeConfig();
 
   // Derived Values
+  const isVariantOutline = props.variant === "outline";
+  const isColorPaletteGray = colorPalette === "gray";
   const resolvedClassName = `${clicky ? "clicky" : ""} ${className}`.trim();
 
   return iconButton ? (
@@ -37,6 +39,7 @@ export const Btn = forwardRef<HTMLButtonElement, BtnProps>((props, ref) => {
       className={resolvedClassName}
       colorPalette={colorPalette}
       size={size || (MAIN_BUTTON_SIZE as any)}
+      borderColor={isVariantOutline && isColorPaletteGray ? "border.muted" : ""}
       rounded={themeConfig.radii.component}
       fontSize={"md"}
       _focusVisible={

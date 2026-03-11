@@ -35,7 +35,7 @@ export default function Page() {
           <P
             fontSize={"xl"}
             fontWeight={"medium"}
-            color={"ibody"}
+            color={"fg.ibody"}
             textAlign={"center"}
           >
             {pluckString(t, `msg_welcome_${variantNumber}`)}

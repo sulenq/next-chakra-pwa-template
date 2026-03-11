@@ -49,7 +49,7 @@ export const FileItem = (props: FileItemProps) => {
             {idx !== undefined && (
               <Circle
                 size={"16px"}
-                bg={"body"}
+                bg={"bg.body"}
                 border={"1px solid"}
                 borderColor={"border.subtle"}
                 shadow={"soft"}

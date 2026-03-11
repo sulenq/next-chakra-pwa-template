@@ -53,7 +53,7 @@ export const DrawerContent = forwardRef<HTMLDivElement, DrawerContentProps>(
         >
           <ChakraDrawer.Content
             ref={ref}
-            bg={"body"}
+            bg={"bg.body"}
             justifyContent={"end"}
             shadow={"none"}
             onClick={(e) => e.stopPropagation()}

@@ -209,7 +209,7 @@ const Toolbar = (props: PDFToolbarProps) => {
   const { viewer, utils, ...restProps } = props;
 
   return (
-    <HScroll className={"noScroll"} bg={"body"} {...restProps}>
+    <HScroll className={"noScroll"} bg={"bg.body"} {...restProps}>
       <HStack minW={"full"} w={"max"} gap={0} p={2}>
         {viewer.mode === "single" && (
           <PageControl

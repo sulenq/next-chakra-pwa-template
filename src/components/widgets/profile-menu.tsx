@@ -99,18 +99,21 @@ export const ProfileMenu = (props: ProfileMenuProps) => {
     <CContainer
       rounded={themeConfig.radii.container}
       overflow={"clip"}
-      color={"ibody"}
+      bg={"bg.body"}
+      color={"fg.ibody"}
       {...restProps}
     >
       <CContainer>
-        <Img
-          src={user?.avatar || `${SVGS_PATH}/no-avatar.svg`}
-          alt="avatar"
-          aspectRatio={1}
-          rounded={themeConfig.radii.component}
-        />
+        <CContainer p={1} pb={0}>
+          <Img
+            src={user?.avatar || `${SVGS_PATH}/no-avatar.svg`}
+            alt="avatar"
+            aspectRatio={1}
+            rounded={themeConfig.radii.component}
+          />
+        </CContainer>
 
-        <CContainer bg={"body"} p={4} borderColor={"border.muted"}>
+        <CContainer bg={"bg.body"} p={4} borderColor={"border.muted"}>
           <P fontWeight={"semibold"}>{user?.name || "Signed out"}</P>
           <P color={"fg.subtle"}>{user?.email || user?.username || "-"}</P>
         </CContainer>
