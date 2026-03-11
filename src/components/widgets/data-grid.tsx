@@ -459,7 +459,6 @@ const DataGridDisplay = (props: DataGridProps) => {
         pt={pt}
         pb={pb}
         rounded={themeConfig.radii.container}
-        // pr={`calc(12px - ${FIREFOX_SCROLL_Y_CLASS_PR_PREFIX})`}
       >
         <SimpleGrid
           templateColumns={`repeat(auto-fill, minmax(${minChildWidth}, 1fr))`}
