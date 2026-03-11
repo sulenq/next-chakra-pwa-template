@@ -18,6 +18,7 @@ import {
   PageContainer,
   PageContent,
   PageHeader,
+  TopBar,
   usePageContainerContext,
 } from "@/components/widgets/page-shell";
 import { SimpleDisclosure } from "@/components/widgets/simple-disclosure";
@@ -579,6 +580,8 @@ const PageScreen = () => {
 
   return (
     <>
+      <TopBar />
+
       <PageHeader justify={"space-between"}>
         <HStack>
           {!isSmContainer && (

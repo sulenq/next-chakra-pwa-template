@@ -24,7 +24,7 @@ import {
   DesktopNavTooltip,
   MobileNavLink,
 } from "@/components/widgets/navs";
-import { NavBreadcrumb, TopBar } from "@/components/widgets/page-shell";
+import { NavBreadcrumb } from "@/components/widgets/page-shell";
 import { ProfileMenuTrigger } from "@/components/widgets/profile-menu";
 import { Today } from "@/components/widgets/today";
 import { APP } from "@/constants/_meta";
@@ -333,6 +333,7 @@ const DesktopLayout = (props: any) => {
         w={isNavsExpanded ? "250px" : "60px"}
         // bg={isNavsExpanded ? "item" : DESKTOP_NAVS_BG}
         // borderRight={isNavsExpanded ? "1px solid" : ""}
+        borderRight={"1px solid"}
         bg={"body"}
         borderColor={"border.muted"}
         transition={"200ms"}
@@ -521,8 +522,6 @@ const DesktopLayout = (props: any) => {
           borderColor={"border.muted"}
           overflow={"auto"}
         >
-          <TopBar />
-
           {children}
         </CContainer>
       </CContainer>
