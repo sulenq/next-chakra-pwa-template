@@ -51,11 +51,7 @@ export const Clock = (props: ClockPropsProps) => {
     <HStack {...restProps}>
       <P fontSize={props?.fontSize}>{time}</P>
 
-      {showTimezone && (
-        <P color={"fg.subtle"} fontSize={props?.fontSize}>
-          {tz.localAbbr}
-        </P>
-      )}
+      {showTimezone && <P fontSize={props?.fontSize}>{tz.localAbbr}</P>}
     </HStack>
   );
 };

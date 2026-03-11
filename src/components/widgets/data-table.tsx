@@ -12,6 +12,7 @@ import {
   FormattedTableRow,
   RowOptionsTableOptionGenerator,
 } from "@/constants/interfaces";
+import { R_SPACING_MD } from "@/constants/styles";
 import { Type__SortHandler } from "@/constants/types";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
 import { useContainerDimension } from "@/hooks/useContainerDimension";
@@ -62,6 +63,13 @@ export const DataTableDisplay = (props: DataTableProps) => {
     totalPage,
     footer,
     contentContainerProps,
+    p,
+    px,
+    py,
+    pl = R_SPACING_MD,
+    pr = R_SPACING_MD,
+    pt,
+    pb,
     ...restProps
   } = props;
 
@@ -241,6 +249,7 @@ export const DataTableDisplay = (props: DataTableProps) => {
                   <Center
                     h={thHeight}
                     px={"10px"}
+                    pl={pl}
                     borderBottom={"1px solid"}
                     borderColor={thBorderColor}
                     bg={thBg}
@@ -335,7 +344,7 @@ export const DataTableDisplay = (props: DataTableProps) => {
                     h={thHeight}
                     bg={thBg}
                     px={cellPx}
-                    pr={"18px"}
+                    pr={pr}
                     py={3}
                     borderBottom={"1px solid"}
                     borderColor={thBorderColor}
@@ -363,7 +372,6 @@ export const DataTableDisplay = (props: DataTableProps) => {
                 <Table.Row
                   key={rowIdx}
                   role="group"
-                  px={2}
                   position={"relative"}
                   bg={"body"}
                   {...trBodyProps}
@@ -384,6 +392,7 @@ export const DataTableDisplay = (props: DataTableProps) => {
                         h={tdMinH}
                         bg={isRowSelected ? selectedColor : tdBg}
                         px={"10px"}
+                        pl={pl}
                         cursor={"pointer"}
                         borderBottom={
                           rowIdx !== resolvedTableData.length - 1
@@ -479,6 +488,7 @@ export const DataTableDisplay = (props: DataTableProps) => {
                       <Center
                         h={tdMinH}
                         px={"10px"}
+                        pr={pr}
                         bg={isRowSelected ? selectedColor : tdBg}
                         borderBottom={
                           rowIdx !== resolvedTableData.length - 1

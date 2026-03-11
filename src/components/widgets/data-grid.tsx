@@ -20,6 +20,7 @@ import {
   FormattedTableRow,
   Interface__DataProps,
 } from "@/constants/interfaces";
+import { R_SPACING_MD } from "@/constants/styles";
 import { useLocale } from "@/contexts/useLocale";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
 import { useIsSmScreenWidth } from "@/hooks/useIsSmScreenWidth";
@@ -328,6 +329,13 @@ const DataGridDisplay = (props: DataGridProps) => {
     totalPage,
     footer,
     minChildWidth = "180px",
+    p,
+    px = R_SPACING_MD,
+    py,
+    pl,
+    pr,
+    pt = 2,
+    pb = R_SPACING_MD,
     ...restProps
   } = props;
 
@@ -384,6 +392,7 @@ const DataGridDisplay = (props: DataGridProps) => {
   return (
     <CContainer flex={1} overflowY={"auto"} {...restProps}>
       <CContainer flex={1} overflowY={"auto"} pos={"relative"}>
+        {/* Batch Options */}
         <Presence
           present={shouldShowBatch}
           animationName={{ _open: "fade-in", _closed: "fade-out" }}
@@ -439,10 +448,15 @@ const DataGridDisplay = (props: DataGridProps) => {
         </Presence>
 
         <CContainer
-          className="scrollY"
+          className={"scrollY"}
           flex={1}
-          pb={3}
-          px={3}
+          p={p}
+          px={px}
+          py={py}
+          pl={pl}
+          pr={pr}
+          pt={pt}
+          pb={pb}
           // pr={`calc(12px - ${FIREFOX_SCROLL_Y_CLASS_PR_PREFIX})`}
         >
           <SimpleGrid
@@ -498,6 +512,7 @@ const DataGridDisplay = (props: DataGridProps) => {
         <>
           <HStack
             p={3}
+            px={R_SPACING_MD}
             borderTop={"1px solid"}
             borderColor={footerBorderColor}
             justify={"space-between"}

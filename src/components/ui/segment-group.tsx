@@ -29,7 +29,7 @@ export const Segmented = (props: SegmentedProps) => {
     <SegmentGroup.Root
       value={inputValue}
       onValueChange={(e) => onChange?.(e.value as string)}
-      bg={"body"}
+      bg={"transparent"}
       rounded={themeConfig.radii.component}
       overflow={"clip"}
       shadow={"none"}

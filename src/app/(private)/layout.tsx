@@ -32,7 +32,6 @@ import { OTHER_PRIVATE_NAV_GROUPS, PRIVATE_NAV_GROUPS } from "@/constants/navs";
 import {
   BASE_ICON_BOX_SIZE,
   DESKTOP_CONTENT_CONTAINER_BG,
-  DESKTOP_NAVS_BG,
   DESKTOP_NAVS_COLOR,
   DESKTOP_NAVS_POPOVER_MAIN_AXIS,
   DESKTOP_NAVS_TOOLTIP_MAIN_AXIS,
@@ -334,7 +333,7 @@ const DesktopLayout = (props: any) => {
         w={isNavsExpanded ? "250px" : "60px"}
         // bg={isNavsExpanded ? "item" : DESKTOP_NAVS_BG}
         // borderRight={isNavsExpanded ? "1px solid" : ""}
-        bg={DESKTOP_NAVS_BG}
+        bg={"item"}
         borderColor={"border.muted"}
         transition={"200ms"}
       >

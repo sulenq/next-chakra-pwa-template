@@ -30,7 +30,7 @@ export const Limitation = (props: LimitationTableDataProps) => {
   return (
     <MenuRoot>
       <MenuTrigger asChild>
-        <Btn clicky={false} size={"xs"} variant={"ghost"} pl={"8px"} pr={"6px"}>
+        <Btn clicky={false} size={"xs"} variant={"ghost"} pl={"8px"} pr={"4px"}>
           <HStack>
             <P>{t.show}</P>
             <P>{`${limit}`}</P>

@@ -12,7 +12,7 @@ import { MContainer, MContainerProps } from "@/components/widgets/m-container";
 import ToggleTip from "@/components/widgets/toggle-tip";
 import { Today } from "@/components/widgets/today";
 import { Interface__Nav } from "@/constants/interfaces";
-import { TOP_BAR_H } from "@/constants/styles";
+import { R_SPACING_MD, TOP_BAR_H } from "@/constants/styles";
 import { useBreadcrumbs } from "@/contexts/useBreadcrumbs";
 import { useLocale } from "@/contexts/useLocale";
 import { useContainerDimension } from "@/hooks/useContainerDimension";
@@ -143,7 +143,7 @@ export const TopBar = () => {
       flexShrink={0}
       h={"52px"}
       gap={4}
-      px={4}
+      px={R_SPACING_MD}
       justify={"space-between"}
       bg={"body"}
       // borderBottom={"1px solid"}
@@ -155,7 +155,7 @@ export const TopBar = () => {
       />
 
       <HStack flexShrink={0} gap={4}>
-        <HStack flexShrink={0}>
+        <HStack flexShrink={0} color={"fg.muted"}>
           <Calendar.Trigger>
             <Today fontSize={FONT_SIZE} />
           </Calendar.Trigger>
@@ -254,7 +254,13 @@ export const PageHeader = (props: StackProps) => {
   const resolvedTitle = title || navTitle;
 
   return (
-    <HStack flexShrink={0} w={"full"} minH={TOP_BAR_H} px={4} {...restProps}>
+    <HStack
+      flexShrink={0}
+      w={"full"}
+      minH={TOP_BAR_H}
+      px={R_SPACING_MD}
+      {...restProps}
+    >
       <PageTitle>{resolvedTitle}</PageTitle>
 
       {children}

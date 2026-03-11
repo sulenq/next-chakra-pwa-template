@@ -90,9 +90,10 @@ export const HScroll = forwardRef<HTMLDivElement, HScrollProps>(
     return (
       <CContainer
         ref={hStackRef}
-        overflowY="hidden"
-        w="full"
         className={`noScroll ${props.className ?? ""}`}
+        flexShrink={0}
+        w={"full"}
+        overflowY={"hidden"}
         {...props}
       >
         {children}

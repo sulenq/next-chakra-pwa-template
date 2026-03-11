@@ -19,6 +19,7 @@ import {
 } from "@/components/widgets/page-shell";
 import { DUMMY_DASHBOARD_DATA } from "@/constants/dummyData";
 import { getMonthNames } from "@/constants/months";
+import { R_SPACING_MD } from "@/constants/styles";
 import { Type__ChartData } from "@/constants/types";
 import { useLocale } from "@/contexts/useLocale";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
@@ -160,7 +161,7 @@ const Overview = (props: OverviewProps) => {
   ];
 
   return (
-    <CContainer px={4}>
+    <CContainer px={R_SPACING_MD}>
       <HStack minH={"36px"} mt={2} mb={3}>
         <P fontSize={"xl"} fontWeight={"semibold"}>
           Overview
@@ -508,7 +509,7 @@ const Usage = (props: any) => {
   const { isSmContainer } = usePageContainerContext();
 
   return (
-    <CContainer px={4}>
+    <CContainer px={R_SPACING_MD}>
       <HStack minH={"36px"} mt={2} mb={3}>
         <P fontSize={"xl"} fontWeight={"semibold"}>
           Usage
@@ -550,7 +551,7 @@ const PageScreen = () => {
   };
 
   return (
-    <PageContent pb={4}>
+    <PageContent pb={R_SPACING_MD}>
       {initialLoading && render.loading}
       {!initialLoading && (
         <>
