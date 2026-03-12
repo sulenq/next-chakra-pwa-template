@@ -35,7 +35,7 @@ const customConfig = defineConfig({
 
         neutral: {
           50: { value: "#ffffff" },
-          100: { value: "#f0f0f0" },
+          100: { value: "#f7f7f7" },
           200: { value: "#ececee" },
           300: { value: "#dcdcdc" },
           400: { value: "#b5b5b5" },
