@@ -195,7 +195,6 @@ export const TimePickerInput = (props: TimePickerInputProps) => {
           gap={4}
           variant={variant}
           w={"full"}
-          border={"1px solid"}
           borderColor={
             resolvedInvalid
               ? "border.error"

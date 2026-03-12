@@ -10,7 +10,7 @@ nextjs-portal {
 }
 
 :root {
-  font-family: var(--font-figtree), sans-serif;
+  font-family: var(--font-plus-jakarta-sans), sans-serif;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -20,7 +20,7 @@ nextjs-portal {
   font-optical-sizing: auto;
   box-sizing: border-box !important;
   font-family:
-    "Figtree",
+    "Plus Jakarta Sans",
     system-ui,
     -apple-system,
     BlinkMacSystemFont,

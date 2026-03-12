@@ -1,11 +1,11 @@
+import "@/app/globals.css";
 import { Provider } from "@/components/ui/provider";
 import { Toaster } from "@/components/ui/toaster";
-import "@/app/globals.css";
 import ClientRoot from "@/components/widgets/client-root";
-import { Metadata, Viewport } from "next";
-import { Figtree } from "next/font/google";
 import { APP } from "@/constants/_meta";
 import { disclosurePrefixId } from "@/utils/disclosure";
+import { Metadata, Viewport } from "next";
+import { Plus_Jakarta_Sans } from "next/font/google";
 
 export const metadata: Metadata = {
   applicationName: APP.name,
@@ -52,7 +52,7 @@ export const viewport: Viewport = {
   userScalable: false,
 };
 
-const figtree = Figtree({
+const figtree = Plus_Jakarta_Sans({
   subsets: ["latin"],
   display: "swap",
 });
