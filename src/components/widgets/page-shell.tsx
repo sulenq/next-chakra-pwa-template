@@ -12,7 +12,7 @@ import { MContainerProps } from "@/components/widgets/m-container";
 import { Today } from "@/components/widgets/today";
 import ToggleTip from "@/components/widgets/toggle-tip";
 import { Interface__Nav } from "@/constants/interfaces";
-import { R_SPACING_MD, TOP_BAR_H } from "@/constants/styles";
+import { GAP, R_SPACING_MD, TOP_BAR_H } from "@/constants/styles";
 import { useBreadcrumbs } from "@/contexts/useBreadcrumbs";
 import { useLocale } from "@/contexts/useLocale";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
@@ -128,7 +128,7 @@ export const NavBreadcrumb = (props: any) => {
 
 export const TopBar = () => {
   // Contexts
-  const { themeConfig } = useThemeConfig();
+  // const { themeConfig } = useThemeConfig();
 
   // Hooks
   const { sw } = useScreen();
@@ -140,15 +140,14 @@ export const TopBar = () => {
     sw < 960 ? [activeNavs[activeNavs.length - 1]] : activeNavs;
   const backPath = last(activeNavs)?.backPath;
 
-  useEffect(() => {}, [activeNavs]);
-
   return (
     <HStack
       flexShrink={0}
       justify={"space-between"}
       gap={4}
       h={"52px"}
-      px={themeConfig.radii.container}
+      // px={`calc(${themeConfig.radii.container} + ${GAP})`}
+      px={GAP}
       // borderBottom={"1px solid"}
       borderColor={"border.muted"}
     >

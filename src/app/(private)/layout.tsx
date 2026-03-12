@@ -34,11 +34,11 @@ import {
   DESKTOP_NAVS_COLOR,
   DESKTOP_NAVS_POPOVER_MAIN_AXIS,
   DESKTOP_NAVS_TOOLTIP_MAIN_AXIS,
+  GAP,
   MOBILE_CONTENT_CONTAINER_BG,
   MOBILE_NAV_LABEL_FONT_SIZE,
   MOBILE_NAVS_COLOR,
   MOBILE_POPOVER_MAIN_AXIS,
-  R_SPACING_MD,
   TOP_BAR_H,
 } from "@/constants/styles";
 import { useLocale } from "@/contexts/useLocale";
@@ -319,6 +319,9 @@ const DesktopLayout = (props: any) => {
   // States
   const user = getUserData();
 
+  // SX
+  // const rSpacing = useBreakpointValue(R_SPACING_MD);
+
   return (
     <HStack
       align={"stretch"}
@@ -331,8 +334,8 @@ const DesktopLayout = (props: any) => {
       {/* Sidebar */}
       <CContainer
         flexShrink={0}
-        w={isNavsExpanded ? "250px" : ["74px", null, "80px"]}
-        p={R_SPACING_MD}
+        w={isNavsExpanded ? "250px" : `calc(60px + ${GAP})`}
+        p={GAP}
         pr={"0 !important"}
         overflowY={"auto"}
       >

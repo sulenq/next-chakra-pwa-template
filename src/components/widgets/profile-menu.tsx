@@ -12,6 +12,7 @@ import { AppIcon } from "@/components/widgets/app-icon";
 import { Confirmation } from "@/components/widgets/confirmation";
 import { LucideIcon } from "@/components/widgets/icon";
 import { DotIndicator } from "@/components/widgets/indicator";
+import { AUTH_API_SIGNOUT } from "@/constants/apis";
 import { SVGS_PATH } from "@/constants/paths";
 import { BASE_ICON_BOX_SIZE } from "@/constants/styles";
 import useADM from "@/contexts/useADM";
@@ -28,7 +29,6 @@ import { EclipseIcon, LogOutIcon, SettingsIcon, UserIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useRef, useState } from "react";
 
-const SIGNOUT_EP = "/api/rski/dashboard/logout";
 const MENUS = [
   {
     labelKey: "my_profile",
@@ -72,10 +72,10 @@ export const ProfileMenu = (props: ProfileMenuProps) => {
   function onSignout() {
     back();
 
-    const url = SIGNOUT_EP;
+    const url = AUTH_API_SIGNOUT;
     const config = {
       url,
-      method: "GET",
+      method: "POST",
     };
 
     req({
@@ -107,7 +107,7 @@ export const ProfileMenu = (props: ProfileMenuProps) => {
         <CContainer p={1} pb={0}>
           <Img
             src={user?.avatar || `${SVGS_PATH}/no-avatar.svg`}
-            alt="avatar"
+            alt={"avatar"}
             aspectRatio={1}
             rounded={themeConfig.radii.component}
           />
@@ -224,7 +224,12 @@ export const ProfileMenuTrigger = (props: ProfileMenuTriggerProps) => {
         <CContainer w={"fit"} onClick={handleOpen} {...restProps} />
       </Popover.Trigger>
 
-      <Popover.Content ref={containerRef} w={"225px"} zIndex={10}>
+      <Popover.Content
+        ref={containerRef}
+        w={"225px"}
+        // border={"none"}
+        zIndex={10}
+      >
         <ProfileMenu handleClose={handleClose} />
       </Popover.Content>
     </Popover.Root>

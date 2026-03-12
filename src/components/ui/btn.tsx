@@ -39,7 +39,11 @@ export const Btn = forwardRef<HTMLButtonElement, BtnProps>((props, ref) => {
       className={resolvedClassName}
       colorPalette={colorPalette}
       size={size || (MAIN_BUTTON_SIZE as any)}
-      borderColor={isVariantOutline && isColorPaletteGray ? "border.muted" : ""}
+      borderColor={
+        restProps.borderColor || (isVariantOutline && isColorPaletteGray)
+          ? "border.muted"
+          : ""
+      }
       rounded={themeConfig.radii.component}
       fontSize={"md"}
       _focusVisible={
@@ -60,7 +64,11 @@ export const Btn = forwardRef<HTMLButtonElement, BtnProps>((props, ref) => {
       className={resolvedClassName}
       colorPalette={colorPalette}
       size={size || (MAIN_BUTTON_SIZE as any)}
-      borderColor={isVariantOutline && isColorPaletteGray ? "border.muted" : ""}
+      borderColor={
+        restProps.borderColor || (isVariantOutline && isColorPaletteGray)
+          ? "border.muted"
+          : ""
+      }
       fontSize={"md"}
       fontWeight={"medium"}
       rounded={themeConfig.radii.component}

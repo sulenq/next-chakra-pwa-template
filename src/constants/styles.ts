@@ -19,7 +19,8 @@ export const BASE_ICON_BOX_SIZE = 4.5;
 export const MENU_ICON_BOX_SIZE = 4.5;
 
 // Spacing
-export const R_SPACING_MD = [4, null, 5];
+export const R_SPACING_MD = ["4px", null, "8px"];
+export const GAP = "8px";
 
 // Positioning
 export const MOBILE_POPOVER_MAIN_AXIS = 22;

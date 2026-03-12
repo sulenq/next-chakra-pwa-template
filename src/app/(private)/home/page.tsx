@@ -20,6 +20,7 @@ import {
 } from "@/components/widgets/page-shell";
 import { DUMMY_DASHBOARD_DATA } from "@/constants/dummyData";
 import { getMonthNames } from "@/constants/months";
+import { R_SPACING_MD } from "@/constants/styles";
 import { Type__ChartData } from "@/constants/types";
 import { useLocale } from "@/contexts/useLocale";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
@@ -61,7 +62,6 @@ const DEFAULT_FILTER = {
   endDate: null,
   year: new Date().getFullYear(),
 };
-const GAP = 1;
 
 interface OverviewItemProps extends StackProps {
   item: {
@@ -171,7 +171,7 @@ const Overview = (props: OverviewProps) => {
 
       <SimpleGrid
         columns={isSmContainer ? 2 : 3}
-        gap={GAP}
+        gap={R_SPACING_MD}
         pos={"relative"}
         {...restProps}
       >
@@ -517,7 +517,11 @@ const Usage = (props: any) => {
         </P>
       </HStack>
 
-      <SimpleGrid columns={isSmContainer ? 1 : 2} gap={GAP} {...restProps}>
+      <SimpleGrid
+        columns={isSmContainer ? 1 : 2}
+        gap={R_SPACING_MD}
+        {...restProps}
+      >
         <Chart1 data={data} year={filter.year} />
 
         <Chart1 data={data} year={filter.year} />

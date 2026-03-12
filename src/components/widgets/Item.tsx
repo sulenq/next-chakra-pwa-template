@@ -20,7 +20,7 @@ const ItemContainer = forwardRef<HTMLDivElement, ItemContainerProps>(
       scrollY = false,
       className,
       roundedless = false,
-      borderless = false,
+      borderless = true,
       ...restProps
     } = props;
 
@@ -34,7 +34,7 @@ const ItemContainer = forwardRef<HTMLDivElement, ItemContainerProps>(
         bg={"bg.body"}
         rounded={roundedless ? "" : themeConfig.radii.container}
         border={borderless ? "" : "1px solid"}
-        borderColor={"border.muted"}
+        borderColor={"border.subtle"}
         {...restProps}
       >
         {children}
