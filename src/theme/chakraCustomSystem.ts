@@ -35,7 +35,7 @@ const customConfig = defineConfig({
 
         neutral: {
           50: { value: "#ffffff" },
-          100: { value: "#f7f7f7" },
+          100: { value: "#f5f5f5" },
           200: { value: "#ececee" },
           300: { value: "#dcdcdc" },
           400: { value: "#b5b5b5" },
@@ -44,11 +44,11 @@ const customConfig = defineConfig({
           700: { value: "#4f4f4f" },
           800: { value: "#303030" },
           900: { value: "#181818" },
-          950: { value: "#131313" },
+          950: { value: "#101010" },
         },
 
         gray: {
-          50: { value: "#f8f8f8" },
+          50: { value: "#fafafa" },
           100: { value: "#f1f1f1" },
           200: { value: "#eaeaea" },
           300: { value: "#d4d4d4" },
