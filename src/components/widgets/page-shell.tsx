@@ -160,7 +160,7 @@ export const TopBar = (props: StackProps) => {
       <HStack flexShrink={0} gap={1}>
         <Btn
           iconButton
-          variant={"subtle"}
+          variant={"ghost"}
           _hover={{
             bg: "d1",
           }}
@@ -170,7 +170,7 @@ export const TopBar = (props: StackProps) => {
 
         <Btn
           iconButton
-          variant={"subtle"}
+          variant={"ghost"}
           _hover={{
             bg: "d1",
           }}

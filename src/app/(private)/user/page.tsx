@@ -15,6 +15,7 @@ import FeedbackNoData from "@/components/widgets/feedback-no-data";
 import FeedbackRetry from "@/components/widgets/feedback-retry";
 import { HScroll } from "@/components/widgets/h-scroll";
 import { LucideIcon } from "@/components/widgets/icon";
+import { Item } from "@/components/widgets/item";
 import {
   PageContainer,
   PageContent,
@@ -569,7 +570,6 @@ const Data = (props: any) => {
 const PageScreen = () => {
   // Contexts
   const { t } = useLocale();
-  const { themeConfig } = useThemeConfig();
 
   // Hooks
   const { isSmContainer } = usePageContainerContext();
@@ -584,11 +584,7 @@ const PageScreen = () => {
     <CContainer overflowY={"auto"} gap={GAP}>
       <TopBar />
 
-      <CContainer
-        bg={"body"}
-        rounded={themeConfig.radii.container}
-        overflowY={"auto"}
-      >
+      <Item.Container overflowY={"auto"}>
         <PageHeader justify={"space-between"}>
           <HStack>
             {!isSmContainer && (
@@ -622,7 +618,7 @@ const PageScreen = () => {
             isSmContainer={isSmContainer}
           />
         </PageContent>
-      </CContainer>
+      </Item.Container>
     </CContainer>
   );
 };

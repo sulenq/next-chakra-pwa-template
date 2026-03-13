@@ -342,12 +342,12 @@ const DesktopLayout = (props: any) => {
       >
         <CContainer
           flex={1}
-          bg={"bg.body"}
+          // bg={"bg.body"}
           // bg={isNavsExpanded ? "item" : DESKTOP_NAVS_BG}
           // borderRight={isNavsExpanded ? "1px solid" : ""}
           // borderRight={"1px solid"}
-          borderColor={"border.muted"}
-          rounded={themeConfig.radii.container}
+          // borderColor={"border.muted"}
+          // rounded={themeConfig.radii.container}
         >
           {/* Logo & Sidebar Toggle */}
           <CContainer

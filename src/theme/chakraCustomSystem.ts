@@ -25,12 +25,12 @@ const customConfig = defineConfig({
         light: { value: "#fcfcfc" },
         dark: { value: "#151515" },
         darktrans: { value: "#202020cf" },
-        d0: { value: "#8a8a8a0f" },
-        d1: { value: "#8a8a8a15" },
-        d2: { value: "#8a8a8a25" },
-        d3: { value: "#8a8a8a35" },
-        d4: { value: "#8a8a8a45" },
-        dt: { value: "#858585ff" },
+        d0: { value: "#8693a30f" },
+        d1: { value: "#8693a315" },
+        d2: { value: "#8693a325" },
+        d3: { value: "#8693a335" },
+        d4: { value: "#8693a345" },
+        dt: { value: "#8693a3ff" },
         placeholder: { value: "#96969691" },
 
         neutral: {
@@ -603,14 +603,14 @@ const customConfig = defineConfig({
         gray: {
           subtle: {
             value: {
-              base: "{colors.gray.50} !important",
-              _dark: "{colors.gray.950} !important",
+              base: "{colors.d1} !important",
+              _dark: "{colors.d1} !important",
             },
           },
           muted: {
             value: {
-              base: "{colors.gray.100} !important",
-              _dark: "{colors.gray.900} !important",
+              base: "{colors.d2} !important",
+              _dark: "{colors.d2} !important",
             },
           },
           emphasized: {
