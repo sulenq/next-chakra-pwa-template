@@ -17,14 +17,13 @@ import { AppIcon } from "@/components/widgets/app-icon";
 import { Clock } from "@/components/widgets/clock";
 import { HScroll } from "@/components/widgets/h-scroll";
 import { BottomIndicator, LeftIndicator } from "@/components/widgets/indicator";
-import { Item } from "@/components/widgets/item";
 import { Logo } from "@/components/widgets/logo";
 import {
   DesktopNavs,
   DesktopNavTooltip,
   MobileNavLink,
 } from "@/components/widgets/navs";
-import { NavBreadcrumb } from "@/components/widgets/page-shell";
+import { AnimatedBg, NavBreadcrumb } from "@/components/widgets/page-shell";
 import { ProfileMenuTrigger } from "@/components/widgets/profile-menu";
 import { Today } from "@/components/widgets/today";
 import { APP } from "@/constants/_meta";
@@ -323,210 +322,224 @@ const DesktopLayout = (props: any) => {
   // const rSpacing = useBreakpointValue(R_SPACING_MD);
 
   return (
-    <HStack
-      align={"stretch"}
-      gap={0}
-      h={"100dvh"}
-      bg={"bg.canvas"}
-      overflowY={"auto"}
-      {...restProps}
-    >
-      {/* Sidebar */}
-      <CContainer
-        flexShrink={0}
-        w={isNavsExpanded ? "250px" : `calc(60px + ${GAP})`}
-        gap={GAP}
-        p={GAP}
-        pr={"0 !important"}
-        overflowY={"auto"}
-        transition={"300ms ease"}
+    <CContainer pos={"relative"}>
+      {/* BG */}
+      <AnimatedBg pos={"absolute"} top={0} left={0} zIndex={1} />
+
+      <HStack
+        align={"stretch"}
+        gap={0}
+        h={"100dvh"}
+        bg={"bg.canvas"}
+        overflow={"clip"}
+        pos={"relative"}
+        zIndex={2}
+        {...restProps}
       >
-        <Item.Container flex={1}>
-          {/* Logo & Sidebar Toggle */}
-          <Item.Container
-            justify={"center"}
-            gap={isNavsExpanded ? 1 : 5}
-            h={isNavsExpanded ? TOP_BAR_H : "fit"}
-            p={3}
-          >
-            {/* Logo Only */}
-            {!isNavsExpanded && (
-              <NavLink to="/">
-                <Center w={"36px"} h={"28px"} ml={"1px"}>
-                  <Logo size={18} />
-                </Center>
-              </NavLink>
-            )}
-
-            <HStack justify={"space-between"}>
-              {/* Logo & App Name */}
-              {isNavsExpanded && (
+        {/* Sidebar */}
+        <CContainer
+          flexShrink={0}
+          w={isNavsExpanded ? "250px" : `calc(60px + ${GAP})`}
+          p={GAP}
+          pr={"0 !important"}
+          overflowY={"auto"}
+          transition={"300ms ease"}
+        >
+          <CContainer flex={1}>
+            {/* Logo & Sidebar Toggle */}
+            <CContainer
+              justify={"center"}
+              gap={isNavsExpanded ? 1 : 5}
+              h={isNavsExpanded ? TOP_BAR_H : "fit"}
+              p={3}
+            >
+              {/* Logo Only */}
+              {!isNavsExpanded && (
                 <NavLink to="/">
-                  <HStack ml={"6px"} gap={3}>
+                  <Center w={"36px"} h={"28px"} ml={"1px"}>
                     <Logo size={18} />
-
-                    <P
-                      w={"full"}
-                      fontSize={16}
-                      fontWeight={"semibold"}
-                      lineClamp={1}
-                    >
-                      {APP.name}
-                    </P>
-                  </HStack>
+                  </Center>
                 </NavLink>
               )}
 
-              {/* Toggle Side Navs */}
-              <Tooltip
-                content={isNavsExpanded ? t.minimize : t.maximize}
-                positioning={{
-                  placement: "right",
-                  offset: {
-                    mainAxis: DESKTOP_NAVS_TOOLTIP_MAIN_AXIS,
-                  },
-                }}
-              >
-                <Btn
-                  order={isNavsExpanded ? 2 : 1}
-                  iconButton
-                  clicky={false}
-                  variant={"ghost"}
-                  w={"36px"}
-                  color={DESKTOP_NAVS_COLOR}
-                  onClick={toggleNavsExpanded}
-                >
-                  <AppIcon
-                    icon={isNavsExpanded ? SidebarCloseIcon : SidebarOpenIcon}
-                    boxSize={BASE_ICON_BOX_SIZE}
-                  />
-                </Btn>
-              </Tooltip>
-            </HStack>
-          </Item.Container>
+              <HStack justify={"space-between"}>
+                {/* Logo & App Name */}
+                {isNavsExpanded && (
+                  <NavLink to="/">
+                    <HStack ml={"6px"} gap={3}>
+                      <Logo size={18} />
 
-          <Item.Container flex={1}>
-            <DesktopNavs
-              navs={PRIVATE_NAV_GROUPS}
-              navsExpanded={isNavsExpanded}
-              addonElement={
-                <CContainer gap={1} mt={"auto"}>
-                  <NavLink key={"/master-data"} to={"/master-data"} w={"full"}>
-                    <DesktopNavTooltip
-                      content={pluckString(t, "navs.master_data")}
-                    >
-                      <Btn
-                        clicky={false}
-                        justifyContent={"start"}
-                        gap={4}
-                        variant={
-                          pathname.includes("/master-data") ? "subtle" : "ghost"
-                        }
-                        colorPalette={
-                          pathname.includes("/master-data")
-                            ? themeConfig.colorPalette
-                            : ""
-                        }
-                        px={2}
-                        pos={"relative"}
+                      <P
+                        w={"full"}
+                        fontSize={16}
+                        fontWeight={"semibold"}
+                        lineClamp={1}
                       >
-                        {pathname.includes("/master-data") && <LeftIndicator />}
-
-                        <AppIcon
-                          icon={ServerIcon}
-                          color={
-                            pathname.includes("/master-data")
-                              ? ""
-                              : DESKTOP_NAVS_COLOR
-                          }
-                        />
-
-                        {isNavsExpanded && (
-                          <P lineClamp={1} textAlign={"left"}>
-                            {pluckString(t, "navs.master_data")}
-                          </P>
-                        )}
-                      </Btn>
-                    </DesktopNavTooltip>
+                        {APP.name}
+                      </P>
+                    </HStack>
                   </NavLink>
-                </CContainer>
-              }
-              flex={1}
-              mb={1}
-            />
-          </Item.Container>
-        </Item.Container>
+                )}
 
-        <Item.Container p={3}>
-          <ProfileMenuTrigger
-            w={"full"}
-            popoverRootProps={{
-              positioning: {
-                placement: "right-end",
-                offset: {
-                  mainAxis: DESKTOP_NAVS_POPOVER_MAIN_AXIS,
-                },
-              },
-            }}
-          >
-            <HStack
-              gap={4}
-              w={isNavsExpanded ? "full" : "36px"}
-              h={isNavsExpanded ? "" : "36px"}
-              px={"6px"}
-              py={2}
-              rounded={themeConfig.radii.component}
-              cursor={"pointer"}
-              _hover={{
-                bg: "gray.subtle",
-              }}
-              justify={isNavsExpanded ? "" : "center"}
-              transition={"200ms"}
-              pos={"relative"}
-            >
-              <Avatar
-                src={imgUrl(user?.avatar?.filePath)}
-                name={user?.name}
-                size={isNavsExpanded ? "md" : "2xs"}
-                mr={"auto"}
-              />
+                {/* Toggle Side Navs */}
+                <Tooltip
+                  content={isNavsExpanded ? t.minimize : t.maximize}
+                  positioning={{
+                    placement: "right",
+                    offset: {
+                      mainAxis: DESKTOP_NAVS_TOOLTIP_MAIN_AXIS,
+                    },
+                  }}
+                >
+                  <Btn
+                    order={isNavsExpanded ? 2 : 1}
+                    iconButton
+                    clicky={false}
+                    variant={"ghost"}
+                    w={"36px"}
+                    color={DESKTOP_NAVS_COLOR}
+                    onClick={toggleNavsExpanded}
+                  >
+                    <AppIcon
+                      icon={isNavsExpanded ? SidebarCloseIcon : SidebarOpenIcon}
+                      boxSize={BASE_ICON_BOX_SIZE}
+                    />
+                  </Btn>
+                </Tooltip>
+              </HStack>
+            </CContainer>
 
-              {isNavsExpanded && (
-                <>
-                  <CContainer>
-                    <P lineClamp={1} fontWeight={"semibold"}>
-                      {user?.name || user?.email || "Signed out"}
-                    </P>
-                    <P lineClamp={1} color={"fg.subtle"}>
-                      {user?.name ? user?.email || user?.username : "-"}
-                    </P>
+            <CContainer flex={1}>
+              <DesktopNavs
+                navs={PRIVATE_NAV_GROUPS}
+                navsExpanded={isNavsExpanded}
+                addonElement={
+                  <CContainer gap={1} mt={"auto"}>
+                    <NavLink
+                      key={"/master-data"}
+                      to={"/master-data"}
+                      w={"full"}
+                    >
+                      <DesktopNavTooltip
+                        content={pluckString(t, "navs.master_data")}
+                      >
+                        <Btn
+                          clicky={false}
+                          justifyContent={"start"}
+                          gap={4}
+                          variant={
+                            pathname.includes("/master-data")
+                              ? "subtle"
+                              : "ghost"
+                          }
+                          colorPalette={
+                            pathname.includes("/master-data")
+                              ? themeConfig.colorPalette
+                              : ""
+                          }
+                          px={2}
+                          pos={"relative"}
+                        >
+                          {pathname.includes("/master-data") && (
+                            <LeftIndicator />
+                          )}
+
+                          <AppIcon
+                            icon={ServerIcon}
+                            color={
+                              pathname.includes("/master-data")
+                                ? ""
+                                : DESKTOP_NAVS_COLOR
+                            }
+                          />
+
+                          {isNavsExpanded && (
+                            <P lineClamp={1} textAlign={"left"}>
+                              {pluckString(t, "navs.master_data")}
+                            </P>
+                          )}
+                        </Btn>
+                      </DesktopNavTooltip>
+                    </NavLink>
                   </CContainer>
+                }
+                flex={1}
+                mb={1}
+              />
+            </CContainer>
+          </CContainer>
 
-                  <AppIcon
-                    icon={ChevronsUpDownIcon}
-                    boxSize={BASE_ICON_BOX_SIZE}
-                    color={"fg.subtle"}
-                    mr={1}
-                  />
-                </>
-              )}
-            </HStack>
-          </ProfileMenuTrigger>
-        </Item.Container>
-      </CContainer>
+          <CContainer p={3}>
+            <ProfileMenuTrigger
+              w={"full"}
+              popoverRootProps={{
+                positioning: {
+                  placement: "right-end",
+                  offset: {
+                    mainAxis: DESKTOP_NAVS_POPOVER_MAIN_AXIS,
+                  },
+                },
+              }}
+            >
+              <HStack
+                gap={4}
+                w={isNavsExpanded ? "full" : "36px"}
+                h={isNavsExpanded ? "" : "36px"}
+                px={"6px"}
+                py={2}
+                rounded={themeConfig.radii.component}
+                cursor={"pointer"}
+                _hover={{
+                  bg: "gray.subtle",
+                }}
+                justify={isNavsExpanded ? "" : "center"}
+                transition={"200ms"}
+                pos={"relative"}
+              >
+                <Avatar
+                  src={imgUrl(user?.avatar?.filePath)}
+                  name={user?.name}
+                  size={isNavsExpanded ? "md" : "2xs"}
+                  mr={"auto"}
+                />
 
-      {/* Content */}
-      <CContainer overflowY={"auto"}>
-        <CContainer
-          flex={1}
-          // borderLeft={"1px solid"}
-          borderColor={"border.muted"}
-          overflow={"auto"}
-        >
-          {children}
+                {isNavsExpanded && (
+                  <>
+                    <CContainer>
+                      <P lineClamp={1} fontWeight={"semibold"}>
+                        {user?.name || user?.email || "Signed out"}
+                      </P>
+                      <P lineClamp={1} color={"fg.subtle"}>
+                        {user?.name ? user?.email || user?.username : "-"}
+                      </P>
+                    </CContainer>
+
+                    <AppIcon
+                      icon={ChevronsUpDownIcon}
+                      boxSize={BASE_ICON_BOX_SIZE}
+                      color={"fg.subtle"}
+                      mr={1}
+                    />
+                  </>
+                )}
+              </HStack>
+            </ProfileMenuTrigger>
+          </CContainer>
         </CContainer>
-      </CContainer>
-    </HStack>
+
+        {/* Content */}
+        <CContainer overflowY={"auto"}>
+          <CContainer
+            flex={1}
+            // borderLeft={"1px solid"}
+            borderColor={"border.muted"}
+            overflow={"auto"}
+          >
+            {children}
+          </CContainer>
+        </CContainer>
+      </HStack>
+    </CContainer>
   );
 };
 

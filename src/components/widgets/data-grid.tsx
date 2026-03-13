@@ -448,7 +448,7 @@ const DataGridDisplay = (props: DataGridProps) => {
       </Presence>
 
       <CContainer
-        borderTop={"1px solid"}
+        // borderTop={"1px solid"}
         borderColor={"border.muted"}
         overflowY={"auto"}
       >

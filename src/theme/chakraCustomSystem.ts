@@ -42,9 +42,9 @@ const customConfig = defineConfig({
           500: { value: "#8a8a8a" },
           600: { value: "#6a6a6a" },
           700: { value: "#4f4f4f" },
-          800: { value: "#303030" },
-          900: { value: "#181818" },
-          950: { value: "#121212" },
+          800: { value: "#303132" },
+          900: { value: "#181819" },
+          950: { value: "#121213" },
         },
 
         gray: {
@@ -509,8 +509,8 @@ const customConfig = defineConfig({
         bg: {
           canvas: {
             value: {
-              base: "{colors.neutral.100}",
-              _dark: "{colors.neutral.950}",
+              base: "#f2f4f6",
+              _dark: "#121213",
             },
           },
           body: {
@@ -557,8 +557,8 @@ const customConfig = defineConfig({
           },
           muted: {
             value: {
-              base: "{colors.d2} !important",
-              _dark: "{colors.d2} !important",
+              base: "{colors.d4} !important",
+              _dark: "{colors.d4} !important",
             },
           },
         },

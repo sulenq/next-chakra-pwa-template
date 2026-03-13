@@ -21,7 +21,7 @@ import { useScreen } from "@/hooks/useScreen";
 import { isEmptyArray, last } from "@/utils/array";
 import { capitalizeWords, pluckString } from "@/utils/string";
 import { getActiveNavs } from "@/utils/url";
-import { HStack, Icon, StackProps } from "@chakra-ui/react";
+import { Box, HStack, Icon, StackProps } from "@chakra-ui/react";
 import { IconSlash } from "@tabler/icons-react";
 import { InboxIcon, ListIcon } from "lucide-react";
 import { usePathname } from "next/navigation";
@@ -35,6 +35,68 @@ import {
 } from "react";
 
 const FONT_SIZE = "md";
+
+export const AnimatedBg = (props: StackProps) => {
+  // Contexts
+  const { themeConfig } = useThemeConfig();
+
+  return (
+    <CContainer
+      h={"full"}
+      bg={`${themeConfig.colorPalette}.900`}
+      pos={"relative"}
+      overflow={"clip"}
+      {...props}
+    >
+      <CContainer flex={1} pos={"relative"}>
+        <Box
+          w="full"
+          h="full"
+          aspectRatio={1}
+          bg={`${themeConfig.colorPalette}.500`}
+          borderRadius="60% 40% 70% 30% / 50% 60% 40% 70%"
+          animation="rotate360 5s linear infinite"
+          pos={"absolute"}
+          bottom={"-20%"}
+          right={"-20%"}
+        />
+
+        <Box
+          w="65%"
+          h="65%"
+          aspectRatio={1}
+          bg={`${themeConfig.colorPalette}.800`}
+          borderRadius="30% 70% 40% 60% / 60% 40% 70% 30%"
+          animation="rotate360 7s linear infinite"
+          pos={"absolute"}
+          bottom={"-20%"}
+          left={"-20%"}
+        />
+
+        <Box
+          w="40%"
+          h="40%"
+          aspectRatio={1}
+          bg={`${themeConfig.colorPalette}.600`}
+          borderRadius="60% 40% 70% 30% / 100% 60% 40% 70%"
+          animation="rotate360 5s linear infinite"
+          pos={"absolute"}
+          top={"10%"}
+          left={"-10%"}
+        />
+      </CContainer>
+
+      <Box
+        w={"full"}
+        h={"full"}
+        backdropFilter={"blur(100px)"}
+        pos={"absolute"}
+        top={0}
+        left={0}
+      />
+    </CContainer>
+  );
+};
 
 export const NavBreadcrumb = (props: any) => {
   // Props
@@ -217,7 +279,7 @@ export function usePageContainerContext() {
   }
   return context;
 }
-export const PageContainer = forwardRef<HTMLDivElement, StackProps>(
+const PageContainer = forwardRef<HTMLDivElement, StackProps>(
   ({ children, ...restProps }, ref) => {
     // Refs
     const containerRef = useRef<HTMLDivElement>(null);
@@ -255,10 +317,17 @@ export const PageContainer = forwardRef<HTMLDivElement, StackProps>(
 interface PageHeaderProps extends StackProps {
   withTitle?: boolean;
   title?: string;
+  pageTitleProps?: PProps;
 }
-export const PageHeader = (props: PageHeaderProps) => {
+const PageHeader = (props: PageHeaderProps) => {
   // Props
-  const { children, withTitle = true, title, ...restProps } = props;
+  const {
+    children,
+    withTitle = true,
+    title,
+    pageTitleProps,
+    ...restProps
+  } = props;
 
   // Contexts
   const { t } = useLocale();
@@ -279,24 +348,24 @@ export const PageHeader = (props: PageHeaderProps) => {
       flexShrink={0}
       w={"full"}
       minH={TOP_BAR_H}
-      p={R_SPACING_MD}
+      px={R_SPACING_MD}
       rounded={themeConfig.radii.container}
       {...restProps}
     >
-      {withTitle && <PageTitle ml={2}>{resolvedTitle}</PageTitle>}
+      {withTitle && <PageTitle {...pageTitleProps}>{resolvedTitle}</PageTitle>}
 
       {children}
     </HStack>
   );
 };
 
-export const PageTitle = (props: PProps) => {
+const PageTitle = (props: PProps) => {
   // Props
   const { children = "", ...restProps } = props;
 
   return (
     <ClampText
-      fontSize={"xl"}
+      fontSize={"2xl"}
       fontWeight={"semibold"}
       textAlign={restProps.textAlign}
       {...restProps}
@@ -306,7 +375,7 @@ export const PageTitle = (props: PProps) => {
   );
 };
 
-export const PageContent = forwardRef<HTMLDivElement, MContainerProps>(
+const PageContent = forwardRef<HTMLDivElement, MContainerProps>(
   (props, ref) => {
     // Props
     const { children, ...restProps } = props;
@@ -326,7 +395,7 @@ ContainerLayout.displayName = "ContainerLayout";
 PageContainer.displayName = "PageContainer";
 PageContent.displayName = "PageContent";
 
-export const Page = {
+export const PageShell = {
   Container: PageContainer,
   Content: PageContent,
   Header: PageHeader,

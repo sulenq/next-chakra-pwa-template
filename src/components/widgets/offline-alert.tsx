@@ -10,7 +10,7 @@ import { usePopDisclosure } from "@/hooks/usePopDisclosure";
 import { disclosureId } from "@/utils/disclosure";
 import { Icon } from "@chakra-ui/react";
 import { IconAccessPointOff } from "@tabler/icons-react";
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 
 export const OfflineAlert = () => {
   // Contexts
@@ -20,9 +20,6 @@ export const OfflineAlert = () => {
   const showAlert = useAlerts((s) => s.showAlert);
   const hideAlert = useAlerts((s) => s.hideAlert);
 
-  // Refs
-  const lastStatus = useRef(navigator.onLine);
-
   // Hooks
   const { open, onOpen, onClose } = usePopDisclosure(
     disclosureId("offline-alert"),
@@ -31,24 +28,17 @@ export const OfflineAlert = () => {
   // Handler
   useEffect(() => {
     function handleOnline() {
-      if (!lastStatus.current) {
-        lastStatus.current = true;
+      hideAlert("offline");
 
-        hideAlert("offline");
-
-        toaster.success({
-          id: "success-online",
-          title: t.success_online.title,
-          description: t.success_online.description,
-        });
-      }
+      toaster.success({
+        id: "success-online",
+        title: t.success_online.title,
+        description: t.success_online.description,
+      });
     }
 
     function handleOffline() {
-      if (lastStatus.current) {
-        lastStatus.current = false;
-        showAlert("offline");
-      }
+      showAlert("offline");
     }
 
     window.addEventListener("online", handleOnline);
@@ -67,6 +57,7 @@ export const OfflineAlert = () => {
     if (isOffline) {
       onOpen();
     } else {
+      hideAlert("offline");
       onClose();
     }
   }, [isOffline]);

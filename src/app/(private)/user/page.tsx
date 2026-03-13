@@ -17,9 +17,7 @@ import { HScroll } from "@/components/widgets/h-scroll";
 import { LucideIcon } from "@/components/widgets/icon";
 import { Item } from "@/components/widgets/item";
 import {
-  PageContainer,
-  PageContent,
-  PageHeader,
+  PageShell,
   TopBar,
   usePageContainerContext,
 } from "@/components/widgets/page-shell";
@@ -584,40 +582,38 @@ const PageScreen = () => {
     <CContainer overflowY={"auto"} gap={GAP}>
       <TopBar />
 
-      <Item.Container overflowY={"auto"}>
-        <PageHeader justify={"space-between"}>
-          <HStack>
-            {!isSmContainer && (
+      <PageShell.Header justify={"space-between"}>
+        <HStack>
+          {!isSmContainer && (
+            <DataUtils
+              filter={filter}
+              setFilter={setFilter}
+              routeTitle={routeTitle}
+            />
+          )}
+
+          <Create />
+        </HStack>
+      </PageShell.Header>
+
+      <Item.Container gap={4} overflow={"auto"}>
+        {isSmContainer && (
+          <HScroll>
+            <HStack minW={"full"} justify={"space-between"}>
               <DataUtils
                 filter={filter}
                 setFilter={setFilter}
                 routeTitle={routeTitle}
               />
-            )}
+            </HStack>
+          </HScroll>
+        )}
 
-            <Create />
-          </HStack>
-        </PageHeader>
-
-        <PageContent gap={4} overflow={"auto"}>
-          {isSmContainer && (
-            <HScroll>
-              <HStack minW={"full"} justify={"space-between"}>
-                <DataUtils
-                  filter={filter}
-                  setFilter={setFilter}
-                  routeTitle={routeTitle}
-                />
-              </HStack>
-            </HScroll>
-          )}
-
-          <Data
-            filter={filter}
-            routeTitle={routeTitle}
-            isSmContainer={isSmContainer}
-          />
-        </PageContent>
+        <Data
+          filter={filter}
+          routeTitle={routeTitle}
+          isSmContainer={isSmContainer}
+        />
       </Item.Container>
     </CContainer>
   );
@@ -625,8 +621,8 @@ const PageScreen = () => {
 
 export default function Page() {
   return (
-    <PageContainer>
+    <PageShell.Container>
       <PageScreen />
-    </PageContainer>
+    </PageShell.Container>
   );
 }

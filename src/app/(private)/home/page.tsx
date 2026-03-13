@@ -16,8 +16,7 @@ import FeedbackRetry from "@/components/widgets/feedback-retry";
 import { DotIndicator } from "@/components/widgets/indicator";
 import { Item } from "@/components/widgets/item";
 import {
-  PageContainer,
-  PageContent,
+  PageShell,
   TopBar,
   usePageContainerContext,
 } from "@/components/widgets/page-shell";
@@ -604,7 +603,7 @@ const PageScreen = () => {
         </Calendar.Trigger>
       </HStack>
 
-      <PageContent>
+      <PageShell.Content>
         {initialLoading && render.loading}
         {!initialLoading && (
           <>
@@ -617,15 +616,15 @@ const PageScreen = () => {
             )}
           </>
         )}
-      </PageContent>
+      </PageShell.Content>
     </>
   );
 };
 
 export default function Page() {
   return (
-    <PageContainer>
+    <PageShell.Container>
       <PageScreen />
-    </PageContainer>
+    </PageShell.Container>
   );
 }
