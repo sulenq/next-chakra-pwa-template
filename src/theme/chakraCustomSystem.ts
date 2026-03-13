@@ -34,11 +34,11 @@ const customConfig = defineConfig({
         placeholder: { value: "#96969691" },
 
         neutral: {
-          50: { value: "#ffffff" },
-          100: { value: "#f5f5f5" },
-          200: { value: "#ececee" },
-          300: { value: "#dcdcdc" },
-          400: { value: "#b5b5b5" },
+          50: { value: "#fbfcfd" },
+          100: { value: "#f2f4f6" },
+          200: { value: "#e8eaee" },
+          300: { value: "#d8dadd" },
+          400: { value: "#b3b5b8" },
           500: { value: "#8a8a8a" },
           600: { value: "#6a6a6a" },
           700: { value: "#4f4f4f" },
@@ -48,11 +48,11 @@ const customConfig = defineConfig({
         },
 
         gray: {
-          50: { value: "#fafafa" },
-          100: { value: "#f2f2f2" },
-          200: { value: "#eaeaea" },
-          300: { value: "#d4d4d4" },
-          400: { value: "#a1a1a1" },
+          50: { value: "#f7f9fb" },
+          100: { value: "#eef2f6" },
+          200: { value: "#e4e9ef" },
+          300: { value: "#cfd6de" },
+          400: { value: "#9da6b0" },
           500: { value: "#717171" },
           600: { value: "#525252" },
           700: { value: "#3f3f3f" },

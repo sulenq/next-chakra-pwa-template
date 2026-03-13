@@ -582,14 +582,14 @@ const PageScreen = () => {
 
   return (
     <CContainer overflowY={"auto"} gap={GAP}>
-      <TopBar bg={"body"} rounded={themeConfig.radii.container} />
+      <TopBar />
 
       <CContainer
         bg={"body"}
         rounded={themeConfig.radii.container}
         overflowY={"auto"}
       >
-        <PageHeader withTitle={false} justify={"end"}>
+        <PageHeader justify={"space-between"}>
           <HStack>
             {!isSmContainer && (
               <DataUtils

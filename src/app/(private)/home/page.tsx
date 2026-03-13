@@ -25,6 +25,7 @@ import { Type__ChartData } from "@/constants/types";
 import { useLocale } from "@/contexts/useLocale";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
 import { useFetchData } from "@/hooks/useFetchData";
+import { getUserData } from "@/utils/auth";
 import { formatDuration, formatNumber } from "@/utils/formatter";
 import { isObjectDeepEmpty } from "@/utils/object";
 import { capitalizeWords } from "@/utils/string";
@@ -163,12 +164,6 @@ const Overview = (props: OverviewProps) => {
 
   return (
     <CContainer>
-      <HStack minH={"36px"} mt={2} mb={3}>
-        <P fontSize={"xl"} fontWeight={"semibold"}>
-          Overview
-        </P>
-      </HStack>
-
       <SimpleGrid
         columns={isSmContainer ? 2 : 3}
         gap={GAP}
@@ -511,12 +506,6 @@ const Usage = (props: any) => {
 
   return (
     <CContainer>
-      <HStack minH={"36px"} mt={2} mb={3}>
-        <P fontSize={"xl"} fontWeight={"semibold"}>
-          Usage
-        </P>
-      </HStack>
-
       <SimpleGrid columns={isSmContainer ? 1 : 2} gap={GAP} {...restProps}>
         <Chart1 data={data} year={filter.year} />
 
@@ -527,6 +516,9 @@ const Usage = (props: any) => {
 };
 
 const PageScreen = () => {
+  // Contexts
+  const { t } = useLocale();
+
   // States
   const [filter] = useState<any>(DEFAULT_FILTER);
   const { initialLoading, error, data, onRetry } = useFetchData<any>({
@@ -535,6 +527,9 @@ const PageScreen = () => {
     dataResource: false,
   });
 
+  // Constants
+  const user = getUserData();
+
   // Render State Map
   const render = {
     loading: <Skeleton />,
@@ -542,7 +537,7 @@ const PageScreen = () => {
     empty: <FeedbackNoData />,
     loaded: data && (
       <>
-        <CContainer gap={4}>
+        <CContainer gap={GAP}>
           <Overview data={data.overview} />
 
           <Usage data={data.usage} filter={filter} />
@@ -554,6 +549,10 @@ const PageScreen = () => {
   return (
     <>
       <TopBar />
+
+      <CContainer>
+        <P fontSize={"xl"}>{`${t.hi}, ${user?.name}`}</P>
+      </CContainer>
 
       <PageContent>
         {initialLoading && render.loading}

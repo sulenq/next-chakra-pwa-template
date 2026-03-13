@@ -177,6 +177,7 @@ const translations = {
   "from": "Dari",
   "get": "Dapatkan",
   "grade": "Nilai",
+  "hi": "Hai",
   "hide": "Sembunyikan",
   "hour": "Jam",
   "inactive": "Belum aktif",

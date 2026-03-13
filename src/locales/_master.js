@@ -115,6 +115,10 @@ export const settings_navs = {
 };
 
 // Semantic UI
+export const hi = {
+  id: "Hai",
+  en: "Hi",
+};
 export const type_here = {
   id: "Tulis disini",
   en: "Type here",

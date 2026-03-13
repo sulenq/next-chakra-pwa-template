@@ -177,6 +177,7 @@ const translations = {
   "from": "From",
   "get": "Get",
   "grade": "Grade",
+  "hi": "Hi",
   "hide": "Hide",
   "hour": "Hour",
   "inactive": "Inactive",

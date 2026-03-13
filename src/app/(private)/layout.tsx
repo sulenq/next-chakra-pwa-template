@@ -338,7 +338,7 @@ const DesktopLayout = (props: any) => {
         p={GAP}
         pr={"0 !important"}
         overflowY={"auto"}
-        transition={"300ms ease-out"}
+        transition={"300ms ease"}
       >
         <CContainer
           flex={1}
