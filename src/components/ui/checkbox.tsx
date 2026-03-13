@@ -23,16 +23,19 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
       rootRef,
       checked,
       subtle,
+      bg,
+      rounded,
       ...restProps
     } = props;
 
     // Contexts
     const { themeConfig } = useThemeConfig();
 
-    // States
-    const isRoundedZero = themeConfig.radii.component === "0px";
-    const isColorPaletteGray = themeConfig.colorPalette === "gray";
+    // Constants
     const graySolidBg = useColorModeValue("dark", "light");
+
+    // Derived Values
+    const isColorPaletteGray = themeConfig.colorPalette === "gray";
 
     return (
       <ChakraCheckbox.Root
@@ -45,7 +48,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
 
         <ChakraCheckbox.Control
           bg={
-            restProps.bg || checked
+            bg || checked
               ? isColorPaletteGray
                 ? graySolidBg
                 : themeConfig.primaryColor
@@ -53,7 +56,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
                 ? "bg.muted"
                 : "transparent"
           }
-          rounded={props?.rounded || isRoundedZero ? "0px" : "sm"}
+          rounded={rounded || themeConfig.radii.component}
           borderColor={
             checked
               ? "transparent !important"

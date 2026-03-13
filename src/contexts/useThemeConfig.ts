@@ -10,6 +10,7 @@ interface ThemeConfig {
   primaryColorHex: string;
   logo: string;
   radii: {
+    label: string;
     component: string;
     container: string;
   };

@@ -273,6 +273,7 @@ const RoundedSection = () => {
     setThemeConfig((state) => ({
       ...state,
       radii: {
+        label: preset.label,
         component: preset.component,
         container: preset.container,
       },
@@ -293,8 +294,7 @@ const RoundedSection = () => {
         <Item.Container gap={4} p={4}>
           <SimpleGrid minChildWidth={"140px"} gap={4}>
             {ROUNDED_PRESETS.map((preset, index) => {
-              const isSelected =
-                preset.component === themeConfig.radii.component;
+              const isSelected = preset.label === themeConfig.radii.label;
 
               return (
                 <CContainer key={`${preset.label}-${index}`}>

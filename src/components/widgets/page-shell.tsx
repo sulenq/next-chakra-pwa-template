@@ -278,15 +278,11 @@ export const PageTitle = (props: PProps) => {
   // Props
   const { children = "", ...restProps } = props;
 
-  // Contexts
-  const { themeConfig } = useThemeConfig();
-
   return (
     <ClampText
       fontSize={"xl"}
       fontWeight={"semibold"}
       textAlign={restProps.textAlign}
-      ml={themeConfig.radii.container}
     >
       {capitalizeWords(children)}
     </ClampText>
