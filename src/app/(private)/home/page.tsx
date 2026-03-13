@@ -35,6 +35,7 @@ import { capitalizeWords, interpolateString } from "@/utils/string";
 import { Chart, useChart } from "@chakra-ui/charts";
 import {
   Badge,
+  Center,
   HStack,
   SimpleGrid,
   SimpleGridProps,
@@ -80,12 +81,14 @@ const OverviewItem = (props: OverviewItemProps) => {
   // Props
   const { item, ...restProps } = props;
 
+  // Contexts
+  const { themeConfig } = useThemeConfig();
+
   return (
-    <Item.Container gap={1} p={4} {...restProps}>
-      <HStack gap={1}>
+    <Item.Container gap={1} {...restProps}>
+      <HStack gap={1} p={2} pl={4}>
         <Item.HeaderTitle
           autoHeight
-          color={"fg.muted"}
           popoverContent={
             "Lorem ipsum dolor sit amet consectetur adipisicing elit."
           }
@@ -93,23 +96,32 @@ const OverviewItem = (props: OverviewItemProps) => {
           {"Chart Title"}
         </Item.HeaderTitle>
 
-        <AppIcon icon={item.icon} boxSize={6} ml={"auto"} />
+        <Center
+          p={2}
+          bg={"bg.muted"}
+          rounded={themeConfig.radii.component}
+          ml={"auto"}
+        >
+          <AppIcon icon={item.icon} boxSize={5} />
+        </Center>
       </HStack>
 
-      <P fontSize={"2xl"} fontWeight={"medium"}>
-        {`${item.value}`}
-      </P>
+      <CContainer p={4} pt={0}>
+        <P fontSize={"2xl"} fontWeight={"medium"}>
+          {`${item.value}`}
+        </P>
 
-      <HStack mt={2}>
-        <Badge w={"fit"} colorPalette={"green"}>
-          <AppIcon icon={ArrowUpIcon} boxSize={3} />
-          12.5%
-        </Badge>
+        <HStack mt={2}>
+          <Badge w={"fit"} colorPalette={"green"}>
+            <AppIcon icon={ArrowUpIcon} boxSize={3} />
+            12.5%
+          </Badge>
 
-        <ClampText fontSize={"sm"} color={"fg.subtle"}>
-          since last month
-        </ClampText>
-      </HStack>
+          <ClampText fontSize={"sm"} color={"fg.subtle"}>
+            since last month
+          </ClampText>
+        </HStack>
+      </CContainer>
     </Item.Container>
   );
 };

@@ -45,6 +45,7 @@ const ToggleTip = (props: ToggleTipProps) => {
         px={2}
         py={1}
         rounded={themeConfig.radii.component}
+        lineHeight={"normal"}
         onClick={(e) => {
           e.stopPropagation();
         }}
