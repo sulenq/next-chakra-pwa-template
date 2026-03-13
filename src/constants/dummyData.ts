@@ -1,3 +1,4 @@
+import { Gender } from "@/constants/types";
 import { Interface__User } from "./interfaces";
 const generate1D = () => {
   let v23 = 80;
@@ -161,12 +162,12 @@ export const dummyUser = {
     deletedAt: null,
   },
   accountStatus: "active",
-  gender: false, // female
+  gender: "FEMALE" as Gender,
   phoneNumber: "+6281234567890",
   birthDate: "1985-07-12",
   address: "Jl. Melati No. 12, Jakarta Selatan",
   registeredAt: "2023-03-10T08:42:00Z",
-  lastLogin: "2025-11-12T04:20:00Z",
+  lastLoginAt: "2025-11-12T04:20:00Z",
   lastChangePasswordAt: "2025-05-01T12:30:00Z",
   deactiveAt: null,
   createdBy: "system",
