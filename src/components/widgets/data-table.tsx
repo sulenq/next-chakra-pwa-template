@@ -202,8 +202,8 @@ export const DataTableDisplay = (props: DataTableProps) => {
   const tableContainerBg = "bg.body";
 
   const thHeight = "45px";
-  const thBg = "bg.subtle";
-  const thBorderColor = "transparent";
+  const thBg = "bg.body";
+  const thBorderColor = "border.muted";
   const thRounded = 0;
 
   const tdMinH = "46px";
@@ -242,7 +242,6 @@ export const DataTableDisplay = (props: DataTableProps) => {
               top={0}
               zIndex={3}
               bg={"transparent !important"}
-              borderColor={thBorderColor}
             >
               {!isEmptyArray(batchOptions) && (
                 <Table.ColumnHeader

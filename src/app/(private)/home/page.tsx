@@ -1,5 +1,6 @@
 "use client";
 
+import { Avatar } from "@/components/ui/avatar";
 import { Btn } from "@/components/ui/btn";
 import { CContainer } from "@/components/ui/c-container";
 import { P } from "@/components/ui/p";
@@ -32,6 +33,7 @@ import { getUserData } from "@/utils/auth";
 import { formatDuration, formatNumber } from "@/utils/formatter";
 import { isObjectDeepEmpty } from "@/utils/object";
 import { capitalizeWords, interpolateString } from "@/utils/string";
+import { imgUrl } from "@/utils/url";
 import { Chart, useChart } from "@chakra-ui/charts";
 import {
   Badge,
@@ -566,20 +568,28 @@ const PageScreen = () => {
       <TopBar />
 
       <HStack wrap={"wrap"} justify={"space-between"} px={R_SPACING_MD} mb={6}>
-        <CContainer w={"fit"} gap={1}>
-          <P
-            fontSize={"3xl"}
-            fontWeight={"semibold"}
-          >{`${t.hi}, ${user?.name} 👋`}</P>
+        <HStack gap={4}>
+          <Avatar
+            name={user?.name}
+            src={imgUrl(user?.avatar?.[0]?.filePath)}
+            size={"2xl"}
+          />
 
-          <P>
-            {user?.taskCount
-              ? interpolateString(t.msg_task_count, {
-                  count: user?.tastCount,
-                })
-              : t.msg_no_task}
-          </P>
-        </CContainer>
+          <CContainer w={"fit"} gap={1}>
+            <P
+              fontSize={"3xl"}
+              fontWeight={"semibold"}
+            >{`${t.hi}, ${user?.name} 👋`}</P>
+
+            <P>
+              {user?.taskCount
+                ? interpolateString(t.msg_task_count, {
+                    count: user?.tastCount,
+                  })
+                : t.msg_no_task}
+            </P>
+          </CContainer>
+        </HStack>
 
         <Calendar.Trigger>
           <CContainer w={"fit"} align={"end"}>
