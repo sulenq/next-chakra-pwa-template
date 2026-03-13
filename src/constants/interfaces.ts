@@ -1,5 +1,6 @@
 import { BtnProps } from "@/components/ui/btn";
 import { Enum__ActivityAction } from "@/constants/enums";
+import { Gender } from "@/constants/types";
 import {
   MenuItemProps,
   StackProps,
@@ -34,13 +35,12 @@ export interface Interface__User extends Interface__CUD {
   role: Interface__Role;
   accountStatus: string;
   // optional
-  gender: boolean | null; // 1 male, 0 female
+  gender: Gender;
   phoneNumber: string | null;
   birthDate: string | null;
   address: string | null;
   // audit timestamps
-  registeredAt: string;
-  lastLogin: string | null;
+  lastLoginAt: string | null;
   lastChangePasswordAt: string | null;
   deactiveAt: string | null;
 }

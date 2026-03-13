@@ -1,6 +1,8 @@
 import { translations } from "@/contexts/useLocale";
 import { ButtonProps, ConditionalValue, MenuItemProps } from "@chakra-ui/react";
 
+export type Gender = "MALE" | "FEMALE";
+
 export type LangKey = keyof typeof translations; // currently "en" | "id"
 
 export type Translations = (typeof translations)[LangKey];

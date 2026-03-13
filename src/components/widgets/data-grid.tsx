@@ -93,7 +93,7 @@ export const DataGridItem = (props: DataGridItemProps) => {
       flex={1}
       bg={"bg.body"}
       border={"1px solid"}
-      borderColor={isRowSelected ? selectedColor : "border.muted"}
+      borderColor={isRowSelected ? selectedColor : "border.emphasized"}
       rounded={themeConfig.radii.container}
       overflow={"clip"}
       pos={"relative"}
@@ -467,7 +467,6 @@ const DataGridDisplay = (props: DataGridProps) => {
           <SimpleGrid
             templateColumns={`repeat(auto-fill, minmax(${minChildWidth}, 1fr))`}
             gap={GAP}
-            pb={"45px"}
           >
             {data?.map((item, idx) => {
               const row = dataProps.rows?.[idx] as FormattedTableRow;

@@ -15,8 +15,8 @@ import {
 import { R_SPACING_MD } from "@/constants/styles";
 import { Type__SortHandler } from "@/constants/types";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
-import { useContainerDimension } from "@/hooks/useContainerDimension";
 import { useIsSmScreenWidth } from "@/hooks/useIsSmScreenWidth";
+import { useScreen } from "@/hooks/useScreen";
 import { isEmptyArray } from "@/utils/array";
 import { hexWithOpacity } from "@/utils/color";
 import {
@@ -81,7 +81,7 @@ export const DataTableDisplay = (props: DataTableProps) => {
 
   // Hooks
   const iss = useIsSmScreenWidth();
-  const dimensions = useContainerDimension(tableContainerRef);
+  const { sh } = useScreen();
 
   // States
   const [tableData, setTableData] = useState(rows);
@@ -221,7 +221,7 @@ export const DataTableDisplay = (props: DataTableProps) => {
     <CContainer
       ref={tableContainerRef}
       flex={1}
-      minH={props?.minH || dimensions?.height < 625 ? "400px" : ""}
+      minH={props?.minH || sh < 625 ? "400px" : ""}
       // rounded={themeConfig.radii.container}
       overflow={"auto"}
       {...restProps}

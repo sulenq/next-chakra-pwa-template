@@ -6,7 +6,9 @@ import { BackButton } from "@/components/widgets/back-button";
 import { useAlerts } from "@/contexts/useAlerts";
 import { useLocale } from "@/contexts/useLocale";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
-import { Icon, useDisclosure } from "@chakra-ui/react";
+import { usePopDisclosure } from "@/hooks/usePopDisclosure";
+import { disclosureId } from "@/utils/disclosure";
+import { Icon } from "@chakra-ui/react";
 import { IconAccessPointOff } from "@tabler/icons-react";
 import { useEffect, useRef } from "react";
 
@@ -22,7 +24,9 @@ export const OfflineAlert = () => {
   const lastStatus = useRef(navigator.onLine);
 
   // Hooks
-  const { open, onOpen, onClose } = useDisclosure();
+  const { open, onOpen, onClose } = usePopDisclosure(
+    disclosureId("offline-alert"),
+  );
 
   // Handler
   useEffect(() => {

@@ -48,8 +48,6 @@ export function LoadingBar(props: BoxProps) {
     };
   }, [loadingBar]);
 
-  if (!visible) return null;
-
   return (
     <Box
       id={"loading-bar"}
@@ -66,7 +64,8 @@ export function LoadingBar(props: BoxProps) {
         w={`${progress}%`}
         h={"full"}
         bg={themeConfig.primaryColor}
-        transition="width 0.2s linear, opacity 0.3s ease"
+        opacity={visible ? 1 : 0}
+        transition="width 300ms linear, opacity 300ms ease"
       />
     </Box>
   );
