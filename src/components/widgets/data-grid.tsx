@@ -423,7 +423,7 @@ const DataGridDisplay = (props: DataGridProps) => {
           >
             <P mx={4}>{`${selectedRows.length} ${t.selected.toLowerCase()}`}</P>
 
-            <Divider dir={"vertical"} h={"30px"} />
+            <Divider dir={"vertical"} h={"20px"} />
 
             <BatchOptions
               iconButton={false}

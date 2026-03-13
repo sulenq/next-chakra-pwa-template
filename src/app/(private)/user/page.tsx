@@ -589,7 +589,7 @@ const PageScreen = () => {
         rounded={themeConfig.radii.container}
         overflowY={"auto"}
       >
-        <PageHeader justify={"space-between"}>
+        <PageHeader withTitle={false} justify={"end"}>
           <HStack>
             {!isSmContainer && (
               <DataUtils

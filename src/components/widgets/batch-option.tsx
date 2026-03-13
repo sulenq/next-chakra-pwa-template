@@ -1,12 +1,6 @@
 import { Btn, BtnProps } from "@/components/ui/btn";
 import { CContainer } from "@/components/ui/c-container";
-import {
-  MenuContent,
-  MenuItem,
-  MenuRoot,
-  MenuSeparator,
-  MenuTrigger,
-} from "@/components/ui/menu";
+import { Menu, MenuItem } from "@/components/ui/menu";
 import { P } from "@/components/ui/p";
 import { AppIcon } from "@/components/widgets/app-icon";
 import { Confirmation } from "@/components/widgets/confirmation";
@@ -47,7 +41,7 @@ export const BatchOptions = (props: BatchOptionsProps) => {
   const { themeConfig } = useThemeConfig();
 
   return (
-    <MenuRoot
+    <Menu.Root
       lazyMount
       positioning={{
         offset: {
@@ -56,7 +50,7 @@ export const BatchOptions = (props: BatchOptionsProps) => {
       }}
       {...menuRootProps}
     >
-      <MenuTrigger asChild aria-label="batch options">
+      <Menu.Trigger asChild aria-label="batch options">
         <Btn
           iconButton={iconButton}
           variant={"ghost"}
@@ -70,16 +64,16 @@ export const BatchOptions = (props: BatchOptionsProps) => {
 
           {!iconButton && "Batch Options"}
         </Btn>
-      </MenuTrigger>
+      </Menu.Trigger>
 
-      <MenuContent portalRef={tableContainerRef} zIndex={10} minW={"140px"}>
+      <Menu.Content portalRef={tableContainerRef} zIndex={10} minW={"140px"}>
         <CContainer px={3} py={1}>
           <P fontSize={"sm"} opacity={0.5} fontWeight={500}>
             {`${selectedRows.length} ${t.selected.toLowerCase()}`}
           </P>
         </CContainer>
 
-        <MenuItem
+        <Menu.Item
           value={"select all"}
           justifyContent={"space-between"}
           onClick={() => {
@@ -93,9 +87,9 @@ export const BatchOptions = (props: BatchOptionsProps) => {
             color={allRowsSelected ? themeConfig.primaryColor : "gray.muted"}
             mr={1}
           />
-        </MenuItem>
+        </Menu.Item>
 
-        <MenuSeparator />
+        <Menu.Separator />
 
         {batchOptions?.map((item, idx) => {
           const noSelection = selectedRows.length === 0;
@@ -152,7 +146,7 @@ export const BatchOptions = (props: BatchOptionsProps) => {
           }
 
           return (
-            <MenuItem
+            <Menu.Item
               key={idx}
               value={label}
               onClick={() => {
@@ -164,10 +158,10 @@ export const BatchOptions = (props: BatchOptionsProps) => {
             >
               {label}
               {icon && <AppIcon icon={icon} />}
-            </MenuItem>
+            </Menu.Item>
           );
         })}
-      </MenuContent>
-    </MenuRoot>
+      </Menu.Content>
+    </Menu.Root>
   );
 };

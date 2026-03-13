@@ -204,7 +204,7 @@ export const MenuItemGroup = forwardRef<
 });
 
 export const MenuSeparator = (props: MenuSeparatorProps) => {
-  return <ChakraMenu.Separator {...props} />;
+  return <ChakraMenu.Separator mx={2} {...props} />;
 };
 
 export const MenuRadioItemGroup = ChakraMenu.RadioItemGroup;

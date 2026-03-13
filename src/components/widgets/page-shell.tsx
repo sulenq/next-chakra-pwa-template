@@ -240,9 +240,13 @@ export const PageContainer = forwardRef<HTMLDivElement, StackProps>(
   },
 );
 
-export const PageHeader = (props: StackProps) => {
+interface PageHeaderProps extends StackProps {
+  withTitle?: boolean;
+  title?: string;
+}
+export const PageHeader = (props: PageHeaderProps) => {
   // Props
-  const { children, title, ...restProps } = props;
+  const { children, withTitle = true, title, ...restProps } = props;
 
   // Contexts
   const { t } = useLocale();
@@ -267,7 +271,7 @@ export const PageHeader = (props: StackProps) => {
       rounded={themeConfig.radii.container}
       {...restProps}
     >
-      <PageTitle ml={2}>{resolvedTitle}</PageTitle>
+      {withTitle && <PageTitle ml={2}>{resolvedTitle}</PageTitle>}
 
       {children}
     </HStack>
