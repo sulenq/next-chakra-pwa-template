@@ -31,7 +31,7 @@ import { useFetchData } from "@/hooks/useFetchData";
 import { getUserData } from "@/utils/auth";
 import { formatDuration, formatNumber } from "@/utils/formatter";
 import { isObjectDeepEmpty } from "@/utils/object";
-import { capitalizeWords } from "@/utils/string";
+import { capitalizeWords, interpolateString } from "@/utils/string";
 import { Chart, useChart } from "@chakra-ui/charts";
 import {
   Badge,
@@ -560,7 +560,13 @@ const PageScreen = () => {
             fontWeight={"semibold"}
           >{`${t.hi}, ${user?.name} 👋`}</P>
 
-          <P>Welcome to your dashboard</P>
+          <P>
+            {user?.taskCount
+              ? interpolateString(t.msg_task_count, {
+                  count: user?.tastCount,
+                })
+              : t.msg_no_task}
+          </P>
         </CContainer>
 
         <Calendar.Trigger>

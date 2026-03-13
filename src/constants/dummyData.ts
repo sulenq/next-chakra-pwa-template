@@ -141,8 +141,8 @@ export const dummyUser = {
       updatedAt: "2025-11-12T04:20:00Z",
     },
   ],
-  name: "Dr. Rani Kartika",
-  email: "rani.kartika@rssehat.id",
+  name: "Sulenq Wazawsky",
+  email: "sulengpol@gmail.com",
   role: {
     id: "3",
     name: "HR Manager",
@@ -174,6 +174,8 @@ export const dummyUser = {
   updatedBy: "system",
   createdAt: "2023-03-10T08:42:00Z",
   updatedAt: "2025-11-12T04:20:00Z",
+
+  taskCount: 10,
 };
 
 export const dummyUsers: Interface__User[] = [

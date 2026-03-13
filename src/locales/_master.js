@@ -927,6 +927,14 @@ export const yearly_sales = {
 };
 
 // Message
+export const msg_task_count = {
+  id: "Kamu memiliki ${count} tugas hari ini",
+  en: "You have ${count} tasks today",
+};
+export const msg_no_task = {
+  id: "Tidak ada aktivitas terjadwal hari ini",
+  en: "No scheduled activities today",
+};
 export const msg_app_desc = {
   id: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam inventore accusantium, libero exercitationem ipsum dolorem delectus iure dolorum quidem modi fugiat voluptate laborum cum laboriosam ullam commodi explicabo, magnam eius.",
   en: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam inventore accusantium, libero exercitationem ipsum dolorem delectus iure dolorum quidem modi fugiat voluptate laborum cum laboriosam ullam commodi explicabo, magnam eius.",

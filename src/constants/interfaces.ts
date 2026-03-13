@@ -43,6 +43,9 @@ export interface Interface__User extends Interface__CUD {
   lastLoginAt: string | null;
   lastChangePasswordAt: string | null;
   deactiveAt: string | null;
+
+  // additional
+  taskCount?: number;
 }
 export interface Interface__Role {
   id: string;
