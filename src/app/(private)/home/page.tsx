@@ -7,7 +7,9 @@ import { Segmented } from "@/components/ui/segment-group";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Switch } from "@/components/ui/switch";
 import { AppIcon } from "@/components/widgets/app-icon";
+import { Calendar } from "@/components/widgets/calendar";
 import { ClampText } from "@/components/widgets/clamp-text";
+import { Clock } from "@/components/widgets/clock";
 import FeedbackNoData from "@/components/widgets/feedback-no-data";
 import FeedbackRetry from "@/components/widgets/feedback-retry";
 import { DotIndicator } from "@/components/widgets/indicator";
@@ -18,9 +20,10 @@ import {
   TopBar,
   usePageContainerContext,
 } from "@/components/widgets/page-shell";
+import { Today, TodayWeekday } from "@/components/widgets/today";
 import { DUMMY_DASHBOARD_DATA } from "@/constants/dummyData";
 import { getMonthNames } from "@/constants/months";
-import { GAP } from "@/constants/styles";
+import { GAP, R_SPACING_MD } from "@/constants/styles";
 import { Type__ChartData } from "@/constants/types";
 import { useLocale } from "@/contexts/useLocale";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
@@ -550,9 +553,28 @@ const PageScreen = () => {
     <>
       <TopBar />
 
-      <CContainer>
-        <P fontSize={"xl"}>{`${t.hi}, ${user?.name}`}</P>
-      </CContainer>
+      <HStack wrap={"wrap"} justify={"space-between"} px={R_SPACING_MD} mb={6}>
+        <CContainer w={"fit"} gap={1}>
+          <P
+            fontSize={"3xl"}
+            fontWeight={"semibold"}
+          >{`${t.hi}, ${user?.name} 👋`}</P>
+
+          <P>Welcome to your dashboard</P>
+        </CContainer>
+
+        <Calendar.Trigger>
+          <CContainer w={"fit"} align={"end"}>
+            <TodayWeekday fontSize={"xl"} fontWeight={"medium"} />
+
+            <HStack>
+              <Today />
+
+              <Clock showTimezone />
+            </HStack>
+          </CContainer>
+        </Calendar.Trigger>
+      </HStack>
 
       <PageContent>
         {initialLoading && render.loading}

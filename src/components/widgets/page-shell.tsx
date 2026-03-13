@@ -1,15 +1,14 @@
 "use client";
 
+import { Btn } from "@/components/ui/btn";
 import { CContainer } from "@/components/ui/c-container";
 import { P, PProps } from "@/components/ui/p";
+import { AppIcon } from "@/components/widgets/app-icon";
 import { BackButton } from "@/components/widgets/back-button";
-import { Calendar } from "@/components/widgets/calendar";
 import { ClampText } from "@/components/widgets/clamp-text";
-import { Clock } from "@/components/widgets/clock";
 
 import { DotIndicator } from "@/components/widgets/indicator";
 import { MContainerProps } from "@/components/widgets/m-container";
-import { Today } from "@/components/widgets/today";
 import ToggleTip from "@/components/widgets/toggle-tip";
 import { Interface__Nav } from "@/constants/interfaces";
 import { GAP, R_SPACING_MD, TOP_BAR_H } from "@/constants/styles";
@@ -24,6 +23,7 @@ import { capitalizeWords, pluckString } from "@/utils/string";
 import { getActiveNavs } from "@/utils/url";
 import { HStack, Icon, StackProps } from "@chakra-ui/react";
 import { IconSlash } from "@tabler/icons-react";
+import { InboxIcon, ListIcon } from "lucide-react";
 import { usePathname } from "next/navigation";
 import {
   createContext,
@@ -157,14 +157,26 @@ export const TopBar = (props: StackProps) => {
         resolvedActiveNavs={resolvedActiveNavs}
       />
 
-      <HStack flexShrink={0} gap={4}>
-        <HStack flexShrink={0} color={"fg.muted"}>
-          <Calendar.Trigger>
-            <Today fontSize={FONT_SIZE} />
-          </Calendar.Trigger>
+      <HStack flexShrink={0} gap={1}>
+        <Btn
+          iconButton
+          variant={"subtle"}
+          _hover={{
+            bg: "d1",
+          }}
+        >
+          <AppIcon icon={ListIcon} />
+        </Btn>
 
-          <Clock showTimezone fontSize={FONT_SIZE} />
-        </HStack>
+        <Btn
+          iconButton
+          variant={"subtle"}
+          _hover={{
+            bg: "d1",
+          }}
+        >
+          <AppIcon icon={InboxIcon} />
+        </Btn>
       </HStack>
     </HStack>
   );

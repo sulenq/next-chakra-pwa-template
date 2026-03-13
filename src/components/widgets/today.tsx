@@ -1,14 +1,13 @@
 "use client";
 
-import { P } from "@/components/ui/p";
+import { P, PProps } from "@/components/ui/p";
 import { DateVariant } from "@/constants/types";
 import useDateFormat from "@/contexts/useDateFormat";
 import { useLocale } from "@/contexts/useLocale";
 import useTimezone from "@/contexts/useTimezone";
 import { formatDate } from "@/utils/formatter";
-import { TextProps } from "@chakra-ui/react";
 
-export interface TodayProps extends TextProps {
+export interface TodayProps extends PProps {
   dateVariant?: DateVariant;
 }
 export const Today = (props: TodayProps) => {
@@ -24,6 +23,25 @@ export const Today = (props: TodayProps) => {
     <P {...restProps}>
       {formatDate(new Date().toISOString(), t, {
         variant: dateVariant,
+        dateFormat: dateFormat,
+        timezoneKey: tz.key,
+      })}
+    </P>
+  );
+};
+
+export interface TodayWeekdayProps extends PProps {}
+export const TodayWeekday = (props: TodayWeekdayProps) => {
+  const { ...restProps } = props;
+
+  const { t } = useLocale();
+  const tz = useTimezone((s) => s.timeZone);
+  const dateFormat = useDateFormat((s) => s.dateFormat);
+
+  return (
+    <P {...restProps}>
+      {formatDate(new Date().toISOString(), t, {
+        variant: "weekday",
         dateFormat: dateFormat,
         timezoneKey: tz.key,
       })}

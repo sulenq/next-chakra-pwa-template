@@ -132,7 +132,7 @@ export const ProfileMenu = (props: ProfileMenuProps) => {
             <AppIcon icon={EclipseIcon} />
             Dark Mode
             <DotIndicator
-              color={colorMode === "dark" ? "fg.success" : "gray.muted"}
+              color={colorMode === "dark" ? "fg.success" : "bg.muted"}
               ml={"auto"}
               mr={1}
             />
