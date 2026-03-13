@@ -338,6 +338,7 @@ const DesktopLayout = (props: any) => {
         p={GAP}
         pr={"0 !important"}
         overflowY={"auto"}
+        transition={"300ms ease-in-out"}
       >
         <CContainer
           flex={1}
@@ -347,7 +348,6 @@ const DesktopLayout = (props: any) => {
           // borderRight={"1px solid"}
           borderColor={"border.muted"}
           rounded={themeConfig.radii.container}
-          transition={"200ms"}
         >
           {/* Logo & Sidebar Toggle */}
           <CContainer

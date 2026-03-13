@@ -14,7 +14,6 @@ import { ClampText } from "@/components/widgets/clamp-text";
 import FeedbackNotFound from "@/components/widgets/feedback-not-found";
 import { ImgViewer } from "@/components/widgets/img-viewer";
 import { Limitation } from "@/components/widgets/limitation";
-import { MContainer } from "@/components/widgets/m-container";
 import { Pagination } from "@/components/widgets/pagination";
 import { RowOptions } from "@/components/widgets/row-options";
 import {
@@ -110,8 +109,8 @@ export const DataGridItem = (props: DataGridItemProps) => {
           checked={isRowSelected}
           subtle
           pos={"absolute"}
-          top={2}
-          right={2}
+          top={3}
+          right={3}
           borderColor={item.showImg ? "border.emphasized" : ""}
           zIndex={2}
         />
@@ -333,13 +332,13 @@ const DataGridDisplay = (props: DataGridProps) => {
     totalPage,
     footer,
     minChildWidth = "180px",
-    p,
+    p = R_SPACING_MD,
     px,
     py,
     pl,
     pr,
-    pt = 2,
-    pb = R_SPACING_MD,
+    pt,
+    pb,
     ...restProps
   } = props;
 
@@ -391,7 +390,7 @@ const DataGridDisplay = (props: DataGridProps) => {
   }
 
   // SX
-  const footerBorderColor = "border.subtle";
+  const footerBorderColor = "border.muted";
 
   return (
     <CContainer flex={1} overflowY={"auto"} pos={"relative"} {...restProps}>
@@ -448,80 +447,82 @@ const DataGridDisplay = (props: DataGridProps) => {
         </HStack>
       </Presence>
 
-      <MContainer
-        className={"scrollY"}
-        flex={1}
-        p={p}
-        px={px}
-        py={py}
-        pl={pl}
-        pr={pr}
-        pt={pt}
-        pb={pb}
-        rounded={themeConfig.radii.container}
+      <CContainer
+        borderTop={"1px solid"}
+        borderColor={"border.muted"}
+        overflowY={"auto"}
       >
-        <SimpleGrid
-          templateColumns={`repeat(auto-fill, minmax(${minChildWidth}, 1fr))`}
-          gap={1}
-          pb={"45px"}
+        <CContainer
+          className={"scrollY"}
+          flex={1}
+          p={p}
+          px={px}
+          py={py}
+          pl={pl}
+          pr={pr}
+          pt={pt}
+          pb={pb}
+          rounded={themeConfig.radii.container}
         >
-          {data?.map((item, idx) => {
-            const row = dataProps.rows?.[idx] as FormattedTableRow;
-            const details = row.columns.map((col, rowIdx) => {
-              const label = dataProps.headers?.[rowIdx].th;
+          <SimpleGrid
+            templateColumns={`repeat(auto-fill, minmax(${minChildWidth}, 1fr))`}
+            gap={1}
+            pb={"45px"}
+          >
+            {data?.map((item, idx) => {
+              const row = dataProps.rows?.[idx] as FormattedTableRow;
+              const details = row.columns.map((col, rowIdx) => {
+                const label = dataProps.headers?.[rowIdx].th;
 
-              switch (col.dataType) {
-                case "image":
-                  return {
-                    label,
-                    render: (
-                      <ImgViewer
-                        id={`img-${rowIdx}-${item?.id}`}
-                        src={col.value}
-                        w={"full"}
-                      >
-                        <Img src={col.value} w={"full"} fluid />
-                      </ImgViewer>
-                    ),
-                  };
+                switch (col.dataType) {
+                  case "image":
+                    return {
+                      label,
+                      render: (
+                        <ImgViewer
+                          id={`img-${rowIdx}-${item?.id}`}
+                          src={col.value}
+                          w={"full"}
+                        >
+                          <Img src={col.value} w={"full"} fluid />
+                        </ImgViewer>
+                      ),
+                    };
 
-                default:
-                  return {
-                    label,
-                    render: col.td,
-                  };
-              }
-            });
+                  default:
+                    return {
+                      label,
+                      render: col.td,
+                    };
+                }
+              });
 
-            return (
-              <Fragment key={idx}>
-                {props.gridItem({
-                  item,
-                  row,
-                  idx,
-                  details,
-                  selectedRows,
-                  toggleRowSelection,
-                })}
-              </Fragment>
-            );
-          })}
-        </SimpleGrid>
-      </MContainer>
+              return (
+                <Fragment key={idx}>
+                  {props.gridItem({
+                    item,
+                    row,
+                    idx,
+                    details,
+                    selectedRows,
+                    toggleRowSelection,
+                  })}
+                </Fragment>
+              );
+            })}
+          </SimpleGrid>
+        </CContainer>
+      </CContainer>
 
       {hasFooter && (
         <>
           <HStack
             w={"full"}
-            p={1.5}
+            p={3}
             bg={"bg.body"}
             borderTop={"1px solid"}
             borderColor={footerBorderColor}
-            rounded={themeConfig.radii.container}
             justify={"space-between"}
-            pos={"absolute"}
-            left={0}
-            bottom={0}
           >
             <CContainer w={"fit"} mb={[1, null, 0]}>
               <Limitation limit={limit} setLimit={setLimit} />

@@ -44,7 +44,7 @@ const customConfig = defineConfig({
           700: { value: "#4f4f4f" },
           800: { value: "#303030" },
           900: { value: "#181818" },
-          950: { value: "#101010" },
+          950: { value: "#121212" },
         },
 
         gray: {

@@ -126,7 +126,7 @@ export const NavBreadcrumb = (props: any) => {
   );
 };
 
-export const TopBar = () => {
+export const TopBar = (props: StackProps) => {
   // Contexts
   // const { themeConfig } = useThemeConfig();
 
@@ -147,9 +147,10 @@ export const TopBar = () => {
       gap={4}
       h={"52px"}
       // px={`calc(${themeConfig.radii.container} + ${GAP})`}
-      px={GAP}
+      px={R_SPACING_MD}
       // borderBottom={"1px solid"}
       borderColor={"border.muted"}
+      {...props}
     >
       <NavBreadcrumb
         backPath={backPath}
@@ -228,7 +229,7 @@ export const PageContainer = forwardRef<HTMLDivElement, StackProps>(
           ref={mergeRef}
           className="page-container"
           flex={1}
-          p={R_SPACING_MD}
+          p={GAP}
           overflow={"auto"}
           {...restProps}
         >
@@ -245,6 +246,7 @@ export const PageHeader = (props: StackProps) => {
 
   // Contexts
   const { t } = useLocale();
+  const { themeConfig } = useThemeConfig();
 
   // Hooks
   const pathname = usePathname();
@@ -257,7 +259,14 @@ export const PageHeader = (props: StackProps) => {
   const resolvedTitle = title || navTitle;
 
   return (
-    <HStack flexShrink={0} w={"full"} minH={TOP_BAR_H} {...restProps}>
+    <HStack
+      flexShrink={0}
+      w={"full"}
+      minH={TOP_BAR_H}
+      p={R_SPACING_MD}
+      rounded={themeConfig.radii.container}
+      {...restProps}
+    >
       <PageTitle>{resolvedTitle}</PageTitle>
 
       {children}

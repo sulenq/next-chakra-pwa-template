@@ -1,6 +1,7 @@
 "use client";
 
 import { Btn } from "@/components/ui/btn";
+import { CContainer } from "@/components/ui/c-container";
 import { MenuItem } from "@/components/ui/menu";
 import { P } from "@/components/ui/p";
 import { SearchInput } from "@/components/ui/search-input";
@@ -30,7 +31,7 @@ import {
   RowOptionsTableOptionGenerator,
 } from "@/constants/interfaces";
 import { SVGS_PATH } from "@/constants/paths";
-import { BASE_ICON_BOX_SIZE } from "@/constants/styles";
+import { BASE_ICON_BOX_SIZE, GAP } from "@/constants/styles";
 import { useDataDisplay } from "@/contexts/useDataDisplay";
 import { useLocale } from "@/contexts/useLocale";
 import useRenderTrigger from "@/contexts/useRenderTrigger";
@@ -568,6 +569,7 @@ const Data = (props: any) => {
 const PageScreen = () => {
   // Contexts
   const { t } = useLocale();
+  const { themeConfig } = useThemeConfig();
 
   // Hooks
   const { isSmContainer } = usePageContainerContext();
@@ -579,43 +581,49 @@ const PageScreen = () => {
   const [filter, setFilter] = useState(DEFAULT_FILTER);
 
   return (
-    <>
-      <TopBar />
+    <CContainer overflowY={"auto"} gap={GAP}>
+      <TopBar bg={"body"} rounded={themeConfig.radii.container} />
 
-      <PageHeader justify={"space-between"}>
-        <HStack>
-          {!isSmContainer && (
-            <DataUtils
-              filter={filter}
-              setFilter={setFilter}
-              routeTitle={routeTitle}
-            />
-          )}
-
-          <Create />
-        </HStack>
-      </PageHeader>
-
-      <PageContent gap={4} overflow={"auto"}>
-        {isSmContainer && (
-          <HScroll>
-            <HStack minW={"full"} justify={"space-between"}>
+      <CContainer
+        bg={"body"}
+        rounded={themeConfig.radii.container}
+        overflowY={"auto"}
+      >
+        <PageHeader justify={"space-between"}>
+          <HStack>
+            {!isSmContainer && (
               <DataUtils
                 filter={filter}
                 setFilter={setFilter}
                 routeTitle={routeTitle}
               />
-            </HStack>
-          </HScroll>
-        )}
+            )}
 
-        <Data
-          filter={filter}
-          routeTitle={routeTitle}
-          isSmContainer={isSmContainer}
-        />
-      </PageContent>
-    </>
+            <Create />
+          </HStack>
+        </PageHeader>
+
+        <PageContent gap={4} overflow={"auto"}>
+          {isSmContainer && (
+            <HScroll>
+              <HStack minW={"full"} justify={"space-between"}>
+                <DataUtils
+                  filter={filter}
+                  setFilter={setFilter}
+                  routeTitle={routeTitle}
+                />
+              </HStack>
+            </HScroll>
+          )}
+
+          <Data
+            filter={filter}
+            routeTitle={routeTitle}
+            isSmContainer={isSmContainer}
+          />
+        </PageContent>
+      </CContainer>
+    </CContainer>
   );
 };
 

@@ -203,13 +203,13 @@ export const DataTableDisplay = (props: DataTableProps) => {
   const thBorderColor = "transparent";
   const tdMinH = "46px";
   const tdBg = "bg.body";
-  const footerBorderColor = "border.muted";
   const selectedColor =
     themeConfig.colorPalette === "gray"
       ? "border.subtle"
       : hexWithOpacity(themeConfig.primaryColorHex, 0.05);
   const tdBorderColor = "border.subtle";
   const footerBg = "bg.body";
+  const footerBorderColor = "border.muted";
 
   return (
     <CContainer
