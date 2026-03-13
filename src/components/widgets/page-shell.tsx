@@ -267,7 +267,7 @@ export const PageHeader = (props: StackProps) => {
       rounded={themeConfig.radii.container}
       {...restProps}
     >
-      <PageTitle>{resolvedTitle}</PageTitle>
+      <PageTitle ml={2}>{resolvedTitle}</PageTitle>
 
       {children}
     </HStack>
@@ -283,6 +283,7 @@ export const PageTitle = (props: PProps) => {
       fontSize={"xl"}
       fontWeight={"semibold"}
       textAlign={restProps.textAlign}
+      {...restProps}
     >
       {capitalizeWords(children)}
     </ClampText>

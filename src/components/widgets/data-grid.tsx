@@ -20,7 +20,7 @@ import {
   FormattedTableRow,
   Interface__DataProps,
 } from "@/constants/interfaces";
-import { R_SPACING_MD } from "@/constants/styles";
+import { GAP, R_SPACING_MD } from "@/constants/styles";
 import { useLocale } from "@/contexts/useLocale";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
 import { useIsSmScreenWidth } from "@/hooks/useIsSmScreenWidth";
@@ -91,10 +91,10 @@ export const DataGridItem = (props: DataGridItemProps) => {
     <CContainer
       key={item.id}
       flex={1}
-      // border={"1px solid"}
+      bg={"bg.body"}
+      border={"1px solid"}
       borderColor={isRowSelected ? selectedColor : "border.muted"}
       rounded={themeConfig.radii.container}
-      bg={"bg.body"}
       overflow={"clip"}
       pos={"relative"}
       {...restProps}
@@ -466,7 +466,7 @@ const DataGridDisplay = (props: DataGridProps) => {
         >
           <SimpleGrid
             templateColumns={`repeat(auto-fill, minmax(${minChildWidth}, 1fr))`}
-            gap={1}
+            gap={GAP}
             pb={"45px"}
           >
             {data?.map((item, idx) => {

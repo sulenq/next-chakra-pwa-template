@@ -12,6 +12,7 @@ import {
   FormattedTableRow,
   RowOptionsTableOptionGenerator,
 } from "@/constants/interfaces";
+import { R_SPACING_MD } from "@/constants/styles";
 import { Type__SortHandler } from "@/constants/types";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
 import { useContainerDimension } from "@/hooks/useContainerDimension";
@@ -65,8 +66,8 @@ export const DataTableDisplay = (props: DataTableProps) => {
     p,
     px,
     py,
-    pl = "6px",
-    pr = 0,
+    pl = R_SPACING_MD,
+    pr = R_SPACING_MD,
     pt,
     pb,
     ...restProps
@@ -197,10 +198,14 @@ export const DataTableDisplay = (props: DataTableProps) => {
   // SX
   const optionsCellW = "46px";
   const cellPx = 3;
+
   const tableContainerBg = "bg.body";
+
   const thHeight = "45px";
   const thBg = "bg.subtle";
   const thBorderColor = "transparent";
+  const thRounded = 0;
+
   const tdMinH = "46px";
   const tdBg = "bg.body";
   const selectedColor =
@@ -208,6 +213,7 @@ export const DataTableDisplay = (props: DataTableProps) => {
       ? "border.subtle"
       : hexWithOpacity(themeConfig.primaryColorHex, 0.05);
   const tdBorderColor = "border.subtle";
+
   const footerBg = "bg.body";
   const footerBorderColor = "border.muted";
 
@@ -216,8 +222,7 @@ export const DataTableDisplay = (props: DataTableProps) => {
       ref={tableContainerRef}
       flex={1}
       minH={props?.minH || dimensions?.height < 625 ? "400px" : ""}
-      pt={2}
-      rounded={themeConfig.radii.container}
+      // rounded={themeConfig.radii.container}
       overflow={"auto"}
       {...restProps}
     >
@@ -225,8 +230,6 @@ export const DataTableDisplay = (props: DataTableProps) => {
         className="scrollX scrollYAlt"
         flex={1}
         bg={tableContainerBg}
-        roundedTopLeft={themeConfig.radii.container}
-        roundedTopRight={themeConfig.radii.container}
         {...contentContainerProps}
       >
         <Table.Root
@@ -258,8 +261,8 @@ export const DataTableDisplay = (props: DataTableProps) => {
                     pl={pl}
                     borderBottom={"1px solid"}
                     borderColor={thBorderColor}
-                    roundedTopLeft={themeConfig.radii.component}
-                    roundedBottomLeft={themeConfig.radii.component}
+                    roundedTopLeft={thRounded}
+                    roundedBottomLeft={thRounded}
                     bg={thBg}
                   >
                     <BatchOptions
@@ -356,8 +359,8 @@ export const DataTableDisplay = (props: DataTableProps) => {
                     py={3}
                     borderBottom={"1px solid"}
                     borderColor={thBorderColor}
-                    roundedTopRight={themeConfig.radii.component}
-                    roundedBottomRight={themeConfig.radii.component}
+                    roundedTopRight={thRounded}
+                    roundedBottomRight={thRounded}
                     pos={"relative"}
                   >
                     {/* <Box
@@ -541,7 +544,7 @@ export const DataTableDisplay = (props: DataTableProps) => {
         <>
           <HStack
             // h={footerH}
-            p={1.5}
+            p={3}
             bg={footerBg}
             borderTop={"1px solid"}
             borderColor={footerBorderColor}
