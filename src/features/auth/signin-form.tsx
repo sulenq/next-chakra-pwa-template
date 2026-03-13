@@ -42,7 +42,7 @@ import { PasswordInput } from "@/components/ui/password-input";
 import { StringInput } from "@/components/ui/string-input";
 import ResetPasswordDisclosureTrigger from "@/features/auth/reset-password";
 
-const INDEX_ROUTE = "/demo";
+const INDEX_ROUTE = "/welcome";
 
 const SignoutButton = () => {
   // Contexts

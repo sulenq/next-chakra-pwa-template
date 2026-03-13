@@ -24,6 +24,7 @@ export default function Page() {
     <CContainer
       align={"start"}
       h={"100dvh"}
+      p={6}
       bg={"bg.canvas"}
       overflowY={"auto"}
     >
