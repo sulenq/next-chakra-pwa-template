@@ -38,7 +38,14 @@ export type ButtonSize = ConditionalValue<
 >;
 
 export type ButtonVariant = ConditionalValue<
-  "outline" | "solid" | "subtle" | "surface" | "ghost" | "plain" | undefined
+  | "outline"
+  | "solid"
+  | "subtle"
+  | "surface"
+  | "ghost"
+  | "plain"
+  | "frosted"
+  | undefined
 >;
 
 export type Type__ExtendedPermissionState =

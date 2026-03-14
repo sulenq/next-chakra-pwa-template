@@ -7,7 +7,7 @@ nextjs-portal {
   display: none !important;
 }
 .debug {
-  border: 10px solid red !important;
+  border: 1px solid red !important;
 }
 
 :root {
@@ -434,6 +434,30 @@ tspan {
   }
   to {
     transform: rotate(360deg);
+  }
+}
+@keyframes radial-glow-bg-1 {
+  from {
+    transform: translate(-240%, -0%) rotate(0deg);
+  }
+  to {
+    transform: translate(-240%, -0%) rotate(360deg);
+  }
+}
+@keyframes radial-glow-bg-2 {
+  from {
+    transform: translate(-50%, -30%) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -30%) rotate(360deg);
+  }
+}
+@keyframes radial-glow-bg-3 {
+  from {
+    transform: translate(50%, -0%) rotate(0deg);
+  }
+  to {
+    transform: translate(50%, -0%) rotate(360deg);
   }
 }
 

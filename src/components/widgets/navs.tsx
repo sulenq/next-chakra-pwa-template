@@ -470,7 +470,7 @@ export const DesktopNavs = (props: DesktopNavsProps) => {
                                         <Accordion.ItemIndicator
                                           color={
                                             isMainNavsActive
-                                              ? `${themeConfig.colorPalette}.fg`
+                                              ? `${themeConfig.colorPalette}.contrast`
                                               : ""
                                           }
                                           ml={"auto"}

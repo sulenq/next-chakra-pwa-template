@@ -26,7 +26,6 @@ import {
   StackProps,
   Table,
   TableRowProps,
-  useBreakpointValue,
 } from "@chakra-ui/react";
 import { useEffect, useMemo, useRef, useState } from "react";
 
@@ -217,7 +216,6 @@ export const DataTableDisplay = (props: DataTableProps) => {
     themeConfig.colorPalette === "gray"
       ? "border.subtle"
       : hexWithOpacity(themeConfig.primaryColorHex, 0.05);
-  const rSpacingMd = useBreakpointValue(R_SPACING_MD);
 
   return (
     <CContainer
@@ -227,254 +225,229 @@ export const DataTableDisplay = (props: DataTableProps) => {
       overflow={"auto"}
       {...restProps}
     >
-      <CContainer
-        className="scrollX scrollYAlt"
-        flex={1}
-        bg={TABLE_CONTAINER_BG}
-        px={R_SPACING_MD}
-        py={`calc(${rSpacingMd} - ${GAP})`}
-        {...contentContainerProps}
-      >
-        <Table.Root
-          w={headers.length > 1 ? "full" : "fit-content"}
-          borderCollapse={"separate"}
-          borderSpacing={`0 ${GAP}`}
+      <CContainer pt={R_SPACING_MD} overflow={"auto"}>
+        <CContainer
+          className={"scrollX scrollYAlt"}
+          flex={1}
+          px={R_SPACING_MD}
+          pb={R_SPACING_MD}
+          bg={TABLE_CONTAINER_BG}
+          {...contentContainerProps}
         >
-          <Table.Header>
-            <Table.Row
-              bg={TABLE_ROW_BG}
-              rounded={themeConfig.radii.component}
-              shadow={"soft"}
-              overflow={"clip"}
-              position={"sticky"}
-              top={GAP}
-              zIndex={3}
-            >
-              {!isEmptyArray(batchOptions) && (
-                <Table.ColumnHeader
-                  h={TH_H}
-                  w={OPTIONS_CELL_W}
-                  maxW={OPTIONS_CELL_W}
-                  minW={"0% !important"}
-                  borderBottom={"none !important"}
-                  p={0}
-                  position={"sticky"}
-                  left={0}
-                >
-                  <Center
-                    h={TH_H}
-                    px={"10px"}
-                    pl={pl}
-                    borderBottom={"1px solid"}
-                    borderColor={TH_BORDER_COLOR}
-                    roundedLeft={themeConfig.radii.component}
-                    bg={TH_BG}
-                  >
-                    <BatchOptions
-                      selectedRows={selectedRows}
-                      clearSelectedRows={handleClearSelectedRows}
-                      batchOptions={batchOptions}
-                      allRowsSelected={allRowsSelected}
-                      handleSelectAllRows={handleSelectAllRows}
-                      tableContainerRef={tableContainerRef}
-                    />
-                  </Center>
-                </Table.ColumnHeader>
-              )}
-
-              {/* Numbering column */}
-              <Table.ColumnHeader
-                whiteSpace={"nowrap"}
-                borderBottom={"none !important"}
-                p={0}
-                w={"1%"}
-                minW={"fit-content"}
-                maxW={"fit-content"}
+          <Table.Root
+            w={headers.length > 1 ? "full" : "fit-content"}
+            // borderCollapse={"separate"}
+            borderSpacing={`0 ${GAP}`}
+          >
+            <Table.Header>
+              <Table.Row
+                bg={TABLE_ROW_BG}
+                rounded={themeConfig.radii.component}
+                shadow={"soft"}
+                overflow={"clip"}
+                position={"sticky"}
+                top={0}
+                zIndex={3}
               >
-                <HStack
-                  h={TH_H}
-                  bg={TH_BG}
-                  px={CELL_PX}
-                  py={3}
-                  borderBottom={"1px solid"}
-                  borderColor={TH_BORDER_COLOR}
-                >
-                  <P fontWeight={"medium"} color={"fg.muted"}>
-                    No.
-                  </P>
-                </HStack>
-              </Table.ColumnHeader>
+                {!isEmptyArray(batchOptions) && (
+                  <Table.ColumnHeader
+                    h={TH_H}
+                    w={OPTIONS_CELL_W}
+                    maxW={OPTIONS_CELL_W}
+                    minW={"0% !important"}
+                    borderBottom={"none !important"}
+                    p={0}
+                    position={"sticky"}
+                    left={0}
+                  >
+                    <Center
+                      h={TH_H}
+                      px={"10px"}
+                      pl={pl}
+                      borderBottom={"1px solid"}
+                      borderColor={TH_BORDER_COLOR}
+                      roundedLeft={themeConfig.radii.component}
+                      bg={TH_BG}
+                    >
+                      <BatchOptions
+                        selectedRows={selectedRows}
+                        clearSelectedRows={handleClearSelectedRows}
+                        batchOptions={batchOptions}
+                        allRowsSelected={allRowsSelected}
+                        handleSelectAllRows={handleSelectAllRows}
+                        tableContainerRef={tableContainerRef}
+                      />
+                    </Center>
+                  </Table.ColumnHeader>
+                )}
 
-              {/* Main columns */}
-              {headers.map((header, idx) => (
+                {/* Numbering column */}
                 <Table.ColumnHeader
-                  key={idx}
-                  p={0}
                   whiteSpace={"nowrap"}
                   borderBottom={"none !important"}
-                  cursor={header.sortable ? "pointer" : "auto"}
-                  onClick={header.sortable ? () => sort(idx) : undefined}
-                  {...header?.headerProps}
+                  p={0}
+                  w={"1%"}
+                  minW={"fit-content"}
+                  maxW={"fit-content"}
                 >
                   <HStack
-                    justify={header.align}
                     h={TH_H}
+                    bg={TH_BG}
                     px={CELL_PX}
                     py={3}
-                    pl={idx === 0 ? 4 : ""}
-                    pr={
-                      idx === headers.length - 1
-                        ? 4
-                        : (header?.wrapperProps?.justify === "center" ||
-                              header?.wrapperProps?.justifyContent ===
-                                "center") &&
-                            header.sortable
-                          ? 1
-                          : ""
-                    }
-                    bg={TH_BG}
                     borderBottom={"1px solid"}
                     borderColor={TH_BORDER_COLOR}
-                    {...header?.wrapperProps}
                   >
                     <P fontWeight={"medium"} color={"fg.muted"}>
-                      {header?.th}
+                      No.
                     </P>
-
-                    {header.sortable && (
-                      <SortIcon
-                        columnIndex={idx}
-                        sortColumnIdx={sortConfig.sortColumnIdx}
-                        direction={sortConfig.direction}
-                      />
-                    )}
                   </HStack>
                 </Table.ColumnHeader>
-              ))}
 
-              {/* Row options columns */}
-              {!isEmptyArray(rowOptions) && (
-                <Table.ColumnHeader
-                  position={"sticky"}
-                  right={"0px"}
-                  w={OPTIONS_CELL_W}
-                  maxW={OPTIONS_CELL_W}
-                  p={0}
-                  borderBottom={"none !important"}
-                >
-                  <HStack
-                    h={TH_H}
-                    bg={TH_BG}
-                    px={CELL_PX}
-                    pr={pr}
-                    py={3}
-                    borderBottom={"1px solid"}
-                    borderColor={TH_BORDER_COLOR}
-                    roundedRight={themeConfig.radii.component}
-                    pos={"relative"}
+                {/* Main columns */}
+                {headers.map((header, index) => (
+                  <Table.ColumnHeader
+                    key={index}
+                    p={0}
+                    whiteSpace={"nowrap"}
+                    borderBottom={"none !important"}
+                    cursor={header.sortable ? "pointer" : "auto"}
+                    onClick={header.sortable ? () => sort(index) : undefined}
+                    {...header?.headerProps}
                   >
-                    {/* <Box
+                    <HStack
+                      justify={header.align}
+                      h={TH_H}
+                      px={CELL_PX}
+                      py={3}
+                      pl={index === 0 ? 4 : ""}
+                      pr={
+                        index === headers.length - 1
+                          ? 4
+                          : (header?.wrapperProps?.justify === "center" ||
+                                header?.wrapperProps?.justifyContent ===
+                                  "center") &&
+                              header.sortable
+                            ? 1
+                            : ""
+                      }
+                      bg={TH_BG}
+                      borderBottom={"1px solid"}
+                      borderColor={TH_BORDER_COLOR}
+                      {...header?.wrapperProps}
+                    >
+                      <P fontWeight={"medium"} color={"fg.muted"}>
+                        {header?.th}
+                      </P>
+
+                      {header.sortable && (
+                        <SortIcon
+                          columnIndex={index}
+                          sortColumnIdx={sortConfig.sortColumnIdx}
+                          direction={sortConfig.direction}
+                        />
+                      )}
+                    </HStack>
+                  </Table.ColumnHeader>
+                ))}
+
+                {/* Row options columns */}
+                {!isEmptyArray(rowOptions) && (
+                  <Table.ColumnHeader
+                    position={"sticky"}
+                    right={"0px"}
+                    w={OPTIONS_CELL_W}
+                    maxW={OPTIONS_CELL_W}
+                    p={0}
+                    borderBottom={"none !important"}
+                  >
+                    <HStack
+                      h={TH_H}
+                      bg={TH_BG}
+                      px={CELL_PX}
+                      pr={pr}
+                      py={3}
+                      borderBottom={"1px solid"}
+                      borderColor={TH_BORDER_COLOR}
+                      roundedRight={themeConfig.radii.component}
+                      pos={"relative"}
+                    >
+                      {/* <Box
                       h={TD_MIN_H}
                       w={"6px"}
                       bg={"bg.body"}
                       pos={"absolute"}
                       right={"-6px"}
                     /> */}
-                    {/* Row Actions !!! */}
-                  </HStack>
-                </Table.ColumnHeader>
-              )}
-            </Table.Row>
-          </Table.Header>
-
-          <Table.Body>
-            {resolvedTableData?.map((row, rowIdx) => {
-              const isRowSelected = selectedRows.includes(row.id);
-
-              return (
-                <Table.Row
-                  key={rowIdx}
-                  role={"group"}
-                  bg={TABLE_ROW_BG}
-                  rounded={themeConfig.radii.component}
-                  overflow={"clip"}
-                  position={"relative"}
-                  {...trBodyProps}
-                >
-                  {!isEmptyArray(batchOptions) && (
-                    <Table.Cell
-                      minW={"0% !important"}
-                      maxW={OPTIONS_CELL_W}
-                      w={OPTIONS_CELL_W}
-                      h={TD_MIN_H}
-                      p={0}
-                      position={"sticky"}
-                      left={0}
-                      // bg={"bg.body"}
-                      bg={"transparent !important"}
-                      zIndex={2}
-                    >
-                      <Center
-                        h={TD_MIN_H}
-                        bg={isRowSelected ? selectedColor : TD_BG}
-                        px={"10px"}
-                        pl={pl}
-                        cursor={"pointer"}
-                        borderBottom={
-                          rowIdx !== resolvedTableData.length - 1
-                            ? "1px solid"
-                            : ""
-                        }
-                        borderColor={
-                          isRowSelected ? selectedColor : TD_BORDER_COLOR
-                        }
-                        roundedLeft={themeConfig.radii.component}
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          toggleRowSelection(row);
-                        }}
-                      >
-                        <Checkbox
-                          subtle
-                          size={"sm"}
-                          colorPalette={themeConfig.colorPalette}
-                          checked={selectedRows.includes(row.id)}
-                        />
-                      </Center>
-                    </Table.Cell>
-                  )}
-
-                  {/* Numbering column */}
-                  <Table.Cell whiteSpace={"nowrap"} p={0}>
-                    <HStack
-                      py={3}
-                      px={CELL_PX}
-                      h={TD_MIN_H}
-                      bg={isRowSelected ? selectedColor : TD_BG}
-                      borderBottom={
-                        rowIdx !== resolvedTableData.length - 1
-                          ? "1px solid"
-                          : ""
-                      }
-                      borderColor={
-                        isRowSelected ? selectedColor : TD_BORDER_COLOR
-                      }
-                      fontSize={"md"}
-                      color={"fg.subtle"}
-                      justify={"center"}
-                    >
-                      {rowIdx + 1}
+                      {/* Row Actions !!! */}
                     </HStack>
-                  </Table.Cell>
+                  </Table.ColumnHeader>
+                )}
+              </Table.Row>
+            </Table.Header>
 
-                  {/* Main columns */}
-                  {row.columns.map((col, colIndex) => (
+            <Table.Body>
+              {resolvedTableData?.map((row, rowIndex) => {
+                const isRowSelected = selectedRows.includes(row.id);
+                const isLastIndex = rowIndex === resolvedTableData.length - 1;
+
+                return (
+                  <Table.Row
+                    key={rowIndex}
+                    role={"group"}
+                    bg={TABLE_ROW_BG}
+                    rounded={themeConfig.radii.component}
+                    overflow={"clip"}
+                    position={"relative"}
+                    {...trBodyProps}
+                  >
+                    {!isEmptyArray(batchOptions) && (
+                      <Table.Cell
+                        minW={"0% !important"}
+                        maxW={OPTIONS_CELL_W}
+                        w={OPTIONS_CELL_W}
+                        h={TD_MIN_H}
+                        p={0}
+                        pb={isLastIndex ? 0 : GAP}
+                        position={"sticky"}
+                        left={0}
+                        zIndex={2}
+                      >
+                        <Center
+                          h={TD_MIN_H}
+                          bg={isRowSelected ? selectedColor : TD_BG}
+                          px={"10px"}
+                          pl={pl}
+                          cursor={"pointer"}
+                          borderBottom={
+                            rowIndex !== resolvedTableData.length - 1
+                              ? "1px solid"
+                              : ""
+                          }
+                          borderColor={
+                            isRowSelected ? selectedColor : TD_BORDER_COLOR
+                          }
+                          roundedLeft={themeConfig.radii.component}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            toggleRowSelection(row);
+                          }}
+                        >
+                          <Checkbox
+                            subtle
+                            size={"sm"}
+                            colorPalette={themeConfig.colorPalette}
+                            checked={selectedRows.includes(row.id)}
+                          />
+                        </Center>
+                      </Table.Cell>
+                    )}
+
+                    {/* Numbering column */}
                     <Table.Cell
-                      key={colIndex}
                       whiteSpace={"nowrap"}
                       p={0}
-                      fontSize={"md"}
-                      {...col?.tableCellProps}
+                      pb={isLastIndex ? 0 : GAP}
                     >
                       <HStack
                         py={3}
@@ -482,69 +455,102 @@ export const DataTableDisplay = (props: DataTableProps) => {
                         h={TD_MIN_H}
                         bg={isRowSelected ? selectedColor : TD_BG}
                         borderBottom={
-                          rowIdx !== resolvedTableData.length - 1
+                          rowIndex !== resolvedTableData.length - 1
                             ? "1px solid"
                             : ""
                         }
                         borderColor={
                           isRowSelected ? selectedColor : TD_BORDER_COLOR
                         }
-                        justify={col.align}
-                        {...col?.wrapperProps}
+                        fontSize={"md"}
+                        color={"fg.subtle"}
+                        justify={"center"}
                       >
-                        <Box opacity={row.dim || col.dim ? 0.4 : 1} w="full">
-                          {col?.td}
-                        </Box>
+                        {rowIndex + 1}
                       </HStack>
                     </Table.Cell>
-                  ))}
 
-                  {/* Row options column */}
-                  {!isEmptyArray(rowOptions) && (
-                    <Table.Cell
-                      minW={"0% !important"}
-                      w={OPTIONS_CELL_W}
-                      maxW={OPTIONS_CELL_W}
-                      h={TD_MIN_H}
-                      // bg={"bg.body"}
-                      p={0}
-                      position={"sticky"}
-                      right={"0"}
-                      zIndex={2}
-                    >
-                      <Center
-                        h={TD_MIN_H}
-                        px={"10px"}
-                        pr={pr}
-                        bg={isRowSelected ? selectedColor : TD_BG}
-                        borderBottom={
-                          rowIdx !== resolvedTableData.length - 1
-                            ? "1px solid"
-                            : ""
-                        }
-                        borderColor={
-                          isRowSelected ? selectedColor : TD_BORDER_COLOR
-                        }
-                        roundedRight={themeConfig.radii.component}
-                        pos={"relative"}
-                        onClick={(e) => {
-                          e.stopPropagation();
-                        }}
+                    {/* Main columns */}
+                    {row.columns.map((col, colIndex) => (
+                      <Table.Cell
+                        key={colIndex}
+                        whiteSpace={"nowrap"}
+                        p={0}
+                        pb={isLastIndex ? 0 : GAP}
+                        fontSize={"md"}
+                        {...col?.tableCellProps}
                       >
-                        <RowOptions
-                          row={row}
-                          rowOptions={rowOptions}
-                          tableContainerRef={tableContainerRef}
-                          color={"fg.ibody"}
-                        />
-                      </Center>
-                    </Table.Cell>
-                  )}
-                </Table.Row>
-              );
-            })}
-          </Table.Body>
-        </Table.Root>
+                        <HStack
+                          py={3}
+                          px={CELL_PX}
+                          h={TD_MIN_H}
+                          bg={isRowSelected ? selectedColor : TD_BG}
+                          borderBottom={
+                            rowIndex !== resolvedTableData.length - 1
+                              ? "1px solid"
+                              : ""
+                          }
+                          borderColor={
+                            isRowSelected ? selectedColor : TD_BORDER_COLOR
+                          }
+                          justify={col.align}
+                          {...col?.wrapperProps}
+                        >
+                          <Box opacity={row.dim || col.dim ? 0.4 : 1} w="full">
+                            {col?.td}
+                          </Box>
+                        </HStack>
+                      </Table.Cell>
+                    ))}
+
+                    {/* Row options column */}
+                    {!isEmptyArray(rowOptions) && (
+                      <Table.Cell
+                        minW={"0% !important"}
+                        w={OPTIONS_CELL_W}
+                        maxW={OPTIONS_CELL_W}
+                        h={TD_MIN_H}
+                        // bg={"bg.body"}
+                        p={0}
+                        pb={isLastIndex ? 0 : GAP}
+                        position={"sticky"}
+                        right={"0"}
+                        zIndex={2}
+                      >
+                        <Center
+                          h={TD_MIN_H}
+                          px={"10px"}
+                          pr={pr}
+                          bg={isRowSelected ? selectedColor : TD_BG}
+                          borderBottom={
+                            rowIndex !== resolvedTableData.length - 1
+                              ? "1px solid"
+                              : ""
+                          }
+                          borderColor={
+                            isRowSelected ? selectedColor : TD_BORDER_COLOR
+                          }
+                          roundedRight={themeConfig.radii.component}
+                          pos={"relative"}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                          }}
+                        >
+                          <RowOptions
+                            row={row}
+                            rowOptions={rowOptions}
+                            tableContainerRef={tableContainerRef}
+                            color={"fg.ibody"}
+                          />
+                        </Center>
+                      </Table.Cell>
+                    )}
+                  </Table.Row>
+                );
+              })}
+            </Table.Body>
+          </Table.Root>
+        </CContainer>
       </CContainer>
 
       {hasFooter && (

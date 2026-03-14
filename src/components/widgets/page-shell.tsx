@@ -2,6 +2,7 @@
 
 import { Btn } from "@/components/ui/btn";
 import { CContainer } from "@/components/ui/c-container";
+import { useColorModeValue } from "@/components/ui/color-mode";
 import { P, PProps } from "@/components/ui/p";
 import { AppIconLucide } from "@/components/widgets/app-icon";
 import { BackButton } from "@/components/widgets/back-button";
@@ -111,6 +112,8 @@ export const RadialGlowBackground = (props: StackProps) => {
 
   // Constants
   const colorPalette = themeConfig.colorPalette;
+  const opacity1 = useColorModeValue(0.03, 0.02);
+  const opacity2 = useColorModeValue(0.04, 0.03);
 
   return (
     <Center
@@ -122,12 +125,12 @@ export const RadialGlowBackground = (props: StackProps) => {
       top={0}
       {...props}
     >
-      <CContainer h={"full"} pos={"relative"} mt={"35%"}>
+      <CContainer h={"full"} pos={"relative"} mt={"100%"}>
         <Circle
           aspectRatio={1}
-          w={"100%"}
-          bg={`${colorPalette}.subtle`}
-          opacity={0.2}
+          w={"150%"}
+          bg={`${colorPalette}.solid`}
+          opacity={opacity1}
           pos={"absolute"}
           left={"50%"}
           top={"50%"}
@@ -136,9 +139,9 @@ export const RadialGlowBackground = (props: StackProps) => {
 
         <Circle
           aspectRatio={1}
-          w={"60%"}
-          bg={`${colorPalette}.subtle`}
-          opacity={0.4}
+          w={"100%"}
+          bg={`${colorPalette}.solid`}
+          opacity={opacity2}
           pos={"absolute"}
           left={"50%"}
           top={"50%"}

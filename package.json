@@ -11,7 +11,7 @@
     "t": "npx tsc --noEmit --watch --preserveWatchOutput",
     "l": "node src/scripts/generate-translation.js",
     "s": "node src/scripts/generate-sitemap.js",
-    "chakra:typegen": "chakra typegen ./src/theme/index.ts"
+    "chakra:typegen": "chakra typegen ./src/theme/chakraCustomSystem.ts"
   },
   "dependencies": {
     "@chakra-ui/charts": "^3.30.0",

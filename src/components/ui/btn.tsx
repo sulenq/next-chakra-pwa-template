@@ -1,6 +1,7 @@
 "use client";
 
 import { MAIN_BUTTON_SIZE } from "@/constants/styles";
+import { ButtonVariant } from "@/constants/types";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
 import { Button, ButtonProps, IconButton } from "@chakra-ui/react";
 import { forwardRef } from "react";
@@ -10,6 +11,7 @@ export interface BtnProps extends ButtonProps {
   clicky?: boolean;
   iconButton?: boolean;
   focusStyle?: boolean;
+  variant?: ButtonVariant;
 }
 
 export const Btn = forwardRef<HTMLButtonElement, BtnProps>((props, ref) => {
