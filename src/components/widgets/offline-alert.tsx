@@ -54,13 +54,12 @@ export const OfflineAlert = () => {
 
   // State handler
   useEffect(() => {
-    if (isOffline) {
+    if (isOffline && !open) {
       onOpen();
-    } else {
-      hideAlert("offline");
+    } else if (!isOffline && open) {
       onClose();
     }
-  }, [isOffline]);
+  }, [isOffline, open, onOpen, onClose]);
 
   return (
     <Disclosure.Root open={open} lazyLoad size={"xs"} role={"alertdialog"}>
