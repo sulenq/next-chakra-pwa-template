@@ -24,8 +24,8 @@ import {
   MobileNavLink,
 } from "@/components/widgets/navs";
 import {
-  RadialGlowBackground,
   NavBreadcrumb,
+  RadialGlowBackground,
 } from "@/components/widgets/page-shell";
 import { ProfileMenuTrigger } from "@/components/widgets/profile-menu";
 import { Today } from "@/components/widgets/today";
@@ -36,7 +36,6 @@ import {
   DESKTOP_NAVS_COLOR,
   DESKTOP_NAVS_POPOVER_MAIN_AXIS,
   DESKTOP_NAVS_TOOLTIP_MAIN_AXIS,
-  GAP,
   MOBILE_CONTENT_CONTAINER_BG,
   MOBILE_NAV_LABEL_FONT_SIZE,
   MOBILE_NAVS_COLOR,
@@ -341,8 +340,7 @@ const DesktopLayout = (props: any) => {
         {/* Sidebar */}
         <CContainer
           flexShrink={0}
-          w={isNavsExpanded ? "250px" : `calc(60px + ${GAP})`}
-          p={GAP}
+          w={isNavsExpanded ? "250px" : "60px"}
           pr={"0 !important"}
           overflowY={"auto"}
           transition={"300ms ease"}

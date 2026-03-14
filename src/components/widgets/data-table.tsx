@@ -39,7 +39,6 @@ const TABLE_ROW_BG = "transparent";
 const TH_H = "45px";
 const TH_BG = "bg.body";
 const TH_BORDER_COLOR = "transparent";
-const TH_ROUNDED = 0;
 
 const TD_MIN_H = "46px";
 const TD_BG = "bg.body";
@@ -268,8 +267,7 @@ export const DataTableDisplay = (props: DataTableProps) => {
                     pl={pl}
                     borderBottom={"1px solid"}
                     borderColor={TH_BORDER_COLOR}
-                    roundedTopLeft={TH_ROUNDED}
-                    roundedBottomLeft={TH_ROUNDED}
+                    roundedLeft={themeConfig.radii.component}
                     bg={TH_BG}
                   >
                     <BatchOptions
@@ -372,8 +370,7 @@ export const DataTableDisplay = (props: DataTableProps) => {
                     py={3}
                     borderBottom={"1px solid"}
                     borderColor={TH_BORDER_COLOR}
-                    roundedTopRight={TH_ROUNDED}
-                    roundedBottomRight={TH_ROUNDED}
+                    roundedRight={themeConfig.radii.component}
                     pos={"relative"}
                   >
                     {/* <Box
@@ -431,6 +428,7 @@ export const DataTableDisplay = (props: DataTableProps) => {
                         borderColor={
                           isRowSelected ? selectedColor : TD_BORDER_COLOR
                         }
+                        roundedLeft={themeConfig.radii.component}
                         onClick={(e) => {
                           e.stopPropagation();
                           toggleRowSelection(row);
@@ -527,19 +525,12 @@ export const DataTableDisplay = (props: DataTableProps) => {
                         borderColor={
                           isRowSelected ? selectedColor : TD_BORDER_COLOR
                         }
+                        roundedRight={themeConfig.radii.component}
+                        pos={"relative"}
                         onClick={(e) => {
                           e.stopPropagation();
                         }}
-                        pos={"relative"}
                       >
-                        {/* <Box
-                          h={TD_MIN_H}
-                          w={"6px"}
-                          bg={"bg.body"}
-                          pos={"absolute"}
-                          right={"-6px"}
-                        /> */}
-
                         <RowOptions
                           row={row}
                           rowOptions={rowOptions}

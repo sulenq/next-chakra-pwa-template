@@ -11,6 +11,7 @@ import {
 } from "@/components/widgets/page-shell";
 import { APP } from "@/constants/_meta";
 import { OTHER_PRIVATE_NAV_GROUPS } from "@/constants/navs";
+import { R_SPACING_MD } from "@/constants/styles";
 import { useLocale } from "@/contexts/useLocale";
 import { formatAbsDate } from "@/utils/formatter";
 import { HStack } from "@chakra-ui/react";
@@ -76,7 +77,7 @@ const PageScreen = ({ children }: { children: React.ReactNode }) => {
 
       {/* Content */}
       {showContent && (
-        <MContainer className={"scrollY"} flex={1}>
+        <MContainer className={"scrollY"} p={R_SPACING_MD} flex={1}>
           <ContainerLayout
             flex={1}
             // maxW={""}

@@ -9,6 +9,10 @@ export const DESKTOP_NAVS_BG = "bg.body";
 export const NAV_BTN_VARIANT = "frosted";
 export const ACTIVE_NAV_BTN_VARIANT = "solid";
 
+// Data Grid
+export const GRID_ITEM_CONTAINER_BG = "bg.body";
+export const GRID_BATCH_OPTIONS_CONTAINER_BG = "bg.frosted";
+
 // Sizes
 export const MAIN_BUTTON_SIZE = ["md", null, "sm"] as any;
 export const MAIN_INPUT_SIZE = ["md", null, "sm"] as any;

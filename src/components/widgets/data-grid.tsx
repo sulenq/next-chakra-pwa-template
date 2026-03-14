@@ -20,7 +20,12 @@ import {
   FormattedTableRow,
   Interface__DataProps,
 } from "@/constants/interfaces";
-import { GAP, R_SPACING_MD } from "@/constants/styles";
+import {
+  GAP,
+  GRID_ITEM_CONTAINER_BG,
+  GRID_BATCH_OPTIONS_CONTAINER_BG,
+  R_SPACING_MD,
+} from "@/constants/styles";
 import { useLocale } from "@/contexts/useLocale";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
 import { useIsSmScreenWidth } from "@/hooks/useIsSmScreenWidth";
@@ -35,10 +40,6 @@ import {
   StackProps,
 } from "@chakra-ui/react";
 import { Fragment, useState } from "react";
-
-// SX
-const GRID_ITEM_CONTAINER_BG = "bg.frosted";
-const BATCH_OPTIONS_CONTAINER_BG = "bg.frosted";
 
 export interface GridItemProps {
   item: any;
@@ -96,7 +97,7 @@ export const DataGridItem = (props: DataGridItemProps) => {
       key={item.id}
       flex={1}
       bg={GRID_ITEM_CONTAINER_BG}
-      border={"1px solid"}
+      // border={"1px solid"}
       borderColor={isRowSelected ? selectedColor : "border.subtle"}
       rounded={themeConfig.radii.container}
       overflow={"clip"}
@@ -418,7 +419,7 @@ const DataGridDisplay = (props: DataGridProps) => {
         >
           <HStack
             gap={1}
-            bg={BATCH_OPTIONS_CONTAINER_BG}
+            bg={GRID_BATCH_OPTIONS_CONTAINER_BG}
             p={1}
             border={"1px solid"}
             borderColor={"border.muted"}

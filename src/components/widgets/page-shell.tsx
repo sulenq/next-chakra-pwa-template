@@ -11,7 +11,7 @@ import { DotIndicator } from "@/components/widgets/indicator";
 import { MContainerProps } from "@/components/widgets/m-container";
 import ToggleTip from "@/components/widgets/toggle-tip";
 import { Interface__Nav } from "@/constants/interfaces";
-import { GAP, R_SPACING_MD, TOP_BAR_H } from "@/constants/styles";
+import { R_SPACING_MD, TOP_BAR_H } from "@/constants/styles";
 import { useBreadcrumbs } from "@/contexts/useBreadcrumbs";
 import { useLocale } from "@/contexts/useLocale";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
@@ -363,7 +363,6 @@ const PageContainer = forwardRef<HTMLDivElement, StackProps>(
           ref={mergeRef}
           className="page-container"
           flex={1}
-          p={GAP}
           overflow={"auto"}
           {...restProps}
         >
