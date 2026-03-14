@@ -122,7 +122,7 @@ export const RadialGlowBackground = (props: StackProps) => {
       top={0}
       {...props}
     >
-      <CContainer h={"full"} pos={"relative"} mt={"50%"}>
+      <CContainer h={"full"} pos={"relative"} mt={"35%"}>
         <Circle
           aspectRatio={1}
           w={"100%"}
@@ -136,7 +136,7 @@ export const RadialGlowBackground = (props: StackProps) => {
 
         <Circle
           aspectRatio={1}
-          w={"80%"}
+          w={"60%"}
           bg={`${colorPalette}.subtle`}
           opacity={0.4}
           pos={"absolute"}
@@ -426,7 +426,7 @@ const PageTitle = (props: PProps) => {
   return (
     <ClampText
       fontSize={"xl"}
-      fontWeight={"medium"}
+      fontWeight={"semibold"}
       textAlign={restProps.textAlign}
       {...restProps}
     >

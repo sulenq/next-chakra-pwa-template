@@ -17,7 +17,6 @@ const SettingsRoute = () => {
       flex={1}
       align={"center"}
       justify={"center"}
-      bg={"bg.body"}
       p={4}
       mb={4}
       rounded={themeConfig.radii.container}

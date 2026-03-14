@@ -11,7 +11,7 @@ export const LeftIndicator = (props: BoxProps) => {
   return (
     <Box
       w={"3px"}
-      h={"12px"}
+      h={"8px"}
       bg={themeConfig.primaryColor}
       rounded={"full"}
       pos={"absolute"}

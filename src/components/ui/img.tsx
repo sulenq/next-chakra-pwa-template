@@ -3,20 +3,35 @@
 import { CContainer } from "@/components/ui/c-container";
 import { SVGS_PATH } from "@/constants/paths";
 import { Center, StackProps } from "@chakra-ui/react";
-import { MediaImage } from "iconoir-react";
+import { IconoirProvider, MediaImage } from "iconoir-react";
 import Image, { ImageProps } from "next/image";
 import { forwardRef, useEffect, useState } from "react";
 
-export const ImgFallback = (props: StackProps) => {
+interface ImgFallbackProps extends StackProps {
+  icon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+}
+export const ImgFallback = (props: ImgFallbackProps) => {
+  const { icon: Iconnoir = MediaImage, ...restProps } = props;
+
   return (
-    <Center w={"full"} h={"full"} bg={"bg.subtle"} pos={"relative"} {...props}>
-      <MediaImage
-        width={"50%"}
-        height={"50%"}
-        strokeWidth={"1"}
-        color={"var(--chakra-colors-fg-subtle)"}
-        opacity={0.2}
-      />
+    <Center
+      w={"full"}
+      h={"full"}
+      bg={"bg.subtle"}
+      pos={"relative"}
+      {...restProps}
+    >
+      <IconoirProvider
+        iconProps={{
+          strokeWidth: 1,
+          width: "50%",
+          height: "50%",
+          color: "var(--chakra-colors-fg-subtle)",
+          opacity: 0.2,
+        }}
+      >
+        <Iconnoir />
+      </IconoirProvider>
     </Center>
   );
 };

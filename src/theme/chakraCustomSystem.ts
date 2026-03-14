@@ -14,6 +14,21 @@ const customConfig = defineConfig({
     },
   },
   theme: {
+    recipes: {
+      button: {
+        variants: {
+          variant: {
+            frosted: {
+              bg: "bg.frosted",
+              color: "fg",
+              _hover: {
+                bg: "bg.muted",
+              },
+            },
+          },
+        },
+      },
+    },
     breakpoints: {
       sm: "320px",
       md: `${SM_SCREEN_W_NUMBER}px`,
@@ -34,8 +49,8 @@ const customConfig = defineConfig({
         placeholder: { value: "#96969691" },
 
         neutral: {
-          50: { value: "#fbfcfd" },
-          100: { value: "#f2f4f6" },
+          50: { value: "#fdfdfd" },
+          100: { value: "#f0f0f2" },
           200: { value: "#e8eaee" },
           300: { value: "#d8dadd" },
           400: { value: "#b3b5b8" },
@@ -48,17 +63,17 @@ const customConfig = defineConfig({
         },
 
         gray: {
-          50: { value: "#f4f7fa" },
-          100: { value: "#eef3f8" },
-          200: { value: "#e4eaf2" },
-          300: { value: "#cfd7e2" },
-          400: { value: "#9ca7b4" },
-          500: { value: "#6f7c8a" },
-          600: { value: "#525e6b" },
-          700: { value: "#3f4853" },
-          800: { value: "#272d34" },
-          900: { value: "#24292f" },
-          950: { value: "#1d2126" },
+          50: { value: "#f4f6f8" },
+          100: { value: "#eef2f6" },
+          200: { value: "#e4e9ef" },
+          300: { value: "#cfd6de" },
+          400: { value: "#9da6b0" },
+          500: { value: "#717171" },
+          600: { value: "#525252" },
+          700: { value: "#3f3f3f" },
+          800: { value: "#272727" },
+          900: { value: "#242424" },
+          950: { value: "#1d1d1d" },
         },
 
         cream: {
@@ -513,8 +528,8 @@ const customConfig = defineConfig({
         bg: {
           canvas: {
             value: {
-              base: "#f2f4f6",
-              _dark: "#121213",
+              base: "#f0f1f1ff",
+              _dark: "#151516",
             },
           },
           body: {
@@ -526,7 +541,7 @@ const customConfig = defineConfig({
           frosted: {
             value: {
               base: "rgba(255, 255, 252, 0.4)",
-              _dark: "rgba(20, 20, 21, 0.4)",
+              _dark: "rgba(15, 15, 16, 0.4)",
             },
           },
           subtle: {

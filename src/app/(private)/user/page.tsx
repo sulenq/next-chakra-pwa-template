@@ -30,7 +30,7 @@ import {
   RowOptionsTableOptionGenerator,
 } from "@/constants/interfaces";
 import { SVGS_PATH } from "@/constants/paths";
-import { BASE_ICON_BOX_SIZE } from "@/constants/styles";
+import { BASE_ICON_BOX_SIZE, R_SPACING_MD } from "@/constants/styles";
 import { useDataDisplay } from "@/contexts/useDataDisplay";
 import { useLocale } from "@/contexts/useLocale";
 import useRenderTrigger from "@/contexts/useRenderTrigger";
@@ -58,9 +58,10 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import * as yup from "yup";
 
+type Interface__Data = any;
+
 const BASE_ENDPOINT = ``;
 const PREFIX_ID = `user`;
-type Interface__Data = any;
 const DEFAULT_FILTER = {
   search: "",
 };
@@ -579,43 +580,45 @@ const PageScreen = () => {
   const [filter, setFilter] = useState(DEFAULT_FILTER);
 
   return (
-    <CContainer overflowY={"auto"}>
+    <>
       <TopBar />
 
-      <PageShell.Header justify={"space-between"}>
-        <HStack>
-          {!isSmContainer && (
-            <DataUtils
-              filter={filter}
-              setFilter={setFilter}
-              routeTitle={routeTitle}
-            />
-          )}
-
-          <Create />
-        </HStack>
-      </PageShell.Header>
-
-      <Item.Container gap={4} overflow={"auto"}>
-        {isSmContainer && (
-          <HScroll>
-            <HStack minW={"full"} justify={"space-between"}>
+      <CContainer gap={R_SPACING_MD} overflowY={"auto"}>
+        <PageShell.Header justify={"space-between"}>
+          <HStack>
+            {!isSmContainer && (
               <DataUtils
                 filter={filter}
                 setFilter={setFilter}
                 routeTitle={routeTitle}
               />
-            </HStack>
-          </HScroll>
-        )}
+            )}
 
-        <Data
-          filter={filter}
-          routeTitle={routeTitle}
-          isSmContainer={isSmContainer}
-        />
-      </Item.Container>
-    </CContainer>
+            <Create />
+          </HStack>
+        </PageShell.Header>
+
+        <Item.Container gap={4} overflow={"auto"}>
+          {isSmContainer && (
+            <HScroll>
+              <HStack minW={"full"} justify={"space-between"}>
+                <DataUtils
+                  filter={filter}
+                  setFilter={setFilter}
+                  routeTitle={routeTitle}
+                />
+              </HStack>
+            </HScroll>
+          )}
+
+          <Data
+            filter={filter}
+            routeTitle={routeTitle}
+            isSmContainer={isSmContainer}
+          />
+        </Item.Container>
+      </CContainer>
+    </>
   );
 };
 

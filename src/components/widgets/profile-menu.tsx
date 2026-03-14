@@ -4,7 +4,7 @@ import { Btn } from "@/components/ui/btn";
 import { CContainer } from "@/components/ui/c-container";
 import { useColorMode } from "@/components/ui/color-mode";
 import { Divider } from "@/components/ui/divider";
-import { Img } from "@/components/ui/img";
+import { Img, ImgFallback } from "@/components/ui/img";
 import { NavLink } from "@/components/ui/nav-link";
 import { P } from "@/components/ui/p";
 import { Popover } from "@/components/ui/popover";
@@ -25,6 +25,7 @@ import { back, removeStorage } from "@/utils/client";
 import { pluckString } from "@/utils/string";
 import { imgUrl } from "@/utils/url";
 import { Icon, PopoverRootProps, StackProps } from "@chakra-ui/react";
+import { User } from "iconoir-react";
 import { EclipseIcon, LogOutIcon, SettingsIcon, UserIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useRef, useState } from "react";
@@ -109,6 +110,7 @@ export const ProfileMenu = (props: ProfileMenuProps) => {
             src={imgUrl(user?.avatar?.[0]?.filePath)}
             alt={"avatar"}
             aspectRatio={1}
+            fallback={<ImgFallback icon={User} />}
             rounded={themeConfig.radii.component}
           />
         </CContainer>

@@ -1,11 +1,13 @@
 export const NUMBER_LOCALE = "id-ID";
 
-// Colors
+// Navs
 export const MOBILE_CONTENT_CONTAINER_BG = "bg.body";
 export const MOBILE_NAV_LABEL_FONT_SIZE = "xs";
 export const MOBILE_NAVS_COLOR = "fg.muted";
 export const DESKTOP_NAVS_COLOR = "fg.muted";
 export const DESKTOP_NAVS_BG = "bg.body";
+export const NAV_BTN_VARIANT = "frosted";
+export const ACTIVE_NAV_BTN_VARIANT = "solid";
 
 // Sizes
 export const MAIN_BUTTON_SIZE = ["md", null, "sm"] as any;
@@ -19,7 +21,7 @@ export const MENU_ICON_BOX_SIZE = 4.5;
 
 // Spacing
 export const R_SPACING_MD = ["4px", null, "12px"];
-export const GAP = "10px";
+export const GAP = "6px";
 
 // Positioning
 export const MOBILE_POPOVER_MAIN_AXIS = 22;

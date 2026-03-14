@@ -13,10 +13,12 @@ import { LeftIndicator } from "@/components/widgets/indicator";
 import { MContainer } from "@/components/widgets/m-container";
 import { Interface__NavGroup } from "@/constants/interfaces";
 import {
+  ACTIVE_NAV_BTN_VARIANT,
   BASE_ICON_BOX_SIZE,
   DESKTOP_NAVS_COLOR,
   DESKTOP_NAVS_POPOVER_MAIN_AXIS,
   DESKTOP_NAVS_TOOLTIP_MAIN_AXIS,
+  NAV_BTN_VARIANT,
 } from "@/constants/styles";
 import { useLocale } from "@/contexts/useLocale";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
@@ -190,13 +192,13 @@ export const DesktopNavs = (props: DesktopNavsProps) => {
         // pr={`calc(12px - ${FIREFOX_SCROLL_Y_CLASS_PR_PREFIX})`}
       >
         {/* Private Navs */}
-        <CContainer gap={1}>
+        <CContainer>
           {isEmptyArray(resolvedNavs) && <FeedbackNotFound />}
 
           {!isEmptyArray(resolvedNavs) &&
             resolvedNavs.map((navItem, navItemIdx) => {
               return (
-                <CContainer key={navItemIdx} gap={1}>
+                <CContainer key={navItemIdx} gap={2}>
                   {navsExpanded && navItem.labelKey && (
                     <ClampText
                       fontSize={"sm"}
@@ -226,7 +228,11 @@ export const DesktopNavs = (props: DesktopNavsProps) => {
                                 gap={4}
                                 px={2}
                                 justifyContent={"start"}
-                                variant={isMainNavsActive ? "subtle" : "ghost"}
+                                variant={
+                                  isMainNavsActive
+                                    ? ACTIVE_NAV_BTN_VARIANT
+                                    : NAV_BTN_VARIANT
+                                }
                                 colorPalette={
                                   isMainNavsActive
                                     ? themeConfig.colorPalette
@@ -293,7 +299,9 @@ export const DesktopNavs = (props: DesktopNavsProps) => {
                                         px={2}
                                         justifyContent="start"
                                         variant={
-                                          isMainNavsActive ? "subtle" : "ghost"
+                                          isMainNavsActive
+                                            ? ACTIVE_NAV_BTN_VARIANT
+                                            : NAV_BTN_VARIANT
                                         }
                                         colorPalette={
                                           isMainNavsActive
@@ -362,8 +370,8 @@ export const DesktopNavs = (props: DesktopNavsProps) => {
                                                       clicky={false}
                                                       variant={
                                                         isSubNavsActive
-                                                          ? "subtle"
-                                                          : "ghost"
+                                                          ? ACTIVE_NAV_BTN_VARIANT
+                                                          : NAV_BTN_VARIANT
                                                       }
                                                       colorPalette={
                                                         isSubNavsActive
@@ -426,7 +434,9 @@ export const DesktopNavs = (props: DesktopNavsProps) => {
                                         clicky={false}
                                         justifyContent="start"
                                         variant={
-                                          isMainNavsActive ? "subtle" : "ghost"
+                                          isMainNavsActive
+                                            ? ACTIVE_NAV_BTN_VARIANT
+                                            : NAV_BTN_VARIANT
                                         }
                                         colorPalette={
                                           isMainNavsActive

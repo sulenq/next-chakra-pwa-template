@@ -325,7 +325,7 @@ const DesktopLayout = (props: any) => {
   // const rSpacing = useBreakpointValue(R_SPACING_MD);
 
   return (
-    <CContainer pos={"relative"}>
+    <CContainer bg={"bg.canvas"} pos={"relative"}>
       {/* BG */}
       <RadialGlowBackground zIndex={1} />
 
@@ -333,7 +333,6 @@ const DesktopLayout = (props: any) => {
         align={"stretch"}
         gap={0}
         h={"100dvh"}
-        // bg={"bg.canvas"}
         overflow={"clip"}
         pos={"relative"}
         zIndex={2}
