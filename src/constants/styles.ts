@@ -7,7 +7,7 @@ export const MOBILE_NAVS_COLOR = "fg.muted";
 export const DESKTOP_NAVS_COLOR = "fg.muted";
 export const DESKTOP_NAVS_BG = "bg.body";
 export const NAV_BTN_VARIANT = "frosted";
-export const ACTIVE_NAV_BTN_VARIANT = "solid";
+export const ACTIVE_NAV_BTN_VARIANT = "subtle";
 
 // Data Grid
 export const GRID_ITEM_CONTAINER_BG = "bg.body";

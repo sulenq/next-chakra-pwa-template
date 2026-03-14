@@ -83,7 +83,13 @@ export default function ClientRoot(props: ClientRootProps) {
   if (!mounted) return <>{fallback || <DefaultFallback />}</>;
 
   return (
-    <CContainer id={"client-root"} minH={"100vh"} flex={1} pos={"relative"}>
+    <CContainer
+      id={"client-root"}
+      flex={1}
+      minH={"100dvh"}
+      bg={"bg.canvas"}
+      pos={"relative"}
+    >
       <RadialGlowBackground />
 
       <LoadingBar />
