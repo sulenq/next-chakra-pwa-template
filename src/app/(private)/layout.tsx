@@ -23,10 +23,7 @@ import {
   DesktopNavTooltip,
   MobileNavLink,
 } from "@/components/widgets/navs";
-import {
-  NavBreadcrumb,
-  RadialGlowBackground,
-} from "@/components/widgets/page-shell";
+import { NavBreadcrumb } from "@/components/widgets/page-shell";
 import { ProfileMenuTrigger } from "@/components/widgets/profile-menu";
 import { Today } from "@/components/widgets/today";
 import { APP } from "@/constants/_meta";
@@ -327,10 +324,7 @@ const DesktopLayout = (props: any) => {
   // const rSpacing = useBreakpointValue(R_SPACING_MD);
 
   return (
-    <CContainer bg={"bg.canvas"} pos={"relative"}>
-      {/* BG */}
-      <RadialGlowBackground zIndex={1} />
-
+    <CContainer>
       <HStack
         align={"stretch"}
         h={"100dvh"}

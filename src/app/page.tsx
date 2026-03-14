@@ -22,13 +22,7 @@ export default function Page() {
   const iss = useIsSmScreenWidth();
 
   return (
-    <CContainer
-      align={"start"}
-      h={"100dvh"}
-      p={6}
-      bg={"bg.canvas"}
-      overflowY={"auto"}
-    >
+    <CContainer align={"start"} h={"100dvh"} p={6} overflowY={"auto"}>
       <CContainer
         flex={1}
         maxW={"1200px"}

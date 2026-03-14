@@ -583,7 +583,7 @@ const PageScreen = () => {
     <>
       <TopBar />
 
-      <CContainer gap={R_SPACING_MD} overflowY={"auto"}>
+      <CContainer gap={R_SPACING_MD} p={R_SPACING_MD} overflowY={"auto"}>
         <PageShell.Header justify={"space-between"}>
           <HStack>
             {!isSmContainer && (
