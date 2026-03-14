@@ -1,5 +1,6 @@
 "use client";
 
+import { CloseButton } from "@/components/ui/close-button";
 import { back } from "@/utils/client";
 import {
   Drawer as ChakraDrawer,
@@ -7,8 +8,6 @@ import {
   Portal,
 } from "@chakra-ui/react";
 import { forwardRef } from "react";
-import { CloseButton } from "@/components/ui/close-button";
-import { BLUR_RADIUS } from "@/constants/styles";
 
 export interface DrawerContentProps extends ChakraDrawer.ContentProps {
   portalled?: boolean;
@@ -39,7 +38,7 @@ export const DrawerContent = forwardRef<HTMLDivElement, DrawerContentProps>(
         {backdrop && (
           <ChakraDrawer.Backdrop
             zIndex="modal"
-            backdropFilter={`blur(${BLUR_RADIUS})`}
+            // backdropFilter={`blur(${BLUR_RADIUS})`}
           />
         )}
         <ChakraDrawer.Positioner

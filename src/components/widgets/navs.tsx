@@ -79,6 +79,7 @@ export const DesktopNavs = (props: DesktopNavsProps) => {
   // Constants
   const user = getUserData();
   const roleId = user?.role?.id;
+  const userPermissions = user?.role?.permissions;
 
   // Derived Values
   const q = (search ?? "").toLowerCase();
@@ -95,7 +96,7 @@ export const DesktopNavs = (props: DesktopNavsProps) => {
             nav.label?.toLowerCase() ??
             pluckString(t, nav.labelKey)?.toLowerCase() ??
             "";
-          const allowedMain = isAllowed(nav, roleId);
+          const allowedMain = isAllowed(nav, userPermissions);
 
           if (!nav.children || nav.children.length === 0) {
             if (!qNormalized) return allowedMain ? nav : null;

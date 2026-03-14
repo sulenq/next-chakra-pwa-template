@@ -1,5 +1,6 @@
 "use client";
 
+import { CloseButton } from "@/components/ui/close-button";
 import { useScreen } from "@/hooks/useScreen";
 import { back } from "@/utils/client";
 import {
@@ -8,8 +9,6 @@ import {
   Portal,
 } from "@chakra-ui/react";
 import { forwardRef, useRef, useState } from "react";
-import { CloseButton } from "@/components/ui/close-button";
-import { BLUR_RADIUS } from "@/constants/styles";
 
 export interface DialogContentProps extends ChakraDialog.ContentProps {
   portalled?: boolean;
@@ -46,7 +45,9 @@ export const DialogContent = forwardRef<HTMLDivElement, DialogContentProps>(
     return (
       <Portal disabled={!portalled} container={portalRef}>
         {backdrop && (
-          <ChakraDialog.Backdrop backdropFilter={`blur(${BLUR_RADIUS})`} />
+          <ChakraDialog.Backdrop
+          // backdropFilter={`blur(${BLUR_RADIUS})`}
+          />
         )}
         <ChakraDialog.Positioner
           pointerEvents="auto"
