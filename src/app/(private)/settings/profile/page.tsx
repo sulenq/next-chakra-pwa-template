@@ -10,7 +10,7 @@ import { SearchInput } from "@/components/ui/search-input";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Spinner } from "@/components/ui/spinner";
 import { StringInput } from "@/components/ui/string-input";
-import { AppIcon } from "@/components/widgets/app-icon";
+import { AppIconLucide } from "@/components/widgets/app-icon";
 import { ClampText } from "@/components/widgets/clamp-text";
 import FeedbackNoData from "@/components/widgets/feedback-no-data";
 import FeedbackNotFound from "@/components/widgets/feedback-not-found";
@@ -119,7 +119,7 @@ const PersonalInformation = (props: PersonalInformationProps) => {
     <Item.Container borderless roundedless>
       <Item.HeaderContainer borderless>
         <HStack>
-          <AppIcon icon={UserIcon} />
+          <AppIconLucide icon={UserIcon} />
           <Item.HeaderTitle>{t.personal_information}</Item.HeaderTitle>
         </HStack>
       </Item.HeaderContainer>
@@ -264,7 +264,7 @@ const AuthLog = () => {
               borderColor={"border.subtle"}
             >
               <Circle p={1} bg={isSignin ? "bg.success" : "bg.error"}>
-                <AppIcon
+                <AppIconLucide
                   icon={isSignin ? ArrowDown : ArrowUp}
                   color={isSignin ? "fg.success" : "fg.error"}
                 />
@@ -295,7 +295,7 @@ const AuthLog = () => {
     <Item.Container ref={containerRef} borderless roundedless>
       <Item.HeaderContainer borderless>
         <HStack>
-          <AppIcon icon={LogInIcon} />
+          <AppIconLucide icon={LogInIcon} />
 
           <Item.HeaderTitle>{t.my_auth_logs}</Item.HeaderTitle>
         </HStack>
@@ -444,7 +444,7 @@ const ActivityLog = () => {
     <Item.Container ref={containerRef} borderless roundedless>
       <Item.HeaderContainer borderless>
         <HStack>
-          <AppIcon icon={ActivityIcon} />
+          <AppIconLucide icon={ActivityIcon} />
 
           <Item.HeaderTitle>{t.my_activity_logs}</Item.HeaderTitle>
         </HStack>

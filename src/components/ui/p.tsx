@@ -5,14 +5,20 @@ import parse, { domToReact } from "html-react-parser";
 import { forwardRef } from "react";
 
 export interface PProps extends TextProps {
-  children?: string;
+  children?: any;
 }
 export const P = forwardRef<HTMLParagraphElement, PProps>((props, ref) => {
   // Props
   const { children = "", ...restProps } = props;
 
   return (
-    <Text ref={ref} as="p" wordBreak={"break-word"} {...restProps}>
+    <Text
+      ref={ref}
+      as="p"
+      wordBreak={"break-word"}
+      fontFamily={"inherit"}
+      {...restProps}
+    >
       {typeof children === "string"
         ? parse(children, {
             replace: (domNode) => {
@@ -29,9 +35,21 @@ export const P = forwardRef<HTMLParagraphElement, PProps>((props, ref) => {
               }
             },
           })
-        : "Invalid string"}
+        : children}
     </Text>
   );
 });
 
+export const PSerif = forwardRef<HTMLParagraphElement, PProps>((props, ref) => {
+  // Props
+  const { children = "", ...restProps } = props;
+
+  return (
+    <P ref={ref} as="p" fontFamily={"Times New Roman"} {...restProps}>
+      {children}
+    </P>
+  );
+});
+
 P.displayName = "P";
+PSerif.displayName = "PSerif";

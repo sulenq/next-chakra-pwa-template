@@ -6,7 +6,7 @@ import { Field, FieldsetRoot } from "@/components/ui/field";
 import { NumInput } from "@/components/ui/number-input";
 import { P } from "@/components/ui/p";
 import { Tooltip } from "@/components/ui/tooltip";
-import { AppIcon } from "@/components/widgets/app-icon";
+import { AppIconLucide } from "@/components/widgets/app-icon";
 import { DotIndicator } from "@/components/widgets/indicator";
 import { getMonthNames } from "@/constants/months";
 import { ButtonVariant, DisclosureSizes, Period } from "@/constants/types";
@@ -147,7 +147,11 @@ export const PeriodPickerInput = (props: PeriodPickerInputProps) => {
           )}
 
           {withIcon && (
-            <AppIcon icon={CalendarClockIcon} color={"fg.subtle"} mr={-1} />
+            <AppIconLucide
+              icon={CalendarClockIcon}
+              color={"fg.subtle"}
+              mr={-1}
+            />
           )}
         </Btn>
       </Tooltip>

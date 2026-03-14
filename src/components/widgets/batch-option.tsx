@@ -2,7 +2,7 @@ import { Btn, BtnProps } from "@/components/ui/btn";
 import { CContainer } from "@/components/ui/c-container";
 import { Menu, MenuItem } from "@/components/ui/menu";
 import { P } from "@/components/ui/p";
-import { AppIcon } from "@/components/widgets/app-icon";
+import { AppIconLucide } from "@/components/widgets/app-icon";
 import { Confirmation } from "@/components/widgets/confirmation";
 import { DotIndicator } from "@/components/widgets/indicator";
 import { BatchOptionsTableOptionGenerator } from "@/constants/interfaces";
@@ -60,7 +60,7 @@ export const BatchOptions = (props: BatchOptionsProps) => {
           }}
           {...restProps}
         >
-          {children ? children : <AppIcon icon={EllipsisIcon} />}
+          {children ? children : <AppIconLucide icon={EllipsisIcon} />}
 
           {!iconButton && "Batch Options"}
         </Btn>
@@ -135,7 +135,7 @@ export const BatchOptions = (props: BatchOptionsProps) => {
                   justifyContent="space-between"
                 >
                   {label}
-                  {icon && <AppIcon icon={icon} />}
+                  {icon && <AppIconLucide icon={icon} />}
                 </MenuItem>
               </Confirmation.Trigger>
             );
@@ -157,7 +157,7 @@ export const BatchOptions = (props: BatchOptionsProps) => {
               {...menuItemProps}
             >
               {label}
-              {icon && <AppIcon icon={icon} />}
+              {icon && <AppIconLucide icon={icon} />}
             </Menu.Item>
           );
         })}

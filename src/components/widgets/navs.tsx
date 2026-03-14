@@ -6,7 +6,7 @@ import { NavLink, NavLinkProps } from "@/components/ui/nav-link";
 import { P } from "@/components/ui/p";
 import { SearchInput } from "@/components/ui/search-input";
 import { Tooltip, TooltipProps } from "@/components/ui/tooltip";
-import { AppIcon } from "@/components/widgets/app-icon";
+import { AppIconLucide } from "@/components/widgets/app-icon";
 import { ClampText } from "@/components/widgets/clamp-text";
 import FeedbackNotFound from "@/components/widgets/feedback-not-found";
 import { LeftIndicator } from "@/components/widgets/indicator";
@@ -237,7 +237,7 @@ export const DesktopNavs = (props: DesktopNavsProps) => {
                                 )}
 
                                 {nav.icon && (
-                                  <AppIcon
+                                  <AppIconLucide
                                     icon={nav.icon}
                                     color={
                                       isMainNavsActive ? "" : DESKTOP_NAVS_COLOR
@@ -303,7 +303,7 @@ export const DesktopNavs = (props: DesktopNavsProps) => {
                                       >
                                         {isMainNavsActive && <LeftIndicator />}
 
-                                        <AppIcon
+                                        <AppIconLucide
                                           icon={nav.icon}
                                           color={
                                             isMainNavsActive
@@ -440,7 +440,7 @@ export const DesktopNavs = (props: DesktopNavsProps) => {
                                         {isMainNavsActive && <LeftIndicator />}
 
                                         <HStack gap={4}>
-                                          <AppIcon
+                                          <AppIconLucide
                                             icon={nav.icon}
                                             color={
                                               isMainNavsActive

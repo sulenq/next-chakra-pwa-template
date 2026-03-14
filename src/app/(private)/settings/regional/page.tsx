@@ -6,7 +6,7 @@ import { P } from "@/components/ui/p";
 import { SearchInput } from "@/components/ui/search-input";
 import { toaster } from "@/components/ui/toaster";
 import { Tooltip } from "@/components/ui/tooltip";
-import { AppIcon } from "@/components/widgets/app-icon";
+import { AppIconLucide } from "@/components/widgets/app-icon";
 import FeedbackNotFound from "@/components/widgets/feedback-not-found";
 import { DotIndicator } from "@/components/widgets/indicator";
 import { Item } from "@/components/widgets/item";
@@ -54,7 +54,7 @@ const Language = () => {
     <Item.Container borderless roundedless>
       <Item.HeaderContainer borderless>
         <HStack>
-          <AppIcon icon={LanguagesIcon} />
+          <AppIconLucide icon={LanguagesIcon} />
           <Item.HeaderTitle>{t.language}</Item.HeaderTitle>
         </HStack>
       </Item.HeaderContainer>
@@ -144,7 +144,7 @@ const Timezone = () => {
     <Item.Container ref={containerRef} borderless roundedless>
       <Item.HeaderContainer borderless>
         <HStack>
-          <AppIcon icon={GlobeIcon} />
+          <AppIconLucide icon={GlobeIcon} />
 
           <Item.HeaderTitle>{capitalizeWords(t.timezone)}</Item.HeaderTitle>
         </HStack>
@@ -269,7 +269,7 @@ const DateFormat = () => {
     <Item.Container borderless roundedless>
       <Item.HeaderContainer borderless>
         <HStack>
-          <AppIcon icon={CalendarIcon} />
+          <AppIconLucide icon={CalendarIcon} />
           <Item.HeaderTitle>{t.date_format}</Item.HeaderTitle>
         </HStack>
       </Item.HeaderContainer>
@@ -339,7 +339,7 @@ const TimeFormat = () => {
     <Item.Container borderless roundedless>
       <Item.HeaderContainer borderless>
         <HStack>
-          <AppIcon icon={HourglassIcon} />
+          <AppIconLucide icon={HourglassIcon} />
 
           <Item.HeaderTitle>{t.time_format}</Item.HeaderTitle>
         </HStack>
@@ -404,7 +404,7 @@ const UOMFormat = () => {
     <Item.Container borderless roundedless>
       <Item.HeaderContainer borderless>
         <HStack>
-          <AppIcon icon={RulerDimensionLineIcon} />
+          <AppIconLucide icon={RulerDimensionLineIcon} />
           <Item.HeaderTitle>{t.UOM_format}</Item.HeaderTitle>
         </HStack>
       </Item.HeaderContainer>

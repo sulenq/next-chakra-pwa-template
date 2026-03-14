@@ -7,8 +7,9 @@ import { P } from "@/components/ui/p";
 import { Segmented } from "@/components/ui/segment-group";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Switch } from "@/components/ui/switch";
-import { AppIcon } from "@/components/widgets/app-icon";
+import { AppIconLucide } from "@/components/widgets/app-icon";
 import { Calendar } from "@/components/widgets/calendar";
+import { ChartTooltip } from "@/components/widgets/chart-tooltip";
 import { ClampText } from "@/components/widgets/clamp-text";
 import { Clock } from "@/components/widgets/clock";
 import FeedbackNoData from "@/components/widgets/feedback-no-data";
@@ -99,11 +100,11 @@ const OverviewItem = (props: OverviewItemProps) => {
 
         <Center
           p={2}
-          bg={"bg.muted"}
+          bg={"bg.subtle"}
           rounded={themeConfig.radii.component}
           ml={"auto"}
         >
-          <AppIcon icon={item.icon} boxSize={5} />
+          <AppIconLucide icon={item.icon} boxSize={5} />
         </Center>
       </HStack>
 
@@ -114,7 +115,7 @@ const OverviewItem = (props: OverviewItemProps) => {
 
         <HStack mt={2}>
           <Badge w={"fit"} colorPalette={"green"}>
-            <AppIcon icon={ArrowUpIcon} boxSize={3} />
+            <AppIconLucide icon={ArrowUpIcon} boxSize={3} />
             12.5%
           </Badge>
 
@@ -434,7 +435,7 @@ const Chart1 = (props: any) => {
               <Tooltip
                 animationDuration={100}
                 cursor={{ stroke: chart.color("border") }}
-                content={<Chart.Tooltip />}
+                content={ChartTooltip}
               />
 
               {chart.series.map((item) => {
@@ -577,8 +578,8 @@ const PageScreen = () => {
           <CContainer w={"fit"} gap={1}>
             <P
               fontSize={"3xl"}
-              fontWeight={"semibold"}
-            >{`${t.hi}, ${user?.name} 👋`}</P>
+              fontWeight={"medium"}
+            >{`${t.hi}, ${user?.name || "User's Name"} 👋`}</P>
 
             <P>
               {user?.taskCount

@@ -6,7 +6,7 @@ import { Disclosure } from "@/components/ui/disclosure";
 import { P } from "@/components/ui/p";
 import { Switch } from "@/components/ui/switch";
 import { toaster } from "@/components/ui/toaster";
-import { AppIcon } from "@/components/widgets/app-icon";
+import { AppIconLucide } from "@/components/widgets/app-icon";
 import { Item } from "@/components/widgets/item";
 import { LocalSettingsHelperText } from "@/components/widgets/local-settings-helper-text";
 import { MicVolumeBar } from "@/components/widgets/mic-volume-bar";
@@ -166,7 +166,7 @@ const Camera = () => {
     <Item.Container borderless roundedless>
       <Item.HeaderContainer borderless>
         <HStack>
-          <AppIcon icon={CameraIcon} />
+          <AppIconLucide icon={CameraIcon} />
 
           <P fontWeight={"semibold"}>{t.camera}</P>
         </HStack>
@@ -359,7 +359,7 @@ const Microphone = () => {
     <Item.Container borderless roundedless>
       <Item.HeaderContainer borderless>
         <HStack>
-          <AppIcon icon={MicIcon} />
+          <AppIconLucide icon={MicIcon} />
 
           <P fontWeight={"semibold"}>{t.mic}</P>
         </HStack>
@@ -560,7 +560,7 @@ const Location = () => {
     <Item.Container borderless roundedless>
       <Item.HeaderContainer borderless>
         <HStack>
-          <AppIcon icon={MapPinIcon} />
+          <AppIconLucide icon={MapPinIcon} />
 
           <P fontWeight={"semibold"}>{t.location}</P>
         </HStack>

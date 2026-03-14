@@ -3,7 +3,7 @@
 import { Btn } from "@/components/ui/btn";
 import { CContainer } from "@/components/ui/c-container";
 import { P, PProps } from "@/components/ui/p";
-import { AppIcon } from "@/components/widgets/app-icon";
+import { AppIconLucide } from "@/components/widgets/app-icon";
 import { BackButton } from "@/components/widgets/back-button";
 import { ClampText } from "@/components/widgets/clamp-text";
 
@@ -287,7 +287,7 @@ export const TopBar = (props: StackProps) => {
             bg: "d1",
           }}
         >
-          <AppIcon icon={ListIcon} />
+          <AppIconLucide icon={ListIcon} />
         </Btn>
 
         <Btn
@@ -297,7 +297,7 @@ export const TopBar = (props: StackProps) => {
             bg: "d1",
           }}
         >
-          <AppIcon icon={InboxIcon} />
+          <AppIconLucide icon={InboxIcon} />
         </Btn>
       </HStack>
     </HStack>

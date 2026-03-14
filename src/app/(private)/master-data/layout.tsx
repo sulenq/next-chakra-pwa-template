@@ -6,7 +6,7 @@ import { NavLink } from "@/components/ui/nav-link";
 import { P } from "@/components/ui/p";
 import { SearchInput } from "@/components/ui/search-input";
 import { Tooltip } from "@/components/ui/tooltip";
-import { AppIcon } from "@/components/widgets/app-icon";
+import { AppIconLucide } from "@/components/widgets/app-icon";
 import { ClampText } from "@/components/widgets/clamp-text";
 import FeedbackNotFound from "@/components/widgets/feedback-not-found";
 import { LeftIndicator } from "@/components/widgets/indicator";
@@ -103,7 +103,7 @@ const NavsList = (props: any) => {
                       >
                         {isActive && <LeftIndicator />}
 
-                        <AppIcon icon={nav.icon} />
+                        <AppIconLucide icon={nav.icon} />
 
                         <P textAlign={"left"}>{pluckString(t, nav.labelKey)}</P>
                       </Btn>

@@ -12,7 +12,7 @@ import {
   FormattedTableRow,
   RowOptionsTableOptionGenerator,
 } from "@/constants/interfaces";
-import { R_SPACING_MD } from "@/constants/styles";
+import { BLUR_RADIUS, R_SPACING_MD } from "@/constants/styles";
 import { Type__SortHandler } from "@/constants/types";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
 import { useIsSmScreenWidth } from "@/hooks/useIsSmScreenWidth";
@@ -199,22 +199,21 @@ export const DataTableDisplay = (props: DataTableProps) => {
   const optionsCellW = "46px";
   const cellPx = 3;
 
-  const tableContainerBg = "bg.body";
+  const tableContainerBg = "transparent";
 
   const thHeight = "45px";
-  const thBg = "bg.body";
+  const thBg = "bg.frosted";
   const thBorderColor = "border.muted";
   const thRounded = 0;
 
   const tdMinH = "46px";
-  const tdBg = "bg.body";
+  const tdBg = "transparent";
   const selectedColor =
     themeConfig.colorPalette === "gray"
       ? "border.subtle"
       : hexWithOpacity(themeConfig.primaryColorHex, 0.05);
   const tdBorderColor = "border.subtle";
 
-  const footerBg = "bg.body";
   const footerBorderColor = "border.muted";
 
   return (
@@ -238,10 +237,10 @@ export const DataTableDisplay = (props: DataTableProps) => {
         >
           <Table.Header>
             <Table.Row
+              bg={"transparent !important"}
               position={"sticky"}
               top={0}
               zIndex={3}
-              bg={"transparent !important"}
             >
               {!isEmptyArray(batchOptions) && (
                 <Table.ColumnHeader
@@ -276,7 +275,7 @@ export const DataTableDisplay = (props: DataTableProps) => {
                 </Table.ColumnHeader>
               )}
 
-              {/* Number Column */}
+              {/* Numbering column */}
               <Table.ColumnHeader
                 whiteSpace={"nowrap"}
                 borderBottom={"none !important"}
@@ -299,19 +298,20 @@ export const DataTableDisplay = (props: DataTableProps) => {
                 </HStack>
               </Table.ColumnHeader>
 
+              {/* Main columns */}
               {headers.map((header, idx) => (
                 <Table.ColumnHeader
                   key={idx}
-                  whiteSpace={"nowrap"}
-                  onClick={header.sortable ? () => sort(idx) : undefined}
-                  cursor={header.sortable ? "pointer" : "auto"}
-                  borderBottom={"none !important"}
                   p={0}
+                  whiteSpace={"nowrap"}
+                  borderBottom={"none !important"}
+                  cursor={header.sortable ? "pointer" : "auto"}
+                  onClick={header.sortable ? () => sort(idx) : undefined}
                   {...header?.headerProps}
                 >
                   <HStack
+                    justify={header.align}
                     h={thHeight}
-                    bg={thBg}
                     px={cellPx}
                     py={3}
                     pl={idx === 0 ? 4 : ""}
@@ -325,9 +325,10 @@ export const DataTableDisplay = (props: DataTableProps) => {
                           ? 1
                           : ""
                     }
-                    justify={header.align}
+                    bg={thBg}
                     borderBottom={"1px solid"}
                     borderColor={thBorderColor}
+                    backdropFilter={`blur(${BLUR_RADIUS})`}
                     {...header?.wrapperProps}
                   >
                     <P fontWeight={"medium"} color={"fg.muted"}>
@@ -345,6 +346,7 @@ export const DataTableDisplay = (props: DataTableProps) => {
                 </Table.ColumnHeader>
               ))}
 
+              {/* Row options columns */}
               {!isEmptyArray(rowOptions) && (
                 <Table.ColumnHeader
                   position={"sticky"}
@@ -389,7 +391,8 @@ export const DataTableDisplay = (props: DataTableProps) => {
                   key={rowIdx}
                   role="group"
                   position={"relative"}
-                  bg={"bg.body"}
+                  // bg={"bg.body"}
+                  bg={"transparent !important"}
                   {...trBodyProps}
                 >
                   {!isEmptyArray(batchOptions) && (
@@ -401,7 +404,8 @@ export const DataTableDisplay = (props: DataTableProps) => {
                       p={0}
                       position={"sticky"}
                       left={0}
-                      bg={"bg.body"}
+                      // bg={"bg.body"}
+                      bg={"transparent !important"}
                       zIndex={2}
                     >
                       <Center
@@ -433,7 +437,7 @@ export const DataTableDisplay = (props: DataTableProps) => {
                     </Table.Cell>
                   )}
 
-                  {/* Numbering Column */}
+                  {/* Numbering column */}
                   <Table.Cell whiteSpace={"nowrap"} p={0}>
                     <HStack
                       py={3}
@@ -456,7 +460,7 @@ export const DataTableDisplay = (props: DataTableProps) => {
                     </HStack>
                   </Table.Cell>
 
-                  {/* Main Columns */}
+                  {/* Main columns */}
                   {row.columns.map((col, colIndex) => (
                     <Table.Cell
                       key={colIndex}
@@ -488,14 +492,14 @@ export const DataTableDisplay = (props: DataTableProps) => {
                     </Table.Cell>
                   ))}
 
-                  {/* Row Column */}
+                  {/* Row options column */}
                   {!isEmptyArray(rowOptions) && (
                     <Table.Cell
                       minW={"0% !important"}
                       w={optionsCellW}
                       maxW={optionsCellW}
                       h={tdMinH}
-                      bg={"bg.body"}
+                      // bg={"bg.body"}
                       p={0}
                       position={"sticky"}
                       right={"0"}
@@ -548,7 +552,6 @@ export const DataTableDisplay = (props: DataTableProps) => {
           <HStack
             // h={footerH}
             p={3}
-            bg={footerBg}
             borderTop={"1px solid"}
             borderColor={footerBorderColor}
             justify={"space-between"}

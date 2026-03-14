@@ -6,7 +6,7 @@ import {
   MenuTrigger,
 } from "@/components/ui/menu";
 import { P } from "@/components/ui/p";
-import { AppIcon } from "@/components/widgets/app-icon";
+import { AppIconLucide } from "@/components/widgets/app-icon";
 import { DotIndicator } from "@/components/widgets/indicator";
 import { useLocale } from "@/contexts/useLocale";
 import { HStack } from "@chakra-ui/react";
@@ -36,7 +36,7 @@ export const Limitation = (props: LimitationTableDataProps) => {
             <P>{`${limit}`}</P>
           </HStack>
 
-          <AppIcon icon={ChevronDownIcon} ml={1} color={"fg.subtle"} />
+          <AppIconLucide icon={ChevronDownIcon} ml={1} color={"fg.subtle"} />
         </Btn>
       </MenuTrigger>
 

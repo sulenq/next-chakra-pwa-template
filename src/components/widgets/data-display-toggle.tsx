@@ -2,7 +2,7 @@
 
 import { Btn, BtnProps } from "@/components/ui/btn";
 import { Tooltip } from "@/components/ui/tooltip";
-import { AppIcon } from "@/components/widgets/app-icon";
+import { AppIconLucide } from "@/components/widgets/app-icon";
 import { useDataDisplay } from "@/contexts/useDataDisplay";
 import { LayoutGridIcon, TableIcon } from "lucide-react";
 
@@ -28,7 +28,7 @@ export function DataDisplayToggle(props: DataDisplayToggleProps) {
         onClick={() => setDisplay(navKey, displayTable ? "grid" : "table")}
         {...restProps}
       >
-        <AppIcon icon={displayTable ? TableIcon : LayoutGridIcon} />
+        <AppIconLucide icon={displayTable ? TableIcon : LayoutGridIcon} />
       </Btn>
     </Tooltip>
   );

@@ -7,7 +7,7 @@ import { NumInput } from "@/components/ui/number-input";
 import { P } from "@/components/ui/p";
 import { Spinner } from "@/components/ui/spinner";
 import { Tooltip } from "@/components/ui/tooltip";
-import { AppIcon } from "@/components/widgets/app-icon";
+import { AppIconLucide } from "@/components/widgets/app-icon";
 import FeedbackState from "@/components/widgets/feedback-state";
 import { HScroll } from "@/components/widgets/h-scroll";
 import { useLocale } from "@/contexts/useLocale";
@@ -92,7 +92,7 @@ const PageControl = (props: PageControlProps) => {
         disabled={page <= 1}
         tooltipContent={t.previous_page}
       >
-        <AppIcon icon={ChevronLeftIcon} />
+        <AppIconLucide icon={ChevronLeftIcon} />
       </UtilBtn>
 
       <MenuRoot
@@ -149,7 +149,7 @@ const PageControl = (props: PageControlProps) => {
         disabled={page >= (numPages || 1)}
         tooltipContent={t.next_page}
       >
-        <AppIcon icon={ChevronRightIcon} />
+        <AppIconLucide icon={ChevronRightIcon} />
       </UtilBtn>
     </HStack>
   );

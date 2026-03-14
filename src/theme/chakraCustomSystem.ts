@@ -48,17 +48,17 @@ const customConfig = defineConfig({
         },
 
         gray: {
-          50: { value: "#f4f6f8" },
-          100: { value: "#eef2f6" },
-          200: { value: "#e4e9ef" },
-          300: { value: "#cfd6de" },
-          400: { value: "#9da6b0" },
-          500: { value: "#717171" },
-          600: { value: "#525252" },
-          700: { value: "#3f3f3f" },
-          800: { value: "#272727" },
-          900: { value: "#242424" },
-          950: { value: "#1d1d1d" },
+          50: { value: "#f4f7fa" },
+          100: { value: "#eef3f8" },
+          200: { value: "#e4eaf2" },
+          300: { value: "#cfd7e2" },
+          400: { value: "#9ca7b4" },
+          500: { value: "#6f7c8a" },
+          600: { value: "#525e6b" },
+          700: { value: "#3f4853" },
+          800: { value: "#272d34" },
+          900: { value: "#24292f" },
+          950: { value: "#1d2126" },
         },
 
         cream: {
@@ -525,20 +525,20 @@ const customConfig = defineConfig({
           },
           frosted: {
             value: {
-              base: "rgba(251, 252, 253, 0.6)",
-              _dark: "rgba(24, 24, 25, 0.6)",
+              base: "rgba(255, 255, 252, 0.4)",
+              _dark: "rgba(20, 20, 21, 0.4)",
             },
           },
           subtle: {
             value: {
-              base: "{colors.gray.50} !important",
-              _dark: "{colors.gray.950} !important",
+              base: "{colors.d0} !important",
+              _dark: "{colors.d0} !important",
             },
           },
           muted: {
             value: {
-              base: "{colors.gray.100} !important",
-              _dark: "{colors.gray.900} !important",
+              base: "{colors.d1} !important",
+              _dark: "{colors.d1} !important",
             },
           },
           emphasized: {
@@ -1949,7 +1949,7 @@ const customConfig = defineConfig({
           value: {
             base: "0 4px 8px rgba(0,0,0,0.03), 0 1px 2px rgba(0,0,0,0.02) !important",
             _dark:
-              "0 4px 8px rgba(0,0,0,0.24), 0 1px 2px rgba(0,0,0,0.18) !important",
+              "0 4px 8px rgba(0,0,0,0.20), 0 1px 2px rgba(0,0,0,0.16) !important",
           },
         },
       },

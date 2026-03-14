@@ -6,7 +6,7 @@ import { Disclosure } from "@/components/ui/disclosure";
 import { P } from "@/components/ui/p";
 import { SearchInput } from "@/components/ui/search-input";
 import { Tooltip } from "@/components/ui/tooltip";
-import { AppIcon } from "@/components/widgets/app-icon";
+import { AppIconLucide } from "@/components/widgets/app-icon";
 import FeedbackNoData from "@/components/widgets/feedback-no-data";
 import FeedbackNotFound from "@/components/widgets/feedback-not-found";
 import FeedbackRetry from "@/components/widgets/feedback-retry";
@@ -268,7 +268,11 @@ export const SelectInput = (props: SelectInputProps) => {
             </P>
           )}
 
-          <AppIcon icon={ChevronDownIcon} color={"fg.subtle"} mr={"-2px"} />
+          <AppIconLucide
+            icon={ChevronDownIcon}
+            color={"fg.subtle"}
+            mr={"-2px"}
+          />
         </Btn>
       </Tooltip>
 

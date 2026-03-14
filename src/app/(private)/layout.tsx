@@ -13,7 +13,7 @@ import {
 import { NavLink } from "@/components/ui/nav-link";
 import { P } from "@/components/ui/p";
 import { Tooltip } from "@/components/ui/tooltip";
-import { AppIcon } from "@/components/widgets/app-icon";
+import { AppIconLucide } from "@/components/widgets/app-icon";
 import { Clock } from "@/components/widgets/clock";
 import { HScroll } from "@/components/widgets/h-scroll";
 import { BottomIndicator, LeftIndicator } from "@/components/widgets/indicator";
@@ -138,7 +138,7 @@ const MobileLayout = (props: any) => {
                           color={isMainNavActive ? "" : "fg.muted"}
                           flex={1}
                         >
-                          <AppIcon icon={nav.icon} />
+                          <AppIconLucide icon={nav.icon} />
 
                           <P
                             textAlign={"center"}
@@ -173,7 +173,7 @@ const MobileLayout = (props: any) => {
                                 cursor={"pointer"}
                                 flex={1}
                               >
-                                <AppIcon icon={nav.icon} />
+                                <AppIconLucide icon={nav.icon} />
 
                                 <P
                                   fontSize={MOBILE_NAV_LABEL_FONT_SIZE}
@@ -255,7 +255,7 @@ const MobileLayout = (props: any) => {
                 color={pathname === nav.path ? "" : MOBILE_NAVS_COLOR}
                 flex={1}
               >
-                <AppIcon icon={nav.icon} />
+                <AppIconLucide icon={nav.icon} />
 
                 <P
                   textAlign={"center"}
@@ -278,7 +278,7 @@ const MobileLayout = (props: any) => {
               gap={1}
             >
               {!user?.avatar?.filePath && (
-                <AppIcon icon={UserIcon} boxSize={5} />
+                <AppIconLucide icon={UserIcon} boxSize={5} />
               )}
 
               {user?.avatar?.filePath && (
@@ -403,7 +403,7 @@ const DesktopLayout = (props: any) => {
                     color={DESKTOP_NAVS_COLOR}
                     onClick={toggleNavsExpanded}
                   >
-                    <AppIcon
+                    <AppIconLucide
                       icon={isNavsExpanded ? SidebarCloseIcon : SidebarOpenIcon}
                       boxSize={BASE_ICON_BOX_SIZE}
                     />
@@ -447,7 +447,7 @@ const DesktopLayout = (props: any) => {
                             <LeftIndicator />
                           )}
 
-                          <AppIcon
+                          <AppIconLucide
                             icon={ServerIcon}
                             color={
                               pathname.includes("/master-data")
@@ -517,7 +517,7 @@ const DesktopLayout = (props: any) => {
                       </P>
                     </CContainer>
 
-                    <AppIcon
+                    <AppIconLucide
                       icon={ChevronsUpDownIcon}
                       boxSize={BASE_ICON_BOX_SIZE}
                       color={"fg.subtle"}

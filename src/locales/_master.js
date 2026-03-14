@@ -13,8 +13,8 @@ export const navs = {
     en: "Dashboard",
   },
   user: {
-    id: "Pengguna",
-    en: "User",
+    id: "Semua Pengguna",
+    en: "All User",
   },
   other: {
     index: {

@@ -27,7 +27,7 @@ import {
   DrawerTrigger,
 } from "@/components/ui/drawer";
 import { P } from "@/components/ui/p";
-import { AppIcon } from "@/components/widgets/app-icon";
+import { AppIconLucide } from "@/components/widgets/app-icon";
 import { SM_SCREEN_W_NUMBER } from "@/constants/styles";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
 import { useIsSmScreenWidth } from "@/hooks/useIsSmScreenWidth";
@@ -214,7 +214,7 @@ export const DisclosureHeaderContent = (
               setMaximize((ps) => !ps);
             }}
           >
-            <AppIcon
+            <AppIconLucide
               icon={maximize ? MinimizeIcon : MaximizeIcon}
               boxSize={3.5}
             />
@@ -232,7 +232,7 @@ export const DisclosureHeaderContent = (
                 size={["xs", null, "2xs"]}
                 onClick={back}
               >
-                <AppIcon icon={XIcon} boxSize={4} />
+                <AppIconLucide icon={XIcon} boxSize={4} />
               </Btn>
             )}
           </>

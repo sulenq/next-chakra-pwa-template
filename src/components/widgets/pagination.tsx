@@ -1,6 +1,6 @@
 import { Btn } from "@/components/ui/btn";
 import { P } from "@/components/ui/p";
-import { AppIcon } from "@/components/widgets/app-icon";
+import { AppIconLucide } from "@/components/widgets/app-icon";
 import { useLocale } from "@/contexts/useLocale";
 import { formatNumber } from "@/utils/formatter";
 import { HStack } from "@chakra-ui/react";
@@ -48,7 +48,7 @@ export const Pagination = (props: PaginationTableDataProps) => {
         onClick={handlePrev}
         disabled={isFirstPage}
       >
-        <AppIcon icon={ChevronLeftIcon} />
+        <AppIconLucide icon={ChevronLeftIcon} />
       </Btn>
 
       <HStack whiteSpace={"nowrap"}>
@@ -67,7 +67,7 @@ export const Pagination = (props: PaginationTableDataProps) => {
         onClick={handleNext}
         disabled={isLastPage}
       >
-        <AppIcon icon={ChevronRightIcon} />
+        <AppIconLucide icon={ChevronRightIcon} />
       </Btn>
     </HStack>
   );

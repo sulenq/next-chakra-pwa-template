@@ -6,7 +6,7 @@ import { Disclosure } from "@/components/ui/disclosure";
 import { P } from "@/components/ui/p";
 import { PeriodPickerInput } from "@/components/ui/period-picker-input";
 import { Tooltip } from "@/components/ui/tooltip";
-import { AppIcon } from "@/components/widgets/app-icon";
+import { AppIconLucide } from "@/components/widgets/app-icon";
 import { BackButton } from "@/components/widgets/back-button";
 import FeedbackNoData from "@/components/widgets/feedback-no-data";
 import {
@@ -104,7 +104,7 @@ export const PeriodPicker = (props: PeriodPickerProps) => {
         onClick={() => cycleMonth("decrement")}
         size={"sm"}
       >
-        <AppIcon icon={ChevronUpIcon} />
+        <AppIconLucide icon={ChevronUpIcon} />
       </Btn>
 
       <Btn
@@ -113,7 +113,7 @@ export const PeriodPicker = (props: PeriodPickerProps) => {
         onClick={() => cycleMonth("increment")}
         size={"sm"}
       >
-        <AppIcon icon={ChevronDownIcon} />
+        <AppIconLucide icon={ChevronDownIcon} />
       </Btn>
     </Group>
   );
@@ -492,7 +492,7 @@ export const DatePickerInput = (props: DatePickerInputProps) => {
             </P>
           )}
 
-          <AppIcon icon={CalendarIcon} color={"fg.subtle"} mr={-1} />
+          <AppIconLucide icon={CalendarIcon} color={"fg.subtle"} mr={-1} />
         </Btn>
       </Tooltip>
 

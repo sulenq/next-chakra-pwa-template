@@ -320,7 +320,7 @@ const translations = {
     "welcome": "Welcome screen",
     "home": "Home",
     "dashboard": "Dashboard",
-    "user": "User",
+    "user": "All User",
     "other": {
       "index": "Other",
       "category": "Category",

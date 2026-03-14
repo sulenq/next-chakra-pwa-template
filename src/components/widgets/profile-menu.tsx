@@ -8,7 +8,7 @@ import { Img } from "@/components/ui/img";
 import { NavLink } from "@/components/ui/nav-link";
 import { P } from "@/components/ui/p";
 import { Popover } from "@/components/ui/popover";
-import { AppIcon } from "@/components/widgets/app-icon";
+import { AppIconLucide } from "@/components/widgets/app-icon";
 import { Confirmation } from "@/components/widgets/confirmation";
 import { LucideIcon } from "@/components/widgets/icon";
 import { DotIndicator } from "@/components/widgets/indicator";
@@ -129,7 +129,7 @@ export const ProfileMenu = (props: ProfileMenuProps) => {
             px={2}
             onClick={toggleColorMode}
           >
-            <AppIcon icon={EclipseIcon} />
+            <AppIconLucide icon={EclipseIcon} />
             Dark Mode
             <DotIndicator
               color={colorMode === "dark" ? "fg.success" : "bg.muted"}
@@ -152,7 +152,7 @@ export const ProfileMenu = (props: ProfileMenuProps) => {
                   handleClose?.();
                 }}
               >
-                <AppIcon icon={menu.icon} />
+                <AppIconLucide icon={menu.icon} />
 
                 {pluckString(t, menu.labelKey)}
               </Btn>

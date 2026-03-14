@@ -6,7 +6,7 @@ import {
   MenuRoot,
   MenuTrigger,
 } from "@/components/ui/menu";
-import { AppIcon } from "@/components/widgets/app-icon";
+import { AppIconLucide } from "@/components/widgets/app-icon";
 import { Confirmation } from "@/components/widgets/confirmation";
 import {
   FormattedTableRow,
@@ -44,7 +44,7 @@ export const RowOptions = (props: Props_RowOptions) => {
           _open={{ bg: "d0" }}
           {...restProps}
         >
-          <AppIcon icon={EllipsisVerticalIcon} />
+          <AppIconLucide icon={EllipsisVerticalIcon} />
         </Btn>
       </MenuTrigger>
 
@@ -92,7 +92,7 @@ export const RowOptions = (props: Props_RowOptions) => {
                   justifyContent="space-between"
                 >
                   {label}
-                  {icon && <AppIcon icon={icon} />}
+                  {icon && <AppIconLucide icon={icon} />}
                 </MenuItem>
               </Confirmation.Trigger>
             );
@@ -116,7 +116,7 @@ export const RowOptions = (props: Props_RowOptions) => {
               {...menuItemProps}
             >
               {label}
-              {icon && <AppIcon icon={icon} />}
+              {icon && <AppIconLucide icon={icon} />}
             </MenuItem>
           );
         })}

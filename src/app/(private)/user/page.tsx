@@ -6,7 +6,7 @@ import { MenuItem } from "@/components/ui/menu";
 import { P } from "@/components/ui/p";
 import { SearchInput } from "@/components/ui/search-input";
 import { Tooltip } from "@/components/ui/tooltip";
-import { AppIcon } from "@/components/widgets/app-icon";
+import { AppIconLucide } from "@/components/widgets/app-icon";
 import { Confirmation } from "@/components/widgets/confirmation";
 import { DataDisplayToggle } from "@/components/widgets/data-display-toggle";
 import { DataGrid } from "@/components/widgets/data-grid";
@@ -74,7 +74,7 @@ const Create = () => {
     <>
       <Tooltip content={t.add}>
         <Btn iconButton size={"sm"} colorPalette={themeConfig.colorPalette}>
-          <AppIcon icon={PlusIcon} />
+          <AppIconLucide icon={PlusIcon} />
           {/* Add */}
         </Btn>
       </Tooltip>
@@ -184,7 +184,7 @@ const Update = (props: any) => {
         }}
       >
         <MenuItem value="edit" onClick={onOpen}>
-          <AppIcon icon={EditIcon} />
+          <AppIconLucide icon={EditIcon} />
           Edit
         </MenuItem>
       </Tooltip>
@@ -275,7 +275,7 @@ const Restore = (props: any) => {
         }}
       >
         <MenuItem value="restore" disabled={disabled}>
-          <AppIcon icon={UndoIcon} />
+          <AppIconLucide icon={UndoIcon} />
           {t.restore}
         </MenuItem>
       </Tooltip>
@@ -352,7 +352,7 @@ const Delete = (props: any) => {
           color={"fg.error"}
           transition={"200ms"}
         >
-          <AppIcon icon={TrashIcon} />
+          <AppIconLucide icon={TrashIcon} />
           {t.delete_}
         </MenuItem>
       </Tooltip>

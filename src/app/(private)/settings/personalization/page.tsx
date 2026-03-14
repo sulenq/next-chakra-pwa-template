@@ -11,7 +11,7 @@ import { StringInput } from "@/components/ui/string-input";
 import { Switch } from "@/components/ui/switch";
 import { TimePickerInput } from "@/components/ui/time-picker-input";
 import { Tooltip } from "@/components/ui/tooltip";
-import { AppIcon } from "@/components/widgets/app-icon";
+import { AppIconLucide } from "@/components/widgets/app-icon";
 import { DotIndicator } from "@/components/widgets/indicator";
 import { Item } from "@/components/widgets/item";
 import { LocalSettingsHelperText } from "@/components/widgets/local-settings-helper-text";
@@ -165,7 +165,7 @@ const DarkModeSection = () => {
     <CContainer>
       <Item.HeaderContainer borderless>
         <HStack>
-          <AppIcon icon={EclipseIcon} />
+          <AppIconLucide icon={EclipseIcon} />
 
           <Item.HeaderTitle>{t.dark_mode}</Item.HeaderTitle>
         </HStack>
@@ -194,7 +194,7 @@ const AccentColorSection = () => {
     <CContainer ref={containerRef}>
       <Item.HeaderContainer borderless>
         <HStack>
-          <AppIcon icon={SwatchBookIcon} />
+          <AppIconLucide icon={SwatchBookIcon} />
 
           <Item.HeaderTitle>{t.accent_color}</Item.HeaderTitle>
         </HStack>
@@ -284,7 +284,7 @@ const RoundedSection = () => {
     <CContainer ref={containerRef}>
       <Item.HeaderContainer borderless>
         <HStack>
-          <AppIcon icon={SquareRoundCornerIcon} />
+          <AppIconLucide icon={SquareRoundCornerIcon} />
 
           <Item.HeaderTitle>{t.rounded}</Item.HeaderTitle>
         </HStack>
@@ -379,7 +379,7 @@ const ExampleUISection = () => {
     <CContainer>
       <Item.HeaderContainer borderless>
         <HStack>
-          <AppIcon icon={LayoutPanelLeftIcon} />
+          <AppIconLucide icon={LayoutPanelLeftIcon} />
 
           <Item.HeaderTitle>{t.example_UI}</Item.HeaderTitle>
         </HStack>

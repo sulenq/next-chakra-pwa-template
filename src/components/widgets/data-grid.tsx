@@ -36,6 +36,10 @@ import {
 } from "@chakra-ui/react";
 import { Fragment, useState } from "react";
 
+// SX
+const GRID_ITEM_CONTAINER_BG = "bg.frosted";
+const BATCH_OPTIONS_CONTAINER_BG = "bg.frosted";
+
 export interface GridItemProps {
   item: any;
   row: FormattedTableRow;
@@ -91,9 +95,9 @@ export const DataGridItem = (props: DataGridItemProps) => {
     <CContainer
       key={item.id}
       flex={1}
-      bg={"bg.body"}
+      bg={GRID_ITEM_CONTAINER_BG}
       border={"1px solid"}
-      borderColor={isRowSelected ? selectedColor : "border.emphasized"}
+      borderColor={isRowSelected ? selectedColor : "border.subtle"}
       rounded={themeConfig.radii.container}
       overflow={"clip"}
       pos={"relative"}
@@ -398,7 +402,7 @@ const DataGridDisplay = (props: DataGridProps) => {
       <Presence
         present={shouldShowBatch}
         animationName={{ _open: "fade-in", _closed: "fade-out" }}
-        animationDuration="slow"
+        animationDuration={"slow"}
         unmountOnExit
         zIndex={10}
       >
@@ -414,7 +418,7 @@ const DataGridDisplay = (props: DataGridProps) => {
         >
           <HStack
             gap={1}
-            bg={"bg.body"}
+            bg={BATCH_OPTIONS_CONTAINER_BG}
             p={1}
             border={"1px solid"}
             borderColor={"border.muted"}
@@ -518,7 +522,6 @@ const DataGridDisplay = (props: DataGridProps) => {
           <HStack
             w={"full"}
             p={3}
-            bg={"bg.body"}
             borderTop={"1px solid"}
             borderColor={footerBorderColor}
             justify={"space-between"}

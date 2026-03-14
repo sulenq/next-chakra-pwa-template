@@ -320,7 +320,7 @@ const translations = {
     "welcome": "Halaman utama",
     "home": "Beranda",
     "dashboard": "Dashboard",
-    "user": "Pengguna",
+    "user": "Semua Pengguna",
     "other": {
       "index": "Lainya",
       "category": "Kategori",
