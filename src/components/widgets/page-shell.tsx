@@ -112,8 +112,8 @@ export const RadialGlowBackground = (props: StackProps) => {
 
   // Constants
   const colorPalette = themeConfig.colorPalette;
-  const opacity1 = useColorModeValue(0.03, 0.02);
-  const opacity2 = useColorModeValue(0.04, 0.03);
+  const opacity1 = useColorModeValue(0.02, 0.01);
+  const opacity2 = useColorModeValue(0.04, 0.02);
 
   return (
     <Center
@@ -128,7 +128,7 @@ export const RadialGlowBackground = (props: StackProps) => {
       <CContainer h={"full"} pos={"relative"} mt={"100%"}>
         <Circle
           aspectRatio={1}
-          w={"150%"}
+          w={"160%"}
           bg={`${colorPalette}.solid`}
           opacity={opacity1}
           pos={"absolute"}
@@ -366,6 +366,7 @@ const PageContainer = forwardRef<HTMLDivElement, StackProps>(
           ref={mergeRef}
           className="page-container"
           flex={1}
+          p={R_SPACING_MD}
           overflow={"auto"}
           {...restProps}
         >

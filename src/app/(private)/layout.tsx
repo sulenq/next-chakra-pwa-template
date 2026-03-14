@@ -32,6 +32,7 @@ import { Today } from "@/components/widgets/today";
 import { APP } from "@/constants/_meta";
 import { OTHER_PRIVATE_NAV_GROUPS, PRIVATE_NAV_GROUPS } from "@/constants/navs";
 import {
+  ACTIVE_NAV_BTN_VARIANT,
   BASE_ICON_BOX_SIZE,
   DESKTOP_NAVS_COLOR,
   DESKTOP_NAVS_POPOVER_MAIN_AXIS,
@@ -40,6 +41,7 @@ import {
   MOBILE_NAV_LABEL_FONT_SIZE,
   MOBILE_NAVS_COLOR,
   MOBILE_POPOVER_MAIN_AXIS,
+  NAV_BTN_VARIANT,
   TOP_BAR_H,
 } from "@/constants/styles";
 import { useLocale } from "@/contexts/useLocale";
@@ -330,7 +332,6 @@ const DesktopLayout = (props: any) => {
 
       <HStack
         align={"stretch"}
-        gap={0}
         h={"100dvh"}
         overflow={"clip"}
         pos={"relative"}
@@ -341,7 +342,6 @@ const DesktopLayout = (props: any) => {
         <CContainer
           flexShrink={0}
           w={isNavsExpanded ? "250px" : "60px"}
-          pr={"0 !important"}
           overflowY={"auto"}
           transition={"300ms ease"}
         >
@@ -429,8 +429,8 @@ const DesktopLayout = (props: any) => {
                           gap={4}
                           variant={
                             pathname.includes("/master-data")
-                              ? "subtle"
-                              : "ghost"
+                              ? ACTIVE_NAV_BTN_VARIANT
+                              : NAV_BTN_VARIANT
                           }
                           colorPalette={
                             pathname.includes("/master-data")
@@ -469,7 +469,7 @@ const DesktopLayout = (props: any) => {
             </CContainer>
           </CContainer>
 
-          <CContainer p={3}>
+          <CContainer px={3}>
             <ProfileMenuTrigger
               w={"full"}
               popoverRootProps={{
@@ -483,18 +483,19 @@ const DesktopLayout = (props: any) => {
             >
               <HStack
                 gap={4}
+                justify={isNavsExpanded ? "" : "center"}
                 w={isNavsExpanded ? "full" : "36px"}
                 h={isNavsExpanded ? "" : "36px"}
                 px={"6px"}
                 py={2}
+                bg={"bg.frosted"}
                 rounded={themeConfig.radii.component}
                 cursor={"pointer"}
-                _hover={{
-                  bg: "gray.subtle",
-                }}
-                justify={isNavsExpanded ? "" : "center"}
                 transition={"200ms"}
                 pos={"relative"}
+                _hover={{
+                  bg: "bg.muted",
+                }}
               >
                 <Avatar
                   src={imgUrl(user?.avatar?.filePath)}
