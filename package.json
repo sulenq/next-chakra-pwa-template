@@ -10,7 +10,8 @@
     "d": "npm run dev",
     "t": "npx tsc --noEmit --watch --preserveWatchOutput",
     "l": "node src/scripts/generate-translation.js",
-    "s": "node src/scripts/generate-sitemap.js"
+    "s": "node src/scripts/generate-sitemap.js",
+    "chakra:typegen": "chakra typegen ./src/theme/index.ts"
   },
   "dependencies": {
     "@chakra-ui/charts": "^3.30.0",
@@ -46,6 +47,7 @@
     "zustand": "^5.0.8"
   },
   "devDependencies": {
+    "@chakra-ui/cli": "^3.34.0",
     "@eslint/eslintrc": "^3.3.1",
     "@types/node": "^20.19.25",
     "@types/react": "^19.2.6",

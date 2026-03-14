@@ -13,7 +13,6 @@ import { Confirmation } from "@/components/widgets/confirmation";
 import { LucideIcon } from "@/components/widgets/icon";
 import { DotIndicator } from "@/components/widgets/indicator";
 import { AUTH_API_SIGNOUT } from "@/constants/apis";
-import { SVGS_PATH } from "@/constants/paths";
 import { BASE_ICON_BOX_SIZE } from "@/constants/styles";
 import useADM from "@/contexts/useADM";
 import { useAuthMiddleware } from "@/contexts/useAuthMiddleware";
@@ -24,6 +23,7 @@ import { useRequest } from "@/hooks/useRequest";
 import { getUserData } from "@/utils/auth";
 import { back, removeStorage } from "@/utils/client";
 import { pluckString } from "@/utils/string";
+import { imgUrl } from "@/utils/url";
 import { Icon, PopoverRootProps, StackProps } from "@chakra-ui/react";
 import { EclipseIcon, LogOutIcon, SettingsIcon, UserIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
@@ -106,7 +106,7 @@ export const ProfileMenu = (props: ProfileMenuProps) => {
       <CContainer>
         <CContainer p={1} pb={0}>
           <Img
-            src={user?.avatar || `${SVGS_PATH}/no-avatar.svg`}
+            src={imgUrl(user?.avatar?.[0]?.filePath)}
             alt={"avatar"}
             aspectRatio={1}
             rounded={themeConfig.radii.component}

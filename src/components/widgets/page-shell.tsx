@@ -21,7 +21,14 @@ import { useScreen } from "@/hooks/useScreen";
 import { isEmptyArray, last } from "@/utils/array";
 import { capitalizeWords, pluckString } from "@/utils/string";
 import { getActiveNavs } from "@/utils/url";
-import { Box, HStack, Icon, StackProps } from "@chakra-ui/react";
+import {
+  Box,
+  Center,
+  Circle,
+  HStack,
+  Icon,
+  StackProps,
+} from "@chakra-ui/react";
 import { IconSlash } from "@tabler/icons-react";
 import { InboxIcon, ListIcon } from "lucide-react";
 import { usePathname } from "next/navigation";
@@ -95,6 +102,59 @@ export const AnimatedBg = (props: StackProps) => {
         left={0}
       />
     </CContainer>
+  );
+};
+
+export const RadialGlowBackground = (props: StackProps) => {
+  // Contexts
+  const { themeConfig } = useThemeConfig();
+
+  // Constants
+  const colorPalette = themeConfig.colorPalette;
+
+  return (
+    <Center
+      w={"full"}
+      h={"full"}
+      overflow={"clip"}
+      pos={"absolute"}
+      left={0}
+      top={0}
+      {...props}
+    >
+      <CContainer h={"full"} pos={"relative"} mt={"50%"}>
+        <Circle
+          aspectRatio={1}
+          w={"100%"}
+          bg={`${colorPalette}.subtle`}
+          opacity={0.2}
+          pos={"absolute"}
+          left={"50%"}
+          top={"50%"}
+          transform={"translate(-50%, -50%)"}
+        />
+
+        <Circle
+          aspectRatio={1}
+          w={"80%"}
+          bg={`${colorPalette}.subtle`}
+          opacity={0.4}
+          pos={"absolute"}
+          left={"50%"}
+          top={"50%"}
+          transform={"translate(-50%, -50%)"}
+        />
+      </CContainer>
+
+      {/* Blur overlay */}
+      <CContainer
+        h={"full"}
+        backdropFilter={"blur(100px)"}
+        pos={"absolute"}
+        left={0}
+        top={0}
+      />
+    </Center>
   );
 };
 
@@ -365,8 +425,8 @@ const PageTitle = (props: PProps) => {
 
   return (
     <ClampText
-      fontSize={"2xl"}
-      fontWeight={"semibold"}
+      fontSize={"xl"}
+      fontWeight={"medium"}
       textAlign={restProps.textAlign}
       {...restProps}
     >

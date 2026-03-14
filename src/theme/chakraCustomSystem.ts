@@ -467,6 +467,10 @@ const customConfig = defineConfig({
           950: { value: "#2f1c25" },
         },
       },
+      fonts: {
+        body: { value: '"DM Sans", sans-serif' },
+        heading: { value: '"DM Sans", sans-serif' },
+      },
       fontSizes: {
         xs: { value: "0.625rem" }, // 10px
         sm: { value: "0.75rem" }, // 12px
@@ -519,6 +523,12 @@ const customConfig = defineConfig({
               _dark: "{colors.neutral.900}",
             },
           },
+          frosted: {
+            value: {
+              base: "rgba(251, 252, 253, 0.6)",
+              _dark: "rgba(24, 24, 25, 0.6)",
+            },
+          },
           subtle: {
             value: {
               base: "{colors.gray.50} !important",
@@ -557,8 +567,8 @@ const customConfig = defineConfig({
           },
           muted: {
             value: {
-              base: "{colors.d4} !important",
-              _dark: "{colors.d4} !important",
+              base: "{colors.d2} !important",
+              _dark: "{colors.d2} !important",
             },
           },
         },

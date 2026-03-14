@@ -23,7 +23,10 @@ import {
   DesktopNavTooltip,
   MobileNavLink,
 } from "@/components/widgets/navs";
-import { AnimatedBg, NavBreadcrumb } from "@/components/widgets/page-shell";
+import {
+  RadialGlowBackground,
+  NavBreadcrumb,
+} from "@/components/widgets/page-shell";
 import { ProfileMenuTrigger } from "@/components/widgets/profile-menu";
 import { Today } from "@/components/widgets/today";
 import { APP } from "@/constants/_meta";
@@ -324,13 +327,13 @@ const DesktopLayout = (props: any) => {
   return (
     <CContainer pos={"relative"}>
       {/* BG */}
-      <AnimatedBg pos={"absolute"} top={0} left={0} zIndex={1} />
+      <RadialGlowBackground zIndex={1} />
 
       <HStack
         align={"stretch"}
         gap={0}
         h={"100dvh"}
-        bg={"bg.canvas"}
+        // bg={"bg.canvas"}
         overflow={"clip"}
         pos={"relative"}
         zIndex={2}

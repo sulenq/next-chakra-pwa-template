@@ -30,7 +30,6 @@ import {
   Interface__AuthLog,
   Interface__User,
 } from "@/constants/interfaces";
-import { SVGS_PATH } from "@/constants/paths";
 import { useLocale } from "@/contexts/useLocale";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
 import ResetPasswordDisclosureTrigger from "@/features/auth/reset-password";
@@ -144,9 +143,8 @@ const PersonalInformation = (props: PersonalInformationProps) => {
                       key={imgUrl(initialData?.avatar?.[0]?.filePath)}
                     >
                       <Img
-                        src={imgUrl(initialData?.avatar?.[0]?.filePath)}
+                        src={initialData?.avatar?.[0]?.fileUrl}
                         key={imgUrl(initialData?.avatar?.[0]?.filePath)}
-                        fallbackSrc={`${SVGS_PATH}/no-avatar.svg`}
                         aspectRatio={1}
                         w={"100px"}
                         rounded={"full"}

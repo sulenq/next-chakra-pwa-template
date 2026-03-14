@@ -281,9 +281,9 @@ export const DataTableDisplay = (props: DataTableProps) => {
                 whiteSpace={"nowrap"}
                 borderBottom={"none !important"}
                 p={0}
-                w="1%"
-                minW="fit-content"
-                maxW="fit-content"
+                w={"1%"}
+                minW={"fit-content"}
+                maxW={"fit-content"}
               >
                 <HStack
                   h={thHeight}
@@ -293,7 +293,9 @@ export const DataTableDisplay = (props: DataTableProps) => {
                   borderBottom={"1px solid"}
                   borderColor={thBorderColor}
                 >
-                  <P color={"fg.muted"}>No.</P>
+                  <P fontWeight={"medium"} color={"fg.muted"}>
+                    No.
+                  </P>
                 </HStack>
               </Table.ColumnHeader>
 
@@ -328,7 +330,9 @@ export const DataTableDisplay = (props: DataTableProps) => {
                     borderColor={thBorderColor}
                     {...header?.wrapperProps}
                   >
-                    <P color={"fg.muted"}>{header?.th}</P>
+                    <P fontWeight={"medium"} color={"fg.muted"}>
+                      {header?.th}
+                    </P>
 
                     {header.sortable && (
                       <SortIcon

@@ -5,7 +5,7 @@ import ClientRoot from "@/components/widgets/client-root";
 import { APP } from "@/constants/_meta";
 import { disclosurePrefixId } from "@/utils/disclosure";
 import { Metadata, Viewport } from "next";
-import { Plus_Jakarta_Sans } from "next/font/google";
+import { miSans } from "@/fonts";
 
 export const metadata: Metadata = {
   applicationName: APP.name,
@@ -52,14 +52,15 @@ export const viewport: Viewport = {
   userScalable: false,
 };
 
-const figtree = Plus_Jakarta_Sans({
-  subsets: ["latin"],
-  display: "swap",
-});
+// const figtree = Plus_Jakarta_Sans({
+//   subsets: ["latin"],
+//   display: "swap",
+//   // weight: ["400", "500", "600", "700", "800", "900"],
+// });
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <html suppressHydrationWarning className={figtree.className}>
+    <html suppressHydrationWarning className={miSans.variable}>
       <head>
         <link rel="manifest" href="/manifest.json" />
       </head>
