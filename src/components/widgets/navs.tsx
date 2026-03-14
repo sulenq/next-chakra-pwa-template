@@ -19,6 +19,7 @@ import {
   DESKTOP_NAVS_POPOVER_MAIN_AXIS,
   DESKTOP_NAVS_TOOLTIP_MAIN_AXIS,
   NAV_BTN_VARIANT,
+  R_SPACING_MD,
 } from "@/constants/styles";
 import { useLocale } from "@/contexts/useLocale";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
@@ -187,7 +188,7 @@ export const DesktopNavs = (props: DesktopNavsProps) => {
         overflowX={"clip"}
         flex={1}
         gap={1}
-        px={3}
+        px={R_SPACING_MD}
         py={2}
         // pr={`calc(12px - ${FIREFOX_SCROLL_Y_CLASS_PR_PREFIX})`}
       >

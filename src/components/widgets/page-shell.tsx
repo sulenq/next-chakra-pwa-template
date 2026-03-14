@@ -367,6 +367,7 @@ const PageContainer = forwardRef<HTMLDivElement, StackProps>(
           className="page-container"
           flex={1}
           p={R_SPACING_MD}
+          pl={["0 !important", null, ""]}
           overflow={"auto"}
           {...restProps}
         >

@@ -42,6 +42,7 @@ import {
   MOBILE_NAVS_COLOR,
   MOBILE_POPOVER_MAIN_AXIS,
   NAV_BTN_VARIANT,
+  R_SPACING_MD,
   TOP_BAR_H,
 } from "@/constants/styles";
 import { useLocale } from "@/contexts/useLocale";
@@ -333,6 +334,7 @@ const DesktopLayout = (props: any) => {
       <HStack
         align={"stretch"}
         h={"100dvh"}
+        gap={0}
         overflow={"clip"}
         pos={"relative"}
         zIndex={2}
@@ -342,16 +344,17 @@ const DesktopLayout = (props: any) => {
         <CContainer
           flexShrink={0}
           w={isNavsExpanded ? "250px" : "60px"}
+          py={R_SPACING_MD}
           overflowY={"auto"}
           transition={"300ms ease"}
         >
           <CContainer flex={1}>
-            {/* Logo & Sidebar Toggle */}
+            {/* Header */}
             <CContainer
               justify={"center"}
               gap={isNavsExpanded ? 1 : 5}
               h={isNavsExpanded ? TOP_BAR_H : "fit"}
-              p={3}
+              p={R_SPACING_MD}
             >
               {/* Logo Only */}
               {!isNavsExpanded && (
@@ -409,6 +412,7 @@ const DesktopLayout = (props: any) => {
               </HStack>
             </CContainer>
 
+            {/* Navs */}
             <CContainer flex={1}>
               <DesktopNavs
                 navs={PRIVATE_NAV_GROUPS}
@@ -469,7 +473,8 @@ const DesktopLayout = (props: any) => {
             </CContainer>
           </CContainer>
 
-          <CContainer px={3}>
+          {/* Footer */}
+          <CContainer px={R_SPACING_MD}>
             <ProfileMenuTrigger
               w={"full"}
               popoverRootProps={{
