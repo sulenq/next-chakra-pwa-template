@@ -37,7 +37,7 @@ const TABLE_ROW_BG = "transparent";
 
 const TH_H = "45px";
 const TH_PB = GAP;
-const TH_BG = "bg.frosted";
+const TH_BG = "bg.body";
 const TH_BORDER_COLOR = "transparent";
 
 const TD_MIN_H = "46px";
