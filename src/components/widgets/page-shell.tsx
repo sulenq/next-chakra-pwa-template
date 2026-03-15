@@ -369,7 +369,7 @@ const PageContainer = forwardRef<HTMLDivElement, StackProps>(
           overflow={"auto"}
           {...restProps}
         >
-          {children}
+          {isValidDimension && children}
         </CContainer>
       </PageContainerContext.Provider>
     );
