@@ -78,8 +78,6 @@ export const DataTableDisplay = (props: DataTableProps) => {
     totalPage,
     footer,
     contentContainerProps,
-    pl = R_SPACING_MD,
-    pr = R_SPACING_MD,
     ...restProps
   } = props;
 
@@ -258,7 +256,6 @@ export const DataTableDisplay = (props: DataTableProps) => {
                     <Center
                       h={TABLE_TH_H}
                       px={"10px"}
-                      pl={pl}
                       bg={TABLE_TH_BG}
                       borderBottom={"1px solid"}
                       borderColor={TABLE_TH_BORDER_COLOR}
@@ -362,7 +359,6 @@ export const DataTableDisplay = (props: DataTableProps) => {
                     <HStack
                       h={TABLE_TH_H}
                       px={TABLE_CELL_PX}
-                      pr={pr}
                       py={3}
                       bg={TABLE_TH_BG}
                       borderBottom={"1px solid"}
@@ -410,7 +406,6 @@ export const DataTableDisplay = (props: DataTableProps) => {
                             h={TABLE_TD_MIN_H}
                             bg={isRowSelected ? SELECTED_BG : TABLE_TD_BG}
                             px={"10px"}
-                            pl={pl}
                             cursor={"pointer"}
                             borderBottom={
                               rowIndex !== resolvedTableData.length - 1
@@ -524,7 +519,6 @@ export const DataTableDisplay = (props: DataTableProps) => {
                             w={"full"}
                             h={TABLE_TD_MIN_H}
                             px={"10px"}
-                            pr={pr}
                             bg={isRowSelected ? SELECTED_BG : TABLE_TD_BG}
                             borderBottom={
                               rowIndex !== resolvedTableData.length - 1

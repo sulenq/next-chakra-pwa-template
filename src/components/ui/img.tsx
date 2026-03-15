@@ -18,7 +18,7 @@ export const ImgFallback = (props: ImgFallbackProps) => {
       w={"full"}
       h={"full"}
       aspectRatio={1}
-      bg={"bg.subtle"}
+      bg={"bg.muted"}
       pos={"relative"}
       {...restProps}
     >

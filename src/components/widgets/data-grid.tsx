@@ -22,10 +22,10 @@ import {
 } from "@/constants/interfaces";
 import {
   GAP,
-  GRID_ITEM_CONTAINER_BG,
   GRID_BATCH_OPTIONS_CONTAINER_BG,
-  R_SPACING_MD,
   GRID_FOOTER_BORDER_COLOR,
+  GRID_ITEM_CONTAINER_BG,
+  R_SPACING_MD,
 } from "@/constants/styles";
 import { useLocale } from "@/contexts/useLocale";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
@@ -338,13 +338,6 @@ const DataGridDisplay = (props: DataGridProps) => {
     totalPage,
     footer,
     minChildWidth = "180px",
-    p = R_SPACING_MD,
-    px,
-    py,
-    pl,
-    pr,
-    pt,
-    pb,
     ...restProps
   } = props;
 
@@ -455,18 +448,7 @@ const DataGridDisplay = (props: DataGridProps) => {
         borderColor={"border.muted"}
         overflowY={"auto"}
       >
-        <CContainer
-          className={"scrollY"}
-          flex={1}
-          p={p}
-          px={px}
-          py={py}
-          pl={pl}
-          pr={pr}
-          pt={pt}
-          pb={pb}
-          rounded={themeConfig.radii.container}
-        >
+        <CContainer className={"scrollY"} flex={1} p={R_SPACING_MD}>
           <SimpleGrid
             templateColumns={`repeat(auto-fill, minmax(${minChildWidth}, 1fr))`}
             gap={GAP}
