@@ -29,7 +29,7 @@ import { Today } from "@/components/widgets/today";
 import { APP } from "@/constants/_meta";
 import { OTHER_PRIVATE_NAV_GROUPS, PRIVATE_NAV_GROUPS } from "@/constants/navs";
 import {
-  ACTIVE_NAV_BTN_VARIANT,
+  DESKTOP_ACTIVE_NAV_BTN_VARIANT,
   BASE_ICON_BOX_SIZE,
   DESKTOP_NAVS_COLOR,
   DESKTOP_NAVS_POPOVER_MAIN_AXIS,
@@ -38,9 +38,10 @@ import {
   MOBILE_NAV_LABEL_FONT_SIZE,
   MOBILE_NAVS_COLOR,
   MOBILE_POPOVER_MAIN_AXIS,
-  NAV_BTN_VARIANT,
+  DESKTOP_NAV_BTN_VARIANT,
   R_SPACING_MD,
   TOP_BAR_H,
+  DESKTOP_NAV_BTN_SIZE,
 } from "@/constants/styles";
 import { useLocale } from "@/contexts/useLocale";
 import useNavs from "@/contexts/useNavs";
@@ -423,19 +424,19 @@ const DesktopLayout = (props: any) => {
                       >
                         <Btn
                           clicky={false}
-                          justifyContent={"start"}
+                          justifyContent={isNavsExpanded ? "start" : "center"}
                           gap={4}
+                          size={DESKTOP_NAV_BTN_SIZE}
                           variant={
                             pathname.includes("/master-data")
-                              ? ACTIVE_NAV_BTN_VARIANT
-                              : NAV_BTN_VARIANT
+                              ? DESKTOP_ACTIVE_NAV_BTN_VARIANT
+                              : DESKTOP_NAV_BTN_VARIANT
                           }
                           colorPalette={
                             pathname.includes("/master-data")
                               ? themeConfig.colorPalette
                               : ""
                           }
-                          px={2}
                           pos={"relative"}
                         >
                           {pathname.includes("/master-data") && (
@@ -480,49 +481,61 @@ const DesktopLayout = (props: any) => {
                 },
               }}
             >
-              <HStack
-                gap={4}
-                justify={isNavsExpanded ? "" : "center"}
-                w={isNavsExpanded ? "full" : "36px"}
-                h={isNavsExpanded ? "" : "36px"}
-                px={"6px"}
-                py={2}
-                bg={"bg.frosted"}
-                rounded={themeConfig.radii.component}
-                cursor={"pointer"}
-                transition={"200ms"}
-                pos={"relative"}
-                _hover={{
-                  bg: "bg.muted",
-                }}
-              >
-                <Avatar
-                  src={imgUrl(user?.avatar?.filePath)}
-                  name={user?.name}
-                  size={isNavsExpanded ? "md" : "2xs"}
-                  mr={"auto"}
-                />
+              {isNavsExpanded && (
+                <HStack
+                  gap={4}
+                  w={"full"}
+                  p={3}
+                  bg={"bg.frosted"}
+                  rounded={themeConfig.radii.component}
+                  cursor={"pointer"}
+                  transition={"200ms"}
+                  pos={"relative"}
+                  _hover={{
+                    bg: "bg.muted",
+                  }}
+                >
+                  <Avatar
+                    src={imgUrl(user?.avatar?.filePath)}
+                    name={user?.name}
+                  />
 
-                {isNavsExpanded && (
-                  <>
-                    <CContainer>
-                      <P lineClamp={1} fontWeight={"semibold"}>
-                        {user?.name || user?.email || "Signed out"}
-                      </P>
-                      <P lineClamp={1} color={"fg.subtle"}>
-                        {user?.name ? user?.email || user?.username : "-"}
-                      </P>
-                    </CContainer>
+                  {isNavsExpanded && (
+                    <>
+                      <CContainer>
+                        <P lineClamp={1} fontWeight={"semibold"}>
+                          {user?.name || user?.email || "Signed out"}
+                        </P>
+                        <P lineClamp={1} color={"fg.subtle"}>
+                          {user?.name ? user?.email || user?.username : "-"}
+                        </P>
+                      </CContainer>
 
-                    <AppIconLucide
-                      icon={ChevronsUpDownIcon}
-                      boxSize={BASE_ICON_BOX_SIZE}
-                      color={"fg.subtle"}
-                      mr={1}
-                    />
-                  </>
-                )}
-              </HStack>
+                      <AppIconLucide
+                        icon={ChevronsUpDownIcon}
+                        boxSize={BASE_ICON_BOX_SIZE}
+                        color={"fg.subtle"}
+                        mr={1}
+                      />
+                    </>
+                  )}
+                </HStack>
+              )}
+
+              {!isNavsExpanded && (
+                <Btn
+                  iconButton
+                  clicky={false}
+                  size={DESKTOP_NAV_BTN_SIZE}
+                  variant={DESKTOP_NAV_BTN_VARIANT}
+                >
+                  <Avatar
+                    src={imgUrl(user?.avatar?.filePath)}
+                    name={user?.name}
+                    size={"xs"}
+                  />
+                </Btn>
+              )}
             </ProfileMenuTrigger>
           </CContainer>
         </CContainer>
