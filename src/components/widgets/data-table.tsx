@@ -13,12 +13,12 @@ import {
   RowOptionsTableOptionGenerator,
 } from "@/constants/interfaces";
 import {
-  TABLE_CELL_PX,
-  TABLE_FOOTER_BORDER_COLOR,
   GAP,
-  TABLE_OPTIONS_CELL_W,
   R_SPACING_MD,
+  TABLE_CELL_PX,
   TABLE_CONTAINER_BG,
+  TABLE_FOOTER_BORDER_COLOR,
+  TABLE_OPTIONS_CELL_W,
   TABLE_ROW_BG,
   TABLE_TD_BG,
   TABLE_TD_BORDER_COLOR,
@@ -211,7 +211,7 @@ export const DataTableDisplay = (props: DataTableProps) => {
     themeConfig.colorPalette === "gray"
       ? "border.subtle"
       : hexWithOpacity(themeConfig.primaryColorHex, 0.05);
-  const TABLE_ROW_ROUNDED = themeConfig.radii.component;
+  const TABLE_ROW_ROUNDED = 0;
 
   return (
     <CContainer
