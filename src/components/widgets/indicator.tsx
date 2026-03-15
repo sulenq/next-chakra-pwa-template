@@ -12,7 +12,7 @@ export const LeftIndicator = (props: BoxProps) => {
     <Box
       w={"3px"}
       h={"8px"}
-      bg={themeConfig.primaryColor}
+      bg={`${themeConfig.colorPalette}.solid`}
       rounded={"full"}
       pos={"absolute"}
       top={"50%"}
@@ -31,7 +31,7 @@ export const BottomIndicator = (props: BoxProps) => {
     <Box
       w={"12px"}
       h={"3px"}
-      bg={themeConfig.primaryColor}
+      bg={`${themeConfig.colorPalette}.solid`}
       rounded={"full"}
       pos={"absolute"}
       bottom={-2}
@@ -50,7 +50,11 @@ export const DotIndicator = (props: IconProps) => {
   const { themeConfig } = useThemeConfig();
 
   return (
-    <Icon color={themeConfig.primaryColor} boxSize={2} {...restProps}>
+    <Icon
+      color={`${themeConfig.colorPalette}.solid`}
+      boxSize={2}
+      {...restProps}
+    >
       {children || <IconCircleFilled />}
     </Icon>
   );

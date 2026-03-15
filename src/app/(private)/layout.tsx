@@ -42,6 +42,7 @@ import {
   R_SPACING_MD,
   TOP_BAR_H,
   DESKTOP_NAV_BTN_SIZE,
+  DESKTOP_NAV_BTN_PX,
 } from "@/constants/styles";
 import { useLocale } from "@/contexts/useLocale";
 import useNavs from "@/contexts/useNavs";
@@ -341,7 +342,8 @@ const DesktopLayout = (props: any) => {
           w={isNavsExpanded ? "250px" : "60px"}
           pb={R_SPACING_MD}
           overflowY={"auto"}
-          transition={"300ms ease"}
+          overflowX={"clip"}
+          transition={"3000ms ease"}
         >
           <CContainer flex={1}>
             {/* Header */}
@@ -424,8 +426,9 @@ const DesktopLayout = (props: any) => {
                       >
                         <Btn
                           clicky={false}
-                          justifyContent={isNavsExpanded ? "start" : "center"}
+                          justifyContent={isNavsExpanded ? "start" : "start"}
                           gap={4}
+                          px={DESKTOP_NAV_BTN_PX}
                           size={DESKTOP_NAV_BTN_SIZE}
                           variant={
                             pathname.includes("/master-data")
@@ -481,51 +484,53 @@ const DesktopLayout = (props: any) => {
                 },
               }}
             >
-              {isNavsExpanded && (
-                <HStack
-                  gap={4}
-                  w={"full"}
-                  p={3}
-                  bg={"bg.frosted"}
-                  rounded={themeConfig.radii.component}
-                  cursor={"pointer"}
-                  transition={"200ms"}
-                  pos={"relative"}
-                  _hover={{
-                    bg: "bg.muted",
-                  }}
-                >
-                  <Avatar
-                    src={imgUrl(user?.avatar?.filePath)}
-                    name={user?.name}
-                  />
+              <HStack
+                gap={4}
+                w={"full"}
+                p={isNavsExpanded ? 3 : "2px"}
+                bg={"bg.frosted"}
+                rounded={themeConfig.radii.component}
+                cursor={"pointer"}
+                transition={"300ms"}
+                pos={"relative"}
+                _hover={{
+                  bg: "bg.muted",
+                }}
+              >
+                <Avatar
+                  src={imgUrl(user?.avatar?.filePath)}
+                  name={user?.name}
+                  size={isNavsExpanded ? "lg" : "xs"}
+                  transition={"300ms"}
+                />
 
-                  {isNavsExpanded && (
-                    <>
-                      <CContainer>
-                        <P lineClamp={1} fontWeight={"semibold"}>
-                          {user?.name || user?.email || "Signed out"}
-                        </P>
-                        <P lineClamp={1} color={"fg.subtle"}>
-                          {user?.name ? user?.email || user?.username : "-"}
-                        </P>
-                      </CContainer>
+                {isNavsExpanded && (
+                  <>
+                    <CContainer>
+                      <P lineClamp={1} fontWeight={"semibold"}>
+                        {user?.name || user?.email || "Signed out"}
+                      </P>
+                      <P lineClamp={1} color={"fg.subtle"}>
+                        {user?.name ? user?.email || user?.username : "-"}
+                      </P>
+                    </CContainer>
 
-                      <AppIconLucide
-                        icon={ChevronsUpDownIcon}
-                        boxSize={BASE_ICON_BOX_SIZE}
-                        color={"fg.subtle"}
-                        mr={1}
-                      />
-                    </>
-                  )}
-                </HStack>
-              )}
+                    <AppIconLucide
+                      icon={ChevronsUpDownIcon}
+                      boxSize={BASE_ICON_BOX_SIZE}
+                      color={"fg.subtle"}
+                      mr={1}
+                    />
+                  </>
+                )}
+              </HStack>
 
-              {!isNavsExpanded && (
+              {/* {!isNavsExpanded && (
                 <Btn
                   iconButton
                   clicky={false}
+                  justifyContent={"start"}
+                  px={"3px"}
                   size={DESKTOP_NAV_BTN_SIZE}
                   variant={DESKTOP_NAV_BTN_VARIANT}
                 >
@@ -535,7 +540,7 @@ const DesktopLayout = (props: any) => {
                     size={"xs"}
                   />
                 </Btn>
-              )}
+              )} */}
             </ProfileMenuTrigger>
           </CContainer>
         </CContainer>

@@ -39,8 +39,8 @@ export const Btn = forwardRef<HTMLButtonElement, BtnProps>((props, ref) => {
     <IconButton
       ref={ref}
       className={resolvedClassName}
-      colorPalette={colorPalette}
       size={size || (MAIN_BUTTON_SIZE as any)}
+      colorPalette={colorPalette}
       borderColor={
         restProps.borderColor || (isVariantOutline && isColorPaletteGray)
           ? "border.muted"

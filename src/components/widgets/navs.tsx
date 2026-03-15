@@ -21,6 +21,7 @@ import {
   DESKTOP_NAV_BTN_VARIANT,
   R_SPACING_MD,
   DESKTOP_NAV_BTN_SIZE,
+  DESKTOP_NAV_BTN_PX,
 } from "@/constants/styles";
 import { useLocale } from "@/contexts/useLocale";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
@@ -168,7 +169,7 @@ export const DesktopNavs = (props: DesktopNavsProps) => {
   }, [navsExpanded]);
 
   return (
-    <CContainer {...restProps}>
+    <CContainer overflowX={"clip"} {...restProps}>
       {/* Search */}
       {navsExpanded && showSearch && (
         <CContainer px={3} py={2}>
@@ -185,7 +186,7 @@ export const DesktopNavs = (props: DesktopNavsProps) => {
 
       {/* Navs List */}
       <MContainer
-        className="scrollY"
+        className={"scrollY"}
         overflowX={"clip"}
         flex={1}
         gap={1}
@@ -228,9 +229,10 @@ export const DesktopNavs = (props: DesktopNavsProps) => {
                                 iconButton={navsExpanded ? false : true}
                                 clicky={false}
                                 justifyContent={
-                                  navsExpanded ? "start" : "center"
+                                  navsExpanded ? "start" : "start"
                                 }
                                 gap={4}
+                                px={DESKTOP_NAV_BTN_PX}
                                 size={DESKTOP_NAV_BTN_SIZE}
                                 variant={
                                   isMainNavsActive
@@ -300,6 +302,8 @@ export const DesktopNavs = (props: DesktopNavsProps) => {
                                       <Btn
                                         iconButton
                                         clicky={false}
+                                        justifyContent={"start"}
+                                        px={DESKTOP_NAV_BTN_PX}
                                         size={DESKTOP_NAV_BTN_SIZE}
                                         variant={
                                           isMainNavsActive
@@ -436,6 +440,7 @@ export const DesktopNavs = (props: DesktopNavsProps) => {
                                       <Btn
                                         clicky={false}
                                         justifyContent={"start"}
+                                        px={DESKTOP_NAV_BTN_PX}
                                         size={DESKTOP_NAV_BTN_SIZE}
                                         variant={
                                           isMainNavsActive
@@ -587,6 +592,7 @@ export const DesktopNavs = (props: DesktopNavsProps) => {
                                                         flex={1}
                                                         justifyContent={"start"}
                                                         gap={3}
+                                                        px={DESKTOP_NAV_BTN_PX}
                                                         size={
                                                           DESKTOP_NAV_BTN_SIZE
                                                         }
