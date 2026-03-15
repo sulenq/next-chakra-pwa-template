@@ -502,7 +502,11 @@ const Chart1 = (props: any) => {
                   variant={"ghost"}
                   color={isActive ? "" : "fg.subtle"}
                 >
-                  <DotIndicator color={isActive ? s.color : "d2"} mr={1} />
+                  <DotIndicator
+                    color={isActive ? s.color : "bg.emphasized"}
+                    mr={1}
+                  />
+
                   {year}
                 </Btn>
               );

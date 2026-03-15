@@ -68,7 +68,7 @@ export default function Select(props: SelectProps) {
         <ChakraSelect.Trigger
           border="none"
           cursor="pointer"
-          _hover={props?._hover || { bg: "d2" }}
+          _hover={props?._hover || { bg: "bg.emphasized" }}
         >
           <ChakraSelect.ValueText
             fontSize={props?.fontSize}

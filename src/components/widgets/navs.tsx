@@ -259,7 +259,7 @@ export const DesktopNavs = (props: DesktopNavsProps) => {
                                     color={
                                       isMainNavsActive
                                         ? themeConfig.primaryColor
-                                        : "d2"
+                                        : "bg.emphasized"
                                     }
                                   >
                                     <IconCircleFilled />

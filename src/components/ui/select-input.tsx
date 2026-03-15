@@ -149,7 +149,9 @@ const SelectOptions = (props: SelectOptionsProps) => {
 
                     {isSelected && <DotIndicator />}
 
-                    {!isSelected && multiple && <DotIndicator color={"d2"} />}
+                    {!isSelected && multiple && (
+                      <DotIndicator color={"bg.emphasized"} />
+                    )}
                   </HStack>
                 </Btn>
               );

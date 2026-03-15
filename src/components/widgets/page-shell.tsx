@@ -112,8 +112,8 @@ export const RadialGlowBackground = (props: StackProps) => {
 
   // Constants
   const colorPalette = themeConfig.colorPalette;
-  const opacity1 = useColorModeValue(0.02, 0.01);
-  const opacity2 = useColorModeValue(0.04, 0.02);
+  const opacity1 = useColorModeValue(0.02, 0.015);
+  const opacity2 = useColorModeValue(0.04, 0.025);
 
   return (
     <Center
@@ -364,7 +364,7 @@ const PageContainer = forwardRef<HTMLDivElement, StackProps>(
       <PageContainerContext.Provider value={contextValue}>
         <CContainer
           ref={mergeRef}
-          className="page-container"
+          className={"page-container"}
           flex={1}
           pb={R_SPACING_MD}
           overflow={"auto"}

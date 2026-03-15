@@ -100,17 +100,18 @@ const DisclosureContent = ({ children, ...props }: DisclosureContentProps) => {
     <DrawerContent
       rounded={themeConfig.radii.container}
       border={"1px solid"}
-      borderColor={"d0"}
+      borderColor={"bg.subtle"}
       {...(props as DrawerContentProps)}
     >
       <Box
         w={"40px"}
         h={"4px"}
         rounded={"full"}
-        bg={"d2"}
+        bg={"bg.emphasized"}
         mx={"auto"}
         mt={"6px"}
       />
+
       {children}
     </DrawerContent>
   ) : (

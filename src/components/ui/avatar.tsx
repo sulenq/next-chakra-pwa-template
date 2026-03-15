@@ -38,7 +38,7 @@ export const Avatar = forwardRef<HTMLDivElement, AvatarProps>(
       ...rest
     } = props;
     return (
-      <ChakraAvatar.Root ref={ref} bg={"d2"} {...rest}>
+      <ChakraAvatar.Root ref={ref} bg={"bg.emphasized"} {...rest}>
         <AvatarFallback
           name={name}
           icon={icon}
