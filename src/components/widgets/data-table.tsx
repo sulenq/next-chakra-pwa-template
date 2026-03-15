@@ -34,7 +34,6 @@ import { useThemeConfig } from "@/contexts/useThemeConfig";
 import { useIsSmScreenWidth } from "@/hooks/useIsSmScreenWidth";
 import { useScreen } from "@/hooks/useScreen";
 import { isEmptyArray } from "@/utils/array";
-import { hexWithOpacity } from "@/utils/color";
 import {
   Box,
   Center,
@@ -207,10 +206,8 @@ export const DataTableDisplay = (props: DataTableProps) => {
   }, [rows]);
 
   // SX
-  const selectedColor =
-    themeConfig.colorPalette === "gray"
-      ? "border.subtle"
-      : hexWithOpacity(themeConfig.primaryColorHex, 0.05);
+  // const SELECTED_BG = hexWithOpacity(themeConfig.primaryColorHex, 0.05);
+  const SELECTED_BG = `${themeConfig.colorPalette}.subtle`;
   const TABLE_ROW_ROUNDED = 0;
 
   return (
@@ -238,7 +235,7 @@ export const DataTableDisplay = (props: DataTableProps) => {
             <Table.Header>
               <Table.Row
                 bg={TABLE_ROW_BG}
-                rounded={themeConfig.radii.component}
+                rounded={TABLE_ROW_ROUNDED}
                 shadow={"soft"}
                 overflow={"clip"}
                 position={"sticky"}
@@ -407,59 +404,65 @@ export const DataTableDisplay = (props: DataTableProps) => {
                         left={0}
                         zIndex={2}
                       >
-                        <Center
-                          h={TABLE_TD_MIN_H}
-                          bg={isRowSelected ? selectedColor : TABLE_TD_BG}
-                          px={"10px"}
-                          pl={pl}
-                          cursor={"pointer"}
-                          borderBottom={
-                            rowIndex !== resolvedTableData.length - 1
-                              ? "1px solid"
-                              : ""
-                          }
-                          borderColor={
-                            isRowSelected
-                              ? selectedColor
-                              : TABLE_TD_BORDER_COLOR
-                          }
-                          roundedLeft={TABLE_ROW_ROUNDED}
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            toggleRowSelection(row);
-                          }}
-                        >
-                          <Checkbox
-                            subtle
-                            size={"sm"}
-                            colorPalette={themeConfig.colorPalette}
-                            checked={selectedRows.includes(row.id)}
-                          />
+                        <Center bg={TABLE_TD_BG}>
+                          <Center
+                            w={"full"}
+                            h={TABLE_TD_MIN_H}
+                            bg={isRowSelected ? SELECTED_BG : TABLE_TD_BG}
+                            px={"10px"}
+                            pl={pl}
+                            cursor={"pointer"}
+                            borderBottom={
+                              rowIndex !== resolvedTableData.length - 1
+                                ? "1px solid"
+                                : ""
+                            }
+                            borderColor={
+                              isRowSelected
+                                ? SELECTED_BG
+                                : TABLE_TD_BORDER_COLOR
+                            }
+                            roundedLeft={TABLE_ROW_ROUNDED}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              toggleRowSelection(row);
+                            }}
+                          >
+                            <Checkbox
+                              subtle
+                              size={"sm"}
+                              colorPalette={themeConfig.colorPalette}
+                              checked={selectedRows.includes(row.id)}
+                            />
+                          </Center>
                         </Center>
                       </Table.Cell>
                     )}
 
                     {/* Numbering column */}
                     <Table.Cell whiteSpace={"nowrap"} p={0} pt={TABLE_TD_MT}>
-                      <HStack
-                        py={3}
-                        px={TABLE_CELL_PX}
-                        h={TABLE_TD_MIN_H}
-                        bg={isRowSelected ? selectedColor : TABLE_TD_BG}
-                        borderBottom={
-                          rowIndex !== resolvedTableData.length - 1
-                            ? "1px solid"
-                            : ""
-                        }
-                        borderColor={
-                          isRowSelected ? selectedColor : TABLE_TD_BORDER_COLOR
-                        }
-                        fontSize={"md"}
-                        color={"fg.subtle"}
-                        justify={"center"}
-                      >
-                        {rowIndex + 1}
-                      </HStack>
+                      <Center bg={TABLE_TD_BG}>
+                        <HStack
+                          justify={"center"}
+                          w={"full"}
+                          h={TABLE_TD_MIN_H}
+                          py={3}
+                          px={TABLE_CELL_PX}
+                          bg={isRowSelected ? SELECTED_BG : TABLE_TD_BG}
+                          borderBottom={
+                            rowIndex !== resolvedTableData.length - 1
+                              ? "1px solid"
+                              : ""
+                          }
+                          borderColor={
+                            isRowSelected ? SELECTED_BG : TABLE_TD_BORDER_COLOR
+                          }
+                          fontSize={"md"}
+                          color={"fg.subtle"}
+                        >
+                          {rowIndex + 1}
+                        </HStack>
+                      </Center>
                     </Table.Cell>
 
                     {/* Main columns */}
@@ -472,28 +475,34 @@ export const DataTableDisplay = (props: DataTableProps) => {
                         fontSize={"md"}
                         {...col?.tableCellProps}
                       >
-                        <HStack
-                          py={3}
-                          px={TABLE_CELL_PX}
-                          h={TABLE_TD_MIN_H}
-                          bg={isRowSelected ? selectedColor : TABLE_TD_BG}
-                          borderBottom={
-                            rowIndex !== resolvedTableData.length - 1
-                              ? "1px solid"
-                              : ""
-                          }
-                          borderColor={
-                            isRowSelected
-                              ? selectedColor
-                              : TABLE_TD_BORDER_COLOR
-                          }
-                          justify={col.align}
-                          {...col?.wrapperProps}
-                        >
-                          <Box opacity={row.dim || col.dim ? 0.4 : 1} w="full">
-                            {col?.td}
-                          </Box>
-                        </HStack>
+                        <Center bg={TABLE_TD_BG}>
+                          <HStack
+                            justify={col.align}
+                            w={"full"}
+                            h={TABLE_TD_MIN_H}
+                            py={3}
+                            px={TABLE_CELL_PX}
+                            bg={isRowSelected ? SELECTED_BG : TABLE_TD_BG}
+                            borderBottom={
+                              rowIndex !== resolvedTableData.length - 1
+                                ? "1px solid"
+                                : ""
+                            }
+                            borderColor={
+                              isRowSelected
+                                ? SELECTED_BG
+                                : TABLE_TD_BORDER_COLOR
+                            }
+                            {...col?.wrapperProps}
+                          >
+                            <Box
+                              opacity={row.dim || col.dim ? 0.4 : 1}
+                              w="full"
+                            >
+                              {col?.td}
+                            </Box>
+                          </HStack>
+                        </Center>
                       </Table.Cell>
                     ))}
 
@@ -510,33 +519,36 @@ export const DataTableDisplay = (props: DataTableProps) => {
                         right={"0"}
                         zIndex={2}
                       >
-                        <Center
-                          h={TABLE_TD_MIN_H}
-                          px={"10px"}
-                          pr={pr}
-                          bg={isRowSelected ? selectedColor : TABLE_TD_BG}
-                          borderBottom={
-                            rowIndex !== resolvedTableData.length - 1
-                              ? "1px solid"
-                              : ""
-                          }
-                          borderColor={
-                            isRowSelected
-                              ? selectedColor
-                              : TABLE_TD_BORDER_COLOR
-                          }
-                          roundedRight={TABLE_ROW_ROUNDED}
-                          pos={"relative"}
-                          onClick={(e) => {
-                            e.stopPropagation();
-                          }}
-                        >
-                          <RowOptions
-                            row={row}
-                            rowOptions={rowOptions}
-                            tableContainerRef={tableContainerRef}
-                            color={"fg.ibody"}
-                          />
+                        <Center bg={TABLE_TD_BG}>
+                          <Center
+                            w={"full"}
+                            h={TABLE_TD_MIN_H}
+                            px={"10px"}
+                            pr={pr}
+                            bg={isRowSelected ? SELECTED_BG : TABLE_TD_BG}
+                            borderBottom={
+                              rowIndex !== resolvedTableData.length - 1
+                                ? "1px solid"
+                                : ""
+                            }
+                            borderColor={
+                              isRowSelected
+                                ? SELECTED_BG
+                                : TABLE_TD_BORDER_COLOR
+                            }
+                            roundedRight={TABLE_ROW_ROUNDED}
+                            pos={"relative"}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                            }}
+                          >
+                            <RowOptions
+                              row={row}
+                              rowOptions={rowOptions}
+                              tableContainerRef={tableContainerRef}
+                              color={"fg.ibody"}
+                            />
+                          </Center>
                         </Center>
                       </Table.Cell>
                     )}
