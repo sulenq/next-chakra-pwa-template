@@ -236,7 +236,7 @@ export const DataTableDisplay = (props: DataTableProps) => {
               <Table.Row
                 bg={TABLE_ROW_BG}
                 rounded={TABLE_ROW_ROUNDED}
-                shadow={"soft"}
+                // shadow={"soft"}
                 overflow={"clip"}
                 position={"sticky"}
                 top={0}
