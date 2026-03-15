@@ -354,7 +354,7 @@ export const DesktopNavs = (props: DesktopNavsProps) => {
                                               <NavLink
                                                 key={menu.path}
                                                 to={menu.path}
-                                                w="full"
+                                                w={"full"}
                                               >
                                                 <Tooltip
                                                   content={
@@ -376,19 +376,10 @@ export const DesktopNavs = (props: DesktopNavsProps) => {
                                                   >
                                                     <Btn
                                                       clicky={false}
-                                                      variant={
-                                                        isSubNavsActive
-                                                          ? DESKTOP_ACTIVE_NAV_BTN_VARIANT
-                                                          : DESKTOP_NAV_BTN_VARIANT
-                                                      }
-                                                      colorPalette={
-                                                        isSubNavsActive
-                                                          ? themeConfig.colorPalette
-                                                          : ""
-                                                      }
+                                                      variant={"ghost"}
                                                       color={
                                                         isSubNavsActive
-                                                          ? "colorPalette.fg"
+                                                          ? `${themeConfig.colorPalette}.fg`
                                                           : DESKTOP_NAVS_COLOR
                                                       }
                                                       px={3}
@@ -593,20 +584,15 @@ export const DesktopNavs = (props: DesktopNavsProps) => {
                                                         flex={1}
                                                         justifyContent={"start"}
                                                         gap={3}
-                                                        px={DESKTOP_NAV_BTN_PX}
+                                                        px={3}
                                                         size={
                                                           DESKTOP_NAV_BTN_SIZE
                                                         }
                                                         variant={"ghost"}
-                                                        colorPalette={
-                                                          isSubNavsActive
-                                                            ? themeConfig.colorPalette
-                                                            : ""
-                                                        }
                                                         rounded={`calc(${themeConfig.radii.component})`}
                                                         color={
                                                           isSubNavsActive
-                                                            ? undefined
+                                                            ? `${themeConfig.colorPalette}.fg`
                                                             : DESKTOP_NAVS_COLOR
                                                         }
                                                       >
