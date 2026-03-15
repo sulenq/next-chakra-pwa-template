@@ -486,7 +486,7 @@ const DesktopLayout = (props: any) => {
             >
               <HStack
                 gap={4}
-                w={"full"}
+                w={isNavsExpanded ? "full" : "36px"}
                 p={isNavsExpanded ? 3 : "2px"}
                 bg={"bg.frosted"}
                 rounded={themeConfig.radii.component}
