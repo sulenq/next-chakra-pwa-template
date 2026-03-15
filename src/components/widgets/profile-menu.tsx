@@ -25,7 +25,6 @@ import { back, removeStorage } from "@/utils/client";
 import { pluckString } from "@/utils/string";
 import { imgUrl } from "@/utils/url";
 import { Icon, PopoverRootProps, StackProps } from "@chakra-ui/react";
-import { User } from "iconoir-react";
 import { EclipseIcon, LogOutIcon, SettingsIcon, UserIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useRef, useState } from "react";
@@ -110,7 +109,7 @@ export const ProfileMenu = (props: ProfileMenuProps) => {
             src={imgUrl(user?.avatar?.[0]?.filePath)}
             alt={"avatar"}
             aspectRatio={1}
-            fallback={<ImgFallback icon={User} />}
+            fallback={<ImgFallback icon={UserIcon} />}
             rounded={themeConfig.radii.component}
           />
         </CContainer>

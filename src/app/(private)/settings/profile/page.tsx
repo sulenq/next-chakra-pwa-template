@@ -139,7 +139,7 @@ const PersonalInformation = (props: PersonalInformationProps) => {
                 >
                   <HStack gap={4}>
                     <ImgViewer
-                      src={imgUrl(initialData?.avatar?.[0]?.filePath)}
+                      src={initialData?.avatar?.[0]?.fileUrl}
                       key={imgUrl(initialData?.avatar?.[0]?.filePath)}
                     >
                       <Img

@@ -2,36 +2,29 @@
 
 import { CContainer } from "@/components/ui/c-container";
 import { SVGS_PATH } from "@/constants/paths";
-import { Center, StackProps } from "@chakra-ui/react";
-import { IconoirProvider, MediaImage } from "iconoir-react";
+import { Center, Icon, StackProps } from "@chakra-ui/react";
+import { ImageIcon, LucideIcon } from "lucide-react";
 import Image, { ImageProps } from "next/image";
 import { forwardRef, useEffect, useState } from "react";
 
 interface ImgFallbackProps extends StackProps {
-  icon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+  icon?: LucideIcon;
 }
 export const ImgFallback = (props: ImgFallbackProps) => {
-  const { icon: Iconnoir = MediaImage, ...restProps } = props;
+  const { icon: LucideIcon = ImageIcon, ...restProps } = props;
 
   return (
     <Center
       w={"full"}
       h={"full"}
+      aspectRatio={1}
       bg={"bg.subtle"}
       pos={"relative"}
       {...restProps}
     >
-      <IconoirProvider
-        iconProps={{
-          strokeWidth: 1,
-          width: "50%",
-          height: "50%",
-          color: "var(--chakra-colors-fg-subtle)",
-          opacity: 0.2,
-        }}
-      >
-        <Iconnoir />
-      </IconoirProvider>
+      <Icon boxSize={"50%"} opacity={0.1}>
+        <LucideIcon strokeWidth={1} />
+      </Icon>
     </Center>
   );
 };

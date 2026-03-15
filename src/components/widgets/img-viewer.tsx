@@ -31,6 +31,8 @@ export const ImgViewer = (props: ImgViewerProps) => {
     ...restProps
   } = props;
 
+  console.debug(src);
+
   // Contexts
   const { t } = useLocale();
 
@@ -84,7 +86,7 @@ export const ImgViewer = (props: ImgViewerProps) => {
                   imageProps={{
                     unoptimized: true,
                   }}
-                  mt={["36px", null, "40px"]}
+                  mt={["56px", null, "60px"]}
                 />
 
                 <NavLink to={src} w={"fit"} external>
