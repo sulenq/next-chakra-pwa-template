@@ -16,6 +16,7 @@ import FeedbackNoData from "@/components/widgets/feedback-no-data";
 import FeedbackRetry from "@/components/widgets/feedback-retry";
 import { DotIndicator } from "@/components/widgets/indicator";
 import { Item } from "@/components/widgets/item";
+import { MContainer } from "@/components/widgets/m-container";
 import {
   PageShell,
   TopBar,
@@ -568,61 +569,70 @@ const PageScreen = () => {
   };
 
   return (
-    <>
-      <TopBar />
+    <CContainer overflowY={"auto"}>
+      <CContainer px={R_SPACING_MD}>
+        <TopBar />
+      </CContainer>
 
-      <HStack wrap={"wrap"} justify={"space-between"} px={R_SPACING_MD} mb={6}>
-        <HStack gap={4}>
-          <Avatar
-            name={user?.name}
-            src={imgUrl(user?.avatar?.[0]?.filePath)}
-            size={"2xl"}
-          />
+      <MContainer px={R_SPACING_MD} pb={R_SPACING_MD} overflowY={"auto"}>
+        <HStack
+          wrap={"wrap"}
+          justify={"space-between"}
+          px={R_SPACING_MD}
+          mb={6}
+        >
+          <HStack gap={4}>
+            <Avatar
+              name={user?.name}
+              src={imgUrl(user?.avatar?.[0]?.filePath)}
+              size={"2xl"}
+            />
 
-          <CContainer w={"fit"} gap={1}>
-            <P
-              fontSize={"3xl"}
-              fontWeight={"medium"}
-            >{`${t.hi}, ${user?.name || "User's Name"} 👋`}</P>
+            <CContainer w={"fit"} gap={1}>
+              <P
+                fontSize={"3xl"}
+                fontWeight={"medium"}
+              >{`${t.hi}, ${user?.name || "User's Name"} 👋`}</P>
 
-            <P>
-              {user?.taskCount
-                ? interpolateString(t.msg_task_count, {
-                    count: user?.tastCount,
-                  })
-                : t.msg_no_task}
-            </P>
-          </CContainer>
+              <P>
+                {user?.taskCount
+                  ? interpolateString(t.msg_task_count, {
+                      count: user?.tastCount,
+                    })
+                  : t.msg_no_task}
+              </P>
+            </CContainer>
+          </HStack>
+
+          <Calendar.Trigger>
+            <CContainer w={"fit"} align={"end"}>
+              <TodayWeekday fontSize={"xl"} fontWeight={"medium"} />
+
+              <HStack>
+                <Today />
+
+                <Clock showTimezone />
+              </HStack>
+            </CContainer>
+          </Calendar.Trigger>
         </HStack>
 
-        <Calendar.Trigger>
-          <CContainer w={"fit"} align={"end"}>
-            <TodayWeekday fontSize={"xl"} fontWeight={"medium"} />
-
-            <HStack>
-              <Today />
-
-              <Clock showTimezone />
-            </HStack>
-          </CContainer>
-        </Calendar.Trigger>
-      </HStack>
-
-      <PageShell.Content>
-        {initialLoading && render.loading}
-        {!initialLoading && (
-          <>
-            {error && render.error}
-            {!error && (
-              <>
-                {isObjectDeepEmpty(data) && render.empty}
-                {!isObjectDeepEmpty(data) && render.loaded}
-              </>
-            )}
-          </>
-        )}
-      </PageShell.Content>
-    </>
+        <PageShell.Content>
+          {initialLoading && render.loading}
+          {!initialLoading && (
+            <>
+              {error && render.error}
+              {!error && (
+                <>
+                  {isObjectDeepEmpty(data) && render.empty}
+                  {!isObjectDeepEmpty(data) && render.loaded}
+                </>
+              )}
+            </>
+          )}
+        </PageShell.Content>
+      </MContainer>
+    </CContainer>
   );
 };
 

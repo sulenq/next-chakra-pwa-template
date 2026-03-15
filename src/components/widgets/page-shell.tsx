@@ -366,7 +366,6 @@ const PageContainer = forwardRef<HTMLDivElement, StackProps>(
           ref={mergeRef}
           className={"page-container"}
           flex={1}
-          pb={R_SPACING_MD}
           overflow={"auto"}
           {...restProps}
         >
