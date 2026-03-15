@@ -13,15 +13,16 @@ import { LeftIndicator } from "@/components/widgets/indicator";
 import { MContainer } from "@/components/widgets/m-container";
 import { Interface__NavGroup } from "@/constants/interfaces";
 import {
-  DESKTOP_ACTIVE_NAV_BTN_VARIANT,
   BASE_ICON_BOX_SIZE,
+  DESKTOP_ACTIVE_NAV_BTN_VARIANT,
   DESKTOP_NAVS_COLOR,
   DESKTOP_NAVS_POPOVER_MAIN_AXIS,
   DESKTOP_NAVS_TOOLTIP_MAIN_AXIS,
-  DESKTOP_NAV_BTN_VARIANT,
-  R_SPACING_MD,
-  DESKTOP_NAV_BTN_SIZE,
   DESKTOP_NAV_BTN_PX,
+  DESKTOP_NAV_BTN_SIZE,
+  DESKTOP_NAV_BTN_VARIANT,
+  DESKTOP_NAV_GAP,
+  R_SPACING_MD,
 } from "@/constants/styles";
 import { useLocale } from "@/contexts/useLocale";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
@@ -201,7 +202,7 @@ export const DesktopNavs = (props: DesktopNavsProps) => {
           {!isEmptyArray(resolvedNavs) &&
             resolvedNavs.map((navItem, navItemIdx) => {
               return (
-                <CContainer key={navItemIdx} gap={2}>
+                <CContainer key={navItemIdx} gap={DESKTOP_NAV_GAP}>
                   {navsExpanded && navItem.labelKey && (
                     <ClampText
                       fontSize={"sm"}
@@ -487,7 +488,7 @@ export const DesktopNavs = (props: DesktopNavsProps) => {
                                   </DesktopNavTooltip>
 
                                   <Accordion.ItemContent p={0}>
-                                    <CContainer gap={1} pt={1}>
+                                    <CContainer gap={1} pt={DESKTOP_NAV_GAP}>
                                       {nav.children?.map(
                                         (subGroup, menuItemIdx) => (
                                           <CContainer key={menuItemIdx} gap={1}>

@@ -12,7 +12,23 @@ import {
   FormattedTableRow,
   RowOptionsTableOptionGenerator,
 } from "@/constants/interfaces";
-import { GAP, R_SPACING_MD } from "@/constants/styles";
+import {
+  TABLE_CELL_PX,
+  TABLE_FOOTER_BORDER_COLOR,
+  GAP,
+  TABLE_OPTIONS_CELL_W,
+  R_SPACING_MD,
+  TABLE_CONTAINER_BG,
+  TABLE_ROW_BG,
+  TABLE_TD_BG,
+  TABLE_TD_BORDER_COLOR,
+  TABLE_TD_MIN_H,
+  TABLE_TD_MT,
+  TABLE_TH_BG,
+  TABLE_TH_BORDER_COLOR,
+  TABLE_TH_H,
+  TABLE_TH_PB,
+} from "@/constants/styles";
 import { Type__SortHandler } from "@/constants/types";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
 import { useIsSmScreenWidth } from "@/hooks/useIsSmScreenWidth";
@@ -28,23 +44,6 @@ import {
   TableRowProps,
 } from "@chakra-ui/react";
 import { useEffect, useMemo, useRef, useState } from "react";
-
-const OPTIONS_CELL_W = "46px";
-const CELL_PX = 3;
-
-const TABLE_CONTAINER_BG = "transparent";
-const TABLE_ROW_BG = "transparent";
-
-const TH_H = "45px";
-const TH_PB = GAP;
-const TH_BG = "bg.body";
-const TH_BORDER_COLOR = "border.subtle";
-
-const TD_MIN_H = "46px";
-const TD_BG = "bg.body";
-const TD_BORDER_COLOR = "transparent";
-
-const FOOTER_BORDER_COLOR = "border.subtle";
 
 export interface DataTableProps extends Omit<StackProps, "page"> {
   trBodyProps?: TableRowProps;
@@ -212,7 +211,7 @@ export const DataTableDisplay = (props: DataTableProps) => {
     themeConfig.colorPalette === "gray"
       ? "border.subtle"
       : hexWithOpacity(themeConfig.primaryColorHex, 0.05);
-  const TABLE_ROW_ROUNDED = 0;
+  const TABLE_ROW_ROUNDED = themeConfig.radii.component;
 
   return (
     <CContainer
@@ -228,6 +227,7 @@ export const DataTableDisplay = (props: DataTableProps) => {
           flex={1}
           pb={R_SPACING_MD}
           bg={TABLE_CONTAINER_BG}
+          rounded={themeConfig.radii.component}
           {...contentContainerProps}
         >
           <Table.Root
@@ -238,30 +238,33 @@ export const DataTableDisplay = (props: DataTableProps) => {
             <Table.Header>
               <Table.Row
                 bg={TABLE_ROW_BG}
+                rounded={themeConfig.radii.component}
+                shadow={"soft"}
                 overflow={"clip"}
                 position={"sticky"}
                 top={0}
                 zIndex={3}
               >
+                {/* Batch options column */}
                 {!isEmptyArray(batchOptions) && (
                   <Table.ColumnHeader
-                    h={TH_H}
-                    w={OPTIONS_CELL_W}
-                    maxW={OPTIONS_CELL_W}
+                    h={TABLE_TH_H}
+                    w={TABLE_OPTIONS_CELL_W}
+                    maxW={TABLE_OPTIONS_CELL_W}
                     minW={"0% !important"}
                     p={0}
-                    pb={TH_PB}
+                    pb={TABLE_TH_PB}
                     borderBottom={"none !important"}
                     position={"sticky"}
                     left={0}
                   >
                     <Center
-                      h={TH_H}
+                      h={TABLE_TH_H}
                       px={"10px"}
                       pl={pl}
-                      bg={TH_BG}
+                      bg={TABLE_TH_BG}
                       borderBottom={"1px solid"}
-                      borderColor={TH_BORDER_COLOR}
+                      borderColor={TABLE_TH_BORDER_COLOR}
                       roundedLeft={TABLE_ROW_ROUNDED}
                     >
                       <BatchOptions
@@ -283,16 +286,16 @@ export const DataTableDisplay = (props: DataTableProps) => {
                   w={"1%"}
                   maxW={"fit-content"}
                   p={0}
-                  pb={TH_PB}
+                  pb={TABLE_TH_PB}
                   borderBottom={"none !important"}
                 >
                   <HStack
-                    h={TH_H}
-                    px={CELL_PX}
+                    h={TABLE_TH_H}
+                    px={TABLE_CELL_PX}
                     py={3}
-                    bg={TH_BG}
+                    bg={TABLE_TH_BG}
                     borderBottom={"1px solid"}
-                    borderColor={TH_BORDER_COLOR}
+                    borderColor={TABLE_TH_BORDER_COLOR}
                   >
                     <P fontWeight={"medium"} color={"fg.muted"}>
                       No.
@@ -306,7 +309,7 @@ export const DataTableDisplay = (props: DataTableProps) => {
                     key={index}
                     whiteSpace={"nowrap"}
                     p={0}
-                    pb={TH_PB}
+                    pb={TABLE_TH_PB}
                     borderBottom={"none !important"}
                     cursor={header.sortable ? "pointer" : "auto"}
                     onClick={header.sortable ? () => sort(index) : undefined}
@@ -314,8 +317,8 @@ export const DataTableDisplay = (props: DataTableProps) => {
                   >
                     <HStack
                       justify={header.align}
-                      h={TH_H}
-                      px={CELL_PX}
+                      h={TABLE_TH_H}
+                      px={TABLE_CELL_PX}
                       py={3}
                       pl={index === 0 ? 4 : ""}
                       pr={
@@ -328,9 +331,9 @@ export const DataTableDisplay = (props: DataTableProps) => {
                             ? 1
                             : ""
                       }
-                      bg={TH_BG}
+                      bg={TABLE_TH_BG}
                       borderBottom={"1px solid"}
-                      borderColor={TH_BORDER_COLOR}
+                      borderColor={TABLE_TH_BORDER_COLOR}
                       {...header?.wrapperProps}
                     >
                       <P fontWeight={"medium"} color={"fg.muted"}>
@@ -351,22 +354,22 @@ export const DataTableDisplay = (props: DataTableProps) => {
                 {/* Row options column */}
                 {!isEmptyArray(rowOptions) && (
                   <Table.ColumnHeader
-                    w={OPTIONS_CELL_W}
-                    maxW={OPTIONS_CELL_W}
+                    w={TABLE_OPTIONS_CELL_W}
+                    maxW={TABLE_OPTIONS_CELL_W}
                     p={0}
-                    pb={TH_PB}
+                    pb={TABLE_TH_PB}
                     borderBottom={"none !important"}
                     position={"sticky"}
                     right={"0px"}
                   >
                     <HStack
-                      h={TH_H}
-                      px={CELL_PX}
+                      h={TABLE_TH_H}
+                      px={TABLE_CELL_PX}
                       pr={pr}
                       py={3}
-                      bg={TH_BG}
+                      bg={TABLE_TH_BG}
                       borderBottom={"1px solid"}
-                      borderColor={TH_BORDER_COLOR}
+                      borderColor={TABLE_TH_BORDER_COLOR}
                       roundedRight={TABLE_ROW_ROUNDED}
                       pos={"relative"}
                     >
@@ -380,7 +383,7 @@ export const DataTableDisplay = (props: DataTableProps) => {
             <Table.Body>
               {resolvedTableData?.map((row, rowIndex) => {
                 const isRowSelected = selectedRows.includes(row.id);
-                const isLastIndex = rowIndex === resolvedTableData.length - 1;
+                // const isLastIndex = rowIndex === resolvedTableData.length - 1;
 
                 return (
                   <Table.Row
@@ -395,18 +398,18 @@ export const DataTableDisplay = (props: DataTableProps) => {
                     {!isEmptyArray(batchOptions) && (
                       <Table.Cell
                         minW={"0% !important"}
-                        maxW={OPTIONS_CELL_W}
-                        w={OPTIONS_CELL_W}
-                        h={TD_MIN_H}
+                        maxW={TABLE_OPTIONS_CELL_W}
+                        w={TABLE_OPTIONS_CELL_W}
+                        h={TABLE_TD_MIN_H}
                         p={0}
-                        pb={isLastIndex ? 0 : GAP}
+                        pt={TABLE_TD_MT}
                         position={"sticky"}
                         left={0}
                         zIndex={2}
                       >
                         <Center
-                          h={TD_MIN_H}
-                          bg={isRowSelected ? selectedColor : TD_BG}
+                          h={TABLE_TD_MIN_H}
+                          bg={isRowSelected ? selectedColor : TABLE_TD_BG}
                           px={"10px"}
                           pl={pl}
                           cursor={"pointer"}
@@ -416,7 +419,9 @@ export const DataTableDisplay = (props: DataTableProps) => {
                               : ""
                           }
                           borderColor={
-                            isRowSelected ? selectedColor : TD_BORDER_COLOR
+                            isRowSelected
+                              ? selectedColor
+                              : TABLE_TD_BORDER_COLOR
                           }
                           roundedLeft={TABLE_ROW_ROUNDED}
                           onClick={(e) => {
@@ -435,23 +440,19 @@ export const DataTableDisplay = (props: DataTableProps) => {
                     )}
 
                     {/* Numbering column */}
-                    <Table.Cell
-                      whiteSpace={"nowrap"}
-                      p={0}
-                      pb={isLastIndex ? 0 : GAP}
-                    >
+                    <Table.Cell whiteSpace={"nowrap"} p={0} pt={TABLE_TD_MT}>
                       <HStack
                         py={3}
-                        px={CELL_PX}
-                        h={TD_MIN_H}
-                        bg={isRowSelected ? selectedColor : TD_BG}
+                        px={TABLE_CELL_PX}
+                        h={TABLE_TD_MIN_H}
+                        bg={isRowSelected ? selectedColor : TABLE_TD_BG}
                         borderBottom={
                           rowIndex !== resolvedTableData.length - 1
                             ? "1px solid"
                             : ""
                         }
                         borderColor={
-                          isRowSelected ? selectedColor : TD_BORDER_COLOR
+                          isRowSelected ? selectedColor : TABLE_TD_BORDER_COLOR
                         }
                         fontSize={"md"}
                         color={"fg.subtle"}
@@ -467,22 +468,24 @@ export const DataTableDisplay = (props: DataTableProps) => {
                         key={colIndex}
                         whiteSpace={"nowrap"}
                         p={0}
-                        pb={isLastIndex ? 0 : GAP}
+                        pt={TABLE_TD_MT}
                         fontSize={"md"}
                         {...col?.tableCellProps}
                       >
                         <HStack
                           py={3}
-                          px={CELL_PX}
-                          h={TD_MIN_H}
-                          bg={isRowSelected ? selectedColor : TD_BG}
+                          px={TABLE_CELL_PX}
+                          h={TABLE_TD_MIN_H}
+                          bg={isRowSelected ? selectedColor : TABLE_TD_BG}
                           borderBottom={
                             rowIndex !== resolvedTableData.length - 1
                               ? "1px solid"
                               : ""
                           }
                           borderColor={
-                            isRowSelected ? selectedColor : TD_BORDER_COLOR
+                            isRowSelected
+                              ? selectedColor
+                              : TABLE_TD_BORDER_COLOR
                           }
                           justify={col.align}
                           {...col?.wrapperProps}
@@ -498,27 +501,29 @@ export const DataTableDisplay = (props: DataTableProps) => {
                     {!isEmptyArray(rowOptions) && (
                       <Table.Cell
                         minW={"0% !important"}
-                        w={OPTIONS_CELL_W}
-                        maxW={OPTIONS_CELL_W}
-                        h={TD_MIN_H}
+                        w={TABLE_OPTIONS_CELL_W}
+                        maxW={TABLE_OPTIONS_CELL_W}
+                        h={TABLE_TD_MIN_H}
                         p={0}
-                        pb={isLastIndex ? 0 : GAP}
+                        pt={TABLE_TD_MT}
                         position={"sticky"}
                         right={"0"}
                         zIndex={2}
                       >
                         <Center
-                          h={TD_MIN_H}
+                          h={TABLE_TD_MIN_H}
                           px={"10px"}
                           pr={pr}
-                          bg={isRowSelected ? selectedColor : TD_BG}
+                          bg={isRowSelected ? selectedColor : TABLE_TD_BG}
                           borderBottom={
                             rowIndex !== resolvedTableData.length - 1
                               ? "1px solid"
                               : ""
                           }
                           borderColor={
-                            isRowSelected ? selectedColor : TD_BORDER_COLOR
+                            isRowSelected
+                              ? selectedColor
+                              : TABLE_TD_BORDER_COLOR
                           }
                           roundedRight={TABLE_ROW_ROUNDED}
                           pos={"relative"}
@@ -546,12 +551,12 @@ export const DataTableDisplay = (props: DataTableProps) => {
       {hasFooter && (
         <>
           <HStack
-            // h={footerH}
+            wrap={"wrap"}
+            justify={"space-between"}
             p={3}
             borderTop={"1px solid"}
-            borderColor={FOOTER_BORDER_COLOR}
-            justify={"space-between"}
-            wrap={"wrap"}
+            borderColor={TABLE_FOOTER_BORDER_COLOR}
+            mt={"auto"}
           >
             <CContainer w={"fit"} mb={[1, null, 0]}>
               <Limitation limit={limit} setLimit={setLimit} />

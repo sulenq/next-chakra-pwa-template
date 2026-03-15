@@ -10,11 +10,7 @@ export const DESKTOP_NAV_BTN_SIZE = "sm";
 export const DESKTOP_NAV_BTN_PX = "8px";
 export const DESKTOP_NAV_BTN_VARIANT = "frosted";
 export const DESKTOP_ACTIVE_NAV_BTN_VARIANT = "solid";
-
-// Data Grid
-export const GRID_ITEM_CONTAINER_BG = "bg.body";
-export const GRID_BATCH_OPTIONS_CONTAINER_BG = "bg.frosted";
-export const GRID_FOOTER_BORDER_COLOR = "border.subtle";
+export const DESKTOP_NAV_GAP = "8px";
 
 // Sizes
 export const MAIN_BUTTON_SIZE = ["md", null, "sm"] as any;
@@ -37,3 +33,24 @@ export const DESKTOP_NAVS_TOOLTIP_MAIN_AXIS = 8;
 
 // Effects
 export const BLUR_RADIUS = "20px";
+
+// --- Widgets ---
+// Data Table
+export const TABLE_OPTIONS_CELL_W = "46px";
+export const TABLE_CELL_PX = 3;
+export const TABLE_CONTAINER_BG = "transparent";
+export const TABLE_ROW_BG = "transparent";
+export const TABLE_TH_H = "45px";
+export const TABLE_TH_PB = 0;
+export const TABLE_TH_BG = "bg.body";
+export const TABLE_TH_BORDER_COLOR = "transparent";
+export const TABLE_TD_MIN_H = "46px";
+export const TABLE_TD_MT = GAP;
+export const TABLE_TD_BG = "bg.body";
+export const TABLE_TD_BORDER_COLOR = "transparent";
+export const TABLE_FOOTER_BORDER_COLOR = "border.subtle";
+
+// Data Grid
+export const GRID_ITEM_CONTAINER_BG = "bg.body";
+export const GRID_BATCH_OPTIONS_CONTAINER_BG = "bg.frosted";
+export const GRID_FOOTER_BORDER_COLOR = "border.subtle";
