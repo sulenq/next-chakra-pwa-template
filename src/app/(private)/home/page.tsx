@@ -88,7 +88,7 @@ const OverviewItem = (props: OverviewItemProps) => {
   const { themeConfig } = useThemeConfig();
 
   return (
-    <Item.Container gap={1} {...restProps}>
+    <Item.Content gap={1} {...restProps}>
       <HStack gap={1} p={2} pl={4}>
         <Item.HeaderTitle
           autoHeight
@@ -125,7 +125,7 @@ const OverviewItem = (props: OverviewItemProps) => {
           </ClampText>
         </HStack>
       </CContainer>
-    </Item.Container>
+    </Item.Content>
   );
 };
 
@@ -366,7 +366,7 @@ const Chart1 = (props: any) => {
   }
 
   return (
-    <Item.Container {...restProps}>
+    <Item.Content {...restProps}>
       <Item.HeaderContainer borderless>
         <Item.HeaderTitle
           color={"fg.muted"}
@@ -515,7 +515,7 @@ const Chart1 = (props: any) => {
           </HStack>
         </HStack>
       </CContainer>
-    </Item.Container>
+    </Item.Content>
   );
 };
 
@@ -559,11 +559,11 @@ const PageScreen = () => {
     empty: <FeedbackNoData />,
     loaded: data && (
       <>
-        <CContainer gap={GAP}>
+        <Item.Container gap={GAP} p={R_SPACING_MD}>
           <Overview data={data.overview} />
 
           <Usage data={data.usage} filter={filter} />
-        </CContainer>
+        </Item.Container>
       </>
     ),
   };

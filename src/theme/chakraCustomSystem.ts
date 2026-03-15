@@ -537,7 +537,7 @@ const customConfig = defineConfig({
           body: {
             value: {
               base: "#fdfdfd",
-              _dark: "#181919",
+              _dark: "#181818",
             },
           },
           frosted: {

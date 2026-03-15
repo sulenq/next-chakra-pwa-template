@@ -44,6 +44,42 @@ const ItemContainer = forwardRef<HTMLDivElement, ItemContainerProps>(
   },
 );
 
+export interface ItemContentProps extends StackProps {
+  scrollY?: boolean;
+  roundedless?: boolean;
+  borderless?: boolean;
+}
+const ItemContent = forwardRef<HTMLDivElement, ItemContentProps>(
+  (props, ref) => {
+    // Props
+    const {
+      children,
+      scrollY = false,
+      className,
+      roundedless = false,
+      borderless = true,
+      ...restProps
+    } = props;
+
+    // Contexts
+    const { themeConfig } = useThemeConfig();
+
+    return (
+      <CContainer
+        ref={ref}
+        className={`${scrollY ? "scrollY" : ""} ${className}`}
+        bg={"bg.body"}
+        rounded={roundedless ? "" : themeConfig.radii.component}
+        border={borderless ? "" : "1px solid"}
+        borderColor={"border.muted"}
+        {...restProps}
+      >
+        {children}
+      </CContainer>
+    );
+  },
+);
+
 interface ItemHeaderContainerProps extends StackProps {
   borderless?: boolean;
 }
@@ -99,6 +135,7 @@ ItemHeaderTitle.displayName = "ItemHeaderTitle";
 
 export const Item = {
   Container: ItemContainer,
+  Content: ItemContent,
   HeaderContainer: ItemHeaderContainer,
   HeaderTitle: ItemHeaderTitle,
 };
