@@ -9,7 +9,7 @@ export const LocalSettingsHelperText = () => {
   const { t } = useLocale();
 
   return (
-    <CContainer flex={1} p={4} bg={"bg.body"}>
+    <CContainer flex={1} p={4}>
       <HelperText>{t.msg_settings_saved_locally}</HelperText>
     </CContainer>
   );

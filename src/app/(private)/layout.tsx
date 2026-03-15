@@ -340,7 +340,7 @@ const DesktopLayout = (props: any) => {
         <CContainer
           flexShrink={0}
           w={isNavsExpanded ? "250px" : "60px"}
-          pb={R_SPACING_MD}
+          py={R_SPACING_MD}
           overflowY={"auto"}
           overflowX={"clip"}
           transition={"300ms ease"}
@@ -472,7 +472,7 @@ const DesktopLayout = (props: any) => {
           </CContainer>
 
           {/* Footer */}
-          <CContainer px={R_SPACING_MD}>
+          <CContainer px={R_SPACING_MD} pb={2}>
             <ProfileMenuTrigger
               w={"full"}
               popoverRootProps={{

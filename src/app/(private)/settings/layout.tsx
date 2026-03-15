@@ -48,6 +48,7 @@ const PageScreen = ({ children }: { children: React.ReactNode }) => {
           w={isSmContainer ? "full" : "250px"}
           h={"full"}
           maxH={"full"}
+          py={R_SPACING_MD}
           // borderRight={isSmContainer ? "" : "1px solid"}
           borderColor={"border.muted"}
           overflowY={"auto"}
@@ -70,7 +71,6 @@ const PageScreen = ({ children }: { children: React.ReactNode }) => {
             }
             navsExpanded
             flex={1}
-            mb={1}
           />
         </CContainer>
       )}
