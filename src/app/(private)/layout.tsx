@@ -343,7 +343,7 @@ const DesktopLayout = (props: any) => {
           pb={R_SPACING_MD}
           overflowY={"auto"}
           overflowX={"clip"}
-          transition={"3000ms ease"}
+          transition={"300ms ease"}
         >
           <CContainer flex={1}>
             {/* Header */}
@@ -524,23 +524,6 @@ const DesktopLayout = (props: any) => {
                   </>
                 )}
               </HStack>
-
-              {/* {!isNavsExpanded && (
-                <Btn
-                  iconButton
-                  clicky={false}
-                  justifyContent={"start"}
-                  px={"3px"}
-                  size={DESKTOP_NAV_BTN_SIZE}
-                  variant={DESKTOP_NAV_BTN_VARIANT}
-                >
-                  <Avatar
-                    src={imgUrl(user?.avatar?.filePath)}
-                    name={user?.name}
-                    size={"xs"}
-                  />
-                </Btn>
-              )} */}
             </ProfileMenuTrigger>
           </CContainer>
         </CContainer>
