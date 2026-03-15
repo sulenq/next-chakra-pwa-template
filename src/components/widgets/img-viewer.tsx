@@ -31,8 +31,6 @@ export const ImgViewer = (props: ImgViewerProps) => {
     ...restProps
   } = props;
 
-  console.debug(src);
-
   // Contexts
   const { t } = useLocale();
 
