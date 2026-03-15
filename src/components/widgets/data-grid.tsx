@@ -25,6 +25,7 @@ import {
   GRID_ITEM_CONTAINER_BG,
   GRID_BATCH_OPTIONS_CONTAINER_BG,
   R_SPACING_MD,
+  GRID_FOOTER_BORDER_COLOR,
 } from "@/constants/styles";
 import { useLocale } from "@/contexts/useLocale";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
@@ -394,9 +395,6 @@ const DataGridDisplay = (props: DataGridProps) => {
     });
   }
 
-  // SX
-  const footerBorderColor = "border.muted";
-
   return (
     <CContainer flex={1} overflowY={"auto"} pos={"relative"} {...restProps}>
       {/* Batch Options */}
@@ -524,7 +522,7 @@ const DataGridDisplay = (props: DataGridProps) => {
             w={"full"}
             p={3}
             borderTop={"1px solid"}
-            borderColor={footerBorderColor}
+            borderColor={GRID_FOOTER_BORDER_COLOR}
             justify={"space-between"}
           >
             <CContainer w={"fit"} mb={[1, null, 0]}>

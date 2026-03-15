@@ -44,7 +44,7 @@ const TD_MIN_H = "46px";
 const TD_BG = "bg.body";
 const TD_BORDER_COLOR = "transparent";
 
-const FOOTER_BORDER_COLOR = "border.muted";
+const FOOTER_BORDER_COLOR = "border.subtle";
 
 export interface DataTableProps extends Omit<StackProps, "page"> {
   trBodyProps?: TableRowProps;
@@ -222,10 +222,11 @@ export const DataTableDisplay = (props: DataTableProps) => {
       overflow={"auto"}
       {...restProps}
     >
-      <CContainer p={R_SPACING_MD} overflow={"auto"}>
+      <CContainer px={R_SPACING_MD} pt={R_SPACING_MD} overflow={"auto"}>
         <CContainer
           className={"scrollX scrollYAlt"}
           flex={1}
+          pb={R_SPACING_MD}
           bg={TABLE_CONTAINER_BG}
           {...contentContainerProps}
         >
