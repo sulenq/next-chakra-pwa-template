@@ -406,6 +406,18 @@ const Data = (props: any) => {
         th: "Join Date",
         sortable: true,
       },
+      {
+        th: "Join Date",
+        sortable: true,
+      },
+      {
+        th: "Join Date",
+        sortable: true,
+      },
+      {
+        th: "Join Date",
+        sortable: true,
+      },
     ],
     rows: data?.map((item, idx) => {
       return {
@@ -421,6 +433,21 @@ const Data = (props: any) => {
           {
             td: item.email,
             value: item.email,
+          },
+          {
+            td: formatDate(item.createdAt, t),
+            value: item.createdAt,
+            dataType: "date",
+          },
+          {
+            td: formatDate(item.createdAt, t),
+            value: item.createdAt,
+            dataType: "date",
+          },
+          {
+            td: formatDate(item.createdAt, t),
+            value: item.createdAt,
+            dataType: "date",
           },
           {
             td: formatDate(item.createdAt, t),
@@ -580,10 +607,10 @@ const PageScreen = () => {
   const [filter, setFilter] = useState(DEFAULT_FILTER);
 
   return (
-    <>
+    <CContainer px={R_SPACING_MD} overflowY={"auto"}>
       <TopBar />
 
-      <CContainer gap={R_SPACING_MD} p={R_SPACING_MD} overflowY={"auto"}>
+      <CContainer gap={R_SPACING_MD} overflowY={"auto"}>
         <PageShell.Header justify={"space-between"}>
           <HStack>
             {!isSmContainer && (
@@ -618,7 +645,7 @@ const PageScreen = () => {
           />
         </Item.Container>
       </CContainer>
-    </>
+    </CContainer>
   );
 };
 

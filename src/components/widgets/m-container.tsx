@@ -7,6 +7,7 @@ export interface MContainerProps extends StackProps {
   maskingBottom?: string | number;
   maskingLeft?: string | number;
   maskingRight?: string | number;
+  fade?: boolean;
 }
 
 export const MContainer = forwardRef<HTMLDivElement, MContainerProps>(
@@ -16,26 +17,47 @@ export const MContainer = forwardRef<HTMLDivElement, MContainerProps>(
       maskingBottom = "8px",
       maskingLeft = "0px",
       maskingRight = "0px",
+      fade = true,
       style,
       children,
       ...restProps
     } = props;
 
-    const verticalMask = `linear-gradient(
-      to bottom,
-      transparent 0,
-      black ${maskingTop},
-      black calc(100% - ${maskingBottom}),
-      transparent 100%
-    )`;
+    const verticalMask = fade
+      ? `linear-gradient(
+          to bottom,
+          transparent 0,
+          black ${maskingTop},
+          black calc(100% - ${maskingBottom}),
+          transparent 100%
+        )`
+      : `linear-gradient(
+          to bottom,
+          transparent 0,
+          transparent ${maskingTop},
+          black ${maskingTop},
+          black calc(100% - ${maskingBottom}),
+          transparent calc(100% - ${maskingBottom}),
+          transparent 100%
+        )`;
 
-    const horizontalMask = `linear-gradient(
-      to right,
-      transparent 0,
-      black ${maskingLeft},
-      black calc(100% - ${maskingRight}),
-      transparent 100%
-    )`;
+    const horizontalMask = fade
+      ? `linear-gradient(
+          to right,
+          transparent 0,
+          black ${maskingLeft},
+          black calc(100% - ${maskingRight}),
+          transparent 100%
+        )`
+      : `linear-gradient(
+          to right,
+          transparent 0,
+          transparent ${maskingLeft},
+          black ${maskingLeft},
+          black calc(100% - ${maskingRight}),
+          transparent calc(100% - ${maskingRight}),
+          transparent 100%
+        )`;
 
     return (
       <CContainer

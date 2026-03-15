@@ -338,7 +338,7 @@ const DesktopLayout = (props: any) => {
         <CContainer
           flexShrink={0}
           w={isNavsExpanded ? "250px" : "60px"}
-          py={R_SPACING_MD}
+          pb={R_SPACING_MD}
           overflowY={"auto"}
           transition={"300ms ease"}
         >

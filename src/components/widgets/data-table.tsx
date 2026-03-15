@@ -80,13 +80,8 @@ export const DataTableDisplay = (props: DataTableProps) => {
     totalPage,
     footer,
     contentContainerProps,
-    p,
     pl = R_SPACING_MD,
     pr = R_SPACING_MD,
-    pt,
-    pb,
-    px,
-    py,
     ...restProps
   } = props;
 
@@ -227,12 +222,10 @@ export const DataTableDisplay = (props: DataTableProps) => {
       overflow={"auto"}
       {...restProps}
     >
-      <CContainer pt={R_SPACING_MD} overflow={"auto"}>
+      <CContainer p={R_SPACING_MD} overflow={"auto"}>
         <CContainer
           className={"scrollX scrollYAlt"}
           flex={1}
-          px={R_SPACING_MD}
-          pb={R_SPACING_MD}
           bg={TABLE_CONTAINER_BG}
           {...contentContainerProps}
         >
