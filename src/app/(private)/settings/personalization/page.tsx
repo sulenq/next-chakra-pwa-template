@@ -171,7 +171,7 @@ const DarkModeSection = () => {
         </HStack>
       </Item.HeaderContainer>
 
-      <CContainer px={4}>
+      <CContainer px={0}>
         <Item.Container gap={4} p={4}>
           <ManualDarkModeSetting />
 
@@ -200,7 +200,7 @@ const AccentColorSection = () => {
         </HStack>
       </Item.HeaderContainer>
 
-      <CContainer px={4}>
+      <CContainer px={0}>
         <Item.Container gap={4} p={4}>
           <SimpleGrid minChildWidth={"56px"} gap={2}>
             {COLOR_PALETTES.map((color, index) => {
@@ -290,7 +290,7 @@ const RoundedSection = () => {
         </HStack>
       </Item.HeaderContainer>
 
-      <CContainer px={4}>
+      <CContainer px={0}>
         <Item.Container gap={4} p={4}>
           <SimpleGrid minChildWidth={"140px"} gap={4}>
             {ROUNDED_PRESETS.map((preset, index) => {
@@ -385,7 +385,7 @@ const ExampleUISection = () => {
         </HStack>
       </Item.HeaderContainer>
 
-      <CContainer px={4}>
+      <CContainer px={0}>
         <Item.Container p={4}>
           <HStack wrap={"wrap"} gapY={4}>
             <Btn flex={"1 1 100px"} colorPalette={themeConfig.colorPalette}>
