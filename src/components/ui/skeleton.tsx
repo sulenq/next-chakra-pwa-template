@@ -7,5 +7,15 @@ export const Skeleton = (props: SkeletonProps) => {
   // Contexts
   const { themeConfig } = useThemeConfig();
 
-  return <ChakraSkeleton rounded={themeConfig.radii.component} {...props} />;
+  return (
+    <ChakraSkeleton
+      rounded={themeConfig.radii.component}
+      variant={"shine"}
+      css={{
+        "--start-color": "transparent",
+        "--end-color": "colors.bg.subtle",
+      }}
+      {...props}
+    />
+  );
 };

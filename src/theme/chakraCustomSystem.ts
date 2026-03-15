@@ -40,12 +40,14 @@ const customConfig = defineConfig({
         light: { value: "#fcfcfc" },
         dark: { value: "#151515" },
         darktrans: { value: "#202020cf" },
-        d0: { value: "#8693a30f" },
-        d1: { value: "#8693a315" },
-        d2: { value: "#8693a325" },
-        d3: { value: "#8693a335" },
-        d4: { value: "#8693a345" },
-        dt: { value: "#8693a3ff" },
+
+        d0: { value: "#8b90960f" },
+        d1: { value: "#8b909615" },
+        d2: { value: "#8b909625" },
+        d3: { value: "#8b909635" },
+        d4: { value: "#8b909645" },
+        dt: { value: "#8b9096ff" },
+
         placeholder: { value: "#96969691" },
 
         neutral: {
@@ -63,11 +65,11 @@ const customConfig = defineConfig({
         },
 
         gray: {
-          50: { value: "#f4f6f8" },
-          100: { value: "#eef2f6" },
-          200: { value: "#e4e9ef" },
-          300: { value: "#cfd6de" },
-          400: { value: "#9da6b0" },
+          50: { value: "#f6f7f8" },
+          100: { value: "#f0f2f3" },
+          200: { value: "#e6e9eb" },
+          300: { value: "#d3d8db" },
+          400: { value: "#a5adb3" },
           500: { value: "#717171" },
           600: { value: "#525252" },
           700: { value: "#3f3f3f" },
@@ -1202,7 +1204,7 @@ const customConfig = defineConfig({
           contrast: {
             value: {
               base: "{colors.olive.50}",
-              _dark: "{colors.olive.950}",
+              _dark: "{colors.olive.50}",
             },
           },
           fg: {
@@ -1334,7 +1336,7 @@ const customConfig = defineConfig({
           solid: {
             value: {
               base: "{colors.teal.500} !important",
-              _dark: "{colors.teal.600} !important",
+              _dark: "{colors.teal.500} !important",
             },
           },
           contrast: {
@@ -1380,7 +1382,7 @@ const customConfig = defineConfig({
           solid: {
             value: {
               base: "{colors.tealBlue.500}",
-              _dark: "{colors.tealBlue.600}",
+              _dark: "{colors.tealBlue.500}",
             },
           },
           contrast: {
@@ -1426,7 +1428,7 @@ const customConfig = defineConfig({
           solid: {
             value: {
               base: "{colors.cyan.500} !important",
-              _dark: "{colors.cyan.600} !important",
+              _dark: "{colors.cyan.500} !important",
             },
           },
           contrast: {
@@ -1472,7 +1474,7 @@ const customConfig = defineConfig({
           solid: {
             value: {
               base: "{colors.powderBlue.500}",
-              _dark: "{colors.powderBlue.600}",
+              _dark: "{colors.powderBlue.500}",
             },
           },
           contrast: {
@@ -1518,7 +1520,7 @@ const customConfig = defineConfig({
           solid: {
             value: {
               base: "{colors.sky.500}",
-              _dark: "{colors.sky.600}",
+              _dark: "{colors.sky.500}",
             },
           },
           contrast: {

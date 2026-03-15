@@ -55,7 +55,7 @@ export const Btn = forwardRef<HTMLButtonElement, BtnProps>((props, ref) => {
             }
           : {}
       }
-      transition={"200ms"}
+      transition={"background-color 300ms"}
       {...restProps}
     >
       {children}
@@ -81,7 +81,7 @@ export const Btn = forwardRef<HTMLButtonElement, BtnProps>((props, ref) => {
             }
           : {}
       }
-      transition={"200ms"}
+      transition={"background-color 300ms"}
       {...restProps}
     >
       {children}

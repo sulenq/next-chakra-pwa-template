@@ -607,10 +607,15 @@ const PageScreen = () => {
   const [filter, setFilter] = useState(DEFAULT_FILTER);
 
   return (
-    <CContainer px={R_SPACING_MD} overflowY={"auto"}>
+    <CContainer flex={1} px={R_SPACING_MD} overflowY={"auto"}>
       <TopBar />
 
-      <CContainer gap={R_SPACING_MD} pb={R_SPACING_MD} overflowY={"auto"}>
+      <CContainer
+        flex={1}
+        gap={R_SPACING_MD}
+        pb={R_SPACING_MD}
+        overflowY={"auto"}
+      >
         <PageShell.Header justify={"space-between"}>
           <HStack>
             {!isSmContainer && (
@@ -625,7 +630,7 @@ const PageScreen = () => {
           </HStack>
         </PageShell.Header>
 
-        <Item.Container gap={4} overflow={"auto"}>
+        <Item.Container flex={1} gap={4} overflow={"auto"}>
           {isSmContainer && (
             <HScroll>
               <HStack minW={"full"} justify={"space-between"}>

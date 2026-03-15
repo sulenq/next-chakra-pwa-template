@@ -112,8 +112,8 @@ export const RadialGlowBackground = (props: StackProps) => {
 
   // Constants
   const colorPalette = themeConfig.colorPalette;
-  const opacity1 = useColorModeValue(0.02, 0.015);
-  const opacity2 = useColorModeValue(0.04, 0.03);
+  const opacity1 = useColorModeValue(0.025, 0.015);
+  const opacity2 = useColorModeValue(0.05, 0.03);
 
   return (
     <Center
