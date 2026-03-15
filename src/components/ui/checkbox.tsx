@@ -56,7 +56,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
                 ? "bg.muted"
                 : "transparent"
           }
-          rounded={rounded || `calc(${themeConfig.radii.component} - 4px)`}
+          rounded={rounded || `calc(${themeConfig.radii.component}/2)`}
           borderColor={
             checked
               ? "transparent !important"
