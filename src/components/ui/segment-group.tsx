@@ -3,12 +3,13 @@
 import { useThemeConfig } from "@/contexts/useThemeConfig";
 import { SegmentGroup, SegmentGroupRootProps } from "@chakra-ui/react";
 
-interface SegmentedProps extends Omit<SegmentGroupRootProps, "onChange"> {
-  items?: string[];
+interface Props extends Omit<SegmentGroupRootProps, "onChange"> {
+  items?: any[];
   inputValue?: string;
   onChange?: (inputValue: string) => void;
 }
-export const Segmented = (props: SegmentedProps) => {
+
+export const Segmented = (props: Props) => {
   // Props
   const { items = [], inputValue, onChange, size = "md", ...restProps } = props;
 
@@ -17,37 +18,40 @@ export const Segmented = (props: SegmentedProps) => {
 
   // States
   const hBySize: Record<any, any> = {
-    xs: "32px",
-    sm: "36px",
-    md: "40px",
-    lg: "44px",
-    xl: "46px",
-    "2xl": "50px",
+    xs: "30px",
+    sm: "34px",
+    md: "38px",
+    lg: "42px",
+    xl: "44px",
+    "2xl": "48px",
   };
 
   return (
     <SegmentGroup.Root
       value={inputValue}
       onValueChange={(e) => onChange?.(e.value as string)}
-      bg={"transparent"}
+      w={"fit"}
+      bg={"body"}
       rounded={themeConfig.radii.component}
       overflow={"clip"}
       shadow={"none"}
+      border={"1px solid"}
       borderColor={"border.muted !important"}
       {...restProps}
     >
       <SegmentGroup.Indicator
         shadow={"none"}
-        h={hBySize[size as any]}
         // border={"1px solid"}
         borderColor={"border.muted"}
         bg={"bg.muted"}
-        rounded={themeConfig.radii.component}
+        h={hBySize[size as any]}
       />
+
       <SegmentGroup.Items
         items={items}
         cursor={"pointer"}
         h={hBySize[size as any]}
+        transform={"translateY(-1.5px)"}
       />
     </SegmentGroup.Root>
   );
