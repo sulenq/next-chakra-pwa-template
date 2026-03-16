@@ -5,6 +5,7 @@ import { CContainer } from "@/components/ui/c-container";
 import { MenuItem } from "@/components/ui/menu";
 import { P } from "@/components/ui/p";
 import { SearchInput } from "@/components/ui/search-input";
+import { TableSkeleton } from "@/components/ui/skeleton";
 import { Tooltip } from "@/components/ui/tooltip";
 import { AppIconLucide } from "@/components/widgets/app-icon";
 import { Confirmation } from "@/components/widgets/confirmation";
@@ -22,7 +23,6 @@ import {
   usePageContainerContext,
 } from "@/components/widgets/page-shell";
 import { SimpleDisclosure } from "@/components/widgets/simple-disclosure";
-import { TableSkeleton } from "@/components/widgets/table-skeleton";
 import { dummyUsers } from "@/constants/dummyData";
 import {
   BatchOptionsTableOptionGenerator,
