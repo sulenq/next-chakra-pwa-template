@@ -5,6 +5,7 @@ import { Menu } from "@/components/ui/menu";
 import { NavLink, NavLinkProps } from "@/components/ui/nav-link";
 import { P } from "@/components/ui/p";
 import { SearchInput } from "@/components/ui/search-input";
+import { StackV } from "@/components/ui/stack";
 import { Tooltip, TooltipProps } from "@/components/ui/tooltip";
 import { AppIconLucide } from "@/components/widgets/app-icon";
 import { ClampText } from "@/components/widgets/clamp-text";
@@ -169,7 +170,7 @@ export const DesktopNavs = (props: DesktopNavsProps) => {
   }, [navsExpanded]);
 
   return (
-    <CContainer overflowX={"clip"} {...restProps}>
+    <StackV overflowX={"clip"} {...restProps}>
       {/* Search */}
       {navsExpanded && showSearch && (
         <CContainer py={2}>
@@ -194,22 +195,25 @@ export const DesktopNavs = (props: DesktopNavsProps) => {
         // pr={`calc(12px - ${FIREFOX_SCROLL_Y_CLASS_PR_PREFIX})`}
       >
         {/* Private Navs */}
-        <CContainer>
+        <StackV>
           {isEmptyArray(resolvedNavs) && <FeedbackNotFound />}
 
           {!isEmptyArray(resolvedNavs) &&
             resolvedNavs.map((navItem, navItemIdx) => {
               return (
-                <CContainer key={navItemIdx} gap={DESKTOP_NAV_GAP}>
-                  {navsExpanded && navItem.labelKey && (
+                <StackV
+                  key={navItemIdx}
+                  align={navsExpanded ? "start" : "center"}
+                  gap={DESKTOP_NAV_GAP}
+                >
+                  {navItem.labelKey && (
                     <ClampText
-                      fontSize={"sm"}
+                      fontSize={"xs"}
                       fontWeight={"semibold"}
                       letterSpacing={"wide"}
                       color={"fg.subtle"}
-                      ml={1}
                     >
-                      {pluckString(t, navItem.labelKey)}
+                      {pluckString(t, navItem.labelKey).toUpperCase()}
                     </ClampText>
                   )}
 
@@ -626,14 +630,14 @@ export const DesktopNavs = (props: DesktopNavsProps) => {
                       </Fragment>
                     );
                   })}
-                </CContainer>
+                </StackV>
               );
             })}
-        </CContainer>
+        </StackV>
 
         {addonElement}
       </MContainer>
-    </CContainer>
+    </StackV>
   );
 };
 

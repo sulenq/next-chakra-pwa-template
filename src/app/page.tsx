@@ -6,7 +6,7 @@ import { LangMenu } from "@/components/ui/lang-menu";
 import { P } from "@/components/ui/p";
 import BrandWatermark from "@/components/widgets/brand-watermark";
 import { Logo } from "@/components/widgets/logo";
-import { AnimatedBg } from "@/components/widgets/page-shell";
+import { AnimatedBlobBackground } from "@/components/widgets/background";
 import { useLocale } from "@/contexts/useLocale";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
 import { SigninForm } from "@/features/auth/signin-form";
@@ -48,7 +48,7 @@ export default function Page() {
               overflow={"clip"}
               pos={"relative"}
             >
-              <AnimatedBg />
+              <AnimatedBlobBackground />
 
               <CContainer h={"full"} p={5} pos={"absolute"}>
                 <Logo color={"white"} />

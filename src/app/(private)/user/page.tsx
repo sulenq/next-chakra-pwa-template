@@ -17,10 +17,7 @@ import FeedbackRetry from "@/components/widgets/feedback-retry";
 import { HScroll } from "@/components/widgets/h-scroll";
 import { LucideIcon } from "@/components/widgets/icon";
 import { Item } from "@/components/widgets/item";
-import {
-  PageShell,
-  usePageContainerContext,
-} from "@/components/widgets/page-shell";
+import { View, useViewContext } from "@/components/widgets/view";
 import { SimpleDisclosure } from "@/components/widgets/simple-disclosure";
 import { dummyUsers } from "@/constants/dummyData";
 import {
@@ -592,12 +589,12 @@ const Data = (props: any) => {
   );
 };
 
-const PageScreen = () => {
+const Content = () => {
   // Contexts
   const { t } = useLocale();
 
   // Hooks
-  const { isSmContainer } = usePageContainerContext();
+  const { isSmContainer } = useViewContext();
 
   // States
   const pathname = usePathname();
@@ -606,9 +603,9 @@ const PageScreen = () => {
   const [filter, setFilter] = useState(DEFAULT_FILTER);
 
   return (
-    <CContainer flex={1} px={R_SPACING_MD} overflowY={"auto"}>
+    <View.Content>
       <CContainer flex={1} pb={R_SPACING_MD} overflowY={"auto"}>
-        <PageShell.Header justify={"space-between"}>
+        <View.Header justify={"space-between"}>
           <HStack>
             {!isSmContainer && (
               <DataUtils
@@ -620,7 +617,7 @@ const PageScreen = () => {
 
             <Create />
           </HStack>
-        </PageShell.Header>
+        </View.Header>
 
         <Item.Container flex={1} gap={4} overflow={"auto"}>
           {isSmContainer && (
@@ -642,14 +639,14 @@ const PageScreen = () => {
           />
         </Item.Container>
       </CContainer>
-    </CContainer>
+    </View.Content>
   );
 };
 
 export default function Page() {
   return (
-    <PageShell.Container>
-      <PageScreen />
-    </PageShell.Container>
+    <View.Container>
+      <Content />
+    </View.Container>
   );
 }

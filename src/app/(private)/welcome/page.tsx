@@ -3,7 +3,7 @@
 import { P } from "@/components/ui/p";
 import BrandWatermark from "@/components/widgets/brand-watermark";
 import { Logo } from "@/components/widgets/logo";
-import { PageShell } from "@/components/widgets/page-shell";
+import { View } from "@/components/widgets/view";
 import { APP } from "@/constants/_meta";
 import { useLocale } from "@/contexts/useLocale";
 import { pluckString } from "@/utils/string";
@@ -18,7 +18,7 @@ export default function Page() {
   // const user = getUserData();
 
   return (
-    <PageShell.Container p={4}>
+    <View.Container p={4}>
       <VStack flex={1} gap={1} justify={"center"}>
         <VStack my={"auto"}>
           <Logo size={65} mb={4} />
@@ -36,6 +36,6 @@ export default function Page() {
           <BrandWatermark />
         </VStack>
       </VStack>
-    </PageShell.Container>
+    </View.Container>
   );
 }

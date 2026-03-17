@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/menu";
 import { NavLink } from "@/components/ui/nav-link";
 import { P } from "@/components/ui/p";
+import { StackV } from "@/components/ui/stack";
 import { Tooltip } from "@/components/ui/tooltip";
 import { AppIconLucide } from "@/components/widgets/app-icon";
 import { Clock } from "@/components/widgets/clock";
@@ -23,9 +24,9 @@ import {
   DesktopNavTooltip,
   MobileNavLink,
 } from "@/components/widgets/navs";
-import { NavBreadcrumb, TopBar } from "@/components/widgets/page-shell";
 import { ProfileMenuTrigger } from "@/components/widgets/profile-menu";
 import { Today } from "@/components/widgets/today";
+import { NavBreadcrumb, TopBar } from "@/components/widgets/view";
 import { APP } from "@/constants/_meta";
 import { OTHER_PRIVATE_NAV_GROUPS, PRIVATE_NAV_GROUPS } from "@/constants/navs";
 import {
@@ -54,7 +55,7 @@ import { last } from "@/utils/array";
 import { getUserData } from "@/utils/auth";
 import { pluckString } from "@/utils/string";
 import { getActiveNavs, imgUrl } from "@/utils/url";
-import { Center, HStack, VStack } from "@chakra-ui/react";
+import { Center, HStack, useBreakpointValue, VStack } from "@chakra-ui/react";
 import {
   ChevronsUpDownIcon,
   ServerIcon,
@@ -320,7 +321,7 @@ const DesktopLayout = (props: any) => {
   const user = getUserData();
 
   // SX
-  // const rSpacing = useBreakpointValue(R_SPACING_MD);
+  const NAVS_PX = useBreakpointValue(R_SPACING_MD);
 
   return (
     <CContainer>
@@ -334,18 +335,21 @@ const DesktopLayout = (props: any) => {
         {...restProps}
       >
         {/* Sidebar */}
-        <CContainer
+        <StackV
           flexShrink={0}
-          w={isNavsExpanded ? "250px" : "48px"}
-          pl={R_SPACING_MD}
-          pr={"0 !important"}
+          w={
+            isNavsExpanded
+              ? `calc(250px + (${NAVS_PX} * 2))`
+              : `calc(40px + (${NAVS_PX} * 2))`
+          }
+          px={NAVS_PX}
           overflowY={"auto"}
           overflowX={"clip"}
           transition={"300ms ease"}
         >
-          <CContainer flex={1} gap={1}>
+          <StackV flex={1} gap={1}>
             {/* Header */}
-            <CContainer
+            <StackV
               justify={"center"}
               gap={isNavsExpanded ? 1 : 5}
               h={isNavsExpanded ? TOP_BAR_H : "fit"}
@@ -405,10 +409,10 @@ const DesktopLayout = (props: any) => {
                   </Btn>
                 </Tooltip>
               </HStack>
-            </CContainer>
+            </StackV>
 
             {/* Navs */}
-            <CContainer flex={1}>
+            <StackV flex={1}>
               <DesktopNavs
                 navs={PRIVATE_NAV_GROUPS}
                 navsExpanded={isNavsExpanded}
@@ -466,11 +470,11 @@ const DesktopLayout = (props: any) => {
                 flex={1}
                 mb={1}
               />
-            </CContainer>
-          </CContainer>
+            </StackV>
+          </StackV>
 
           {/* Footer */}
-          <CContainer pb={2}>
+          <StackV pb={2}>
             <ProfileMenuTrigger
               w={"full"}
               popoverRootProps={{
@@ -523,11 +527,11 @@ const DesktopLayout = (props: any) => {
                 )}
               </HStack>
             </ProfileMenuTrigger>
-          </CContainer>
-        </CContainer>
+          </StackV>
+        </StackV>
 
         {/* Content */}
-        <CContainer overflowY={"auto"}>
+        <StackV w={"full"} overflowY={"auto"}>
           <CContainer
             flex={1}
             // borderLeft={"1px solid"}
@@ -540,7 +544,7 @@ const DesktopLayout = (props: any) => {
 
             {children}
           </CContainer>
-        </CContainer>
+        </StackV>
       </HStack>
     </CContainer>
   );

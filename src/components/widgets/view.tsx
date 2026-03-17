@@ -1,15 +1,12 @@
 "use client";
 
 import { Btn } from "@/components/ui/btn";
-import { CContainer } from "@/components/ui/c-container";
-import { useColorModeValue } from "@/components/ui/color-mode";
 import { P, PProps } from "@/components/ui/p";
+import { StackV } from "@/components/ui/stack";
 import { AppIconLucide } from "@/components/widgets/app-icon";
 import { BackButton } from "@/components/widgets/back-button";
 import { ClampText } from "@/components/widgets/clamp-text";
-
 import { DotIndicator } from "@/components/widgets/indicator";
-import { MContainerProps } from "@/components/widgets/m-container";
 import ToggleTip from "@/components/widgets/toggle-tip";
 import { Interface__Nav } from "@/constants/interfaces";
 import { R_SPACING_MD, TOP_BAR_H } from "@/constants/styles";
@@ -22,14 +19,7 @@ import { useScreen } from "@/hooks/useScreen";
 import { isEmptyArray, last } from "@/utils/array";
 import { capitalizeWords, pluckString } from "@/utils/string";
 import { getActiveNavs } from "@/utils/url";
-import {
-  Box,
-  Center,
-  Circle,
-  HStack,
-  Icon,
-  StackProps,
-} from "@chakra-ui/react";
+import { HStack, Icon, StackProps, useBreakpointValue } from "@chakra-ui/react";
 import { IconSlash } from "@tabler/icons-react";
 import { InboxIcon, ListIcon } from "lucide-react";
 import { usePathname } from "next/navigation";
@@ -43,123 +33,6 @@ import {
 } from "react";
 
 const FONT_SIZE = "md";
-
-export const AnimatedBg = (props: StackProps) => {
-  // Contexts
-  const { themeConfig } = useThemeConfig();
-
-  return (
-    <CContainer
-      h={"full"}
-      bg={`${themeConfig.colorPalette}.900`}
-      pos={"relative"}
-      overflow={"clip"}
-      {...props}
-    >
-      <CContainer flex={1} pos={"relative"}>
-        <Box
-          w="full"
-          h="full"
-          aspectRatio={1}
-          bg={`${themeConfig.colorPalette}.500`}
-          borderRadius="60% 40% 70% 30% / 50% 60% 40% 70%"
-          animation="rotate360 5s linear infinite"
-          pos={"absolute"}
-          bottom={"-20%"}
-          right={"-20%"}
-        />
-
-        <Box
-          w="65%"
-          h="65%"
-          aspectRatio={1}
-          bg={`${themeConfig.colorPalette}.800`}
-          borderRadius="30% 70% 40% 60% / 60% 40% 70% 30%"
-          animation="rotate360 7s linear infinite"
-          pos={"absolute"}
-          bottom={"-20%"}
-          left={"-20%"}
-        />
-
-        <Box
-          w="40%"
-          h="40%"
-          aspectRatio={1}
-          bg={`${themeConfig.colorPalette}.600`}
-          borderRadius="60% 40% 70% 30% / 100% 60% 40% 70%"
-          animation="rotate360 5s linear infinite"
-          pos={"absolute"}
-          top={"10%"}
-          left={"-10%"}
-        />
-      </CContainer>
-
-      <Box
-        w={"full"}
-        h={"full"}
-        backdropFilter={"blur(100px)"}
-        pos={"absolute"}
-        top={0}
-        left={0}
-      />
-    </CContainer>
-  );
-};
-
-export const RadialGlowBackground = (props: StackProps) => {
-  // Contexts
-  const { themeConfig } = useThemeConfig();
-
-  // Constants
-  const colorPalette = themeConfig.colorPalette;
-  const opacity1 = useColorModeValue(0.03, 0.015);
-  const opacity2 = useColorModeValue(0.06, 0.03);
-
-  return (
-    <Center
-      w={"full"}
-      h={"full"}
-      overflow={"clip"}
-      pos={"absolute"}
-      left={0}
-      top={0}
-      {...props}
-    >
-      <CContainer h={"full"} pos={"relative"} mt={"100%"}>
-        <Circle
-          aspectRatio={1}
-          w={"160%"}
-          bg={`${colorPalette}.solid`}
-          opacity={opacity1}
-          pos={"absolute"}
-          left={"50%"}
-          top={"50%"}
-          transform={"translate(-50%, -50%)"}
-        />
-
-        <Circle
-          aspectRatio={1}
-          w={"100%"}
-          bg={`${colorPalette}.solid`}
-          opacity={opacity2}
-          pos={"absolute"}
-          left={"50%"}
-          top={"50%"}
-          transform={"translate(-50%, -50%)"}
-        />
-      </CContainer>
-
-      {/* Blur overlay */}
-      <CContainer
-        h={"full"}
-        backdropFilter={"blur(100px)"}
-        pos={"absolute"}
-        left={0}
-        top={0}
-      />
-    </Center>
-  );
-};
 
 export const NavBreadcrumb = (props: any) => {
   // Props
@@ -307,13 +180,15 @@ export const TopBar = (props: StackProps) => {
   );
 };
 
+// -----------------------------------------------------------------
+
 export const ContainerLayout = forwardRef<HTMLDivElement, StackProps>(
   (props, ref) => {
     // Props
     const { children, ...restProps } = props;
 
     return (
-      <CContainer
+      <StackV
         className="page-layout"
         ref={ref}
         maxW={"720px"}
@@ -321,28 +196,33 @@ export const ContainerLayout = forwardRef<HTMLDivElement, StackProps>(
         {...restProps}
       >
         {children}
-      </CContainer>
+      </StackV>
     );
   },
 );
 
-type PageContainerContextType = {
+// -----------------------------------------------------------------
+
+type ViewContextType = {
+  dimension: {
+    width: number;
+    height: number;
+  };
   isValidDimension: boolean;
   isSmContainer: boolean;
 };
-const PageContainerContext = createContext<PageContainerContextType | null>(
-  null,
-);
-export function usePageContainerContext() {
-  const context = useContext(PageContainerContext);
+
+const ViewContext = createContext<ViewContextType | null>(null);
+
+export function useViewContext() {
+  const context = useContext(ViewContext);
   if (!context) {
-    throw new Error(
-      "usePageContainerContext must be used inside PageContainer",
-    );
+    throw new Error("useViewContext must be used inside ViewRoot");
   }
   return context;
 }
-const PageContainer = forwardRef<HTMLDivElement, StackProps>(
+
+const ViewRoot = forwardRef<HTMLDivElement, StackProps>(
   ({ children, ...restProps }, ref) => {
     // Refs
     const containerRef = useRef<HTMLDivElement>(null);
@@ -356,13 +236,13 @@ const PageContainer = forwardRef<HTMLDivElement, StackProps>(
     const isSmContainer = dimension.width < 600;
 
     const contextValue = useMemo(
-      () => ({ isValidDimension, isSmContainer }),
-      [isValidDimension, isSmContainer],
+      () => ({ dimension, isValidDimension, isSmContainer }),
+      [dimension, isValidDimension, isSmContainer],
     );
 
     return (
-      <PageContainerContext.Provider value={contextValue}>
-        <CContainer
+      <ViewContext.Provider value={contextValue}>
+        <StackV
           ref={mergeRef}
           className={"page-container"}
           flex={1}
@@ -370,24 +250,27 @@ const PageContainer = forwardRef<HTMLDivElement, StackProps>(
           {...restProps}
         >
           {isValidDimension && children}
-        </CContainer>
-      </PageContainerContext.Provider>
+        </StackV>
+      </ViewContext.Provider>
     );
   },
 );
 
-interface PageHeaderProps extends StackProps {
+// -----------------------------------------------------------------
+
+interface ViewHeaderProps extends StackProps {
   withTitle?: boolean;
   title?: string;
-  pageTitleProps?: PProps;
+  ViewTitleProps?: PProps;
 }
-const PageHeader = (props: PageHeaderProps) => {
+
+const ViewHeader = (props: ViewHeaderProps) => {
   // Props
   const {
     children,
     withTitle = true,
     title,
-    pageTitleProps,
+    ViewTitleProps,
     ...restProps
   } = props;
 
@@ -414,14 +297,16 @@ const PageHeader = (props: PageHeaderProps) => {
       rounded={themeConfig.radii.container}
       {...restProps}
     >
-      {withTitle && <PageTitle {...pageTitleProps}>{resolvedTitle}</PageTitle>}
+      {withTitle && <ViewTitle {...ViewTitleProps}>{resolvedTitle}</ViewTitle>}
 
       {children}
     </HStack>
   );
 };
 
-const PageTitle = (props: PProps) => {
+// -----------------------------------------------------------------
+
+const ViewTitle = (props: PProps) => {
   // Props
   const { children = "", ...restProps } = props;
 
@@ -437,29 +322,38 @@ const PageTitle = (props: PProps) => {
   );
 };
 
-const PageContent = forwardRef<HTMLDivElement, MContainerProps>(
-  (props, ref) => {
-    // Props
-    const { children, ...restProps } = props;
+// -----------------------------------------------------------------
 
-    // Contexts
-    const { isValidDimension } = usePageContainerContext();
+const ViewContent = forwardRef<HTMLDivElement, StackProps>((props, ref) => {
+  // Props
+  const { children, ...restProps } = props;
 
-    return (
-      <CContainer ref={ref} flex={1} {...restProps}>
-        {isValidDimension ? children : null}
-      </CContainer>
-    );
-  },
-);
+  // Contexts
+  const { isValidDimension } = useViewContext();
+
+  // Constants
+  const PR = useBreakpointValue(R_SPACING_MD);
+
+  return (
+    <StackV
+      ref={ref}
+      flex={1}
+      pr={[0, null, PR]}
+      overflowY={"auto"}
+      {...restProps}
+    >
+      {isValidDimension ? children : null}
+    </StackV>
+  );
+});
 
 ContainerLayout.displayName = "ContainerLayout";
-PageContainer.displayName = "PageContainer";
-PageContent.displayName = "PageContent";
+ViewRoot.displayName = "ViewRoot";
+ViewContent.displayName = "ViewContent";
 
-export const PageShell = {
-  Container: PageContainer,
-  Content: PageContent,
-  Header: PageHeader,
-  Title: PageTitle,
+export const View = {
+  Container: ViewRoot,
+  Content: ViewContent,
+  Header: ViewHeader,
+  Title: ViewTitle,
 };

@@ -11,7 +11,7 @@ import { ClampText } from "@/components/widgets/clamp-text";
 import FeedbackNotFound from "@/components/widgets/feedback-not-found";
 import { LeftIndicator } from "@/components/widgets/indicator";
 import { MContainer } from "@/components/widgets/m-container";
-import { PageShell } from "@/components/widgets/page-shell";
+import { View } from "@/components/widgets/view";
 import { OTHER_PRIVATE_NAV_GROUPS } from "@/constants/navs";
 import { DESKTOP_NAVS_TOOLTIP_MAIN_AXIS } from "@/constants/styles";
 import { useLocale } from "@/contexts/useLocale";
@@ -145,7 +145,7 @@ export default function Layout(props: any) {
   }, [containerDimension]);
 
   return (
-    <PageShell.Container id="settings-page-container" ref={containerRef} p={0}>
+    <View.Container id="settings-page-container" ref={containerRef} p={0}>
       {containerDimension.width > 0 && (
         <HStack align={"stretch"} flex={1} gap={0} overflowY={"auto"}>
           {/* Sidebar */}
@@ -182,13 +182,13 @@ export default function Layout(props: any) {
           {/* Content */}
           {showContent && (
             <MContainer className={"scrollY"} flex={1}>
-              {pathname !== ROOT_PATH && <PageShell.Title mb={2} />}
+              {pathname !== ROOT_PATH && <View.Title mb={2} />}
 
               <CContainer flex={1} {...props} />
             </MContainer>
           )}
         </HStack>
       )}
-    </PageShell.Container>
+    </View.Container>
   );
 }

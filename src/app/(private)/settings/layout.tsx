@@ -6,9 +6,9 @@ import { MContainer } from "@/components/widgets/m-container";
 import { DesktopNavs } from "@/components/widgets/navs";
 import {
   ContainerLayout,
-  PageShell,
-  usePageContainerContext,
-} from "@/components/widgets/page-shell";
+  View,
+  useViewContext,
+} from "@/components/widgets/view";
 import { APP } from "@/constants/_meta";
 import { OTHER_PRIVATE_NAV_GROUPS } from "@/constants/navs";
 import { R_SPACING_MD } from "@/constants/styles";
@@ -27,7 +27,7 @@ const PageScreen = ({ children }: { children: React.ReactNode }) => {
   const pathname = usePathname();
 
   // Refs
-  const { isSmContainer } = usePageContainerContext();
+  const { isSmContainer } = useViewContext();
 
   // Contexts
   const { t } = useLocale();
@@ -53,7 +53,7 @@ const PageScreen = ({ children }: { children: React.ReactNode }) => {
           borderColor={"border.muted"}
           overflowY={"auto"}
         >
-          <PageShell.Header title={t.settings} />
+          <View.Header title={t.settings} />
 
           <DesktopNavs
             navs={NAVS}
@@ -82,7 +82,7 @@ const PageScreen = ({ children }: { children: React.ReactNode }) => {
             flex={1}
             // maxW={""}
           >
-            {pathname !== ROOT_PATH && <PageShell.Header />}
+            {pathname !== ROOT_PATH && <View.Header />}
 
             <CContainer flex={1}>{children}</CContainer>
           </ContainerLayout>
@@ -94,8 +94,8 @@ const PageScreen = ({ children }: { children: React.ReactNode }) => {
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <PageShell.Container className={"settings-route-container"}>
+    <View.Container className={"settings-route-container"}>
       <PageScreen>{children}</PageScreen>
-    </PageShell.Container>
+    </View.Container>
   );
 }

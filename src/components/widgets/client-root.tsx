@@ -3,9 +3,9 @@
 import { CContainer } from "@/components/ui/c-container";
 import { useColorMode } from "@/components/ui/color-mode";
 import { Img } from "@/components/ui/img";
+import { RadialGlowBackground } from "@/components/widgets/background";
 import { GlobalDisclosure } from "@/components/widgets/global-disclosure";
 import { LoadingBar } from "@/components/widgets/loading-bar";
-import { RadialGlowBackground } from "@/components/widgets/page-shell";
 import { APP } from "@/constants/_meta";
 import { SVGS_PATH } from "@/constants/paths";
 import useADM from "@/contexts/useADM";
@@ -90,7 +90,7 @@ export default function ClientRoot(props: ClientRootProps) {
       bg={"bg.canvas"}
       pos={"relative"}
     >
-      <RadialGlowBackground />
+      <RadialGlowBackground pos={"absolute"} zIndex={1} />
 
       <LoadingBar />
       <GlobalDisclosure />

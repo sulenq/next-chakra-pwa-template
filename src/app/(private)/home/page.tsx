@@ -6,6 +6,7 @@ import { CContainer } from "@/components/ui/c-container";
 import { P } from "@/components/ui/p";
 import { Segmented } from "@/components/ui/segment-group";
 import { Skeleton } from "@/components/ui/skeleton";
+import { StackV } from "@/components/ui/stack";
 import { Switch } from "@/components/ui/switch";
 import { AppIconLucide } from "@/components/widgets/app-icon";
 import { Calendar } from "@/components/widgets/calendar";
@@ -16,11 +17,7 @@ import FeedbackNoData from "@/components/widgets/feedback-no-data";
 import FeedbackRetry from "@/components/widgets/feedback-retry";
 import { DotIndicator } from "@/components/widgets/indicator";
 import { Item } from "@/components/widgets/item";
-import { MContainer } from "@/components/widgets/m-container";
-import {
-  PageShell,
-  usePageContainerContext,
-} from "@/components/widgets/page-shell";
+import { View, useViewContext } from "@/components/widgets/view";
 import { Today, TodayWeekday } from "@/components/widgets/today";
 import { DUMMY_DASHBOARD_DATA } from "@/constants/dummyData";
 import { getMonthNames } from "@/constants/months";
@@ -137,7 +134,7 @@ const Overview = (props: OverviewProps) => {
 
   // Contexts
   const { t } = useLocale();
-  const { isSmContainer } = usePageContainerContext();
+  const { isSmContainer } = useViewContext();
 
   // States
   const resolvedData = [
@@ -523,7 +520,7 @@ const Usage = (props: any) => {
   const { data, filter, ...restProps } = props;
 
   // Contexts
-  const { isSmContainer } = usePageContainerContext();
+  const { isSmContainer } = useViewContext();
 
   return (
     <CContainer>
@@ -536,7 +533,7 @@ const Usage = (props: any) => {
   );
 };
 
-const PageScreen = () => {
+const Content = () => {
   // Contexts
   const { t } = useLocale();
 
@@ -568,73 +565,71 @@ const PageScreen = () => {
   };
 
   return (
-    <CContainer overflowY={"auto"}>
-      <MContainer px={R_SPACING_MD} pb={R_SPACING_MD} overflowY={"auto"}>
-        <HStack
-          wrap={"wrap"}
-          justify={"space-between"}
-          p={R_SPACING_MD}
-          mb={R_SPACING_MD}
-        >
-          <HStack gap={4}>
-            <Avatar
-              name={user?.name}
-              src={imgUrl(user?.avatar?.[0]?.filePath)}
-              size={"2xl"}
-            />
+    <View.Content>
+      <HStack
+        wrap={"wrap"}
+        justify={"space-between"}
+        p={R_SPACING_MD}
+        mb={R_SPACING_MD}
+      >
+        <HStack gap={4}>
+          <Avatar
+            name={user?.name}
+            src={imgUrl(user?.avatar?.[0]?.filePath)}
+            size={"2xl"}
+          />
 
-            <CContainer w={"fit"} gap={1}>
-              <P
-                fontSize={"3xl"}
-                fontWeight={"medium"}
-              >{`${t.hi}, ${user?.name || "User's Name"} 👋`}</P>
+          <CContainer w={"fit"} gap={1}>
+            <P
+              fontSize={"3xl"}
+              fontWeight={"medium"}
+            >{`${t.hi}, ${user?.name || "User's Name"} 👋`}</P>
 
-              <P>
-                {user?.taskCount
-                  ? interpolateString(t.msg_task_count, {
-                      count: user?.tastCount,
-                    })
-                  : t.msg_no_task}
-              </P>
-            </CContainer>
-          </HStack>
-
-          <Calendar.Trigger>
-            <CContainer w={"fit"} align={"end"}>
-              <TodayWeekday fontSize={"xl"} fontWeight={"medium"} />
-
-              <HStack>
-                <Today />
-
-                <Clock showTimezone />
-              </HStack>
-            </CContainer>
-          </Calendar.Trigger>
+            <P>
+              {user?.taskCount
+                ? interpolateString(t.msg_task_count, {
+                    count: user?.tastCount,
+                  })
+                : t.msg_no_task}
+            </P>
+          </CContainer>
         </HStack>
 
-        <PageShell.Content>
-          {initialLoading && render.loading}
-          {!initialLoading && (
-            <>
-              {error && render.error}
-              {!error && (
-                <>
-                  {isObjectDeepEmpty(data) && render.empty}
-                  {!isObjectDeepEmpty(data) && render.loaded}
-                </>
-              )}
-            </>
-          )}
-        </PageShell.Content>
-      </MContainer>
-    </CContainer>
+        <Calendar.Trigger>
+          <CContainer w={"fit"} align={"end"}>
+            <TodayWeekday fontSize={"xl"} fontWeight={"medium"} />
+
+            <HStack>
+              <Today />
+
+              <Clock showTimezone />
+            </HStack>
+          </CContainer>
+        </Calendar.Trigger>
+      </HStack>
+
+      <StackV>
+        {initialLoading && render.loading}
+        {!initialLoading && (
+          <>
+            {error && render.error}
+            {!error && (
+              <>
+                {isObjectDeepEmpty(data) && render.empty}
+                {!isObjectDeepEmpty(data) && render.loaded}
+              </>
+            )}
+          </>
+        )}
+      </StackV>
+    </View.Content>
   );
 };
 
 export default function Page() {
   return (
-    <PageShell.Container>
-      <PageScreen />
-    </PageShell.Container>
+    <View.Container>
+      <Content />
+    </View.Container>
   );
 }
