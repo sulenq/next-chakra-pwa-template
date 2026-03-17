@@ -22,7 +22,6 @@ import {
   DESKTOP_NAV_BTN_SIZE,
   DESKTOP_NAV_BTN_VARIANT,
   DESKTOP_NAV_GAP,
-  R_SPACING_MD,
 } from "@/constants/styles";
 import { useLocale } from "@/contexts/useLocale";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
@@ -173,7 +172,7 @@ export const DesktopNavs = (props: DesktopNavsProps) => {
     <CContainer overflowX={"clip"} {...restProps}>
       {/* Search */}
       {navsExpanded && showSearch && (
-        <CContainer px={3} py={2}>
+        <CContainer py={2}>
           <SearchInput
             inputRef={searchInputRef}
             queryKey={"q-sidebar-navs"}
@@ -191,7 +190,6 @@ export const DesktopNavs = (props: DesktopNavsProps) => {
         overflowX={"clip"}
         flex={1}
         gap={1}
-        px={R_SPACING_MD}
         py={2}
         // pr={`calc(12px - ${FIREFOX_SCROLL_Y_CLASS_PR_PREFIX})`}
       >

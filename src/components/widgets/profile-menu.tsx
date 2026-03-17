@@ -1,10 +1,10 @@
 "use client";
 
+import { Avatar } from "@/components/ui/avatar";
 import { Btn } from "@/components/ui/btn";
 import { CContainer } from "@/components/ui/c-container";
 import { useColorMode } from "@/components/ui/color-mode";
 import { Divider } from "@/components/ui/divider";
-import { Img, ImgFallback } from "@/components/ui/img";
 import { NavLink } from "@/components/ui/nav-link";
 import { P } from "@/components/ui/p";
 import { Popover } from "@/components/ui/popover";
@@ -105,12 +105,14 @@ export const ProfileMenu = (props: ProfileMenuProps) => {
     >
       <CContainer>
         <CContainer p={1} pb={0}>
-          <Img
+          <Avatar
             src={imgUrl(user?.avatar?.[0]?.filePath)}
-            alt={"avatar"}
+            name={user?.name}
+            w={"full"}
+            h={"full"}
             aspectRatio={1}
-            fallback={<ImgFallback icon={UserIcon} />}
             rounded={themeConfig.radii.component}
+            fontSize={"4rem"}
           />
         </CContainer>
 

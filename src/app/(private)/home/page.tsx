@@ -19,7 +19,6 @@ import { Item } from "@/components/widgets/item";
 import { MContainer } from "@/components/widgets/m-container";
 import {
   PageShell,
-  TopBar,
   usePageContainerContext,
 } from "@/components/widgets/page-shell";
 import { Today, TodayWeekday } from "@/components/widgets/today";
@@ -570,16 +569,12 @@ const PageScreen = () => {
 
   return (
     <CContainer overflowY={"auto"}>
-      <CContainer px={R_SPACING_MD}>
-        <TopBar />
-      </CContainer>
-
       <MContainer px={R_SPACING_MD} pb={R_SPACING_MD} overflowY={"auto"}>
         <HStack
           wrap={"wrap"}
           justify={"space-between"}
-          px={R_SPACING_MD}
-          mb={6}
+          p={R_SPACING_MD}
+          mb={R_SPACING_MD}
         >
           <HStack gap={4}>
             <Avatar

@@ -19,7 +19,6 @@ import { LucideIcon } from "@/components/widgets/icon";
 import { Item } from "@/components/widgets/item";
 import {
   PageShell,
-  TopBar,
   usePageContainerContext,
 } from "@/components/widgets/page-shell";
 import { SimpleDisclosure } from "@/components/widgets/simple-disclosure";
@@ -608,14 +607,7 @@ const PageScreen = () => {
 
   return (
     <CContainer flex={1} px={R_SPACING_MD} overflowY={"auto"}>
-      <TopBar />
-
-      <CContainer
-        flex={1}
-        gap={R_SPACING_MD}
-        pb={R_SPACING_MD}
-        overflowY={"auto"}
-      >
+      <CContainer flex={1} pb={R_SPACING_MD} overflowY={"auto"}>
         <PageShell.Header justify={"space-between"}>
           <HStack>
             {!isSmContainer && (

@@ -410,7 +410,7 @@ const PageHeader = (props: PageHeaderProps) => {
       flexShrink={0}
       w={"full"}
       minH={TOP_BAR_H}
-      px={R_SPACING_MD}
+      p={R_SPACING_MD}
       rounded={themeConfig.radii.container}
       {...restProps}
     >

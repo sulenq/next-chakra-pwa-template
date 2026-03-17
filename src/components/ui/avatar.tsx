@@ -4,6 +4,7 @@ import { CContainer } from "@/components/ui/c-container";
 import { Disclosure } from "@/components/ui/disclosure";
 import { FileInputProps } from "@/components/ui/file-input";
 import { ImgInput } from "@/components/ui/img-input";
+import { P } from "@/components/ui/p";
 import { BackButton } from "@/components/widgets/back-button";
 import { Interface__User } from "@/constants/interfaces";
 import { usePopDisclosure } from "@/hooks/usePopDisclosure";
@@ -38,12 +39,13 @@ export const Avatar = forwardRef<HTMLDivElement, AvatarProps>(
       ...rest
     } = props;
     return (
-      <ChakraAvatar.Root ref={ref} bg={"bg.muted"} {...rest}>
+      <ChakraAvatar.Root ref={ref} {...rest}>
         <AvatarFallback
           name={name}
           icon={icon}
           boxSize={iconBoxSize}
           color={"fg.subtle"}
+          fontSize={rest.fontSize}
         >
           {fallback}
         </AvatarFallback>
@@ -64,7 +66,9 @@ const AvatarFallback = forwardRef<HTMLDivElement, AvatarFallbackProps>(
     return (
       <ChakraAvatar.Fallback ref={ref} {...rest}>
         {children}
-        {name != null && children == null && <>{getInitials(name)}</>}
+        {name != null && children == null && (
+          <P fontSize={rest.fontSize}>{getInitials(name)}</P>
+        )}
         {name == null && children == null && (
           <ChakraAvatar.Icon asChild={!!icon} boxSize={rest?.boxSize}>
             {icon}

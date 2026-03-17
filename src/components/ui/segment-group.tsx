@@ -35,16 +35,17 @@ export const Segmented = (props: Props) => {
       rounded={themeConfig.radii.component}
       overflow={"clip"}
       shadow={"none"}
-      border={"1px solid"}
+      // border={"1px solid"}
       borderColor={"border.muted !important"}
       {...restProps}
     >
       <SegmentGroup.Indicator
-        shadow={"none"}
+        h={hBySize[size as any]}
+        bg={"bg.muted"}
         // border={"1px solid"}
         borderColor={"border.muted"}
-        bg={"bg.muted"}
-        h={hBySize[size as any]}
+        rounded={themeConfig.radii.component}
+        shadow={"none"}
       />
 
       <SegmentGroup.Items

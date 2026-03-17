@@ -66,10 +66,13 @@ export const FileUploadDropzone = forwardRef<
   return (
     <ChakraFileUpload.Dropzone
       ref={ref}
-      cursor={"pointer"}
-      bg={"bg.body"}
-      overflow={"auto"}
+      minH={"150px !important"}
+      h={"full"}
+      maxH={"full"}
       p={imgInput ? 0 : 4}
+      bg={"bg.body"}
+      cursor={"pointer"}
+      overflow={"auto"}
       {...rest}
       _hover={{ bg: "gray.subtle" }}
     >

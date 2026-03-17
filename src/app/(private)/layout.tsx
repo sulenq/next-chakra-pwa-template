@@ -23,14 +23,17 @@ import {
   DesktopNavTooltip,
   MobileNavLink,
 } from "@/components/widgets/navs";
-import { NavBreadcrumb } from "@/components/widgets/page-shell";
+import { NavBreadcrumb, TopBar } from "@/components/widgets/page-shell";
 import { ProfileMenuTrigger } from "@/components/widgets/profile-menu";
 import { Today } from "@/components/widgets/today";
 import { APP } from "@/constants/_meta";
 import { OTHER_PRIVATE_NAV_GROUPS, PRIVATE_NAV_GROUPS } from "@/constants/navs";
 import {
-  DESKTOP_ACTIVE_NAV_BTN_VARIANT,
   BASE_ICON_BOX_SIZE,
+  DESKTOP_ACTIVE_NAV_BTN_VARIANT,
+  DESKTOP_NAV_BTN_PX,
+  DESKTOP_NAV_BTN_SIZE,
+  DESKTOP_NAV_BTN_VARIANT,
   DESKTOP_NAVS_COLOR,
   DESKTOP_NAVS_POPOVER_MAIN_AXIS,
   DESKTOP_NAVS_TOOLTIP_MAIN_AXIS,
@@ -38,11 +41,8 @@ import {
   MOBILE_NAV_LABEL_FONT_SIZE,
   MOBILE_NAVS_COLOR,
   MOBILE_POPOVER_MAIN_AXIS,
-  DESKTOP_NAV_BTN_VARIANT,
   R_SPACING_MD,
   TOP_BAR_H,
-  DESKTOP_NAV_BTN_SIZE,
-  DESKTOP_NAV_BTN_PX,
 } from "@/constants/styles";
 import { useLocale } from "@/contexts/useLocale";
 import useNavs from "@/contexts/useNavs";
@@ -60,7 +60,6 @@ import {
   ServerIcon,
   SidebarCloseIcon,
   SidebarOpenIcon,
-  UserIcon,
 } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { Fragment } from "react";
@@ -122,7 +121,11 @@ const MobileLayout = (props: any) => {
       </CContainer>
 
       {/* Navs */}
-      <HScroll borderTop={"1px solid"} borderColor={"border.subtle"}>
+      <HScroll
+        bg={"bg.body"}
+        borderTop={"1px solid"}
+        borderColor={"border.subtle"}
+      >
         <HStack w={"max"} gap={4} px={4} pt={3} pb={5} mx={"auto"}>
           {PRIVATE_NAV_GROUPS.map((group, idx) => {
             return (
@@ -271,24 +274,18 @@ const MobileLayout = (props: any) => {
             );
           })}
 
-          <ProfileMenuTrigger flex={1}>
+          <ProfileMenuTrigger flex={1} w={"50px"}>
             <VStack
               flex={1}
               color={MOBILE_NAVS_COLOR}
               cursor={"pointer"}
               gap={1}
             >
-              {!user?.avatar?.filePath && (
-                <AppIconLucide icon={UserIcon} boxSize={5} />
-              )}
-
-              {user?.avatar?.filePath && (
-                <Avatar
-                  src={imgUrl(user?.avatar?.filePath)}
-                  name={user?.name}
-                  size={"2xs"}
-                />
-              )}
+              <Avatar
+                src={imgUrl(user?.avatar?.filePath)}
+                name={user?.name}
+                size={"2xs"}
+              />
 
               <P
                 fontSize={MOBILE_NAV_LABEL_FONT_SIZE}
@@ -339,19 +336,20 @@ const DesktopLayout = (props: any) => {
         {/* Sidebar */}
         <CContainer
           flexShrink={0}
-          w={isNavsExpanded ? "250px" : "60px"}
-          py={R_SPACING_MD}
+          w={isNavsExpanded ? "250px" : "48px"}
+          p={R_SPACING_MD}
+          pr={"0 !important"}
           overflowY={"auto"}
           overflowX={"clip"}
           transition={"300ms ease"}
         >
-          <CContainer flex={1}>
+          <CContainer flex={1} gap={1}>
             {/* Header */}
             <CContainer
               justify={"center"}
               gap={isNavsExpanded ? 1 : 5}
               h={isNavsExpanded ? TOP_BAR_H : "fit"}
-              p={R_SPACING_MD}
+              py={2}
             >
               {/* Logo Only */}
               {!isNavsExpanded && (
@@ -472,7 +470,7 @@ const DesktopLayout = (props: any) => {
           </CContainer>
 
           {/* Footer */}
-          <CContainer px={R_SPACING_MD} pb={2}>
+          <CContainer pb={2}>
             <ProfileMenuTrigger
               w={"full"}
               popoverRootProps={{
@@ -536,6 +534,10 @@ const DesktopLayout = (props: any) => {
             borderColor={"border.muted"}
             overflow={"auto"}
           >
+            <CContainer px={R_SPACING_MD}>
+              <TopBar />
+            </CContainer>
+
             {children}
           </CContainer>
         </CContainer>
