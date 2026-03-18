@@ -23,6 +23,7 @@ import {
   DESKTOP_NAV_BTN_SIZE,
   DESKTOP_NAV_BTN_VARIANT,
   DESKTOP_NAV_GAP,
+  R_SPACING_MD,
 } from "@/constants/styles";
 import { useLocale } from "@/contexts/useLocale";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
@@ -195,7 +196,7 @@ export const DesktopNavs = (props: DesktopNavsProps) => {
         // pr={`calc(12px - ${FIREFOX_SCROLL_Y_CLASS_PR_PREFIX})`}
       >
         {/* Private Navs */}
-        <StackV>
+        <StackV gap={R_SPACING_MD}>
           {isEmptyArray(resolvedNavs) && <FeedbackNotFound />}
 
           {!isEmptyArray(resolvedNavs) &&
@@ -248,17 +249,25 @@ export const DesktopNavs = (props: DesktopNavsProps) => {
                                     : ""
                                 }
                               >
-                                {isMainNavsActive && nav.icon && (
+                                {/* {isMainNavsActive && nav.icon && (
                                   <LeftIndicator />
-                                )}
+                                )} */}
 
                                 {nav.icon && (
-                                  <AppIconLucide
-                                    icon={nav.icon}
-                                    color={
-                                      isMainNavsActive ? "" : DESKTOP_NAVS_COLOR
-                                    }
-                                  />
+                                  <Center
+                                    p={2}
+                                    bg={isMainNavsActive ? "" : "bg.muted"}
+                                    rounded={themeConfig.radii.component}
+                                  >
+                                    <AppIconLucide
+                                      icon={nav.icon}
+                                      color={
+                                        isMainNavsActive
+                                          ? ""
+                                          : DESKTOP_NAVS_COLOR
+                                      }
+                                    />
+                                  </Center>
                                 )}
 
                                 {!nav.icon && (
@@ -300,13 +309,16 @@ export const DesktopNavs = (props: DesktopNavsProps) => {
                                     nav.label || pluckString(t, nav.labelKey)
                                   }
                                 >
-                                  <CContainer>
+                                  <StackV w={"full"}>
                                     <Menu.Trigger asChild>
                                       <Btn
                                         iconButton
                                         clicky={false}
                                         justifyContent={"start"}
                                         px={DESKTOP_NAV_BTN_PX}
+                                        pr={
+                                          navsExpanded ? DESKTOP_NAV_BTN_PX : 0
+                                        }
                                         size={DESKTOP_NAV_BTN_SIZE}
                                         variant={
                                           isMainNavsActive
@@ -320,19 +332,27 @@ export const DesktopNavs = (props: DesktopNavsProps) => {
                                         }
                                         pos="relative"
                                       >
-                                        {isMainNavsActive && <LeftIndicator />}
+                                        {/* {isMainNavsActive && <LeftIndicator />} */}
 
-                                        <AppIconLucide
-                                          icon={nav.icon}
-                                          color={
-                                            isMainNavsActive
-                                              ? ""
-                                              : DESKTOP_NAVS_COLOR
+                                        <Center
+                                          p={2}
+                                          bg={
+                                            isMainNavsActive ? "" : "bg.muted"
                                           }
-                                        />
+                                          rounded={themeConfig.radii.component}
+                                        >
+                                          <AppIconLucide
+                                            icon={nav.icon}
+                                            color={
+                                              isMainNavsActive
+                                                ? ""
+                                                : DESKTOP_NAVS_COLOR
+                                            }
+                                          />
+                                        </Center>
                                       </Btn>
                                     </Menu.Trigger>
-                                  </CContainer>
+                                  </StackV>
                                 </DesktopNavTooltip>
 
                                 <Menu.Content>
@@ -343,7 +363,10 @@ export const DesktopNavs = (props: DesktopNavsProps) => {
                                         gap={1}
                                         title={
                                           subGroup.labelKey
-                                            ? pluckString(t, subGroup.labelKey)
+                                            ? pluckString(
+                                                t,
+                                                subGroup.labelKey,
+                                              ).toUpperCase()
                                             : ""
                                         }
                                       >
@@ -452,14 +475,24 @@ export const DesktopNavs = (props: DesktopNavsProps) => {
                                         {isMainNavsActive && <LeftIndicator />}
 
                                         <HStack gap={4}>
-                                          <AppIconLucide
-                                            icon={nav.icon}
-                                            color={
-                                              isMainNavsActive
-                                                ? ""
-                                                : DESKTOP_NAVS_COLOR
+                                          <Center
+                                            p={2}
+                                            bg={
+                                              isMainNavsActive ? "" : "bg.muted"
                                             }
-                                          />
+                                            rounded={
+                                              themeConfig.radii.component
+                                            }
+                                          >
+                                            <AppIconLucide
+                                              icon={nav.icon}
+                                              color={
+                                                isMainNavsActive
+                                                  ? ""
+                                                  : DESKTOP_NAVS_COLOR
+                                              }
+                                            />
+                                          </Center>
 
                                           <P lineClamp={1} textAlign="left">
                                             {nav.label
@@ -571,7 +604,7 @@ export const DesktopNavs = (props: DesktopNavsProps) => {
                                                           boxSize={2}
                                                           color={
                                                             isSubNavsActive
-                                                              ? themeConfig.primaryColor
+                                                              ? `${themeConfig.colorPalette}.fg`
                                                               : "bg.emphasized"
                                                           }
                                                         >

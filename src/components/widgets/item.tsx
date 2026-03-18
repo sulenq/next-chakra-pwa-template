@@ -8,11 +8,14 @@ import { useThemeConfig } from "@/contexts/useThemeConfig";
 import { HStack, StackProps } from "@chakra-ui/react";
 import { forwardRef } from "react";
 
+// -----------------------------------------------------------------
+
 export interface ItemContainerProps extends StackProps {
   scrollY?: boolean;
   roundedless?: boolean;
   borderless?: boolean;
 }
+
 const ItemContainer = forwardRef<HTMLDivElement, ItemContainerProps>(
   (props, ref) => {
     // Props
@@ -44,11 +47,14 @@ const ItemContainer = forwardRef<HTMLDivElement, ItemContainerProps>(
   },
 );
 
+// -----------------------------------------------------------------
+
 export interface ItemContentProps extends StackProps {
   scrollY?: boolean;
   roundedless?: boolean;
   borderless?: boolean;
 }
+
 const ItemContent = forwardRef<HTMLDivElement, ItemContentProps>(
   (props, ref) => {
     // Props
@@ -80,9 +86,12 @@ const ItemContent = forwardRef<HTMLDivElement, ItemContentProps>(
   },
 );
 
+// -----------------------------------------------------------------
+
 interface ItemHeaderContainerProps extends StackProps {
   borderless?: boolean;
 }
+
 const ItemHeaderContainer = forwardRef<
   HTMLDivElement,
   ItemHeaderContainerProps
@@ -108,10 +117,13 @@ const ItemHeaderContainer = forwardRef<
   );
 });
 
+// -----------------------------------------------------------------
+
 export interface ItemHeaderTitleProps extends PProps {
   popoverContent?: string;
   autoHeight?: boolean;
 }
+
 const ItemHeaderTitle = forwardRef<HTMLDivElement, ItemHeaderTitleProps>(
   (props, ref) => {
     // Props
@@ -128,6 +140,8 @@ const ItemHeaderTitle = forwardRef<HTMLDivElement, ItemHeaderTitleProps>(
     );
   },
 );
+
+// -----------------------------------------------------------------
 
 ItemContainer.displayName = "ItemContainer";
 ItemHeaderContainer.displayName = "ItemHeaderContainer";

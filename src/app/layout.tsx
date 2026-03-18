@@ -6,7 +6,7 @@ import { APP } from "@/constants/_meta";
 import { disclosurePrefixId } from "@/utils/disclosure";
 import { Metadata, Viewport } from "next";
 // import { miSans } from "@/fonts";
-import { Plus_Jakarta_Sans } from "next/font/google";
+import { Wix_Madefor_Text } from "next/font/google";
 
 export const metadata: Metadata = {
   applicationName: APP.name,
@@ -53,7 +53,7 @@ export const viewport: Viewport = {
   userScalable: false,
 };
 
-const font = Plus_Jakarta_Sans({
+const font = Wix_Madefor_Text({
   subsets: ["latin"],
   display: "swap",
   // weight: ["400", "500", "600", "700", "800", "900"],

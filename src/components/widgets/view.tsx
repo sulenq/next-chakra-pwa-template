@@ -126,7 +126,7 @@ export const NavBreadcrumb = (props: any) => {
 
 export const TopBar = (props: StackProps) => {
   // Contexts
-  // const { themeConfig } = useThemeConfig();
+  const { themeConfig } = useThemeConfig();
 
   // Hooks
   const { sw } = useScreen();
@@ -144,10 +144,7 @@ export const TopBar = (props: StackProps) => {
       justify={"space-between"}
       gap={4}
       h={"52px"}
-      // px={`calc(${themeConfig.radii.container} + ${GAP})`}
-      px={R_SPACING_MD}
-      // borderBottom={"1px solid"}
-      borderColor={"border.muted"}
+      rounded={themeConfig.radii.container}
       {...props}
     >
       <NavBreadcrumb
@@ -268,7 +265,7 @@ const ViewHeader = (props: ViewHeaderProps) => {
   // Props
   const {
     children,
-    withTitle = true,
+    withTitle = false,
     title,
     ViewTitleProps,
     ...restProps
@@ -293,7 +290,8 @@ const ViewHeader = (props: ViewHeaderProps) => {
       flexShrink={0}
       w={"full"}
       minH={TOP_BAR_H}
-      p={R_SPACING_MD}
+      py={R_SPACING_MD}
+      px={themeConfig.radii.component}
       rounded={themeConfig.radii.container}
       {...restProps}
     >

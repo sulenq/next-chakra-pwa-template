@@ -22,7 +22,7 @@ import { SimpleDisclosure } from "@/components/widgets/simple-disclosure";
 import { dummyUsers } from "@/constants/dummyData";
 import {
   BatchOptionsTableOptionGenerator,
-  Interface__DataProps,
+  DataProps,
   RowOptionsTableOptionGenerator,
 } from "@/constants/interfaces";
 import { SVGS_PATH } from "@/constants/paths";
@@ -388,7 +388,7 @@ const Data = (props: any) => {
   });
 
   // Derived Values
-  const dataProps: Interface__DataProps = {
+  const dataProps: DataProps = {
     headers: [
       {
         th: "Name",
@@ -605,7 +605,7 @@ const Content = () => {
   return (
     <View.Content>
       <CContainer flex={1} pb={R_SPACING_MD} overflowY={"auto"}>
-        <View.Header justify={"space-between"}>
+        <View.Header withTitle justify={"space-between"}>
           <HStack>
             {!isSmContainer && (
               <DataUtils
@@ -619,10 +619,15 @@ const Content = () => {
           </HStack>
         </View.Header>
 
-        <Item.Container flex={1} gap={4} overflow={"auto"}>
+        <Item.Container flex={1} overflowY={"auto"}>
           {isSmContainer && (
             <HScroll>
-              <HStack minW={"full"} justify={"space-between"}>
+              <HStack
+                minW={"full"}
+                justify={"space-between"}
+                px={R_SPACING_MD}
+                pt={R_SPACING_MD}
+              >
                 <DataUtils
                   filter={filter}
                   setFilter={setFilter}

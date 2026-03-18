@@ -6,9 +6,9 @@ export const MOBILE_NAV_LABEL_FONT_SIZE = "xs";
 export const MOBILE_NAVS_COLOR = "fg.muted";
 export const DESKTOP_NAVS_COLOR = "fg.muted";
 export const DESKTOP_NAVS_BG = "bg.body";
-export const DESKTOP_NAV_BTN_SIZE = "md";
-export const DESKTOP_NAV_BTN_PX = "10px";
-export const DESKTOP_NAV_BTN_VARIANT = "frosted";
+export const DESKTOP_NAV_BTN_SIZE = "sm";
+export const DESKTOP_NAV_BTN_PX = "0 8px";
+export const DESKTOP_NAV_BTN_VARIANT = "ghost";
 export const DESKTOP_ACTIVE_NAV_BTN_VARIANT = "solid";
 export const DESKTOP_NAV_GAP = "8px";
 

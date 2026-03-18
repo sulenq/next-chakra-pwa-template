@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/menu";
 import { NavLink } from "@/components/ui/nav-link";
 import { P } from "@/components/ui/p";
-import { StackV } from "@/components/ui/stack";
+import { StackH, StackV } from "@/components/ui/stack";
 import { Tooltip } from "@/components/ui/tooltip";
 import { AppIconLucide } from "@/components/widgets/app-icon";
 import { Clock } from "@/components/widgets/clock";
@@ -324,12 +324,12 @@ const DesktopLayout = (props: any) => {
   const NAVS_PX = useBreakpointValue(R_SPACING_MD);
 
   return (
-    <CContainer>
-      <HStack
-        align={"stretch"}
-        h={"100dvh"}
+    <StackV w={"full"} h={"100svh"} overflowY={"auto"}>
+      <StackH
+        flex={1}
+        w={"full"}
         gap={0}
-        overflow={"clip"}
+        overflowY={"auto"}
         pos={"relative"}
         zIndex={2}
         {...restProps}
@@ -340,7 +340,7 @@ const DesktopLayout = (props: any) => {
           w={
             isNavsExpanded
               ? `calc(250px + (${NAVS_PX} * 2))`
-              : `calc(40px + (${NAVS_PX} * 2))`
+              : `calc(36px + (${NAVS_PX} * 2))`
           }
           px={NAVS_PX}
           overflowY={"auto"}
@@ -444,18 +444,28 @@ const DesktopLayout = (props: any) => {
                           }
                           pos={"relative"}
                         >
-                          {pathname.includes("/master-data") && (
+                          {/* {pathname.includes("/master-data") && (
                             <LeftIndicator />
-                          )}
+                          )} */}
 
-                          <AppIconLucide
-                            icon={ServerIcon}
-                            color={
+                          <Center
+                            p={2}
+                            bg={
                               pathname.includes("/master-data")
                                 ? ""
-                                : DESKTOP_NAVS_COLOR
+                                : "bg.muted"
                             }
-                          />
+                            rounded={"full"}
+                          >
+                            <AppIconLucide
+                              icon={ServerIcon}
+                              color={
+                                pathname.includes("/master-data")
+                                  ? ""
+                                  : DESKTOP_NAVS_COLOR
+                              }
+                            />
+                          </Center>
 
                           {isNavsExpanded && (
                             <P lineClamp={1} textAlign={"left"}>
@@ -545,8 +555,8 @@ const DesktopLayout = (props: any) => {
             {children}
           </CContainer>
         </StackV>
-      </HStack>
-    </CContainer>
+      </StackH>
+    </StackV>
   );
 };
 

@@ -31,7 +31,7 @@ export const Segmented = (props: Props) => {
       value={inputValue}
       onValueChange={(e) => onChange?.(e.value as string)}
       w={"fit"}
-      bg={"body"}
+      bg={"transparent"}
       rounded={themeConfig.radii.component}
       overflow={"clip"}
       shadow={"none"}

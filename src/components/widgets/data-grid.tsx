@@ -16,10 +16,7 @@ import { ImgViewer } from "@/components/widgets/img-viewer";
 import { Limitation } from "@/components/widgets/limitation";
 import { Pagination } from "@/components/widgets/pagination";
 import { RowOptions } from "@/components/widgets/row-options";
-import {
-  FormattedTableRow,
-  Interface__DataProps,
-} from "@/constants/interfaces";
+import { FormattedTableRow, DataProps } from "@/constants/interfaces";
 import {
   GAP,
   GRID_BATCH_OPTIONS_CONTAINER_BG,
@@ -42,15 +39,6 @@ import {
 } from "@chakra-ui/react";
 import { Fragment, useState } from "react";
 
-export interface GridItemProps {
-  item: any;
-  row: FormattedTableRow;
-  idx: number;
-  details: any;
-  selectedRows: string[];
-  toggleRowSelection: (row: FormattedTableRow) => void;
-}
-
 interface DataGridItemProps extends StackProps {
   item: {
     id: string;
@@ -62,13 +50,14 @@ interface DataGridItemProps extends StackProps {
     deletedAt?: string | null;
   };
   dim?: boolean;
-  dataProps: Interface__DataProps;
+  dataProps: DataProps;
   row: FormattedTableRow;
   selectedRows: string[];
   toggleRowSelection: (row: FormattedTableRow) => void;
   routeTitle: string;
   details: any;
 }
+
 export const DataGridItem = (props: DataGridItemProps) => {
   // Props
   const {
@@ -207,12 +196,15 @@ export const DataGridItem = (props: DataGridItemProps) => {
   );
 };
 
+// -----------------------------------------------------------------
+
 interface DataGridDetailDisclosureProps extends StackProps {
   open: boolean;
   title: string;
   data: any;
   details: any;
 }
+
 const DataGridDetailContent = (props: DataGridDetailDisclosureProps) => {
   // Props
   const { open, title, data, details } = props;
@@ -280,6 +272,8 @@ const DataGridDetailContent = (props: DataGridDetailDisclosureProps) => {
   );
 };
 
+// -----------------------------------------------------------------
+
 interface DataGridDetailDisclosureTriggerProps extends StackProps {
   id: string;
   title: string;
@@ -289,6 +283,7 @@ interface DataGridDetailDisclosureTriggerProps extends StackProps {
     render: any;
   }[];
 }
+
 const DataGridDetailTrigger = (props: DataGridDetailDisclosureTriggerProps) => {
   // Props
   const { children, id, title, data, details, ...restProps } = props;
@@ -314,10 +309,21 @@ const DataGridDetailTrigger = (props: DataGridDetailDisclosureTriggerProps) => {
   );
 };
 
+// -----------------------------------------------------------------
+
+interface GridItem {
+  item: any;
+  row: FormattedTableRow;
+  idx: number;
+  details: any;
+  selectedRows: string[];
+  toggleRowSelection: (row: FormattedTableRow) => void;
+}
+
 interface DataGridProps extends Omit<StackProps, "page"> {
   data?: any[];
-  dataProps: Interface__DataProps;
-  gridItem: (props: GridItemProps) => React.ReactNode;
+  dataProps: DataProps;
+  gridItem: (props: GridItem) => React.ReactNode;
   limit?: number;
   setLimit?: (limit: number) => void;
   page?: number;
@@ -326,6 +332,7 @@ interface DataGridProps extends Omit<StackProps, "page"> {
   footer?: React.ReactNode;
   minChildWidth?: string;
 }
+
 const DataGridDisplay = (props: DataGridProps) => {
   // Props
   const {
@@ -542,6 +549,8 @@ const DataGridDisplay = (props: DataGridProps) => {
     </CContainer>
   );
 };
+
+// -----------------------------------------------------------------
 
 export const DataGrid = {
   Display: DataGridDisplay,

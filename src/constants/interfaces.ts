@@ -97,7 +97,7 @@ export interface Interface__PdfViewerUtils {
 }
 
 // Data Table
-export interface Interface__DataProps {
+export interface DataProps {
   headers?: FormattedTableHeader[];
   rows?: FormattedTableRow[];
   rowOptions?: RowOptionsTableOptionGenerator[];
