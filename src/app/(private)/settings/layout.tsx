@@ -2,19 +2,18 @@
 
 import { CContainer } from "@/components/ui/c-container";
 import { HelperText } from "@/components/ui/helper-text";
-import { MContainer } from "@/components/widgets/m-container";
+import { StackH, StackV } from "@/components/ui/stack";
 import { DesktopNavs } from "@/components/widgets/navs";
 import {
-  ContainerLayout,
+  ConstrainedContainer,
   View,
   useViewContext,
 } from "@/components/widgets/view";
 import { APP } from "@/constants/_meta";
 import { OTHER_PRIVATE_NAV_GROUPS } from "@/constants/navs";
-import { R_SPACING_MD } from "@/constants/styles";
+import { GAP, R_SPACING_MD } from "@/constants/styles";
 import { useLocale } from "@/contexts/useLocale";
 import { formatAbsDate } from "@/utils/formatter";
-import { HStack } from "@chakra-ui/react";
 import { usePathname } from "next/navigation";
 
 const NAVS =
@@ -40,62 +39,70 @@ const PageScreen = ({ children }: { children: React.ReactNode }) => {
     !isSmContainer || (isSmContainer && !isAtSettingsIndexRoute);
 
   return (
-    <HStack align={"stretch"} flex={1} gap={0} overflowY={"auto"}>
-      {/* Sidebar */}
-      {showSidebar && (
-        <CContainer
-          flexShrink={0}
-          w={isSmContainer ? "full" : "250px"}
-          h={"full"}
-          maxH={"full"}
-          py={R_SPACING_MD}
-          // borderRight={isSmContainer ? "" : "1px solid"}
-          borderColor={"border.muted"}
-          overflowY={"auto"}
-        >
-          <View.Header title={t.settings} />
-
-          <DesktopNavs
-            navs={NAVS}
-            addonElement={
-              <CContainer mt={"auto"} gap={1}>
-                <HelperText>{`v${APP.version}`}</HelperText>
-
-                <HelperText>
-                  {`Last updated: 
-                ${formatAbsDate(APP.lastUpdated, t, {
-                  variant: "numeric",
-                })}`}
-                </HelperText>
-              </CContainer>
-            }
-            navsExpanded
-            flex={1}
-          />
-        </CContainer>
-      )}
-
-      {/* Content */}
-      {showContent && (
-        <MContainer className={"scrollY"} p={R_SPACING_MD} flex={1}>
-          <ContainerLayout
-            flex={1}
-            // maxW={""}
+    <StackV flex={1} overflowY={"auto"}>
+      <StackH
+        flex={1}
+        w={"full"}
+        // minH={`calc(100svh - ${TOP_BAR_H} - (${GAP} * 1))`}
+        // h={`calc(100svh - ${TOP_BAR_H} - (${GAP} * 1))`}
+        // maxH={`calc(100svh - ${TOP_BAR_H} - (${GAP} * 1))`}
+        overflowY={"auto"}
+        pos={"relative"}
+      >
+        {/* Sidebar */}
+        {showSidebar && (
+          <StackV
+            flexShrink={0}
+            w={isSmContainer ? "full" : "250px"}
+            h={"full"}
+            py={GAP}
+            pl={GAP}
+            overflowY={"auto"}
           >
-            {pathname !== ROOT_PATH && <View.Header />}
+            <View.Header withTitle title={"All User"} py={0} />
 
-            <CContainer flex={1}>{children}</CContainer>
-          </ContainerLayout>
-        </MContainer>
-      )}
-    </HStack>
+            <StackV flex={1} p={R_SPACING_MD} overflowY={"auto"}>
+              <DesktopNavs
+                navs={NAVS}
+                addonElement={
+                  <CContainer mt={"auto"} gap={1}>
+                    <HelperText>{`v${APP.version}`}</HelperText>
+
+                    <HelperText>
+                      {`Last updated: 
+                        ${formatAbsDate(APP.lastUpdated, t, {
+                          variant: "numeric",
+                        })}`}
+                    </HelperText>
+                  </CContainer>
+                }
+                navsExpanded
+                showGroupLabel
+                flex={1}
+              />
+            </StackV>
+          </StackV>
+        )}
+
+        {/* Content */}
+        {showContent && (
+          <View.Content className={"scrollY"} flex={1}>
+            <ConstrainedContainer flex={1} p={GAP}>
+              {pathname !== ROOT_PATH && <View.Header withTitle />}
+
+              <CContainer flex={1}>{children}</CContainer>
+            </ConstrainedContainer>
+          </View.Content>
+        )}
+      </StackH>
+    </StackV>
   );
 };
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <View.Container className={"settings-route-container"}>
+    <View.Root className={"settings-layout-root"}>
       <PageScreen>{children}</PageScreen>
-    </View.Container>
+    </View.Root>
   );
 }

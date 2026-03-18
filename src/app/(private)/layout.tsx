@@ -13,7 +13,6 @@ import {
 import { NavLink } from "@/components/ui/nav-link";
 import { P } from "@/components/ui/p";
 import { StackH, StackV } from "@/components/ui/stack";
-import { Tooltip } from "@/components/ui/tooltip";
 import { AppIconLucide } from "@/components/widgets/app-icon";
 import { Clock } from "@/components/widgets/clock";
 import { HScroll } from "@/components/widgets/h-scroll";
@@ -22,6 +21,7 @@ import { Logo } from "@/components/widgets/logo";
 import {
   DesktopNavs,
   DesktopNavTooltip,
+  DesktopUserQuickPanel,
   MobileNavLink,
 } from "@/components/widgets/navs";
 import { ProfileMenuTrigger } from "@/components/widgets/profile-menu";
@@ -30,20 +30,17 @@ import { NavBreadcrumb, TopBar } from "@/components/widgets/view";
 import { APP } from "@/constants/_meta";
 import { OTHER_PRIVATE_NAV_GROUPS, PRIVATE_NAV_GROUPS } from "@/constants/navs";
 import {
-  BASE_ICON_BOX_SIZE,
   DESKTOP_ACTIVE_NAV_BTN_VARIANT,
   DESKTOP_NAV_BTN_PX,
   DESKTOP_NAV_BTN_SIZE,
   DESKTOP_NAV_BTN_VARIANT,
   DESKTOP_NAVS_COLOR,
-  DESKTOP_NAVS_POPOVER_MAIN_AXIS,
-  DESKTOP_NAVS_TOOLTIP_MAIN_AXIS,
+  GAP,
   MOBILE_CONTENT_CONTAINER_BG,
   MOBILE_NAV_LABEL_FONT_SIZE,
   MOBILE_NAVS_COLOR,
   MOBILE_POPOVER_MAIN_AXIS,
   R_SPACING_MD,
-  TOP_BAR_H,
 } from "@/constants/styles";
 import { useLocale } from "@/contexts/useLocale";
 import useNavs from "@/contexts/useNavs";
@@ -56,12 +53,7 @@ import { getUserData } from "@/utils/auth";
 import { pluckString } from "@/utils/string";
 import { getActiveNavs, imgUrl } from "@/utils/url";
 import { Center, HStack, useBreakpointValue, VStack } from "@chakra-ui/react";
-import {
-  ChevronsUpDownIcon,
-  ServerIcon,
-  SidebarCloseIcon,
-  SidebarOpenIcon,
-} from "lucide-react";
+import { ChevronsLeftIcon, ChevronsRightIcon, ServerIcon } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { Fragment } from "react";
 
@@ -283,7 +275,7 @@ const MobileLayout = (props: any) => {
               gap={1}
             >
               <Avatar
-                src={imgUrl(user?.avatar?.filePath)}
+                src={imgUrl(user?.avatar?.[0]?.filePath)}
                 name={user?.name}
                 size={"2xs"}
               />
@@ -317,18 +309,14 @@ const DesktopLayout = (props: any) => {
   // Hooks
   const pathname = usePathname();
 
-  // States
-  const user = getUserData();
-
   // SX
   const NAVS_PX = useBreakpointValue(R_SPACING_MD);
 
   return (
-    <StackV w={"full"} h={"100svh"} overflowY={"auto"}>
+    <StackV w={"full"} h={`calc(100svh)`} overflowY={"auto"}>
       <StackH
         flex={1}
         w={"full"}
-        gap={0}
         overflowY={"auto"}
         pos={"relative"}
         zIndex={2}
@@ -339,219 +327,164 @@ const DesktopLayout = (props: any) => {
           flexShrink={0}
           w={
             isNavsExpanded
-              ? `calc(250px + (${NAVS_PX} * 2))`
-              : `calc(36px + (${NAVS_PX} * 2))`
+              ? `calc(250px + (${NAVS_PX} * 2) + ${GAP})`
+              : `calc(36px + (${NAVS_PX} * 2) + ${GAP})`
           }
-          px={NAVS_PX}
-          overflowY={"auto"}
-          overflowX={"clip"}
-          transition={"300ms ease"}
+          transition={"300ms"}
+          pos={"relative"}
         >
-          <StackV flex={1} gap={1}>
+          {/* Content */}
+          <StackV
+            flex={1}
+            gap={GAP}
+            pl={GAP}
+            py={GAP}
+            overflowY={"auto"}
+            overflowX={"clip"}
+          >
             {/* Header */}
-            <StackV
-              justify={"center"}
-              gap={isNavsExpanded ? 1 : 5}
-              h={isNavsExpanded ? TOP_BAR_H : "fit"}
-              py={2}
-            >
-              {/* Logo Only */}
-              {!isNavsExpanded && (
-                <NavLink to="/">
-                  <Center w={"36px"} h={"28px"} ml={"1px"}>
-                    <Logo size={18} />
-                  </Center>
-                </NavLink>
+            <StackH align={"center"} gap={3} p={R_SPACING_MD} minH={"60px"}>
+              <Logo ml={"4px"} />
+
+              {isNavsExpanded && (
+                <P lineClamp={1} fontSize={"lg"} fontWeight={"semibold"}>
+                  {APP.name}
+                </P>
               )}
+            </StackH>
 
-              <HStack justify={"space-between"}>
-                {/* Logo & App Name */}
-                {isNavsExpanded && (
-                  <NavLink to="/">
-                    <HStack ml={"6px"} gap={3}>
-                      <Logo size={18} />
-
-                      <P
-                        w={"full"}
-                        fontSize={16}
-                        fontWeight={"semibold"}
-                        lineClamp={1}
-                      >
-                        {APP.name}
-                      </P>
-                    </HStack>
-                  </NavLink>
-                )}
-
-                {/* Toggle Side Navs */}
-                <Tooltip
-                  content={isNavsExpanded ? t.minimize : t.maximize}
-                  positioning={{
-                    placement: "right",
-                    offset: {
-                      mainAxis: DESKTOP_NAVS_TOOLTIP_MAIN_AXIS,
-                    },
-                  }}
+            {/* Toggle Expand */}
+            <StackH px={R_SPACING_MD} my={2}>
+              <Btn
+                flex={1}
+                clicky={false}
+                aria-label={"toggle expand navs"}
+                size={DESKTOP_NAV_BTN_SIZE}
+                variant={DESKTOP_NAV_BTN_VARIANT}
+                justifyContent={"start"}
+                gap={4}
+                px={DESKTOP_NAV_BTN_PX}
+                zIndex={99}
+                transition={"300ms"}
+                onClick={toggleNavsExpanded}
+              >
+                <Center
+                  p={2}
+                  bg={"bg.subtle"}
+                  rounded={themeConfig.radii.component}
                 >
-                  <Btn
-                    order={isNavsExpanded ? 2 : 1}
-                    iconButton
-                    clicky={false}
-                    variant={"ghost"}
-                    w={"36px"}
-                    color={DESKTOP_NAVS_COLOR}
-                    onClick={toggleNavsExpanded}
-                  >
-                    <AppIconLucide
-                      icon={isNavsExpanded ? SidebarCloseIcon : SidebarOpenIcon}
-                      boxSize={BASE_ICON_BOX_SIZE}
-                    />
-                  </Btn>
-                </Tooltip>
-              </HStack>
-            </StackV>
+                  <AppIconLucide
+                    icon={isNavsExpanded ? ChevronsLeftIcon : ChevronsRightIcon}
+                  />
+                </Center>
+
+                {isNavsExpanded && (
+                  <P>{isNavsExpanded ? t.minimize : t.maximize}</P>
+                )}
+              </Btn>
+            </StackH>
 
             {/* Navs */}
-            <StackV flex={1}>
-              <DesktopNavs
-                navs={PRIVATE_NAV_GROUPS}
-                navsExpanded={isNavsExpanded}
-                addonElement={
-                  <CContainer gap={1} mt={"auto"}>
-                    <NavLink
-                      key={"/master-data"}
-                      to={"/master-data"}
-                      w={"full"}
-                    >
-                      <DesktopNavTooltip
-                        content={pluckString(t, "navs.master_data")}
+            <StackV flex={1} overflowY={"auto"} pos={"relative"}>
+              <StackV
+                className={"noScroll"}
+                flex={1}
+                px={R_SPACING_MD}
+                pt={R_SPACING_MD}
+                pb={"100px"}
+                mb={GAP}
+                overflowY={"auto"}
+              >
+                <DesktopNavs
+                  navs={PRIVATE_NAV_GROUPS}
+                  navsExpanded={isNavsExpanded}
+                  addonElement={
+                    <CContainer gap={1} mt={"auto"}>
+                      <NavLink
+                        key={"/master-data"}
+                        to={"/master-data"}
+                        w={"full"}
                       >
-                        <Btn
-                          clicky={false}
-                          justifyContent={isNavsExpanded ? "start" : "start"}
-                          gap={4}
-                          px={DESKTOP_NAV_BTN_PX}
-                          size={DESKTOP_NAV_BTN_SIZE}
-                          variant={
-                            pathname.includes("/master-data")
-                              ? DESKTOP_ACTIVE_NAV_BTN_VARIANT
-                              : DESKTOP_NAV_BTN_VARIANT
-                          }
-                          colorPalette={
-                            pathname.includes("/master-data")
-                              ? themeConfig.colorPalette
-                              : ""
-                          }
-                          pos={"relative"}
+                        <DesktopNavTooltip
+                          content={pluckString(t, "navs.master_data")}
                         >
-                          {/* {pathname.includes("/master-data") && (
+                          <Btn
+                            clicky={false}
+                            justifyContent={isNavsExpanded ? "start" : "start"}
+                            gap={4}
+                            px={DESKTOP_NAV_BTN_PX}
+                            size={DESKTOP_NAV_BTN_SIZE}
+                            variant={
+                              pathname.includes("/master-data")
+                                ? DESKTOP_ACTIVE_NAV_BTN_VARIANT
+                                : DESKTOP_NAV_BTN_VARIANT
+                            }
+                            colorPalette={
+                              pathname.includes("/master-data")
+                                ? themeConfig.colorPalette
+                                : ""
+                            }
+                            pos={"relative"}
+                          >
+                            {/* {pathname.includes("/master-data") && (
                             <LeftIndicator />
                           )} */}
 
-                          <Center
-                            p={2}
-                            bg={
-                              pathname.includes("/master-data")
-                                ? ""
-                                : "bg.muted"
-                            }
-                            rounded={"full"}
-                          >
-                            <AppIconLucide
-                              icon={ServerIcon}
-                              color={
+                            <Center
+                              p={2}
+                              bg={
                                 pathname.includes("/master-data")
                                   ? ""
-                                  : DESKTOP_NAVS_COLOR
+                                  : "bg.muted"
                               }
-                            />
-                          </Center>
+                              rounded={"full"}
+                            >
+                              <AppIconLucide
+                                icon={ServerIcon}
+                                color={
+                                  pathname.includes("/master-data")
+                                    ? ""
+                                    : DESKTOP_NAVS_COLOR
+                                }
+                              />
+                            </Center>
 
-                          {isNavsExpanded && (
-                            <P lineClamp={1} textAlign={"left"}>
-                              {pluckString(t, "navs.master_data")}
-                            </P>
-                          )}
-                        </Btn>
-                      </DesktopNavTooltip>
-                    </NavLink>
-                  </CContainer>
-                }
-                flex={1}
-                mb={1}
-              />
-            </StackV>
-          </StackV>
-
-          {/* Footer */}
-          <StackV pb={2}>
-            <ProfileMenuTrigger
-              w={"full"}
-              popoverRootProps={{
-                positioning: {
-                  placement: "right-end",
-                  offset: {
-                    mainAxis: DESKTOP_NAVS_POPOVER_MAIN_AXIS,
-                  },
-                },
-              }}
-            >
-              <HStack
-                gap={4}
-                w={isNavsExpanded ? "full" : "36px"}
-                p={isNavsExpanded ? 3 : "2px"}
-                bg={"bg.frosted"}
-                rounded={themeConfig.radii.component}
-                cursor={"pointer"}
-                transition={"300ms"}
-                pos={"relative"}
-                _hover={{
-                  bg: "bg.muted",
-                }}
-              >
-                <Avatar
-                  src={imgUrl(user?.avatar?.filePath)}
-                  name={user?.name}
-                  size={isNavsExpanded ? "lg" : "xs"}
-                  transition={"300ms"}
-                />
-
-                {isNavsExpanded && (
-                  <>
-                    <CContainer>
-                      <P lineClamp={1} fontWeight={"semibold"}>
-                        {user?.name || user?.email || "Signed out"}
-                      </P>
-                      <P lineClamp={1} color={"fg.subtle"}>
-                        {user?.name ? user?.email || user?.username : "-"}
-                      </P>
+                            {isNavsExpanded && (
+                              <P lineClamp={1} textAlign={"left"}>
+                                {pluckString(t, "navs.master_data")}
+                              </P>
+                            )}
+                          </Btn>
+                        </DesktopNavTooltip>
+                      </NavLink>
                     </CContainer>
+                  }
+                  flex={1}
+                />
+              </StackV>
 
-                    <AppIconLucide
-                      icon={ChevronsUpDownIcon}
-                      boxSize={BASE_ICON_BOX_SIZE}
-                      color={"fg.subtle"}
-                      mr={1}
-                    />
-                  </>
-                )}
-              </HStack>
-            </ProfileMenuTrigger>
+              <StackV
+                w={"full"}
+                pos={"absolute"}
+                left={0}
+                bottom={0}
+                zIndex={2}
+              >
+                <DesktopUserQuickPanel navsExpanded={isNavsExpanded} />
+              </StackV>
+            </StackV>
           </StackV>
         </StackV>
 
         {/* Content */}
         <StackV w={"full"} overflowY={"auto"}>
-          <CContainer
-            flex={1}
-            // borderLeft={"1px solid"}
-            borderColor={"border.muted"}
-            overflow={"auto"}
-          >
-            <CContainer px={R_SPACING_MD}>
+          <StackV px={GAP} pt={GAP}>
+            <StackV p={R_SPACING_MD}>
               <TopBar />
-            </CContainer>
+            </StackV>
+          </StackV>
 
+          <CContainer flex={1} overflow={"auto"}>
             {children}
           </CContainer>
         </StackV>

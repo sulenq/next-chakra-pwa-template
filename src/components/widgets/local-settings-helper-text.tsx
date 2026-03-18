@@ -2,6 +2,7 @@
 
 import { CContainer } from "@/components/ui/c-container";
 import { HelperText } from "@/components/ui/helper-text";
+import { R_SPACING_MD } from "@/constants/styles";
 import { useLocale } from "@/contexts/useLocale";
 
 export const LocalSettingsHelperText = () => {
@@ -9,7 +10,7 @@ export const LocalSettingsHelperText = () => {
   const { t } = useLocale();
 
   return (
-    <CContainer flex={1} p={4}>
+    <CContainer flex={1} p={R_SPACING_MD}>
       <HelperText>{t.msg_settings_saved_locally}</HelperText>
     </CContainer>
   );

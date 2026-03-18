@@ -1,6 +1,6 @@
-import { forwardRef } from "react";
-import { CContainer } from "@/components/ui/c-container";
+import { StackV } from "@/components/ui/stack";
 import { StackProps } from "@chakra-ui/react";
+import { forwardRef } from "react";
 
 export interface MContainerProps extends StackProps {
   maskingTop?: string | number;
@@ -60,7 +60,7 @@ export const MContainer = forwardRef<HTMLDivElement, MContainerProps>(
         )`;
 
     return (
-      <CContainer
+      <StackV
         ref={ref}
         style={{
           WebkitMaskImage: `${verticalMask}, ${horizontalMask}`,
@@ -72,7 +72,7 @@ export const MContainer = forwardRef<HTMLDivElement, MContainerProps>(
         {...restProps}
       >
         {children}
-      </CContainer>
+      </StackV>
     );
   },
 );

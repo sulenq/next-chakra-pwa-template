@@ -542,8 +542,8 @@ const customConfig = defineConfig({
           },
           frosted: {
             value: {
-              base: "rgba(255, 255, 255, 0.35)",
-              _dark: "rgba(15, 15, 16, 0.35)",
+              base: "rgba(255, 255, 255, 0.4)",
+              _dark: "rgba(15, 15, 16, 0.4)",
             },
           },
           subtle: {

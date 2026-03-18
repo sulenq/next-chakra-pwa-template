@@ -73,7 +73,9 @@ export const NavBreadcrumb = (props: any) => {
 
   return (
     <HStack gap={1} ml={"-4px"} h={"36px"} cursor={"pointer"} {...restProps}>
-      {backPath && <BackButton iconButton clicky={false} backPath={backPath} />}
+      {backPath && (
+        <BackButton iconButton clicky={false} backPath={backPath} size={"sm"} />
+      )}
 
       <ToggleTip
         content={currentActiveNavs
@@ -143,7 +145,6 @@ export const TopBar = (props: StackProps) => {
       flexShrink={0}
       justify={"space-between"}
       gap={4}
-      h={"52px"}
       rounded={themeConfig.radii.container}
       {...props}
     >
@@ -179,14 +180,14 @@ export const TopBar = (props: StackProps) => {
 
 // -----------------------------------------------------------------
 
-export const ContainerLayout = forwardRef<HTMLDivElement, StackProps>(
+export const ConstrainedContainer = forwardRef<HTMLDivElement, StackProps>(
   (props, ref) => {
     // Props
     const { children, ...restProps } = props;
 
     return (
       <StackV
-        className="page-layout"
+        className="constrained-container"
         ref={ref}
         maxW={"720px"}
         mx={"auto"}
@@ -290,8 +291,8 @@ const ViewHeader = (props: ViewHeaderProps) => {
       flexShrink={0}
       w={"full"}
       minH={TOP_BAR_H}
-      py={R_SPACING_MD}
-      px={themeConfig.radii.component}
+      px={R_SPACING_MD}
+      pb={R_SPACING_MD}
       rounded={themeConfig.radii.container}
       {...restProps}
     >
@@ -330,27 +331,21 @@ const ViewContent = forwardRef<HTMLDivElement, StackProps>((props, ref) => {
   const { isValidDimension } = useViewContext();
 
   // Constants
-  const PR = useBreakpointValue(R_SPACING_MD);
+  const pr = useBreakpointValue(R_SPACING_MD);
 
   return (
-    <StackV
-      ref={ref}
-      flex={1}
-      pr={[0, null, PR]}
-      overflowY={"auto"}
-      {...restProps}
-    >
+    <StackV ref={ref} flex={1} pr={pr} overflowY={"auto"} {...restProps}>
       {isValidDimension ? children : null}
     </StackV>
   );
 });
 
-ContainerLayout.displayName = "ContainerLayout";
+ConstrainedContainer.displayName = "ConstrainedContainer";
 ViewRoot.displayName = "ViewRoot";
 ViewContent.displayName = "ViewContent";
 
 export const View = {
-  Container: ViewRoot,
+  Root: ViewRoot,
   Content: ViewContent,
   Header: ViewHeader,
   Title: ViewTitle,

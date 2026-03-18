@@ -31,7 +31,7 @@ import FeedbackNoData from "@/components/widgets/feedback-no-data";
 import FeedbackNotFound from "@/components/widgets/feedback-not-found";
 import FeedbackRetry from "@/components/widgets/feedback-retry";
 import { LucideIcon } from "@/components/widgets/icon";
-import { ContainerLayout } from "@/components/widgets/view";
+import { ConstrainedContainer } from "@/components/widgets/view";
 import { PDFViewer } from "@/components/widgets/pdf-viewer";
 import SelectWorkspaceCategory from "@/components/widgets/select-workspace-category";
 import { Today } from "@/components/widgets/today";
@@ -733,7 +733,7 @@ const DemoIndexRoute = () => {
   const { themeConfig } = useThemeConfig();
 
   return (
-    <ContainerLayout maxW={"1280px"} p={4} gap={8}>
+    <ConstrainedContainer maxW={"1280px"} p={4} gap={8}>
       <HStack
         justify={"space-between"}
         position={"sticky"}
@@ -1001,7 +1001,7 @@ const DemoIndexRoute = () => {
           </CContainer>
         </SimpleGrid>
       </>
-    </ContainerLayout>
+    </ConstrainedContainer>
   );
 };
 

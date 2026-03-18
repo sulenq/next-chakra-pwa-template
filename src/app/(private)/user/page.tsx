@@ -17,8 +17,8 @@ import FeedbackRetry from "@/components/widgets/feedback-retry";
 import { HScroll } from "@/components/widgets/h-scroll";
 import { LucideIcon } from "@/components/widgets/icon";
 import { Item } from "@/components/widgets/item";
-import { View, useViewContext } from "@/components/widgets/view";
 import { SimpleDisclosure } from "@/components/widgets/simple-disclosure";
+import { View, useViewContext } from "@/components/widgets/view";
 import { dummyUsers } from "@/constants/dummyData";
 import {
   BatchOptionsTableOptionGenerator,
@@ -604,7 +604,7 @@ const Content = () => {
 
   return (
     <View.Content>
-      <CContainer flex={1} pb={R_SPACING_MD} overflowY={"auto"}>
+      <CContainer flex={1} overflowY={"auto"}>
         <View.Header withTitle justify={"space-between"}>
           <HStack>
             {!isSmContainer && (
@@ -650,8 +650,8 @@ const Content = () => {
 
 export default function Page() {
   return (
-    <View.Container>
+    <View.Root>
       <Content />
-    </View.Container>
+    </View.Root>
   );
 }

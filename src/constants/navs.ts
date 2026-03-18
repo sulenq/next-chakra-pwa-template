@@ -57,6 +57,67 @@ export const PRIVATE_NAV_GROUPS: Interface__NavGroup[] = [
           },
         ],
       },
+
+      // {
+      //   icon: UsersIcon,
+      //   labelKey: "navs.user",
+      //   path: `/user`,
+      //   allowedRoles: [],
+      // },
+      // {
+      //   icon: UsersIcon,
+      //   labelKey: "navs.user",
+      //   path: `/user`,
+      //   allowedRoles: [],
+      // },
+      // {
+      //   icon: UsersIcon,
+      //   labelKey: "navs.user",
+      //   path: `/user`,
+      //   allowedRoles: [],
+      // },
+      // {
+      //   icon: UsersIcon,
+      //   labelKey: "navs.user",
+      //   path: `/user`,
+      //   allowedRoles: [],
+      // },
+      // {
+      //   icon: UsersIcon,
+      //   labelKey: "navs.user",
+      //   path: `/user`,
+      //   allowedRoles: [],
+      // },
+      // {
+      //   icon: UsersIcon,
+      //   labelKey: "navs.user",
+      //   path: `/user`,
+      //   allowedRoles: [],
+      // },
+      // {
+      //   icon: UsersIcon,
+      //   labelKey: "navs.user",
+      //   path: `/user`,
+      //   allowedRoles: [],
+      // },
+      // {
+      //   icon: UsersIcon,
+      //   labelKey: "navs.user",
+      //   path: `/user`,
+      //   allowedRoles: [],
+      // },
+      // {
+      //   icon: UsersIcon,
+      //   labelKey: "navs.user",
+      //   path: `/user`,
+      //   allowedRoles: [],
+      // },
+      // {
+      //   icon: UsersIcon,
+      //   labelKey: "navs.user",
+      //   path: `/user`,
+      //   allowedRoles: [],
+      // },
     ],
   },
 ];

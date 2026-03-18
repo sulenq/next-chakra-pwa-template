@@ -32,10 +32,11 @@ export interface Interface__User extends Interface__CUD {
   avatar: Interface__StorageFile[];
   name: string;
   email: string;
-  role: Interface__Role;
+  role: Role;
   accountStatus: string;
   // optional
-  gender: Gender;
+  username?: string | null;
+  gender: Gender | null;
   phoneNumber: string | null;
   birthDate: string | null;
   address: string | null;
@@ -47,7 +48,7 @@ export interface Interface__User extends Interface__CUD {
   // additional
   taskCount?: number;
 }
-export interface Interface__Role {
+export interface Role {
   id: string;
   name: string;
   description: string;

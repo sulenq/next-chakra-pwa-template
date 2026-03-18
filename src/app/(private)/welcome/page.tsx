@@ -18,7 +18,7 @@ export default function Page() {
   // const user = getUserData();
 
   return (
-    <View.Container p={4}>
+    <View.Root p={4}>
       <VStack flex={1} gap={1} justify={"center"}>
         <VStack my={"auto"}>
           <Logo size={65} mb={4} />
@@ -36,6 +36,6 @@ export default function Page() {
           <BrandWatermark />
         </VStack>
       </VStack>
-    </View.Container>
+    </View.Root>
   );
 }

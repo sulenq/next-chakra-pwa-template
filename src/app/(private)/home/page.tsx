@@ -6,7 +6,7 @@ import { CContainer } from "@/components/ui/c-container";
 import { P } from "@/components/ui/p";
 import { Segmented } from "@/components/ui/segment-group";
 import { Skeleton } from "@/components/ui/skeleton";
-import { StackV } from "@/components/ui/stack";
+import { StackH, StackV } from "@/components/ui/stack";
 import { Switch } from "@/components/ui/switch";
 import { AppIconLucide } from "@/components/widgets/app-icon";
 import { Calendar } from "@/components/widgets/calendar";
@@ -17,8 +17,8 @@ import FeedbackNoData from "@/components/widgets/feedback-no-data";
 import FeedbackRetry from "@/components/widgets/feedback-retry";
 import { DotIndicator } from "@/components/widgets/indicator";
 import { Item } from "@/components/widgets/item";
-import { View, useViewContext } from "@/components/widgets/view";
 import { Today, TodayWeekday } from "@/components/widgets/today";
+import { View, useViewContext } from "@/components/widgets/view";
 import { DUMMY_DASHBOARD_DATA } from "@/constants/dummyData";
 import { getMonthNames } from "@/constants/months";
 import { GAP, R_SPACING_MD } from "@/constants/styles";
@@ -554,19 +554,17 @@ const Content = () => {
     error: <FeedbackRetry onRetry={onRetry} />,
     empty: <FeedbackNoData />,
     loaded: data && (
-      <>
-        <Item.Container gap={GAP} p={R_SPACING_MD}>
-          <Overview data={data.overview} />
+      <StackV gap={GAP}>
+        <Overview data={data.overview} />
 
-          <Usage data={data.usage} filter={filter} />
-        </Item.Container>
-      </>
+        <Usage data={data.usage} filter={filter} />
+      </StackV>
     ),
   };
 
   return (
     <View.Content>
-      <HStack
+      <StackH
         wrap={"wrap"}
         justify={"space-between"}
         p={R_SPACING_MD}
@@ -588,7 +586,7 @@ const Content = () => {
             <P>
               {user?.taskCount
                 ? interpolateString(t.msg_task_count, {
-                    count: user?.tastCount,
+                    count: user?.taskCount,
                   })
                 : t.msg_no_task}
             </P>
@@ -606,7 +604,7 @@ const Content = () => {
             </HStack>
           </CContainer>
         </Calendar.Trigger>
-      </HStack>
+      </StackH>
 
       <StackV>
         {initialLoading && render.loading}
@@ -628,8 +626,8 @@ const Content = () => {
 
 export default function Page() {
   return (
-    <View.Container>
+    <View.Root>
       <Content />
-    </View.Container>
+    </View.Root>
   );
 }

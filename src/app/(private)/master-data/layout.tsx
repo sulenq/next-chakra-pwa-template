@@ -145,7 +145,7 @@ export default function Layout(props: any) {
   }, [containerDimension]);
 
   return (
-    <View.Container id="settings-page-container" ref={containerRef} p={0}>
+    <View.Root id="settings-page-container" ref={containerRef} p={0}>
       {containerDimension.width > 0 && (
         <HStack align={"stretch"} flex={1} gap={0} overflowY={"auto"}>
           {/* Sidebar */}
@@ -189,6 +189,6 @@ export default function Layout(props: any) {
           )}
         </HStack>
       )}
-    </View.Container>
+    </View.Root>
   );
 }
