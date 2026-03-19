@@ -5,7 +5,7 @@ export const ROUNDED_PRESETS = [
   { label: "Md", component: "6px", container: "8px" },
   { label: "Lg", component: "8px", container: "12px" },
   { label: "XL", component: "12px", container: "16px" },
-  { label: "2XL", component: "18px", container: "28px" },
+  { label: "2XL", component: "18px", container: "24px" },
   { label: "3XL", component: "24px", container: "32px" },
   // { label: "4XL", component: "32px", container: "38px" },
 ];
