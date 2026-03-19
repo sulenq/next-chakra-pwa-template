@@ -396,17 +396,16 @@ const DesktopLayout = (props: any) => {
             {/* Navs */}
             <StackV flex={1} overflowY={"auto"} pos={"relative"}>
               <StackV
-                className={"noScroll"}
+                className={"scrollY"}
                 flex={1}
                 px={R_SPACING_MD}
                 pt={R_SPACING_MD}
                 pb={
                   isNavsExpanded
                     ? `calc(${USER_PANEL_H} + ${rSpacingMd})`
-                    : `cacl(36px + ${rSpacingMd})`
+                    : `calc(36px + (${rSpacingMd} * 2))`
                 }
                 mb={GAP}
-                overflowY={"auto"}
               >
                 <DesktopNavs
                   navs={PRIVATE_NAV_GROUPS}

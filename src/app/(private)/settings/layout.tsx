@@ -13,6 +13,7 @@ import { APP } from "@/constants/_meta";
 import { OTHER_PRIVATE_NAV_GROUPS } from "@/constants/navs";
 import { GAP, R_SPACING_MD } from "@/constants/styles";
 import { useLocale } from "@/contexts/useLocale";
+import { useThemeConfig } from "@/contexts/useThemeConfig";
 import { formatAbsDate } from "@/utils/formatter";
 import { usePathname } from "next/navigation";
 
@@ -30,6 +31,7 @@ const PageScreen = ({ children }: { children: React.ReactNode }) => {
 
   // Contexts
   const { t } = useLocale();
+  const { themeConfig } = useThemeConfig();
 
   // Derived Values
   const isAtSettingsIndexRoute = pathname === ROOT_PATH;
@@ -40,15 +42,7 @@ const PageScreen = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <StackV flex={1} overflowY={"auto"}>
-      <StackH
-        flex={1}
-        w={"full"}
-        // minH={`calc(100svh - ${TOP_BAR_H} - (${GAP} * 1))`}
-        // h={`calc(100svh - ${TOP_BAR_H} - (${GAP} * 1))`}
-        // maxH={`calc(100svh - ${TOP_BAR_H} - (${GAP} * 1))`}
-        overflowY={"auto"}
-        pos={"relative"}
-      >
+      <StackH flex={1} w={"full"} overflowY={"auto"} pos={"relative"}>
         {/* Sidebar */}
         {showSidebar && (
           <StackV
@@ -59,27 +53,33 @@ const PageScreen = ({ children }: { children: React.ReactNode }) => {
             pl={GAP}
             overflowY={"auto"}
           >
-            <View.Header withTitle title={t.settings} py={0} />
+            <StackV
+              flex={1}
+              rounded={themeConfig.radii.container}
+              overflowY={"auto"}
+            >
+              <View.Header withTitle title={t.settings} py={0} />
 
-            <StackV flex={1} p={R_SPACING_MD} overflowY={"auto"}>
-              <DesktopNavs
-                navs={NAVS}
-                addonElement={
-                  <CContainer mt={"auto"} gap={1}>
-                    <HelperText>{`v${APP.version}`}</HelperText>
+              <StackV className={"scrollY"} flex={1} p={R_SPACING_MD}>
+                <DesktopNavs
+                  navs={NAVS}
+                  addonElement={
+                    <CContainer mt={"auto"} gap={1}>
+                      <HelperText>{`v${APP.version}`}</HelperText>
 
-                    <HelperText>
-                      {`Last updated: 
+                      <HelperText>
+                        {`Last updated: 
                         ${formatAbsDate(APP.lastUpdated, t, {
                           variant: "numeric",
                         })}`}
-                    </HelperText>
-                  </CContainer>
-                }
-                navsExpanded
-                showGroupLabel
-                flex={1}
-              />
+                      </HelperText>
+                    </CContainer>
+                  }
+                  navsExpanded
+                  showGroupLabel
+                  flex={1}
+                />
+              </StackV>
             </StackV>
           </StackV>
         )}

@@ -591,9 +591,10 @@ export const UserPanel = (props: UserPanelProps) => {
 
   return (
     <StackV
+      p={navsExpanded ? 0 : R_SPACING_MD}
       bg={"bg.frosted"}
-      backdropFilter={BLUR_BACKDROP_FILTER}
       rounded={themeConfig.radii.component}
+      backdropFilter={BLUR_BACKDROP_FILTER}
     >
       {navsExpanded && (
         <StackH justify={"space-between"} gap={R_SPACING_MD} p={R_SPACING_MD}>
@@ -630,12 +631,34 @@ export const UserPanel = (props: UserPanelProps) => {
         pos={"relative"}
         transition={"300ms"}
       >
-        <Avatar
-          src={imgUrl(user?.avatar?.[0]?.filePath)}
-          name={user?.name}
-          size={navsExpanded ? "lg" : "xs"}
-          transition={"300ms"}
-        />
+        {navsExpanded ? (
+          <Avatar
+            src={imgUrl(user?.avatar?.[0]?.filePath)}
+            name={user?.name}
+            size={"lg"}
+            transition={"300ms"}
+          />
+        ) : (
+          <ProfileMenuTrigger
+            popoverRootProps={{
+              positioning: {
+                placement: "right-end",
+                offset: {
+                  mainAxis: 20,
+                  crossAxis: 160,
+                },
+              },
+            }}
+          >
+            <Avatar
+              src={imgUrl(user?.avatar?.[0]?.filePath)}
+              name={user?.name}
+              size={"xs"}
+              transition={"300ms"}
+              cursor={"pointer"}
+            />
+          </ProfileMenuTrigger>
+        )}
 
         {navsExpanded && (
           <>
@@ -652,6 +675,10 @@ export const UserPanel = (props: UserPanelProps) => {
               popoverRootProps={{
                 positioning: {
                   placement: "right-end",
+                  offset: {
+                    mainAxis: 20,
+                    crossAxis: 160,
+                  },
                 },
               }}
             >
