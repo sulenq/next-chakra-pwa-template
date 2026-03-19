@@ -39,7 +39,7 @@ export const PopoverContent = forwardRef<HTMLDivElement, PopoverContentProps>(
             bg={"bg.body"}
             border={"1px solid"}
             borderColor={"border.subtle"}
-            rounded={themeConfig.radii.container}
+            rounded={`calc(${themeConfig.radii.component} - 4px)`}
             shadow={"soft"}
             {...restProps}
           />

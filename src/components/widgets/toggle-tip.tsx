@@ -1,16 +1,15 @@
 import {
-  PopoverRootProps,
-  TooltipContentProps,
-  useDisclosure,
-} from "@chakra-ui/react";
-import {
   PopoverContent,
   PopoverRoot,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { ReactNode, useRef } from "react";
 import { useClickOutside } from "@/hooks/useClickOutside";
-import { useThemeConfig } from "@/contexts/useThemeConfig";
+import {
+  PopoverRootProps,
+  TooltipContentProps,
+  useDisclosure,
+} from "@chakra-ui/react";
+import { ReactNode, useRef } from "react";
 
 interface ToggleTipProps extends Omit<TooltipContentProps, "content"> {
   children: ReactNode;
@@ -20,9 +19,6 @@ interface ToggleTipProps extends Omit<TooltipContentProps, "content"> {
 const ToggleTip = (props: ToggleTipProps) => {
   // Props
   const { children, content, rootProps, ...restProps } = props;
-
-  // Contexts
-  const { themeConfig } = useThemeConfig();
 
   // Hooks
   const { open, onOpen, onClose } = useDisclosure();
@@ -44,7 +40,6 @@ const ToggleTip = (props: ToggleTipProps) => {
         maxW={"240px"}
         px={2}
         py={1}
-        rounded={themeConfig.radii.component}
         lineHeight={"normal"}
         onClick={(e) => {
           e.stopPropagation();
