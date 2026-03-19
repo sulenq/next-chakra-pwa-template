@@ -49,9 +49,9 @@ export const TABLE_TD_MIN_H = "46px";
 export const TABLE_TD_MT = GAP;
 export const TABLE_TD_BG = "bg.body";
 export const TABLE_TD_BORDER_COLOR = "transparent";
-export const TABLE_FOOTER_BORDER_COLOR = "border.subtle";
+export const TABLE_FOOTER_BORDER_COLOR = "border.muted";
 
 // Data Grid
 export const GRID_ITEM_CONTAINER_BG = "bg.body";
 export const GRID_BATCH_OPTIONS_CONTAINER_BG = "bg.frosted";
-export const GRID_FOOTER_BORDER_COLOR = "border.subtle";
+export const GRID_FOOTER_BORDER_COLOR = "border.muted";
