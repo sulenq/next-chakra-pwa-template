@@ -1,6 +1,8 @@
 "use client";
 
+import { useColorModeValue } from "@/components/ui/color-mode";
 import { P } from "@/components/ui/p";
+import { StackV } from "@/components/ui/stack";
 import BrandWatermark from "@/components/widgets/brand-watermark";
 import { Logo } from "@/components/widgets/logo";
 import { View } from "@/components/widgets/view";
@@ -15,22 +17,26 @@ export default function Page() {
 
   // States
   const variantNumber = Math.floor(Math.random() * 16) + 1;
-  // const user = getUserData();
+
+  // Constants
+  const logoColor = useColorModeValue("var(--chakra-colors-d2)", "black");
 
   return (
     <View.Root p={4}>
       <VStack flex={1} gap={1} justify={"center"}>
-        <VStack my={"auto"}>
-          <Logo size={65} mb={4} />
+        <StackV align={"center"} my={"auto"}>
+          <Logo size={65} color={logoColor} mb={4} />
 
-          <P fontSize={"xl"} fontWeight={"medium"} textAlign={"center"}>
-            {APP.name}
-          </P>
+          <StackV align={"center"} color={"fg.subtle"}>
+            <P fontSize={"xl"} fontWeight={"medium"} textAlign={"center"}>
+              {APP.name}
+            </P>
 
-          <P color={"fg.muted"} textAlign={"center"}>
-            {pluckString(t, `msg_welcome_${variantNumber}`)}
-          </P>
-        </VStack>
+            <P textAlign={"center"}>
+              {pluckString(t, `msg_welcome_${variantNumber}`)}
+            </P>
+          </StackV>
+        </StackV>
 
         <VStack>
           <BrandWatermark />

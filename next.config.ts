@@ -47,6 +47,11 @@ const nextConfig: NextConfig = {
   // --- IMAGE CONFIG ---
   images: {
     remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "land-be.cunindonesia.web.id",
+        pathname: "/**",
+      },
       { protocol: "https", hostname: "apiweb.exium.id", pathname: "/**" },
       {
         protocol: "https",

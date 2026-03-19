@@ -1,6 +1,5 @@
 "use client";
 
-import { Avatar } from "@/components/ui/avatar";
 import { Btn } from "@/components/ui/btn";
 import { CContainer } from "@/components/ui/c-container";
 import { P } from "@/components/ui/p";
@@ -30,7 +29,6 @@ import { getUserData } from "@/utils/auth";
 import { formatDuration, formatNumber } from "@/utils/formatter";
 import { isObjectDeepEmpty } from "@/utils/object";
 import { capitalizeWords, interpolateString } from "@/utils/string";
-import { imgUrl } from "@/utils/url";
 import { Chart, useChart } from "@chakra-ui/charts";
 import {
   Badge,
@@ -563,35 +561,27 @@ const Content = () => {
   };
 
   return (
-    <View.Content>
+    <View.Content gap={6} p={GAP}>
       <StackH
         wrap={"wrap"}
+        align={"center"}
         justify={"space-between"}
-        p={R_SPACING_MD}
-        mb={R_SPACING_MD}
+        px={R_SPACING_MD}
       >
-        <HStack gap={4}>
-          <Avatar
-            name={user?.name}
-            src={imgUrl(user?.avatar?.[0]?.filePath)}
-            size={"2xl"}
-          />
+        <StackV>
+          <P
+            fontSize={"3xl"}
+            fontWeight={"medium"}
+          >{`${t.hi}, ${user?.name || "User's Name"} 👋`}</P>
 
-          <CContainer w={"fit"} gap={1}>
-            <P
-              fontSize={"3xl"}
-              fontWeight={"medium"}
-            >{`${t.hi}, ${user?.name || "User's Name"} 👋`}</P>
-
-            <P>
-              {user?.taskCount
-                ? interpolateString(t.msg_task_count, {
-                    count: user?.taskCount,
-                  })
-                : t.msg_no_task}
-            </P>
-          </CContainer>
-        </HStack>
+          <P>
+            {user?.taskCount
+              ? interpolateString(t.msg_task_count, {
+                  count: user?.taskCount,
+                })
+              : t.msg_no_task}
+          </P>
+        </StackV>
 
         <Calendar.Trigger>
           <CContainer w={"fit"} align={"end"}>

@@ -18,6 +18,7 @@ import { Clock } from "@/components/widgets/clock";
 import { HScroll } from "@/components/widgets/h-scroll";
 import { BottomIndicator, LeftIndicator } from "@/components/widgets/indicator";
 import { Logo } from "@/components/widgets/logo";
+import { MContainer } from "@/components/widgets/m-container";
 import {
   DesktopNavs,
   DesktopNavTooltip,
@@ -31,6 +32,7 @@ import { APP } from "@/constants/_meta";
 import { OTHER_PRIVATE_NAV_GROUPS, PRIVATE_NAV_GROUPS } from "@/constants/navs";
 import {
   DESKTOP_ACTIVE_NAV_BTN_VARIANT,
+  DESKTOP_NAV_BTN_ICON_BG,
   DESKTOP_NAV_BTN_PX,
   DESKTOP_NAV_BTN_SIZE,
   DESKTOP_NAV_BTN_VARIANT,
@@ -343,7 +345,7 @@ const DesktopLayout = (props: any) => {
             overflowX={"clip"}
           >
             {/* Header */}
-            <StackH align={"center"} gap={3} p={R_SPACING_MD} minH={"60px"}>
+            <StackH align={"center"} gap={3} minH={"60px"} p={R_SPACING_MD}>
               <Logo ml={"4px"} />
 
               {isNavsExpanded && (
@@ -354,35 +356,41 @@ const DesktopLayout = (props: any) => {
             </StackH>
 
             {/* Toggle Expand */}
-            <StackH px={R_SPACING_MD} my={2}>
-              <Btn
-                flex={1}
-                clicky={false}
-                aria-label={"toggle expand navs"}
-                size={DESKTOP_NAV_BTN_SIZE}
-                variant={DESKTOP_NAV_BTN_VARIANT}
-                justifyContent={"start"}
-                gap={4}
-                px={DESKTOP_NAV_BTN_PX}
-                zIndex={99}
-                transition={"300ms"}
-                onClick={toggleNavsExpanded}
-              >
-                <Center
-                  p={2}
-                  bg={"bg.subtle"}
-                  rounded={themeConfig.radii.component}
+            <DesktopNavTooltip
+              content={isNavsExpanded ? t.minimize : t.maximize}
+            >
+              <StackH px={R_SPACING_MD} my={GAP}>
+                <Btn
+                  flex={1}
+                  clicky={false}
+                  aria-label={"toggle expand navs"}
+                  size={DESKTOP_NAV_BTN_SIZE}
+                  variant={DESKTOP_NAV_BTN_VARIANT}
+                  justifyContent={"start"}
+                  gap={4}
+                  px={DESKTOP_NAV_BTN_PX}
+                  zIndex={99}
+                  transition={"300ms"}
+                  onClick={toggleNavsExpanded}
                 >
-                  <AppIconLucide
-                    icon={isNavsExpanded ? ChevronsLeftIcon : ChevronsRightIcon}
-                  />
-                </Center>
+                  <Center
+                    p={2}
+                    bg={DESKTOP_NAV_BTN_ICON_BG}
+                    rounded={themeConfig.radii.component}
+                  >
+                    <AppIconLucide
+                      icon={
+                        isNavsExpanded ? ChevronsLeftIcon : ChevronsRightIcon
+                      }
+                    />
+                  </Center>
 
-                {isNavsExpanded && (
-                  <P>{isNavsExpanded ? t.minimize : t.maximize}</P>
-                )}
-              </Btn>
-            </StackH>
+                  {isNavsExpanded && (
+                    <P>{isNavsExpanded ? t.minimize : t.maximize}</P>
+                  )}
+                </Btn>
+              </StackH>
+            </DesktopNavTooltip>
 
             {/* Navs */}
             <StackV flex={1} overflowY={"auto"} pos={"relative"}>
@@ -435,7 +443,7 @@ const DesktopLayout = (props: any) => {
                               bg={
                                 pathname.includes("/master-data")
                                   ? ""
-                                  : "bg.muted"
+                                  : DESKTOP_NAV_BTN_ICON_BG
                               }
                               rounded={"full"}
                             >
@@ -484,9 +492,9 @@ const DesktopLayout = (props: any) => {
             </StackV>
           </StackV>
 
-          <CContainer flex={1} overflow={"auto"}>
+          <MContainer flex={1} overflow={"auto"}>
             {children}
-          </CContainer>
+          </MContainer>
         </StackV>
       </StackH>
     </StackV>

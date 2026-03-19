@@ -5,7 +5,7 @@ import { getAccessToken, setAccessToken } from "@/utils/auth";
 export const request = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
   headers: { Accept: "application/json" },
-  withCredentials: true, // uncoment if use refresh token
+  // withCredentials: true, // uncoment if use refresh token
 });
 
 // inject access token to request
@@ -15,7 +15,7 @@ request.interceptors.request.use(
     if (token) config.headers.Authorization = `Bearer ${token}`;
     return config;
   },
-  (error) => Promise.reject(error)
+  (error) => Promise.reject(error),
 );
 
 // response interceptor for auto-refresh
@@ -34,7 +34,7 @@ request.interceptors.response.use(
     }
 
     return Promise.reject(error);
-  }
+  },
 );
 
 // refresh access token helper
@@ -43,7 +43,7 @@ async function refreshAccessToken(): Promise<string | null> {
     const r = await axios.post(
       `${process.env.NEXT_PUBLIC_API_BASE_URL}/auth/refresh`,
       {},
-      { withCredentials: true }
+      { withCredentials: true },
     );
     const newToken = r.data.accessToken;
     setAccessToken(newToken);

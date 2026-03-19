@@ -19,7 +19,7 @@ import { useScreen } from "@/hooks/useScreen";
 import { isEmptyArray, last } from "@/utils/array";
 import { capitalizeWords, pluckString } from "@/utils/string";
 import { getActiveNavs } from "@/utils/url";
-import { HStack, Icon, StackProps, useBreakpointValue } from "@chakra-ui/react";
+import { HStack, Icon, StackProps } from "@chakra-ui/react";
 import { IconSlash } from "@tabler/icons-react";
 import { InboxIcon, ListIcon } from "lucide-react";
 import { usePathname } from "next/navigation";
@@ -330,11 +330,8 @@ const ViewContent = forwardRef<HTMLDivElement, StackProps>((props, ref) => {
   // Contexts
   const { isValidDimension } = useViewContext();
 
-  // Constants
-  const pr = useBreakpointValue(R_SPACING_MD);
-
   return (
-    <StackV ref={ref} flex={1} pr={pr} overflowY={"auto"} {...restProps}>
+    <StackV ref={ref} flex={1} overflow={"auto"} {...restProps}>
       {isValidDimension ? children : null}
     </StackV>
   );

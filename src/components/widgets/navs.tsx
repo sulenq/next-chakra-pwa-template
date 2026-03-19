@@ -20,6 +20,7 @@ import {
   DESKTOP_NAVS_COLOR,
   DESKTOP_NAVS_POPOVER_MAIN_AXIS,
   DESKTOP_NAVS_TOOLTIP_MAIN_AXIS,
+  DESKTOP_NAV_BTN_ICON_BG,
   DESKTOP_NAV_BTN_PX,
   DESKTOP_NAV_BTN_SIZE,
   DESKTOP_NAV_BTN_VARIANT,
@@ -152,7 +153,11 @@ export const DesktopNavs = (props: DesktopNavsProps) => {
                               {nav.icon && (
                                 <Center
                                   p={2}
-                                  bg={isMainNavsActive ? "" : "bg.muted"}
+                                  bg={
+                                    isMainNavsActive
+                                      ? ""
+                                      : DESKTOP_NAV_BTN_ICON_BG
+                                  }
                                   rounded={themeConfig.radii.component}
                                 >
                                   <AppIconLucide
@@ -228,7 +233,11 @@ export const DesktopNavs = (props: DesktopNavsProps) => {
 
                                       <Center
                                         p={2}
-                                        bg={isMainNavsActive ? "" : "bg.muted"}
+                                        bg={
+                                          isMainNavsActive
+                                            ? ""
+                                            : DESKTOP_NAV_BTN_ICON_BG
+                                        }
                                         rounded={themeConfig.radii.component}
                                       >
                                         <AppIconLucide
@@ -363,7 +372,9 @@ export const DesktopNavs = (props: DesktopNavsProps) => {
                                         <Center
                                           p={2}
                                           bg={
-                                            isMainNavsActive ? "" : "bg.muted"
+                                            isMainNavsActive
+                                              ? ""
+                                              : DESKTOP_NAV_BTN_ICON_BG
                                           }
                                           rounded={themeConfig.radii.component}
                                         >
@@ -577,13 +588,11 @@ export const DesktopUserQuickPanel = (props: DesktopUserQuickPanelProps) => {
       popoverRootProps={{
         positioning: {
           placement: "right-end",
-          offset: {
-            mainAxis: DESKTOP_NAVS_POPOVER_MAIN_AXIS,
-          },
         },
       }}
     >
       <StackH
+        align={"center"}
         gap={4}
         w={navsExpanded ? "full" : "36px"}
         p={navsExpanded ? 3 : "2px"}

@@ -59,7 +59,7 @@ const PageScreen = ({ children }: { children: React.ReactNode }) => {
             pl={GAP}
             overflowY={"auto"}
           >
-            <View.Header withTitle title={"All User"} py={0} />
+            <View.Header withTitle title={t.settings} py={0} />
 
             <StackV flex={1} p={R_SPACING_MD} overflowY={"auto"}>
               <DesktopNavs

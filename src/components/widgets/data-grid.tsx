@@ -8,15 +8,17 @@ import { Divider } from "@/components/ui/divider";
 import { Img } from "@/components/ui/img";
 import { P } from "@/components/ui/p";
 import { SearchInput } from "@/components/ui/search-input";
+import { StackV } from "@/components/ui/stack";
 import { BackButton } from "@/components/widgets/back-button";
 import { BatchOptions } from "@/components/widgets/batch-option";
 import { ClampText } from "@/components/widgets/clamp-text";
 import FeedbackNotFound from "@/components/widgets/feedback-not-found";
 import { ImgViewer } from "@/components/widgets/img-viewer";
 import { Limitation } from "@/components/widgets/limitation";
+import { MContainer } from "@/components/widgets/m-container";
 import { Pagination } from "@/components/widgets/pagination";
 import { RowOptions } from "@/components/widgets/row-options";
-import { FormattedTableRow, DataProps } from "@/constants/interfaces";
+import { DataProps, FormattedTableRow } from "@/constants/interfaces";
 import {
   GAP,
   GRID_BATCH_OPTIONS_CONTAINER_BG,
@@ -36,6 +38,7 @@ import {
   Presence,
   SimpleGrid,
   StackProps,
+  useBreakpointValue,
 } from "@chakra-ui/react";
 import { Fragment, useState } from "react";
 
@@ -395,8 +398,11 @@ const DataGridDisplay = (props: DataGridProps) => {
     });
   }
 
+  // SX
+  const rSpacingMd = useBreakpointValue(R_SPACING_MD);
+
   return (
-    <CContainer flex={1} overflowY={"auto"} pos={"relative"} {...restProps}>
+    <StackV flex={1} overflowY={"auto"} pos={"relative"} {...restProps}>
       {/* Batch Options */}
       <Presence
         present={shouldShowBatch}
@@ -450,12 +456,12 @@ const DataGridDisplay = (props: DataGridProps) => {
         </HStack>
       </Presence>
 
-      <CContainer
-        // borderTop={"1px solid"}
-        borderColor={"border.muted"}
+      <StackV
+        px={R_SPACING_MD}
+        pt={`calc(${rSpacingMd} - 8px)`}
         overflowY={"auto"}
       >
-        <CContainer className={"scrollY"} flex={1} p={R_SPACING_MD}>
+        <MContainer className={"scrollY"} flex={1} pt={"8px"} pb={R_SPACING_MD}>
           <SimpleGrid
             templateColumns={`repeat(auto-fill, minmax(${minChildWidth}, 1fr))`}
             gap={GAP}
@@ -502,8 +508,8 @@ const DataGridDisplay = (props: DataGridProps) => {
               );
             })}
           </SimpleGrid>
-        </CContainer>
-      </CContainer>
+        </MContainer>
+      </StackV>
 
       {hasFooter && (
         <>
@@ -546,7 +552,7 @@ const DataGridDisplay = (props: DataGridProps) => {
           )}
         </>
       )}
-    </CContainer>
+    </StackV>
   );
 };
 

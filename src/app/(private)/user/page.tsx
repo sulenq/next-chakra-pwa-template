@@ -26,7 +26,7 @@ import {
   RowOptionsTableOptionGenerator,
 } from "@/constants/interfaces";
 import { SVGS_PATH } from "@/constants/paths";
-import { BASE_ICON_BOX_SIZE, R_SPACING_MD } from "@/constants/styles";
+import { BASE_ICON_BOX_SIZE, GAP, R_SPACING_MD } from "@/constants/styles";
 import { useDataDisplay } from "@/contexts/useDataDisplay";
 import { useLocale } from "@/contexts/useLocale";
 import useRenderTrigger from "@/contexts/useRenderTrigger";
@@ -603,7 +603,7 @@ const Content = () => {
   const [filter, setFilter] = useState(DEFAULT_FILTER);
 
   return (
-    <View.Content>
+    <View.Content p={GAP}>
       <CContainer flex={1} overflowY={"auto"}>
         <View.Header withTitle justify={"space-between"}>
           <HStack>
