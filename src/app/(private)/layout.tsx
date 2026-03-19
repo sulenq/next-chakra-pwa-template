@@ -403,9 +403,10 @@ const DesktopLayout = (props: any) => {
                 pb={
                   isNavsExpanded
                     ? `calc(${USER_PANEL_H} + ${rSpacingMd})`
-                    : `calc(36px + (${rSpacingMd} * 2))`
+                    : `calc(36px + (${rSpacingMd} * 3))`
                 }
                 mb={GAP}
+                transition={"300ms"}
               >
                 <DesktopNavs
                   navs={PRIVATE_NAV_GROUPS}

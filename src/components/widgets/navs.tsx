@@ -595,6 +595,7 @@ export const UserPanel = (props: UserPanelProps) => {
       bg={"bg.frosted"}
       rounded={themeConfig.radii.component}
       backdropFilter={BLUR_BACKDROP_FILTER}
+      overflow={"clip"}
     >
       {navsExpanded && (
         <StackH justify={"space-between"} gap={R_SPACING_MD} p={R_SPACING_MD}>
