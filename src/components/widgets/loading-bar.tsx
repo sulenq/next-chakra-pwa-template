@@ -65,7 +65,7 @@ export function LoadingBar(props: BoxProps) {
         h={"full"}
         bg={themeConfig.primaryColor}
         opacity={visible ? 1 : 0}
-        transition="width 300ms linear, opacity 300ms ease"
+        transition="width 200ms linear, opacity 200ms ease"
       />
     </Box>
   );

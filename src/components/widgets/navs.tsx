@@ -628,16 +628,16 @@ export const UserPanel = (props: UserPanelProps) => {
         justify={"space-between"}
         gap={4}
         w={navsExpanded ? "full" : "36px"}
-        p={navsExpanded ? 3 : "2px"}
+        p={navsExpanded ? 3 : 0}
         pos={"relative"}
-        transition={"300ms"}
+        transition={"200ms"}
       >
         {navsExpanded ? (
           <Avatar
             src={imgUrl(user?.avatar?.[0]?.filePath)}
             name={user?.name}
             size={"lg"}
-            transition={"300ms"}
+            transition={"200ms"}
           />
         ) : (
           <ProfileMenuTrigger
@@ -650,12 +650,18 @@ export const UserPanel = (props: UserPanelProps) => {
                 },
               },
             }}
+            p={"2px"}
+            rounded={"full"}
+            transition={"200ms"}
+            _hover={{
+              bg: "bg.muted",
+            }}
           >
             <Avatar
               src={imgUrl(user?.avatar?.[0]?.filePath)}
               name={user?.name}
               size={"xs"}
-              transition={"300ms"}
+              transition={"200ms"}
               cursor={"pointer"}
             />
           </ProfileMenuTrigger>
