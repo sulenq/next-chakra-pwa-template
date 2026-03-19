@@ -13,7 +13,7 @@ import { Confirmation } from "@/components/widgets/confirmation";
 import { LucideIcon } from "@/components/widgets/icon";
 import { DotIndicator } from "@/components/widgets/indicator";
 import { AUTH_API_SIGNOUT } from "@/constants/apis";
-import { BASE_ICON_BOX_SIZE, BACKDROP_BLUR_FILTER } from "@/constants/styles";
+import { BACKDROP_BLUR_FILTER, BASE_ICON_BOX_SIZE } from "@/constants/styles";
 import useADM from "@/contexts/useADM";
 import { useAuthMiddleware } from "@/contexts/useAuthMiddleware";
 import { useLocale } from "@/contexts/useLocale";
@@ -25,7 +25,13 @@ import { back, removeStorage } from "@/utils/client";
 import { pluckString } from "@/utils/string";
 import { imgUrl } from "@/utils/url";
 import { Icon, PopoverRootProps, StackProps } from "@chakra-ui/react";
-import { EclipseIcon, LogOutIcon, SettingsIcon, UserIcon } from "lucide-react";
+import {
+  CircleCheckBigIcon,
+  EclipseIcon,
+  LogOutIcon,
+  SettingsIcon,
+  UserIcon,
+} from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useRef, useState } from "react";
 
@@ -42,9 +48,20 @@ const MENUS = [
   },
 ];
 
+export const TodoList = (props: StackProps) => {
+  return <StackV {...props}></StackV>;
+};
+
+export const TodoListTrigger = () => {
+  return <></>;
+};
+
+// -----------------------------------------------------------------
+
 interface ProfileMenuProps extends StackProps {
   handleClose?: () => void;
 }
+
 export const ProfileMenu = (props: ProfileMenuProps) => {
   // Props
   const { handleClose, ...restProps } = props;
@@ -69,7 +86,7 @@ export const ProfileMenu = (props: ProfileMenuProps) => {
   const user = getUserData();
 
   // Utils
-  function onSignout() {
+  function handleSignout() {
     back();
 
     const url = AUTH_API_SIGNOUT;
@@ -133,7 +150,7 @@ export const ProfileMenu = (props: ProfileMenuProps) => {
             onClick={toggleColorMode}
           >
             <AppIconLucide icon={EclipseIcon} />
-            Dark Mode
+            Dark mode
             <DotIndicator
               color={colorMode === "dark" ? "fg.success" : "bg.muted"}
               ml={"auto"}
@@ -141,6 +158,20 @@ export const ProfileMenu = (props: ProfileMenuProps) => {
             />
           </Btn>
         )}
+
+        <Btn
+          clicky={false}
+          px={2}
+          variant={"ghost"}
+          justifyContent={"start"}
+          pos={"relative"}
+          onClick={() => {
+            handleClose?.();
+          }}
+        >
+          <AppIconLucide icon={CircleCheckBigIcon} />
+          Todo list
+        </Btn>
 
         {MENUS.map((menu) => {
           return (
@@ -169,7 +200,7 @@ export const ProfileMenu = (props: ProfileMenuProps) => {
           description={t.msg_signout}
           confirmLabel="Sign out"
           onConfirm={() => {
-            onSignout();
+            handleSignout();
             handleClose?.();
           }}
           confirmButtonProps={{
@@ -189,7 +220,7 @@ export const ProfileMenu = (props: ProfileMenuProps) => {
             <Icon boxSize={BASE_ICON_BOX_SIZE}>
               <LucideIcon icon={LogOutIcon} />
             </Icon>
-            Sign Out
+            Sign out
           </Btn>
         </Confirmation.Trigger>
       </StackV>
@@ -197,9 +228,12 @@ export const ProfileMenu = (props: ProfileMenuProps) => {
   );
 };
 
+// -----------------------------------------------------------------
+
 interface ProfileMenuTriggerProps extends StackProps {
   popoverRootProps?: Omit<PopoverRootProps, "children">;
 }
+
 export const ProfileMenuTrigger = (props: ProfileMenuTriggerProps) => {
   // Props
   const { popoverRootProps, ...restProps } = props;

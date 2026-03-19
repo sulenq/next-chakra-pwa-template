@@ -74,7 +74,7 @@ const ItemContent = forwardRef<HTMLDivElement, ItemContentProps>(
       <CContainer
         ref={ref}
         className={`${scrollY ? "scrollY" : ""} ${className}`}
-        bg={"bg.frosted"}
+        bg={"bg.body"}
         rounded={roundedless ? "" : themeConfig.radii.component}
         border={borderless ? "" : "1px solid"}
         borderColor={"border.muted"}

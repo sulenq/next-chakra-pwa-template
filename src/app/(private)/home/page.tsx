@@ -391,6 +391,7 @@ const Chart1 = (props: any) => {
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
           userSelect={"none"}
+          overflow={"visible"}
         >
           <Chart.Root maxH="md" chart={chart} cursor={"grab !important"}>
             <LineChart
@@ -552,11 +553,11 @@ const Content = () => {
     error: <FeedbackRetry onRetry={onRetry} />,
     empty: <FeedbackNoData />,
     loaded: data && (
-      <StackV gap={GAP}>
+      <Item.Container gap={GAP} p={R_SPACING_MD}>
         <Overview data={data.overview} />
 
         <Usage data={data.usage} filter={filter} />
-      </StackV>
+      </Item.Container>
     ),
   };
 
