@@ -20,6 +20,7 @@ import { Pagination } from "@/components/widgets/pagination";
 import { RowOptions } from "@/components/widgets/row-options";
 import { DataProps, FormattedTableRow } from "@/constants/interfaces";
 import {
+  BACKDROP_BLUR_FILTER,
   GAP,
   GRID_BATCH_OPTIONS_CONTAINER_BG,
   GRID_FOOTER_BORDER_COLOR,
@@ -128,7 +129,7 @@ export const DataGridItem = (props: DataGridItemProps) => {
               key={item.img}
               src={item.img}
               aspectRatio={1.1}
-              rounded={themeConfig.radii.component}
+              rounded={`calc(${themeConfig.radii.component} - 4px)`}
               fallbackSrc={item.imgFallbackSrc}
             />
           </ImgViewer>
@@ -424,6 +425,7 @@ const DataGridDisplay = (props: DataGridProps) => {
           <HStack
             gap={1}
             bg={GRID_BATCH_OPTIONS_CONTAINER_BG}
+            backdropFilter={BACKDROP_BLUR_FILTER}
             p={1}
             border={"1px solid"}
             borderColor={"border.muted"}

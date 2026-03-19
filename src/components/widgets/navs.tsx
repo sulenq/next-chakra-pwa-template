@@ -16,7 +16,7 @@ import { ProfileMenuTrigger } from "@/components/widgets/profile-menu";
 import { Interface__NavGroup } from "@/constants/interfaces";
 import {
   BASE_ICON_BOX_SIZE,
-  BLUR_BACKDROP_FILTER,
+  BACKDROP_BLUR_FILTER,
   DESKTOP_ACTIVE_NAV_BTN_VARIANT,
   DESKTOP_NAVS_COLOR,
   DESKTOP_NAVS_POPOVER_MAIN_AXIS,
@@ -594,7 +594,7 @@ export const UserPanel = (props: UserPanelProps) => {
       p={navsExpanded ? 0 : R_SPACING_MD}
       bg={"bg.frosted"}
       rounded={themeConfig.radii.component}
-      backdropFilter={BLUR_BACKDROP_FILTER}
+      backdropFilter={BACKDROP_BLUR_FILTER}
       overflow={"clip"}
     >
       {navsExpanded && (

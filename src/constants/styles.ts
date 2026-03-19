@@ -35,7 +35,7 @@ export const DESKTOP_NAVS_TOOLTIP_MAIN_AXIS = 8;
 
 // Effects
 export const BLUR_RADIUS = "20px";
-export const BLUR_BACKDROP_FILTER = `blur(${BLUR_RADIUS})`;
+export const BACKDROP_BLUR_FILTER = `blur(${BLUR_RADIUS})`;
 
 // --- Widgets ---
 // Data Table
