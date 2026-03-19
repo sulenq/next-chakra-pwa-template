@@ -2,18 +2,18 @@
 
 import { Avatar } from "@/components/ui/avatar";
 import { Btn } from "@/components/ui/btn";
-import { CContainer } from "@/components/ui/c-container";
 import { useColorMode } from "@/components/ui/color-mode";
 import { Divider } from "@/components/ui/divider";
 import { NavLink } from "@/components/ui/nav-link";
 import { P } from "@/components/ui/p";
 import { Popover } from "@/components/ui/popover";
+import { StackV } from "@/components/ui/stack";
 import { AppIconLucide } from "@/components/widgets/app-icon";
 import { Confirmation } from "@/components/widgets/confirmation";
 import { LucideIcon } from "@/components/widgets/icon";
 import { DotIndicator } from "@/components/widgets/indicator";
 import { AUTH_API_SIGNOUT } from "@/constants/apis";
-import { BASE_ICON_BOX_SIZE } from "@/constants/styles";
+import { BASE_ICON_BOX_SIZE, BLUR_BACKDROP_FILTER } from "@/constants/styles";
 import useADM from "@/contexts/useADM";
 import { useAuthMiddleware } from "@/contexts/useAuthMiddleware";
 import { useLocale } from "@/contexts/useLocale";
@@ -96,15 +96,15 @@ export const ProfileMenu = (props: ProfileMenuProps) => {
   }
 
   return (
-    <CContainer
+    <StackV
       rounded={themeConfig.radii.container}
       overflow={"clip"}
-      bg={"bg.body"}
+      bg={"bg.frosted"}
       color={"fg.ibody"}
       {...restProps}
     >
-      <CContainer>
-        <CContainer p={1} pb={0}>
+      <StackV>
+        <StackV p={1} pb={0}>
           <Avatar
             src={imgUrl(user?.avatar?.[0]?.filePath)}
             name={user?.name}
@@ -114,17 +114,17 @@ export const ProfileMenu = (props: ProfileMenuProps) => {
             rounded={themeConfig.radii.component}
             fontSize={"4rem"}
           />
-        </CContainer>
+        </StackV>
 
-        <CContainer bg={"bg.body"} p={4} borderColor={"border.muted"}>
+        <StackV p={4} borderColor={"border.muted"}>
           <P fontWeight={"semibold"}>{user?.name || "Signed out"}</P>
           <P color={"fg.subtle"}>{user?.email || user?.username || "-"}</P>
-        </CContainer>
-      </CContainer>
+        </StackV>
+      </StackV>
 
       <Divider />
 
-      <CContainer gap={1} p={"6px"}>
+      <StackV gap={1} p={"6px"}>
         {!ADM && (
           <Btn
             clicky={false}
@@ -192,8 +192,8 @@ export const ProfileMenu = (props: ProfileMenuProps) => {
             Sign Out
           </Btn>
         </Confirmation.Trigger>
-      </CContainer>
-    </CContainer>
+      </StackV>
+    </StackV>
   );
 };
 
@@ -204,7 +204,10 @@ export const ProfileMenuTrigger = (props: ProfileMenuTriggerProps) => {
   // Props
   const { popoverRootProps, ...restProps } = props;
 
-  // Refss
+  // Contexts
+  const { themeConfig } = useThemeConfig();
+
+  // Refs
   const containerRef = useRef<HTMLDivElement>(null);
 
   // Hooks
@@ -224,13 +227,15 @@ export const ProfileMenuTrigger = (props: ProfileMenuTriggerProps) => {
   return (
     <Popover.Root open={open} {...popoverRootProps}>
       <Popover.Trigger asChild>
-        <CContainer w={"fit"} onClick={handleOpen} {...restProps} />
+        <StackV w={"fit"} onClick={handleOpen} {...restProps} />
       </Popover.Trigger>
 
       <Popover.Content
         ref={containerRef}
         w={"225px"}
-        // border={"none"}
+        bg={"transparent"}
+        backdropFilter={BLUR_BACKDROP_FILTER}
+        rounded={themeConfig.radii.container}
         zIndex={10}
       >
         <ProfileMenu handleClose={handleClose} />
