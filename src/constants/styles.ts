@@ -22,7 +22,7 @@ export const FIREFOX_SCROLL_Y_CLASS_PR_PREFIX = "6px";
 export const TOP_BAR_H = "60px";
 export const BASE_ICON_BOX_SIZE = 4.5;
 export const MENU_ICON_BOX_SIZE = 4.5;
-export const USER_PANEL_H = "128px";
+export const USER_PANEL_H = "122px";
 
 // Spacing
 export const R_SPACING_MD = ["4px", null, "8px"];

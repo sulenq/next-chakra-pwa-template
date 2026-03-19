@@ -628,7 +628,7 @@ export const UserPanel = (props: UserPanelProps) => {
         justify={"space-between"}
         gap={4}
         w={navsExpanded ? "full" : "36px"}
-        p={navsExpanded ? 3 : 0}
+        p={navsExpanded ? R_SPACING_MD : 0}
         pos={"relative"}
         transition={"200ms"}
       >

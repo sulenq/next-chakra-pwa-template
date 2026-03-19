@@ -83,14 +83,17 @@ export const ImgViewer = (props: ImgViewerProps) => {
               <StackV flex={1} gap={4} align={"center"} p={8} overflow={"auto"}>
                 <Img
                   src={src || fallbackSrc || `${SVGS_PATH}/no-img.svg`}
-                  w={"100%"}
-                  h={"100%"}
+                  w={"50%"}
+                  h={"50%"}
                   objectFit={"contain"}
                   onClick={(e) => {
                     e.stopPropagation();
                   }}
                   imageProps={{
                     unoptimized: true,
+                  }}
+                  fallbackProps={{
+                    bg: "bg.body",
                   }}
                   m={"auto"}
                 />

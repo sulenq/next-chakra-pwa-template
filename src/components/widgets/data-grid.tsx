@@ -90,9 +90,9 @@ export const DataGridItem = (props: DataGridItemProps) => {
       key={item.id}
       flex={1}
       bg={GRID_ITEM_CONTAINER_BG}
-      // border={"1px solid"}
-      borderColor={isRowSelected ? selectedColor : "border.subtle"}
-      rounded={themeConfig.radii.container}
+      border={"1px solid"}
+      borderColor={isRowSelected ? selectedColor : "transparent"}
+      rounded={themeConfig.radii.component}
       overflow={"clip"}
       pos={"relative"}
       {...restProps}

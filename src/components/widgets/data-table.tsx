@@ -222,7 +222,7 @@ export const DataTableDisplay = (props: DataTableProps) => {
           flex={1}
           pb={R_SPACING_MD}
           bg={TABLE_CONTAINER_BG}
-          // rounded={themeConfig.radii.component}
+          roundedTop={themeConfig.radii.component}
           {...contentContainerProps}
         >
           <Table.Root

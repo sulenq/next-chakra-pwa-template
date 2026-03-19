@@ -2,12 +2,12 @@
 
 import { CContainer } from "@/components/ui/c-container";
 import { SVGS_PATH } from "@/constants/paths";
-import { Center, Icon, StackProps } from "@chakra-ui/react";
+import { Center, CenterProps, Icon, StackProps } from "@chakra-ui/react";
 import { ImageIcon, LucideIcon } from "lucide-react";
 import Image, { ImageProps } from "next/image";
 import { forwardRef, useEffect, useState } from "react";
 
-interface ImgFallbackProps extends StackProps {
+interface ImgFallbackProps extends CenterProps {
   icon?: LucideIcon;
 }
 export const ImgFallback = (props: ImgFallbackProps) => {
@@ -16,7 +16,7 @@ export const ImgFallback = (props: ImgFallbackProps) => {
   return (
     <Center
       w={"full"}
-      h={"full"}
+      h={"fit"}
       aspectRatio={1}
       bg={"bg.muted"}
       pos={"relative"}
@@ -39,6 +39,7 @@ export interface ImgProps extends StackProps {
   fallback?: React.ReactNode;
   wide?: boolean;
   imageProps?: Omit<ImageProps, "src" | "width" | "height" | "alt">;
+  fallbackProps?: CenterProps;
 }
 export const Img = forwardRef<HTMLImageElement, ImgProps>((props, ref) => {
   const {
@@ -50,10 +51,13 @@ export const Img = forwardRef<HTMLImageElement, ImgProps>((props, ref) => {
     imageProps,
     fluid,
     fallbackSrc,
-    fallback = <ImgFallback />,
+    fallback,
+    fallbackProps,
     wide,
     ...restProps
   } = props;
+
+  const resolvedFallback = fallback ?? <ImgFallback {...fallbackProps} />;
 
   const resolvedFallbackSrc =
     fallbackSrc ??
@@ -85,8 +89,8 @@ export const Img = forwardRef<HTMLImageElement, ImgProps>((props, ref) => {
       overflow={restProps.rounded ? "clip" : ""}
       {...restProps}
     >
-      {isError && fallback ? (
-        fallback
+      {isError && resolvedFallback ? (
+        resolvedFallback
       ) : (
         <Image
           ref={ref}
