@@ -1,6 +1,7 @@
 "use client";
 
 import { Disclosure } from "@/components/ui/disclosure";
+import { useThemeConfig } from "@/contexts/useThemeConfig";
 import { useIsSmScreenWidth } from "@/hooks/useIsSmScreenWidth";
 import { useState } from "react";
 
@@ -28,6 +29,9 @@ export const SimpleDisclosure = (props: SimpleDisclosureProps) => {
     ...restProps
   } = props;
 
+  // Contexts
+  const { themeConfig } = useThemeConfig();
+
   // Hooks
   const iss = useIsSmScreenWidth();
 
@@ -45,6 +49,7 @@ export const SimpleDisclosure = (props: SimpleDisclosureProps) => {
         positionerProps={{
           p: !maximize && !iss ? 4 : 0,
         }}
+        rounded={maximize ? 0 : themeConfig.radii.container}
       >
         <Disclosure.Header {...headerProps}>
           <Disclosure.HeaderContent
