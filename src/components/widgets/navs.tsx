@@ -2,6 +2,7 @@ import { Accordion } from "@/components/ui/accordion";
 import { Avatar } from "@/components/ui/avatar";
 import { Btn } from "@/components/ui/btn";
 import { CContainer } from "@/components/ui/c-container";
+import { ColorModeButton } from "@/components/ui/color-mode";
 import { Menu } from "@/components/ui/menu";
 import { NavLink, NavLinkProps } from "@/components/ui/nav-link";
 import { P } from "@/components/ui/p";
@@ -39,7 +40,6 @@ import {
   BellIcon,
   CircleCheckBigIcon,
   EllipsisVerticalIcon,
-  LogOutIcon,
   SettingsIcon,
   UserIcon,
 } from "lucide-react";
@@ -598,9 +598,7 @@ export const UserPanel = (props: UserPanelProps) => {
     >
       {navsExpanded && (
         <StackH justify={"space-between"} gap={R_SPACING_MD} p={R_SPACING_MD}>
-          <Btn iconButton clicky={false} variant={"outline"}>
-            <AppIconLucide icon={UserIcon} />
-          </Btn>
+          <ColorModeButton variant={"outline"} />
 
           <Btn iconButton clicky={false} variant={"outline"}>
             <AppIconLucide icon={CircleCheckBigIcon} />
@@ -610,15 +608,17 @@ export const UserPanel = (props: UserPanelProps) => {
             <AppIconLucide icon={BellIcon} />
           </Btn>
 
+          <NavLink to={"/settings/profile"}>
+            <Btn iconButton clicky={false} variant={"outline"}>
+              <AppIconLucide icon={UserIcon} />
+            </Btn>
+          </NavLink>
+
           <NavLink to={"/settings"}>
             <Btn iconButton clicky={false} variant={"outline"}>
               <AppIconLucide icon={SettingsIcon} />
             </Btn>
           </NavLink>
-
-          <Btn iconButton clicky={false} variant={"outline"}>
-            <AppIconLucide icon={LogOutIcon} color={"fg.error"} />
-          </Btn>
         </StackH>
       )}
 
@@ -645,7 +645,7 @@ export const UserPanel = (props: UserPanelProps) => {
                 placement: "right-end",
                 offset: {
                   mainAxis: 20,
-                  crossAxis: 160,
+                  crossAxis: 20,
                 },
               },
             }}
@@ -677,7 +677,7 @@ export const UserPanel = (props: UserPanelProps) => {
                   placement: "right-end",
                   offset: {
                     mainAxis: 20,
-                    crossAxis: 160,
+                    crossAxis: 20,
                   },
                 },
               }}

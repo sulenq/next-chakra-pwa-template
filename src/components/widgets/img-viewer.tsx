@@ -6,6 +6,7 @@ import { CloseButton } from "@/components/ui/close-button";
 import { DialogBody, DialogContent, DialogRoot } from "@/components/ui/dialog";
 import { Img } from "@/components/ui/img";
 import { NavLink } from "@/components/ui/nav-link";
+import { StackV } from "@/components/ui/stack";
 import { SVGS_PATH } from "@/constants/paths";
 import { useLocale } from "@/contexts/useLocale";
 import { usePopDisclosure } from "@/hooks/usePopDisclosure";
@@ -55,36 +56,43 @@ export const ImgViewer = (props: ImgViewerProps) => {
         {children}
       </CContainer>
 
-      <DialogRoot open={open} size={"cover"}>
+      <DialogRoot open={open} size={"full"} scrollBehavior={"inside"}>
         <DialogContent bg={"transparent"} onClick={back}>
-          <DialogBody>
-            <CContainer flex={1} h={"full"} justify={"center"}>
-              <CContainer gap={4} align={"center"} m={"auto"}>
-                <CloseButton
-                  colorPalette={"light"}
-                  w={"fit"}
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    back();
-                  }}
-                  rounded={"full"}
-                  pos={"absolute"}
-                  top={4}
-                  right={4}
-                />
+          <DialogBody p={0} overflow={"auto"}>
+            <StackV
+              flex={1}
+              h={"calc(100svh - 32px)"}
+              justify={"center"}
+              overflow={"auto"}
+              pos={"relative"}
+            >
+              <CloseButton
+                colorPalette={"light"}
+                w={"fit"}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  back();
+                }}
+                rounded={"full"}
+                pos={"absolute"}
+                top={4}
+                right={4}
+                zIndex={2}
+              />
 
+              <StackV flex={1} gap={4} align={"center"} p={8} overflow={"auto"}>
                 <Img
                   src={src || fallbackSrc || `${SVGS_PATH}/no-img.svg`}
-                  fluid
-                  minH={"400px"}
-                  bg={"bg.body"}
+                  w={"100%"}
+                  h={"100%"}
+                  objectFit={"contain"}
                   onClick={(e) => {
                     e.stopPropagation();
                   }}
                   imageProps={{
                     unoptimized: true,
                   }}
-                  mt={["56px", null, "60px"]}
+                  m={"auto"}
                 />
 
                 <NavLink to={src} w={"fit"} external>
@@ -100,8 +108,8 @@ export const ImgViewer = (props: ImgViewerProps) => {
                     </Icon>
                   </Btn>
                 </NavLink>
-              </CContainer>
-            </CContainer>
+              </StackV>
+            </StackV>
           </DialogBody>
         </DialogContent>
       </DialogRoot>

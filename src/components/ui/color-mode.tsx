@@ -1,15 +1,16 @@
 "use client";
 
+import { Btn } from "@/components/ui/btn";
+import { Tooltip, TooltipProps } from "@/components/ui/tooltip";
 import useADM from "@/contexts/useADM";
 import { useLocale } from "@/contexts/useLocale";
 import type { IconButtonProps, SpanProps } from "@chakra-ui/react";
-import { ClientOnly, Icon, IconButton, Skeleton, Span } from "@chakra-ui/react";
+import { ClientOnly, Icon, Skeleton, Span } from "@chakra-ui/react";
 import { IconMoon2, IconSun } from "@tabler/icons-react";
 import type { ThemeProviderProps } from "next-themes";
 import { ThemeProvider, useTheme } from "next-themes";
 import * as React from "react";
 import { forwardRef } from "react";
-import { Tooltip, TooltipProps } from "@/components/ui/tooltip";
 
 export interface ColorModeProviderProps extends ThemeProviderProps {}
 interface ColorModeButtonProps extends Omit<IconButtonProps, "aria-label"> {
@@ -70,15 +71,16 @@ export const ColorModeButton = forwardRef<
         content={ADMActive ? t.msg_ADM_active : t.msg_toggle_dark_mode}
         {...tooltipProps}
       >
-        <IconButton
-          onClick={toggleColorMode}
-          variant="ghost"
-          aria-label="Toggle color mode"
-          size="sm"
-          disabled={ADMActive}
+        <Btn
+          iconButton
+          clicky={false}
           ref={ref}
+          variant="ghost"
+          size={"sm"}
+          aria-label={"Toggle color mode"}
+          disabled={ADMActive}
+          onClick={toggleColorMode}
           {...restProps}
-          boxSize={""}
         >
           <Icon boxSize={props.boxSize || 5}>
             {colorMode === "dark" ? (
@@ -87,7 +89,7 @@ export const ColorModeButton = forwardRef<
               <IconSun stroke={1.5} />
             )}
           </Icon>
-        </IconButton>
+        </Btn>
       </Tooltip>
     </ClientOnly>
   );

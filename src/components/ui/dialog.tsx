@@ -7,6 +7,7 @@ import {
   Dialog as ChakraDialog,
   DialogPositionerProps,
   Portal,
+  useDialogContext,
 } from "@chakra-ui/react";
 import { forwardRef, useRef, useState } from "react";
 
@@ -33,6 +34,10 @@ export const DialogContent = forwardRef<HTMLDivElement, DialogContentProps>(
       ...rest
     } = props;
 
+    // Contexts
+    const {} = useDialogContext();
+
+    // States
     const [isMouseDownInsideContent, setIsMouseDownInsideContent] =
       useState(false);
 
@@ -75,8 +80,8 @@ export const DialogContent = forwardRef<HTMLDivElement, DialogContentProps>(
             }}
             minH={sh < 500 ? "90dvh" : ""}
             maxH={"full"}
-            bg="bg.body"
-            shadow="none"
+            bg={"bg.body"}
+            shadow={"none"}
             onClick={(e) => {
               e.stopPropagation();
             }}
