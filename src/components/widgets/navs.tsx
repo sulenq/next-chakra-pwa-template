@@ -15,7 +15,7 @@ import { ProfileMenuTrigger } from "@/components/widgets/profile-menu";
 import { Interface__NavGroup } from "@/constants/interfaces";
 import {
   BASE_ICON_BOX_SIZE,
-  BLUR_RADIUS,
+  BLUR_BACKDROP_FILTER,
   DESKTOP_ACTIVE_NAV_BTN_VARIANT,
   DESKTOP_NAVS_COLOR,
   DESKTOP_NAVS_POPOVER_MAIN_AXIS,
@@ -35,7 +35,14 @@ import { pluckString } from "@/utils/string";
 import { imgUrl } from "@/utils/url";
 import { Box, Center, HStack, Icon, StackProps } from "@chakra-ui/react";
 import { IconCircleFilled } from "@tabler/icons-react";
-import { ChevronsUpDownIcon } from "lucide-react";
+import {
+  BellIcon,
+  CircleCheckBigIcon,
+  EllipsisVerticalIcon,
+  LogOutIcon,
+  SettingsIcon,
+  UserIcon,
+} from "lucide-react";
 import { usePathname } from "next/navigation";
 import { Fragment } from "react";
 
@@ -568,11 +575,11 @@ export const DesktopNavs = (props: DesktopNavsProps) => {
 
 // -----------------------------------------------------------------
 
-interface DesktopUserQuickPanelProps {
+interface UserPanelProps {
   navsExpanded: boolean;
 }
 
-export const DesktopUserQuickPanel = (props: DesktopUserQuickPanelProps) => {
+export const UserPanel = (props: UserPanelProps) => {
   // Props
   const { navsExpanded } = props;
 
@@ -583,28 +590,45 @@ export const DesktopUserQuickPanel = (props: DesktopUserQuickPanelProps) => {
   const user = getUserData();
 
   return (
-    <ProfileMenuTrigger
-      w={"full"}
-      popoverRootProps={{
-        positioning: {
-          placement: "right-end",
-        },
-      }}
+    <StackV
+      bg={"bg.frosted"}
+      backdropFilter={BLUR_BACKDROP_FILTER}
+      rounded={themeConfig.radii.component}
     >
+      {navsExpanded && (
+        <StackH justify={"space-between"} gap={R_SPACING_MD} p={R_SPACING_MD}>
+          <Btn iconButton clicky={false} variant={"outline"}>
+            <AppIconLucide icon={UserIcon} />
+          </Btn>
+
+          <Btn iconButton clicky={false} variant={"outline"}>
+            <AppIconLucide icon={CircleCheckBigIcon} />
+          </Btn>
+
+          <Btn iconButton clicky={false} variant={"outline"}>
+            <AppIconLucide icon={BellIcon} />
+          </Btn>
+
+          <NavLink to={"/settings"}>
+            <Btn iconButton clicky={false} variant={"outline"}>
+              <AppIconLucide icon={SettingsIcon} />
+            </Btn>
+          </NavLink>
+
+          <Btn iconButton clicky={false} variant={"outline"}>
+            <AppIconLucide icon={LogOutIcon} color={"fg.error"} />
+          </Btn>
+        </StackH>
+      )}
+
       <StackH
         align={"center"}
+        justify={"space-between"}
         gap={4}
         w={navsExpanded ? "full" : "36px"}
         p={navsExpanded ? 3 : "2px"}
-        bg={"bg.frosted"}
-        backdropFilter={`blur(${BLUR_RADIUS})`}
-        rounded={themeConfig.radii.component}
-        cursor={"pointer"}
         pos={"relative"}
         transition={"300ms"}
-        _hover={{
-          bg: "bg.muted",
-        }}
       >
         <Avatar
           src={imgUrl(user?.avatar?.[0]?.filePath)}
@@ -624,16 +648,21 @@ export const DesktopUserQuickPanel = (props: DesktopUserQuickPanelProps) => {
               </P>
             </CContainer>
 
-            <AppIconLucide
-              icon={ChevronsUpDownIcon}
-              boxSize={BASE_ICON_BOX_SIZE}
-              color={"fg.subtle"}
-              mr={1}
-            />
+            <ProfileMenuTrigger
+              popoverRootProps={{
+                positioning: {
+                  placement: "right-end",
+                },
+              }}
+            >
+              <Btn iconButton clicky={false} variant={"ghost"} w={"fit"}>
+                <AppIconLucide icon={EllipsisVerticalIcon} />
+              </Btn>
+            </ProfileMenuTrigger>
           </>
         )}
       </StackH>
-    </ProfileMenuTrigger>
+    </StackV>
   );
 };
 

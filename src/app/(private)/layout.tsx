@@ -22,7 +22,7 @@ import { MContainer } from "@/components/widgets/m-container";
 import {
   DesktopNavs,
   DesktopNavTooltip,
-  DesktopUserQuickPanel,
+  UserPanel,
   MobileNavLink,
 } from "@/components/widgets/navs";
 import { ProfileMenuTrigger } from "@/components/widgets/profile-menu";
@@ -43,6 +43,7 @@ import {
   MOBILE_NAVS_COLOR,
   MOBILE_POPOVER_MAIN_AXIS,
   R_SPACING_MD,
+  USER_PANEL_H,
 } from "@/constants/styles";
 import { useLocale } from "@/contexts/useLocale";
 import useNavs from "@/contexts/useNavs";
@@ -312,7 +313,7 @@ const DesktopLayout = (props: any) => {
   const pathname = usePathname();
 
   // SX
-  const NAVS_PX = useBreakpointValue(R_SPACING_MD);
+  const rSpacingMd = useBreakpointValue(R_SPACING_MD);
 
   return (
     <StackV w={"full"} h={`calc(100svh)`} overflowY={"auto"}>
@@ -329,8 +330,8 @@ const DesktopLayout = (props: any) => {
           flexShrink={0}
           w={
             isNavsExpanded
-              ? `calc(250px + (${NAVS_PX} * 2) + ${GAP})`
-              : `calc(36px + (${NAVS_PX} * 2) + ${GAP})`
+              ? `calc(250px + (${rSpacingMd} * 2) + ${GAP})`
+              : `calc(36px + (${rSpacingMd} * 2) + ${GAP})`
           }
           transition={"300ms"}
           pos={"relative"}
@@ -399,7 +400,11 @@ const DesktopLayout = (props: any) => {
                 flex={1}
                 px={R_SPACING_MD}
                 pt={R_SPACING_MD}
-                pb={"100px"}
+                pb={
+                  isNavsExpanded
+                    ? `calc(${USER_PANEL_H} + ${rSpacingMd})`
+                    : `cacl(36px + ${rSpacingMd})`
+                }
                 mb={GAP}
                 overflowY={"auto"}
               >
@@ -478,7 +483,7 @@ const DesktopLayout = (props: any) => {
                 bottom={0}
                 zIndex={2}
               >
-                <DesktopUserQuickPanel navsExpanded={isNavsExpanded} />
+                <UserPanel navsExpanded={isNavsExpanded} />
               </StackV>
             </StackV>
           </StackV>

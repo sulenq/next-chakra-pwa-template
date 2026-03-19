@@ -22,6 +22,7 @@ export const FIREFOX_SCROLL_Y_CLASS_PR_PREFIX = "6px";
 export const TOP_BAR_H = "60px";
 export const BASE_ICON_BOX_SIZE = 4.5;
 export const MENU_ICON_BOX_SIZE = 4.5;
+export const USER_PANEL_H = "128px";
 
 // Spacing
 export const R_SPACING_MD = ["4px", null, "12px"];
@@ -34,6 +35,7 @@ export const DESKTOP_NAVS_TOOLTIP_MAIN_AXIS = 8;
 
 // Effects
 export const BLUR_RADIUS = "20px";
+export const BLUR_BACKDROP_FILTER = `blur(${BLUR_RADIUS})`;
 
 // --- Widgets ---
 // Data Table
