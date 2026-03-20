@@ -30,8 +30,6 @@ export const GAP = "6px";
 
 // Positioning
 export const MOBILE_POPOVER_MAIN_AXIS = 22;
-export const DESKTOP_NAVS_POPOVER_MAIN_AXIS = 20;
-export const DESKTOP_NAVS_TOOLTIP_MAIN_AXIS = 8;
 
 // Effects
 export const BLUR_RADIUS = "10px";

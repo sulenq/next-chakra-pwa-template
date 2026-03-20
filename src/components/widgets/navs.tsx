@@ -15,12 +15,10 @@ import { LeftIndicator } from "@/components/widgets/indicator";
 import { ProfileMenuTrigger } from "@/components/widgets/profile-menu";
 import { Interface__NavGroup } from "@/constants/interfaces";
 import {
-  BASE_ICON_BOX_SIZE,
   BACKDROP_BLUR_FILTER,
+  BASE_ICON_BOX_SIZE,
   DESKTOP_ACTIVE_NAV_BTN_VARIANT,
   DESKTOP_NAVS_COLOR,
-  DESKTOP_NAVS_POPOVER_MAIN_AXIS,
-  DESKTOP_NAVS_TOOLTIP_MAIN_AXIS,
   DESKTOP_NAV_BTN_ICON_BG,
   DESKTOP_NAV_BTN_PX,
   DESKTOP_NAV_BTN_SIZE,
@@ -57,7 +55,7 @@ export const DesktopNavTooltip = (props: TooltipProps) => {
       positioning={{
         placement: "right",
         offset: {
-          mainAxis: DESKTOP_NAVS_TOOLTIP_MAIN_AXIS,
+          mainAxis: 16,
         },
       }}
       {...restProps}
@@ -206,7 +204,7 @@ export const DesktopNavs = (props: DesktopNavsProps) => {
                               positioning={{
                                 placement: "right-start",
                                 offset: {
-                                  mainAxis: DESKTOP_NAVS_POPOVER_MAIN_AXIS,
+                                  mainAxis: 16,
                                 },
                               }}
                             >
@@ -461,9 +459,7 @@ export const DesktopNavs = (props: DesktopNavsProps) => {
                                                   positioning={{
                                                     placement: "right",
                                                     offset: {
-                                                      mainAxis:
-                                                        DESKTOP_NAVS_TOOLTIP_MAIN_AXIS +
-                                                        2,
+                                                      mainAxis: 16 + 2,
                                                     },
                                                   }}
                                                 >

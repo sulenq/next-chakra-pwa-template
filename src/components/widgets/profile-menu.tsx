@@ -26,10 +26,12 @@ import { pluckString } from "@/utils/string";
 import { imgUrl } from "@/utils/url";
 import { Icon, PopoverRootProps, StackProps } from "@chakra-ui/react";
 import {
+  BellIcon,
   CircleCheckBigIcon,
   EclipseIcon,
   LogOutIcon,
   SettingsIcon,
+  SunIcon,
   UserIcon,
 } from "lucide-react";
 import { useRouter } from "next/navigation";
@@ -149,7 +151,9 @@ export const ProfileMenu = (props: ProfileMenuProps) => {
             px={2}
             onClick={toggleColorMode}
           >
-            <AppIconLucide icon={EclipseIcon} />
+            <AppIconLucide
+              icon={colorMode === "dark" ? EclipseIcon : SunIcon}
+            />
             Dark mode
             <DotIndicator
               color={colorMode === "dark" ? "fg.success" : "bg.muted"}
@@ -171,6 +175,21 @@ export const ProfileMenu = (props: ProfileMenuProps) => {
         >
           <AppIconLucide icon={CircleCheckBigIcon} />
           Todo list
+        </Btn>
+
+        <Btn
+          clicky={false}
+          px={2}
+          variant={"ghost"}
+          justifyContent={"start"}
+          pos={"relative"}
+          onClick={() => {
+            handleClose?.();
+          }}
+        >
+          <AppIconLucide icon={BellIcon} />
+
+          {t.notification}
         </Btn>
 
         {MENUS.map((menu) => {

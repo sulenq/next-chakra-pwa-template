@@ -115,6 +115,10 @@ export const settings_navs = {
 };
 
 // Semantic UI
+export const notification = {
+  id: "Notifikasi",
+  en: "Notification",
+};
 export const quick_navigation = {
   id: "Navigasi cepat",
   en: "Quick navigation",

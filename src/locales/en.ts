@@ -334,6 +334,7 @@ const translations = {
   "next_page": "Next page",
   "no": "No",
   "not_started": "Not started",
+  "notification": "Notification",
   "november": "November",
   "number_input": "Input number",
   "october": "October",

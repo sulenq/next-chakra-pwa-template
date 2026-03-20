@@ -334,6 +334,7 @@ const translations = {
   "next_page": "Halaman selanjutnya",
   "no": "Tidak",
   "not_started": "Belum dimulai",
+  "notification": "Notifikasi",
   "november": "November",
   "number_input": "Input angka",
   "october": "Oktober",

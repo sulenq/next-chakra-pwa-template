@@ -20,10 +20,10 @@ const LOCAL_STORAGE_KEY = "theme-config";
 
 export const DEFAULT: ThemeConfig = {
   colorPalette: COLOR_PALETTES[0].palette,
-  primaryColor: `${COLOR_PALETTES[0].palette}.500`,
+  primaryColor: `${COLOR_PALETTES[0].palette}.solid`,
   primaryColorHex: COLOR_PALETTES[0].primaryHex,
   logo: `${IMAGES_PATH}/logo_graphic.png`,
-  radii: ROUNDED_PRESETS[3],
+  radii: ROUNDED_PRESETS[6],
 };
 
 type ThemeConfigStore = {
