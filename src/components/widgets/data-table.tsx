@@ -13,6 +13,7 @@ import {
   RowOptionsTableOptionGenerator,
 } from "@/constants/interfaces";
 import {
+  BACKDROP_BLUR_FILTER,
   GAP,
   R_SPACING_MD,
   TABLE_CELL_PX,
@@ -233,6 +234,7 @@ export const DataTableDisplay = (props: DataTableProps) => {
             <Table.Header>
               <Table.Row
                 bg={TABLE_ROW_BG}
+                backdropFilter={BACKDROP_BLUR_FILTER}
                 rounded={TABLE_ROW_ROUNDED}
                 position={"sticky"}
                 top={0}
@@ -247,6 +249,7 @@ export const DataTableDisplay = (props: DataTableProps) => {
                     minW={"0% !important"}
                     p={0}
                     pb={TABLE_TH_PB}
+                    backdropFilter={BACKDROP_BLUR_FILTER}
                     borderBottom={"none !important"}
                     position={"sticky"}
                     left={0}
@@ -255,6 +258,7 @@ export const DataTableDisplay = (props: DataTableProps) => {
                       h={TABLE_TH_H}
                       px={"10px"}
                       bg={TABLE_TH_BG}
+                      backdropFilter={BACKDROP_BLUR_FILTER}
                       borderBottom={"1px solid"}
                       borderColor={TABLE_TH_BORDER_COLOR}
                       roundedLeft={TABLE_ROW_ROUNDED}
@@ -279,6 +283,7 @@ export const DataTableDisplay = (props: DataTableProps) => {
                   maxW={"fit-content"}
                   p={0}
                   pb={TABLE_TH_PB}
+                  backdropFilter={BACKDROP_BLUR_FILTER}
                   borderBottom={"none !important"}
                 >
                   <HStack
@@ -286,6 +291,7 @@ export const DataTableDisplay = (props: DataTableProps) => {
                     px={TABLE_CELL_PX}
                     py={3}
                     bg={TABLE_TH_BG}
+                    backdropFilter={BACKDROP_BLUR_FILTER}
                     borderBottom={"1px solid"}
                     borderColor={TABLE_TH_BORDER_COLOR}
                   >
@@ -302,6 +308,7 @@ export const DataTableDisplay = (props: DataTableProps) => {
                     whiteSpace={"nowrap"}
                     p={0}
                     pb={TABLE_TH_PB}
+                    backdropFilter={BACKDROP_BLUR_FILTER}
                     borderBottom={"none !important"}
                     cursor={header.sortable ? "pointer" : "auto"}
                     onClick={header.sortable ? () => sort(index) : undefined}
@@ -324,6 +331,7 @@ export const DataTableDisplay = (props: DataTableProps) => {
                             : ""
                       }
                       bg={TABLE_TH_BG}
+                      backdropFilter={BACKDROP_BLUR_FILTER}
                       borderBottom={"1px solid"}
                       borderColor={TABLE_TH_BORDER_COLOR}
                       {...header?.wrapperProps}
@@ -350,6 +358,7 @@ export const DataTableDisplay = (props: DataTableProps) => {
                     maxW={TABLE_OPTIONS_CELL_W}
                     p={0}
                     pb={TABLE_TH_PB}
+                    backdropFilter={BACKDROP_BLUR_FILTER}
                     borderBottom={"none !important"}
                     position={"sticky"}
                     right={"0px"}
@@ -359,6 +368,7 @@ export const DataTableDisplay = (props: DataTableProps) => {
                       px={TABLE_CELL_PX}
                       py={3}
                       bg={TABLE_TH_BG}
+                      backdropFilter={BACKDROP_BLUR_FILTER}
                       borderBottom={"1px solid"}
                       borderColor={TABLE_TH_BORDER_COLOR}
                       roundedRight={TABLE_ROW_ROUNDED}

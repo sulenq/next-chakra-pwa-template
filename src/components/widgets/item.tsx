@@ -4,7 +4,6 @@ import { CContainer } from "@/components/ui/c-container";
 import { P, PProps } from "@/components/ui/p";
 import { StackH, StackV } from "@/components/ui/stack";
 import { InfoTip } from "@/components/widgets/info-tip";
-import { R_SPACING_MD } from "@/constants/styles";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
 import { HStack, StackProps } from "@chakra-ui/react";
 import { forwardRef } from "react";
@@ -106,7 +105,7 @@ const ItemHeader = forwardRef<HTMLDivElement, ItemHeaderProps>(
         justify={"space-between"}
         h={"50px"}
         gapX={4}
-        px={R_SPACING_MD}
+        px={4}
         py={1}
         borderBottom={"1px solid"}
         borderColor={borderless ? "transparent" : "border.subtle"}

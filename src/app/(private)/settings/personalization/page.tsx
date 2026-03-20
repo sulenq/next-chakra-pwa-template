@@ -7,7 +7,7 @@ import { useColorMode } from "@/components/ui/color-mode";
 import { DatePickerInput } from "@/components/ui/date-picker-input";
 import { P } from "@/components/ui/p";
 import { SelectInput } from "@/components/ui/select-input";
-import { StackH } from "@/components/ui/stack";
+import { StackH, StackV } from "@/components/ui/stack";
 import { StringInput } from "@/components/ui/string-input";
 import { Switch } from "@/components/ui/switch";
 import { TimePickerInput } from "@/components/ui/time-picker-input";
@@ -21,7 +21,7 @@ import { COLOR_PALETTES } from "@/constants/colors";
 import { Interface__SelectOption } from "@/constants/interfaces";
 import { ROUNDED_PRESETS } from "@/constants/presets";
 import { OPTIONS_RELIGION } from "@/constants/selectOptions";
-import { GAP, R_SPACING_MD } from "@/constants/styles";
+import { R_SPACING_MD } from "@/constants/styles";
 import useADM from "@/contexts/useADM";
 import { useLocale } from "@/contexts/useLocale";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
@@ -164,7 +164,7 @@ const DarkModeSection = () => {
   }, [colorMode]);
 
   return (
-    <Item.Container px={R_SPACING_MD} pb={R_SPACING_MD}>
+    <Item.Content>
       <Item.Header borderless>
         <StackH align={"center"} gap={2}>
           <AppIconLucide icon={EclipseIcon} />
@@ -173,12 +173,12 @@ const DarkModeSection = () => {
         </StackH>
       </Item.Header>
 
-      <Item.Content gap={4} p={4}>
+      <StackV gap={4} p={4}>
         <ManualDarkModeSetting />
 
         <ADMSetting />
-      </Item.Content>
-    </Item.Container>
+      </StackV>
+    </Item.Content>
   );
 };
 
@@ -188,7 +188,7 @@ const AccentColorSection = () => {
   const { themeConfig, setThemeConfig } = useThemeConfig();
 
   return (
-    <Item.Container px={R_SPACING_MD} pb={R_SPACING_MD}>
+    <Item.Content>
       <Item.Header borderless>
         <HStack>
           <AppIconLucide icon={SwatchBookIcon} />
@@ -197,7 +197,7 @@ const AccentColorSection = () => {
         </HStack>
       </Item.Header>
 
-      <Item.Content gap={4} p={4}>
+      <StackV gap={4} p={4}>
         <SimpleGrid minChildWidth={"56px"} gap={2}>
           {COLOR_PALETTES.map((color, index) => {
             const isSelected = color.palette === themeConfig.colorPalette;
@@ -247,8 +247,8 @@ const AccentColorSection = () => {
             );
           })}
         </SimpleGrid>
-      </Item.Content>
-    </Item.Container>
+      </StackV>
+    </Item.Content>
   );
 };
 
@@ -270,7 +270,7 @@ const RoundedSection = () => {
   }
 
   return (
-    <Item.Container px={R_SPACING_MD} pb={R_SPACING_MD}>
+    <Item.Content>
       <Item.Header borderless>
         <HStack>
           <AppIconLucide icon={SquareRoundCornerIcon} />
@@ -279,7 +279,7 @@ const RoundedSection = () => {
         </HStack>
       </Item.Header>
 
-      <Item.Content gap={4} p={4}>
+      <StackV gap={4} p={4}>
         <SimpleGrid minChildWidth={"140px"} gap={4}>
           {ROUNDED_PRESETS.map((preset, index) => {
             const isSelected = preset.label === themeConfig.radii.label;
@@ -346,8 +346,8 @@ const RoundedSection = () => {
             );
           })}
         </SimpleGrid>
-      </Item.Content>
-    </Item.Container>
+      </StackV>
+    </Item.Content>
   );
 };
 
@@ -429,7 +429,7 @@ const ExampleUISection = () => {
 
 export default function Page() {
   return (
-    <CContainer flex={1} gap={GAP}>
+    <StackV flex={1} gap={4} p={R_SPACING_MD}>
       <DarkModeSection />
 
       <AccentColorSection />
@@ -439,6 +439,6 @@ export default function Page() {
       <ExampleUISection />
 
       <LocalSettingsHelperText />
-    </CContainer>
+    </StackV>
   );
 }

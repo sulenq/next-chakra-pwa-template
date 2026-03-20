@@ -13,7 +13,7 @@ import { Confirmation } from "@/components/widgets/confirmation";
 import { LucideIcon } from "@/components/widgets/icon";
 import { DotIndicator } from "@/components/widgets/indicator";
 import { AUTH_API_SIGNOUT } from "@/constants/apis";
-import { BASE_ICON_BOX_SIZE } from "@/constants/styles";
+import { BACKDROP_BLUR_FILTER, BASE_ICON_BOX_SIZE } from "@/constants/styles";
 import useADM from "@/contexts/useADM";
 import { useAuthMiddleware } from "@/contexts/useAuthMiddleware";
 import { useLocale } from "@/contexts/useLocale";
@@ -287,7 +287,7 @@ export const ProfileMenuTrigger = (props: ProfileMenuTriggerProps) => {
         ref={containerRef}
         w={"225px"}
         bg={"transparent"}
-        // backdropFilter={BACKDROP_BLUR_FILTER}
+        backdropFilter={BACKDROP_BLUR_FILTER}
         rounded={themeConfig.radii.container}
         zIndex={10}
       >
