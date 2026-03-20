@@ -1,6 +1,6 @@
-import { CContainer } from "@/components/ui/c-container";
 import { Checkbox } from "@/components/ui/checkbox";
 import { P } from "@/components/ui/p";
+import { StackV } from "@/components/ui/stack";
 import { BatchOptions } from "@/components/widgets/batch-option";
 import { Limitation } from "@/components/widgets/limitation";
 import { Pagination } from "@/components/widgets/pagination";
@@ -211,20 +211,21 @@ export const DataTableDisplay = (props: DataTableProps) => {
   const TABLE_ROW_ROUNDED = 0;
 
   return (
-    <CContainer
+    <StackV
       ref={tableContainerRef}
       flex={1}
       minH={props?.minH || sh < 625 ? "400px" : ""}
       overflow={"auto"}
       {...restProps}
     >
-      <CContainer px={R_SPACING_MD} pt={R_SPACING_MD} overflow={"auto"}>
-        <CContainer
+      <StackV px={R_SPACING_MD} pt={R_SPACING_MD} overflow={"auto"}>
+        <StackV
           className={"scrollX scrollYAlt"}
           flex={1}
           pb={R_SPACING_MD}
           bg={TABLE_CONTAINER_BG}
           roundedTop={themeConfig.radii.component}
+          transform={"translateZ(0)"}
           zIndex={2}
           {...contentContainerProps}
         >
@@ -559,8 +560,8 @@ export const DataTableDisplay = (props: DataTableProps) => {
               })}
             </Table.Body>
           </Table.Root>
-        </CContainer>
-      </CContainer>
+        </StackV>
+      </StackV>
 
       {hasFooter && (
         <>
@@ -572,39 +573,39 @@ export const DataTableDisplay = (props: DataTableProps) => {
             borderColor={TABLE_FOOTER_BORDER_COLOR}
             mt={"auto"}
           >
-            <CContainer w={"fit"} mb={[1, null, 0]}>
+            <StackV w={"fit"} mb={[1, null, 0]}>
               <Limitation limit={limit} setLimit={setLimit} />
-            </CContainer>
+            </StackV>
 
             {!iss && (
-              <CContainer
+              <StackV
                 w={"fit"}
                 justify={"center"}
                 pl={[2, null, 0]}
                 mt={[footer ? 1 : 0, null, 0]}
               >
                 {footer}
-              </CContainer>
+              </StackV>
             )}
 
-            <CContainer w={"fit"}>
+            <StackV w={"fit"}>
               <Pagination page={page} setPage={setPage} totalPage={totalPage} />
-            </CContainer>
+            </StackV>
           </HStack>
 
           {iss && (
-            <CContainer
+            <StackV
               w={"fit"}
               justify={"center"}
               pl={[2, null, 0]}
               mt={[footer ? 1 : 0, null, 0]}
             >
               {footer}
-            </CContainer>
+            </StackV>
           )}
         </>
       )}
-    </CContainer>
+    </StackV>
   );
 };
 
