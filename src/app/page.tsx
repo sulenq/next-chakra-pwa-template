@@ -1,6 +1,5 @@
 "use client";
 
-import { CContainer } from "@/components/ui/c-container";
 import { ColorModeButton } from "@/components/ui/color-mode";
 import { LangMenu } from "@/components/ui/lang-menu";
 import { P } from "@/components/ui/p";
@@ -11,7 +10,8 @@ import { useLocale } from "@/contexts/useLocale";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
 import { SigninForm } from "@/features/auth/signin-form";
 import { useIsSmScreenWidth } from "@/hooks/useIsSmScreenWidth";
-import { HStack, SimpleGrid } from "@chakra-ui/react";
+import { SimpleGrid } from "@chakra-ui/react";
+import { StackH, StackV } from "@/components/ui/stack";
 
 export default function Page() {
   // Contexts
@@ -22,9 +22,17 @@ export default function Page() {
   const iss = useIsSmScreenWidth();
 
   return (
-    <CContainer align={"start"} h={"100dvh"} p={6} overflowY={"auto"}>
-      <CContainer
+    <StackV
+      bg={"bg.canvas"}
+      align={"start"}
+      w={"full"}
+      h={"100dvh"}
+      p={6}
+      overflowY={"auto"}
+    >
+      <StackV
         flex={1}
+        w={"full"}
         maxW={"1200px"}
         maxH={"720px"}
         bg={"bg.body"}
@@ -41,7 +49,7 @@ export default function Page() {
           gap={4}
         >
           {!iss && (
-            <CContainer
+            <StackV
               justify={"space-between"}
               rounded={themeConfig.radii.container}
               maxH={"calc(100dvh - 16px)"}
@@ -50,10 +58,10 @@ export default function Page() {
             >
               <AnimatedBlobBackground />
 
-              <CContainer h={"full"} p={5} pos={"absolute"}>
+              <StackV h={"full"} p={5} pos={"absolute"}>
                 <Logo color={"white"} />
 
-                <CContainer color={"light"} mt={"auto"}>
+                <StackV color={"light"} mt={"auto"}>
                   {/* <RandomQuote
                     fontSize={"lg"}
                     fontWeight={"medium"}
@@ -62,29 +70,24 @@ export default function Page() {
                   /> */}
 
                   <P>{t.msg_app_desc}</P>
-                </CContainer>
-              </CContainer>
-            </CContainer>
+                </StackV>
+              </StackV>
+            </StackV>
           )}
 
-          <CContainer
-            p={4}
-            gap={16}
-            bg={"bg.body"}
-            rounded={themeConfig.radii.container}
-          >
-            <HStack justify={"center"}>
+          <StackV p={4} gap={16} rounded={themeConfig.radii.container}>
+            <StackH justify={"center"}>
               <ColorModeButton />
 
               <LangMenu />
-            </HStack>
+            </StackH>
 
             <SigninForm />
 
             <BrandWatermark textAlign={"center"} />
-          </CContainer>
+          </StackV>
         </SimpleGrid>
-      </CContainer>
-    </CContainer>
+      </StackV>
+    </StackV>
   );
 }

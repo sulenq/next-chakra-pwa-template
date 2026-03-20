@@ -238,7 +238,7 @@ export const DataTableDisplay = (props: DataTableProps) => {
                 rounded={TABLE_ROW_ROUNDED}
                 position={"sticky"}
                 top={0}
-                zIndex={3}
+                zIndex={2}
               >
                 {/* Batch options column */}
                 {!isEmptyArray(batchOptions) && (
@@ -393,6 +393,7 @@ export const DataTableDisplay = (props: DataTableProps) => {
                     bg={TABLE_ROW_BG}
                     overflow={"clip"}
                     position={"relative"}
+                    zIndex={1}
                     {...trBodyProps}
                   >
                     {/* Batch options column */}
@@ -413,6 +414,7 @@ export const DataTableDisplay = (props: DataTableProps) => {
                             w={"full"}
                             h={TABLE_TD_MIN_H}
                             bg={isRowSelected ? SELECTED_BG : TABLE_TD_BG}
+                            backdropFilter={BACKDROP_BLUR_FILTER}
                             px={"10px"}
                             cursor={"pointer"}
                             borderBottom={
@@ -528,6 +530,7 @@ export const DataTableDisplay = (props: DataTableProps) => {
                             h={TABLE_TD_MIN_H}
                             px={"10px"}
                             bg={isRowSelected ? SELECTED_BG : TABLE_TD_BG}
+                            backdropFilter={BACKDROP_BLUR_FILTER}
                             borderBottom={
                               rowIndex !== resolvedTableData.length - 1
                                 ? "1px solid"
