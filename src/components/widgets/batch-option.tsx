@@ -53,6 +53,7 @@ export const BatchOptions = (props: BatchOptionsProps) => {
       <Menu.Trigger asChild aria-label="batch options">
         <Btn
           iconButton={iconButton}
+          clicky={false}
           variant={"ghost"}
           size={"xs"}
           _open={{

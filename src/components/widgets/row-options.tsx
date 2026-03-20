@@ -39,6 +39,7 @@ export const RowOptions = (props: Props_RowOptions) => {
       <MenuTrigger asChild aria-label="row-options">
         <Btn
           iconButton
+          clicky={false}
           variant={"ghost"}
           size={"xs"}
           _open={{ bg: "d0" }}
