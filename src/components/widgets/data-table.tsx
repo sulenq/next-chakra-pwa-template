@@ -62,6 +62,7 @@ export interface DataTableProps extends Omit<StackProps, "page"> {
   loading?: boolean;
   contentContainerProps?: StackProps;
 }
+
 export const DataTableDisplay = (props: DataTableProps) => {
   // Props
   const {
@@ -224,6 +225,7 @@ export const DataTableDisplay = (props: DataTableProps) => {
           pb={R_SPACING_MD}
           bg={TABLE_CONTAINER_BG}
           roundedTop={themeConfig.radii.component}
+          zIndex={2}
           {...contentContainerProps}
         >
           <Table.Root
@@ -234,11 +236,10 @@ export const DataTableDisplay = (props: DataTableProps) => {
             <Table.Header>
               <Table.Row
                 bg={TABLE_ROW_BG}
-                backdropFilter={BACKDROP_BLUR_FILTER}
                 rounded={TABLE_ROW_ROUNDED}
                 position={"sticky"}
                 top={0}
-                zIndex={2}
+                zIndex={3}
               >
                 {/* Batch options column */}
                 {!isEmptyArray(batchOptions) && (
@@ -249,10 +250,10 @@ export const DataTableDisplay = (props: DataTableProps) => {
                     minW={"0% !important"}
                     p={0}
                     pb={TABLE_TH_PB}
-                    backdropFilter={BACKDROP_BLUR_FILTER}
                     borderBottom={"none !important"}
                     position={"sticky"}
                     left={0}
+                    zIndex={2}
                   >
                     <Center
                       h={TABLE_TH_H}
@@ -283,7 +284,6 @@ export const DataTableDisplay = (props: DataTableProps) => {
                   maxW={"fit-content"}
                   p={0}
                   pb={TABLE_TH_PB}
-                  backdropFilter={BACKDROP_BLUR_FILTER}
                   borderBottom={"none !important"}
                 >
                   <HStack
@@ -308,7 +308,6 @@ export const DataTableDisplay = (props: DataTableProps) => {
                     whiteSpace={"nowrap"}
                     p={0}
                     pb={TABLE_TH_PB}
-                    backdropFilter={BACKDROP_BLUR_FILTER}
                     borderBottom={"none !important"}
                     cursor={header.sortable ? "pointer" : "auto"}
                     onClick={header.sortable ? () => sort(index) : undefined}
@@ -358,7 +357,6 @@ export const DataTableDisplay = (props: DataTableProps) => {
                     maxW={TABLE_OPTIONS_CELL_W}
                     p={0}
                     pb={TABLE_TH_PB}
-                    backdropFilter={BACKDROP_BLUR_FILTER}
                     borderBottom={"none !important"}
                     position={"sticky"}
                     right={"0px"}
@@ -393,7 +391,6 @@ export const DataTableDisplay = (props: DataTableProps) => {
                     bg={TABLE_ROW_BG}
                     overflow={"clip"}
                     position={"relative"}
-                    zIndex={1}
                     {...trBodyProps}
                   >
                     {/* Batch options column */}
