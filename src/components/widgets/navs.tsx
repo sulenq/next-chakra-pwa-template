@@ -671,9 +671,10 @@ export const UserPanel = (props: UserPanelProps) => {
         {navsExpanded && (
           <>
             <CContainer>
-              <P lineClamp={1} fontWeight={"semibold"}>
+              <P lineClamp={1} fontWeight={"medium"}>
                 {user?.name || user?.email || "Signed out"}
               </P>
+
               <P lineClamp={1} color={"fg.subtle"}>
                 {user?.name ? user?.email || user?.username : "-"}
               </P>

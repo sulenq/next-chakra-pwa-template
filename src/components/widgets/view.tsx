@@ -330,7 +330,7 @@ const ViewTitle = (props: PProps) => {
   return (
     <ClampText
       fontSize={"xl"}
-      fontWeight={"semibold"}
+      fontWeight={"medium"}
       textAlign={restProps.textAlign}
       {...restProps}
     >
