@@ -9,8 +9,8 @@ export const RadialGlowBackground = (props: StackProps) => {
 
   // Constants
   const colorPalette = themeConfig.colorPalette;
-  const opacity1 = useColorModeValue(0.04, 0.03);
-  const opacity2 = useColorModeValue(0.04, 0.03);
+  const opacity1 = useColorModeValue(0.03, 0.02);
+  const opacity2 = useColorModeValue(0.03, 0.02);
 
   return (
     <Center w={"full"} h={"full"} overflow={"clip"} {...props}>
