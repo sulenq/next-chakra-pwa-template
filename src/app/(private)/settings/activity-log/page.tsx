@@ -115,14 +115,14 @@ const ActivityLog = () => {
 
   return (
     <Item.Container borderless roundedless>
-      <Item.HeaderContainer borderless>
+      <Item.Header borderless>
         <HStack>
           <Icon boxSize={BASE_ICON_BOX_SIZE}>
             <LucideIcon icon={ActivityIcon} />
           </Icon>
-          <Item.HeaderTitle>{t.activity_logs}</Item.HeaderTitle>
+          <Item.Title>{t.activity_logs}</Item.Title>
         </HStack>
-      </Item.HeaderContainer>
+      </Item.Header>
 
       <CContainer px={4}>
         <Item.Container>

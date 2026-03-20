@@ -24,11 +24,11 @@ import {
   GAP,
   GRID_BATCH_OPTIONS_CONTAINER_BG,
   GRID_FOOTER_BORDER_COLOR,
-  GRID_ITEM_CONTAINER_BG,
   R_SPACING_MD,
 } from "@/constants/styles";
 import { useLocale } from "@/contexts/useLocale";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
+import { useColorBody } from "@/hooks/useColorBody";
 import { useIsSmScreenWidth } from "@/hooks/useIsSmScreenWidth";
 import { usePopDisclosure } from "@/hooks/usePopDisclosure";
 import { isEmptyArray } from "@/utils/array";
@@ -86,8 +86,11 @@ export const DataGridItem = (props: DataGridItemProps) => {
   // Derived Values
   const isRowSelected = selectedRows.includes(row.id);
 
+  // SX
+  const GRID_ITEM_CONTAINER_BG = useColorBody();
+
   return (
-    <CContainer
+    <StackV
       key={item.id}
       flex={1}
       bg={GRID_ITEM_CONTAINER_BG}
@@ -116,7 +119,7 @@ export const DataGridItem = (props: DataGridItemProps) => {
       </Box>
 
       {item.showImg && (
-        <CContainer p={1}>
+        <StackV p={1}>
           <ImgViewer
             id={`img-${row?.idx}-${item?.id}`}
             w={"full"}
@@ -133,7 +136,7 @@ export const DataGridItem = (props: DataGridItemProps) => {
               fallbackSrc={item.imgFallbackSrc}
             />
           </ImgViewer>
-        </CContainer>
+        </StackV>
       )}
 
       <CContainer
@@ -196,7 +199,7 @@ export const DataGridItem = (props: DataGridItemProps) => {
           />
         )}
       </HStack>
-    </CContainer>
+    </StackV>
   );
 };
 

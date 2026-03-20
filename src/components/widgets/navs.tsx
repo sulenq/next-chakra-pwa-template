@@ -12,6 +12,7 @@ import { AppIconLucide } from "@/components/widgets/app-icon";
 import { ClampText } from "@/components/widgets/clamp-text";
 import FeedbackNotFound from "@/components/widgets/feedback-not-found";
 import { LeftIndicator } from "@/components/widgets/indicator";
+import { Item } from "@/components/widgets/item";
 import { ProfileMenuTrigger } from "@/components/widgets/profile-menu";
 import { Interface__NavGroup } from "@/constants/interfaces";
 import {
@@ -579,17 +580,12 @@ export const UserPanel = (props: UserPanelProps) => {
   // Props
   const { navsExpanded } = props;
 
-  // Contexts
-  const { themeConfig } = useThemeConfig();
-
   // Constants
   const user = getUserData();
 
   return (
-    <StackV
+    <Item.Container
       p={navsExpanded ? 0 : R_SPACING_MD}
-      bg={"bg.frosted"}
-      rounded={themeConfig.radii.component}
       backdropFilter={BACKDROP_BLUR_FILTER}
       overflow={"clip"}
     >
@@ -694,7 +690,7 @@ export const UserPanel = (props: UserPanelProps) => {
           </>
         )}
       </StackH>
-    </StackV>
+    </Item.Container>
   );
 };
 

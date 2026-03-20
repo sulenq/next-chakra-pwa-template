@@ -7,6 +7,7 @@ import { useColorMode } from "@/components/ui/color-mode";
 import { DatePickerInput } from "@/components/ui/date-picker-input";
 import { P } from "@/components/ui/p";
 import { SelectInput } from "@/components/ui/select-input";
+import { StackH } from "@/components/ui/stack";
 import { StringInput } from "@/components/ui/string-input";
 import { Switch } from "@/components/ui/switch";
 import { TimePickerInput } from "@/components/ui/time-picker-input";
@@ -20,6 +21,7 @@ import { COLOR_PALETTES } from "@/constants/colors";
 import { Interface__SelectOption } from "@/constants/interfaces";
 import { ROUNDED_PRESETS } from "@/constants/presets";
 import { OPTIONS_RELIGION } from "@/constants/selectOptions";
+import { GAP, R_SPACING_MD } from "@/constants/styles";
 import useADM from "@/contexts/useADM";
 import { useLocale } from "@/contexts/useLocale";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
@@ -162,23 +164,21 @@ const DarkModeSection = () => {
   }, [colorMode]);
 
   return (
-    <CContainer>
-      <Item.HeaderContainer borderless>
-        <HStack>
+    <Item.Container px={R_SPACING_MD} pb={R_SPACING_MD}>
+      <Item.Header borderless>
+        <StackH align={"center"} gap={2}>
           <AppIconLucide icon={EclipseIcon} />
 
-          <Item.HeaderTitle>{t.dark_mode}</Item.HeaderTitle>
-        </HStack>
-      </Item.HeaderContainer>
+          <Item.Title>{t.dark_mode}</Item.Title>
+        </StackH>
+      </Item.Header>
 
-      <CContainer px={0}>
-        <Item.Container gap={4} p={4}>
-          <ManualDarkModeSetting />
+      <Item.Content gap={4} p={4}>
+        <ManualDarkModeSetting />
 
-          <ADMSetting />
-        </Item.Container>
-      </CContainer>
-    </CContainer>
+        <ADMSetting />
+      </Item.Content>
+    </Item.Container>
   );
 };
 
@@ -187,51 +187,44 @@ const AccentColorSection = () => {
   const { t } = useLocale();
   const { themeConfig, setThemeConfig } = useThemeConfig();
 
-  // Refs
-  const containerRef = useRef<HTMLDivElement>(null);
-
   return (
-    <CContainer ref={containerRef}>
-      <Item.HeaderContainer borderless>
+    <Item.Container px={R_SPACING_MD} pb={R_SPACING_MD}>
+      <Item.Header borderless>
         <HStack>
           <AppIconLucide icon={SwatchBookIcon} />
 
-          <Item.HeaderTitle>{t.accent_color}</Item.HeaderTitle>
+          <Item.Title>{t.accent_color}</Item.Title>
         </HStack>
-      </Item.HeaderContainer>
+      </Item.Header>
 
-      <CContainer px={0}>
-        <Item.Container gap={4} p={4}>
-          <SimpleGrid minChildWidth={"56px"} gap={2}>
-            {COLOR_PALETTES.map((color, index) => {
-              const isSelected = color.palette === themeConfig.colorPalette;
-              const isColorPaletteGray = color.palette === "gray";
+      <Item.Content gap={4} p={4}>
+        <SimpleGrid minChildWidth={"56px"} gap={2}>
+          {COLOR_PALETTES.map((color, index) => {
+            const isSelected = color.palette === themeConfig.colorPalette;
+            const isColorPaletteGray = color.palette === "gray";
 
-              return (
-                <Tooltip
-                  key={`${color.palette}-${index}`}
-                  content={color.label}
+            return (
+              <Tooltip key={`${color.palette}-${index}`} content={color.label}>
+                <Center
+                  w={"full"}
+                  aspectRatio={1}
+                  p={2}
+                  bg={isColorPaletteGray ? "ibody" : `${color.palette}.500`}
+                  rounded={themeConfig.radii.component}
+                  cursor={"pointer"}
+                  overflow={"clip"}
+                  onClick={() => {
+                    setThemeConfig({
+                      colorPalette: color.palette,
+                      primaryColor: isColorPaletteGray
+                        ? "ibody"
+                        : `${color.palette}.500`,
+                      primaryColorHex: color.primaryHex,
+                    });
+                  }}
+                  pos={"relative"}
                 >
-                  <Center
-                    w={"full"}
-                    aspectRatio={1}
-                    p={2}
-                    bg={isColorPaletteGray ? "ibody" : `${color.palette}.500`}
-                    rounded={themeConfig.radii.component}
-                    cursor={"pointer"}
-                    overflow={"clip"}
-                    onClick={() => {
-                      setThemeConfig({
-                        colorPalette: color.palette,
-                        primaryColor: isColorPaletteGray
-                          ? "ibody"
-                          : `${color.palette}.500`,
-                        primaryColorHex: color.primaryHex,
-                      });
-                    }}
-                    pos={"relative"}
-                  >
-                    {/* <P
+                  {/* <P
                     fontSize={"sm"}
                     fontWeight={"medium"}
                     color={`${color.palette}.contrast`}
@@ -241,22 +234,21 @@ const AccentColorSection = () => {
                     {color.label}
                   </P> */}
 
-                    {isSelected && (
-                      <DotIndicator
-                        pos={"absolute"}
-                        color={isColorPaletteGray ? "bg.body" : "light"}
-                        top={2}
-                        right={2}
-                      />
-                    )}
-                  </Center>
-                </Tooltip>
-              );
-            })}
-          </SimpleGrid>
-        </Item.Container>
-      </CContainer>
-    </CContainer>
+                  {isSelected && (
+                    <DotIndicator
+                      pos={"absolute"}
+                      color={isColorPaletteGray ? "bg.body" : "light"}
+                      top={2}
+                      right={2}
+                    />
+                  )}
+                </Center>
+              </Tooltip>
+            );
+          })}
+        </SimpleGrid>
+      </Item.Content>
+    </Item.Container>
   );
 };
 
@@ -264,9 +256,6 @@ const RoundedSection = () => {
   // Contexts
   const { t } = useLocale();
   const { themeConfig, setThemeConfig } = useThemeConfig();
-
-  // Refs
-  const containerRef = useRef<HTMLDivElement>(null);
 
   // Utils
   function handleOnClick(preset: (typeof ROUNDED_PRESETS)[number]) {
@@ -281,86 +270,84 @@ const RoundedSection = () => {
   }
 
   return (
-    <CContainer ref={containerRef}>
-      <Item.HeaderContainer borderless>
+    <Item.Container px={R_SPACING_MD} pb={R_SPACING_MD}>
+      <Item.Header borderless>
         <HStack>
           <AppIconLucide icon={SquareRoundCornerIcon} />
 
-          <Item.HeaderTitle>{t.rounded}</Item.HeaderTitle>
+          <Item.Title>{t.rounded}</Item.Title>
         </HStack>
-      </Item.HeaderContainer>
+      </Item.Header>
 
-      <CContainer px={0}>
-        <Item.Container gap={4} p={4}>
-          <SimpleGrid minChildWidth={"140px"} gap={4}>
-            {ROUNDED_PRESETS.map((preset, index) => {
-              const isSelected = preset.label === themeConfig.radii.label;
+      <Item.Content gap={4} p={4}>
+        <SimpleGrid minChildWidth={"140px"} gap={4}>
+          {ROUNDED_PRESETS.map((preset, index) => {
+            const isSelected = preset.label === themeConfig.radii.label;
 
-              return (
-                <CContainer key={`${preset.label}-${index}`}>
-                  <CContainer
-                    gap={2}
-                    aspectRatio={1}
-                    p={2}
-                    rounded={preset.container}
+            return (
+              <CContainer key={`${preset.label}-${index}`}>
+                <CContainer
+                  gap={2}
+                  aspectRatio={1}
+                  p={2}
+                  rounded={preset.container}
+                  border={"1px solid"}
+                  borderColor={"border.emphasized"}
+                  cursor={"pointer"}
+                  onClick={() => {
+                    handleOnClick(preset);
+                  }}
+                  pos={"relative"}
+                >
+                  <HStack pl={1}>
+                    <P>{preset.label}</P>
+
+                    {isSelected && <DotIndicator />}
+
+                    <Circle
+                      w={"24px"}
+                      h={"24px"}
+                      bg={"d1"}
+                      border={"1px solid"}
+                      borderColor={"border.muted"}
+                      ml={"auto"}
+                    />
+                  </HStack>
+
+                  <Box
+                    flex={1}
+                    rounded={preset.component}
                     border={"1px solid"}
-                    borderColor={"border.emphasized"}
-                    cursor={"pointer"}
-                    onClick={() => {
-                      handleOnClick(preset);
-                    }}
-                    pos={"relative"}
-                  >
-                    <HStack pl={1}>
-                      <P>{preset.label}</P>
+                    borderColor={"border.muted"}
+                    bg={"d1"}
+                  />
 
-                      {isSelected && <DotIndicator />}
-
-                      <Circle
-                        w={"24px"}
-                        h={"24px"}
-                        bg={"d1"}
-                        border={"1px solid"}
-                        borderColor={"border.muted"}
-                        ml={"auto"}
-                      />
-                    </HStack>
-
+                  <HStack justify={"end"}>
                     <Box
-                      flex={1}
+                      w={"30%"}
+                      h={"30px"}
                       rounded={preset.component}
                       border={"1px solid"}
                       borderColor={"border.muted"}
                       bg={"d1"}
                     />
 
-                    <HStack justify={"end"}>
-                      <Box
-                        w={"30%"}
-                        h={"30px"}
-                        rounded={preset.component}
-                        border={"1px solid"}
-                        borderColor={"border.muted"}
-                        bg={"d1"}
-                      />
-
-                      <Box
-                        w={"30%"}
-                        h={"30px"}
-                        rounded={preset.component}
-                        border={"1px solid"}
-                        borderColor={"border.muted"}
-                        bg={"d1"}
-                      />
-                    </HStack>
-                  </CContainer>
+                    <Box
+                      w={"30%"}
+                      h={"30px"}
+                      rounded={preset.component}
+                      border={"1px solid"}
+                      borderColor={"border.muted"}
+                      bg={"d1"}
+                    />
+                  </HStack>
                 </CContainer>
-              );
-            })}
-          </SimpleGrid>
-        </Item.Container>
-      </CContainer>
-    </CContainer>
+              </CContainer>
+            );
+          })}
+        </SimpleGrid>
+      </Item.Content>
+    </Item.Container>
   );
 };
 
@@ -376,75 +363,73 @@ const ExampleUISection = () => {
   >(null);
 
   return (
-    <CContainer>
-      <Item.HeaderContainer borderless>
+    <Item.Container px={R_SPACING_MD} pb={R_SPACING_MD}>
+      <Item.Header borderless>
         <HStack>
           <AppIconLucide icon={LayoutPanelLeftIcon} />
 
-          <Item.HeaderTitle>{t.example_UI}</Item.HeaderTitle>
+          <Item.Title>{t.example_UI}</Item.Title>
         </HStack>
-      </Item.HeaderContainer>
+      </Item.Header>
 
-      <CContainer px={0}>
-        <Item.Container p={4}>
-          <HStack wrap={"wrap"} gapY={4}>
-            <Btn flex={"1 1 100px"} colorPalette={themeConfig.colorPalette}>
-              Label
-            </Btn>
+      <Item.Content p={4}>
+        <HStack wrap={"wrap"} gapY={4}>
+          <Btn flex={"1 1 100px"} colorPalette={themeConfig.colorPalette}>
+            Label
+          </Btn>
 
-            <Btn
-              flex={"1 1 100px"}
-              colorPalette={themeConfig.colorPalette}
-              variant={"outline"}
-            >
-              Label
-            </Btn>
+          <Btn
+            flex={"1 1 100px"}
+            colorPalette={themeConfig.colorPalette}
+            variant={"outline"}
+          >
+            Label
+          </Btn>
 
-            <Btn
-              flex={"1 1 100px"}
-              colorPalette={themeConfig.colorPalette}
-              variant={"subtle"}
-            >
-              Label
-            </Btn>
+          <Btn
+            flex={"1 1 100px"}
+            colorPalette={themeConfig.colorPalette}
+            variant={"subtle"}
+          >
+            Label
+          </Btn>
 
-            <StringInput flex={"1 1 200px"} placeholder="example@email.com" />
+          <StringInput flex={"1 1 200px"} placeholder="example@email.com" />
 
-            <SelectInput
-              id="example-select-religion"
-              flex={"1 1 200px"}
-              name="select1"
-              selectOptions={OPTIONS_RELIGION}
-              onChange={(inputValue) => {
-                setSelect(inputValue);
-              }}
-              inputValue={select}
-              multiple
-            />
+          <SelectInput
+            id="example-select-religion"
+            flex={"1 1 200px"}
+            name="select1"
+            selectOptions={OPTIONS_RELIGION}
+            onChange={(inputValue) => {
+              setSelect(inputValue);
+            }}
+            inputValue={select}
+            multiple
+          />
 
-            <DatePickerInput flex={"1 1 200px"} multiple />
+          <DatePickerInput flex={"1 1 200px"} multiple />
 
-            <TimePickerInput flex={"1 1 200px"} />
+          <TimePickerInput flex={"1 1 200px"} />
 
-            <Checkbox
-              checked={checked}
-              onChange={(e: any) => setChecked(!e.target.checked)}
-              colorPalette={themeConfig.colorPalette}
-              variant={"solid"}
-              size={"lg"}
-            ></Checkbox>
+          <Checkbox
+            checked={checked}
+            onChange={(e: any) => setChecked(!e.target.checked)}
+            colorPalette={themeConfig.colorPalette}
+            variant={"solid"}
+            size={"lg"}
+          ></Checkbox>
 
-            <Switch colorPalette={themeConfig.colorPalette} />
-          </HStack>
-        </Item.Container>
-      </CContainer>
-    </CContainer>
+          <Switch colorPalette={themeConfig.colorPalette} />
+        </HStack>
+      </Item.Content>
+    </Item.Container>
   );
 };
 
 export default function Page() {
   return (
-    <CContainer flex={1} gap={3}>
+    <CContainer flex={1} gap={GAP}>
       <DarkModeSection />
 
       <AccentColorSection />

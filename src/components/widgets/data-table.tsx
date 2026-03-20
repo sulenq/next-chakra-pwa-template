@@ -20,17 +20,16 @@ import {
   TABLE_FOOTER_BORDER_COLOR,
   TABLE_OPTIONS_CELL_W,
   TABLE_ROW_BG,
-  TABLE_TD_BG,
   TABLE_TD_BORDER_COLOR,
   TABLE_TD_MIN_H,
   TABLE_TD_MT,
-  TABLE_TH_BG,
   TABLE_TH_BORDER_COLOR,
   TABLE_TH_H,
   TABLE_TH_PB,
 } from "@/constants/styles";
 import { Type__SortHandler } from "@/constants/types";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
+import { useColorBody } from "@/hooks/useColorBody";
 import { useIsSmScreenWidth } from "@/hooks/useIsSmScreenWidth";
 import { useScreen } from "@/hooks/useScreen";
 import { isEmptyArray } from "@/utils/array";
@@ -207,6 +206,8 @@ export const DataTableDisplay = (props: DataTableProps) => {
   // const SELECTED_BG = hexWithOpacity(themeConfig.primaryColorHex, 0.05);
   const SELECTED_BG = `${themeConfig.colorPalette}.subtle`;
   const TABLE_ROW_ROUNDED = 0;
+  const TABLE_TH_BG = useColorBody();
+  const TABLE_TD_BG = useColorBody();
 
   return (
     <CContainer
@@ -234,8 +235,6 @@ export const DataTableDisplay = (props: DataTableProps) => {
               <Table.Row
                 bg={TABLE_ROW_BG}
                 rounded={TABLE_ROW_ROUNDED}
-                // shadow={"soft"}
-                overflow={"clip"}
                 position={"sticky"}
                 top={0}
                 zIndex={3}

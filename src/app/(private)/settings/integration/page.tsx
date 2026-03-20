@@ -77,14 +77,14 @@ const APIKeys = (props: any) => {
 
   return (
     <Item.Container borderless roundedless {...restProps}>
-      <Item.HeaderContainer borderless>
+      <Item.Header borderless>
         <HStack>
           <Icon boxSize={BASE_ICON_BOX_SIZE}>
             <LucideIcon icon={KeyRoundIcon} />
           </Icon>
-          <Item.HeaderTitle>API Keys</Item.HeaderTitle>
+          <Item.Title>API Keys</Item.Title>
         </HStack>
-      </Item.HeaderContainer>
+      </Item.Header>
 
       <CContainer px={4}>
         <CContainer

@@ -179,18 +179,13 @@ export const TopBar = (props: StackProps) => {
           placeholder={t.quick_navigation}
         /> */}
 
-        <Btn iconButton variant={"subtle"} size={"xs"}>
+        <Btn iconButton variant={"subtle"} size={"xs"} color={"fg.muted"}>
           <AppIconLucide icon={NavigationIcon} />
         </Btn>
 
-        <Btn iconButton variant={"subtle"} size={"xs"}>
+        <Btn iconButton variant={"subtle"} size={"xs"} color={"fg.muted"}>
           <AppIconLucide icon={HeadsetIcon} />
         </Btn>
-
-        {/* 
-        <Btn iconButton variant={"subtle"} size={"xs"}>
-          <AppIconLucide icon={BellIcon} />
-        </Btn> */}
       </StackH>
     </StackH>
   );

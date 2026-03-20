@@ -117,12 +117,12 @@ const PersonalInformation = (props: PersonalInformationProps) => {
 
   return (
     <Item.Container borderless roundedless>
-      <Item.HeaderContainer borderless>
+      <Item.Header borderless>
         <HStack>
           <AppIconLucide icon={UserIcon} />
-          <Item.HeaderTitle>{t.personal_information}</Item.HeaderTitle>
+          <Item.Title>{t.personal_information}</Item.Title>
         </HStack>
-      </Item.HeaderContainer>
+      </Item.Header>
 
       <CContainer px={4}>
         <Item.Container>
@@ -293,13 +293,13 @@ const AuthLog = () => {
 
   return (
     <Item.Container ref={containerRef} borderless roundedless>
-      <Item.HeaderContainer borderless>
+      <Item.Header borderless>
         <HStack>
           <AppIconLucide icon={LogInIcon} />
 
-          <Item.HeaderTitle>{t.my_auth_logs}</Item.HeaderTitle>
+          <Item.Title>{t.my_auth_logs}</Item.Title>
         </HStack>
-      </Item.HeaderContainer>
+      </Item.Header>
 
       <CContainer px={4}>
         <Item.Container>
@@ -442,13 +442,13 @@ const ActivityLog = () => {
 
   return (
     <Item.Container ref={containerRef} borderless roundedless>
-      <Item.HeaderContainer borderless>
+      <Item.Header borderless>
         <HStack>
           <AppIconLucide icon={ActivityIcon} />
 
-          <Item.HeaderTitle>{t.my_activity_logs}</Item.HeaderTitle>
+          <Item.Title>{t.my_activity_logs}</Item.Title>
         </HStack>
-      </Item.HeaderContainer>
+      </Item.Header>
 
       <CContainer px={4}>
         <Item.Container>

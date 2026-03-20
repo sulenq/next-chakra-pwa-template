@@ -52,12 +52,12 @@ const Language = () => {
 
   return (
     <Item.Container borderless roundedless>
-      <Item.HeaderContainer borderless>
+      <Item.Header borderless>
         <HStack>
           <AppIconLucide icon={LanguagesIcon} />
-          <Item.HeaderTitle>{t.language}</Item.HeaderTitle>
+          <Item.Title>{t.language}</Item.Title>
         </HStack>
-      </Item.HeaderContainer>
+      </Item.Header>
 
       <CContainer px={4}>
         <CContainer
@@ -142,11 +142,11 @@ const Timezone = () => {
 
   return (
     <Item.Container ref={containerRef} borderless roundedless>
-      <Item.HeaderContainer borderless>
+      <Item.Header borderless>
         <HStack>
           <AppIconLucide icon={GlobeIcon} />
 
-          <Item.HeaderTitle>{capitalizeWords(t.timezone)}</Item.HeaderTitle>
+          <Item.Title>{capitalizeWords(t.timezone)}</Item.Title>
         </HStack>
 
         <HStack>
@@ -164,7 +164,7 @@ const Timezone = () => {
             Auto
           </Btn>
         </HStack>
-      </Item.HeaderContainer>
+      </Item.Header>
 
       <CContainer px={4}>
         <CContainer
@@ -267,12 +267,12 @@ const DateFormat = () => {
 
   return (
     <Item.Container borderless roundedless>
-      <Item.HeaderContainer borderless>
+      <Item.Header borderless>
         <HStack>
           <AppIconLucide icon={CalendarIcon} />
-          <Item.HeaderTitle>{t.date_format}</Item.HeaderTitle>
+          <Item.Title>{t.date_format}</Item.Title>
         </HStack>
-      </Item.HeaderContainer>
+      </Item.Header>
 
       <CContainer px={4}>
         <CContainer
@@ -337,13 +337,13 @@ const TimeFormat = () => {
 
   return (
     <Item.Container borderless roundedless>
-      <Item.HeaderContainer borderless>
+      <Item.Header borderless>
         <HStack>
           <AppIconLucide icon={HourglassIcon} />
 
-          <Item.HeaderTitle>{t.time_format}</Item.HeaderTitle>
+          <Item.Title>{t.time_format}</Item.Title>
         </HStack>
-      </Item.HeaderContainer>
+      </Item.Header>
 
       <CContainer px={4}>
         <CContainer
@@ -402,12 +402,12 @@ const UOMFormat = () => {
 
   return (
     <Item.Container borderless roundedless>
-      <Item.HeaderContainer borderless>
+      <Item.Header borderless>
         <HStack>
           <AppIconLucide icon={RulerDimensionLineIcon} />
-          <Item.HeaderTitle>{t.UOM_format}</Item.HeaderTitle>
+          <Item.Title>{t.UOM_format}</Item.Title>
         </HStack>
-      </Item.HeaderContainer>
+      </Item.Header>
 
       <CContainer px={4}>
         <CContainer

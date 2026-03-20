@@ -164,7 +164,7 @@ const Camera = () => {
 
   return (
     <Item.Container borderless roundedless>
-      <Item.HeaderContainer borderless>
+      <Item.Header borderless>
         <HStack>
           <AppIconLucide icon={CameraIcon} />
 
@@ -172,7 +172,7 @@ const Camera = () => {
         </HStack>
 
         <Test />
-      </Item.HeaderContainer>
+      </Item.Header>
 
       <CContainer px={4}>
         <CContainer
@@ -357,7 +357,7 @@ const Microphone = () => {
 
   return (
     <Item.Container borderless roundedless>
-      <Item.HeaderContainer borderless>
+      <Item.Header borderless>
         <HStack>
           <AppIconLucide icon={MicIcon} />
 
@@ -365,7 +365,7 @@ const Microphone = () => {
         </HStack>
 
         <Test />
-      </Item.HeaderContainer>
+      </Item.Header>
 
       <CContainer px={4}>
         <CContainer
@@ -558,7 +558,7 @@ const Location = () => {
 
   return (
     <Item.Container borderless roundedless>
-      <Item.HeaderContainer borderless>
+      <Item.Header borderless>
         <HStack>
           <AppIconLucide icon={MapPinIcon} />
 
@@ -566,7 +566,7 @@ const Location = () => {
         </HStack>
 
         <Test />
-      </Item.HeaderContainer>
+      </Item.Header>
 
       <CContainer px={4}>
         <CContainer

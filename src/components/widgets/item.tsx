@@ -2,9 +2,11 @@
 
 import { CContainer } from "@/components/ui/c-container";
 import { P, PProps } from "@/components/ui/p";
+import { StackH, StackV } from "@/components/ui/stack";
 import { InfoTip } from "@/components/widgets/info-tip";
 import { R_SPACING_MD } from "@/constants/styles";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
+import { useColorBody } from "@/hooks/useColorBody";
 import { HStack, StackProps } from "@chakra-ui/react";
 import { forwardRef } from "react";
 
@@ -38,7 +40,7 @@ const ItemContainer = forwardRef<HTMLDivElement, ItemContainerProps>(
         bg={"bg.frosted"}
         rounded={roundedless ? "" : themeConfig.radii.container}
         border={borderless ? "" : "1px solid"}
-        borderColor={"border.muted"}
+        borderColor={"border.subtle"}
         {...restProps}
       >
         {children}
@@ -70,41 +72,42 @@ const ItemContent = forwardRef<HTMLDivElement, ItemContentProps>(
     // Contexts
     const { themeConfig } = useThemeConfig();
 
+    // SX
+    const BG = useColorBody();
+
     return (
-      <CContainer
+      <StackV
         ref={ref}
         className={`${scrollY ? "scrollY" : ""} ${className}`}
-        bg={"bg.body"}
-        rounded={roundedless ? "" : themeConfig.radii.component}
+        bg={BG}
         border={borderless ? "" : "1px solid"}
-        borderColor={"border.muted"}
+        borderColor={"border.subtle"}
+        rounded={roundedless ? "" : themeConfig.radii.component}
         {...restProps}
       >
         {children}
-      </CContainer>
+      </StackV>
     );
   },
 );
 
 // -----------------------------------------------------------------
 
-interface ItemHeaderContainerProps extends StackProps {
+interface ItemHeaderProps extends StackProps {
   borderless?: boolean;
 }
 
-const ItemHeaderContainer = forwardRef<
-  HTMLDivElement,
-  ItemHeaderContainerProps
->((props, ref) => {
+const ItemHeader = forwardRef<HTMLDivElement, ItemHeaderProps>((props, ref) => {
   // Props
   const { children, borderless = false, ...restProps } = props;
 
   return (
-    <HStack
+    <StackH
       ref={ref}
       wrap={"wrap"}
+      align={"center"}
       justify={"space-between"}
-      minH={"50px"}
+      h={"50px"}
       gapX={4}
       px={R_SPACING_MD}
       py={1}
@@ -113,43 +116,41 @@ const ItemHeaderContainer = forwardRef<
       {...restProps}
     >
       {children}
+    </StackH>
+  );
+});
+
+// -----------------------------------------------------------------
+
+export interface ItemTitleProps extends PProps {
+  popoverContent?: string;
+  autoHeight?: boolean;
+}
+
+const ItemTitle = forwardRef<HTMLDivElement, ItemTitleProps>((props, ref) => {
+  // Props
+  const { children, popoverContent, autoHeight, ...restProps } = props;
+
+  return (
+    <HStack ref={ref} gap={1} w={"fit"} h={autoHeight ? "" : "42px"}>
+      <P fontWeight={"medium"} {...restProps}>
+        {children}
+      </P>
+
+      {popoverContent && <InfoTip popoverContent={popoverContent} />}
     </HStack>
   );
 });
 
 // -----------------------------------------------------------------
 
-export interface ItemHeaderTitleProps extends PProps {
-  popoverContent?: string;
-  autoHeight?: boolean;
-}
-
-const ItemHeaderTitle = forwardRef<HTMLDivElement, ItemHeaderTitleProps>(
-  (props, ref) => {
-    // Props
-    const { children, popoverContent, autoHeight, ...restProps } = props;
-
-    return (
-      <HStack ref={ref} gap={1} w={"fit"} minH={autoHeight ? "" : "42px"}>
-        <P fontWeight={"medium"} {...restProps}>
-          {children}
-        </P>
-
-        {popoverContent && <InfoTip popoverContent={popoverContent} />}
-      </HStack>
-    );
-  },
-);
-
-// -----------------------------------------------------------------
-
 ItemContainer.displayName = "ItemContainer";
-ItemHeaderContainer.displayName = "ItemHeaderContainer";
-ItemHeaderTitle.displayName = "ItemHeaderTitle";
+ItemHeader.displayName = "ItemHeader";
+ItemTitle.displayName = "ItemTitle";
 
 export const Item = {
   Container: ItemContainer,
   Content: ItemContent,
-  HeaderContainer: ItemHeaderContainer,
-  HeaderTitle: ItemHeaderTitle,
+  Header: ItemHeader,
+  Title: ItemTitle,
 };

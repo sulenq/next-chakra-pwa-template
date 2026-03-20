@@ -84,14 +84,14 @@ const OverviewItem = (props: OverviewItemProps) => {
   return (
     <Item.Content gap={1} {...restProps}>
       <HStack gap={1} p={2} pl={4}>
-        <Item.HeaderTitle
+        <Item.Title
           autoHeight
           popoverContent={
             "Lorem ipsum dolor sit amet consectetur adipisicing elit."
           }
         >
           {"Chart Title"}
-        </Item.HeaderTitle>
+        </Item.Title>
 
         <Center
           p={2}
@@ -361,15 +361,15 @@ const Chart1 = (props: any) => {
 
   return (
     <Item.Content {...restProps}>
-      <Item.HeaderContainer borderless>
-        <Item.HeaderTitle
+      <Item.Header borderless>
+        <Item.Title
           color={"fg.muted"}
           popoverContent={
             "Lorem ipsum dolor sit amet consectetur adipisicing elit."
           }
         >
           {"Chart Title"}
-        </Item.HeaderTitle>
+        </Item.Title>
 
         <Segmented
           items={["1D", "1W", "1M", "3M"]}
@@ -378,7 +378,7 @@ const Chart1 = (props: any) => {
           size={"xs"}
           mr={-2}
         />
-      </Item.HeaderContainer>
+      </Item.Header>
 
       <CContainer>
         <CContainer
