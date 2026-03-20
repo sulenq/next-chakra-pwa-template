@@ -342,12 +342,12 @@ const DesktopLayout = (props: any) => {
             flex={1}
             gap={GAP}
             pl={GAP}
-            py={GAP}
+            pb={GAP}
             overflowY={"auto"}
             overflowX={"clip"}
           >
             {/* Header */}
-            <StackH align={"center"} gap={3} minH={"60px"} p={R_SPACING_MD}>
+            <StackH align={"center"} gap={3} minH={TOP_BAR_H} p={R_SPACING_MD}>
               <Logo ml={"4px"} />
 
               {isNavsExpanded && (
@@ -492,14 +492,15 @@ const DesktopLayout = (props: any) => {
 
         {/* Content */}
         <StackV w={"full"} overflowY={"auto"}>
-          <StackV px={GAP} pt={GAP}>
+          <StackV px={GAP}>
             <StackH
               align={"center"}
               w={"full"}
               h={TOP_BAR_H}
               p={R_SPACING_MD}
-              // borderBottom={"1px solid"}
+              borderBottom={"1px solid"}
               borderColor={"border.muted"}
+              // rounded={themeConfig.radii.container}
             >
               <TopBar />
             </StackH>

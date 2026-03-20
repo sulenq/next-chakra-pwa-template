@@ -1,14 +1,15 @@
 "use client";
 
 import { Btn } from "@/components/ui/btn";
+import { Divider } from "@/components/ui/divider";
 import { P, PProps } from "@/components/ui/p";
-import { SearchInput } from "@/components/ui/search-input";
 import { StackH, StackV } from "@/components/ui/stack";
 import { AppIconLucide } from "@/components/widgets/app-icon";
 import { BackButton } from "@/components/widgets/back-button";
 import { ClampText } from "@/components/widgets/clamp-text";
-import { LucideIcon } from "@/components/widgets/icon";
+import { Clock } from "@/components/widgets/clock";
 import { DotIndicator } from "@/components/widgets/indicator";
+import { Today } from "@/components/widgets/today";
 import ToggleTip from "@/components/widgets/toggle-tip";
 import { Interface__Nav } from "@/constants/interfaces";
 import { R_SPACING_MD, TOP_BAR_H } from "@/constants/styles";
@@ -23,7 +24,7 @@ import { capitalizeWords, pluckString } from "@/utils/string";
 import { getActiveNavs } from "@/utils/url";
 import { HStack, Icon, StackProps } from "@chakra-ui/react";
 import { IconSlash } from "@tabler/icons-react";
-import { BellIcon, HeadsetIcon, NavigationIcon } from "lucide-react";
+import { HeadsetIcon, NavigationIcon } from "lucide-react";
 import { usePathname } from "next/navigation";
 import {
   createContext,
@@ -134,7 +135,6 @@ export const NavBreadcrumb = (props: any) => {
 
 export const TopBar = (props: StackProps) => {
   // Contexts
-  const { t } = useLocale();
   const { themeConfig } = useThemeConfig();
 
   // Hooks
@@ -151,7 +151,7 @@ export const TopBar = (props: StackProps) => {
     <StackH
       flexShrink={0}
       justify={"space-between"}
-      gap={4}
+      gap={2}
       w={"full"}
       rounded={themeConfig.radii.container}
       {...props}
@@ -163,22 +163,34 @@ export const TopBar = (props: StackProps) => {
         />
       </StackH>
 
-      <SearchInput
-        queryKey={"quick-navigation"}
-        variant={"subtle"}
-        icon={<LucideIcon icon={NavigationIcon} />}
-        placeholder={t.quick_navigation}
-        w={"30%"}
-      />
+      <StackH align={"center"} justify={"center"} w={"30%"} color={"fg.muted"}>
+        <Today />
+
+        <Divider dir={"vertical"} mx={2} h={"20px"} />
+
+        <Clock />
+      </StackH>
 
       <StackH justify={"end"} gap={2} w={"35%"}>
-        <Btn iconButton variant={"subtle"}>
+        {/* <SearchInput
+          queryKey={"quick-navigation"}
+          variant={"subtle"}
+          icon={<LucideIcon icon={NavigationIcon} />}
+          placeholder={t.quick_navigation}
+        /> */}
+
+        <Btn iconButton variant={"subtle"} size={"xs"}>
+          <AppIconLucide icon={NavigationIcon} />
+        </Btn>
+
+        <Btn iconButton variant={"subtle"} size={"xs"}>
           <AppIconLucide icon={HeadsetIcon} />
         </Btn>
 
-        <Btn iconButton variant={"subtle"}>
+        {/* 
+        <Btn iconButton variant={"subtle"} size={"xs"}>
           <AppIconLucide icon={BellIcon} />
-        </Btn>
+        </Btn> */}
       </StackH>
     </StackH>
   );

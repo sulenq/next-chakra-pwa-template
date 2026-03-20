@@ -1,9 +1,10 @@
 "use client";
 
 import { P } from "@/components/ui/p";
+import { StackH } from "@/components/ui/stack";
 import useTimezone from "@/contexts/useTimezone";
 import { formatTime } from "@/utils/formatter";
-import { HStack, StackProps } from "@chakra-ui/react";
+import { StackProps } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 
 export interface ClockPropsProps extends StackProps {
@@ -48,10 +49,10 @@ export const Clock = (props: ClockPropsProps) => {
   }, [showSeconds, tzKey]);
 
   return (
-    <HStack {...restProps}>
+    <StackH {...restProps}>
       <P fontSize={props?.fontSize}>{time}</P>
 
       {showTimezone && <P fontSize={props?.fontSize}>{tz.localAbbr}</P>}
-    </HStack>
+    </StackH>
   );
 };

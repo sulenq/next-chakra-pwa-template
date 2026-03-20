@@ -603,7 +603,7 @@ const Content = () => {
   const [filter, setFilter] = useState(DEFAULT_FILTER);
 
   return (
-    <View.Content px={GAP} pb={GAP}>
+    <View.Content p={GAP}>
       <CContainer flex={1} overflowY={"auto"}>
         <View.Header withTitle justify={"space-between"}>
           <HStack>

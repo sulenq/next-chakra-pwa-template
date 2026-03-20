@@ -41,12 +41,12 @@ const customConfig = defineConfig({
         dark: { value: "#151515" },
         darktrans: { value: "#202020cf" },
 
-        d0: { value: "#8b90960f" },
-        d1: { value: "#8b909615" },
-        d2: { value: "#8b909625" },
-        d3: { value: "#8b909635" },
-        d4: { value: "#8b909645" },
-        dt: { value: "#8b9096ff" },
+        d0: { value: "#7c82880f" },
+        d1: { value: "#7c828815" },
+        d2: { value: "#7c828825" },
+        d3: { value: "#7c828835" },
+        d4: { value: "#7c828845" },
+        dt: { value: "#5f656cff" },
 
         placeholder: { value: "#96969691" },
 

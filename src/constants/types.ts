@@ -30,7 +30,7 @@ export type InputSize = ConditionalValue<
 >;
 
 export type InputVariant = ConditionalValue<
-  "outline" | "subtle" | "flushed" | undefined
+  "solid" | "outline" | "subtle" | "flushed" | undefined
 >;
 
 export type ButtonSize = ConditionalValue<
