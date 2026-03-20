@@ -645,8 +645,8 @@ export const UserPanel = (props: UserPanelProps) => {
               positioning: {
                 placement: "right-end",
                 offset: {
-                  mainAxis: 20,
-                  crossAxis: 20,
+                  mainAxis: 16,
+                  crossAxis: 16,
                 },
               },
             }}
@@ -683,8 +683,8 @@ export const UserPanel = (props: UserPanelProps) => {
                 positioning: {
                   placement: "right-end",
                   offset: {
-                    mainAxis: 20,
-                    crossAxis: 20,
+                    mainAxis: 16,
+                    crossAxis: 16,
                   },
                 },
               }}

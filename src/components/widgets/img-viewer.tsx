@@ -83,8 +83,9 @@ export const ImgViewer = (props: ImgViewerProps) => {
               <StackV flex={1} gap={4} align={"center"} p={8} overflow={"auto"}>
                 <Img
                   src={src || fallbackSrc || `${SVGS_PATH}/no-img.svg`}
-                  w={"50%"}
-                  h={"50%"}
+                  w={"fit"}
+                  h={"70%"}
+                  aspectRatio={1}
                   objectFit={"contain"}
                   onClick={(e) => {
                     e.stopPropagation();
