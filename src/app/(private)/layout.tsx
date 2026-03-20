@@ -361,7 +361,7 @@ const DesktopLayout = (props: any) => {
             <DesktopNavTooltip
               content={isNavsExpanded ? t.minimize : t.maximize}
             >
-              <StackH px={R_SPACING_MD} my={"2px"}>
+              <StackH px={R_SPACING_MD} my={`calc(${GAP})`}>
                 <Btn
                   flex={1}
                   clicky={false}
