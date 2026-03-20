@@ -359,6 +359,7 @@ const translations = {
   "progress": "Progres",
   "published_at": "Diterbitkan pada",
   "purpose": "Tujuan",
+  "quick_navigation": "Navigasi cepat",
   "read_more": "Baca selengkapnya",
   "recieve": "Terima",
   "rejected": "Ditolak",

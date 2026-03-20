@@ -597,6 +597,7 @@ export const UserPanel = (props: UserPanelProps) => {
       backdropFilter={BACKDROP_BLUR_FILTER}
       overflow={"clip"}
     >
+      {/* Quick actions */}
       {navsExpanded && (
         <StackH justify={"space-between"} gap={R_SPACING_MD} p={R_SPACING_MD}>
           <ColorModeButton variant={"outline"} />
@@ -623,6 +624,7 @@ export const UserPanel = (props: UserPanelProps) => {
         </StackH>
       )}
 
+      {/* User */}
       <StackH
         align={"center"}
         justify={"space-between"}
@@ -630,7 +632,6 @@ export const UserPanel = (props: UserPanelProps) => {
         w={navsExpanded ? "full" : "36px"}
         p={navsExpanded ? R_SPACING_MD : 0}
         pos={"relative"}
-        transition={"200ms"}
       >
         {navsExpanded ? (
           <Avatar

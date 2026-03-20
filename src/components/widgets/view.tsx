@@ -2,10 +2,12 @@
 
 import { Btn } from "@/components/ui/btn";
 import { P, PProps } from "@/components/ui/p";
-import { StackV } from "@/components/ui/stack";
+import { SearchInput } from "@/components/ui/search-input";
+import { StackH, StackV } from "@/components/ui/stack";
 import { AppIconLucide } from "@/components/widgets/app-icon";
 import { BackButton } from "@/components/widgets/back-button";
 import { ClampText } from "@/components/widgets/clamp-text";
+import { LucideIcon } from "@/components/widgets/icon";
 import { DotIndicator } from "@/components/widgets/indicator";
 import ToggleTip from "@/components/widgets/toggle-tip";
 import { Interface__Nav } from "@/constants/interfaces";
@@ -21,7 +23,7 @@ import { capitalizeWords, pluckString } from "@/utils/string";
 import { getActiveNavs } from "@/utils/url";
 import { HStack, Icon, StackProps } from "@chakra-ui/react";
 import { IconSlash } from "@tabler/icons-react";
-import { InboxIcon, ListIcon } from "lucide-react";
+import { BellIcon, HeadsetIcon, NavigationIcon } from "lucide-react";
 import { usePathname } from "next/navigation";
 import {
   createContext,
@@ -33,6 +35,8 @@ import {
 } from "react";
 
 const FONT_SIZE = "md";
+
+// -----------------------------------------------------------------
 
 export const NavBreadcrumb = (props: any) => {
   // Props
@@ -126,8 +130,11 @@ export const NavBreadcrumb = (props: any) => {
   );
 };
 
+// -----------------------------------------------------------------
+
 export const TopBar = (props: StackProps) => {
   // Contexts
+  const { t } = useLocale();
   const { themeConfig } = useThemeConfig();
 
   // Hooks
@@ -141,40 +148,39 @@ export const TopBar = (props: StackProps) => {
   const backPath = last(activeNavs)?.backPath;
 
   return (
-    <HStack
+    <StackH
       flexShrink={0}
       justify={"space-between"}
       gap={4}
+      w={"full"}
       rounded={themeConfig.radii.container}
       {...props}
     >
-      <NavBreadcrumb
-        backPath={backPath}
-        resolvedActiveNavs={resolvedActiveNavs}
+      <StackH w={"35%"}>
+        <NavBreadcrumb
+          backPath={backPath}
+          resolvedActiveNavs={resolvedActiveNavs}
+        />
+      </StackH>
+
+      <SearchInput
+        queryKey={"quick-navigation"}
+        variant={"subtle"}
+        icon={<LucideIcon icon={NavigationIcon} />}
+        placeholder={t.quick_navigation}
+        w={"30%"}
       />
 
-      <HStack flexShrink={0} gap={1}>
-        <Btn
-          iconButton
-          variant={"ghost"}
-          _hover={{
-            bg: "d1",
-          }}
-        >
-          <AppIconLucide icon={ListIcon} />
+      <StackH justify={"end"} gap={2} w={"35%"}>
+        <Btn iconButton variant={"subtle"}>
+          <AppIconLucide icon={HeadsetIcon} />
         </Btn>
 
-        <Btn
-          iconButton
-          variant={"ghost"}
-          _hover={{
-            bg: "d1",
-          }}
-        >
-          <AppIconLucide icon={InboxIcon} />
+        <Btn iconButton variant={"subtle"}>
+          <AppIconLucide icon={BellIcon} />
         </Btn>
-      </HStack>
-    </HStack>
+      </StackH>
+    </StackH>
   );
 };
 

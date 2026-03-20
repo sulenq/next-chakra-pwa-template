@@ -43,6 +43,7 @@ import {
   MOBILE_NAVS_COLOR,
   MOBILE_POPOVER_MAIN_AXIS,
   R_SPACING_MD,
+  TOP_BAR_H,
   USER_PANEL_H,
 } from "@/constants/styles";
 import { useLocale } from "@/contexts/useLocale";
@@ -360,7 +361,7 @@ const DesktopLayout = (props: any) => {
             <DesktopNavTooltip
               content={isNavsExpanded ? t.minimize : t.maximize}
             >
-              <StackH px={R_SPACING_MD}>
+              <StackH px={R_SPACING_MD} my={"2px"}>
                 <Btn
                   flex={1}
                   clicky={false}
@@ -492,9 +493,16 @@ const DesktopLayout = (props: any) => {
         {/* Content */}
         <StackV w={"full"} overflowY={"auto"}>
           <StackV px={GAP} pt={GAP}>
-            <StackV p={R_SPACING_MD}>
+            <StackH
+              align={"center"}
+              w={"full"}
+              h={TOP_BAR_H}
+              p={R_SPACING_MD}
+              // borderBottom={"1px solid"}
+              borderColor={"border.muted"}
+            >
               <TopBar />
-            </StackV>
+            </StackH>
           </StackV>
 
           <MContainer flex={1} overflow={"auto"}>

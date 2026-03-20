@@ -359,6 +359,7 @@ const translations = {
   "progress": "Progress",
   "published_at": "Published at",
   "purpose": "Purpose",
+  "quick_navigation": "Quick navigation",
   "read_more": "Read more",
   "recieve": "Recieve",
   "rejected": "Rejected",
