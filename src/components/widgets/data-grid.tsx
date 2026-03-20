@@ -28,7 +28,6 @@ import {
 } from "@/constants/styles";
 import { useLocale } from "@/contexts/useLocale";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
-import { useColorBody } from "@/hooks/useColorBody";
 import { useIsSmScreenWidth } from "@/hooks/useIsSmScreenWidth";
 import { usePopDisclosure } from "@/hooks/usePopDisclosure";
 import { isEmptyArray } from "@/utils/array";
@@ -88,14 +87,11 @@ export const DataGridItem = (props: DataGridItemProps) => {
   // Derived Values
   const isRowSelected = selectedRows.includes(row.id);
 
-  // SX
-  const GRID_ITEM_CONTAINER_BG = useColorBody();
-
   return (
     <StackV
       key={item.id}
       flex={1}
-      bg={GRID_ITEM_CONTAINER_BG}
+      bg={"bg.body"}
       border={"1px solid"}
       borderColor={isRowSelected ? selectedColor : "transparent"}
       rounded={themeConfig.radii.component}

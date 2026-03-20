@@ -19,7 +19,6 @@ import { useAuthMiddleware } from "@/contexts/useAuthMiddleware";
 import { useLocale } from "@/contexts/useLocale";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
 import { useClickOutside } from "@/hooks/useClickOutside";
-import { useColorBody } from "@/hooks/useColorBody";
 import { useRequest } from "@/hooks/useRequest";
 import { getUserData } from "@/utils/auth";
 import { back, removeStorage } from "@/utils/client";
@@ -115,14 +114,11 @@ export const ProfileMenu = (props: ProfileMenuProps) => {
     });
   }
 
-  // SX
-  const CONTAINER_BG = useColorBody();
-
   return (
     <StackV
       rounded={themeConfig.radii.container}
       overflow={"clip"}
-      bg={CONTAINER_BG}
+      bg={"bg.body"}
       color={"fg.ibody"}
       {...restProps}
     >

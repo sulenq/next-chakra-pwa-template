@@ -6,7 +6,6 @@ import { StackH, StackV } from "@/components/ui/stack";
 import { InfoTip } from "@/components/widgets/info-tip";
 import { R_SPACING_MD } from "@/constants/styles";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
-import { useColorBody } from "@/hooks/useColorBody";
 import { HStack, StackProps } from "@chakra-ui/react";
 import { forwardRef } from "react";
 
@@ -18,37 +17,36 @@ export interface ItemContainerProps extends StackProps {
   borderless?: boolean;
 }
 
-function ItemContainerBase(
-  props: ItemContainerProps,
-  ref: React.Ref<HTMLDivElement>,
-) {
-  const {
-    children,
-    scrollY = false,
-    className,
-    roundedless = false,
-    borderless = true,
-    ...restProps
-  } = props;
+const ItemContainer = forwardRef<HTMLDivElement, ItemContainerProps>(
+  function ItemContainer(props, ref) {
+    // Props
+    const {
+      children,
+      scrollY = false,
+      className,
+      roundedless = false,
+      borderless = true,
+      ...restProps
+    } = props;
 
-  const { themeConfig } = useThemeConfig();
+    // Contexts
+    const { themeConfig } = useThemeConfig();
 
-  return (
-    <CContainer
-      ref={ref}
-      className={`${scrollY ? "scrollY" : ""} ${className}`}
-      bg={"bg.frosted"}
-      rounded={roundedless ? "" : themeConfig.radii.container}
-      border={borderless ? "" : "1px solid"}
-      borderColor={"border.subtle"}
-      {...restProps}
-    >
-      {children}
-    </CContainer>
-  );
-}
-
-const ItemContainer = forwardRef(ItemContainerBase);
+    return (
+      <CContainer
+        ref={ref}
+        className={`${scrollY ? "scrollY" : ""} ${className}`}
+        bg={"bg.frosted"}
+        rounded={roundedless ? "" : themeConfig.radii.container}
+        border={borderless ? "" : "1px solid"}
+        borderColor={"border.subtle"}
+        {...restProps}
+      >
+        {children}
+      </CContainer>
+    );
+  },
+);
 
 // -----------------------------------------------------------------
 
@@ -58,39 +56,36 @@ export interface ItemContentProps extends StackProps {
   borderless?: boolean;
 }
 
-function ItemContentBase(
-  props: ItemContentProps,
-  ref: React.Ref<HTMLDivElement>,
-) {
-  const {
-    children,
-    scrollY = false,
-    className,
-    roundedless = false,
-    borderless = true,
-    ...restProps
-  } = props;
+const ItemContent = forwardRef<HTMLDivElement, ItemContentProps>(
+  function ItemContent(props, ref) {
+    // Props
+    const {
+      children,
+      scrollY = false,
+      className,
+      roundedless = false,
+      borderless = true,
+      ...restProps
+    } = props;
 
-  const { themeConfig } = useThemeConfig();
+    // Contexts
+    const { themeConfig } = useThemeConfig();
 
-  const BG = useColorBody();
-
-  return (
-    <StackV
-      ref={ref}
-      className={`${scrollY ? "scrollY" : ""} ${className}`}
-      bg={BG}
-      border={borderless ? "" : "1px solid"}
-      borderColor={"border.subtle"}
-      rounded={roundedless ? "" : themeConfig.radii.component}
-      {...restProps}
-    >
-      {children}
-    </StackV>
-  );
-}
-
-const ItemContent = forwardRef(ItemContentBase);
+    return (
+      <StackV
+        ref={ref}
+        className={`${scrollY ? "scrollY" : ""} ${className}`}
+        bg={"bg.body"}
+        border={borderless ? "" : "1px solid"}
+        borderColor={"border.subtle"}
+        rounded={roundedless ? "" : themeConfig.radii.component}
+        {...restProps}
+      >
+        {children}
+      </StackV>
+    );
+  },
+);
 
 // -----------------------------------------------------------------
 
@@ -98,32 +93,30 @@ interface ItemHeaderProps extends StackProps {
   borderless?: boolean;
 }
 
-function ItemHeaderBase(
-  props: ItemHeaderProps,
-  ref: React.Ref<HTMLDivElement>,
-) {
-  const { children, borderless = false, ...restProps } = props;
+const ItemHeader = forwardRef<HTMLDivElement, ItemHeaderProps>(
+  function ItemHeader(props, ref) {
+    // Props
+    const { children, borderless = false, ...restProps } = props;
 
-  return (
-    <StackH
-      ref={ref}
-      wrap={"wrap"}
-      align={"center"}
-      justify={"space-between"}
-      h={"50px"}
-      gapX={4}
-      px={R_SPACING_MD}
-      py={1}
-      borderBottom={"1px solid"}
-      borderColor={borderless ? "transparent" : "border.subtle"}
-      {...restProps}
-    >
-      {children}
-    </StackH>
-  );
-}
-
-const ItemHeader = forwardRef(ItemHeaderBase);
+    return (
+      <StackH
+        ref={ref}
+        wrap={"wrap"}
+        align={"center"}
+        justify={"space-between"}
+        h={"50px"}
+        gapX={4}
+        px={R_SPACING_MD}
+        py={1}
+        borderBottom={"1px solid"}
+        borderColor={borderless ? "transparent" : "border.subtle"}
+        {...restProps}
+      >
+        {children}
+      </StackH>
+    );
+  },
+);
 
 // -----------------------------------------------------------------
 
@@ -132,28 +125,24 @@ export interface ItemTitleProps extends PProps {
   autoHeight?: boolean;
 }
 
-function ItemTitleBase(props: ItemTitleProps, ref: React.Ref<HTMLDivElement>) {
-  const { children, popoverContent, autoHeight, ...restProps } = props;
+const ItemTitle = forwardRef<HTMLDivElement, ItemTitleProps>(
+  function ItemTitle(props, ref) {
+    // Props
+    const { children, popoverContent, autoHeight, ...restProps } = props;
 
-  return (
-    <HStack ref={ref} gap={1} w={"fit"} h={autoHeight ? "" : "42px"}>
-      <P fontWeight={"medium"} {...restProps}>
-        {children}
-      </P>
+    return (
+      <HStack ref={ref} gap={1} w={"fit"} h={autoHeight ? "" : "42px"}>
+        <P fontWeight={"medium"} {...restProps}>
+          {children}
+        </P>
 
-      {popoverContent && <InfoTip popoverContent={popoverContent} />}
-    </HStack>
-  );
-}
-
-const ItemTitle = forwardRef(ItemTitleBase);
+        {popoverContent && <InfoTip popoverContent={popoverContent} />}
+      </HStack>
+    );
+  },
+);
 
 // -----------------------------------------------------------------
-
-ItemContainer.displayName = "ItemContainer";
-ItemContent.displayName = "ItemContent";
-ItemHeader.displayName = "ItemHeader";
-ItemTitle.displayName = "ItemTitle";
 
 export const Item = {
   Container: ItemContainer,

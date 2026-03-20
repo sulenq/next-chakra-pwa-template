@@ -2,7 +2,6 @@
 
 import { CContainer } from "@/components/ui/c-container";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
-import { useColorBody } from "@/hooks/useColorBody";
 import {
   AbsoluteCenter,
   Menu as ChakraMenu,
@@ -82,9 +81,6 @@ export const MenuContent = forwardRef<HTMLDivElement, MenuContentProps>(
     // Contexts
     const { themeConfig } = useThemeConfig();
 
-    // SX
-    const BG = useColorBody();
-
     return (
       <Portal disabled={!portalled} container={portalRef}>
         <ChakraMenu.Positioner>
@@ -94,7 +90,7 @@ export const MenuContent = forwardRef<HTMLDivElement, MenuContentProps>(
             gap={1}
             px={0}
             py={1}
-            bg={BG}
+            bg={"bg.body"}
             border={"1px solid"}
             borderColor={"border.subtle"}
             rounded={themeConfig.radii.container}

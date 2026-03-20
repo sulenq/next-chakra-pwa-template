@@ -8,7 +8,6 @@ import { Img } from "@/components/ui/img";
 import { NavLink } from "@/components/ui/nav-link";
 import { StackV } from "@/components/ui/stack";
 import { useLocale } from "@/contexts/useLocale";
-import { useColorBody } from "@/hooks/useColorBody";
 import { usePopDisclosure } from "@/hooks/usePopDisclosure";
 import { back } from "@/utils/client";
 import { disclosureId } from "@/utils/disclosure";
@@ -39,9 +38,6 @@ export const ImgViewer = (props: ImgViewerProps) => {
 
   // Hooks
   const { open, onOpen } = usePopDisclosure(disclosureId(id || `${src}`));
-
-  // SX
-  const FALLBACK_BG = useColorBody();
 
   return (
     <>
@@ -101,7 +97,7 @@ export const ImgViewer = (props: ImgViewerProps) => {
                   fallback={fallback}
                   fallbackSrc={fallbackSrc}
                   fallbackProps={{
-                    bg: FALLBACK_BG,
+                    bg: "bg.body",
                   }}
                   m={"auto"}
                 />
