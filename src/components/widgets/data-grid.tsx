@@ -41,13 +41,15 @@ import {
   StackProps,
   useBreakpointValue,
 } from "@chakra-ui/react";
-import { Fragment, useState } from "react";
+import React, { Fragment, useState } from "react";
 
 interface DataGridItemProps extends StackProps {
   item: {
     id: string;
-    img?: string;
+    topElement?: React.ReactNode;
+    imgSrc?: string;
     showImg?: boolean;
+    imgFallback?: React.ReactNode;
     imgFallbackSrc?: string;
     title: string | React.ReactNode;
     description: string | React.ReactNode;
@@ -102,6 +104,9 @@ export const DataGridItem = (props: DataGridItemProps) => {
       {...restProps}
     >
       <Box
+        pos={"absolute"}
+        top={3}
+        right={3}
         onClick={(e) => {
           e.stopPropagation();
           toggleRowSelection(row);
@@ -110,29 +115,31 @@ export const DataGridItem = (props: DataGridItemProps) => {
         <Checkbox
           checked={isRowSelected}
           subtle
-          pos={"absolute"}
-          top={3}
-          right={3}
           borderColor={item.showImg ? "border.emphasized" : ""}
           zIndex={2}
         />
       </Box>
+
+      {item.topElement}
 
       {item.showImg && (
         <StackV p={1}>
           <ImgViewer
             id={`img-${row?.idx}-${item?.id}`}
             w={"full"}
-            src={item.img}
-            aspectRatio={1.1}
+            h={"fit"}
+            src={item.imgSrc}
+            aspectRatio={1}
+            fallback={item.imgFallback}
             fallbackSrc={item.imgFallbackSrc}
             opacity={dim || row.dim ? 0.4 : 1}
           >
             <Img
-              key={item.img}
-              src={item.img}
-              aspectRatio={1.1}
+              key={item.imgSrc}
+              src={item.imgSrc}
+              aspectRatio={1}
               rounded={`calc(${themeConfig.radii.component} - 4px)`}
+              fallback={item.imgFallback}
               fallbackSrc={item.imgFallbackSrc}
             />
           </ImgViewer>

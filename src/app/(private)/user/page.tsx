@@ -25,7 +25,6 @@ import {
   DataProps,
   RowOptionsTableOptionGenerator,
 } from "@/constants/interfaces";
-import { SVGS_PATH } from "@/constants/paths";
 import { BASE_ICON_BOX_SIZE, GAP, R_SPACING_MD } from "@/constants/styles";
 import { useDataDisplay } from "@/contexts/useDataDisplay";
 import { useLocale } from "@/contexts/useLocale";
@@ -550,9 +549,8 @@ const Data = (props: any) => {
               key={resolvedItem.id}
               item={{
                 id: resolvedItem.id,
-                img: imgUrl(resolvedItem.avatar?.[0]?.filePath),
+                imgSrc: imgUrl(resolvedItem.avatar?.[0]?.filePath),
                 showImg: true,
-                imgFallbackSrc: `${SVGS_PATH}/no-avatar.svg`,
                 title: resolvedItem.name,
                 description: resolvedItem.email,
               }}

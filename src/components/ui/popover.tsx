@@ -8,6 +8,7 @@ import {
 import { forwardRef } from "react";
 import { CloseButton } from "@/components/ui/close-button";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
+import { useColorBody } from "@/hooks/useColorBody";
 
 interface PopoverContentProps extends ChakraPopover.ContentProps {
   portalled?: boolean;
@@ -53,10 +54,13 @@ export const PopoverArrow = forwardRef<
   HTMLDivElement,
   ChakraPopover.ArrowProps
 >(function PopoverArrow(props, ref) {
+  // SX
+  const BG = useColorBody();
+
   return (
     <ChakraPopover.Arrow ref={ref}>
       <ChakraPopover.ArrowTip
-        bg={"body !important"}
+        bg={BG}
         // backdropFilter={"blur(5px)"}
         // bg={"darktrans !important"}
         // borderColor={"transparent"}

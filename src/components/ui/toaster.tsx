@@ -25,6 +25,7 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 import { useColorMode } from "@/components/ui/color-mode";
+import { useColorBody } from "@/hooks/useColorBody";
 
 const TOAST_PRESETS = {
   loading: {
@@ -157,12 +158,15 @@ const ToastComponent = (props: any) => {
   const [expanded, setExpanded] = useState<boolean>(false);
   const preset = TOAST_PRESETS[toast.type as keyof typeof TOAST_PRESETS];
 
+  // SX
+  const BG = useColorBody();
+
   return (
     <Toast.Root
       rounded={themeConfig?.radii?.container}
       h={expanded ? "max" : ""}
       w={{ md: "sm" }}
-      bg={"body !important"}
+      bg={BG}
       color={"current"}
       p={"14px"}
       border={"1px solid"}

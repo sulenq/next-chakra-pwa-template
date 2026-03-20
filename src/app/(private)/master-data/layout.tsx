@@ -13,7 +13,6 @@ import { LeftIndicator } from "@/components/widgets/indicator";
 import { MContainer } from "@/components/widgets/m-container";
 import { View } from "@/components/widgets/view";
 import { OTHER_PRIVATE_NAV_GROUPS } from "@/constants/navs";
-import { DESKTOP_NAVS_TOOLTIP_MAIN_AXIS } from "@/constants/styles";
 import { useLocale } from "@/contexts/useLocale";
 import { useMasterDataPageContainer } from "@/contexts/useMasterDataPageContainer";
 import { useContainerDimension } from "@/hooks/useContainerDimension";
@@ -88,7 +87,7 @@ const NavsList = (props: any) => {
                     positioning={{
                       placement: "right",
                       offset: {
-                        mainAxis: DESKTOP_NAVS_TOOLTIP_MAIN_AXIS,
+                        mainAxis: 16,
                       },
                     }}
                   >

@@ -164,7 +164,7 @@ export const TopBar = (props: StackProps) => {
       </StackH>
 
       <StackH align={"center"} justify={"center"} w={"30%"} color={"fg.muted"}>
-        <Today />
+        <Today dateVariant={"shortWeekdayDayShortMonthYear"} />
 
         <Divider dir={"vertical"} mx={2} h={"20px"} />
 

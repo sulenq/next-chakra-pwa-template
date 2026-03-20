@@ -7,8 +7,8 @@ import { DialogBody, DialogContent, DialogRoot } from "@/components/ui/dialog";
 import { Img } from "@/components/ui/img";
 import { NavLink } from "@/components/ui/nav-link";
 import { StackV } from "@/components/ui/stack";
-import { SVGS_PATH } from "@/constants/paths";
 import { useLocale } from "@/contexts/useLocale";
+import { useColorBody } from "@/hooks/useColorBody";
 import { usePopDisclosure } from "@/hooks/usePopDisclosure";
 import { back } from "@/utils/client";
 import { disclosureId } from "@/utils/disclosure";
@@ -18,6 +18,7 @@ import { IconArrowUpRight } from "@tabler/icons-react";
 interface ImgViewerProps extends StackProps {
   id?: string;
   src?: string;
+  fallback?: React.ReactNode;
   fallbackSrc?: string;
   disabled?: boolean;
 }
@@ -27,6 +28,7 @@ export const ImgViewer = (props: ImgViewerProps) => {
     children,
     id,
     src,
+    fallback,
     fallbackSrc,
     disabled = false,
     ...restProps
@@ -37,6 +39,9 @@ export const ImgViewer = (props: ImgViewerProps) => {
 
   // Hooks
   const { open, onOpen } = usePopDisclosure(disclosureId(id || `${src}`));
+
+  // SX
+  const FALLBACK_BG = useColorBody();
 
   return (
     <>
@@ -82,7 +87,7 @@ export const ImgViewer = (props: ImgViewerProps) => {
 
               <StackV flex={1} gap={4} align={"center"} p={8} overflow={"auto"}>
                 <Img
-                  src={src || fallbackSrc || `${SVGS_PATH}/no-img.svg`}
+                  src={src}
                   w={"fit"}
                   h={"70%"}
                   aspectRatio={1}
@@ -93,8 +98,10 @@ export const ImgViewer = (props: ImgViewerProps) => {
                   imageProps={{
                     unoptimized: true,
                   }}
+                  fallback={fallback}
+                  fallbackSrc={fallbackSrc}
                   fallbackProps={{
-                    bg: "bg.body",
+                    bg: FALLBACK_BG,
                   }}
                   m={"auto"}
                 />

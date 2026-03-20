@@ -50,7 +50,9 @@ export const Clock = (props: ClockPropsProps) => {
 
   return (
     <StackH {...restProps}>
-      <P fontSize={props?.fontSize}>{time}</P>
+      <P fontSize={props?.fontSize} fontVariantNumeric={"tabular-nums"}>
+        {time}
+      </P>
 
       {showTimezone && <P fontSize={props?.fontSize}>{tz.localAbbr}</P>}
     </StackH>

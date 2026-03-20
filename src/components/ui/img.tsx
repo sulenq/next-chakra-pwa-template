@@ -11,6 +11,7 @@ interface ImgFallbackProps extends CenterProps {
   icon?: LucideIcon;
 }
 export const ImgFallback = (props: ImgFallbackProps) => {
+  // Props
   const { icon: LucideIcon = ImageIcon, ...restProps } = props;
 
   return (
@@ -81,11 +82,11 @@ export const Img = forwardRef<HTMLImageElement, ImgProps>((props, ref) => {
 
   return (
     <CContainer
-      w="auto"
-      h="auto"
-      justify="center"
-      align="center"
-      pos="relative"
+      w={"auto"}
+      h={"auto"}
+      justify={"center"}
+      align={"center"}
+      pos={"relative"}
       overflow={restProps.rounded ? "clip" : ""}
       {...restProps}
     >
