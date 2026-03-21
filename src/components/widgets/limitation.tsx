@@ -1,10 +1,5 @@
 import { Btn } from "@/components/ui/btn";
-import {
-  MenuContent,
-  MenuItem,
-  MenuRoot,
-  MenuTrigger,
-} from "@/components/ui/menu";
+import { Menu } from "@/components/ui/menu";
 import { P } from "@/components/ui/p";
 import { AppIconLucide } from "@/components/widgets/app-icon";
 import { DotIndicator } from "@/components/widgets/indicator";
@@ -28,8 +23,8 @@ export const Limitation = (props: LimitationTableDataProps) => {
   const limitOptions = limitOptionsProps || [15, 30, 50, 100];
 
   return (
-    <MenuRoot>
-      <MenuTrigger asChild>
+    <Menu.Root>
+      <Menu.Trigger asChild>
         <Btn clicky={false} size={"xs"} variant={"ghost"} pl={"8px"} pr={"4px"}>
           <HStack>
             <P>{t.show}</P>
@@ -38,18 +33,14 @@ export const Limitation = (props: LimitationTableDataProps) => {
 
           <AppIconLucide icon={ChevronDownIcon} ml={1} color={"fg.subtle"} />
         </Btn>
-      </MenuTrigger>
+      </Menu.Trigger>
 
-      <MenuContent
-        w={"120px"}
-        bg={"bg.body"}
-        // backdropFilter={BACKDROP_BLUR_FILTER}
-      >
+      <Menu.Content w={"120px"} bg={"bg.body"}>
         {limitOptions.map((t) => {
           const isSelected = limit === t;
 
           return (
-            <MenuItem
+            <Menu.Item
               key={t}
               value={`${t}`}
               onClick={() => {
@@ -59,10 +50,10 @@ export const Limitation = (props: LimitationTableDataProps) => {
             >
               {t}
               {isSelected && <DotIndicator mr={"2px"} />}
-            </MenuItem>
+            </Menu.Item>
           );
         })}
-      </MenuContent>
-    </MenuRoot>
+      </Menu.Content>
+    </Menu.Root>
   );
 };

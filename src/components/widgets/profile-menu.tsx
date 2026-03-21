@@ -118,7 +118,7 @@ export const ProfileMenu = (props: ProfileMenuProps) => {
     <StackV
       rounded={themeConfig.radii.container}
       overflow={"clip"}
-      bg={"bg.body"}
+      bg={"bg.frosted"}
       color={"fg.ibody"}
       {...restProps}
     >

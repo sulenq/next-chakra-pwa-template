@@ -11,7 +11,7 @@ import { AppIconLucide } from "@/components/widgets/app-icon";
 import { Confirmation } from "@/components/widgets/confirmation";
 import { DataDisplayToggle } from "@/components/widgets/data-display-toggle";
 import { DataGrid } from "@/components/widgets/data-grid";
-import { DataTable } from "@/components/widgets/data-table";
+import { DataTable } from "@/components/widgets/new-data-table";
 import FeedbackNoData from "@/components/widgets/feedback-no-data";
 import FeedbackRetry from "@/components/widgets/feedback-retry";
 import { HScroll } from "@/components/widgets/h-scroll";

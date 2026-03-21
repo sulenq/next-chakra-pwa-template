@@ -531,19 +531,20 @@ const customConfig = defineConfig({
           canvas: {
             value: {
               base: "#efefefff",
-              _dark: "rgba(18, 18, 18, 1)",
+              _dark: "rgba(20, 20, 20, 1)",
             },
           },
           body: {
             value: {
-              base: "rgba(255, 255, 255, 0.75)",
-              _dark: "rgba(28, 28, 28, 0.75)",
+              base: "#fcfcfa",
+              _dark: "#181818",
             },
           },
           frosted: {
             value: {
               base: "rgba(255, 255, 255, 0.5)",
-              _dark: "rgba(25, 25, 25, 0.5)",
+              // _dark: "rgba(25, 25, 25, 0.5)",
+              _dark: "rgba(34, 34, 34, 0.3)",
             },
           },
           subtle: {

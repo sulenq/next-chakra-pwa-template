@@ -32,7 +32,7 @@ export const GAP = "6px";
 export const MOBILE_POPOVER_MAIN_AXIS = 22;
 
 // Effects
-export const BLUR_RADIUS = "10px";
+export const BLUR_RADIUS = "20px";
 export const BACKDROP_BLUR_FILTER = `blur(${BLUR_RADIUS})`;
 
 // --- Widgets ---
@@ -43,11 +43,11 @@ export const TABLE_CONTAINER_BG = "transparent";
 export const TABLE_ROW_BG = "transparent";
 export const TABLE_TH_H = "45px";
 export const TABLE_TH_PB = 0;
-export const TABLE_TH_BG = "bg.body";
+export const TABLE_TH_BG = "bg.frosted";
 export const TABLE_TH_BORDER_COLOR = "border.subtle";
 export const TABLE_TD_MIN_H = "46px";
 export const TABLE_TD_MT = GAP;
-export const TABLE_TD_BG = "bg.body";
+export const TABLE_TD_BG = "bg.frosted";
 export const TABLE_TD_BORDER_COLOR = "transparent";
 export const TABLE_FOOTER_BORDER_COLOR = "border.muted";
 

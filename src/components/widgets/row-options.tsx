@@ -1,11 +1,6 @@
 import { Btn, BtnProps } from "@/components/ui/btn";
 import { CContainer } from "@/components/ui/c-container";
-import {
-  MenuContent,
-  MenuItem,
-  MenuRoot,
-  MenuTrigger,
-} from "@/components/ui/menu";
+import { Menu } from "@/components/ui/menu";
 import { AppIconLucide } from "@/components/widgets/app-icon";
 import { Confirmation } from "@/components/widgets/confirmation";
 import {
@@ -27,7 +22,7 @@ export const RowOptions = (props: Props_RowOptions) => {
     props;
 
   return (
-    <MenuRoot
+    <Menu.Root
       lazyMount
       positioning={{
         offset: {
@@ -36,7 +31,7 @@ export const RowOptions = (props: Props_RowOptions) => {
       }}
       {...menuRootProps}
     >
-      <MenuTrigger asChild aria-label="row-options">
+      <Menu.Trigger asChild aria-label="row-options">
         <Btn
           iconButton
           clicky={false}
@@ -47,13 +42,13 @@ export const RowOptions = (props: Props_RowOptions) => {
         >
           <AppIconLucide icon={EllipsisVerticalIcon} />
         </Btn>
-      </MenuTrigger>
+      </Menu.Trigger>
 
-      <MenuContent
+      <Menu.Content
         portalRef={tableContainerRef}
-        zIndex={10}
         minW={"140px"}
         mr={1}
+        zIndex={10}
       >
         {rowOptions?.map((item, idx) => {
           // if (item === "divider") return <MenuSeparator key={idx} />;
@@ -85,7 +80,7 @@ export const RowOptions = (props: Props_RowOptions) => {
                 loading={confirmation.loading}
                 disabled={disabled}
               >
-                <MenuItem
+                <Menu.Item
                   value={label}
                   color={"fg.error"}
                   disabled={disabled}
@@ -94,7 +89,7 @@ export const RowOptions = (props: Props_RowOptions) => {
                 >
                   {label}
                   {icon && <AppIconLucide icon={icon} />}
-                </MenuItem>
+                </Menu.Item>
               </Confirmation.Trigger>
             );
           }
@@ -104,7 +99,7 @@ export const RowOptions = (props: Props_RowOptions) => {
           }
 
           return (
-            <MenuItem
+            <Menu.Item
               key={idx}
               disabled={disabled}
               value={label}
@@ -118,10 +113,10 @@ export const RowOptions = (props: Props_RowOptions) => {
             >
               {label}
               {icon && <AppIconLucide icon={icon} />}
-            </MenuItem>
+            </Menu.Item>
           );
         })}
-      </MenuContent>
-    </MenuRoot>
+      </Menu.Content>
+    </Menu.Root>
   );
 };
