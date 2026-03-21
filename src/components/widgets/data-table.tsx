@@ -278,7 +278,7 @@ export const DataTableDisplay = (props: DataTableProps) => {
                 )}
 
                 {/* Numbering column */}
-                <Table.ColumnHeader
+                {/* <Table.ColumnHeader
                   whiteSpace={"nowrap"}
                   minW={"fit-content"}
                   w={"1%"}
@@ -300,7 +300,7 @@ export const DataTableDisplay = (props: DataTableProps) => {
                       No.
                     </P>
                   </HStack>
-                </Table.ColumnHeader>
+                </Table.ColumnHeader> */}
 
                 {/* Main columns */}
                 {headers.map((header, index) => (
@@ -443,7 +443,7 @@ export const DataTableDisplay = (props: DataTableProps) => {
                     )}
 
                     {/* Numbering column */}
-                    <Table.Cell whiteSpace={"nowrap"} p={0} pt={TABLE_TD_MT}>
+                    {/* <Table.Cell whiteSpace={"nowrap"} p={0} pt={TABLE_TD_MT}>
                       <Center bg={TABLE_TD_BG}>
                         <HStack
                           justify={"center"}
@@ -466,7 +466,7 @@ export const DataTableDisplay = (props: DataTableProps) => {
                           {rowIndex + 1}
                         </HStack>
                       </Center>
-                    </Table.Cell>
+                    </Table.Cell> */}
 
                     {/* Main columns */}
                     {row.columns.map((col, colIndex) => (

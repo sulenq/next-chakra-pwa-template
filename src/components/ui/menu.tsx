@@ -1,6 +1,7 @@
 "use client";
 
 import { CContainer } from "@/components/ui/c-container";
+import { BACKDROP_BLUR_FILTER } from "@/constants/styles";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
 import {
   AbsoluteCenter,
@@ -91,6 +92,7 @@ export const MenuContent = forwardRef<HTMLDivElement, MenuContentProps>(
             px={0}
             py={1}
             bg={"bg.body"}
+            backdropFilter={BACKDROP_BLUR_FILTER}
             border={"1px solid"}
             borderColor={"border.subtle"}
             rounded={themeConfig.radii.container}

@@ -403,7 +403,7 @@ const DesktopLayout = (props: any) => {
                 pt={R_SPACING_MD}
                 pb={
                   isNavsExpanded
-                    ? `calc(${USER_PANEL_H})`
+                    ? `calc(${USER_PANEL_H} + (${rSpacingMd} * 1))`
                     : `calc(36px + (${rSpacingMd} * 3))`
                 }
                 mb={GAP}
