@@ -1,5 +1,6 @@
 import { useColorMode } from "@/components/ui/color-mode";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
+import { getCssColor } from "@/utils/color";
 import { Center, CenterProps } from "@chakra-ui/react";
 
 export interface LogoProps extends CenterProps {
@@ -18,7 +19,7 @@ export const Logo = (props: LogoProps) => {
       ? colorMode === "dark"
         ? "#fff"
         : "#1b1b1b"
-      : themeConfig?.primaryColorHex;
+      : getCssColor(`${themeConfig?.colorPalette}.solid`);
 
   return (
     <Center

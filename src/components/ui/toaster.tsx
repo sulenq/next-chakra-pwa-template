@@ -201,6 +201,7 @@ const ToastComponent = (props: any) => {
             {toast.description && (
               <Toast.Description
                 w={"fit"}
+                pr={1}
                 fontSize={"md"}
                 lineClamp={expanded ? undefined : 1}
                 cursor={"pointer"}

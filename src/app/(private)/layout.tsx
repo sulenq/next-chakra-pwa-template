@@ -347,11 +347,16 @@ const DesktopLayout = (props: any) => {
             overflowX={"clip"}
           >
             {/* Header */}
-            <StackH align={"center"} gap={3} minH={TOP_BAR_H} p={R_SPACING_MD}>
+            <StackH align={"center"} gap={4} minH={TOP_BAR_H} p={R_SPACING_MD}>
               <Logo ml={"4px"} />
 
               {isNavsExpanded && (
-                <P lineClamp={1} fontSize={"lg"} fontWeight={"semibold"}>
+                <P
+                  lineClamp={1}
+                  fontSize={"lg"}
+                  fontWeight={"semibold"}
+                  color={`${themeConfig.colorPalette}.solid`}
+                >
                   {APP.name}
                 </P>
               )}
