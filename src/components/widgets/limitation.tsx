@@ -35,7 +35,7 @@ export const Limitation = (props: LimitationTableDataProps) => {
         </Btn>
       </Menu.Trigger>
 
-      <Menu.Content w={"120px"} bg={"bg.body"}>
+      <Menu.Content w={"120px"}>
         {limitOptions.map((t) => {
           const isSelected = limit === t;
 

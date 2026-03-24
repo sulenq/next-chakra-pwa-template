@@ -232,7 +232,6 @@ export const DataTableDisplay = (props: DataTableProps) => {
           pb={R_SPACING_MD}
           bg={TABLE_CONTAINER_BG}
           roundedTop={themeConfig.radii.component}
-          transform={"translateZ(0)"}
           zIndex={2}
           {...contentContainerProps}
         >
@@ -254,26 +253,26 @@ export const DataTableDisplay = (props: DataTableProps) => {
                   top={0}
                   left={0}
                   zIndex={4}
-                  bg={TABLE_TH_BG}
-                  backdropFilter={BACKDROP_BLUR_FILTER}
                 >
-                  <Center
-                    h="full"
-                    minH={TABLE_TH_H}
-                    px={"10px"}
-                    borderBottom={"1px solid"}
-                    borderColor={TABLE_TH_BORDER_COLOR}
-                    roundedLeft={TABLE_ROW_ROUNDED}
-                  >
-                    <BatchOptions
-                      selectedRows={selectedRows}
-                      clearSelectedRows={handleClearSelectedRows}
-                      batchOptions={batchOptions}
-                      allRowsSelected={allRowsSelected}
-                      handleSelectAllRows={handleSelectAllRows}
-                      tableContainerRef={tableContainerRef}
-                    />
-                  </Center>
+                  <Box w="full" h="full" bg={TABLE_TH_BG} backdropFilter={BACKDROP_BLUR_FILTER}>
+                    <Center
+                      h="full"
+                      minH={TABLE_TH_H}
+                      px={"10px"}
+                      borderBottom={"1px solid"}
+                      borderColor={TABLE_TH_BORDER_COLOR}
+                      roundedLeft={TABLE_ROW_ROUNDED}
+                    >
+                      <BatchOptions
+                        selectedRows={selectedRows}
+                        clearSelectedRows={handleClearSelectedRows}
+                        batchOptions={batchOptions}
+                        allRowsSelected={allRowsSelected}
+                        handleSelectAllRows={handleSelectAllRows}
+                        tableContainerRef={tableContainerRef}
+                      />
+                    </Center>
+                  </Box>
                 </Box>
               )}
 
@@ -288,43 +287,43 @@ export const DataTableDisplay = (props: DataTableProps) => {
                   zIndex={3}
                   cursor={header.sortable ? "pointer" : "auto"}
                   onClick={header.sortable ? () => sort(index) : undefined}
-                  bg={TABLE_TH_BG}
-                  backdropFilter={BACKDROP_BLUR_FILTER}
                   {...header?.headerProps}
                 >
-                  <HStack
-                    justify={header.align}
-                    h="full"
-                    minH={TABLE_TH_H}
-                    px={TABLE_CELL_PX}
-                    py={3}
-                    pl={index === 0 ? 4 : ""}
-                    pr={
-                      index === headers.length - 1
-                        ? 4
-                        : (header?.wrapperProps?.justify === "center" ||
-                              header?.wrapperProps?.justifyContent ===
-                                "center") &&
-                            header.sortable
-                          ? 1
-                          : ""
-                    }
-                    borderBottom={"1px solid"}
-                    borderColor={TABLE_TH_BORDER_COLOR}
-                    {...header?.wrapperProps}
-                  >
-                    <P fontWeight={"medium"} color={"fg.muted"}>
-                      {header?.th}
-                    </P>
+                  <Box w="full" h="full" bg={TABLE_TH_BG} backdropFilter={BACKDROP_BLUR_FILTER}>
+                    <HStack
+                      justify={header.align}
+                      h="full"
+                      minH={TABLE_TH_H}
+                      px={TABLE_CELL_PX}
+                      py={3}
+                      pl={index === 0 ? 4 : ""}
+                      pr={
+                        index === headers.length - 1
+                          ? 4
+                          : (header?.wrapperProps?.justify === "center" ||
+                                header?.wrapperProps?.justifyContent ===
+                                  "center") &&
+                              header.sortable
+                            ? 1
+                            : ""
+                      }
+                      borderBottom={"1px solid"}
+                      borderColor={TABLE_TH_BORDER_COLOR}
+                      {...header?.wrapperProps}
+                    >
+                      <P fontWeight={"medium"} color={"fg.muted"}>
+                        {header?.th}
+                      </P>
 
-                    {header.sortable && (
-                      <SortIcon
-                        columnIndex={index}
-                        sortColumnIdx={sortConfig.sortColumnIdx}
-                        direction={sortConfig.direction}
-                      />
-                    )}
-                  </HStack>
+                      {header.sortable && (
+                        <SortIcon
+                          columnIndex={index}
+                          sortColumnIdx={sortConfig.sortColumnIdx}
+                          direction={sortConfig.direction}
+                        />
+                      )}
+                    </HStack>
+                  </Box>
                 </Box>
               ))}
 
@@ -336,21 +335,21 @@ export const DataTableDisplay = (props: DataTableProps) => {
                   top={0}
                   right={"0px"}
                   zIndex={4}
-                  bg={TABLE_TH_BG}
-                  backdropFilter={BACKDROP_BLUR_FILTER}
                 >
-                  <HStack
-                    h="full"
-                    minH={TABLE_TH_H}
-                    px={TABLE_CELL_PX}
-                    py={3}
-                    borderBottom={"1px solid"}
-                    borderColor={TABLE_TH_BORDER_COLOR}
-                    roundedRight={TABLE_ROW_ROUNDED}
-                    pos={"relative"}
-                  >
-                    {/* Row column spacer */}
-                  </HStack>
+                  <Box w="full" h="full" bg={TABLE_TH_BG} backdropFilter={BACKDROP_BLUR_FILTER}>
+                    <HStack
+                      h="full"
+                      minH={TABLE_TH_H}
+                      px={TABLE_CELL_PX}
+                      py={3}
+                      borderBottom={"1px solid"}
+                      borderColor={TABLE_TH_BORDER_COLOR}
+                      roundedRight={TABLE_ROW_ROUNDED}
+                      pos={"relative"}
+                    >
+                      {/* Row column spacer */}
+                    </HStack>
+                  </Box>
                 </Box>
               )}
             </Box>
@@ -375,36 +374,36 @@ export const DataTableDisplay = (props: DataTableProps) => {
                       position={"sticky"}
                       left={0}
                       zIndex={2}
-                      bg={isRowSelected ? SELECTED_BG : TABLE_TD_BG}
-                      backdropFilter={BACKDROP_BLUR_FILTER}
                     >
-                      <Center
-                        w={"full"}
-                        h="full"
-                        minH={TABLE_TD_MIN_H}
-                        px={"10px"}
-                        cursor={"pointer"}
-                        borderBottom={
-                          rowIndex !== resolvedTableData.length - 1
-                            ? "1px solid"
-                            : ""
-                        }
-                        borderColor={
-                          isRowSelected ? SELECTED_BG : TABLE_TD_BORDER_COLOR
-                        }
-                        roundedLeft={TABLE_ROW_ROUNDED}
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          toggleRowSelection(row);
-                        }}
-                      >
-                        <Checkbox
-                          subtle
-                          size={"sm"}
-                          colorPalette={themeConfig.colorPalette}
-                          checked={selectedRows.includes(row.id)}
-                        />
-                      </Center>
+                      <Box w="full" h="full" bg={isRowSelected ? SELECTED_BG : TABLE_TD_BG} backdropFilter={BACKDROP_BLUR_FILTER}>
+                        <Center
+                          w={"full"}
+                          h="full"
+                          minH={TABLE_TD_MIN_H}
+                          px={"10px"}
+                          cursor={"pointer"}
+                          borderBottom={
+                            rowIndex !== resolvedTableData.length - 1
+                              ? "1px solid"
+                              : ""
+                          }
+                          borderColor={
+                            isRowSelected ? SELECTED_BG : TABLE_TD_BORDER_COLOR
+                          }
+                          roundedLeft={TABLE_ROW_ROUNDED}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            toggleRowSelection(row);
+                          }}
+                        >
+                          <Checkbox
+                            subtle
+                            size={"sm"}
+                            colorPalette={themeConfig.colorPalette}
+                            checked={selectedRows.includes(row.id)}
+                          />
+                        </Center>
+                      </Box>
                     </Box>
                   )}
 
@@ -416,31 +415,32 @@ export const DataTableDisplay = (props: DataTableProps) => {
                       p={0}
                       fontSize={"md"}
                       h="full"
-                      bg={isRowSelected ? SELECTED_BG : TABLE_TD_BG}
-                      backdropFilter={BACKDROP_BLUR_FILTER}
+                      position={"relative"}
                       {...col?.tableCellProps}
                     >
-                      <HStack
-                        justify={col.align}
-                        w={"full"}
-                        h="full"
-                        minH={TABLE_TD_MIN_H}
-                        py={3}
-                        px={TABLE_CELL_PX}
-                        borderBottom={
-                          rowIndex !== resolvedTableData.length - 1
-                            ? "1px solid"
-                            : ""
-                        }
-                        borderColor={
-                          isRowSelected ? SELECTED_BG : TABLE_TD_BORDER_COLOR
-                        }
-                        {...col?.wrapperProps}
-                      >
-                        <Box opacity={row.dim || col.dim ? 0.4 : 1} w="full">
-                          {col?.td}
-                        </Box>
-                      </HStack>
+                      <Box w="full" h="full" bg={isRowSelected ? SELECTED_BG : TABLE_TD_BG} backdropFilter={BACKDROP_BLUR_FILTER}>
+                        <HStack
+                          justify={col.align}
+                          w={"full"}
+                          h="full"
+                          minH={TABLE_TD_MIN_H}
+                          py={3}
+                          px={TABLE_CELL_PX}
+                          borderBottom={
+                            rowIndex !== resolvedTableData.length - 1
+                              ? "1px solid"
+                              : ""
+                          }
+                          borderColor={
+                            isRowSelected ? SELECTED_BG : TABLE_TD_BORDER_COLOR
+                          }
+                          {...col?.wrapperProps}
+                        >
+                          <Box opacity={row.dim || col.dim ? 0.4 : 1} w="full">
+                            {col?.td}
+                          </Box>
+                        </HStack>
+                      </Box>
                     </Box>
                   ))}
 
@@ -453,35 +453,35 @@ export const DataTableDisplay = (props: DataTableProps) => {
                       position={"sticky"}
                       right={"0"}
                       zIndex={2}
-                      bg={isRowSelected ? SELECTED_BG : TABLE_TD_BG}
-                      backdropFilter={BACKDROP_BLUR_FILTER}
                     >
-                      <Center
-                        w={"full"}
-                        h="full"
-                        minH={TABLE_TD_MIN_H}
-                        px={"10px"}
-                        borderBottom={
-                          rowIndex !== resolvedTableData.length - 1
-                            ? "1px solid"
-                            : ""
-                        }
-                        borderColor={
-                          isRowSelected ? SELECTED_BG : TABLE_TD_BORDER_COLOR
-                        }
-                        roundedRight={TABLE_ROW_ROUNDED}
-                        pos={"relative"}
-                        onClick={(e) => {
-                          e.stopPropagation();
-                        }}
-                      >
-                        <RowOptions
-                          row={row}
-                          rowOptions={rowOptions}
-                          tableContainerRef={tableContainerRef}
-                          color={"fg.ibody"}
-                        />
-                      </Center>
+                      <Box w="full" h="full" bg={isRowSelected ? SELECTED_BG : TABLE_TD_BG} backdropFilter={BACKDROP_BLUR_FILTER}>
+                        <Center
+                          w={"full"}
+                          h="full"
+                          minH={TABLE_TD_MIN_H}
+                          px={"10px"}
+                          borderBottom={
+                            rowIndex !== resolvedTableData.length - 1
+                              ? "1px solid"
+                              : ""
+                          }
+                          borderColor={
+                            isRowSelected ? SELECTED_BG : TABLE_TD_BORDER_COLOR
+                          }
+                          roundedRight={TABLE_ROW_ROUNDED}
+                          pos={"relative"}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                          }}
+                        >
+                          <RowOptions
+                            row={row}
+                            rowOptions={rowOptions}
+                            tableContainerRef={tableContainerRef}
+                            color={"fg.ibody"}
+                          />
+                        </Center>
+                      </Box>
                     </Box>
                   )}
                 </Box>

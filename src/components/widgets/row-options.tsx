@@ -28,6 +28,7 @@ export const RowOptions = (props: Props_RowOptions) => {
         offset: {
           crossAxis: 4,
         },
+        hideWhenDetached: true,
       }}
       {...menuRootProps}
     >
@@ -44,12 +45,7 @@ export const RowOptions = (props: Props_RowOptions) => {
         </Btn>
       </Menu.Trigger>
 
-      <Menu.Content
-        portalRef={tableContainerRef}
-        minW={"140px"}
-        mr={1}
-        zIndex={10}
-      >
+      <Menu.Content minW={"140px"} mr={1} zIndex={10}>
         {rowOptions?.map((item, idx) => {
           // if (item === "divider") return <MenuSeparator key={idx} />;
 

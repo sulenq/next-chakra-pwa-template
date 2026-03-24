@@ -544,7 +544,7 @@ const customConfig = defineConfig({
             value: {
               base: "rgba(255, 255, 255, 0.5)",
               // _dark: "rgba(25, 25, 25, 0.5)",
-              _dark: "rgba(34, 34, 34, 0.3)",
+              _dark: "rgba(26, 26, 26, 0.5)",
             },
           },
           subtle: {

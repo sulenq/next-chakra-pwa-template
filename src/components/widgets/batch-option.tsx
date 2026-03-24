@@ -67,7 +67,7 @@ export const BatchOptions = (props: BatchOptionsProps) => {
         </Btn>
       </Menu.Trigger>
 
-      <Menu.Content portalRef={tableContainerRef} minW={"140px"} zIndex={10}>
+      <Menu.Content minW={"140px"} zIndex={10}>
         <CContainer px={3} py={1}>
           <P fontSize={"sm"} opacity={0.5} fontWeight={500}>
             {`${selectedRows.length} ${t.selected.toLowerCase()}`}
