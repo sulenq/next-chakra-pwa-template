@@ -118,7 +118,6 @@ export const ProfileMenu = (props: ProfileMenuProps) => {
     <StackV
       rounded={themeConfig.radii.container}
       overflow={"clip"}
-      bg={"bg.frosted"}
       color={"fg.ibody"}
       {...restProps}
     >
@@ -286,7 +285,7 @@ export const ProfileMenuTrigger = (props: ProfileMenuTriggerProps) => {
       <Popover.Content
         ref={containerRef}
         w={"225px"}
-        bg={"transparent"}
+        bg={"bg.frosted"}
         backdropFilter={BACKDROP_BLUR_FILTER}
         rounded={themeConfig.radii.container}
         zIndex={10}
