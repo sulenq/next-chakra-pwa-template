@@ -254,7 +254,12 @@ export const DataTableDisplay = (props: DataTableProps) => {
                   left={0}
                   zIndex={4}
                 >
-                  <Box w="full" h="full" bg={TABLE_TH_BG} backdropFilter={BACKDROP_BLUR_FILTER}>
+                  <Box
+                    w="full"
+                    h="full"
+                    bg={TABLE_TH_BG}
+                    backdropFilter={BACKDROP_BLUR_FILTER}
+                  >
                     <Center
                       h="full"
                       minH={TABLE_TH_H}
@@ -289,7 +294,12 @@ export const DataTableDisplay = (props: DataTableProps) => {
                   onClick={header.sortable ? () => sort(index) : undefined}
                   {...header?.headerProps}
                 >
-                  <Box w="full" h="full" bg={TABLE_TH_BG} backdropFilter={BACKDROP_BLUR_FILTER}>
+                  <Box
+                    w="full"
+                    h="full"
+                    bg={TABLE_TH_BG}
+                    backdropFilter={BACKDROP_BLUR_FILTER}
+                  >
                     <HStack
                       justify={header.align}
                       h="full"
@@ -329,14 +339,13 @@ export const DataTableDisplay = (props: DataTableProps) => {
 
               {/* Row options column */}
               {!isEmptyArray(rowOptions) && (
-                <Box
-                  p={0}
-                  position={"sticky"}
-                  top={0}
-                  right={"0px"}
-                  zIndex={4}
-                >
-                  <Box w="full" h="full" bg={TABLE_TH_BG} backdropFilter={BACKDROP_BLUR_FILTER}>
+                <Box p={0} position={"sticky"} top={0} right={"0px"} zIndex={4}>
+                  <Box
+                    w="full"
+                    h="full"
+                    bg={TABLE_TH_BG}
+                    backdropFilter={BACKDROP_BLUR_FILTER}
+                  >
                     <HStack
                       h="full"
                       minH={TABLE_TH_H}
@@ -375,7 +384,12 @@ export const DataTableDisplay = (props: DataTableProps) => {
                       left={0}
                       zIndex={2}
                     >
-                      <Box w="full" h="full" bg={isRowSelected ? SELECTED_BG : TABLE_TD_BG} backdropFilter={BACKDROP_BLUR_FILTER}>
+                      <Box
+                        w="full"
+                        h="full"
+                        bg={isRowSelected ? SELECTED_BG : TABLE_TD_BG}
+                        backdropFilter={BACKDROP_BLUR_FILTER}
+                      >
                         <Center
                           w={"full"}
                           h="full"
@@ -418,7 +432,12 @@ export const DataTableDisplay = (props: DataTableProps) => {
                       position={"relative"}
                       {...col?.tableCellProps}
                     >
-                      <Box w="full" h="full" bg={isRowSelected ? SELECTED_BG : TABLE_TD_BG} backdropFilter={BACKDROP_BLUR_FILTER}>
+                      <Box
+                        w="full"
+                        h="full"
+                        bg={isRowSelected ? SELECTED_BG : TABLE_TD_BG}
+                        backdropFilter={BACKDROP_BLUR_FILTER}
+                      >
                         <HStack
                           justify={col.align}
                           w={"full"}
@@ -454,7 +473,12 @@ export const DataTableDisplay = (props: DataTableProps) => {
                       right={"0"}
                       zIndex={2}
                     >
-                      <Box w="full" h="full" bg={isRowSelected ? SELECTED_BG : TABLE_TD_BG} backdropFilter={BACKDROP_BLUR_FILTER}>
+                      <Box
+                        w="full"
+                        h="full"
+                        bg={isRowSelected ? SELECTED_BG : TABLE_TD_BG}
+                        backdropFilter={BACKDROP_BLUR_FILTER}
+                      >
                         <Center
                           w={"full"}
                           h="full"

@@ -413,6 +413,14 @@ const Data = (props: any) => {
         th: "Join Date",
         sortable: true,
       },
+      {
+        th: "Join Date",
+        sortable: true,
+      },
+      {
+        th: "Join Date",
+        sortable: true,
+      },
     ],
     rows: data?.map((item, idx) => {
       return {
@@ -428,6 +436,16 @@ const Data = (props: any) => {
           {
             td: item.email,
             value: item.email,
+          },
+          {
+            td: formatDate(item.createdAt, t),
+            value: item.createdAt,
+            dataType: "date",
+          },
+          {
+            td: formatDate(item.createdAt, t),
+            value: item.createdAt,
+            dataType: "date",
           },
           {
             td: formatDate(item.createdAt, t),
