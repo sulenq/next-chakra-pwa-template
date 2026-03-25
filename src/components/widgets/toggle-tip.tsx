@@ -25,12 +25,13 @@ const ToggleTip = (props: ToggleTipProps) => {
 
   // Refs
   const containerRef = useRef<HTMLDivElement>(null);
+  const triggerRef = useRef<any>(null);
 
-  useClickOutside([containerRef], onClose);
+  useClickOutside([containerRef, triggerRef], onClose);
 
   return (
     <PopoverRoot open={open} {...rootProps}>
-      <PopoverTrigger asChild onClick={onOpen}>
+      <PopoverTrigger asChild onClick={onOpen} ref={triggerRef}>
         {children}
       </PopoverTrigger>
 

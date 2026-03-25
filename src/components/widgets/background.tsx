@@ -9,8 +9,8 @@ export const RadialGlowBackground = (props: StackProps) => {
 
   // Constants
   const colorPalette = themeConfig.colorPalette;
-  const opacity1 = useColorModeValue(0.2, 0.1);
-  const opacity2 = useColorModeValue(0.2, 0.1);
+  const opacity1 = useColorModeValue(0.3, 0.2);
+  const opacity2 = useColorModeValue(0.3, 0.2);
 
   return (
     <Center w={"full"} h={"full"} overflow={"clip"} {...props}>
@@ -21,20 +21,20 @@ export const RadialGlowBackground = (props: StackProps) => {
           bg={`${colorPalette}.subtle`}
           opacity={opacity1}
           pos={"absolute"}
-          left={"50%"}
-          top={"50%"}
-          transform={"translate(-50%, -50%)"}
+          left={"0"}
+          top={"0"}
+          // transform={"translate(-50%, -50%)"}
         />
 
         <Circle
           aspectRatio={1}
-          w={"100%"}
+          w={"70%"}
           bg={`${colorPalette}.subtle`}
           opacity={opacity2}
           pos={"absolute"}
-          left={"50%"}
-          top={"50%"}
-          transform={"translate(-50%, -50%)"}
+          left={"-10%"}
+          top={"-130%"}
+          // transform={"translate(-50%, -50%)"}
         />
       </StackV>
 

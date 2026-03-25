@@ -10,13 +10,14 @@ import { StackProps } from "@chakra-ui/react";
 
 interface MiniUserProps extends StackProps {
   user: Interface__User;
+  withEmail?: boolean;
 }
 export const MiniUser = (props: MiniUserProps) => {
   // Props
-  const { user, ...restProps } = props;
+  const { user, withEmail, ...restProps } = props;
 
   return (
-    <StackH gap={3} minW={"200px"} {...restProps}>
+    <StackH align={"center"} gap={3} minW={"200px"} {...restProps}>
       <ImgViewer
         id={`avatar-${user.id}`}
         src={imgUrl(user?.avatar?.[0]?.filePath)}
@@ -29,11 +30,13 @@ export const MiniUser = (props: MiniUserProps) => {
       </ImgViewer>
 
       <StackV>
-        <ClampText lineHeight={1.4}>{user.name}</ClampText>
+        <ClampText>{user.name}</ClampText>
 
-        <ClampText fontSize={"sm"} color={"fg.subtle"} lineHeight={1.4}>
-          {user?.email}
-        </ClampText>
+        {withEmail && (
+          <ClampText fontSize={"sm"} color={"fg.subtle"}>
+            {user?.email}
+          </ClampText>
+        )}
       </StackV>
     </StackH>
   );

@@ -14,7 +14,6 @@ import { ClampText } from "@/components/widgets/clamp-text";
 import FeedbackNotFound from "@/components/widgets/feedback-not-found";
 import { ImgViewer } from "@/components/widgets/img-viewer";
 import { Limitation } from "@/components/widgets/limitation";
-import { MContainer } from "@/components/widgets/m-container";
 import { Pagination } from "@/components/widgets/pagination";
 import { RowOptions } from "@/components/widgets/row-options";
 import { DataProps, FormattedTableRow } from "@/constants/interfaces";
@@ -37,7 +36,6 @@ import {
   Presence,
   SimpleGrid,
   StackProps,
-  useBreakpointValue,
 } from "@chakra-ui/react";
 import React, { Fragment, useState } from "react";
 
@@ -398,9 +396,6 @@ const DataGridDisplay = (props: DataGridProps) => {
     });
   }
 
-  // SX
-  const rSpacingMd = useBreakpointValue(R_SPACING_MD);
-
   return (
     <StackV flex={1} overflowY={"auto"} pos={"relative"} {...restProps}>
       {/* Batch Options */}
@@ -459,10 +454,16 @@ const DataGridDisplay = (props: DataGridProps) => {
 
       <StackV
         px={R_SPACING_MD}
-        pt={`calc(${rSpacingMd} - 8px)`}
+        // pt={`calc(${rSpacingMd} - 8px)`}
+        pt={R_SPACING_MD}
         overflowY={"auto"}
       >
-        <MContainer className={"scrollY"} flex={1} pt={"8px"} pb={R_SPACING_MD}>
+        <StackV
+          className={"scrollY"}
+          flex={1}
+          //  pt={"8px"}
+          pb={R_SPACING_MD}
+        >
           <SimpleGrid
             templateColumns={`repeat(auto-fill, minmax(${minChildWidth}, 1fr))`}
             gap={GAP}
@@ -509,7 +510,7 @@ const DataGridDisplay = (props: DataGridProps) => {
               );
             })}
           </SimpleGrid>
-        </MContainer>
+        </StackV>
       </StackV>
 
       {hasFooter && (

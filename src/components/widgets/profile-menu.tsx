@@ -18,7 +18,6 @@ import useADM from "@/contexts/useADM";
 import { useAuthMiddleware } from "@/contexts/useAuthMiddleware";
 import { useLocale } from "@/contexts/useLocale";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
-import { useClickOutside } from "@/hooks/useClickOutside";
 import { useRequest } from "@/hooks/useRequest";
 import { getUserData } from "@/utils/auth";
 import { back, removeStorage } from "@/utils/client";
@@ -35,7 +34,7 @@ import {
   UserIcon,
 } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { useRef, useState } from "react";
+import { useState } from "react";
 
 const MENUS = [
   {
@@ -259,31 +258,25 @@ export const ProfileMenuTrigger = (props: ProfileMenuTriggerProps) => {
   // Contexts
   const { themeConfig } = useThemeConfig();
 
-  // Refs
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  // Hooks
-  useClickOutside(containerRef, handleClose);
-
   // States
   const [open, setOpen] = useState<boolean>(false);
 
   // Utils
-  function handleOpen() {
-    setOpen(true);
-  }
   function handleClose() {
     setOpen(false);
   }
 
   return (
-    <Popover.Root open={open} {...popoverRootProps}>
+    <Popover.Root
+      open={open}
+      onOpenChange={(e) => setOpen(e.open)}
+      {...popoverRootProps}
+    >
       <Popover.Trigger asChild>
-        <StackV w={"fit"} onClick={handleOpen} {...restProps} />
+        <StackV w={"fit"} {...restProps} />
       </Popover.Trigger>
 
       <Popover.Content
-        ref={containerRef}
         w={"225px"}
         bg={"bg.frosted"}
         backdropFilter={BACKDROP_BLUR_FILTER}
