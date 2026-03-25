@@ -25,7 +25,7 @@ export const MiniUser = (props: MiniUserProps) => {
         <Avatar
           src={imgUrl(user?.avatar?.[0]?.filePath)}
           name={user.name}
-          size={"xs"}
+          size={withEmail ? "xs" : "2xs"}
         />
       </ImgViewer>
 

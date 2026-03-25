@@ -58,7 +58,11 @@ export const ImgViewer = (props: ImgViewerProps) => {
       </CContainer>
 
       <DialogRoot open={open} size={"full"} scrollBehavior={"inside"}>
-        <DialogContent bg={"transparent"} onClick={back}>
+        <DialogContent
+          bg={"transparent"}
+          backdropFilter={"none"}
+          onClick={back}
+        >
           <DialogBody p={0} overflow={"auto"}>
             <StackV
               flex={1}
@@ -94,7 +98,7 @@ export const ImgViewer = (props: ImgViewerProps) => {
                   imageProps={{
                     unoptimized: true,
                   }}
-                  bg={"bg.body"}
+                  bg={"bg.bodySolid"}
                   fallback={fallback}
                   fallbackSrc={fallbackSrc}
                   m={"auto"}
