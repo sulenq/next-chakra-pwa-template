@@ -70,7 +70,7 @@ export const FileUploadDropzone = forwardRef<
       h={"full"}
       maxH={"full"}
       p={imgInput ? 0 : 4}
-      bg={"bg.body"}
+      bg={"transparent"}
       cursor={"pointer"}
       overflow={"auto"}
       {...rest}

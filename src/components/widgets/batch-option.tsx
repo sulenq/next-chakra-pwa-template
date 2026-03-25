@@ -85,7 +85,7 @@ export const BatchOptions = (props: BatchOptionsProps) => {
           <P>{t.select_all}</P>
 
           <DotIndicator
-            color={allRowsSelected ? themeConfig.primaryColor : "gray.muted"}
+            bg={allRowsSelected ? themeConfig.primaryColor : "gray.muted"}
             mr={1}
           />
         </Menu.Item>

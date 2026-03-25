@@ -25,7 +25,6 @@ import { Tooltip } from "@/components/ui/tooltip";
 import { Calendar } from "@/components/widgets/calendar";
 import { Clock } from "@/components/widgets/clock";
 import { Confirmation } from "@/components/widgets/confirmation";
-import { DataTable } from "@/components/widgets/data-table";
 import FeedbackForbidden from "@/components/widgets/feedback-forbidden";
 import FeedbackNoData from "@/components/widgets/feedback-no-data";
 import FeedbackNotFound from "@/components/widgets/feedback-not-found";
@@ -50,6 +49,7 @@ import { useFormik } from "formik";
 import { PencilIcon, RefreshCcwDotIcon, TrashIcon } from "lucide-react";
 import { useState } from "react";
 import * as yup from "yup";
+import { DataTable } from "@/components/widgets/data-table";
 
 const Delete = (props: any) => {
   const ID = `delete`;
@@ -733,12 +733,11 @@ const DemoIndexRoute = () => {
   const { themeConfig } = useThemeConfig();
 
   return (
-    <ConstrainedContainer maxW={"1280px"} p={4} gap={8}>
+    <ConstrainedContainer bg={"bg.body"} maxW={"1280px"} p={4} gap={8}>
       <HStack
         justify={"space-between"}
         position={"sticky"}
         top={0}
-        bg={"bg.body"}
         zIndex={1000}
       >
         <HStack gap={4}>

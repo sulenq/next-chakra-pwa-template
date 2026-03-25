@@ -348,29 +348,27 @@ const DesktopLayout = (props: any) => {
             overflowX={"clip"}
           >
             {/* Header */}
-            <StackH align={"center"} gap={3} minH={TOP_BAR_H} p={R_SPACING_MD}>
-              {/* <Circle
-                w={"34px"}
-                h={"34px"}
-                p={1}
-                bg={`${themeConfig.colorPalette}.solid`}
+            <NavLink to={"/"}>
+              <StackH
+                align={"center"}
+                gap={3}
+                minH={TOP_BAR_H}
+                p={R_SPACING_MD}
               >
-                <Logo color={logoColor} />
-              </Circle> */}
+                <Logo ml={"6px"} />
 
-              <Logo ml={"6px"} />
-
-              {isNavsExpanded && (
-                <P
-                  lineClamp={1}
-                  fontSize={"lg"}
-                  fontWeight={"semibold"}
-                  color={`${themeConfig.colorPalette}.solid`}
-                >
-                  {APP.name}
-                </P>
-              )}
-            </StackH>
+                {isNavsExpanded && (
+                  <P
+                    lineClamp={1}
+                    fontSize={"lg"}
+                    fontWeight={"semibold"}
+                    color={`${themeConfig.colorPalette}.solid`}
+                  >
+                    {APP.name}
+                  </P>
+                )}
+              </StackH>
+            </NavLink>
 
             {/* Toggle Expand */}
             <DesktopNavTooltip
@@ -466,7 +464,7 @@ const DesktopLayout = (props: any) => {
                                   ? ""
                                   : DESKTOP_NAV_BTN_ICON_BG
                               }
-                              rounded={"full"}
+                              rounded={themeConfig.radii.component}
                             >
                               <AppIconLucide
                                 icon={ServerIcon}

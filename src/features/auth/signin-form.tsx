@@ -310,7 +310,7 @@ export const SigninForm = (props: StackProps) => {
         </>
       )}
 
-      <NavLink to={INDEX_ROUTE} mx={"auto"}>
+      <NavLink to={"/demo"} mx={"auto"}>
         <Btn variant={"ghost"} colorPalette={themeConfig.colorPalette}>
           Demo Page
         </Btn>

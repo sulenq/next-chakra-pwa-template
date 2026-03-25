@@ -5,7 +5,7 @@ import { CContainer } from "@/components/ui/c-container";
 import { useColorMode } from "@/components/ui/color-mode";
 import { Spinner } from "@/components/ui/spinner";
 import { LucideIcon } from "@/components/widgets/icon";
-import { SM_SCREEN_W_NUMBER } from "@/constants/styles";
+import { BACKDROP_BLUR_FILTER, SM_SCREEN_W_NUMBER } from "@/constants/styles";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
 import { isClient } from "@/utils/client";
 import {
@@ -111,13 +111,13 @@ const ToastIconComponent = (props: any) => {
           bg={`bg.muted`}
           rounded={"full"}
           p={"6px"}
-          w={"32px"}
-          h={"32px"}
+          w={"28px"}
+          h={"28px"}
           ml={"-2px"}
           mt={"-2px"}
           {...restProps}
         >
-          <Spinner w={"14px"} h={"14px"} color={"fg.muted"} />
+          <Spinner w={"16px"} h={"16px"} color={"fg.muted"} />
         </Center>
       ) : (
         <ToastIcon type={toast.type} />
@@ -163,8 +163,10 @@ const ToastComponent = (props: any) => {
       h={expanded ? "max" : ""}
       w={{ md: "sm" }}
       bg={"bg.body"}
+      backdropFilter={BACKDROP_BLUR_FILTER}
       color={"current"}
       p={"14px"}
+      pr={"32px"}
       border={"1px solid"}
       borderColor={"border.subtle"}
       boxShadow={"none"}

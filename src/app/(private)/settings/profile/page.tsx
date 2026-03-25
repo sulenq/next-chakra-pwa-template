@@ -50,9 +50,12 @@ import {
 import { useEffect, useRef, useState } from "react";
 import * as yup from "yup";
 
+// -----------------------------------------------------------------
+
 interface PersonalInformationProps {
   initialData?: Interface__User;
 }
+
 const PersonalInformation = (props: PersonalInformationProps) => {
   // Props
   const { initialData, ...restProps } = props;
@@ -216,6 +219,8 @@ const PersonalInformation = (props: PersonalInformationProps) => {
   );
 };
 
+// -----------------------------------------------------------------
+
 const AuthLog = () => {
   // Contexts
   const { t } = useLocale();
@@ -348,6 +353,8 @@ const AuthLog = () => {
     </Item.Container>
   );
 };
+
+// -----------------------------------------------------------------
 
 const ActivityLog = () => {
   // Contexts
@@ -497,6 +504,8 @@ const ActivityLog = () => {
     </Item.Container>
   );
 };
+
+// -----------------------------------------------------------------
 
 export default function Page() {
   // States
