@@ -154,7 +154,7 @@ export const ProfileMenu = (props: ProfileMenuProps) => {
             />
             Dark mode
             <DotIndicator
-              color={colorMode === "dark" ? "fg.success" : "bg.muted"}
+              bg={colorMode === "dark" ? "fg.success" : "bg.muted"}
               ml={"auto"}
               mr={1}
             />

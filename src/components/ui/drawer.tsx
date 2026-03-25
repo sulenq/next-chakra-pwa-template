@@ -53,7 +53,7 @@ export const DrawerContent = forwardRef<HTMLDivElement, DrawerContentProps>(
         >
           <ChakraDrawer.Content
             ref={ref}
-            bg={"bg.frosted"}
+            bg={"bg.body"}
             backdropFilter={BACKDROP_BLUR_FILTER}
             justifyContent={"end"}
             shadow={"none"}

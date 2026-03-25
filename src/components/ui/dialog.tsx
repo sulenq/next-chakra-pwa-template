@@ -81,7 +81,7 @@ export const DialogContent = forwardRef<HTMLDivElement, DialogContentProps>(
             }}
             minH={sh < 500 ? "90dvh" : ""}
             maxH={"full"}
-            bg={"bg.frosted"}
+            bg={"bg.body"}
             backdropFilter={BACKDROP_BLUR_FILTER}
             shadow={"none"}
             onClick={(e) => {
