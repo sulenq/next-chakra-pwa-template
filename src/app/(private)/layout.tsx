@@ -348,7 +348,7 @@ const DesktopLayout = (props: any) => {
             overflowX={"clip"}
           >
             {/* Header */}
-            <StackH align={"center"} gap={4} minH={TOP_BAR_H} p={R_SPACING_MD}>
+            <StackH align={"center"} gap={3} minH={TOP_BAR_H} p={R_SPACING_MD}>
               {/* <Circle
                 w={"34px"}
                 h={"34px"}
@@ -358,7 +358,7 @@ const DesktopLayout = (props: any) => {
                 <Logo color={logoColor} />
               </Circle> */}
 
-              <Logo />
+              <Logo ml={"6px"} />
 
               {isNavsExpanded && (
                 <P

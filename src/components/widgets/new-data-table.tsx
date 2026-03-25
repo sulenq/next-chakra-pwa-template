@@ -1,6 +1,6 @@
 import { Checkbox } from "@/components/ui/checkbox";
 import { P } from "@/components/ui/p";
-import { StackH, StackV } from "@/components/ui/stack";
+import { StackV } from "@/components/ui/stack";
 import { BatchOptions } from "@/components/widgets/batch-option";
 import { Limitation } from "@/components/widgets/limitation";
 import { Pagination } from "@/components/widgets/pagination";
@@ -217,22 +217,22 @@ export const DataTableDisplay = (props: DataTableProps) => {
 
   return (
     <StackV
-      ref={tableContainerRef}
       flex={1}
-      minH={props?.minH || sh < 625 ? "400px" : ""}
       px={R_SPACING_MD}
       pt={R_SPACING_MD}
       overflow={"auto"}
+      minH={props?.minH || sh < 625 ? "400px" : ""}
       pos={"relative"}
+      ref={tableContainerRef}
       {...restProps}
     >
       <StackV
-        className={"scrollX scrollYAlt"}
         flex={1}
         pb={R_SPACING_MD}
         bg={TABLE_CONTAINER_BG}
         roundedTop={themeConfig.radii.component}
         zIndex={2}
+        className={"scrollX scrollYAlt"}
         {...contentContainerProps}
       >
         <Grid
@@ -242,14 +242,14 @@ export const DataTableDisplay = (props: DataTableProps) => {
           rowGap={GAP}
         >
           {/* Header Row */}
-          <Box display="contents" role="row">
+          <Box display={"contents"} role={"row"}>
             {/* Batch options column */}
             {!isEmptyArray(batchOptions) && (
               <Center
-                minW={"0% !important"}
                 h={"full"}
-                minH={TABLE_TH_H}
                 px={"10px"}
+                minW={"0% !important"}
+                minH={TABLE_TH_H}
                 bg={TABLE_TH_BG}
                 backdropFilter={BACKDROP_BLUR_FILTER}
                 borderBottom={"1px solid"}
@@ -259,6 +259,7 @@ export const DataTableDisplay = (props: DataTableProps) => {
                 top={0}
                 left={0}
                 zIndex={4}
+                isolation={"isolate"}
               >
                 <BatchOptions
                   selectedRows={selectedRows}
@@ -273,18 +274,10 @@ export const DataTableDisplay = (props: DataTableProps) => {
 
             {/* Main columns */}
             {headers.map((header, index) => (
-              <StackH
+              <HStack
                 key={index}
-                whiteSpace={"nowrap"}
-                position={"sticky"}
-                top={0}
-                zIndex={3}
-                cursor={header.sortable ? "pointer" : "auto"}
-                onClick={header.sortable ? () => sort(index) : undefined}
-                bg={TABLE_TH_BG}
-                backdropFilter={BACKDROP_BLUR_FILTER}
                 justify={header.align}
-                h="full"
+                h={"full"}
                 minH={TABLE_TH_H}
                 px={TABLE_CELL_PX}
                 py={3}
@@ -293,17 +286,26 @@ export const DataTableDisplay = (props: DataTableProps) => {
                   index === headers.length - 1
                     ? 4
                     : (header?.wrapperProps?.justify === "center" ||
-                          header?.wrapperProps?.justifyContent === "center") &&
-                        header.sortable
-                      ? 1
-                      : ""
+                        header?.wrapperProps?.justifyContent === "center") &&
+                      header.sortable
+                    ? 1
+                    : ""
                 }
+                bg={TABLE_TH_BG}
+                backdropFilter={BACKDROP_BLUR_FILTER}
                 borderBottom={"1px solid"}
                 borderColor={TABLE_TH_BORDER_COLOR}
+                position={"sticky"}
+                top={0}
+                zIndex={3}
+                isolation={"isolate"}
+                onClick={header.sortable ? () => sort(index) : undefined}
+                whiteSpace={"nowrap"}
+                cursor={header.sortable ? "pointer" : "auto"}
                 {...header?.headerProps}
-                // {...header?.wrapperProps}
+                {...header?.wrapperProps}
               >
-                <P fontWeight={"medium"} color={"fg.muted"}>
+                <P color={"fg.muted"} fontWeight={"medium"}>
                   {header?.th}
                 </P>
 
@@ -314,24 +316,26 @@ export const DataTableDisplay = (props: DataTableProps) => {
                     direction={sortConfig.direction}
                   />
                 )}
-              </StackH>
+              </HStack>
             ))}
 
             {/* Row options column */}
             {!isEmptyArray(rowOptions) && (
               <HStack
-                zIndex={4}
-                bg={TABLE_TH_BG}
-                backdropFilter={BACKDROP_BLUR_FILTER}
-                h="full"
+                h={"full"}
                 minH={TABLE_TH_H}
                 px={TABLE_CELL_PX}
                 py={3}
+                bg={TABLE_TH_BG}
+                backdropFilter={BACKDROP_BLUR_FILTER}
                 borderBottom={"1px solid"}
                 borderColor={TABLE_TH_BORDER_COLOR}
                 roundedRight={TABLE_ROW_ROUNDED}
                 position={"sticky"}
-                right={0}
+                top={0}
+                right={"0px"}
+                zIndex={4}
+                isolation={"isolate"}
               >
                 {/* Row column spacer */}
               </HStack>
@@ -344,7 +348,7 @@ export const DataTableDisplay = (props: DataTableProps) => {
 
             return (
               <Box
-                display="contents"
+                display={"contents"}
                 key={rowIndex}
                 role={"group"}
                 {...(trBodyProps as any)}
@@ -354,14 +358,10 @@ export const DataTableDisplay = (props: DataTableProps) => {
                   <Center
                     h={"full"}
                     minH={TABLE_TD_MIN_H}
-                    minW={"0% !important"}
                     px={"10px"}
-                    position={"sticky"}
-                    left={0}
-                    zIndex={2}
+                    minW={"0% !important"}
                     bg={isRowSelected ? SELECTED_BG : TABLE_TD_BG}
                     backdropFilter={BACKDROP_BLUR_FILTER}
-                    cursor={"pointer"}
                     borderBottom={
                       rowIndex !== resolvedTableData.length - 1
                         ? "1px solid"
@@ -371,13 +371,18 @@ export const DataTableDisplay = (props: DataTableProps) => {
                       isRowSelected ? SELECTED_BG : TABLE_TD_BORDER_COLOR
                     }
                     roundedLeft={TABLE_ROW_ROUNDED}
+                    position={"sticky"}
+                    left={0}
+                    zIndex={2}
+                    isolation={"isolate"}
                     onClick={(e) => {
                       e.stopPropagation();
                       toggleRowSelection(row);
                     }}
+                    cursor={"pointer"}
                   >
                     <Checkbox
-                      subtle
+                      subtle={true}
                       size={"sm"}
                       colorPalette={themeConfig.colorPalette}
                       checked={selectedRows.includes(row.id)}
@@ -387,19 +392,17 @@ export const DataTableDisplay = (props: DataTableProps) => {
 
                 {/* Main columns */}
                 {row.columns.map((col, colIndex) => (
-                  <StackH
+                  <HStack
                     key={colIndex}
-                    whiteSpace={"nowrap"}
-                    fontSize={"md"}
-                    position={"relative"}
-                    bg={isRowSelected ? SELECTED_BG : TABLE_TD_BG}
-                    backdropFilter={BACKDROP_BLUR_FILTER}
                     justify={col.align}
                     w={"full"}
-                    h="full"
+                    h={"full"}
                     minH={TABLE_TD_MIN_H}
                     py={3}
                     px={TABLE_CELL_PX}
+                    bg={isRowSelected ? SELECTED_BG : TABLE_TD_BG}
+                    backdropFilter={BACKDROP_BLUR_FILTER}
+                    fontSize={"md"}
                     borderBottom={
                       rowIndex !== resolvedTableData.length - 1
                         ? "1px solid"
@@ -408,13 +411,16 @@ export const DataTableDisplay = (props: DataTableProps) => {
                     borderColor={
                       isRowSelected ? SELECTED_BG : TABLE_TD_BORDER_COLOR
                     }
+                    position={"relative"}
+                    isolation={"isolate"}
+                    whiteSpace={"nowrap"}
                     {...col?.bodyProps}
-                    // {...col?.wrapperProps}
+                    {...col?.wrapperProps}
                   >
-                    <Box opacity={row.dim || col.dim ? 0.4 : 1} w="full">
+                    <Box opacity={row.dim || col.dim ? 0.4 : 1} w={"full"}>
                       {col?.td}
                     </Box>
-                  </StackH>
+                  </HStack>
                 ))}
 
                 {/* Row options column */}
@@ -422,9 +428,8 @@ export const DataTableDisplay = (props: DataTableProps) => {
                   <Center
                     h={"full"}
                     minH={TABLE_TD_MIN_H}
-                    minW={"0% !important"}
                     px={"10px"}
-                    zIndex={2}
+                    minW={"0% !important"}
                     bg={isRowSelected ? SELECTED_BG : TABLE_TD_BG}
                     backdropFilter={BACKDROP_BLUR_FILTER}
                     borderBottom={
@@ -438,6 +443,8 @@ export const DataTableDisplay = (props: DataTableProps) => {
                     roundedRight={TABLE_ROW_ROUNDED}
                     position={"sticky"}
                     right={0}
+                    zIndex={2}
+                    isolation={"isolate"}
                     onClick={(e) => {
                       e.stopPropagation();
                     }}
@@ -459,12 +466,12 @@ export const DataTableDisplay = (props: DataTableProps) => {
       {hasFooter && (
         <>
           <HStack
-            wrap={"wrap"}
             justify={"space-between"}
             p={3}
             borderTop={"1px solid"}
             borderColor={TABLE_FOOTER_BORDER_COLOR}
             mt={"auto"}
+            wrap={"wrap"}
           >
             <StackV w={"fit"} mb={[1, null, 0]}>
               <Limitation limit={limit} setLimit={setLimit} />
@@ -472,8 +479,8 @@ export const DataTableDisplay = (props: DataTableProps) => {
 
             {!iss && (
               <StackV
-                w={"fit"}
                 justify={"center"}
+                w={"fit"}
                 pl={[2, null, 0]}
                 mt={[footer ? 1 : 0, null, 0]}
               >
@@ -488,8 +495,8 @@ export const DataTableDisplay = (props: DataTableProps) => {
 
           {iss && (
             <StackV
-              w={"fit"}
               justify={"center"}
+              w={"fit"}
               pl={[2, null, 0]}
               mt={[footer ? 1 : 0, null, 0]}
             >
