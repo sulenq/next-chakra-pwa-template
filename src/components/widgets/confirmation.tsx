@@ -57,13 +57,14 @@ const ConfirmationContent = (props: ConfirmationProps) => {
         <Disclosure.Footer>
           <BackButton disabled={loading} />
 
-          <Box pos={"relative"}>
+          <Box w={["full", null, "fit"]} pos={"relative"}>
             <Btn
-              onClick={onConfirm}
+              w={"full"}
               loading={loading}
               colorPalette={themeConfig.colorPalette}
               fontVariantNumeric={"tabular-nums"}
               disabled={!isCountdownFinished}
+              onClick={onConfirm}
               {...confirmButtonProps}
             >
               <Tooltip content={confirmLabel}>

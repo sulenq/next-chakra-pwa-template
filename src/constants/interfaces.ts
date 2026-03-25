@@ -1,12 +1,7 @@
 import { BtnProps } from "@/components/ui/btn";
 import { Enum__ActivityAction } from "@/constants/enums";
 import { Gender } from "@/constants/types";
-import {
-  MenuItemProps,
-  StackProps,
-  TableCellProps,
-  TableColumnHeaderProps,
-} from "@chakra-ui/react";
+import { MenuItemProps, StackProps } from "@chakra-ui/react";
 import { AxiosRequestConfig, AxiosResponse } from "axios";
 import { LucideIcon } from "lucide-react";
 import { ReactNode } from "react";
@@ -107,7 +102,7 @@ export interface DataProps {
 export interface FormattedTableHeader {
   th: string;
   sortable?: boolean;
-  headerProps?: TableColumnHeaderProps;
+  headerProps?: StackProps;
   wrapperProps?: StackProps;
   align?: string;
 }
@@ -120,7 +115,7 @@ export interface FormattedTableRow<T = any> {
     td: any;
     value: any;
     dataType?: string; // "string" | "number" | "date" | "time" |
-    tableCellProps?: TableCellProps;
+    bodyProps?: StackProps;
     wrapperProps?: StackProps;
     align?: string;
     dim?: boolean;

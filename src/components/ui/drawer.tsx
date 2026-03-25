@@ -1,6 +1,7 @@
 "use client";
 
 import { CloseButton } from "@/components/ui/close-button";
+import { BACKDROP_BLUR_FILTER } from "@/constants/styles";
 import { back } from "@/utils/client";
 import {
   Drawer as ChakraDrawer,
@@ -52,7 +53,8 @@ export const DrawerContent = forwardRef<HTMLDivElement, DrawerContentProps>(
         >
           <ChakraDrawer.Content
             ref={ref}
-            bg={"bg.body"}
+            bg={"bg.frosted"}
+            backdropFilter={BACKDROP_BLUR_FILTER}
             justifyContent={"end"}
             shadow={"none"}
             onClick={(e) => e.stopPropagation()}

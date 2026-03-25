@@ -1,6 +1,7 @@
 "use client";
 
 import { CloseButton } from "@/components/ui/close-button";
+import { BACKDROP_BLUR_FILTER } from "@/constants/styles";
 import { useScreen } from "@/hooks/useScreen";
 import { back } from "@/utils/client";
 import {
@@ -80,7 +81,8 @@ export const DialogContent = forwardRef<HTMLDivElement, DialogContentProps>(
             }}
             minH={sh < 500 ? "90dvh" : ""}
             maxH={"full"}
-            bg={"bg.body"}
+            bg={"bg.frosted"}
+            backdropFilter={BACKDROP_BLUR_FILTER}
             shadow={"none"}
             onClick={(e) => {
               e.stopPropagation();

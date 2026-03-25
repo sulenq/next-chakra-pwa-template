@@ -1,6 +1,6 @@
 import { Checkbox } from "@/components/ui/checkbox";
 import { P } from "@/components/ui/p";
-import { StackV } from "@/components/ui/stack";
+import { StackH, StackV } from "@/components/ui/stack";
 import { BatchOptions } from "@/components/widgets/batch-option";
 import { Limitation } from "@/components/widgets/limitation";
 import { Pagination } from "@/components/widgets/pagination";
@@ -273,83 +273,68 @@ export const DataTableDisplay = (props: DataTableProps) => {
 
             {/* Main columns */}
             {headers.map((header, index) => (
-              <Box
+              <StackH
                 key={index}
                 whiteSpace={"nowrap"}
-                p={0}
                 position={"sticky"}
                 top={0}
                 zIndex={3}
                 cursor={header.sortable ? "pointer" : "auto"}
                 onClick={header.sortable ? () => sort(index) : undefined}
+                bg={TABLE_TH_BG}
+                backdropFilter={BACKDROP_BLUR_FILTER}
+                justify={header.align}
+                h="full"
+                minH={TABLE_TH_H}
+                px={TABLE_CELL_PX}
+                py={3}
+                pl={index === 0 ? 4 : ""}
+                pr={
+                  index === headers.length - 1
+                    ? 4
+                    : (header?.wrapperProps?.justify === "center" ||
+                          header?.wrapperProps?.justifyContent === "center") &&
+                        header.sortable
+                      ? 1
+                      : ""
+                }
+                borderBottom={"1px solid"}
+                borderColor={TABLE_TH_BORDER_COLOR}
                 {...header?.headerProps}
+                // {...header?.wrapperProps}
               >
-                <Box
-                  w="full"
-                  h="full"
-                  bg={TABLE_TH_BG}
-                  backdropFilter={BACKDROP_BLUR_FILTER}
-                >
-                  <HStack
-                    justify={header.align}
-                    h="full"
-                    minH={TABLE_TH_H}
-                    px={TABLE_CELL_PX}
-                    py={3}
-                    pl={index === 0 ? 4 : ""}
-                    pr={
-                      index === headers.length - 1
-                        ? 4
-                        : (header?.wrapperProps?.justify === "center" ||
-                              header?.wrapperProps?.justifyContent ===
-                                "center") &&
-                            header.sortable
-                          ? 1
-                          : ""
-                    }
-                    borderBottom={"1px solid"}
-                    borderColor={TABLE_TH_BORDER_COLOR}
-                    {...header?.wrapperProps}
-                  >
-                    <P fontWeight={"medium"} color={"fg.muted"}>
-                      {header?.th}
-                    </P>
+                <P fontWeight={"medium"} color={"fg.muted"}>
+                  {header?.th}
+                </P>
 
-                    {header.sortable && (
-                      <SortIcon
-                        columnIndex={index}
-                        sortColumnIdx={sortConfig.sortColumnIdx}
-                        direction={sortConfig.direction}
-                      />
-                    )}
-                  </HStack>
-                </Box>
-              </Box>
+                {header.sortable && (
+                  <SortIcon
+                    columnIndex={index}
+                    sortColumnIdx={sortConfig.sortColumnIdx}
+                    direction={sortConfig.direction}
+                  />
+                )}
+              </StackH>
             ))}
 
             {/* Row options column */}
             {!isEmptyArray(rowOptions) && (
-              <Box p={0} position={"sticky"} top={0} right={"0px"} zIndex={4}>
-                <Box
-                  w="full"
-                  h="full"
-                  bg={TABLE_TH_BG}
-                  backdropFilter={BACKDROP_BLUR_FILTER}
-                >
-                  <HStack
-                    h="full"
-                    minH={TABLE_TH_H}
-                    px={TABLE_CELL_PX}
-                    py={3}
-                    borderBottom={"1px solid"}
-                    borderColor={TABLE_TH_BORDER_COLOR}
-                    roundedRight={TABLE_ROW_ROUNDED}
-                    pos={"relative"}
-                  >
-                    {/* Row column spacer */}
-                  </HStack>
-                </Box>
-              </Box>
+              <HStack
+                zIndex={4}
+                bg={TABLE_TH_BG}
+                backdropFilter={BACKDROP_BLUR_FILTER}
+                h="full"
+                minH={TABLE_TH_H}
+                px={TABLE_CELL_PX}
+                py={3}
+                borderBottom={"1px solid"}
+                borderColor={TABLE_TH_BORDER_COLOR}
+                roundedRight={TABLE_ROW_ROUNDED}
+                position={"sticky"}
+                right={0}
+              >
+                {/* Row column spacer */}
+              </HStack>
             )}
           </Box>
 
@@ -366,137 +351,104 @@ export const DataTableDisplay = (props: DataTableProps) => {
               >
                 {/* Batch options column */}
                 {!isEmptyArray(batchOptions) && (
-                  <Box
-                    h="full"
+                  <Center
+                    h={"full"}
+                    minH={TABLE_TD_MIN_H}
                     minW={"0% !important"}
-                    p={0}
+                    px={"10px"}
                     position={"sticky"}
                     left={0}
                     zIndex={2}
+                    bg={isRowSelected ? SELECTED_BG : TABLE_TD_BG}
+                    backdropFilter={BACKDROP_BLUR_FILTER}
+                    cursor={"pointer"}
+                    borderBottom={
+                      rowIndex !== resolvedTableData.length - 1
+                        ? "1px solid"
+                        : ""
+                    }
+                    borderColor={
+                      isRowSelected ? SELECTED_BG : TABLE_TD_BORDER_COLOR
+                    }
+                    roundedLeft={TABLE_ROW_ROUNDED}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      toggleRowSelection(row);
+                    }}
                   >
-                    <Box
-                      w="full"
-                      h="full"
-                      bg={isRowSelected ? SELECTED_BG : TABLE_TD_BG}
-                      backdropFilter={BACKDROP_BLUR_FILTER}
-                    >
-                      <Center
-                        w={"full"}
-                        h="full"
-                        minH={TABLE_TD_MIN_H}
-                        px={"10px"}
-                        cursor={"pointer"}
-                        borderBottom={
-                          rowIndex !== resolvedTableData.length - 1
-                            ? "1px solid"
-                            : ""
-                        }
-                        borderColor={
-                          isRowSelected ? SELECTED_BG : TABLE_TD_BORDER_COLOR
-                        }
-                        roundedLeft={TABLE_ROW_ROUNDED}
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          toggleRowSelection(row);
-                        }}
-                      >
-                        <Checkbox
-                          subtle
-                          size={"sm"}
-                          colorPalette={themeConfig.colorPalette}
-                          checked={selectedRows.includes(row.id)}
-                        />
-                      </Center>
-                    </Box>
-                  </Box>
+                    <Checkbox
+                      subtle
+                      size={"sm"}
+                      colorPalette={themeConfig.colorPalette}
+                      checked={selectedRows.includes(row.id)}
+                    />
+                  </Center>
                 )}
 
                 {/* Main columns */}
                 {row.columns.map((col, colIndex) => (
-                  <Box
+                  <StackH
                     key={colIndex}
                     whiteSpace={"nowrap"}
-                    p={0}
                     fontSize={"md"}
-                    h="full"
                     position={"relative"}
-                    {...col?.tableCellProps}
+                    bg={isRowSelected ? SELECTED_BG : TABLE_TD_BG}
+                    backdropFilter={BACKDROP_BLUR_FILTER}
+                    justify={col.align}
+                    w={"full"}
+                    h="full"
+                    minH={TABLE_TD_MIN_H}
+                    py={3}
+                    px={TABLE_CELL_PX}
+                    borderBottom={
+                      rowIndex !== resolvedTableData.length - 1
+                        ? "1px solid"
+                        : ""
+                    }
+                    borderColor={
+                      isRowSelected ? SELECTED_BG : TABLE_TD_BORDER_COLOR
+                    }
+                    {...col?.bodyProps}
+                    // {...col?.wrapperProps}
                   >
-                    <Box
-                      w="full"
-                      h="full"
-                      bg={isRowSelected ? SELECTED_BG : TABLE_TD_BG}
-                      backdropFilter={BACKDROP_BLUR_FILTER}
-                    >
-                      <HStack
-                        justify={col.align}
-                        w={"full"}
-                        h="full"
-                        minH={TABLE_TD_MIN_H}
-                        py={3}
-                        px={TABLE_CELL_PX}
-                        borderBottom={
-                          rowIndex !== resolvedTableData.length - 1
-                            ? "1px solid"
-                            : ""
-                        }
-                        borderColor={
-                          isRowSelected ? SELECTED_BG : TABLE_TD_BORDER_COLOR
-                        }
-                        {...col?.wrapperProps}
-                      >
-                        <Box opacity={row.dim || col.dim ? 0.4 : 1} w="full">
-                          {col?.td}
-                        </Box>
-                      </HStack>
+                    <Box opacity={row.dim || col.dim ? 0.4 : 1} w="full">
+                      {col?.td}
                     </Box>
-                  </Box>
+                  </StackH>
                 ))}
 
                 {/* Row options column */}
                 {!isEmptyArray(rowOptions) && (
-                  <Box
-                    h="full"
+                  <Center
+                    h={"full"}
+                    minH={TABLE_TD_MIN_H}
                     minW={"0% !important"}
-                    p={0}
-                    position={"sticky"}
-                    right={"0"}
+                    px={"10px"}
                     zIndex={2}
+                    bg={isRowSelected ? SELECTED_BG : TABLE_TD_BG}
+                    backdropFilter={BACKDROP_BLUR_FILTER}
+                    borderBottom={
+                      rowIndex !== resolvedTableData.length - 1
+                        ? "1px solid"
+                        : ""
+                    }
+                    borderColor={
+                      isRowSelected ? SELECTED_BG : TABLE_TD_BORDER_COLOR
+                    }
+                    roundedRight={TABLE_ROW_ROUNDED}
+                    position={"sticky"}
+                    right={0}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                    }}
                   >
-                    <Box
-                      w="full"
-                      h="full"
-                      bg={isRowSelected ? SELECTED_BG : TABLE_TD_BG}
-                      backdropFilter={BACKDROP_BLUR_FILTER}
-                    >
-                      <Center
-                        w={"full"}
-                        h="full"
-                        minH={TABLE_TD_MIN_H}
-                        px={"10px"}
-                        borderBottom={
-                          rowIndex !== resolvedTableData.length - 1
-                            ? "1px solid"
-                            : ""
-                        }
-                        borderColor={
-                          isRowSelected ? SELECTED_BG : TABLE_TD_BORDER_COLOR
-                        }
-                        roundedRight={TABLE_ROW_ROUNDED}
-                        pos={"relative"}
-                        onClick={(e) => {
-                          e.stopPropagation();
-                        }}
-                      >
-                        <RowOptions
-                          row={row}
-                          rowOptions={rowOptions}
-                          tableContainerRef={tableContainerRef}
-                          color={"fg.ibody"}
-                        />
-                      </Center>
-                    </Box>
-                  </Box>
+                    <RowOptions
+                      row={row}
+                      rowOptions={rowOptions}
+                      tableContainerRef={tableContainerRef}
+                      color={"fg.ibody"}
+                    />
+                  </Center>
                 )}
               </Box>
             );

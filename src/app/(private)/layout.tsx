@@ -22,8 +22,8 @@ import { MContainer } from "@/components/widgets/m-container";
 import {
   DesktopNavs,
   DesktopNavTooltip,
-  UserPanel,
   MobileNavLink,
+  UserPanel,
 } from "@/components/widgets/navs";
 import { ProfileMenuTrigger } from "@/components/widgets/profile-menu";
 import { Today } from "@/components/widgets/today";
@@ -54,16 +54,9 @@ import { useIsSmScreenWidth } from "@/hooks/useIsSmScreenWidth";
 import { useScreen } from "@/hooks/useScreen";
 import { last } from "@/utils/array";
 import { getUserData } from "@/utils/auth";
-import { getCssColor } from "@/utils/color";
 import { pluckString } from "@/utils/string";
 import { getActiveNavs, imgUrl } from "@/utils/url";
-import {
-  Center,
-  Circle,
-  HStack,
-  useBreakpointValue,
-  VStack,
-} from "@chakra-ui/react";
+import { Center, HStack, useBreakpointValue, VStack } from "@chakra-ui/react";
 import { ChevronsLeftIcon, ChevronsRightIcon, ServerIcon } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { Fragment } from "react";
@@ -322,7 +315,7 @@ const DesktopLayout = (props: any) => {
 
   // SX
   const rSpacingMd = useBreakpointValue(R_SPACING_MD);
-  const logoColor = getCssColor(`${themeConfig.colorPalette}.contrast`);
+  // const logoColor = getCssColor(`${themeConfig.colorPalette}.contrast`);
 
   return (
     <StackV w={"full"} h={`calc(100svh)`} overflowY={"auto"}>
@@ -356,14 +349,16 @@ const DesktopLayout = (props: any) => {
           >
             {/* Header */}
             <StackH align={"center"} gap={4} minH={TOP_BAR_H} p={R_SPACING_MD}>
-              <Circle
+              {/* <Circle
                 w={"34px"}
                 h={"34px"}
                 p={1}
                 bg={`${themeConfig.colorPalette}.solid`}
               >
                 <Logo color={logoColor} />
-              </Circle>
+              </Circle> */}
+
+              <Logo />
 
               {isNavsExpanded && (
                 <P
