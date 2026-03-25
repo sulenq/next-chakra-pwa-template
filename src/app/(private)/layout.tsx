@@ -56,7 +56,13 @@ import { last } from "@/utils/array";
 import { getUserData } from "@/utils/auth";
 import { pluckString } from "@/utils/string";
 import { getActiveNavs, imgUrl } from "@/utils/url";
-import { Center, HStack, useBreakpointValue, VStack } from "@chakra-ui/react";
+import {
+  Center,
+  Circle,
+  HStack,
+  useBreakpointValue,
+  VStack,
+} from "@chakra-ui/react";
 import { ChevronsLeftIcon, ChevronsRightIcon, ServerIcon } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { Fragment } from "react";
@@ -348,7 +354,14 @@ const DesktopLayout = (props: any) => {
           >
             {/* Header */}
             <StackH align={"center"} gap={4} minH={TOP_BAR_H} p={R_SPACING_MD}>
-              <Logo ml={"4px"} />
+              <Circle
+                w={"34px"}
+                h={"34px"}
+                p={1}
+                bg={`${themeConfig.colorPalette}.solid`}
+              >
+                <Logo color={`${themeConfig.colorPalette}.contrast`} />
+              </Circle>
 
               {isNavsExpanded && (
                 <P

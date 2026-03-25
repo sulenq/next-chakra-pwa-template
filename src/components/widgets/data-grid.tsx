@@ -1,7 +1,6 @@
 "use client";
 
 import { Btn } from "@/components/ui/btn";
-import { CContainer } from "@/components/ui/c-container";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Disclosure } from "@/components/ui/disclosure";
 import { Divider } from "@/components/ui/divider";
@@ -142,13 +141,7 @@ export const DataGridItem = (props: DataGridItemProps) => {
         </StackV>
       )}
 
-      <CContainer
-        flex={1}
-        gap={1}
-        px={3}
-        opacity={dim || row.dim ? 0.4 : 1}
-        my={3}
-      >
+      <StackV flex={1} gap={1} px={3} opacity={dim || row.dim ? 0.4 : 1} my={3}>
         <HStack maxW={"calc(100% - 32px)"}>
           {typeof item.title === "string" ? (
             <ClampText fontWeight={"semibold"}>{item.title}</ClampText>
@@ -164,7 +157,7 @@ export const DataGridItem = (props: DataGridItemProps) => {
         ) : (
           item.description
         )}
-      </CContainer>
+      </StackV>
 
       <HStack p={2}>
         <DataGrid.DetailTrigger
@@ -233,7 +226,7 @@ const DataGridDetailContent = (props: DataGridDetailDisclosureProps) => {
         </Disclosure.Header>
 
         <Disclosure.Body pb={2}>
-          <CContainer mb={2}>
+          <StackV mb={2}>
             <SearchInput
               queryKey={"q-data-grid-detail"}
               inputValue={search}
@@ -241,9 +234,9 @@ const DataGridDetailContent = (props: DataGridDetailDisclosureProps) => {
                 setSearch(inputValue);
               }}
             />
-          </CContainer>
+          </StackV>
 
-          <CContainer>
+          <StackV>
             {data && (
               <>
                 {isEmptyArray(resolvedDetails) && <FeedbackNotFound />}
@@ -252,11 +245,11 @@ const DataGridDetailContent = (props: DataGridDetailDisclosureProps) => {
                   const isLast = idx === resolvedDetails.length - 1;
 
                   return (
-                    <CContainer
+                    <StackV
                       key={idx}
-                      gap={2}
+                      gap={1}
                       px={1}
-                      py={3}
+                      py={2}
                       borderBottom={!isLast ? "1px solid" : ""}
                       borderColor={"border.subtle"}
                       align={"start"}
@@ -266,12 +259,12 @@ const DataGridDetailContent = (props: DataGridDetailDisclosureProps) => {
                       </P>
 
                       {detail.render}
-                    </CContainer>
+                    </StackV>
                   );
                 })}
               </>
             )}
-          </CContainer>
+          </StackV>
         </Disclosure.Body>
 
         <Disclosure.Footer>
@@ -305,9 +298,9 @@ const DataGridDetailTrigger = (props: DataGridDetailDisclosureTriggerProps) => {
 
   return (
     <>
-      <CContainer w={"fit"} onClick={onOpen} {...restProps}>
+      <StackV w={"fit"} onClick={onOpen} {...restProps}>
         {children}
-      </CContainer>
+      </StackV>
 
       <DataGridDetailContent
         open={open}
@@ -528,35 +521,35 @@ const DataGridDisplay = (props: DataGridProps) => {
             borderColor={GRID_FOOTER_BORDER_COLOR}
             justify={"space-between"}
           >
-            <CContainer w={"fit"} mb={[1, null, 0]}>
+            <StackV w={"fit"} mb={[1, null, 0]}>
               <Limitation limit={limit} setLimit={setLimit} />
-            </CContainer>
+            </StackV>
 
             {!iss && (
-              <CContainer
+              <StackV
                 w={"fit"}
                 justify={"center"}
                 pl={[2, null, 0]}
                 mt={[footer ? 1 : 0, null, 0]}
               >
                 {footer}
-              </CContainer>
+              </StackV>
             )}
 
-            <CContainer w={"fit"}>
+            <StackV w={"fit"}>
               <Pagination page={page} setPage={setPage} totalPage={totalPage} />
-            </CContainer>
+            </StackV>
           </HStack>
 
           {iss && (
-            <CContainer
+            <StackV
               w={"fit"}
               justify={"center"}
               pl={[2, null, 0]}
               mt={[footer ? 1 : 0, null, 0]}
             >
               {footer}
-            </CContainer>
+            </StackV>
           )}
         </>
       )}

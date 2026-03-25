@@ -94,11 +94,9 @@ export const ImgViewer = (props: ImgViewerProps) => {
                   imageProps={{
                     unoptimized: true,
                   }}
+                  bg={"bg.body"}
                   fallback={fallback}
                   fallbackSrc={fallbackSrc}
-                  fallbackProps={{
-                    bg: "bg.body",
-                  }}
                   m={"auto"}
                 />
 

@@ -10,7 +10,7 @@ export const DESKTOP_NAV_BTN_SIZE = "sm";
 export const DESKTOP_NAV_BTN_PX = "0 8px";
 export const DESKTOP_NAV_BTN_VARIANT = "ghost";
 export const DESKTOP_NAV_BTN_ICON_BG = "bg.muted";
-export const DESKTOP_ACTIVE_NAV_BTN_VARIANT = "solid";
+export const DESKTOP_ACTIVE_NAV_BTN_VARIANT = "subtle";
 export const DESKTOP_NAV_GAP = "8px";
 
 // Sizes

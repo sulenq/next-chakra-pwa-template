@@ -8,7 +8,7 @@ export interface LogoProps extends CenterProps {
   size?: number;
 }
 export const Logo = (props: LogoProps) => {
-  const { color, size = 20, ...restProps } = props;
+  const { color, size = 16, ...restProps } = props;
 
   const { colorMode } = useColorMode();
   const { themeConfig } = useThemeConfig();

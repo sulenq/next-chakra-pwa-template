@@ -1,13 +1,12 @@
 "use client";
 
 import { Avatar } from "@/components/ui/avatar";
-import { CContainer } from "@/components/ui/c-container";
+import { StackH, StackV } from "@/components/ui/stack";
 import { ClampText } from "@/components/widgets/clamp-text";
 import { ImgViewer } from "@/components/widgets/img-viewer";
 import { Interface__User } from "@/constants/interfaces";
-import { SVGS_PATH } from "@/constants/paths";
 import { imgUrl } from "@/utils/url";
-import { HStack, StackProps } from "@chakra-ui/react";
+import { StackProps } from "@chakra-ui/react";
 
 interface MiniUserProps extends StackProps {
   user: Interface__User;
@@ -17,11 +16,10 @@ export const MiniUser = (props: MiniUserProps) => {
   const { user, ...restProps } = props;
 
   return (
-    <HStack gap={3} {...restProps}>
+    <StackH gap={3} minW={"200px"} {...restProps}>
       <ImgViewer
         id={`avatar-${user.id}`}
         src={imgUrl(user?.avatar?.[0]?.filePath)}
-        fallbackSrc={`${SVGS_PATH}/no-avatar.svg`}
       >
         <Avatar
           src={imgUrl(user?.avatar?.[0]?.filePath)}
@@ -30,13 +28,13 @@ export const MiniUser = (props: MiniUserProps) => {
         />
       </ImgViewer>
 
-      <CContainer>
+      <StackV>
         <ClampText lineHeight={1.4}>{user.name}</ClampText>
 
         <ClampText fontSize={"sm"} color={"fg.subtle"} lineHeight={1.4}>
           {user?.email}
         </ClampText>
-      </CContainer>
-    </HStack>
+      </StackV>
+    </StackH>
   );
 };
