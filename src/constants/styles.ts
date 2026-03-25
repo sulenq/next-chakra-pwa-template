@@ -41,6 +41,7 @@ export const BACKDROP_BLUR_FILTER = `blur(${BLUR_RADIUS})`;
 // Data Table
 export const TABLE_OPTIONS_CELL_W = "46px";
 export const TABLE_CELL_PX = 3;
+export const TABLE_CELL_PY = 1;
 export const TABLE_CONTAINER_BG = "transparent";
 export const TABLE_ROW_BG = "transparent";
 export const TABLE_TH_H = "45px";

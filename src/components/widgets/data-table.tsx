@@ -17,6 +17,7 @@ import {
   GAP,
   R_SPACING_MD,
   TABLE_CELL_PX,
+  TABLE_CELL_PY,
   TABLE_CONTAINER_BG,
   TABLE_FOOTER_BORDER_COLOR,
   TABLE_OPTIONS_CELL_W,
@@ -206,16 +207,6 @@ export const DataTableDisplay = (props: DataTableProps) => {
   const SELECTED_BG = `${themeConfig.colorPalette}.subtle`;
   const TABLE_ROW_ROUNDED = 0;
 
-  // Firefox workaround: backdrop-filter doesn't work on position:sticky.
-  // Use a ::before pseudo-element with position:absolute to carry the blur.
-  const BLUR_BEFORE = {
-    content: '""',
-    position: "absolute" as const,
-    inset: 0,
-    backdropFilter: BACKDROP_BLUR_FILTER,
-    zIndex: -1,
-  };
-
   // Grid Cols Generator
   const gridCols = useMemo(() => {
     const cols = [];
@@ -241,20 +232,10 @@ export const DataTableDisplay = (props: DataTableProps) => {
         flex={1}
         pb={R_SPACING_MD}
         bg={TABLE_CONTAINER_BG}
-        roundedTop={themeConfig.radii.component}
+        roundedTop={themeConfig.radii.container}
         zIndex={2}
         {...contentContainerProps}
       >
-        {/* <Box
-          w={"full"}
-          h={"50px"}
-          bg={"bg.frosted"}
-          backdropFilter={BACKDROP_BLUR_FILTER}
-          pos={"absolute"}
-          top={0}
-          zIndex={2}
-        /> */}
-
         <Grid
           gridTemplateColumns={gridCols}
           w={headers.length > 1 ? "full" : "fit"}
@@ -271,6 +252,7 @@ export const DataTableDisplay = (props: DataTableProps) => {
                 minW={"0% !important"}
                 minH={TABLE_TH_H}
                 bg={TABLE_TH_BG}
+                backdropFilter={BACKDROP_BLUR_FILTER}
                 borderBottom={"1px solid"}
                 borderColor={TABLE_TH_BORDER_COLOR}
                 roundedLeft={TABLE_ROW_ROUNDED}
@@ -278,7 +260,7 @@ export const DataTableDisplay = (props: DataTableProps) => {
                 left={0}
                 top={0}
                 zIndex={4}
-                _before={BLUR_BEFORE}
+                isolation={"isolate"}
               >
                 <BatchOptions
                   selectedRows={selectedRows}
@@ -299,7 +281,7 @@ export const DataTableDisplay = (props: DataTableProps) => {
                 h={"full"}
                 minH={TABLE_TH_H}
                 px={TABLE_CELL_PX}
-                py={3}
+                py={TABLE_CELL_PY}
                 pl={index === 0 ? 4 : ""}
                 pr={
                   index === headers.length - 1
@@ -311,6 +293,7 @@ export const DataTableDisplay = (props: DataTableProps) => {
                       : ""
                 }
                 bg={TABLE_TH_BG}
+                backdropFilter={BACKDROP_BLUR_FILTER}
                 borderBottom={"1px solid"}
                 borderColor={TABLE_TH_BORDER_COLOR}
                 whiteSpace={"nowrap"}
@@ -318,7 +301,7 @@ export const DataTableDisplay = (props: DataTableProps) => {
                 zIndex={3}
                 pos={"sticky"}
                 top={0}
-                _before={BLUR_BEFORE}
+                isolation={"isolate"}
                 onClick={header.sortable ? () => sort(index) : undefined}
                 {...header?.headerProps}
               >
@@ -344,6 +327,7 @@ export const DataTableDisplay = (props: DataTableProps) => {
                 px={TABLE_CELL_PX}
                 py={3}
                 bg={TABLE_TH_BG}
+                backdropFilter={BACKDROP_BLUR_FILTER}
                 borderBottom={"1px solid"}
                 borderColor={TABLE_TH_BORDER_COLOR}
                 roundedRight={TABLE_ROW_ROUNDED}
@@ -351,7 +335,7 @@ export const DataTableDisplay = (props: DataTableProps) => {
                 pos={"sticky"}
                 right={0}
                 top={0}
-                _before={BLUR_BEFORE}
+                isolation={"isolate"}
               >
                 {/* Row column spacer */}
               </HStack>
@@ -389,7 +373,8 @@ export const DataTableDisplay = (props: DataTableProps) => {
                     roundedLeft={TABLE_ROW_ROUNDED}
                     left={0}
                     zIndex={2}
-                    _before={BLUR_BEFORE}
+                    isolation={"isolate"}
+                    backdropFilter={BACKDROP_BLUR_FILTER}
                     onClick={(e) => {
                       e.stopPropagation();
                       toggleRowSelection(row);
@@ -414,8 +399,8 @@ export const DataTableDisplay = (props: DataTableProps) => {
                     w={"full"}
                     h={"full"}
                     minH={TABLE_TD_MIN_H}
-                    py={3}
                     px={TABLE_CELL_PX}
+                    py={TABLE_CELL_PY}
                     bg={isRowSelected ? SELECTED_BG : TABLE_TD_BG}
                     fontSize={"md"}
                     borderBottom={
@@ -427,7 +412,8 @@ export const DataTableDisplay = (props: DataTableProps) => {
                       isRowSelected ? SELECTED_BG : TABLE_TD_BORDER_COLOR
                     }
                     whiteSpace={"nowrap"}
-                    _before={BLUR_BEFORE}
+                    isolation={"isolate"}
+                    backdropFilter={BACKDROP_BLUR_FILTER}
                     {...col?.bodyProps}
                   >
                     <Box opacity={row.dim || col.dim ? 0.4 : 1} w={"full"}>
@@ -456,7 +442,8 @@ export const DataTableDisplay = (props: DataTableProps) => {
                     roundedRight={TABLE_ROW_ROUNDED}
                     right={0}
                     zIndex={2}
-                    _before={BLUR_BEFORE}
+                    isolation={"isolate"}
+                    backdropFilter={BACKDROP_BLUR_FILTER}
                     onClick={(e) => {
                       e.stopPropagation();
                     }}

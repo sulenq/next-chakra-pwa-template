@@ -26,6 +26,7 @@ export const MiniUser = (props: MiniUserProps) => {
           src={imgUrl(user?.avatar?.[0]?.filePath)}
           name={user.name}
           size={withEmail ? "xs" : "2xs"}
+          fontSize={"sm"}
         />
       </ImgViewer>
 

@@ -589,6 +589,7 @@ export const UserPanel = (props: UserPanelProps) => {
   return (
     <Item.Container
       p={navsExpanded ? 0 : R_SPACING_MD}
+      bg={navsExpanded ? "bg.frosted" : "transparent"}
       backdropFilter={BACKDROP_BLUR_FILTER}
       overflow={"clip"}
     >
