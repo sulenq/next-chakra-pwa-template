@@ -286,10 +286,10 @@ export const DataTableDisplay = (props: DataTableProps) => {
                   index === headers.length - 1
                     ? 4
                     : (header?.wrapperProps?.justify === "center" ||
-                        header?.wrapperProps?.justifyContent === "center") &&
-                      header.sortable
-                    ? 1
-                    : ""
+                          header?.wrapperProps?.justifyContent === "center") &&
+                        header.sortable
+                      ? 1
+                      : ""
                 }
                 bg={TABLE_TH_BG}
                 backdropFilter={BACKDROP_BLUR_FILTER}
