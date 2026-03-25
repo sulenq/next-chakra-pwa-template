@@ -246,7 +246,6 @@ export const DataTableDisplay = (props: DataTableProps) => {
         /> */}
 
         <Grid
-          className="debug"
           gridTemplateColumns={gridCols}
           w={headers.length > 1 ? "full" : "fit"}
           minW={"fit"}
@@ -254,12 +253,9 @@ export const DataTableDisplay = (props: DataTableProps) => {
         >
           {/* Header Row */}
           <Box
-            pos={"sticky"}
             display={"contents"}
             role={"row"}
             backdropFilter={BACKDROP_BLUR_FILTER}
-            left={0}
-            top={0}
           >
             {/* Batch options column */}
             {!isEmptyArray(batchOptions) && (
@@ -269,9 +265,13 @@ export const DataTableDisplay = (props: DataTableProps) => {
                 minW={"0% !important"}
                 minH={TABLE_TH_H}
                 bg={TABLE_TH_BG}
+                backdropFilter={BACKDROP_BLUR_FILTER}
                 borderBottom={"1px solid"}
                 borderColor={TABLE_TH_BORDER_COLOR}
                 roundedLeft={TABLE_ROW_ROUNDED}
+                pos={"sticky"}
+                left={0}
+                top={0}
                 zIndex={4}
                 isolation={"isolate"}
               >
@@ -309,11 +309,13 @@ export const DataTableDisplay = (props: DataTableProps) => {
                 backdropFilter={BACKDROP_BLUR_FILTER}
                 borderBottom={"1px solid"}
                 borderColor={TABLE_TH_BORDER_COLOR}
-                zIndex={3}
-                isolation={"isolate"}
-                onClick={header.sortable ? () => sort(index) : undefined}
                 whiteSpace={"nowrap"}
                 cursor={header.sortable ? "pointer" : "auto"}
+                zIndex={3}
+                pos={"sticky"}
+                top={0}
+                isolation={"isolate"}
+                onClick={header.sortable ? () => sort(index) : undefined}
                 {...header?.headerProps}
               >
                 <P color={"fg.muted"} fontWeight={"medium"}>
@@ -343,6 +345,9 @@ export const DataTableDisplay = (props: DataTableProps) => {
                 borderColor={TABLE_TH_BORDER_COLOR}
                 roundedRight={TABLE_ROW_ROUNDED}
                 zIndex={4}
+                pos={"sticky"}
+                right={0}
+                top={0}
                 isolation={"isolate"}
               >
                 {/* Row column spacer */}

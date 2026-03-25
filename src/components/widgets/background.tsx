@@ -9,7 +9,7 @@ export const RadialGlowBackground = (props: StackProps) => {
 
   // Constants
   const colorPalette = themeConfig.colorPalette;
-  const opacity1 = useColorModeValue(0.2, 0.2);
+  const opacity1 = useColorModeValue(0.3, 0.2);
   const opacity2 = useColorModeValue(0.3, 0.2);
 
   return (
