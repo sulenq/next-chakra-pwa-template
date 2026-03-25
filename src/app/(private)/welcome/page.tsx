@@ -19,7 +19,7 @@ export default function Page() {
   const variantNumber = Math.floor(Math.random() * 16) + 1;
 
   // Constants
-  const logoColor = useColorModeValue("var(--chakra-colors-d1)", "#101010");
+  const logoColor = useColorModeValue("var(--chakra-colors-d1)", "#0f0f0f");
 
   return (
     <View.Root p={4}>

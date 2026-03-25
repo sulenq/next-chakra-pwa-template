@@ -2,7 +2,7 @@
 
 import { AvatarUploadTrigger } from "@/components/ui/avatar";
 import { Btn } from "@/components/ui/btn";
-import { CContainer } from "@/components/ui/c-container";
+import { StackH, StackV } from "@/components/ui/stack";
 import { Field, FieldsetRoot } from "@/components/ui/field";
 import { Img } from "@/components/ui/img";
 import { P } from "@/components/ui/p";
@@ -30,6 +30,7 @@ import {
   Interface__AuthLog,
   Interface__User,
 } from "@/constants/interfaces";
+import { R_SPACING_MD } from "@/constants/styles";
 import { useLocale } from "@/contexts/useLocale";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
 import ResetPasswordDisclosureTrigger from "@/features/auth/reset-password";
@@ -38,7 +39,7 @@ import { useRequest } from "@/hooks/useRequest";
 import { isEmptyArray } from "@/utils/array";
 import { formatDate } from "@/utils/formatter";
 import { imgUrl } from "@/utils/url";
-import { Circle, HStack } from "@chakra-ui/react";
+import { Circle } from "@chakra-ui/react";
 import { useFormik } from "formik";
 import {
   ActivityIcon,
@@ -119,17 +120,16 @@ const PersonalInformation = (props: PersonalInformationProps) => {
   }, [initialData]);
 
   return (
-    <Item.Container borderless roundedless>
+    <Item.Container borderless px={R_SPACING_MD} pb={R_SPACING_MD}>
       <Item.Header borderless>
-        <HStack>
-          <AppIconLucide icon={UserIcon} />
-          <Item.Title>{t.personal_information}</Item.Title>
-        </HStack>
+        <AppIconLucide icon={UserIcon} />
+
+        <Item.Title>{t.personal_information}</Item.Title>
       </Item.Header>
 
-      <CContainer px={4}>
+      <Item.Content>
         <Item.Container>
-          <CContainer p={4}>
+          <StackV p={4}>
             <form
               id="personal-info-form"
               onSubmit={formik.handleSubmit}
@@ -140,7 +140,7 @@ const PersonalInformation = (props: PersonalInformationProps) => {
                   invalid={!!formik.errors.avatar}
                   errorText={`${formik.errors.avatar}`}
                 >
-                  <HStack gap={4}>
+                  <StackH gap={4}>
                     <ImgViewer
                       src={initialData?.avatar?.[0]?.fileUrl}
                       key={imgUrl(initialData?.avatar?.[0]?.filePath)}
@@ -154,19 +154,19 @@ const PersonalInformation = (props: PersonalInformationProps) => {
                       />
                     </ImgViewer>
 
-                    <CContainer gap={2}>
+                    <StackV gap={2}>
                       <AvatarUploadTrigger formik={formik} user={initialData}>
                         <Btn w={"fit"} variant={"outline"} size={"xs"}>
                           {t.upload_new_avatar}
                         </Btn>
                       </AvatarUploadTrigger>
 
-                      <CContainer color={"fg.subtle"}>
+                      <StackV color={"fg.subtle"}>
                         <P>{t.msg_new_avatar_helper}</P>
                         <P>{`PNG, JPG ${t.is_allowed}`}</P>
-                      </CContainer>
-                    </CContainer>
-                  </HStack>
+                      </StackV>
+                    </StackV>
+                  </StackH>
                 </Field>
 
                 <Field
@@ -199,7 +199,7 @@ const PersonalInformation = (props: PersonalInformationProps) => {
               </FieldsetRoot>
             </form>
 
-            <HStack justify={"space-between"} mt={8}>
+            <StackH justify={"space-between"} mt={8}>
               <ResetPasswordDisclosureTrigger>
                 <Btn variant={"outline"}>Reset password</Btn>
               </ResetPasswordDisclosureTrigger>
@@ -211,10 +211,10 @@ const PersonalInformation = (props: PersonalInformationProps) => {
               >
                 {t.save}
               </Btn>
-            </HStack>
-          </CContainer>
+            </StackH>
+          </StackV>
         </Item.Container>
-      </CContainer>
+      </Item.Content>
     </Item.Container>
   );
 };
@@ -259,8 +259,9 @@ const AuthLog = () => {
           const isSignin = log?.action === "Sign in";
 
           return (
-            <HStack
+            <StackH
               key={`${log.id}-${idx}`}
+              align={"center"}
               gap={4}
               px={2}
               py={2}
@@ -275,7 +276,7 @@ const AuthLog = () => {
                 />
               </Circle>
 
-              <CContainer>
+              <StackV w={"full"}>
                 <P>
                   {formatDate(log?.createdAt, t, {
                     variant: "dayShortMonthYear",
@@ -284,12 +285,12 @@ const AuthLog = () => {
                 </P>
 
                 <P color={"fg.subtle"}>{log?.ip}</P>
-              </CContainer>
+              </StackV>
 
               <ClampText color={"fg.subtle"} textAlign={"right"} lineClamp={2}>
                 {log?.userAgent}
               </ClampText>
-            </HStack>
+            </StackH>
           );
         })}
       </>
@@ -297,18 +298,21 @@ const AuthLog = () => {
   };
 
   return (
-    <Item.Container ref={containerRef} borderless roundedless>
+    <Item.Container
+      ref={containerRef}
+      borderless
+      px={R_SPACING_MD}
+      pb={R_SPACING_MD}
+    >
       <Item.Header borderless>
-        <HStack>
-          <AppIconLucide icon={LogInIcon} />
+        <AppIconLucide icon={LogInIcon} />
 
-          <Item.Title>{t.my_auth_logs}</Item.Title>
-        </HStack>
+        <Item.Title>{t.my_auth_logs}</Item.Title>
       </Item.Header>
 
-      <CContainer px={4}>
-        <Item.Container>
-          <CContainer p={4} pb={3}>
+      <Item.Content>
+        <StackV>
+          <StackV p={4} pb={3}>
             <SearchInput
               onChange={(inputValue) => {
                 setSearch(inputValue || "");
@@ -316,9 +320,9 @@ const AuthLog = () => {
               inputValue={search}
               queryKey={"q-my-log-auth"}
             />
-          </CContainer>
+          </StackV>
 
-          <CContainer px={3}>
+          <StackV px={3}>
             {initialLoading && render.loading}
             {!initialLoading && (
               <>
@@ -331,9 +335,9 @@ const AuthLog = () => {
                 )}
               </>
             )}
-          </CContainer>
+          </StackV>
 
-          <HStack
+          <StackH
             justify={"space-between"}
             wrap={"wrap"}
             p={3}
@@ -347,9 +351,9 @@ const AuthLog = () => {
               setPage={setPage}
               totalPage={pagination?.meta?.totalPage}
             />
-          </HStack>
-        </Item.Container>
-      </CContainer>
+          </StackH>
+        </StackV>
+      </Item.Content>
     </Item.Container>
   );
 };
@@ -418,7 +422,7 @@ const ActivityLog = () => {
       <>
         {data?.map((log, idx) => {
           return (
-            <HStack
+            <StackH
               key={`${log.id}-${idx}`}
               justify={"space-between"}
               borderTop={idx === 0 ? "" : "1px solid"}
@@ -426,7 +430,7 @@ const ActivityLog = () => {
               px={2}
               py={2}
             >
-              <CContainer>
+              <StackV>
                 <P>{formatActivityLog(log)}</P>
 
                 <P color={"fg.subtle"}>
@@ -435,12 +439,12 @@ const ActivityLog = () => {
                     withTime: true,
                   })}
                 </P>
-              </CContainer>
+              </StackV>
 
               <P color={"fg.subtle"} textAlign={"right"}>
                 {/* {log?.userAgent} */}
               </P>
-            </HStack>
+            </StackH>
           );
         })}
       </>
@@ -448,18 +452,21 @@ const ActivityLog = () => {
   };
 
   return (
-    <Item.Container ref={containerRef} borderless roundedless>
+    <Item.Container
+      ref={containerRef}
+      borderless
+      px={R_SPACING_MD}
+      pb={R_SPACING_MD}
+    >
       <Item.Header borderless>
-        <HStack>
-          <AppIconLucide icon={ActivityIcon} />
+        <AppIconLucide icon={ActivityIcon} />
 
-          <Item.Title>{t.my_activity_logs}</Item.Title>
-        </HStack>
+        <Item.Title>{t.my_activity_logs}</Item.Title>
       </Item.Header>
 
-      <CContainer px={4}>
-        <Item.Container>
-          <CContainer p={4} pb={3}>
+      <Item.Content>
+        <StackV>
+          <StackV p={4} pb={3}>
             <SearchInput
               onChange={(inputValue) => {
                 setSearch(inputValue || "");
@@ -467,9 +474,9 @@ const ActivityLog = () => {
               inputValue={search}
               queryKey={"q-my-log-auth"}
             />
-          </CContainer>
+          </StackV>
 
-          <CContainer px={3}>
+          <StackV px={3}>
             {initialLoading && render.loading}
             {!initialLoading && (
               <>
@@ -482,9 +489,9 @@ const ActivityLog = () => {
                 )}
               </>
             )}
-          </CContainer>
+          </StackV>
 
-          <HStack
+          <StackH
             justify={"space-between"}
             wrap={"wrap"}
             p={3}
@@ -498,9 +505,9 @@ const ActivityLog = () => {
               setPage={setPage}
               totalPage={pagination?.meta?.totalPage}
             />
-          </HStack>
-        </Item.Container>
-      </CContainer>
+          </StackH>
+        </StackV>
+      </Item.Content>
     </Item.Container>
   );
 };
@@ -523,18 +530,18 @@ export default function Page() {
     empty: <FeedbackNoData />,
     notFound: <FeedbackNotFound />,
     loaded: (
-      <CContainer flex={1} gap={3}>
+      <StackV flex={1} gap={3}>
         <PersonalInformation initialData={data} />
 
         <AuthLog />
 
         <ActivityLog />
-      </CContainer>
+      </StackV>
     ),
   };
 
   return (
-    <CContainer pb={4}>
+    <StackV pb={4}>
       {/* {render.loading} */}
       {initialLoading && render.loading}
       {!initialLoading && (
@@ -548,6 +555,6 @@ export default function Page() {
           )}
         </>
       )}
-    </CContainer>
+    </StackV>
   );
 }

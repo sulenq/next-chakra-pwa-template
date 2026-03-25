@@ -1,3 +1,4 @@
+import { P } from "@/components/ui/p";
 import { useLocale } from "@/contexts/useLocale";
 import {
   Badge,
@@ -17,6 +18,7 @@ export interface FieldProps extends Omit<ChakraField.RootProps, "label"> {
 }
 export const Field = forwardRef<HTMLDivElement, FieldProps>(
   function Field(props, ref) {
+    // Props
     const {
       label,
       labelProps,
@@ -28,6 +30,9 @@ export const Field = forwardRef<HTMLDivElement, FieldProps>(
       ...rest
     } = props;
 
+    // Contexts
+    // const { themeConfig } = useThemeConfig();
+
     // Hooks
     const { t } = useLocale();
 
@@ -35,7 +40,13 @@ export const Field = forwardRef<HTMLDivElement, FieldProps>(
       <ChakraField.Root ref={ref} gap={2} {...rest}>
         {label && (
           <ChakraField.Label fontSize={"md"} {...labelProps}>
-            {label}
+            <P
+              fontWeight={"medium"}
+              // px={`calc(${themeConfig.radii.component} - 4px)`}
+            >
+              {label}
+            </P>
+
             {optional && (
               <Badge colorScheme="gray" color={"fg.muted"}>
                 {t.optional.toLocaleLowerCase()}

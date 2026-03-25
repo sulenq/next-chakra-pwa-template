@@ -4,6 +4,7 @@ import { CContainer } from "@/components/ui/c-container";
 import { FIleInputRoot, FileInputProps } from "@/components/ui/file-input";
 import { Img } from "@/components/ui/img";
 import { P } from "@/components/ui/p";
+import { StackV } from "@/components/ui/stack";
 import { FileItem } from "@/components/widgets/file-item";
 import { HScroll } from "@/components/widgets/h-scroll";
 import { LucideIcon } from "@/components/widgets/icon";
@@ -13,7 +14,7 @@ import { useLocale } from "@/contexts/useLocale";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
 import { isEmptyArray } from "@/utils/array";
 import { imgUrl } from "@/utils/url";
-import { Center, Circle, HStack, useFieldContext } from "@chakra-ui/react";
+import { Circle, HStack, useFieldContext } from "@chakra-ui/react";
 import { TrashIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 
@@ -147,8 +148,8 @@ export const ImgInput = (props: FileInputProps) => {
         existing={existing}
         showDropzoneIcon={shouldRenderPreview ? false : true}
         inputValue={inputValue}
-        accept="image/png, image/jpeg, image/webp"
-        acceptPlaceholder=".jpg, .jpeg, .png"
+        accept={"image/png, image/jpeg, image/webp"}
+        acceptPlaceholder={".jpg, .jpeg, .png"}
         {...restProps}
       >
         {shouldRenderPreview && (
@@ -165,7 +166,7 @@ export const ImgInput = (props: FileInputProps) => {
             </P> */}
 
             <HScroll
-              className="scrollX"
+              className={"scrollX"}
               maxW={restProps?.maxW || ""}
               gap={2}
               mt={1}
@@ -179,7 +180,12 @@ export const ImgInput = (props: FileInputProps) => {
                       src={url}
                       flex={"1 1 0"}
                     >
-                      <Center w={"fit"} mx={"auto"} pos={"relative"}>
+                      <StackV
+                        align={"center"}
+                        w={"fit"}
+                        mx={"auto"}
+                        pos={"relative"}
+                      >
                         <Circle
                           bg={"bg.body"}
                           size={"20px"}
@@ -194,8 +200,14 @@ export const ImgInput = (props: FileInputProps) => {
                           <P fontWeight={"medium"}>{`${idx + 1}`}</P>
                         </Circle>
 
-                        <Img key={idx} src={url} fluid h={"200px"} />
-                      </Center>
+                        <Img
+                          key={idx}
+                          src={url}
+                          fluid
+                          // h={"200px"}
+                          w={"200px"}
+                        />
+                      </StackV>
                     </ImgViewer>
                   );
                 })}
