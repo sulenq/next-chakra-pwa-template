@@ -218,7 +218,7 @@ export const DataTableDisplay = (props: DataTableProps) => {
       overflow={"auto"}
       {...restProps}
     >
-      <StackV px={R_SPACING_MD} pt={R_SPACING_MD} overflow={"auto"}>
+      <StackV overflow={"auto"} px={R_SPACING_MD} pt={R_SPACING_MD}>
         <StackV
           className={"scrollX scrollYAlt"}
           flex={1}
@@ -236,9 +236,9 @@ export const DataTableDisplay = (props: DataTableProps) => {
           >
             <Table.Header>
               <Table.Row
+                position={"sticky"}
                 bg={TABLE_ROW_BG}
                 rounded={TABLE_ROW_ROUNDED}
-                position={"sticky"}
                 top={0}
                 zIndex={3}
               >
@@ -312,7 +312,7 @@ export const DataTableDisplay = (props: DataTableProps) => {
                     borderBottom={"none !important"}
                     cursor={header.sortable ? "pointer" : "auto"}
                     onClick={header.sortable ? () => sort(index) : undefined}
-                    {...header?.headerProps}
+                    // {...header?.headerProps}
                   >
                     <HStack
                       justify={header.align}
@@ -363,6 +363,7 @@ export const DataTableDisplay = (props: DataTableProps) => {
                     right={"0px"}
                   >
                     <HStack
+                      pos={"relative"}
                       h={TABLE_TH_H}
                       px={TABLE_CELL_PX}
                       py={3}
@@ -371,7 +372,6 @@ export const DataTableDisplay = (props: DataTableProps) => {
                       borderBottom={"1px solid"}
                       borderColor={TABLE_TH_BORDER_COLOR}
                       roundedRight={TABLE_ROW_ROUNDED}
-                      pos={"relative"}
                     >
                       {/* Row column spacer */}
                     </HStack>
@@ -388,10 +388,10 @@ export const DataTableDisplay = (props: DataTableProps) => {
                 return (
                   <Table.Row
                     key={rowIndex}
+                    position={"relative"}
                     role={"group"}
                     bg={TABLE_ROW_BG}
                     overflow={"clip"}
-                    position={"relative"}
                     {...trBodyProps}
                   >
                     {/* Batch options column */}
@@ -476,7 +476,7 @@ export const DataTableDisplay = (props: DataTableProps) => {
                         p={0}
                         pt={TABLE_TD_MT}
                         fontSize={"md"}
-                        {...col?.tableCellProps}
+                        // {...col?.tableCellProps}
                       >
                         <Center bg={TABLE_TD_BG}>
                           <HStack
@@ -524,6 +524,7 @@ export const DataTableDisplay = (props: DataTableProps) => {
                       >
                         <Center bg={TABLE_TD_BG}>
                           <Center
+                            pos={"relative"}
                             w={"full"}
                             h={TABLE_TD_MIN_H}
                             px={"10px"}
@@ -540,7 +541,6 @@ export const DataTableDisplay = (props: DataTableProps) => {
                                 : TABLE_TD_BORDER_COLOR
                             }
                             roundedRight={TABLE_ROW_ROUNDED}
-                            pos={"relative"}
                             onClick={(e) => {
                               e.stopPropagation();
                             }}

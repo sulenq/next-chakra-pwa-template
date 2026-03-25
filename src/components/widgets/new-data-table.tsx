@@ -217,32 +217,50 @@ export const DataTableDisplay = (props: DataTableProps) => {
 
   return (
     <StackV
+      ref={tableContainerRef}
       flex={1}
       px={R_SPACING_MD}
       pt={R_SPACING_MD}
       overflow={"auto"}
       minH={props?.minH || sh < 625 ? "400px" : ""}
       pos={"relative"}
-      ref={tableContainerRef}
       {...restProps}
     >
       <StackV
+        className={"scrollX scrollYAlt"}
         flex={1}
         pb={R_SPACING_MD}
         bg={TABLE_CONTAINER_BG}
         roundedTop={themeConfig.radii.component}
         zIndex={2}
-        className={"scrollX scrollYAlt"}
         {...contentContainerProps}
       >
+        {/* <Box
+          w={"full"}
+          h={"50px"}
+          bg={"bg.frosted"}
+          backdropFilter={BACKDROP_BLUR_FILTER}
+          pos={"absolute"}
+          top={0}
+          zIndex={2}
+        /> */}
+
         <Grid
+          className="debug"
           gridTemplateColumns={gridCols}
-          w={headers.length > 1 ? "full" : "fit-content"}
-          minW={"fit-content"}
+          w={headers.length > 1 ? "full" : "fit"}
+          minW={"fit"}
           rowGap={GAP}
         >
           {/* Header Row */}
-          <Box display={"contents"} role={"row"}>
+          <Box
+            pos={"sticky"}
+            display={"contents"}
+            role={"row"}
+            backdropFilter={BACKDROP_BLUR_FILTER}
+            left={0}
+            top={0}
+          >
             {/* Batch options column */}
             {!isEmptyArray(batchOptions) && (
               <Center
@@ -251,13 +269,9 @@ export const DataTableDisplay = (props: DataTableProps) => {
                 minW={"0% !important"}
                 minH={TABLE_TH_H}
                 bg={TABLE_TH_BG}
-                backdropFilter={BACKDROP_BLUR_FILTER}
                 borderBottom={"1px solid"}
                 borderColor={TABLE_TH_BORDER_COLOR}
                 roundedLeft={TABLE_ROW_ROUNDED}
-                position={"sticky"}
-                top={0}
-                left={0}
                 zIndex={4}
                 isolation={"isolate"}
               >
@@ -285,8 +299,8 @@ export const DataTableDisplay = (props: DataTableProps) => {
                 pr={
                   index === headers.length - 1
                     ? 4
-                    : (header?.wrapperProps?.justify === "center" ||
-                          header?.wrapperProps?.justifyContent === "center") &&
+                    : (header?.headerProps?.justify === "center" ||
+                          header?.headerProps?.justifyContent === "center") &&
                         header.sortable
                       ? 1
                       : ""
@@ -295,15 +309,12 @@ export const DataTableDisplay = (props: DataTableProps) => {
                 backdropFilter={BACKDROP_BLUR_FILTER}
                 borderBottom={"1px solid"}
                 borderColor={TABLE_TH_BORDER_COLOR}
-                position={"sticky"}
-                top={0}
                 zIndex={3}
                 isolation={"isolate"}
                 onClick={header.sortable ? () => sort(index) : undefined}
                 whiteSpace={"nowrap"}
                 cursor={header.sortable ? "pointer" : "auto"}
                 {...header?.headerProps}
-                {...header?.wrapperProps}
               >
                 <P color={"fg.muted"} fontWeight={"medium"}>
                   {header?.th}
@@ -331,9 +342,6 @@ export const DataTableDisplay = (props: DataTableProps) => {
                 borderBottom={"1px solid"}
                 borderColor={TABLE_TH_BORDER_COLOR}
                 roundedRight={TABLE_ROW_ROUNDED}
-                position={"sticky"}
-                top={0}
-                right={"0px"}
                 zIndex={4}
                 isolation={"isolate"}
               >
@@ -356,6 +364,7 @@ export const DataTableDisplay = (props: DataTableProps) => {
                 {/* Batch options column */}
                 {!isEmptyArray(batchOptions) && (
                   <Center
+                    position={"sticky"}
                     h={"full"}
                     minH={TABLE_TD_MIN_H}
                     px={"10px"}
@@ -371,7 +380,6 @@ export const DataTableDisplay = (props: DataTableProps) => {
                       isRowSelected ? SELECTED_BG : TABLE_TD_BORDER_COLOR
                     }
                     roundedLeft={TABLE_ROW_ROUNDED}
-                    position={"sticky"}
                     left={0}
                     zIndex={2}
                     isolation={"isolate"}
@@ -394,6 +402,7 @@ export const DataTableDisplay = (props: DataTableProps) => {
                 {row.columns.map((col, colIndex) => (
                   <HStack
                     key={colIndex}
+                    position={"relative"}
                     justify={col.align}
                     w={"full"}
                     h={"full"}
@@ -411,11 +420,9 @@ export const DataTableDisplay = (props: DataTableProps) => {
                     borderColor={
                       isRowSelected ? SELECTED_BG : TABLE_TD_BORDER_COLOR
                     }
-                    position={"relative"}
                     isolation={"isolate"}
                     whiteSpace={"nowrap"}
                     {...col?.bodyProps}
-                    {...col?.wrapperProps}
                   >
                     <Box opacity={row.dim || col.dim ? 0.4 : 1} w={"full"}>
                       {col?.td}
@@ -426,6 +433,7 @@ export const DataTableDisplay = (props: DataTableProps) => {
                 {/* Row options column */}
                 {!isEmptyArray(rowOptions) && (
                   <Center
+                    position={"sticky"}
                     h={"full"}
                     minH={TABLE_TD_MIN_H}
                     px={"10px"}
@@ -441,7 +449,6 @@ export const DataTableDisplay = (props: DataTableProps) => {
                       isRowSelected ? SELECTED_BG : TABLE_TD_BORDER_COLOR
                     }
                     roundedRight={TABLE_ROW_ROUNDED}
-                    position={"sticky"}
                     right={0}
                     zIndex={2}
                     isolation={"isolate"}
