@@ -102,6 +102,14 @@ export const DataTableDisplay = (props: DataTableProps) => {
     sortColumnIdx: initialSortColumnIndex || undefined,
     direction: initialSortOrder || "asc",
   });
+  const [isFirefox, setIsFirefox] = useState(false);
+
+  useEffect(() => {
+    setIsFirefox(
+      typeof window !== "undefined" && navigator.userAgent.includes("Firefox"),
+    );
+  }, []);
+
   const sortHandlers: Record<string, Type__SortHandler> = {
     string: (aValue, bValue, direction) =>
       direction === "asc"
@@ -251,8 +259,8 @@ export const DataTableDisplay = (props: DataTableProps) => {
                 px={"10px"}
                 minW={"0% !important"}
                 minH={TABLE_TH_H}
-                bg={TABLE_TH_BG}
-                backdropFilter={BACKDROP_BLUR_FILTER}
+                bg={isFirefox ? "bg.bodySolid" : TABLE_TH_BG}
+                backdropFilter={isFirefox ? "none" : BACKDROP_BLUR_FILTER}
                 borderBottom={"1px solid"}
                 borderColor={TABLE_TH_BORDER_COLOR}
                 roundedLeft={TABLE_ROW_ROUNDED}
@@ -292,8 +300,8 @@ export const DataTableDisplay = (props: DataTableProps) => {
                       ? 1
                       : ""
                 }
-                bg={TABLE_TH_BG}
-                backdropFilter={BACKDROP_BLUR_FILTER}
+                bg={isFirefox ? "bg.bodySolid" : TABLE_TH_BG}
+                backdropFilter={isFirefox ? "none" : BACKDROP_BLUR_FILTER}
                 borderBottom={"1px solid"}
                 borderColor={TABLE_TH_BORDER_COLOR}
                 whiteSpace={"nowrap"}
@@ -326,8 +334,8 @@ export const DataTableDisplay = (props: DataTableProps) => {
                 minH={TABLE_TH_H}
                 px={TABLE_CELL_PX}
                 py={3}
-                bg={TABLE_TH_BG}
-                backdropFilter={BACKDROP_BLUR_FILTER}
+                bg={isFirefox ? "bg.bodySolid" : TABLE_TH_BG}
+                backdropFilter={isFirefox ? "none" : BACKDROP_BLUR_FILTER}
                 borderBottom={"1px solid"}
                 borderColor={TABLE_TH_BORDER_COLOR}
                 roundedRight={TABLE_ROW_ROUNDED}
@@ -361,7 +369,24 @@ export const DataTableDisplay = (props: DataTableProps) => {
                     minH={TABLE_TD_MIN_H}
                     px={"10px"}
                     minW={"0% !important"}
-                    bg={isRowSelected ? SELECTED_BG : TABLE_TD_BG}
+                    bg={
+                      isFirefox
+                        ? "bg.bodySolid"
+                        : isRowSelected
+                          ? SELECTED_BG
+                          : TABLE_TD_BG
+                    }
+                    _before={
+                      isFirefox
+                        ? undefined
+                        : {
+                            content: '""',
+                            position: "absolute",
+                            inset: 0,
+                            backdropFilter: BACKDROP_BLUR_FILTER,
+                            zIndex: -1,
+                          }
+                    }
                     borderBottom={
                       rowIndex !== resolvedTableData.length - 1
                         ? "1px solid"
@@ -374,7 +399,6 @@ export const DataTableDisplay = (props: DataTableProps) => {
                     left={0}
                     zIndex={2}
                     isolation={"isolate"}
-                    backdropFilter={BACKDROP_BLUR_FILTER}
                     onClick={(e) => {
                       e.stopPropagation();
                       toggleRowSelection(row);
@@ -411,9 +435,19 @@ export const DataTableDisplay = (props: DataTableProps) => {
                     borderColor={
                       isRowSelected ? SELECTED_BG : TABLE_TD_BORDER_COLOR
                     }
+                    _before={
+                      isFirefox
+                        ? undefined
+                        : {
+                            content: '""',
+                            position: "absolute",
+                            inset: 0,
+                            backdropFilter: BACKDROP_BLUR_FILTER,
+                            zIndex: -1,
+                          }
+                    }
                     whiteSpace={"nowrap"}
                     isolation={"isolate"}
-                    backdropFilter={BACKDROP_BLUR_FILTER}
                     {...col?.bodyProps}
                   >
                     <Box opacity={row.dim || col.dim ? 0.4 : 1} w={"full"}>
@@ -430,7 +464,24 @@ export const DataTableDisplay = (props: DataTableProps) => {
                     minH={TABLE_TD_MIN_H}
                     px={"10px"}
                     minW={"0% !important"}
-                    bg={isRowSelected ? SELECTED_BG : TABLE_TD_BG}
+                    bg={
+                      isFirefox
+                        ? "bg.bodySolid"
+                        : isRowSelected
+                          ? SELECTED_BG
+                          : TABLE_TD_BG
+                    }
+                    _before={
+                      isFirefox
+                        ? undefined
+                        : {
+                            content: '""',
+                            position: "absolute",
+                            inset: 0,
+                            backdropFilter: BACKDROP_BLUR_FILTER,
+                            zIndex: -1,
+                          }
+                    }
                     borderBottom={
                       rowIndex !== resolvedTableData.length - 1
                         ? "1px solid"
@@ -443,7 +494,6 @@ export const DataTableDisplay = (props: DataTableProps) => {
                     right={0}
                     zIndex={2}
                     isolation={"isolate"}
-                    backdropFilter={BACKDROP_BLUR_FILTER}
                     onClick={(e) => {
                       e.stopPropagation();
                     }}
