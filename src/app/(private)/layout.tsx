@@ -54,6 +54,7 @@ import { useIsSmScreenWidth } from "@/hooks/useIsSmScreenWidth";
 import { useScreen } from "@/hooks/useScreen";
 import { last } from "@/utils/array";
 import { getUserData } from "@/utils/auth";
+import { getCssColor } from "@/utils/color";
 import { pluckString } from "@/utils/string";
 import { getActiveNavs, imgUrl } from "@/utils/url";
 import {
@@ -321,6 +322,7 @@ const DesktopLayout = (props: any) => {
 
   // SX
   const rSpacingMd = useBreakpointValue(R_SPACING_MD);
+  const logoColor = getCssColor(`${themeConfig.colorPalette}.contrast`);
 
   return (
     <StackV w={"full"} h={`calc(100svh)`} overflowY={"auto"}>
@@ -360,7 +362,7 @@ const DesktopLayout = (props: any) => {
                 p={1}
                 bg={`${themeConfig.colorPalette}.solid`}
               >
-                <Logo color={`${themeConfig.colorPalette}.contrast`} />
+                <Logo color={logoColor} />
               </Circle>
 
               {isNavsExpanded && (

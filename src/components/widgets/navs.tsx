@@ -20,6 +20,7 @@ import {
   BASE_ICON_BOX_SIZE,
   DESKTOP_ACTIVE_NAV_BTN_VARIANT,
   DESKTOP_NAVS_COLOR,
+  DESKTOP_NAV_BTN_COLOR_PATELLE,
   DESKTOP_NAV_BTN_ICON_BG,
   DESKTOP_NAV_BTN_PX,
   DESKTOP_NAV_BTN_SIZE,
@@ -149,7 +150,9 @@ export const DesktopNavs = (props: DesktopNavsProps) => {
                                   : DESKTOP_NAV_BTN_VARIANT
                               }
                               colorPalette={
-                                isMainNavsActive ? themeConfig.colorPalette : ""
+                                isMainNavsActive
+                                  ? themeConfig.colorPalette
+                                  : DESKTOP_NAV_BTN_COLOR_PATELLE
                               }
                             >
                               {/* {isMainNavsActive && nav.icon && (
@@ -231,7 +234,7 @@ export const DesktopNavs = (props: DesktopNavsProps) => {
                                       colorPalette={
                                         isMainNavsActive
                                           ? themeConfig.colorPalette
-                                          : ""
+                                          : DESKTOP_NAV_BTN_COLOR_PATELLE
                                       }
                                       pos="relative"
                                     >
@@ -367,7 +370,7 @@ export const DesktopNavs = (props: DesktopNavsProps) => {
                                       colorPalette={
                                         isMainNavsActive
                                           ? themeConfig.colorPalette
-                                          : ""
+                                          : DESKTOP_NAV_BTN_COLOR_PATELLE
                                       }
                                       w={"full"}
                                       pos={"relative"}
