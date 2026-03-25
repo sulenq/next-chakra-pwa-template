@@ -17,7 +17,7 @@ import { HScroll } from "@/components/widgets/h-scroll";
 import { LucideIcon } from "@/components/widgets/icon";
 import { Item } from "@/components/widgets/item";
 import { MiniUser } from "@/components/widgets/mini-user";
-import { DataTable } from "@/components/widgets/new-data-table";
+import { DataTable } from "@/components/widgets/data-table";
 import { SimpleDisclosure } from "@/components/widgets/simple-disclosure";
 import { View, useViewContext } from "@/components/widgets/view";
 import { dummyUsers } from "@/constants/dummyData";
