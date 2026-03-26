@@ -34,7 +34,7 @@ export default function Page() {
         flex={1}
         w={"full"}
         maxW={"1200px"}
-        maxH={"720px"}
+        maxH={"700px"}
         bg={"bg.body"}
         m={"auto"}
         rounded={themeConfig.radii.container}
@@ -51,7 +51,7 @@ export default function Page() {
           {!iss && (
             <StackV
               justify={"space-between"}
-              rounded={themeConfig.radii.container}
+              rounded={themeConfig.radii.component}
               maxH={"calc(100dvh - 16px)"}
               overflow={"clip"}
               pos={"relative"}
@@ -75,7 +75,12 @@ export default function Page() {
             </StackV>
           )}
 
-          <StackV p={4} gap={16} rounded={themeConfig.radii.container}>
+          <StackV
+            p={4}
+            gap={16}
+            rounded={themeConfig.radii.container}
+            overflowY={"auto"}
+          >
             <StackH justify={"center"}>
               <ColorModeButton />
 

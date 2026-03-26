@@ -52,6 +52,8 @@ import {
 import { MaximizeIcon, MinimizeIcon, XIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 
+// -----------------------------------------------------------------
+
 const DisclosureRoot = ({ children, ...props }: any) => {
   // Utils
   const { sw } = useScreen();
@@ -68,7 +70,10 @@ const DisclosureRoot = ({ children, ...props }: any) => {
   );
 };
 
+// -----------------------------------------------------------------
+
 type DisclosureBackdropProps = {} & (DrawerBackdropProps | DialogBackdropProps);
+
 const DisclosureBackdrop = ({ ...props }: DisclosureBackdropProps) => {
   const iss = useIsSmScreenWidth();
 
@@ -78,6 +83,8 @@ const DisclosureBackdrop = ({ ...props }: DisclosureBackdropProps) => {
     <DialogBackdrop {...(props as DialogBackdropProps)} />
   );
 };
+
+// -----------------------------------------------------------------
 
 const DisclosureTrigger = ({ children }: any) => {
   const iss = useIsSmScreenWidth();
@@ -89,9 +96,12 @@ const DisclosureTrigger = ({ children }: any) => {
   );
 };
 
+// -----------------------------------------------------------------
+
 type DisclosureContentProps = {
   children: React.ReactNode;
 } & (DrawerContentProps | DialogContentProps);
+
 const DisclosureContent = ({ children, ...props }: DisclosureContentProps) => {
   const { themeConfig } = useThemeConfig();
   const iss = useIsSmScreenWidth();
@@ -126,9 +136,12 @@ const DisclosureContent = ({ children, ...props }: DisclosureContentProps) => {
   );
 };
 
+// -----------------------------------------------------------------
+
 type DisclosureHeaderProps = {
   children: React.ReactNode;
 } & (DrawerHeaderProps | DialogHeaderProps);
+
 const DisclosureHeader = ({ children, ...props }: DisclosureHeaderProps) => {
   const iss = useIsSmScreenWidth();
 
@@ -156,6 +169,8 @@ const DisclosureHeader = ({ children, ...props }: DisclosureHeaderProps) => {
   );
 };
 
+// -----------------------------------------------------------------
+
 export interface DisclosureHeaderContentProps {
   title?: string;
   withCloseButton?: boolean;
@@ -165,6 +180,7 @@ export interface DisclosureHeaderContentProps {
   prefix?: "drawer" | "dialog";
   children?: any;
 }
+
 export const DisclosureHeaderContent = (
   props: DisclosureHeaderContentProps,
 ) => {
@@ -242,9 +258,12 @@ export const DisclosureHeaderContent = (
   );
 };
 
+// -----------------------------------------------------------------
+
 type DisclosureBodyProps = {
   children: React.ReactNode;
 } & (DrawerBodyProps | DialogBodyProps);
+
 const DisclosureBody = ({ children, ...props }: DisclosureBodyProps) => {
   const iss = useIsSmScreenWidth();
 
@@ -271,9 +290,12 @@ const DisclosureBody = ({ children, ...props }: DisclosureBodyProps) => {
   );
 };
 
+// -----------------------------------------------------------------
+
 type DisclosureFooterProps = {
   children: React.ReactNode;
 } & (DrawerFooterProps | DialogFooterProps);
+
 const DisclosureFooter = ({ children, ...props }: DisclosureFooterProps) => {
   const iss = useIsSmScreenWidth();
 
@@ -304,10 +326,13 @@ const DisclosureFooter = ({ children, ...props }: DisclosureFooterProps) => {
   );
 };
 
+// -----------------------------------------------------------------
+
 type DisclosureActionTriggerProps = {} & (
   | DrawerActionTriggerProps
   | DialogActionTriggerProps
 );
+
 const DisclosureActionTrigger = ({
   children,
   ...props
@@ -331,10 +356,13 @@ const DisclosureActionTrigger = ({
   );
 };
 
+// -----------------------------------------------------------------
+
 type DisclosureCloseTriggerProps = {} & (
   | DrawerCloseTriggerProps
   | DialogCloseTriggerProps
 );
+
 const DisclosureCloseTrigger = ({
   children,
   ...props
@@ -361,6 +389,8 @@ const DisclosureCloseTrigger = ({
     </DialogCloseTrigger>
   );
 };
+
+// -----------------------------------------------------------------
 
 export const Disclosure = {
   Root: DisclosureRoot,

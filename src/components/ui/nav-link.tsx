@@ -1,9 +1,9 @@
 "use client";
 
+import { StackV } from "@/components/ui/stack";
+import { StackProps } from "@chakra-ui/react";
 import { useRouter } from "next/navigation";
 import { forwardRef, useEffect } from "react";
-import { CContainer } from "@/components/ui/c-container";
-import { StackProps } from "@chakra-ui/react";
 
 export interface NavLinkProps extends StackProps {
   to?: string;
@@ -33,15 +33,14 @@ export const NavLink = forwardRef<HTMLDivElement, NavLinkProps>(
     }
 
     return (
-      <CContainer
+      <StackV
         ref={ref}
-        cursor="pointer"
+        cursor={"pointer"}
         onClick={handleOnClick}
-        w={"fit"}
         {...restProps}
       >
         {children}
-      </CContainer>
+      </StackV>
     );
   },
 );

@@ -18,7 +18,7 @@ import { Clock } from "@/components/widgets/clock";
 import { HScroll } from "@/components/widgets/h-scroll";
 import { BottomIndicator, LeftIndicator } from "@/components/widgets/indicator";
 import { Logo } from "@/components/widgets/logo";
-import { MContainer } from "@/components/widgets/m-container";
+import { MContainerV } from "@/components/widgets/m-container";
 import {
   DesktopNavs,
   DesktopNavTooltip,
@@ -519,9 +519,9 @@ const DesktopLayout = (props: any) => {
             </StackH>
           </StackV>
 
-          <MContainer flex={1} overflow={"auto"}>
+          <MContainerV flex={1} overflow={"auto"}>
             {children}
-          </MContainer>
+          </MContainerV>
         </StackV>
       </StackH>
     </StackV>

@@ -22,7 +22,7 @@ import { Pagination } from "@/components/widgets/pagination";
 import {
   dummyActivityLogs,
   dummyAuthLogs,
-  dummyUser,
+  DUMMY_USER,
 } from "@/constants/dummyData";
 import { ActivityActionEnum } from "@/constants/enums";
 import {
@@ -118,6 +118,7 @@ const PersonalInformation = (props: PersonalInformationProps) => {
       });
     }
   }, [initialData]);
+
   return (
     <Item.Container bg={"transparent"}>
       <Item.Header borderless>
@@ -505,7 +506,7 @@ export default function Page() {
   // States
   const { error, initialLoading, data, onRetry } =
     useFetchData<Interface__User>({
-      initialData: dummyUser,
+      initialData: DUMMY_USER,
       url: ``,
       dataResource: false,
     });

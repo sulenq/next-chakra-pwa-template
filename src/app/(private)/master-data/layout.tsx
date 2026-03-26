@@ -10,7 +10,7 @@ import { AppIconLucide } from "@/components/widgets/app-icon";
 import { ClampText } from "@/components/widgets/clamp-text";
 import FeedbackNotFound from "@/components/widgets/feedback-not-found";
 import { LeftIndicator } from "@/components/widgets/indicator";
-import { MContainer } from "@/components/widgets/m-container";
+import { MContainerV } from "@/components/widgets/m-container";
 import { View } from "@/components/widgets/view";
 import { OTHER_PRIVATE_NAV_GROUPS } from "@/constants/navs";
 import { useLocale } from "@/contexts/useLocale";
@@ -59,7 +59,7 @@ const NavsList = (props: any) => {
   );
 
   return (
-    <MContainer className="scrollY" gap={4} {...restProps}>
+    <MContainerV className="scrollY" gap={4} {...restProps}>
       {isEmptyArray(resolvedList) && <FeedbackNotFound />}
 
       {!isEmptyArray(resolvedList) &&
@@ -113,7 +113,7 @@ const NavsList = (props: any) => {
             </CContainer>
           );
         })}
-    </MContainer>
+    </MContainerV>
   );
 };
 
@@ -180,11 +180,11 @@ export default function Layout(props: any) {
 
           {/* Content */}
           {showContent && (
-            <MContainer className={"scrollY"} flex={1}>
+            <MContainerV className={"scrollY"} flex={1}>
               {pathname !== ROOT_PATH && <View.Title mb={2} />}
 
               <CContainer flex={1} {...props} />
-            </MContainer>
+            </MContainerV>
           )}
         </HStack>
       )}

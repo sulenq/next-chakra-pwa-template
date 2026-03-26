@@ -1,50 +1,60 @@
 "use client";
 
-import { Avatar } from "@/components/ui/avatar";
+import { Btn, BtnProps } from "@/components/ui/btn";
+import { Divider } from "@/components/ui/divider";
 import { Field } from "@/components/ui/field";
 import { H1 } from "@/components/ui/heading";
+import { HelperText } from "@/components/ui/helper-text";
+import { Img } from "@/components/ui/img";
 import { NavLink } from "@/components/ui/nav-link";
+import { P } from "@/components/ui/p";
+import { PasswordInput } from "@/components/ui/password-input";
+import { StackH, StackV } from "@/components/ui/stack";
+import { StringInput } from "@/components/ui/string-input";
+import { AppIconLucide } from "@/components/widgets/app-icon";
 import { LucideIcon } from "@/components/widgets/icon";
 import { Logo } from "@/components/widgets/logo";
+import { MContainerV } from "@/components/widgets/m-container";
 import { APP } from "@/constants/_meta";
 import { AUTH_API_SIGNIN, AUTH_API_SIGNOUT } from "@/constants/apis";
+import { DUMMY_USER } from "@/constants/dummyData";
 import { BASE_ICON_BOX_SIZE } from "@/constants/styles";
 import { useAuthMiddleware } from "@/contexts/useAuthMiddleware";
 import { useLocale } from "@/contexts/useLocale";
 import useRenderTrigger from "@/contexts/useRenderTrigger";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
+import ResetPasswordDisclosureTrigger from "@/features/auth/reset-password";
 import { useRequest } from "@/hooks/useRequest";
 import {
   clearAccessToken,
   clearUserData,
-  getUserData,
   setAccessToken,
   setUserData,
 } from "@/utils/auth";
 import {
+  Box,
+  Circle,
   FieldsetRoot,
   HStack,
   Icon,
   InputGroup,
   StackProps,
-  VStack,
+  useToken,
 } from "@chakra-ui/react";
 import { IconLock, IconUser } from "@tabler/icons-react";
 import { useFormik } from "formik";
-import { LogInIcon } from "lucide-react";
+import { ArrowRight, LogInIcon, LogOutIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 import * as yup from "yup";
-import { Btn } from "@/components/ui/btn";
-import { CContainer } from "@/components/ui/c-container";
-import { Divider } from "@/components/ui/divider";
-import { P } from "@/components/ui/p";
-import { PasswordInput } from "@/components/ui/password-input";
-import { StringInput } from "@/components/ui/string-input";
-import ResetPasswordDisclosureTrigger from "@/features/auth/reset-password";
 
 const INDEX_ROUTE = "/welcome";
 
-const SignoutButton = () => {
+// -----------------------------------------------------------------
+
+const SignoutButton = (props: BtnProps) => {
+  // Props
+  const { iconButton = true, ...restProps } = props;
+
   // Contexts
   const setRt = useRenderTrigger((s) => s.setRt);
   const { t } = useLocale();
@@ -82,11 +92,21 @@ const SignoutButton = () => {
   }
 
   return (
-    <Btn w={"140px"} variant={"ghost"} onClick={onSignout} loading={loading}>
-      Sign out
+    <Btn
+      iconButton={iconButton}
+      variant={"outline"}
+      onClick={onSignout}
+      loading={loading}
+      {...restProps}
+    >
+      <AppIconLucide icon={LogOutIcon} />
+
+      {!iconButton && "Sign out"}
     </Btn>
   );
 };
+
+// -----------------------------------------------------------------
 
 const Signedin = (props: any) => {
   // Props
@@ -95,29 +115,171 @@ const Signedin = (props: any) => {
   // Contexts
   const { t } = useLocale();
   const { themeConfig } = useThemeConfig();
-  const user = getUserData();
+
+  // Constants
+  // TODO uncomment on real dev
+  // const user = getUserData();
+  const user = DUMMY_USER;
+  const userAvatarSrc = user?.avatar?.[0]?.fileUrl;
+
+  // SX
+  const [logoColor] = useToken("colors", [
+    `${themeConfig.colorPalette}.contrast`,
+  ]);
 
   return (
-    <VStack gap={4} m={"auto"} {...restProps}>
-      <Avatar size={"2xl"} src={user?.avatar?.[0]?.fileUrl} />
+    <StackV gap={8} w={"220px"} m={"auto"}>
+      <StackV pos={"relative"} {...restProps}>
+        {/* Card behind */}
+        <StackV
+          flex={1}
+          aspectRatio={1 / 1.6}
+          w={"full"}
+          bg={`${themeConfig.colorPalette}.solid`}
+          rounded={themeConfig.radii.component}
+          shadow={"xs"}
+          overflow={"clip"}
+          pos={"absolute"}
+          transform={"translate(-42px, -6px) rotate(12deg)"}
+          zIndex={1}
+        >
+          <StackH
+            align={"center"}
+            gap={2}
+            pos={"absolute"}
+            bottom={"12px"}
+            left={"72px"}
+            transform={"rotate(-90deg)"}
+            transformOrigin={"left bottom"}
+            whiteSpace={"nowrap"}
+            opacity={0.5}
+          >
+            <Logo size={40} color={logoColor} />
+            <P fontSize={"48px"} fontWeight={"semibold"} color={logoColor}>
+              {APP.name}
+            </P>
+          </StackH>
+        </StackV>
 
-      <VStack gap={0}>
-        <P fontWeight={"semibold"}>{user?.name}</P>
-        <P>{user?.email}</P>
-      </VStack>
+        {/* Card */}
+        <StackV
+          flex={1}
+          aspectRatio={1 / 1.6}
+          border={"1px solid"}
+          borderColor={"border.subtle"}
+          rounded={themeConfig.radii.component}
+          shadow={"xs"}
+          overflow={"clip"}
+          zIndex={2}
+        >
+          <Img src={userAvatarSrc} w={"full"} aspectRatio={1} />
 
-      <VStack>
+          <StackV
+            flex={1}
+            justify={"space-between"}
+            gap={4}
+            p={4}
+            bg={"bg.bodySolid"}
+          >
+            <StackV>
+              <P fontSize={"lg"} fontWeight={"medium"}>
+                {user?.name}
+              </P>
+
+              <P color={"fg.subtle"}>
+                {user?.role?.name || "User's role name"}
+              </P>
+            </StackV>
+
+            <StackH align={"end"} justify={"space-between"}>
+              <HelperText color={"fg.muted"}>{APP.name}</HelperText>
+
+              <SignoutButton
+                variant={"ghost"}
+                size={"xs"}
+                pos={"absolute"}
+                right={"10px"}
+                bottom={"10px"}
+                _hover={{
+                  color: "fg.error",
+                }}
+              />
+            </StackH>
+          </StackV>
+        </StackV>
+
+        {/* Card accecories */}
+        <>
+          {/* Hole */}
+          <Circle
+            size={"12px"}
+            bg={"bg.body"}
+            rounded={"full"}
+            pos={"absolute"}
+            left={"50%"}
+            top={"8px"}
+            transform={"translateX(-50%)"}
+            zIndex={3}
+          />
+
+          {/* Hook */}
+          <Box
+            w={"8px"}
+            h={"24px"}
+            bg={"gray.400"}
+            roundedBottom={"sm"}
+            pos={"absolute"}
+            left={"50%"}
+            top={"-10px"}
+            transform={"translateX(-50%)"}
+            zIndex={3}
+          />
+          <Box
+            w={"40px"}
+            h={"16px"}
+            p={1}
+            bg={"gray.500"}
+            rounded={"full"}
+            pos={"absolute"}
+            left={"50%"}
+            top={"-24px"}
+            transform={"translateX(-50%)"}
+            zIndex={3}
+          >
+            <Box w={"full"} h={"full"} bg={"bg.body"} rounded={"full"} />
+          </Box>
+
+          {/* Strap */}
+          <MContainerV
+            maskingBottom={0}
+            pos={"absolute"}
+            left={"50%"}
+            top={"-44px"}
+            transform={"translateX(-50%)"}
+            zIndex={3}
+          >
+            <Box
+              w={"30px"}
+              h={"24px"}
+              bg={`${themeConfig.colorPalette}.solid`}
+              roundedBottom={"sm"}
+            />
+          </MContainerV>
+        </>
+      </StackV>
+
+      <StackV gap={2}>
         <NavLink to={INDEX_ROUTE}>
-          <Btn w={"140px"} colorPalette={themeConfig.colorPalette}>
-            {t.access} App
+          <Btn variant={"ghost"} colorPalette={themeConfig.colorPalette}>
+            {t.access} App <AppIconLucide icon={ArrowRight} />
           </Btn>
         </NavLink>
-
-        <SignoutButton />
-      </VStack>
-    </VStack>
+      </StackV>
+    </StackV>
   );
 };
+
+// -----------------------------------------------------------------
 
 const BasicAuthForm = (props: any) => {
   const ID = "signin-form";
@@ -183,7 +345,7 @@ const BasicAuthForm = (props: any) => {
   });
 
   return (
-    <CContainer {...restProps}>
+    <StackV {...restProps}>
       <form id={ID} onSubmit={formik.handleSubmit}>
         <FieldsetRoot disabled={loading}>
           <Field
@@ -242,7 +404,6 @@ const BasicAuthForm = (props: any) => {
           form={ID}
           w={"full"}
           mt={6}
-          size={"lg"}
           loading={loading}
           colorPalette={themeConfig.colorPalette}
         >
@@ -251,22 +412,24 @@ const BasicAuthForm = (props: any) => {
           </Icon>
           Sign in
         </Btn>
-
-        <HStack w={"full"} mt={4}>
-          <Divider flex={1} />
-
-          <ResetPasswordDisclosureTrigger>
-            <Btn variant={"ghost"} color={themeConfig.primaryColor}>
-              Reset Password
-            </Btn>
-          </ResetPasswordDisclosureTrigger>
-
-          <Divider flex={1} />
-        </HStack>
       </form>
-    </CContainer>
+
+      <HStack w={"full"} mt={4}>
+        <Divider flex={1} />
+
+        <ResetPasswordDisclosureTrigger>
+          <Btn variant={"ghost"} colorPalette={themeConfig.colorPalette}>
+            Reset Password
+          </Btn>
+        </ResetPasswordDisclosureTrigger>
+
+        <Divider flex={1} />
+      </HStack>
+    </StackV>
   );
 };
+
+// -----------------------------------------------------------------
 
 export const SigninForm = (props: StackProps) => {
   // Props
@@ -281,10 +444,10 @@ export const SigninForm = (props: StackProps) => {
   const signinAPI = AUTH_API_SIGNIN;
 
   return (
-    <CContainer
+    <StackV
       m={"auto"}
       w={"full"}
-      maxW={"380px"}
+      maxW={"360px"}
       p={4}
       gap={4}
       rounded={themeConfig.radii.container}
@@ -294,8 +457,8 @@ export const SigninForm = (props: StackProps) => {
         <Signedin />
       ) : (
         <>
-          <CContainer align={"center"} gap={2} mb={4}>
-            <Logo mb={2} />
+          <StackV align={"center"} gap={2} mb={4}>
+            <Logo size={28} mb={2} />
 
             <H1 fontSize={"3xl"} fontWeight={"bold"} textAlign={"center"}>
               {APP.name}
@@ -304,17 +467,17 @@ export const SigninForm = (props: StackProps) => {
             <P textAlign={"center"} color={"fg.subtle"}>
               {t.msg_signin}
             </P>
-          </CContainer>
+          </StackV>
 
           <BasicAuthForm signinAPI={signinAPI} />
         </>
       )}
 
-      <NavLink to={"/demo"} mx={"auto"}>
+      {/* <NavLink to={"/demo"} mx={"auto"}>
         <Btn variant={"ghost"} colorPalette={themeConfig.colorPalette}>
           Demo Page
         </Btn>
-      </NavLink>
-    </CContainer>
+      </NavLink> */}
+    </StackV>
   );
 };

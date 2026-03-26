@@ -59,6 +59,7 @@ const nextConfig: NextConfig = {
         pathname: "/**",
       },
       { protocol: "https", hostname: "images.unsplash.com", pathname: "/**" },
+      { protocol: "https", hostname: "i.pravatar.cc", pathname: "/**" },
     ],
     qualities: [60, 70, 80, 90, 100],
   },

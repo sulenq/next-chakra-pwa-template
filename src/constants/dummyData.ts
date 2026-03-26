@@ -124,15 +124,14 @@ export const DUMMY_DASHBOARD_DATA = {
   modelPerformance: {},
   comparison: {},
 };
-export const dummyUser = {
+export const DUMMY_USER = {
   id: "1",
   avatar: [
     {
       id: "10",
       fileName: "profile_rani_kartika.jpg",
       filePath: "/uploads/profile/profile_rani_kartika.jpg",
-      fileUrl:
-        "https://images.unsplash.com/photo-1640951613773-54706e06851d?q=80&w=1480&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      fileUrl: "https://i.pravatar.cc/300?img=12",
       fileMimeType: "image/jpeg",
       fileSize: "245320",
       createdBy: "system",
