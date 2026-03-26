@@ -17,7 +17,7 @@ export const RadialGlowBackground = (props: StackProps) => {
       <StackV w={"full"} h={"full"} pos={"relative"} mt={"100%"}>
         <Circle
           aspectRatio={1}
-          w={"70%"}
+          w={"60%"}
           bg={`${colorPalette}.subtle`}
           opacity={opacity1}
           pos={"absolute"}
