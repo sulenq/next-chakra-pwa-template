@@ -1,6 +1,7 @@
 "use client";
 
 import { CloseButton } from "@/components/ui/close-button";
+import { BACKDROP_BLUR_FILTER } from "@/constants/styles";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
 import {
   Popover as ChakraPopover,
@@ -37,6 +38,7 @@ export const PopoverContent = forwardRef<HTMLDivElement, PopoverContentProps>(
             ref={ref}
             p={0}
             bg={"bg.body"}
+            backdropFilter={BACKDROP_BLUR_FILTER}
             border={"1px solid"}
             borderColor={"border.subtle"}
             rounded={`calc(${themeConfig.radii.component} - 4px)`}

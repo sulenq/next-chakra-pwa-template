@@ -1,8 +1,4 @@
-import {
-  PopoverContent,
-  PopoverRoot,
-  PopoverTrigger,
-} from "@/components/ui/popover";
+import { Popover } from "@/components/ui/popover";
 import { useClickOutside } from "@/hooks/useClickOutside";
 import {
   PopoverRootProps,
@@ -30,12 +26,12 @@ const ToggleTip = (props: ToggleTipProps) => {
   useClickOutside([containerRef, triggerRef], onClose);
 
   return (
-    <PopoverRoot open={open} {...rootProps}>
-      <PopoverTrigger asChild onClick={onOpen} ref={triggerRef}>
+    <Popover.Root open={open} {...rootProps}>
+      <Popover.Trigger asChild onClick={onOpen} ref={triggerRef}>
         {children}
-      </PopoverTrigger>
+      </Popover.Trigger>
 
-      <PopoverContent
+      <Popover.Content
         ref={containerRef}
         w={"fit"}
         maxW={"240px"}
@@ -48,8 +44,8 @@ const ToggleTip = (props: ToggleTipProps) => {
         {...restProps}
       >
         {content}
-      </PopoverContent>
-    </PopoverRoot>
+      </Popover.Content>
+    </Popover.Root>
   );
 };
 
