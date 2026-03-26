@@ -47,10 +47,13 @@ export const DEFAULT_PERIOD = {
   year: new Date().getFullYear(),
 };
 
+// -----------------------------------------------------------------
+
 interface PeriodPickerProps extends GroupProps {
   period: Period;
   setPeriod: React.Dispatch<Period>;
 }
+
 export const PeriodPicker = (props: PeriodPickerProps) => {
   // Props
   const { period, setPeriod, ...restProps } = props;
@@ -119,6 +122,8 @@ export const PeriodPicker = (props: PeriodPickerProps) => {
   );
 };
 
+// -----------------------------------------------------------------
+
 export interface DatePickerProps extends StackProps {
   inputValue?: string[];
   period: Period;
@@ -126,6 +131,7 @@ export interface DatePickerProps extends StackProps {
   setSelected?: React.Dispatch<Date[]>;
   multiple?: boolean;
 }
+
 export const DatePicker = (props: DatePickerProps) => {
   // Props
   const { period, selected, setSelected, multiple, ...restProps } = props;
@@ -262,17 +268,21 @@ export const DatePicker = (props: DatePickerProps) => {
   );
 };
 
+// -----------------------------------------------------------------
+
 export interface SelectedDateListProps {
   id?: string;
   selected: Date[];
   formattedSelected: string;
 }
+
 const SelectedDateList = (props: SelectedDateListProps) => {
   // Props
   const { id, selected, formattedSelected } = props;
 
   // Contexts
   const { t } = useLocale();
+  const { themeConfig } = useThemeConfig();
 
   // Hooks
   const { open, onOpen } = usePopDisclosure(
@@ -290,7 +300,7 @@ const SelectedDateList = (props: SelectedDateListProps) => {
         bg={"bg.muted"}
         p={2}
         h={"36px"}
-        rounded={6}
+        rounded={themeConfig.radii.component}
         cursor={"pointer"}
         onClick={onOpen}
       >
@@ -346,6 +356,8 @@ const SelectedDateList = (props: SelectedDateListProps) => {
   );
 };
 
+// -----------------------------------------------------------------
+
 export interface DatePickerInputProps extends Omit<BtnProps, "onChange"> {
   id?: string;
   title?: string;
@@ -360,6 +372,7 @@ export interface DatePickerInputProps extends Omit<BtnProps, "onChange"> {
   variant?: ButtonVariant;
   labelFormatVariant?: DateVariant;
 }
+
 export const DatePickerInput = (props: DatePickerInputProps) => {
   // Props
   const {

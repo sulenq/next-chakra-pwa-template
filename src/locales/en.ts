@@ -19,8 +19,8 @@ const translations = {
     "description": "You do not have permission to view this content."
   },
   "alert_no_data": {
-    "title": "No data available",
-    "description": "Update data or adjust filters."
+    "title": "No data",
+    "description": "No data available."
   },
   "alert_not_found": {
     "title": "Not found",

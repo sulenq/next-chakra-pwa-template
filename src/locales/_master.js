@@ -1134,11 +1134,11 @@ export const alert_offline = {
 export const alert_no_data = {
   title: {
     id: "Tidak ada data",
-    en: "No data available",
+    en: "No data",
   },
   description: {
-    id: "Perbarui data atau sesuaikan filter.",
-    en: "Update data or adjust filters.",
+    id: "Belum ada data.",
+    en: "No data available.",
   },
 };
 export const alert_forbidden = {

@@ -4,11 +4,8 @@ import { CContainer } from "@/components/ui/c-container";
 import FeedbackState, {
   FeedbackStateProps,
 } from "@/components/widgets/feedback-state";
-import { LucideIcon } from "@/components/widgets/icon";
 import { MIN_H_FEEDBACK_CONTAINER } from "@/constants/styles";
 import { useLocale } from "@/contexts/useLocale";
-import { Icon } from "@chakra-ui/react";
-import { ServerOff } from "lucide-react";
 
 export default function FeedbackNoData(props: FeedbackStateProps) {
   // Props
@@ -28,11 +25,7 @@ export default function FeedbackNoData(props: FeedbackStateProps) {
       {...restProps}
     >
       <FeedbackState
-        icon={
-          <Icon mb={title ? -2 : 0}>
-            {icon || <LucideIcon icon={ServerOff} />}
-          </Icon>
-        }
+        icon={null}
         title={title ?? t.alert_no_data.title}
         description={description ?? t.alert_no_data.description}
         maxW={"300px"}
