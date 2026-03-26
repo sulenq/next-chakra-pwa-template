@@ -49,7 +49,7 @@ export const DotIndicator = (props: CircleProps) => {
   const { themeConfig } = useThemeConfig();
 
   // SX
-  const boxSize = "8px";
+  const boxSize = "6px";
 
   return (
     <Circle

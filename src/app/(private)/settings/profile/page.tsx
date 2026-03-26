@@ -127,93 +127,89 @@ const PersonalInformation = (props: PersonalInformationProps) => {
         <Item.Title>{t.personal_information}</Item.Title>
       </Item.Header>
 
-      <Item.Content>
-        <Item.Container>
-          <StackV p={4}>
-            <form
-              id="personal-info-form"
-              onSubmit={formik.handleSubmit}
-              {...restProps}
+      <Item.Content p={4}>
+        <form
+          id="personal-info-form"
+          onSubmit={formik.handleSubmit}
+          {...restProps}
+        >
+          <FieldsetRoot disabled={loading}>
+            <Field
+              invalid={!!formik.errors.avatar}
+              errorText={`${formik.errors.avatar}`}
             >
-              <FieldsetRoot disabled={loading}>
-                <Field
-                  invalid={!!formik.errors.avatar}
-                  errorText={`${formik.errors.avatar}`}
+              <StackH align={"center"} gap={4}>
+                <ImgViewer
+                  src={initialData?.avatar?.[0]?.fileUrl}
+                  key={imgUrl(initialData?.avatar?.[0]?.filePath)}
                 >
-                  <StackH gap={4}>
-                    <ImgViewer
-                      src={initialData?.avatar?.[0]?.fileUrl}
-                      key={imgUrl(initialData?.avatar?.[0]?.filePath)}
-                    >
-                      <Img
-                        src={initialData?.avatar?.[0]?.fileUrl}
-                        key={imgUrl(initialData?.avatar?.[0]?.filePath)}
-                        aspectRatio={1}
-                        w={"100px"}
-                        rounded={"full"}
-                      />
-                    </ImgViewer>
-
-                    <StackV gap={2}>
-                      <AvatarUploadTrigger formik={formik} user={initialData}>
-                        <Btn w={"fit"} variant={"outline"} size={"xs"}>
-                          {t.upload_new_avatar}
-                        </Btn>
-                      </AvatarUploadTrigger>
-
-                      <StackV color={"fg.subtle"}>
-                        <P>{t.msg_new_avatar_helper}</P>
-                        <P>{`PNG, JPG ${t.is_allowed}`}</P>
-                      </StackV>
-                    </StackV>
-                  </StackH>
-                </Field>
-
-                <Field
-                  label={t.name}
-                  invalid={!!formik.errors.name}
-                  errorText={`${formik.errors.name}`}
-                >
-                  <StringInput
-                    inputValue={formik.values.name}
-                    onChange={(inputValue) => {
-                      formik.setFieldValue("name", inputValue);
-                    }}
-                    placeholder="Jolitos Kurniawan"
+                  <Img
+                    src={initialData?.avatar?.[0]?.fileUrl}
+                    key={imgUrl(initialData?.avatar?.[0]?.filePath)}
+                    aspectRatio={1}
+                    w={"100px"}
+                    rounded={"full"}
                   />
-                </Field>
+                </ImgViewer>
 
-                <Field
-                  label={"Email"}
-                  invalid={!!formik.errors.email}
-                  errorText={`${formik.errors.email}`}
-                >
-                  <StringInput
-                    inputValue={formik.values.email}
-                    onChange={(inputValue) => {
-                      formik.setFieldValue("email", inputValue);
-                    }}
-                    placeholder="example@email.com"
-                  />
-                </Field>
-              </FieldsetRoot>
-            </form>
+                <StackV gap={2}>
+                  <AvatarUploadTrigger formik={formik} user={initialData}>
+                    <Btn w={"fit"} variant={"outline"}>
+                      {t.upload_new_avatar}
+                    </Btn>
+                  </AvatarUploadTrigger>
 
-            <StackH justify={"space-between"} mt={8}>
-              <ResetPasswordDisclosureTrigger>
-                <Btn variant={"outline"}>Reset password</Btn>
-              </ResetPasswordDisclosureTrigger>
+                  <StackV color={"fg.subtle"}>
+                    <P>{t.msg_new_avatar_helper}</P>
+                    <P>{`PNG, JPG ${t.is_allowed}`}</P>
+                  </StackV>
+                </StackV>
+              </StackH>
+            </Field>
 
-              <Btn
-                type="submit"
-                form={"personal-info-form"}
-                colorPalette={themeConfig.colorPalette}
-              >
-                {t.save}
-              </Btn>
-            </StackH>
-          </StackV>
-        </Item.Container>
+            <Field
+              label={t.name}
+              invalid={!!formik.errors.name}
+              errorText={`${formik.errors.name}`}
+            >
+              <StringInput
+                inputValue={formik.values.name}
+                onChange={(inputValue) => {
+                  formik.setFieldValue("name", inputValue);
+                }}
+                placeholder="Jolitos Kurniawan"
+              />
+            </Field>
+
+            <Field
+              label={"Email"}
+              invalid={!!formik.errors.email}
+              errorText={`${formik.errors.email}`}
+            >
+              <StringInput
+                inputValue={formik.values.email}
+                onChange={(inputValue) => {
+                  formik.setFieldValue("email", inputValue);
+                }}
+                placeholder="example@email.com"
+              />
+            </Field>
+          </FieldsetRoot>
+        </form>
+
+        <StackH justify={"space-between"} mt={8}>
+          <ResetPasswordDisclosureTrigger>
+            <Btn variant={"outline"}>Reset password</Btn>
+          </ResetPasswordDisclosureTrigger>
+
+          <Btn
+            type="submit"
+            form={"personal-info-form"}
+            colorPalette={themeConfig.colorPalette}
+          >
+            {t.save}
+          </Btn>
+        </StackH>
       </Item.Content>
     </Item.Container>
   );
