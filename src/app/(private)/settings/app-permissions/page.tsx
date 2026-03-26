@@ -83,7 +83,7 @@ const Camera = () => {
       <>
         <Btn
           size={"xs"}
-          variant={"ghost"}
+          variant={"outline"}
           onClick={onOpen}
           disabled={cameraPermissionsStatus !== "granted"}
         >
@@ -165,7 +165,7 @@ const Camera = () => {
   };
 
   return (
-    <Item.Container borderless>
+    <Item.Container borderless bg={"transparent"}>
       <Item.Header borderless justify={"space-between"}>
         <HStack>
           <AppIconLucide icon={CameraIcon} />
@@ -177,12 +177,7 @@ const Camera = () => {
       </Item.Header>
 
       <StackV px={R_SPACING_MD} pb={R_SPACING_MD}>
-        <Item.Content
-          p={4}
-          bg={"transparent"}
-          border={"1px solid"}
-          borderColor={"border.muted"}
-        >
+        <Item.Content p={4}>
           <ToggleSettingContainer>
             <CContainer>
               <P>{t.settings_camera.title}</P>
@@ -209,8 +204,7 @@ const Camera = () => {
                   : t.msg_permissions_denied_helper}
               </P>
               <P color={"fg.subtle"}>
-                {`${getBrowserSettingsLink()}
-              ${t.camera}`}
+                {`${getBrowserSettingsLink()} ${t.camera}`}
               </P>
             </CContainer>
           )}
@@ -315,7 +309,7 @@ const Microphone = () => {
       <>
         <Btn
           size="xs"
-          variant="ghost"
+          variant="outline"
           onClick={onOpen}
           disabled={micPermissionsStatus !== "granted"}
         >
@@ -357,7 +351,7 @@ const Microphone = () => {
   };
 
   return (
-    <Item.Container borderless>
+    <Item.Container borderless bg={"transparent"}>
       <Item.Header borderless justify={"space-between"}>
         <HStack>
           <AppIconLucide icon={MicIcon} />
@@ -396,8 +390,7 @@ const Microphone = () => {
                   : t.msg_permissions_denied_helper}
               </P>
               <P color={"fg.subtle"}>
-                {`${getBrowserSettingsLink()}
-              ${t.mic}`}
+                {`${getBrowserSettingsLink()} ${t.mic}`}
               </P>
             </CContainer>
           )}
