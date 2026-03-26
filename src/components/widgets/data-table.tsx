@@ -370,10 +370,10 @@ export const DataTableDisplay = (props: DataTableProps) => {
                     px={"10px"}
                     minW={"0% !important"}
                     bg={
-                      isFirefox
-                        ? "bg.bodySolid"
-                        : isRowSelected
-                          ? SELECTED_BG
+                      isRowSelected
+                        ? SELECTED_BG
+                        : isFirefox
+                          ? "bg.bodySolid"
                           : TABLE_TD_BG
                     }
                     _before={
@@ -465,10 +465,10 @@ export const DataTableDisplay = (props: DataTableProps) => {
                     px={"10px"}
                     minW={"0% !important"}
                     bg={
-                      isFirefox
-                        ? "bg.bodySolid"
-                        : isRowSelected
-                          ? SELECTED_BG
+                      isRowSelected
+                        ? SELECTED_BG
+                        : isFirefox
+                          ? "bg.bodySolid"
                           : TABLE_TD_BG
                     }
                     _before={
