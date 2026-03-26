@@ -155,14 +155,14 @@ export default function Page() {
     empty: <FeedbackNoData />,
     notFound: <FeedbackNotFound />,
     loaded: (
-      <StackV gap={4}>
+      <>
         <APIKeys apiKeys={data?.apiKeys} />
-      </StackV>
+      </>
     ),
   };
 
   return (
-    <>
+    <StackV gap={2}>
       {initialLoading && render.loading}
       {!initialLoading && (
         <>
@@ -175,6 +175,6 @@ export default function Page() {
           )}
         </>
       )}
-    </>
+    </StackV>
   );
 }

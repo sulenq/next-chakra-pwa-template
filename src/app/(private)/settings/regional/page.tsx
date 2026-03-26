@@ -451,7 +451,7 @@ const UOMFormat = () => {
 
 export default function Page() {
   return (
-    <StackV gap={4} w={"full"}>
+    <StackV gap={2}>
       <Language />
 
       <Timezone />

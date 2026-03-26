@@ -595,7 +595,7 @@ const LocationSection = () => {
 
 export default function Page() {
   return (
-    <StackV flex={1} gap={2}>
+    <StackV gap={2}>
       <CameraSection />
 
       <MicrophoneSection />

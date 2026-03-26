@@ -517,18 +517,18 @@ export default function Page() {
     empty: <FeedbackNoData />,
     notFound: <FeedbackNotFound />,
     loaded: (
-      <StackV flex={1} gap={4} w={"full"}>
+      <>
         <PersonalInformation initialData={data} />
 
         <AuthLog />
 
         <ActivityLog />
-      </StackV>
+      </>
     ),
   };
 
   return (
-    <StackV w={"full"}>
+    <StackV gap={2}>
       {/* {render.loading} */}
       {initialLoading && render.loading}
       {!initialLoading && (
