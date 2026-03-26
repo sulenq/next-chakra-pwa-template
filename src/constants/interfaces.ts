@@ -1,5 +1,5 @@
 import { BtnProps } from "@/components/ui/btn";
-import { Enum__ActivityAction } from "@/constants/enums";
+import { ActivityActionEnum } from "@/constants/enums";
 import { Gender } from "@/constants/types";
 import { MenuItemProps, StackProps } from "@chakra-ui/react";
 import { AxiosRequestConfig, AxiosResponse } from "axios";
@@ -10,7 +10,7 @@ import { ReactNode } from "react";
 export interface Interface__ActivityLog extends Interface__CUD {
   id: string;
   userId: string;
-  action: Enum__ActivityAction | string;
+  action: ActivityActionEnum | string;
   metadata?: Record<string, any>;
   user?: Interface__User;
 }

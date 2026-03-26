@@ -1,7 +1,7 @@
 export const NUMBER_LOCALE = "id-ID";
 
 // Navs
-export const MOBILE_CONTENT_CONTAINER_BG = "bg.body";
+export const MOBILE_CONTENT_CONTAINER_BG = "bg.canvas";
 export const MOBILE_NAV_LABEL_FONT_SIZE = "xs";
 export const MOBILE_NAVS_COLOR = "fg.muted";
 export const DESKTOP_NAVS_COLOR = "fg.muted";

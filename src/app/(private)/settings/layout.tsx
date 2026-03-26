@@ -22,7 +22,7 @@ const NAVS =
     ?.children || [];
 const ROOT_PATH = `/settings`;
 
-const PageScreen = ({ children }: { children: React.ReactNode }) => {
+const Content = ({ children }: { children: React.ReactNode }) => {
   // Hooks
   const pathname = usePathname();
 
@@ -102,7 +102,7 @@ const PageScreen = ({ children }: { children: React.ReactNode }) => {
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <View.Root className={"settings-layout-root"}>
-      <PageScreen>{children}</PageScreen>
+      <Content>{children}</Content>
     </View.Root>
   );
 }

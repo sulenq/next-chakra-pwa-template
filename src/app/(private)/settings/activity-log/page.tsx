@@ -13,7 +13,7 @@ import { Limitation } from "@/components/widgets/limitation";
 import { MiniUser } from "@/components/widgets/mini-user";
 import { Pagination } from "@/components/widgets/pagination";
 import { dummyAllActivityLogs } from "@/constants/dummyData";
-import { Enum__ActivityAction } from "@/constants/enums";
+import { ActivityActionEnum } from "@/constants/enums";
 import { Interface__ActivityLog } from "@/constants/interfaces";
 import { BASE_ICON_BOX_SIZE } from "@/constants/styles";
 import { useLocale } from "@/contexts/useLocale";
@@ -52,26 +52,26 @@ const ActivityLog = () => {
     (meta?: Record<string, any>) => string
   > = {
     // TODO create action sentence glosary
-    [Enum__ActivityAction.CREATE_WORKSPACE]: (meta) =>
+    [ActivityActionEnum.CREATE_WORKSPACE]: (meta) =>
       `Created workspace "${meta?.workspaceName ?? "Unknown"}"`,
 
-    [Enum__ActivityAction.UPDATE_WORKSPACE]: (meta) =>
+    [ActivityActionEnum.UPDATE_WORKSPACE]: (meta) =>
       `Updated workspace "${meta?.workspaceName ?? "Unknown"}"`,
 
-    [Enum__ActivityAction.DELETE_WORKSPACE]: (meta) =>
+    [ActivityActionEnum.DELETE_WORKSPACE]: (meta) =>
       `Deleted workspace "${meta?.workspaceName ?? "Unknown"}"`,
 
-    [Enum__ActivityAction.CREATE_LAYER]: (meta) =>
+    [ActivityActionEnum.CREATE_LAYER]: (meta) =>
       `Created layer "${meta?.layerName ?? "Unknown"}"`,
 
-    [Enum__ActivityAction.UPDATE_LAYER]: (meta) =>
+    [ActivityActionEnum.UPDATE_LAYER]: (meta) =>
       `Updated layer "${meta?.layerName ?? "Unknown"}"`,
 
-    [Enum__ActivityAction.DELETE_LAYER]: (meta) =>
+    [ActivityActionEnum.DELETE_LAYER]: (meta) =>
       `Deleted layer "${meta?.layerName ?? "Unknown"}`,
   };
   const formatActivityLog = (log: Interface__ActivityLog): string => {
-    return activityFormatter[log.action as Enum__ActivityAction](log.metadata);
+    return activityFormatter[log.action as ActivityActionEnum](log.metadata);
   };
 
   // Render State Map

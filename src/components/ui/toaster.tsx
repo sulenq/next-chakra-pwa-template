@@ -166,7 +166,6 @@ const ToastComponent = (props: any) => {
       backdropFilter={BACKDROP_BLUR_FILTER}
       color={"current"}
       p={"14px"}
-      pr={"32px"}
       border={"1px solid"}
       borderColor={"border.subtle"}
       boxShadow={"none"}
@@ -188,6 +187,7 @@ const ToastComponent = (props: any) => {
             {toast.title && (
               <Toast.Title
                 w={"fit"}
+                pr={"32px"}
                 fontSize={"md"}
                 fontWeight={"medium"}
                 color={preset.color}

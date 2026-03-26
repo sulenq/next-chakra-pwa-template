@@ -4,6 +4,7 @@ import { Btn } from "@/components/ui/btn";
 import { CContainer } from "@/components/ui/c-container";
 import { P } from "@/components/ui/p";
 import { SearchInput } from "@/components/ui/search-input";
+import { StackV } from "@/components/ui/stack";
 import { toaster } from "@/components/ui/toaster";
 import { Tooltip } from "@/components/ui/tooltip";
 import { AppIconLucide } from "@/components/widgets/app-icon";
@@ -15,6 +16,7 @@ import { LocalSettingsHelperText } from "@/components/widgets/local-settings-hel
 import { Pagination } from "@/components/widgets/pagination";
 import { DATE_FORMATS } from "@/constants/dateFormats";
 import { LANGUAGES } from "@/constants/languages";
+import { R_SPACING_MD } from "@/constants/styles";
 import { TIME_FORMATS } from "@/constants/timeFormats";
 import { TIME_ZONES } from "@/constants/timezone";
 import {
@@ -45,13 +47,15 @@ import { useEffect, useMemo, useRef, useState } from "react";
 
 const NAVS_COLOR = "fg.muted";
 
+// -----------------------------------------------------------------
+
 const Language = () => {
   // Contexts
   const { themeConfig } = useThemeConfig();
   const { t, locale, setLocale } = useLocale();
 
   return (
-    <Item.Container borderless roundedless>
+    <Item.Container borderless>
       <Item.Header borderless>
         <HStack>
           <AppIconLucide icon={LanguagesIcon} />
@@ -59,14 +63,8 @@ const Language = () => {
         </HStack>
       </Item.Header>
 
-      <CContainer px={4}>
-        <CContainer
-          gap={4}
-          p={3}
-          rounded={themeConfig.radii.container}
-          border={"1px solid"}
-          borderColor={"border.muted"}
-        >
+      <StackV px={R_SPACING_MD} pb={R_SPACING_MD}>
+        <Item.Content p={4}>
           <HStack wrap={"wrap"}>
             {LANGUAGES.map((item, i) => {
               const isSelected = locale === item.key;
@@ -103,18 +101,19 @@ const Language = () => {
               );
             })}
           </HStack>
-        </CContainer>
-      </CContainer>
+        </Item.Content>
+      </StackV>
     </Item.Container>
   );
 };
+
+// -----------------------------------------------------------------
 
 const Timezone = () => {
   const LIMIT_OPTIONS = [10, 20, 50, 100];
 
   // Contexts
   const { t } = useLocale();
-  const { themeConfig } = useThemeConfig();
   const { timeZone, setTimeZone } = useTimezone();
 
   // Refs
@@ -141,8 +140,8 @@ const Timezone = () => {
   }, [search, limit]);
 
   return (
-    <Item.Container ref={containerRef} borderless roundedless>
-      <Item.Header borderless>
+    <Item.Container ref={containerRef} borderless>
+      <Item.Header borderless justify={"space-between"}>
         <HStack>
           <AppIconLucide icon={GlobeIcon} />
 
@@ -166,13 +165,9 @@ const Timezone = () => {
         </HStack>
       </Item.Header>
 
-      <CContainer px={4}>
-        <CContainer
-          rounded={themeConfig.radii.container}
-          border={"1px solid"}
-          borderColor={"border.muted"}
-        >
-          <CContainer p={3}>
+      <StackV px={R_SPACING_MD} pb={R_SPACING_MD}>
+        <Item.Content>
+          <CContainer p={4}>
             <SearchInput
               onChange={(inputValue) => {
                 setSearch(inputValue || "");
@@ -182,7 +177,7 @@ const Timezone = () => {
             />
           </CContainer>
 
-          <CContainer px={3}>
+          <CContainer px={4}>
             {isEmptyArray(resolvedTimezones) && <FeedbackNotFound />}
 
             {!isEmptyArray(resolvedTimezones) && (
@@ -253,11 +248,13 @@ const Timezone = () => {
               />
             </CContainer>
           </HStack>
-        </CContainer>
-      </CContainer>
+        </Item.Content>
+      </StackV>
     </Item.Container>
   );
 };
+
+// -----------------------------------------------------------------
 
 const DateFormat = () => {
   // Contexts
@@ -266,7 +263,7 @@ const DateFormat = () => {
   const { dateFormat, setDateFormat } = useDateFormat();
 
   return (
-    <Item.Container borderless roundedless>
+    <Item.Container borderless>
       <Item.Header borderless>
         <HStack>
           <AppIconLucide icon={CalendarIcon} />
@@ -274,14 +271,8 @@ const DateFormat = () => {
         </HStack>
       </Item.Header>
 
-      <CContainer px={4}>
-        <CContainer
-          gap={4}
-          p={3}
-          rounded={themeConfig.radii.container}
-          border={"1px solid"}
-          borderColor={"border.muted"}
-        >
+      <StackV px={R_SPACING_MD} pb={R_SPACING_MD}>
+        <Item.Content p={4}>
           <SimpleGrid columns={[1, 2, 3]} gap={2}>
             {DATE_FORMATS.map((item) => {
               const isSelected = item.key === dateFormat;
@@ -296,8 +287,8 @@ const DateFormat = () => {
                     setDateFormat(item.key as Type__DateFormat);
                   }}
                   cursor={"pointer"}
-                  _hover={{ bg: "gray.subtle" }}
-                  _active={{ bg: "gray.subtle" }}
+                  _hover={{ bg: "bg.subtle" }}
+                  _active={{ bg: "bg.subtle" }}
                   transition={"200ms"}
                 >
                   <HStack>
@@ -323,11 +314,13 @@ const DateFormat = () => {
               );
             })}
           </SimpleGrid>
-        </CContainer>
-      </CContainer>
+        </Item.Content>
+      </StackV>
     </Item.Container>
   );
 };
+
+// -----------------------------------------------------------------
 
 const TimeFormat = () => {
   // Contexts
@@ -336,7 +329,7 @@ const TimeFormat = () => {
   const { timeFormat, setTimeFormat } = useTimeFormat();
 
   return (
-    <Item.Container borderless roundedless>
+    <Item.Container borderless>
       <Item.Header borderless>
         <HStack>
           <AppIconLucide icon={HourglassIcon} />
@@ -345,14 +338,8 @@ const TimeFormat = () => {
         </HStack>
       </Item.Header>
 
-      <CContainer px={4}>
-        <CContainer
-          gap={4}
-          p={3}
-          rounded={themeConfig.radii.container}
-          border={"1px solid"}
-          borderColor={"border.muted"}
-        >
+      <StackV px={R_SPACING_MD} pb={R_SPACING_MD}>
+        <Item.Content p={4}>
           <SimpleGrid columns={[1, 2]} gap={2}>
             {TIME_FORMATS.map((item) => {
               const isSelected = item.key === timeFormat;
@@ -367,8 +354,8 @@ const TimeFormat = () => {
                     setTimeFormat(item.key);
                   }}
                   cursor={"pointer"}
-                  _hover={{ bg: "gray.subtle" }}
-                  _active={{ bg: "gray.subtle" }}
+                  _hover={{ bg: "bg.subtle" }}
+                  _active={{ bg: "bg.subtle" }}
                   transition={"200ms"}
                 >
                   <HStack>
@@ -388,11 +375,13 @@ const TimeFormat = () => {
               );
             })}
           </SimpleGrid>
-        </CContainer>
-      </CContainer>
+        </Item.Content>
+      </StackV>
     </Item.Container>
   );
 };
+
+// -----------------------------------------------------------------
 
 const UOMFormat = () => {
   // Contexts
@@ -401,7 +390,7 @@ const UOMFormat = () => {
   const { UOM, setUOM } = useUOMFormat();
 
   return (
-    <Item.Container borderless roundedless>
+    <Item.Container borderless>
       <Item.Header borderless>
         <HStack>
           <AppIconLucide icon={RulerDimensionLineIcon} />
@@ -409,14 +398,8 @@ const UOMFormat = () => {
         </HStack>
       </Item.Header>
 
-      <CContainer px={4}>
-        <CContainer
-          gap={4}
-          p={3}
-          rounded={themeConfig.radii.container}
-          border={"1px solid"}
-          borderColor={"border.muted"}
-        >
+      <StackV px={R_SPACING_MD} pb={R_SPACING_MD}>
+        <Item.Content gap={4} p={4}>
           <SimpleGrid columns={[1, 2, 3]} gap={2}>
             {UOM_FORMATS.map((item) => {
               const isSelected = item.key === UOM;
@@ -431,8 +414,8 @@ const UOMFormat = () => {
                     setUOM(item.key);
                   }}
                   cursor={"pointer"}
-                  _hover={{ bg: "gray.subtle" }}
-                  _active={{ bg: "gray.subtle" }}
+                  _hover={{ bg: "bg.subtle" }}
+                  _active={{ bg: "bg.subtle" }}
                   transition={"200ms"}
                 >
                   <HStack>
@@ -461,15 +444,17 @@ const UOMFormat = () => {
               );
             })}
           </SimpleGrid>
-        </CContainer>
-      </CContainer>
+        </Item.Content>
+      </StackV>
     </Item.Container>
   );
 };
 
+// -----------------------------------------------------------------
+
 export default function Page() {
   return (
-    <CContainer flex={1} gap={3}>
+    <StackV gap={4} w={"full"}>
       <Language />
 
       <Timezone />
@@ -481,6 +466,6 @@ export default function Page() {
       <UOMFormat />
 
       <LocalSettingsHelperText />
-    </CContainer>
+    </StackV>
   );
 }

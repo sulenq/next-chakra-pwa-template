@@ -1,6 +1,5 @@
 "use client";
 
-import { CContainer } from "@/components/ui/c-container";
 import { P, PProps } from "@/components/ui/p";
 import { StackH, StackV } from "@/components/ui/stack";
 import { InfoTip } from "@/components/widgets/info-tip";
@@ -32,9 +31,10 @@ const ItemContainer = forwardRef<HTMLDivElement, ItemContainerProps>(
     const { themeConfig } = useThemeConfig();
 
     return (
-      <CContainer
+      <StackV
         ref={ref}
         className={`${scrollY ? "scrollY" : ""} ${className}`}
+        w={"full"}
         bg={"bg.frosted"}
         rounded={roundedless ? "" : themeConfig.radii.container}
         border={borderless ? "" : "1px solid"}
@@ -42,7 +42,7 @@ const ItemContainer = forwardRef<HTMLDivElement, ItemContainerProps>(
         {...restProps}
       >
         {children}
-      </CContainer>
+      </StackV>
     );
   },
 );
@@ -74,6 +74,7 @@ const ItemContent = forwardRef<HTMLDivElement, ItemContentProps>(
       <StackV
         ref={ref}
         className={`${scrollY ? "scrollY" : ""} ${className}`}
+        w={"full"}
         bg={"bg.body"}
         border={borderless ? "" : "1px solid"}
         borderColor={"border.subtle"}

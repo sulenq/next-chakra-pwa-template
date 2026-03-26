@@ -1,4 +1,4 @@
-export enum Enum__ActivityAction {
+export enum ActivityActionEnum {
   CREATE_WORKSPACE = "CREATE_WORKSPACE",
   UPDATE_WORKSPACE = "UPDATE_WORKSPACE",
   DELETE_WORKSPACE = "DELETE_WORKSPACE",

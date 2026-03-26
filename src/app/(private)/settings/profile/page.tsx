@@ -24,7 +24,7 @@ import {
   dummyAuthLogs,
   dummyUser,
 } from "@/constants/dummyData";
-import { Enum__ActivityAction } from "@/constants/enums";
+import { ActivityActionEnum } from "@/constants/enums";
 import {
   Interface__ActivityLog,
   Interface__AuthLog,
@@ -307,48 +307,46 @@ const AuthLog = () => {
       </Item.Header>
 
       <Item.Content>
-        <StackV>
-          <StackV p={4} pb={3}>
-            <SearchInput
-              onChange={(inputValue) => {
-                setSearch(inputValue || "");
-              }}
-              inputValue={search}
-              queryKey={"q-my-log-auth"}
-            />
-          </StackV>
-
-          <StackV px={3}>
-            {initialLoading && render.loading}
-            {!initialLoading && (
-              <>
-                {error && render.error}
-                {!error && (
-                  <>
-                    {data && render.loaded}
-                    {(!data || isEmptyArray(data)) && render.empty}
-                  </>
-                )}
-              </>
-            )}
-          </StackV>
-
-          <StackH
-            justify={"space-between"}
-            wrap={"wrap"}
-            p={3}
-            // borderTop={"1px solid"}
-            borderColor={"border.muted"}
-          >
-            <Limitation limit={limit} setLimit={setLimit} />
-
-            <Pagination
-              page={page}
-              setPage={setPage}
-              totalPage={pagination?.meta?.totalPage}
-            />
-          </StackH>
+        <StackV p={4}>
+          <SearchInput
+            onChange={(inputValue) => {
+              setSearch(inputValue || "");
+            }}
+            inputValue={search}
+            queryKey={"q-my-log-auth"}
+          />
         </StackV>
+
+        <StackV px={3}>
+          {initialLoading && render.loading}
+          {!initialLoading && (
+            <>
+              {error && render.error}
+              {!error && (
+                <>
+                  {data && render.loaded}
+                  {(!data || isEmptyArray(data)) && render.empty}
+                </>
+              )}
+            </>
+          )}
+        </StackV>
+
+        <StackH
+          justify={"space-between"}
+          wrap={"wrap"}
+          p={3}
+          // borderTop={"1px solid"}
+          borderColor={"border.muted"}
+        >
+          <Limitation limit={limit} setLimit={setLimit} />
+
+          <Pagination
+            page={page}
+            setPage={setPage}
+            totalPage={pagination?.meta?.totalPage}
+          />
+        </StackH>
       </Item.Content>
     </Item.Container>
   );
@@ -370,26 +368,26 @@ const ActivityLog = () => {
     (meta?: Record<string, any>) => string
   > = {
     // TODO create action sentence glosary
-    [Enum__ActivityAction.CREATE_WORKSPACE]: (meta) =>
+    [ActivityActionEnum.CREATE_WORKSPACE]: (meta) =>
       `Created workspace "${meta?.workspaceName ?? "Unknown"}"`,
 
-    [Enum__ActivityAction.UPDATE_WORKSPACE]: (meta) =>
+    [ActivityActionEnum.UPDATE_WORKSPACE]: (meta) =>
       `Updated workspace "${meta?.workspaceName ?? "Unknown"}"`,
 
-    [Enum__ActivityAction.DELETE_WORKSPACE]: (meta) =>
+    [ActivityActionEnum.DELETE_WORKSPACE]: (meta) =>
       `Deleted workspace "${meta?.workspaceName ?? "Unknown"}"`,
 
-    [Enum__ActivityAction.CREATE_LAYER]: (meta) =>
+    [ActivityActionEnum.CREATE_LAYER]: (meta) =>
       `Created layer "${meta?.layerName ?? "Unknown"}"`,
 
-    [Enum__ActivityAction.UPDATE_LAYER]: (meta) =>
+    [ActivityActionEnum.UPDATE_LAYER]: (meta) =>
       `Updated layer "${meta?.layerName ?? "Unknown"}"`,
 
-    [Enum__ActivityAction.DELETE_LAYER]: (meta) =>
+    [ActivityActionEnum.DELETE_LAYER]: (meta) =>
       `Deleted layer "${meta?.layerName ?? "Unknown"}`,
   };
   const formatActivityLog = (log: Interface__ActivityLog): string => {
-    return activityFormatter[log.action as Enum__ActivityAction](log.metadata);
+    return activityFormatter[log.action as ActivityActionEnum](log.metadata);
   };
   const {
     error,
@@ -461,48 +459,46 @@ const ActivityLog = () => {
       </Item.Header>
 
       <Item.Content>
-        <StackV>
-          <StackV p={4} pb={3}>
-            <SearchInput
-              onChange={(inputValue) => {
-                setSearch(inputValue || "");
-              }}
-              inputValue={search}
-              queryKey={"q-my-log-auth"}
-            />
-          </StackV>
-
-          <StackV px={3}>
-            {initialLoading && render.loading}
-            {!initialLoading && (
-              <>
-                {error && render.error}
-                {!error && (
-                  <>
-                    {data && render.loaded}
-                    {(!data || isEmptyArray(data)) && render.empty}
-                  </>
-                )}
-              </>
-            )}
-          </StackV>
-
-          <StackH
-            justify={"space-between"}
-            wrap={"wrap"}
-            p={3}
-            // borderTop={"1px solid"}
-            borderColor={"border.muted"}
-          >
-            <Limitation limit={limit} setLimit={setLimit} />
-
-            <Pagination
-              page={page}
-              setPage={setPage}
-              totalPage={pagination?.meta?.totalPage}
-            />
-          </StackH>
+        <StackV p={4}>
+          <SearchInput
+            onChange={(inputValue) => {
+              setSearch(inputValue || "");
+            }}
+            inputValue={search}
+            queryKey={"q-my-log-auth"}
+          />
         </StackV>
+
+        <StackV px={3}>
+          {initialLoading && render.loading}
+          {!initialLoading && (
+            <>
+              {error && render.error}
+              {!error && (
+                <>
+                  {data && render.loaded}
+                  {(!data || isEmptyArray(data)) && render.empty}
+                </>
+              )}
+            </>
+          )}
+        </StackV>
+
+        <StackH
+          justify={"space-between"}
+          wrap={"wrap"}
+          p={3}
+          // borderTop={"1px solid"}
+          borderColor={"border.muted"}
+        >
+          <Limitation limit={limit} setLimit={setLimit} />
+
+          <Pagination
+            page={page}
+            setPage={setPage}
+            totalPage={pagination?.meta?.totalPage}
+          />
+        </StackH>
       </Item.Content>
     </Item.Container>
   );
@@ -526,7 +522,7 @@ export default function Page() {
     empty: <FeedbackNoData />,
     notFound: <FeedbackNotFound />,
     loaded: (
-      <StackV flex={1} gap={3}>
+      <StackV flex={1} gap={4} w={"full"}>
         <PersonalInformation initialData={data} />
 
         <AuthLog />
@@ -537,7 +533,7 @@ export default function Page() {
   };
 
   return (
-    <StackV pb={4}>
+    <StackV w={"full"} pb={4}>
       {/* {render.loading} */}
       {initialLoading && render.loading}
       {!initialLoading && (

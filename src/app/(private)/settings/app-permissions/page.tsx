@@ -4,6 +4,7 @@ import { Btn } from "@/components/ui/btn";
 import { CContainer } from "@/components/ui/c-container";
 import { Disclosure } from "@/components/ui/disclosure";
 import { P } from "@/components/ui/p";
+import { StackV } from "@/components/ui/stack";
 import { Switch } from "@/components/ui/switch";
 import { toaster } from "@/components/ui/toaster";
 import { AppIconLucide } from "@/components/widgets/app-icon";
@@ -11,6 +12,7 @@ import { Item } from "@/components/widgets/item";
 import { LocalSettingsHelperText } from "@/components/widgets/local-settings-helper-text";
 import { MicVolumeBar } from "@/components/widgets/mic-volume-bar";
 import { ToggleSettingContainer } from "@/components/widgets/settings-shell";
+import { R_SPACING_MD } from "@/constants/styles";
 import { useCameraPermission } from "@/contexts/useCameraPermissions";
 import { useLocale } from "@/contexts/useLocale";
 import { useLocationPermissions } from "@/contexts/useLocationPermissions";
@@ -163,8 +165,8 @@ const Camera = () => {
   };
 
   return (
-    <Item.Container borderless roundedless>
-      <Item.Header borderless>
+    <Item.Container borderless>
+      <Item.Header borderless justify={"space-between"}>
         <HStack>
           <AppIconLucide icon={CameraIcon} />
 
@@ -174,11 +176,10 @@ const Camera = () => {
         <Test />
       </Item.Header>
 
-      <CContainer px={4}>
-        <CContainer
-          gap={4}
+      <StackV px={R_SPACING_MD} pb={R_SPACING_MD}>
+        <Item.Content
           p={4}
-          rounded={themeConfig.radii.container}
+          bg={"transparent"}
           border={"1px solid"}
           borderColor={"border.muted"}
         >
@@ -213,8 +214,8 @@ const Camera = () => {
               </P>
             </CContainer>
           )}
-        </CContainer>
-      </CContainer>
+        </Item.Content>
+      </StackV>
     </Item.Container>
   );
 };
@@ -356,8 +357,8 @@ const Microphone = () => {
   };
 
   return (
-    <Item.Container borderless roundedless>
-      <Item.Header borderless>
+    <Item.Container borderless>
+      <Item.Header borderless justify={"space-between"}>
         <HStack>
           <AppIconLucide icon={MicIcon} />
 
@@ -367,14 +368,8 @@ const Microphone = () => {
         <Test />
       </Item.Header>
 
-      <CContainer px={4}>
-        <CContainer
-          gap={4}
-          p={4}
-          rounded={themeConfig.radii.container}
-          border={"1px solid"}
-          borderColor={"border.muted"}
-        >
+      <StackV px={R_SPACING_MD} pb={R_SPACING_MD}>
+        <Item.Content p={4}>
           <ToggleSettingContainer>
             <CContainer>
               <P>{t.settings_mic.title}</P>
@@ -406,8 +401,8 @@ const Microphone = () => {
               </P>
             </CContainer>
           )}
-        </CContainer>
-      </CContainer>
+        </Item.Content>
+      </StackV>
     </Item.Container>
   );
 };
@@ -499,7 +494,7 @@ const Location = () => {
       <>
         <Btn
           size="xs"
-          variant="ghost"
+          variant="outline"
           onClick={onOpen}
           disabled={locationPermissionsStatus !== "granted"}
         >
@@ -557,8 +552,8 @@ const Location = () => {
   };
 
   return (
-    <Item.Container borderless roundedless>
-      <Item.Header borderless>
+    <Item.Container borderless bg={"transparent"}>
+      <Item.Header borderless justify={"space-between"}>
         <HStack>
           <AppIconLucide icon={MapPinIcon} />
 
@@ -568,14 +563,8 @@ const Location = () => {
         <Test />
       </Item.Header>
 
-      <CContainer px={4}>
-        <CContainer
-          gap={4}
-          p={4}
-          rounded={themeConfig.radii.container}
-          border={"1px solid"}
-          borderColor={"border.muted"}
-        >
+      <StackV px={R_SPACING_MD} pb={R_SPACING_MD}>
+        <Item.Content p={4}>
           <ToggleSettingContainer>
             <CContainer>
               <P>{t.settings_location.title}</P>
@@ -606,8 +595,8 @@ const Location = () => {
               </P>
             </CContainer>
           )}
-        </CContainer>
-      </CContainer>
+        </Item.Content>
+      </StackV>
     </Item.Container>
   );
 };
