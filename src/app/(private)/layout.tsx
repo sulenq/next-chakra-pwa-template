@@ -355,7 +355,7 @@ const DesktopLayout = (props: any) => {
                 minH={TOP_BAR_H}
                 p={R_SPACING_MD}
               >
-                <Logo ml={"6px"} />
+                <Logo size={18} ml={"6px"} />
 
                 {isNavsExpanded && (
                   <P
@@ -529,6 +529,7 @@ const DesktopLayout = (props: any) => {
 };
 
 export default function Layout(props: any) {
+  // Hooks
   const iss = useIsSmScreenWidth();
 
   return (

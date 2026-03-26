@@ -3,8 +3,8 @@ import {
   ActivityIcon,
   BlocksIcon,
   BrushIcon,
+  ChartPieIcon,
   DatabaseIcon,
-  HomeIcon,
   LanguagesIcon,
   MapPinIcon,
   SettingsIcon,
@@ -19,9 +19,9 @@ export const PRIVATE_NAV_GROUPS: Interface__NavGroup[] = [
     labelKey: "main",
     navs: [
       {
-        icon: HomeIcon,
-        labelKey: "navs.home",
-        path: `/home`,
+        icon: ChartPieIcon,
+        labelKey: "navs.dashboard",
+        path: `/dashboard`,
         allowedRoles: [],
       },
       {

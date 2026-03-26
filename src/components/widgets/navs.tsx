@@ -110,6 +110,7 @@ export const DesktopNavs = (props: DesktopNavsProps) => {
             return (
               <StackV
                 key={navItemIdx}
+                flex={1}
                 align={navsExpanded ? "start" : "center"}
                 gap={DESKTOP_NAV_GAP}
               >
