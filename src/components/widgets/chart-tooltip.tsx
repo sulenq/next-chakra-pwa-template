@@ -42,7 +42,7 @@ export const ChartTooltip = (
           {payload.map((entry, index) => {
             return (
               <HStack key={index}>
-                <DotIndicator color={entry.color} />
+                <DotIndicator bg={entry.color} />
 
                 <Text fontSize="sm">
                   {entry.name}: {entry.value}

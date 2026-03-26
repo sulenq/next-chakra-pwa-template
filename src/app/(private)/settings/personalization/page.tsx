@@ -237,7 +237,7 @@ const AccentColorSection = () => {
                   {isSelected && (
                     <DotIndicator
                       pos={"absolute"}
-                      color={isColorPaletteGray ? "bg.body" : "light"}
+                      bg={isColorPaletteGray ? "bg.body" : "light"}
                       top={2}
                       right={2}
                     />

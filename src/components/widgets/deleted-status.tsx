@@ -21,7 +21,7 @@ export const DeletedStatus = (props: DeletedStatusProps) => {
     <>
       {deletedAt && (
         <HStack {...restProps}>
-          <DotIndicator color={"fg.error"} />
+          <DotIndicator bg={"fg.error"} />
 
           <P>
             {formatDate(deletedAt, t, { variant: "numeric", withTime: true })}

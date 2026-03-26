@@ -499,7 +499,7 @@ const Chart1 = (props: any) => {
                   color={isActive ? "" : "fg.subtle"}
                 >
                   <DotIndicator
-                    color={isActive ? s.color : "bg.emphasized"}
+                    bg={isActive ? s.color : "bg.emphasized"}
                     mr={1}
                   />
 
