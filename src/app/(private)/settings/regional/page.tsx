@@ -43,7 +43,7 @@ import {
   LanguagesIcon,
   RulerDimensionLineIcon,
 } from "lucide-react";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 const NAVS_COLOR = "fg.muted";
 
@@ -55,7 +55,7 @@ const Language = () => {
   const { t, locale, setLocale } = useLocale();
 
   return (
-    <Item.Container borderless>
+    <Item.Container borderless bg={"transparent"}>
       <Item.Header borderless>
         <HStack>
           <AppIconLucide icon={LanguagesIcon} />
@@ -64,7 +64,7 @@ const Language = () => {
       </Item.Header>
 
       <StackV px={R_SPACING_MD} pb={R_SPACING_MD}>
-        <Item.Content p={4}>
+        <Item.Container p={4}>
           <HStack wrap={"wrap"}>
             {LANGUAGES.map((item, i) => {
               const isSelected = locale === item.key;
@@ -101,7 +101,7 @@ const Language = () => {
               );
             })}
           </HStack>
-        </Item.Content>
+        </Item.Container>
       </StackV>
     </Item.Container>
   );
@@ -115,9 +115,6 @@ const Timezone = () => {
   // Contexts
   const { t } = useLocale();
   const { timeZone, setTimeZone } = useTimezone();
-
-  // Refs
-  const containerRef = useRef<HTMLDivElement>(null);
 
   // States
   const localTz = getLocalTimezone();
@@ -140,7 +137,7 @@ const Timezone = () => {
   }, [search, limit]);
 
   return (
-    <Item.Container ref={containerRef} borderless>
+    <Item.Container borderless bg={"transparent"}>
       <Item.Header borderless justify={"space-between"}>
         <HStack>
           <AppIconLucide icon={GlobeIcon} />
@@ -151,7 +148,7 @@ const Timezone = () => {
         <HStack>
           <Btn
             size={"xs"}
-            variant={"ghost"}
+            variant={"outline"}
             onClick={() => {
               setTimeZone(localTz);
               toaster.info({
@@ -166,7 +163,7 @@ const Timezone = () => {
       </Item.Header>
 
       <StackV px={R_SPACING_MD} pb={R_SPACING_MD}>
-        <Item.Content>
+        <Item.Container>
           <CContainer p={4}>
             <SearchInput
               onChange={(inputValue) => {
@@ -248,7 +245,7 @@ const Timezone = () => {
               />
             </CContainer>
           </HStack>
-        </Item.Content>
+        </Item.Container>
       </StackV>
     </Item.Container>
   );
@@ -263,7 +260,7 @@ const DateFormat = () => {
   const { dateFormat, setDateFormat } = useDateFormat();
 
   return (
-    <Item.Container borderless>
+    <Item.Container borderless bg={"transparent"}>
       <Item.Header borderless>
         <HStack>
           <AppIconLucide icon={CalendarIcon} />
@@ -272,7 +269,7 @@ const DateFormat = () => {
       </Item.Header>
 
       <StackV px={R_SPACING_MD} pb={R_SPACING_MD}>
-        <Item.Content p={4}>
+        <Item.Container p={4}>
           <SimpleGrid columns={[1, 2, 3]} gap={2}>
             {DATE_FORMATS.map((item) => {
               const isSelected = item.key === dateFormat;
@@ -314,7 +311,7 @@ const DateFormat = () => {
               );
             })}
           </SimpleGrid>
-        </Item.Content>
+        </Item.Container>
       </StackV>
     </Item.Container>
   );
@@ -329,7 +326,7 @@ const TimeFormat = () => {
   const { timeFormat, setTimeFormat } = useTimeFormat();
 
   return (
-    <Item.Container borderless>
+    <Item.Container borderless bg={"transparent"}>
       <Item.Header borderless>
         <HStack>
           <AppIconLucide icon={HourglassIcon} />
@@ -339,7 +336,7 @@ const TimeFormat = () => {
       </Item.Header>
 
       <StackV px={R_SPACING_MD} pb={R_SPACING_MD}>
-        <Item.Content p={4}>
+        <Item.Container p={4}>
           <SimpleGrid columns={[1, 2]} gap={2}>
             {TIME_FORMATS.map((item) => {
               const isSelected = item.key === timeFormat;
@@ -375,7 +372,7 @@ const TimeFormat = () => {
               );
             })}
           </SimpleGrid>
-        </Item.Content>
+        </Item.Container>
       </StackV>
     </Item.Container>
   );
@@ -390,7 +387,7 @@ const UOMFormat = () => {
   const { UOM, setUOM } = useUOMFormat();
 
   return (
-    <Item.Container borderless>
+    <Item.Container borderless bg={"transparent"}>
       <Item.Header borderless>
         <HStack>
           <AppIconLucide icon={RulerDimensionLineIcon} />
@@ -399,7 +396,7 @@ const UOMFormat = () => {
       </Item.Header>
 
       <StackV px={R_SPACING_MD} pb={R_SPACING_MD}>
-        <Item.Content gap={4} p={4}>
+        <Item.Container gap={4} p={4}>
           <SimpleGrid columns={[1, 2, 3]} gap={2}>
             {UOM_FORMATS.map((item) => {
               const isSelected = item.key === UOM;
@@ -444,7 +441,7 @@ const UOMFormat = () => {
               );
             })}
           </SimpleGrid>
-        </Item.Content>
+        </Item.Container>
       </StackV>
     </Item.Container>
   );

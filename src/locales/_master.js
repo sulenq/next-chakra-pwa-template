@@ -49,9 +49,9 @@ export const master_data_navs = {
       id: "Kontrol Akses",
       en: "Access Control",
     },
-    role: {
-      id: "Role",
-      en: "Role",
+    account_role: {
+      id: "Role Akun",
+      en: "Account Role",
     },
     permission: {
       id: "Permission",
@@ -61,10 +61,10 @@ export const master_data_navs = {
   hr: {
     index: {
       id: "Manajemen SDM",
-      en: "Human resources",
+      en: "Human Resources",
     },
     employment_status: {
-      id: "Status kepegawaian",
+      id: "Status Kepegawaian",
       en: "Employment Status",
     },
   },
@@ -84,8 +84,8 @@ export const settings_navs = {
       en: "Regional",
     },
     app_permissions: {
-      id: "Izin aplikasi",
-      en: "App permissions",
+      id: "Izin Aplikasi",
+      en: "App Permissions",
     },
   },
   system: {
@@ -93,13 +93,9 @@ export const settings_navs = {
       id: "Sistem",
       en: "System",
     },
-    account_role: {
-      id: "Role akun",
-      en: "Account role",
-    },
     activity_log: {
-      id: "Log aktivitas",
-      en: "Activity log",
+      id: "Log Aktivitas",
+      en: "Activity Log",
     },
     integration: {
       id: "Integrasi",

@@ -244,12 +244,12 @@ const translations = {
   "master_data_navs": {
     "access_control": {
       "index": "Kontrol Akses",
-      "role": "Role",
+      "account_role": "Role Akun",
       "permission": "Permission"
     },
     "hr": {
       "index": "Manajemen SDM",
-      "employment_status": "Status kepegawaian"
+      "employment_status": "Status Kepegawaian"
     }
   },
   "maximize": "Maksimalkan",
@@ -414,12 +414,11 @@ const translations = {
       "index": "Utama",
       "personalization": "Personalisasi",
       "regional": "Regional",
-      "app_permissions": "Izin aplikasi"
+      "app_permissions": "Izin Aplikasi"
     },
     "system": {
       "index": "Sistem",
-      "account_role": "Role akun",
-      "activity_log": "Log aktivitas",
+      "activity_log": "Log Aktivitas",
       "integration": "Integrasi"
     },
     "others": {

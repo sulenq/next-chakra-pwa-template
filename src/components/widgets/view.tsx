@@ -202,6 +202,8 @@ export const ConstrainedContainer = forwardRef<HTMLDivElement, StackProps>(
       <StackV
         className="constrained-container"
         ref={ref}
+        align={"stretch"}
+        w={"full"}
         maxW={"720px"}
         mx={"auto"}
         {...restProps}

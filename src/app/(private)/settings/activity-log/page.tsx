@@ -1,9 +1,9 @@
 "use client";
 
-import { CContainer } from "@/components/ui/c-container";
 import { P } from "@/components/ui/p";
 import { SearchInput } from "@/components/ui/search-input";
 import { Skeleton } from "@/components/ui/skeleton";
+import { StackV } from "@/components/ui/stack";
 import FeedbackNoData from "@/components/widgets/feedback-no-data";
 import FeedbackNotFound from "@/components/widgets/feedback-not-found";
 import FeedbackRetry from "@/components/widgets/feedback-retry";
@@ -15,7 +15,7 @@ import { Pagination } from "@/components/widgets/pagination";
 import { dummyAllActivityLogs } from "@/constants/dummyData";
 import { ActivityActionEnum } from "@/constants/enums";
 import { Interface__ActivityLog } from "@/constants/interfaces";
-import { BASE_ICON_BOX_SIZE } from "@/constants/styles";
+import { BASE_ICON_BOX_SIZE, R_SPACING_MD } from "@/constants/styles";
 import { useLocale } from "@/contexts/useLocale";
 import { useFetchData } from "@/hooks/useFetchData";
 import { isEmptyArray } from "@/utils/array";
@@ -93,9 +93,9 @@ const ActivityLog = () => {
               borderTop={idx === 0 ? "" : "1px solid"}
               borderColor={"border.subtle"}
             >
-              {log.user && <MiniUser user={log.user} w={"240px"} />}
+              {log.user && <MiniUser withEmail user={log.user} w={"240px"} />}
 
-              <CContainer flex={1} w={"fit"}>
+              <StackV flex={1} w={"fit"}>
                 <P>{formatActivityLog(log)}</P>
 
                 <P color={"fg.subtle"}>
@@ -105,7 +105,7 @@ const ActivityLog = () => {
                     withTime: true,
                   })}
                 </P>
-              </CContainer>
+              </StackV>
             </HStack>
           );
         })}
@@ -114,7 +114,7 @@ const ActivityLog = () => {
   };
 
   return (
-    <Item.Container borderless roundedless>
+    <Item.Container borderless bg={"transparent"}>
       <Item.Header borderless>
         <HStack>
           <Icon boxSize={BASE_ICON_BOX_SIZE}>
@@ -124,9 +124,9 @@ const ActivityLog = () => {
         </HStack>
       </Item.Header>
 
-      <CContainer px={4}>
+      <StackV px={R_SPACING_MD} pb={R_SPACING_MD}>
         <Item.Container>
-          <CContainer p={4} pb={3}>
+          <StackV p={4}>
             <SearchInput
               onChange={(inputValue) => {
                 setSearch(inputValue || "");
@@ -134,9 +134,9 @@ const ActivityLog = () => {
               inputValue={search}
               queryKey={"q-activity-auth"}
             />
-          </CContainer>
+          </StackV>
 
-          <CContainer minH={"300px"}>
+          <StackV minH={"300px"}>
             {initialLoading && render.loading}
             {!initialLoading && (
               <>
@@ -149,7 +149,7 @@ const ActivityLog = () => {
                 )}
               </>
             )}
-          </CContainer>
+          </StackV>
 
           <HStack justify={"space-between"} wrap={"wrap"} p={3} mt={"auto"}>
             <Limitation limit={limit} setLimit={setLimit} />
@@ -161,15 +161,15 @@ const ActivityLog = () => {
             />
           </HStack>
         </Item.Container>
-      </CContainer>
+      </StackV>
     </Item.Container>
   );
 };
 
 export default function Page() {
   return (
-    <CContainer flex={1} gap={4}>
+    <StackV flex={1} gap={4}>
       <ActivityLog />
-    </CContainer>
+    </StackV>
   );
 }

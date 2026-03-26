@@ -88,7 +88,7 @@ const Content = ({ children }: { children: React.ReactNode }) => {
         {showContent && (
           <View.Content className={"scrollY"} flex={1}>
             <ConstrainedContainer flex={1} p={GAP}>
-              {pathname !== ROOT_PATH && <View.Header withTitle />}
+              {pathname !== ROOT_PATH && <View.Header withTitle px={4} />}
 
               <CContainer flex={1}>{children}</CContainer>
             </ConstrainedContainer>

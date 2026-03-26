@@ -2,13 +2,13 @@
 
 import { AvatarUploadTrigger } from "@/components/ui/avatar";
 import { Btn } from "@/components/ui/btn";
-import { StackH, StackV } from "@/components/ui/stack";
 import { Field, FieldsetRoot } from "@/components/ui/field";
 import { Img } from "@/components/ui/img";
 import { P } from "@/components/ui/p";
 import { SearchInput } from "@/components/ui/search-input";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Spinner } from "@/components/ui/spinner";
+import { StackH, StackV } from "@/components/ui/stack";
 import { StringInput } from "@/components/ui/string-input";
 import { AppIconLucide } from "@/components/widgets/app-icon";
 import { ClampText } from "@/components/widgets/clamp-text";
@@ -118,99 +118,100 @@ const PersonalInformation = (props: PersonalInformationProps) => {
       });
     }
   }, [initialData]);
-
   return (
-    <Item.Container borderless px={R_SPACING_MD} pb={R_SPACING_MD}>
+    <Item.Container bg={"transparent"}>
       <Item.Header borderless>
         <AppIconLucide icon={UserIcon} />
 
         <Item.Title>{t.personal_information}</Item.Title>
       </Item.Header>
 
-      <Item.Content p={4}>
-        <form
-          id="personal-info-form"
-          onSubmit={formik.handleSubmit}
-          {...restProps}
-        >
-          <FieldsetRoot disabled={loading}>
-            <Field
-              invalid={!!formik.errors.avatar}
-              errorText={`${formik.errors.avatar}`}
-            >
-              <StackH align={"center"} gap={4}>
-                <ImgViewer
-                  src={initialData?.avatar?.[0]?.fileUrl}
-                  key={imgUrl(initialData?.avatar?.[0]?.filePath)}
-                >
-                  <Img
+      <StackV px={R_SPACING_MD} pb={R_SPACING_MD}>
+        <Item.Container p={4}>
+          <form
+            id="personal-info-form"
+            onSubmit={formik.handleSubmit}
+            {...restProps}
+          >
+            <FieldsetRoot disabled={loading}>
+              <Field
+                invalid={!!formik.errors.avatar}
+                errorText={`${formik.errors.avatar}`}
+              >
+                <StackH align={"center"} gap={4}>
+                  <ImgViewer
                     src={initialData?.avatar?.[0]?.fileUrl}
                     key={imgUrl(initialData?.avatar?.[0]?.filePath)}
-                    aspectRatio={1}
-                    w={"100px"}
-                    rounded={"full"}
-                  />
-                </ImgViewer>
+                  >
+                    <Img
+                      src={initialData?.avatar?.[0]?.fileUrl}
+                      key={imgUrl(initialData?.avatar?.[0]?.filePath)}
+                      aspectRatio={1}
+                      w={"100px"}
+                      rounded={"full"}
+                    />
+                  </ImgViewer>
 
-                <StackV gap={2}>
-                  <AvatarUploadTrigger formik={formik} user={initialData}>
-                    <Btn w={"fit"} variant={"outline"}>
-                      {t.upload_new_avatar}
-                    </Btn>
-                  </AvatarUploadTrigger>
+                  <StackV gap={2}>
+                    <AvatarUploadTrigger formik={formik} user={initialData}>
+                      <Btn w={"fit"} variant={"outline"}>
+                        {t.upload_new_avatar}
+                      </Btn>
+                    </AvatarUploadTrigger>
 
-                  <StackV color={"fg.subtle"}>
-                    <P>{t.msg_new_avatar_helper}</P>
-                    <P>{`PNG, JPG ${t.is_allowed}`}</P>
+                    <StackV color={"fg.subtle"}>
+                      <P>{t.msg_new_avatar_helper}</P>
+                      <P>{`PNG, JPG ${t.is_allowed}`}</P>
+                    </StackV>
                   </StackV>
-                </StackV>
-              </StackH>
-            </Field>
+                </StackH>
+              </Field>
 
-            <Field
-              label={t.name}
-              invalid={!!formik.errors.name}
-              errorText={`${formik.errors.name}`}
+              <Field
+                label={t.name}
+                invalid={!!formik.errors.name}
+                errorText={`${formik.errors.name}`}
+              >
+                <StringInput
+                  inputValue={formik.values.name}
+                  onChange={(inputValue) => {
+                    formik.setFieldValue("name", inputValue);
+                  }}
+                  placeholder="Jolitos Kurniawan"
+                />
+              </Field>
+
+              <Field
+                label={"Email"}
+                invalid={!!formik.errors.email}
+                errorText={`${formik.errors.email}`}
+              >
+                <StringInput
+                  inputValue={formik.values.email}
+                  onChange={(inputValue) => {
+                    formik.setFieldValue("email", inputValue);
+                  }}
+                  placeholder="example@email.com"
+                />
+              </Field>
+            </FieldsetRoot>
+          </form>
+
+          <StackH justify={"space-between"} mt={8}>
+            <ResetPasswordDisclosureTrigger>
+              <Btn variant={"outline"}>Reset password</Btn>
+            </ResetPasswordDisclosureTrigger>
+
+            <Btn
+              type="submit"
+              form={"personal-info-form"}
+              colorPalette={themeConfig.colorPalette}
             >
-              <StringInput
-                inputValue={formik.values.name}
-                onChange={(inputValue) => {
-                  formik.setFieldValue("name", inputValue);
-                }}
-                placeholder="Jolitos Kurniawan"
-              />
-            </Field>
-
-            <Field
-              label={"Email"}
-              invalid={!!formik.errors.email}
-              errorText={`${formik.errors.email}`}
-            >
-              <StringInput
-                inputValue={formik.values.email}
-                onChange={(inputValue) => {
-                  formik.setFieldValue("email", inputValue);
-                }}
-                placeholder="example@email.com"
-              />
-            </Field>
-          </FieldsetRoot>
-        </form>
-
-        <StackH justify={"space-between"} mt={8}>
-          <ResetPasswordDisclosureTrigger>
-            <Btn variant={"outline"}>Reset password</Btn>
-          </ResetPasswordDisclosureTrigger>
-
-          <Btn
-            type="submit"
-            form={"personal-info-form"}
-            colorPalette={themeConfig.colorPalette}
-          >
-            {t.save}
-          </Btn>
-        </StackH>
-      </Item.Content>
+              {t.save}
+            </Btn>
+          </StackH>
+        </Item.Container>
+      </StackV>
     </Item.Container>
   );
 };
@@ -294,60 +295,57 @@ const AuthLog = () => {
   };
 
   return (
-    <Item.Container
-      ref={containerRef}
-      borderless
-      px={R_SPACING_MD}
-      pb={R_SPACING_MD}
-    >
+    <Item.Container ref={containerRef} bg={"transparent"}>
       <Item.Header borderless>
         <AppIconLucide icon={LogInIcon} />
 
         <Item.Title>{t.my_auth_logs}</Item.Title>
       </Item.Header>
 
-      <Item.Content>
-        <StackV p={4}>
-          <SearchInput
-            onChange={(inputValue) => {
-              setSearch(inputValue || "");
-            }}
-            inputValue={search}
-            queryKey={"q-my-log-auth"}
-          />
-        </StackV>
+      <StackV px={R_SPACING_MD} pb={R_SPACING_MD}>
+        <Item.Container>
+          <StackV p={4}>
+            <SearchInput
+              onChange={(inputValue) => {
+                setSearch(inputValue || "");
+              }}
+              inputValue={search}
+              queryKey={"q-my-log-auth"}
+            />
+          </StackV>
 
-        <StackV px={3}>
-          {initialLoading && render.loading}
-          {!initialLoading && (
-            <>
-              {error && render.error}
-              {!error && (
-                <>
-                  {data && render.loaded}
-                  {(!data || isEmptyArray(data)) && render.empty}
-                </>
-              )}
-            </>
-          )}
-        </StackV>
+          <StackV px={3}>
+            {initialLoading && render.loading}
+            {!initialLoading && (
+              <>
+                {error && render.error}
+                {!error && (
+                  <>
+                    {data && render.loaded}
+                    {(!data || isEmptyArray(data)) && render.empty}
+                  </>
+                )}
+              </>
+            )}
+          </StackV>
 
-        <StackH
-          justify={"space-between"}
-          wrap={"wrap"}
-          p={3}
-          // borderTop={"1px solid"}
-          borderColor={"border.muted"}
-        >
-          <Limitation limit={limit} setLimit={setLimit} />
+          <StackH
+            justify={"space-between"}
+            wrap={"wrap"}
+            p={3}
+            // borderTop={"1px solid"}
+            borderColor={"border.muted"}
+          >
+            <Limitation limit={limit} setLimit={setLimit} />
 
-          <Pagination
-            page={page}
-            setPage={setPage}
-            totalPage={pagination?.meta?.totalPage}
-          />
-        </StackH>
-      </Item.Content>
+            <Pagination
+              page={page}
+              setPage={setPage}
+              totalPage={pagination?.meta?.totalPage}
+            />
+          </StackH>
+        </Item.Container>
+      </StackV>
     </Item.Container>
   );
 };
@@ -446,60 +444,57 @@ const ActivityLog = () => {
   };
 
   return (
-    <Item.Container
-      ref={containerRef}
-      borderless
-      px={R_SPACING_MD}
-      pb={R_SPACING_MD}
-    >
+    <Item.Container ref={containerRef} bg={"transparent"}>
       <Item.Header borderless>
         <AppIconLucide icon={ActivityIcon} />
 
         <Item.Title>{t.my_activity_logs}</Item.Title>
       </Item.Header>
 
-      <Item.Content>
-        <StackV p={4}>
-          <SearchInput
-            onChange={(inputValue) => {
-              setSearch(inputValue || "");
-            }}
-            inputValue={search}
-            queryKey={"q-my-log-auth"}
-          />
-        </StackV>
+      <StackV px={R_SPACING_MD} pb={R_SPACING_MD}>
+        <Item.Container>
+          <StackV p={4}>
+            <SearchInput
+              onChange={(inputValue) => {
+                setSearch(inputValue || "");
+              }}
+              inputValue={search}
+              queryKey={"q-my-log-auth"}
+            />
+          </StackV>
 
-        <StackV px={3}>
-          {initialLoading && render.loading}
-          {!initialLoading && (
-            <>
-              {error && render.error}
-              {!error && (
-                <>
-                  {data && render.loaded}
-                  {(!data || isEmptyArray(data)) && render.empty}
-                </>
-              )}
-            </>
-          )}
-        </StackV>
+          <StackV px={3}>
+            {initialLoading && render.loading}
+            {!initialLoading && (
+              <>
+                {error && render.error}
+                {!error && (
+                  <>
+                    {data && render.loaded}
+                    {(!data || isEmptyArray(data)) && render.empty}
+                  </>
+                )}
+              </>
+            )}
+          </StackV>
 
-        <StackH
-          justify={"space-between"}
-          wrap={"wrap"}
-          p={3}
-          // borderTop={"1px solid"}
-          borderColor={"border.muted"}
-        >
-          <Limitation limit={limit} setLimit={setLimit} />
+          <StackH
+            justify={"space-between"}
+            wrap={"wrap"}
+            p={3}
+            // borderTop={"1px solid"}
+            borderColor={"border.muted"}
+          >
+            <Limitation limit={limit} setLimit={setLimit} />
 
-          <Pagination
-            page={page}
-            setPage={setPage}
-            totalPage={pagination?.meta?.totalPage}
-          />
-        </StackH>
-      </Item.Content>
+            <Pagination
+              page={page}
+              setPage={setPage}
+              totalPage={pagination?.meta?.totalPage}
+            />
+          </StackH>
+        </Item.Container>
+      </StackV>
     </Item.Container>
   );
 };
@@ -533,7 +528,7 @@ export default function Page() {
   };
 
   return (
-    <StackV w={"full"} pb={4}>
+    <StackV w={"full"}>
       {/* {render.loading} */}
       {initialLoading && render.loading}
       {!initialLoading && (

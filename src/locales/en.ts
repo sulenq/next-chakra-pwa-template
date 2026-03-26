@@ -244,11 +244,11 @@ const translations = {
   "master_data_navs": {
     "access_control": {
       "index": "Access Control",
-      "role": "Role",
+      "account_role": "Account Role",
       "permission": "Permission"
     },
     "hr": {
-      "index": "Human resources",
+      "index": "Human Resources",
       "employment_status": "Employment Status"
     }
   },
@@ -414,12 +414,11 @@ const translations = {
       "index": "Main",
       "personalization": "Personalization",
       "regional": "Regional",
-      "app_permissions": "App permissions"
+      "app_permissions": "App Permissions"
     },
     "system": {
       "index": "System",
-      "account_role": "Account role",
-      "activity_log": "Activity log",
+      "activity_log": "Activity Log",
       "integration": "Integration"
     },
     "others": {

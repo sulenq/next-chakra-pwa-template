@@ -1,16 +1,16 @@
 "use client";
 
 import { Btn } from "@/components/ui/btn";
-import { CContainer } from "@/components/ui/c-container";
 import { Field } from "@/components/ui/field";
 import { Skeleton } from "@/components/ui/skeleton";
+import { StackV } from "@/components/ui/stack";
 import { TextareaInput } from "@/components/ui/textarea-input";
 import FeedbackNoData from "@/components/widgets/feedback-no-data";
 import FeedbackNotFound from "@/components/widgets/feedback-not-found";
 import FeedbackRetry from "@/components/widgets/feedback-retry";
 import { LucideIcon } from "@/components/widgets/icon";
 import { Item } from "@/components/widgets/item";
-import { BASE_ICON_BOX_SIZE } from "@/constants/styles";
+import { BASE_ICON_BOX_SIZE, R_SPACING_MD } from "@/constants/styles";
 import { useLocale } from "@/contexts/useLocale";
 import useRenderTrigger from "@/contexts/useRenderTrigger";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
@@ -24,7 +24,7 @@ import * as yup from "yup";
 
 const APIKeys = (props: any) => {
   // Props
-  const { apiKeys, ...restProps } = props;
+  const { apiKeys } = props;
 
   // Contexts
   const { t } = useLocale();
@@ -76,7 +76,7 @@ const APIKeys = (props: any) => {
   }, [apiKeys]);
 
   return (
-    <Item.Container borderless roundedless {...restProps}>
+    <Item.Container borderless bg={"transparent"}>
       <Item.Header borderless>
         <HStack>
           <Icon boxSize={BASE_ICON_BOX_SIZE}>
@@ -86,13 +86,8 @@ const APIKeys = (props: any) => {
         </HStack>
       </Item.Header>
 
-      <CContainer px={4}>
-        <CContainer
-          p={4}
-          rounded={themeConfig.radii.container}
-          border={"1px solid"}
-          borderColor={"border.muted"}
-        >
+      <StackV px={R_SPACING_MD} pb={R_SPACING_MD}>
+        <Item.Container p={4}>
           <form id={"api-keys-form"} onSubmit={formik.handleSubmit}>
             <FieldsetRoot disabled={loading}>
               <Field
@@ -134,8 +129,8 @@ const APIKeys = (props: any) => {
               {t.save}
             </Btn>
           </HStack>
-        </CContainer>
-      </CContainer>
+        </Item.Container>
+      </StackV>
     </Item.Container>
   );
 };
@@ -160,9 +155,9 @@ export default function Page() {
     empty: <FeedbackNoData />,
     notFound: <FeedbackNotFound />,
     loaded: (
-      <CContainer gap={4}>
+      <StackV gap={4}>
         <APIKeys apiKeys={data?.apiKeys} />
-      </CContainer>
+      </StackV>
     ),
   };
 

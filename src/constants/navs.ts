@@ -189,13 +189,6 @@ export const OTHER_PRIVATE_NAV_GROUPS: Interface__NavGroup[] = [
             labelKey: "settings_navs.system.index",
             navs: [
               {
-                icon: UserCogIcon,
-                labelKey: "settings_navs.system.account_role",
-                path: `/settings/account-role`,
-                allowedRoles: [],
-                backPath: `/settings`,
-              },
-              {
                 icon: BlocksIcon,
                 labelKey: "settings_navs.system.integration",
                 path: `/settings/integration`,

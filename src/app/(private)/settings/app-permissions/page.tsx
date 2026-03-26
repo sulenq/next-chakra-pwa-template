@@ -1,7 +1,6 @@
 "use client";
 
 import { Btn } from "@/components/ui/btn";
-import { CContainer } from "@/components/ui/c-container";
 import { Disclosure } from "@/components/ui/disclosure";
 import { P } from "@/components/ui/p";
 import { StackV } from "@/components/ui/stack";
@@ -26,7 +25,7 @@ import { HStack } from "@chakra-ui/react";
 import { CameraIcon, MapPinIcon, MicIcon } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
-const Camera = () => {
+const CameraSection = () => {
   // Contexts
   const { t } = useLocale();
   const { themeConfig } = useThemeConfig();
@@ -177,12 +176,12 @@ const Camera = () => {
       </Item.Header>
 
       <StackV px={R_SPACING_MD} pb={R_SPACING_MD}>
-        <Item.Content p={4}>
+        <Item.Container p={4}>
           <ToggleSettingContainer>
-            <CContainer>
+            <StackV gap={1}>
               <P>{t.settings_camera.title}</P>
               <P color={"fg.subtle"}>{t.settings_camera.description}</P>
-            </CContainer>
+            </StackV>
 
             <Switch
               checked={cameraPermissionsStatus === "granted"}
@@ -197,7 +196,7 @@ const Camera = () => {
 
           {(cameraPermissionsStatus === "granted" ||
             cameraPermissionsStatus === "denied") && (
-            <CContainer>
+            <StackV>
               <P color={"fg.subtle"}>
                 {cameraPermissionsStatus === "granted"
                   ? t.msg_permissions_granted_helper
@@ -206,15 +205,15 @@ const Camera = () => {
               <P color={"fg.subtle"}>
                 {`${getBrowserSettingsLink()} ${t.camera}`}
               </P>
-            </CContainer>
+            </StackV>
           )}
-        </Item.Content>
+        </Item.Container>
       </StackV>
     </Item.Container>
   );
 };
 
-const Microphone = () => {
+const MicrophoneSection = () => {
   // Contexts
   const { t } = useLocale();
   const { themeConfig } = useThemeConfig();
@@ -323,12 +322,12 @@ const Microphone = () => {
             </Disclosure.Header>
 
             <Disclosure.Body>
-              <CContainer py={4}>
+              <StackV py={4}>
                 <P mb={2}>Volume</P>
 
                 {/* Ini progress bar real-time */}
                 <MicVolumeBar analyser={analyser} />
-              </CContainer>
+              </StackV>
             </Disclosure.Body>
 
             <Disclosure.Footer>
@@ -363,12 +362,12 @@ const Microphone = () => {
       </Item.Header>
 
       <StackV px={R_SPACING_MD} pb={R_SPACING_MD}>
-        <Item.Content p={4}>
+        <Item.Container p={4}>
           <ToggleSettingContainer>
-            <CContainer>
+            <StackV gap={1}>
               <P>{t.settings_mic.title}</P>
               <P color={"fg.subtle"}>{t.settings_mic.description}</P>
-            </CContainer>
+            </StackV>
 
             <Switch
               checked={micPermissionsStatus === "granted"}
@@ -383,7 +382,7 @@ const Microphone = () => {
 
           {(micPermissionsStatus === "granted" ||
             micPermissionsStatus === "denied") && (
-            <CContainer>
+            <StackV>
               <P color={"fg.subtle"}>
                 {micPermissionsStatus === "granted"
                   ? t.msg_permissions_granted_helper
@@ -392,15 +391,15 @@ const Microphone = () => {
               <P color={"fg.subtle"}>
                 {`${getBrowserSettingsLink()} ${t.mic}`}
               </P>
-            </CContainer>
+            </StackV>
           )}
-        </Item.Content>
+        </Item.Container>
       </StackV>
     </Item.Container>
   );
 };
 
-const Location = () => {
+const LocationSection = () => {
   // Contexts
   const { t } = useLocale();
   const { themeConfig } = useThemeConfig();
@@ -504,7 +503,7 @@ const Location = () => {
               {!address && <P>{t.msg_location_test_helper}</P>}
 
               {address && center && (
-                <CContainer gap={2}>
+                <StackV gap={2}>
                   <HStack align={"start"}>
                     <P w={"100px"} color={"fg.muted"} flexShrink={0}>
                       Latitude
@@ -525,7 +524,7 @@ const Location = () => {
                     </P>
                     <P>{address}</P>
                   </HStack>
-                </CContainer>
+                </StackV>
               )}
             </Disclosure.Body>
 
@@ -557,12 +556,12 @@ const Location = () => {
       </Item.Header>
 
       <StackV px={R_SPACING_MD} pb={R_SPACING_MD}>
-        <Item.Content p={4}>
+        <Item.Container p={4}>
           <ToggleSettingContainer>
-            <CContainer>
+            <StackV gap={1}>
               <P>{t.settings_location.title}</P>
               <P color={"fg.subtle"}>{t.settings_location.description}</P>
-            </CContainer>
+            </StackV>
 
             <Switch
               checked={locationPermissionsStatus === "granted"}
@@ -577,7 +576,7 @@ const Location = () => {
 
           {(locationPermissionsStatus === "granted" ||
             locationPermissionsStatus === "denied") && (
-            <CContainer>
+            <StackV>
               <P color={"fg.subtle"}>
                 {locationPermissionsStatus === "granted"
                   ? t.msg_permissions_granted_helper
@@ -586,9 +585,9 @@ const Location = () => {
               <P color={"fg.subtle"}>
                 {`${getBrowserSettingsLink()} ${t.location}`}
               </P>
-            </CContainer>
+            </StackV>
           )}
-        </Item.Content>
+        </Item.Container>
       </StackV>
     </Item.Container>
   );
@@ -596,14 +595,14 @@ const Location = () => {
 
 export default function Page() {
   return (
-    <CContainer flex={1} gap={3}>
-      <Camera />
+    <StackV flex={1} gap={2}>
+      <CameraSection />
 
-      <Microphone />
+      <MicrophoneSection />
 
-      <Location />
+      <LocationSection />
 
       <LocalSettingsHelperText />
-    </CContainer>
+    </StackV>
   );
 }

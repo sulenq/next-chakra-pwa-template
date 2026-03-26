@@ -114,7 +114,7 @@ export const SearchInput = (props: SearchInputProps) => {
             <Icon
               boxSize={BASE_ICON_BOX_SIZE}
               color={"fg.subtle"}
-              ml={"-4px"}
+              ml={"-2px"}
               {...iconProps}
             >
               {icon || <LucideIcon icon={SearchIcon} />}
@@ -126,7 +126,7 @@ export const SearchInput = (props: SearchInputProps) => {
         <HStack position={"relative"} w={"full"}>
           <StringInput
             ref={inputRef ? inputRef : null}
-            pl={noIcon ? 4 : 8}
+            pl={noIcon ? "16px" : "34px"}
             pr={"40px"}
             placeholder={resolvedPlacholder}
             onChange={handleChange}
