@@ -9,11 +9,11 @@ import { useEffect, useState } from "react";
 
 export interface ClockPropsProps extends StackProps {
   showSeconds?: boolean;
-  showTimezone?: boolean;
+  showAbbr?: boolean;
 }
 export const Clock = (props: ClockPropsProps) => {
   // Props
-  const { showSeconds = false, showTimezone = false, ...restProps } = props;
+  const { showSeconds = false, showAbbr = true, ...restProps } = props;
 
   // Contexts
   const tz = useTimezone((s) => s.timeZone);
@@ -39,6 +39,7 @@ export const Clock = (props: ClockPropsProps) => {
         formatTime(utcTimeString(), {
           showSeconds,
           timezoneKey: tzKey,
+          showAbbr: showAbbr,
         }),
       );
     };
@@ -53,8 +54,6 @@ export const Clock = (props: ClockPropsProps) => {
       <P fontSize={props?.fontSize} fontVariantNumeric={"tabular-nums"}>
         {time}
       </P>
-
-      {showTimezone && <P fontSize={props?.fontSize}>{tz.localAbbr}</P>}
     </StackH>
   );
 };

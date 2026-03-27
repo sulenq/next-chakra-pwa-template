@@ -14,6 +14,7 @@ import { isValid, parseISO } from "date-fns";
 import { format as formatTz, toZonedTime } from "date-fns-tz";
 import { isDateObject } from "@/utils/date";
 import { getTimezoneOffsetMs, getUserTimezone } from "@/utils/time";
+import { TIME_ZONES } from "@/constants/timezone";
 import { NUMBER_LOCALE } from "@/constants/styles";
 
 export const formatDate = (
@@ -285,14 +286,16 @@ export const formatTime = (
     timeFormat?: Type__TimeFormat;
     timezoneKey?: string;
     withSuffix?: boolean;
+    showAbbr?: boolean;
   } = {},
 ): string => {
   if (!time) return "";
 
   const timeFormat =
     options.timeFormat || getStorage("timeFormat") || "24-hour";
-
   const timezoneKey = options.timezoneKey || "UTC";
+
+  // get timezone offset
   const offsetMs = getTimezoneOffsetMs(timezoneKey);
   const offsetHours = offsetMs / (1000 * 60 * 60);
 
@@ -313,17 +316,19 @@ export const formatTime = (
     }
 
     const withSuffix = options.withSuffix ?? true;
-    if (withSuffix) {
-      formattedTime += ` ${suffix}`;
-    }
+    if (withSuffix) formattedTime += ` ${suffix}`;
   } else {
-    formattedTime = `${String(hh).padStart(2, "0")}:${String(mm).padStart(
-      2,
-      "0",
-    )}`;
+    formattedTime = `${String(hh).padStart(2, "0")}:${String(mm).padStart(2, "0")}`;
 
     if (options.showSeconds) {
       formattedTime += `:${String(ss).padStart(2, "0")}`;
+    }
+  }
+
+  if (options.showAbbr) {
+    const tz = TIME_ZONES.find((t) => t.key === timezoneKey);
+    if (tz?.localAbbr) {
+      formattedTime += ` ${tz.localAbbr}`;
     }
   }
 
