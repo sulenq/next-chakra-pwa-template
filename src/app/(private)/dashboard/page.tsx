@@ -559,12 +559,13 @@ const Content = () => {
   };
 
   return (
-    <View.Content gap={R_SPACING_MD} p={GAP}>
+    <View.Content gap={GAP} p={GAP}>
       <StackH
         wrap={"wrap"}
         align={"center"}
         justify={"space-between"}
         p={R_SPACING_MD}
+        mb={4}
       >
         <StackV>
           <P
