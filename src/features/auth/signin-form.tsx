@@ -165,8 +165,7 @@ const Signedin = (props: any) => {
         <StackV
           flex={1}
           aspectRatio={1 / 1.6}
-          border={"1px solid"}
-          borderColor={"border.subtle"}
+          bg={"bg.bodySolid"}
           rounded={themeConfig.radii.component}
           shadow={"xs"}
           overflow={"clip"}
@@ -174,13 +173,7 @@ const Signedin = (props: any) => {
         >
           <Img src={userAvatarSrc} w={"full"} aspectRatio={1} />
 
-          <StackV
-            flex={1}
-            justify={"space-between"}
-            gap={4}
-            p={4}
-            bg={"bg.bodySolid"}
-          >
+          <StackV flex={1} justify={"space-between"} gap={4} p={4}>
             <StackV>
               <P fontSize={"lg"} fontWeight={"medium"}>
                 {user?.name}
