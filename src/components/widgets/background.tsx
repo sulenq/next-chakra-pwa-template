@@ -3,6 +3,8 @@ import { StackV } from "@/components/ui/stack";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
 import { Box, Center, Circle, StackProps } from "@chakra-ui/react";
 
+// -----------------------------------------------------------------
+
 export const RadialGlowBackground = (props: StackProps) => {
   // Contexts
   const { themeConfig } = useThemeConfig();
@@ -50,6 +52,8 @@ export const RadialGlowBackground = (props: StackProps) => {
     </Center>
   );
 };
+
+// -----------------------------------------------------------------
 
 interface AnimatedBlobBackgroundProps extends Omit<
   StackProps,
@@ -118,7 +122,7 @@ export const AnimatedBlobBackground = (props: AnimatedBlobBackgroundProps) => {
       <Box
         w={"full"}
         h={"full"}
-        backdropFilter={"blur(100px)"}
+        backdropFilter={"blur(70px)"}
         pos={"absolute"}
         top={0}
         left={0}
