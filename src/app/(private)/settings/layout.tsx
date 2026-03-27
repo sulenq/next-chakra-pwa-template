@@ -57,8 +57,8 @@ const Content = ({ children }: { children: React.ReactNode }) => {
           >
             <StackV
               flex={1}
-              px={isSmContainer ? "4 !important" : 0}
-              pb={isSmContainer ? "4 !important" : 0}
+              px={isSmContainer ? "2 !important" : 0}
+              pb={isSmContainer ? "2 !important" : 0}
               rounded={themeConfig.radii.container}
               overflowY={"auto"}
             >
