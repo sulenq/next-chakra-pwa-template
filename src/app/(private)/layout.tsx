@@ -362,7 +362,7 @@ const DesktopLayout = (props: any) => {
                     lineClamp={1}
                     fontSize={"lg"}
                     fontWeight={"semibold"}
-                    color={`${themeConfig.colorPalette}.solid`}
+                    color={`${themeConfig.colorPalette}.fg`}
                   >
                     {APP.name}
                   </P>
