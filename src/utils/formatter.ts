@@ -232,8 +232,7 @@ export const formatNumber = (
   locale = NUMBER_LOCALE,
   maxFractionDigits = 4,
 ): string => {
-  if (numParam === null || numParam === undefined || numParam === "")
-    return "-";
+  if (numParam === null || numParam === undefined || numParam === "") return "";
 
   let num: number;
 

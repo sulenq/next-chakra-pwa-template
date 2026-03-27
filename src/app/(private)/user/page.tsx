@@ -622,7 +622,13 @@ const Content = () => {
   return (
     <View.Content p={GAP}>
       <CContainer flex={1} overflowY={"auto"}>
-        <View.Header withTitle justify={"space-between"}>
+        <View.Header
+          withTitle
+          ViewTitleProps={{
+            ml: [2, null, 0],
+          }}
+          justify={"space-between"}
+        >
           <HStack>
             {!isSmContainer && (
               <DataUtils
@@ -636,24 +642,19 @@ const Content = () => {
           </HStack>
         </View.Header>
 
-        <Item.Container flex={1} overflowY={"auto"}>
-          {isSmContainer && (
-            <HScroll>
-              <HStack
-                minW={"full"}
-                justify={"space-between"}
-                px={R_SPACING_MD}
-                pt={R_SPACING_MD}
-              >
-                <DataUtils
-                  filter={filter}
-                  setFilter={setFilter}
-                  routeTitle={routeTitle}
-                />
-              </HStack>
-            </HScroll>
-          )}
+        {isSmContainer && (
+          <HScroll mb={4}>
+            <HStack minW={"full"} justify={"space-between"} px={R_SPACING_MD}>
+              <DataUtils
+                filter={filter}
+                setFilter={setFilter}
+                routeTitle={routeTitle}
+              />
+            </HStack>
+          </HScroll>
+        )}
 
+        <Item.Container flex={1} overflowY={"auto"}>
           <Data
             filter={filter}
             routeTitle={routeTitle}

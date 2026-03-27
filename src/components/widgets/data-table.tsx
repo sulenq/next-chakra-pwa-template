@@ -33,6 +33,7 @@ import { useThemeConfig } from "@/contexts/useThemeConfig";
 import { useIsSmScreenWidth } from "@/hooks/useIsSmScreenWidth";
 import { useScreen } from "@/hooks/useScreen";
 import { isEmptyArray } from "@/utils/array";
+import { formatNumber } from "@/utils/formatter";
 import {
   Box,
   Center,
@@ -56,7 +57,7 @@ export interface DataTableProps extends Omit<StackProps, "page"> {
   page?: number;
   setPage?: React.Dispatch<number>;
   totalPage?: number;
-  footer?: any;
+  totalData?: number;
   loading?: boolean;
   contentContainerProps?: StackProps;
 }
@@ -76,7 +77,7 @@ export const DataTableDisplay = (props: DataTableProps) => {
     page = 1,
     setPage,
     totalPage,
-    footer,
+    totalData,
     contentContainerProps,
     ...restProps
   } = props;
@@ -228,7 +229,6 @@ export const DataTableDisplay = (props: DataTableProps) => {
     <StackV
       ref={tableContainerRef}
       flex={1}
-      px={R_SPACING_MD}
       pt={R_SPACING_MD}
       overflow={"auto"}
       minH={props?.minH || sh < 625 ? "400px" : ""}
@@ -238,6 +238,7 @@ export const DataTableDisplay = (props: DataTableProps) => {
       <StackV
         className={"scrollX scrollYAlt"}
         flex={1}
+        px={R_SPACING_MD}
         pb={R_SPACING_MD}
         bg={TABLE_CONTAINER_BG}
         roundedTop={themeConfig.radii.container}
@@ -513,46 +514,38 @@ export const DataTableDisplay = (props: DataTableProps) => {
       </StackV>
 
       {hasFooter && (
-        <>
-          <HStack
-            justify={"space-between"}
-            p={3}
-            borderTop={"1px solid"}
-            borderColor={TABLE_FOOTER_BORDER_COLOR}
-            mt={"auto"}
-            wrap={"wrap"}
-          >
-            <StackV w={"fit"} mb={[1, null, 0]}>
+        <StackV
+          p={3}
+          gap={2}
+          borderTop={"1px solid"}
+          borderColor={TABLE_FOOTER_BORDER_COLOR}
+        >
+          {iss && (
+            <StackV align={"center"} justify={"center"}>
+              <P
+                color={"fg.subtle"}
+              >{`${formatNumber(rows?.length)} / ${formatNumber(totalData) || "?"} items`}</P>
+            </StackV>
+          )}
+
+          <HStack w={"full"} justify={"space-between"}>
+            <StackV align={"start"} w={"35%"} mb={[1, null, 0]}>
               <Limitation limit={limit} setLimit={setLimit} />
             </StackV>
 
             {!iss && (
-              <StackV
-                justify={"center"}
-                w={"fit"}
-                pl={[2, null, 0]}
-                mt={[footer ? 1 : 0, null, 0]}
-              >
-                {footer}
+              <StackV align={"center"} justify={"center"} w={"30%"}>
+                <P
+                  color={"fg.subtle"}
+                >{`${formatNumber(rows?.length)} / ${formatNumber(totalData) || "?"} items`}</P>
               </StackV>
             )}
 
-            <StackV w={"fit"}>
+            <StackV align={"end"} w={"35%"}>
               <Pagination page={page} setPage={setPage} totalPage={totalPage} />
             </StackV>
           </HStack>
-
-          {iss && (
-            <StackV
-              justify={"center"}
-              w={"fit"}
-              pl={[2, null, 0]}
-              mt={[footer ? 1 : 0, null, 0]}
-            >
-              {footer}
-            </StackV>
-          )}
-        </>
+        </StackV>
       )}
     </StackV>
   );

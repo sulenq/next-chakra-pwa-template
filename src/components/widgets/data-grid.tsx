@@ -30,6 +30,7 @@ import { useIsSmScreenWidth } from "@/hooks/useIsSmScreenWidth";
 import { usePopDisclosure } from "@/hooks/usePopDisclosure";
 import { isEmptyArray } from "@/utils/array";
 import { disclosureId } from "@/utils/disclosure";
+import { formatNumber } from "@/utils/formatter";
 import {
   Box,
   HStack,
@@ -330,7 +331,7 @@ interface DataGridProps extends Omit<StackProps, "page"> {
   page?: number;
   setPage?: (page: number) => void;
   totalPage?: number;
-  footer?: React.ReactNode;
+  totalData?: number;
   minChildWidth?: string;
 }
 
@@ -344,7 +345,7 @@ const DataGridDisplay = (props: DataGridProps) => {
     page,
     setPage,
     totalPage,
-    footer,
+    totalData,
     minChildWidth = "180px",
     ...restProps
   } = props;
@@ -452,8 +453,8 @@ const DataGridDisplay = (props: DataGridProps) => {
         </HStack>
       </Presence>
 
+      {/* Grid */}
       <StackV
-        px={R_SPACING_MD}
         // pt={`calc(${rSpacingMd} - 8px)`}
         pt={R_SPACING_MD}
         overflowY={"auto"}
@@ -461,6 +462,7 @@ const DataGridDisplay = (props: DataGridProps) => {
         <StackV
           className={"scrollY"}
           flex={1}
+          px={R_SPACING_MD}
           //  pt={"8px"}
           pb={R_SPACING_MD}
         >
@@ -513,45 +515,45 @@ const DataGridDisplay = (props: DataGridProps) => {
         </StackV>
       </StackV>
 
+      {/* Footer */}
       {hasFooter && (
         <>
-          <HStack
-            w={"full"}
+          <StackV
             p={3}
+            gap={2}
             borderTop={"1px solid"}
             borderColor={GRID_FOOTER_BORDER_COLOR}
-            justify={"space-between"}
           >
-            <StackV w={"fit"} mb={[1, null, 0]}>
-              <Limitation limit={limit} setLimit={setLimit} />
-            </StackV>
-
-            {!iss && (
-              <StackV
-                w={"fit"}
-                justify={"center"}
-                pl={[2, null, 0]}
-                mt={[footer ? 1 : 0, null, 0]}
-              >
-                {footer}
+            {iss && (
+              <StackV align={"center"} justify={"center"}>
+                <P
+                  color={"fg.subtle"}
+                >{`${formatNumber(data?.length)} / ${formatNumber(totalData) || "?"} items`}</P>
               </StackV>
             )}
 
-            <StackV w={"fit"}>
-              <Pagination page={page} setPage={setPage} totalPage={totalPage} />
-            </StackV>
-          </HStack>
+            <HStack w={"full"} justify={"space-between"}>
+              <StackV align={"start"} w={"35%"} mb={[1, null, 0]}>
+                <Limitation limit={limit} setLimit={setLimit} />
+              </StackV>
 
-          {iss && (
-            <StackV
-              w={"fit"}
-              justify={"center"}
-              pl={[2, null, 0]}
-              mt={[footer ? 1 : 0, null, 0]}
-            >
-              {footer}
-            </StackV>
-          )}
+              {!iss && (
+                <StackV align={"center"} justify={"center"} w={"30%"}>
+                  <P
+                    color={"fg.subtle"}
+                  >{`${formatNumber(data?.length)} / ${formatNumber(totalData) || "?"} items`}</P>
+                </StackV>
+              )}
+
+              <StackV align={"end"} w={"35%"}>
+                <Pagination
+                  page={page}
+                  setPage={setPage}
+                  totalPage={totalPage}
+                />
+              </StackV>
+            </HStack>
+          </StackV>
         </>
       )}
     </StackV>
