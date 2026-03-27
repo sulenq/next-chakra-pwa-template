@@ -8,15 +8,12 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { StackH, StackV } from "@/components/ui/stack";
 import { Switch } from "@/components/ui/switch";
 import { AppIconLucide } from "@/components/widgets/app-icon";
-import { Calendar } from "@/components/widgets/calendar";
 import { ChartTooltip } from "@/components/widgets/chart-tooltip";
 import { ClampText } from "@/components/widgets/clamp-text";
-import { Clock } from "@/components/widgets/clock";
 import FeedbackNoData from "@/components/widgets/feedback-no-data";
 import FeedbackRetry from "@/components/widgets/feedback-retry";
 import { DotIndicator } from "@/components/widgets/indicator";
 import { Item } from "@/components/widgets/item";
-import { Today, TodayWeekday } from "@/components/widgets/today";
 import { View, useViewContext } from "@/components/widgets/view";
 import { DUMMY_DASHBOARD_DATA } from "@/constants/dummyData";
 import { getMonthNames } from "@/constants/months";
@@ -583,18 +580,6 @@ const Content = () => {
               : t.msg_no_task}
           </P>
         </StackV>
-
-        <Calendar.Trigger>
-          <CContainer w={"fit"} align={"end"}>
-            <TodayWeekday fontSize={"xl"} fontWeight={"medium"} />
-
-            <HStack>
-              <Today />
-
-              <Clock showTimezone />
-            </HStack>
-          </CContainer>
-        </Calendar.Trigger>
       </StackH>
 
       <StackV>

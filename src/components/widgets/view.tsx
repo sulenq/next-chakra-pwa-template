@@ -6,6 +6,7 @@ import { P, PProps } from "@/components/ui/p";
 import { StackH, StackV } from "@/components/ui/stack";
 import { AppIconLucide } from "@/components/widgets/app-icon";
 import { BackButton } from "@/components/widgets/back-button";
+import { Calendar } from "@/components/widgets/calendar";
 import { ClampText } from "@/components/widgets/clamp-text";
 import { Clock } from "@/components/widgets/clock";
 import { DotIndicator } from "@/components/widgets/indicator";
@@ -164,7 +165,9 @@ export const TopBar = (props: StackProps) => {
       </StackH>
 
       <StackH align={"center"} justify={"center"} w={"30%"} color={"fg.muted"}>
-        <Today dateVariant={"shortWeekdayDayShortMonthYear"} />
+        <Calendar.Trigger>
+          <Today dateVariant={"shortWeekdayDayShortMonthYear"} />
+        </Calendar.Trigger>
 
         <Divider dir={"vertical"} mx={2} h={"20px"} />
 
