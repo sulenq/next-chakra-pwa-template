@@ -122,7 +122,7 @@ export const AnimatedBlobBackground = (props: AnimatedBlobBackgroundProps) => {
       <Box
         w={"full"}
         h={"full"}
-        backdropFilter={"blur(70px)"}
+        backdropFilter={"blur(80px)"}
         pos={"absolute"}
         top={0}
         left={0}
