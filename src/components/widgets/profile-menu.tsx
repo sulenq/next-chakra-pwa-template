@@ -70,7 +70,7 @@ export const ProfileMenu = (props: ProfileMenuProps) => {
   // Contexts
   const { t } = useLocale();
   const { themeConfig } = useThemeConfig();
-  const removeAuth = useAuthMiddleware((s) => s.removeAuth);
+  const removeAuthContext = useAuthMiddleware((s) => s.removeAuthContext);
   const ADM = useADM((s) => s.ADM);
 
   // Hooks
@@ -102,11 +102,11 @@ export const ProfileMenu = (props: ProfileMenuProps) => {
         onSuccess: () => {
           removeStorage("__access_token");
           removeStorage("__user_data");
-          removeAuth();
+          removeAuthContext();
           router.push("/");
         },
         onError: () => {
-          removeAuth();
+          removeAuthContext();
           router.push("/");
         },
       },

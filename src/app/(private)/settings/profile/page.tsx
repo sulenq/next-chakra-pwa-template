@@ -3,7 +3,7 @@
 import { AvatarUploadTrigger } from "@/components/ui/avatar";
 import { Btn } from "@/components/ui/btn";
 import { Field, FieldsetRoot } from "@/components/ui/field";
-import { Img } from "@/components/ui/img";
+import { HelperText } from "@/components/ui/helper-text";
 import { P } from "@/components/ui/p";
 import { SearchInput } from "@/components/ui/search-input";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -15,14 +15,14 @@ import { ClampText } from "@/components/widgets/clamp-text";
 import FeedbackNoData from "@/components/widgets/feedback-no-data";
 import FeedbackNotFound from "@/components/widgets/feedback-not-found";
 import FeedbackRetry from "@/components/widgets/feedback-retry";
-import { ImgViewer } from "@/components/widgets/img-viewer";
 import { Item } from "@/components/widgets/item";
 import { Limitation } from "@/components/widgets/limitation";
 import { Pagination } from "@/components/widgets/pagination";
+import { UserIdCard } from "@/components/widgets/user-id-card";
 import {
+  DUMMY_USER,
   dummyActivityLogs,
   dummyAuthLogs,
-  DUMMY_USER,
 } from "@/constants/dummyData";
 import { ActivityActionEnum } from "@/constants/enums";
 import {
@@ -38,7 +38,6 @@ import { useFetchData } from "@/hooks/useFetchData";
 import { useRequest } from "@/hooks/useRequest";
 import { isEmptyArray } from "@/utils/array";
 import { formatDate } from "@/utils/formatter";
-import { imgUrl } from "@/utils/url";
 import { Circle } from "@chakra-ui/react";
 import { useFormik } from "formik";
 import {
@@ -129,87 +128,81 @@ const PersonalInformation = (props: PersonalInformationProps) => {
 
       <StackV px={R_SPACING_MD} pb={R_SPACING_MD}>
         <Item.Container p={4}>
-          <form
-            id="personal-info-form"
-            onSubmit={formik.handleSubmit}
-            {...restProps}
-          >
-            <FieldsetRoot disabled={loading}>
-              <Field
-                invalid={!!formik.errors.avatar}
-                errorText={`${formik.errors.avatar}`}
+          <StackH>
+            <StackV minW={"280px"} pl={10} pr={8} pt={"28px"} pb={2}>
+              <UserIdCard />
+            </StackV>
+
+            <StackV flex={1} justify={"space-between"}>
+              <form
+                id="personal-info-form"
+                onSubmit={formik.handleSubmit}
+                {...restProps}
               >
-                <StackH align={"center"} gap={4}>
-                  <ImgViewer
-                    src={initialData?.avatar?.[0]?.fileUrl}
-                    key={imgUrl(initialData?.avatar?.[0]?.filePath)}
+                <FieldsetRoot disabled={loading}>
+                  <Field
+                    label={"Avatar"}
+                    invalid={!!formik.errors.avatar}
+                    errorText={`${formik.errors.avatar}`}
                   >
-                    <Img
-                      src={initialData?.avatar?.[0]?.fileUrl}
-                      key={imgUrl(initialData?.avatar?.[0]?.filePath)}
-                      aspectRatio={1}
-                      w={"100px"}
-                      rounded={"full"}
-                    />
-                  </ImgViewer>
+                    <StackV gap={2}>
+                      <AvatarUploadTrigger formik={formik} user={initialData}>
+                        <Btn w={"fit"} variant={"outline"}>
+                          {t.upload_new_avatar}
+                        </Btn>
+                      </AvatarUploadTrigger>
 
-                  <StackV gap={2}>
-                    <AvatarUploadTrigger formik={formik} user={initialData}>
-                      <Btn w={"fit"} variant={"outline"}>
-                        {t.upload_new_avatar}
-                      </Btn>
-                    </AvatarUploadTrigger>
-
-                    <StackV color={"fg.subtle"}>
-                      <P>{t.msg_new_avatar_helper}</P>
-                      <P>{`PNG, JPG ${t.is_allowed}`}</P>
+                      <StackV>
+                        <HelperText>{t.msg_new_avatar_helper}</HelperText>
+                        <HelperText>{`PNG, JPG ${t.is_allowed}`}</HelperText>
+                      </StackV>
                     </StackV>
-                  </StackV>
-                </StackH>
-              </Field>
+                  </Field>
 
-              <Field
-                label={t.name}
-                invalid={!!formik.errors.name}
-                errorText={`${formik.errors.name}`}
-              >
-                <StringInput
-                  inputValue={formik.values.name}
-                  onChange={(inputValue) => {
-                    formik.setFieldValue("name", inputValue);
-                  }}
-                  placeholder="Jolitos Kurniawan"
-                />
-              </Field>
+                  <Field
+                    label={t.name}
+                    invalid={!!formik.errors.name}
+                    errorText={`${formik.errors.name}`}
+                  >
+                    <StringInput
+                      inputValue={formik.values.name}
+                      onChange={(inputValue) => {
+                        formik.setFieldValue("name", inputValue);
+                      }}
+                      placeholder="Jolitos Kurniawan"
+                    />
+                  </Field>
 
-              <Field
-                label={"Email"}
-                invalid={!!formik.errors.email}
-                errorText={`${formik.errors.email}`}
-              >
-                <StringInput
-                  inputValue={formik.values.email}
-                  onChange={(inputValue) => {
-                    formik.setFieldValue("email", inputValue);
-                  }}
-                  placeholder="example@email.com"
-                />
-              </Field>
-            </FieldsetRoot>
-          </form>
+                  <Field
+                    label={"Email"}
+                    invalid={!!formik.errors.email}
+                    errorText={`${formik.errors.email}`}
+                  >
+                    <StringInput
+                      inputValue={formik.values.email}
+                      onChange={(inputValue) => {
+                        formik.setFieldValue("email", inputValue);
+                      }}
+                      placeholder="example@email.com"
+                    />
+                  </Field>
+                </FieldsetRoot>
+              </form>
 
-          <StackH justify={"space-between"} mt={8}>
-            <ResetPasswordDisclosureTrigger>
-              <Btn variant={"outline"}>Reset password</Btn>
-            </ResetPasswordDisclosureTrigger>
+              <StackH justify={"space-between"} mt={8}>
+                <ResetPasswordDisclosureTrigger>
+                  <Btn variant={"outline"}>Reset password</Btn>
+                </ResetPasswordDisclosureTrigger>
 
-            <Btn
-              type="submit"
-              form={"personal-info-form"}
-              colorPalette={themeConfig.colorPalette}
-            >
-              {t.save}
-            </Btn>
+                <Btn
+                  type="submit"
+                  form={"personal-info-form"}
+                  colorPalette={themeConfig.colorPalette}
+                >
+                  {t.save}
+                </Btn>
+              </StackH>
+            </StackV>
           </StackH>
         </Item.Container>
       </StackV>
