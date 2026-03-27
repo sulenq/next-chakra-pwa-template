@@ -1,4 +1,5 @@
 import { P } from "@/components/ui/p";
+import { BACKDROP_BLUR_FILTER } from "@/constants/styles";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
 import { Tooltip as ChakraTooltip, Portal } from "@chakra-ui/react";
 import * as React from "react";
@@ -32,7 +33,7 @@ export const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>(
     if (disabled) return children;
 
     return (
-      <ChakraTooltip.Root openDelay={1000} {...restProps}>
+      <ChakraTooltip.Root openDelay={500} {...restProps}>
         <ChakraTooltip.Trigger asChild>{children}</ChakraTooltip.Trigger>
         <Portal disabled={!portalled} container={portalRef}>
           <ChakraTooltip.Positioner>
@@ -41,6 +42,7 @@ export const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>(
               w={"fit"}
               maxW={"240px"}
               bg={"bg.body"}
+              backdropFilter={BACKDROP_BLUR_FILTER}
               color={"fg.ibody"}
               px={2}
               py={1}
