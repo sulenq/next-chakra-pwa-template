@@ -111,6 +111,10 @@ export const settings_navs = {
 };
 
 // Semantic UI
+export const page = {
+  id: "Halaman",
+  en: "Page",
+};
 export const enter_app = {
   id: "Masuk ke Aplikasi",
   en: "Enter Application",
