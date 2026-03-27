@@ -101,7 +101,7 @@ export const DesktopNavs = (props: DesktopNavsProps) => {
   return (
     <StackV overflowX={"clip"} {...restProps}>
       {/* Navs List */}
-      <StackV flex={1} gap={R_SPACING_MD}>
+      <StackV flex={1} gap={4}>
         {/* Private Navs */}
         {isEmptyArray(resolvedNavs) && <FeedbackNotFound />}
 
@@ -110,7 +110,6 @@ export const DesktopNavs = (props: DesktopNavsProps) => {
             return (
               <StackV
                 key={navItemIdx}
-                flex={1}
                 align={navsExpanded ? "start" : "center"}
                 gap={DESKTOP_NAV_GAP}
               >
