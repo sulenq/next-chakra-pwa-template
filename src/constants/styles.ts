@@ -26,7 +26,9 @@ export const MENU_ICON_BOX_SIZE = 4.5;
 export const USER_PANEL_H = "122px";
 
 // Spacing
-export const R_SPACING_MD = ["4px", null, "10px"];
+export const MOBILE_SPACING_MD = "4px";
+export const DESKTOP_SPACING_MD = "10px";
+export const R_SPACING_MD = [MOBILE_SPACING_MD, null, DESKTOP_SPACING_MD];
 export const GAP = "6px";
 
 // Positioning

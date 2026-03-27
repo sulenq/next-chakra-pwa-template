@@ -37,6 +37,7 @@ import {
   DESKTOP_NAV_BTN_SIZE,
   DESKTOP_NAV_BTN_VARIANT,
   DESKTOP_NAVS_COLOR,
+  DESKTOP_SPACING_MD,
   GAP,
   MOBILE_CONTENT_CONTAINER_BG,
   MOBILE_NAV_LABEL_FONT_SIZE,
@@ -56,7 +57,7 @@ import { last } from "@/utils/array";
 import { getUserData } from "@/utils/auth";
 import { pluckString } from "@/utils/string";
 import { getActiveNavs, imgUrl } from "@/utils/url";
-import { Center, HStack, useBreakpointValue, VStack } from "@chakra-ui/react";
+import { Center, HStack, VStack } from "@chakra-ui/react";
 import { ChevronsLeftIcon, ChevronsRightIcon, ServerIcon } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { Fragment } from "react";
@@ -313,10 +314,6 @@ const DesktopLayout = (props: any) => {
   // Hooks
   const pathname = usePathname();
 
-  // SX
-  const rSpacingMd = useBreakpointValue(R_SPACING_MD);
-  // const logoColor = getCssColor(`${themeConfig.colorPalette}.contrast`);
-
   return (
     <StackV w={"full"} h={`calc(100svh)`} overflowY={"auto"}>
       <StackH
@@ -332,8 +329,8 @@ const DesktopLayout = (props: any) => {
           flexShrink={0}
           w={
             isNavsExpanded
-              ? `calc(250px + (${rSpacingMd} * 2) + ${GAP})`
-              : `calc(36px + (${rSpacingMd} * 2) + ${GAP})`
+              ? `calc(250px + (${DESKTOP_SPACING_MD} * 2) + ${GAP})`
+              : `calc(36px + (${DESKTOP_SPACING_MD} * 2) + ${GAP})`
           }
           transition={"200ms"}
           pos={"relative"}
@@ -416,8 +413,8 @@ const DesktopLayout = (props: any) => {
                 pt={R_SPACING_MD}
                 pb={
                   isNavsExpanded
-                    ? `calc(${USER_PANEL_H} + (${rSpacingMd} * 1))`
-                    : `calc(36px + (${rSpacingMd} * 2))`
+                    ? `calc(${USER_PANEL_H} + (${DESKTOP_SPACING_MD} * 1))`
+                    : `calc(36px + (${DESKTOP_SPACING_MD} * 2))`
                 }
                 mb={GAP}
                 transition={"200ms"}
