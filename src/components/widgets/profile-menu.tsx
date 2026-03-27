@@ -134,7 +134,7 @@ export const ProfileMenu = (props: ProfileMenuProps) => {
 
         <StackV borderColor={"border.muted"}>
           <P fontWeight={"medium"}>{user?.name || "Signed out"}</P>
-          <ClampText fontSize={"sm"} color={"fg.subtle"}>
+          <ClampText color={"fg.subtle"}>
             {user?.email || user?.username || "-"}
           </ClampText>
         </StackV>

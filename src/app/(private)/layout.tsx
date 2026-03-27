@@ -93,7 +93,7 @@ const MobileLayout = (props: any) => {
             </HStack>
 
             <HStack>
-              <Clock fontSize={"sm"} showTimezone={sw > 320} />
+              <Clock fontSize={"sm"} />
 
               <Today fontSize={"sm"} />
             </HStack>
