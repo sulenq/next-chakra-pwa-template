@@ -80,7 +80,7 @@ export const DataGridItem = (props: DataGridItemProps) => {
   const { themeConfig } = useThemeConfig();
 
   // Constants
-  const selectedColor = `${themeConfig.colorPalette}.focusRing`;
+  const selectedColor = `${themeConfig.colorPalette}.solid`;
 
   // Derived Values
   const isRowSelected = selectedRows.includes(row.id);
