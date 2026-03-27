@@ -22,6 +22,8 @@ const NAVS =
     ?.children || [];
 const ROOT_PATH = `/settings`;
 
+// -----------------------------------------------------------------
+
 const Content = ({ children }: { children: React.ReactNode }) => {
   // Hooks
   const pathname = usePathname();
@@ -51,6 +53,8 @@ const Content = ({ children }: { children: React.ReactNode }) => {
             h={"full"}
             py={GAP}
             pl={GAP}
+            px={isSmContainer ? "4 !important" : 0}
+            pb={isSmContainer ? "4 !important" : 0}
             overflowY={"auto"}
           >
             <StackV
@@ -58,7 +62,11 @@ const Content = ({ children }: { children: React.ReactNode }) => {
               rounded={themeConfig.radii.container}
               overflowY={"auto"}
             >
-              <View.Header withTitle title={t.settings} py={0} />
+              <View.Header
+                withTitle
+                title={t.settings}
+                px={isSmContainer ? "6px" : 0}
+              />
 
               <StackV className={"scrollY"} flex={1} p={R_SPACING_MD}>
                 <DesktopNavs
@@ -98,6 +106,8 @@ const Content = ({ children }: { children: React.ReactNode }) => {
     </StackV>
   );
 };
+
+// -----------------------------------------------------------------
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
