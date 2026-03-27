@@ -36,6 +36,7 @@ export default function Page() {
         maxW={"1200px"}
         maxH={"700px"}
         bg={"bg.body"}
+        shadow={"soft"}
         m={"auto"}
         rounded={themeConfig.radii.container}
       >
@@ -62,13 +63,6 @@ export default function Page() {
                 <Logo color={"white"} />
 
                 <StackV color={"light"} mt={"auto"}>
-                  {/* <RandomQuote
-                    fontSize={"lg"}
-                    fontWeight={"medium"}
-                    maxW={"500px"}
-                    mb={4}
-                  /> */}
-
                   <P>{t.msg_app_desc}</P>
                 </StackV>
               </StackV>
@@ -81,7 +75,7 @@ export default function Page() {
             rounded={themeConfig.radii.container}
             overflowY={"auto"}
           >
-            <StackH justify={"center"}>
+            <StackH justify={"center"} gap={2}>
               <ColorModeButton />
 
               <LangMenu />

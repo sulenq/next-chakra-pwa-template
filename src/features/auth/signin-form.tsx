@@ -271,7 +271,7 @@ const Signedin = (props: any) => {
       <StackV gap={2}>
         <NavLink to={INDEX_ROUTE}>
           <Btn variant={"ghost"} colorPalette={themeConfig.colorPalette}>
-            {t.access} App <AppIconLucide icon={ArrowRight} />
+            {t.enter_app} <AppIconLucide icon={ArrowRight} />
           </Btn>
         </NavLink>
       </StackV>
