@@ -11,26 +11,22 @@ import { StackV } from "@/components/ui/stack";
 import { BackButton } from "@/components/widgets/back-button";
 import { BatchOptions } from "@/components/widgets/batch-option";
 import { ClampText } from "@/components/widgets/clamp-text";
+import { DataFooter } from "@/components/widgets/data-footer";
 import FeedbackNotFound from "@/components/widgets/feedback-not-found";
 import { ImgViewer } from "@/components/widgets/img-viewer";
-import { Limitation } from "@/components/widgets/limitation";
-import { Pagination } from "@/components/widgets/pagination";
 import { RowOptions } from "@/components/widgets/row-options";
 import { DataProps, FormattedTableRow } from "@/constants/interfaces";
 import {
   BACKDROP_BLUR_FILTER,
   GAP,
   GRID_BATCH_OPTIONS_CONTAINER_BG,
-  GRID_FOOTER_BORDER_COLOR,
   R_SPACING_MD,
 } from "@/constants/styles";
 import { useLocale } from "@/contexts/useLocale";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
-import { useIsSmScreenWidth } from "@/hooks/useIsSmScreenWidth";
 import { usePopDisclosure } from "@/hooks/usePopDisclosure";
 import { isEmptyArray } from "@/utils/array";
 import { disclosureId } from "@/utils/disclosure";
-import { formatNumber } from "@/utils/formatter";
 import {
   Box,
   HStack,
@@ -354,9 +350,6 @@ const DataGridDisplay = (props: DataGridProps) => {
   const { t } = useLocale();
   const { themeConfig } = useThemeConfig();
 
-  // Hooks
-  const iss = useIsSmScreenWidth();
-
   // States
   const [allRowsSelected, setAllRowsSelected] = useState<boolean>(false);
   const [selectedRows, setSelectedRows] = useState<any[]>([]);
@@ -517,44 +510,15 @@ const DataGridDisplay = (props: DataGridProps) => {
 
       {/* Footer */}
       {hasFooter && (
-        <>
-          <StackV
-            p={3}
-            gap={2}
-            borderTop={"1px solid"}
-            borderColor={GRID_FOOTER_BORDER_COLOR}
-          >
-            {iss && (
-              <StackV align={"center"} justify={"center"}>
-                <P
-                  color={"fg.subtle"}
-                >{`${formatNumber(data?.length)} / ${formatNumber(totalData) || "?"} items`}</P>
-              </StackV>
-            )}
-
-            <HStack w={"full"} justify={"space-between"}>
-              <StackV align={"start"} w={"35%"} mb={[1, null, 0]}>
-                <Limitation limit={limit} setLimit={setLimit} />
-              </StackV>
-
-              {!iss && (
-                <StackV align={"center"} justify={"center"} w={"30%"}>
-                  <P
-                    color={"fg.subtle"}
-                  >{`${formatNumber(data?.length)} / ${formatNumber(totalData) || "?"} items`}</P>
-                </StackV>
-              )}
-
-              <StackV align={"end"} w={"35%"}>
-                <Pagination
-                  page={page}
-                  setPage={setPage}
-                  totalPage={totalPage}
-                />
-              </StackV>
-            </HStack>
-          </StackV>
-        </>
+        <DataFooter
+          limit={limit}
+          setLimit={setLimit}
+          dataLength={data?.length}
+          totalData={totalData}
+          page={page}
+          setPage={setPage}
+          totalPage={totalPage}
+        />
       )}
     </StackV>
   );

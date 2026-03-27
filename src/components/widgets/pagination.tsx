@@ -52,8 +52,6 @@ export const Pagination = (props: PaginationTableDataProps) => {
       </Btn>
 
       <HStack whiteSpace={"nowrap"}>
-        <P>{t.page}</P>
-
         <P>{formatNumber(page)}</P>
 
         <P>{t.of}</P>

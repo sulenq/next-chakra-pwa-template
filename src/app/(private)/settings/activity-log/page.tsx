@@ -4,14 +4,13 @@ import { P } from "@/components/ui/p";
 import { SearchInput } from "@/components/ui/search-input";
 import { Skeleton } from "@/components/ui/skeleton";
 import { StackV } from "@/components/ui/stack";
+import { DataFooter } from "@/components/widgets/data-footer";
 import FeedbackNoData from "@/components/widgets/feedback-no-data";
 import FeedbackNotFound from "@/components/widgets/feedback-not-found";
 import FeedbackRetry from "@/components/widgets/feedback-retry";
 import { LucideIcon } from "@/components/widgets/icon";
 import { Item } from "@/components/widgets/item";
-import { Limitation } from "@/components/widgets/limitation";
 import { MiniUser } from "@/components/widgets/mini-user";
-import { Pagination } from "@/components/widgets/pagination";
 import { dummyAllActivityLogs } from "@/constants/dummyData";
 import { ActivityActionEnum } from "@/constants/enums";
 import { Interface__ActivityLog } from "@/constants/interfaces";
@@ -40,8 +39,14 @@ const ActivityLog = () => {
     pagination,
     page,
     setPage,
-  } = useFetchData<Interface__ActivityLog[]>({
-    initialData: dummyAllActivityLogs,
+  } = useFetchData<{
+    totalData: number;
+    items: Interface__ActivityLog[];
+  }>({
+    initialData: {
+      totalData: 100,
+      items: dummyAllActivityLogs,
+    },
     url: ``,
     dataResource: false,
   });
@@ -82,7 +87,7 @@ const ActivityLog = () => {
     notFound: <FeedbackNotFound />,
     loaded: (
       <>
-        {data?.map((log, idx) => {
+        {data?.items?.map((log, idx) => {
           return (
             <HStack
               key={`${log.id}-${idx}`}
@@ -143,23 +148,25 @@ const ActivityLog = () => {
                 {error && render.error}
                 {!error && (
                   <>
-                    {data && render.loaded}
-                    {(!data || isEmptyArray(data)) && render.empty}
+                    {data?.items && render.loaded}
+                    {(!data?.items || isEmptyArray(data?.items)) &&
+                      render.empty}
                   </>
                 )}
               </>
             )}
           </StackV>
 
-          <HStack justify={"space-between"} wrap={"wrap"} p={3} mt={"auto"}>
-            <Limitation limit={limit} setLimit={setLimit} />
-
-            <Pagination
-              page={page}
-              setPage={setPage}
-              totalPage={pagination?.meta?.totalPage}
-            />
-          </HStack>
+          <DataFooter
+            borderless
+            limit={limit}
+            setLimit={setLimit}
+            dataLength={data?.items?.length}
+            totalData={data?.totalData}
+            page={page}
+            setPage={setPage}
+            totalPage={pagination?.meta?.totalPage}
+          />
         </Item.Container>
       </StackV>
     </Item.Container>

@@ -2,8 +2,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { P } from "@/components/ui/p";
 import { StackV } from "@/components/ui/stack";
 import { BatchOptions } from "@/components/widgets/batch-option";
-import { Limitation } from "@/components/widgets/limitation";
-import { Pagination } from "@/components/widgets/pagination";
+import { DataFooter } from "@/components/widgets/data-footer";
 import { RowOptions } from "@/components/widgets/row-options";
 import { SortIcon } from "@/components/widgets/sort-icon";
 import {
@@ -19,7 +18,6 @@ import {
   TABLE_CELL_PX,
   TABLE_CELL_PY,
   TABLE_CONTAINER_BG,
-  TABLE_FOOTER_BORDER_COLOR,
   TABLE_OPTIONS_CELL_W,
   TABLE_TD_BG,
   TABLE_TD_BORDER_COLOR,
@@ -30,10 +28,8 @@ import {
 } from "@/constants/styles";
 import { Type__SortHandler } from "@/constants/types";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
-import { useIsSmScreenWidth } from "@/hooks/useIsSmScreenWidth";
 import { useScreen } from "@/hooks/useScreen";
 import { isEmptyArray } from "@/utils/array";
-import { formatNumber } from "@/utils/formatter";
 import {
   Box,
   Center,
@@ -89,7 +85,6 @@ export const DataTableDisplay = (props: DataTableProps) => {
   const tableContainerRef = useRef<HTMLDivElement>(null);
 
   // Hooks
-  const iss = useIsSmScreenWidth();
   const { sh } = useScreen();
 
   // States
@@ -514,38 +509,15 @@ export const DataTableDisplay = (props: DataTableProps) => {
       </StackV>
 
       {hasFooter && (
-        <StackV
-          p={3}
-          gap={2}
-          borderTop={"1px solid"}
-          borderColor={TABLE_FOOTER_BORDER_COLOR}
-        >
-          {iss && (
-            <StackV align={"center"} justify={"center"}>
-              <P
-                color={"fg.subtle"}
-              >{`${formatNumber(rows?.length)} / ${formatNumber(totalData) || "?"} items`}</P>
-            </StackV>
-          )}
-
-          <HStack w={"full"} justify={"space-between"}>
-            <StackV align={"start"} w={"35%"} mb={[1, null, 0]}>
-              <Limitation limit={limit} setLimit={setLimit} />
-            </StackV>
-
-            {!iss && (
-              <StackV align={"center"} justify={"center"} w={"30%"}>
-                <P
-                  color={"fg.subtle"}
-                >{`${formatNumber(rows?.length)} / ${formatNumber(totalData) || "?"} items`}</P>
-              </StackV>
-            )}
-
-            <StackV align={"end"} w={"35%"}>
-              <Pagination page={page} setPage={setPage} totalPage={totalPage} />
-            </StackV>
-          </HStack>
-        </StackV>
+        <DataFooter
+          limit={limit}
+          setLimit={setLimit}
+          dataLength={rows?.length}
+          totalData={totalData}
+          page={page}
+          setPage={setPage}
+          totalPage={totalPage}
+        />
       )}
     </StackV>
   );

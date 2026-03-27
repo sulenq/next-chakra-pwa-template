@@ -12,12 +12,11 @@ import { StackH, StackV } from "@/components/ui/stack";
 import { StringInput } from "@/components/ui/string-input";
 import { AppIconLucide } from "@/components/widgets/app-icon";
 import { ClampText } from "@/components/widgets/clamp-text";
+import { DataFooter } from "@/components/widgets/data-footer";
 import FeedbackNoData from "@/components/widgets/feedback-no-data";
 import FeedbackNotFound from "@/components/widgets/feedback-not-found";
 import FeedbackRetry from "@/components/widgets/feedback-retry";
 import { Item } from "@/components/widgets/item";
-import { Limitation } from "@/components/widgets/limitation";
-import { Pagination } from "@/components/widgets/pagination";
 import { UserIdCard } from "@/components/widgets/user-id-card";
 import {
   DUMMY_USER,
@@ -231,9 +230,15 @@ const AuthLog = () => {
     pagination,
     page,
     setPage,
-  } = useFetchData<Interface__AuthLog[]>({
+  } = useFetchData<{
+    totalData: number;
+    items: Interface__AuthLog[];
+  }>({
     // TODO add url and set initial data to undefined
-    initialData: dummyAuthLogs,
+    initialData: {
+      totalData: 100,
+      items: dummyAuthLogs,
+    },
     url: ``,
     dependencies: [search],
   });
@@ -246,7 +251,7 @@ const AuthLog = () => {
     notFound: <FeedbackNotFound />,
     loaded: (
       <>
-        {data?.map((log, idx) => {
+        {data?.items?.map((log, idx) => {
           const isSignin = log?.action === "Sign in";
 
           return (
@@ -315,29 +320,24 @@ const AuthLog = () => {
                 {error && render.error}
                 {!error && (
                   <>
-                    {data && render.loaded}
-                    {(!data || isEmptyArray(data)) && render.empty}
+                    {data?.items && render.loaded}
+                    {(!data?.items || isEmptyArray(data.items)) && render.empty}
                   </>
                 )}
               </>
             )}
           </StackV>
 
-          <StackH
-            justify={"space-between"}
-            wrap={"wrap"}
-            p={3}
-            // borderTop={"1px solid"}
-            borderColor={"border.muted"}
-          >
-            <Limitation limit={limit} setLimit={setLimit} />
-
-            <Pagination
-              page={page}
-              setPage={setPage}
-              totalPage={pagination?.meta?.totalPage}
-            />
-          </StackH>
+          <DataFooter
+            borderless
+            limit={limit}
+            setLimit={setLimit}
+            dataLength={data?.items?.length}
+            totalData={data?.totalData}
+            page={page}
+            setPage={setPage}
+            totalPage={pagination?.meta?.totalPage}
+          />
         </Item.Container>
       </StackV>
     </Item.Container>
@@ -391,9 +391,15 @@ const ActivityLog = () => {
     pagination,
     page,
     setPage,
-  } = useFetchData<Interface__ActivityLog[]>({
+  } = useFetchData<{
+    totalData: number;
+    items: Interface__ActivityLog[];
+  }>({
     // TODO add url and set initial data to undefined
-    initialData: dummyActivityLogs,
+    initialData: {
+      totalData: 100,
+      items: dummyActivityLogs,
+    },
     url: ``,
     dependencies: [search],
   });
@@ -406,7 +412,7 @@ const ActivityLog = () => {
     notFound: <FeedbackNotFound />,
     loaded: (
       <>
-        {data?.map((log, idx) => {
+        {data?.items?.map((log, idx) => {
           return (
             <StackH
               key={`${log.id}-${idx}`}
@@ -464,29 +470,25 @@ const ActivityLog = () => {
                 {error && render.error}
                 {!error && (
                   <>
-                    {data && render.loaded}
-                    {(!data || isEmptyArray(data)) && render.empty}
+                    {data?.items && render.loaded}
+                    {(!data?.items || isEmptyArray(data?.items)) &&
+                      render.empty}
                   </>
                 )}
               </>
             )}
           </StackV>
 
-          <StackH
-            justify={"space-between"}
-            wrap={"wrap"}
-            p={3}
-            // borderTop={"1px solid"}
-            borderColor={"border.muted"}
-          >
-            <Limitation limit={limit} setLimit={setLimit} />
-
-            <Pagination
-              page={page}
-              setPage={setPage}
-              totalPage={pagination?.meta?.totalPage}
-            />
-          </StackH>
+          <DataFooter
+            borderless
+            limit={limit}
+            setLimit={setLimit}
+            dataLength={data?.items?.length}
+            totalData={data?.totalData}
+            page={page}
+            setPage={setPage}
+            totalPage={pagination?.meta?.totalPage}
+          />
         </Item.Container>
       </StackV>
     </Item.Container>

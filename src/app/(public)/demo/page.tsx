@@ -750,7 +750,7 @@ const DemoIndexRoute = () => {
           <Calendar.Trigger>
             <Today />
           </Calendar.Trigger>
-          <Clock showTimezone />
+          <Clock />
           <LangMenu />
           <ColorModeButton />
         </HStack>
