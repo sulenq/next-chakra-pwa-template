@@ -7,13 +7,18 @@ import { Divider } from "@/components/ui/divider";
 import { NavLink } from "@/components/ui/nav-link";
 import { P } from "@/components/ui/p";
 import { Popover } from "@/components/ui/popover";
-import { StackV } from "@/components/ui/stack";
+import { StackH, StackV } from "@/components/ui/stack";
 import { AppIconLucide } from "@/components/widgets/app-icon";
+import { ClampText } from "@/components/widgets/clamp-text";
 import { Confirmation } from "@/components/widgets/confirmation";
 import { LucideIcon } from "@/components/widgets/icon";
 import { DotIndicator } from "@/components/widgets/indicator";
 import { AUTH_API_SIGNOUT } from "@/constants/apis";
-import { BACKDROP_BLUR_FILTER, BASE_ICON_BOX_SIZE } from "@/constants/styles";
+import {
+  BACKDROP_BLUR_FILTER,
+  BASE_ICON_BOX_SIZE,
+  GAP,
+} from "@/constants/styles";
 import useADM from "@/contexts/useADM";
 import { useAuthMiddleware } from "@/contexts/useAuthMiddleware";
 import { useLocale } from "@/contexts/useLocale";
@@ -23,7 +28,7 @@ import { getUserData } from "@/utils/auth";
 import { back, removeStorage } from "@/utils/client";
 import { pluckString } from "@/utils/string";
 import { imgUrl } from "@/utils/url";
-import { Icon, PopoverRootProps, StackProps } from "@chakra-ui/react";
+import { Icon, PopoverRootProps, Stack, StackProps } from "@chakra-ui/react";
 import {
   BellIcon,
   CircleCheckBigIcon,
@@ -120,26 +125,24 @@ export const ProfileMenu = (props: ProfileMenuProps) => {
       color={"fg.ibody"}
       {...restProps}
     >
-      <StackV>
-        <StackV p={1} pb={0}>
-          <Avatar
-            src={imgUrl(user?.avatar?.[0]?.filePath)}
-            name={user?.name}
-            w={"full"}
-            h={"full"}
-            aspectRatio={1}
-            rounded={themeConfig.radii.component}
-            fontSize={"4rem"}
-          />
-        </StackV>
+      <StackH align={"center"} gap={4} p={4}>
+        <Avatar
+          src={imgUrl(user?.avatar?.[0]?.filePath)}
+          name={user?.name}
+          size={"lg"}
+        />
 
-        <StackV p={4} borderColor={"border.muted"}>
-          <P fontWeight={"semibold"}>{user?.name || "Signed out"}</P>
-          <P color={"fg.subtle"}>{user?.email || user?.username || "-"}</P>
+        <StackV borderColor={"border.muted"}>
+          <P fontWeight={"medium"}>{user?.name || "Signed out"}</P>
+          <ClampText fontSize={"sm"} color={"fg.subtle"}>
+            {user?.email || user?.username || "-"}
+          </ClampText>
         </StackV>
-      </StackV>
+      </StackH>
 
-      <Divider />
+      <Stack px={GAP}>
+        <Divider />
+      </Stack>
 
       <StackV gap={1} p={"6px"}>
         {!ADM && (

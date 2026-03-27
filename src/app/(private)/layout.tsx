@@ -367,7 +367,7 @@ const DesktopLayout = (props: any) => {
               </StackH>
             </NavLink>
 
-            {/* Toggle Expand */}
+            {/* Toggle expand */}
             <DesktopNavTooltip
               content={isNavsExpanded ? t.minimize : t.maximize}
             >
@@ -487,6 +487,7 @@ const DesktopLayout = (props: any) => {
                 />
               </StackV>
 
+              {/* User panel */}
               <StackV
                 w={"full"}
                 pos={"absolute"}
