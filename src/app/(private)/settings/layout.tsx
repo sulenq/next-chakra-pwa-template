@@ -53,19 +53,19 @@ const Content = ({ children }: { children: React.ReactNode }) => {
             h={"full"}
             py={GAP}
             pl={GAP}
-            px={isSmContainer ? "4 !important" : 0}
-            pb={isSmContainer ? "4 !important" : 0}
             overflowY={"auto"}
           >
             <StackV
               flex={1}
+              px={isSmContainer ? "4 !important" : 0}
+              pb={isSmContainer ? "4 !important" : 0}
               rounded={themeConfig.radii.container}
               overflowY={"auto"}
             >
               <View.Header
                 withTitle
                 title={t.settings}
-                px={isSmContainer ? "6px" : 0}
+                px={isSmContainer ? "6px" : R_SPACING_MD}
               />
 
               <StackV className={"scrollY"} flex={1} p={R_SPACING_MD}>
