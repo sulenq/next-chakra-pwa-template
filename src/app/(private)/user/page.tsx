@@ -11,13 +11,13 @@ import { AppIconLucide } from "@/components/widgets/app-icon";
 import { Confirmation } from "@/components/widgets/confirmation";
 import { DataDisplayToggle } from "@/components/widgets/data-display-toggle";
 import { DataGrid } from "@/components/widgets/data-grid";
+import { DataTable } from "@/components/widgets/data-table";
 import FeedbackNoData from "@/components/widgets/feedback-no-data";
 import FeedbackRetry from "@/components/widgets/feedback-retry";
 import { HScroll } from "@/components/widgets/h-scroll";
 import { LucideIcon } from "@/components/widgets/icon";
 import { Item } from "@/components/widgets/item";
 import { MiniUser } from "@/components/widgets/mini-user";
-import { DataTable } from "@/components/widgets/data-table";
 import { SimpleDisclosure } from "@/components/widgets/simple-disclosure";
 import { View, useViewContext } from "@/components/widgets/view";
 import { dummyUsers } from "@/constants/dummyData";
@@ -606,7 +606,7 @@ const Data = (props: any) => {
   );
 };
 
-const Content = () => {
+export default function Page() {
   // Contexts
   const { t } = useLocale();
 
@@ -663,13 +663,5 @@ const Content = () => {
         </Item.Container>
       </CContainer>
     </View.Content>
-  );
-};
-
-export default function Page() {
-  return (
-    <View.Root>
-      <Content />
-    </View.Root>
   );
 }

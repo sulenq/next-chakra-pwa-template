@@ -23,7 +23,7 @@ import { useScreen } from "@/hooks/useScreen";
 import { isEmptyArray, last } from "@/utils/array";
 import { capitalizeWords, pluckString } from "@/utils/string";
 import { getActiveNavs } from "@/utils/url";
-import { HStack, Icon, StackProps } from "@chakra-ui/react";
+import { HStack, Icon, Stack, StackProps } from "@chakra-ui/react";
 import { IconSlash } from "@tabler/icons-react";
 import { HeadsetIcon, NavigationIcon } from "lucide-react";
 import { usePathname } from "next/navigation";
@@ -137,6 +137,7 @@ export const NavBreadcrumb = (props: any) => {
 export const TopBar = (props: StackProps) => {
   // Contexts
   const { themeConfig } = useThemeConfig();
+  const { dimension } = useViewContext();
 
   // Hooks
   const { sw } = useScreen();
@@ -147,6 +148,11 @@ export const TopBar = (props: StackProps) => {
   const resolvedActiveNavs =
     sw < 960 ? [activeNavs[activeNavs.length - 1]] : activeNavs;
   const backPath = last(activeNavs)?.backPath;
+
+  // Derived Values
+  const isSmContainer = dimension.width < 750;
+
+  console.log({ isSmContainer });
 
   return (
     <StackH
@@ -164,15 +170,25 @@ export const TopBar = (props: StackProps) => {
         />
       </StackH>
 
-      <StackH align={"center"} justify={"center"} w={"30%"} color={"fg.muted"}>
+      <Stack
+        flexDir={isSmContainer ? "column" : "row"}
+        align={"center"}
+        justify={"center"}
+        gap={0}
+        w={"30%"}
+        color={"fg.muted"}
+      >
         <Calendar.Trigger>
-          <Today dateVariant={"shortWeekdayDayShortMonthYear"} />
+          <Today
+            dateVariant={"shortWeekdayDayShortMonthYear"}
+            fontSize={"sm"}
+          />
         </Calendar.Trigger>
 
-        <Divider dir={"vertical"} mx={2} h={"20px"} />
+        {!isSmContainer && <Divider dir={"vertical"} mx={2} h={"20px"} />}
 
-        <Clock />
-      </StackH>
+        <Clock fontSize={"sm"} />
+      </Stack>
 
       <StackH justify={"end"} gap={2} w={"35%"}>
         {/* <SearchInput

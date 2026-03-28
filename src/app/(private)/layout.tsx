@@ -27,7 +27,7 @@ import {
 } from "@/components/widgets/navs";
 import { ProfileMenuTrigger } from "@/components/widgets/profile-menu";
 import { Today } from "@/components/widgets/today";
-import { NavBreadcrumb, TopBar } from "@/components/widgets/view";
+import { NavBreadcrumb, TopBar, View } from "@/components/widgets/view";
 import { APP } from "@/constants/_meta";
 import { OTHER_PRIVATE_NAV_GROUPS, PRIVATE_NAV_GROUPS } from "@/constants/navs";
 import {
@@ -502,7 +502,7 @@ const DesktopLayout = (props: any) => {
         </StackV>
 
         {/* Content */}
-        <StackV w={"full"} overflowY={"auto"}>
+        <View.Root w={"full"} overflowY={"auto"}>
           <StackV px={GAP}>
             <StackH
               align={"center"}
@@ -520,7 +520,7 @@ const DesktopLayout = (props: any) => {
           <MContainerV flex={1} overflow={"auto"}>
             {children}
           </MContainerV>
-        </StackV>
+        </View.Root>
       </StackH>
     </StackV>
   );

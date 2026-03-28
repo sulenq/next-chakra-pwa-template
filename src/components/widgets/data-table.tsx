@@ -224,6 +224,7 @@ export const DataTableDisplay = (props: DataTableProps) => {
     <StackV
       ref={tableContainerRef}
       flex={1}
+      px={R_SPACING_MD}
       pt={R_SPACING_MD}
       overflow={"auto"}
       minH={props?.minH || sh < 625 ? "400px" : ""}
@@ -233,7 +234,6 @@ export const DataTableDisplay = (props: DataTableProps) => {
       <StackV
         className={"scrollX scrollYAlt"}
         flex={1}
-        px={R_SPACING_MD}
         pb={R_SPACING_MD}
         bg={TABLE_CONTAINER_BG}
         roundedTop={themeConfig.radii.container}
@@ -421,7 +421,13 @@ export const DataTableDisplay = (props: DataTableProps) => {
                     minH={TABLE_TD_MIN_H}
                     px={TABLE_CELL_PX}
                     py={TABLE_CELL_PY}
-                    bg={isRowSelected ? SELECTED_BG : TABLE_TD_BG}
+                    bg={
+                      isRowSelected
+                        ? SELECTED_BG
+                        : isFirefox
+                          ? "bg.bodySolid"
+                          : TABLE_TD_BG
+                    }
                     fontSize={"md"}
                     borderBottom={
                       rowIndex !== resolvedTableData.length - 1
