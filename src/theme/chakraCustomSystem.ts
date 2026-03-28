@@ -529,19 +529,19 @@ const customConfig = defineConfig({
           },
           bodySolid: {
             value: {
-              base: "#fffafc",
+              base: "#faf9ffff",
               _dark: "#1b1b1b",
             },
           },
           body: {
             value: {
-              base: "#fffafcec",
+              base: "#faf9ffec",
               _dark: "rgba(27, 27, 27, 0.925)",
             },
           },
           frosted: {
             value: {
-              base: "rgba(255, 255, 255, 0.5)",
+              base: "rgba(250, 249, 255, 0.5)",
               _dark: "rgba(27, 27, 27, 0.5)",
             },
           },
