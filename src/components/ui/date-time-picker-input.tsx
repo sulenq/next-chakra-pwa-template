@@ -111,7 +111,7 @@ export const DateTimePickerInput = (props: DateTimePickerInputProps) => {
         disclosureSize={disclosureSize}
         invalid={false}
         required={required}
-        showTimezone
+        showAbbr
         size={size}
       />
       <TimePickerInput
@@ -124,7 +124,7 @@ export const DateTimePickerInput = (props: DateTimePickerInputProps) => {
         disclosureSize={disclosureSize}
         invalid={false}
         required={required}
-        showTimezone
+        showAbbr
         size={size}
       />
     </Group>

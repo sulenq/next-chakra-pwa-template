@@ -363,7 +363,7 @@ export interface DatePickerInputProps extends Omit<BtnProps, "onChange"> {
   title?: string;
   inputValue?: string[] | null;
   onChange?: (inputValue: DatePickerInputProps["inputValue"]) => void;
-  showTimezone?: boolean;
+  showAbbr?: boolean;
   placeholder?: string;
   required?: boolean;
   invalid?: boolean;
@@ -380,7 +380,7 @@ export const DatePickerInput = (props: DatePickerInputProps) => {
     title = "",
     inputValue,
     onChange,
-    showTimezone,
+    showAbbr,
     placeholder,
     required,
     invalid,
@@ -537,7 +537,7 @@ export const DatePickerInput = (props: DatePickerInputProps) => {
           </Disclosure.Body>
 
           <Disclosure.Footer>
-            {showTimezone && (
+            {showAbbr && (
               <Stack
                 flexDir={["row", null, "column"]}
                 justify={"space-between"}

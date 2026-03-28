@@ -34,7 +34,7 @@ export interface TimePickerInputProps extends Omit<BtnProps, "onChange"> {
   inputValue?: string | null;
   onChange?: (inputValue?: TimePickerInputProps["inputValue"]) => void;
   withSeconds?: boolean;
-  showTimezone?: boolean;
+  showAbbr?: boolean;
   placeholder?: string;
   required?: boolean;
   invalid?: boolean;
@@ -49,7 +49,7 @@ export const TimePickerInput = (props: TimePickerInputProps) => {
     title,
     onChange,
     inputValue,
-    showTimezone,
+    showAbbr,
     withSeconds = false,
     placeholder,
     required,
@@ -466,7 +466,7 @@ export const TimePickerInput = (props: TimePickerInputProps) => {
           </Disclosure.Body>
 
           <Disclosure.Footer>
-            {showTimezone && (
+            {showAbbr && (
               <Stack
                 flexDir={["row", null, "column"]}
                 justify={"space-between"}
@@ -481,7 +481,7 @@ export const TimePickerInput = (props: TimePickerInputProps) => {
                   color={"fg.subtle"}
                   fontSize={"sm"}
                   lineHeight={1}
-                >{`${userTz.formattedOffset}`}</P>
+                >{`${userTz.localAbbr}`}</P>
               </Stack>
             )}
 
