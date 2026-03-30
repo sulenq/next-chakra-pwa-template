@@ -50,6 +50,7 @@ export const FileUploadDropzone = forwardRef<
   HTMLInputElement,
   FileUploadDropzoneProps
 >(function FileUploadDropzone(props, ref) {
+  // Props
   const {
     children,
     icon,
@@ -63,6 +64,9 @@ export const FileUploadDropzone = forwardRef<
     ...rest
   } = props;
 
+  // Contexts
+  const { themeConfig } = useThemeConfig();
+
   return (
     <ChakraFileUpload.Dropzone
       ref={ref}
@@ -71,6 +75,7 @@ export const FileUploadDropzone = forwardRef<
       maxH={"full"}
       p={imgInput ? 0 : 4}
       bg={"transparent"}
+      rounded={themeConfig.radii.component}
       cursor={"pointer"}
       overflow={"auto"}
       {...rest}
