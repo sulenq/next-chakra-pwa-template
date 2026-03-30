@@ -49,6 +49,7 @@ const Signedin = () => {
       <UserIdCard maskingTop={"8px"} withSignoutButton />
 
       <StackH gap={2} justify={"center"}>
+        {/* TODO: Remove below component in real dev */}
         <NavLink to={"/demo"} mx={"auto"}>
           <Btn variant={"ghost"} colorPalette={themeConfig.colorPalette}>
             Demo Page
