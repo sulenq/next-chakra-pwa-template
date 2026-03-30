@@ -129,6 +129,7 @@ const Delete = (props: any) => {
     </Confirmation.Trigger>
   );
 };
+
 const DemoDataTable = () => {
   const tableProps = {
     headers: [
@@ -672,9 +673,9 @@ const DemoIndexRoute = () => {
         "https://doc-mamura.exium.id/storage/file/Z8f60265g6ienDZCrqi1z4sMX",
       fileMimeType: "image/jpeg",
       fileSize: "668.01 kB",
-      deletedAt: null,
       createdAt: "2025-08-19T06:11:54.000000Z",
       updatedAt: "2025-08-19T06:11:54.000000Z",
+      deletedAt: null,
     },
     {
       id: "25",

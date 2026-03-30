@@ -93,7 +93,8 @@ export const FileUploadDropzone = forwardRef<
         {(showLabel || showDescription) && (
           <ChakraFileUpload.DropzoneContent
             opacity={disabled ? 0.4 : 1}
-            mb={imgInput ? "28px" : ""}
+            px={5}
+            pb={5}
           >
             {showLabel && <P color={"fg.subtle"}>{label}</P>}
 
