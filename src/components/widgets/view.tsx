@@ -36,7 +36,7 @@ import {
   useRef,
 } from "react";
 
-const FONT_SIZE = "md";
+const FONT_SIZE = "sm";
 
 // -----------------------------------------------------------------
 
@@ -151,8 +151,6 @@ export const TopBar = (props: StackProps) => {
 
   // Derived Values
   const isSmContainer = dimension.width < 750;
-
-  console.log({ isSmContainer });
 
   return (
     <StackH
