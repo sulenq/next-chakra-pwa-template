@@ -7,7 +7,7 @@ import { H1 } from "@/components/ui/heading";
 import { NavLink } from "@/components/ui/nav-link";
 import { P } from "@/components/ui/p";
 import { PasswordInput } from "@/components/ui/password-input";
-import { StackV } from "@/components/ui/stack";
+import { StackH, StackV } from "@/components/ui/stack";
 import { StringInput } from "@/components/ui/string-input";
 import { AppIconLucide } from "@/components/widgets/app-icon";
 import { LucideIcon } from "@/components/widgets/icon";
@@ -48,13 +48,19 @@ const Signedin = () => {
     <StackV gap={8} w={"220px"} m={"auto"}>
       <UserIdCard maskingTop={"8px"} withSignoutButton />
 
-      <StackV gap={2}>
+      <StackH gap={2} justify={"center"}>
+        <NavLink to={"/demo"} mx={"auto"}>
+          <Btn variant={"ghost"} colorPalette={themeConfig.colorPalette}>
+            Demo Page
+          </Btn>
+        </NavLink>
+
         <NavLink to={INDEX_ROUTE}>
           <Btn variant={"ghost"} colorPalette={themeConfig.colorPalette}>
             {t.enter_app} <AppIconLucide icon={ArrowRight} />
           </Btn>
         </NavLink>
-      </StackV>
+      </StackH>
     </StackV>
   );
 };
@@ -252,12 +258,6 @@ export const SigninForm = (props: StackProps) => {
           <BasicAuthForm signinAPI={signinAPI} />
         </>
       )}
-
-      {/* <NavLink to={"/demo"} mx={"auto"}>
-        <Btn variant={"ghost"} colorPalette={themeConfig.colorPalette}>
-          Demo Page
-        </Btn>
-      </NavLink> */}
     </StackV>
   );
 };
