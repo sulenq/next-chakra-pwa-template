@@ -61,7 +61,7 @@ export const DataFooter = (props: DataFooterProps) => {
           <Limitation limit={limit} setLimit={setLimit} />
         </StackH>
 
-        <StackH align={"center"} gapX={4}>
+        <StackH align={"center"} gapX={3}>
           {!iss && <P color={"fg.subtle"}>{dataLenghContent}</P>}
 
           <Pagination page={page} setPage={setPage} totalPage={totalPage} />
