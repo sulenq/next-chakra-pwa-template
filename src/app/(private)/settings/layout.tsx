@@ -24,7 +24,7 @@ const ROOT_PATH = `/settings`;
 
 // -----------------------------------------------------------------
 
-const Content = ({ children }: { children: React.ReactNode }) => {
+export default function Layout({ children }: { children: React.ReactNode }) {
   // Hooks
   const pathname = usePathname();
 
@@ -43,76 +43,64 @@ const Content = ({ children }: { children: React.ReactNode }) => {
     !isSmContainer || (isSmContainer && !isAtSettingsIndexRoute);
 
   return (
-    <StackV flex={1} overflowY={"auto"}>
-      <StackH flex={1} w={"full"} overflowY={"auto"} pos={"relative"}>
-        {/* Sidebar */}
-        {showSidebar && (
+    <StackH flex={1} w={"full"} overflowY={"auto"} pos={"relative"}>
+      {/* Sidebar */}
+      {showSidebar && (
+        <StackV
+          flexShrink={0}
+          w={isSmContainer ? "full" : "250px"}
+          h={"full"}
+          py={GAP}
+          pl={GAP}
+          overflowY={"auto"}
+        >
           <StackV
-            flexShrink={0}
-            w={isSmContainer ? "full" : "250px"}
-            h={"full"}
-            py={GAP}
-            pl={GAP}
+            flex={1}
+            px={isSmContainer ? 2 : 0}
+            pb={isSmContainer ? 2 : 0}
+            rounded={themeConfig.radii.container}
             overflowY={"auto"}
           >
-            <StackV
-              flex={1}
-              px={isSmContainer ? 2 : 0}
-              pb={isSmContainer ? 2 : 0}
-              rounded={themeConfig.radii.container}
-              overflowY={"auto"}
-            >
-              <View.Header
-                withTitle
-                title={t.settings}
-                px={isSmContainer ? "6px" : R_SPACING_MD}
-              />
+            <View.Header
+              withTitle
+              title={t.settings}
+              px={isSmContainer ? "6px" : R_SPACING_MD}
+            />
 
-              <StackV className={"scrollY"} flex={1} p={R_SPACING_MD}>
-                <DesktopNavs
-                  navs={NAVS}
-                  addonElement={
-                    <CContainer mt={"auto"} gap={1}>
-                      <HelperText>{`v${APP.version}`}</HelperText>
+            <StackV className={"scrollY"} flex={1} p={R_SPACING_MD}>
+              <DesktopNavs
+                navs={NAVS}
+                addonElement={
+                  <CContainer mt={"auto"} gap={1}>
+                    <HelperText>{`v${APP.version}`}</HelperText>
 
-                      <HelperText>
-                        {`Last updated: 
+                    <HelperText>
+                      {`Last updated: 
                         ${formatAbsDate(APP.lastUpdated, t, {
                           variant: "numeric",
                         })}`}
-                      </HelperText>
-                    </CContainer>
-                  }
-                  navsExpanded
-                  showGroupLabel
-                  flex={1}
-                />
-              </StackV>
+                    </HelperText>
+                  </CContainer>
+                }
+                navsExpanded
+                showGroupLabel
+                flex={1}
+              />
             </StackV>
           </StackV>
-        )}
+        </StackV>
+      )}
 
-        {/* Content */}
-        {showContent && (
-          <View.Content className={"scrollY"} flex={1}>
-            <ConstrainedContainer flex={1} p={GAP}>
-              {pathname !== ROOT_PATH && <View.Header withTitle px={4} />}
+      {/* Content */}
+      {showContent && (
+        <View.Content className={"scrollY"} flex={1}>
+          <ConstrainedContainer flex={1} p={GAP}>
+            {pathname !== ROOT_PATH && <View.Header withTitle px={4} />}
 
-              <CContainer flex={1}>{children}</CContainer>
-            </ConstrainedContainer>
-          </View.Content>
-        )}
-      </StackH>
-    </StackV>
-  );
-};
-
-// -----------------------------------------------------------------
-
-export default function Layout({ children }: { children: React.ReactNode }) {
-  return (
-    <View.Root className={"settings-layout-root"}>
-      <Content>{children}</Content>
-    </View.Root>
+            <CContainer flex={1}>{children}</CContainer>
+          </ConstrainedContainer>
+        </View.Content>
+      )}
+    </StackH>
   );
 }

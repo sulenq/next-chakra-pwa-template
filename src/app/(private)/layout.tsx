@@ -2,7 +2,6 @@
 
 import { Avatar } from "@/components/ui/avatar";
 import { Btn } from "@/components/ui/btn";
-import { CContainer } from "@/components/ui/c-container";
 import {
   MenuContent,
   MenuItem,
@@ -82,11 +81,11 @@ const MobileLayout = (props: any) => {
   const isInProfileRoute = pathname.includes(`/profile`);
 
   return (
-    <CContainer flex={1} overflowY={"auto"} {...restProps}>
+    <StackV flex={1} overflowY={"auto"} {...restProps}>
       {/* Content */}
-      <CContainer flex={1} bg={MOBILE_CONTENT_CONTAINER_BG} overflowY={"auto"}>
+      <View.Root flex={1} bg={MOBILE_CONTENT_CONTAINER_BG} overflowY={"auto"}>
         {/* Content header */}
-        <CContainer gap={2}>
+        <StackV gap={2}>
           <HStack w={"full"} justify={"space-between"} pt={2} px={4}>
             <HStack>
               <Logo size={15} ml={"-4px"} />
@@ -113,10 +112,10 @@ const MobileLayout = (props: any) => {
               ml={backPath ? -2 : -1}
             />
           </HStack>
-        </CContainer>
+        </StackV>
 
         {children}
-      </CContainer>
+      </View.Root>
 
       {/* Navs */}
       <HScroll
@@ -165,7 +164,7 @@ const MobileLayout = (props: any) => {
                             }}
                           >
                             <MenuTrigger asChild>
-                              <CContainer
+                              <StackV
                                 key={nav.path}
                                 minW={"50px"}
                                 align={"center"}
@@ -188,7 +187,7 @@ const MobileLayout = (props: any) => {
                                 </P>
 
                                 {isMainNavActive && <BottomIndicator />}
-                              </CContainer>
+                              </StackV>
                             </MenuTrigger>
 
                             <MenuContent>
@@ -297,7 +296,7 @@ const MobileLayout = (props: any) => {
           </ProfileMenuTrigger>
         </HStack>
       </HScroll>
-    </CContainer>
+    </StackV>
   );
 };
 
@@ -423,7 +422,7 @@ const DesktopLayout = (props: any) => {
                   navs={PRIVATE_NAV_GROUPS}
                   navsExpanded={isNavsExpanded}
                   addonElement={
-                    <CContainer gap={1} mt={"auto"}>
+                    <StackV gap={1} mt={"auto"}>
                       <NavLink
                         key={"/master-data"}
                         to={"/master-data"}
@@ -481,7 +480,7 @@ const DesktopLayout = (props: any) => {
                           </Btn>
                         </DesktopNavTooltip>
                       </NavLink>
-                    </CContainer>
+                    </StackV>
                   }
                   flex={1}
                 />
@@ -532,9 +531,9 @@ export default function Layout(props: any) {
 
   return (
     <AuthGuard>
-      <CContainer id="app-layout" h={"100dvh"}>
+      <StackV id="app-layout" h={"100dvh"}>
         {iss ? <MobileLayout {...props} /> : <DesktopLayout {...props} />}
-      </CContainer>
+      </StackV>
     </AuthGuard>
   );
 }

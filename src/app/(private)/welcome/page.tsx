@@ -3,7 +3,6 @@
 import { P } from "@/components/ui/p";
 import { StackV } from "@/components/ui/stack";
 import BrandWatermark from "@/components/widgets/brand-watermark";
-import { View } from "@/components/widgets/view";
 import { APP } from "@/constants/_meta";
 import { useLocale } from "@/contexts/useLocale";
 import { interpolateString, pluckString } from "@/utils/string";
@@ -17,31 +16,29 @@ export default function Page() {
   const variantNumber = Math.floor(Math.random() * 16) + 1;
 
   return (
-    <View.Root p={4}>
-      <VStack flex={1} gap={1} justify={"center"}>
-        <StackV align={"center"} my={"auto"}>
-          <StackV align={"center"} gap={2}>
-            <P
-              fontSize={"lg"}
-              fontWeight={"medium"}
-              textAlign={"center"}
-              color={"fg.subtle"}
-            >
-              {interpolateString(pluckString(t, `msg_welcome_to_the_app`), {
-                appName: APP.name,
-              })}
-            </P>
+    <StackV flex={1} gap={1} justify={"center"}>
+      <StackV align={"center"} my={"auto"}>
+        <StackV align={"center"} gap={2}>
+          <P
+            fontSize={"lg"}
+            fontWeight={"medium"}
+            textAlign={"center"}
+            color={"fg.subtle"}
+          >
+            {interpolateString(pluckString(t, `msg_welcome_to_the_app`), {
+              appName: APP.name,
+            })}
+          </P>
 
-            <P fontSize={"xl"} fontWeight={"medium"} textAlign={"center"}>
-              {pluckString(t, `msg_welcome_${variantNumber}`)}
-            </P>
-          </StackV>
+          <P fontSize={"xl"} fontWeight={"medium"} textAlign={"center"}>
+            {pluckString(t, `msg_welcome_${variantNumber}`)}
+          </P>
         </StackV>
+      </StackV>
 
-        <VStack>
-          <BrandWatermark />
-        </VStack>
+      <VStack>
+        <BrandWatermark />
       </VStack>
-    </View.Root>
+    </StackV>
   );
 }
