@@ -7,10 +7,11 @@ import { useAlerts } from "@/contexts/useAlerts";
 import { useLocale } from "@/contexts/useLocale";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
 import { usePopDisclosure } from "@/hooks/usePopDisclosure";
+import { back } from "@/utils/client";
 import { disclosureId } from "@/utils/disclosure";
 import { Icon } from "@chakra-ui/react";
 import { IconAccessPointOff } from "@tabler/icons-react";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 export const OfflineAlert = () => {
   // Contexts
@@ -20,10 +21,11 @@ export const OfflineAlert = () => {
   const showAlert = useAlerts((s) => s.showAlert);
   const hideAlert = useAlerts((s) => s.hideAlert);
 
+  // Refs
+  const hasOpenedRef = useRef(false);
+
   // Hooks
-  const { open, onOpen, onClose } = usePopDisclosure(
-    disclosureId("offline-alert"),
-  );
+  const { open, onOpen } = usePopDisclosure(disclosureId("offline-alert"));
 
   // Handler
   useEffect(() => {
@@ -54,12 +56,18 @@ export const OfflineAlert = () => {
 
   // State handler
   useEffect(() => {
-    if (isOffline && !open) {
-      onOpen();
-    } else if (!isOffline && open) {
-      onClose();
+    if (isOffline) {
+      if (!hasOpenedRef.current) {
+        onOpen();
+        hasOpenedRef.current = true;
+      }
+    } else {
+      hasOpenedRef.current = false;
+      if (open) {
+        back();
+      }
     }
-  }, [isOffline, open, onOpen, onClose]);
+  }, [isOffline, open, onOpen]);
 
   return (
     <Disclosure.Root open={open} lazyLoad size={"xs"} role={"alertdialog"}>
