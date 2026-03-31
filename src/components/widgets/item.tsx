@@ -9,46 +9,6 @@ import { forwardRef } from "react";
 
 // -----------------------------------------------------------------
 
-export interface ItemContainerProps extends StackProps {
-  scrollY?: boolean;
-  roundedless?: boolean;
-  borderless?: boolean;
-}
-
-const ItemContainer = forwardRef<HTMLDivElement, ItemContainerProps>(
-  function ItemContainer(props, ref) {
-    // Props
-    const {
-      children,
-      scrollY = false,
-      className,
-      roundedless = false,
-      borderless = true,
-      ...restProps
-    } = props;
-
-    // Contexts
-    const { themeConfig } = useThemeConfig();
-
-    return (
-      <StackV
-        ref={ref}
-        className={`${scrollY ? "scrollY" : ""} ${className}`}
-        w={"full"}
-        bg={"bg.frosted"}
-        rounded={roundedless ? "" : themeConfig.radii.container}
-        border={borderless ? "" : "1px solid"}
-        borderColor={"border.subtle"}
-        {...restProps}
-      >
-        {children}
-      </StackV>
-    );
-  },
-);
-
-// -----------------------------------------------------------------
-
 export interface ItemContentProps extends StackProps {
   scrollY?: boolean;
   roundedless?: boolean;
@@ -75,10 +35,10 @@ const ItemContent = forwardRef<HTMLDivElement, ItemContentProps>(
         ref={ref}
         className={`${scrollY ? "scrollY" : ""} ${className}`}
         w={"full"}
-        bg={"bg.body"}
+        bg={"bg.frosted"}
+        rounded={roundedless ? "" : themeConfig.radii.container}
         border={borderless ? "" : "1px solid"}
         borderColor={"border.subtle"}
-        rounded={roundedless ? "" : themeConfig.radii.component}
         {...restProps}
       >
         {children}
@@ -144,7 +104,6 @@ const ItemTitle = forwardRef<HTMLDivElement, ItemTitleProps>(
 // -----------------------------------------------------------------
 
 export const Item = {
-  Container: ItemContainer,
   Content: ItemContent,
   Header: ItemHeader,
   Title: ItemTitle,

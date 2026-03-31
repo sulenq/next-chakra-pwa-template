@@ -79,7 +79,7 @@ const OverviewItem = (props: OverviewItemProps) => {
   const { themeConfig } = useThemeConfig();
 
   return (
-    <Item.Container gap={1} {...restProps}>
+    <Item.Content gap={1} {...restProps}>
       <HStack gap={1} p={2} pl={4}>
         <Item.Title
           autoHeight
@@ -116,7 +116,7 @@ const OverviewItem = (props: OverviewItemProps) => {
           </ClampText>
         </HStack>
       </CContainer>
-    </Item.Container>
+    </Item.Content>
   );
 };
 
@@ -357,7 +357,7 @@ const Chart1 = (props: any) => {
   }
 
   return (
-    <Item.Container {...restProps}>
+    <Item.Content {...restProps}>
       <Item.Header borderless>
         <Item.Title
           color={"fg.muted"}
@@ -507,7 +507,7 @@ const Chart1 = (props: any) => {
           </HStack>
         </HStack>
       </CContainer>
-    </Item.Container>
+    </Item.Content>
   );
 };
 

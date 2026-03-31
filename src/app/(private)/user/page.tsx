@@ -654,13 +654,13 @@ export default function Page() {
           </HScroll>
         )}
 
-        <Item.Container flex={1} overflowY={"auto"}>
+        <Item.Content flex={1} overflowY={"auto"}>
           <Data
             filter={filter}
             routeTitle={routeTitle}
             isSmContainer={isSmContainer}
           />
-        </Item.Container>
+        </Item.Content>
       </CContainer>
     </View.Content>
   );

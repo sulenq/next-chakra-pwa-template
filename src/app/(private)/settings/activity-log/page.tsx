@@ -119,7 +119,7 @@ const ActivityLog = () => {
   };
 
   return (
-    <Item.Container borderless bg={"transparent"}>
+    <Item.Content borderless bg={"transparent"}>
       <Item.Header borderless>
         <HStack>
           <Icon boxSize={BASE_ICON_BOX_SIZE}>
@@ -130,7 +130,7 @@ const ActivityLog = () => {
       </Item.Header>
 
       <StackV px={R_SPACING_MD} pb={R_SPACING_MD}>
-        <Item.Container>
+        <Item.Content>
           <StackV p={4}>
             <SearchInput
               onChange={(inputValue) => {
@@ -167,9 +167,9 @@ const ActivityLog = () => {
             setPage={setPage}
             totalPage={pagination?.meta?.totalPage}
           />
-        </Item.Container>
+        </Item.Content>
       </StackV>
-    </Item.Container>
+    </Item.Content>
   );
 };
 

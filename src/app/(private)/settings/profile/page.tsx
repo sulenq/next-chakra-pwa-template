@@ -118,7 +118,7 @@ const PersonalInformation = (props: PersonalInformationProps) => {
   }, [initialData]);
 
   return (
-    <Item.Container bg={"transparent"}>
+    <Item.Content bg={"transparent"}>
       <Item.Header borderless>
         <AppIconLucide icon={UserIcon} />
 
@@ -126,7 +126,7 @@ const PersonalInformation = (props: PersonalInformationProps) => {
       </Item.Header>
 
       <StackV px={R_SPACING_MD} pb={R_SPACING_MD}>
-        <Item.Container p={4}>
+        <Item.Content p={4}>
           <StackH>
             <StackV minW={"280px"} pl={10} pr={8} pt={"28px"} pb={2}>
               <UserIdCard />
@@ -203,9 +203,9 @@ const PersonalInformation = (props: PersonalInformationProps) => {
               </StackH>
             </StackV>
           </StackH>
-        </Item.Container>
+        </Item.Content>
       </StackV>
-    </Item.Container>
+    </Item.Content>
   );
 };
 
@@ -294,7 +294,7 @@ const AuthLog = () => {
   };
 
   return (
-    <Item.Container ref={containerRef} bg={"transparent"}>
+    <Item.Content ref={containerRef} bg={"transparent"}>
       <Item.Header borderless>
         <AppIconLucide icon={LogInIcon} />
 
@@ -302,7 +302,7 @@ const AuthLog = () => {
       </Item.Header>
 
       <StackV px={R_SPACING_MD} pb={R_SPACING_MD}>
-        <Item.Container>
+        <Item.Content>
           <StackV p={4}>
             <SearchInput
               onChange={(inputValue) => {
@@ -338,9 +338,9 @@ const AuthLog = () => {
             setPage={setPage}
             totalPage={pagination?.meta?.totalPage}
           />
-        </Item.Container>
+        </Item.Content>
       </StackV>
-    </Item.Container>
+    </Item.Content>
   );
 };
 
@@ -444,7 +444,7 @@ const ActivityLog = () => {
   };
 
   return (
-    <Item.Container ref={containerRef} bg={"transparent"}>
+    <Item.Content ref={containerRef} bg={"transparent"}>
       <Item.Header borderless>
         <AppIconLucide icon={ActivityIcon} />
 
@@ -452,7 +452,7 @@ const ActivityLog = () => {
       </Item.Header>
 
       <StackV px={R_SPACING_MD} pb={R_SPACING_MD}>
-        <Item.Container>
+        <Item.Content>
           <StackV p={4}>
             <SearchInput
               onChange={(inputValue) => {
@@ -489,9 +489,9 @@ const ActivityLog = () => {
             setPage={setPage}
             totalPage={pagination?.meta?.totalPage}
           />
-        </Item.Container>
+        </Item.Content>
       </StackV>
-    </Item.Container>
+    </Item.Content>
   );
 };
 

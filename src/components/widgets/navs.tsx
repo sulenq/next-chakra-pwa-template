@@ -587,7 +587,7 @@ export const UserPanel = (props: UserPanelProps) => {
   const user = getUserData();
 
   return (
-    <Item.Container
+    <Item.Content
       p={navsExpanded ? 0 : R_SPACING_MD}
       bg={navsExpanded ? "bg.frosted" : "transparent"}
       backdropFilter={BACKDROP_BLUR_FILTER}
@@ -694,7 +694,7 @@ export const UserPanel = (props: UserPanelProps) => {
           </>
         )}
       </StackH>
-    </Item.Container>
+    </Item.Content>
   );
 };
 
