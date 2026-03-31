@@ -4,45 +4,70 @@ import { P, PProps } from "@/components/ui/p";
 import { StackH, StackV } from "@/components/ui/stack";
 import { InfoTip } from "@/components/widgets/info-tip";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
+import { useContainerDimension } from "@/hooks/useContainerDimension";
+import { useMergedRefs } from "@/hooks/useMergeRefs";
 import { HStack, StackProps } from "@chakra-ui/react";
-import { forwardRef } from "react";
+import { createContext, forwardRef, useContext, useMemo, useRef } from "react";
 
 // -----------------------------------------------------------------
 
-export interface ItemContentProps extends StackProps {
-  scrollY?: boolean;
-  roundedless?: boolean;
-  borderless?: boolean;
+interface ItemContextInterface {
+  dimension: {
+    width: number;
+    height: number;
+  };
+  isValidDimension: boolean;
+  isSmContainer: boolean;
 }
 
-const ItemContent = forwardRef<HTMLDivElement, ItemContentProps>(
-  function ItemContent(props, ref) {
-    // Props
-    const {
-      children,
-      scrollY = false,
-      className,
-      roundedless = false,
-      borderless = true,
-      ...restProps
-    } = props;
+const ItemContext = createContext<ItemContextInterface | null>(null);
 
-    // Contexts
-    const { themeConfig } = useThemeConfig();
+export function useItemContext() {
+  const context = useContext(ItemContext);
+  if (!context) {
+    throw new Error("useViewContext must be used inside Item.Root");
+  }
+  return context;
+}
+
+interface ItemRootProps extends StackProps {
+  scrollY?: boolean;
+}
+
+const ItemRoot = forwardRef<HTMLDivElement, ItemRootProps>(
+  function ItemBody(props, ref) {
+    // Props
+    const { children, scrollY = false, className, ...restProps } = props;
+
+    // Refs
+    const containerRef = useRef<HTMLDivElement>(null);
+    const mergeRef = useMergedRefs(containerRef, ref);
+
+    // Hooks
+    const dimension = useContainerDimension(containerRef);
+
+    // States
+    const isValidDimension = dimension.width > 0 && dimension.height > 0;
+    const isSmContainer = dimension.width < 600;
+
+    // Constants
+    const contextValue = useMemo(
+      () => ({ dimension, isValidDimension, isSmContainer }),
+      [dimension, isValidDimension, isSmContainer],
+    );
 
     return (
-      <StackV
-        ref={ref}
-        className={`${scrollY ? "scrollY" : ""} ${className}`}
-        w={"full"}
-        bg={"bg.frosted"}
-        rounded={roundedless ? "" : themeConfig.radii.container}
-        border={borderless ? "" : "1px solid"}
-        borderColor={"border.subtle"}
-        {...restProps}
-      >
-        {children}
-      </StackV>
+      <ItemContext.Provider value={contextValue}>
+        <StackV
+          ref={mergeRef}
+          className={`${scrollY ? "scrollY" : ""} ${className}`}
+          w={"full"}
+          borderColor={"border.subtle"}
+          {...restProps}
+        >
+          {children}
+        </StackV>
+      </ItemContext.Provider>
     );
   },
 );
@@ -79,6 +104,46 @@ const ItemHeader = forwardRef<HTMLDivElement, ItemHeaderProps>(
 
 // -----------------------------------------------------------------
 
+export interface ItemBodyProps extends StackProps {
+  scrollY?: boolean;
+  roundedless?: boolean;
+  borderless?: boolean;
+}
+
+const ItemBody = forwardRef<HTMLDivElement, ItemBodyProps>(
+  function ItemBody(props, ref) {
+    // Props
+    const {
+      children,
+      scrollY = false,
+      className,
+      roundedless = false,
+      borderless = true,
+      ...restProps
+    } = props;
+
+    // Contexts
+    const { themeConfig } = useThemeConfig();
+
+    return (
+      <StackV
+        ref={ref}
+        className={`${scrollY ? "scrollY" : ""} ${className}`}
+        w={"full"}
+        bg={"bg.frosted"}
+        rounded={roundedless ? "" : themeConfig.radii.container}
+        border={borderless ? "" : "1px solid"}
+        borderColor={"border.subtle"}
+        {...restProps}
+      >
+        {children}
+      </StackV>
+    );
+  },
+);
+
+// -----------------------------------------------------------------
+
 export interface ItemTitleProps extends PProps {
   popoverContent?: string;
   autoHeight?: boolean;
@@ -104,7 +169,8 @@ const ItemTitle = forwardRef<HTMLDivElement, ItemTitleProps>(
 // -----------------------------------------------------------------
 
 export const Item = {
-  Content: ItemContent,
+  Root: ItemRoot,
   Header: ItemHeader,
   Title: ItemTitle,
+  Body: ItemBody,
 };

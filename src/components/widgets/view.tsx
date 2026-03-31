@@ -233,21 +233,21 @@ export const ConstrainedContainer = forwardRef<HTMLDivElement, StackProps>(
 
 // -----------------------------------------------------------------
 
-type ViewContextType = {
+interface ViewContextInterface {
   dimension: {
     width: number;
     height: number;
   };
   isValidDimension: boolean;
   isSmContainer: boolean;
-};
+}
 
-const ViewContext = createContext<ViewContextType | null>(null);
+const ViewContext = createContext<ViewContextInterface | null>(null);
 
 export function useViewContext() {
   const context = useContext(ViewContext);
   if (!context) {
-    throw new Error("useViewContext must be used inside ViewRoot");
+    throw new Error("useViewContext must be used inside View.Root");
   }
   return context;
 }
@@ -265,6 +265,7 @@ const ViewRoot = forwardRef<HTMLDivElement, StackProps>(
     const isValidDimension = dimension.width > 0 && dimension.height > 0;
     const isSmContainer = dimension.width < 600;
 
+    // Constants
     const contextValue = useMemo(
       () => ({ dimension, isValidDimension, isSmContainer }),
       [dimension, isValidDimension, isSmContainer],

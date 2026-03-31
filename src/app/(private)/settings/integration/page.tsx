@@ -76,7 +76,7 @@ const APIKeys = (props: any) => {
   }, [apiKeys]);
 
   return (
-    <Item.Content borderless bg={"transparent"}>
+    <Item.Body borderless bg={"transparent"}>
       <Item.Header borderless>
         <HStack>
           <Icon boxSize={BASE_ICON_BOX_SIZE}>
@@ -87,7 +87,7 @@ const APIKeys = (props: any) => {
       </Item.Header>
 
       <StackV px={R_SPACING_MD} pb={R_SPACING_MD}>
-        <Item.Content p={4}>
+        <Item.Body p={4}>
           <form id={"api-keys-form"} onSubmit={formik.handleSubmit}>
             <FieldsetRoot disabled={loading}>
               <Field
@@ -129,9 +129,9 @@ const APIKeys = (props: any) => {
               {t.save}
             </Btn>
           </HStack>
-        </Item.Content>
+        </Item.Body>
       </StackV>
-    </Item.Content>
+    </Item.Body>
   );
 };
 

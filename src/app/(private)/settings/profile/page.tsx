@@ -46,7 +46,7 @@ import {
   LogInIcon,
   UserIcon,
 } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import * as yup from "yup";
 
 // -----------------------------------------------------------------
@@ -118,7 +118,7 @@ const PersonalInformation = (props: PersonalInformationProps) => {
   }, [initialData]);
 
   return (
-    <Item.Content bg={"transparent"}>
+    <Item.Root>
       <Item.Header borderless>
         <AppIconLucide icon={UserIcon} />
 
@@ -126,7 +126,7 @@ const PersonalInformation = (props: PersonalInformationProps) => {
       </Item.Header>
 
       <StackV px={R_SPACING_MD} pb={R_SPACING_MD}>
-        <Item.Content p={4}>
+        <Item.Body p={4}>
           <StackH>
             <StackV minW={"280px"} pl={10} pr={8} pt={"28px"} pb={2}>
               <UserIdCard />
@@ -151,7 +151,7 @@ const PersonalInformation = (props: PersonalInformationProps) => {
                         </Btn>
                       </AvatarUploadTrigger>
 
-                      <StackV>
+                      <StackV gap={1}>
                         <HelperText>{t.msg_new_avatar_helper}</HelperText>
                         <HelperText>{`PNG, JPG ${t.is_allowed}`}</HelperText>
                       </StackV>
@@ -203,9 +203,9 @@ const PersonalInformation = (props: PersonalInformationProps) => {
               </StackH>
             </StackV>
           </StackH>
-        </Item.Content>
+        </Item.Body>
       </StackV>
-    </Item.Content>
+    </Item.Root>
   );
 };
 
@@ -216,7 +216,6 @@ const AuthLog = () => {
   const { t } = useLocale();
 
   // Refs
-  const containerRef = useRef<HTMLDivElement>(null);
 
   // States
   const [search, setSearch] = useState("");
@@ -294,7 +293,7 @@ const AuthLog = () => {
   };
 
   return (
-    <Item.Content ref={containerRef} bg={"transparent"}>
+    <Item.Root>
       <Item.Header borderless>
         <AppIconLucide icon={LogInIcon} />
 
@@ -302,7 +301,7 @@ const AuthLog = () => {
       </Item.Header>
 
       <StackV px={R_SPACING_MD} pb={R_SPACING_MD}>
-        <Item.Content>
+        <Item.Body>
           <StackV p={4}>
             <SearchInput
               onChange={(inputValue) => {
@@ -338,9 +337,9 @@ const AuthLog = () => {
             setPage={setPage}
             totalPage={pagination?.meta?.totalPage}
           />
-        </Item.Content>
+        </Item.Body>
       </StackV>
-    </Item.Content>
+    </Item.Root>
   );
 };
 
@@ -349,9 +348,6 @@ const AuthLog = () => {
 const ActivityLog = () => {
   // Contexts
   const { t } = useLocale();
-
-  // Refs
-  const containerRef = useRef<HTMLDivElement>(null);
 
   // States
   const [search, setSearch] = useState("");
@@ -444,7 +440,7 @@ const ActivityLog = () => {
   };
 
   return (
-    <Item.Content ref={containerRef} bg={"transparent"}>
+    <Item.Root>
       <Item.Header borderless>
         <AppIconLucide icon={ActivityIcon} />
 
@@ -452,7 +448,7 @@ const ActivityLog = () => {
       </Item.Header>
 
       <StackV px={R_SPACING_MD} pb={R_SPACING_MD}>
-        <Item.Content>
+        <Item.Body>
           <StackV p={4}>
             <SearchInput
               onChange={(inputValue) => {
@@ -489,9 +485,9 @@ const ActivityLog = () => {
             setPage={setPage}
             totalPage={pagination?.meta?.totalPage}
           />
-        </Item.Content>
+        </Item.Body>
       </StackV>
-    </Item.Content>
+    </Item.Root>
   );
 };
 

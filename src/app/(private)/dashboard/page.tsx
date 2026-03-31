@@ -79,7 +79,7 @@ const OverviewItem = (props: OverviewItemProps) => {
   const { themeConfig } = useThemeConfig();
 
   return (
-    <Item.Content gap={1} {...restProps}>
+    <Item.Body gap={1} {...restProps}>
       <HStack gap={1} p={2} pl={4}>
         <Item.Title
           autoHeight
@@ -116,7 +116,7 @@ const OverviewItem = (props: OverviewItemProps) => {
           </ClampText>
         </HStack>
       </CContainer>
-    </Item.Content>
+    </Item.Body>
   );
 };
 
@@ -357,7 +357,7 @@ const Chart1 = (props: any) => {
   }
 
   return (
-    <Item.Content {...restProps}>
+    <Item.Body {...restProps}>
       <Item.Header borderless>
         <Item.Title
           color={"fg.muted"}
@@ -507,7 +507,7 @@ const Chart1 = (props: any) => {
           </HStack>
         </HStack>
       </CContainer>
-    </Item.Content>
+    </Item.Body>
   );
 };
 
@@ -529,7 +529,7 @@ const Usage = (props: any) => {
   );
 };
 
-const Content = () => {
+export default function Page() {
   // Contexts
   const { t } = useLocale();
 
@@ -598,13 +598,5 @@ const Content = () => {
         )}
       </StackV>
     </View.Content>
-  );
-};
-
-export default function Page() {
-  return (
-    <View.Root>
-      <Content />
-    </View.Root>
   );
 }

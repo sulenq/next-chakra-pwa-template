@@ -164,7 +164,7 @@ const CameraSection = () => {
   };
 
   return (
-    <Item.Content borderless bg={"transparent"}>
+    <Item.Root>
       <Item.Header borderless justify={"space-between"}>
         <HStack>
           <AppIconLucide icon={CameraIcon} />
@@ -176,7 +176,7 @@ const CameraSection = () => {
       </Item.Header>
 
       <StackV px={R_SPACING_MD} pb={R_SPACING_MD}>
-        <Item.Content p={4}>
+        <Item.Body p={4}>
           <ToggleSettingContainer>
             <StackV gap={1}>
               <P>{t.settings_camera.title}</P>
@@ -207,9 +207,9 @@ const CameraSection = () => {
               </P>
             </StackV>
           )}
-        </Item.Content>
+        </Item.Body>
       </StackV>
-    </Item.Content>
+    </Item.Root>
   );
 };
 
@@ -350,7 +350,7 @@ const MicrophoneSection = () => {
   };
 
   return (
-    <Item.Content borderless bg={"transparent"}>
+    <Item.Root>
       <Item.Header borderless justify={"space-between"}>
         <HStack>
           <AppIconLucide icon={MicIcon} />
@@ -362,7 +362,7 @@ const MicrophoneSection = () => {
       </Item.Header>
 
       <StackV px={R_SPACING_MD} pb={R_SPACING_MD}>
-        <Item.Content p={4}>
+        <Item.Body p={4}>
           <ToggleSettingContainer>
             <StackV gap={1}>
               <P>{t.settings_mic.title}</P>
@@ -393,9 +393,9 @@ const MicrophoneSection = () => {
               </P>
             </StackV>
           )}
-        </Item.Content>
+        </Item.Body>
       </StackV>
-    </Item.Content>
+    </Item.Root>
   );
 };
 
@@ -544,7 +544,7 @@ const LocationSection = () => {
   };
 
   return (
-    <Item.Content borderless bg={"transparent"}>
+    <Item.Root>
       <Item.Header borderless justify={"space-between"}>
         <HStack>
           <AppIconLucide icon={MapPinIcon} />
@@ -556,7 +556,7 @@ const LocationSection = () => {
       </Item.Header>
 
       <StackV px={R_SPACING_MD} pb={R_SPACING_MD}>
-        <Item.Content p={4}>
+        <Item.Body p={4}>
           <ToggleSettingContainer>
             <StackV gap={1}>
               <P>{t.settings_location.title}</P>
@@ -587,9 +587,9 @@ const LocationSection = () => {
               </P>
             </StackV>
           )}
-        </Item.Content>
+        </Item.Body>
       </StackV>
-    </Item.Content>
+    </Item.Root>
   );
 };
 

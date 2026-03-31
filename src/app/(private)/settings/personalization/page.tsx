@@ -169,7 +169,7 @@ const DarkModeSection = () => {
   }, [colorMode]);
 
   return (
-    <Item.Content bg={"transparent"}>
+    <Item.Root>
       <Item.Header borderless>
         <StackH align={"center"} gap={2}>
           <AppIconLucide icon={EclipseIcon} />
@@ -179,13 +179,13 @@ const DarkModeSection = () => {
       </Item.Header>
 
       <StackV px={R_SPACING_MD} pb={R_SPACING_MD}>
-        <Item.Content gap={4} p={4}>
+        <Item.Body gap={4} p={4}>
           <ManualDarkModeSetting />
 
           <ADMSetting />
-        </Item.Content>
+        </Item.Body>
       </StackV>
-    </Item.Content>
+    </Item.Root>
   );
 };
 
@@ -197,7 +197,7 @@ const AccentColorSection = () => {
   const { themeConfig, setThemeConfig } = useThemeConfig();
 
   return (
-    <Item.Content bg={"transparent"}>
+    <Item.Root>
       <Item.Header borderless>
         <HStack>
           <AppIconLucide icon={SwatchBookIcon} />
@@ -207,7 +207,7 @@ const AccentColorSection = () => {
       </Item.Header>
 
       <StackV px={R_SPACING_MD} pb={R_SPACING_MD}>
-        <Item.Content p={4}>
+        <Item.Body p={4}>
           <SimpleGrid minChildWidth={"56px"} gap={2}>
             {COLOR_PALETTES.map((color, index) => {
               const isSelected = color.palette === themeConfig.colorPalette;
@@ -260,9 +260,9 @@ const AccentColorSection = () => {
               );
             })}
           </SimpleGrid>
-        </Item.Content>
+        </Item.Body>
       </StackV>
-    </Item.Content>
+    </Item.Root>
   );
 };
 
@@ -286,7 +286,7 @@ const RoundedSection = () => {
   }
 
   return (
-    <Item.Content bg={"transparent"}>
+    <Item.Root>
       <Item.Header borderless>
         <HStack>
           <AppIconLucide icon={SquareRoundCornerIcon} />
@@ -296,7 +296,7 @@ const RoundedSection = () => {
       </Item.Header>
 
       <StackV px={R_SPACING_MD} pb={R_SPACING_MD}>
-        <Item.Content p={4}>
+        <Item.Body p={4}>
           <SimpleGrid minChildWidth={"140px"} gap={4}>
             {ROUNDED_PRESETS.map((preset, index) => {
               const isSelected = preset.label === themeConfig.radii.label;
@@ -363,9 +363,9 @@ const RoundedSection = () => {
               );
             })}
           </SimpleGrid>
-        </Item.Content>
+        </Item.Body>
       </StackV>
-    </Item.Content>
+    </Item.Root>
   );
 };
 
@@ -383,7 +383,7 @@ const ExampleUISection = () => {
   >(null);
 
   return (
-    <Item.Content bg={"transparent"}>
+    <Item.Root>
       <Item.Header borderless>
         <HStack>
           <AppIconLucide icon={LayoutPanelLeftIcon} />
@@ -393,7 +393,7 @@ const ExampleUISection = () => {
       </Item.Header>
 
       <StackV px={R_SPACING_MD} pb={R_SPACING_MD}>
-        <Item.Content p={4}>
+        <Item.Body p={4}>
           <HStack wrap={"wrap"} gapY={4}>
             <Btn flex={"1 1 100px"} colorPalette={themeConfig.colorPalette}>
               Label
@@ -443,9 +443,9 @@ const ExampleUISection = () => {
 
             <Switch colorPalette={themeConfig.colorPalette} />
           </HStack>
-        </Item.Content>
+        </Item.Body>
       </StackV>
-    </Item.Content>
+    </Item.Root>
   );
 };
 

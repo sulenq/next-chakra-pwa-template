@@ -55,7 +55,7 @@ const Language = () => {
   const { t, locale, setLocale } = useLocale();
 
   return (
-    <Item.Content borderless bg={"transparent"}>
+    <Item.Root>
       <Item.Header borderless>
         <HStack>
           <AppIconLucide icon={LanguagesIcon} />
@@ -64,7 +64,7 @@ const Language = () => {
       </Item.Header>
 
       <StackV px={R_SPACING_MD} pb={R_SPACING_MD}>
-        <Item.Content p={4}>
+        <Item.Body p={4}>
           <HStack wrap={"wrap"}>
             {LANGUAGES.map((item, i) => {
               const isSelected = locale === item.key;
@@ -101,9 +101,9 @@ const Language = () => {
               );
             })}
           </HStack>
-        </Item.Content>
+        </Item.Body>
       </StackV>
-    </Item.Content>
+    </Item.Root>
   );
 };
 
@@ -137,7 +137,7 @@ const Timezone = () => {
   }, [search, limit]);
 
   return (
-    <Item.Content borderless bg={"transparent"}>
+    <Item.Root>
       <Item.Header borderless justify={"space-between"}>
         <HStack>
           <AppIconLucide icon={GlobeIcon} />
@@ -163,7 +163,7 @@ const Timezone = () => {
       </Item.Header>
 
       <StackV px={R_SPACING_MD} pb={R_SPACING_MD}>
-        <Item.Content>
+        <Item.Body>
           <CContainer p={4}>
             <SearchInput
               onChange={(inputValue) => {
@@ -245,9 +245,9 @@ const Timezone = () => {
               />
             </CContainer>
           </HStack>
-        </Item.Content>
+        </Item.Body>
       </StackV>
-    </Item.Content>
+    </Item.Root>
   );
 };
 
@@ -260,7 +260,7 @@ const DateFormat = () => {
   const { dateFormat, setDateFormat } = useDateFormat();
 
   return (
-    <Item.Content borderless bg={"transparent"}>
+    <Item.Root>
       <Item.Header borderless>
         <HStack>
           <AppIconLucide icon={CalendarIcon} />
@@ -269,7 +269,7 @@ const DateFormat = () => {
       </Item.Header>
 
       <StackV px={R_SPACING_MD} pb={R_SPACING_MD}>
-        <Item.Content p={4}>
+        <Item.Body p={4}>
           <SimpleGrid columns={[1, 2, 3]} gap={2}>
             {DATE_FORMATS.map((item) => {
               const isSelected = item.key === dateFormat;
@@ -311,9 +311,9 @@ const DateFormat = () => {
               );
             })}
           </SimpleGrid>
-        </Item.Content>
+        </Item.Body>
       </StackV>
-    </Item.Content>
+    </Item.Root>
   );
 };
 
@@ -326,7 +326,7 @@ const TimeFormat = () => {
   const { timeFormat, setTimeFormat } = useTimeFormat();
 
   return (
-    <Item.Content borderless bg={"transparent"}>
+    <Item.Root>
       <Item.Header borderless>
         <HStack>
           <AppIconLucide icon={HourglassIcon} />
@@ -336,7 +336,7 @@ const TimeFormat = () => {
       </Item.Header>
 
       <StackV px={R_SPACING_MD} pb={R_SPACING_MD}>
-        <Item.Content p={4}>
+        <Item.Body p={4}>
           <SimpleGrid columns={[1, 2]} gap={2}>
             {TIME_FORMATS.map((item) => {
               const isSelected = item.key === timeFormat;
@@ -372,9 +372,9 @@ const TimeFormat = () => {
               );
             })}
           </SimpleGrid>
-        </Item.Content>
+        </Item.Body>
       </StackV>
-    </Item.Content>
+    </Item.Root>
   );
 };
 
@@ -387,7 +387,7 @@ const UOMFormat = () => {
   const { UOM, setUOM } = useUOMFormat();
 
   return (
-    <Item.Content borderless bg={"transparent"}>
+    <Item.Root>
       <Item.Header borderless>
         <HStack>
           <AppIconLucide icon={RulerDimensionLineIcon} />
@@ -396,7 +396,7 @@ const UOMFormat = () => {
       </Item.Header>
 
       <StackV px={R_SPACING_MD} pb={R_SPACING_MD}>
-        <Item.Content gap={4} p={4}>
+        <Item.Body gap={4} p={4}>
           <SimpleGrid columns={[1, 2, 3]} gap={2}>
             {UOM_FORMATS.map((item) => {
               const isSelected = item.key === UOM;
@@ -441,9 +441,9 @@ const UOMFormat = () => {
               );
             })}
           </SimpleGrid>
-        </Item.Content>
+        </Item.Body>
       </StackV>
-    </Item.Content>
+    </Item.Root>
   );
 };
 
