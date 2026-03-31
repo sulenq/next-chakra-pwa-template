@@ -18,6 +18,7 @@ import FeedbackNotFound from "@/components/widgets/feedback-not-found";
 import FeedbackRetry from "@/components/widgets/feedback-retry";
 import { Item } from "@/components/widgets/item";
 import { UserIdCard } from "@/components/widgets/user-id-card";
+import { useViewContext } from "@/components/widgets/view";
 import {
   DUMMY_USER,
   dummyActivityLogs,
@@ -37,7 +38,7 @@ import { useFetchData } from "@/hooks/useFetchData";
 import { useRequest } from "@/hooks/useRequest";
 import { isEmptyArray } from "@/utils/array";
 import { formatDate } from "@/utils/formatter";
-import { Circle } from "@chakra-ui/react";
+import { Circle, Stack } from "@chakra-ui/react";
 import { useFormik } from "formik";
 import {
   ActivityIcon,
@@ -62,6 +63,7 @@ const PersonalInformation = (props: PersonalInformationProps) => {
   // Contexts
   const { t } = useLocale();
   const { themeConfig } = useThemeConfig();
+  const { isSmContainer } = useViewContext();
 
   // Hooks
   const { req, loading } = useRequest({
@@ -127,9 +129,9 @@ const PersonalInformation = (props: PersonalInformationProps) => {
 
       <StackV px={R_SPACING_MD} pb={R_SPACING_MD}>
         <Item.Body p={4}>
-          <StackH>
+          <Stack flexDir={isSmContainer ? "column" : "row"}>
             <StackV minW={"280px"} pl={10} pr={8} pt={"28px"} pb={2}>
-              <UserIdCard />
+              <UserIdCard w={"220px"} mx={"auto"} />
             </StackV>
 
             <StackV flex={1} justify={"space-between"}>
@@ -202,7 +204,7 @@ const PersonalInformation = (props: PersonalInformationProps) => {
                 </Btn>
               </StackH>
             </StackV>
-          </StackH>
+          </Stack>
         </Item.Body>
       </StackV>
     </Item.Root>
