@@ -44,7 +44,7 @@ export const OfflineAlert = () => {
     window.addEventListener("online", handleOnline);
     window.addEventListener("offline", handleOffline);
 
-    if (!navigator.onLine) handleOffline();
+    // if (!navigator.onLine) handleOffline();
 
     return () => {
       window.removeEventListener("online", handleOnline);

@@ -1,9 +1,10 @@
 import { useCallback } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams, usePathname } from "next/navigation";
 
 export const usePopDisclosure = (id: string) => {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const pathname = usePathname();
 
   const open = searchParams.get(id) === "1";
 
@@ -13,9 +14,11 @@ export const usePopDisclosure = (id: string) => {
       updater(params);
 
       const query = params.toString();
-      router.push(query ? `?${query}` : "", { scroll: false });
+      const url = query ? `${pathname}?${query}` : pathname;
+
+      router.push(url, { scroll: false });
     },
-    [router, searchParams],
+    [router, searchParams, pathname],
   );
 
   const onOpen = useCallback(() => {
