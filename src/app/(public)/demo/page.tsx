@@ -990,7 +990,7 @@ const DemoIndexRoute = () => {
 
         <SimpleGrid columns={[1, null, 2]} gap={4}>
           <CContainer>
-            <PDFViewer fileUrl={"/test.pdf"} />
+            <PDFViewer fileUrl={"/test.pdf"} maxH={"600px"} />
           </CContainer>
 
           <CContainer>

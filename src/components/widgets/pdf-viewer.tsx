@@ -1,17 +1,18 @@
 "use client";
 
 import { Btn, BtnProps } from "@/components/ui/btn";
-import { CContainer } from "@/components/ui/c-container";
-import { MenuContent, MenuRoot, MenuTrigger } from "@/components/ui/menu";
+import { Menu } from "@/components/ui/menu";
 import { NumInput } from "@/components/ui/number-input";
 import { P } from "@/components/ui/p";
 import { Spinner } from "@/components/ui/spinner";
+import { StackH, StackV } from "@/components/ui/stack";
 import { Tooltip } from "@/components/ui/tooltip";
 import { AppIconLucide } from "@/components/widgets/app-icon";
 import FeedbackState from "@/components/widgets/feedback-state";
 import { HScroll } from "@/components/widgets/h-scroll";
+import { GAP } from "@/constants/styles";
 import { useLocale } from "@/contexts/useLocale";
-import { Box, HStack, Icon, StackProps, VStack } from "@chakra-ui/react";
+import { Box, Icon, StackProps, VStack } from "@chakra-ui/react";
 import {
   IconArrowAutofitWidth,
   IconDownload,
@@ -21,19 +22,22 @@ import {
   IconZoomIn,
   IconZoomOut,
 } from "@tabler/icons-react";
-import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
+import { ArrowRight, ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { Document, Page, pdfjs } from "react-pdf";
 import "react-pdf/dist/Page/AnnotationLayer.css";
 import "react-pdf/dist/Page/TextLayer.css";
 
-export interface PdfViewer {
+// -----------------------------------------------------------------
+
+export interface Viewer {
   pageWidth: number;
   numPages: number | null;
   page: number;
   scale: number;
   mode: "single" | "scroll";
 }
+
 export interface PdfViewerUtils {
   setPageWidth: (width: number) => void;
   setPage: (p: number) => void;
@@ -50,9 +54,12 @@ export interface PdfViewerUtils {
 
 pdfjs.GlobalWorkerOptions.workerSrc = "/pdf.worker.min.mjs";
 
+// -----------------------------------------------------------------
+
 interface UtilBtnProps extends BtnProps {
   tooltipContent: string;
 }
+
 const UtilBtn = (btnProps: UtilBtnProps) => {
   const { tooltipContent, ...restProps } = btnProps;
 
@@ -63,11 +70,14 @@ const UtilBtn = (btnProps: UtilBtnProps) => {
   );
 };
 
+// -----------------------------------------------------------------
+
 interface PageControlProps extends Omit<StackProps, "page"> {
   page: number;
   numPages: number;
   utils: PdfViewerUtils;
 }
+
 const PageControl = (props: PageControlProps) => {
   // Props
   const { utils, page, numPages, ...restProps } = props;
@@ -76,7 +86,7 @@ const PageControl = (props: PageControlProps) => {
   const { t } = useLocale();
 
   // States
-  const [gotoPage, setGotoPage] = useState<number | null>(null);
+  const [gotoPage, setGotoPage] = useState<number | null>(page);
 
   // Utils
   function handleJumpPage(gotoPage: number | null) {
@@ -85,8 +95,13 @@ const PageControl = (props: PageControlProps) => {
     }
   }
 
+  // Sync page with goto page
+  useEffect(() => {
+    setGotoPage(page);
+  }, [page]);
+
   return (
-    <HStack gap={0} {...restProps}>
+    <StackH align={"center"} gap={GAP} {...restProps}>
       <UtilBtn
         onClick={utils.prevPage}
         disabled={page <= 1}
@@ -95,13 +110,14 @@ const PageControl = (props: PageControlProps) => {
         <AppIconLucide icon={ChevronLeftIcon} />
       </UtilBtn>
 
-      <MenuRoot
+      <Menu.Root
         positioning={{
           placement: "bottom",
         }}
       >
-        <MenuTrigger asChild>
+        <Menu.Trigger asChild>
           <Btn
+            minW={"70px"}
             px={2}
             variant={"ghost"}
             fontWeight={"medium"}
@@ -110,39 +126,47 @@ const PageControl = (props: PageControlProps) => {
           >
             {page} / {numPages || "?"}
           </Btn>
-        </MenuTrigger>
+        </Menu.Trigger>
 
-        <MenuContent p={0} minW={"100px"} maxW={"100px"}>
-          <CContainer gap={2} p={2}>
+        <Menu.Content p={0}>
+          <StackV gap={2} p={2}>
             <P fontSize={"sm"} fontWeight={"medium"} color={"fg.subtle"}>
               Go to page
             </P>
 
-            <NumInput
-              inputValue={gotoPage}
-              onChange={(inputValue) => {
-                setGotoPage(inputValue);
-              }}
-              max={numPages}
-              placeholder={""}
-              onKeyDown={(e) => {
-                if (e.key === "Enter") handleJumpPage(gotoPage);
-              }}
-              px={2}
-            />
+            <StackH gap={GAP}>
+              <NumInput
+                inputValue={gotoPage}
+                onChange={(inputValue) => {
+                  setGotoPage(inputValue);
+                }}
+                max={numPages}
+                placeholder={""}
+                flex={1}
+                w={"full"}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") handleJumpPage(gotoPage);
+                }}
+                px={"8px 32px"}
+              />
 
-            <Btn
-              disabled={gotoPage === null}
-              variant={"outline"}
-              onClick={() => {
-                handleJumpPage(gotoPage);
-              }}
-            >
-              Go
-            </Btn>
-          </CContainer>
-        </MenuContent>
-      </MenuRoot>
+              <Menu.Item
+                asChild
+                value={"submit"}
+                w={"fit"}
+                disabled={gotoPage === null}
+                onClick={() => {
+                  handleJumpPage(gotoPage);
+                }}
+              >
+                <Btn iconButton variant={"outline"}>
+                  <AppIconLucide icon={ArrowRight} />
+                </Btn>
+              </Menu.Item>
+            </StackH>
+          </StackV>
+        </Menu.Content>
+      </Menu.Root>
 
       <UtilBtn
         onClick={utils.nextPage}
@@ -151,14 +175,17 @@ const PageControl = (props: PageControlProps) => {
       >
         <AppIconLucide icon={ChevronRightIcon} />
       </UtilBtn>
-    </HStack>
+    </StackH>
   );
 };
+
+// -----------------------------------------------------------------
 
 interface ZoomControlProps extends StackProps {
   scale: number;
   utils: PdfViewerUtils;
 }
+
 const ZoomControl = (props: ZoomControlProps) => {
   // Props
   const { utils, scale, ...restProps } = props;
@@ -167,7 +194,7 @@ const ZoomControl = (props: ZoomControlProps) => {
   const { t } = useLocale();
 
   return (
-    <HStack gap={0} {...restProps}>
+    <StackH align={"center"} gap={GAP} {...restProps}>
       <UtilBtn onClick={utils.zoomOut} tooltipContent={t.zoom_out}>
         <Icon boxSize={5}>
           <IconZoomOut stroke={1.5} />
@@ -196,28 +223,29 @@ const ZoomControl = (props: ZoomControlProps) => {
           <IconArrowAutofitContent stroke={1.5} />
         </Icon>
       </UtilBtn> */}
-    </HStack>
+    </StackH>
   );
 };
 
+// -----------------------------------------------------------------
+
 interface PDFToolbarProps extends StackProps {
-  viewer: PdfViewer;
+  viewer: Viewer;
   utils: PdfViewerUtils;
 }
+
 const Toolbar = (props: PDFToolbarProps) => {
   // Props
   const { viewer, utils, ...restProps } = props;
 
   return (
     <HScroll className={"noScroll"} bg={"bg.body"} {...restProps}>
-      <HStack minW={"full"} w={"max"} gap={0} p={2}>
-        {viewer.mode === "single" && (
-          <PageControl
-            page={viewer.page}
-            numPages={viewer.numPages || 0}
-            utils={utils}
-          />
-        )}
+      <StackH minW={"full"} w={"max"} gap={GAP} p={2}>
+        <PageControl
+          page={viewer.page}
+          numPages={viewer.numPages || 0}
+          utils={utils}
+        />
 
         <ZoomControl scale={viewer.scale} utils={utils} />
 
@@ -248,15 +276,18 @@ const Toolbar = (props: PDFToolbarProps) => {
           {viewer.mode === "single" && "Single"}
           {viewer.mode === "scroll" && "Scroll"}
         </UtilBtn>
-      </HStack>
+      </StackH>
     </HScroll>
   );
 };
+
+// -----------------------------------------------------------------
 
 export interface PdfViewerProps extends StackProps {
   fileUrl: string;
   fileName?: string;
 }
+
 export const PDFViewer = (props: PdfViewerProps) => {
   // Props
   const { fileUrl, fileName, ...restProps } = props;
@@ -268,7 +299,7 @@ export const PDFViewer = (props: PdfViewerProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
 
   // States
-  const [viewer, setViewer] = useState<PdfViewer>({
+  const [viewer, setViewer] = useState<Viewer>({
     pageWidth: 0,
     numPages: null as number | null,
     page: 1,
@@ -279,16 +310,64 @@ export const PDFViewer = (props: PdfViewerProps) => {
     setPageWidth: (width: number) =>
       setViewer((ps) => ({ ...ps, pageWidth: width })),
 
-    setPage: (p: number) => setViewer((ps) => ({ ...ps, page: p })),
+    setPage: (p: number) =>
+      setViewer((ps) => {
+        if (ps.mode === "scroll") {
+          setTimeout(() => {
+            const container = containerRef.current;
+            const pageElement = document.getElementById(`pdf_page_${p}`);
+            if (container && pageElement) {
+              const cRect = container.getBoundingClientRect();
+              const pRect = pageElement.getBoundingClientRect();
+              container.scrollTo({
+                top: container.scrollTop + (pRect.top - cRect.top) - 8,
+                behavior: "auto",
+              });
+            }
+          }, 0);
+        }
+        return { ...ps, page: p };
+      }),
 
     prevPage: () =>
-      setViewer((ps) => ({ ...ps, page: Math.max(ps.page - 1, 1) })),
+      setViewer((ps) => {
+        const p = Math.max(ps.page - 1, 1);
+        if (ps.mode === "scroll") {
+          setTimeout(() => {
+            const container = containerRef.current;
+            const pageElement = document.getElementById(`pdf_page_${p}`);
+            if (container && pageElement) {
+              const cRect = container.getBoundingClientRect();
+              const pRect = pageElement.getBoundingClientRect();
+              container.scrollTo({
+                top: container.scrollTop + (pRect.top - cRect.top) - 8,
+                behavior: "auto",
+              });
+            }
+          }, 0);
+        }
+        return { ...ps, page: p };
+      }),
 
     nextPage: () =>
-      setViewer((ps) => ({
-        ...ps,
-        page: Math.min(ps.page + 1, ps.numPages || 1),
-      })),
+      setViewer((ps) => {
+        const p = Math.min(ps.page + 1, ps.numPages || 1);
+        if (ps.mode === "scroll") {
+          setTimeout(() => {
+            const container = containerRef.current;
+            const pageElement = document.getElementById(`pdf_page_${p}`);
+            if (container && pageElement) {
+              const cRect = container.getBoundingClientRect();
+              const pRect = pageElement.getBoundingClientRect();
+              container.scrollTo({
+                top: container.scrollTop + (pRect.top - cRect.top) - 8,
+                behavior: "auto",
+              });
+            }
+          }, 0);
+        }
+        return { ...ps, page: p };
+      }),
 
     zoomIn: () =>
       setViewer((ps) => ({ ...ps, scale: Math.min(ps.scale + 0.1, 3) })),
@@ -350,16 +429,58 @@ export const PDFViewer = (props: PdfViewerProps) => {
     return () => observer.disconnect();
   }, []);
 
+  // Intersection Observer for Scroll Mode
+  useEffect(() => {
+    if (viewer.mode !== "scroll" || !containerRef.current) return;
+
+    let timeout: NodeJS.Timeout;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const pageId = entry.target.id.replace("pdf_page_", "");
+            if (pageId) {
+              setViewer((ps) => ({ ...ps, page: Number(pageId) }));
+            }
+          }
+        });
+      },
+      {
+        root: containerRef.current,
+        // Trigger when the element crosses the vertical center of the container
+        rootMargin: "-50% 0px -50% 0px",
+      },
+    );
+
+    const observePages = () => {
+      if (!containerRef.current) return;
+      const pages = containerRef.current.querySelectorAll("[id^='pdf_page_']");
+      if (pages.length > 0) {
+        pages.forEach((page) => observer.observe(page));
+      } else {
+        timeout = setTimeout(observePages, 200);
+      }
+    };
+
+    observePages();
+
+    return () => {
+      clearTimeout(timeout);
+      observer.disconnect();
+    };
+  }, [viewer.mode, viewer.numPages]);
+
   return (
-    <CContainer flex={1} w={"full"} h={"full"} {...restProps}>
+    <StackV flex={1} w={"full"} h={"full"} {...restProps}>
       {/* Toolbar */}
       <Toolbar utils={utils} viewer={viewer} flexShrink={0} />
 
       {/* Document Area */}
-      <CContainer
+      <StackV
         ref={containerRef}
         className={"scrollX scrollY"}
         flex={1}
+        w={"full"}
         minH={"200px"}
         bg={"bg.muted"}
         p={2}
@@ -405,7 +526,7 @@ export const PDFViewer = (props: PdfViewerProps) => {
                   gap={4}
                 >
                   {Array.from(new Array(viewer.numPages), (_, index) => (
-                    <Box key={`page_${index + 1}`}>
+                    <Box key={`page_${index + 1}`} id={`pdf_page_${index + 1}`}>
                       <Page
                         pageNumber={index + 1}
                         renderTextLayer={true}
@@ -420,7 +541,7 @@ export const PDFViewer = (props: PdfViewerProps) => {
             </>
           )}
         </Document>
-      </CContainer>
-    </CContainer>
+      </StackV>
+    </StackV>
   );
 };

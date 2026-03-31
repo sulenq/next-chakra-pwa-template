@@ -1,7 +1,6 @@
 "use client";
 
-import { CContainer } from "@/components/ui/c-container";
-import { BACKDROP_BLUR_FILTER } from "@/constants/styles";
+import { BACKDROP_BLUR_FILTER, GAP } from "@/constants/styles";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
 import {
   AbsoluteCenter,
@@ -89,13 +88,12 @@ export const MenuContent = forwardRef<HTMLDivElement, MenuContentProps>(
             ref={ref}
             w={"160px"}
             gap={1}
-            px={0}
-            py={1}
+            p={GAP}
             bg={"bg.body"}
             backdropFilter={BACKDROP_BLUR_FILTER}
             border={"1px solid"}
             borderColor={"border.subtle"}
-            rounded={themeConfig.radii.container}
+            rounded={themeConfig.radii.component}
             shadow={"soft"}
             {...restProps}
           />
@@ -114,29 +112,27 @@ export const MenuItem = forwardRef<HTMLDivElement, MenuItemProps>(
     const { themeConfig } = useThemeConfig();
 
     return (
-      <CContainer px={1}>
-        <ChakraMenu.Item
-          gap={3}
-          ref={ref}
-          py={asChild ? undefined : "8px !important"}
-          cursor={"pointer"}
-          fontSize={asChild ? undefined : "md"}
-          rounded={
-            asChild ? undefined : `calc(${themeConfig.radii.component} + 2px)`
-          }
-          _hover={
-            asChild
-              ? undefined
-              : {
-                  bg: "bg.muted",
-                }
-          }
-          asChild={asChild}
-          {...restProps}
-        >
-          {children}
-        </ChakraMenu.Item>
-      </CContainer>
+      <ChakraMenu.Item
+        gap={3}
+        ref={ref}
+        py={asChild ? undefined : "8px !important"}
+        cursor={"pointer"}
+        fontSize={asChild ? undefined : "md"}
+        rounded={
+          asChild ? undefined : `calc(${themeConfig.radii.component} - 2px)`
+        }
+        _hover={
+          asChild
+            ? undefined
+            : {
+                bg: "bg.muted",
+              }
+        }
+        asChild={asChild}
+        {...restProps}
+      >
+        {children}
+      </ChakraMenu.Item>
     );
   },
 );
