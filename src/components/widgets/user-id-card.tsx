@@ -141,7 +141,7 @@ export const UserIdCard = (props: UserIdCardProps) => {
         aspectRatio={1 / 1.6}
         bg={"bg.bodySolid"}
         rounded={themeConfig.radii.component}
-        shadow={"xs"}
+        shadow={"sm"}
         overflow={"clip"}
         zIndex={2}
       >

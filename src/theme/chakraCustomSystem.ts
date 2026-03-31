@@ -523,7 +523,7 @@ const customConfig = defineConfig({
         bg: {
           canvas: {
             value: {
-              base: "#f2f1f7",
+              base: "#f0eff5",
               _dark: "#151515",
             },
           },
