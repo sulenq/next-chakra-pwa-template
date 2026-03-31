@@ -93,13 +93,13 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
       {/* Content */}
       {showContent && (
-        <View.Content className={"scrollY"} flex={1}>
+        <View.Root className={"scrollY"} flex={1}>
           <ConstrainedContainer flex={1} p={GAP}>
             {pathname !== ROOT_PATH && <View.Header withTitle px={4} />}
 
             <CContainer flex={1}>{children}</CContainer>
           </ConstrainedContainer>
-        </View.Content>
+        </View.Root>
       )}
     </StackH>
   );
