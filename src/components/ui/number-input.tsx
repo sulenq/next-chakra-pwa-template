@@ -214,7 +214,7 @@ export const NumInput = forwardRef<HTMLInputElement, NumInputProps>(
         invalid={invalid}
         placeholder={resolvedPlaceholder}
         containerProps={containerProps}
-        fontVariantNumeric="tabular-nums"
+        fontVariantNumeric={"tabular-nums"}
         {...restProps}
       />
     );

@@ -1,10 +1,10 @@
 "use client";
 
-import { P } from "@/components/ui/p";
+import { TNum, P } from "@/components/ui/p";
 import { StackH } from "@/components/ui/stack";
 import useTimezone from "@/contexts/useTimezone";
 import { formatTime } from "@/utils/formatter";
-import { StackProps } from "@chakra-ui/react";
+import { Span, StackProps } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 
 // -----------------------------------------------------------------
@@ -42,7 +42,6 @@ export const Clock = (props: ClockPropsProps) => {
         formatTime(utcTimeString(), {
           showSeconds,
           timezoneKey: tzKey,
-          showAbbr: showAbbr,
         }),
       );
     };
@@ -54,8 +53,12 @@ export const Clock = (props: ClockPropsProps) => {
 
   return (
     <StackH {...restProps}>
-      <P fontSize={props?.fontSize} fontVariantNumeric={"tabular-nums"}>
-        {time}
+      <P fontSize={props?.fontSize}>
+        <TNum>{time}</TNum>
+
+        <Span ml={2} fontSize={"inherit"}>
+          {showAbbr && tz.localAbbr}
+        </Span>
       </P>
     </StackH>
   );

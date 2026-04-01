@@ -221,10 +221,10 @@ export const ProfileMenu = (props: ProfileMenuProps) => {
         })}
 
         <Confirmation.Trigger
-          id="signout"
-          title="Sign out"
+          id={"signout"}
+          title={"Sign out"}
           description={t.msg_signout}
-          confirmLabel="Sign out"
+          confirmLabel={"Sign out"}
           onConfirm={() => {
             handleSignout();
             handleClose?.();

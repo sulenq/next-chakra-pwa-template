@@ -40,7 +40,7 @@ export const FileItem = (props: FileItemProps) => {
     >
       <Link
         href={fileData?.fileUrl}
-        target="_blank"
+        target={"_blank"}
         style={{
           width: "100%",
         }}

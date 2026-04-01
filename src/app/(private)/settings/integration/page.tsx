@@ -122,8 +122,8 @@ const APIKeys = (props: any) => {
 
           <HStack justify={"end"} mt={8}>
             <Btn
-              type="submit"
-              form="api-keys-form"
+              type={"submit"}
+              form={"api-keys-form"}
               colorPalette={themeConfig.colorPalette}
             >
               {t.save}

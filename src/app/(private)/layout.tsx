@@ -525,7 +525,7 @@ export default function Layout(props: any) {
 
   return (
     <AuthGuard>
-      <StackV id="app-layout" h={"100dvh"}>
+      <StackV id={"app-layout"} h={"100dvh"}>
         {iss ? <MobileLayout {...props} /> : <DesktopLayout {...props} />}
       </StackV>
     </AuthGuard>

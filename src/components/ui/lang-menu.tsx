@@ -42,7 +42,7 @@ export const LangMenu = (props: BtnProps) => {
             pr={1}
             variant={"ghost"}
             color={"current"}
-            size="sm"
+            size={"sm"}
             {...props}
           >
             {locale.toUpperCase()}

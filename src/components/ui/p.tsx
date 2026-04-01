@@ -1,6 +1,6 @@
 "use client";
 
-import { Text, TextProps } from "@chakra-ui/react";
+import { HTMLChakraProps, Span, Text, TextProps } from "@chakra-ui/react";
 import parse, { domToReact } from "html-react-parser";
 import { forwardRef } from "react";
 
@@ -18,7 +18,7 @@ export const P = forwardRef<HTMLParagraphElement, PProps>(
     return (
       <Text
         ref={ref}
-        as="p"
+        as={"p"}
         wordBreak={"break-word"}
         fontFamily={"inherit"}
         {...restProps}
@@ -53,9 +53,42 @@ export const PSerif = forwardRef<HTMLParagraphElement, PProps>(
     const { children = "", ...restProps } = props;
 
     return (
-      <P ref={ref} as="p" fontFamily={"Times New Roman"} {...restProps}>
+      <P ref={ref} as={"p"} fontFamily={"Times New Roman"} {...restProps}>
         {children}
       </P>
+    );
+  },
+);
+
+// -----------------------------------------------------------------
+
+export const TNum = forwardRef<HTMLParagraphElement, HTMLChakraProps<"span">>(
+  function TNum(props, ref) {
+    // Props
+    const { children = "", ...restProps } = props;
+
+    // Constants
+    const characters = String(children).split("");
+
+    return (
+      <Span
+        ref={ref}
+        display={"inline-flex"}
+        fontSize={"inherit"}
+        {...restProps}
+      >
+        {characters.map((char, index) => (
+          <Span
+            key={index}
+            display={"inline-block"}
+            w={"0.9ch"}
+            fontSize={"inherit"}
+            textAlign={"center"}
+          >
+            {char}
+          </Span>
+        ))}
+      </Span>
     );
   },
 );

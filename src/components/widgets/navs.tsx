@@ -236,7 +236,7 @@ export const DesktopNavs = (props: DesktopNavsProps) => {
                                           ? themeConfig.colorPalette
                                           : DESKTOP_NAV_BTN_COLOR_PATELLE
                                       }
-                                      pos="relative"
+                                      pos={"relative"}
                                     >
                                       {/* {isMainNavsActive && <LeftIndicator />} */}
 
@@ -345,7 +345,7 @@ export const DesktopNavs = (props: DesktopNavsProps) => {
                             <Accordion.Root multiple>
                               <Accordion.Item
                                 value={nav.path}
-                                border="none"
+                                border={"none"}
                                 rounded={themeConfig.radii.component}
                                 _open={{ bg: "transparent" }}
                               >
@@ -397,7 +397,7 @@ export const DesktopNavs = (props: DesktopNavsProps) => {
                                           />
                                         </Center>
 
-                                        <P lineClamp={1} textAlign="left">
+                                        <P lineClamp={1} textAlign={"left"}>
                                           {nav.label
                                             ? nav.label
                                             : pluckString(t, nav.labelKey)}
@@ -423,9 +423,9 @@ export const DesktopNavs = (props: DesktopNavsProps) => {
                                         <CContainer key={menuItemIdx} gap={1}>
                                           {subGroup.labelKey && (
                                             <ClampText
-                                              fontSize="sm"
-                                              fontWeight="semibold"
-                                              color="fg.subtle"
+                                              fontSize={"sm"}
+                                              fontWeight={"semibold"}
+                                              color={"fg.subtle"}
                                               ml={9}
                                               mt={1}
                                             >
@@ -447,7 +447,7 @@ export const DesktopNavs = (props: DesktopNavsProps) => {
                                               <NavLink
                                                 key={menu.path}
                                                 to={menu.path}
-                                                w="full"
+                                                w={"full"}
                                               >
                                                 <Tooltip
                                                   content={
@@ -474,22 +474,22 @@ export const DesktopNavs = (props: DesktopNavsProps) => {
                                                   >
                                                     {!isFirstIdx && (
                                                       <Box
-                                                        w="1px"
-                                                        h="calc(50% + 2px)"
-                                                        pos="absolute"
-                                                        top="-2px"
-                                                        left="18px"
-                                                        bg="d3"
+                                                        w={"1px"}
+                                                        h={"calc(50% + 2px)"}
+                                                        pos={"absolute"}
+                                                        top={"-2px"}
+                                                        left={"18px"}
+                                                        bg={"d3"}
                                                       />
                                                     )}
                                                     {!isLastIdx && (
                                                       <Box
-                                                        w="1px"
-                                                        h="calc(50% + 2px)"
-                                                        pos="absolute"
-                                                        bottom="-2px"
-                                                        left="18px"
-                                                        bg="d3"
+                                                        w={"1px"}
+                                                        h={"calc(50% + 2px)"}
+                                                        pos={"absolute"}
+                                                        bottom={"-2px"}
+                                                        left={"18px"}
+                                                        bg={"d3"}
                                                       />
                                                     )}
 
@@ -498,7 +498,7 @@ export const DesktopNavs = (props: DesktopNavsProps) => {
                                                         BASE_ICON_BOX_SIZE
                                                       }
                                                       zIndex={2}
-                                                      ml="1.5px"
+                                                      ml={"1.5px"}
                                                     >
                                                       <Icon
                                                         boxSize={2}
@@ -533,7 +533,7 @@ export const DesktopNavs = (props: DesktopNavsProps) => {
                                                     >
                                                       <P
                                                         lineClamp={1}
-                                                        textAlign="left"
+                                                        textAlign={"left"}
                                                       >
                                                         {menu.label
                                                           ? menu.label

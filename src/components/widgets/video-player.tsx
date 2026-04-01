@@ -275,22 +275,22 @@ export default function VideoPlayer(props: VideoPlayerProps) {
   return (
     <CContainer
       ref={videoContainerRef}
-      justify="center"
-      align="center"
-      mx="auto"
-      pos="relative"
-      overflow="clip"
+      justify={"center"}
+      align={"center"}
+      mx={"auto"}
+      pos={"relative"}
+      overflow={"clip"}
       aspectRatio={16 / 10}
-      bg="black"
+      bg={"black"}
       {...restProps}
     >
       <VideoElement
-        as="video"
+        as={"video"}
         ref={videoRef}
         src={src}
         poster={resolvedThumbnail}
-        w="full"
-        shadow="md"
+        w={"full"}
+        shadow={"md"}
         onClick={() => {
           if (showControls) {
             handlePlayPause();
@@ -303,7 +303,7 @@ export default function VideoPlayer(props: VideoPlayerProps) {
 
       <CContainer
         w={"full"}
-        className="dsb"
+        className={"dsb"}
         pos={"absolute"}
         left={0}
         transition={"500ms"}
@@ -362,8 +362,8 @@ export default function VideoPlayer(props: VideoPlayerProps) {
 
               {/* Timer */}
               <P
-                fontSize="sm"
-                textAlign="right"
+                fontSize={"sm"}
+                textAlign={"right"}
                 flexShrink={0}
                 fontVariantNumeric={"tabular-nums"}
               >
@@ -451,7 +451,7 @@ export default function VideoPlayer(props: VideoPlayerProps) {
                 </Btn>
 
                 <Slider.Root
-                  w="60px"
+                  w={"60px"}
                   min={0}
                   max={100}
                   step={1}

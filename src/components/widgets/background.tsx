@@ -84,11 +84,11 @@ export const AnimatedBlobBackground = (props: AnimatedBlobBackgroundProps) => {
     >
       <StackV flex={1} pos={"relative"}>
         <Box
-          w="full"
-          h="full"
+          w={"full"}
+          h={"full"}
           aspectRatio={1}
           bg={`${themeConfig.colorPalette}.500`}
-          borderRadius="60% 40% 70% 30% / 50% 60% 40% 70%"
+          borderRadius={"60% 40% 70% 30% / 50% 60% 40% 70%"}
           animation={`rotate360 ${dur1}ms linear infinite`}
           pos={"absolute"}
           bottom={"-20%"}
@@ -96,11 +96,11 @@ export const AnimatedBlobBackground = (props: AnimatedBlobBackgroundProps) => {
         />
 
         <Box
-          w="65%"
-          h="65%"
+          w={"65%"}
+          h={"65%"}
           aspectRatio={1}
           bg={`${themeConfig.colorPalette}.800`}
-          borderRadius="30% 70% 40% 60% / 60% 40% 70% 30%"
+          borderRadius={"30% 70% 40% 60% / 60% 40% 70% 30%"}
           animation={`rotate360 ${dur2}ms linear infinite`}
           pos={"absolute"}
           bottom={"-20%"}
@@ -108,11 +108,11 @@ export const AnimatedBlobBackground = (props: AnimatedBlobBackgroundProps) => {
         />
 
         <Box
-          w="40%"
-          h="40%"
+          w={"40%"}
+          h={"40%"}
           aspectRatio={1}
           bg={`${themeConfig.colorPalette}.600`}
-          borderRadius="60% 40% 70% 30% / 100% 60% 40% 70%"
+          borderRadius={"60% 40% 70% 30% / 100% 60% 40% 70%"}
           animation={`rotate360 ${dur3}ms linear infinite`}
           pos={"absolute"}
           top={"10%"}

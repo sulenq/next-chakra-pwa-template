@@ -215,7 +215,7 @@ export const ConstrainedContainer = forwardRef<HTMLDivElement, StackProps>(
 
     return (
       <StackV
-        className="constrained-container"
+        className={"constrained-container"}
         ref={ref}
         align={"stretch"}
         w={"full"}

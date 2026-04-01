@@ -35,7 +35,7 @@ export const RowOptions = (props: Props_RowOptions) => {
       }}
       {...menuRootProps}
     >
-      <Menu.Trigger asChild aria-label="row-options">
+      <Menu.Trigger asChild aria-label={"row-options"}>
         <Btn
           iconButton
           clicky={false}
@@ -69,7 +69,7 @@ export const RowOptions = (props: Props_RowOptions) => {
             return (
               <Confirmation.Trigger
                 key={idx}
-                w="full"
+                w={"full"}
                 id={`${row.id}-confirmation-${idx}`}
                 title={confirmation.title}
                 description={confirmation.description}
@@ -84,7 +84,7 @@ export const RowOptions = (props: Props_RowOptions) => {
                   color={"fg.error"}
                   disabled={disabled}
                   {...menuItemProps}
-                  justifyContent="space-between"
+                  justifyContent={"space-between"}
                 >
                   {label}
                   {icon && <AppIconLucide icon={icon} />}
@@ -107,7 +107,7 @@ export const RowOptions = (props: Props_RowOptions) => {
                   onClick();
                 }
               }}
-              justifyContent="space-between"
+              justifyContent={"space-between"}
               {...menuItemProps}
             >
               {label}

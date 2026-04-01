@@ -60,7 +60,7 @@ const DialogContent = forwardRef<HTMLDivElement, DialogContentProps>(
           />
         )}
         <ChakraDialog.Positioner
-          pointerEvents="auto"
+          pointerEvents={"auto"}
           p={4}
           onMouseDown={(e) => {
             if (contentRef.current?.contains(e.target as Node)) {
@@ -109,13 +109,13 @@ const DialogCloseTrigger = forwardRef<
 >(function DialogCloseTrigger(props, ref) {
   return (
     <ChakraDialog.CloseTrigger
-      position="absolute"
-      top="2"
-      insetEnd="2"
+      position={"absolute"}
+      top={"2"}
+      insetEnd={"2"}
       {...props}
       asChild
     >
-      <CloseButton size="2xs" ref={ref}>
+      <CloseButton size={"2xs"} ref={ref}>
         {props.children}
       </CloseButton>
     </ChakraDialog.CloseTrigger>

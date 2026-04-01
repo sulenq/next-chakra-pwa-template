@@ -18,7 +18,7 @@ export const BrandWatermark = (props: PProps) => {
     <P textAlign={"center"} fontSize={"sm"} color={"fg.muted"} {...restProps}>
       © {currentYear} powered by{" "}
       <Span fontWeight={"bold"}>
-        <Link href={"https://exium.id"} target="_blank">
+        <Link href={"https://exium.id"} target={"_blank"}>
           {APP.poweredBy}
         </Link>
       </Span>

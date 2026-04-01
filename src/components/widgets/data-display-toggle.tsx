@@ -27,7 +27,7 @@ export function DataDisplayToggle(props: DataDisplayToggleProps) {
     <Tooltip content={displayTable ? "Table view" : "Grid view"}>
       <Btn
         iconButton
-        variant="outline"
+        variant={"outline"}
         onClick={() => setDisplay(navKey, displayTable ? "grid" : "table")}
         {...restProps}
       >

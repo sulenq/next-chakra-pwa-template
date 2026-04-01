@@ -85,7 +85,7 @@ export const ColorModeButton = forwardRef<
           iconButton
           clicky={false}
           ref={ref}
-          variant="ghost"
+          variant={"ghost"}
           size={"sm"}
           aria-label={"Toggle color mode"}
           disabled={ADMActive}

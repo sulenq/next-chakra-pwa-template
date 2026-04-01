@@ -151,7 +151,7 @@ export const StringInput = forwardRef<HTMLInputElement, StringInputProps>(
                 : themeConfig.primaryColor,
             }}
             rounded={themeConfig.radii.component}
-            autoComplete="off"
+            autoComplete={"off"}
             transition={"200ms"}
             color={"text"}
             pl={4}
@@ -173,7 +173,7 @@ export const StringInput = forwardRef<HTMLInputElement, StringInputProps>(
               {...clearButtonProps}
             >
               <IconButton
-                aria-label="clear input"
+                aria-label={"clear input"}
                 onClick={() => {
                   onChange?.("");
                   inputRef.current?.focus(); // back to input after clear

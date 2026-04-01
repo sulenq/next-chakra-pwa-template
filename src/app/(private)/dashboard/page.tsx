@@ -390,14 +390,14 @@ const Chart1 = (props: any) => {
           userSelect={"none"}
           overflow={"visible"}
         >
-          <Chart.Root maxH="md" chart={chart} cursor={"grab !important"}>
+          <Chart.Root maxH={"md"} chart={chart} cursor={"grab !important"}>
             <LineChart
               data={chart.data}
               margin={{ left: 40, right: 40, top: 40 }}
             >
               <CartesianGrid
                 stroke={chart.color("border")}
-                strokeDasharray="4 4"
+                strokeDasharray={"4 4"}
                 horizontal={false}
               />
 
@@ -419,8 +419,8 @@ const Chart1 = (props: any) => {
                 <Label
                   value={capitalizeWords(t.yearly_sales)}
                   angle={-90}
-                  position="insideLeft"
-                  textAnchor="middle"
+                  position={"insideLeft"}
+                  textAnchor={"middle"}
                   dx={-16}
                 />
               </YAxis>
@@ -449,7 +449,7 @@ const Chart1 = (props: any) => {
                       {isActive && showPointLabel && (
                         <LabelList
                           dataKey={chart.key(item.name)}
-                          position="right"
+                          position={"right"}
                           offset={10}
                           style={{
                             fontWeight: "600",

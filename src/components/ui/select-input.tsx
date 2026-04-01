@@ -300,7 +300,7 @@ export const SelectInput = (props: SelectInputProps) => {
             </Disclosure.HeaderContent>
           </Disclosure.Header>
 
-          <Disclosure.Body p={0} overflowY={"auto"} className="noScroll">
+          <Disclosure.Body p={0} overflowY={"auto"} className={"noScroll"}>
             {loading && <CSpinner />}
 
             {!loading && (

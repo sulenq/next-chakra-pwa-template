@@ -87,7 +87,11 @@ export const FileUploadDropzone = forwardRef<
     >
       <VStack gap={4} pointerEvents={"none"}>
         {showIcon && (
-          <Icon fontSize="2xl" color="fg.subtle" opacity={disabled ? 0.4 : 1}>
+          <Icon
+            fontSize={"2xl"}
+            color={"fg.subtle"}
+            opacity={disabled ? 0.4 : 1}
+          >
             {icon || <LucideIcon icon={UploadIcon} />}
           </Icon>
         )}
@@ -103,7 +107,7 @@ export const FileUploadDropzone = forwardRef<
             {showLabel && <P color={"fg.subtle"}>{label}</P>}
 
             {showDescription && description && (
-              <P color="fg.subtle">{description || ".* up to 5MB"}</P>
+              <P color={"fg.subtle"}>{description || ".* up to 5MB"}</P>
             )}
           </ChakraFileUpload.DropzoneContent>
         )}
@@ -151,16 +155,16 @@ const FileUploadItem = (props: FileUploadItemProps) => {
           <ChakraFileUpload.ItemSizeText />
         </ChakraFileUpload.ItemContent>
       ) : (
-        <ChakraFileUpload.ItemName flex="1" />
+        <ChakraFileUpload.ItemName flex={"1"} />
       )}
 
       {clearable && (
         <ChakraFileUpload.ItemDeleteTrigger asChild>
           <IconButton
-            variant="ghost"
+            variant={"ghost"}
             colorPalette={"gray"}
-            color="fg.muted"
-            size="xs"
+            color={"fg.muted"}
+            size={"xs"}
             h={"32px"}
             mr={-2}
             my={"auto"}
@@ -225,7 +229,7 @@ export const ChakraFileInput = forwardRef<HTMLButtonElement, FileInputProps>(
       <ChakraFileUpload.Trigger asChild>
         <Button
           unstyled
-          py="0"
+          py={0}
           ref={ref}
           {...rest}
           css={[inputRecipe(recipeProps), props.css]}
@@ -238,7 +242,7 @@ export const ChakraFileInput = forwardRef<HTMLButtonElement, FileInputProps>(
               if (acceptedFiles.length > 1) {
                 return <span>{acceptedFiles.length} files</span>;
               }
-              return <Span color="fg.subtle">{placeholder}</Span>;
+              return <Span color={"fg.subtle"}>{placeholder}</Span>;
             }}
           </ChakraFileUpload.Context>
         </Button>

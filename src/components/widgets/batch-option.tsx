@@ -53,7 +53,7 @@ export const BatchOptions = (props: BatchOptionsProps) => {
       }}
       {...menuRootProps}
     >
-      <Menu.Trigger asChild aria-label="batch options">
+      <Menu.Trigger asChild aria-label={"batch options"}>
         <Btn
           iconButton={iconButton}
           clicky={false}
@@ -121,7 +121,7 @@ export const BatchOptions = (props: BatchOptionsProps) => {
             return (
               <Confirmation.Trigger
                 key={idx}
-                w="full"
+                w={"full"}
                 id={`confirmation-batch-${idx}`}
                 title={confirmation.title}
                 description={confirmation.description}
@@ -136,7 +136,7 @@ export const BatchOptions = (props: BatchOptionsProps) => {
                   color={"fg.error"}
                   disabled={disabled}
                   {...menuItemProps}
-                  justifyContent="space-between"
+                  justifyContent={"space-between"}
                 >
                   {label}
                   {icon && <AppIconLucide icon={icon} />}
@@ -157,7 +157,7 @@ export const BatchOptions = (props: BatchOptionsProps) => {
                 if (!resolvedDisabled) onClick();
               }}
               disabled={resolvedDisabled}
-              justifyContent="space-between"
+              justifyContent={"space-between"}
               {...menuItemProps}
             >
               {label}

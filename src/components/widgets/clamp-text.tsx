@@ -20,7 +20,7 @@ export const ClampText = (props: PProps) => {
           placement: "bottom-start",
         }}
       >
-        <P w="fit" lineClamp={1} {...restProps}>
+        <P w={"fit"} lineClamp={1} {...restProps}>
           {children}
         </P>
       </Tooltip>
@@ -36,7 +36,7 @@ export const ClampText = (props: PProps) => {
         },
       }}
     >
-      <P w="fit" lineClamp={1} cursor="pointer" {...restProps}>
+      <P w={"fit"} lineClamp={1} cursor={"pointer"} {...restProps}>
         {children}
       </P>
     </ToggleTip>

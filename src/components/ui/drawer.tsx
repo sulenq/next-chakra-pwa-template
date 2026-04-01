@@ -42,12 +42,12 @@ const DrawerContent = forwardRef<HTMLDivElement, DrawerContentProps>(
       <Portal disabled={!portalled} container={portalRef}>
         {backdrop && (
           <ChakraDrawer.Backdrop
-            zIndex="modal"
+            zIndex={"modal"}
             // backdropFilter={`blur(${BLUR_RADIUS})`}
           />
         )}
         <ChakraDrawer.Positioner
-          zIndex="modal"
+          zIndex={"modal"}
           padding={offset}
           pointerEvents={"auto"}
           onClick={() => {
@@ -81,13 +81,13 @@ const DrawerCloseTrigger = forwardRef<
 >(function DrawerCloseTrigger(props, ref) {
   return (
     <ChakraDrawer.CloseTrigger
-      position="absolute"
-      top="2"
-      insetEnd="2"
+      position={"absolute"}
+      top={"2"}
+      insetEnd={"2"}
       {...props}
       asChild
     >
-      <CloseButton size="xs" ref={ref} />
+      <CloseButton size={"xs"} ref={ref} />
     </ChakraDrawer.CloseTrigger>
   );
 });

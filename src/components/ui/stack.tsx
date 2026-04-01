@@ -5,6 +5,14 @@ import { forwardRef } from "react";
 
 // -----------------------------------------------------------------
 
+export const Stack = forwardRef<HTMLDivElement, StackProps>(
+  function Stack(props, ref) {
+    return <Flex ref={ref} className={"stack"} align={"stretch"} {...props} />;
+  },
+);
+
+// -----------------------------------------------------------------
+
 export const StackV = forwardRef<HTMLDivElement, StackProps>(
   function StackV(props, ref) {
     return (

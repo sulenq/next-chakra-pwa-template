@@ -51,7 +51,7 @@ export const Field = forwardRef<HTMLDivElement, FieldProps>(
             </P>
 
             {optional && (
-              <Badge colorScheme="gray" color={"fg.muted"}>
+              <Badge colorPalette={"gray"} color={"fg.muted"}>
                 {t.optional.toLocaleLowerCase()}
               </Badge>
             )}

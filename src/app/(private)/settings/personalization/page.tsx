@@ -3,13 +3,12 @@
 import { Btn } from "@/components/ui/btn";
 import { Checkbox } from "@/components/ui/checkbox";
 import { useColorMode } from "@/components/ui/color-mode";
-import { DatePickerInput } from "@/components/ui/date-picker-input";
+import { DateTimePickerInput } from "@/components/ui/date-time-picker-input";
 import { P } from "@/components/ui/p";
 import { SelectInput } from "@/components/ui/select-input";
 import { StackH, StackV } from "@/components/ui/stack";
 import { StringInput } from "@/components/ui/string-input";
 import { Switch } from "@/components/ui/switch";
-import { TimePickerInput } from "@/components/ui/time-picker-input";
 import { Tooltip } from "@/components/ui/tooltip";
 import { AppIconLucide } from "@/components/widgets/app-icon";
 import { DotIndicator } from "@/components/widgets/indicator";
@@ -394,55 +393,60 @@ const ExampleUISection = () => {
 
       <StackV px={R_SPACING_MD} pb={R_SPACING_MD}>
         <Item.Body p={4}>
-          <HStack wrap={"wrap"} gapY={4}>
-            <Btn flex={"1 1 100px"} colorPalette={themeConfig.colorPalette}>
-              Label
-            </Btn>
+          <StackH wrap={"wrap"} gap={3}>
+            <StackV flex={"1 0 200px"} columns={2} gap={3}>
+              <Btn colorPalette={themeConfig.colorPalette}>Label</Btn>
 
-            <Btn
-              flex={"1 1 100px"}
-              colorPalette={themeConfig.colorPalette}
-              variant={"outline"}
-            >
-              Label
-            </Btn>
+              <Btn colorPalette={themeConfig.colorPalette} variant={"subtle"}>
+                Label
+              </Btn>
 
-            <Btn
-              flex={"1 1 100px"}
-              colorPalette={themeConfig.colorPalette}
-              variant={"subtle"}
-            >
-              Label
-            </Btn>
+              <Btn colorPalette={themeConfig.colorPalette} variant={"outline"}>
+                Label
+              </Btn>
 
-            <StringInput flex={"1 1 200px"} placeholder="example@email.com" />
+              <Btn colorPalette={themeConfig.colorPalette} variant={"ghost"}>
+                Label
+              </Btn>
+            </StackV>
 
-            <SelectInput
-              id="example-select-religion"
-              flex={"1 1 200px"}
-              name="select1"
-              selectOptions={OPTIONS_RELIGION}
-              onChange={(inputValue) => {
-                setSelect(inputValue);
-              }}
-              inputValue={select}
-              multiple
-            />
+            <StackV flex={"1 0 200px"} columns={2} gap={3}>
+              <StringInput placeholder={"example@email.com"} />
 
-            <DatePickerInput flex={"1 1 200px"} multiple />
+              <SelectInput
+                id={"example-select-religion"}
+                name={"select1"}
+                selectOptions={OPTIONS_RELIGION}
+                onChange={(inputValue) => {
+                  setSelect(inputValue);
+                }}
+                inputValue={select}
+                multiple
+              />
 
-            <TimePickerInput flex={"1 1 200px"} />
+              <DateTimePickerInput />
 
-            <Checkbox
-              checked={checked}
-              onChange={(e: any) => setChecked(!e.target.checked)}
-              colorPalette={themeConfig.colorPalette}
-              variant={"solid"}
-              size={"lg"}
-            ></Checkbox>
+              <StackH gap={4}>
+                <StackV justify={"center"} minH={"36px"}>
+                  <Checkbox
+                    checked={checked}
+                    onChange={(e: any) => setChecked(!e.target.checked)}
+                    colorPalette={themeConfig.colorPalette}
+                    variant={"solid"}
+                    size={"lg"}
+                  >
+                    Checkbox
+                  </Checkbox>
+                </StackV>
 
-            <Switch colorPalette={themeConfig.colorPalette} />
-          </HStack>
+                <StackV justify={"center"} minH={"36px"}>
+                  <Switch colorPalette={themeConfig.colorPalette}>
+                    Switch
+                  </Switch>
+                </StackV>
+              </StackH>
+            </StackV>
+          </StackH>
         </Item.Body>
       </StackV>
     </Item.Root>

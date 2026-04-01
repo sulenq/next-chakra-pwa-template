@@ -128,7 +128,7 @@ export const DraggableButton = (props: DraggableBtnProps) => {
   return (
     <Btn
       ref={btnRef}
-      pos="fixed"
+      pos={"fixed"}
       zIndex={99}
       style={{
         left: pos.x,

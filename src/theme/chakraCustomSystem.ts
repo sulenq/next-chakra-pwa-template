@@ -35,7 +35,19 @@ const customConfig = defineConfig({
       lg: "960px",
       xl: "1200px",
     },
+
     tokens: {
+      fonts: {
+        heading: { value: "'Wix Madefor Text', sans-serif" },
+        body: { value: "'Wix Madefor Text', sans-serif" },
+        number: { value: "'Google Sans Flex', sans-serif" },
+      },
+      fontSizes: {
+        xs: { value: "0.625rem" }, // 10px
+        sm: { value: "0.75rem" }, // 12px
+        md: { value: "0.875rem" }, // 14px
+        lg: { value: "1rem" }, // 16px
+      },
       colors: {
         light: { value: "#fcfcfc" },
         dark: { value: "#151515" },
@@ -483,16 +495,6 @@ const customConfig = defineConfig({
           900: { value: "#402431" },
           950: { value: "#2f1c25" },
         },
-      },
-      fonts: {
-        body: { value: '"DM Sans", sans-serif' },
-        heading: { value: '"DM Sans", sans-serif' },
-      },
-      fontSizes: {
-        xs: { value: "0.625rem" }, // 10px
-        sm: { value: "0.75rem" }, // 12px
-        md: { value: "0.875rem" }, // 14px
-        lg: { value: "1rem" }, // 16px
       },
     },
     semanticTokens: {

@@ -1,6 +1,6 @@
 import { Btn, BtnProps } from "@/components/ui/btn";
 import { Disclosure } from "@/components/ui/disclosure";
-import { P } from "@/components/ui/p";
+import { P, TNum } from "@/components/ui/p";
 import { StringInput } from "@/components/ui/string-input";
 import { Tooltip } from "@/components/ui/tooltip";
 import { LucideIcon } from "@/components/widgets/icon";
@@ -38,7 +38,7 @@ export interface TimePickerInputProps extends Omit<BtnProps, "onChange"> {
   inputValue?: string | null;
   onChange?: (inputValue?: TimePickerInputProps["inputValue"]) => void;
   withSeconds?: boolean;
-  showAbbr?: boolean;
+  showTimezone?: boolean;
   placeholder?: string;
   required?: boolean;
   invalid?: boolean;
@@ -54,7 +54,7 @@ export const TimePickerInput = (props: TimePickerInputProps) => {
     title,
     onChange,
     inputValue,
-    showAbbr,
+    showTimezone = true,
     withSeconds = false,
     placeholder,
     required,
@@ -106,7 +106,7 @@ export const TimePickerInput = (props: TimePickerInputProps) => {
   const userTz = getUserTimezone();
 
   // Derived Values
-  const resolvedPlaceholder = placeholder || t.select_time;
+  const resolvedPlaceholder = placeholder ?? t.select_time;
   const resolvedInvalid = invalid ?? fc?.invalid;
 
   // Utils
@@ -216,16 +216,17 @@ export const TimePickerInput = (props: TimePickerInputProps) => {
           {...restProps}
         >
           {inputValue ? (
-            <P truncate fontVariantNumeric={"tabular-nums"}>
-              {withSeconds
-                ? inputValue
-                : formatTime(inputValue, { timezoneKey: "UTC" })}
+            <P truncate>
+              <TNum>
+                {withSeconds
+                  ? inputValue
+                  : formatTime(inputValue, { timezoneKey: "UTC" })}
+              </TNum>
             </P>
           ) : (
             <P
               truncate
               color={props?._placeholder?.color || "var(--placeholder)"}
-              fontVariantNumeric={"tabular-nums"}
             >
               {resolvedPlaceholder}
             </P>
@@ -258,7 +259,7 @@ export const TimePickerInput = (props: TimePickerInputProps) => {
                 <Btn
                   iconButton
                   size={"sm"}
-                  aria-label="add hour button"
+                  aria-label={"add hour button"}
                   variant={"outline"}
                   onClick={() => {
                     setHours((ps) => (ps < 23 ? ps + 1 : 0));
@@ -289,9 +290,10 @@ export const TimePickerInput = (props: TimePickerInputProps) => {
                     }}
                     onKeyDown={handleEnterToConfirm}
                     h={"64px"}
+                    fontFamily={"number"}
+                    fontVariantNumeric={"tabular-nums"}
                     fontSize={"64px !important"}
                     fontWeight={"400"}
-                    fontVariantNumeric={"tabular-nums"}
                     textAlign={"center"}
                     border={"none !important"}
                     _focus={{ border: "none !important" }}
@@ -302,7 +304,7 @@ export const TimePickerInput = (props: TimePickerInputProps) => {
                 <Btn
                   iconButton
                   size={"sm"}
-                  aria-label="reduce hour button"
+                  aria-label={"reduce hour button"}
                   variant={"outline"}
                   onClick={() => {
                     setHours((ps) => (ps > 0 ? ps - 1 : 23));
@@ -331,7 +333,7 @@ export const TimePickerInput = (props: TimePickerInputProps) => {
                 <Btn
                   iconButton
                   size={"sm"}
-                  aria-label="add minute button"
+                  aria-label={"add minute button"}
                   variant={"outline"}
                   onClick={() => {
                     setMinutes((ps) => (ps < 59 ? ps + 1 : 0));
@@ -362,9 +364,10 @@ export const TimePickerInput = (props: TimePickerInputProps) => {
                     }}
                     onKeyDown={handleEnterToConfirm}
                     h={"64px"}
+                    fontFamily={"number"}
+                    fontVariantNumeric={"tabular-nums"}
                     fontSize={"64px !important"}
                     fontWeight={"400"}
-                    fontVariantNumeric={"tabular-nums"}
                     textAlign={"center"}
                     border={"none !important"}
                     _focus={{ border: "none !important" }}
@@ -375,7 +378,7 @@ export const TimePickerInput = (props: TimePickerInputProps) => {
                 <Btn
                   iconButton
                   size={"sm"}
-                  aria-label="reduce minute button"
+                  aria-label={"reduce minute button"}
                   variant={"outline"}
                   onClick={() => {
                     setMinutes((ps) => (ps > 0 ? ps - 1 : 59));
@@ -405,7 +408,7 @@ export const TimePickerInput = (props: TimePickerInputProps) => {
                   <VStack flex={"1 1 120"} align={"stretch"} gap={0}>
                     <Btn
                       iconButton
-                      aria-label="add second button"
+                      aria-label={"add second button"}
                       variant={"outline"}
                       onClick={() => {
                         setSeconds((ps) => (ps < 59 ? ps + 1 : 0));
@@ -436,9 +439,10 @@ export const TimePickerInput = (props: TimePickerInputProps) => {
                         }}
                         onKeyDown={handleEnterToConfirm}
                         h={"64px"}
+                        fontFamily={"number"}
+                        fontVariantNumeric={"tabular-nums"}
                         fontSize={"64px !important"}
                         fontWeight={"400"}
-                        fontVariantNumeric={"tabular-nums"}
                         textAlign={"center"}
                         border={"none !important"}
                         _focus={{ border: "none !important" }}
@@ -448,7 +452,7 @@ export const TimePickerInput = (props: TimePickerInputProps) => {
 
                     <Btn
                       iconButton
-                      aria-label="reduce second button"
+                      aria-label={"reduce second button"}
                       variant={"outline"}
                       onClick={() => {
                         setSeconds((ps) => (ps > 0 ? ps - 1 : 59));
@@ -471,7 +475,7 @@ export const TimePickerInput = (props: TimePickerInputProps) => {
           </Disclosure.Body>
 
           <Disclosure.Footer>
-            {showAbbr && (
+            {showTimezone && (
               <Stack
                 flexDir={["row", null, "column"]}
                 justify={"space-between"}

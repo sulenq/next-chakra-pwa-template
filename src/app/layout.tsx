@@ -5,8 +5,8 @@ import ClientRoot from "@/components/widgets/client-root";
 import { APP } from "@/constants/_meta";
 import { disclosurePrefixId } from "@/utils/disclosure";
 import { Metadata, Viewport } from "next";
-// import { miSans } from "@/fonts";
 import { Wix_Madefor_Text } from "next/font/google";
+import { googleSansFlex } from "@/fonts/google-sans-flex";
 
 export const metadata: Metadata = {
   applicationName: APP.name,
@@ -56,18 +56,16 @@ export const viewport: Viewport = {
 const font = Wix_Madefor_Text({
   subsets: ["latin"],
   display: "swap",
-  // weight: ["400", "500", "600", "700", "800", "900"],
 });
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <html
       suppressHydrationWarning
-      className={font.className}
-      // className={miSans.variable}
+      className={`${googleSansFlex.variable} ${font.className}`}
     >
       <head>
-        <link rel="manifest" href="/manifest.json" />
+        <link rel={"manifest"} href={"/manifest.json"} />
       </head>
 
       <body>

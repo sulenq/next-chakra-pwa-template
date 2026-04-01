@@ -50,11 +50,19 @@ const Signedin = () => {
 
       <StackH gap={2} justify={"center"}>
         {/* TODO_DEV: Remove below component in real dev */}
-        <NavLink to={"/demo"} mx={"auto"}>
-          <Btn variant={"ghost"} colorPalette={themeConfig.colorPalette}>
-            Demo Page
-          </Btn>
-        </NavLink>
+        <>
+          <NavLink to={"/test"} mx={"auto"}>
+            <Btn variant={"ghost"} colorPalette={themeConfig.colorPalette}>
+              Test
+            </Btn>
+          </NavLink>
+
+          <NavLink to={"/demo"} mx={"auto"}>
+            <Btn variant={"ghost"} colorPalette={themeConfig.colorPalette}>
+              Demo
+            </Btn>
+          </NavLink>
+        </>
 
         <NavLink to={INDEX_ROUTE}>
           <Btn variant={"ghost"} colorPalette={themeConfig.colorPalette}>
@@ -148,12 +156,12 @@ const BasicAuthForm = (props: any) => {
               }
             >
               <StringInput
-                name="identifier"
+                name={"identifier"}
                 onChange={(input) => {
                   formik.setFieldValue("identifier", input);
                 }}
                 inputValue={formik.values.identifier}
-                placeholder="Email"
+                placeholder={"Email"}
                 pl={"40px !important"}
                 variant={"subtle"}
               />
@@ -173,12 +181,12 @@ const BasicAuthForm = (props: any) => {
               }
             >
               <PasswordInput
-                name="password"
+                name={"password"}
                 onChange={(input) => {
                   formik.setFieldValue("password", input);
                 }}
                 inputValue={formik.values.password}
-                placeholder="Password"
+                placeholder={"Password"}
                 pl={"40px !important"}
                 variant={"subtle"}
               />
@@ -187,7 +195,7 @@ const BasicAuthForm = (props: any) => {
         </FieldsetRoot>
 
         <Btn
-          type="submit"
+          type={"submit"}
           form={ID}
           w={"full"}
           mt={6}

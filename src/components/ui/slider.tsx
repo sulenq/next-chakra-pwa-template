@@ -26,13 +26,15 @@ export const Slider = forwardRef<HTMLDivElement, SliderProps>(
     const hasMarkLabel = !!marks?.some((mark) => mark.label);
 
     return (
-      <ChakraSlider.Root ref={ref} thumbAlignment="center" {...rest}>
+      <ChakraSlider.Root ref={ref} thumbAlignment={"center"} {...rest}>
         {label && !showValue && (
-          <ChakraSlider.Label fontWeight="medium">{label}</ChakraSlider.Label>
+          <ChakraSlider.Label fontWeight={"medium"}>{label}</ChakraSlider.Label>
         )}
         {label && showValue && (
-          <HStack justify="space-between">
-            <ChakraSlider.Label fontWeight="medium">{label}</ChakraSlider.Label>
+          <HStack justify={"space-between"}>
+            <ChakraSlider.Label fontWeight={"medium"}>
+              {label}
+            </ChakraSlider.Label>
             <ChakraSlider.ValueText />
           </HStack>
         )}

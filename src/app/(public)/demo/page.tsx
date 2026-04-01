@@ -117,7 +117,7 @@ const Delete = (props: any) => {
         }}
       >
         <Menu.Item
-          value="delete"
+          value={"delete"}
           disabled={disabled}
           color={"fg.error"}
           transition={"200ms"}
@@ -759,7 +759,7 @@ const DemoIndexRoute = () => {
         </HStack>
       </HStack>
 
-      <NavLink to="/welcome">
+      <NavLink to={"/welcome"}>
         <Btn colorPalette={themeConfig.colorPalette}>App Layout</Btn>
       </NavLink>
 
@@ -841,7 +841,7 @@ const DemoIndexRoute = () => {
                 <Field invalid={!!formik.errors.number2}>
                   <NumInput
                     integer={false}
-                    // locale="en-US"
+                    // locale={"en-US"}
                     inputValue={formik.values.number2}
                     onChange={(input) => {
                       formik.setFieldValue("number2", input);
@@ -887,7 +887,7 @@ const DemoIndexRoute = () => {
 
                 <Field invalid={!!formik.errors.select}>
                   <SelectInput
-                    id="select-single"
+                    id={"select-single"}
                     title={"Agama"}
                     inputValue={formik.values.select}
                     onChange={(input) => {
@@ -899,7 +899,7 @@ const DemoIndexRoute = () => {
 
                 <Field invalid={!!formik.errors.multiSelect}>
                   <SelectInput
-                    id="select-multiple"
+                    id={"select-multiple"}
                     title={"Agama"}
                     inputValue={formik.values.multiSelect}
                     onChange={(input) => {
@@ -945,7 +945,7 @@ const DemoIndexRoute = () => {
               </CContainer>
             </form>
 
-            <Btn type={"submit"} form="test">
+            <Btn type={"submit"} form={"test"}>
               Submit
             </Btn>
           </CContainer>
@@ -997,7 +997,7 @@ const DemoIndexRoute = () => {
 
           <CContainer>
             <iframe
-              src="/test.pdf#page=2&zoom=120"
+              src={"/test.pdf#page=2&zoom=120"}
               style={{ width: "100%", height: "100vh", border: "none" }}
             />
           </CContainer>

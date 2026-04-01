@@ -19,7 +19,7 @@ export const EmptyState = forwardRef<HTMLDivElement, EmptyStateProps>(
           {icon && (
             <ChakraEmptyState.Indicator>{icon}</ChakraEmptyState.Indicator>
           )}
-          <VStack textAlign="center">
+          <VStack textAlign={"center"}>
             {title && (
               <P fontSize={"lg"} fontWeight={"medium"}>
                 {title}

@@ -123,7 +123,7 @@ const CameraSection = () => {
 
             <Disclosure.Footer>
               <Btn
-                variant="outline"
+                variant={"outline"}
                 onClick={() => {
                   stopCamera(videoRef, streamRef, () => setCameraOpen(false));
                 }}
@@ -307,15 +307,15 @@ const MicrophoneSection = () => {
     return (
       <>
         <Btn
-          size="xs"
-          variant="outline"
+          size={"xs"}
+          variant={"outline"}
           onClick={onOpen}
           disabled={micPermissionsStatus !== "granted"}
         >
           {t.try_mic}
         </Btn>
 
-        <Disclosure.Root open={open} lazyLoad size="xs">
+        <Disclosure.Root open={open} lazyLoad size={"xs"}>
           <Disclosure.Content>
             <Disclosure.Header>
               <Disclosure.HeaderContent title={t.try_mic} />
@@ -331,7 +331,11 @@ const MicrophoneSection = () => {
             </Disclosure.Body>
 
             <Disclosure.Footer>
-              <Btn variant="outline" onClick={stopMicTest} disabled={!micOpen}>
+              <Btn
+                variant={"outline"}
+                onClick={stopMicTest}
+                disabled={!micOpen}
+              >
                 {t.close} {t.mic.toLowerCase()}
               </Btn>
               <Btn
@@ -485,15 +489,15 @@ const LocationSection = () => {
     return (
       <>
         <Btn
-          size="xs"
-          variant="outline"
+          size={"xs"}
+          variant={"outline"}
           onClick={onOpen}
           disabled={locationPermissionsStatus !== "granted"}
         >
           {t.try_location}
         </Btn>
 
-        <Disclosure.Root open={open} lazyLoad size="xs">
+        <Disclosure.Root open={open} lazyLoad size={"xs"}>
           <Disclosure.Content>
             <Disclosure.Header>
               <Disclosure.HeaderContent title={t.try_location} />

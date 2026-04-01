@@ -89,7 +89,7 @@ const DataUtils = (props: any) => {
   return (
     <HStack w={"full"} {...restProps}>
       <SearchInput
-        queryKey="q-user"
+        queryKey={"q-user"}
         inputProps={{
           size: "sm",
         }}
@@ -180,7 +180,7 @@ const Update = (props: any) => {
           placement: "right",
         }}
       >
-        <Menu.Item value="edit" onClick={onOpen}>
+        <Menu.Item value={"edit"} onClick={onOpen}>
           <AppIconLucide icon={EditIcon} />
           Edit
         </Menu.Item>
@@ -199,7 +199,7 @@ const Update = (props: any) => {
           <>
             <Btn variant={"outline"}>2nd Btn</Btn>
             <Btn
-              type="submit"
+              type={"submit"}
               form={ID}
               colorPalette={themeConfig.colorPalette}
               loading={loading}
@@ -271,7 +271,7 @@ const Restore = (props: any) => {
           placement: "right",
         }}
       >
-        <Menu.Item value="restore" disabled={disabled}>
+        <Menu.Item value={"restore"} disabled={disabled}>
           <AppIconLucide icon={UndoIcon} />
           {t.restore}
         </Menu.Item>
@@ -344,7 +344,7 @@ const Delete = (props: any) => {
         }}
       >
         <Menu.Item
-          value="delete"
+          value={"delete"}
           disabled={disabled}
           color={"fg.error"}
           transition={"200ms"}

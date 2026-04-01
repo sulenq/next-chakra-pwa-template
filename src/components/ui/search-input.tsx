@@ -111,7 +111,7 @@ export const SearchInput = (props: SearchInputProps) => {
   return (
     <Tooltip content={inputValue || tooltipLabel || placeholder || t.search}>
       <InputGroup
-        w="full"
+        w={"full"}
         startElement={
           !noIcon && (
             <Icon

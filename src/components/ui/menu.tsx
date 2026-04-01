@@ -185,8 +185,8 @@ const MenuRadioItem = forwardRef<HTMLDivElement, ChakraMenu.RadioItemProps>(
   function MenuRadioItem(props, ref) {
     const { children, ...restProps } = props;
     return (
-      <ChakraMenu.RadioItem ps="8" ref={ref} {...restProps}>
-        <AbsoluteCenter axis="horizontal" left="4" asChild>
+      <ChakraMenu.RadioItem ps={"8"} ref={ref} {...restProps}>
+        <AbsoluteCenter axis={"horizontal"} left={"4"} asChild>
           <ChakraMenu.ItemIndicator>
             <LuCheck />
           </ChakraMenu.ItemIndicator>
@@ -208,7 +208,7 @@ const MenuItemGroup = forwardRef<HTMLDivElement, ChakraMenu.ItemGroupProps>(
           <ChakraMenu.ItemGroupLabel
             fontSize={"sm"}
             color={"fg.subtle"}
-            userSelect="none"
+            userSelect={"none"}
             pl={3}
             lineHeight={1.2}
           >

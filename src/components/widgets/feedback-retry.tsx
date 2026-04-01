@@ -47,7 +47,7 @@ export default function FeedbackRetry(props: FeedbackRetryProps) {
 
       <CContainer gap={1}>
         <Btn
-          className="clicky"
+          className={"clicky"}
           variant={"ghost"}
           colorPalette={themeConfig.colorPalette}
           mx={"auto"}

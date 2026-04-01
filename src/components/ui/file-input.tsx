@@ -187,7 +187,7 @@ export const FileInputRoot = forwardRef<
       <FileUploadRoot
         ref={ref}
         key={`${key}`}
-        alignItems="stretch"
+        alignItems={"stretch"}
         onFileChange={handleFileChange}
         onFileReject={() => {
           toaster.error({
@@ -252,7 +252,7 @@ export const FileInputRoot = forwardRef<
           ) : (
             <FileUploadTrigger asChild borderColor={invalid ? "fg.error" : ""}>
               <Btn
-                variant="outline"
+                variant={"outline"}
                 borderColor={
                   (invalid ?? fc?.invalid) ? "border.error" : "border.muted"
                 }

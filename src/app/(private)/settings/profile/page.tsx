@@ -136,7 +136,7 @@ const PersonalInformation = (props: PersonalInformationProps) => {
 
             <StackV flex={1} justify={"space-between"}>
               <form
-                id="personal-info-form"
+                id={"personal-info-form"}
                 onSubmit={formik.handleSubmit}
                 {...restProps}
               >
@@ -170,7 +170,7 @@ const PersonalInformation = (props: PersonalInformationProps) => {
                       onChange={(inputValue) => {
                         formik.setFieldValue("name", inputValue);
                       }}
-                      placeholder="Jolitos Kurniawan"
+                      placeholder={"Jolitos Kurniawan"}
                     />
                   </Field>
 
@@ -184,7 +184,7 @@ const PersonalInformation = (props: PersonalInformationProps) => {
                       onChange={(inputValue) => {
                         formik.setFieldValue("email", inputValue);
                       }}
-                      placeholder="example@email.com"
+                      placeholder={"example@email.com"}
                     />
                   </Field>
                 </FieldsetRoot>
@@ -196,7 +196,7 @@ const PersonalInformation = (props: PersonalInformationProps) => {
                 </ResetPasswordDisclosureTrigger>
 
                 <Btn
-                  type="submit"
+                  type={"submit"}
                   form={"personal-info-form"}
                   colorPalette={themeConfig.colorPalette}
                 >

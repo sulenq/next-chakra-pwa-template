@@ -85,7 +85,7 @@ export const PasswordInput = forwardRef<HTMLInputElement, PasswordInputProps>(
           zIndex={2}
         >
           <IconButton
-            aria-label="clear input"
+            aria-label={"clear input"}
             onClick={togglePasswordVisibility}
             variant={"plain"}
             size={"sm"}

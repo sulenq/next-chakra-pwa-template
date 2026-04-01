@@ -46,7 +46,7 @@ export const ChartTooltip = (
               <HStack key={index}>
                 <DotIndicator bg={entry.color} />
 
-                <Text fontSize="sm">
+                <Text fontSize={"sm"}>
                   {entry.name}: {entry.value}
                 </Text>
               </HStack>

@@ -76,18 +76,18 @@ const Step1 = (props: any) => {
         <CContainer>
           <form>
             <Field
-              label="Email"
+              label={"Email"}
               invalid={!!formik.errors.email}
               errorText={formik.errors.email as string}
               mb={4}
             >
               <StringInput
-                name="email"
+                name={"email"}
                 onChange={(input) => {
                   formik.setFieldValue("email", input);
                 }}
                 inputValue={formik.values.email}
-                placeholder="example@email.com"
+                placeholder={"example@email.com"}
               />
             </Field>
           </form>
@@ -159,7 +159,7 @@ const Step2 = (props: any) => {
         <CContainer>
           <form>
             <Field
-              label="OTP"
+              label={"OTP"}
               invalid={!!formik.errors.otp}
               errorText={formik.errors.otp as string}
               mb={4}

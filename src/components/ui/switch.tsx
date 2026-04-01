@@ -41,14 +41,16 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(
               </ChakraSwitch.ThumbIndicator>
             )}
           </ChakraSwitch.Thumb>
+
           {trackLabel && (
             <ChakraSwitch.Indicator fallback={trackLabel.off}>
               {trackLabel.on}
             </ChakraSwitch.Indicator>
           )}
         </ChakraSwitch.Control>
+
         {children != null && (
-          <ChakraSwitch.Label>{children}</ChakraSwitch.Label>
+          <ChakraSwitch.Label fontSize={"md"}>{children}</ChakraSwitch.Label>
         )}
       </ChakraSwitch.Root>
     );
