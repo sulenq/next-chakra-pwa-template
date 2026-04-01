@@ -1,11 +1,21 @@
 import { useEffect, useState } from "react";
 
+// -----------------------------------------------------------------
+
 interface Screen {
   sw: number;
   sh: number;
 }
 
-export const useScreen = (timeout: number = 200) => {
+interface UseScreenOptions {
+  timeout?: number;
+}
+
+export const useScreen = (options: UseScreenOptions = {}) => {
+  // Options
+  const { timeout = 200 } = options;
+
+  // States
   const [screen, setScreen] = useState<Screen>({
     sw: window.innerWidth,
     sh: window.innerHeight,

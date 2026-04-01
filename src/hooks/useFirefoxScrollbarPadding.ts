@@ -1,6 +1,8 @@
 import { FIREFOX_SCROLL_Y_CLASS_PR_PREFIX } from "@/constants/styles";
 import { useEffect } from "react";
 
+// -----------------------------------------------------------------
+
 export const useFirefoxScrollbarPadding = (
   extraPaddingPx: string = FIREFOX_SCROLL_Y_CLASS_PR_PREFIX,
 ) => {

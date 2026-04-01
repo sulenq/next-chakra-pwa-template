@@ -1,6 +1,8 @@
 import { NUMBER_LOCALE } from "@/constants/styles";
 import { useEffect, useRef, useState } from "react";
 
+// -----------------------------------------------------------------
+
 interface UseCountdownOptions {
   duration: number;
   autoStart?: boolean;
@@ -9,6 +11,7 @@ interface UseCountdownOptions {
 }
 
 export function useCountdown(options: UseCountdownOptions) {
+  // Options
   const {
     duration,
     autoStart = false,
@@ -16,18 +19,42 @@ export function useCountdown(options: UseCountdownOptions) {
     locale = NUMBER_LOCALE,
   } = options;
 
-  const [countdown, setCountdown] = useState(duration);
-  const [isRunning, setIsRunning] = useState(autoStart);
-
+  // Refs
   const startTimeRef = useRef<number | null>(null);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
+  // States
+  const [countdown, setCountdown] = useState(duration);
+  const [isRunning, setIsRunning] = useState(autoStart);
+
+  // Constants
+  const formattedCountdown = countdown.toLocaleString(locale, {
+    minimumFractionDigits: precision,
+    maximumFractionDigits: precision,
+  });
+
+  // Derived Values
+  const isCountdownFinished = countdown === 0;
+
+  // Utils
   const clear = () => {
     if (intervalRef.current) {
       clearInterval(intervalRef.current);
       intervalRef.current = null;
     }
   };
+  function startCountdown() {
+    setIsRunning(true);
+  }
+  function stopCountdown() {
+    clear();
+    setIsRunning(false);
+  }
+  function resetCountdown() {
+    clear();
+    setCountdown(duration);
+    setIsRunning(false);
+  }
 
   useEffect(() => {
     if (!isRunning) return;
@@ -48,26 +75,6 @@ export function useCountdown(options: UseCountdownOptions) {
 
     return clear;
   }, [isRunning, duration, precision]);
-
-  function startCountdown() {
-    setIsRunning(true);
-  }
-  function stopCountdown() {
-    clear();
-    setIsRunning(false);
-  }
-  function resetCountdown() {
-    clear();
-    setCountdown(duration);
-    setIsRunning(false);
-  }
-
-  const isCountdownFinished = countdown === 0;
-
-  const formattedCountdown = countdown.toLocaleString(locale, {
-    minimumFractionDigits: precision,
-    maximumFractionDigits: precision,
-  });
 
   return {
     countdown,

@@ -1,11 +1,22 @@
 import { useEffect, useRef, useState } from "react";
 
+// -----------------------------------------------------------------
+
+interface UseContainerDimensionOptions {
+  debounceDelay?: number;
+}
+
 export function useContainerDimension(
   ref: React.RefObject<HTMLDivElement | null> | null,
-  debounce = 200,
+  options?: UseContainerDimensionOptions,
 ) {
-  const [dimension, setDimension] = useState({ width: 0, height: 0 });
+  // Options
+  const { debounceDelay = 200 } = options || {};
+  // Refs
   const timerRef = useRef<number | null>(null);
+
+  // States
+  const [dimension, setDimension] = useState({ width: 0, height: 0 });
 
   useEffect(() => {
     const node = ref?.current;
@@ -21,7 +32,7 @@ export function useContainerDimension(
       timerRef.current = window.setTimeout(() => {
         const { width, height } = entry.contentRect;
         setDimension({ width, height });
-      }, debounce);
+      }, debounceDelay);
     });
 
     observer.observe(node);
@@ -35,7 +46,7 @@ export function useContainerDimension(
         clearTimeout(timerRef.current);
       }
     };
-  }, [ref?.current, debounce]);
+  }, [ref?.current, debounceDelay]);
 
   return dimension;
 }

@@ -9,6 +9,8 @@ import { request } from "@/utils/request";
 import { useRouter } from "next/navigation";
 import { useCallback, useRef, useState } from "react";
 
+// -----------------------------------------------------------------
+
 interface UseRequestOptions {
   id: string;
   absoluteUrl?: string;
@@ -25,8 +27,9 @@ interface UseRequestOptions {
   >;
   signinPath?: string;
 }
+
 export const useRequest = <T = any>(props: UseRequestOptions) => {
-  // Props
+  // Options
   const {
     id,
     absoluteUrl,

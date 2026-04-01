@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 
+// -----------------------------------------------------------------
+
 export const useHasHover = () => {
+  // States
   const [hasHover, setHasHover] = useState(false);
 
   useEffect(() => {

@@ -1,14 +1,33 @@
 import { useState, useEffect, useRef } from "react";
 
-function debounce<T extends (...args: any[]) => void>(func: T, delay: number) {
+// -----------------------------------------------------------------
+
+function debounce<T extends (...args: any[]) => void>(
+  func: T,
+  debounceDelay: number,
+) {
   let timeout: ReturnType<typeof setTimeout>;
   return function (...args: Parameters<T>) {
     clearTimeout(timeout);
-    timeout = setTimeout(() => func(...args), delay);
+    timeout = setTimeout(() => func(...args), debounceDelay);
   };
 }
 
-export const useResizeObserver = (inputId?: string) => {
+// -----------------------------------------------------------------
+
+interface UseResizeObserverOptions {
+  inputId?: string;
+  debounceDelay?: number;
+}
+
+export const useResizeObserver = (options: UseResizeObserverOptions = {}) => {
+  // Options
+  const { inputId, debounceDelay = 200 } = options;
+
+  // Refs
+  const ref = useRef<any>(null);
+
+  // States
   const [dimensions, setDimensions] = useState<{
     width: number;
     height: number;
@@ -16,8 +35,6 @@ export const useResizeObserver = (inputId?: string) => {
     width: 0,
     height: 0,
   });
-
-  const ref = useRef<any>(null);
 
   useEffect(() => {
     const targetElement = inputId
@@ -36,7 +53,7 @@ export const useResizeObserver = (inputId?: string) => {
       });
     };
 
-    const debounceResize = debounce(handleResize, 200);
+    const debounceResize = debounce(handleResize, debounceDelay);
 
     window.addEventListener("resize", debounceResize);
     handleResize();

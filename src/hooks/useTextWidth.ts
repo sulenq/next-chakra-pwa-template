@@ -1,7 +1,12 @@
 import { useLayoutEffect, useRef, useState } from "react";
 
+// -----------------------------------------------------------------
+
 export const useTextWidth = (text: string, font: string) => {
+  // Refs
   const spanRef = useRef<HTMLSpanElement | null>(null);
+
+  // States
   const [width, setWidth] = useState(0);
 
   useLayoutEffect(() => {

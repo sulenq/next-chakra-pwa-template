@@ -3,6 +3,8 @@ import { useRequest } from "@/hooks/useRequest";
 import useRenderTrigger from "@/contexts/useRenderTrigger";
 import { useLoadingBar } from "@/contexts/useLoadingBar";
 
+// -----------------------------------------------------------------
+
 interface UseFetchDataOptions<T> {
   initialData?: T;
   dummyData?: T;
@@ -20,8 +22,9 @@ interface UseFetchDataOptions<T> {
   // withLimit?: boolean;
   // withPagination?: boolean;
 }
+
 export const useFetchData = <T = any>(props: UseFetchDataOptions<T>) => {
-  // Props
+  // Options
   const {
     initialData,
     dummyData,
