@@ -21,7 +21,7 @@ export interface TextareaInputProps extends Omit<TextareaProps, "onChange"> {
 export const TextareaInput = forwardRef<
   HTMLTextAreaElement,
   TextareaInputProps
->((props, ref) => {
+>(function TextareaInput(props, ref) {
   const { t } = useLocale();
   const { themeConfig } = useThemeConfig();
 
@@ -92,5 +92,3 @@ export const TextareaInput = forwardRef<
     />
   );
 });
-
-TextareaInput.displayName = "TextareaInput";

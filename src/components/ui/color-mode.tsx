@@ -51,7 +51,7 @@ export function useColorModeValue<T>(light: T, dark: T) {
 export const ColorModeButton = forwardRef<
   HTMLButtonElement,
   ColorModeButtonProps
->((props, ref) => {
+>(function ColorModeButton(props, ref) {
   // Props
   const { tooltipProps, ...restProps } = props;
 
@@ -89,7 +89,6 @@ export const ColorModeButton = forwardRef<
     </ClientOnly>
   );
 });
-ColorModeButton.displayName = "ColorModeButton";
 
 export const LightMode = React.forwardRef<HTMLSpanElement, SpanProps>(
   function LightMode(props, ref) {

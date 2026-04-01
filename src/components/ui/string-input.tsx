@@ -33,7 +33,7 @@ export interface StringInputProps extends Omit<InputProps, "onChange"> {
   maxChar?: number;
 }
 export const StringInput = forwardRef<HTMLInputElement, StringInputProps>(
-  (props, ref) => {
+  function StringInput(props, ref) {
     // Props
     const {
       name,
@@ -190,5 +190,3 @@ export const StringInput = forwardRef<HTMLInputElement, StringInputProps>(
     );
   },
 );
-
-StringInput.displayName = "StringInput";

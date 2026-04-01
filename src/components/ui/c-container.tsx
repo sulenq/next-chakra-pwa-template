@@ -7,7 +7,7 @@ interface CContainerProps extends StackProps {
   children?: React.ReactNode;
 }
 export const CContainer = forwardRef<HTMLDivElement, CContainerProps>(
-  (props, ref) => {
+  function CContainer(props, ref) {
     // Props
     const { children, ...restProps } = props;
 
@@ -25,5 +25,3 @@ export const CContainer = forwardRef<HTMLDivElement, CContainerProps>(
     );
   },
 );
-
-CContainer.displayName = "CContainer";

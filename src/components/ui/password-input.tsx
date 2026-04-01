@@ -23,7 +23,7 @@ export interface PasswordInputProps extends Omit<InputProps, "onChange"> {
   invalid?: boolean;
 }
 export const PasswordInput = forwardRef<HTMLInputElement, PasswordInputProps>(
-  (props, ref) => {
+  function PasswordInput(props, ref) {
     // Props
     const {
       name,
@@ -101,5 +101,3 @@ export const PasswordInput = forwardRef<HTMLInputElement, PasswordInputProps>(
     );
   },
 );
-
-PasswordInput.displayName = "PasswordInput";

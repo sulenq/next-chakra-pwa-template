@@ -27,7 +27,7 @@ export interface NumInputProps extends Omit<InputProps, "onChange"> {
   clearable?: boolean;
 }
 export const NumInput = forwardRef<HTMLInputElement, NumInputProps>(
-  (props, ref) => {
+  function NumInput(props, ref) {
     // Props
     const {
       inputValue,
@@ -215,5 +215,3 @@ export const NumInput = forwardRef<HTMLInputElement, NumInputProps>(
     );
   },
 );
-
-NumInput.displayName = "NumInput";

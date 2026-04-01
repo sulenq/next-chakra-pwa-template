@@ -10,7 +10,7 @@ export interface NavLinkProps extends StackProps {
   external?: boolean;
 }
 export const NavLink = forwardRef<HTMLDivElement, NavLinkProps>(
-  (props, ref) => {
+  function NavLink(props, ref) {
     const { children, to, external, onClick, ...restProps } = props;
     const router = useRouter();
 
@@ -44,5 +44,3 @@ export const NavLink = forwardRef<HTMLDivElement, NavLinkProps>(
     );
   },
 );
-
-NavLink.displayName = "NavLink";

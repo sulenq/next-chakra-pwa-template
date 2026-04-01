@@ -6,7 +6,7 @@ export interface HScrollProps extends StackProps {
   children?: React.ReactNode;
 }
 export const HScroll = forwardRef<HTMLDivElement, HScrollProps>(
-  ({ children, ...props }, ref) => {
+  function HScroll({ children, ...props }, ref) {
     const localRef = useRef<HTMLDivElement | null>(null);
     const hStackRef = (ref as React.RefObject<HTMLDivElement>) ?? localRef;
 
@@ -101,5 +101,3 @@ export const HScroll = forwardRef<HTMLDivElement, HScrollProps>(
     );
   },
 );
-
-HScroll.displayName = "HScroll";

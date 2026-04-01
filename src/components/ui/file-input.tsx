@@ -30,11 +30,14 @@ import {
 import { TrashIcon, UploadIcon, XIcon } from "lucide-react";
 import { forwardRef, useEffect, useState } from "react";
 
+// -----------------------------------------------------------------
+
 interface FileListProps extends Omit<StackProps, "onChange"> {
   inputValue: File[] | null;
   onChange?: (inputValue: FileInputProps["inputValue"]) => void;
   existing: Interface__StorageFile[];
 }
+
 const FileList = (props: FileListProps) => {
   // Props
   const { inputValue, onChange, existing, ...restProps } = props;
@@ -73,6 +76,8 @@ const FileList = (props: FileListProps) => {
   );
 };
 
+// -----------------------------------------------------------------
+
 export interface FileInputInputComponentProps extends Omit<
   FileInputProps,
   "removed"
@@ -84,10 +89,11 @@ export interface FileInputInputComponentProps extends Omit<
   acceptPlaceholder?: string;
   imgInput?: boolean;
 }
-export const FIleInputRoot = forwardRef<
+
+export const FileInputRoot = forwardRef<
   HTMLInputElement,
   FileInputInputComponentProps
->((props, ref) => {
+>(function FileInputRoot(props, ref) {
   // Props
   const {
     children,
@@ -280,6 +286,8 @@ export const FIleInputRoot = forwardRef<
   );
 });
 
+// -----------------------------------------------------------------
+
 export interface FileInputProps extends Omit<FileUploadRootProps, "onChange"> {
   id?: string;
   inputValue?: File[] | null;
@@ -300,7 +308,7 @@ export interface FileInputProps extends Omit<FileUploadRootProps, "onChange"> {
 }
 
 export const FileInput = forwardRef<HTMLInputElement, FileInputProps>(
-  (props, ref) => {
+  function FileInput(props, ref) {
     // Props
     const { existingFiles, onDeleteFile, onUndoDeleteFile, ...restProps } =
       props;
@@ -406,11 +414,8 @@ export const FileInput = forwardRef<HTMLInputElement, FileInputProps>(
           </CContainer>
         )}
 
-        <FIleInputRoot ref={ref} existing={existing} {...restProps} />
+        <FileInputRoot ref={ref} existing={existing} {...restProps} />
       </CContainer>
     );
   },
 );
-
-FileInput.displayName = "FileInput";
-FIleInputRoot.displayName = "FIleInputRoot";

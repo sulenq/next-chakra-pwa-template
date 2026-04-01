@@ -16,7 +16,7 @@ interface FileIconProps extends IconProps {
   iconProps?: any;
 }
 export const FileIcon = forwardRef<SVGSVGElement, FileIconProps>(
-  ({ name, mimeType, iconProps, ...restProps }, ref) => {
+  function FileIcon({ name, mimeType, iconProps, ...restProps }, ref) {
     const extension = name?.toLowerCase().split(".").pop() ?? "";
     const mime = mimeType?.toLowerCase() ?? "";
 
@@ -71,5 +71,3 @@ export const FileIcon = forwardRef<SVGSVGElement, FileIconProps>(
     );
   },
 );
-
-FileIcon.displayName = "FileIcon";

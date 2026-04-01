@@ -211,7 +211,7 @@ export const TopBar = (props: StackProps) => {
 // -----------------------------------------------------------------
 
 export const ConstrainedContainer = forwardRef<HTMLDivElement, StackProps>(
-  (props, ref) => {
+  function ConstrainedContainer(props, ref) {
     // Props
     const { children, ...restProps } = props;
 
@@ -252,40 +252,41 @@ export function useViewContext() {
   return context;
 }
 
-const ViewRoot = forwardRef<HTMLDivElement, StackProps>(
-  ({ children, ...restProps }, ref) => {
-    // Refs
-    const containerRef = useRef<HTMLDivElement>(null);
-    const mergeRef = useMergedRefs(containerRef, ref);
+const ViewRoot = forwardRef<HTMLDivElement, StackProps>(function ViewRoot(
+  { children, ...restProps },
+  ref,
+) {
+  // Refs
+  const containerRef = useRef<HTMLDivElement>(null);
+  const mergeRef = useMergedRefs(containerRef, ref);
 
-    // Hooks
-    const dimension = useContainerDimension(containerRef);
+  // Hooks
+  const dimension = useContainerDimension(containerRef);
 
-    // States
-    const isValidDimension = dimension.width > 0 && dimension.height > 0;
-    const isSmContainer = dimension.width < 600;
+  // States
+  const isValidDimension = dimension.width > 0 && dimension.height > 0;
+  const isSmContainer = dimension.width < 600;
 
-    // Constants
-    const contextValue = useMemo(
-      () => ({ dimension, isValidDimension, isSmContainer }),
-      [dimension, isValidDimension, isSmContainer],
-    );
+  // Constants
+  const contextValue = useMemo(
+    () => ({ dimension, isValidDimension, isSmContainer }),
+    [dimension, isValidDimension, isSmContainer],
+  );
 
-    return (
-      <ViewContext.Provider value={contextValue}>
-        <StackV
-          ref={mergeRef}
-          className={"page-container"}
-          flex={1}
-          overflow={"auto"}
-          {...restProps}
-        >
-          {isValidDimension && children}
-        </StackV>
-      </ViewContext.Provider>
-    );
-  },
-);
+  return (
+    <ViewContext.Provider value={contextValue}>
+      <StackV
+        ref={mergeRef}
+        className={"page-container"}
+        flex={1}
+        overflow={"auto"}
+        {...restProps}
+      >
+        {isValidDimension && children}
+      </StackV>
+    </ViewContext.Provider>
+  );
+});
 
 // -----------------------------------------------------------------
 
@@ -356,23 +357,21 @@ const ViewTitle = (props: PProps) => {
 
 // -----------------------------------------------------------------
 
-const ViewContent = forwardRef<HTMLDivElement, StackProps>((props, ref) => {
-  // Props
-  const { children, ...restProps } = props;
+const ViewContent = forwardRef<HTMLDivElement, StackProps>(
+  function ViewContent(props, ref) {
+    // Props
+    const { children, ...restProps } = props;
 
-  // Contexts
-  const { isValidDimension } = useViewContext();
+    // Contexts
+    const { isValidDimension } = useViewContext();
 
-  return (
-    <StackV ref={ref} flex={1} overflow={"auto"} {...restProps}>
-      {isValidDimension ? children : null}
-    </StackV>
-  );
-});
-
-ConstrainedContainer.displayName = "ConstrainedContainer";
-ViewRoot.displayName = "ViewRoot";
-ViewContent.displayName = "ViewContent";
+    return (
+      <StackV ref={ref} flex={1} overflow={"auto"} {...restProps}>
+        {isValidDimension ? children : null}
+      </StackV>
+    );
+  },
+);
 
 export const View = {
   Root: ViewRoot,
