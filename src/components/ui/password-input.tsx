@@ -14,6 +14,8 @@ import { EyeIcon, EyeOffIcon } from "lucide-react";
 import { forwardRef, useState } from "react";
 import { StringInput } from "@/components/ui/string-input";
 
+// -----------------------------------------------------------------
+
 export interface PasswordInputProps extends Omit<InputProps, "onChange"> {
   name?: string;
   onChange?: (inputValue: string) => void;
@@ -22,6 +24,7 @@ export interface PasswordInputProps extends Omit<InputProps, "onChange"> {
   containerProps?: StackProps;
   invalid?: boolean;
 }
+
 export const PasswordInput = forwardRef<HTMLInputElement, PasswordInputProps>(
   function PasswordInput(props, ref) {
     // Props

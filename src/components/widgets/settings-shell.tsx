@@ -1,8 +1,11 @@
 import { HStack, StackProps } from "@chakra-ui/react";
 
+// -----------------------------------------------------------------
+
 interface ToggleSettingContainerProps extends StackProps {
   disabled?: boolean;
 }
+
 export const ToggleSettingContainer = ({
   children,
   disabled,

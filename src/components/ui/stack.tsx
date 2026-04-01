@@ -3,6 +3,8 @@
 import { Flex, StackProps } from "@chakra-ui/react";
 import { forwardRef } from "react";
 
+// -----------------------------------------------------------------
+
 export const StackV = forwardRef<HTMLDivElement, StackProps>(
   function StackV(props, ref) {
     return (
@@ -16,6 +18,8 @@ export const StackV = forwardRef<HTMLDivElement, StackProps>(
     );
   },
 );
+
+// -----------------------------------------------------------------
 
 export const StackH = forwardRef<HTMLDivElement, StackProps>(
   function StackH(props, ref) {

@@ -5,6 +5,8 @@ import { Spinner } from "@/components/ui/spinner";
 import { Center, Icon, StackProps } from "@chakra-ui/react";
 import { IconShieldCheckFilled } from "@tabler/icons-react";
 
+// -----------------------------------------------------------------
+
 export const VerifyingScreen = (props: StackProps) => {
   // Props
   const { ...restProps } = props;

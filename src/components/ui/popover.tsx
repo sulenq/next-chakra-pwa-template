@@ -10,12 +10,9 @@ import {
 } from "@chakra-ui/react";
 import { forwardRef } from "react";
 
-interface PopoverContentProps extends ChakraPopover.ContentProps {
-  portalled?: boolean;
-  portalRef?: React.RefObject<HTMLElement | null>;
-}
+// -----------------------------------------------------------------
 
-export const PopoverRoot = (props: PopoverRootProps) => {
+const PopoverRoot = (props: PopoverRootProps) => {
   const { children, ...restProps } = props;
 
   return (
@@ -25,7 +22,14 @@ export const PopoverRoot = (props: PopoverRootProps) => {
   );
 };
 
-export const PopoverContent = forwardRef<HTMLDivElement, PopoverContentProps>(
+// -----------------------------------------------------------------
+
+interface PopoverContentProps extends ChakraPopover.ContentProps {
+  portalled?: boolean;
+  portalRef?: React.RefObject<HTMLElement | null>;
+}
+
+const PopoverContent = forwardRef<HTMLDivElement, PopoverContentProps>(
   function PopoverContent(props, ref) {
     // Contexts
     const { themeConfig } = useThemeConfig();
@@ -51,24 +55,25 @@ export const PopoverContent = forwardRef<HTMLDivElement, PopoverContentProps>(
   },
 );
 
-export const PopoverArrow = forwardRef<
-  HTMLDivElement,
-  ChakraPopover.ArrowProps
->(function PopoverArrow(props, ref) {
-  return (
-    <ChakraPopover.Arrow ref={ref}>
-      <ChakraPopover.ArrowTip
-        bg={"bg.body"}
-        // backdropFilter={"blur(5px)"}
-        // bg={"darktrans !important"}
-        // borderColor={"transparent"}
-        {...props}
-      />
-    </ChakraPopover.Arrow>
-  );
-});
+// -----------------------------------------------------------------
 
-export const PopoverCloseTrigger = forwardRef<
+const PopoverArrow = forwardRef<HTMLDivElement, ChakraPopover.ArrowProps>(
+  function PopoverArrow(props, ref) {
+    return (
+      <ChakraPopover.Arrow ref={ref}>
+        <ChakraPopover.ArrowTip
+          bg={"bg.body"}
+          // backdropFilter={"blur(5px)"}
+          // bg={"darktrans !important"}
+          // borderColor={"transparent"}
+          {...props}
+        />
+      </ChakraPopover.Arrow>
+    );
+  },
+);
+
+const PopoverCloseTrigger = forwardRef<
   HTMLButtonElement,
   ChakraPopover.CloseTriggerProps
 >(function PopoverCloseTrigger(props, ref) {
@@ -86,12 +91,31 @@ export const PopoverCloseTrigger = forwardRef<
   );
 });
 
-export const PopoverTitle = ChakraPopover.Title;
-export const PopoverDescription = ChakraPopover.Description;
-export const PopoverFooter = ChakraPopover.Footer;
-export const PopoverHeader = ChakraPopover.Header;
-export const PopoverBody = ChakraPopover.Body;
-export const PopoverTrigger = ChakraPopover.Trigger;
+// -----------------------------------------------------------------
+
+const PopoverTitle = ChakraPopover.Title;
+
+// -----------------------------------------------------------------
+
+const PopoverDescription = ChakraPopover.Description;
+
+// -----------------------------------------------------------------
+
+const PopoverFooter = ChakraPopover.Footer;
+
+// -----------------------------------------------------------------
+
+const PopoverHeader = ChakraPopover.Header;
+
+// -----------------------------------------------------------------
+
+const PopoverBody = ChakraPopover.Body;
+
+// -----------------------------------------------------------------
+
+const PopoverTrigger = ChakraPopover.Trigger;
+
+// -----------------------------------------------------------------
 
 export const Popover = {
   Root: PopoverRoot,

@@ -4,9 +4,12 @@ import { Text, TextProps } from "@chakra-ui/react";
 import parse, { domToReact } from "html-react-parser";
 import { forwardRef } from "react";
 
+// -----------------------------------------------------------------
+
 export interface PProps extends TextProps {
   children?: any;
 }
+
 export const P = forwardRef<HTMLParagraphElement, PProps>(
   function P(props, ref) {
     // Props
@@ -41,6 +44,8 @@ export const P = forwardRef<HTMLParagraphElement, PProps>(
     );
   },
 );
+
+// -----------------------------------------------------------------
 
 export const PSerif = forwardRef<HTMLParagraphElement, PProps>(
   function PSerif(props, ref) {

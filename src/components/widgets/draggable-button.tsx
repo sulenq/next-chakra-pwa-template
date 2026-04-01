@@ -3,14 +3,19 @@
 import { useRef, useState, useEffect } from "react";
 import { Btn, BtnProps } from "@/components/ui/btn";
 
+// -----------------------------------------------------------------
+
 type DefaultPos = "top-left" | "top-right" | "bottom-left" | "bottom-right";
 type AllowedSnap = ("left" | "right")[];
+
+// -----------------------------------------------------------------
 
 interface DraggableBtnProps extends BtnProps {
   children: React.ReactNode;
   defaultPos?: DefaultPos;
   allowedSnap?: AllowedSnap;
 }
+
 export const DraggableButton = (props: DraggableBtnProps) => {
   // Props
   const {

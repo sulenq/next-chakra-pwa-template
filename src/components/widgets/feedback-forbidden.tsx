@@ -10,6 +10,8 @@ import { useLocale } from "@/contexts/useLocale";
 import { Icon } from "@chakra-ui/react";
 import { BanIcon } from "lucide-react";
 
+// -----------------------------------------------------------------
+
 export default function FeedbackForbidden(props: FeedbackStateProps) {
   // Props
   const { title, description, icon, children, ...restProps } = props;

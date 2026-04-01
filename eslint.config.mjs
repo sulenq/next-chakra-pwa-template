@@ -25,7 +25,7 @@ const eslintConfig = [
       "@typescript-eslint/no-require-imports": "off",
       "react-hooks/exhaustive-deps": "off",
       "jsx-a11y/alt-text": "off",
-      // TODO research more
+      // TODO_LATER research more
       // "@typescript-eslint/no-unused-vars": "off",
       // "@typescript-eslint/no-unused-expressions": "off",
     },

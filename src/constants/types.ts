@@ -1,6 +1,8 @@
 import { translations } from "@/contexts/useLocale";
 import { ButtonProps, ConditionalValue, MenuItemProps } from "@chakra-ui/react";
 
+export type ColorMode = "light" | "dark";
+
 export type RGB = {
   r: number;
   g: number;

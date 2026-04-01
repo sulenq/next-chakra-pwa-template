@@ -12,16 +12,20 @@ import {
 } from "@chakra-ui/react";
 import { forwardRef, useRef, useState } from "react";
 
+// -----------------------------------------------------------------
+
+export const DialogRoot = (props: ChakraDialog.RootProps) => {
+  return <ChakraDialog.Root onEscapeKeyDown={back} {...props} />;
+};
+
+// -----------------------------------------------------------------
+
 export interface DialogContentProps extends ChakraDialog.ContentProps {
   portalled?: boolean;
   portalRef?: React.RefObject<HTMLElement>;
   backdrop?: boolean;
   positionerProps?: DialogPositionerProps;
 }
-
-export const DialogRoot = (props: ChakraDialog.RootProps) => {
-  return <ChakraDialog.Root onEscapeKeyDown={back} {...props} />;
-};
 
 export const DialogContent = forwardRef<HTMLDivElement, DialogContentProps>(
   function DialogContent(props, ref) {
@@ -96,6 +100,8 @@ export const DialogContent = forwardRef<HTMLDivElement, DialogContentProps>(
     );
   },
 );
+
+// -----------------------------------------------------------------
 
 export const DialogCloseTrigger = forwardRef<
   HTMLButtonElement,

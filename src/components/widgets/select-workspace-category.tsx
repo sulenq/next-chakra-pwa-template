@@ -4,6 +4,8 @@ import { useRequest } from "@/hooks/useRequest";
 import { capitalizeWords } from "@/utils/string";
 import { useEffect, useState } from "react";
 
+// -----------------------------------------------------------------
+
 const SelectWorkspaceCategory = (props: SelectInputProps) => {
   // Props
   const { ...restProps } = props;
@@ -66,3 +68,5 @@ const SelectWorkspaceCategory = (props: SelectInputProps) => {
 };
 
 export default SelectWorkspaceCategory;
+
+// TODO_DEV delete this component

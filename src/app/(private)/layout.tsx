@@ -2,19 +2,13 @@
 
 import { Avatar } from "@/components/ui/avatar";
 import { Btn } from "@/components/ui/btn";
-import {
-  MenuContent,
-  MenuItem,
-  MenuItemGroup,
-  MenuRoot,
-  MenuTrigger,
-} from "@/components/ui/menu";
+import { Menu } from "@/components/ui/menu";
 import { NavLink } from "@/components/ui/nav-link";
 import { P } from "@/components/ui/p";
 import { StackH, StackV } from "@/components/ui/stack";
 import { AppIconLucide } from "@/components/widgets/app-icon";
 import { Clock } from "@/components/widgets/clock";
-import { HScroll } from "@/components/widgets/h-scroll";
+import { ScrollH } from "@/components/widgets/scroll-h";
 import { BottomIndicator, LeftIndicator } from "@/components/widgets/indicator";
 import { Logo } from "@/components/widgets/logo";
 import { MContainerV } from "@/components/widgets/m-container";
@@ -118,7 +112,7 @@ const MobileLayout = (props: any) => {
       </View.Root>
 
       {/* Navs */}
-      <HScroll
+      <ScrollH
         bg={"bg.body"}
         borderTop={"1px solid"}
         borderColor={"border.subtle"}
@@ -155,7 +149,7 @@ const MobileLayout = (props: any) => {
 
                       {nav.children && (
                         <>
-                          <MenuRoot
+                          <Menu.Root
                             positioning={{
                               placement: "top",
                               offset: {
@@ -163,7 +157,7 @@ const MobileLayout = (props: any) => {
                               },
                             }}
                           >
-                            <MenuTrigger asChild>
+                            <Menu.Trigger asChild>
                               <StackV
                                 key={nav.path}
                                 minW={"50px"}
@@ -188,12 +182,12 @@ const MobileLayout = (props: any) => {
 
                                 {isMainNavActive && <BottomIndicator />}
                               </StackV>
-                            </MenuTrigger>
+                            </Menu.Trigger>
 
-                            <MenuContent>
+                            <Menu.Content>
                               {nav.children.map((subGroup, idx) => {
                                 return (
-                                  <MenuItemGroup
+                                  <Menu.ItemGroup
                                     key={idx}
                                     title={
                                       subGroup.labelKey
@@ -211,7 +205,7 @@ const MobileLayout = (props: any) => {
                                           w={"full"}
                                           to={subNav.path}
                                         >
-                                          <MenuItem
+                                          <Menu.Item
                                             value={subNav.path}
                                             h={"44px"}
                                             px={3}
@@ -228,15 +222,15 @@ const MobileLayout = (props: any) => {
                                                 ) ??
                                                 "-"}
                                             </P>
-                                          </MenuItem>
+                                          </Menu.Item>
                                         </NavLink>
                                       );
                                     })}
-                                  </MenuItemGroup>
+                                  </Menu.ItemGroup>
                                 );
                               })}
-                            </MenuContent>
-                          </MenuRoot>
+                            </Menu.Content>
+                          </Menu.Root>
                         </>
                       )}
                     </Fragment>
@@ -295,7 +289,7 @@ const MobileLayout = (props: any) => {
             </VStack>
           </ProfileMenuTrigger>
         </HStack>
-      </HScroll>
+      </ScrollH>
     </StackV>
   );
 };

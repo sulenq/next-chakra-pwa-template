@@ -56,7 +56,7 @@ const ActivityLog = () => {
     string,
     (meta?: Record<string, any>) => string
   > = {
-    // TODO create action sentence glosary
+    // TODO_DEV create action sentence glosary
     [ActivityActionEnum.CREATE_WORKSPACE]: (meta) =>
       `Created workspace "${meta?.workspaceName ?? "Unknown"}"`,
 

@@ -8,6 +8,8 @@ import { capitalize } from "@/utils/string";
 import { Group, GroupProps, useFieldContext } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 
+// -----------------------------------------------------------------
+
 export interface DateRangePickerInputProps extends Omit<
   GroupProps,
   "title" | "placeholder" | "onChange"
@@ -31,6 +33,7 @@ export interface DateRangePickerInputProps extends Omit<
   disclosureSize?: DisclosureSizes;
   size?: ButtonSize;
 }
+
 export const DateRangePickerInput = (props: DateRangePickerInputProps) => {
   // Props
   const {

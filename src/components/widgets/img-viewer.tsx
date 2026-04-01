@@ -14,6 +14,8 @@ import { disclosureId } from "@/utils/disclosure";
 import { Icon, StackProps } from "@chakra-ui/react";
 import { IconArrowUpRight } from "@tabler/icons-react";
 
+// -----------------------------------------------------------------
+
 interface ImgViewerProps extends StackProps {
   id?: string;
   src?: string;
@@ -21,6 +23,7 @@ interface ImgViewerProps extends StackProps {
   fallbackSrc?: string;
   disabled?: boolean;
 }
+
 export const ImgViewer = (props: ImgViewerProps) => {
   // Props
   const {

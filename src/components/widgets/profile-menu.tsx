@@ -41,6 +41,8 @@ import {
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
+// -----------------------------------------------------------------
+
 const MENUS = [
   {
     labelKey: "my_profile",
@@ -54,9 +56,13 @@ const MENUS = [
   },
 ];
 
+// -----------------------------------------------------------------
+
 export const TodoList = (props: StackProps) => {
   return <StackV {...props}></StackV>;
 };
+
+// -----------------------------------------------------------------
 
 export const TodoListTrigger = () => {
   return <></>;

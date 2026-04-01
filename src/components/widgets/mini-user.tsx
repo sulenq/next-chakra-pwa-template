@@ -8,10 +8,13 @@ import { Interface__User } from "@/constants/interfaces";
 import { imgUrl } from "@/utils/url";
 import { StackProps } from "@chakra-ui/react";
 
+// -----------------------------------------------------------------
+
 interface MiniUserProps extends StackProps {
   user: Interface__User;
   withEmail?: boolean;
 }
+
 export const MiniUser = (props: MiniUserProps) => {
   // Props
   const { user, withEmail, ...restProps } = props;

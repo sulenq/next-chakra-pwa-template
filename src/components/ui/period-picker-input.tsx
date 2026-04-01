@@ -22,10 +22,14 @@ import { HStack, SimpleGrid, useFieldContext } from "@chakra-ui/react";
 import { CalendarClockIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 
+// -----------------------------------------------------------------
+
 const DEFAULT = {
   year: null,
   month: null,
 };
+
+// -----------------------------------------------------------------
 
 export interface PeriodPickerInputProps extends Omit<BtnProps, "onChange"> {
   id?: string;
@@ -40,6 +44,7 @@ export interface PeriodPickerInputProps extends Omit<BtnProps, "onChange"> {
   variant?: ButtonVariant;
   withIcon?: boolean;
 }
+
 export const PeriodPickerInput = (props: PeriodPickerInputProps) => {
   // Props
   const {

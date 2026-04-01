@@ -3,7 +3,7 @@
 import { ColorModeButton } from "@/components/ui/color-mode";
 import { LangMenu } from "@/components/ui/lang-menu";
 import { P } from "@/components/ui/p";
-import BrandWatermark from "@/components/widgets/brand-watermark";
+import { BrandWatermark } from "@/components/widgets/brand-watermark";
 import { Logo } from "@/components/widgets/logo";
 import { AnimatedBlobBackground } from "@/components/widgets/background";
 import { useLocale } from "@/contexts/useLocale";

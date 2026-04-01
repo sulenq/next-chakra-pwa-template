@@ -25,7 +25,7 @@ import { IconReload } from "@tabler/icons-react";
 import { ChevronDownIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 
-const NAVS_COLOR = "fg.muted";
+// -----------------------------------------------------------------
 
 export interface SelectOptionsProps {
   id: string;
@@ -34,6 +34,7 @@ export interface SelectOptionsProps {
   selected: Interface__SelectOption[];
   setSelected: React.Dispatch<SelectOptionsProps["selected"]>;
 }
+
 const SelectOptions = (props: SelectOptionsProps) => {
   // Props
   const { id, multiple, selectOptions, selected, setSelected, ...restProps } =
@@ -119,7 +120,7 @@ const SelectOptions = (props: SelectOptionsProps) => {
                   variant={"ghost"}
                   justifyContent={"start"}
                   size={"md"}
-                  color={isSelected ? "" : NAVS_COLOR}
+                  color={isSelected ? "" : "fg.muted"}
                   onClick={() => {
                     if (!multiple) {
                       setSelected([o]);
@@ -156,6 +157,8 @@ const SelectOptions = (props: SelectOptionsProps) => {
   );
 };
 
+// -----------------------------------------------------------------
+
 export interface SelectInputProps extends Omit<BtnProps, "onChange"> {
   id: string;
   title?: string;
@@ -172,6 +175,7 @@ export interface SelectInputProps extends Omit<BtnProps, "onChange"> {
   disclosureSize?: DisclosureSizes;
   variant?: ButtonVariant;
 }
+
 export const SelectInput = (props: SelectInputProps) => {
   // Props
   const {

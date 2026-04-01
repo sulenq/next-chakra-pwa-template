@@ -6,6 +6,8 @@ import { useThemeConfig } from "@/contexts/useThemeConfig";
 import { Center, Circle, HStack, Icon, StackProps } from "@chakra-ui/react";
 import Link from "next/link";
 
+// -----------------------------------------------------------------
+
 export interface FileItemProps extends StackProps {
   fileData: any;
   idx?: number;
@@ -16,6 +18,7 @@ export interface FileItemProps extends StackProps {
     icon?: React.ReactNode;
   }[];
 }
+
 export const FileItem = (props: FileItemProps) => {
   // Props
   const { children, fileData, actions = [], idx, ...restProps } = props;

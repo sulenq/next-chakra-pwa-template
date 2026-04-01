@@ -7,9 +7,12 @@ import { useLocale } from "@/contexts/useLocale";
 import useTimezone from "@/contexts/useTimezone";
 import { formatDate } from "@/utils/formatter";
 
+// -----------------------------------------------------------------
+
 export interface TodayProps extends PProps {
   dateVariant?: DateVariant;
 }
+
 export const Today = (props: TodayProps) => {
   // Props
   const { dateVariant = "numeric", ...restProps } = props;
@@ -29,6 +32,8 @@ export const Today = (props: TodayProps) => {
     </P>
   );
 };
+
+// -----------------------------------------------------------------
 
 export interface TodayWeekdayProps extends PProps {}
 export const TodayWeekday = (props: TodayWeekdayProps) => {

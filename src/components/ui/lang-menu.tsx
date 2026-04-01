@@ -1,17 +1,15 @@
 "use client";
 
 import { Btn, BtnProps } from "@/components/ui/btn";
-import {
-  MenuContent,
-  MenuItem,
-  MenuRoot,
-  MenuTrigger,
-} from "@/components/ui/menu";
+import { Menu } from "@/components/ui/menu";
+
 import { Tooltip } from "@/components/ui/tooltip";
 import { useLocale } from "@/contexts/useLocale";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
 import { Icon, MenuPositioner, Portal } from "@chakra-ui/react";
 import { IconCheck, IconChevronDown } from "@tabler/icons-react";
+
+// -----------------------------------------------------------------
 
 const LANGUAGES = [
   {
@@ -26,6 +24,8 @@ const LANGUAGES = [
   },
 ];
 
+// -----------------------------------------------------------------
+
 export const LangMenu = (props: BtnProps) => {
   // Contexts
   const { t, locale, setLocale } = useLocale();
@@ -33,8 +33,8 @@ export const LangMenu = (props: BtnProps) => {
 
   return (
     <Tooltip content={t.language}>
-      <MenuRoot>
-        <MenuTrigger asChild>
+      <Menu.Root>
+        <Menu.Trigger asChild>
           <Btn
             clicky={false}
             w={"60px"}
@@ -48,16 +48,16 @@ export const LangMenu = (props: BtnProps) => {
             {locale.toUpperCase()}
             <IconChevronDown stroke={1.5} />
           </Btn>
-        </MenuTrigger>
+        </Menu.Trigger>
 
         <Portal>
           <MenuPositioner>
-            <MenuContent zIndex={2000}>
+            <Menu.Content zIndex={2000}>
               {LANGUAGES.map((item, i) => {
                 const active = item.key === locale;
 
                 return (
-                  <MenuItem
+                  <Menu.Item
                     key={i}
                     value={item.key}
                     onClick={() => setLocale(item.key as any)}
@@ -74,13 +74,13 @@ export const LangMenu = (props: BtnProps) => {
                         <IconCheck stroke={1.5} />
                       </Icon>
                     )}
-                  </MenuItem>
+                  </Menu.Item>
                 );
               })}
-            </MenuContent>
+            </Menu.Content>
           </MenuPositioner>
         </Portal>
-      </MenuRoot>
+      </Menu.Root>
     </Tooltip>
   );
 };

@@ -18,6 +18,8 @@ import {
 import { UploadIcon, XIcon } from "lucide-react";
 import { forwardRef } from "react";
 
+// -----------------------------------------------------------------
+
 export interface FileUploadRootProps extends ChakraFileUpload.RootProps {
   inputProps?: React.InputHTMLAttributes<HTMLInputElement>;
 }
@@ -33,6 +35,8 @@ export const FileUploadRoot = forwardRef<HTMLInputElement, FileUploadRootProps>(
     );
   },
 );
+
+// -----------------------------------------------------------------
 
 export interface FileUploadDropzoneProps
   extends ChakraFileUpload.DropzoneProps {
@@ -108,10 +112,14 @@ export const FileUploadDropzone = forwardRef<
   );
 });
 
+// -----------------------------------------------------------------
+
 interface VisibilityProps {
   showSize?: boolean;
   clearable?: boolean;
 }
+
+// -----------------------------------------------------------------
 
 interface FileUploadItemProps extends VisibilityProps {
   file: File;
@@ -165,6 +173,8 @@ const FileUploadItem = (props: FileUploadItemProps) => {
   );
 };
 
+// -----------------------------------------------------------------
+
 interface FileUploadListProps
   extends VisibilityProps, ChakraFileUpload.ItemGroupProps {
   files?: File[];
@@ -194,11 +204,17 @@ export const FileUploadList = forwardRef<HTMLUListElement, FileUploadListProps>(
   },
 );
 
+// -----------------------------------------------------------------
+
 type Assign<T, U> = Omit<T, keyof U> & U;
+
+// -----------------------------------------------------------------
 
 interface FileInputProps extends Assign<ButtonProps, RecipeProps<"input">> {
   placeholder?: React.ReactNode;
 }
+
+// -----------------------------------------------------------------
 
 export const ChakraFileInput = forwardRef<HTMLButtonElement, FileInputProps>(
   function ChakraFileInput(props, ref) {
@@ -231,6 +247,14 @@ export const ChakraFileInput = forwardRef<HTMLButtonElement, FileInputProps>(
   },
 );
 
+// -----------------------------------------------------------------
+
 export const FileUploadLabel = ChakraFileUpload.Label;
+
+// -----------------------------------------------------------------
+
 export const FileUploadClearTrigger = ChakraFileUpload.ClearTrigger;
+
+// -----------------------------------------------------------------
+
 export const FileUploadTrigger = ChakraFileUpload.Trigger;

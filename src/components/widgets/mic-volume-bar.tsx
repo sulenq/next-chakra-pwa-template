@@ -2,6 +2,8 @@ import { useThemeConfig } from "@/contexts/useThemeConfig";
 import { ProgressRange, ProgressRoot, ProgressTrack } from "@chakra-ui/react";
 import { useEffect, useRef, useState } from "react";
 
+// -----------------------------------------------------------------
+
 export const MicVolumeBar = ({
   analyser,
 }: {

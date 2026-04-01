@@ -6,6 +6,8 @@ import { Checkbox as ChakraCheckbox, Icon } from "@chakra-ui/react";
 import { XIcon } from "lucide-react";
 import { forwardRef } from "react";
 
+// -----------------------------------------------------------------
+
 export interface CheckboxProps extends ChakraCheckbox.RootProps {
   icon?: React.ReactNode;
   inputProps?: React.InputHTMLAttributes<HTMLInputElement>;

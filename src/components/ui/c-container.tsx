@@ -3,9 +3,12 @@
 import { forwardRef } from "react";
 import { StackProps, VStack } from "@chakra-ui/react";
 
+// -----------------------------------------------------------------
+
 interface CContainerProps extends StackProps {
   children?: React.ReactNode;
 }
+
 export const CContainer = forwardRef<HTMLDivElement, CContainerProps>(
   function CContainer(props, ref) {
     // Props

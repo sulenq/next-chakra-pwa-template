@@ -18,6 +18,8 @@ import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Tooltip } from "@/components/ui/tooltip";
 
+// -----------------------------------------------------------------
+
 export interface SearchInputProps extends Omit<
   InputGroupProps,
   "children" | "onChange"
@@ -39,6 +41,7 @@ export interface SearchInputProps extends Omit<
   variant?: InputVariant;
   size?: InputSize;
 }
+
 export const SearchInput = (props: SearchInputProps) => {
   // Props
   const {

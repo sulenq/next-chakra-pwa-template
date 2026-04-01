@@ -2,11 +2,14 @@ import { CContainer } from "@/components/ui/c-container";
 import { StackProps } from "@chakra-ui/react";
 import React, { forwardRef, useEffect, useRef } from "react";
 
-export interface HScrollProps extends StackProps {
+// -----------------------------------------------------------------
+
+export interface ScrollHProps extends StackProps {
   children?: React.ReactNode;
 }
-export const HScroll = forwardRef<HTMLDivElement, HScrollProps>(
-  function HScroll({ children, ...props }, ref) {
+
+export const ScrollH = forwardRef<HTMLDivElement, ScrollHProps>(
+  function ScrollH({ children, ...props }, ref) {
     const localRef = useRef<HTMLDivElement | null>(null);
     const hStackRef = (ref as React.RefObject<HTMLDivElement>) ?? localRef;
 

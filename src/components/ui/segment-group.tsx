@@ -3,13 +3,15 @@
 import { useThemeConfig } from "@/contexts/useThemeConfig";
 import { SegmentGroup, SegmentGroupRootProps } from "@chakra-ui/react";
 
-interface Props extends Omit<SegmentGroupRootProps, "onChange"> {
+// -----------------------------------------------------------------
+
+interface SegmentedProps extends Omit<SegmentGroupRootProps, "onChange"> {
   items?: any[];
   inputValue?: string;
   onChange?: (inputValue: string) => void;
 }
 
-export const Segmented = (props: Props) => {
+export const Segmented = (props: SegmentedProps) => {
   // Props
   const { items = [], inputValue, onChange, size = "md", ...restProps } = props;
 

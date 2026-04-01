@@ -6,9 +6,12 @@ import { AppIconLucide } from "@/components/widgets/app-icon";
 import { useDataDisplay } from "@/contexts/useDataDisplay";
 import { LayoutGridIcon, TableIcon } from "lucide-react";
 
+// -----------------------------------------------------------------
+
 interface DataDisplayToggleProps extends BtnProps {
   navKey: string;
 }
+
 export function DataDisplayToggle(props: DataDisplayToggleProps) {
   // Props
   const { navKey, ...restProps } = props;

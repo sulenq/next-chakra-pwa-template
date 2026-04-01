@@ -11,7 +11,7 @@ import { ClampText } from "@/components/widgets/clamp-text";
 import { Clock } from "@/components/widgets/clock";
 import { DotIndicator } from "@/components/widgets/indicator";
 import { Today } from "@/components/widgets/today";
-import ToggleTip from "@/components/widgets/toggle-tip";
+import { ToggleTip } from "@/components/widgets/toggle-tip";
 import { Interface__Nav } from "@/constants/interfaces";
 import { R_SPACING_MD, TOP_BAR_H } from "@/constants/styles";
 import { useBreadcrumbs } from "@/contexts/useBreadcrumbs";
@@ -35,8 +35,6 @@ import {
   useMemo,
   useRef,
 } from "react";
-
-const FONT_SIZE = "sm";
 
 // -----------------------------------------------------------------
 
@@ -120,7 +118,7 @@ export const NavBreadcrumb = (props: any) => {
                   </>
                 )}
 
-                <P fontSize={FONT_SIZE} lineClamp={1}>
+                <P fontSize={"sm"} lineClamp={1}>
                   {nav?.label ? nav?.label : pluckString(t, nav.labelKey)}
                 </P>
               </HStack>

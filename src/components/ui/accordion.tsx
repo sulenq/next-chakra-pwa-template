@@ -4,6 +4,8 @@ import { Accordion as ChakraAccordion, HStack } from "@chakra-ui/react";
 import { forwardRef } from "react";
 import { LuChevronDown } from "react-icons/lu";
 
+// -----------------------------------------------------------------
+
 interface AccordionItemTriggerProps extends ChakraAccordion.ItemTriggerProps {
   indicatorPlacement?: "start" | "end" | "none";
 }
@@ -36,6 +38,8 @@ const AccordionItemTrigger = forwardRef<
   );
 });
 
+// -----------------------------------------------------------------
+
 interface AccordionItemContentProps extends ChakraAccordion.ItemContentProps {}
 
 const AccordionItemContent = forwardRef<
@@ -49,9 +53,19 @@ const AccordionItemContent = forwardRef<
   );
 });
 
+// -----------------------------------------------------------------
+
 const AccordionRoot = ChakraAccordion.Root;
+
+// -----------------------------------------------------------------
+
 const AccordionItem = ChakraAccordion.Item;
+
+// -----------------------------------------------------------------
+
 const AccordionItemIndicator = ChakraAccordion.ItemIndicator;
+
+// -----------------------------------------------------------------
 
 export const Accordion = {
   Root: AccordionRoot,

@@ -11,6 +11,8 @@ import { useCountdown } from "@/hooks/useCountdown";
 import { useEffect } from "react";
 import { Tooltip } from "@/components/ui/tooltip";
 
+// -----------------------------------------------------------------
+
 interface ConfirmationProps {
   open: boolean;
   title: string;
@@ -23,6 +25,7 @@ interface ConfirmationProps {
   addonElement?: any;
   onConfirm: () => void;
 }
+
 const ConfirmationContent = (props: ConfirmationProps) => {
   // Props
   const {
@@ -93,6 +96,8 @@ const ConfirmationContent = (props: ConfirmationProps) => {
   );
 };
 
+// -----------------------------------------------------------------
+
 interface ConfirmationTriggerProps extends StackProps {
   children?: any;
 
@@ -129,6 +134,7 @@ interface ConfirmationTriggerProps extends StackProps {
   /** Optional callback executed before the disclosure is opened */
   onOpen?: () => void;
 }
+
 export const ConfirmationTrigger = (props: ConfirmationTriggerProps) => {
   // Props
   const {
@@ -210,6 +216,8 @@ export const ConfirmationTrigger = (props: ConfirmationTriggerProps) => {
     </>
   );
 };
+
+// -----------------------------------------------------------------
 
 export const Confirmation = {
   /**

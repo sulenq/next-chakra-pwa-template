@@ -5,6 +5,8 @@ import { useThemeConfig } from "@/contexts/useThemeConfig";
 import { useIsSmScreenWidth } from "@/hooks/useIsSmScreenWidth";
 import { useState } from "react";
 
+// -----------------------------------------------------------------
+
 interface SimpleDisclosureProps {
   open: boolean;
   title: string;
@@ -15,6 +17,7 @@ interface SimpleDisclosureProps {
   footerProps?: any;
   withMaximizeButton?: boolean;
 }
+
 export const SimpleDisclosure = (props: SimpleDisclosureProps) => {
   // Props
   const {

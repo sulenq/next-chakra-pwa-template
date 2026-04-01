@@ -8,6 +8,8 @@ import {
   StackProps,
 } from "@chakra-ui/react";
 
+// -----------------------------------------------------------------
+
 export const Skeleton = (props: SkeletonProps) => {
   // Contexts
   const { themeConfig } = useThemeConfig();
@@ -24,6 +26,8 @@ export const Skeleton = (props: SkeletonProps) => {
     />
   );
 };
+
+// -----------------------------------------------------------------
 
 export const TableSkeleton = (props: StackProps) => {
   // Props

@@ -13,7 +13,9 @@ import {
 import { forwardRef } from "react";
 import { LuCheck, LuChevronRight } from "react-icons/lu";
 
-export const MenuRoot = (props: MenuRootProps) => {
+// -----------------------------------------------------------------
+
+const MenuRoot = (props: MenuRootProps) => {
   const { children, ...restProps } = props;
   return (
     <ChakraMenu.Root
@@ -26,8 +28,11 @@ export const MenuRoot = (props: MenuRootProps) => {
   );
 };
 
-export interface MenuTriggerProps extends ChakraMenu.TriggerProps {}
-export const MenuTrigger = forwardRef<HTMLButtonElement, MenuTriggerProps>(
+// -----------------------------------------------------------------
+
+interface MenuTriggerProps extends ChakraMenu.TriggerProps {}
+
+const MenuTrigger = forwardRef<HTMLButtonElement, MenuTriggerProps>(
   function MenuTrigger(props, ref) {
     const { children, ...restProps } = props;
 
@@ -46,10 +51,14 @@ export const MenuTrigger = forwardRef<HTMLButtonElement, MenuTriggerProps>(
     );
   },
 );
-export interface MenuTriggerItemProps extends ChakraMenu.ItemProps {
+
+// -----------------------------------------------------------------
+
+interface MenuTriggerItemProps extends ChakraMenu.ItemProps {
   startIcon?: React.ReactNode;
 }
-export const MenuTriggerItem = forwardRef<HTMLDivElement, MenuTriggerItemProps>(
+
+const MenuTriggerItem = forwardRef<HTMLDivElement, MenuTriggerItemProps>(
   function MenuTriggerItem(props, ref) {
     // Contexts
     const { themeConfig } = useThemeConfig();
@@ -69,11 +78,14 @@ export const MenuTriggerItem = forwardRef<HTMLDivElement, MenuTriggerItemProps>(
   },
 );
 
+// -----------------------------------------------------------------
+
 interface MenuContentProps extends ChakraMenu.ContentProps {
   portalled?: boolean;
   portalRef?: React.RefObject<HTMLElement | null>;
 }
-export const MenuContent = forwardRef<HTMLDivElement, MenuContentProps>(
+
+const MenuContent = forwardRef<HTMLDivElement, MenuContentProps>(
   function MenuContent(props, ref) {
     // Props
     const { portalled = true, portalRef, ...restProps } = props;
@@ -103,7 +115,9 @@ export const MenuContent = forwardRef<HTMLDivElement, MenuContentProps>(
   },
 );
 
-export const MenuItem = forwardRef<HTMLDivElement, MenuItemProps>(
+// -----------------------------------------------------------------
+
+const MenuItem = forwardRef<HTMLDivElement, MenuItemProps>(
   function MenuItem(props, ref) {
     //Props
     const { children, asChild, ...restProps } = props;
@@ -137,7 +151,9 @@ export const MenuItem = forwardRef<HTMLDivElement, MenuItemProps>(
   },
 );
 
-export const MenuArrow = forwardRef<HTMLDivElement, ChakraMenu.ArrowProps>(
+// -----------------------------------------------------------------
+
+const MenuArrow = forwardRef<HTMLDivElement, ChakraMenu.ArrowProps>(
   function MenuArrow(props, ref) {
     return (
       <ChakraMenu.Arrow ref={ref} {...props}>
@@ -147,7 +163,9 @@ export const MenuArrow = forwardRef<HTMLDivElement, ChakraMenu.ArrowProps>(
   },
 );
 
-export const MenuCheckboxItem = forwardRef<
+// -----------------------------------------------------------------
+
+const MenuCheckboxItem = forwardRef<
   HTMLDivElement,
   ChakraMenu.CheckboxItemProps
 >(function MenuCheckboxItem(props, ref) {
@@ -161,54 +179,71 @@ export const MenuCheckboxItem = forwardRef<
   );
 });
 
-export const MenuRadioItem = forwardRef<
-  HTMLDivElement,
-  ChakraMenu.RadioItemProps
->(function MenuRadioItem(props, ref) {
-  const { children, ...restProps } = props;
-  return (
-    <ChakraMenu.RadioItem ps="8" ref={ref} {...restProps}>
-      <AbsoluteCenter axis="horizontal" left="4" asChild>
-        <ChakraMenu.ItemIndicator>
-          <LuCheck />
-        </ChakraMenu.ItemIndicator>
-      </AbsoluteCenter>
-      <ChakraMenu.ItemText>{children}</ChakraMenu.ItemText>
-    </ChakraMenu.RadioItem>
-  );
-});
+// -----------------------------------------------------------------
 
-export const MenuItemGroup = forwardRef<
-  HTMLDivElement,
-  ChakraMenu.ItemGroupProps
->(function MenuItemGroup(props, ref) {
-  const { title, children, ...restProps } = props;
-  return (
-    <ChakraMenu.ItemGroup ref={ref} {...restProps}>
-      {title && (
-        <ChakraMenu.ItemGroupLabel
-          fontSize={"sm"}
-          color={"fg.subtle"}
-          userSelect="none"
-          pl={3}
-          lineHeight={1.2}
-        >
-          {title}
-        </ChakraMenu.ItemGroupLabel>
-      )}
-      {children}
-    </ChakraMenu.ItemGroup>
-  );
-});
+const MenuRadioItem = forwardRef<HTMLDivElement, ChakraMenu.RadioItemProps>(
+  function MenuRadioItem(props, ref) {
+    const { children, ...restProps } = props;
+    return (
+      <ChakraMenu.RadioItem ps="8" ref={ref} {...restProps}>
+        <AbsoluteCenter axis="horizontal" left="4" asChild>
+          <ChakraMenu.ItemIndicator>
+            <LuCheck />
+          </ChakraMenu.ItemIndicator>
+        </AbsoluteCenter>
+        <ChakraMenu.ItemText>{children}</ChakraMenu.ItemText>
+      </ChakraMenu.RadioItem>
+    );
+  },
+);
 
-export const MenuSeparator = (props: MenuSeparatorProps) => {
+// -----------------------------------------------------------------
+
+const MenuItemGroup = forwardRef<HTMLDivElement, ChakraMenu.ItemGroupProps>(
+  function MenuItemGroup(props, ref) {
+    const { title, children, ...restProps } = props;
+    return (
+      <ChakraMenu.ItemGroup ref={ref} {...restProps}>
+        {title && (
+          <ChakraMenu.ItemGroupLabel
+            fontSize={"sm"}
+            color={"fg.subtle"}
+            userSelect="none"
+            pl={3}
+            lineHeight={1.2}
+          >
+            {title}
+          </ChakraMenu.ItemGroupLabel>
+        )}
+        {children}
+      </ChakraMenu.ItemGroup>
+    );
+  },
+);
+
+// -----------------------------------------------------------------
+
+const MenuSeparator = (props: MenuSeparatorProps) => {
   return <ChakraMenu.Separator mx={2} {...props} />;
 };
 
-export const MenuRadioItemGroup = ChakraMenu.RadioItemGroup;
-export const MenuContextTrigger = ChakraMenu.ContextTrigger;
-export const MenuItemText = ChakraMenu.ItemText;
-export const MenuItemCommand = ChakraMenu.ItemCommand;
+// -----------------------------------------------------------------
+
+const MenuRadioItemGroup = ChakraMenu.RadioItemGroup;
+
+// -----------------------------------------------------------------
+
+const MenuContextTrigger = ChakraMenu.ContextTrigger;
+
+// -----------------------------------------------------------------
+
+const MenuItemText = ChakraMenu.ItemText;
+
+// -----------------------------------------------------------------
+
+const MenuItemCommand = ChakraMenu.ItemCommand;
+
+// -----------------------------------------------------------------
 
 export const Menu = {
   Root: MenuRoot,

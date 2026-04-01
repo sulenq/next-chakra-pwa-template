@@ -8,6 +8,8 @@ import {
 } from "@chakra-ui/react";
 import { forwardRef } from "react";
 
+// -----------------------------------------------------------------
+
 export interface FieldProps extends Omit<ChakraField.RootProps, "label"> {
   label?: React.ReactNode;
   labelProps?: ChakraField.LabelProps;
@@ -16,6 +18,7 @@ export interface FieldProps extends Omit<ChakraField.RootProps, "label"> {
   optionalText?: React.ReactNode;
   optional?: boolean;
 }
+
 export const Field = forwardRef<HTMLDivElement, FieldProps>(
   function Field(props, ref) {
     // Props
@@ -66,6 +69,8 @@ export const Field = forwardRef<HTMLDivElement, FieldProps>(
     );
   },
 );
+
+// -----------------------------------------------------------------
 
 export const FieldsetRoot = forwardRef<any, FieldsetRootProps>(
   function FieldsetRoot(props, ref) {

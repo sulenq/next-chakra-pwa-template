@@ -92,7 +92,7 @@ export const UserIdCard = (props: UserIdCardProps) => {
   const { themeConfig } = useThemeConfig();
 
   // Constants
-  // TODO uncomment on real dev
+  // TODO_DEV uncomment on real dev
   // const user = getUserData();
   const user = DUMMY_USER;
   const userAvatarSrc = user?.avatar?.[0]?.fileUrl;

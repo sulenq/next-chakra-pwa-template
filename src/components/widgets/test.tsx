@@ -5,6 +5,8 @@ import { getMonthNames } from "@/constants/months";
 import { useLocale } from "@/contexts/useLocale";
 import { StackProps } from "@chakra-ui/react";
 
+// -----------------------------------------------------------------
+
 export const Test = (props: StackProps) => {
   // Contexts
   const { t } = useLocale();

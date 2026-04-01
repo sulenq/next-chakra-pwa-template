@@ -10,6 +10,14 @@ import {
 } from "@chakra-ui/react";
 import { forwardRef } from "react";
 
+// -----------------------------------------------------------------
+
+export const DrawerRoot = (props: ChakraDrawer.RootProps) => {
+  return <ChakraDrawer.Root onEscapeKeyDown={back} {...props} />;
+};
+
+// -----------------------------------------------------------------
+
 export interface DrawerContentProps extends ChakraDrawer.ContentProps {
   portalled?: boolean;
   portalRef?: React.RefObject<HTMLElement>;
@@ -17,10 +25,6 @@ export interface DrawerContentProps extends ChakraDrawer.ContentProps {
   backdrop?: boolean;
   positionerProps?: DrawerPositionerProps;
 }
-
-export const DrawerRoot = (props: ChakraDrawer.RootProps) => {
-  return <ChakraDrawer.Root onEscapeKeyDown={back} {...props} />;
-};
 
 export const DrawerContent = forwardRef<HTMLDivElement, DrawerContentProps>(
   function DrawerContent(props, ref) {
@@ -68,6 +72,8 @@ export const DrawerContent = forwardRef<HTMLDivElement, DrawerContentProps>(
     );
   },
 );
+
+// -----------------------------------------------------------------
 
 export const DrawerCloseTrigger = forwardRef<
   HTMLButtonElement,

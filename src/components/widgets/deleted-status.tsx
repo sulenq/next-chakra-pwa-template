@@ -7,9 +7,12 @@ import { useLocale } from "@/contexts/useLocale";
 import { formatDate } from "@/utils/formatter";
 import { HStack, StackProps } from "@chakra-ui/react";
 
+// -----------------------------------------------------------------
+
 interface DeletedStatusProps extends StackProps {
   deletedAt?: string | null;
 }
+
 export const DeletedStatus = (props: DeletedStatusProps) => {
   // Props
   const { deletedAt, ...restProps } = props;

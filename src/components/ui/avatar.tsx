@@ -14,7 +14,11 @@ import type { GroupProps, SlotRecipeProps } from "@chakra-ui/react";
 import { Avatar as ChakraAvatar, Group } from "@chakra-ui/react";
 import { forwardRef } from "react";
 
+// -----------------------------------------------------------------
+
 type ImageProps = React.ImgHTMLAttributes<HTMLImageElement>;
+
+// -----------------------------------------------------------------
 
 export interface AvatarProps extends ChakraAvatar.RootProps {
   name?: string;
@@ -25,6 +29,7 @@ export interface AvatarProps extends ChakraAvatar.RootProps {
   fallback?: React.ReactNode;
   iconBoxSize?: string | number;
 }
+
 export const Avatar = forwardRef<HTMLDivElement, AvatarProps>(
   function Avatar(props, ref) {
     const {
@@ -56,10 +61,13 @@ export const Avatar = forwardRef<HTMLDivElement, AvatarProps>(
   },
 );
 
+// -----------------------------------------------------------------
+
 interface AvatarFallbackProps extends ChakraAvatar.FallbackProps {
   name?: string;
   icon?: React.ReactElement;
 }
+
 const AvatarFallback = forwardRef<HTMLDivElement, AvatarFallbackProps>(
   function AvatarFallback(props, ref) {
     const { name, icon, children, ...rest } = props;
@@ -79,7 +87,10 @@ const AvatarFallback = forwardRef<HTMLDivElement, AvatarFallbackProps>(
   },
 );
 
+// -----------------------------------------------------------------
+
 interface AvatarGroupProps extends GroupProps, SlotRecipeProps<"avatar"> {}
+
 export const AvatarGroup = forwardRef<HTMLDivElement, AvatarGroupProps>(
   function AvatarGroup(props, ref) {
     const { size, variant, borderless, ...rest } = props;
@@ -91,11 +102,14 @@ export const AvatarGroup = forwardRef<HTMLDivElement, AvatarGroupProps>(
   },
 );
 
+// -----------------------------------------------------------------
+
 interface AvatarInputDisclosureTriggerProps extends FileInputProps {
   children: React.ReactElement<any>;
   formik: any;
   user?: Interface__User;
 }
+
 export const AvatarUploadTrigger = (
   props: AvatarInputDisclosureTriggerProps,
 ) => {

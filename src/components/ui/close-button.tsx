@@ -7,6 +7,8 @@ import { IconButton as ChakraIconButton, Icon } from "@chakra-ui/react";
 import { XIcon } from "lucide-react";
 import { forwardRef } from "react";
 
+// -----------------------------------------------------------------
+
 export interface CloseButtonProps extends ChakraCloseButtonProps {
   iconProps?: IconProps;
 }

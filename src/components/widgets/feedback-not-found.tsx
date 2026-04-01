@@ -5,6 +5,8 @@ import { P } from "@/components/ui/p";
 import { FeedbackStateProps } from "@/components/widgets/feedback-state";
 import { useLocale } from "@/contexts/useLocale";
 
+// -----------------------------------------------------------------
+
 export default function FeedbackNotFound(props: FeedbackStateProps) {
   // Props
   const { children, ...restProps } = props;

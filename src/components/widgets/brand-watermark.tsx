@@ -5,7 +5,9 @@ import { APP } from "@/constants/_meta";
 import { Span } from "@chakra-ui/react";
 import Link from "next/link";
 
-const BrandWatermark = (props: PProps) => {
+// -----------------------------------------------------------------
+
+export const BrandWatermark = (props: PProps) => {
   // Props
   const { ...restProps } = props;
 
@@ -23,5 +25,3 @@ const BrandWatermark = (props: PProps) => {
     </P>
   );
 };
-
-export default BrandWatermark;

@@ -5,6 +5,8 @@ import { useThemeConfig } from "@/contexts/useThemeConfig";
 import { Box, BoxProps } from "@chakra-ui/react";
 import { useEffect, useRef, useState } from "react";
 
+// -----------------------------------------------------------------
+
 export function LoadingBar(props: BoxProps) {
   // Contexts
   const { themeConfig } = useThemeConfig();

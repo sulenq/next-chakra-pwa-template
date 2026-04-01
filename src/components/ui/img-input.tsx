@@ -6,7 +6,7 @@ import { Img } from "@/components/ui/img";
 import { P } from "@/components/ui/p";
 import { StackV } from "@/components/ui/stack";
 import { FileItem } from "@/components/widgets/file-item";
-import { HScroll } from "@/components/widgets/h-scroll";
+import { ScrollH } from "@/components/widgets/scroll-h";
 import { LucideIcon } from "@/components/widgets/icon";
 import { ImgViewer } from "@/components/widgets/img-viewer";
 import { Interface__StorageFile } from "@/constants/interfaces";
@@ -17,6 +17,8 @@ import { imgUrl } from "@/utils/url";
 import { Circle, HStack, useFieldContext } from "@chakra-ui/react";
 import { TrashIcon } from "lucide-react";
 import { useEffect, useState } from "react";
+
+// -----------------------------------------------------------------
 
 export const ImgInput = (props: FileInputProps) => {
   // Props
@@ -165,7 +167,7 @@ export const ImgInput = (props: FileInputProps) => {
               Preview
             </P> */}
 
-            <HScroll
+            <ScrollH
               className={"scrollX"}
               maxW={restProps?.maxW || ""}
               gap={2}
@@ -212,7 +214,7 @@ export const ImgInput = (props: FileInputProps) => {
                   );
                 })}
               </HStack>
-            </HScroll>
+            </ScrollH>
           </>
         )}
       </FileInputRoot>

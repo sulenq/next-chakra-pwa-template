@@ -15,6 +15,8 @@ import { disclosureId } from "@/utils/disclosure";
 import { StackProps } from "@chakra-ui/react";
 import { useState } from "react";
 
+// -----------------------------------------------------------------
+
 const CalendarUI = () => {
   // States
   const [selected, setSelected] = useState<Date[]>([]);
@@ -32,9 +34,12 @@ const CalendarUI = () => {
   );
 };
 
+// -----------------------------------------------------------------
+
 interface CalendarDisclosureProps {
   open: boolean;
 }
+
 const CalendarContent = (props: CalendarDisclosureProps) => {
   // Props
   const { open } = props;
@@ -60,6 +65,8 @@ const CalendarContent = (props: CalendarDisclosureProps) => {
     </Disclosure.Root>
   );
 };
+
+// -----------------------------------------------------------------
 
 const CalendarTrigger = (props: StackProps) => {
   // Hooks

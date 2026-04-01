@@ -42,6 +42,8 @@ import { addDays, startOfWeek } from "date-fns";
 import { CalendarIcon, ChevronDownIcon, ChevronUpIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 
+// -----------------------------------------------------------------
+
 export const DEFAULT_PERIOD = {
   month: new Date().getMonth(),
   year: new Date().getFullYear(),

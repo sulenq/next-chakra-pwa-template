@@ -37,7 +37,11 @@ import {
 } from "@tabler/icons-react";
 import { useEffect, useRef, useState } from "react";
 
+// -----------------------------------------------------------------
+
 const VideoElement = chakra("video");
+
+// -----------------------------------------------------------------
 
 export interface VideoPlayerProps extends StackProps {
   id?: string;
@@ -47,6 +51,9 @@ export interface VideoPlayerProps extends StackProps {
   height?: number | string;
   storageKey?: string;
 }
+
+// -----------------------------------------------------------------
+
 export default function VideoPlayer(props: VideoPlayerProps) {
   // Props
   const { id, thumbnail, src, ...restProps } = props;

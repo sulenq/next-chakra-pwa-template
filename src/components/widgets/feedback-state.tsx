@@ -4,11 +4,14 @@ import { P } from "@/components/ui/p";
 import { Icon, StackProps, VStack } from "@chakra-ui/react";
 import { IconDatabaseOff } from "@tabler/icons-react";
 
+// -----------------------------------------------------------------
+
 export interface FeedbackStateProps extends StackProps {
   icon?: any;
   title?: any;
   description?: any;
 }
+
 const FeedbackState = (props: FeedbackStateProps) => {
   // Props
   const { icon, title, description, children, ...restProps } = props;

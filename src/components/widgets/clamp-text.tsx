@@ -2,8 +2,10 @@
 
 import { P, PProps } from "@/components/ui/p";
 import { Tooltip } from "@/components/ui/tooltip";
-import ToggleTip from "@/components/widgets/toggle-tip";
+import { ToggleTip } from "@/components/widgets/toggle-tip";
 import { useHasHover } from "@/hooks/useHasHover";
+
+// -----------------------------------------------------------------
 
 export const ClampText = (props: PProps) => {
   const { children, ...restProps } = props;

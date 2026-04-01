@@ -7,6 +7,8 @@ import FeedbackState, {
 import { MIN_H_FEEDBACK_CONTAINER } from "@/constants/styles";
 import { useLocale } from "@/contexts/useLocale";
 
+// -----------------------------------------------------------------
+
 export default function FeedbackNoData(props: FeedbackStateProps) {
   // Props
   const { title, description, icon, children, ...restProps } = props;

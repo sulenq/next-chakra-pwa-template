@@ -1,6 +1,8 @@
 import { Heading, HeadingProps } from "@chakra-ui/react";
 import { forwardRef } from "react";
 
+// -----------------------------------------------------------------
+
 export const H1 = forwardRef<HTMLHeadingElement, HeadingProps>(
   function H1(props, ref) {
     // Props
@@ -13,6 +15,8 @@ export const H1 = forwardRef<HTMLHeadingElement, HeadingProps>(
     );
   },
 );
+
+// -----------------------------------------------------------------
 
 export const H2 = forwardRef<HTMLHeadingElement, HeadingProps>(
   function H2(props, ref) {
@@ -27,6 +31,8 @@ export const H2 = forwardRef<HTMLHeadingElement, HeadingProps>(
   },
 );
 
+// -----------------------------------------------------------------
+
 export const H3 = forwardRef<HTMLHeadingElement, HeadingProps>(
   function H3(props, ref) {
     // Props
@@ -39,6 +45,8 @@ export const H3 = forwardRef<HTMLHeadingElement, HeadingProps>(
     );
   },
 );
+
+// -----------------------------------------------------------------
 
 export const H4 = forwardRef<HTMLHeadingElement, HeadingProps>(
   function H4(props, ref) {
@@ -53,6 +61,8 @@ export const H4 = forwardRef<HTMLHeadingElement, HeadingProps>(
   },
 );
 
+// -----------------------------------------------------------------
+
 export const H5 = forwardRef<HTMLHeadingElement, HeadingProps>(
   function H5(props, ref) {
     // Props
@@ -65,6 +75,8 @@ export const H5 = forwardRef<HTMLHeadingElement, HeadingProps>(
     );
   },
 );
+
+// -----------------------------------------------------------------
 
 export const H6 = forwardRef<HTMLHeadingElement, HeadingProps>(
   function H6(props, ref) {

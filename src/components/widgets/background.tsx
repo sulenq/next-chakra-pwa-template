@@ -64,6 +64,7 @@ interface AnimatedBlobBackgroundProps extends Omit<
    */
   animationDuration?: number;
 }
+
 export const AnimatedBlobBackground = (props: AnimatedBlobBackgroundProps) => {
   const { animationDuration = 5000, ...restProps } = props;
 

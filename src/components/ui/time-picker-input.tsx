@@ -25,7 +25,11 @@ import { IconCaretDownFilled, IconCaretUpFilled } from "@tabler/icons-react";
 import { ClockIcon } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
-const DEFAULT = "00:00:00";
+// -----------------------------------------------------------------
+
+const DEFAULT_TIME = "00:00:00";
+
+// -----------------------------------------------------------------
 
 export interface TimePickerInputProps extends Omit<BtnProps, "onChange"> {
   id?: string;
@@ -41,6 +45,7 @@ export interface TimePickerInputProps extends Omit<BtnProps, "onChange"> {
   disclosureSize?: DisclosureSizes;
   variant?: ButtonVariant;
 }
+
 export const TimePickerInput = (props: TimePickerInputProps) => {
   // Props
   const {
@@ -257,7 +262,7 @@ export const TimePickerInput = (props: TimePickerInputProps) => {
                   variant={"outline"}
                   onClick={() => {
                     setHours((ps) => (ps < 23 ? ps + 1 : 0));
-                    if (!selected) setSelected(DEFAULT);
+                    if (!selected) setSelected(DEFAULT_TIME);
                   }}
                   onMouseDown={() => handleHoldIncrement("hours")}
                   onMouseUp={handleTapIncrement}
@@ -301,7 +306,7 @@ export const TimePickerInput = (props: TimePickerInputProps) => {
                   variant={"outline"}
                   onClick={() => {
                     setHours((ps) => (ps > 0 ? ps - 1 : 23));
-                    if (!selected) setSelected(DEFAULT);
+                    if (!selected) setSelected(DEFAULT_TIME);
                   }}
                   onMouseDown={() => handleHoldDecrement("hours")}
                   onMouseUp={handleTapDecrement}
@@ -330,7 +335,7 @@ export const TimePickerInput = (props: TimePickerInputProps) => {
                   variant={"outline"}
                   onClick={() => {
                     setMinutes((ps) => (ps < 59 ? ps + 1 : 0));
-                    if (!selected) setSelected(DEFAULT);
+                    if (!selected) setSelected(DEFAULT_TIME);
                   }}
                   onMouseDown={() => handleHoldIncrement("minutes")}
                   onMouseUp={handleTapIncrement}
@@ -374,7 +379,7 @@ export const TimePickerInput = (props: TimePickerInputProps) => {
                   variant={"outline"}
                   onClick={() => {
                     setMinutes((ps) => (ps > 0 ? ps - 1 : 59));
-                    if (!selected) setSelected(DEFAULT);
+                    if (!selected) setSelected(DEFAULT_TIME);
                   }}
                   onMouseDown={() => handleHoldDecrement("minutes")}
                   onMouseUp={handleTapDecrement}
@@ -404,7 +409,7 @@ export const TimePickerInput = (props: TimePickerInputProps) => {
                       variant={"outline"}
                       onClick={() => {
                         setSeconds((ps) => (ps < 59 ? ps + 1 : 0));
-                        if (!selected) setSelected(DEFAULT);
+                        if (!selected) setSelected(DEFAULT_TIME);
                       }}
                       onMouseDown={() => handleHoldIncrement("seconds")}
                       onMouseUp={handleTapIncrement}
@@ -447,7 +452,7 @@ export const TimePickerInput = (props: TimePickerInputProps) => {
                       variant={"outline"}
                       onClick={() => {
                         setSeconds((ps) => (ps > 0 ? ps - 1 : 59));
-                        if (!selected) setSelected(DEFAULT);
+                        if (!selected) setSelected(DEFAULT_TIME);
                       }}
                       onMouseDown={() => handleHoldDecrement("seconds")}
                       onMouseUp={handleTapDecrement}
@@ -500,7 +505,7 @@ export const TimePickerInput = (props: TimePickerInputProps) => {
                   setMinutes(0);
                   setSeconds(0);
                 } else {
-                  setSelected(DEFAULT);
+                  setSelected(DEFAULT_TIME);
                   setHours(0);
                   setMinutes(0);
                   setSeconds(0);

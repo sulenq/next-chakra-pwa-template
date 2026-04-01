@@ -7,11 +7,14 @@ import { useLocale } from "@/contexts/useLocale";
 import { HStack } from "@chakra-ui/react";
 import { ChevronDownIcon } from "lucide-react";
 
+// -----------------------------------------------------------------
+
 export interface LimitationTableDataProps {
   limit: number;
   setLimit: React.Dispatch<number>;
   limitOptions?: number[];
 }
+
 export const Limitation = (props: LimitationTableDataProps) => {
   // Props
   const { limit, setLimit, limitOptions: limitOptionsProps } = props;

@@ -235,7 +235,7 @@ const AuthLog = () => {
     totalData: number;
     items: Interface__AuthLog[];
   }>({
-    // TODO add url and set initial data to undefined
+    // TODO_DEV add url and set initial data to undefined
     initialData: {
       totalData: 100,
       items: dummyAuthLogs,
@@ -357,7 +357,7 @@ const ActivityLog = () => {
     string,
     (meta?: Record<string, any>) => string
   > = {
-    // TODO create action sentence glosary
+    // TODO_DEV create action sentence glosary
     [ActivityActionEnum.CREATE_WORKSPACE]: (meta) =>
       `Created workspace "${meta?.workspaceName ?? "Unknown"}"`,
 
@@ -393,7 +393,7 @@ const ActivityLog = () => {
     totalData: number;
     items: Interface__ActivityLog[];
   }>({
-    // TODO add url and set initial data to undefined
+    // TODO_DEV add url and set initial data to undefined
     initialData: {
       totalData: 100,
       items: dummyActivityLogs,

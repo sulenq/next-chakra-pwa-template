@@ -1,6 +1,6 @@
 import { Btn, BtnProps } from "@/components/ui/btn";
 import { CContainer } from "@/components/ui/c-container";
-import { Menu, MenuItem } from "@/components/ui/menu";
+import { Menu } from "@/components/ui/menu";
 import { P } from "@/components/ui/p";
 import { AppIconLucide } from "@/components/widgets/app-icon";
 import { Confirmation } from "@/components/widgets/confirmation";
@@ -12,6 +12,8 @@ import { MenuRootProps } from "@chakra-ui/react";
 import { EllipsisIcon } from "lucide-react";
 import { Fragment } from "react";
 
+// -----------------------------------------------------------------
+
 export interface BatchOptionsProps extends BtnProps {
   selectedRows: any[];
   clearSelectedRows: () => void;
@@ -21,6 +23,7 @@ export interface BatchOptionsProps extends BtnProps {
   tableContainerRef?: React.RefObject<HTMLDivElement | null>;
   menuRootProps?: Omit<MenuRootProps, "children">;
 }
+
 export const BatchOptions = (props: BatchOptionsProps) => {
   // Props
   const {
@@ -128,7 +131,7 @@ export const BatchOptions = (props: BatchOptionsProps) => {
                 loading={confirmation.loading}
                 disabled={disabled}
               >
-                <MenuItem
+                <Menu.Item
                   value={label}
                   color={"fg.error"}
                   disabled={disabled}
@@ -137,7 +140,7 @@ export const BatchOptions = (props: BatchOptionsProps) => {
                 >
                   {label}
                   {icon && <AppIconLucide icon={icon} />}
-                </MenuItem>
+                </Menu.Item>
               </Confirmation.Trigger>
             );
           }

@@ -8,6 +8,8 @@ import { HStack, Icon } from "@chakra-ui/react";
 import { MaximizeIcon, MinimizeIcon, XIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 
+// -----------------------------------------------------------------
+
 export interface DisclosureHeaderContentProps {
   title?: string;
   withCloseButton?: boolean;
@@ -17,6 +19,7 @@ export interface DisclosureHeaderContentProps {
   prefix?: "drawer" | "dialog";
   children?: any;
 }
+
 export const DisclosureHeaderContent = (
   props: DisclosureHeaderContentProps,
 ) => {

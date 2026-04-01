@@ -6,11 +6,14 @@ import { formatNumber } from "@/utils/formatter";
 import { HStack } from "@chakra-ui/react";
 import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
 
+// -----------------------------------------------------------------
+
 export interface PaginationTableDataProps {
   page: number;
   setPage: React.Dispatch<number>;
   totalPage?: number;
 }
+
 export const Pagination = (props: PaginationTableDataProps) => {
   // Props
   const { page, setPage, totalPage } = props;

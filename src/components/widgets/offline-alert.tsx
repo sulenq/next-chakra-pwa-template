@@ -13,6 +13,8 @@ import { Icon } from "@chakra-ui/react";
 import { IconAccessPointOff } from "@tabler/icons-react";
 import { useEffect, useRef } from "react";
 
+// -----------------------------------------------------------------
+
 export const OfflineAlert = () => {
   // Contexts
   const { t } = useLocale();

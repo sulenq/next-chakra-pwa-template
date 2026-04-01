@@ -40,6 +40,8 @@ import {
 } from "@chakra-ui/react";
 import { useEffect, useMemo, useRef, useState } from "react";
 
+// -----------------------------------------------------------------
+
 export interface DataTableProps extends Omit<StackProps, "page"> {
   trBodyProps?: TableRowProps | any;
   headers?: FormattedTableHeader[];
@@ -528,6 +530,8 @@ export const DataTableDisplay = (props: DataTableProps) => {
     </StackV>
   );
 };
+
+// -----------------------------------------------------------------
 
 export const DataTable = {
   Display: DataTableDisplay,

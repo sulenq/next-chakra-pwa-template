@@ -9,7 +9,7 @@ import { StackH, StackV } from "@/components/ui/stack";
 import { Tooltip } from "@/components/ui/tooltip";
 import { AppIconLucide } from "@/components/widgets/app-icon";
 import FeedbackState from "@/components/widgets/feedback-state";
-import { HScroll } from "@/components/widgets/h-scroll";
+import { ScrollH } from "@/components/widgets/scroll-h";
 import { GAP } from "@/constants/styles";
 import { useLocale } from "@/contexts/useLocale";
 import { Box, Icon, StackProps, VStack } from "@chakra-ui/react";
@@ -239,7 +239,7 @@ const Toolbar = (props: PDFToolbarProps) => {
   const { viewer, utils, ...restProps } = props;
 
   return (
-    <HScroll className={"noScroll"} bg={"bg.body"} {...restProps}>
+    <ScrollH className={"noScroll"} bg={"bg.body"} {...restProps}>
       <StackH minW={"full"} w={"max"} gap={GAP} p={2}>
         <PageControl
           page={viewer.page}
@@ -277,7 +277,7 @@ const Toolbar = (props: PDFToolbarProps) => {
           {viewer.mode === "scroll" && "Scroll"}
         </UtilBtn>
       </StackH>
-    </HScroll>
+    </ScrollH>
   );
 };
 

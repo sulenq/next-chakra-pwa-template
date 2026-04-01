@@ -3,6 +3,8 @@
 import { useThemeConfig } from "@/contexts/useThemeConfig";
 import { Box, BoxProps, Circle, CircleProps } from "@chakra-ui/react";
 
+// -----------------------------------------------------------------
+
 export const LeftIndicator = (props: BoxProps) => {
   // Contexts
   const { themeConfig } = useThemeConfig();
@@ -22,6 +24,8 @@ export const LeftIndicator = (props: BoxProps) => {
   );
 };
 
+// -----------------------------------------------------------------
+
 export const BottomIndicator = (props: BoxProps) => {
   // Contexts
   const { themeConfig } = useThemeConfig();
@@ -40,6 +44,8 @@ export const BottomIndicator = (props: BoxProps) => {
     />
   );
 };
+
+// -----------------------------------------------------------------
 
 export const DotIndicator = (props: CircleProps) => {
   // Props

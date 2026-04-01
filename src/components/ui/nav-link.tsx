@@ -5,10 +5,13 @@ import { StackProps } from "@chakra-ui/react";
 import { useRouter } from "next/navigation";
 import { forwardRef, useEffect } from "react";
 
+// -----------------------------------------------------------------
+
 export interface NavLinkProps extends StackProps {
   to?: string;
   external?: boolean;
 }
+
 export const NavLink = forwardRef<HTMLDivElement, NavLinkProps>(
   function NavLink(props, ref) {
     const { children, to, external, onClick, ...restProps } = props;

@@ -12,9 +12,12 @@ import { useThemeConfig } from "@/contexts/useThemeConfig";
 import { Icon } from "@chakra-ui/react";
 import { CircleXIcon } from "lucide-react";
 
+// -----------------------------------------------------------------
+
 interface FeedbackRetryProps extends FeedbackStateProps {
   onRetry?: () => void;
 }
+
 export default function FeedbackRetry(props: FeedbackRetryProps) {
   // Props
   const { title, description, icon, onRetry, children, ...restProps } = props;

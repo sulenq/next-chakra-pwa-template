@@ -22,6 +22,8 @@ import { css, Global } from "@emotion/react";
 import { XIcon } from "lucide-react";
 import { forwardRef, useRef } from "react";
 
+// -----------------------------------------------------------------
+
 export interface StringInputProps extends Omit<InputProps, "onChange"> {
   inputValue?: string;
   onChange?: (inputValue: string) => void;
@@ -32,6 +34,7 @@ export interface StringInputProps extends Omit<InputProps, "onChange"> {
   clearButtonProps?: StackProps;
   maxChar?: number;
 }
+
 export const StringInput = forwardRef<HTMLInputElement, StringInputProps>(
   function StringInput(props, ref) {
     // Props

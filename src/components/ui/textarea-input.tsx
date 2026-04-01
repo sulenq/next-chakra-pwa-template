@@ -10,6 +10,8 @@ import {
 } from "@chakra-ui/react";
 import { forwardRef } from "react";
 
+// -----------------------------------------------------------------
+
 export interface TextareaInputProps extends Omit<TextareaProps, "onChange"> {
   inputValue?: string;
   onChange?: (inputValue: string) => void;
@@ -18,6 +20,7 @@ export interface TextareaInputProps extends Omit<TextareaProps, "onChange"> {
   maxChar?: number;
   variant?: InputVariant;
 }
+
 export const TextareaInput = forwardRef<
   HTMLTextAreaElement,
   TextareaInputProps

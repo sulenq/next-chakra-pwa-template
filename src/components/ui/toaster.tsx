@@ -26,6 +26,8 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 
+// -----------------------------------------------------------------
+
 const TOAST_PRESETS = {
   loading: {
     icon: <Spinner w={"14px"} h={"14px"} color={"fg.muted"} />,
@@ -69,6 +71,8 @@ const TOAST_PRESETS = {
   },
 };
 
+// -----------------------------------------------------------------
+
 const ToastIcon = (props: any) => {
   // Props
   const { type } = props;
@@ -94,11 +98,15 @@ const ToastIcon = (props: any) => {
   );
 };
 
+// -----------------------------------------------------------------
+
 export const toaster = createToaster({
   placement:
     isClient() && window.innerWidth < SM_SCREEN_W_NUMBER ? "top" : "bottom-end",
   pauseOnPageIdle: true,
 });
+
+// -----------------------------------------------------------------
 
 const ToastIconComponent = (props: any) => {
   // Props
@@ -125,6 +133,9 @@ const ToastIconComponent = (props: any) => {
     </>
   );
 };
+
+// -----------------------------------------------------------------
+
 const ToastActionTriggerComponent = (props: any) => {
   // Props
   const { toast, ...restProps } = props;
@@ -146,6 +157,9 @@ const ToastActionTriggerComponent = (props: any) => {
     </Toast.ActionTrigger>
   );
 };
+
+// -----------------------------------------------------------------
+
 const ToastComponent = (props: any) => {
   // Props
   const { toast, ...restProps } = props;
@@ -245,6 +259,9 @@ const ToastComponent = (props: any) => {
     </Toast.Root>
   );
 };
+
+// -----------------------------------------------------------------
+
 export const Toaster = () => {
   return (
     <Portal>

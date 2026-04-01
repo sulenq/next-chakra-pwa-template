@@ -10,12 +10,15 @@ import {
 import { MenuRootProps } from "@chakra-ui/react";
 import { EllipsisVerticalIcon } from "lucide-react";
 
+// -----------------------------------------------------------------
+
 export interface Props_RowOptions extends BtnProps {
   row: FormattedTableRow;
   rowOptions?: RowOptionsTableOptionGenerator<FormattedTableRow>[];
   tableContainerRef?: React.RefObject<HTMLDivElement | null>;
   menuRootProps?: Omit<MenuRootProps, "children">;
 }
+
 export const RowOptions = (props: Props_RowOptions) => {
   // Props
   const { row, rowOptions, tableContainerRef, menuRootProps, ...restProps } =

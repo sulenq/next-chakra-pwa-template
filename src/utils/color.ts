@@ -1,5 +1,4 @@
-import { ColorMode } from "@/components/ui/color-mode";
-import { RGB } from "@/constants/types";
+import { ColorMode, RGB } from "@/constants/types";
 
 export function hexWithOpacity(hex: string, opacity: number): string {
   const alpha = Math.round(opacity * 255)

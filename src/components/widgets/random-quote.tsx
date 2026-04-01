@@ -4,6 +4,8 @@ import { P, PProps } from "@/components/ui/p";
 import { useRequest } from "@/hooks/useRequest";
 import { useEffect, useState } from "react";
 
+// -----------------------------------------------------------------
+
 export const RandomQuote = (props: PProps) => {
   const [quote, setQuote] = useState<string>("");
 

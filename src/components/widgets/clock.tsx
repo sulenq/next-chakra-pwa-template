@@ -7,10 +7,13 @@ import { formatTime } from "@/utils/formatter";
 import { StackProps } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 
+// -----------------------------------------------------------------
+
 export interface ClockPropsProps extends StackProps {
   showSeconds?: boolean;
   showAbbr?: boolean;
 }
+
 export const Clock = (props: ClockPropsProps) => {
   // Props
   const { showSeconds = false, showAbbr = true, ...restProps } = props;

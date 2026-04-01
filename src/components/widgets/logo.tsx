@@ -2,10 +2,13 @@ import { useColorMode } from "@/components/ui/color-mode";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
 import { Center, CenterProps, useToken } from "@chakra-ui/react";
 
+// -----------------------------------------------------------------
+
 export interface LogoProps extends CenterProps {
   color?: string;
   size?: number;
 }
+
 export const Logo = (props: LogoProps) => {
   // Props
   const { color, size = 16, ...restProps } = props;

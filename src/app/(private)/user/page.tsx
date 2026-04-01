@@ -2,7 +2,7 @@
 
 import { Btn } from "@/components/ui/btn";
 import { CContainer } from "@/components/ui/c-container";
-import { MenuItem } from "@/components/ui/menu";
+import { Menu } from "@/components/ui/menu";
 import { P } from "@/components/ui/p";
 import { SearchInput } from "@/components/ui/search-input";
 import { TableSkeleton } from "@/components/ui/skeleton";
@@ -14,7 +14,7 @@ import { DataGrid } from "@/components/widgets/data-grid";
 import { DataTable } from "@/components/widgets/data-table";
 import FeedbackNoData from "@/components/widgets/feedback-no-data";
 import FeedbackRetry from "@/components/widgets/feedback-retry";
-import { HScroll } from "@/components/widgets/h-scroll";
+import { ScrollH } from "@/components/widgets/scroll-h";
 import { LucideIcon } from "@/components/widgets/icon";
 import { Item } from "@/components/widgets/item";
 import { MiniUser } from "@/components/widgets/mini-user";
@@ -83,7 +83,7 @@ const DataUtils = (props: any) => {
   // Props
   const { filter, setFilter, ...restProps } = props;
 
-  // TODO use filter state
+  // TODO_DEV use filter state
   console.debug({ filter, setFilter });
 
   return (
@@ -180,10 +180,10 @@ const Update = (props: any) => {
           placement: "right",
         }}
       >
-        <MenuItem value="edit" onClick={onOpen}>
+        <Menu.Item value="edit" onClick={onOpen}>
           <AppIconLucide icon={EditIcon} />
           Edit
-        </MenuItem>
+        </Menu.Item>
       </Tooltip>
 
       <SimpleDisclosure
@@ -271,10 +271,10 @@ const Restore = (props: any) => {
           placement: "right",
         }}
       >
-        <MenuItem value="restore" disabled={disabled}>
+        <Menu.Item value="restore" disabled={disabled}>
           <AppIconLucide icon={UndoIcon} />
           {t.restore}
-        </MenuItem>
+        </Menu.Item>
       </Tooltip>
     </Confirmation.Trigger>
   );
@@ -343,7 +343,7 @@ const Delete = (props: any) => {
           placement: "right",
         }}
       >
-        <MenuItem
+        <Menu.Item
           value="delete"
           disabled={disabled}
           color={"fg.error"}
@@ -351,7 +351,7 @@ const Delete = (props: any) => {
         >
           <AppIconLucide icon={TrashIcon} />
           {t.delete_}
-        </MenuItem>
+        </Menu.Item>
       </Tooltip>
     </Confirmation.Trigger>
   );
@@ -379,7 +379,7 @@ const Data = (props: any) => {
     pagination,
   } = useFetchData<Interface__Data[]>({
     initialData: dummyUsers,
-    url: ``, // TODO fetch data url
+    url: ``, // TODO_DEV fetch data url
     params: {
       search: filter?.search,
       // others params
@@ -643,7 +643,7 @@ export default function Page() {
         </View.Header>
 
         {isSmContainer && (
-          <HScroll mb={4}>
+          <ScrollH mb={4}>
             <HStack minW={"full"} justify={"space-between"} px={R_SPACING_MD}>
               <DataUtils
                 filter={filter}
@@ -651,7 +651,7 @@ export default function Page() {
                 routeTitle={routeTitle}
               />
             </HStack>
-          </HScroll>
+          </ScrollH>
         )}
 
         <Item.Body flex={1} overflowY={"auto"}>

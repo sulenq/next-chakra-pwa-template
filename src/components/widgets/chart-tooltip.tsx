@@ -11,6 +11,8 @@ import type {
   ValueType,
 } from "recharts/types/component/DefaultTooltipContent";
 
+// -----------------------------------------------------------------
+
 export const ChartTooltip = (
   props: TooltipContentProps<ValueType, NameType>,
 ) => {

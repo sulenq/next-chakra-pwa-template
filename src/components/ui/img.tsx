@@ -7,9 +7,12 @@ import { ImageIcon, LucideIcon } from "lucide-react";
 import Image, { ImageProps } from "next/image";
 import { forwardRef, useEffect, useState } from "react";
 
+// -----------------------------------------------------------------
+
 interface ImgFallbackProps extends CenterProps {
   icon?: LucideIcon;
 }
+
 export const ImgFallback = (props: ImgFallbackProps) => {
   // Props
   const { icon: LucideIcon = ImageIcon, ...restProps } = props;
@@ -30,6 +33,8 @@ export const ImgFallback = (props: ImgFallbackProps) => {
   );
 };
 
+// -----------------------------------------------------------------
+
 export interface ImgProps extends StackProps {
   src?: string;
   alt?: string;
@@ -42,6 +47,7 @@ export interface ImgProps extends StackProps {
   imageProps?: Omit<ImageProps, "src" | "width" | "height" | "alt">;
   fallbackProps?: CenterProps;
 }
+
 export const Img = forwardRef<HTMLImageElement, ImgProps>(
   function Img(props, ref) {
     const {

@@ -8,13 +8,12 @@ import { DateTimePickerInput } from "@/components/ui/date-time-picker-input";
 import { Field } from "@/components/ui/field";
 import { FileInput } from "@/components/ui/file-input";
 import { LangMenu } from "@/components/ui/lang-menu";
-import { MenuItem } from "@/components/ui/menu";
 import { NavLink } from "@/components/ui/nav-link";
 import { NumInput } from "@/components/ui/number-input";
 import { P } from "@/components/ui/p";
 import { PasswordInput } from "@/components/ui/password-input";
 import { PeriodPickerInput } from "@/components/ui/period-picker-input";
-import { RichEditor } from "@/components/ui/RichEditor";
+import { TinyMceRichEditor } from "@/components/ui/tiny-mce-rich-editor";
 import { SearchInput } from "@/components/ui/search-input";
 import { SelectInput } from "@/components/ui/select-input";
 import { StringInput } from "@/components/ui/string-input";
@@ -50,6 +49,9 @@ import { PencilIcon, RefreshCcwDotIcon, TrashIcon } from "lucide-react";
 import { useState } from "react";
 import * as yup from "yup";
 import { DataTable } from "@/components/widgets/data-table";
+import { Menu } from "@/components/ui/menu";
+
+// TODO_DEV delete this component
 
 const Delete = (props: any) => {
   const ID = `delete`;
@@ -114,7 +116,7 @@ const Delete = (props: any) => {
           placement: "right",
         }}
       >
-        <MenuItem
+        <Menu.Item
           value="delete"
           disabled={disabled}
           color={"fg.error"}
@@ -124,7 +126,7 @@ const Delete = (props: any) => {
           <Icon boxSize={MENU_ICON_BOX_SIZE} ml={"auto"}>
             <LucideIcon icon={TrashIcon} />
           </Icon>
-        </MenuItem>
+        </Menu.Item>
       </Tooltip>
     </Confirmation.Trigger>
   );
@@ -950,7 +952,7 @@ const DemoIndexRoute = () => {
 
           <CContainer gap={4}>
             <Field invalid={!!formik.errors.richEditor}>
-              <RichEditor
+              <TinyMceRichEditor
                 inputValue={formik.values.richEditor}
                 onChange={(input) => {
                   formik.setFieldValue("richEditor", input);

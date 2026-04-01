@@ -8,7 +8,11 @@ import { parseNumber } from "@/utils/number";
 import { InputProps, StackProps } from "@chakra-ui/react";
 import { forwardRef, useEffect, useRef, useState } from "react";
 
+// -----------------------------------------------------------------
+
 const MAX_INTEGER_DIGITS = 15;
+
+// -----------------------------------------------------------------
 
 export interface NumInputProps extends Omit<InputProps, "onChange"> {
   inputValue?: number | null;
@@ -26,6 +30,7 @@ export interface NumInputProps extends Omit<InputProps, "onChange"> {
   clearButtonProps?: StackProps;
   clearable?: boolean;
 }
+
 export const NumInput = forwardRef<HTMLInputElement, NumInputProps>(
   function NumInput(props, ref) {
     // Props

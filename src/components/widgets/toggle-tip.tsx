@@ -7,12 +7,15 @@ import {
 } from "@chakra-ui/react";
 import { ReactNode, useRef } from "react";
 
+// -----------------------------------------------------------------
+
 interface ToggleTipProps extends Omit<TooltipContentProps, "content"> {
   children: ReactNode;
   content?: ReactNode;
   rootProps?: Omit<PopoverRootProps, "children">;
 }
-const ToggleTip = (props: ToggleTipProps) => {
+
+export const ToggleTip = (props: ToggleTipProps) => {
   // Props
   const { children, content, rootProps, ...restProps } = props;
 
@@ -48,5 +51,3 @@ const ToggleTip = (props: ToggleTipProps) => {
     </Popover.Root>
   );
 };
-
-export default ToggleTip;

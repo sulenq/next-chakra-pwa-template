@@ -3,6 +3,7 @@
 import { Btn } from "@/components/ui/btn";
 import { Tooltip, TooltipProps } from "@/components/ui/tooltip";
 import { AppIconLucide } from "@/components/widgets/app-icon";
+import { ColorMode } from "@/constants/types";
 import useADM from "@/contexts/useADM";
 import { useLocale } from "@/contexts/useLocale";
 import type { IconButtonProps, SpanProps } from "@chakra-ui/react";
@@ -13,11 +14,9 @@ import { ThemeProvider, useTheme } from "next-themes";
 import * as React from "react";
 import { forwardRef } from "react";
 
+// -----------------------------------------------------------------
+
 export interface ColorModeProviderProps extends ThemeProviderProps {}
-interface ColorModeButtonProps extends Omit<IconButtonProps, "aria-label"> {
-  tooltipProps?: Omit<TooltipProps, "content">;
-}
-export type ColorMode = "light" | "dark";
 
 export function ColorModeProvider(props: ColorModeProviderProps) {
   return (
@@ -25,13 +24,15 @@ export function ColorModeProvider(props: ColorModeProviderProps) {
   );
 }
 
-export interface UseColorModeReturn {
+// -----------------------------------------------------------------
+
+export interface UseColorMode {
   colorMode: ColorMode;
   setColorMode: (colorMode: ColorMode) => void;
   toggleColorMode: () => void;
 }
 
-export function useColorMode(): UseColorModeReturn {
+export function useColorMode(): UseColorMode {
   const { resolvedTheme, setTheme } = useTheme();
   const toggleColorMode = () => {
     setTheme(resolvedTheme === "dark" ? "light" : "dark");
@@ -43,9 +44,17 @@ export function useColorMode(): UseColorModeReturn {
   };
 }
 
+// -----------------------------------------------------------------
+
 export function useColorModeValue<T>(light: T, dark: T) {
   const { colorMode } = useColorMode();
   return colorMode === "dark" ? dark : light;
+}
+
+// -----------------------------------------------------------------
+
+interface ColorModeButtonProps extends Omit<IconButtonProps, "aria-label"> {
+  tooltipProps?: Omit<TooltipProps, "content">;
 }
 
 export const ColorModeButton = forwardRef<
@@ -90,6 +99,8 @@ export const ColorModeButton = forwardRef<
   );
 });
 
+// -----------------------------------------------------------------
+
 export const LightMode = React.forwardRef<HTMLSpanElement, SpanProps>(
   function LightMode(props, ref) {
     return (
@@ -105,6 +116,8 @@ export const LightMode = React.forwardRef<HTMLSpanElement, SpanProps>(
     );
   },
 );
+
+// -----------------------------------------------------------------
 
 export const DarkMode = React.forwardRef<HTMLSpanElement, SpanProps>(
   function DarkMode(props, ref) {
