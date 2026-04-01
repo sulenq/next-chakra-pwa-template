@@ -231,7 +231,7 @@ export const ConstrainedContainer = forwardRef<HTMLDivElement, StackProps>(
 
 // -----------------------------------------------------------------
 
-interface ViewContextInterface {
+export interface ViewContextInterface {
   dimension: {
     width: number;
     height: number;
@@ -288,7 +288,7 @@ const ViewRoot = forwardRef<HTMLDivElement, StackProps>(function ViewRoot(
 
 // -----------------------------------------------------------------
 
-interface ViewHeaderProps extends StackProps {
+export interface ViewHeaderProps extends StackProps {
   withTitle?: boolean;
   title?: string;
   ViewTitleProps?: PProps;

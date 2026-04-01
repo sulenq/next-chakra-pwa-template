@@ -2,30 +2,8 @@
 
 import { Btn } from "@/components/ui/btn";
 import { CContainer } from "@/components/ui/c-container";
-import {
-  DialogActionTrigger,
-  DialogBackdrop,
-  DialogBody,
-  DialogCloseTrigger,
-  DialogContent,
-  DialogContentProps,
-  DialogFooter,
-  DialogHeader,
-  DialogRoot,
-  DialogTrigger,
-} from "@/components/ui/dialog";
-import {
-  DrawerActionTrigger,
-  DrawerBackdrop,
-  DrawerBody,
-  DrawerCloseTrigger,
-  DrawerContent,
-  DrawerContentProps,
-  DrawerFooter,
-  DrawerHeader,
-  DrawerRoot,
-  DrawerTrigger,
-} from "@/components/ui/drawer";
+import { Dialog, DialogContentProps } from "@/components/ui/dialog";
+import { Drawer, DrawerContentProps } from "@/components/ui/drawer";
 import { P } from "@/components/ui/p";
 import { AppIconLucide } from "@/components/widgets/app-icon";
 import { SM_SCREEN_W_NUMBER } from "@/constants/styles";
@@ -60,13 +38,13 @@ const DisclosureRoot = ({ children, ...props }: any) => {
   const iss = sw < SM_SCREEN_W_NUMBER;
 
   return iss ? (
-    <DrawerRoot placement={"bottom"} {...props}>
+    <Drawer.Root placement={"bottom"} {...props}>
       {children}
-    </DrawerRoot>
+    </Drawer.Root>
   ) : (
-    <DialogRoot placement={"center"} scrollBehavior={"inside"} {...props}>
+    <Dialog.Root placement={"center"} scrollBehavior={"inside"} {...props}>
       {children}
-    </DialogRoot>
+    </Dialog.Root>
   );
 };
 
@@ -78,9 +56,9 @@ const DisclosureBackdrop = ({ ...props }: DisclosureBackdropProps) => {
   const iss = useIsSmScreenWidth();
 
   return iss ? (
-    <DrawerBackdrop {...(props as DrawerBackdropProps)} />
+    <Drawer.Backdrop {...(props as DrawerBackdropProps)} />
   ) : (
-    <DialogBackdrop {...(props as DialogBackdropProps)} />
+    <Dialog.Backdrop {...(props as DialogBackdropProps)} />
   );
 };
 
@@ -90,9 +68,9 @@ const DisclosureTrigger = ({ children }: any) => {
   const iss = useIsSmScreenWidth();
 
   return iss ? (
-    <DrawerTrigger asChild>{children}</DrawerTrigger>
+    <Drawer.Trigger asChild>{children}</Drawer.Trigger>
   ) : (
-    <DialogTrigger asChild>{children}</DialogTrigger>
+    <Dialog.Trigger asChild>{children}</Dialog.Trigger>
   );
 };
 
@@ -107,7 +85,7 @@ const DisclosureContent = ({ children, ...props }: DisclosureContentProps) => {
   const iss = useIsSmScreenWidth();
 
   return iss ? (
-    <DrawerContent
+    <Drawer.Content
       rounded={themeConfig.radii.container}
       border={"1px solid"}
       borderColor={"bg.subtle"}
@@ -123,16 +101,16 @@ const DisclosureContent = ({ children, ...props }: DisclosureContentProps) => {
       />
 
       {children}
-    </DrawerContent>
+    </Drawer.Content>
   ) : (
-    <DialogContent
+    <Dialog.Content
       rounded={themeConfig.radii.container}
       border={"1px solid"}
       borderColor={"d0"}
       {...(props as DialogContentProps)}
     >
       {children}
-    </DialogContent>
+    </Dialog.Content>
   );
 };
 
@@ -146,7 +124,7 @@ const DisclosureHeader = ({ children, ...props }: DisclosureHeaderProps) => {
   const iss = useIsSmScreenWidth();
 
   return iss ? (
-    <DrawerHeader
+    <Drawer.Header
       px={4}
       pt={2}
       pb={4}
@@ -155,9 +133,9 @@ const DisclosureHeader = ({ children, ...props }: DisclosureHeaderProps) => {
       {...(props as DrawerHeaderProps)}
     >
       {children}
-    </DrawerHeader>
+    </Drawer.Header>
   ) : (
-    <DialogHeader
+    <Dialog.Header
       p={3}
       pl={4}
       borderBottom={"1px solid"}
@@ -165,7 +143,7 @@ const DisclosureHeader = ({ children, ...props }: DisclosureHeaderProps) => {
       {...(props as DialogHeaderProps)}
     >
       {children}
-    </DialogHeader>
+    </Dialog.Header>
   );
 };
 
@@ -268,7 +246,7 @@ const DisclosureBody = ({ children, ...props }: DisclosureBodyProps) => {
   const iss = useIsSmScreenWidth();
 
   return iss ? (
-    <DrawerBody
+    <Drawer.Body
       px={4}
       // pr={`calc(16px - ${FIREFOX_SCROLL_Y_CLASS_PR_PREFIX})`}
       py={2}
@@ -276,9 +254,9 @@ const DisclosureBody = ({ children, ...props }: DisclosureBodyProps) => {
       {...(props as DrawerHeaderProps)}
     >
       {children}
-    </DrawerBody>
+    </Drawer.Body>
   ) : (
-    <DialogBody
+    <Dialog.Body
       px={4}
       // pr={`calc(16px - ${FIREFOX_SCROLL_Y_CLASS_PR_PREFIX})`}
       py={4}
@@ -286,7 +264,7 @@ const DisclosureBody = ({ children, ...props }: DisclosureBodyProps) => {
       {...(props as DialogBodyProps)}
     >
       {children}
-    </DialogBody>
+    </Dialog.Body>
   );
 };
 
@@ -300,7 +278,7 @@ const DisclosureFooter = ({ children, ...props }: DisclosureFooterProps) => {
   const iss = useIsSmScreenWidth();
 
   return iss ? (
-    <DrawerFooter
+    <Drawer.Footer
       px={4}
       pt={5}
       pb={6}
@@ -311,9 +289,9 @@ const DisclosureFooter = ({ children, ...props }: DisclosureFooterProps) => {
       <CContainer align={"stretch"} gap={2}>
         {children}
       </CContainer>
-    </DrawerFooter>
+    </Drawer.Footer>
   ) : (
-    <DialogFooter
+    <Dialog.Footer
       p={4}
       borderTop={"1px solid"}
       borderColor={"border.subtle"}
@@ -322,7 +300,7 @@ const DisclosureFooter = ({ children, ...props }: DisclosureFooterProps) => {
       <HStack w={"full"} justify={"end"}>
         {children}
       </HStack>
-    </DialogFooter>
+    </Dialog.Footer>
   );
 };
 
@@ -340,19 +318,19 @@ const DisclosureActionTrigger = ({
   const iss = useIsSmScreenWidth();
 
   return iss ? (
-    <DrawerActionTrigger
+    <Drawer.ActionTrigger
       onClick={back}
       {...(props as DrawerActionTriggerProps)}
     >
       {children}
-    </DrawerActionTrigger>
+    </Drawer.ActionTrigger>
   ) : (
-    <DialogActionTrigger
+    <Dialog.ActionTrigger
       onClick={back}
       {...(props as DialogActionTriggerProps)}
     >
       {children}
-    </DialogActionTrigger>
+    </Dialog.ActionTrigger>
   );
 };
 
@@ -370,15 +348,15 @@ const DisclosureCloseTrigger = ({
   const iss = useIsSmScreenWidth();
 
   return iss ? (
-    <DrawerCloseTrigger
+    <Drawer.CloseTrigger
       mt={"1px"}
       onClick={back}
       {...(props as DrawerCloseTriggerProps)}
     >
       {children}
-    </DrawerCloseTrigger>
+    </Drawer.CloseTrigger>
   ) : (
-    <DialogCloseTrigger
+    <Dialog.CloseTrigger
       // mr={"-2px"}
       mt={"-2px"}
       bg={"bg.muted"}
@@ -386,7 +364,7 @@ const DisclosureCloseTrigger = ({
       {...(props as DialogCloseTriggerProps)}
     >
       {children}
-    </DialogCloseTrigger>
+    </Dialog.CloseTrigger>
   );
 };
 

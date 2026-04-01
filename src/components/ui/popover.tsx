@@ -24,7 +24,7 @@ const PopoverRoot = (props: PopoverRootProps) => {
 
 // -----------------------------------------------------------------
 
-interface PopoverContentProps extends ChakraPopover.ContentProps {
+export interface PopoverContentProps extends ChakraPopover.ContentProps {
   portalled?: boolean;
   portalRef?: React.RefObject<HTMLElement | null>;
 }

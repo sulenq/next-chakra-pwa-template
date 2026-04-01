@@ -1,6 +1,6 @@
 import { Btn } from "@/components/ui/btn";
-import { DialogCloseTrigger } from "@/components/ui/dialog";
-import { DrawerCloseTrigger } from "@/components/ui/drawer";
+import { Dialog } from "@/components/ui/dialog";
+import { Drawer } from "@/components/ui/drawer";
 import { P } from "@/components/ui/p";
 import { LucideIcon } from "@/components/widgets/icon";
 import { back } from "@/utils/client";
@@ -81,7 +81,7 @@ export const DisclosureHeaderContent = (
             {prefix && (
               <>
                 {prefix === "dialog" && (
-                  <DialogCloseTrigger
+                  <Dialog.CloseTrigger
                     rounded={"full"}
                     onClick={back}
                     pos={"static"}
@@ -93,7 +93,7 @@ export const DisclosureHeaderContent = (
                 )}
 
                 {prefix === "drawer" && (
-                  <DrawerCloseTrigger
+                  <Drawer.CloseTrigger
                     rounded={"full"}
                     onClick={back}
                     pos={"static"}

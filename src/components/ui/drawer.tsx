@@ -12,7 +12,7 @@ import { forwardRef } from "react";
 
 // -----------------------------------------------------------------
 
-export const DrawerRoot = (props: ChakraDrawer.RootProps) => {
+const DrawerRoot = (props: ChakraDrawer.RootProps) => {
   return <ChakraDrawer.Root onEscapeKeyDown={back} {...props} />;
 };
 
@@ -26,7 +26,7 @@ export interface DrawerContentProps extends ChakraDrawer.ContentProps {
   positionerProps?: DrawerPositionerProps;
 }
 
-export const DrawerContent = forwardRef<HTMLDivElement, DrawerContentProps>(
+const DrawerContent = forwardRef<HTMLDivElement, DrawerContentProps>(
   function DrawerContent(props, ref) {
     const {
       children,
@@ -75,7 +75,7 @@ export const DrawerContent = forwardRef<HTMLDivElement, DrawerContentProps>(
 
 // -----------------------------------------------------------------
 
-export const DrawerCloseTrigger = forwardRef<
+const DrawerCloseTrigger = forwardRef<
   HTMLButtonElement,
   ChakraDrawer.CloseTriggerProps
 >(function DrawerCloseTrigger(props, ref) {
@@ -92,11 +92,16 @@ export const DrawerCloseTrigger = forwardRef<
   );
 });
 
-export const DrawerTrigger = ChakraDrawer.Trigger;
-export const DrawerFooter = ChakraDrawer.Footer;
-export const DrawerHeader = ChakraDrawer.Header;
-export const DrawerBody = ChakraDrawer.Body;
-export const DrawerBackdrop = ChakraDrawer.Backdrop;
-export const DrawerDescription = ChakraDrawer.Description;
-export const DrawerTitle = ChakraDrawer.Title;
-export const DrawerActionTrigger = ChakraDrawer.ActionTrigger;
+export const Drawer = {
+  Root: DrawerRoot,
+  Content: DrawerContent,
+  CloseTrigger: DrawerCloseTrigger,
+  Trigger: ChakraDrawer.Trigger,
+  Footer: ChakraDrawer.Footer,
+  Header: ChakraDrawer.Header,
+  Body: ChakraDrawer.Body,
+  Backdrop: ChakraDrawer.Backdrop,
+  Description: ChakraDrawer.Description,
+  Title: ChakraDrawer.Title,
+  ActionTrigger: ChakraDrawer.ActionTrigger,
+};

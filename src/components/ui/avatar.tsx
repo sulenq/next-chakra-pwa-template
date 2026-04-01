@@ -96,7 +96,7 @@ export const AvatarGroup = forwardRef<HTMLDivElement, AvatarGroupProps>(
     const { size, variant, borderless, ...rest } = props;
     return (
       <ChakraAvatar.PropsProvider value={{ size, variant, borderless }}>
-        <Group gap="0" spaceX="-3" ref={ref} {...rest} />
+        <Group gap={"0"} spaceX={"-3"} ref={ref} {...rest} />
       </ChakraAvatar.PropsProvider>
     );
   },

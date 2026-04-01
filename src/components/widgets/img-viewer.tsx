@@ -3,7 +3,7 @@
 import { Btn } from "@/components/ui/btn";
 import { CContainer } from "@/components/ui/c-container";
 import { CloseButton } from "@/components/ui/close-button";
-import { DialogBody, DialogContent, DialogRoot } from "@/components/ui/dialog";
+import { Dialog } from "@/components/ui/dialog";
 import { Img } from "@/components/ui/img";
 import { NavLink } from "@/components/ui/nav-link";
 import { StackV } from "@/components/ui/stack";
@@ -60,13 +60,13 @@ export const ImgViewer = (props: ImgViewerProps) => {
         {children}
       </CContainer>
 
-      <DialogRoot open={open} size={"full"} scrollBehavior={"inside"}>
-        <DialogContent
+      <Dialog.Root open={open} size={"full"} scrollBehavior={"inside"}>
+        <Dialog.Content
           bg={"transparent"}
           backdropFilter={"none"}
           onClick={back}
         >
-          <DialogBody p={0} overflow={"auto"}>
+          <Dialog.Body p={0} overflow={"auto"}>
             <StackV
               flex={1}
               h={"calc(100svh - 32px)"}
@@ -122,9 +122,9 @@ export const ImgViewer = (props: ImgViewerProps) => {
                 </NavLink>
               </StackV>
             </StackV>
-          </DialogBody>
-        </DialogContent>
-      </DialogRoot>
+          </Dialog.Body>
+        </Dialog.Content>
+      </Dialog.Root>
     </>
   );
 };

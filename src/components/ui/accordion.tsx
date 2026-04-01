@@ -25,7 +25,7 @@ const AccordionItemTrigger = forwardRef<
         </ChakraAccordion.ItemIndicator>
       )}
 
-      <HStack gap="4" flex="1" textAlign="start" width="full">
+      <HStack gap={"4"} flex={"1"} textAlign={"start"} width={"full"}>
         {children}
       </HStack>
 

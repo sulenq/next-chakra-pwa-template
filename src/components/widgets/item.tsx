@@ -11,7 +11,7 @@ import { createContext, forwardRef, useContext, useMemo, useRef } from "react";
 
 // -----------------------------------------------------------------
 
-interface ItemContextInterface {
+export interface ItemContextInterface {
   dimension: {
     width: number;
     height: number;
@@ -82,7 +82,7 @@ const ItemRoot = forwardRef<HTMLDivElement, ItemRootProps>(
 
 // -----------------------------------------------------------------
 
-interface ItemHeaderProps extends StackProps {
+export interface ItemHeaderProps extends StackProps {
   borderless?: boolean;
 }
 

@@ -14,7 +14,7 @@ import { forwardRef, useRef, useState } from "react";
 
 // -----------------------------------------------------------------
 
-export const DialogRoot = (props: ChakraDialog.RootProps) => {
+const DialogRoot = (props: ChakraDialog.RootProps) => {
   return <ChakraDialog.Root onEscapeKeyDown={back} {...props} />;
 };
 
@@ -27,7 +27,7 @@ export interface DialogContentProps extends ChakraDialog.ContentProps {
   positionerProps?: DialogPositionerProps;
 }
 
-export const DialogContent = forwardRef<HTMLDivElement, DialogContentProps>(
+const DialogContent = forwardRef<HTMLDivElement, DialogContentProps>(
   function DialogContent(props, ref) {
     // Props
     const {
@@ -103,7 +103,7 @@ export const DialogContent = forwardRef<HTMLDivElement, DialogContentProps>(
 
 // -----------------------------------------------------------------
 
-export const DialogCloseTrigger = forwardRef<
+const DialogCloseTrigger = forwardRef<
   HTMLButtonElement,
   ChakraDialog.CloseTriggerProps
 >(function DialogCloseTrigger(props, ref) {
@@ -122,11 +122,16 @@ export const DialogCloseTrigger = forwardRef<
   );
 });
 
-export const DialogFooter = ChakraDialog.Footer;
-export const DialogHeader = ChakraDialog.Header;
-export const DialogBody = ChakraDialog.Body;
-export const DialogBackdrop = ChakraDialog.Backdrop;
-export const DialogTitle = ChakraDialog.Title;
-export const DialogDescription = ChakraDialog.Description;
-export const DialogTrigger = ChakraDialog.Trigger;
-export const DialogActionTrigger = ChakraDialog.ActionTrigger;
+export const Dialog = {
+  Root: DialogRoot,
+  Content: DialogContent,
+  CloseTrigger: DialogCloseTrigger,
+  Footer: ChakraDialog.Footer,
+  Header: ChakraDialog.Header,
+  Body: ChakraDialog.Body,
+  Backdrop: ChakraDialog.Backdrop,
+  Title: ChakraDialog.Title,
+  Description: ChakraDialog.Description,
+  Trigger: ChakraDialog.Trigger,
+  ActionTrigger: ChakraDialog.ActionTrigger,
+};
