@@ -32,41 +32,49 @@ export function useItemContext() {
 
 interface ItemRootProps extends StackProps {
   scrollY?: boolean;
+  provideContext?: boolean;
 }
 
 const ItemRoot = forwardRef<HTMLDivElement, ItemRootProps>(
   function ItemBody(props, ref) {
-    // Props
-    const { children, scrollY = false, className, ...restProps } = props;
+    const {
+      children,
+      scrollY = false,
+      provideContext = false,
+      className,
+      ...restProps
+    } = props;
 
-    // Refs
     const containerRef = useRef<HTMLDivElement>(null);
     const mergeRef = useMergedRefs(containerRef, ref);
 
-    // Hooks
     const dimension = useContainerDimension(containerRef);
 
-    // States
     const isValidDimension = dimension.width > 0 && dimension.height > 0;
     const isSmContainer = dimension.width < 600;
 
-    // Constants
     const contextValue = useMemo(
       () => ({ dimension, isValidDimension, isSmContainer }),
       [dimension, isValidDimension, isSmContainer],
     );
 
+    const content = (
+      <StackV
+        ref={mergeRef}
+        className={`${scrollY ? "scrollY" : ""} ${className}`}
+        w={"full"}
+        borderColor={"border.subtle"}
+        {...restProps}
+      >
+        {children}
+      </StackV>
+    );
+
+    if (!provideContext) return content;
+
     return (
       <ItemContext.Provider value={contextValue}>
-        <StackV
-          ref={mergeRef}
-          className={`${scrollY ? "scrollY" : ""} ${className}`}
-          w={"full"}
-          borderColor={"border.subtle"}
-          {...restProps}
-        >
-          {children}
-        </StackV>
+        {content}
       </ItemContext.Provider>
     );
   },
