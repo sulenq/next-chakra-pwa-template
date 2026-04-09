@@ -38,9 +38,9 @@ const customConfig = defineConfig({
 
     tokens: {
       fonts: {
-        heading: { value: "'Wix Madefor Text', sans-serif" },
-        body: { value: "'Wix Madefor Text', sans-serif" },
-        number: { value: "'Google Sans Flex', sans-serif" },
+        heading: { value: "Plus Jakarta Sans, sans-serif" },
+        body: { value: "Plus Jakarta Sans, sans-serif" },
+        number: { value: "Plus Jakarta Sans, sans-serif" },
       },
       fontSizes: {
         xs: { value: "0.625rem" }, // 10px

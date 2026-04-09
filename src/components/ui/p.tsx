@@ -1,6 +1,6 @@
 "use client";
 
-import { HTMLChakraProps, Span, Text, TextProps } from "@chakra-ui/react";
+import { Span, SpanProps, Text, TextProps } from "@chakra-ui/react";
 import parse, { domToReact } from "html-react-parser";
 import { forwardRef } from "react";
 
@@ -62,13 +62,28 @@ export const PSerif = forwardRef<HTMLParagraphElement, PProps>(
 
 // -----------------------------------------------------------------
 
-export const TNum = forwardRef<HTMLParagraphElement, HTMLChakraProps<"span">>(
+export interface TNumProps extends SpanProps {
+  numberFont?: boolean;
+}
+
+export const TNum = forwardRef<HTMLParagraphElement, TNumProps>(
   function TNum(props, ref) {
     // Props
-    const { children = "", ...restProps } = props;
+    const { children = "", numberFont = true, ...restProps } = props;
 
     // Constants
     const characters = String(children).split("");
+
+    if (numberFont)
+      return (
+        <Span
+          fontFamily={"number"}
+          fontSize={"inherit"}
+          fontVariantNumeric={"tabular-nums"}
+        >
+          {children}
+        </Span>
+      );
 
     return (
       <Span
@@ -81,7 +96,7 @@ export const TNum = forwardRef<HTMLParagraphElement, HTMLChakraProps<"span">>(
           <Span
             key={index}
             display={"inline-block"}
-            w={"0.9ch"}
+            w={"0.85ch"}
             fontSize={"inherit"}
             textAlign={"center"}
           >

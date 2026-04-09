@@ -55,6 +55,7 @@ export const Clock = (props: ClockPropsProps) => {
     <StackH {...restProps}>
       <P fontSize={props?.fontSize}>
         <TNum>{time}</TNum>
+        {/* {time} */}
 
         <Span ml={2} fontSize={"inherit"}>
           {showAbbr && tz.localAbbr}

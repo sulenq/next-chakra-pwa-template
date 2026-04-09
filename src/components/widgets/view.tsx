@@ -183,7 +183,7 @@ export const TopBar = (props: StackProps) => {
 
         {!isSmContainer && <Divider dir={"vertical"} mx={2} h={"20px"} />}
 
-        <Clock fontSize={"sm"} />
+        <Clock showSeconds fontSize={"sm"} />
       </Stack>
 
       <StackH justify={"end"} gap={2} w={"35%"}>

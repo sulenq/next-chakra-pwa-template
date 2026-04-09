@@ -1,29 +1,3 @@
-/* Fonts */
-@import url("https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@6..144,1..1000&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Wix+Madefor+Text:ital,wght@0,400..800;1,400..800&display=swap");
-.wix-madefor-text {
-  font-family: "Wix Madefor Text", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 400;
-  font-style: normal;
-}
-.google-sans-flex {
-  font-family: "Google Sans Flex", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 400;
-  font-style: normal;
-  font-variation-settings:
-    "slnt" 0,
-    "wdth" 100,
-    "GRAD" 0,
-    "ROND" 0;
-}
-.inter {
-  font-family: "Inter", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 400;
-  font-style: normal;
-}
-
 /* Config */
 nextjs-portal {
   display: none !important;
@@ -36,18 +10,17 @@ nextjs-portal {
 }
 
 :root {
-  --font-primary: "Wix Madefor Text", sans-serif;
-  --font-numeral: "Google Sans Flex", sans-serif;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 * {
+  box-sizing: border-box !important;
+  font-optical-sizing: auto;
+  /* font-variant-numeric: tabular-nums; */
   /* font-synthesis: none; */
   /* font-feature-settings: "ss01" 1; */
   /* font-variant-alternates: stylistic(ss01); */
-  font-optical-sizing: auto;
-  box-sizing: border-box !important;
 }
 *::selection {
   background: var(--d3);

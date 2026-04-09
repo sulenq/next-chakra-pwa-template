@@ -5,6 +5,9 @@ import ClientRoot from "@/components/widgets/client-root";
 import { APP } from "@/constants/_meta";
 import { disclosurePrefixId } from "@/utils/disclosure";
 import { Metadata, Viewport } from "next";
+import { Plus_Jakarta_Sans } from "next/font/google";
+
+// -----------------------------------------------------------------
 
 export const metadata: Metadata = {
   applicationName: APP.name,
@@ -42,6 +45,8 @@ export const metadata: Metadata = {
   },
 };
 
+// -----------------------------------------------------------------
+
 export const viewport: Viewport = {
   themeColor: "#000000",
   width: "device-width",
@@ -51,22 +56,23 @@ export const viewport: Viewport = {
   userScalable: false,
 };
 
-// const font = Wix_Madefor_Text({
-//   subsets: ["latin"],
-//   display: "swap",
-// });
+// -----------------------------------------------------------------
+
+const plusJakartaSans = Plus_Jakarta_Sans({
+  subsets: ["latin"],
+  display: "swap",
+});
+
+// -----------------------------------------------------------------
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <html
-      suppressHydrationWarning
-      // className={`${googleSansFlex.variable} ${font.className}`}
-    >
+    <html suppressHydrationWarning className={`${plusJakartaSans.className}`}>
       <head>
         <link rel={"manifest"} href={"/manifest.json"} />
       </head>
 
-      <body>
+      <body style={plusJakartaSans.style}>
         <script
           dangerouslySetInnerHTML={{
             __html: `
