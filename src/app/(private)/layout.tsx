@@ -502,7 +502,7 @@ const DesktopLayout = (props: any) => {
               w={"full"}
               h={TOP_BAR_H}
               p={R_SPACING_MD}
-              borderBottom={"1px solid"}
+              // borderBottom={"1px solid"}
               borderColor={"border.muted"}
               // rounded={themeConfig.radii.container}
             >
