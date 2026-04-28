@@ -122,7 +122,8 @@ export const DesktopNavs = (props: DesktopNavsProps) => {
                     visibility={navsExpanded ? "visible" : "hidden"}
                     ml={1}
                   >
-                    {pluckString(t, navItem.labelKey).toUpperCase()}
+                    {navItem.label?.toUpperCase() ||
+                      pluckString(t, navItem.labelKey).toUpperCase()}
                   </ClampText>
                 )}
 
@@ -135,7 +136,7 @@ export const DesktopNavs = (props: DesktopNavsProps) => {
                       {!hasSubMenus && (
                         <NavLink key={nav.path} to={nav.path} w={"full"}>
                           <DesktopNavTooltip
-                            content={pluckString(t, nav.labelKey)}
+                            content={nav.label || pluckString(t, nav.labelKey)}
                           >
                             <Btn
                               iconButton={navsExpanded ? false : true}

@@ -450,6 +450,7 @@ const DataGridDisplay = (props: DataGridProps) => {
 
       {/* Grid */}
       <StackV
+        flex={1}
         // pt={`calc(${rSpacingMd} - 8px)`}
         pt={R_SPACING_MD}
         overflowY={"auto"}

@@ -525,6 +525,7 @@ export const DataTableDisplay = (props: DataTableProps) => {
           page={page}
           setPage={setPage}
           totalPage={totalPage}
+          px={"2px"}
         />
       )}
     </StackV>

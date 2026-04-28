@@ -313,7 +313,9 @@ const ViewHeader = (props: ViewHeaderProps) => {
 
   // Constants
   const activeNavs = getActiveNavs(pathname);
-  const navTitle = pluckString(t, last<any>(activeNavs)?.labelKey);
+  const navTitle =
+    last<any>(activeNavs)?.label ||
+    pluckString(t, last<any>(activeNavs)?.labelKey);
 
   // Derived Values
   const resolvedTitle = title || navTitle;

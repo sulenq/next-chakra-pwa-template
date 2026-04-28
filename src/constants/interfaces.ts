@@ -56,6 +56,7 @@ export interface Role {
 // Navs
 export interface Interface__NavGroup {
   labelKey?: string;
+  label?:string;
   navs: Interface__Nav[];
 }
 export interface Interface__Nav {
