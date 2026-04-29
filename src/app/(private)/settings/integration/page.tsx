@@ -10,7 +10,7 @@ import FeedbackNotFound from "@/components/widgets/feedback-not-found";
 import FeedbackRetry from "@/components/widgets/feedback-retry";
 import { LucideIcon } from "@/components/widgets/icon";
 import { Item } from "@/components/widgets/item";
-import { BASE_ICON_BOX_SIZE, R_SPACING_MD } from "@/constants/styles";
+import { BASE_ICON_BOX_SIZE, R_SPACING_MD } from "@/shared/constants/styles";
 import { useLocale } from "@/contexts/useLocale";
 import useRenderTrigger from "@/contexts/useRenderTrigger";
 import { useThemeConfig } from "@/contexts/useThemeConfig";

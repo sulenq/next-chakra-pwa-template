@@ -1,8 +1,8 @@
 "use client";
 
 import { CloseButton } from "@/components/ui/close-button";
-import { BACKDROP_BLUR_FILTER } from "@/constants/styles";
-import { back } from "@/utils/client";
+import { BACKDROP_BLUR_FILTER } from "@/shared/constants/styles";
+import { back } from "@/shared/utils/client";
 import {
   Drawer as ChakraDrawer,
   DrawerPositionerProps,

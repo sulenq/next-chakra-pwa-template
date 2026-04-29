@@ -1,6 +1,6 @@
 import { useColorMode } from "@/components/ui/color-mode";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
-import { getBodyColor } from "@/utils/color";
+import { getBodyColor } from "@/shared/utils/color";
 
 export const useColorBody = () => {
   // Contexts

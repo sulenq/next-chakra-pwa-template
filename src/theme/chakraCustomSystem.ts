@@ -1,4 +1,4 @@
-import { SM_SCREEN_W_NUMBER } from "@/constants/styles";
+import { SM_SCREEN_W_NUMBER } from "@/shared/constants/styles";
 import { createSystem, defaultConfig, defineConfig } from "@chakra-ui/react";
 
 const customConfig = defineConfig({

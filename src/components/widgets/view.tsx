@@ -12,17 +12,17 @@ import { Clock } from "@/components/widgets/clock";
 import { DotIndicator } from "@/components/widgets/indicator";
 import { Today } from "@/components/widgets/today";
 import { ToggleTip } from "@/components/widgets/toggle-tip";
-import { Interface__Nav } from "@/constants/interfaces";
-import { R_SPACING_MD, TOP_BAR_H } from "@/constants/styles";
+import { Interface__Nav } from "@/shared/constants/interfaces";
+import { R_SPACING_MD, TOP_BAR_H } from "@/shared/constants/styles";
 import { useBreadcrumbs } from "@/contexts/useBreadcrumbs";
 import { useLocale } from "@/contexts/useLocale";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
 import { useContainerDimension } from "@/hooks/useContainerDimension";
 import { useMergedRefs } from "@/hooks/useMergeRefs";
 import { useScreen } from "@/hooks/useScreen";
-import { isEmptyArray, last } from "@/utils/array";
-import { capitalizeWords, pluckString } from "@/utils/string";
-import { getActiveNavs } from "@/utils/url";
+import { isEmptyArray, last } from "@/shared/utils/array";
+import { capitalizeWords, pluckString } from "@/shared/utils/string";
+import { getActiveNavs } from "@/shared/utils/url";
 import { HStack, Icon, Stack, StackProps } from "@chakra-ui/react";
 import { IconSlash } from "@tabler/icons-react";
 import { HeadsetIcon, NavigationIcon } from "lucide-react";
@@ -245,12 +245,12 @@ const ViewContext = createContext<ViewContextInterface | null>(null);
 export function useViewContext() {
   const context = useContext(ViewContext);
   if (!context) {
-    throw new Error("useViewContext must be used inside View.Root");
+    throw new Error("useViewContext must be used inside Main.Root");
   }
   return context;
 }
 
-const ViewRoot = forwardRef<HTMLDivElement, StackProps>(function ViewRoot(
+const MainRoot = forwardRef<HTMLDivElement, StackProps>(function MainRoot(
   { children, ...restProps },
   ref,
 ) {
@@ -288,19 +288,19 @@ const ViewRoot = forwardRef<HTMLDivElement, StackProps>(function ViewRoot(
 
 // -----------------------------------------------------------------
 
-export interface ViewHeaderProps extends StackProps {
+export interface MainHeaderProps extends StackProps {
   withTitle?: boolean;
   title?: string;
-  ViewTitleProps?: PProps;
+  MainTitleProps?: PProps;
 }
 
-const ViewHeader = (props: ViewHeaderProps) => {
+const MainHeader = (props: MainHeaderProps) => {
   // Props
   const {
     children,
     withTitle = false,
     title,
-    ViewTitleProps,
+    MainTitleProps,
     ...restProps
   } = props;
 
@@ -330,7 +330,7 @@ const ViewHeader = (props: ViewHeaderProps) => {
       rounded={themeConfig.radii.container}
       {...restProps}
     >
-      {withTitle && <ViewTitle {...ViewTitleProps}>{resolvedTitle}</ViewTitle>}
+      {withTitle && <MainTitle {...MainTitleProps}>{resolvedTitle}</MainTitle>}
 
       {children}
     </HStack>
@@ -339,7 +339,7 @@ const ViewHeader = (props: ViewHeaderProps) => {
 
 // -----------------------------------------------------------------
 
-const ViewTitle = (props: PProps) => {
+const MainTitle = (props: PProps) => {
   // Props
   const { children = "", ...restProps } = props;
 
@@ -357,8 +357,8 @@ const ViewTitle = (props: PProps) => {
 
 // -----------------------------------------------------------------
 
-const ViewContent = forwardRef<HTMLDivElement, StackProps>(
-  function ViewContent(props, ref) {
+const MainContent = forwardRef<HTMLDivElement, StackProps>(
+  function MainContent(props, ref) {
     // Props
     const { children, ...restProps } = props;
 
@@ -373,9 +373,9 @@ const ViewContent = forwardRef<HTMLDivElement, StackProps>(
   },
 );
 
-export const View = {
-  Root: ViewRoot,
-  Content: ViewContent,
-  Header: ViewHeader,
-  Title: ViewTitle,
+export const Main = {
+  Root: MainRoot,
+  Content: MainContent,
+  Header: MainHeader,
+  Title: MainTitle,
 };

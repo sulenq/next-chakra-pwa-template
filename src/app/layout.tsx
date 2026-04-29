@@ -2,8 +2,8 @@ import "@/app/globals.css";
 import { Provider } from "@/components/ui/provider";
 import { Toaster } from "@/components/ui/toaster";
 import ClientRoot from "@/components/widgets/client-root";
-import { APP } from "@/constants/_meta";
-import { disclosurePrefixId } from "@/utils/disclosure";
+import { APP } from "@/shared/constants/_meta";
+import { disclosurePrefixId } from "@/shared/utils/disclosure";
 import { Metadata, Viewport } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
 

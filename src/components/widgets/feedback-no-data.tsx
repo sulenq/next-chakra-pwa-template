@@ -4,7 +4,7 @@ import { CContainer } from "@/components/ui/c-container";
 import FeedbackState, {
   FeedbackStateProps,
 } from "@/components/widgets/feedback-state";
-import { MIN_H_FEEDBACK_CONTAINER } from "@/constants/styles";
+import { MIN_H_FEEDBACK_CONTAINER } from "@/shared/constants/styles";
 import { useLocale } from "@/contexts/useLocale";
 
 // -----------------------------------------------------------------

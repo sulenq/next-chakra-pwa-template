@@ -3,8 +3,8 @@
 import { StringInput } from "@/components/ui/string-input";
 import { useLocale } from "@/contexts/useLocale";
 import { useMergedRefs } from "@/hooks/useMergeRefs";
-import { formatNumber } from "@/utils/formatter";
-import { parseNumber } from "@/utils/number";
+import { formatNumber } from "@/shared/utils/formatter";
+import { parseNumber } from "@/shared/utils/number";
 import { InputProps, StackProps } from "@chakra-ui/react";
 import { forwardRef, useEffect, useRef, useState } from "react";
 

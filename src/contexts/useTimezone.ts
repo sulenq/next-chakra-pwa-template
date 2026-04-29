@@ -1,6 +1,6 @@
-import { Type__TimezoneObject } from "@/constants/types";
-import { getStorage, setStorage } from "@/utils/client";
-import { getLocalTimezone } from "@/utils/time";
+import { Type__TimezoneObject } from "@/shared/constants/types";
+import { getStorage, setStorage } from "@/shared/utils/client";
+import { getLocalTimezone } from "@/shared/utils/time";
 import { create } from "zustand";
 
 const STORAGE_KEY = "timezone";

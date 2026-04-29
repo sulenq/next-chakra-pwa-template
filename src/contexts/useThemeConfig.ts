@@ -1,7 +1,7 @@
-import { COLOR_PALETTES } from "@/constants/colors";
-import { IMAGES_PATH } from "@/constants/paths";
-import { ROUNDED_PRESETS } from "@/constants/presets";
-import { getStorage, setStorage } from "@/utils/client";
+import { COLOR_PALETTES } from "@/shared/constants/colors";
+import { IMAGES_PATH } from "@/shared/constants/paths";
+import { ROUNDED_PRESETS } from "@/shared/constants/presets";
+import { getStorage, setStorage } from "@/shared/utils/client";
 import { create } from "zustand";
 
 interface ThemeConfig {

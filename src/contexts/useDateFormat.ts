@@ -1,5 +1,5 @@
-import { Type__DateFormat } from "@/constants/types";
-import { getStorage, setStorage } from "@/utils/client";
+import { Type__DateFormat } from "@/shared/constants/types";
+import { getStorage, setStorage } from "@/shared/utils/client";
 import { create } from "zustand";
 
 const STORAGE_KEY = "date-format";

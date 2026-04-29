@@ -1,4 +1,4 @@
-import { Type__ContainerDimension } from "@/constants/types";
+import { Type__ContainerDimension } from "@/shared/constants/types";
 import { create } from "zustand";
 
 type MasterDataPageContainer = {

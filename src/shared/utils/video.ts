@@ -1,4 +1,4 @@
-import { getStorage, setStorage } from "@/utils/client";
+import { getStorage, setStorage } from "@/shared/utils/client";
 
 // play video safely
 export const playVideo = async (video: HTMLVideoElement | null) => {
@@ -27,7 +27,7 @@ export const getVideoCurrentTime = (video: HTMLVideoElement | null) =>
 
 export const setVideoVolume = (
   video: HTMLVideoElement | null,
-  volume: number
+  volume: number,
 ) => {
   if (video) video.volume = Math.min(Math.max(volume, 0), 1);
 };
@@ -40,7 +40,7 @@ export const toggleMute = (video: HTMLVideoElement | null, force?: boolean) => {
 
 export const setPlaybackRate = (
   video: HTMLVideoElement | null,
-  rate: number
+  rate: number,
 ) => {
   if (video) video.playbackRate = rate;
 };
@@ -79,7 +79,7 @@ export const loadProgress = (key: string) => {
 
 export const isVideoCompleted = (
   video: HTMLVideoElement | null,
-  threshold = 0.95
+  threshold = 0.95,
 ) => {
   if (!video || !video.duration || isNaN(video.duration)) return false;
   return video.currentTime / video.duration >= threshold;
@@ -87,7 +87,7 @@ export const isVideoCompleted = (
 
 export const getVideoThumbnail = (
   videoSrc: string,
-  seekTime = 1
+  seekTime = 1,
 ): Promise<string> => {
   return new Promise((resolve, reject) => {
     const video = document.createElement("video");

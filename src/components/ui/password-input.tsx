@@ -2,7 +2,7 @@
 
 import { CContainer } from "@/components/ui/c-container";
 import { LucideIcon } from "@/components/widgets/icon";
-import { BASE_ICON_BOX_SIZE } from "@/constants/styles";
+import { BASE_ICON_BOX_SIZE } from "@/shared/constants/styles";
 import {
   Center,
   Icon,

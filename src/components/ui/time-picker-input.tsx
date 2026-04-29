@@ -4,22 +4,22 @@ import { P, TNum } from "@/components/ui/p";
 import { StringInput } from "@/components/ui/string-input";
 import { Tooltip } from "@/components/ui/tooltip";
 import { LucideIcon } from "@/components/widgets/icon";
-import { BASE_ICON_BOX_SIZE } from "@/constants/styles";
-import { ButtonVariant, DisclosureSizes } from "@/constants/types";
+import { BASE_ICON_BOX_SIZE } from "@/shared/constants/styles";
+import { ButtonVariant, DisclosureSizes } from "@/shared/constants/types";
 import { useLocale } from "@/contexts/useLocale";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
 import { usePopDisclosure } from "@/hooks/usePopDisclosure";
 import { useScreen } from "@/hooks/useScreen";
-import { back } from "@/utils/client";
-import { disclosureId } from "@/utils/disclosure";
-import { formatTime } from "@/utils/formatter";
-import { capitalizeWords } from "@/utils/string";
+import { back } from "@/shared/utils/client";
+import { disclosureId } from "@/shared/utils/disclosure";
+import { formatTime } from "@/shared/utils/formatter";
+import { capitalizeWords } from "@/shared/utils/string";
 import {
   getHoursFromTime,
   getMinutesFromTime,
   getSecondsFromTime,
   getUserTimezone,
-} from "@/utils/time";
+} from "@/shared/utils/time";
 import { HStack, Icon, Stack, useFieldContext, VStack } from "@chakra-ui/react";
 import { IconCaretDownFilled, IconCaretUpFilled } from "@tabler/icons-react";
 import { ClockIcon } from "lucide-react";

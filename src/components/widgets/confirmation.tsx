@@ -4,7 +4,7 @@ import { Disclosure } from "@/components/ui/disclosure";
 import { P } from "@/components/ui/p";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
 import { usePopDisclosure } from "@/hooks/usePopDisclosure";
-import { disclosureId } from "@/utils/disclosure";
+import { disclosureId } from "@/shared/utils/disclosure";
 import { Box, StackProps } from "@chakra-ui/react";
 import { BackButton } from "@/components/widgets/back-button";
 import { useCountdown } from "@/hooks/useCountdown";

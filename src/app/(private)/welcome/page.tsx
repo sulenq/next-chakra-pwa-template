@@ -3,9 +3,9 @@
 import { P } from "@/components/ui/p";
 import { StackV } from "@/components/ui/stack";
 import { BrandWatermark } from "@/components/widgets/brand-watermark";
-import { APP } from "@/constants/_meta";
+import { APP } from "@/shared/constants/_meta";
 import { useLocale } from "@/contexts/useLocale";
-import { interpolateString, pluckString } from "@/utils/string";
+import { interpolateString, pluckString } from "@/shared/utils/string";
 import { VStack } from "@chakra-ui/react";
 
 export default function Page() {

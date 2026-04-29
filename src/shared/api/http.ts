@@ -1,5 +1,5 @@
 import axios from "axios";
-import { getAccessToken, setAccessToken } from "@/utils/auth";
+import { getAccessToken, setAccessToken } from "@/shared/utils/auth";
 
 // create axios instance
 export const request = axios.create({

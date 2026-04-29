@@ -20,9 +20,12 @@ import {
 } from "@/components/widgets/navs";
 import { ProfileMenuTrigger } from "@/components/widgets/profile-menu";
 import { Today } from "@/components/widgets/today";
-import { NavBreadcrumb, TopBar, View } from "@/components/widgets/view";
-import { APP } from "@/constants/_meta";
-import { OTHER_PRIVATE_NAV_GROUPS, PRIVATE_NAV_GROUPS } from "@/constants/navs";
+import { NavBreadcrumb, TopBar, Main } from "@/components/widgets/view";
+import { APP } from "@/shared/constants/_meta";
+import {
+  OTHER_PRIVATE_NAV_GROUPS,
+  PRIVATE_NAV_GROUPS,
+} from "@/shared/constants/navs";
 import {
   DESKTOP_ACTIVE_NAV_BTN_VARIANT,
   DESKTOP_NAV_BTN_ICON_BG,
@@ -39,17 +42,17 @@ import {
   R_SPACING_MD,
   TOP_BAR_H,
   USER_PANEL_H,
-} from "@/constants/styles";
+} from "@/shared/constants/styles";
 import { useLocale } from "@/contexts/useLocale";
 import useNavs from "@/contexts/useNavs";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
 import { AuthGuard } from "@/features/auth/auth-guard";
 import { useIsSmScreenWidth } from "@/hooks/useIsSmScreenWidth";
 import { useScreen } from "@/hooks/useScreen";
-import { last } from "@/utils/array";
-import { getUserData } from "@/utils/auth";
-import { pluckString } from "@/utils/string";
-import { getActiveNavs, imgUrl } from "@/utils/url";
+import { last } from "@/shared/utils/array";
+import { getUserData } from "@/shared/utils/auth";
+import { pluckString } from "@/shared/utils/string";
+import { getActiveNavs, imgUrl } from "@/shared/utils/url";
 import { Center, HStack, VStack } from "@chakra-ui/react";
 import { ChevronsLeftIcon, ChevronsRightIcon, ServerIcon } from "lucide-react";
 import { usePathname } from "next/navigation";
@@ -77,7 +80,7 @@ const MobileLayout = (props: any) => {
   return (
     <StackV flex={1} overflowY={"auto"} {...restProps}>
       {/* Content */}
-      <View.Root flex={1} bg={MOBILE_CONTENT_CONTAINER_BG} overflowY={"auto"}>
+      <Main.Root flex={1} bg={MOBILE_CONTENT_CONTAINER_BG} overflowY={"auto"}>
         {/* Content header */}
         <StackV gap={2}>
           <HStack w={"full"} justify={"space-between"} pt={2} px={4}>
@@ -109,7 +112,7 @@ const MobileLayout = (props: any) => {
         </StackV>
 
         {children}
-      </View.Root>
+      </Main.Root>
 
       {/* Navs */}
       <ScrollH
@@ -495,7 +498,7 @@ const DesktopLayout = (props: any) => {
         </StackV>
 
         {/* Content */}
-        <View.Root w={"full"} overflowY={"auto"}>
+        <Main.Root w={"full"} overflowY={"auto"}>
           <StackV px={GAP}>
             <StackH
               align={"center"}
@@ -513,7 +516,7 @@ const DesktopLayout = (props: any) => {
           <MContainerV flex={1} overflow={"auto"}>
             {children}
           </MContainerV>
-        </View.Root>
+        </Main.Root>
       </StackH>
     </StackV>
   );

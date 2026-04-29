@@ -1,4 +1,4 @@
-import { Interface__NavGroup } from "@/constants/interfaces";
+import { Interface__NavGroup } from "@/shared/constants/interfaces";
 import {
   ActivityIcon,
   BlocksIcon,

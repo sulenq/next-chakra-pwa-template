@@ -19,14 +19,18 @@ import { LucideIcon } from "@/components/widgets/icon";
 import { Item } from "@/components/widgets/item";
 import { MiniUser } from "@/components/widgets/mini-user";
 import { SimpleDisclosure } from "@/components/widgets/simple-disclosure";
-import { View, useViewContext } from "@/components/widgets/view";
-import { dummyUsers } from "@/constants/dummyData";
+import { Main, useViewContext } from "@/components/widgets/view";
+import { dummyUsers } from "@/shared/constants/dummyData";
 import {
   BatchOptionsTableOptionGenerator,
   DataProps,
   RowOptionsTableOptionGenerator,
-} from "@/constants/interfaces";
-import { BASE_ICON_BOX_SIZE, GAP, R_SPACING_MD } from "@/constants/styles";
+} from "@/shared/constants/interfaces";
+import {
+  BASE_ICON_BOX_SIZE,
+  GAP,
+  R_SPACING_MD,
+} from "@/shared/constants/styles";
 import { useDataDisplay } from "@/contexts/useDataDisplay";
 import { useLocale } from "@/contexts/useLocale";
 import useRenderTrigger from "@/contexts/useRenderTrigger";
@@ -34,12 +38,12 @@ import { useThemeConfig } from "@/contexts/useThemeConfig";
 import { useFetchData } from "@/hooks/useFetchData";
 import { usePopDisclosure } from "@/hooks/usePopDisclosure";
 import { useRequest } from "@/hooks/useRequest";
-import { isEmptyArray, last } from "@/utils/array";
-import { back } from "@/utils/client";
-import { disclosureId } from "@/utils/disclosure";
-import { formatDate } from "@/utils/formatter";
-import { capitalize, pluckString } from "@/utils/string";
-import { getActiveNavs, imgUrl } from "@/utils/url";
+import { isEmptyArray, last } from "@/shared/utils/array";
+import { back } from "@/shared/utils/client";
+import { disclosureId } from "@/shared/utils/disclosure";
+import { formatDate } from "@/shared/utils/formatter";
+import { capitalize, pluckString } from "@/shared/utils/string";
+import { getActiveNavs, imgUrl } from "@/shared/utils/url";
 import { HStack, Icon } from "@chakra-ui/react";
 import { useFormik } from "formik";
 import {
@@ -620,9 +624,9 @@ export default function Page() {
   const [filter, setFilter] = useState(DEFAULT_FILTER);
 
   return (
-    <View.Content p={GAP}>
+    <Main.Content p={GAP}>
       <CContainer flex={1} overflowY={"auto"}>
-        <View.Header
+        <Main.Header
           withTitle
           ViewTitleProps={{
             ml: [2, null, 0],
@@ -640,7 +644,7 @@ export default function Page() {
 
             <Create />
           </HStack>
-        </View.Header>
+        </Main.Header>
 
         {isSmContainer && (
           <ScrollH mb={4}>
@@ -662,6 +666,6 @@ export default function Page() {
           />
         </Item.Body>
       </CContainer>
-    </View.Content>
+    </Main.Content>
   );
 }

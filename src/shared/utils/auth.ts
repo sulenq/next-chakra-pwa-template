@@ -1,5 +1,5 @@
-import { Interface__User } from "@/constants/interfaces";
-import { getStorage, removeStorage, setStorage } from "@/utils/client";
+import { Interface__User } from "@/shared/constants/interfaces";
+import { getStorage, removeStorage, setStorage } from "@/shared/utils/client";
 
 export function getAccessToken() {
   return getStorage("__access_token") || null;

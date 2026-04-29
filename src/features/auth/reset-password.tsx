@@ -9,8 +9,8 @@ import { BackButton } from "@/components/widgets/back-button";
 import { useLocale } from "@/contexts/useLocale";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
 import { useRequest } from "@/hooks/useRequest";
-import { back } from "@/utils/client";
-import { maskEmail } from "@/utils/string";
+import { back } from "@/shared/utils/client";
+import { maskEmail } from "@/shared/utils/string";
 import {
   PinInputControl,
   PinInputHiddenInput,
@@ -22,7 +22,7 @@ import { useEffect, useState } from "react";
 import * as yup from "yup";
 
 import { usePopDisclosure } from "@/hooks/usePopDisclosure";
-import { disclosureId } from "@/utils/disclosure";
+import { disclosureId } from "@/shared/utils/disclosure";
 
 const ID = "forgot-password";
 

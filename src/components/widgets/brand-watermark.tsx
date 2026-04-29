@@ -1,7 +1,7 @@
 "use client";
 
 import { P, PProps } from "@/components/ui/p";
-import { APP } from "@/constants/_meta";
+import { APP } from "@/shared/constants/_meta";
 import { Span } from "@chakra-ui/react";
 import Link from "next/link";
 

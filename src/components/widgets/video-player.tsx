@@ -17,7 +17,7 @@ import {
   setVideoVolume,
   toggleFullscreen,
   toggleMute,
-} from "@/utils/video";
+} from "@/shared/utils/video";
 import {
   chakra,
   HStack,

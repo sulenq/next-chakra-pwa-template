@@ -15,18 +15,18 @@ import { DataFooter } from "@/components/widgets/data-footer";
 import FeedbackNotFound from "@/components/widgets/feedback-not-found";
 import { ImgViewer } from "@/components/widgets/img-viewer";
 import { RowOptions } from "@/components/widgets/row-options";
-import { DataProps, FormattedTableRow } from "@/constants/interfaces";
+import { DataProps, FormattedTableRow } from "@/shared/constants/interfaces";
 import {
   BACKDROP_BLUR_FILTER,
   GAP,
   GRID_BATCH_OPTIONS_CONTAINER_BG,
   R_SPACING_MD,
-} from "@/constants/styles";
+} from "@/shared/constants/styles";
 import { useLocale } from "@/contexts/useLocale";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
 import { usePopDisclosure } from "@/hooks/usePopDisclosure";
-import { isEmptyArray } from "@/utils/array";
-import { disclosureId } from "@/utils/disclosure";
+import { isEmptyArray } from "@/shared/utils/array";
+import { disclosureId } from "@/shared/utils/disclosure";
 import {
   Box,
   HStack,

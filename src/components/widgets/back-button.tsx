@@ -1,4 +1,4 @@
-import { back } from "@/utils/client";
+import { back } from "@/shared/utils/client";
 import { Icon } from "@chakra-ui/react";
 import { IconArrowLeft } from "@tabler/icons-react";
 import { useRouter } from "next/navigation";

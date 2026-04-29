@@ -14,21 +14,21 @@ import {
   DateVariant,
   DisclosureSizes,
   Period,
-} from "@/constants/types";
-import { getWeekdayNames } from "@/constants/weekdays";
+} from "@/shared/constants/types";
+import { getWeekdayNames } from "@/shared/constants/weekdays";
 import { useLocale } from "@/contexts/useLocale";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
 import { usePopDisclosure } from "@/hooks/usePopDisclosure";
-import { isEmptyArray } from "@/utils/array";
-import { back } from "@/utils/client";
-import { disclosureId } from "@/utils/disclosure";
-import { formatAbsDate, formatDate } from "@/utils/formatter";
-import { capitalizeWords } from "@/utils/string";
+import { isEmptyArray } from "@/shared/utils/array";
+import { back } from "@/shared/utils/client";
+import { disclosureId } from "@/shared/utils/disclosure";
+import { formatAbsDate, formatDate } from "@/shared/utils/formatter";
+import { capitalizeWords } from "@/shared/utils/string";
 import {
   getLocalTimezone,
   getTimezoneOffsetMs,
   getUserTimezone,
-} from "@/utils/time";
+} from "@/shared/utils/time";
 import {
   Group,
   GroupProps,

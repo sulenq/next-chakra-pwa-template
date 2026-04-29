@@ -1,4 +1,4 @@
-import { Translations } from "@/constants/types";
+import { Translations } from "@/shared/constants/types";
 
 export const getWeekdayNames = (t: Translations) => {
   return [

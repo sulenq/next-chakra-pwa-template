@@ -1,4 +1,4 @@
-import { NUMBER_LOCALE } from "@/constants/styles";
+import { NUMBER_LOCALE } from "@/shared/constants/styles";
 import { useEffect, useRef, useState } from "react";
 
 // -----------------------------------------------------------------

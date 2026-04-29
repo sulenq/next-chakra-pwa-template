@@ -1,4 +1,4 @@
-import { getStorage, setStorage } from "@/utils/client";
+import { getStorage, setStorage } from "@/shared/utils/client";
 import { create } from "zustand";
 import en from "@/locales/en";
 import id from "@/locales/id";

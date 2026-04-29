@@ -13,15 +13,15 @@ import { AppIconLucide } from "@/components/widgets/app-icon";
 import { LucideIcon } from "@/components/widgets/icon";
 import { Logo } from "@/components/widgets/logo";
 import { UserIdCard } from "@/components/widgets/user-id-card";
-import { APP } from "@/constants/_meta";
-import { AUTH_API_SIGNIN } from "@/constants/apis";
-import { BASE_ICON_BOX_SIZE } from "@/constants/styles";
+import { APP } from "@/shared/constants/_meta";
+import { AUTH_API_SIGNIN } from "@/shared/constants/apis";
+import { BASE_ICON_BOX_SIZE } from "@/shared/constants/styles";
 import { useAuthMiddleware } from "@/contexts/useAuthMiddleware";
 import { useLocale } from "@/contexts/useLocale";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
 import ResetPasswordDisclosureTrigger from "@/features/auth/reset-password";
 import { useRequest } from "@/hooks/useRequest";
-import { setAccessToken, setUserData } from "@/utils/auth";
+import { setAccessToken, setUserData } from "@/shared/utils/auth";
 import {
   FieldsetRoot,
   HStack,

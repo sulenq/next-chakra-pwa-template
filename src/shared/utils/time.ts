@@ -1,5 +1,5 @@
-import { Type__TimezoneObject } from "@/constants/types";
-import { getStorage } from "@/utils/client";
+import { Type__TimezoneObject } from "@/shared/constants/types";
+import { getStorage } from "@/shared/utils/client";
 import {
   addSeconds,
   parseISO,

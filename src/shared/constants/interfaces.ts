@@ -1,6 +1,6 @@
 import { BtnProps } from "@/components/ui/btn";
-import { ActivityActionEnum } from "@/constants/enums";
-import { Gender } from "@/constants/types";
+import { ActivityActionEnum } from "@/shared/constants/enums";
+import { Gender } from "@/shared/constants/types";
 import { MenuItemProps, StackProps } from "@chakra-ui/react";
 import { AxiosRequestConfig, AxiosResponse } from "axios";
 import { LucideIcon } from "lucide-react";
@@ -56,7 +56,7 @@ export interface Role {
 // Navs
 export interface Interface__NavGroup {
   labelKey?: string;
-  label?:string;
+  label?: string;
   navs: Interface__Nav[];
 }
 export interface Interface__Nav {

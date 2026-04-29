@@ -6,7 +6,7 @@ import { Confirmation } from "@/components/widgets/confirmation";
 import {
   FormattedTableRow,
   RowOptionsTableOptionGenerator,
-} from "@/constants/interfaces";
+} from "@/shared/constants/interfaces";
 import { MenuRootProps } from "@chakra-ui/react";
 import { EllipsisVerticalIcon } from "lucide-react";
 

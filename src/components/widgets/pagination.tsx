@@ -2,7 +2,7 @@ import { Btn } from "@/components/ui/btn";
 import { P } from "@/components/ui/p";
 import { AppIconLucide } from "@/components/widgets/app-icon";
 import { useLocale } from "@/contexts/useLocale";
-import { formatNumber } from "@/utils/formatter";
+import { formatNumber } from "@/shared/utils/formatter";
 import { HStack } from "@chakra-ui/react";
 import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
 

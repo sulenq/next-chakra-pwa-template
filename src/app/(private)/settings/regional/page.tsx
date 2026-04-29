@@ -14,27 +14,27 @@ import { Item } from "@/components/widgets/item";
 import { Limitation } from "@/components/widgets/limitation";
 import { LocalSettingsHelperText } from "@/components/widgets/local-settings-helper-text";
 import { Pagination } from "@/components/widgets/pagination";
-import { DATE_FORMATS } from "@/constants/dateFormats";
-import { LANGUAGES } from "@/constants/languages";
-import { R_SPACING_MD } from "@/constants/styles";
-import { TIME_FORMATS } from "@/constants/timeFormats";
-import { TIME_ZONES } from "@/constants/timezone";
+import { DATE_FORMATS } from "@/shared/constants/dateFormats";
+import { LANGUAGES } from "@/shared/constants/languages";
+import { R_SPACING_MD } from "@/shared/constants/styles";
+import { TIME_FORMATS } from "@/shared/constants/timeFormats";
+import { TIME_ZONES } from "@/shared/constants/timezone";
 import {
   Type__DateFormat,
   Type__LanguageOptions,
   Type__TimeFormat,
-} from "@/constants/types";
-import { UOM_FORMATS } from "@/constants/uomFormats";
+} from "@/shared/constants/types";
+import { UOM_FORMATS } from "@/shared/constants/uomFormats";
 import useDateFormat from "@/contexts/useDateFormat";
 import { useLocale } from "@/contexts/useLocale";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
 import useTimeFormat from "@/contexts/useTimeFormat";
 import useTimezone from "@/contexts/useTimezone";
 import useUOMFormat from "@/contexts/useUOMFormat";
-import { isEmptyArray } from "@/utils/array";
-import { formatDate, formatTime } from "@/utils/formatter";
-import { capitalizeWords, pluckString } from "@/utils/string";
-import { getLocalTimezone, makeTime } from "@/utils/time";
+import { isEmptyArray } from "@/shared/utils/array";
+import { formatDate, formatTime } from "@/shared/utils/formatter";
+import { capitalizeWords, pluckString } from "@/shared/utils/string";
+import { getLocalTimezone, makeTime } from "@/shared/utils/time";
 import { chakra, HStack, SimpleGrid, Text } from "@chakra-ui/react";
 import {
   CalendarIcon,

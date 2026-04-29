@@ -8,10 +8,10 @@ import {
 } from "@/components/ui/date-picker-input";
 import { Disclosure } from "@/components/ui/disclosure";
 import { BackButton } from "@/components/widgets/back-button";
-import { Period } from "@/constants/types";
+import { Period } from "@/shared/constants/types";
 import { useLocale } from "@/contexts/useLocale";
 import { usePopDisclosure } from "@/hooks/usePopDisclosure";
-import { disclosureId } from "@/utils/disclosure";
+import { disclosureId } from "@/shared/utils/disclosure";
 import { StackProps } from "@chakra-ui/react";
 import { useState } from "react";
 

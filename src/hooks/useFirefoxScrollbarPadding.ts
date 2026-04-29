@@ -1,4 +1,4 @@
-import { FIREFOX_SCROLL_Y_CLASS_PR_PREFIX } from "@/constants/styles";
+import { FIREFOX_SCROLL_Y_CLASS_PR_PREFIX } from "@/shared/constants/styles";
 import { useEffect } from "react";
 
 // -----------------------------------------------------------------

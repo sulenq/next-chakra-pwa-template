@@ -23,21 +23,21 @@ import {
   DUMMY_USER,
   dummyActivityLogs,
   dummyAuthLogs,
-} from "@/constants/dummyData";
-import { ActivityActionEnum } from "@/constants/enums";
+} from "@/shared/constants/dummyData";
+import { ActivityActionEnum } from "@/shared/constants/enums";
 import {
   Interface__ActivityLog,
   Interface__AuthLog,
   Interface__User,
-} from "@/constants/interfaces";
-import { R_SPACING_MD } from "@/constants/styles";
+} from "@/shared/constants/interfaces";
+import { R_SPACING_MD } from "@/shared/constants/styles";
 import { useLocale } from "@/contexts/useLocale";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
 import ResetPasswordDisclosureTrigger from "@/features/auth/reset-password";
 import { useFetchData } from "@/hooks/useFetchData";
 import { useRequest } from "@/hooks/useRequest";
-import { isEmptyArray } from "@/utils/array";
-import { formatDate } from "@/utils/formatter";
+import { isEmptyArray } from "@/shared/utils/array";
+import { formatDate } from "@/shared/utils/formatter";
 import { Circle, Stack } from "@chakra-ui/react";
 import { useFormik } from "formik";
 import {

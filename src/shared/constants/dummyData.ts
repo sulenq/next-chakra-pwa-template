@@ -1,4 +1,4 @@
-import { Gender } from "@/constants/types";
+import { Gender } from "@/shared/constants/types";
 import { Interface__User } from "./interfaces";
 const generate1D = () => {
   let v23 = 80;

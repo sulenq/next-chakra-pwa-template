@@ -6,15 +6,15 @@ import { StackH, StackV } from "@/components/ui/stack";
 import { DesktopNavs } from "@/components/widgets/navs";
 import {
   ConstrainedContainer,
-  View,
+  Main,
   useViewContext,
 } from "@/components/widgets/view";
-import { APP } from "@/constants/_meta";
-import { OTHER_PRIVATE_NAV_GROUPS } from "@/constants/navs";
-import { GAP, R_SPACING_MD } from "@/constants/styles";
+import { APP } from "@/shared/constants/_meta";
+import { OTHER_PRIVATE_NAV_GROUPS } from "@/shared/constants/navs";
+import { GAP, R_SPACING_MD } from "@/shared/constants/styles";
 import { useLocale } from "@/contexts/useLocale";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
-import { formatAbsDate } from "@/utils/formatter";
+import { formatAbsDate } from "@/shared/utils/formatter";
 import { usePathname } from "next/navigation";
 
 const NAVS =
@@ -61,7 +61,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             rounded={themeConfig.radii.container}
             overflowY={"auto"}
           >
-            <View.Header
+            <Main.Header
               withTitle
               title={t.settings}
               px={isSmContainer ? "6px" : R_SPACING_MD}
@@ -93,13 +93,13 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
       {/* Content */}
       {showContent && (
-        <View.Root className={"scrollY"} flex={1}>
+        <Main.Root className={"scrollY"} flex={1}>
           <ConstrainedContainer flex={1} p={GAP}>
-            {pathname !== ROOT_PATH && <View.Header withTitle px={4} />}
+            {pathname !== ROOT_PATH && <Main.Header withTitle px={4} />}
 
             <CContainer flex={1}>{children}</CContainer>
           </ConstrainedContainer>
-        </View.Root>
+        </Main.Root>
       )}
     </StackH>
   );

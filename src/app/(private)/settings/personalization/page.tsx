@@ -15,16 +15,16 @@ import { DotIndicator } from "@/components/widgets/indicator";
 import { Item } from "@/components/widgets/item";
 import { LocalSettingsHelperText } from "@/components/widgets/local-settings-helper-text";
 import { ToggleSettingContainer } from "@/components/widgets/settings-shell";
-import { COLOR_PALETTES } from "@/constants/colors";
-import { Interface__SelectOption } from "@/constants/interfaces";
-import { ROUNDED_PRESETS } from "@/constants/presets";
-import { OPTIONS_RELIGION } from "@/constants/selectOptions";
-import { R_SPACING_MD } from "@/constants/styles";
+import { COLOR_PALETTES } from "@/shared/constants/colors";
+import { Interface__SelectOption } from "@/shared/constants/interfaces";
+import { ROUNDED_PRESETS } from "@/shared/constants/presets";
+import { OPTIONS_RELIGION } from "@/shared/constants/selectOptions";
+import { R_SPACING_MD } from "@/shared/constants/styles";
 import useADM from "@/contexts/useADM";
 import { useLocale } from "@/contexts/useLocale";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
-import { formatTime } from "@/utils/formatter";
-import { interpolateString } from "@/utils/string";
+import { formatTime } from "@/shared/utils/formatter";
+import { interpolateString } from "@/shared/utils/string";
 import { Box, Center, Circle, HStack, SimpleGrid } from "@chakra-ui/react";
 import {
   EclipseIcon,

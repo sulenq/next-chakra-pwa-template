@@ -1,7 +1,7 @@
 "use client";
 
 import { CContainer } from "@/components/ui/c-container";
-import { getMonthNames } from "@/constants/months";
+import { getMonthNames } from "@/shared/constants/months";
 import { useLocale } from "@/contexts/useLocale";
 import { StackProps } from "@chakra-ui/react";
 

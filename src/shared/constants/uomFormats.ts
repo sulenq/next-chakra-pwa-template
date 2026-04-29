@@ -1,4 +1,4 @@
-import { UnitKey } from "@/constants/types";
+import { UnitKey } from "@/shared/constants/types";
 
 export const UOM_FORMATS: {
   key: string;

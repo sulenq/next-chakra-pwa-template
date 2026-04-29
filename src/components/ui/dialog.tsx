@@ -1,9 +1,9 @@
 "use client";
 
 import { CloseButton } from "@/components/ui/close-button";
-import { BACKDROP_BLUR_FILTER } from "@/constants/styles";
+import { BACKDROP_BLUR_FILTER } from "@/shared/constants/styles";
 import { useScreen } from "@/hooks/useScreen";
-import { back } from "@/utils/client";
+import { back } from "@/shared/utils/client";
 import {
   Dialog as ChakraDialog,
   DialogPositionerProps,

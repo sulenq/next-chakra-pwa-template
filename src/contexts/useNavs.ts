@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { getStorage, setStorage } from "@/utils/client";
+import { getStorage, setStorage } from "@/shared/utils/client";
 
 const STORAGE_KEY = "isNavsExpanded";
 

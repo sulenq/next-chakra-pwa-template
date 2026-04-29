@@ -2,10 +2,10 @@ import { toaster } from "@/components/ui/toaster";
 import {
   Interface__Req,
   Interface__RequestState,
-} from "@/constants/interfaces";
+} from "@/shared/constants/interfaces";
 import { useLocale } from "@/contexts/useLocale";
-import { clearAccessToken, clearUserData } from "@/utils/auth";
-import { request } from "@/utils/request";
+import { clearAccessToken, clearUserData } from "@/shared/utils/auth";
+import { request } from "@/shared/utils/request";
 import { useRouter } from "next/navigation";
 import { useCallback, useRef, useState } from "react";
 

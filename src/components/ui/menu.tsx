@@ -1,6 +1,6 @@
 "use client";
 
-import { BACKDROP_BLUR_FILTER, GAP } from "@/constants/styles";
+import { BACKDROP_BLUR_FILTER, GAP } from "@/shared/constants/styles";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
 import {
   AbsoluteCenter,

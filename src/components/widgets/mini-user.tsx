@@ -4,8 +4,8 @@ import { Avatar } from "@/components/ui/avatar";
 import { StackH, StackV } from "@/components/ui/stack";
 import { ClampText } from "@/components/widgets/clamp-text";
 import { ImgViewer } from "@/components/widgets/img-viewer";
-import { Interface__User } from "@/constants/interfaces";
-import { imgUrl } from "@/utils/url";
+import { Interface__User } from "@/shared/constants/interfaces";
+import { imgUrl } from "@/shared/utils/url";
 import { StackProps } from "@chakra-ui/react";
 
 // -----------------------------------------------------------------

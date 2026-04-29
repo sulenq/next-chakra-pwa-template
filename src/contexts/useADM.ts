@@ -1,4 +1,4 @@
-import { getStorage, setStorage } from "@/utils/client";
+import { getStorage, setStorage } from "@/shared/utils/client";
 import { create } from "zustand";
 
 const STORAGE_KEY = "adm";

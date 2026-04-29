@@ -1,7 +1,7 @@
 "use client";
 
 import { CloseButton } from "@/components/ui/close-button";
-import { BACKDROP_BLUR_FILTER } from "@/constants/styles";
+import { BACKDROP_BLUR_FILTER } from "@/shared/constants/styles";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
 import {
   Popover as ChakraPopover,

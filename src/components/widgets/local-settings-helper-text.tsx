@@ -2,7 +2,7 @@
 
 import { CContainer } from "@/components/ui/c-container";
 import { HelperText } from "@/components/ui/helper-text";
-import { R_SPACING_MD } from "@/constants/styles";
+import { R_SPACING_MD } from "@/shared/constants/styles";
 import { useLocale } from "@/contexts/useLocale";
 
 // -----------------------------------------------------------------

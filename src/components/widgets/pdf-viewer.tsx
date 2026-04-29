@@ -10,7 +10,7 @@ import { Tooltip } from "@/components/ui/tooltip";
 import { AppIconLucide } from "@/components/widgets/app-icon";
 import FeedbackState from "@/components/widgets/feedback-state";
 import { ScrollH } from "@/components/widgets/scroll-h";
-import { GAP } from "@/constants/styles";
+import { GAP } from "@/shared/constants/styles";
 import { useLocale } from "@/contexts/useLocale";
 import { Box, Icon, StackProps, VStack } from "@chakra-ui/react";
 import {

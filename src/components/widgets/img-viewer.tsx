@@ -9,8 +9,8 @@ import { NavLink } from "@/components/ui/nav-link";
 import { StackV } from "@/components/ui/stack";
 import { useLocale } from "@/contexts/useLocale";
 import { usePopDisclosure } from "@/hooks/usePopDisclosure";
-import { back } from "@/utils/client";
-import { disclosureId } from "@/utils/disclosure";
+import { back } from "@/shared/utils/client";
+import { disclosureId } from "@/shared/utils/disclosure";
 import { Icon, StackProps } from "@chakra-ui/react";
 import { IconArrowUpRight } from "@tabler/icons-react";
 
