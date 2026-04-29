@@ -1,7 +1,11 @@
+import { HandleRequestOptions } from "./request.types";
+import {
+  resolveErrorToast,
+  resolveLoadingToast,
+  resolveSuccessToast,
+  shouldShowErrorToast,
+} from "./toast";
 import { toaster } from "@/components/ui/toaster";
-import { HandleRequestOptions } from "./types/request.types";
-import { shouldShowErrorToast } from "./toastRules";
-import { resolveErrorToast } from "./toastResolver";
 
 export const handleRequest = async <T>({
   fn,
@@ -12,57 +16,29 @@ export const handleRequest = async <T>({
   onError,
 }: HandleRequestOptions<T>) => {
   try {
-    if (toast?.loading) {
-      const msg =
-        typeof toast.loading === "object"
-          ? toast.loading
-          : {
-              title: t.loading_default.title,
-              description: t.loading_default.description,
-            };
+    const loading = resolveLoadingToast(toast, t);
 
-      toaster.loading({ id, ...msg });
+    if (loading) {
+      toaster.loading({ id, ...loading });
     }
 
     const res = await fn();
 
-    if (toast?.success) {
-      const msg =
-        typeof toast.success === "object"
-          ? toast.success
-          : {
-              title: t.success_default.title,
-              description: t.success_default.description,
-            };
+    const success = resolveSuccessToast(res, toast, t);
 
-      if (toast?.loading) {
-        toaster.update(id, { type: "success", ...msg });
-      } else {
-        toaster.success(msg);
-      }
-    } else {
-      toaster.dismiss(id);
+    if (success) {
+      toaster.success(success);
     }
 
     onSuccess?.(res);
     return res;
-  } catch (e: any) {
-    const status = e.response?.status;
-    const errorCase = e.response?.data?.case;
-
-    const show = shouldShowErrorToast(toast, status, errorCase);
-
-    if (show) {
-      const msg = resolveErrorToast(e, t, toast?.error);
-
-      if (toast?.loading) {
-        toaster.update(id, { type: "error", ...msg });
-      } else {
-        toaster.error(msg);
-      }
+  } catch (err: any) {
+    if (shouldShowErrorToast(err, toast)) {
+      const msg = resolveErrorToast(err, toast, t);
+      toaster.error(msg);
     }
 
-    onError?.(e);
-    throw e;
+    onError?.(err);
+    throw err;
   }
 };

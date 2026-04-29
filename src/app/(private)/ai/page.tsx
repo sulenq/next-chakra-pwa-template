@@ -19,7 +19,7 @@ import { LucideIcon } from "@/components/widgets/icon";
 import { Item } from "@/components/widgets/item";
 import { MiniUser } from "@/components/widgets/mini-user";
 import { SimpleDisclosure } from "@/components/widgets/simple-disclosure";
-import { Main, useViewContext } from "@/components/widgets/view";
+import { MainView, useViewContext } from "@/components/widgets/main-view";
 import { dummyUsers } from "@/shared/constants/dummyData";
 import {
   BatchOptionsTableOptionGenerator,
@@ -620,15 +620,16 @@ export default function Page() {
   // States
   const pathname = usePathname();
   const activeNav = getActiveNavs(pathname);
-  const routeTitle = pluckString(t, last(activeNav)?.labelKey || "");
+  const routeTitle =
+    last(activeNav)?.label || pluckString(t, last(activeNav)?.labelKey || "");
   const [filter, setFilter] = useState(DEFAULT_FILTER);
 
   return (
-    <Main.Content p={GAP}>
+    <MainView.Content p={GAP}>
       <CContainer flex={1} overflowY={"auto"}>
-        <Main.Header
+        <MainView.Header
           withTitle
-          ViewTitleProps={{
+          MainViewTitleProps={{
             ml: [2, null, 0],
           }}
           justify={"space-between"}
@@ -644,7 +645,7 @@ export default function Page() {
 
             <Create />
           </HStack>
-        </Main.Header>
+        </MainView.Header>
 
         {isSmContainer && (
           <ScrollH mb={4}>
@@ -666,6 +667,6 @@ export default function Page() {
           />
         </Item.Body>
       </CContainer>
-    </Main.Content>
+    </MainView.Content>
   );
 }

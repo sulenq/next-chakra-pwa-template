@@ -6,9 +6,9 @@ import { StackH, StackV } from "@/components/ui/stack";
 import { DesktopNavs } from "@/components/widgets/navs";
 import {
   ConstrainedContainer,
-  Main,
+  MainView,
   useViewContext,
-} from "@/components/widgets/view";
+} from "@/components/widgets/main-view";
 import { APP } from "@/shared/constants/_meta";
 import { OTHER_PRIVATE_NAV_GROUPS } from "@/shared/constants/navs";
 import { GAP, R_SPACING_MD } from "@/shared/constants/styles";
@@ -61,7 +61,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             rounded={themeConfig.radii.container}
             overflowY={"auto"}
           >
-            <Main.Header
+            <MainView.Header
               withTitle
               title={t.settings}
               px={isSmContainer ? "6px" : R_SPACING_MD}
@@ -93,13 +93,13 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
       {/* Content */}
       {showContent && (
-        <Main.Root className={"scrollY"} flex={1}>
+        <MainView.Root className={"scrollY"} flex={1}>
           <ConstrainedContainer flex={1} p={GAP}>
-            {pathname !== ROOT_PATH && <Main.Header withTitle px={4} />}
+            {pathname !== ROOT_PATH && <MainView.Header withTitle px={4} />}
 
             <CContainer flex={1}>{children}</CContainer>
           </ConstrainedContainer>
-        </Main.Root>
+        </MainView.Root>
       )}
     </StackH>
   );

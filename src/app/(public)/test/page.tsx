@@ -3,7 +3,7 @@
 import { ColorModeButton } from "@/components/ui/color-mode";
 import { P, TNum } from "@/components/ui/p";
 import { StackV } from "@/components/ui/stack";
-import { TopBar, Main } from "@/components/widgets/view";
+import { TopBar, MainView } from "@/components/widgets/main-view";
 
 export default function Page() {
   // Data nested array 3x3
@@ -14,7 +14,7 @@ export default function Page() {
   ];
 
   return (
-    <Main.Root minH={"100svh"} gap={6} p={4}>
+    <MainView.Root minH={"100svh"} gap={6} p={4}>
       <ColorModeButton />
       <TopBar />
 
@@ -39,6 +39,6 @@ export default function Page() {
           </P>
         ))}
       </StackV>
-    </Main.Root>
+    </MainView.Root>
   );
 }

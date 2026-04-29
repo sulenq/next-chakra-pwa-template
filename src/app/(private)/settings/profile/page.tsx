@@ -18,7 +18,7 @@ import FeedbackNotFound from "@/components/widgets/feedback-not-found";
 import FeedbackRetry from "@/components/widgets/feedback-retry";
 import { Item } from "@/components/widgets/item";
 import { UserIdCard } from "@/components/widgets/user-id-card";
-import { useViewContext } from "@/components/widgets/view";
+import { useViewContext } from "@/components/widgets/main-view";
 import {
   DUMMY_USER,
   dummyActivityLogs,

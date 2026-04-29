@@ -245,62 +245,61 @@ const ViewContext = createContext<ViewContextInterface | null>(null);
 export function useViewContext() {
   const context = useContext(ViewContext);
   if (!context) {
-    throw new Error("useViewContext must be used inside Main.Root");
+    throw new Error("useViewContext must be used inside MainView.Root");
   }
   return context;
 }
 
-const MainRoot = forwardRef<HTMLDivElement, StackProps>(function MainRoot(
-  { children, ...restProps },
-  ref,
-) {
-  // Refs
-  const containerRef = useRef<HTMLDivElement>(null);
-  const mergeRef = useMergedRefs(containerRef, ref);
+const MainViewRoot = forwardRef<HTMLDivElement, StackProps>(
+  function MainViewRoot({ children, ...restProps }, ref) {
+    // Refs
+    const containerRef = useRef<HTMLDivElement>(null);
+    const mergeRef = useMergedRefs(containerRef, ref);
 
-  // Hooks
-  const dimension = useContainerDimension(containerRef);
+    // Hooks
+    const dimension = useContainerDimension(containerRef);
 
-  // States
-  const isValidDimension = dimension.width > 0 && dimension.height > 0;
-  const isSmContainer = dimension.width < 600;
+    // States
+    const isValidDimension = dimension.width > 0 && dimension.height > 0;
+    const isSmContainer = dimension.width < 600;
 
-  // Constants
-  const contextValue = useMemo(
-    () => ({ dimension, isValidDimension, isSmContainer }),
-    [dimension, isValidDimension, isSmContainer],
-  );
+    // Constants
+    const contextValue = useMemo(
+      () => ({ dimension, isValidDimension, isSmContainer }),
+      [dimension, isValidDimension, isSmContainer],
+    );
 
-  return (
-    <ViewContext.Provider value={contextValue}>
-      <StackV
-        ref={mergeRef}
-        className={"page-container"}
-        flex={1}
-        overflow={"auto"}
-        {...restProps}
-      >
-        {isValidDimension && children}
-      </StackV>
-    </ViewContext.Provider>
-  );
-});
+    return (
+      <ViewContext.Provider value={contextValue}>
+        <StackV
+          ref={mergeRef}
+          className={"page-container"}
+          flex={1}
+          overflow={"auto"}
+          {...restProps}
+        >
+          {isValidDimension && children}
+        </StackV>
+      </ViewContext.Provider>
+    );
+  },
+);
 
 // -----------------------------------------------------------------
 
-export interface MainHeaderProps extends StackProps {
+export interface MainViewHeaderProps extends StackProps {
   withTitle?: boolean;
   title?: string;
-  MainTitleProps?: PProps;
+  MainViewTitleProps?: PProps;
 }
 
-const MainHeader = (props: MainHeaderProps) => {
+const MainViewHeader = (props: MainViewHeaderProps) => {
   // Props
   const {
     children,
     withTitle = false,
     title,
-    MainTitleProps,
+    MainViewTitleProps,
     ...restProps
   } = props;
 
@@ -330,7 +329,9 @@ const MainHeader = (props: MainHeaderProps) => {
       rounded={themeConfig.radii.container}
       {...restProps}
     >
-      {withTitle && <MainTitle {...MainTitleProps}>{resolvedTitle}</MainTitle>}
+      {withTitle && (
+        <MainViewTitle {...MainViewTitleProps}>{resolvedTitle}</MainViewTitle>
+      )}
 
       {children}
     </HStack>
@@ -339,7 +340,7 @@ const MainHeader = (props: MainHeaderProps) => {
 
 // -----------------------------------------------------------------
 
-const MainTitle = (props: PProps) => {
+const MainViewTitle = (props: PProps) => {
   // Props
   const { children = "", ...restProps } = props;
 
@@ -357,8 +358,8 @@ const MainTitle = (props: PProps) => {
 
 // -----------------------------------------------------------------
 
-const MainContent = forwardRef<HTMLDivElement, StackProps>(
-  function MainContent(props, ref) {
+const MainViewContent = forwardRef<HTMLDivElement, StackProps>(
+  function MainViewContent(props, ref) {
     // Props
     const { children, ...restProps } = props;
 
@@ -373,9 +374,9 @@ const MainContent = forwardRef<HTMLDivElement, StackProps>(
   },
 );
 
-export const Main = {
-  Root: MainRoot,
-  Content: MainContent,
-  Header: MainHeader,
-  Title: MainTitle,
+export const MainView = {
+  Root: MainViewRoot,
+  Content: MainViewContent,
+  Header: MainViewHeader,
+  Title: MainViewTitle,
 };

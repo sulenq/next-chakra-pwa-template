@@ -2,6 +2,7 @@ import { Interface__NavGroup } from "@/shared/constants/interfaces";
 import {
   ActivityIcon,
   BlocksIcon,
+  BrainIcon,
   BrushIcon,
   ChartPieIcon,
   DatabaseIcon,
@@ -11,7 +12,6 @@ import {
   ShieldHalfIcon,
   UserCogIcon,
   UserIcon,
-  UsersIcon,
 } from "lucide-react";
 
 export const PRIVATE_NAV_GROUPS: Interface__NavGroup[] = [
@@ -25,9 +25,10 @@ export const PRIVATE_NAV_GROUPS: Interface__NavGroup[] = [
         allowedRoles: [],
       },
       {
-        icon: UsersIcon,
+        icon: BrainIcon,
+        label: "Ai Knowledge",
         labelKey: "navs.user",
-        path: `/user`,
+        path: `/ai`,
         allowedRoles: [],
       },
       {

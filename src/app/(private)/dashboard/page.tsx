@@ -14,7 +14,7 @@ import FeedbackNoData from "@/components/widgets/feedback-no-data";
 import FeedbackRetry from "@/components/widgets/feedback-retry";
 import { DotIndicator } from "@/components/widgets/indicator";
 import { Item } from "@/components/widgets/item";
-import { Main, useViewContext } from "@/components/widgets/view";
+import { MainView, useViewContext } from "@/components/widgets/main-view";
 import { DUMMY_DASHBOARD_DATA } from "@/shared/constants/dummyData";
 import { getMonthNames } from "@/shared/constants/months";
 import { GAP, R_SPACING_MD } from "@/shared/constants/styles";
@@ -559,7 +559,7 @@ export default function Page() {
   };
 
   return (
-    <Main.Content gap={GAP} p={GAP}>
+    <MainView.Content gap={GAP} p={GAP}>
       <StackH
         wrap={"wrap"}
         align={"center"}
@@ -597,6 +597,6 @@ export default function Page() {
           </>
         )}
       </StackV>
-    </Main.Content>
+    </MainView.Content>
   );
 }

@@ -20,7 +20,11 @@ import {
 } from "@/components/widgets/navs";
 import { ProfileMenuTrigger } from "@/components/widgets/profile-menu";
 import { Today } from "@/components/widgets/today";
-import { NavBreadcrumb, TopBar, Main } from "@/components/widgets/view";
+import {
+  NavBreadcrumb,
+  TopBar,
+  MainView,
+} from "@/components/widgets/main-view";
 import { APP } from "@/shared/constants/_meta";
 import {
   OTHER_PRIVATE_NAV_GROUPS,
@@ -80,7 +84,11 @@ const MobileLayout = (props: any) => {
   return (
     <StackV flex={1} overflowY={"auto"} {...restProps}>
       {/* Content */}
-      <Main.Root flex={1} bg={MOBILE_CONTENT_CONTAINER_BG} overflowY={"auto"}>
+      <MainView.Root
+        flex={1}
+        bg={MOBILE_CONTENT_CONTAINER_BG}
+        overflowY={"auto"}
+      >
         {/* Content header */}
         <StackV gap={2}>
           <HStack w={"full"} justify={"space-between"} pt={2} px={4}>
@@ -112,7 +120,7 @@ const MobileLayout = (props: any) => {
         </StackV>
 
         {children}
-      </Main.Root>
+      </MainView.Root>
 
       {/* Navs */}
       <ScrollH
@@ -498,7 +506,7 @@ const DesktopLayout = (props: any) => {
         </StackV>
 
         {/* Content */}
-        <Main.Root w={"full"} overflowY={"auto"}>
+        <MainView.Root w={"full"} overflowY={"auto"}>
           <StackV px={GAP}>
             <StackH
               align={"center"}
@@ -516,7 +524,7 @@ const DesktopLayout = (props: any) => {
           <MContainerV flex={1} overflow={"auto"}>
             {children}
           </MContainerV>
-        </Main.Root>
+        </MainView.Root>
       </StackH>
     </StackV>
   );
