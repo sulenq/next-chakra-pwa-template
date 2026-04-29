@@ -1,4 +1,3 @@
-import "@/app/globals.css";
 import { Provider } from "@/components/ui/provider";
 import { Toaster } from "@/components/ui/toaster";
 import ClientRoot from "@/components/widgets/client-root";
@@ -6,8 +5,11 @@ import { APP } from "@/constants/_meta";
 import { disclosurePrefixId } from "@/utils/disclosure";
 import { Metadata, Viewport } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
+import "./globals.css";
 
-// -----------------------------------------------------------------
+interface Props {
+  children: React.ReactNode;
+}
 
 export const metadata: Metadata = {
   applicationName: APP.name,
@@ -45,8 +47,6 @@ export const metadata: Metadata = {
   },
 };
 
-// -----------------------------------------------------------------
-
 export const viewport: Viewport = {
   themeColor: "#000000",
   width: "device-width",
@@ -56,21 +56,19 @@ export const viewport: Viewport = {
   userScalable: false,
 };
 
-// -----------------------------------------------------------------
-
 const font = Plus_Jakarta_Sans({
   subsets: ["latin"],
-  preload: true,
   display: "swap",
 });
 
-// -----------------------------------------------------------------
+const RootLayout = (props: Props) => {
+  // Props
+  const { children } = props;
 
-const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <html suppressHydrationWarning className={`${font.className}`}>
+    <html suppressHydrationWarning>
       <head>
-        <link rel={"manifest"} href={"/manifest.json"} />
+        <link rel="manifest" href="/manifest.json" />
       </head>
 
       <body style={font.style}>
