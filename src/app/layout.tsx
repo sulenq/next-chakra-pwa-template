@@ -58,8 +58,9 @@ export const viewport: Viewport = {
 
 // -----------------------------------------------------------------
 
-const plusJakartaSans = Plus_Jakarta_Sans({
+const font = Plus_Jakarta_Sans({
   subsets: ["latin"],
+  preload: true,
   display: "swap",
 });
 
@@ -67,12 +68,12 @@ const plusJakartaSans = Plus_Jakarta_Sans({
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <html suppressHydrationWarning className={`${plusJakartaSans.className}`}>
+    <html suppressHydrationWarning className={`${font.className}`}>
       <head>
         <link rel={"manifest"} href={"/manifest.json"} />
       </head>
 
-      <body style={plusJakartaSans.style}>
+      <body style={font.style}>
         <script
           dangerouslySetInnerHTML={{
             __html: `
