@@ -37,7 +37,7 @@ export default function Page() {
       </StackV>
 
       <VStack>
-        <BrandWatermark />
+        <BrandWatermark my={4} />
       </VStack>
     </StackV>
   );
