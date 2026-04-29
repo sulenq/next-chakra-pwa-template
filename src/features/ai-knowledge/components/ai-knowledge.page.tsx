@@ -26,24 +26,20 @@ import useRenderTrigger from "@/contexts/useRenderTrigger";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
 import { useFetchData } from "@/hooks/useFetchData";
 import { usePopDisclosure } from "@/hooks/usePopDisclosure";
-import { useRequest } from "@/hooks/useRequest";
-import { dummyUsers } from "@/shared/constants/dummyData";
+import { useRequest } from "@/hooks/useRequestOld";
+import { dummyUsers } from "@/constants/dummyData";
 import {
   BatchOptionsTableOptionGenerator,
   DataProps,
   RowOptionsTableOptionGenerator,
-} from "@/shared/constants/interfaces";
-import {
-  BASE_ICON_BOX_SIZE,
-  GAP,
-  R_SPACING_MD,
-} from "@/shared/constants/styles";
-import { isEmptyArray, last } from "@/shared/utils/array";
-import { back } from "@/shared/utils/client";
-import { disclosureId } from "@/shared/utils/disclosure";
-import { formatDate } from "@/shared/utils/formatter";
-import { capitalize, pluckString } from "@/shared/utils/string";
-import { getActiveNavs, imgUrl } from "@/shared/utils/url";
+} from "@/constants/interfaces";
+import { BASE_ICON_BOX_SIZE, GAP, R_SPACING_MD } from "@/constants/styles";
+import { isEmptyArray, last } from "@/utils/array";
+import { back } from "@/utils/client";
+import { disclosureId } from "@/utils/disclosure";
+import { formatDate } from "@/utils/formatter";
+import { capitalize, pluckString } from "@/utils/string";
+import { getActiveNavs, imgUrl } from "@/utils/url";
 import { HStack, Icon } from "@chakra-ui/react";
 import { useFormik } from "formik";
 import {

@@ -3,8 +3,8 @@ import {
   clearUserData,
   getAccessToken,
   setAccessToken,
-} from "@/shared/utils/auth";
-import { removeStorage } from "@/shared/utils/client";
+} from "@/utils/auth";
+import { removeStorage } from "@/utils/client";
 import { create } from "zustand";
 
 type AuthMiddlewareStore = {

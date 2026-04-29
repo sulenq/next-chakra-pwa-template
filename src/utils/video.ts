@@ -1,4 +1,4 @@
-import { getStorage, setStorage } from "@/shared/utils/client";
+import { getStorage, setStorage } from "@/utils/client";
 
 // play video safely
 export const playVideo = async (video: HTMLVideoElement | null) => {

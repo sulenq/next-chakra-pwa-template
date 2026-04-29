@@ -1,5 +1,5 @@
+import { useRequest } from "@/hooks/useRequest";
 import { useEffect, useRef, useState } from "react";
-import { useRequest } from "./useRequest";
 
 export const useList = <T, Q>({
   fetcher,

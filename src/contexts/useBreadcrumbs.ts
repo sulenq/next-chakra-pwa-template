@@ -1,4 +1,4 @@
-import { Nav } from "@/shared/constants/interfaces";
+import { Nav } from "@/constants/interfaces";
 import { create } from "zustand";
 
 type BreadcrumbsState = {

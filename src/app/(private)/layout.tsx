@@ -25,11 +25,8 @@ import {
   TopBar,
   MainView,
 } from "@/components/widgets/main-view";
-import { APP } from "@/shared/constants/_meta";
-import {
-  OTHER_PRIVATE_NAV_GROUPS,
-  PRIVATE_NAV_GROUPS,
-} from "@/shared/constants/navs";
+import { APP } from "@/constants/_meta";
+import { OTHER_PRIVATE_NAV_GROUPS, PRIVATE_NAV_GROUPS } from "@/constants/navs";
 import {
   DESKTOP_ACTIVE_NAV_BTN_VARIANT,
   DESKTOP_NAV_BTN_ICON_BG,
@@ -46,17 +43,17 @@ import {
   R_SPACING_MD,
   TOP_BAR_H,
   USER_PANEL_H,
-} from "@/shared/constants/styles";
+} from "@/constants/styles";
 import { useLocale } from "@/contexts/useLocale";
 import useNavs from "@/contexts/useNavs";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
 import { AuthGuard } from "@/features/auth/components/auth-guard";
 import { useIsSmScreenWidth } from "@/hooks/useIsSmScreenWidth";
 import { useScreen } from "@/hooks/useScreen";
-import { last } from "@/shared/utils/array";
-import { getUserData } from "@/shared/utils/auth";
-import { pluckString } from "@/shared/utils/string";
-import { getActiveNavs, imgUrl } from "@/shared/utils/url";
+import { last } from "@/utils/array";
+import { getUserData } from "@/utils/auth";
+import { pluckString } from "@/utils/string";
+import { getActiveNavs, imgUrl } from "@/utils/url";
 import { Center, HStack, VStack } from "@chakra-ui/react";
 import { ChevronsLeftIcon, ChevronsRightIcon, ServerIcon } from "lucide-react";
 import { usePathname } from "next/navigation";

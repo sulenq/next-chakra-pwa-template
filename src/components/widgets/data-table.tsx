@@ -10,7 +10,7 @@ import {
   FormattedTableHeader,
   FormattedTableRow,
   RowOptionsTableOptionGenerator,
-} from "@/shared/constants/interfaces";
+} from "@/constants/interfaces";
 import {
   BACKDROP_BLUR_FILTER,
   GAP,
@@ -25,11 +25,11 @@ import {
   TABLE_TH_BG,
   TABLE_TH_BORDER_COLOR,
   TABLE_TH_H,
-} from "@/shared/constants/styles";
-import { Type__SortHandler } from "@/shared/constants/types";
+} from "@/constants/styles";
+import { Type__SortHandler } from "@/constants/types";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
 import { useScreen } from "@/hooks/useScreen";
-import { isEmptyArray } from "@/shared/utils/array";
+import { isEmptyArray } from "@/utils/array";
 import {
   Box,
   Center,

@@ -1,7 +1,7 @@
 "use client";
 
 import { CContainer } from "@/components/ui/c-container";
-import { SVGS_PATH } from "@/shared/constants/paths";
+import { SVGS_PATH } from "@/constants/paths";
 import { Center, CenterProps, Icon, StackProps } from "@chakra-ui/react";
 import { ImageIcon, LucideIcon } from "lucide-react";
 import Image, { ImageProps } from "next/image";

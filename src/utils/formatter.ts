@@ -1,21 +1,21 @@
-import { getMonthNames } from "@/shared/constants/months";
+import { getMonthNames } from "@/constants/months";
 import {
   Type__DateFormat,
   DateVariant,
   Translations,
   Type__TimeFormat,
   UnitKey,
-} from "@/shared/constants/types";
-import { UOM_FORMATS } from "@/shared/constants/uomFormats";
-import { getWeekdayNames } from "@/shared/constants/weekdays";
+} from "@/constants/types";
+import { UOM_FORMATS } from "@/constants/uomFormats";
+import { getWeekdayNames } from "@/constants/weekdays";
 import useUOMFormat from "@/contexts/useUOMFormat";
-import { getStorage } from "@/shared/utils/client";
+import { getStorage } from "@/utils/client";
 import { isValid, parseISO } from "date-fns";
 import { format as formatTz, toZonedTime } from "date-fns-tz";
-import { isDateObject } from "@/shared/utils/date";
-import { getTimezoneOffsetMs, getUserTimezone } from "@/shared/utils/time";
-import { TIME_ZONES } from "@/shared/constants/timezone";
-import { NUMBER_LOCALE } from "@/shared/constants/styles";
+import { isDateObject } from "@/utils/date";
+import { getTimezoneOffsetMs, getUserTimezone } from "@/utils/time";
+import { TIME_ZONES } from "@/constants/timezone";
+import { NUMBER_LOCALE } from "@/constants/styles";
 
 export const formatDate = (
   date: Date | string | null | undefined,

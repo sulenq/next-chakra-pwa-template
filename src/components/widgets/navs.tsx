@@ -14,7 +14,7 @@ import FeedbackNotFound from "@/components/widgets/feedback-not-found";
 import { LeftIndicator } from "@/components/widgets/indicator";
 import { Item } from "@/components/widgets/item";
 import { ProfileMenuTrigger } from "@/components/widgets/profile-menu";
-import { NavGroup } from "@/shared/constants/interfaces";
+import { NavGroup } from "@/constants/interfaces";
 import {
   BACKDROP_BLUR_FILTER,
   BASE_ICON_BOX_SIZE,
@@ -27,13 +27,13 @@ import {
   DESKTOP_NAV_BTN_VARIANT,
   DESKTOP_NAV_GAP,
   R_SPACING_MD,
-} from "@/shared/constants/styles";
+} from "@/constants/styles";
 import { useLocale } from "@/contexts/useLocale";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
-import { isEmptyArray } from "@/shared/utils/array";
-import { getUserData } from "@/shared/utils/auth";
-import { pluckString } from "@/shared/utils/string";
-import { imgUrl } from "@/shared/utils/url";
+import { isEmptyArray } from "@/utils/array";
+import { getUserData } from "@/utils/auth";
+import { pluckString } from "@/utils/string";
+import { imgUrl } from "@/utils/url";
 import { Box, Center, HStack, Icon, StackProps } from "@chakra-ui/react";
 import { IconCircleFilled } from "@tabler/icons-react";
 import {

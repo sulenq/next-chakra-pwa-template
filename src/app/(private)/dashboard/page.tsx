@@ -15,17 +15,17 @@ import FeedbackRetry from "@/components/widgets/feedback-retry";
 import { DotIndicator } from "@/components/widgets/indicator";
 import { Item } from "@/components/widgets/item";
 import { MainView, useViewContext } from "@/components/widgets/main-view";
-import { DUMMY_DASHBOARD_DATA } from "@/shared/constants/dummyData";
-import { getMonthNames } from "@/shared/constants/months";
-import { GAP, R_SPACING_MD } from "@/shared/constants/styles";
-import { Type__ChartData } from "@/shared/constants/types";
+import { DUMMY_DASHBOARD_DATA } from "@/constants/dummyData";
+import { getMonthNames } from "@/constants/months";
+import { GAP, R_SPACING_MD } from "@/constants/styles";
+import { Type__ChartData } from "@/constants/types";
 import { useLocale } from "@/contexts/useLocale";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
 import { useFetchData } from "@/hooks/useFetchData";
-import { getUserData } from "@/shared/utils/auth";
-import { formatDuration, formatNumber } from "@/shared/utils/formatter";
-import { isObjectDeepEmpty } from "@/shared/utils/object";
-import { capitalizeWords, interpolateString } from "@/shared/utils/string";
+import { getUserData } from "@/utils/auth";
+import { formatDuration, formatNumber } from "@/utils/formatter";
+import { isObjectDeepEmpty } from "@/utils/object";
+import { capitalizeWords, interpolateString } from "@/utils/string";
 import { Chart, useChart } from "@chakra-ui/charts";
 import {
   Badge,

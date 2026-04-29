@@ -1,7 +1,7 @@
 import { SelectInput, SelectInputProps } from "@/components/ui/select-input";
-import { SelectOption } from "@/shared/constants/interfaces";
-import { useRequest } from "@/hooks/useRequest";
-import { capitalizeWords } from "@/shared/utils/string";
+import { SelectOption } from "@/constants/interfaces";
+import { useRequest } from "@/hooks/useRequestOld";
+import { capitalizeWords } from "@/utils/string";
 import { useEffect, useState } from "react";
 
 // -----------------------------------------------------------------

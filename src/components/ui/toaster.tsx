@@ -5,12 +5,9 @@ import { CContainer } from "@/components/ui/c-container";
 import { useColorMode } from "@/components/ui/color-mode";
 import { Spinner } from "@/components/ui/spinner";
 import { LucideIcon } from "@/components/widgets/icon";
-import {
-  BACKDROP_BLUR_FILTER,
-  SM_SCREEN_W_NUMBER,
-} from "@/shared/constants/styles";
+import { BACKDROP_BLUR_FILTER, SM_SCREEN_W_NUMBER } from "@/constants/styles";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
-import { isClient } from "@/shared/utils/client";
+import { isClient } from "@/utils/client";
 import {
   Center,
   Toaster as ChakraToaster,

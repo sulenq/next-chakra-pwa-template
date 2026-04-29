@@ -1,5 +1,5 @@
-import { NavGroup } from "@/shared/constants/interfaces";
-import { RESOLVED_NAVS } from "@/shared/constants/navs";
+import { NavGroup } from "@/constants/interfaces";
+import { RESOLVED_NAVS } from "@/constants/navs";
 
 export function generateWAUrl(phone: string, message: string = ""): void {
   const sanitizedPhone = phone.trim().replace(/[^0-9]/g, "");

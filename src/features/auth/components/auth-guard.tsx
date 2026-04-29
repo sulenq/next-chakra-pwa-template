@@ -1,12 +1,8 @@
 import { VerifyingScreen } from "@/components/widgets/verifying-screen";
-import { AUTH_API_USER_PROFILE } from "@/shared/constants/apis";
+import { AUTH_API_USER_PROFILE } from "@/constants/apis";
 import { useAuthMiddleware } from "@/contexts/useAuthMiddleware";
-import { useRequest } from "@/hooks/useRequest";
-import {
-  getAccessToken,
-  setAccessToken,
-  setUserData,
-} from "@/shared/utils/auth";
+import { useRequest } from "@/hooks/useRequestOld";
+import { getAccessToken, setAccessToken, setUserData } from "@/utils/auth";
 import { useRouter } from "next/navigation";
 import { useRef } from "react";
 

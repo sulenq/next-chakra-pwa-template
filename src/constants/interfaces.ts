@@ -1,6 +1,6 @@
 import { BtnProps } from "@/components/ui/btn";
-import { ActivityActionEnum } from "@/shared/constants/enums";
-import { Gender } from "@/shared/constants/types";
+import { ActivityActionEnum } from "@/constants/enums";
+import { Gender } from "@/constants/types";
 import { MenuItemProps, StackProps } from "@chakra-ui/react";
 import { AxiosRequestConfig, AxiosResponse } from "axios";
 import { LucideIcon } from "lucide-react";

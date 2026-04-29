@@ -2,7 +2,7 @@ import {
   AiKnowledgeQuery,
   GetAiKnowledgeResponse,
 } from "@/features/ai-knowledge/types/ai-knowledge.types";
-import { http } from "@/shared/api/http";
+import { http } from "@/api/http";
 
 export const getAiKnowledge = async (
   params?: AiKnowledgeQuery,

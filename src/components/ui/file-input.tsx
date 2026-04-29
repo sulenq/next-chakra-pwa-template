@@ -14,12 +14,12 @@ import { toaster } from "@/components/ui/toaster";
 import { Tooltip } from "@/components/ui/tooltip";
 import { FileItem } from "@/components/widgets/file-item";
 import { LucideIcon } from "@/components/widgets/icon";
-import { StorageFile } from "@/shared/constants/interfaces";
+import { StorageFile } from "@/constants/interfaces";
 import { useLocale } from "@/contexts/useLocale";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
-import { isEmptyArray } from "@/shared/utils/array";
-import { makeFileUrl } from "@/shared/utils/file";
-import { formatBytes, formatNumber } from "@/shared/utils/formatter";
+import { isEmptyArray } from "@/utils/array";
+import { makeFileUrl } from "@/utils/file";
+import { formatBytes, formatNumber } from "@/utils/formatter";
 import {
   Center,
   FileUploadRootProps,

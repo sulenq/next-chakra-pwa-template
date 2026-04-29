@@ -13,21 +13,21 @@ import { ClampText } from "@/components/widgets/clamp-text";
 import { Confirmation } from "@/components/widgets/confirmation";
 import { LucideIcon } from "@/components/widgets/icon";
 import { DotIndicator } from "@/components/widgets/indicator";
-import { AUTH_API_SIGNOUT } from "@/shared/constants/apis";
+import { AUTH_API_SIGNOUT } from "@/constants/apis";
 import {
   BACKDROP_BLUR_FILTER,
   BASE_ICON_BOX_SIZE,
   GAP,
-} from "@/shared/constants/styles";
+} from "@/constants/styles";
 import useADM from "@/contexts/useADM";
 import { useAuthMiddleware } from "@/contexts/useAuthMiddleware";
 import { useLocale } from "@/contexts/useLocale";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
-import { useRequest } from "@/hooks/useRequest";
-import { getUserData } from "@/shared/utils/auth";
-import { back, removeStorage } from "@/shared/utils/client";
-import { pluckString } from "@/shared/utils/string";
-import { imgUrl } from "@/shared/utils/url";
+import { useRequest } from "@/hooks/useRequestOld";
+import { getUserData } from "@/utils/auth";
+import { back, removeStorage } from "@/utils/client";
+import { pluckString } from "@/utils/string";
+import { imgUrl } from "@/utils/url";
 import { Icon, PopoverRootProps, Stack, StackProps } from "@chakra-ui/react";
 import {
   BellIcon,

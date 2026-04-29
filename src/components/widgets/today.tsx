@@ -1,11 +1,11 @@
 "use client";
 
 import { P, PProps } from "@/components/ui/p";
-import { DateVariant } from "@/shared/constants/types";
+import { DateVariant } from "@/constants/types";
 import useDateFormat from "@/contexts/useDateFormat";
 import { useLocale } from "@/contexts/useLocale";
 import useTimezone from "@/contexts/useTimezone";
-import { formatDate } from "@/shared/utils/formatter";
+import { formatDate } from "@/utils/formatter";
 
 // -----------------------------------------------------------------
 

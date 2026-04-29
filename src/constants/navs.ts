@@ -1,4 +1,4 @@
-import { NavGroup } from "@/shared/constants/interfaces";
+import { NavGroup } from "@/constants/interfaces";
 import {
   ActivityIcon,
   BlocksIcon,

@@ -16,7 +16,7 @@ nextjs-portal {
 }
 * {
   box-sizing: border-box !important;
-  font-optical-sizing: auto;
+  /* font-optical-sizing: auto; */
   /* font-variant-numeric: tabular-nums; */
   /* font-synthesis: none; */
   /* font-feature-settings: "ss01" 1; */
