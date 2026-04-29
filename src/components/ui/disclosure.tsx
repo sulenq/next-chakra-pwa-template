@@ -7,9 +7,9 @@ import { Drawer, DrawerContentProps } from "@/components/ui/drawer";
 import { P } from "@/components/ui/p";
 import { AppIconLucide } from "@/components/widgets/app-icon";
 import { SM_SCREEN_W_NUMBER } from "@/constants/styles";
-import { useThemeConfig } from "@/contexts/useThemeConfig";
-import { useIsSmScreenWidth } from "@/hooks/useIsSmScreenWidth";
-import { useScreen } from "@/hooks/useScreen";
+import { useThemeConfig } from "@/contexts/use-theme-context";
+import { useIsSmScreenWidth } from "@/hooks/use-is-sm-screen-width";
+import { useScreen } from "@/hooks/use-screen";
 import { back } from "@/utils/client";
 import {
   Box,

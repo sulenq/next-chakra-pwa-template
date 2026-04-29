@@ -1,7 +1,7 @@
 "use client";
 
 import { BACKDROP_BLUR_FILTER, GAP } from "@/constants/styles";
-import { useThemeConfig } from "@/contexts/useThemeConfig";
+import { useThemeConfig } from "@/contexts/use-theme-context";
 import {
   AbsoluteCenter,
   Menu as ChakraMenu,

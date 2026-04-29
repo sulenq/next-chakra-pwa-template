@@ -16,9 +16,9 @@ import {
   Period,
 } from "@/types/global.types";
 import { getWeekdayNames } from "@/constants/weekdays";
-import { useLocale } from "@/contexts/useLocale";
-import { useThemeConfig } from "@/contexts/useThemeConfig";
-import { usePopDisclosure } from "@/hooks/usePopDisclosure";
+import { useLocale } from "@/contexts/use-locale-context";
+import { useThemeConfig } from "@/contexts/use-theme-context";
+import { usePopDisclosure } from "@/hooks/use-pop-disclosure";
 import { isEmptyArray } from "@/utils/array";
 import { back } from "@/utils/client";
 import { disclosureId } from "@/utils/disclosure";

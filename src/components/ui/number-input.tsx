@@ -1,8 +1,8 @@
 "use client";
 
 import { StringInput } from "@/components/ui/string-input";
-import { useLocale } from "@/contexts/useLocale";
-import { useMergedRefs } from "@/hooks/useMergeRefs";
+import { useLocale } from "@/contexts/use-locale-context";
+import { useMergedRefs } from "@/hooks/use-merge-refs";
 import { formatNumber } from "@/utils/formatter";
 import { parseNumber } from "@/utils/number";
 import { InputProps, StackProps } from "@chakra-ui/react";

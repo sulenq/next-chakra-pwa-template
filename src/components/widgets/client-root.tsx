@@ -8,7 +8,7 @@ import { GlobalDisclosure } from "@/components/widgets/global-disclosure";
 import { LoadingBar } from "@/components/widgets/loading-bar";
 import { APP } from "@/constants/_meta";
 import { SVGS_PATH } from "@/constants/paths";
-import useADM from "@/contexts/useADM";
+import useADM from "@/contexts/use-adm-context";
 import { Center } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 

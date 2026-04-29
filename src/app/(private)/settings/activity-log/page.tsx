@@ -15,7 +15,7 @@ import { dummyAllActivityLogs } from "@/constants/dummy-data";
 import { ActivityActionEnum } from "@/constants/enums";
 import type { ActivityLog } from "@/types/global.types";
 import { BASE_ICON_BOX_SIZE, R_SPACING_MD } from "@/constants/styles";
-import { useLocale } from "@/contexts/useLocale";
+import { useLocale } from "@/contexts/use-locale-context";
 import { useFetchData } from "@/hooks/useFetchData";
 import { isEmptyArray } from "@/utils/array";
 import { formatDate } from "@/utils/formatter";

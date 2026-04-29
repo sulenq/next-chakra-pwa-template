@@ -3,9 +3,9 @@
 import { P, PProps } from "@/components/ui/p";
 import { StackH, StackV } from "@/components/ui/stack";
 import { InfoTip } from "@/components/widgets/info-tip";
-import { useThemeConfig } from "@/contexts/useThemeConfig";
-import { useContainerDimension } from "@/hooks/useContainerDimension";
-import { useMergedRefs } from "@/hooks/useMergeRefs";
+import { useThemeConfig } from "@/contexts/use-theme-context";
+import { useContainerDimension } from "@/hooks/use-container-dimenssion";
+import { useMergedRefs } from "@/hooks/use-merge-refs";
 import { HStack, StackProps } from "@chakra-ui/react";
 import { createContext, forwardRef, useContext, useMemo, useRef } from "react";
 

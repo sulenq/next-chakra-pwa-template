@@ -3,7 +3,7 @@
 import { CContainer } from "@/components/ui/c-container";
 import { HelperText } from "@/components/ui/helper-text";
 import { R_SPACING_MD } from "@/constants/styles";
-import { useLocale } from "@/contexts/useLocale";
+import { useLocale } from "@/contexts/use-locale-context";
 
 // -----------------------------------------------------------------
 

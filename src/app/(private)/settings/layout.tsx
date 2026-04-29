@@ -12,8 +12,8 @@ import {
 import { APP } from "@/constants/_meta";
 import { OTHER_PRIVATE_NAV_GROUPS } from "@/constants/navs";
 import { GAP, R_SPACING_MD } from "@/constants/styles";
-import { useLocale } from "@/contexts/useLocale";
-import { useThemeConfig } from "@/contexts/useThemeConfig";
+import { useLocale } from "@/contexts/use-locale-context";
+import { useThemeConfig } from "@/contexts/use-theme-context";
 import { formatAbsDate } from "@/utils/formatter";
 import { usePathname } from "next/navigation";
 

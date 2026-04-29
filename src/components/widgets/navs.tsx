@@ -28,8 +28,8 @@ import {
   DESKTOP_NAV_GAP,
   R_SPACING_MD,
 } from "@/constants/styles";
-import { useLocale } from "@/contexts/useLocale";
-import { useThemeConfig } from "@/contexts/useThemeConfig";
+import { useLocale } from "@/contexts/use-locale-context";
+import { useThemeConfig } from "@/contexts/use-theme-context";
 import { isEmptyArray } from "@/utils/array";
 import { getUserData } from "@/utils/auth";
 import { pluckString } from "@/utils/string";

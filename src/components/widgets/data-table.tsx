@@ -27,8 +27,8 @@ import {
   TABLE_TH_H,
 } from "@/constants/styles";
 import { Type__SortHandler } from "@/types/global.types";
-import { useThemeConfig } from "@/contexts/useThemeConfig";
-import { useScreen } from "@/hooks/useScreen";
+import { useThemeConfig } from "@/contexts/use-theme-context";
+import { useScreen } from "@/hooks/use-screen";
 import { isEmptyArray } from "@/utils/array";
 import {
   Box,

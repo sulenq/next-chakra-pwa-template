@@ -1,6 +1,6 @@
 import { VerifyingScreen } from "@/components/widgets/verifying-screen";
 import { AUTH_API_USER_PROFILE } from "@/constants/apis";
-import { useAuthMiddleware } from "@/contexts/useAuthMiddleware";
+import { useAuthMiddleware } from "@/contexts/use-auth-middleware-context";
 import { useRequest } from "@/hooks/useRequestOld";
 import { getAccessToken, setAccessToken, setUserData } from "@/utils/auth";
 import { useRouter } from "next/navigation";

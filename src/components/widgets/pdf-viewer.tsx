@@ -11,7 +11,7 @@ import { AppIconLucide } from "@/components/widgets/app-icon";
 import FeedbackState from "@/components/widgets/feedback-state";
 import { ScrollH } from "@/components/widgets/scroll-h";
 import { GAP } from "@/constants/styles";
-import { useLocale } from "@/contexts/useLocale";
+import { useLocale } from "@/contexts/use-locale-context";
 import { Box, Icon, StackProps, VStack } from "@chakra-ui/react";
 import {
   IconArrowAutofitWidth,

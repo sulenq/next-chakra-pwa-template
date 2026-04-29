@@ -1,7 +1,7 @@
 "use client";
 
 import { CContainer } from "@/components/ui/c-container";
-import { useThemeConfig } from "@/contexts/useThemeConfig";
+import { useThemeConfig } from "@/contexts/use-theme-context";
 import {
   Skeleton as ChakraSkeleton,
   SkeletonProps,

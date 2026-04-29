@@ -1,6 +1,6 @@
 "use client";
 
-import { useThemeConfig } from "@/contexts/useThemeConfig";
+import { useThemeConfig } from "@/contexts/use-theme-context";
 import { Box, BoxProps, Circle, CircleProps } from "@chakra-ui/react";
 
 // -----------------------------------------------------------------

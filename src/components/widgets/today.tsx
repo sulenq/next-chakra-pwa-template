@@ -2,9 +2,9 @@
 
 import { P, PProps } from "@/components/ui/p";
 import { DateVariant } from "@/types/global.types";
-import useDateFormat from "@/contexts/useDateFormat";
-import { useLocale } from "@/contexts/useLocale";
-import useTimezone from "@/contexts/useTimezone";
+import useDateFormat from "@/contexts/use-date-format-context";
+import { useLocale } from "@/contexts/use-locale-context";
+import useTimezone from "@/contexts/use-timezone-context";
 import { formatDate } from "@/utils/formatter";
 
 // -----------------------------------------------------------------

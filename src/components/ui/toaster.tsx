@@ -6,7 +6,7 @@ import { useColorMode } from "@/components/ui/color-mode";
 import { Spinner } from "@/components/ui/spinner";
 import { LucideIcon } from "@/components/widgets/icon";
 import { BACKDROP_BLUR_FILTER, SM_SCREEN_W_NUMBER } from "@/constants/styles";
-import { useThemeConfig } from "@/contexts/useThemeConfig";
+import { useThemeConfig } from "@/contexts/use-theme-context";
 import { isClient } from "@/utils/client";
 import {
   Center,

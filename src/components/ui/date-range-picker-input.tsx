@@ -2,8 +2,8 @@
 
 import { DatePickerInput } from "@/components/ui/date-picker-input";
 import { ButtonSize, DisclosureSizes } from "@/types/global.types";
-import { useLocale } from "@/contexts/useLocale";
-import { useThemeConfig } from "@/contexts/useThemeConfig";
+import { useLocale } from "@/contexts/use-locale-context";
+import { useThemeConfig } from "@/contexts/use-theme-context";
 import { capitalize } from "@/utils/string";
 import { Group, GroupProps, useFieldContext } from "@chakra-ui/react";
 import { useEffect, useState } from "react";

@@ -1,4 +1,4 @@
-import { useThemeConfig } from "@/contexts/useThemeConfig";
+import { useThemeConfig } from "@/contexts/use-theme-context";
 import { ProgressRange, ProgressRoot, ProgressTrack } from "@chakra-ui/react";
 import { useEffect, useRef, useState } from "react";
 

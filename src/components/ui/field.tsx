@@ -1,5 +1,5 @@
 import { P } from "@/components/ui/p";
-import { useLocale } from "@/contexts/useLocale";
+import { useLocale } from "@/contexts/use-locale-context";
 import {
   Badge,
   Field as ChakraField,

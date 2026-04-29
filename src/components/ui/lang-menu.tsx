@@ -4,8 +4,8 @@ import { Btn, BtnProps } from "@/components/ui/btn";
 import { Menu } from "@/components/ui/menu";
 
 import { Tooltip } from "@/components/ui/tooltip";
-import { useLocale } from "@/contexts/useLocale";
-import { useThemeConfig } from "@/contexts/useThemeConfig";
+import { useLocale } from "@/contexts/use-locale-context";
+import { useThemeConfig } from "@/contexts/use-theme-context";
 import { Icon, MenuPositioner, Portal } from "@chakra-ui/react";
 import { IconCheck, IconChevronDown } from "@tabler/icons-react";
 

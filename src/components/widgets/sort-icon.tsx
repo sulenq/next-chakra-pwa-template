@@ -1,4 +1,4 @@
-import { useThemeConfig } from "@/contexts/useThemeConfig";
+import { useThemeConfig } from "@/contexts/use-theme-context";
 import { Icon, IconProps, VStack } from "@chakra-ui/react";
 import { IconCaretDownFilled, IconCaretUpFilled } from "@tabler/icons-react";
 

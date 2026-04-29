@@ -2,7 +2,7 @@
 
 import { CloseButton } from "@/components/ui/close-button";
 import { BACKDROP_BLUR_FILTER } from "@/constants/styles";
-import { useScreen } from "@/hooks/useScreen";
+import { useScreen } from "@/hooks/use-screen";
 import { back } from "@/utils/client";
 import {
   Dialog as ChakraDialog,

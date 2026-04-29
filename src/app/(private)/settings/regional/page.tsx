@@ -25,12 +25,12 @@ import {
   Type__TimeFormat,
 } from "@/types/global.types";
 import { UOM_FORMATS } from "@/constants/uom-formats";
-import useDateFormat from "@/contexts/useDateFormat";
-import { useLocale } from "@/contexts/useLocale";
-import { useThemeConfig } from "@/contexts/useThemeConfig";
-import useTimeFormat from "@/contexts/useTimeFormat";
-import useTimezone from "@/contexts/useTimezone";
-import useUOMFormat from "@/contexts/useUOMFormat";
+import useDateFormat from "@/contexts/use-date-format-context";
+import { useLocale } from "@/contexts/use-locale-context";
+import { useThemeConfig } from "@/contexts/use-theme-context";
+import useTimeFormat from "@/contexts/use-time-format-context";
+import useTimezone from "@/contexts/use-timezone-context";
+import useUOMFormat from "@/contexts/use-uom-format-context";
 import { isEmptyArray } from "@/utils/array";
 import { formatDate, formatTime } from "@/utils/formatter";
 import { capitalizeWords, pluckString } from "@/utils/string";

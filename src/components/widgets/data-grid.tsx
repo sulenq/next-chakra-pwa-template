@@ -22,9 +22,9 @@ import {
   GRID_BATCH_OPTIONS_CONTAINER_BG,
   R_SPACING_MD,
 } from "@/constants/styles";
-import { useLocale } from "@/contexts/useLocale";
-import { useThemeConfig } from "@/contexts/useThemeConfig";
-import { usePopDisclosure } from "@/hooks/usePopDisclosure";
+import { useLocale } from "@/contexts/use-locale-context";
+import { useThemeConfig } from "@/contexts/use-theme-context";
+import { usePopDisclosure } from "@/hooks/use-pop-disclosure";
 import { isEmptyArray } from "@/utils/array";
 import { disclosureId } from "@/utils/disclosure";
 import {

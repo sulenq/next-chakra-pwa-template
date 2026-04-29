@@ -1,4 +1,4 @@
-import { useThemeConfig } from "@/contexts/useThemeConfig";
+import { useThemeConfig } from "@/contexts/use-theme-context";
 import {
   Select as ChakraSelect,
   Portal,

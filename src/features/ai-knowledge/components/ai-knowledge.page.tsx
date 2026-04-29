@@ -20,12 +20,12 @@ import { MainView, useViewContext } from "@/components/widgets/main-view";
 import { MiniUser } from "@/components/widgets/mini-user";
 import { ScrollH } from "@/components/widgets/scroll-h";
 import { SimpleDisclosure } from "@/components/widgets/simple-disclosure";
-import { useDataDisplay } from "@/contexts/useDataDisplay";
-import { useLocale } from "@/contexts/useLocale";
-import useRenderTrigger from "@/contexts/useRenderTrigger";
-import { useThemeConfig } from "@/contexts/useThemeConfig";
+import { useDataDisplay } from "@/contexts/use-data-display-context";
+import { useLocale } from "@/contexts/use-locale-context";
+import useRenderTrigger from "@/contexts/use-render-trigger";
+import { useThemeConfig } from "@/contexts/use-theme-context";
 import { useFetchData } from "@/hooks/useFetchData";
-import { usePopDisclosure } from "@/hooks/usePopDisclosure";
+import { usePopDisclosure } from "@/hooks/use-pop-disclosure";
 import { useRequest } from "@/hooks/useRequestOld";
 import { dummyUsers } from "@/constants/dummy-data";
 import {

@@ -5,7 +5,7 @@ import { StackH, StackV } from "@/components/ui/stack";
 import { Limitation } from "@/components/widgets/limitation";
 import { Pagination } from "@/components/widgets/pagination";
 import { TABLE_FOOTER_BORDER_COLOR } from "@/constants/styles";
-import { useIsSmScreenWidth } from "@/hooks/useIsSmScreenWidth";
+import { useIsSmScreenWidth } from "@/hooks/use-is-sm-screen-width";
 import { formatNumber } from "@/utils/formatter";
 import { StackProps } from "@chakra-ui/react";
 

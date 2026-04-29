@@ -44,12 +44,12 @@ import {
   TOP_BAR_H,
   USER_PANEL_H,
 } from "@/constants/styles";
-import { useLocale } from "@/contexts/useLocale";
-import useNavs from "@/contexts/useNavs";
-import { useThemeConfig } from "@/contexts/useThemeConfig";
+import { useLocale } from "@/contexts/use-locale-context";
+import { useNavs } from "@/contexts/use-navs-context";
+import { useThemeConfig } from "@/contexts/use-theme-context";
 import { AuthGuard } from "@/features/auth/components/auth-guard";
-import { useIsSmScreenWidth } from "@/hooks/useIsSmScreenWidth";
-import { useScreen } from "@/hooks/useScreen";
+import { useIsSmScreenWidth } from "@/hooks/use-is-sm-screen-width";
+import { useScreen } from "@/hooks/use-screen";
 import { last } from "@/utils/array";
 import { getUserData } from "@/utils/auth";
 import { pluckString } from "@/utils/string";

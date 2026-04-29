@@ -1,5 +1,5 @@
 import { Popover } from "@/components/ui/popover";
-import { useClickOutside } from "@/hooks/useClickOutside";
+import { useClickOutside } from "@/hooks/use-click-outside";
 import {
   PopoverRootProps,
   TooltipContentProps,

@@ -4,7 +4,7 @@ import {
   resolveLoadingToast,
   resolveSuccessToast,
   shouldShowErrorToast,
-} from "./toast";
+} from "../toast/toast.handler";
 import { toaster } from "@/components/ui/toaster";
 
 export const handleRequest = async <T>({

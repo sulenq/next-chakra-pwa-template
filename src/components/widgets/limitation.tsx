@@ -3,7 +3,7 @@ import { Menu } from "@/components/ui/menu";
 import { P } from "@/components/ui/p";
 import { AppIconLucide } from "@/components/widgets/app-icon";
 import { DotIndicator } from "@/components/widgets/indicator";
-import { useLocale } from "@/contexts/useLocale";
+import { useLocale } from "@/contexts/use-locale-context";
 import { HStack } from "@chakra-ui/react";
 import { ChevronDownIcon } from "lucide-react";
 

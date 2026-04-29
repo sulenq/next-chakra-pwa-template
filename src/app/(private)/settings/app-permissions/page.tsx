@@ -12,12 +12,12 @@ import { LocalSettingsHelperText } from "@/components/widgets/local-settings-hel
 import { MicVolumeBar } from "@/components/widgets/mic-volume-bar";
 import { ToggleSettingContainer } from "@/components/widgets/settings-shell";
 import { R_SPACING_MD } from "@/constants/styles";
-import { useCameraPermission } from "@/contexts/useCameraPermissions";
-import { useLocale } from "@/contexts/useLocale";
-import { useLocationPermissions } from "@/contexts/useLocationPermissions";
-import { useMicPermissions } from "@/contexts/useMicPermissions";
-import { useThemeConfig } from "@/contexts/useThemeConfig";
-import { usePopDisclosure } from "@/hooks/usePopDisclosure";
+import { useCameraPermission } from "@/contexts/use-camera-permission-context";
+import { useLocale } from "@/contexts/use-locale-context";
+import { useLocationPermissions } from "@/contexts/use-location-permission-context";
+import { useMicPermissions } from "@/contexts/use-mic-permission-context";
+import { useThemeConfig } from "@/contexts/use-theme-context";
+import { usePopDisclosure } from "@/hooks/use-pop-disclosure";
 import { startCamera, stopCamera } from "@/utils/camera";
 import { disclosureId } from "@/utils/disclosure";
 import { getAddress, getLatLon } from "@/utils/location";

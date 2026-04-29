@@ -3,7 +3,7 @@
 import { P, PProps } from "@/components/ui/p";
 import { Tooltip } from "@/components/ui/tooltip";
 import { ToggleTip } from "@/components/widgets/toggle-tip";
-import { useHasHover } from "@/hooks/useHasHover";
+import { useHasHover } from "@/hooks/use-has-hover";
 
 // -----------------------------------------------------------------
 

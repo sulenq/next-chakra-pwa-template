@@ -6,10 +6,10 @@ import { P } from "@/components/ui/p";
 import { BrandWatermark } from "@/components/widgets/brand-watermark";
 import { Logo } from "@/components/widgets/logo";
 import { AnimatedBlobBackground } from "@/components/widgets/background";
-import { useLocale } from "@/contexts/useLocale";
-import { useThemeConfig } from "@/contexts/useThemeConfig";
+import { useLocale } from "@/contexts/use-locale-context";
+import { useThemeConfig } from "@/contexts/use-theme-context";
 import { SigninForm } from "@/features/auth/components/signin-form";
-import { useIsSmScreenWidth } from "@/hooks/useIsSmScreenWidth";
+import { useIsSmScreenWidth } from "@/hooks/use-is-sm-screen-width";
 import { SimpleGrid } from "@chakra-ui/react";
 import { StackH, StackV } from "@/components/ui/stack";
 

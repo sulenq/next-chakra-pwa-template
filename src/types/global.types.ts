@@ -4,7 +4,7 @@ import { AxiosRequestConfig, AxiosResponse } from "axios";
 import { LucideIcon } from "lucide-react";
 import { ReactNode } from "react";
 
-import { translations } from "@/contexts/useLocale";
+import { translations } from "@/contexts/use-locale-context";
 import {
   ButtonProps,
   ConditionalValue,

@@ -5,9 +5,9 @@ import { useColorMode } from "@/components/ui/color-mode";
 import { toaster } from "@/components/ui/toaster";
 import { LucideIcon } from "@/components/widgets/icon";
 import { BASE_ICON_BOX_SIZE, MAIN_INPUT_SIZE } from "@/constants/styles";
-import { useLocale } from "@/contexts/useLocale";
-import { useThemeConfig } from "@/contexts/useThemeConfig";
-import { useMergedRefs } from "@/hooks/useMergeRefs";
+import { useLocale } from "@/contexts/use-locale-context";
+import { useThemeConfig } from "@/contexts/use-theme-context";
+import { useMergedRefs } from "@/hooks/use-merge-refs";
 import { interpolateString } from "@/utils/string";
 import {
   Center,

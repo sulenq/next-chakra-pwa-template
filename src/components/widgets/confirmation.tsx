@@ -2,12 +2,12 @@ import { Btn, BtnProps } from "@/components/ui/btn";
 import { CContainer } from "@/components/ui/c-container";
 import { Disclosure } from "@/components/ui/disclosure";
 import { P } from "@/components/ui/p";
-import { useThemeConfig } from "@/contexts/useThemeConfig";
-import { usePopDisclosure } from "@/hooks/usePopDisclosure";
+import { useThemeConfig } from "@/contexts/use-theme-context";
+import { usePopDisclosure } from "@/hooks/use-pop-disclosure";
 import { disclosureId } from "@/utils/disclosure";
 import { Box, StackProps } from "@chakra-ui/react";
 import { BackButton } from "@/components/widgets/back-button";
-import { useCountdown } from "@/hooks/useCountdown";
+import { useCountdown } from "@/hooks/use-countdown";
 import { useEffect } from "react";
 import { Tooltip } from "@/components/ui/tooltip";
 

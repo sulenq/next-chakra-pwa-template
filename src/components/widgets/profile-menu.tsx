@@ -19,10 +19,10 @@ import {
   BASE_ICON_BOX_SIZE,
   GAP,
 } from "@/constants/styles";
-import useADM from "@/contexts/useADM";
-import { useAuthMiddleware } from "@/contexts/useAuthMiddleware";
-import { useLocale } from "@/contexts/useLocale";
-import { useThemeConfig } from "@/contexts/useThemeConfig";
+import useADM from "@/contexts/use-adm-context";
+import { useAuthMiddleware } from "@/contexts/use-auth-middleware-context";
+import { useLocale } from "@/contexts/use-locale-context";
+import { useThemeConfig } from "@/contexts/use-theme-context";
 import { useRequest } from "@/hooks/useRequestOld";
 import { getUserData } from "@/utils/auth";
 import { back, removeStorage } from "@/utils/client";

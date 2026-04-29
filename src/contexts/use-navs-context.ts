@@ -11,7 +11,8 @@ type NavsStore = {
   setNavsExpanded: (newState: boolean | ((prev: boolean) => boolean)) => void;
   toggleNavsExpanded: () => void;
 };
-const useNavs = create<NavsStore>((set, get) => {
+
+export const useNavs = create<NavsStore>((set, get) => {
   return {
     isNavsExpanded: initialValue,
     setNavsExpanded: (newState) => {
@@ -30,5 +31,3 @@ const useNavs = create<NavsStore>((set, get) => {
     },
   };
 });
-
-export default useNavs;

@@ -2,7 +2,7 @@
 
 import { MAIN_BUTTON_SIZE } from "@/constants/styles";
 import { ButtonVariant } from "@/types/global.types";
-import { useThemeConfig } from "@/contexts/useThemeConfig";
+import { useThemeConfig } from "@/contexts/use-theme-context";
 import { Button, ButtonProps, IconButton } from "@chakra-ui/react";
 import { forwardRef } from "react";
 

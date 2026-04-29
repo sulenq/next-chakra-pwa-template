@@ -2,7 +2,7 @@
 
 import { CContainer } from "@/components/ui/c-container";
 import { getMonthNames } from "@/constants/months";
-import { useLocale } from "@/contexts/useLocale";
+import { useLocale } from "@/contexts/use-locale-context";
 import { StackProps } from "@chakra-ui/react";
 
 // -----------------------------------------------------------------

@@ -1,7 +1,7 @@
 "use client";
 
-import { useLoadingBar } from "@/contexts/useLoadingBar";
-import { useThemeConfig } from "@/contexts/useThemeConfig";
+import { useLoadingBar } from "@/contexts/use-loading-bar-context";
+import { useThemeConfig } from "@/contexts/use-theme-context";
 import { Box, BoxProps } from "@chakra-ui/react";
 import { useEffect, useRef, useState } from "react";
 

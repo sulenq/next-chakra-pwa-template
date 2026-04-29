@@ -1,6 +1,6 @@
 import { toaster } from "@/components/ui/toaster";
 import { Req, RequestState } from "@/types/global.types";
-import { useLocale } from "@/contexts/useLocale";
+import { useLocale } from "@/contexts/use-locale-context";
 import { clearAccessToken, clearUserData } from "@/utils/auth";
 import { request } from "@/utils/request";
 import { useRouter } from "next/navigation";

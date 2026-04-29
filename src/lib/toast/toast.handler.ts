@@ -1,4 +1,8 @@
-import { ToastDecision, ToastMessage, ToastRules } from "./request.types";
+import {
+  ToastDecision,
+  ToastMessage,
+  ToastRules,
+} from "../request/request.types";
 
 const isToastMessage = (v: any): v is ToastMessage =>
   v && typeof v === "object" && "title" in v;

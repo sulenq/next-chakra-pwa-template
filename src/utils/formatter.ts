@@ -8,7 +8,7 @@ import {
 } from "@/types/global.types";
 import { UOM_FORMATS } from "@/constants/uom-formats";
 import { getWeekdayNames } from "@/constants/weekdays";
-import useUOMFormat from "@/contexts/useUOMFormat";
+import useUOMFormat from "@/contexts/use-uom-format-context";
 import { getStorage } from "@/utils/client";
 import { isValid, parseISO } from "date-fns";
 import { format as formatTz, toZonedTime } from "date-fns-tz";

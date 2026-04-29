@@ -3,7 +3,7 @@
 import { P } from "@/components/ui/p";
 import { EmptyString } from "@/components/widgets/empty-string";
 import { DotIndicator } from "@/components/widgets/indicator";
-import { useLocale } from "@/contexts/useLocale";
+import { useLocale } from "@/contexts/use-locale-context";
 import { formatDate } from "@/utils/formatter";
 import { HStack, StackProps } from "@chakra-ui/react";
 
