@@ -19,7 +19,7 @@ import { BASE_ICON_BOX_SIZE } from "@/shared/constants/styles";
 import { useAuthMiddleware } from "@/contexts/useAuthMiddleware";
 import { useLocale } from "@/contexts/useLocale";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
-import ResetPasswordDisclosureTrigger from "@/features/auth/reset-password";
+import ResetPasswordDisclosureTrigger from "@/features/auth/components/reset-password";
 import { useRequest } from "@/hooks/useRequest";
 import { setAccessToken, setUserData } from "@/shared/utils/auth";
 import {

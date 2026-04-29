@@ -8,7 +8,7 @@ import { Logo } from "@/components/widgets/logo";
 import { AnimatedBlobBackground } from "@/components/widgets/background";
 import { useLocale } from "@/contexts/useLocale";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
-import { SigninForm } from "@/features/auth/signin-form";
+import { SigninForm } from "@/features/auth/components/signin-form";
 import { useIsSmScreenWidth } from "@/hooks/useIsSmScreenWidth";
 import { SimpleGrid } from "@chakra-ui/react";
 import { StackH, StackV } from "@/components/ui/stack";

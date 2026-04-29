@@ -46,7 +46,7 @@ import {
 import { useLocale } from "@/contexts/useLocale";
 import useNavs from "@/contexts/useNavs";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
-import { AuthGuard } from "@/features/auth/auth-guard";
+import { AuthGuard } from "@/features/auth/components/auth-guard";
 import { useIsSmScreenWidth } from "@/hooks/useIsSmScreenWidth";
 import { useScreen } from "@/hooks/useScreen";
 import { last } from "@/shared/utils/array";

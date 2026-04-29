@@ -33,7 +33,7 @@ import {
 import { R_SPACING_MD } from "@/shared/constants/styles";
 import { useLocale } from "@/contexts/useLocale";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
-import ResetPasswordDisclosureTrigger from "@/features/auth/reset-password";
+import ResetPasswordDisclosureTrigger from "@/features/auth/components/reset-password";
 import { useFetchData } from "@/hooks/useFetchData";
 import { useRequest } from "@/hooks/useRequest";
 import { isEmptyArray } from "@/shared/utils/array";
