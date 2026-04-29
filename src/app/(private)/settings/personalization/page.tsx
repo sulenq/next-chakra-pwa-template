@@ -18,7 +18,7 @@ import { ToggleSettingContainer } from "@/components/widgets/settings-shell";
 import { COLOR_PALETTES } from "@/constants/colors";
 import { SelectOption } from "@/types/global.types";
 import { ROUNDED_PRESETS } from "@/constants/presets";
-import { OPTIONS_RELIGION } from "@/constants/selectOptions";
+import { OPTIONS_RELIGION } from "@/constants/select-options";
 import { R_SPACING_MD } from "@/constants/styles";
 import useADM from "@/contexts/useADM";
 import { useLocale } from "@/contexts/useLocale";

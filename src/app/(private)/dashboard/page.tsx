@@ -15,7 +15,7 @@ import FeedbackRetry from "@/components/widgets/feedback-retry";
 import { DotIndicator } from "@/components/widgets/indicator";
 import { Item } from "@/components/widgets/item";
 import { MainView, useViewContext } from "@/components/widgets/main-view";
-import { DUMMY_DASHBOARD_DATA } from "@/constants/dummyData";
+import { DUMMY_DASHBOARD_DATA } from "@/constants/dummy-data";
 import { getMonthNames } from "@/constants/months";
 import { GAP, R_SPACING_MD } from "@/constants/styles";
 import { Type__ChartData } from "@/types/global.types";

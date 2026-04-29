@@ -6,7 +6,7 @@ import {
   Type__TimeFormat,
   UnitKey,
 } from "@/types/global.types";
-import { UOM_FORMATS } from "@/constants/uomFormats";
+import { UOM_FORMATS } from "@/constants/uom-formats";
 import { getWeekdayNames } from "@/constants/weekdays";
 import useUOMFormat from "@/contexts/useUOMFormat";
 import { getStorage } from "@/utils/client";
@@ -14,7 +14,7 @@ import { isValid, parseISO } from "date-fns";
 import { format as formatTz, toZonedTime } from "date-fns-tz";
 import { isDateObject } from "@/utils/date";
 import { getTimezoneOffsetMs, getUserTimezone } from "@/utils/time";
-import { TIME_ZONES } from "@/constants/timezone";
+import { TIME_ZONES } from "@/constants/timezones";
 import { NUMBER_LOCALE } from "@/constants/styles";
 
 export const formatDate = (

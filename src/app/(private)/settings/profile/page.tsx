@@ -23,7 +23,7 @@ import {
   DUMMY_USER,
   dummyActivityLogs,
   dummyAuthLogs,
-} from "@/constants/dummyData";
+} from "@/constants/dummy-data";
 import { ActivityActionEnum } from "@/constants/enums";
 import type { ActivityLog, AuthLog, User } from "@/types/global.types";
 import { R_SPACING_MD } from "@/constants/styles";

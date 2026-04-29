@@ -14,17 +14,17 @@ import { Item } from "@/components/widgets/item";
 import { Limitation } from "@/components/widgets/limitation";
 import { LocalSettingsHelperText } from "@/components/widgets/local-settings-helper-text";
 import { Pagination } from "@/components/widgets/pagination";
-import { DATE_FORMATS } from "@/constants/dateFormats";
+import { DATE_FORMATS } from "@/constants/date-formats";
 import { LANGUAGES } from "@/constants/languages";
 import { R_SPACING_MD } from "@/constants/styles";
-import { TIME_FORMATS } from "@/constants/timeFormats";
-import { TIME_ZONES } from "@/constants/timezone";
+import { TIME_FORMATS } from "@/constants/time-formats";
+import { TIME_ZONES } from "@/constants/timezones";
 import {
   Type__DateFormat,
   Type__LanguageOptions,
   Type__TimeFormat,
 } from "@/types/global.types";
-import { UOM_FORMATS } from "@/constants/uomFormats";
+import { UOM_FORMATS } from "@/constants/uom-formats";
 import useDateFormat from "@/contexts/useDateFormat";
 import { useLocale } from "@/contexts/useLocale";
 import { useThemeConfig } from "@/contexts/useThemeConfig";

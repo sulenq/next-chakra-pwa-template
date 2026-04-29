@@ -10,7 +10,7 @@ import { Logo } from "@/components/widgets/logo";
 import { MContainerV } from "@/components/widgets/m-container";
 import { APP } from "@/constants/_meta";
 import { AUTH_API_SIGNOUT } from "@/constants/apis";
-import { DUMMY_USER } from "@/constants/dummyData";
+import { DUMMY_USER } from "@/constants/dummy-data";
 import { useAuthMiddleware } from "@/contexts/useAuthMiddleware";
 import { useLocale } from "@/contexts/useLocale";
 import useRenderTrigger from "@/contexts/useRenderTrigger";

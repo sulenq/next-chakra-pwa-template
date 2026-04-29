@@ -27,7 +27,7 @@ import { useThemeConfig } from "@/contexts/useThemeConfig";
 import { useFetchData } from "@/hooks/useFetchData";
 import { usePopDisclosure } from "@/hooks/usePopDisclosure";
 import { useRequest } from "@/hooks/useRequestOld";
-import { dummyUsers } from "@/constants/dummyData";
+import { dummyUsers } from "@/constants/dummy-data";
 import {
   BatchOptionsTableOptionGenerator,
   DataProps,

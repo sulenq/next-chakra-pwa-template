@@ -11,7 +11,7 @@ import FeedbackRetry from "@/components/widgets/feedback-retry";
 import { LucideIcon } from "@/components/widgets/icon";
 import { Item } from "@/components/widgets/item";
 import { MiniUser } from "@/components/widgets/mini-user";
-import { dummyAllActivityLogs } from "@/constants/dummyData";
+import { dummyAllActivityLogs } from "@/constants/dummy-data";
 import { ActivityActionEnum } from "@/constants/enums";
 import type { ActivityLog } from "@/types/global.types";
 import { BASE_ICON_BOX_SIZE, R_SPACING_MD } from "@/constants/styles";
