@@ -1,5 +1,5 @@
 import { toaster } from "@/components/ui/toaster";
-import { Req, RequestState } from "@/constants/interfaces";
+import { Req, RequestState } from "@/types/global.types";
 import { useLocale } from "@/contexts/useLocale";
 import { clearAccessToken, clearUserData } from "@/utils/auth";
 import { request } from "@/utils/request";

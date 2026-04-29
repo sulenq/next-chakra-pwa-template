@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/date-picker-input";
 import { Disclosure } from "@/components/ui/disclosure";
 import { BackButton } from "@/components/widgets/back-button";
-import { Period } from "@/constants/types";
+import { Period } from "@/types/global.types";
 import { useLocale } from "@/contexts/useLocale";
 import { usePopDisclosure } from "@/hooks/usePopDisclosure";
 import { disclosureId } from "@/utils/disclosure";

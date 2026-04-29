@@ -14,7 +14,7 @@ import {
   DateVariant,
   DisclosureSizes,
   Period,
-} from "@/constants/types";
+} from "@/types/global.types";
 import { getWeekdayNames } from "@/constants/weekdays";
 import { useLocale } from "@/contexts/useLocale";
 import { useThemeConfig } from "@/contexts/useThemeConfig";

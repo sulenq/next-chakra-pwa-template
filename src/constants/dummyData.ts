@@ -1,5 +1,5 @@
-import { Gender } from "@/constants/types";
-import { User } from "./interfaces";
+import { Gender, User } from "@/types/global.types";
+
 const generate1D = () => {
   let v23 = 80;
   let v24 = 90;

@@ -23,7 +23,7 @@ import {
   Type__DateFormat,
   Type__LanguageOptions,
   Type__TimeFormat,
-} from "@/constants/types";
+} from "@/types/global.types";
 import { UOM_FORMATS } from "@/constants/uomFormats";
 import useDateFormat from "@/contexts/useDateFormat";
 import { useLocale } from "@/contexts/useLocale";

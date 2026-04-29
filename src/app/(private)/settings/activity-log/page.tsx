@@ -13,7 +13,7 @@ import { Item } from "@/components/widgets/item";
 import { MiniUser } from "@/components/widgets/mini-user";
 import { dummyAllActivityLogs } from "@/constants/dummyData";
 import { ActivityActionEnum } from "@/constants/enums";
-import type { ActivityLog } from "@/constants/interfaces";
+import type { ActivityLog } from "@/types/global.types";
 import { BASE_ICON_BOX_SIZE, R_SPACING_MD } from "@/constants/styles";
 import { useLocale } from "@/contexts/useLocale";
 import { useFetchData } from "@/hooks/useFetchData";

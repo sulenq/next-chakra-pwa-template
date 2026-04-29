@@ -25,7 +25,7 @@ import {
   dummyAuthLogs,
 } from "@/constants/dummyData";
 import { ActivityActionEnum } from "@/constants/enums";
-import type { ActivityLog, AuthLog, User } from "@/constants/interfaces";
+import type { ActivityLog, AuthLog, User } from "@/types/global.types";
 import { R_SPACING_MD } from "@/constants/styles";
 import { useLocale } from "@/contexts/useLocale";
 import { useThemeConfig } from "@/contexts/useThemeConfig";

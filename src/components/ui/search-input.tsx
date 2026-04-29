@@ -3,7 +3,7 @@
 import { StringInput, StringInputProps } from "@/components/ui/string-input";
 import { LucideIcon } from "@/components/widgets/icon";
 import { BASE_ICON_BOX_SIZE, MAIN_INPUT_SIZE } from "@/constants/styles";
-import { InputSize, InputVariant } from "@/constants/types";
+import { InputSize, InputVariant } from "@/types/global.types";
 import { useLocale } from "@/contexts/useLocale";
 import { useDebouncedCallback } from "@/hooks/useDebounceCallback";
 import {

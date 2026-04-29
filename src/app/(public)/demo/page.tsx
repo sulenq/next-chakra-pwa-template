@@ -34,7 +34,7 @@ import { PDFViewer } from "@/components/widgets/pdf-viewer";
 import SelectWorkspaceCategory from "@/components/widgets/select-workspace-category";
 import { Today } from "@/components/widgets/today";
 import VideoPlayer from "@/components/widgets/video-player";
-import { FormattedTableRow } from "@/constants/interfaces";
+import { FormattedTableRow } from "@/types/global.types";
 import { OPTIONS_RELIGION } from "@/constants/selectOptions";
 import { MENU_ICON_BOX_SIZE } from "@/constants/styles";
 import { useLocale } from "@/contexts/useLocale";

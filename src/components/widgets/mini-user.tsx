@@ -4,7 +4,7 @@ import { Avatar } from "@/components/ui/avatar";
 import { StackH, StackV } from "@/components/ui/stack";
 import { ClampText } from "@/components/widgets/clamp-text";
 import { ImgViewer } from "@/components/widgets/img-viewer";
-import { User } from "@/constants/interfaces";
+import { User } from "@/types/global.types";
 import { imgUrl } from "@/utils/url";
 import { StackProps } from "@chakra-ui/react";
 

@@ -1,4 +1,4 @@
-import { User } from "@/constants/interfaces";
+import { User } from "@/types/global.types";
 import { getStorage, removeStorage, setStorage } from "@/utils/client";
 
 export function getAccessToken() {

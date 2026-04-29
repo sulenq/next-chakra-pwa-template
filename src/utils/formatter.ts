@@ -5,7 +5,7 @@ import {
   Translations,
   Type__TimeFormat,
   UnitKey,
-} from "@/constants/types";
+} from "@/types/global.types";
 import { UOM_FORMATS } from "@/constants/uomFormats";
 import { getWeekdayNames } from "@/constants/weekdays";
 import useUOMFormat from "@/contexts/useUOMFormat";

@@ -1,4 +1,4 @@
-import { Type__DateFormat } from "@/constants/types";
+import { Type__DateFormat } from "@/types/global.types";
 import { getStorage, setStorage } from "@/utils/client";
 import { create } from "zustand";
 

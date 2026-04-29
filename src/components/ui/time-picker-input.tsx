@@ -5,7 +5,7 @@ import { StringInput } from "@/components/ui/string-input";
 import { Tooltip } from "@/components/ui/tooltip";
 import { LucideIcon } from "@/components/widgets/icon";
 import { BASE_ICON_BOX_SIZE } from "@/constants/styles";
-import { ButtonVariant, DisclosureSizes } from "@/constants/types";
+import { ButtonVariant, DisclosureSizes } from "@/types/global.types";
 import { useLocale } from "@/contexts/useLocale";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
 import { usePopDisclosure } from "@/hooks/usePopDisclosure";

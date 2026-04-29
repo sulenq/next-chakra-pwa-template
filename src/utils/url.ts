@@ -1,4 +1,4 @@
-import { NavGroup } from "@/constants/interfaces";
+import { NavGroup } from "@/types/global.types";
 import { RESOLVED_NAVS } from "@/constants/navs";
 
 export function generateWAUrl(phone: string, message: string = ""): void {

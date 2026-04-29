@@ -14,7 +14,7 @@ import FeedbackNotFound from "@/components/widgets/feedback-not-found";
 import { LeftIndicator } from "@/components/widgets/indicator";
 import { Item } from "@/components/widgets/item";
 import { ProfileMenuTrigger } from "@/components/widgets/profile-menu";
-import { NavGroup } from "@/constants/interfaces";
+import { NavGroup } from "@/types/global.types";
 import {
   BACKDROP_BLUR_FILTER,
   BASE_ICON_BOX_SIZE,

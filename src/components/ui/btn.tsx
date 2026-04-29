@@ -1,7 +1,7 @@
 "use client";
 
 import { MAIN_BUTTON_SIZE } from "@/constants/styles";
-import { ButtonVariant } from "@/constants/types";
+import { ButtonVariant } from "@/types/global.types";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
 import { Button, ButtonProps, IconButton } from "@chakra-ui/react";
 import { forwardRef } from "react";

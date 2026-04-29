@@ -9,7 +9,7 @@ import { Tooltip } from "@/components/ui/tooltip";
 import { AppIconLucide } from "@/components/widgets/app-icon";
 import { DotIndicator } from "@/components/widgets/indicator";
 import { getMonthNames } from "@/constants/months";
-import { ButtonVariant, DisclosureSizes, Period } from "@/constants/types";
+import { ButtonVariant, DisclosureSizes, Period } from "@/types/global.types";
 import { useLocale } from "@/contexts/useLocale";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
 import { usePopDisclosure } from "@/hooks/usePopDisclosure";

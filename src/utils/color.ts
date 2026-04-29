@@ -1,4 +1,4 @@
-import { ColorMode, RGB } from "@/constants/types";
+import { ColorMode, RGB } from "@/types/global.types";
 
 export function hexWithOpacity(hex: string, opacity: number): string {
   const alpha = Math.round(opacity * 255)

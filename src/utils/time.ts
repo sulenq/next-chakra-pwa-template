@@ -1,4 +1,4 @@
-import { Type__TimezoneObject } from "@/constants/types";
+import { Type__TimezoneObject } from "@/types/global.types";
 import { getStorage } from "@/utils/client";
 import {
   addSeconds,

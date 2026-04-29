@@ -16,7 +16,7 @@ import { Item } from "@/components/widgets/item";
 import { LocalSettingsHelperText } from "@/components/widgets/local-settings-helper-text";
 import { ToggleSettingContainer } from "@/components/widgets/settings-shell";
 import { COLOR_PALETTES } from "@/constants/colors";
-import { SelectOption } from "@/constants/interfaces";
+import { SelectOption } from "@/types/global.types";
 import { ROUNDED_PRESETS } from "@/constants/presets";
 import { OPTIONS_RELIGION } from "@/constants/selectOptions";
 import { R_SPACING_MD } from "@/constants/styles";

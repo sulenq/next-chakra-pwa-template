@@ -15,7 +15,7 @@ import { DataFooter } from "@/components/widgets/data-footer";
 import FeedbackNotFound from "@/components/widgets/feedback-not-found";
 import { ImgViewer } from "@/components/widgets/img-viewer";
 import { RowOptions } from "@/components/widgets/row-options";
-import { DataProps, FormattedTableRow } from "@/constants/interfaces";
+import { DataProps, FormattedTableRow } from "@/types/global.types";
 import {
   BACKDROP_BLUR_FILTER,
   GAP,

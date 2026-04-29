@@ -14,7 +14,7 @@ import { toaster } from "@/components/ui/toaster";
 import { Tooltip } from "@/components/ui/tooltip";
 import { FileItem } from "@/components/widgets/file-item";
 import { LucideIcon } from "@/components/widgets/icon";
-import { StorageFile } from "@/constants/interfaces";
+import { StorageFile } from "@/types/global.types";
 import { useLocale } from "@/contexts/useLocale";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
 import { isEmptyArray } from "@/utils/array";

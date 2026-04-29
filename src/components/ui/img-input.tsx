@@ -9,7 +9,7 @@ import { FileItem } from "@/components/widgets/file-item";
 import { ScrollH } from "@/components/widgets/scroll-h";
 import { LucideIcon } from "@/components/widgets/icon";
 import { ImgViewer } from "@/components/widgets/img-viewer";
-import { StorageFile } from "@/constants/interfaces";
+import { StorageFile } from "@/types/global.types";
 import { useLocale } from "@/contexts/useLocale";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
 import { isEmptyArray } from "@/utils/array";

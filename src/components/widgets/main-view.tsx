@@ -12,7 +12,7 @@ import { Clock } from "@/components/widgets/clock";
 import { DotIndicator } from "@/components/widgets/indicator";
 import { Today } from "@/components/widgets/today";
 import { ToggleTip } from "@/components/widgets/toggle-tip";
-import { Nav } from "@/constants/interfaces";
+import { Nav } from "@/types/global.types";
 import { R_SPACING_MD, TOP_BAR_H } from "@/constants/styles";
 import { useBreadcrumbs } from "@/contexts/useBreadcrumbs";
 import { useLocale } from "@/contexts/useLocale";

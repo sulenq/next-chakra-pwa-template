@@ -18,7 +18,7 @@ import { MainView, useViewContext } from "@/components/widgets/main-view";
 import { DUMMY_DASHBOARD_DATA } from "@/constants/dummyData";
 import { getMonthNames } from "@/constants/months";
 import { GAP, R_SPACING_MD } from "@/constants/styles";
-import { Type__ChartData } from "@/constants/types";
+import { Type__ChartData } from "@/types/global.types";
 import { useLocale } from "@/contexts/useLocale";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
 import { useFetchData } from "@/hooks/useFetchData";

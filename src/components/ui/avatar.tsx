@@ -6,7 +6,7 @@ import { FileInputProps } from "@/components/ui/file-input";
 import { ImgInput } from "@/components/ui/img-input";
 import { P } from "@/components/ui/p";
 import { BackButton } from "@/components/widgets/back-button";
-import { User } from "@/constants/interfaces";
+import { User } from "@/types/global.types";
 import { usePopDisclosure } from "@/hooks/usePopDisclosure";
 import { disclosureId } from "@/utils/disclosure";
 import { getInitials } from "@/utils/string";

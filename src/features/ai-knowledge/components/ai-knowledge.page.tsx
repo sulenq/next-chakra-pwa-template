@@ -32,7 +32,7 @@ import {
   BatchOptionsTableOptionGenerator,
   DataProps,
   RowOptionsTableOptionGenerator,
-} from "@/constants/interfaces";
+} from "@/types/global.types";
 import { BASE_ICON_BOX_SIZE, GAP, R_SPACING_MD } from "@/constants/styles";
 import { isEmptyArray, last } from "@/utils/array";
 import { back } from "@/utils/client";
