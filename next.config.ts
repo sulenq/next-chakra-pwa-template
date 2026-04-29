@@ -49,13 +49,7 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "land-be.cunindonesia.web.id",
-        pathname: "/**",
-      },
-      { protocol: "https", hostname: "apiweb.exium.id", pathname: "/**" },
-      {
-        protocol: "https",
-        hostname: "api-landai.exium.my.id",
+        hostname: "be.landai.tech",
         pathname: "/**",
       },
       { protocol: "https", hostname: "images.unsplash.com", pathname: "/**" },
