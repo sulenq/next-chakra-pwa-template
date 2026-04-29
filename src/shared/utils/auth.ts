@@ -1,4 +1,4 @@
-import { Interface__User } from "@/shared/constants/interfaces";
+import { User } from "@/shared/constants/interfaces";
 import { getStorage, removeStorage, setStorage } from "@/shared/utils/client";
 
 export function getAccessToken() {
@@ -13,7 +13,7 @@ export function clearAccessToken() {
   removeStorage("__access_token");
 }
 
-export function getUserData(): Interface__User | null {
+export function getUserData(): User | null {
   const raw = getStorage("__user_data");
   if (!raw) return null;
 
@@ -25,7 +25,7 @@ export function getUserData(): Interface__User | null {
   }
 }
 
-export function setUserData(user: Interface__User) {
+export function setUserData(user: User) {
   try {
     setStorage("__user_data", JSON.stringify(user), "local", 259200000);
   } catch (e) {

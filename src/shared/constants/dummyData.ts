@@ -1,5 +1,5 @@
 import { Gender } from "@/shared/constants/types";
-import { Interface__User } from "./interfaces";
+import { User } from "./interfaces";
 const generate1D = () => {
   let v23 = 80;
   let v24 = 90;
@@ -177,7 +177,7 @@ export const DUMMY_USER = {
   taskCount: 10,
 };
 
-export const dummyUsers: Interface__User[] = [
+export const dummyUsers: User[] = [
   {
     id: "101",
     avatar: [

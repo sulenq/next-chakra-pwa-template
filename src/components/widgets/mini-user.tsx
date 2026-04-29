@@ -4,14 +4,14 @@ import { Avatar } from "@/components/ui/avatar";
 import { StackH, StackV } from "@/components/ui/stack";
 import { ClampText } from "@/components/widgets/clamp-text";
 import { ImgViewer } from "@/components/widgets/img-viewer";
-import { Interface__User } from "@/shared/constants/interfaces";
+import { User } from "@/shared/constants/interfaces";
 import { imgUrl } from "@/shared/utils/url";
 import { StackProps } from "@chakra-ui/react";
 
 // -----------------------------------------------------------------
 
 interface MiniUserProps extends StackProps {
-  user: Interface__User;
+  user: User;
   withEmail?: boolean;
 }
 

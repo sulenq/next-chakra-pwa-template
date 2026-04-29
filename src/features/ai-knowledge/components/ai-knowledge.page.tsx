@@ -14,12 +14,19 @@ import { DataGrid } from "@/components/widgets/data-grid";
 import { DataTable } from "@/components/widgets/data-table";
 import FeedbackNoData from "@/components/widgets/feedback-no-data";
 import FeedbackRetry from "@/components/widgets/feedback-retry";
-import { ScrollH } from "@/components/widgets/scroll-h";
 import { LucideIcon } from "@/components/widgets/icon";
 import { Item } from "@/components/widgets/item";
-import { MiniUser } from "@/components/widgets/mini-user";
-import { SimpleDisclosure } from "@/components/widgets/simple-disclosure";
 import { MainView, useViewContext } from "@/components/widgets/main-view";
+import { MiniUser } from "@/components/widgets/mini-user";
+import { ScrollH } from "@/components/widgets/scroll-h";
+import { SimpleDisclosure } from "@/components/widgets/simple-disclosure";
+import { useDataDisplay } from "@/contexts/useDataDisplay";
+import { useLocale } from "@/contexts/useLocale";
+import useRenderTrigger from "@/contexts/useRenderTrigger";
+import { useThemeConfig } from "@/contexts/useThemeConfig";
+import { useFetchData } from "@/hooks/useFetchData";
+import { usePopDisclosure } from "@/hooks/usePopDisclosure";
+import { useRequest } from "@/hooks/useRequest";
 import { dummyUsers } from "@/shared/constants/dummyData";
 import {
   BatchOptionsTableOptionGenerator,
@@ -31,13 +38,6 @@ import {
   GAP,
   R_SPACING_MD,
 } from "@/shared/constants/styles";
-import { useDataDisplay } from "@/contexts/useDataDisplay";
-import { useLocale } from "@/contexts/useLocale";
-import useRenderTrigger from "@/contexts/useRenderTrigger";
-import { useThemeConfig } from "@/contexts/useThemeConfig";
-import { useFetchData } from "@/hooks/useFetchData";
-import { usePopDisclosure } from "@/hooks/usePopDisclosure";
-import { useRequest } from "@/hooks/useRequest";
 import { isEmptyArray, last } from "@/shared/utils/array";
 import { back } from "@/shared/utils/client";
 import { disclosureId } from "@/shared/utils/disclosure";
@@ -610,12 +610,15 @@ const Data = (props: any) => {
   );
 };
 
-export default function Page() {
+// -----------------------------------------------------------------
+
+export default function AiKnowledgePage() {
   // Contexts
   const { t } = useLocale();
 
   // Hooks
   const { isSmContainer } = useViewContext();
+  // const {} = useList();
 
   // States
   const pathname = usePathname();

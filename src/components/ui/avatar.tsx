@@ -6,7 +6,7 @@ import { FileInputProps } from "@/components/ui/file-input";
 import { ImgInput } from "@/components/ui/img-input";
 import { P } from "@/components/ui/p";
 import { BackButton } from "@/components/widgets/back-button";
-import { Interface__User } from "@/shared/constants/interfaces";
+import { User } from "@/shared/constants/interfaces";
 import { usePopDisclosure } from "@/hooks/usePopDisclosure";
 import { disclosureId } from "@/shared/utils/disclosure";
 import { getInitials } from "@/shared/utils/string";
@@ -107,7 +107,7 @@ export const AvatarGroup = forwardRef<HTMLDivElement, AvatarGroupProps>(
 interface AvatarInputDisclosureTriggerProps extends FileInputProps {
   children: React.ReactElement<any>;
   formik: any;
-  user?: Interface__User;
+  user?: User;
 }
 
 export const AvatarUploadTrigger = (

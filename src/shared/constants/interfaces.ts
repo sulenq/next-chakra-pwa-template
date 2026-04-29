@@ -7,14 +7,14 @@ import { LucideIcon } from "lucide-react";
 import { ReactNode } from "react";
 
 // Auth
-export interface Interface__ActivityLog extends Interface__CUD {
+export interface ActivityLog extends CUD {
   id: string;
   userId: string;
   action: ActivityActionEnum | string;
   metadata?: Record<string, any>;
-  user?: Interface__User;
+  user?: User;
 }
-export interface Interface__AuthLog extends Interface__CUD {
+export interface AuthLog extends CUD {
   id: string;
   ip: string;
   city: string;
@@ -22,9 +22,9 @@ export interface Interface__AuthLog extends Interface__CUD {
   userAgent: string;
   action: string; // "Sign in" | "Sign out" ;
 }
-export interface Interface__User extends Interface__CUD {
+export interface User extends CUD {
   id: string;
-  avatar: Interface__StorageFile[];
+  avatar: StorageFile[];
   name: string;
   email: string;
   role: Role;
@@ -54,12 +54,12 @@ export interface Role {
 }
 
 // Navs
-export interface Interface__NavGroup {
+export interface NavGroup {
   labelKey?: string;
   label?: string;
-  navs: Interface__Nav[];
+  navs: Nav[];
 }
-export interface Interface__Nav {
+export interface Nav {
   icon?: LucideIcon;
   labelKey?: string;
   label?: string;
@@ -67,19 +67,12 @@ export interface Interface__Nav {
   backPath?: string;
   allowedRoles?: string[];
   allowedPermissions?: string[];
-  children?: Interface__NavGroup[];
+  children?: NavGroup[];
   childrenInvisible?: boolean;
 }
 
 // Pdf Viewer
-export interface Interface__PdfViewer {
-  pageWidth: number;
-  numPages: number | null;
-  page: number;
-  scale: number;
-  mode: "single" | "scroll";
-}
-export interface Interface__PdfViewerUtils {
+export interface PdfViewerUtils {
   setPageWidth: (width: number) => void;
   setPage: (p: number) => void;
   prevPage: () => void;
@@ -122,7 +115,7 @@ export interface FormattedTableRow<T = any> {
     dim?: boolean;
   }[];
 }
-export interface Interface__TableOption {
+export interface TableOption {
   disabled?: boolean;
   label?: string;
   icon?: LucideIcon;
@@ -143,20 +136,20 @@ export interface Interface__TableOption {
 export type RowOptionsTableOptionGenerator<T = any> = (
   formattedRow: FormattedTableRow<T>,
   overloads?: any,
-) => Interface__TableOption | null | false;
+) => TableOption | null | false;
 export type BatchOptionsTableOptionGenerator<T = string[]> = (
   selectedRowIds: T,
   overloads?: any,
-) => Interface__TableOption | null | false;
+) => TableOption | null | false;
 
 // HTTP
-export interface Interface__RequestState<T = any> {
+export interface RequestState<T = any> {
   loading: boolean;
   status: number | null;
   error: any;
   response: AxiosResponse<T> | null;
 }
-export interface Interface__Req<T = any> {
+export interface Req<T = any> {
   config: AxiosRequestConfig;
   onResolve?: {
     onSuccess?: (r: AxiosResponse<T>) => void;
@@ -165,14 +158,14 @@ export interface Interface__Req<T = any> {
 }
 
 // CUD
-export interface Interface__CUD {
+export interface CUD {
   createdAt?: string;
   updatedAt?: string | null;
   deletedAt?: string | null;
 }
 
 // Storage
-export interface Interface__StorageFile extends Interface__CUD {
+export interface StorageFile extends CUD {
   id: string;
   fileName: string;
   filePath: string;
@@ -182,7 +175,7 @@ export interface Interface__StorageFile extends Interface__CUD {
 }
 
 // Select Input
-export interface Interface__SelectOption {
+export interface SelectOption {
   id: any;
   label: any;
   label2?: any;

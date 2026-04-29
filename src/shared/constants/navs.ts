@@ -1,4 +1,4 @@
-import { Interface__NavGroup } from "@/shared/constants/interfaces";
+import { NavGroup } from "@/shared/constants/interfaces";
 import {
   ActivityIcon,
   BlocksIcon,
@@ -14,7 +14,7 @@ import {
   UserIcon,
 } from "lucide-react";
 
-export const PRIVATE_NAV_GROUPS: Interface__NavGroup[] = [
+export const PRIVATE_NAV_GROUPS: NavGroup[] = [
   {
     labelKey: "main",
     navs: [
@@ -28,7 +28,7 @@ export const PRIVATE_NAV_GROUPS: Interface__NavGroup[] = [
         icon: BrainIcon,
         label: "Ai Knowledge",
         labelKey: "navs.user",
-        path: `/ai`,
+        path: `/ai-knowledge`,
         allowedRoles: [],
       },
       {
@@ -123,7 +123,7 @@ export const PRIVATE_NAV_GROUPS: Interface__NavGroup[] = [
   },
 ];
 
-export const OTHER_PRIVATE_NAV_GROUPS: Interface__NavGroup[] = [
+export const OTHER_PRIVATE_NAV_GROUPS: NavGroup[] = [
   {
     labelKey: "other",
     navs: [

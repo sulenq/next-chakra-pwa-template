@@ -12,7 +12,7 @@ import { Clock } from "@/components/widgets/clock";
 import { DotIndicator } from "@/components/widgets/indicator";
 import { Today } from "@/components/widgets/today";
 import { ToggleTip } from "@/components/widgets/toggle-tip";
-import { Interface__Nav } from "@/shared/constants/interfaces";
+import { Nav } from "@/shared/constants/interfaces";
 import { R_SPACING_MD, TOP_BAR_H } from "@/shared/constants/styles";
 import { useBreadcrumbs } from "@/contexts/useBreadcrumbs";
 import { useLocale } from "@/contexts/useLocale";
@@ -96,7 +96,7 @@ export const NavBreadcrumb = (props: any) => {
 
           {/* {isEmptyArray(resolvedActiveNavs) && <P>{t.navs.welcome}</P>} */}
 
-          {activeNavs.map((nav: Interface__Nav, idx: number) => {
+          {activeNavs.map((nav: Nav, idx: number) => {
             return (
               <HStack key={idx} gap={0} color={"fg.subtle"}>
                 {idx !== 0 && (

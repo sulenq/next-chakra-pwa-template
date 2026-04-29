@@ -1,4 +1,4 @@
-import { Interface__NavGroup } from "@/shared/constants/interfaces";
+import { NavGroup } from "@/shared/constants/interfaces";
 import { RESOLVED_NAVS } from "@/shared/constants/navs";
 
 export function generateWAUrl(phone: string, message: string = ""): void {
@@ -13,11 +13,11 @@ export function generateWAUrl(phone: string, message: string = ""): void {
 
 export const getActiveNavs = (
   pathname: string,
-  privateNavs?: Interface__NavGroup[],
-): Interface__NavGroup["navs"][number][] => {
+  privateNavs?: NavGroup[],
+): NavGroup["navs"][number][] => {
   const findInList = (
-    items: Interface__NavGroup["navs"],
-  ): Interface__NavGroup["navs"][number][] | null => {
+    items: NavGroup["navs"],
+  ): NavGroup["navs"][number][] | null => {
     for (const item of items) {
       if (item.path === pathname) return [item];
       if (item.children) {

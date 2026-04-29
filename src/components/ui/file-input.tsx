@@ -14,7 +14,7 @@ import { toaster } from "@/components/ui/toaster";
 import { Tooltip } from "@/components/ui/tooltip";
 import { FileItem } from "@/components/widgets/file-item";
 import { LucideIcon } from "@/components/widgets/icon";
-import { Interface__StorageFile } from "@/shared/constants/interfaces";
+import { StorageFile } from "@/shared/constants/interfaces";
 import { useLocale } from "@/contexts/useLocale";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
 import { isEmptyArray } from "@/shared/utils/array";
@@ -35,7 +35,7 @@ import { forwardRef, useEffect, useState } from "react";
 interface FileListProps extends Omit<StackProps, "onChange"> {
   inputValue: File[] | null;
   onChange?: (inputValue: FileInputProps["inputValue"]) => void;
-  existing: Interface__StorageFile[];
+  existing: StorageFile[];
 }
 
 const FileList = (props: FileListProps) => {
@@ -82,7 +82,7 @@ export interface FileInputInputComponentProps extends Omit<
   FileInputProps,
   "removed"
 > {
-  existing: Interface__StorageFile[];
+  existing: StorageFile[];
   showDropzoneIcon?: boolean;
   showDropzoneLabel?: boolean;
   showDropzoneDescription?: boolean;
@@ -128,7 +128,7 @@ export const FileInputRoot = forwardRef<
   // Derived Values
   const existingArr = Array.isArray(existing) // normalize existing to array (prevent undefined issues)
     ? existing
-    : ([] as Interface__StorageFile[]);
+    : ([] as StorageFile[]);
   const existingCount = existingArr.length;
   const singleFile = inputValue?.[0] as File;
   const singleFileInputted =
@@ -302,9 +302,9 @@ export interface FileInputProps extends Omit<FileUploadRootProps, "onChange"> {
   maxFiles?: number;
   description?: string;
   disabled?: boolean;
-  existingFiles?: Interface__StorageFile[];
-  onDeleteFile?: (file: Interface__StorageFile) => void;
-  onUndoDeleteFile?: (file: Interface__StorageFile) => void;
+  existingFiles?: StorageFile[];
+  onDeleteFile?: (file: StorageFile) => void;
+  onUndoDeleteFile?: (file: StorageFile) => void;
 }
 
 export const FileInput = forwardRef<HTMLInputElement, FileInputProps>(
@@ -319,10 +319,10 @@ export const FileInput = forwardRef<HTMLInputElement, FileInputProps>(
     const fc = useFieldContext();
 
     // States
-    const [existing, setExisting] = useState<Interface__StorageFile[]>(
+    const [existing, setExisting] = useState<StorageFile[]>(
       existingFiles || [],
     );
-    const [deleted, setDeleted] = useState<Interface__StorageFile[]>([]);
+    const [deleted, setDeleted] = useState<StorageFile[]>([]);
 
     // Constants
     const resolvedDisabled = fc?.disabled;

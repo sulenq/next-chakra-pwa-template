@@ -1,5 +1,5 @@
 import { SelectInput, SelectInputProps } from "@/components/ui/select-input";
-import { Interface__SelectOption } from "@/shared/constants/interfaces";
+import { SelectOption } from "@/shared/constants/interfaces";
 import { useRequest } from "@/hooks/useRequest";
 import { capitalizeWords } from "@/shared/utils/string";
 import { useEffect, useState } from "react";
@@ -20,8 +20,7 @@ const SelectWorkspaceCategory = (props: SelectInputProps) => {
   });
 
   // States
-  const [selectOptions, setSelectOptions] =
-    useState<Interface__SelectOption[]>();
+  const [selectOptions, setSelectOptions] = useState<SelectOption[]>();
 
   // Utils
   function fetch() {
@@ -42,7 +41,7 @@ const SelectWorkspaceCategory = (props: SelectInputProps) => {
               id: item?.id,
               label: item?.nama_jabatan,
             }))
-            .sort((a: Interface__SelectOption, b: Interface__SelectOption) =>
+            .sort((a: SelectOption, b: SelectOption) =>
               a.label.localeCompare(b.label),
             );
           setSelectOptions(newOptions);

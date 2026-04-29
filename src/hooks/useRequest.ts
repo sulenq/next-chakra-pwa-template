@@ -1,8 +1,5 @@
 import { toaster } from "@/components/ui/toaster";
-import {
-  Interface__Req,
-  Interface__RequestState,
-} from "@/shared/constants/interfaces";
+import { Req, RequestState } from "@/shared/constants/interfaces";
 import { useLocale } from "@/contexts/useLocale";
 import { clearAccessToken, clearUserData } from "@/shared/utils/auth";
 import { request } from "@/shared/utils/request";
@@ -52,7 +49,7 @@ export const useRequest = <T = any>(props: UseRequestOptions) => {
   const router = useRouter();
 
   // States
-  const [reqState, setReqState] = useState<Interface__RequestState<T>>({
+  const [reqState, setReqState] = useState<RequestState<T>>({
     loading: false,
     status: null,
     error: null,
@@ -69,12 +66,9 @@ export const useRequest = <T = any>(props: UseRequestOptions) => {
   };
 
   // Utils
-  const safeSetState = useCallback(
-    (update: Partial<Interface__RequestState<T>>) => {
-      setReqState((prev) => ({ ...prev, ...update }));
-    },
-    [],
-  );
+  const safeSetState = useCallback((update: Partial<RequestState<T>>) => {
+    setReqState((prev) => ({ ...prev, ...update }));
+  }, []);
   const resolveToastProps = (e: any) => {
     const statusCode = e.response?.status;
     const errorCase = e.response?.data?.case;
@@ -156,7 +150,7 @@ export const useRequest = <T = any>(props: UseRequestOptions) => {
     }
   };
   const req = useCallback(
-    async ({ config, onResolve }: Interface__Req<T>) => {
+    async ({ config, onResolve }: Req<T>) => {
       try {
         if (showLoadingToast) {
           toaster.loading({

@@ -25,11 +25,7 @@ import {
   dummyAuthLogs,
 } from "@/shared/constants/dummyData";
 import { ActivityActionEnum } from "@/shared/constants/enums";
-import {
-  Interface__ActivityLog,
-  Interface__AuthLog,
-  Interface__User,
-} from "@/shared/constants/interfaces";
+import { ActivityLog, AuthLog, User } from "@/shared/constants/interfaces";
 import { R_SPACING_MD } from "@/shared/constants/styles";
 import { useLocale } from "@/contexts/useLocale";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
@@ -53,7 +49,7 @@ import * as yup from "yup";
 // -----------------------------------------------------------------
 
 interface PersonalInformationProps {
-  initialData?: Interface__User;
+  initialData?: User;
 }
 
 const PersonalInformation = (props: PersonalInformationProps) => {
@@ -233,7 +229,7 @@ const AuthLog = () => {
     setPage,
   } = useFetchData<{
     totalData: number;
-    items: Interface__AuthLog[];
+    items: AuthLog[];
   }>({
     // TODO_DEV add url and set initial data to undefined
     initialData: {
@@ -376,7 +372,7 @@ const ActivityLog = () => {
     [ActivityActionEnum.DELETE_LAYER]: (meta) =>
       `Deleted layer "${meta?.layerName ?? "Unknown"}`,
   };
-  const formatActivityLog = (log: Interface__ActivityLog): string => {
+  const formatActivityLog = (log: ActivityLog): string => {
     return activityFormatter[log.action as ActivityActionEnum](log.metadata);
   };
   const {
@@ -391,7 +387,7 @@ const ActivityLog = () => {
     setPage,
   } = useFetchData<{
     totalData: number;
-    items: Interface__ActivityLog[];
+    items: ActivityLog[];
   }>({
     // TODO_DEV add url and set initial data to undefined
     initialData: {
@@ -497,12 +493,11 @@ const ActivityLog = () => {
 
 export default function Page() {
   // States
-  const { error, initialLoading, data, onRetry } =
-    useFetchData<Interface__User>({
-      initialData: DUMMY_USER,
-      url: ``,
-      dataResource: false,
-    });
+  const { error, initialLoading, data, onRetry } = useFetchData<User>({
+    initialData: DUMMY_USER,
+    url: ``,
+    dataResource: false,
+  });
 
   // Render State Map
   const render = {

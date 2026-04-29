@@ -11,7 +11,7 @@ import FeedbackNoData from "@/components/widgets/feedback-no-data";
 import FeedbackNotFound from "@/components/widgets/feedback-not-found";
 import FeedbackRetry from "@/components/widgets/feedback-retry";
 import { DotIndicator } from "@/components/widgets/indicator";
-import { Interface__SelectOption } from "@/shared/constants/interfaces";
+import { SelectOption } from "@/shared/constants/interfaces";
 import { ButtonVariant, DisclosureSizes } from "@/shared/constants/types";
 import { useLocale } from "@/contexts/useLocale";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
@@ -31,7 +31,7 @@ export interface SelectOptionsProps {
   id: string;
   multiple: SelectInputProps["multiple"];
   selectOptions: SelectInputProps["inputValue"];
-  selected: Interface__SelectOption[];
+  selected: SelectOption[];
   setSelected: React.Dispatch<SelectOptionsProps["selected"]>;
 }
 
@@ -162,7 +162,7 @@ const SelectOptions = (props: SelectOptionsProps) => {
 export interface SelectInputProps extends Omit<BtnProps, "onChange"> {
   id: string;
   title?: string;
-  inputValue?: Interface__SelectOption[] | null;
+  inputValue?: SelectOption[] | null;
   onChange?: (inputValue: SelectInputProps["inputValue"]) => void;
   loading?: boolean;
   error?: any;
@@ -205,7 +205,7 @@ export const SelectInput = (props: SelectInputProps) => {
   const { open, onOpen } = usePopDisclosure(disclosureId(id || "select-input"));
 
   // States
-  const [selected, setSelected] = useState<Interface__SelectOption[]>([]);
+  const [selected, setSelected] = useState<SelectOption[]>([]);
 
   // Derived Values
   const resolvedPlaceholder =

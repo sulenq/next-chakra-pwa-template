@@ -2,14 +2,14 @@ import axios from "axios";
 import { getAccessToken, setAccessToken } from "@/shared/utils/auth";
 
 // create axios instance
-export const request = axios.create({
+export const http = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
   headers: { Accept: "application/json" },
   // withCredentials: true, // uncoment if use refresh token
 });
 
 // inject access token to request
-request.interceptors.request.use(
+http.interceptors.request.use(
   (config) => {
     const token = getAccessToken();
     if (token) config.headers.Authorization = `Bearer ${token}`;
@@ -19,7 +19,7 @@ request.interceptors.request.use(
 );
 
 // response interceptor for auto-refresh
-request.interceptors.response.use(
+http.interceptors.response.use(
   (response) => response,
   async (error) => {
     const originalRequest = error.config;
@@ -29,7 +29,7 @@ request.interceptors.response.use(
       const newToken = await refreshAccessToken();
       if (newToken) {
         originalRequest.headers.Authorization = `Bearer ${newToken}`;
-        return request(originalRequest); // retry request
+        return http(originalRequest); // retry request
       }
     }
 

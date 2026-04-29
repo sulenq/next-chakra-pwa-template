@@ -9,7 +9,7 @@ import { FileItem } from "@/components/widgets/file-item";
 import { ScrollH } from "@/components/widgets/scroll-h";
 import { LucideIcon } from "@/components/widgets/icon";
 import { ImgViewer } from "@/components/widgets/img-viewer";
-import { Interface__StorageFile } from "@/shared/constants/interfaces";
+import { StorageFile } from "@/shared/constants/interfaces";
 import { useLocale } from "@/contexts/useLocale";
 import { useThemeConfig } from "@/contexts/useThemeConfig";
 import { isEmptyArray } from "@/shared/utils/array";
@@ -39,10 +39,8 @@ export const ImgInput = (props: FileInputProps) => {
   // States
   const [previewUrls, setPreviewUrls] = useState<string[]>([]);
   const resolvedDisabled = fc?.disabled;
-  const [existing, setExisting] = useState<Interface__StorageFile[]>(
-    existingFiles || [],
-  );
-  const [deleted, setDeleted] = useState<Interface__StorageFile[]>([]);
+  const [existing, setExisting] = useState<StorageFile[]>(existingFiles || []);
+  const [deleted, setDeleted] = useState<StorageFile[]>([]);
   const shouldRenderPreview = !isEmptyArray(previewUrls);
 
   useEffect(() => {
@@ -50,7 +48,7 @@ export const ImgInput = (props: FileInputProps) => {
     if (inputValue) {
       inputValueUrls = inputValue.map((f: any) => URL.createObjectURL(f));
     }
-    const exsistingUrls = existing.map((f: Interface__StorageFile) =>
+    const exsistingUrls = existing.map((f: StorageFile) =>
       imgUrl(f.filePath),
     ) as string[];
 

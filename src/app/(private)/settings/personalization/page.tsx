@@ -16,7 +16,7 @@ import { Item } from "@/components/widgets/item";
 import { LocalSettingsHelperText } from "@/components/widgets/local-settings-helper-text";
 import { ToggleSettingContainer } from "@/components/widgets/settings-shell";
 import { COLOR_PALETTES } from "@/shared/constants/colors";
-import { Interface__SelectOption } from "@/shared/constants/interfaces";
+import { SelectOption } from "@/shared/constants/interfaces";
 import { ROUNDED_PRESETS } from "@/shared/constants/presets";
 import { OPTIONS_RELIGION } from "@/shared/constants/selectOptions";
 import { R_SPACING_MD } from "@/shared/constants/styles";
@@ -377,9 +377,7 @@ const ExampleUISection = () => {
 
   // States
   const [checked, setChecked] = useState<boolean>(true);
-  const [select, setSelect] = useState<
-    Interface__SelectOption[] | null | undefined
-  >(null);
+  const [select, setSelect] = useState<SelectOption[] | null | undefined>(null);
 
   return (
     <Item.Root>

@@ -14,7 +14,7 @@ import FeedbackNotFound from "@/components/widgets/feedback-not-found";
 import { LeftIndicator } from "@/components/widgets/indicator";
 import { Item } from "@/components/widgets/item";
 import { ProfileMenuTrigger } from "@/components/widgets/profile-menu";
-import { Interface__NavGroup } from "@/shared/constants/interfaces";
+import { NavGroup } from "@/shared/constants/interfaces";
 import {
   BACKDROP_BLUR_FILTER,
   BASE_ICON_BOX_SIZE,
@@ -70,7 +70,7 @@ export const DesktopNavTooltip = (props: TooltipProps) => {
 // -----------------------------------------------------------------
 
 interface DesktopNavsProps extends StackProps {
-  navs: Interface__NavGroup[];
+  navs: NavGroup[];
   navsExpanded?: boolean;
   showSearch?: boolean;
   addonElement?: any;

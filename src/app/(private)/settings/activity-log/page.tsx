@@ -13,7 +13,7 @@ import { Item } from "@/components/widgets/item";
 import { MiniUser } from "@/components/widgets/mini-user";
 import { dummyAllActivityLogs } from "@/shared/constants/dummyData";
 import { ActivityActionEnum } from "@/shared/constants/enums";
-import { Interface__ActivityLog } from "@/shared/constants/interfaces";
+import { ActivityLog } from "@/shared/constants/interfaces";
 import { BASE_ICON_BOX_SIZE, R_SPACING_MD } from "@/shared/constants/styles";
 import { useLocale } from "@/contexts/useLocale";
 import { useFetchData } from "@/hooks/useFetchData";
@@ -41,7 +41,7 @@ const ActivityLog = () => {
     setPage,
   } = useFetchData<{
     totalData: number;
-    items: Interface__ActivityLog[];
+    items: ActivityLog[];
   }>({
     initialData: {
       totalData: 100,
@@ -75,7 +75,7 @@ const ActivityLog = () => {
     [ActivityActionEnum.DELETE_LAYER]: (meta) =>
       `Deleted layer "${meta?.layerName ?? "Unknown"}`,
   };
-  const formatActivityLog = (log: Interface__ActivityLog): string => {
+  const formatActivityLog = (log: ActivityLog): string => {
     return activityFormatter[log.action as ActivityActionEnum](log.metadata);
   };
 
