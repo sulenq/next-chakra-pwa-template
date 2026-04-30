@@ -34,7 +34,7 @@ export const TableSkeleton = (props: StackProps) => {
   const { ...restProps } = props;
 
   return (
-    <CContainer p={3} pt={2} flex={1} {...restProps}>
+    <CContainer p={3} flex={1} {...restProps}>
       <Skeleton flex={1} />
     </CContainer>
   );

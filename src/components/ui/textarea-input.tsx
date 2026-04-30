@@ -77,7 +77,6 @@ export const TextareaInput = forwardRef<
       }
       bg={variant === "subtle" ? "d0" : ""}
       fontSize={"md"}
-      fontWeight={"medium"}
       outline={"none !important"}
       _placeholder={{
         fontSize: "md",

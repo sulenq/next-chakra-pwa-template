@@ -143,7 +143,6 @@ export const StringInput = forwardRef<HTMLInputElement, StringInputProps>(
                   : "border.muted"
             }
             fontSize={"md"}
-            fontWeight={"medium"}
             outline={"none !important"}
             _focus={{
               borderColor: isColorPaletteGray

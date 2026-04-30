@@ -321,6 +321,7 @@ const MainViewHeader = (props: MainViewHeaderProps) => {
 
   return (
     <HStack
+      className={"MainViewHeader"}
       flexShrink={0}
       w={"full"}
       minH={TOP_BAR_H}
@@ -346,6 +347,7 @@ const MainViewTitle = (props: PProps) => {
 
   return (
     <ClampText
+      className={"MainViewTitle"}
       fontSize={"xl"}
       fontWeight={"medium"}
       textAlign={restProps.textAlign}
@@ -367,7 +369,13 @@ const MainViewContent = forwardRef<HTMLDivElement, StackProps>(
     const { isValidDimension } = useViewContext();
 
     return (
-      <StackV ref={ref} flex={1} overflow={"auto"} {...restProps}>
+      <StackV
+        ref={ref}
+        className={"MainViewContent"}
+        flex={1}
+        overflow={"auto"}
+        {...restProps}
+      >
         {isValidDimension ? children : null}
       </StackV>
     );

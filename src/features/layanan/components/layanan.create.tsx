@@ -1,48 +1,57 @@
 "use client";
 
-import { useState } from "react";
-import { useCreateLayananMutation } from "../hooks/use-layanan";
-import { useLocale } from "@/contexts/use-locale-context";
 import { Btn } from "@/components/ui/btn";
-import { StackV } from "@/components/ui/stack";
-import { SimpleDisclosure } from "@/components/widgets/simple-disclosure";
-import { usePopDisclosure } from "@/hooks/use-pop-disclosure";
-import { PlusIcon } from "lucide-react";
+import { Field, FieldsetRoot } from "@/components/ui/field";
+import { StringInput } from "@/components/ui/string-input";
+import { TextareaInput } from "@/components/ui/textarea-input";
 import { AppIconLucide } from "@/components/widgets/app-icon";
+import { SimpleDisclosure } from "@/components/widgets/simple-disclosure";
+import { useLocale } from "@/contexts/use-locale-context";
+import { usePopDisclosure } from "@/hooks/use-pop-disclosure";
+import { InputGroup } from "@chakra-ui/react";
+import { useFormik } from "formik";
+import { PlusIcon } from "lucide-react";
+import * as yup from "yup";
+import { useCreateLayananMutation } from "../hooks/use-layanan";
 
 export const LayananCreate = () => {
   const { open, onOpen, onClose } = usePopDisclosure("layanan-create");
   const { mutate, isPending } = useCreateLayananMutation();
   const { t } = useLocale();
 
-  const [titleId, setTitleId] = useState("");
-  const [titleEn, setTitleEn] = useState("");
-  const [descId, setDescId] = useState("");
-  const [descEn, setDescEn] = useState("");
-  const [file, setFile] = useState<File | null>(null);
+  const formik = useFormik({
+    initialValues: {
+      title_id: "",
+      title_en: "",
+      description_id: "",
+      description_en: "",
+      file: null as File | null,
+    },
+    validationSchema: yup.object().shape({
+      title_id: yup.string().required(t?.msg_required_form || "Required"),
+      title_en: yup.string().required(t?.msg_required_form || "Required"),
+      description_id: yup.string().required(t?.msg_required_form || "Required"),
+      description_en: yup.string().required(t?.msg_required_form || "Required"),
+      file: yup.mixed().required(t?.msg_required_form || "Required"),
+    }),
+    onSubmit: (values) => {
+      const formData = new FormData();
+      formData.append("title_id", values.title_id);
+      formData.append("title_en", values.title_en);
+      formData.append("description_id", values.description_id);
+      formData.append("description_en", values.description_en);
+      if (values.file) {
+        formData.append("file", values.file);
+      }
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    const formData = new FormData();
-    formData.append("title_id", titleId);
-    formData.append("title_en", titleEn);
-    formData.append("description_id", descId);
-    formData.append("description_en", descEn);
-    if (file) {
-      formData.append("file", file);
-    }
-
-    mutate(formData, {
-      onSuccess: () => {
-        onClose();
-        setTitleId("");
-        setTitleEn("");
-        setDescId("");
-        setDescEn("");
-        setFile(null);
-      },
-    });
-  };
+      mutate(formData, {
+        onSuccess: () => {
+          onClose();
+          formik.resetForm();
+        },
+      });
+    },
+  });
 
   return (
     <>
@@ -54,58 +63,95 @@ export const LayananCreate = () => {
         open={open}
         title={"Create Service"}
         bodyContent={
-          <form id={"create-layanan-form"} onSubmit={handleSubmit}>
-            <StackV gap={4} p={4}>
-              <input
-                placeholder={"Title (ID)"}
-                value={titleId}
-                onChange={(e) => setTitleId(e.target.value)}
-                required={true}
-                style={{
-                  padding: "8px",
-                  borderRadius: "4px",
-                  border: "1px solid #ccc",
-                }}
-              />
-              <input
-                placeholder={"Title (EN)"}
-                value={titleEn}
-                onChange={(e) => setTitleEn(e.target.value)}
-                required={true}
-                style={{
-                  padding: "8px",
-                  borderRadius: "4px",
-                  border: "1px solid #ccc",
-                }}
-              />
-              <textarea
-                placeholder={"Description (ID)"}
-                value={descId}
-                onChange={(e) => setDescId(e.target.value)}
-                required={true}
-                style={{
-                  padding: "8px",
-                  borderRadius: "4px",
-                  border: "1px solid #ccc",
-                }}
-              />
-              <textarea
-                placeholder={"Description (EN)"}
-                value={descEn}
-                onChange={(e) => setDescEn(e.target.value)}
-                required={true}
-                style={{
-                  padding: "8px",
-                  borderRadius: "4px",
-                  border: "1px solid #ccc",
-                }}
-              />
-              <input
-                type={"file"}
-                onChange={(e) => setFile(e.target.files?.[0] || null)}
-                required={true}
-              />
-            </StackV>
+          <form id={"create-layanan-form"} onSubmit={formik.handleSubmit}>
+            <FieldsetRoot disabled={isPending}>
+              <Field
+                label={t?.title || "Title"}
+                invalid={!!formik.errors.title_id && !!formik.touched.title_id}
+                errorText={formik.errors.title_id}
+              >
+                <InputGroup w={"full"} startElement={"ID"}>
+                  <StringInput
+                    name={"title_id"}
+                    placeholder={t?.title || "Title"}
+                    inputValue={formik.values.title_id}
+                    onChange={(val) => formik.setFieldValue("title_id", val)}
+                    pl={"40px !important"}
+                  />
+                </InputGroup>
+              </Field>
+
+              <Field
+                label={t?.title || "Title"}
+                invalid={!!formik.errors.title_en && !!formik.touched.title_en}
+                errorText={formik.errors.title_en}
+              >
+                <InputGroup w={"full"} startElement={"EN"}>
+                  <StringInput
+                    name={"title_en"}
+                    placeholder={t?.title || "Title"}
+                    inputValue={formik.values.title_en}
+                    onChange={(val) => formik.setFieldValue("title_en", val)}
+                    pl={"40px !important"}
+                  />
+                </InputGroup>
+              </Field>
+
+              <Field
+                label={t?.description || "Description"}
+                invalid={
+                  !!formik.errors.description_id &&
+                  !!formik.touched.description_id
+                }
+                errorText={formik.errors.description_id}
+              >
+                <InputGroup w={"full"} startElement={"ID"}>
+                  <TextareaInput
+                    name={"description_id"}
+                    placeholder={t?.description || "Description"}
+                    inputValue={formik.values.description_id}
+                    onChange={(val) =>
+                      formik.setFieldValue("description_id", val)
+                    }
+                    pl={"40px !important"}
+                  />
+                </InputGroup>
+              </Field>
+
+              <Field
+                label={t?.description || "Description"}
+                invalid={
+                  !!formik.errors.description_en &&
+                  !!formik.touched.description_en
+                }
+                errorText={formik.errors.description_en}
+              >
+                <InputGroup w={"full"} startElement={"EN"}>
+                  <TextareaInput
+                    name={"description_en"}
+                    placeholder={t?.description || "Description"}
+                    inputValue={formik.values.description_en}
+                    onChange={(val) =>
+                      formik.setFieldValue("description_en", val)
+                    }
+                    pl={"40px !important"}
+                  />
+                </InputGroup>
+              </Field>
+
+              <Field
+                label={"Icon"}
+                invalid={!!formik.errors.file && !!formik.touched.file}
+                errorText={formik.errors.file as string}
+              >
+                <input
+                  type={"file"}
+                  onChange={(e) =>
+                    formik.setFieldValue("file", e.target.files?.[0] || null)
+                  }
+                />
+              </Field>
+            </FieldsetRoot>
           </form>
         }
         footerContent={

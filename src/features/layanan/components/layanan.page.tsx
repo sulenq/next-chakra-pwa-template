@@ -69,12 +69,15 @@ const DataUtils = (props: any) => {
 };
 
 const Data = (props: any) => {
+  // Props
   const { filter, routeTitle, isSmContainer } = props;
 
+  // Contexts
   const { locale } = useLocale();
   const displayMode = useDataDisplay((s) => s.getDisplay(PREFIX_ID));
   const displayTable = displayMode === "table";
 
+  // Query
   const {
     data: response,
     isLoading,
@@ -84,8 +87,8 @@ const Data = (props: any) => {
     search: filter?.search,
   });
 
+  // Constants
   const data = response?.data || [];
-
   const dataProps: DataProps = {
     headers: [
       {
