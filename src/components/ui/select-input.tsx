@@ -47,6 +47,8 @@ const SelectOptions = (props: SelectOptionsProps) => {
   // States
   const [search, setSearch] = useState<string>("");
   const [selectAll, setSelectAll] = useState<boolean>(false);
+
+  // Derived Values
   const resolvedSelectOptions = selectOptions?.filter((o) =>
     o.label?.toLowerCase().includes(search.toLowerCase()),
   );
