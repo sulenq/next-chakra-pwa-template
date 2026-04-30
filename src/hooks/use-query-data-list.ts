@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 
 // -----------------------------------------------------------------
 
-export const useList = <T, Q>({
+export const useFetchList = <T, Q>({
   fetcher,
   initialQuery,
 }: {

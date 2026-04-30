@@ -149,6 +149,7 @@ export const useRequest = <T = any>(props: UseRequestOptions) => {
         }
     }
   };
+
   const req = useCallback(
     async ({ config, onResolve }: Req<T>) => {
       try {

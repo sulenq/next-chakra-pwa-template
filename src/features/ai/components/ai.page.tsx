@@ -1,11 +1,11 @@
 "use client";
 
 import { Btn } from "@/components/ui/btn";
-import { CContainer } from "@/components/ui/c-container";
 import { Menu } from "@/components/ui/menu";
 import { P } from "@/components/ui/p";
 import { SearchInput } from "@/components/ui/search-input";
 import { TableSkeleton } from "@/components/ui/skeleton";
+import { StackV } from "@/components/ui/stack";
 import { Tooltip } from "@/components/ui/tooltip";
 import { AppIconLucide } from "@/components/widgets/app-icon";
 import { Confirmation } from "@/components/widgets/confirmation";
@@ -20,20 +20,20 @@ import { MainView, useViewContext } from "@/components/widgets/main-view";
 import { MiniUser } from "@/components/widgets/mini-user";
 import { ScrollH } from "@/components/widgets/scroll-h";
 import { SimpleDisclosure } from "@/components/widgets/simple-disclosure";
+import { dummyUsers } from "@/constants/dummy-data";
+import { BASE_ICON_BOX_SIZE, GAP, R_SPACING_MD } from "@/constants/styles";
 import { useDataDisplay } from "@/contexts/use-data-display-context";
 import { useLocale } from "@/contexts/use-locale-context";
 import useRenderTrigger from "@/contexts/use-render-trigger";
 import { useThemeConfig } from "@/contexts/use-theme-context";
-import { useFetchData } from "@/hooks/useFetchData";
 import { usePopDisclosure } from "@/hooks/use-pop-disclosure";
+import { useFetchData } from "@/hooks/useFetchData";
 import { useRequest } from "@/hooks/useRequestOld";
-import { dummyUsers } from "@/constants/dummy-data";
 import {
   BatchOptionsTableOptionGenerator,
   DataProps,
   RowOptionsTableOptionGenerator,
 } from "@/types/global.types";
-import { BASE_ICON_BOX_SIZE, GAP, R_SPACING_MD } from "@/constants/styles";
 import { isEmptyArray, last } from "@/utils/array";
 import { back } from "@/utils/client";
 import { disclosureId } from "@/utils/disclosure";
@@ -625,7 +625,7 @@ export default function AiKnowledgePage() {
 
   return (
     <MainView.Content p={GAP}>
-      <CContainer flex={1} overflowY={"auto"}>
+      <StackV flex={1} overflowY={"auto"}>
         <MainView.Header
           withTitle
           MainViewTitleProps={{
@@ -665,7 +665,7 @@ export default function AiKnowledgePage() {
             isSmContainer={isSmContainer}
           />
         </Item.Body>
-      </CContainer>
+      </StackV>
     </MainView.Content>
   );
 }

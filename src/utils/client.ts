@@ -1,4 +1,5 @@
 export function back() {
+  if (!isClient()) return;
   window.history.back();
 }
 

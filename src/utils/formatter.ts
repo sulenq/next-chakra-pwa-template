@@ -263,6 +263,10 @@ export const formatBytes = (bytes?: number | null) => {
 };
 
 export const formatCount = (number: number): string => {
+  if (number < 1000) {
+    return number.toString();
+  }
+
   const units = ["", "K", "Jt", "Ml", "Tr", "P", "E"];
   let index = 0;
 
