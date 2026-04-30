@@ -5,7 +5,7 @@ import { LucideIcon } from "@/components/widgets/icon";
 import { BASE_ICON_BOX_SIZE, MAIN_INPUT_SIZE } from "@/constants/styles";
 import { InputSize, InputVariant } from "@/types/global.types";
 import { useLocale } from "@/contexts/use-locale-context";
-import { useDebouncedCallback } from "@/hooks/use-debounce-callback";
+import { useDebounced } from "@/hooks/use-debounced";
 import {
   HStack,
   Icon,
@@ -68,7 +68,7 @@ export const SearchInput = (props: SearchInputProps) => {
 
   // Hooks
   const searchParams = useSearchParams();
-  const debounced = useDebouncedCallback((inputValue: string) => {
+  const debounced = useDebounced((inputValue: string) => {
     onChange?.(inputValue);
   }, debounceTime);
 

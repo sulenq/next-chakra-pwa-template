@@ -2,7 +2,7 @@ import { useRef } from "react";
 
 // -----------------------------------------------------------------
 
-export const useDebouncedCallback = <T extends (...args: any[]) => void>(
+export const useDebounced = <T extends (...args: any[]) => void>(
   callback: T,
   debounceDelay: number,
 ) => {
