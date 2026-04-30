@@ -28,7 +28,7 @@ export const PRIVATE_NAV_GROUPS: NavGroup[] = [
         icon: BrainIcon,
         label: "Ai Knowledge",
         labelKey: "navs.user",
-        path: `/ai-knowledge`,
+        path: `/ai`,
         allowedRoles: [],
       },
       {
