@@ -46,7 +46,7 @@ const customConfig = defineConfig({
     tokens: {
       animations: {
         bounceIn: {
-          value: "bounce-in 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)",
+          value: "bounce-in 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.1)",
         },
         bounceOut: { value: "bounce-out 0.2s ease-in" },
       },

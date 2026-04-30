@@ -333,7 +333,7 @@ const DesktopLayout = (props: any) => {
               ? `calc(250px + (${DESKTOP_SPACING_MD} * 2) + ${GAP})`
               : `calc(36px + (${DESKTOP_SPACING_MD} * 2) + ${GAP})`
           }
-          transition={"200ms"}
+          transition={"0.3s cubic-bezier(0.175, 0.885, 0.32, 1.1)"}
           pos={"relative"}
         >
           {/* Content */}
@@ -383,7 +383,7 @@ const DesktopLayout = (props: any) => {
                   gap={4}
                   px={DESKTOP_NAV_BTN_PX}
                   zIndex={99}
-                  transition={"200ms"}
+                  transition={"0.3s cubic-bezier(0.175, 0.885, 0.32, 1.1)"}
                   onClick={toggleNavsExpanded}
                 >
                   <Center
