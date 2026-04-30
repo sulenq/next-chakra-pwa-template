@@ -285,7 +285,7 @@ export const formatDBTableName = (str: string): string => {
 export const formatTime = (
   time?: string | null,
   options: {
-    showSecond?: boolean;
+    showSeconds?: boolean;
     timeFormat?: Type__TimeFormat;
     timezoneKey?: string;
     withSuffix?: boolean;
@@ -314,7 +314,7 @@ export const formatTime = (
     const hour12 = hh % 12 || 12;
     formattedTime = `${hour12}:${String(mm).padStart(2, "0")}`;
 
-    if (options.showSecond) {
+    if (options.showSeconds) {
       formattedTime += `:${String(ss).padStart(2, "0")}`;
     }
 
@@ -323,7 +323,7 @@ export const formatTime = (
   } else {
     formattedTime = `${String(hh).padStart(2, "0")}:${String(mm).padStart(2, "0")}`;
 
-    if (options.showSecond) {
+    if (options.showSeconds) {
       formattedTime += `:${String(ss).padStart(2, "0")}`;
     }
   }

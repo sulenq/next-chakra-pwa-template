@@ -1,4 +1,4 @@
-import { Provider } from "@/components/ui/provider";
+import { ChakraProvider, TanstackQueryProvider } from "@/app/providers";
 import { Toaster } from "@/components/ui/toaster";
 import ClientRoot from "@/components/widgets/client-root";
 import { APP } from "@/constants/_meta";
@@ -100,10 +100,13 @@ const RootLayout = (props: Props) => {
           `,
           }}
         />
-        <Provider>
-          <Toaster />
-          <ClientRoot>{children}</ClientRoot>
-        </Provider>
+        <TanstackQueryProvider>
+          <ChakraProvider>
+            <Toaster />
+
+            <ClientRoot>{children}</ClientRoot>
+          </ChakraProvider>
+        </TanstackQueryProvider>
       </body>
     </html>
   );
