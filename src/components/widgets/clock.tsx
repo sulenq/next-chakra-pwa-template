@@ -10,13 +10,13 @@ import { useEffect, useState } from "react";
 // -----------------------------------------------------------------
 
 export interface ClockPropsProps extends StackProps {
-  showSeconds?: boolean;
+  showSecond?: boolean;
   showAbbr?: boolean;
 }
 
 export const Clock = (props: ClockPropsProps) => {
   // Props
-  const { showSeconds = false, showAbbr = true, ...restProps } = props;
+  const { showSecond = false, showAbbr = true, ...restProps } = props;
 
   // Contexts
   const tz = useTimezone((s) => s.timeZone);
@@ -40,7 +40,7 @@ export const Clock = (props: ClockPropsProps) => {
     const tick = () => {
       setTime(
         formatTime(utcTimeString(), {
-          showSeconds,
+          showSecond,
           timezoneKey: tzKey,
         }),
       );
@@ -49,7 +49,7 @@ export const Clock = (props: ClockPropsProps) => {
     tick();
     const interval = setInterval(tick, 1000);
     return () => clearInterval(interval);
-  }, [showSeconds, tzKey]);
+  }, [showSecond, tzKey]);
 
   return (
     <StackH {...restProps}>
