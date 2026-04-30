@@ -74,6 +74,10 @@ export const Img = forwardRef<HTMLImageElement, ImgProps>(
     const [currentSrc, setCurrentSrc] = useState(src || resolvedFallbackSrc);
     const [isError, setIsError] = useState(!src);
 
+    const isGif =
+      typeof currentSrc === "string" &&
+      currentSrc.split("?")[0].toLowerCase().endsWith(".gif");
+
     useEffect(() => {
       setCurrentSrc(src || resolvedFallbackSrc);
       setIsError(!src);
@@ -125,6 +129,7 @@ export const Img = forwardRef<HTMLImageElement, ImgProps>(
             width={fluid ? 0 : undefined}
             height={fluid ? 0 : undefined}
             quality={100}
+            unoptimized={isGif}
             sizes={
               imageProps?.sizes ??
               "(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
