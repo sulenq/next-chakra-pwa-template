@@ -14,6 +14,13 @@ const customConfig = defineConfig({
     },
   },
   theme: {
+    keyframes: {
+      "bounce-in": {
+        "0%": { transform: "scale(0.95)", opacity: "0" },
+        "50%": { transform: "scale(1.0125)", opacity: "1" },
+        "100%": { transform: "scale(1)", opacity: "1" },
+      },
+    },
     recipes: {
       button: {
         variants: {
@@ -37,6 +44,12 @@ const customConfig = defineConfig({
     },
 
     tokens: {
+      animations: {
+        bounceIn: {
+          value: "bounce-in 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)",
+        },
+        bounceOut: { value: "bounce-out 0.2s ease-in" },
+      },
       fonts: {
         heading: { value: "Plus Jakarta Sans, sans-serif" },
         body: { value: "Plus Jakarta Sans, sans-serif" },

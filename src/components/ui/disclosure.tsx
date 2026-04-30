@@ -107,6 +107,7 @@ const DisclosureContent = ({ children, ...props }: DisclosureContentProps) => {
       rounded={themeConfig.radii.container}
       border={"1px solid"}
       borderColor={"d0"}
+      _open={{ animation: "bounceIn", animationDuration: "normal" }}
       {...(props as DialogContentProps)}
     >
       {children}
