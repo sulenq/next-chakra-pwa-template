@@ -1,7 +1,7 @@
 import {
   AiKnowledgeQuery,
   GetAiKnowledgeResponse,
-} from "@/features/ai/types/ai.types";
+} from "@/features/layanan/types/ai.types";
 import { http } from "@/api/http";
 
 export const getAiKnowledge = async (

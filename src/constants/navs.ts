@@ -2,12 +2,12 @@ import { NavGroup } from "@/types/global.types";
 import {
   ActivityIcon,
   BlocksIcon,
-  BrainIcon,
   BrushIcon,
   ChartPieIcon,
   DatabaseIcon,
   LanguagesIcon,
   MapPinIcon,
+  ScanTextIcon,
   SettingsIcon,
   ShieldHalfIcon,
   UserCogIcon,
@@ -25,10 +25,10 @@ export const PRIVATE_NAV_GROUPS: NavGroup[] = [
         allowedRoles: [],
       },
       {
-        icon: BrainIcon,
-        label: "Ai Knowledge",
+        icon: ScanTextIcon,
+        label: "Sevicing",
         labelKey: "navs.user",
-        path: `/ai`,
+        path: `/layanan`,
         allowedRoles: [],
       },
       {
