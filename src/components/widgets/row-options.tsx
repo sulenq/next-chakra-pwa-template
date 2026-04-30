@@ -1,14 +1,12 @@
 import { Btn, BtnProps } from "@/components/ui/btn";
-import { Divider } from "@/components/ui/divider";
 import { Menu } from "@/components/ui/menu";
 import { AppIconLucide } from "@/components/widgets/app-icon";
 import { Confirmation } from "@/components/widgets/confirmation";
-import { useThemeConfig } from "@/contexts/use-theme-context";
 import {
   FormattedTableRow,
   RowOptionsTableOptionGenerator,
 } from "@/types/global.types";
-import { Box, MenuRootProps } from "@chakra-ui/react";
+import { MenuRootProps } from "@chakra-ui/react";
 import { EllipsisVerticalIcon } from "lucide-react";
 import React from "react";
 
@@ -27,7 +25,7 @@ export const RowOptions = (props: Props_RowOptions) => {
     props;
 
   // Contexts
-  const { themeConfig } = useThemeConfig();
+  // const { themeConfig } = useThemeConfig();
 
   return (
     <Menu.Root
@@ -56,7 +54,7 @@ export const RowOptions = (props: Props_RowOptions) => {
       <Menu.Content minW={"140px"} mr={1} zIndex={10}>
         {rowOptions?.map((item, idx) => {
           // if (item === "divider") return <MenuSeparator key={idx} />;
-          const isLastIndex = idx === rowOptions.length - 1;
+          // const isLastIndex = idx === rowOptions.length - 1;
 
           const option = item(row);
           if (!option) return null;
@@ -119,12 +117,6 @@ export const RowOptions = (props: Props_RowOptions) => {
                   {label}
                   {icon && <AppIconLucide icon={icon} />}
                 </Menu.Item>
-              )}
-
-              {!isLastIndex && (
-                <Box px={`calc(${themeConfig.radii.component}/4)`} my={1}>
-                  <Divider />
-                </Box>
               )}
             </>
           );

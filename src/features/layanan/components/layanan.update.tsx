@@ -1,21 +1,22 @@
 "use client";
 
+import { useUpdateLayananMutation } from "../hooks/use-layanan";
+import { useLocale } from "@/contexts/use-locale-context";
 import { Btn } from "@/components/ui/btn";
-import { Field, FieldsetRoot } from "@/components/ui/field";
+import { StackV } from "@/components/ui/stack";
+import { SimpleDisclosure } from "@/components/widgets/simple-disclosure";
+import { usePopDisclosure } from "@/hooks/use-pop-disclosure";
+import { EditIcon } from "lucide-react";
+import { AppIconLucide } from "@/components/widgets/app-icon";
+import { LayananItem } from "../types/layanan.types";
+import { Tooltip } from "@/components/ui/tooltip";
 import { Menu } from "@/components/ui/menu";
+import { useFormik } from "formik";
+import { Field, FieldsetRoot } from "@/components/ui/field";
 import { StringInput } from "@/components/ui/string-input";
 import { TextareaInput } from "@/components/ui/textarea-input";
-import { Tooltip } from "@/components/ui/tooltip";
-import { AppIconLucide } from "@/components/widgets/app-icon";
-import { SimpleDisclosure } from "@/components/widgets/simple-disclosure";
-import { useLocale } from "@/contexts/use-locale-context";
-import { usePopDisclosure } from "@/hooks/use-pop-disclosure";
 import { InputGroup } from "@chakra-ui/react";
-import { useFormik } from "formik";
-import { EditIcon } from "lucide-react";
 import * as yup from "yup";
-import { useUpdateLayananMutation } from "../hooks/use-layanan";
-import { LayananItem } from "../types/layanan.types";
 
 interface Props {
   item: LayananItem;
@@ -86,92 +87,98 @@ export const LayananUpdate = ({ item }: Props) => {
             onSubmit={formik.handleSubmit}
           >
             <FieldsetRoot disabled={isPending}>
-              <Field
-                label={t?.title || "Title"}
-                invalid={!!formik.errors.title_id && !!formik.touched.title_id}
-                errorText={formik.errors.title_id}
-              >
-                <InputGroup w={"full"} startElement={"ID"}>
-                  <StringInput
-                    name={"title_id"}
-                    placeholder={t?.title || "Title"}
-                    inputValue={formik.values.title_id}
-                    onChange={(val) => formik.setFieldValue("title_id", val)}
-                    pl={"40px !important"}
-                  />
-                </InputGroup>
-              </Field>
-
-              <Field
-                label={t?.title || "Title"}
-                invalid={!!formik.errors.title_en && !!formik.touched.title_en}
-                errorText={formik.errors.title_en}
-              >
-                <InputGroup w={"full"} startElement={"EN"}>
-                  <StringInput
-                    name={"title_en"}
-                    placeholder={t?.title || "Title"}
-                    inputValue={formik.values.title_en}
-                    onChange={(val) => formik.setFieldValue("title_en", val)}
-                    pl={"40px !important"}
-                  />
-                </InputGroup>
-              </Field>
-
-              <Field
-                label={t?.description || "Description"}
-                invalid={
-                  !!formik.errors.description_id &&
-                  !!formik.touched.description_id
-                }
-                errorText={formik.errors.description_id}
-              >
-                <InputGroup w={"full"} startElement={"ID"}>
-                  <TextareaInput
-                    name={"description_id"}
-                    placeholder={t?.description || "Description"}
-                    inputValue={formik.values.description_id}
-                    onChange={(val) =>
-                      formik.setFieldValue("description_id", val)
-                    }
-                    pl={"40px !important"}
-                  />
-                </InputGroup>
-              </Field>
-
-              <Field
-                label={t?.description || "Description"}
-                invalid={
-                  !!formik.errors.description_en &&
-                  !!formik.touched.description_en
-                }
-                errorText={formik.errors.description_en}
-              >
-                <InputGroup w={"full"} startElement={"EN"}>
-                  <TextareaInput
-                    name={"description_en"}
-                    placeholder={t?.description || "Description"}
-                    inputValue={formik.values.description_en}
-                    onChange={(val) =>
-                      formik.setFieldValue("description_en", val)
-                    }
-                    pl={"40px !important"}
-                  />
-                </InputGroup>
-              </Field>
-
-              <Field
-                label={"Icon"}
-                invalid={!!formik.errors.file && !!formik.touched.file}
-                errorText={formik.errors.file as string}
-              >
-                <input
-                  type={"file"}
-                  onChange={(e) =>
-                    formik.setFieldValue("file", e.target.files?.[0] || null)
+              <StackV gap={4} p={4}>
+                <Field
+                  label={t?.title || "Title"}
+                  invalid={
+                    !!formik.errors.title_id && !!formik.touched.title_id
                   }
-                />
-              </Field>
+                  errorText={formik.errors.title_id}
+                >
+                  <InputGroup w={"full"} startElement={"ID"}>
+                    <StringInput
+                      name={"title_id"}
+                      placeholder={t?.title || "Title"}
+                      inputValue={formik.values.title_id}
+                      onChange={(val) => formik.setFieldValue("title_id", val)}
+                      pl={"40px !important"}
+                    />
+                  </InputGroup>
+                </Field>
+
+                <Field
+                  label={t?.title || "Title"}
+                  invalid={
+                    !!formik.errors.title_en && !!formik.touched.title_en
+                  }
+                  errorText={formik.errors.title_en}
+                >
+                  <InputGroup w={"full"} startElement={"EN"}>
+                    <StringInput
+                      name={"title_en"}
+                      placeholder={t?.title || "Title"}
+                      inputValue={formik.values.title_en}
+                      onChange={(val) => formik.setFieldValue("title_en", val)}
+                      pl={"40px !important"}
+                    />
+                  </InputGroup>
+                </Field>
+
+                <Field
+                  label={t?.description || "Description"}
+                  invalid={
+                    !!formik.errors.description_id &&
+                    !!formik.touched.description_id
+                  }
+                  errorText={formik.errors.description_id}
+                >
+                  <InputGroup w={"full"} startElement={"ID"}>
+                    <TextareaInput
+                      name={"description_id"}
+                      placeholder={t?.description || "Description"}
+                      inputValue={formik.values.description_id}
+                      onChange={(val) =>
+                        formik.setFieldValue("description_id", val)
+                      }
+                      pl={"40px !important"}
+                    />
+                  </InputGroup>
+                </Field>
+
+                <Field
+                  label={t?.description || "Description"}
+                  invalid={
+                    !!formik.errors.description_en &&
+                    !!formik.touched.description_en
+                  }
+                  errorText={formik.errors.description_en}
+                >
+                  <InputGroup w={"full"} startElement={"EN"}>
+                    <TextareaInput
+                      name={"description_en"}
+                      placeholder={t?.description || "Description"}
+                      inputValue={formik.values.description_en}
+                      onChange={(val) =>
+                        formik.setFieldValue("description_en", val)
+                      }
+                      pl={"40px !important"}
+                    />
+                  </InputGroup>
+                </Field>
+
+                <Field
+                  label={"Icon"}
+                  invalid={!!formik.errors.file && !!formik.touched.file}
+                  errorText={formik.errors.file as string}
+                >
+                  <input
+                    type={"file"}
+                    onChange={(e) =>
+                      formik.setFieldValue("file", e.target.files?.[0] || null)
+                    }
+                  />
+                </Field>
+              </StackV>
             </FieldsetRoot>
           </form>
         }
