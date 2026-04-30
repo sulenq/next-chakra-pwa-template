@@ -130,6 +130,7 @@ const MenuItem = forwardRef<HTMLDivElement, MenuItemProps>(
         gap={3}
         ref={ref}
         py={asChild ? undefined : "8px !important"}
+        px={3}
         cursor={"pointer"}
         fontSize={asChild ? undefined : "md"}
         rounded={

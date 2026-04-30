@@ -8,9 +8,10 @@ import { DotIndicator } from "@/components/widgets/indicator";
 import { BatchOptionsTableOptionGenerator } from "@/types/global.types";
 import { useLocale } from "@/contexts/use-locale-context";
 import { useThemeConfig } from "@/contexts/use-theme-context";
-import { MenuRootProps } from "@chakra-ui/react";
+import { Box, MenuRootProps } from "@chakra-ui/react";
 import { EllipsisIcon } from "lucide-react";
 import { Fragment } from "react";
+import { Divider } from "@/components/ui/divider";
 
 // -----------------------------------------------------------------
 
@@ -93,7 +94,9 @@ export const BatchOptions = (props: BatchOptionsProps) => {
           />
         </Menu.Item>
 
-        <Menu.Separator />
+        <Box px={`calc(${themeConfig.radii.component}/4)`} my={1}>
+          <Divider />
+        </Box>
 
         {batchOptions?.map((item, idx) => {
           const noSelection = selectedRows.length === 0;

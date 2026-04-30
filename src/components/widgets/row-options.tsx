@@ -1,14 +1,16 @@
 import { Btn, BtnProps } from "@/components/ui/btn";
-import { CContainer } from "@/components/ui/c-container";
+import { Divider } from "@/components/ui/divider";
 import { Menu } from "@/components/ui/menu";
 import { AppIconLucide } from "@/components/widgets/app-icon";
 import { Confirmation } from "@/components/widgets/confirmation";
+import { useThemeConfig } from "@/contexts/use-theme-context";
 import {
   FormattedTableRow,
   RowOptionsTableOptionGenerator,
 } from "@/types/global.types";
-import { MenuRootProps } from "@chakra-ui/react";
+import { Box, MenuRootProps } from "@chakra-ui/react";
 import { EllipsisVerticalIcon } from "lucide-react";
+import React from "react";
 
 // -----------------------------------------------------------------
 
@@ -23,6 +25,9 @@ export const RowOptions = (props: Props_RowOptions) => {
   // Props
   const { row, rowOptions, tableContainerRef, menuRootProps, ...restProps } =
     props;
+
+  // Contexts
+  const { themeConfig } = useThemeConfig();
 
   return (
     <Menu.Root
@@ -51,6 +56,7 @@ export const RowOptions = (props: Props_RowOptions) => {
       <Menu.Content minW={"140px"} mr={1} zIndex={10}>
         {rowOptions?.map((item, idx) => {
           // if (item === "divider") return <MenuSeparator key={idx} />;
+          const isLastIndex = idx === rowOptions.length - 1;
 
           const option = item(row);
           if (!option) return null;
@@ -65,54 +71,62 @@ export const RowOptions = (props: Props_RowOptions) => {
             override,
           } = option;
 
-          if (confirmation) {
-            return (
-              <Confirmation.Trigger
-                key={idx}
-                w={"full"}
-                id={`${row.id}-confirmation-${idx}`}
-                title={confirmation.title}
-                description={confirmation.description}
-                confirmLabel={confirmation.confirmLabel}
-                onConfirm={confirmation.onConfirm}
-                confirmButtonProps={confirmation.confirmButtonProps}
-                loading={confirmation.loading}
-                disabled={disabled}
-              >
-                <Menu.Item
-                  value={label}
-                  color={"fg.error"}
+          return (
+            <>
+              {confirmation && (
+                <Confirmation.Trigger
+                  key={idx}
+                  w={"full"}
+                  id={`${row.id}-confirmation-${idx}`}
+                  title={confirmation.title}
+                  description={confirmation.description}
+                  confirmLabel={confirmation.confirmLabel}
+                  onConfirm={confirmation.onConfirm}
+                  confirmButtonProps={confirmation.confirmButtonProps}
+                  loading={confirmation.loading}
                   disabled={disabled}
-                  {...menuItemProps}
+                >
+                  <Menu.Item
+                    value={label}
+                    color={"fg.error"}
+                    disabled={disabled}
+                    {...menuItemProps}
+                    justifyContent={"space-between"}
+                  >
+                    {label}
+                    {icon && <AppIconLucide icon={icon} />}
+                  </Menu.Item>
+                </Confirmation.Trigger>
+              )}
+
+              {override && (
+                <React.Fragment key={idx}>{override}</React.Fragment>
+              )}
+
+              {!confirmation && !override && (
+                <Menu.Item
+                  key={idx}
+                  disabled={disabled}
+                  value={label}
+                  onClick={() => {
+                    if (!disabled) {
+                      onClick();
+                    }
+                  }}
                   justifyContent={"space-between"}
+                  {...menuItemProps}
                 >
                   {label}
                   {icon && <AppIconLucide icon={icon} />}
                 </Menu.Item>
-              </Confirmation.Trigger>
-            );
-          }
+              )}
 
-          if (override) {
-            return <CContainer key={idx}>{override}</CContainer>;
-          }
-
-          return (
-            <Menu.Item
-              key={idx}
-              disabled={disabled}
-              value={label}
-              onClick={() => {
-                if (!disabled) {
-                  onClick();
-                }
-              }}
-              justifyContent={"space-between"}
-              {...menuItemProps}
-            >
-              {label}
-              {icon && <AppIconLucide icon={icon} />}
-            </Menu.Item>
+              {!isLastIndex && (
+                <Box px={`calc(${themeConfig.radii.component}/4)`} my={1}>
+                  <Divider />
+                </Box>
+              )}
+            </>
           );
         })}
       </Menu.Content>

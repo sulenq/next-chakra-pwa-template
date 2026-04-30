@@ -177,6 +177,7 @@ export interface ActivityLog extends CUD {
   metadata?: Record<string, any>;
   user?: User;
 }
+
 export interface AuthLog extends CUD {
   id: string;
   ip: string;
@@ -185,6 +186,7 @@ export interface AuthLog extends CUD {
   userAgent: string;
   action: string; // "Sign in" | "Sign out" ;
 }
+
 export interface User extends CUD {
   id: string;
   avatar: StorageFile[];
@@ -206,6 +208,7 @@ export interface User extends CUD {
   // additional
   taskCount?: number;
 }
+
 export interface Role {
   id: string;
   name: string;
@@ -222,6 +225,7 @@ export interface NavGroup {
   label?: string;
   navs: Nav[];
 }
+
 export interface Nav {
   icon?: LucideIcon;
   labelKey?: string;
@@ -256,6 +260,7 @@ export interface DataProps {
   rowOptions?: RowOptionsTableOptionGenerator[];
   batchOptions?: BatchOptionsTableOptionGenerator[];
 }
+
 export interface FormattedTableHeader {
   th: string;
   sortable?: boolean;
@@ -263,6 +268,7 @@ export interface FormattedTableHeader {
   wrapperProps?: StackProps;
   align?: string;
 }
+
 export interface FormattedTableRow<T = any> {
   id: string;
   idx: number;
@@ -278,6 +284,7 @@ export interface FormattedTableRow<T = any> {
     dim?: boolean;
   }[];
 }
+
 export interface TableOption {
   disabled?: boolean;
   label?: string;
@@ -296,10 +303,12 @@ export interface TableOption {
   menuItemProps?: Partial<MenuItemProps>;
   override?: ReactNode;
 }
+
 export type RowOptionsTableOptionGenerator<T = any> = (
   formattedRow: FormattedTableRow<T>,
   overloads?: any,
 ) => TableOption | null | false;
+
 export type BatchOptionsTableOptionGenerator<T = string[]> = (
   selectedRowIds: T,
   overloads?: any,
@@ -312,6 +321,7 @@ export interface RequestState<T = any> {
   error: any;
   response: AxiosResponse<T> | null;
 }
+
 export interface Req<T = any> {
   config: AxiosRequestConfig;
   onResolve?: {
