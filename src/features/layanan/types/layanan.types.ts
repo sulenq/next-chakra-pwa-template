@@ -1,18 +1,22 @@
-export interface AiKnowledgeQuery {
+export interface LayananQuery {
   page?: number;
   limit?: number;
   search?: string;
 }
 
-export interface AiKnowledgeItem {
+export interface LayananTitleDesc {
   id: string;
-  title: string;
-  content: string;
-  createdAt: string;
-  updatedAt: string;
+  en: string;
 }
 
-export interface AiKnowledgePagination {
+export interface LayananItem {
+  id: string | number;
+  icon: string;
+  title: LayananTitleDesc;
+  description: LayananTitleDesc;
+}
+
+export interface LayananPagination {
   currentPage: number;
   limit: number;
   totalData: number;
@@ -22,11 +26,14 @@ export interface AiKnowledgePagination {
   hasPrevPage: boolean;
 }
 
-export interface GetAiKnowledgeResponse {
+export interface GetLayananResponse {
   status: number;
   message: string;
-  data: {
-    data: AiKnowledgeItem[];
-    pagination: AiKnowledgePagination;
-  };
+  data: LayananItem[];
+}
+
+export interface BaseLayananResponse {
+  status: number;
+  message: string;
+  data?: any;
 }
