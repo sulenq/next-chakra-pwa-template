@@ -1,6 +1,6 @@
 import { ChakraProvider, TanstackQueryProvider } from "@/app/providers";
 import { Toaster } from "@/components/ui/toaster";
-import ClientRoot from "@/components/widgets/client-root";
+import ClientRoot from "@/app/client-root";
 import { APP } from "@/constants/_meta";
 import { disclosurePrefixId } from "@/utils/disclosure";
 import { Metadata, Viewport } from "next";
