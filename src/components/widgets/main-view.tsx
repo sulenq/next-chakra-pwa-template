@@ -152,7 +152,7 @@ export const TopBar = (props: StackProps) => {
   const backPath = last(activeNavs)?.backPath;
 
   // Derived Values
-  const isSmContainer = dimension.width < 750;
+  const isSmContainer = dimension.width < 650;
 
   return (
     <StackH
