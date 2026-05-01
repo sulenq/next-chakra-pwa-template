@@ -136,7 +136,7 @@ const ItemBody = forwardRef<HTMLDivElement, ItemBodyProps>(
     return (
       <StackV
         ref={ref}
-        className={`${scrollY ? "scrollY" : ""} ${className}`}
+        className={`ItemBody ${scrollY ? "scrollY" : ""} ${className || ""}`}
         w={"full"}
         bg={"bg.frosted"}
         rounded={roundedless ? "" : themeConfig.radii.container}

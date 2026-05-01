@@ -1,6 +1,6 @@
 import { LangObject } from "@/types/global.types";
 
-export interface LayananQuery {
+export interface LayananPrams {
   page?: number;
   limit?: number;
   search?: string;

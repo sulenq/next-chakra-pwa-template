@@ -4,13 +4,13 @@ import {
   getLayanan,
   updateLayanan,
 } from "@/features/layanan/service/layanan.api";
-import { LayananQuery } from "@/features/layanan/types/layanan.types";
+import { LayananPrams } from "@/features/layanan/types/layanan.types";
 import { invalidateLayanan } from "@/lib/tanstack-query/invalidate";
 import { queryKeys } from "@/lib/tanstack-query/query-keys";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { GenericFormData } from "axios";
 
-export const useLayananQuery = (params?: LayananQuery) => {
+export const useLayananQuery = (params?: LayananPrams) => {
   return useQuery({
     queryKey: queryKeys.layanan.list(params),
     queryFn: ({ signal }) => getLayanan(params, signal),

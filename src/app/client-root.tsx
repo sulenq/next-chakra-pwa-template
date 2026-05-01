@@ -5,7 +5,6 @@ import { useColorMode } from "@/components/ui/color-mode";
 import { Img } from "@/components/ui/img";
 import { RadialGlowBackground } from "@/components/widgets/background";
 import { GlobalDisclosure } from "@/components/widgets/global-disclosure";
-import { LoadingBar } from "@/components/widgets/loading-bar";
 import { APP } from "@/constants/_meta";
 import { SVGS_PATH } from "@/constants/paths";
 import useADM from "@/contexts/use-adm-context";
@@ -98,7 +97,6 @@ export default function ClientRoot(props: ClientRootProps) {
     >
       <RadialGlowBackground pos={"absolute"} zIndex={1} />
 
-      <LoadingBar />
       <GlobalDisclosure />
 
       <CContainer zIndex={2}>{children}</CContainer>

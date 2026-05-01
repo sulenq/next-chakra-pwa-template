@@ -34,6 +34,7 @@ import { LayananItem } from "../types/layanan.types";
 import { LayananCreate } from "./layanan.create";
 import { LayananDelete } from "./layanan.delete";
 import { LayananUpdate } from "./layanan.update";
+import { TopLoadingBar } from "@/components/widgets/loading-bar";
 
 const PREFIX_ID = `layanan`;
 const DEFAULT_FILTER = {
@@ -148,50 +149,61 @@ const Data = (props: any) => {
     ] as BatchOptionsTableOptionGenerator[],
   };
 
-  if (isLoading) return <TableSkeleton />;
+  if (isLoading)
+    return (
+      <>
+        <TopLoadingBar loading={isLoading} />
+        <TableSkeleton />
+      </>
+    );
+
   if (isError) return <FeedbackRetry onRetry={refetch} />;
   if (isEmptyArray(data)) return <FeedbackNoData />;
 
-  return displayTable ? (
-    <DataTable.Display
-      headers={dataProps.headers}
-      rows={dataProps.rows}
-      rowOptions={dataProps.rowOptions}
-      batchOptions={dataProps.batchOptions}
-    />
-  ) : (
-    <DataGrid.Display
-      data={data}
-      dataProps={dataProps}
-      gridItem={({
-        item,
-        row,
-        details,
-        selectedRows,
-        toggleRowSelection,
-      }: any) => {
-        const resolvedItem: LayananItem = item;
-        return (
-          <DataGrid.Item
-            key={resolvedItem.id}
-            item={{
-              id: `${resolvedItem.id}`,
-              imgSrc: resolvedItem.icon,
-              showImg: true,
-              title: resolvedItem.title?.[locale],
-              description: resolvedItem.description?.[locale],
-            }}
-            dataProps={dataProps}
-            row={row}
-            selectedRows={selectedRows}
-            toggleRowSelection={toggleRowSelection}
-            routeTitle={routeTitle}
-            details={details}
-          />
-        );
-      }}
-      mt={isSmContainer ? 3 : 0}
-    />
+  return (
+    <>
+      {displayTable ? (
+        <DataTable.Display
+          headers={dataProps.headers}
+          rows={dataProps.rows}
+          rowOptions={dataProps.rowOptions}
+          batchOptions={dataProps.batchOptions}
+        />
+      ) : (
+        <DataGrid.Display
+          data={data}
+          dataProps={dataProps}
+          gridItem={({
+            item,
+            row,
+            details,
+            selectedRows,
+            toggleRowSelection,
+          }: any) => {
+            const resolvedItem: LayananItem = item;
+            return (
+              <DataGrid.Item
+                key={resolvedItem.id}
+                item={{
+                  id: `${resolvedItem.id}`,
+                  imgSrc: resolvedItem.icon,
+                  showImg: true,
+                  title: resolvedItem.title?.[locale],
+                  description: resolvedItem.description?.[locale],
+                }}
+                dataProps={dataProps}
+                row={row}
+                selectedRows={selectedRows}
+                toggleRowSelection={toggleRowSelection}
+                routeTitle={routeTitle}
+                details={details}
+              />
+            );
+          }}
+          mt={isSmContainer ? 3 : 0}
+        />
+      )}
+    </>
   );
 };
 

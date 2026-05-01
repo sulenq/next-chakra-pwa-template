@@ -291,6 +291,30 @@ const MainViewRoot = forwardRef<HTMLDivElement, StackProps>(
 
 // -----------------------------------------------------------------
 
+const MainViewContent = forwardRef<HTMLDivElement, StackProps>(
+  function MainViewContent(props, ref) {
+    // Props
+    const { children, ...restProps } = props;
+
+    // Contexts
+    const { isValidDimension } = useViewContext();
+
+    return (
+      <StackV
+        ref={ref}
+        className={"MainViewContent"}
+        flex={1}
+        overflow={"auto"}
+        {...restProps}
+      >
+        {isValidDimension ? children : null}
+      </StackV>
+    );
+  },
+);
+
+// -----------------------------------------------------------------
+
 export interface MainViewHeaderProps extends StackProps {
   withTitle?: boolean;
   title?: string;
@@ -361,30 +385,6 @@ const MainViewTitle = (props: PProps) => {
     </ClampText>
   );
 };
-
-// -----------------------------------------------------------------
-
-const MainViewContent = forwardRef<HTMLDivElement, StackProps>(
-  function MainViewContent(props, ref) {
-    // Props
-    const { children, ...restProps } = props;
-
-    // Contexts
-    const { isValidDimension } = useViewContext();
-
-    return (
-      <StackV
-        ref={ref}
-        className={"MainViewContent"}
-        flex={1}
-        overflow={"auto"}
-        {...restProps}
-      >
-        {isValidDimension ? children : null}
-      </StackV>
-    );
-  },
-);
 
 export const MainView = {
   Root: MainViewRoot,

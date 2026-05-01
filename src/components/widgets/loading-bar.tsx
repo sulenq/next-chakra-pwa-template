@@ -1,16 +1,20 @@
 "use client";
 
-import { useLoadingBar } from "@/contexts/use-loading-bar-context";
 import { useThemeConfig } from "@/contexts/use-theme-context";
-import { Box, BoxProps } from "@chakra-ui/react";
+import { Box, BoxProps, Portal } from "@chakra-ui/react";
 import { useEffect, useRef, useState } from "react";
 
 // -----------------------------------------------------------------
 
-export function LoadingBar(props: BoxProps) {
+export interface TopLoadingBarProps extends BoxProps {
+  loading: boolean;
+}
+export function TopLoadingBar(props: TopLoadingBarProps) {
+  // Props
+  const { loading, ...restProps } = props;
+
   // Contexts
   const { themeConfig } = useThemeConfig();
-  const loadingBar = useLoadingBar((s) => s.loadingBar);
 
   // States
   const [visible, setVisible] = useState(false);
@@ -19,8 +23,8 @@ export function LoadingBar(props: BoxProps) {
   const finishTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
-    // Start loadingBar
-    if (loadingBar) {
+    // Start loading
+    if (loading) {
       setVisible(true);
       setProgress(0);
 
@@ -34,7 +38,7 @@ export function LoadingBar(props: BoxProps) {
         });
       }, tick);
     } else {
-      // Finish loadingBar
+      // Finish loading
       if (intervalRef.current) clearInterval(intervalRef.current);
       setProgress(100);
 
@@ -48,27 +52,33 @@ export function LoadingBar(props: BoxProps) {
       if (intervalRef.current) clearInterval(intervalRef.current);
       if (finishTimeoutRef.current) clearTimeout(finishTimeoutRef.current);
     };
-  }, [loadingBar]);
+  }, [loading]);
+
+  console.debug({ loading, visible, progress });
 
   return (
-    <Box
-      id={"loading-bar"}
-      w={"full"}
-      h={"3px"}
-      bg={"transparent"}
-      position={"fixed"}
-      top={0}
-      left={0}
-      zIndex={9999}
-      {...props}
-    >
+    <Portal>
       <Box
-        w={`${progress}%`}
-        h={"full"}
-        bg={themeConfig.primaryColor}
-        opacity={visible ? 1 : 0}
-        transition={"width 200ms linear, opacity 200ms ease"}
-      />
-    </Box>
+        className={"LoadingBar"}
+        flexShrink={0}
+        w={"full"}
+        h={"3px"}
+        bg={"transparent"}
+        position={"fixed"}
+        top={0}
+        left={0}
+        zIndex={9999}
+        {...restProps}
+      >
+        <Box
+          flexShrink={0}
+          w={`${progress}%`}
+          h={"full"}
+          bg={`${themeConfig.colorPalette}.solid`}
+          opacity={visible ? 1 : 0}
+          transition={"width 200ms linear, opacity 200ms ease"}
+        />
+      </Box>
+    </Portal>
   );
 }
