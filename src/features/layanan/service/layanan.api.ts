@@ -1,9 +1,10 @@
-import {
-  LayananQuery,
-  GetLayananResponse,
-  BaseLayananResponse,
-} from "@/features/layanan/types/layanan.types";
 import { http } from "@/api/http";
+import {
+  BaseLayananResponse,
+  GetLayananResponse,
+  LayananQuery,
+} from "@/features/layanan/types/layanan.types";
+import { GenericFormData } from "axios";
 
 export const getLayanan = async (
   params?: LayananQuery,
@@ -31,13 +32,13 @@ export const createLayanan = async (data: FormData) => {
   return res.data;
 };
 
-export const updateLayanan = async (id: string | number, data: FormData) => {
+export const updateLayanan = async (
+  id: string | number,
+  data: GenericFormData,
+) => {
   const res = await http.patch<BaseLayananResponse>(
     `/api/admin/da/services/update/${id}`,
     data,
-    {
-      headers: { "Content-Type": "multipart/form-data" },
-    },
   );
   return res.data;
 };

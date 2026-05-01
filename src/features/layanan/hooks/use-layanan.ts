@@ -1,4 +1,3 @@
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import {
   createLayanan,
   deleteLayanan,
@@ -6,6 +5,8 @@ import {
   updateLayanan,
 } from "@/features/layanan/service/layanan.api";
 import { LayananQuery } from "@/features/layanan/types/layanan.types";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { GenericFormData } from "axios";
 
 export const LAYANAN_QUERY_KEY = ["layanan"];
 
@@ -31,8 +32,13 @@ export const useUpdateLayananMutation = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: ({ id, data }: { id: string | number; data: FormData }) =>
-      updateLayanan(id, data),
+    mutationFn: ({
+      id,
+      data,
+    }: {
+      id: string | number;
+      data: GenericFormData;
+    }) => updateLayanan(id, data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: LAYANAN_QUERY_KEY });
     },

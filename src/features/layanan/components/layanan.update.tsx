@@ -17,6 +17,7 @@ import { StringInput } from "@/components/ui/string-input";
 import { TextareaInput } from "@/components/ui/textarea-input";
 import { InputGroup } from "@chakra-ui/react";
 import * as yup from "yup";
+import { toFormData } from "axios";
 
 interface Props {
   item: LayananItem;
@@ -45,17 +46,19 @@ export const LayananUpdate = ({ item }: Props) => {
       description_en: yup.string().required(t?.msg_required_form || "Required"),
     }),
     onSubmit: (values) => {
-      const formData = new FormData();
-      formData.append("title_id", values.title_id);
-      formData.append("title_en", values.title_en);
-      formData.append("description_id", values.description_id);
-      formData.append("description_en", values.description_en);
-      if (values.file) {
-        formData.append("file", values.file);
-      }
+      // const formData = new FormData();
+      // formData.append("title_id", values.title_id);
+      // formData.append("title_en", values.title_en);
+      // formData.append("description_id", values.description_id);
+      // formData.append("description_en", values.description_en);
+      // if (values.file) {
+      //   formData.append("file", values.file);
+      // }
+
+      const payload = values;
 
       mutate(
-        { id: item.id, data: formData },
+        { id: item.id, data: toFormData(payload) },
         {
           onSuccess: () => {
             onClose();

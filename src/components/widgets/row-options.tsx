@@ -69,56 +69,53 @@ export const RowOptions = (props: Props_RowOptions) => {
             override,
           } = option;
 
-          return (
-            <>
-              {confirmation && (
-                <Confirmation.Trigger
-                  key={idx}
-                  w={"full"}
-                  id={`${row.id}-confirmation-${idx}`}
-                  title={confirmation.title}
-                  description={confirmation.description}
-                  confirmLabel={confirmation.confirmLabel}
-                  onConfirm={confirmation.onConfirm}
-                  confirmButtonProps={confirmation.confirmButtonProps}
-                  loading={confirmation.loading}
-                  disabled={disabled}
-                >
-                  <Menu.Item
-                    value={label}
-                    color={"fg.error"}
-                    disabled={disabled}
-                    {...menuItemProps}
-                    justifyContent={"space-between"}
-                  >
-                    {label}
-                    {icon && <AppIconLucide icon={icon} />}
-                  </Menu.Item>
-                </Confirmation.Trigger>
-              )}
-
-              {override && (
-                <React.Fragment key={idx}>{override}</React.Fragment>
-              )}
-
-              {!confirmation && !override && (
+          if (confirmation) {
+            return (
+              <Confirmation.Trigger
+                key={idx}
+                w={"full"}
+                id={`${row.id}-confirmation-${idx}`}
+                title={confirmation.title}
+                description={confirmation.description}
+                confirmLabel={confirmation.confirmLabel}
+                onConfirm={confirmation.onConfirm}
+                confirmButtonProps={confirmation.confirmButtonProps}
+                loading={confirmation.loading}
+                disabled={disabled}
+              >
                 <Menu.Item
-                  key={idx}
-                  disabled={disabled}
                   value={label}
-                  onClick={() => {
-                    if (!disabled) {
-                      onClick();
-                    }
-                  }}
-                  justifyContent={"space-between"}
+                  color={"fg.error"}
+                  disabled={disabled}
                   {...menuItemProps}
+                  justifyContent={"space-between"}
                 >
                   {label}
                   {icon && <AppIconLucide icon={icon} />}
                 </Menu.Item>
-              )}
-            </>
+              </Confirmation.Trigger>
+            );
+          }
+          if (override) {
+            return <React.Fragment key={idx}>{override}</React.Fragment>;
+          }
+
+          return (
+            <Menu.Item
+              key={idx}
+              disabled={disabled}
+              value={label}
+              onClick={() => {
+                if (!disabled) {
+                  onClick();
+                }
+              }}
+              justifyContent={"space-between"}
+              {...menuItemProps}
+            >
+              {label}
+              {icon && <AppIconLucide icon={icon} />}
+            </Menu.Item>
           );
         })}
       </Menu.Content>
