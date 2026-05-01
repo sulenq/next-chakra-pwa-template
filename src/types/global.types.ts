@@ -169,6 +169,18 @@ export type DateVariant =
   | "shortWeekdayDayMonthYear" // Wed, 15 January 2025
   | "shortWeekdayDayShortMonthYear"; // Wed, 15 Jan 2025
 
+// Response
+export interface BaseResponse {
+  status: number;
+  message: string;
+  data?: any; // TODO_DEV change to result for more semantic
+}
+
+// Locales
+export interface LangObject {
+  [key: string]: string;
+}
+
 // Auth
 export interface ActivityLog extends CUD {
   id: string;
@@ -251,6 +263,17 @@ export interface PdfViewerUtils {
   fitToPage: () => void;
   handleDownload: () => void;
   toggleMode: () => void;
+}
+
+// Data List
+export interface Pagination {
+  currentPage: number;
+  limit: number;
+  totalData: number;
+  total: number;
+  lastPage: number;
+  hasNextPage: boolean;
+  hasPrevPage: boolean;
 }
 
 // Data Table

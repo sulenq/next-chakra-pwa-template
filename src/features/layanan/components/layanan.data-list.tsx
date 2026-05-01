@@ -78,7 +78,7 @@ export const LayananDataList = (props: Props) => {
             </HStack>
             <HStack gap={2}>
               <LayananUpdate item={item} />
-              <LayananDelete id={item.id} />
+              <LayananDelete ids={[item.id]} />
             </HStack>
           </HStack>
         ))}

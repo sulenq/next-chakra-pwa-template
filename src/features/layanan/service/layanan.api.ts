@@ -1,9 +1,9 @@
 import { http } from "@/api/http";
 import {
-  BaseLayananResponse,
   GetLayananResponse,
   LayananQuery,
 } from "@/features/layanan/types/layanan.types";
+import { BaseResponse } from "@/types/global.types";
 import { GenericFormData } from "axios";
 
 export const getLayanan = async (
@@ -21,8 +21,8 @@ export const getLayanan = async (
   return res.data;
 };
 
-export const createLayanan = async (data: FormData) => {
-  const res = await http.post<BaseLayananResponse>(
+export const createLayanan = async (data: GenericFormData) => {
+  const res = await http.post<BaseResponse>(
     "/api/admin/da/services/create",
     data,
     {
@@ -36,7 +36,7 @@ export const updateLayanan = async (
   id: string | number,
   data: GenericFormData,
 ) => {
-  const res = await http.patch<BaseLayananResponse>(
+  const res = await http.patch<BaseResponse>(
     `/api/admin/da/services/update/${id}`,
     data,
   );
@@ -44,11 +44,8 @@ export const updateLayanan = async (
 };
 
 export const deleteLayanan = async (ids: (string | number)[]) => {
-  const res = await http.delete<BaseLayananResponse>(
-    "/api/admin/da/services/delete",
-    {
-      data: { deleteIds: ids },
-    },
-  );
+  const res = await http.delete<BaseResponse>("/api/admin/da/services/delete", {
+    data: { deleteIds: ids },
+  });
   return res.data;
 };

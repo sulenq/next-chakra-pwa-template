@@ -5,32 +5,28 @@ import {
   updateLayanan,
 } from "@/features/layanan/service/layanan.api";
 import { LayananQuery } from "@/features/layanan/types/layanan.types";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { invalidateLayanan } from "@/lib/tanstack-query/invalidate";
+import { queryKeys } from "@/lib/tanstack-query/query-keys";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { GenericFormData } from "axios";
-
-export const LAYANAN_QUERY_KEY = ["layanan"];
 
 export const useLayananQuery = (params?: LayananQuery) => {
   return useQuery({
-    queryKey: [...LAYANAN_QUERY_KEY, params],
+    queryKey: queryKeys.layanan.list(params),
     queryFn: ({ signal }) => getLayanan(params, signal),
   });
 };
 
 export const useCreateLayananMutation = () => {
-  const queryClient = useQueryClient();
-
   return useMutation({
-    mutationFn: (data: FormData) => createLayanan(data),
+    mutationFn: (data: GenericFormData) => createLayanan(data),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: LAYANAN_QUERY_KEY });
+      invalidateLayanan();
     },
   });
 };
 
 export const useUpdateLayananMutation = () => {
-  const queryClient = useQueryClient();
-
   return useMutation({
     mutationFn: ({
       id,
@@ -40,18 +36,16 @@ export const useUpdateLayananMutation = () => {
       data: GenericFormData;
     }) => updateLayanan(id, data),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: LAYANAN_QUERY_KEY });
+      invalidateLayanan();
     },
   });
 };
 
 export const useDeleteLayananMutation = () => {
-  const queryClient = useQueryClient();
-
   return useMutation({
     mutationFn: (ids: (string | number)[]) => deleteLayanan(ids),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: LAYANAN_QUERY_KEY });
+      invalidateLayanan();
     },
   });
 };
