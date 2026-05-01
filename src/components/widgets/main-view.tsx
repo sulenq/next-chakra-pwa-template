@@ -13,7 +13,11 @@ import { DotIndicator } from "@/components/widgets/indicator";
 import { Today } from "@/components/widgets/today";
 import { ToggleTip } from "@/components/widgets/toggle-tip";
 import { Nav } from "@/types/global.types";
-import { R_SPACING_MD, TOP_BAR_H } from "@/constants/styles";
+import {
+  R_SPACING_MD,
+  SM_SCREEN_W_NUMBER,
+  TOP_BAR_H,
+} from "@/constants/styles";
 import { useBreadcrumbs } from "@/contexts/use-breadcrumbs-context";
 import { useLocale } from "@/contexts/use-locale-context";
 import { useThemeConfig } from "@/contexts/use-theme-context";
@@ -261,7 +265,7 @@ const MainViewRoot = forwardRef<HTMLDivElement, StackProps>(
 
     // States
     const isValidDimension = dimension.width > 0 && dimension.height > 0;
-    const isSmContainer = dimension.width < 600;
+    const isSmContainer = dimension.width < SM_SCREEN_W_NUMBER;
 
     // Constants
     const contextValue = useMemo(
@@ -273,7 +277,7 @@ const MainViewRoot = forwardRef<HTMLDivElement, StackProps>(
       <ViewContext.Provider value={contextValue}>
         <StackV
           ref={mergeRef}
-          className={"page-container"}
+          className={"MainViewRoot"}
           flex={1}
           overflow={"auto"}
           {...restProps}

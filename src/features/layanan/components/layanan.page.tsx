@@ -41,6 +41,7 @@ const DEFAULT_FILTER = {
 };
 
 const DataUtils = (props: any) => {
+  // Props
   const { filter, setFilter, ...restProps } = props;
 
   return (
@@ -58,11 +59,13 @@ const DataUtils = (props: any) => {
           <LucideIcon icon={ListFilterIcon} />
         </Icon>
       </Btn>
+
       <Btn iconButton variant={"outline"} size={"sm"}>
         <Icon boxSize={BASE_ICON_BOX_SIZE}>
           <LucideIcon icon={ArrowDownAz} />
         </Icon>
       </Btn>
+
       <DataDisplayToggle iconButton navKey={PREFIX_ID} size={"sm"} />
     </HStack>
   );
@@ -193,13 +196,22 @@ const Data = (props: any) => {
 };
 
 export default function LayananPage() {
+  // Contexts
   const { t } = useLocale();
   const { isSmContainer } = useViewContext();
+
+  // Hooks
   const pathname = usePathname();
+
+  // States
+  const [filter, setFilter] = useState(DEFAULT_FILTER);
+
+  // Constants
   const activeNav = getActiveNavs(pathname);
+
+  // Derived Values
   const routeTitle =
     last(activeNav)?.label || pluckString(t, last(activeNav)?.labelKey || "");
-  const [filter, setFilter] = useState(DEFAULT_FILTER);
 
   return (
     <MainView.Content p={GAP}>
@@ -219,6 +231,7 @@ export default function LayananPage() {
                 routeTitle={routeTitle}
               />
             )}
+
             <LayananCreate />
           </HStack>
         </MainView.Header>
