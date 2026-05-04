@@ -317,9 +317,14 @@ const DesktopLayout = (props: any) => {
 
   return (
     <StackV w={"full"} h={`calc(100svh)`} overflowY={"auto"}>
+      {/* Basemap */}
+      <StackV></StackV>
+
+      {/* Main panel */}
       <StackH
         flex={1}
         w={"full"}
+        maxW={"50%"}
         overflowY={"auto"}
         pos={"relative"}
         zIndex={2}

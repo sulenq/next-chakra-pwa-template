@@ -1,18 +1,13 @@
 "use client";
 
 import { Btn } from "@/components/ui/btn";
-import { Divider } from "@/components/ui/divider";
 import { P, PProps } from "@/components/ui/p";
 import { StackH, StackV } from "@/components/ui/stack";
 import { AppIconLucide } from "@/components/widgets/app-icon";
 import { BackButton } from "@/components/widgets/back-button";
-import { Calendar } from "@/components/widgets/calendar";
 import { ClampText } from "@/components/widgets/clamp-text";
-import { Clock } from "@/components/widgets/clock";
 import { DotIndicator } from "@/components/widgets/indicator";
-import { Today } from "@/components/widgets/today";
 import { ToggleTip } from "@/components/widgets/toggle-tip";
-import { Nav } from "@/types/global.types";
 import {
   R_SPACING_MD,
   SM_SCREEN_W_NUMBER,
@@ -24,10 +19,11 @@ import { useThemeConfig } from "@/contexts/use-theme-context";
 import { useContainerDimension } from "@/hooks/use-container-dimenssion";
 import { useMergedRefs } from "@/hooks/use-merge-refs";
 import { useScreen } from "@/hooks/use-screen";
+import { Nav } from "@/types/global.types";
 import { isEmptyArray, last } from "@/utils/array";
 import { capitalizeWords, pluckString } from "@/utils/string";
 import { getActiveNavs } from "@/utils/url";
-import { HStack, Icon, Stack, StackProps } from "@chakra-ui/react";
+import { HStack, Icon, StackProps } from "@chakra-ui/react";
 import { IconSlash } from "@tabler/icons-react";
 import { HeadsetIcon, NavigationIcon } from "lucide-react";
 import { usePathname } from "next/navigation";
@@ -139,7 +135,7 @@ export const NavBreadcrumb = (props: any) => {
 export const TopBar = (props: StackProps) => {
   // Contexts
   const { themeConfig } = useThemeConfig();
-  const { dimension } = useViewContext();
+  // const { dimension } = useViewContext();
 
   // Hooks
   const { sw } = useScreen();
@@ -152,7 +148,7 @@ export const TopBar = (props: StackProps) => {
   const backPath = last(activeNavs)?.backPath;
 
   // Derived Values
-  const isSmContainer = dimension.width < 650;
+  // const isSmContainer = dimension.width < 650;
 
   return (
     <StackH
@@ -170,7 +166,7 @@ export const TopBar = (props: StackProps) => {
         />
       </StackH>
 
-      <Stack
+      {/* <Stack
         flexDir={isSmContainer ? "column" : "row"}
         align={"center"}
         justify={"center"}
@@ -179,16 +175,13 @@ export const TopBar = (props: StackProps) => {
         color={"fg.muted"}
       >
         <Calendar.Trigger>
-          <Today
-            dateVariant={"shortWeekdayDayShortMonthYear"}
-            fontSize={"sm"}
-          />
+          <Today dateVariant={"numeric"} fontSize={"sm"} />
         </Calendar.Trigger>
 
         {!isSmContainer && <Divider dir={"vertical"} mx={2} h={"20px"} />}
 
         <Clock fontSize={"sm"} />
-      </Stack>
+      </Stack> */}
 
       <StackH justify={"end"} gap={2} w={"35%"}>
         {/* <SearchInput
