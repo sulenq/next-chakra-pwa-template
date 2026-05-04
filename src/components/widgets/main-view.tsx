@@ -1,12 +1,16 @@
 "use client";
 
 import { Btn } from "@/components/ui/btn";
+import { Divider } from "@/components/ui/divider";
 import { P, PProps } from "@/components/ui/p";
-import { StackH, StackV } from "@/components/ui/stack";
+import { Stack, StackH, StackV } from "@/components/ui/stack";
 import { AppIconLucide } from "@/components/widgets/app-icon";
 import { BackButton } from "@/components/widgets/back-button";
+import { Calendar } from "@/components/widgets/calendar";
 import { ClampText } from "@/components/widgets/clamp-text";
+import { Clock } from "@/components/widgets/clock";
 import { DotIndicator } from "@/components/widgets/indicator";
+import { Today } from "@/components/widgets/today";
 import { ToggleTip } from "@/components/widgets/toggle-tip";
 import {
   R_SPACING_MD,
@@ -132,10 +136,16 @@ export const NavBreadcrumb = (props: any) => {
 
 // -----------------------------------------------------------------
 
-export const TopBar = (props: StackProps) => {
+export interface TopBarProps extends StackProps {
+  showDateTime?: boolean;
+}
+export const TopBar = (props: TopBarProps) => {
+  // Props
+  const { showDateTime = true, ...restProps } = props;
+
   // Contexts
   const { themeConfig } = useThemeConfig();
-  // const { dimension } = useViewContext();
+  const { dimension } = useViewContext();
 
   // Hooks
   const { sw } = useScreen();
@@ -148,59 +158,60 @@ export const TopBar = (props: StackProps) => {
   const backPath = last(activeNavs)?.backPath;
 
   // Derived Values
-  // const isSmContainer = dimension.width < 650;
+  const isSmContainer = dimension.width < 650;
 
-  return (
-    <StackH
-      flexShrink={0}
-      justify={"space-between"}
-      gap={2}
-      w={"full"}
-      rounded={themeConfig.radii.container}
-      {...props}
-    >
-      <StackH w={"35%"}>
-        <NavBreadcrumb
-          backPath={backPath}
-          resolvedActiveNavs={resolvedActiveNavs}
-        />
-      </StackH>
-
-      {/* <Stack
-        flexDir={isSmContainer ? "column" : "row"}
-        align={"center"}
-        justify={"center"}
-        gap={0}
-        w={"30%"}
-        color={"fg.muted"}
+  if (showDateTime)
+    return (
+      <StackH
+        flexShrink={0}
+        justify={"space-between"}
+        gap={2}
+        w={"full"}
+        rounded={themeConfig.radii.container}
+        {...restProps}
       >
-        <Calendar.Trigger>
-          <Today dateVariant={"numeric"} fontSize={"sm"} />
-        </Calendar.Trigger>
+        <StackH w={"35%"}>
+          <NavBreadcrumb
+            backPath={backPath}
+            resolvedActiveNavs={resolvedActiveNavs}
+          />
+        </StackH>
 
-        {!isSmContainer && <Divider dir={"vertical"} mx={2} h={"20px"} />}
+        <Stack
+          flexDir={isSmContainer ? "column" : "row"}
+          align={"center"}
+          justify={"center"}
+          gap={0}
+          w={"30%"}
+          color={"fg.muted"}
+        >
+          <Calendar.Trigger>
+            <Today dateVariant={"numeric"} fontSize={"sm"} />
+          </Calendar.Trigger>
 
-        <Clock fontSize={"sm"} />
-      </Stack> */}
+          {!isSmContainer && <Divider dir={"vertical"} mx={2} h={"20px"} />}
 
-      <StackH justify={"end"} gap={2} w={"35%"}>
-        {/* <SearchInput
+          <Clock fontSize={"sm"} />
+        </Stack>
+
+        <StackH justify={"end"} gap={2} w={"35%"}>
+          {/* <SearchInput
           queryKey={"quick-navigation"}
           variant={"subtle"}
           icon={<LucideIcon icon={NavigationIcon} />}
           placeholder={t.quick_navigation}
         /> */}
 
-        <Btn iconButton variant={"subtle"} size={"xs"} color={"fg.muted"}>
-          <AppIconLucide icon={NavigationIcon} />
-        </Btn>
+          <Btn iconButton variant={"subtle"} size={"xs"} color={"fg.muted"}>
+            <AppIconLucide icon={NavigationIcon} />
+          </Btn>
 
-        <Btn iconButton variant={"subtle"} size={"xs"} color={"fg.muted"}>
-          <AppIconLucide icon={HeadsetIcon} />
-        </Btn>
+          <Btn iconButton variant={"subtle"} size={"xs"} color={"fg.muted"}>
+            <AppIconLucide icon={HeadsetIcon} />
+          </Btn>
+        </StackH>
       </StackH>
-    </StackH>
-  );
+    );
 };
 
 // -----------------------------------------------------------------
