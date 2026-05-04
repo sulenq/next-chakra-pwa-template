@@ -144,7 +144,7 @@ export const TopBar = (props: TopBarProps) => {
   const { showDateTime = true, ...restProps } = props;
 
   // Contexts
-  const { themeConfig } = useThemeConfig();
+  const { themeContext } = useThemeConfig();
   const { dimension } = useViewContext();
 
   // Hooks
@@ -167,7 +167,7 @@ export const TopBar = (props: TopBarProps) => {
         justify={"space-between"}
         gap={2}
         w={"full"}
-        rounded={themeConfig.radii.container}
+        rounded={themeContext.radii.container}
         {...restProps}
       >
         <StackH w={"35%"}>
@@ -337,7 +337,7 @@ const MainViewHeader = (props: MainViewHeaderProps) => {
 
   // Contexts
   const { t } = useLocale();
-  const { themeConfig } = useThemeConfig();
+  const { themeContext } = useThemeConfig();
 
   // Hooks
   const pathname = usePathname();
@@ -359,7 +359,7 @@ const MainViewHeader = (props: MainViewHeaderProps) => {
       minH={TOP_BAR_H}
       px={R_SPACING_MD}
       pb={R_SPACING_MD}
-      rounded={themeConfig.radii.container}
+      rounded={themeContext.radii.container}
       {...restProps}
     >
       {withTitle && (

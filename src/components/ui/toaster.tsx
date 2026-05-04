@@ -141,11 +141,11 @@ const ToastActionTriggerComponent = (props: any) => {
   const { toast, ...restProps } = props;
 
   // Contexts
-  const { themeConfig } = useThemeConfig();
+  const { themeContext } = useThemeConfig();
 
   return (
     <Toast.ActionTrigger
-      rounded={themeConfig.radii.component}
+      rounded={themeContext.radii.component}
       borderColor={"border.muted"}
       cursor={"pointer"}
       _hover={{
@@ -165,7 +165,7 @@ const ToastComponent = (props: any) => {
   const { toast, ...restProps } = props;
 
   // Contexts
-  const { themeConfig } = useThemeConfig();
+  const { themeContext } = useThemeConfig();
 
   // States
   const [expanded, setExpanded] = useState<boolean>(false);
@@ -173,7 +173,7 @@ const ToastComponent = (props: any) => {
 
   return (
     <Toast.Root
-      rounded={themeConfig?.radii?.container}
+      rounded={themeContext?.radii?.container}
       h={expanded ? "max" : ""}
       w={{ md: "sm" }}
       bg={"bg.body"}

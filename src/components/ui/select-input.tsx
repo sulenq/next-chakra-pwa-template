@@ -42,7 +42,7 @@ const SelectOptions = (props: SelectOptionsProps) => {
 
   // Contexts
   const { t } = useLocale();
-  const { themeConfig } = useThemeConfig();
+  const { themeContext } = useThemeConfig();
 
   // States
   const [search, setSearch] = useState<string>("");
@@ -103,7 +103,7 @@ const SelectOptions = (props: SelectOptionsProps) => {
                   checked={selectAll}
                   invalid={false}
                   size={"md"}
-                  colorPalette={themeConfig.colorPalette}
+                  colorPalette={themeContext.colorPalette}
                 >
                   <P>{t.select_all}</P>
                 </Checkbox>
@@ -200,7 +200,7 @@ export const SelectInput = (props: SelectInputProps) => {
 
   // Contexts
   const { t } = useLocale();
-  const { themeConfig } = useThemeConfig();
+  const { themeContext } = useThemeConfig();
   const fc = useFieldContext();
 
   // Hooks
@@ -332,7 +332,7 @@ export const SelectInput = (props: SelectInputProps) => {
               Clear
             </Btn>
             <Btn
-              colorPalette={themeConfig.colorPalette}
+              colorPalette={themeContext.colorPalette}
               disabled={required && isEmptyArray(selected)}
               onClick={handleConfirm}
             >

@@ -33,7 +33,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
   // Contexts
   const { t } = useLocale();
-  const { themeConfig } = useThemeConfig();
+  const { themeContext } = useThemeConfig();
 
   // Derived Values
   const isAtSettingsIndexRoute = pathname === ROOT_PATH;
@@ -58,7 +58,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             flex={1}
             px={isSmContainer ? 2 : 0}
             pb={isSmContainer ? 2 : 0}
-            rounded={themeConfig.radii.container}
+            rounded={themeContext.radii.container}
             overflowY={"auto"}
           >
             <MainView.Header

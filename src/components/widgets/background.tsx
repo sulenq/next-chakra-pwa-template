@@ -7,10 +7,10 @@ import { Box, Center, Circle, StackProps } from "@chakra-ui/react";
 
 export const RadialGlowBackground = (props: StackProps) => {
   // Contexts
-  const { themeConfig } = useThemeConfig();
+  const { themeContext } = useThemeConfig();
 
   // Constants
-  const colorPalette = themeConfig.colorPalette;
+  const colorPalette = themeContext.colorPalette;
   const opacity1 = useColorModeValue(0.2, 0.15);
   const opacity2 = useColorModeValue(0.2, 0.15);
 
@@ -68,7 +68,7 @@ interface AnimatedBlobBackgroundProps extends Omit<
 export const AnimatedBlobBackground = (props: AnimatedBlobBackgroundProps) => {
   const { animationDuration = 5000, ...restProps } = props;
 
-  const { themeConfig } = useThemeConfig();
+  const { themeContext } = useThemeConfig();
 
   const dur1 = animationDuration;
   const dur2 = Math.round(animationDuration * 1.4);
@@ -77,7 +77,7 @@ export const AnimatedBlobBackground = (props: AnimatedBlobBackgroundProps) => {
   return (
     <StackV
       h={"full"}
-      bg={`${themeConfig.colorPalette}.900`}
+      bg={`${themeContext.colorPalette}.900`}
       pos={"relative"}
       overflow={"clip"}
       {...restProps}
@@ -87,7 +87,7 @@ export const AnimatedBlobBackground = (props: AnimatedBlobBackgroundProps) => {
           w={"full"}
           h={"full"}
           aspectRatio={1}
-          bg={`${themeConfig.colorPalette}.500`}
+          bg={`${themeContext.colorPalette}.500`}
           borderRadius={"60% 40% 70% 30% / 50% 60% 40% 70%"}
           animation={`rotate360 ${dur1}ms linear infinite`}
           pos={"absolute"}
@@ -99,7 +99,7 @@ export const AnimatedBlobBackground = (props: AnimatedBlobBackgroundProps) => {
           w={"65%"}
           h={"65%"}
           aspectRatio={1}
-          bg={`${themeConfig.colorPalette}.800`}
+          bg={`${themeContext.colorPalette}.800`}
           borderRadius={"30% 70% 40% 60% / 60% 40% 70% 30%"}
           animation={`rotate360 ${dur2}ms linear infinite`}
           pos={"absolute"}
@@ -111,7 +111,7 @@ export const AnimatedBlobBackground = (props: AnimatedBlobBackgroundProps) => {
           w={"40%"}
           h={"40%"}
           aspectRatio={1}
-          bg={`${themeConfig.colorPalette}.600`}
+          bg={`${themeContext.colorPalette}.600`}
           borderRadius={"60% 40% 70% 30% / 100% 60% 40% 70%"}
           animation={`rotate360 ${dur3}ms linear infinite`}
           pos={"absolute"}

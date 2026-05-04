@@ -7,13 +7,13 @@ import { Box, BoxProps, Circle, CircleProps } from "@chakra-ui/react";
 
 export const LeftIndicator = (props: BoxProps) => {
   // Contexts
-  const { themeConfig } = useThemeConfig();
+  const { themeContext } = useThemeConfig();
 
   return (
     <Box
       w={"3px"}
       h={"8px"}
-      bg={`${themeConfig.colorPalette}.solid`}
+      bg={`${themeContext.colorPalette}.solid`}
       rounded={"full"}
       pos={"absolute"}
       top={"50%"}
@@ -28,13 +28,13 @@ export const LeftIndicator = (props: BoxProps) => {
 
 export const BottomIndicator = (props: BoxProps) => {
   // Contexts
-  const { themeConfig } = useThemeConfig();
+  const { themeContext } = useThemeConfig();
 
   return (
     <Box
       w={"12px"}
       h={"3px"}
-      bg={`${themeConfig.colorPalette}.solid`}
+      bg={`${themeContext.colorPalette}.solid`}
       rounded={"full"}
       pos={"absolute"}
       bottom={-2}
@@ -52,7 +52,7 @@ export const DotIndicator = (props: CircleProps) => {
   const { children, ...restProps } = props;
 
   // Contexts
-  const { themeConfig } = useThemeConfig();
+  const { themeContext } = useThemeConfig();
 
   // SX
   const boxSize = "6px";
@@ -61,7 +61,7 @@ export const DotIndicator = (props: CircleProps) => {
     <Circle
       w={boxSize}
       h={boxSize}
-      bg={`${themeConfig.colorPalette}.solid`}
+      bg={`${themeContext.colorPalette}.solid`}
       border={"1px solid"}
       borderColor={"bg.muted"}
       {...restProps}

@@ -76,7 +76,7 @@ const OverviewItem = (props: OverviewItemProps) => {
   const { item, ...restProps } = props;
 
   // Contexts
-  const { themeConfig } = useThemeConfig();
+  const { themeContext } = useThemeConfig();
 
   return (
     <Item.Body gap={1} {...restProps}>
@@ -93,7 +93,7 @@ const OverviewItem = (props: OverviewItemProps) => {
         <Center
           p={2}
           bg={"bg.subtle"}
-          rounded={themeConfig.radii.component}
+          rounded={themeContext.radii.component}
           ml={"auto"}
         >
           <AppIconLucide icon={item.icon} boxSize={5} />
@@ -196,7 +196,7 @@ const Chart1 = (props: any) => {
 
   // Contexts
   const { t } = useLocale();
-  const { themeConfig } = useThemeConfig();
+  const { themeContext } = useThemeConfig();
 
   // Refs
   const isPanningRef = useRef<boolean>(false);
@@ -469,7 +469,7 @@ const Chart1 = (props: any) => {
           <Switch
             checked={showPointLabel}
             onCheckedChange={(e) => setShowPointLabel(e.checked)}
-            colorPalette={themeConfig.colorPalette}
+            colorPalette={themeContext.colorPalette}
             ml={2}
           >
             Point label

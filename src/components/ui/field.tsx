@@ -34,7 +34,7 @@ export const Field = forwardRef<HTMLDivElement, FieldProps>(
     } = props;
 
     // Contexts
-    // const { themeConfig } = useThemeConfig();
+    // const { themeContext } = useThemeConfig();
 
     // Hooks
     const { t } = useLocale();
@@ -45,7 +45,7 @@ export const Field = forwardRef<HTMLDivElement, FieldProps>(
           <ChakraField.Label fontSize={"md"} {...labelProps}>
             <P
               fontWeight={"medium"}
-              // px={`calc(${themeConfig.radii.component} - 4px)`}
+              // px={`calc(${themeContext.radii.component} - 4px)`}
             >
               {label}
             </P>

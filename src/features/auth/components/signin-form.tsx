@@ -42,7 +42,7 @@ const INDEX_ROUTE = "/welcome";
 const Signedin = () => {
   // Contexts
   const { t } = useLocale();
-  const { themeConfig } = useThemeConfig();
+  const { themeContext } = useThemeConfig();
 
   return (
     <StackV gap={8} w={"220px"} m={"auto"}>
@@ -52,20 +52,20 @@ const Signedin = () => {
         {/* TODO_DEV: Remove below component in real dev */}
         <>
           <NavLink to={"/test"} mx={"auto"}>
-            <Btn variant={"ghost"} colorPalette={themeConfig.colorPalette}>
+            <Btn variant={"ghost"} colorPalette={themeContext.colorPalette}>
               Test
             </Btn>
           </NavLink>
 
           <NavLink to={"/demo"} mx={"auto"}>
-            <Btn variant={"ghost"} colorPalette={themeConfig.colorPalette}>
+            <Btn variant={"ghost"} colorPalette={themeContext.colorPalette}>
               Demo
             </Btn>
           </NavLink>
         </>
 
         <NavLink to={INDEX_ROUTE}>
-          <Btn variant={"ghost"} colorPalette={themeConfig.colorPalette}>
+          <Btn variant={"ghost"} colorPalette={themeContext.colorPalette}>
             {t.enter_app} <AppIconLucide icon={ArrowRight} />
           </Btn>
         </NavLink>
@@ -84,7 +84,7 @@ const BasicAuthForm = (props: any) => {
 
   // Contexts
   const { t } = useLocale();
-  const { themeConfig } = useThemeConfig();
+  const { themeContext } = useThemeConfig();
   const setVerifiedAccessToken = useAuthMiddleware(
     (s) => s.setVerifiedAccessToken,
   );
@@ -200,7 +200,7 @@ const BasicAuthForm = (props: any) => {
           w={"full"}
           mt={6}
           loading={loading}
-          colorPalette={themeConfig.colorPalette}
+          colorPalette={themeContext.colorPalette}
         >
           <Icon boxSize={BASE_ICON_BOX_SIZE}>
             <LucideIcon icon={LogInIcon} />
@@ -213,7 +213,7 @@ const BasicAuthForm = (props: any) => {
         <Divider flex={1} />
 
         <ResetPasswordDisclosureTrigger>
-          <Btn variant={"ghost"} colorPalette={themeConfig.colorPalette}>
+          <Btn variant={"ghost"} colorPalette={themeContext.colorPalette}>
             Reset Password
           </Btn>
         </ResetPasswordDisclosureTrigger>
@@ -232,7 +232,7 @@ export const SigninForm = (props: StackProps) => {
 
   // Contexts
   const { t } = useLocale();
-  const { themeConfig } = useThemeConfig();
+  const { themeContext } = useThemeConfig();
   const verifiedAccessToken = useAuthMiddleware((s) => s.verifiedAccessToken);
 
   // States
@@ -245,7 +245,7 @@ export const SigninForm = (props: StackProps) => {
       maxW={"360px"}
       p={4}
       gap={4}
-      rounded={themeConfig.radii.container}
+      rounded={themeContext.radii.container}
       {...restProps}
     >
       {verifiedAccessToken ? (

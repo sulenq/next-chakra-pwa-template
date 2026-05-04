@@ -58,7 +58,7 @@ export const StringInput = forwardRef<HTMLInputElement, StringInputProps>(
 
     // Contexts
     const { t } = useLocale();
-    const { themeConfig } = useThemeConfig();
+    const { themeContext } = useThemeConfig();
     const fc = useFieldContext();
 
     // Refs
@@ -75,7 +75,7 @@ export const StringInput = forwardRef<HTMLInputElement, StringInputProps>(
     // Derived Values
     const resolvedPlaceholder = placeholder ?? t.text_input;
     const resolvedInvalid = invalid || fc?.invalid;
-    const isColorPaletteGray = themeConfig.colorPalette === "gray";
+    const isColorPaletteGray = themeContext.colorPalette === "gray";
 
     // Utils
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -147,9 +147,9 @@ export const StringInput = forwardRef<HTMLInputElement, StringInputProps>(
             _focus={{
               borderColor: isColorPaletteGray
                 ? "ibody"
-                : themeConfig.primaryColor,
+                : themeContext.primaryColor,
             }}
-            rounded={themeConfig.radii.component}
+            rounded={themeContext.radii.component}
             autoComplete={"off"}
             transition={"200ms"}
             color={"text"}

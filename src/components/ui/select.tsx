@@ -42,7 +42,7 @@ export default function Select(props: SelectProps) {
   } = props;
 
   // Contexts
-  const { themeConfig } = useThemeConfig();
+  const { themeContext } = useThemeConfig();
 
   // States
   const collection = createListCollection({
@@ -85,7 +85,7 @@ export default function Select(props: SelectProps) {
       <Portal container={portalRef} disabled={!portalled}>
         <ChakraSelect.Positioner>
           <ChakraSelect.Content
-            rounded={themeConfig?.radii.container}
+            rounded={themeContext?.radii.container}
             minW={"80px"}
             shadow={"soft"}
           >
@@ -93,7 +93,7 @@ export default function Select(props: SelectProps) {
               <ChakraSelect.Item
                 item={opt}
                 key={opt.value}
-                rounded={themeConfig?.radii.component}
+                rounded={themeContext?.radii.component}
                 color={"fg.ibody"}
               >
                 {opt.label}

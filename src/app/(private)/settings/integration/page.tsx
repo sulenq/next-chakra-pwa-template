@@ -28,7 +28,7 @@ const APIKeys = (props: any) => {
 
   // Contexts
   const { t } = useLocale();
-  const { themeConfig } = useThemeConfig();
+  const { themeContext } = useThemeConfig();
   const setRt = useRenderTrigger((s) => s.setRt);
 
   // Hooks
@@ -124,7 +124,7 @@ const APIKeys = (props: any) => {
             <Btn
               type={"submit"}
               form={"api-keys-form"}
-              colorPalette={themeConfig.colorPalette}
+              colorPalette={themeContext.colorPalette}
             >
               {t.save}
             </Btn>

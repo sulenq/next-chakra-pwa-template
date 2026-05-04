@@ -15,14 +15,14 @@ export const SortIcon = (props: SortIconProps) => {
   const { columnIndex, sortColumnIdx, direction, ...restProps } = props;
 
   // Contexts
-  const { themeConfig } = useThemeConfig();
+  const { themeContext } = useThemeConfig();
 
   // States
   const active = sortColumnIdx === columnIndex;
   const asc = active && direction === "asc";
   const desc = active && direction === "desc";
-  const ascColor = asc ? themeConfig.primaryColor : "d3";
-  const descColor = desc ? themeConfig.primaryColor : "d3";
+  const ascColor = asc ? themeContext.primaryColor : "d3";
+  const descColor = desc ? themeContext.primaryColor : "d3";
 
   return (
     <VStack gap={0}>

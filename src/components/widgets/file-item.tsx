@@ -24,14 +24,14 @@ export const FileItem = (props: FileItemProps) => {
   const { children, fileData, actions = [], idx, ...restProps } = props;
 
   // Contexts
-  const { themeConfig } = useThemeConfig();
+  const { themeContext } = useThemeConfig();
 
   return (
     <HStack
       py={2}
       px={4}
       pr={"6px"}
-      rounded={themeConfig.radii.component}
+      rounded={themeContext.radii.component}
       border={"1px solid"}
       borderColor={"border.muted"}
       gap={4}

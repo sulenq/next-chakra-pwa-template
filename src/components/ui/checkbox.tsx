@@ -31,19 +31,19 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
     } = props;
 
     // Contexts
-    const { themeConfig } = useThemeConfig();
+    const { themeContext } = useThemeConfig();
 
     // Constants
     const graySolidBg = useColorModeValue("dark", "light");
 
     // Derived Values
-    const isColorPaletteGray = themeConfig.colorPalette === "gray";
+    const isColorPaletteGray = themeContext.colorPalette === "gray";
 
     return (
       <ChakraCheckbox.Root
         ref={rootRef}
         cursor={"pointer"}
-        colorPalette={themeConfig.colorPalette}
+        colorPalette={themeContext.colorPalette}
         {...restProps}
       >
         <ChakraCheckbox.HiddenInput ref={ref} {...inputProps} />
@@ -53,12 +53,12 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
             bg || checked
               ? isColorPaletteGray
                 ? graySolidBg
-                : themeConfig.primaryColor
+                : themeContext.primaryColor
               : subtle
                 ? "bg.muted"
                 : "transparent"
           }
-          rounded={rounded || `calc(${themeConfig.radii.component}/2)`}
+          rounded={rounded || `calc(${themeContext.radii.component}/2)`}
           borderColor={
             checked
               ? "transparent !important"
@@ -67,7 +67,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
           cursor={"pointer"}
         >
           {checked && (
-            <Icon boxSize={4} color={`${themeConfig.colorPalette}.contrast`}>
+            <Icon boxSize={4} color={`${themeContext.colorPalette}.contrast`}>
               {icon || <XIcon />}
             </Icon>
           )}

@@ -69,7 +69,7 @@ export const FileUploadDropzone = forwardRef<
   } = props;
 
   // Contexts
-  const { themeConfig } = useThemeConfig();
+  const { themeContext } = useThemeConfig();
 
   return (
     <ChakraFileUpload.Dropzone
@@ -79,7 +79,7 @@ export const FileUploadDropzone = forwardRef<
       maxH={"full"}
       p={imgInput ? 0 : 4}
       bg={"transparent"}
-      rounded={themeConfig.radii.component}
+      rounded={themeContext.radii.component}
       cursor={"pointer"}
       overflow={"auto"}
       {...rest}
@@ -131,7 +131,7 @@ interface FileUploadItemProps extends VisibilityProps {
 
 const FileUploadItem = (props: FileUploadItemProps) => {
   // Contexts
-  const { themeConfig } = useThemeConfig();
+  const { themeContext } = useThemeConfig();
 
   const { file, showSize, clearable } = props;
 
@@ -141,7 +141,7 @@ const FileUploadItem = (props: FileUploadItemProps) => {
       py={2}
       h={"54px"}
       bg={"bg.body"}
-      rounded={themeConfig.radii.component}
+      rounded={themeContext.radii.component}
     >
       <ChakraFileUpload.ItemPreview asChild>
         <Icon fontSize={20}>

@@ -28,7 +28,7 @@ import { useEffect, useRef, useState } from "react";
 const CameraSection = () => {
   // Contexts
   const { t } = useLocale();
-  const { themeConfig } = useThemeConfig();
+  const { themeContext } = useThemeConfig();
   const { cameraPermissionsStatus } = useCameraPermission();
 
   // States
@@ -132,7 +132,7 @@ const CameraSection = () => {
                 {t.close} {t.camera.toLowerCase()}
               </Btn>
               <Btn
-                colorPalette={themeConfig.colorPalette}
+                colorPalette={themeContext.colorPalette}
                 disabled={cameraOpen}
                 loading={loading}
                 onClick={() => {
@@ -190,7 +190,7 @@ const CameraSection = () => {
                 cameraPermissionsStatus === "denied"
               }
               onChange={requestCameraMic}
-              colorPalette={themeConfig.colorPalette}
+              colorPalette={themeContext.colorPalette}
             />
           </ToggleSettingContainer>
 
@@ -216,7 +216,7 @@ const CameraSection = () => {
 const MicrophoneSection = () => {
   // Contexts
   const { t } = useLocale();
-  const { themeConfig } = useThemeConfig();
+  const { themeContext } = useThemeConfig();
   const { micPermissionsStatus } = useMicPermissions();
 
   // States
@@ -339,7 +339,7 @@ const MicrophoneSection = () => {
                 {t.close} {t.mic.toLowerCase()}
               </Btn>
               <Btn
-                colorPalette={themeConfig.colorPalette}
+                colorPalette={themeContext.colorPalette}
                 disabled={micOpen}
                 loading={loading}
                 onClick={startMicTest}
@@ -380,7 +380,7 @@ const MicrophoneSection = () => {
                 micPermissionsStatus === "denied"
               }
               onChange={requestMicPermission}
-              colorPalette={themeConfig.colorPalette}
+              colorPalette={themeContext.colorPalette}
             />
           </ToggleSettingContainer>
 
@@ -406,7 +406,7 @@ const MicrophoneSection = () => {
 const LocationSection = () => {
   // Contexts
   const { t } = useLocale();
-  const { themeConfig } = useThemeConfig();
+  const { themeContext } = useThemeConfig();
   const { locationPermissionsStatus } = useLocationPermissions();
 
   // States
@@ -534,7 +534,7 @@ const LocationSection = () => {
 
             <Disclosure.Footer>
               <Btn
-                colorPalette={themeConfig.colorPalette}
+                colorPalette={themeContext.colorPalette}
                 loading={loading}
                 onClick={startLocationTest}
               >
@@ -574,7 +574,7 @@ const LocationSection = () => {
                 locationPermissionsStatus === "denied"
               }
               onChange={requestLocationPermission}
-              colorPalette={themeConfig.colorPalette}
+              colorPalette={themeContext.colorPalette}
             />
           </ToggleSettingContainer>
 

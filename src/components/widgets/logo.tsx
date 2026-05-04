@@ -15,15 +15,15 @@ export const Logo = (props: LogoProps) => {
 
   // Hooks
   const { colorMode } = useColorMode();
-  const { themeConfig } = useThemeConfig();
+  const { themeContext } = useThemeConfig();
 
   // Derived Values
   const [themeColor] = useToken("colors", [
-    `${themeConfig?.colorPalette}.solid`,
+    `${themeContext?.colorPalette}.solid`,
   ]);
   const resolvedColor = color
     ? color
-    : themeConfig.colorPalette === "gray"
+    : themeContext.colorPalette === "gray"
       ? colorMode === "dark"
         ? "#fff"
         : "#1b1b1b"

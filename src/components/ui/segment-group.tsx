@@ -16,7 +16,7 @@ export const Segmented = (props: SegmentedProps) => {
   const { items = [], inputValue, onChange, size = "md", ...restProps } = props;
 
   // Contexts
-  const { themeConfig } = useThemeConfig();
+  const { themeContext } = useThemeConfig();
 
   // States
   const hBySize: Record<any, any> = {
@@ -34,7 +34,7 @@ export const Segmented = (props: SegmentedProps) => {
       onValueChange={(e) => onChange?.(e.value as string)}
       w={"fit"}
       bg={"transparent"}
-      rounded={themeConfig.radii.component}
+      rounded={themeContext.radii.component}
       overflow={"clip"}
       shadow={"none"}
       // border={"1px solid"}
@@ -46,7 +46,7 @@ export const Segmented = (props: SegmentedProps) => {
         bg={"bg.muted"}
         // border={"1px solid"}
         borderColor={"border.muted"}
-        rounded={themeConfig.radii.component}
+        rounded={themeContext.radii.component}
         shadow={"none"}
       />
 

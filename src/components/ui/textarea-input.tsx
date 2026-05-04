@@ -26,7 +26,7 @@ export const TextareaInput = forwardRef<
   TextareaInputProps
 >(function TextareaInput(props, ref) {
   const { t } = useLocale();
-  const { themeConfig } = useThemeConfig();
+  const { themeContext } = useThemeConfig();
 
   // Props
   const {
@@ -81,8 +81,8 @@ export const TextareaInput = forwardRef<
       _placeholder={{
         fontSize: "md",
       }}
-      _focus={{ borderColor: themeConfig.primaryColor }}
-      rounded={themeConfig.radii.component}
+      _focus={{ borderColor: themeContext.primaryColor }}
+      rounded={themeContext.radii.component}
       placeholder={placeholder}
       onChange={handleChange}
       px={4}

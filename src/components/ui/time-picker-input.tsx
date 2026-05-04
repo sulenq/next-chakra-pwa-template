@@ -66,7 +66,7 @@ export const TimePickerInput = (props: TimePickerInputProps) => {
 
   // Contexts
   const fc = useFieldContext();
-  const { themeConfig } = useThemeConfig();
+  const { themeContext } = useThemeConfig();
   const { t } = useLocale();
 
   // Hooks
@@ -527,7 +527,7 @@ export const TimePickerInput = (props: TimePickerInputProps) => {
             <Btn
               onClick={handleConfirm}
               disabled={required ? !selected : false}
-              colorPalette={themeConfig.colorPalette}
+              colorPalette={themeContext.colorPalette}
             >
               {t.confirm}
             </Btn>

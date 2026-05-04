@@ -18,7 +18,7 @@ import { useEffect, useRef } from "react";
 export const OfflineAlert = () => {
   // Contexts
   const { t } = useLocale();
-  const { themeConfig } = useThemeConfig();
+  const { themeContext } = useThemeConfig();
   const isOffline = useAlerts((s) => s.alerts["offline"] ?? false);
   const showAlert = useAlerts((s) => s.showAlert);
   const hideAlert = useAlerts((s) => s.hideAlert);
@@ -96,7 +96,7 @@ export const OfflineAlert = () => {
         <Disclosure.Footer>
           <BackButton />
           <Btn
-            colorPalette={themeConfig.colorPalette}
+            colorPalette={themeContext.colorPalette}
             onClick={() => {
               window.location.reload();
             }}

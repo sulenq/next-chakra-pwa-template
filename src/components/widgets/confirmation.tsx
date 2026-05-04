@@ -42,7 +42,7 @@ const ConfirmationContent = (props: ConfirmationProps) => {
   } = props;
 
   // Contexts
-  const { themeConfig } = useThemeConfig();
+  const { themeContext } = useThemeConfig();
 
   return (
     <Disclosure.Root open={open} lazyLoad size={"xs"}>
@@ -64,7 +64,7 @@ const ConfirmationContent = (props: ConfirmationProps) => {
             <Btn
               w={"full"}
               loading={loading}
-              colorPalette={themeConfig.colorPalette}
+              colorPalette={themeContext.colorPalette}
               fontVariantNumeric={"tabular-nums"}
               disabled={!isCountdownFinished}
               onClick={onConfirm}

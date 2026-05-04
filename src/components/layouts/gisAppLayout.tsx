@@ -308,7 +308,7 @@ const DesktopLayout = (props: any) => {
 
   // Contexts
   const { t } = useLocale();
-  const { themeConfig } = useThemeConfig();
+  const { themeContext } = useThemeConfig();
   const isNavsExpanded = useNavs((s) => s.isNavsExpanded);
   const toggleNavsExpanded = useNavs((s) => s.toggleNavsExpanded);
 
@@ -365,7 +365,7 @@ const DesktopLayout = (props: any) => {
                     lineClamp={1}
                     fontSize={"lg"}
                     fontWeight={"semibold"}
-                    color={`${themeConfig.colorPalette}.solid`}
+                    color={`${themeContext.colorPalette}.solid`}
                   >
                     {APP.name}
                   </P>
@@ -394,7 +394,7 @@ const DesktopLayout = (props: any) => {
                   <Center
                     p={2}
                     bg={DESKTOP_NAV_BTN_ICON_BG}
-                    rounded={themeConfig.radii.component}
+                    rounded={themeContext.radii.component}
                   >
                     <AppIconLucide
                       icon={
@@ -451,7 +451,7 @@ const DesktopLayout = (props: any) => {
                             }
                             colorPalette={
                               pathname.includes("/master-data")
-                                ? themeConfig.colorPalette
+                                ? themeContext.colorPalette
                                 : ""
                             }
                             pos={"relative"}
@@ -467,7 +467,7 @@ const DesktopLayout = (props: any) => {
                                   ? ""
                                   : DESKTOP_NAV_BTN_ICON_BG
                               }
-                              rounded={themeConfig.radii.component}
+                              rounded={themeContext.radii.component}
                             >
                               <AppIconLucide
                                 icon={ServerIcon}
@@ -517,7 +517,7 @@ const DesktopLayout = (props: any) => {
               p={R_SPACING_MD}
               // borderBottom={"1px solid"}
               borderColor={"border.muted"}
-              // rounded={themeConfig.radii.container}
+              // rounded={themeContext.radii.container}
             >
               <TopBar />
             </StackH>

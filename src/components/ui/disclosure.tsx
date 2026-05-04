@@ -81,12 +81,12 @@ type DisclosureContentProps = {
 } & (DrawerContentProps | DialogContentProps);
 
 const DisclosureContent = ({ children, ...props }: DisclosureContentProps) => {
-  const { themeConfig } = useThemeConfig();
+  const { themeContext } = useThemeConfig();
   const iss = useIsSmScreenWidth();
 
   return iss ? (
     <Drawer.Content
-      rounded={themeConfig.radii.container}
+      rounded={themeContext.radii.container}
       border={"1px solid"}
       borderColor={"bg.subtle"}
       {...(props as DrawerContentProps)}
@@ -104,7 +104,7 @@ const DisclosureContent = ({ children, ...props }: DisclosureContentProps) => {
     </Drawer.Content>
   ) : (
     <Dialog.Content
-      rounded={themeConfig.radii.container}
+      rounded={themeContext.radii.container}
       border={"1px solid"}
       borderColor={"d0"}
       _open={{ animation: "bounceIn", animationDuration: "normal" }}

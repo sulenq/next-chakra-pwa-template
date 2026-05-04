@@ -733,7 +733,7 @@ const DemoIndexRoute = () => {
     },
   });
 
-  const { themeConfig } = useThemeConfig();
+  const { themeContext } = useThemeConfig();
 
   return (
     <ConstrainedContainer bg={"bg.body"} maxW={"1280px"} p={4} gap={8}>
@@ -760,7 +760,7 @@ const DemoIndexRoute = () => {
       </HStack>
 
       <NavLink to={"/welcome"}>
-        <Btn colorPalette={themeConfig.colorPalette}>App Layout</Btn>
+        <Btn colorPalette={themeContext.colorPalette}>App Layout</Btn>
       </NavLink>
 
       <>

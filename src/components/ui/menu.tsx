@@ -61,13 +61,13 @@ interface MenuTriggerItemProps extends ChakraMenu.ItemProps {
 const MenuTriggerItem = forwardRef<HTMLDivElement, MenuTriggerItemProps>(
   function MenuTriggerItem(props, ref) {
     // Contexts
-    const { themeConfig } = useThemeConfig();
+    const { themeContext } = useThemeConfig();
 
     const { startIcon, children, ...restProps } = props;
     return (
       <ChakraMenu.TriggerItem
         ref={ref}
-        rounded={themeConfig.radii.component}
+        rounded={themeContext.radii.component}
         {...restProps}
       >
         {startIcon}
@@ -91,7 +91,7 @@ const MenuContent = forwardRef<HTMLDivElement, MenuContentProps>(
     const { portalled = true, portalRef, ...restProps } = props;
 
     // Contexts
-    const { themeConfig } = useThemeConfig();
+    const { themeContext } = useThemeConfig();
 
     return (
       <Portal disabled={!portalled} container={portalRef}>
@@ -105,7 +105,7 @@ const MenuContent = forwardRef<HTMLDivElement, MenuContentProps>(
             backdropFilter={BACKDROP_BLUR_FILTER}
             border={"1px solid"}
             borderColor={"border.subtle"}
-            rounded={themeConfig.radii.component}
+            rounded={themeContext.radii.component}
             shadow={"soft"}
             {...restProps}
           />
@@ -123,7 +123,7 @@ const MenuItem = forwardRef<HTMLDivElement, MenuItemProps>(
     const { children, asChild, ...restProps } = props;
 
     // Contexts
-    const { themeConfig } = useThemeConfig();
+    const { themeContext } = useThemeConfig();
 
     return (
       <ChakraMenu.Item
@@ -134,7 +134,7 @@ const MenuItem = forwardRef<HTMLDivElement, MenuItemProps>(
         cursor={"pointer"}
         fontSize={asChild ? undefined : "md"}
         rounded={
-          asChild ? undefined : `calc(${themeConfig.radii.component} - 2px)`
+          asChild ? undefined : `calc(${themeContext.radii.component} - 2px)`
         }
         _hover={
           asChild

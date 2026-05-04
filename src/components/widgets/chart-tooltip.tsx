@@ -20,7 +20,7 @@ export const ChartTooltip = (
   const { active, payload, label } = props;
 
   // Contexts
-  const { themeConfig } = useThemeConfig();
+  const { themeContext } = useThemeConfig();
 
   if (!active || !payload || payload.length === 0) return null;
 
@@ -32,7 +32,7 @@ export const ChartTooltip = (
         bg={"bg.body"}
         border={"1px solid"}
         borderColor={"border.subtle"}
-        rounded={themeConfig.radii.component}
+        rounded={themeContext.radii.component}
         shadow={"soft"}
         backdropFilter={BACKDROP_BLUR_FILTER}
       >

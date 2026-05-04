@@ -33,7 +33,7 @@ export const SimpleDisclosure = (props: SimpleDisclosureProps) => {
   } = props;
 
   // Contexts
-  const { themeConfig } = useThemeConfig();
+  const { themeContext } = useThemeConfig();
 
   // Hooks
   const iss = useIsSmScreenWidth();
@@ -52,7 +52,7 @@ export const SimpleDisclosure = (props: SimpleDisclosureProps) => {
         positionerProps={{
           p: !maximize && !iss ? 4 : 0,
         }}
-        rounded={maximize ? 0 : themeConfig.radii.container}
+        rounded={maximize ? 0 : themeContext.radii.container}
       >
         <Disclosure.Header {...headerProps}>
           <Disclosure.HeaderContent

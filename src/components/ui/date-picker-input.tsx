@@ -140,7 +140,7 @@ export const DatePicker = (props: DatePickerProps) => {
 
   // Contexts
   const { t } = useLocale();
-  const { themeConfig } = useThemeConfig();
+  const { themeContext } = useThemeConfig();
 
   // Derived States
   const fullDates = () => {
@@ -243,7 +243,7 @@ export const DatePicker = (props: DatePickerProps) => {
                     }
                   }}
                   variant={isDateSelected ? "outline" : "ghost"}
-                  borderColor={isDateSelected ? themeConfig.primaryColor : ""}
+                  borderColor={isDateSelected ? themeContext.primaryColor : ""}
                   aspectRatio={1}
                 >
                   <P
@@ -251,7 +251,7 @@ export const DatePicker = (props: DatePickerProps) => {
                       isOutsideMonthAndUnselected
                         ? "d4"
                         : isDateToday
-                          ? themeConfig.primaryColor
+                          ? themeContext.primaryColor
                           : isDateSelected
                             ? ""
                             : "fg.muted"
@@ -284,7 +284,7 @@ const SelectedDateList = (props: SelectedDateListProps) => {
 
   // Contexts
   const { t } = useLocale();
-  const { themeConfig } = useThemeConfig();
+  const { themeContext } = useThemeConfig();
 
   // Hooks
   const { open, onOpen } = usePopDisclosure(
@@ -302,7 +302,7 @@ const SelectedDateList = (props: SelectedDateListProps) => {
         bg={"bg.muted"}
         p={2}
         h={"36px"}
-        rounded={themeConfig.radii.component}
+        rounded={themeContext.radii.component}
         cursor={"pointer"}
         onClick={onOpen}
       >
@@ -395,7 +395,7 @@ export const DatePickerInput = (props: DatePickerInputProps) => {
 
   // Contexts
   const { t } = useLocale();
-  const { themeConfig } = useThemeConfig();
+  const { themeContext } = useThemeConfig();
   const fc = useFieldContext();
 
   // Hooks
@@ -569,7 +569,7 @@ export const DatePickerInput = (props: DatePickerInputProps) => {
             </Btn>
 
             <Btn
-              colorPalette={themeConfig.colorPalette}
+              colorPalette={themeContext.colorPalette}
               disabled={required && isEmptyArray(selected)}
               onClick={handleConfirm}
             >

@@ -63,7 +63,7 @@ export const PeriodPickerInput = (props: PeriodPickerInputProps) => {
 
   // Contexts
   const { t } = useLocale();
-  const { themeConfig } = useThemeConfig();
+  const { themeContext } = useThemeConfig();
   const fc = useFieldContext();
 
   // Hooks
@@ -237,7 +237,7 @@ export const PeriodPickerInput = (props: PeriodPickerInputProps) => {
 
             <Btn
               onClick={handleConfirm}
-              colorPalette={themeConfig.colorPalette}
+              colorPalette={themeContext.colorPalette}
               disabled={(required && isEmpty) || isIncomplete}
             >
               {t.confirm}

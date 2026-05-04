@@ -81,7 +81,7 @@ export const DataTableDisplay = (props: DataTableProps) => {
   } = props;
 
   // Contexts
-  const { themeConfig } = useThemeConfig();
+  const { themeContext } = useThemeConfig();
 
   // Refs
   const tableContainerRef = useRef<HTMLDivElement>(null);
@@ -210,7 +210,7 @@ export const DataTableDisplay = (props: DataTableProps) => {
   }, [rows]);
 
   // SX
-  const SELECTED_BG = `${themeConfig.colorPalette}.subtle`;
+  const SELECTED_BG = `${themeContext.colorPalette}.subtle`;
   const TABLE_ROW_ROUNDED = 0;
 
   // Grid Cols Generator
@@ -238,7 +238,7 @@ export const DataTableDisplay = (props: DataTableProps) => {
         flex={1}
         pb={R_SPACING_MD}
         bg={TABLE_CONTAINER_BG}
-        roundedTop={themeConfig.radii.component}
+        roundedTop={themeContext.radii.component}
         zIndex={2}
         {...contentContainerProps}
       >
@@ -406,7 +406,7 @@ export const DataTableDisplay = (props: DataTableProps) => {
                     <Checkbox
                       subtle={true}
                       size={"sm"}
-                      colorPalette={themeConfig.colorPalette}
+                      colorPalette={themeContext.colorPalette}
                       checked={selectedRows.includes(row.id)}
                     />
                   </Center>

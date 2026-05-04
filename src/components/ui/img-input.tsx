@@ -33,7 +33,7 @@ export const ImgInput = (props: FileInputProps) => {
 
   // Contexts
   const { t } = useLocale();
-  const { themeConfig } = useThemeConfig();
+  const { themeContext } = useThemeConfig();
   const fc = useFieldContext();
 
   // States
@@ -63,7 +63,7 @@ export const ImgInput = (props: FileInputProps) => {
           gap={3}
           border={"2px dashed"}
           borderColor={"border.muted"}
-          rounded={themeConfig.radii.container}
+          rounded={themeContext.radii.container}
         >
           <CContainer
             gap={2}
@@ -106,7 +106,7 @@ export const ImgInput = (props: FileInputProps) => {
           gap={3}
           border={"2px dashed"}
           borderColor={"border.muted"}
-          rounded={themeConfig.radii.container}
+          rounded={themeContext.radii.container}
         >
           <CContainer
             gap={2}

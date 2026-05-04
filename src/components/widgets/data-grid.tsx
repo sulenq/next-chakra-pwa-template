@@ -75,10 +75,10 @@ export const DataGridItem = (props: DataGridItemProps) => {
 
   // Contexts
   const { t } = useLocale();
-  const { themeConfig } = useThemeConfig();
+  const { themeContext } = useThemeConfig();
 
   // Constants
-  const selectedColor = `${themeConfig.colorPalette}.solid`;
+  const selectedColor = `${themeContext.colorPalette}.solid`;
 
   // Derived Values
   const isRowSelected = selectedRows.includes(row.id);
@@ -90,7 +90,7 @@ export const DataGridItem = (props: DataGridItemProps) => {
       bg={"bg.body"}
       border={"1px solid"}
       borderColor={isRowSelected ? selectedColor : "transparent"}
-      rounded={themeConfig.radii.component}
+      rounded={themeContext.radii.component}
       overflow={"clip"}
       pos={"relative"}
       {...restProps}
@@ -130,7 +130,7 @@ export const DataGridItem = (props: DataGridItemProps) => {
               key={item.imgSrc}
               src={item.imgSrc}
               aspectRatio={1}
-              rounded={`calc(${themeConfig.radii.component} - 4px)`}
+              rounded={`calc(${themeContext.radii.component} - 4px)`}
               fallback={item.imgFallback}
               fallbackSrc={item.imgFallbackSrc}
             />
@@ -169,7 +169,7 @@ export const DataGridItem = (props: DataGridItemProps) => {
           <Btn
             variant={"outline"}
             size={"sm"}
-            rounded={themeConfig.radii.component}
+            rounded={themeContext.radii.component}
           >
             {t.view_more}
           </Btn>
@@ -181,7 +181,7 @@ export const DataGridItem = (props: DataGridItemProps) => {
             rowOptions={dataProps.rowOptions}
             size={"sm"}
             variant={"outline"}
-            rounded={themeConfig.radii.component}
+            rounded={themeContext.radii.component}
             menuRootProps={{
               positioning: {
                 offset: {
@@ -350,7 +350,7 @@ const DataGridDisplay = (props: DataGridProps) => {
 
   // Contexts
   const { t } = useLocale();
-  const { themeConfig } = useThemeConfig();
+  const { themeContext } = useThemeConfig();
 
   // States
   const [allRowsSelected, setAllRowsSelected] = useState<boolean>(false);
@@ -419,7 +419,7 @@ const DataGridDisplay = (props: DataGridProps) => {
             p={1}
             border={"1px solid"}
             borderColor={"border.muted"}
-            rounded={themeConfig.radii.container}
+            rounded={themeContext.radii.container}
             pointerEvents={"auto"}
           >
             <P mx={4}>{`${selectedRows.length} ${t.selected.toLowerCase()}`}</P>

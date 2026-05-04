@@ -14,7 +14,7 @@ export function TopLoadingBar(props: TopLoadingBarProps) {
   const { loading, ...restProps } = props;
 
   // Contexts
-  const { themeConfig } = useThemeConfig();
+  const { themeContext } = useThemeConfig();
 
   // States
   const [visible, setVisible] = useState(false);
@@ -74,7 +74,7 @@ export function TopLoadingBar(props: TopLoadingBarProps) {
           flexShrink={0}
           w={`${progress}%`}
           h={"full"}
-          bg={`${themeConfig.colorPalette}.solid`}
+          bg={`${themeContext.colorPalette}.solid`}
           opacity={visible ? 1 : 0}
           transition={"width 200ms linear, opacity 200ms ease"}
         />

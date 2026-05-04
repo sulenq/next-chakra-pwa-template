@@ -80,7 +80,7 @@ export const ProfileMenu = (props: ProfileMenuProps) => {
 
   // Contexts
   const { t } = useLocale();
-  const { themeConfig } = useThemeConfig();
+  const { themeContext } = useThemeConfig();
   const removeAuthContext = useAuthMiddleware((s) => s.removeAuthContext);
   const ADM = useADM((s) => s.ADM);
 
@@ -126,7 +126,7 @@ export const ProfileMenu = (props: ProfileMenuProps) => {
 
   return (
     <StackV
-      rounded={themeConfig.radii.container}
+      rounded={themeContext.radii.container}
       overflow={"clip"}
       color={"fg.ibody"}
       {...restProps}
@@ -265,7 +265,7 @@ export const ProfileMenuTrigger = (props: ProfileMenuTriggerProps) => {
   const { popoverRootProps, ...restProps } = props;
 
   // Contexts
-  const { themeConfig } = useThemeConfig();
+  const { themeContext } = useThemeConfig();
 
   // States
   const [open, setOpen] = useState<boolean>(false);
@@ -289,7 +289,7 @@ export const ProfileMenuTrigger = (props: ProfileMenuTriggerProps) => {
         w={"225px"}
         bg={"bg.body"}
         backdropFilter={BACKDROP_BLUR_FILTER}
-        rounded={themeConfig.radii.container}
+        rounded={themeContext.radii.container}
         zIndex={10}
       >
         <ProfileMenu handleClose={handleClose} />

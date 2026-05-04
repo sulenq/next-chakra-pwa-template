@@ -31,7 +31,7 @@ export const Btn = forwardRef<HTMLButtonElement, BtnProps>(
     } = props;
 
     // Contexts
-    const { themeConfig } = useThemeConfig();
+    const { themeContext } = useThemeConfig();
 
     // Derived Values
     const isVariantOutline = props.variant === "outline";
@@ -49,7 +49,7 @@ export const Btn = forwardRef<HTMLButtonElement, BtnProps>(
             ? "border.muted"
             : ""
         }
-        rounded={themeConfig.radii.component}
+        rounded={themeContext.radii.component}
         fontSize={"md"}
         _focusVisible={
           focusStyle
@@ -76,7 +76,7 @@ export const Btn = forwardRef<HTMLButtonElement, BtnProps>(
         }
         fontSize={"md"}
         fontWeight={"medium"}
-        rounded={themeConfig.radii.component}
+        rounded={themeContext.radii.component}
         _focusVisible={
           focusStyle
             ? {
@@ -98,8 +98,10 @@ export const Btn = forwardRef<HTMLButtonElement, BtnProps>(
 export const PBtn = forwardRef<HTMLButtonElement, BtnProps>(
   function PBtn(props, ref) {
     // Contexts
-    const { themeConfig } = useThemeConfig();
+    const { themeContext } = useThemeConfig();
 
-    return <Btn ref={ref} colorPalette={themeConfig.colorPalette} {...props} />;
+    return (
+      <Btn ref={ref} colorPalette={themeContext.colorPalette} {...props} />
+    );
   },
 );

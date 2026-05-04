@@ -30,7 +30,7 @@ export const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>(
     } = props;
 
     // Contexts
-    const { themeConfig } = useThemeConfig();
+    const { themeContext } = useThemeConfig();
 
     if (disabled) return children;
 
@@ -48,7 +48,7 @@ export const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>(
               color={"fg.ibody"}
               px={2}
               py={1}
-              rounded={themeConfig.radii.component}
+              rounded={themeContext.radii.component}
               border={"1px solid"}
               borderColor={"border.subtle"}
               shadow={"soft"}

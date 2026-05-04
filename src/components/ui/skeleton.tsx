@@ -12,11 +12,11 @@ import {
 
 export const Skeleton = (props: SkeletonProps) => {
   // Contexts
-  const { themeConfig } = useThemeConfig();
+  const { themeContext } = useThemeConfig();
 
   return (
     <ChakraSkeleton
-      rounded={themeConfig.radii.component}
+      rounded={themeContext.radii.component}
       variant={"shine"}
       css={{
         "--start-color": "transparent",

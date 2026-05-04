@@ -57,7 +57,7 @@ export const DateRangePickerInput = (props: DateRangePickerInputProps) => {
 
   // Contexts
   const { t } = useLocale();
-  const { themeConfig } = useThemeConfig();
+  const { themeContext } = useThemeConfig();
   const fc = useFieldContext();
 
   // States
@@ -89,7 +89,7 @@ export const DateRangePickerInput = (props: DateRangePickerInputProps) => {
       w={"full"}
       attached
       border={invalid || fc?.invalid ? "1px solid {colors.border.error}" : ""}
-      rounded={themeConfig.radii.component}
+      rounded={themeContext.radii.component}
       {...restProps}
     >
       <DatePickerInput

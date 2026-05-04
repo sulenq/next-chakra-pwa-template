@@ -32,7 +32,7 @@ export interface PopoverContentProps extends ChakraPopover.ContentProps {
 const PopoverContent = forwardRef<HTMLDivElement, PopoverContentProps>(
   function PopoverContent(props, ref) {
     // Contexts
-    const { themeConfig } = useThemeConfig();
+    const { themeContext } = useThemeConfig();
     const { portalled = true, portalRef, ...restProps } = props;
 
     return (
@@ -45,7 +45,7 @@ const PopoverContent = forwardRef<HTMLDivElement, PopoverContentProps>(
             backdropFilter={BACKDROP_BLUR_FILTER}
             border={"1px solid"}
             borderColor={"border.subtle"}
-            rounded={`calc(${themeConfig.radii.component} - 4px)`}
+            rounded={`calc(${themeContext.radii.component} - 4px)`}
             shadow={"soft"}
             {...restProps}
           />

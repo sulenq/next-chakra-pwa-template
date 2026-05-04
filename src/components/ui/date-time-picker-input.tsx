@@ -56,7 +56,7 @@ export const DateTimePickerInput = (props: DateTimePickerInputProps) => {
   } = props;
 
   // Contexts
-  const { themeConfig } = useThemeConfig();
+  const { themeContext } = useThemeConfig();
   const fc = useFieldContext();
 
   // States
@@ -101,7 +101,7 @@ export const DateTimePickerInput = (props: DateTimePickerInputProps) => {
       w={"full"}
       attached
       border={invalid || fc?.invalid ? "1px solid {colors.border.error}" : ""}
-      rounded={themeConfig.radii.component}
+      rounded={themeContext.radii.component}
       {...restProps}
     >
       <DatePickerInput

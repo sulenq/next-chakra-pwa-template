@@ -51,7 +51,7 @@ const NAVS_COLOR = "fg.muted";
 
 const Language = () => {
   // Contexts
-  const { themeConfig } = useThemeConfig();
+  const { themeContext } = useThemeConfig();
   const { t, locale, setLocale } = useLocale();
 
   return (
@@ -75,7 +75,7 @@ const Language = () => {
                   clicky={false}
                   flex={"1 1 180px"}
                   px={3}
-                  rounded={themeConfig.radii.component}
+                  rounded={themeContext.radii.component}
                   variant={"ghost"}
                   justifyContent={"start"}
                   color={isSelected ? "" : NAVS_COLOR}
@@ -256,7 +256,7 @@ const Timezone = () => {
 const DateFormat = () => {
   // Contexts
   const { t } = useLocale();
-  const { themeConfig } = useThemeConfig();
+  const { themeContext } = useThemeConfig();
   const { dateFormat, setDateFormat } = useDateFormat();
 
   return (
@@ -278,7 +278,7 @@ const DateFormat = () => {
                 <CContainer
                   key={item.key}
                   p={3}
-                  rounded={themeConfig.radii.component}
+                  rounded={themeContext.radii.component}
                   color={isSelected ? "" : NAVS_COLOR}
                   onClick={() => {
                     setDateFormat(item.key as Type__DateFormat);
@@ -322,7 +322,7 @@ const DateFormat = () => {
 const TimeFormat = () => {
   // Contexts
   const { t } = useLocale();
-  const { themeConfig } = useThemeConfig();
+  const { themeContext } = useThemeConfig();
   const { timeFormat, setTimeFormat } = useTimeFormat();
 
   return (
@@ -345,7 +345,7 @@ const TimeFormat = () => {
                 <CContainer
                   key={item.key}
                   p={3}
-                  rounded={themeConfig.radii.component}
+                  rounded={themeContext.radii.component}
                   color={isSelected ? "" : NAVS_COLOR}
                   onClick={() => {
                     setTimeFormat(item.key);
@@ -382,7 +382,7 @@ const TimeFormat = () => {
 
 const UOMFormat = () => {
   // Contexts
-  const { themeConfig } = useThemeConfig();
+  const { themeContext } = useThemeConfig();
   const { t } = useLocale();
   const { UOM, setUOM } = useUOMFormat();
 
@@ -405,7 +405,7 @@ const UOMFormat = () => {
                 <CContainer
                   key={item.key}
                   p={3}
-                  rounded={themeConfig.radii.component}
+                  rounded={themeContext.radii.component}
                   color={isSelected ? "" : NAVS_COLOR}
                   onClick={() => {
                     setUOM(item.key);

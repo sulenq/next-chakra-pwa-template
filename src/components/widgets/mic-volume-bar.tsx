@@ -10,7 +10,7 @@ export const MicVolumeBar = ({
   analyser: AnalyserNode | null;
 }) => {
   // Contexts
-  const { themeConfig } = useThemeConfig();
+  const { themeContext } = useThemeConfig();
 
   // States, Refs
   const [volume, setVolume] = useState(0);
@@ -47,7 +47,7 @@ export const MicVolumeBar = ({
     <ProgressRoot
       value={volume * 5}
       max={100}
-      colorPalette={themeConfig.colorPalette}
+      colorPalette={themeContext.colorPalette}
     >
       <ProgressTrack>
         <ProgressRange />

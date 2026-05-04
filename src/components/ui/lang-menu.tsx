@@ -29,7 +29,7 @@ const LANGUAGES = [
 export const LangMenu = (props: BtnProps) => {
   // Contexts
   const { t, locale, setLocale } = useLocale();
-  const { themeConfig } = useThemeConfig();
+  const { themeContext } = useThemeConfig();
 
   return (
     <Tooltip content={t.language}>
@@ -68,7 +68,7 @@ export const LangMenu = (props: BtnProps) => {
                     {active && (
                       <Icon
                         boxSize={5}
-                        color={themeConfig.primaryColor}
+                        color={themeContext.primaryColor}
                         ml={"auto"}
                       >
                         <IconCheck stroke={1.5} />

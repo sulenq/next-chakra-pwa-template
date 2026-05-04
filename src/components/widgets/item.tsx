@@ -131,7 +131,7 @@ const ItemBody = forwardRef<HTMLDivElement, ItemBodyProps>(
     } = props;
 
     // Contexts
-    const { themeConfig } = useThemeConfig();
+    const { themeContext } = useThemeConfig();
 
     return (
       <StackV
@@ -139,7 +139,7 @@ const ItemBody = forwardRef<HTMLDivElement, ItemBodyProps>(
         className={`ItemBody ${scrollY ? "scrollY" : ""} ${className || ""}`}
         w={"full"}
         bg={"bg.frosted"}
-        rounded={roundedless ? "" : themeConfig.radii.container}
+        rounded={roundedless ? "" : themeContext.radii.container}
         border={borderless ? "" : "1px solid"}
         borderColor={"border.subtle"}
         {...restProps}

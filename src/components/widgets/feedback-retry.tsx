@@ -24,7 +24,7 @@ export default function FeedbackRetry(props: FeedbackRetryProps) {
 
   // Contexts
   const { t } = useLocale();
-  const { themeConfig } = useThemeConfig();
+  const { themeContext } = useThemeConfig();
 
   return (
     <CContainer
@@ -49,7 +49,7 @@ export default function FeedbackRetry(props: FeedbackRetryProps) {
         <Btn
           className={"clicky"}
           variant={"ghost"}
-          colorPalette={themeConfig.colorPalette}
+          colorPalette={themeContext.colorPalette}
           mx={"auto"}
           size={"sm"}
           onClick={onRetry}

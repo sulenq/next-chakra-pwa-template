@@ -38,7 +38,7 @@ import { useEffect, useRef, useState } from "react";
 
 const ManualDarkModeSetting = () => {
   // Contexts
-  const { themeConfig } = useThemeConfig();
+  const { themeContext } = useThemeConfig();
   const { t } = useLocale();
   const { colorMode, setColorMode } = useColorMode();
   const { ADM } = useADM();
@@ -81,7 +81,7 @@ const ManualDarkModeSetting = () => {
         onCheckedChange={(e) => {
           setActive(e.checked);
         }}
-        colorPalette={themeConfig.colorPalette}
+        colorPalette={themeContext.colorPalette}
       />
     </ToggleSettingContainer>
   );
@@ -91,7 +91,7 @@ const ManualDarkModeSetting = () => {
 
 const ADMSetting = () => {
   // Contexts
-  const { themeConfig } = useThemeConfig();
+  const { themeContext } = useThemeConfig();
   const { t } = useLocale();
   const { ADM, setADM } = useADM();
 
@@ -128,7 +128,7 @@ const ADMSetting = () => {
         onChange={() => {
           setActive(!active);
         }}
-        colorPalette={themeConfig.colorPalette}
+        colorPalette={themeContext.colorPalette}
       />
     </ToggleSettingContainer>
   );
@@ -193,7 +193,7 @@ const DarkModeSection = () => {
 const AccentColorSection = () => {
   // Contexts
   const { t } = useLocale();
-  const { themeConfig, setThemeConfig } = useThemeConfig();
+  const { themeContext, setThemeContext } = useThemeConfig();
 
   return (
     <Item.Root>
@@ -209,7 +209,7 @@ const AccentColorSection = () => {
         <Item.Body p={4}>
           <SimpleGrid minChildWidth={"56px"} gap={2}>
             {COLOR_PALETTES.map((color, index) => {
-              const isSelected = color.palette === themeConfig.colorPalette;
+              const isSelected = color.palette === themeContext.colorPalette;
               const isColorPaletteGray = color.palette === "gray";
 
               return (
@@ -222,11 +222,11 @@ const AccentColorSection = () => {
                     aspectRatio={1}
                     p={2}
                     bg={isColorPaletteGray ? "ibody" : `${color.palette}.500`}
-                    rounded={themeConfig.radii.component}
+                    rounded={themeContext.radii.component}
                     cursor={"pointer"}
                     overflow={"clip"}
                     onClick={() => {
-                      setThemeConfig({
+                      setThemeContext({
                         colorPalette: color.palette,
                         primaryColor: isColorPaletteGray
                           ? "ibody"
@@ -270,11 +270,11 @@ const AccentColorSection = () => {
 const RoundedSection = () => {
   // Contexts
   const { t } = useLocale();
-  const { themeConfig, setThemeConfig } = useThemeConfig();
+  const { themeContext, setThemeContext } = useThemeConfig();
 
   // Utils
   function handleOnClick(preset: (typeof ROUNDED_PRESETS)[number]) {
-    setThemeConfig((state) => ({
+    setThemeContext((state) => ({
       ...state,
       radii: {
         label: preset.label,
@@ -298,7 +298,7 @@ const RoundedSection = () => {
         <Item.Body p={4}>
           <SimpleGrid minChildWidth={"140px"} gap={4}>
             {ROUNDED_PRESETS.map((preset, index) => {
-              const isSelected = preset.label === themeConfig.radii.label;
+              const isSelected = preset.label === themeContext.radii.label;
 
               return (
                 <StackV key={`${preset.label}-${index}`}>
@@ -373,7 +373,7 @@ const RoundedSection = () => {
 const ExampleUISection = () => {
   // Contexts
   const { t } = useLocale();
-  const { themeConfig } = useThemeConfig();
+  const { themeContext } = useThemeConfig();
 
   // States
   const [checked, setChecked] = useState<boolean>(true);
@@ -393,17 +393,17 @@ const ExampleUISection = () => {
         <Item.Body p={4}>
           <StackH wrap={"wrap"} gap={3}>
             <StackV flex={"1 0 200px"} columns={2} gap={3}>
-              <Btn colorPalette={themeConfig.colorPalette}>Label</Btn>
+              <Btn colorPalette={themeContext.colorPalette}>Label</Btn>
 
-              <Btn colorPalette={themeConfig.colorPalette} variant={"subtle"}>
+              <Btn colorPalette={themeContext.colorPalette} variant={"subtle"}>
                 Label
               </Btn>
 
-              <Btn colorPalette={themeConfig.colorPalette} variant={"outline"}>
+              <Btn colorPalette={themeContext.colorPalette} variant={"outline"}>
                 Label
               </Btn>
 
-              <Btn colorPalette={themeConfig.colorPalette} variant={"ghost"}>
+              <Btn colorPalette={themeContext.colorPalette} variant={"ghost"}>
                 Label
               </Btn>
             </StackV>
@@ -429,7 +429,7 @@ const ExampleUISection = () => {
                   <Checkbox
                     checked={checked}
                     onChange={(e: any) => setChecked(!e.target.checked)}
-                    colorPalette={themeConfig.colorPalette}
+                    colorPalette={themeContext.colorPalette}
                     variant={"solid"}
                     size={"lg"}
                   >
@@ -438,7 +438,7 @@ const ExampleUISection = () => {
                 </StackV>
 
                 <StackV justify={"center"} minH={"36px"}>
-                  <Switch colorPalette={themeConfig.colorPalette}>
+                  <Switch colorPalette={themeContext.colorPalette}>
                     Switch
                   </Switch>
                 </StackV>

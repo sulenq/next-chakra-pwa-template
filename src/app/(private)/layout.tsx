@@ -1,7 +1,7 @@
 "use client";
 
-import GisAppLayout from "@/components/layouts/gisAppLayout";
+import AppLayout from "@/components/layouts/genericAppLayout";
 
 export default function Layout(props: any) {
-  return <GisAppLayout {...props} />;
+  return <AppLayout {...props} />;
 }

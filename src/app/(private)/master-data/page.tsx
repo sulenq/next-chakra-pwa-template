@@ -10,7 +10,7 @@ import { ServerIcon } from "lucide-react";
 const SettingsRoute = () => {
   // Contexts
   const { t } = useLocale();
-  const { themeConfig } = useThemeConfig();
+  const { themeContext } = useThemeConfig();
 
   return (
     <CContainer
@@ -20,7 +20,7 @@ const SettingsRoute = () => {
       bg={"bg.body"}
       p={4}
       mb={4}
-      rounded={themeConfig.radii.container}
+      rounded={themeContext.radii.container}
     >
       <FeedbackState
         icon={<LucideIcon icon={ServerIcon} />}

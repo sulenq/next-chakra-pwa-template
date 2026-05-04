@@ -26,7 +26,7 @@ export const RowOptions = (props: Props_RowOptions) => {
     props;
 
   // Contexts
-  // const { themeConfig } = useThemeConfig();
+  // const { themeContext } = useThemeConfig();
 
   return (
     <Menu.Root

@@ -32,7 +32,7 @@ const Step1 = (props: any) => {
 
   // Contexts
   const { t } = useLocale();
-  const { themeConfig } = useThemeConfig();
+  const { themeContext } = useThemeConfig();
 
   // Hooks
   const { req, loading } = useRequest({
@@ -98,7 +98,7 @@ const Step1 = (props: any) => {
       <Disclosure.Footer>
         <BackButton />
         <Btn
-          colorPalette={themeConfig.colorPalette}
+          colorPalette={themeContext.colorPalette}
           onClick={formik.submitForm}
           loading={loading}
         >
@@ -114,7 +114,7 @@ const Step2 = (props: any) => {
 
   // Contexts
   const { t } = useLocale();
-  const { themeConfig } = useThemeConfig();
+  const { themeContext } = useThemeConfig();
 
   // Hooks
   const { req, loading } = useRequest({
@@ -165,7 +165,7 @@ const Step2 = (props: any) => {
               mb={4}
             >
               <PinInputRoot
-                colorPalette={themeConfig.colorPalette}
+                colorPalette={themeContext.colorPalette}
                 w={"full"}
                 size={"xl"}
                 onValueChange={(e) => {
@@ -200,7 +200,7 @@ const Step2 = (props: any) => {
       <Disclosure.Footer>
         <BackButton />
         <Btn
-          colorPalette={themeConfig.colorPalette}
+          colorPalette={themeContext.colorPalette}
           onClick={formik.submitForm}
           loading={loading}
         >
@@ -216,7 +216,7 @@ const Step3 = (props: any) => {
 
   // Contexts
   const { t } = useLocale();
-  const { themeConfig } = useThemeConfig();
+  const { themeContext } = useThemeConfig();
 
   // Hooks
   const { req, loading } = useRequest({
@@ -310,7 +310,7 @@ const Step3 = (props: any) => {
       <Disclosure.Footer>
         <BackButton />
         <Btn
-          colorPalette={themeConfig.colorPalette}
+          colorPalette={themeContext.colorPalette}
           onClick={formik.submitForm}
           loading={loading}
           disabled={

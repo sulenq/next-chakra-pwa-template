@@ -16,7 +16,7 @@ import { StackH, StackV } from "@/components/ui/stack";
 export default function Page() {
   // Contexts
   const { t } = useLocale();
-  const { themeConfig } = useThemeConfig();
+  const { themeContext } = useThemeConfig();
 
   // Hooks
   const iss = useIsSmScreenWidth();
@@ -38,7 +38,7 @@ export default function Page() {
         bg={"bg.body"}
         shadow={"soft"}
         m={"auto"}
-        rounded={themeConfig.radii.container}
+        rounded={themeContext.radii.container}
       >
         <SimpleGrid
           columns={[1, null, 2]}
@@ -52,7 +52,7 @@ export default function Page() {
           {!iss && (
             <StackV
               justify={"space-between"}
-              rounded={themeConfig.radii.component}
+              rounded={themeContext.radii.component}
               maxH={"calc(100dvh - 16px)"}
               overflow={"clip"}
               pos={"relative"}
@@ -72,7 +72,7 @@ export default function Page() {
           <StackV
             p={4}
             gap={16}
-            rounded={themeConfig.radii.container}
+            rounded={themeContext.radii.container}
             overflowY={"auto"}
           >
             <StackH justify={"center"} gap={2}>

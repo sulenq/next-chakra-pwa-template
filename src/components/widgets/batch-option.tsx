@@ -42,7 +42,7 @@ export const BatchOptions = (props: BatchOptionsProps) => {
 
   // Contexts
   const { t } = useLocale();
-  const { themeConfig } = useThemeConfig();
+  const { themeContext } = useThemeConfig();
 
   return (
     <Menu.Root
@@ -89,12 +89,12 @@ export const BatchOptions = (props: BatchOptionsProps) => {
           <P>{t.select_all}</P>
 
           <DotIndicator
-            bg={allRowsSelected ? themeConfig.primaryColor : "gray.muted"}
+            bg={allRowsSelected ? themeContext.primaryColor : "gray.muted"}
             mr={1}
           />
         </Menu.Item>
 
-        <Box px={`calc(${themeConfig.radii.component}/4)`} my={1}>
+        <Box px={`calc(${themeContext.radii.component}/4)`} my={1}>
           <Divider />
         </Box>
 

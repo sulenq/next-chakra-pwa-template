@@ -89,7 +89,7 @@ export const UserIdCard = (props: UserIdCardProps) => {
   const { maskingTop = "0px", withSignoutButton = false, ...restProps } = props;
 
   // Contexts
-  const { themeConfig } = useThemeConfig();
+  const { themeContext } = useThemeConfig();
 
   // Constants
   // TODO_DEV uncomment on real dev
@@ -99,7 +99,7 @@ export const UserIdCard = (props: UserIdCardProps) => {
 
   // SX
   const [logoColor] = useToken("colors", [
-    `${themeConfig.colorPalette}.contrast`,
+    `${themeContext.colorPalette}.contrast`,
   ]);
 
   return (
@@ -109,8 +109,8 @@ export const UserIdCard = (props: UserIdCardProps) => {
         flex={1}
         aspectRatio={1 / 1.6}
         w={"full"}
-        bg={`${themeConfig.colorPalette}.solid`}
-        rounded={themeConfig.radii.component}
+        bg={`${themeContext.colorPalette}.solid`}
+        rounded={themeContext.radii.component}
         shadow={"xs"}
         overflow={"clip"}
         pos={"absolute"}
@@ -140,7 +140,7 @@ export const UserIdCard = (props: UserIdCardProps) => {
         flex={1}
         aspectRatio={1 / 1.6}
         bg={"bg.bodySolid"}
-        rounded={themeConfig.radii.component}
+        rounded={themeContext.radii.component}
         shadow={"sm"}
         overflow={"clip"}
         zIndex={2}
@@ -229,7 +229,7 @@ export const UserIdCard = (props: UserIdCardProps) => {
           <Box
             w={"30px"}
             h={"24px"}
-            bg={`${themeConfig.colorPalette}.solid`}
+            bg={`${themeContext.colorPalette}.solid`}
             roundedBottom={"sm"}
           />
         </MContainerV>

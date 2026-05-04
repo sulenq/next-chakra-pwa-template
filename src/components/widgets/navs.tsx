@@ -90,7 +90,7 @@ export const DesktopNavs = (props: DesktopNavsProps) => {
 
   // Contexts
   const { t } = useLocale();
-  const { themeConfig } = useThemeConfig();
+  const { themeContext } = useThemeConfig();
 
   // Hooks
   const pathname = usePathname();
@@ -152,7 +152,7 @@ export const DesktopNavs = (props: DesktopNavsProps) => {
                               }
                               colorPalette={
                                 isMainNavsActive
-                                  ? themeConfig.colorPalette
+                                  ? themeContext.colorPalette
                                   : DESKTOP_NAV_BTN_COLOR_PATELLE
                               }
                             >
@@ -168,7 +168,7 @@ export const DesktopNavs = (props: DesktopNavsProps) => {
                                       ? ""
                                       : DESKTOP_NAV_BTN_ICON_BG
                                   }
-                                  rounded={themeConfig.radii.component}
+                                  rounded={themeContext.radii.component}
                                 >
                                   <AppIconLucide
                                     icon={nav.icon}
@@ -184,7 +184,7 @@ export const DesktopNavs = (props: DesktopNavsProps) => {
                                   boxSize={2}
                                   color={
                                     isMainNavsActive
-                                      ? themeConfig.primaryColor
+                                      ? themeContext.primaryColor
                                       : "bg.emphasized"
                                   }
                                 >
@@ -234,7 +234,7 @@ export const DesktopNavs = (props: DesktopNavsProps) => {
                                       }
                                       colorPalette={
                                         isMainNavsActive
-                                          ? themeConfig.colorPalette
+                                          ? themeContext.colorPalette
                                           : DESKTOP_NAV_BTN_COLOR_PATELLE
                                       }
                                       pos={"relative"}
@@ -248,7 +248,7 @@ export const DesktopNavs = (props: DesktopNavsProps) => {
                                             ? ""
                                             : DESKTOP_NAV_BTN_ICON_BG
                                         }
-                                        rounded={themeConfig.radii.component}
+                                        rounded={themeContext.radii.component}
                                       >
                                         <AppIconLucide
                                           icon={nav.icon}
@@ -312,7 +312,7 @@ export const DesktopNavs = (props: DesktopNavsProps) => {
                                                   variant={"ghost"}
                                                   color={
                                                     isSubNavsActive
-                                                      ? `${themeConfig.colorPalette}.fg`
+                                                      ? `${themeContext.colorPalette}.fg`
                                                       : DESKTOP_NAVS_COLOR
                                                   }
                                                   px={3}
@@ -347,7 +347,7 @@ export const DesktopNavs = (props: DesktopNavsProps) => {
                               <Accordion.Item
                                 value={nav.path}
                                 border={"none"}
-                                rounded={themeConfig.radii.component}
+                                rounded={themeContext.radii.component}
                                 _open={{ bg: "transparent" }}
                               >
                                 <DesktopNavTooltip
@@ -370,7 +370,7 @@ export const DesktopNavs = (props: DesktopNavsProps) => {
                                       }
                                       colorPalette={
                                         isMainNavsActive
-                                          ? themeConfig.colorPalette
+                                          ? themeContext.colorPalette
                                           : DESKTOP_NAV_BTN_COLOR_PATELLE
                                       }
                                       w={"full"}
@@ -386,7 +386,7 @@ export const DesktopNavs = (props: DesktopNavsProps) => {
                                               ? ""
                                               : DESKTOP_NAV_BTN_ICON_BG
                                           }
-                                          rounded={themeConfig.radii.component}
+                                          rounded={themeContext.radii.component}
                                         >
                                           <AppIconLucide
                                             icon={nav.icon}
@@ -408,7 +408,7 @@ export const DesktopNavs = (props: DesktopNavsProps) => {
                                       <Accordion.ItemIndicator
                                         color={
                                           isMainNavsActive
-                                            ? `${themeConfig.colorPalette}.contrast`
+                                            ? `${themeContext.colorPalette}.contrast`
                                             : ""
                                         }
                                         ml={"auto"}
@@ -505,7 +505,7 @@ export const DesktopNavs = (props: DesktopNavsProps) => {
                                                         boxSize={2}
                                                         color={
                                                           isSubNavsActive
-                                                            ? `${themeConfig.colorPalette}.fg`
+                                                            ? `${themeContext.colorPalette}.fg`
                                                             : "bg.emphasized"
                                                         }
                                                       >
@@ -525,10 +525,10 @@ export const DesktopNavs = (props: DesktopNavsProps) => {
                                                         DESKTOP_NAV_BTN_SIZE
                                                       }
                                                       variant={"ghost"}
-                                                      rounded={`calc(${themeConfig.radii.component})`}
+                                                      rounded={`calc(${themeContext.radii.component})`}
                                                       color={
                                                         isSubNavsActive
-                                                          ? `${themeConfig.colorPalette}.fg`
+                                                          ? `${themeContext.colorPalette}.fg`
                                                           : DESKTOP_NAVS_COLOR
                                                       }
                                                     >
