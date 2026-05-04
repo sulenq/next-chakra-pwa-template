@@ -54,8 +54,6 @@ export function TopLoadingBar(props: TopLoadingBarProps) {
     };
   }, [loading]);
 
-  console.debug({ loading, visible, progress });
-
   return (
     <Portal>
       <Box
