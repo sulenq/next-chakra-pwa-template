@@ -324,6 +324,7 @@ const DesktopLayout = (props: any) => {
       <StackH
         flex={1}
         w={"full"}
+        p={4}
         maxW={"50%"}
         overflowY={"auto"}
         pos={"relative"}
