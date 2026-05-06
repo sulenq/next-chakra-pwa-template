@@ -170,10 +170,10 @@ export type DateVariant =
   | "shortWeekdayDayShortMonthYear"; // Wed, 15 Jan 2025
 
 // Response
-export interface BaseResponse {
+export interface BaseResponse<T = any> {
   status: number;
   message: string;
-  data?: any; // TODO_DEV change to result for more semantic
+  data?: T;
 }
 
 // Request

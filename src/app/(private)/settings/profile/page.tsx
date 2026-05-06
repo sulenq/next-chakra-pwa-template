@@ -18,7 +18,7 @@ import FeedbackNotFound from "@/components/widgets/feedback-not-found";
 import FeedbackRetry from "@/components/widgets/feedback-retry";
 import { Item } from "@/components/widgets/item";
 import { UserIdCard } from "@/components/widgets/user-id-card";
-import { useViewContext } from "@/components/widgets/main-view";
+import { useMainViewContext } from "@/components/widgets/main-view";
 import {
   DUMMY_USER,
   dummyActivityLogs,
@@ -59,7 +59,7 @@ const PersonalInformation = (props: PersonalInformationProps) => {
   // Contexts
   const { t } = useLocale();
   const { themeContext } = useThemeConfig();
-  const { isSmContainer } = useViewContext();
+  const { isSmContainer } = useMainViewContext();
 
   // Hooks
   const { req, loading } = useRequest({

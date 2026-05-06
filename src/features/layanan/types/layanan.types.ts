@@ -7,8 +7,7 @@ export interface LayananItem {
   description: LangObject;
 }
 
-export interface GetLayananResponse {
-  status: number;
-  message: string;
+export interface GetLayananResponseData {
+  count: number;
   data: LayananItem[];
 }

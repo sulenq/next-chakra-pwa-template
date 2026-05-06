@@ -1,7 +1,7 @@
 "use client";
 
-import AiKnowledgePage from "@/features/layanan/components/layanan.page";
+import LayananPage from "@/features/layanan/pages/layanan.page";
 
 export default function Page() {
-  return <AiKnowledgePage />;
+  return <LayananPage />;
 }

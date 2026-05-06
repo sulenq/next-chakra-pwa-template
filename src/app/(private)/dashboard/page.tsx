@@ -14,7 +14,7 @@ import FeedbackNoData from "@/components/widgets/feedback-no-data";
 import FeedbackRetry from "@/components/widgets/feedback-retry";
 import { DotIndicator } from "@/components/widgets/indicator";
 import { Item } from "@/components/widgets/item";
-import { MainView, useViewContext } from "@/components/widgets/main-view";
+import { MainView, useMainViewContext } from "@/components/widgets/main-view";
 import { DUMMY_DASHBOARD_DATA } from "@/constants/dummy-data";
 import { getMonthNames } from "@/constants/months";
 import { GAP, R_SPACING_MD } from "@/constants/styles";
@@ -129,7 +129,7 @@ const Overview = (props: OverviewProps) => {
 
   // Contexts
   const { t } = useLocale();
-  const { isSmContainer } = useViewContext();
+  const { isSmContainer } = useMainViewContext();
 
   // States
   const resolvedData = [
@@ -516,7 +516,7 @@ const Usage = (props: any) => {
   const { data, filter, ...restProps } = props;
 
   // Contexts
-  const { isSmContainer } = useViewContext();
+  const { isSmContainer } = useMainViewContext();
 
   return (
     <CContainer>

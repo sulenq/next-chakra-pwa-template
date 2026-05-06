@@ -7,7 +7,7 @@ import { DesktopNavs } from "@/components/widgets/navs";
 import {
   ConstrainedContainer,
   MainView,
-  useViewContext,
+  useMainViewContext,
 } from "@/components/widgets/main-view";
 import { APP } from "@/constants/_meta";
 import { OTHER_PRIVATE_NAV_GROUPS } from "@/constants/navs";
@@ -29,7 +29,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
 
   // Refs
-  const { isSmContainer } = useViewContext();
+  const { isSmContainer } = useMainViewContext();
 
   // Contexts
   const { t } = useLocale();

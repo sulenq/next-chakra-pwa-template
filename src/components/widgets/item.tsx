@@ -25,7 +25,7 @@ const ItemContext = createContext<ItemContextInterface | null>(null);
 export function useItemContext() {
   const context = useContext(ItemContext);
   if (!context) {
-    throw new Error("useViewContext must be used inside Item.Root");
+    throw new Error("useMainViewContext must be used inside Item.Root");
   }
   return context;
 }

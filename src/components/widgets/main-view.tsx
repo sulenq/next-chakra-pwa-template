@@ -145,7 +145,7 @@ export const TopBar = (props: TopBarProps) => {
 
   // Contexts
   const { themeContext } = useThemeConfig();
-  const { dimension } = useViewContext();
+  const { dimension } = useMainViewContext();
 
   // Hooks
   const { sw } = useScreen();
@@ -250,10 +250,10 @@ export interface ViewContextInterface {
 
 const ViewContext = createContext<ViewContextInterface | null>(null);
 
-export function useViewContext() {
+export function useMainViewContext() {
   const context = useContext(ViewContext);
   if (!context) {
-    throw new Error("useViewContext must be used inside MainView.Root");
+    throw new Error("useMainViewContext must be used inside MainView.Root");
   }
   return context;
 }
@@ -301,7 +301,7 @@ const MainViewContent = forwardRef<HTMLDivElement, StackProps>(
     const { children, ...restProps } = props;
 
     // Contexts
-    const { isValidDimension } = useViewContext();
+    const { isValidDimension } = useMainViewContext();
 
     return (
       <StackV
