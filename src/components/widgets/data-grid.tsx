@@ -15,7 +15,7 @@ import { DataFooter } from "@/components/widgets/data-footer";
 import FeedbackNotFound from "@/components/widgets/feedback-not-found";
 import { ImgViewer } from "@/components/widgets/img-viewer";
 import { RowOptions } from "@/components/widgets/row-options";
-import { DataProps, FormattedTableRow } from "@/types/global.types";
+import { DataListConfig, FormattedTableRow } from "@/types/global.types";
 import {
   BACKDROP_BLUR_FILTER,
   GAP,
@@ -51,7 +51,7 @@ interface DataGridItemProps extends StackProps {
     deletedAt?: string | null;
   };
   dim?: boolean;
-  dataProps: DataProps;
+  dataListConfig: DataListConfig;
   row: FormattedTableRow;
   selectedRows: string[];
   toggleRowSelection: (row: FormattedTableRow) => void;
@@ -64,7 +64,7 @@ export const DataGridItem = (props: DataGridItemProps) => {
   const {
     item,
     dim = false,
-    dataProps,
+    dataListConfig,
     row,
     selectedRows,
     toggleRowSelection,
@@ -175,10 +175,10 @@ export const DataGridItem = (props: DataGridItemProps) => {
           </Btn>
         </DataGrid.DetailTrigger>
 
-        {!isEmptyArray(dataProps.rowOptions) && (
+        {!isEmptyArray(dataListConfig.rowOptions) && (
           <RowOptions
             row={row}
-            rowOptions={dataProps.rowOptions}
+            rowOptions={dataListConfig.rowOptions}
             size={"sm"}
             variant={"outline"}
             rounded={themeContext.radii.component}
@@ -322,7 +322,7 @@ interface GridItem {
 
 interface DataGridProps extends Omit<StackProps, "page"> {
   data?: any[];
-  dataProps: DataProps;
+  dataListConfig: DataListConfig;
   gridItem: (props: GridItem) => React.ReactNode;
   limit?: number;
   setLimit?: (limit: number) => void;
@@ -337,7 +337,7 @@ const DataGridDisplay = (props: DataGridProps) => {
   // Props
   const {
     data,
-    dataProps,
+    dataListConfig,
     limit,
     setLimit,
     page,
@@ -359,7 +359,7 @@ const DataGridDisplay = (props: DataGridProps) => {
   // Derived Values
   const hasFooter = limit && setLimit && page && setPage;
   const shouldShowBatch =
-    dataProps?.batchOptions && !isEmptyArray(selectedRows);
+    dataListConfig?.batchOptions && !isEmptyArray(selectedRows);
 
   // Utils
   function handleSelectAllRows(isChecked: boolean) {
@@ -431,7 +431,7 @@ const DataGridDisplay = (props: DataGridProps) => {
               size={"md"}
               selectedRows={selectedRows}
               clearSelectedRows={handleClearSelectedRows}
-              batchOptions={dataProps?.batchOptions}
+              batchOptions={dataListConfig?.batchOptions}
               allRowsSelected={allRowsSelected}
               handleSelectAllRows={handleSelectAllRows}
               pl={3}
@@ -467,9 +467,9 @@ const DataGridDisplay = (props: DataGridProps) => {
             gap={GAP}
           >
             {data?.map((item, idx) => {
-              const row = dataProps.rows?.[idx] as FormattedTableRow;
+              const row = dataListConfig.rows?.[idx] as FormattedTableRow;
               const details = row.columns.map((col, rowIdx) => {
-                const label = dataProps.headers?.[rowIdx].th;
+                const label = dataListConfig.headers?.[rowIdx].th;
 
                 switch (col.dataType) {
                   case "image":

@@ -26,20 +26,13 @@ const DEFAULT_FILTER = {
 // -----------------------------------------------------------------
 
 export default function LayananPage() {
-  // Contexts
   const { t } = useLocale();
   const { isSmContainer } = useMainViewContext();
-
-  // Hooks
   const pathname = usePathname();
 
-  // States
   const [filter, setFilter] = useState(DEFAULT_FILTER);
 
-  // Constants
   const activeNav = getActiveNavs(pathname);
-
-  // Derived Values
   const routeTitle =
     last(activeNav)?.label || pluckString(t, last(activeNav)?.labelKey || "");
 

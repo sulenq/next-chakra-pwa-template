@@ -284,7 +284,7 @@ export interface Pagination {
 }
 
 // Data Table
-export interface DataProps {
+export interface DataListConfig {
   headers?: FormattedTableHeader[];
   rows?: FormattedTableRow[];
   rowOptions?: RowOptionsTableOptionGenerator[];

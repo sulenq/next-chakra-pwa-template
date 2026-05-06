@@ -17,7 +17,7 @@ import { LAYANAN_ID } from "@/features/layanan/pages/layanan.page";
 import { LayananItem } from "@/features/layanan/types/layanan.types";
 import {
   BatchOptionsTableOptionGenerator,
-  DataProps,
+  DataListConfig,
   RowOptionsTableOptionGenerator,
 } from "@/types/global.types";
 import { isEmptyArray } from "@/utils/array";
@@ -32,22 +32,18 @@ interface LayananDataProps extends StackProps {
 }
 
 export const LayananData = (props: LayananDataProps) => {
-  // Props
   const { filter, routeTitle } = props;
 
-  // Contexts
   const { locale } = useLocale();
   const { isSmContainer } = useMainViewContext();
-  const displayMode = useDataDisplay((s) => s.getDisplay(LAYANAN_ID));
-  const displayTable = displayMode === "table";
+  const isDisplayTable =
+    useDataDisplay((s) => s.getDisplay(LAYANAN_ID)) === "table";
 
-  // Query
   const { dataList, isLoading, isError, refetch } = useLayananQuery({
     ...filter,
   });
 
-  // Constants
-  const dataProps: DataProps = {
+  const dataListConfig: DataListConfig = {
     headers: [
       {
         th: "Icon",
@@ -115,17 +111,17 @@ export const LayananData = (props: LayananDataProps) => {
 
   return (
     <>
-      {displayTable ? (
+      {isDisplayTable ? (
         <DataTable.Display
-          headers={dataProps.headers}
-          rows={dataProps.rows}
-          rowOptions={dataProps.rowOptions}
-          batchOptions={dataProps.batchOptions}
+          headers={dataListConfig.headers}
+          rows={dataListConfig.rows}
+          rowOptions={dataListConfig.rowOptions}
+          batchOptions={dataListConfig.batchOptions}
         />
       ) : (
         <DataGrid.Display
           data={dataList}
-          dataProps={dataProps}
+          dataListConfig={dataListConfig}
           gridItem={({
             item,
             row,
@@ -144,7 +140,7 @@ export const LayananData = (props: LayananDataProps) => {
                   title: resolvedItem.title?.[locale],
                   description: resolvedItem.description?.[locale],
                 }}
-                dataProps={dataProps}
+                dataListConfig={dataListConfig}
                 row={row}
                 selectedRows={selectedRows}
                 toggleRowSelection={toggleRowSelection}
