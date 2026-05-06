@@ -54,9 +54,9 @@ export const RowOptions = (props: Props_RowOptions) => {
 
       <Menu.Content minW={"140px"} mr={1} zIndex={10}>
         <StackV gap={1}>
-          {rowOptions?.map((item, idx) => {
-            // if (item === "divider") return <MenuSeparator key={idx} />;
-            // const isLastIndex = idx === rowOptions.length - 1;
+          {rowOptions?.map((item, index) => {
+            // if (item === "divider") return <MenuSeparator key={index} />;
+            // const isLastIndex = index === rowOptions.length - 1;
 
             const option = item(row);
             if (!option) return null;
@@ -74,9 +74,9 @@ export const RowOptions = (props: Props_RowOptions) => {
             if (confirmation) {
               return (
                 <Confirmation.Trigger
-                  key={idx}
+                  key={index}
                   w={"full"}
-                  id={`${row.id}-confirmation-${idx}`}
+                  id={`${row.id}-confirmation-${index}`}
                   title={confirmation.title}
                   description={confirmation.description}
                   confirmLabel={confirmation.confirmLabel}
@@ -99,12 +99,12 @@ export const RowOptions = (props: Props_RowOptions) => {
               );
             }
             if (override) {
-              return <React.Fragment key={idx}>{override}</React.Fragment>;
+              return <React.Fragment key={index}>{override}</React.Fragment>;
             }
 
             return (
               <Menu.Item
-                key={idx}
+                key={index}
                 disabled={disabled}
                 value={label}
                 onClick={() => {

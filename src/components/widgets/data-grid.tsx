@@ -117,7 +117,7 @@ export const DataGridItem = (props: DataGridItemProps) => {
       {item.showImg && (
         <StackV p={1}>
           <ImgViewer
-            id={`img-${row?.idx}-${item?.id}`}
+            id={`img-${row?.index}-${item?.id}`}
             w={"full"}
             h={"fit"}
             src={item.imgSrc}
@@ -238,12 +238,12 @@ const DataGridDetailContent = (props: DataGridDetailDisclosureProps) => {
               <>
                 {isEmptyArray(resolvedDetails) && <FeedbackNotFound />}
 
-                {resolvedDetails?.map((detail: any, idx: number) => {
-                  const isLast = idx === resolvedDetails.length - 1;
+                {resolvedDetails?.map((detail: any, index: number) => {
+                  const isLast = index === resolvedDetails.length - 1;
 
                   return (
                     <StackV
-                      key={idx}
+                      key={index}
                       gap={1}
                       px={1}
                       py={2}
@@ -314,7 +314,7 @@ const DataGridDetailTrigger = (props: DataGridDetailDisclosureTriggerProps) => {
 interface GridItem {
   item: any;
   row: FormattedTableRow;
-  idx: number;
+  index: number;
   details: any;
   selectedRows: string[];
   toggleRowSelection: (row: FormattedTableRow) => void;
@@ -466,8 +466,8 @@ const DataGridDisplay = (props: DataGridProps) => {
             templateColumns={`repeat(auto-fill, minmax(${minChildWidth}, 1fr))`}
             gap={GAP}
           >
-            {data?.map((item, idx) => {
-              const row = dataListConfig.rows?.[idx] as FormattedTableRow;
+            {data?.map((item, index) => {
+              const row = dataListConfig.rows?.[index] as FormattedTableRow;
               const details = row.columns.map((col, rowIdx) => {
                 const label = dataListConfig.headers?.[rowIdx].th;
 
@@ -495,11 +495,11 @@ const DataGridDisplay = (props: DataGridProps) => {
               });
 
               return (
-                <Fragment key={idx}>
+                <Fragment key={index}>
                   {props.gridItem({
                     item,
                     row,
-                    idx,
+                    index,
                     details,
                     selectedRows,
                     toggleRowSelection,

@@ -18,11 +18,11 @@ export const Breadcrumbs = (props: BreadcrumbsProps) => {
 
   return (
     <HStack w={"fit"} {...restProps}>
-      {links.map((link, idx) => {
-        const last = idx === links.length - 1;
+      {links.map((link, index) => {
+        const last = index === links.length - 1;
 
         return (
-          <Fragment key={idx}>
+          <Fragment key={index}>
             <NavLink key={link.path} to={!last ? link.path : ""} w={"fit"}>
               <P lineClamp={1} opacity={last ? 0.6 : 1} maxW={"240px"}>
                 {link.label}

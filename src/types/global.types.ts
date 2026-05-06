@@ -301,7 +301,7 @@ export interface FormattedTableHeader {
 
 export interface FormattedTableRow<T = any> {
   id: string;
-  idx: number;
+  index: number;
   data: T;
   dim?: boolean;
   columns: {

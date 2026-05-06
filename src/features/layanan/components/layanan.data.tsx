@@ -57,10 +57,10 @@ export const LayananData = (props: LayananDataProps) => {
         sortable: true,
       },
     ],
-    rows: dataList?.map((item, idx) => {
+    rows: dataList?.map((item, index) => {
       return {
         id: `${item.id}`,
-        idx: idx,
+        index: index,
         data: item,
         columns: [
           {

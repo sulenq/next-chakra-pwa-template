@@ -248,18 +248,18 @@ const AuthLog = () => {
     notFound: <FeedbackNotFound />,
     loaded: (
       <>
-        {data?.items?.map((log, idx) => {
+        {data?.items?.map((log, index) => {
           const isSignin = log?.action === "Sign in";
 
           return (
             <StackH
-              key={`${log.id}-${idx}`}
+              key={`${log.id}-${index}`}
               align={"center"}
               gap={4}
               px={2}
               py={2}
               justify={"space-between"}
-              borderTop={idx === 0 ? "" : "1px solid"}
+              borderTop={index === 0 ? "" : "1px solid"}
               borderColor={"border.subtle"}
             >
               <Circle p={1} bg={isSignin ? "bg.success" : "bg.error"}>
@@ -406,12 +406,12 @@ const ActivityLog = () => {
     notFound: <FeedbackNotFound />,
     loaded: (
       <>
-        {data?.items?.map((log, idx) => {
+        {data?.items?.map((log, index) => {
           return (
             <StackH
-              key={`${log.id}-${idx}`}
+              key={`${log.id}-${index}`}
               justify={"space-between"}
-              borderTop={idx === 0 ? "" : "1px solid"}
+              borderTop={index === 0 ? "" : "1px solid"}
               borderColor={"border.subtle"}
               px={2}
               py={2}

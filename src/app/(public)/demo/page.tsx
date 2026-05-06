@@ -151,7 +151,7 @@ const DemoDataTable = () => {
     rows: [
       {
         id: "1",
-        idx: 1,
+        index: 1,
         data: { name: "Alice Johnson", age: 28, joinDate: "2023-01-12" },
         columns: [
           {
@@ -169,7 +169,7 @@ const DemoDataTable = () => {
       },
       {
         id: "3",
-        idx: 2,
+        index: 2,
         data: { name: "Charlie Davis", age: 41, joinDate: "2021-05-17" },
         columns: [
           {
@@ -187,7 +187,7 @@ const DemoDataTable = () => {
       },
       {
         id: "2",
-        idx: 3,
+        index: 3,
         data: { name: "Bob Smith", age: 34, joinDate: "2022-09-30" },
         columns: [
           {
@@ -205,7 +205,7 @@ const DemoDataTable = () => {
       },
       {
         id: "1",
-        idx: 1,
+        index: 1,
         data: { name: "Alice Johnson", age: 28, joinDate: "2023-01-12" },
         columns: [
           {
@@ -223,7 +223,7 @@ const DemoDataTable = () => {
       },
       {
         id: "3",
-        idx: 2,
+        index: 2,
         data: { name: "Charlie Davis", age: 41, joinDate: "2021-05-17" },
         columns: [
           {
@@ -241,7 +241,7 @@ const DemoDataTable = () => {
       },
       {
         id: "2",
-        idx: 3,
+        index: 3,
         data: { name: "Bob Smith", age: 34, joinDate: "2022-09-30" },
         columns: [
           {
@@ -259,7 +259,7 @@ const DemoDataTable = () => {
       },
       {
         id: "1",
-        idx: 1,
+        index: 1,
         data: { name: "Alice Johnson", age: 28, joinDate: "2023-01-12" },
         columns: [
           {
@@ -277,7 +277,7 @@ const DemoDataTable = () => {
       },
       {
         id: "3",
-        idx: 2,
+        index: 2,
         data: { name: "Charlie Davis", age: 41, joinDate: "2021-05-17" },
         columns: [
           {
@@ -295,7 +295,7 @@ const DemoDataTable = () => {
       },
       {
         id: "2",
-        idx: 3,
+        index: 3,
         data: { name: "Bob Smith", age: 34, joinDate: "2022-09-30" },
         columns: [
           {
@@ -313,7 +313,7 @@ const DemoDataTable = () => {
       },
       {
         id: "1",
-        idx: 1,
+        index: 1,
         data: { name: "Alice Johnson", age: 28, joinDate: "2023-01-12" },
         columns: [
           {
@@ -331,7 +331,7 @@ const DemoDataTable = () => {
       },
       {
         id: "3",
-        idx: 2,
+        index: 2,
         data: { name: "Charlie Davis", age: 41, joinDate: "2021-05-17" },
         columns: [
           {
@@ -349,7 +349,7 @@ const DemoDataTable = () => {
       },
       {
         id: "2",
-        idx: 3,
+        index: 3,
         data: { name: "Bob Smith", age: 34, joinDate: "2022-09-30" },
         columns: [
           {
@@ -367,7 +367,7 @@ const DemoDataTable = () => {
       },
       {
         id: "1",
-        idx: 1,
+        index: 1,
         data: { name: "Alice Johnson", age: 28, joinDate: "2023-01-12" },
         columns: [
           {
@@ -385,7 +385,7 @@ const DemoDataTable = () => {
       },
       {
         id: "3",
-        idx: 2,
+        index: 2,
         data: { name: "Charlie Davis", age: 41, joinDate: "2021-05-17" },
         columns: [
           {
@@ -403,7 +403,7 @@ const DemoDataTable = () => {
       },
       {
         id: "2",
-        idx: 3,
+        index: 3,
         data: { name: "Bob Smith", age: 34, joinDate: "2022-09-30" },
         columns: [
           {
@@ -421,7 +421,7 @@ const DemoDataTable = () => {
       },
       {
         id: "1",
-        idx: 1,
+        index: 1,
         data: { name: "Alice Johnson", age: 28, joinDate: "2023-01-12" },
         columns: [
           {
@@ -439,7 +439,7 @@ const DemoDataTable = () => {
       },
       {
         id: "3",
-        idx: 2,
+        index: 2,
         data: { name: "Charlie Davis", age: 41, joinDate: "2021-05-17" },
         columns: [
           {
@@ -457,7 +457,7 @@ const DemoDataTable = () => {
       },
       {
         id: "2",
-        idx: 3,
+        index: 3,
         data: { name: "Bob Smith", age: 34, joinDate: "2022-09-30" },
         columns: [
           {
@@ -475,7 +475,7 @@ const DemoDataTable = () => {
       },
       {
         id: "1",
-        idx: 1,
+        index: 1,
         data: { name: "Alice Johnson", age: 28, joinDate: "2023-01-12" },
         columns: [
           {
@@ -493,7 +493,7 @@ const DemoDataTable = () => {
       },
       {
         id: "3",
-        idx: 2,
+        index: 2,
         data: { name: "Charlie Davis", age: 41, joinDate: "2021-05-17" },
         columns: [
           {
@@ -511,7 +511,7 @@ const DemoDataTable = () => {
       },
       {
         id: "2",
-        idx: 3,
+        index: 3,
         data: { name: "Bob Smith", age: 34, joinDate: "2022-09-30" },
         columns: [
           {
@@ -529,7 +529,7 @@ const DemoDataTable = () => {
       },
       {
         id: "1",
-        idx: 1,
+        index: 1,
         data: { name: "Alice Johnson", age: 28, joinDate: "2023-01-12" },
         columns: [
           {
@@ -547,7 +547,7 @@ const DemoDataTable = () => {
       },
       {
         id: "3",
-        idx: 2,
+        index: 2,
         data: { name: "Charlie Davis", age: 41, joinDate: "2021-05-17" },
         columns: [
           {
@@ -565,7 +565,7 @@ const DemoDataTable = () => {
       },
       {
         id: "2",
-        idx: 3,
+        index: 3,
         data: { name: "Bob Smith", age: 34, joinDate: "2022-09-30" },
         columns: [
           {

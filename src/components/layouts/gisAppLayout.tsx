@@ -126,9 +126,9 @@ const MobileLayout = (props: any) => {
         borderColor={"border.subtle"}
       >
         <HStack w={"max"} gap={4} px={4} pt={3} pb={5} mx={"auto"}>
-          {PRIVATE_NAV_GROUPS.map((group, idx) => {
+          {PRIVATE_NAV_GROUPS.map((group, index) => {
             return (
-              <Fragment key={idx}>
+              <Fragment key={index}>
                 {group.navs.map((nav) => {
                   const isMainNavActive = pathname.includes(nav.path);
 
@@ -193,10 +193,10 @@ const MobileLayout = (props: any) => {
                             </Menu.Trigger>
 
                             <Menu.Content>
-                              {nav.children.map((subGroup, idx) => {
+                              {nav.children.map((subGroup, index) => {
                                 return (
                                   <Menu.ItemGroup
-                                    key={idx}
+                                    key={index}
                                     title={
                                       subGroup.labelKey
                                         ? pluckString(t, subGroup.labelKey)

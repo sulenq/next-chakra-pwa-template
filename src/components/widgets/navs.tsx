@@ -437,10 +437,11 @@ export const DesktopNavs = (props: DesktopNavsProps) => {
                                             </ClampText>
                                           )}
 
-                                          {subGroup.navs.map((menu, idx) => {
-                                            const isFirstIdx = idx === 0;
+                                          {subGroup.navs.map((menu, index) => {
+                                            const isFirstIdx = index === 0;
                                             const isLastIdx =
-                                              idx === subGroup.navs.length - 1;
+                                              index ===
+                                              subGroup.navs.length - 1;
                                             const isSubNavsActive =
                                               pathname === menu.path;
 

@@ -87,15 +87,15 @@ const ActivityLog = () => {
     notFound: <FeedbackNotFound />,
     loaded: (
       <>
-        {data?.items?.map((log, idx) => {
+        {data?.items?.map((log, index) => {
           return (
             <HStack
-              key={`${log.id}-${idx}`}
+              key={`${log.id}-${index}`}
               gap={4}
               px={4}
               py={2}
               justify={"space-between"}
-              borderTop={idx === 0 ? "" : "1px solid"}
+              borderTop={index === 0 ? "" : "1px solid"}
               borderColor={"border.subtle"}
             >
               {log.user && <MiniUser withEmail user={log.user} w={"240px"} />}

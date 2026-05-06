@@ -98,10 +98,10 @@ export const BatchOptions = (props: BatchOptionsProps) => {
           <Divider />
         </Box>
 
-        {batchOptions?.map((item, idx) => {
+        {batchOptions?.map((item, index) => {
           const noSelection = selectedRows.length === 0;
 
-          // if (item === "divider") return <MenuSeparator key={idx} />;
+          // if (item === "divider") return <MenuSeparator key={index} />;
 
           const option = item(selectedRows, {
             clearSelectedRows: clearSelectedRows,
@@ -123,9 +123,9 @@ export const BatchOptions = (props: BatchOptionsProps) => {
           if (confirmation) {
             return (
               <Confirmation.Trigger
-                key={idx}
+                key={index}
                 w={"full"}
-                id={`confirmation-batch-${idx}`}
+                id={`confirmation-batch-${index}`}
                 title={confirmation.title}
                 description={confirmation.description}
                 confirmLabel={confirmation.confirmLabel}
@@ -149,12 +149,12 @@ export const BatchOptions = (props: BatchOptionsProps) => {
           }
 
           if (override) {
-            return <Fragment key={idx}>{override}</Fragment>;
+            return <Fragment key={index}>{override}</Fragment>;
           }
 
           return (
             <Menu.Item
-              key={idx}
+              key={index}
               value={label}
               onClick={() => {
                 if (!resolvedDisabled) onClick();

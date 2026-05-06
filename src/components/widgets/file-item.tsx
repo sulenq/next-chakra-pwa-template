@@ -10,7 +10,7 @@ import Link from "next/link";
 
 export interface FileItemProps extends StackProps {
   fileData: any;
-  idx?: number;
+  index?: number;
   actions?: {
     type: "REMOVE" | "DELETE" | "UNDO_DELETE";
     onClick: () => void;
@@ -21,7 +21,7 @@ export interface FileItemProps extends StackProps {
 
 export const FileItem = (props: FileItemProps) => {
   // Props
-  const { children, fileData, actions = [], idx, ...restProps } = props;
+  const { children, fileData, actions = [], index, ...restProps } = props;
 
   // Contexts
   const { themeContext } = useThemeConfig();
@@ -49,7 +49,7 @@ export const FileItem = (props: FileItemProps) => {
           <Center pos={"relative"}>
             <FileIcon flexShrink={0} mimeType={fileData?.fileMimeType} />
 
-            {idx !== undefined && (
+            {index !== undefined && (
               <Circle
                 size={"16px"}
                 bg={"bg.body"}
@@ -60,7 +60,7 @@ export const FileItem = (props: FileItemProps) => {
                 left={"-6px"}
                 top={"-6px"}
               >
-                <P fontSize={"sm"}>{`${idx + 1}`}</P>
+                <P fontSize={"sm"}>{`${index + 1}`}</P>
               </Circle>
             )}
           </Center>

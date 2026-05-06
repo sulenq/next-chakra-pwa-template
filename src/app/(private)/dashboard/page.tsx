@@ -236,8 +236,8 @@ const Chart1 = (props: any) => {
     return totals.reduce((a, b) => (b.sum > a.sum ? b : a)).year;
   })();
   const chart = useChart<Type__ChartData>({
-    data: visibleData.map((item: any, idx: number) => {
-      const absoluteIndex = clampedOffset + idx;
+    data: visibleData.map((item: any, index: number) => {
+      const absoluteIndex = clampedOffset + index;
 
       const getXAxisLabel = () => {
         const monthNames = getMonthNames(t);
@@ -269,10 +269,10 @@ const Chart1 = (props: any) => {
     }),
     series: years
       .filter((y) => visibleData.some((item: any) => item[y] !== undefined))
-      .map((y, idx) => ({
+      .map((y, index) => ({
         name: String(y),
         color:
-          ["teal.solid", "purple.solid", "blue.solid"][idx] ?? "gray.solid",
+          ["teal.solid", "purple.solid", "blue.solid"][index] ?? "gray.solid",
       })),
   });
 

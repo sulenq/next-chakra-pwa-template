@@ -74,11 +74,11 @@ export const ImgInput = (props: FileInputProps) => {
               {t.uploaded_file}
             </P>
 
-            {existing?.map((fileData: any, idx: number) => {
+            {existing?.map((fileData: any, index: number) => {
               return (
                 <FileItem
-                  key={idx}
-                  idx={idx}
+                  key={index}
+                  index={index}
                   fileData={fileData}
                   actions={[
                     {
@@ -117,10 +117,10 @@ export const ImgInput = (props: FileInputProps) => {
               {t.deleted_file}
             </P>
 
-            {deleted?.map((fileData: any, idx: number) => {
+            {deleted?.map((fileData: any, index: number) => {
               return (
                 <FileItem
-                  key={idx}
+                  key={index}
                   fileData={fileData}
                   actions={[
                     {
@@ -172,10 +172,10 @@ export const ImgInput = (props: FileInputProps) => {
               mt={1}
             >
               <HStack justify={"center"} h={"224px"} px={4}>
-                {previewUrls.map((url: string, idx: number) => {
+                {previewUrls.map((url: string, index: number) => {
                   return (
                     <ImgViewer
-                      id={`img-input-preview-${id}-${idx}`}
+                      id={`img-input-preview-${id}-${index}`}
                       key={url}
                       src={url}
                       flex={"1 1 0"}
@@ -197,11 +197,11 @@ export const ImgInput = (props: FileInputProps) => {
                           left={"6px"}
                           zIndex={2}
                         >
-                          <P fontWeight={"medium"}>{`${idx + 1}`}</P>
+                          <P fontWeight={"medium"}>{`${index + 1}`}</P>
                         </Circle>
 
                         <Img
-                          key={idx}
+                          key={index}
                           src={url}
                           fluid
                           // h={"200px"}

@@ -181,12 +181,12 @@ const Timezone = () => {
               <SimpleGrid columns={[1, null, 2]} gap={2}>
                 {resolvedTimezones
                   .slice((page - 1) * limit, page * limit)
-                  .map((tz, idx) => {
+                  .map((tz, index) => {
                     const isSelected = timeZone.key === tz.key;
 
                     return (
                       <Tooltip
-                        key={`${tz.key}-${idx}`}
+                        key={`${tz.key}-${index}`}
                         content={`${tz.key} ${tz.localAbbr} (${tz.formattedOffset})`}
                       >
                         <Btn

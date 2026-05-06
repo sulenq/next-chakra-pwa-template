@@ -179,8 +179,8 @@ export const PeriodPickerInput = (props: PeriodPickerInputProps) => {
                 }
               >
                 <SimpleGrid w={"full"} columns={2} gap={2}>
-                  {monthNames.map((month, idx) => {
-                    const isSelected = selected.month === idx;
+                  {monthNames.map((month, index) => {
+                    const isSelected = selected.month === index;
 
                     return (
                       <Btn
@@ -188,7 +188,7 @@ export const PeriodPickerInput = (props: PeriodPickerInputProps) => {
                         clicky={false}
                         variant={"outline"}
                         onClick={() =>
-                          setSelected((prev) => ({ ...prev, month: idx }))
+                          setSelected((prev) => ({ ...prev, month: index }))
                         }
                         color={isSelected ? "" : "fg.muted"}
                       >

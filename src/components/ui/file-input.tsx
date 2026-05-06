@@ -44,7 +44,7 @@ const FileList = (props: FileListProps) => {
 
   return (
     <CContainer gap={2} {...restProps}>
-      {inputValue?.map((file: any, idx: number) => {
+      {inputValue?.map((file: any, index: number) => {
         const fileData = {
           fileName: file.name,
           fileMimeType: file.type,
@@ -54,8 +54,8 @@ const FileList = (props: FileListProps) => {
 
         return (
           <FileItem
-            key={idx}
-            idx={existing.length + idx}
+            key={index}
+            index={existing.length + index}
             fileData={fileData}
             actions={[
               {
@@ -63,7 +63,7 @@ const FileList = (props: FileListProps) => {
                 icon: <LucideIcon icon={XIcon} />,
                 onClick: () => {
                   const next = inputValue.filter(
-                    (_file: File, i: number) => i !== idx,
+                    (_file: File, i: number) => i !== index,
                   );
                   onChange?.(next.length > 0 ? next : null);
                 },
@@ -346,11 +346,11 @@ export const FileInput = forwardRef<HTMLInputElement, FileInputProps>(
                 {t.uploaded_file}
               </P>
 
-              {existing?.map((fileData: any, idx: number) => {
+              {existing?.map((fileData: any, index: number) => {
                 return (
                   <FileItem
-                    key={idx}
-                    idx={idx}
+                    key={index}
+                    index={index}
                     fileData={fileData}
                     actions={[
                       {
@@ -389,10 +389,10 @@ export const FileInput = forwardRef<HTMLInputElement, FileInputProps>(
                 {t.deleted_file}
               </P>
 
-              {deleted?.map((fileData: any, idx: number) => {
+              {deleted?.map((fileData: any, index: number) => {
                 return (
                   <FileItem
-                    key={idx}
+                    key={index}
                     fileData={fileData}
                     actions={[
                       {

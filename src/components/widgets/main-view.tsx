@@ -100,10 +100,10 @@ export const NavBreadcrumb = (props: any) => {
 
           {/* {isEmptyArray(resolvedActiveNavs) && <P>{t.navs.welcome}</P>} */}
 
-          {activeNavs.map((nav: Nav, idx: number) => {
+          {activeNavs.map((nav: Nav, index: number) => {
             return (
-              <HStack key={idx} gap={0} color={"fg.subtle"}>
-                {idx !== 0 && (
+              <HStack key={index} gap={0} color={"fg.subtle"}>
+                {index !== 0 && (
                   <>
                     {backPath && (
                       <Icon boxSize={5} opacity={0.6} rotate={"-12deg"}>
