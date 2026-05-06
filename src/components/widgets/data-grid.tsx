@@ -34,46 +34,69 @@ import {
   SimpleGrid,
   StackProps,
 } from "@chakra-ui/react";
-import React, { Fragment, useState } from "react";
+import React, { createContext, useContext, Fragment, useState } from "react";
+
+// -----------------------------------------------------------------
+
+interface DataGridContextValue {
+  dataListConfig: DataListConfig;
+  selectedRows: string[];
+  toggleRowSelection: (row: FormattedTableRow) => void;
+  routeTitle?: string;
+}
+
+const DataGridContext = createContext<DataGridContextValue | undefined>(
+  undefined,
+);
+
+const useDataGridContext = () => {
+  const context = useContext(DataGridContext);
+  if (!context) {
+    throw new Error("DataGrid components must be wrapped in DataGrid.Display");
+  }
+  return context;
+};
 
 // -----------------------------------------------------------------
 
 interface DataGridItemProps extends StackProps {
-  item: {
+  item?: {
     id: string;
     topElement?: React.ReactNode;
     imgSrc?: string;
     showImg?: boolean;
     imgFallback?: React.ReactNode;
     imgFallbackSrc?: string;
-    title: string | React.ReactNode;
-    description: string | React.ReactNode;
+    title?: string | React.ReactNode;
+    description?: string | React.ReactNode;
     deletedAt?: string | null;
   };
   dim?: boolean;
-  dataListConfig: DataListConfig;
+  dataListConfig?: DataListConfig;
   row: FormattedTableRow;
-  selectedRows: string[];
-  toggleRowSelection: (row: FormattedTableRow) => void;
-  routeTitle: string;
-  details: any;
+  selectedRows?: string[];
+  toggleRowSelection?: (row: FormattedTableRow) => void;
+  routeTitle?: string;
+  details?: any;
 }
 
 export const DataGridItem = (props: DataGridItemProps) => {
+  // Contexts
+  const context = useDataGridContext();
+
   // Props
   const {
     item,
     dim = false,
-    dataListConfig,
+    dataListConfig = context.dataListConfig,
     row,
-    selectedRows,
-    toggleRowSelection,
-    routeTitle,
+    selectedRows = context.selectedRows,
+    toggleRowSelection = context.toggleRowSelection,
+    routeTitle = context.routeTitle || "",
     details,
     ...restProps
   } = props;
 
-  // Contexts
   const { t } = useLocale();
   const { themeContext } = useThemeConfig();
 
@@ -83,9 +106,23 @@ export const DataGridItem = (props: DataGridItemProps) => {
   // Derived Values
   const isRowSelected = selectedRows.includes(row.id);
 
+  // Automatic Mapping from row.columns if item props are missing
+  const inferredImgSrc =
+    item?.imgSrc ??
+    row.columns.find((col) => col.dataType === "image")?.value ??
+    row.columns[0]?.value;
+
+  const inferredTitle =
+    item?.title ?? row.columns[1]?.td ?? row.columns[1]?.value;
+
+  const inferredDescription =
+    item?.description ?? row.columns[2]?.td ?? row.columns[2]?.value;
+
+  const showImg = item?.showImg ?? !!inferredImgSrc;
+
   return (
     <StackV
-      key={item.id}
+      key={row.id}
       flex={1}
       bg={"bg.body"}
       border={"1px solid"}
@@ -107,32 +144,32 @@ export const DataGridItem = (props: DataGridItemProps) => {
         <Checkbox
           checked={isRowSelected}
           subtle
-          borderColor={item.showImg ? "border.emphasized" : ""}
+          borderColor={showImg ? "border.emphasized" : ""}
           zIndex={2}
         />
       </Box>
 
-      {item.topElement}
+      {item?.topElement}
 
-      {item.showImg && (
+      {showImg && (
         <StackV p={1}>
           <ImgViewer
-            id={`img-${row?.index}-${item?.id}`}
+            id={`img-${row?.index}-${row?.id}`}
             w={"full"}
             h={"fit"}
-            src={item.imgSrc}
+            src={inferredImgSrc}
             aspectRatio={1}
-            fallback={item.imgFallback}
-            fallbackSrc={item.imgFallbackSrc}
+            fallback={item?.imgFallback}
+            fallbackSrc={item?.imgFallbackSrc}
             opacity={dim || row.dim ? 0.4 : 1}
           >
             <Img
-              key={item.imgSrc}
-              src={item.imgSrc}
+              key={inferredImgSrc}
+              src={inferredImgSrc}
               aspectRatio={1}
               rounded={`calc(${themeContext.radii.component} - 4px)`}
-              fallback={item.imgFallback}
-              fallbackSrc={item.imgFallbackSrc}
+              fallback={item?.imgFallback}
+              fallbackSrc={item?.imgFallbackSrc}
             />
           </ImgViewer>
         </StackV>
@@ -140,28 +177,28 @@ export const DataGridItem = (props: DataGridItemProps) => {
 
       <StackV flex={1} gap={1} px={3} opacity={dim || row.dim ? 0.4 : 1} my={3}>
         <HStack maxW={"calc(100% - 32px)"}>
-          {typeof item.title === "string" ? (
-            <ClampText fontWeight={"semibold"}>{item.title}</ClampText>
+          {typeof inferredTitle === "string" ? (
+            <ClampText fontWeight={"semibold"}>{inferredTitle}</ClampText>
           ) : (
-            item.title
+            inferredTitle
           )}
         </HStack>
 
-        {typeof item.description === "string" ? (
+        {typeof inferredDescription === "string" ? (
           <ClampText w={"full"} color={"fg.subtle"} lineClamp={1}>
-            {item.description}
+            {inferredDescription}
           </ClampText>
         ) : (
-          item.description
+          inferredDescription
         )}
       </StackV>
 
       <HStack p={2}>
         <DataGrid.DetailTrigger
-          key={item.id}
-          id={`${item.id}`}
+          key={row.id}
+          id={`${row.id}`}
           title={routeTitle}
-          data={item}
+          data={item || row.data}
           details={details}
           w={"full"}
           cursor={"pointer"}
@@ -211,7 +248,7 @@ const DataGridDetailContent = (props: DataGridDetailDisclosureProps) => {
 
   // States
   const [search, setSearch] = useState<string>("");
-  const resolvedDetails = details.filter((detail: any) => {
+  const resolvedDetails = details?.filter((detail: any) => {
     return detail?.label?.toLowerCase()?.includes(search?.toLowerCase());
   });
 
@@ -276,7 +313,7 @@ const DataGridDetailContent = (props: DataGridDetailDisclosureProps) => {
 
 interface DataGridDetailDisclosureTriggerProps extends StackProps {
   id: string;
-  title: string;
+  title?: string;
   data: any;
   details: {
     label: string;
@@ -285,8 +322,18 @@ interface DataGridDetailDisclosureTriggerProps extends StackProps {
 }
 
 const DataGridDetailTrigger = (props: DataGridDetailDisclosureTriggerProps) => {
+  // Contexts
+  const context = useDataGridContext();
+
   // Props
-  const { children, id, title, data, details, ...restProps } = props;
+  const {
+    children,
+    id,
+    title = context.routeTitle || "",
+    data,
+    details,
+    ...restProps
+  } = props;
 
   // Hooks
   const { open, onOpen } = usePopDisclosure(
@@ -311,19 +358,18 @@ const DataGridDetailTrigger = (props: DataGridDetailDisclosureTriggerProps) => {
 
 // -----------------------------------------------------------------
 
-interface GridItem {
+interface GridItemCallbackProps {
   item: any;
   row: FormattedTableRow;
   index: number;
   details: any;
-  selectedRows: string[];
-  toggleRowSelection: (row: FormattedTableRow) => void;
 }
 
 interface DataGridProps extends Omit<StackProps, "page"> {
   data?: any[];
   dataListConfig: DataListConfig;
-  gridItem: (props: GridItem) => React.ReactNode;
+  gridItem: (props: GridItemCallbackProps) => React.ReactNode;
+  routeTitle?: string;
   limit?: number;
   setLimit?: (limit: number) => void;
   page?: number;
@@ -338,6 +384,7 @@ const DataGridDisplay = (props: DataGridProps) => {
   const {
     data,
     dataListConfig,
+    routeTitle,
     limit,
     setLimit,
     page,
@@ -393,137 +440,146 @@ const DataGridDisplay = (props: DataGridProps) => {
   }
 
   return (
-    <StackV flex={1} overflowY={"auto"} pos={"relative"} {...restProps}>
-      {/* Batch Options */}
-      <Presence
-        present={shouldShowBatch}
-        animationName={{ _open: "fade-in", _closed: "fade-out" }}
-        animationDuration={"slow"}
-        unmountOnExit
-        zIndex={10}
-      >
-        <HStack
-          w={"full"}
-          justify={"center"}
-          p={3}
-          pos={"absolute"}
-          bottom={0}
-          left={0}
-          zIndex={2}
-          pointerEvents={"none"}
+    <DataGridContext.Provider
+      value={{
+        dataListConfig,
+        selectedRows,
+        toggleRowSelection,
+        routeTitle,
+      }}
+    >
+      <StackV flex={1} overflowY={"auto"} pos={"relative"} {...restProps}>
+        {/* Batch Options */}
+        <Presence
+          present={shouldShowBatch}
+          animationName={{ _open: "fade-in", _closed: "fade-out" }}
+          animationDuration={"slow"}
+          unmountOnExit
+          zIndex={10}
         >
           <HStack
-            gap={1}
-            bg={GRID_BATCH_OPTIONS_CONTAINER_BG}
-            backdropFilter={BACKDROP_BLUR_FILTER}
-            p={1}
-            border={"1px solid"}
-            borderColor={"border.muted"}
-            rounded={themeContext.radii.container}
-            pointerEvents={"auto"}
+            w={"full"}
+            justify={"center"}
+            p={3}
+            pos={"absolute"}
+            bottom={0}
+            left={0}
+            zIndex={2}
+            pointerEvents={"none"}
           >
-            <P mx={4}>{`${selectedRows.length} ${t.selected.toLowerCase()}`}</P>
+            <HStack
+              gap={1}
+              bg={GRID_BATCH_OPTIONS_CONTAINER_BG}
+              backdropFilter={BACKDROP_BLUR_FILTER}
+              p={1}
+              border={"1px solid"}
+              borderColor={"border.muted"}
+              rounded={themeContext.radii.container}
+              pointerEvents={"auto"}
+            >
+              <P
+                mx={4}
+              >{`${selectedRows.length} ${t.selected.toLowerCase()}`}</P>
 
-            <Divider dir={"vertical"} h={"20px"} />
+              <Divider dir={"vertical"} h={"20px"} />
 
-            <BatchOptions
-              iconButton={false}
-              size={"md"}
-              selectedRows={selectedRows}
-              clearSelectedRows={handleClearSelectedRows}
-              batchOptions={dataListConfig?.batchOptions}
-              allRowsSelected={allRowsSelected}
-              handleSelectAllRows={handleSelectAllRows}
-              pl={3}
-              menuRootProps={{
-                positioning: {
-                  placement: "top",
-                  offset: {
-                    mainAxis: 12,
+              <BatchOptions
+                iconButton={false}
+                size={"md"}
+                selectedRows={selectedRows}
+                clearSelectedRows={handleClearSelectedRows}
+                batchOptions={dataListConfig?.batchOptions}
+                allRowsSelected={allRowsSelected}
+                handleSelectAllRows={handleSelectAllRows}
+                pl={3}
+                menuRootProps={{
+                  positioning: {
+                    placement: "top",
+                    offset: {
+                      mainAxis: 12,
+                    },
                   },
-                },
-              }}
-            />
+                }}
+              />
+            </HStack>
           </HStack>
-        </HStack>
-      </Presence>
+        </Presence>
 
-      {/* Grid */}
-      <StackV
-        flex={1}
-        // pt={`calc(${rSpacingMd} - 8px)`}
-        pt={R_SPACING_MD}
-        overflowY={"auto"}
-      >
+        {/* Grid */}
         <StackV
-          className={"scrollY"}
           flex={1}
-          px={R_SPACING_MD}
-          //  pt={"8px"}
-          pb={R_SPACING_MD}
+          // pt={`calc(${rSpacingMd} - 8px)`}
+          pt={R_SPACING_MD}
+          overflowY={"auto"}
         >
-          <SimpleGrid
-            templateColumns={`repeat(auto-fill, minmax(${minChildWidth}, 1fr))`}
-            gap={GAP}
+          <StackV
+            className={"scrollY"}
+            flex={1}
+            px={R_SPACING_MD}
+            //  pt={"8px"}
+            pb={R_SPACING_MD}
           >
-            {data?.map((item, index) => {
-              const row = dataListConfig.rows?.[index] as FormattedTableRow;
-              const details = row.columns.map((col, rowIdx) => {
-                const label = dataListConfig.headers?.[rowIdx].th;
+            <SimpleGrid
+              templateColumns={`repeat(auto-fill, minmax(${minChildWidth}, 1fr))`}
+              gap={GAP}
+            >
+              {data?.map((item, index) => {
+                const row = dataListConfig.rows?.[index] as FormattedTableRow;
+                const details = row?.columns?.map((col, rowIdx) => {
+                  const label = dataListConfig.headers?.[rowIdx].th;
 
-                switch (col.dataType) {
-                  case "image":
-                    return {
-                      label,
-                      render: (
-                        <ImgViewer
-                          id={`img-${rowIdx}-${item?.id}`}
-                          src={col.value}
-                          w={"full"}
-                        >
-                          <Img src={col.value} w={"full"} fluid />
-                        </ImgViewer>
-                      ),
-                    };
+                  switch (col.dataType) {
+                    case "image":
+                      return {
+                        label,
+                        render: (
+                          <ImgViewer
+                            id={`img-${rowIdx}-${item?.id}`}
+                            src={col.value}
+                            w={"full"}
+                          >
+                            <Img src={col.value} w={"full"} fluid />
+                          </ImgViewer>
+                        ),
+                      };
 
-                  default:
-                    return {
-                      label,
-                      render: col.td,
-                    };
-                }
-              });
+                    default:
+                      return {
+                        label,
+                        render: col.td,
+                      };
+                  }
+                });
 
-              return (
-                <Fragment key={index}>
-                  {props.gridItem({
-                    item,
-                    row,
-                    index,
-                    details,
-                    selectedRows,
-                    toggleRowSelection,
-                  })}
-                </Fragment>
-              );
-            })}
-          </SimpleGrid>
+                return (
+                  <Fragment key={index}>
+                    {props.gridItem({
+                      item,
+                      row,
+                      index,
+                      details,
+                    })}
+                  </Fragment>
+                );
+              })}
+            </SimpleGrid>
+          </StackV>
         </StackV>
-      </StackV>
 
-      {/* Footer */}
-      {hasFooter && (
-        <DataFooter
-          limit={limit}
-          setLimit={setLimit}
-          dataLength={data?.length}
-          totalData={totalData}
-          page={page}
-          setPage={setPage}
-          totalPage={totalPage}
-        />
-      )}
-    </StackV>
+        {/* Footer */}
+        {hasFooter && (
+          <DataFooter
+            limit={limit}
+            setLimit={setLimit}
+            dataLength={data?.length}
+            totalData={totalData}
+            page={page}
+            setPage={setPage}
+            totalPage={totalPage}
+          />
+        )}
+      </StackV>
+    </DataGridContext.Provider>
   );
 };
 

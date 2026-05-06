@@ -7,7 +7,6 @@ import { DataTable } from "@/components/widgets/data-table";
 import FeedbackNoData from "@/components/widgets/feedback-no-data";
 import FeedbackRetry from "@/components/widgets/feedback-retry";
 import { TopLoadingBar } from "@/components/widgets/loading-bar";
-import { useMainViewContext } from "@/components/widgets/main-view";
 import { useDataDisplay } from "@/contexts/use-data-display-context";
 import { useLocale } from "@/contexts/use-locale-context";
 import { LayananDelete } from "@/features/layanan/components/layanan.delete";
@@ -35,7 +34,6 @@ export const LayananData = (props: LayananDataProps) => {
   const { filter, routeTitle } = props;
 
   const { locale } = useLocale();
-  const { isSmContainer } = useMainViewContext();
   const isDisplayTable =
     useDataDisplay((s) => s.getDisplay(LAYANAN_ID)) === "table";
 
@@ -66,6 +64,7 @@ export const LayananData = (props: LayananDataProps) => {
           {
             td: <Img src={imgUrl(item.icon)} boxSize={"20px"} fluid />,
             value: item.icon,
+            dataType: "image",
           },
           {
             td: item.title?.[locale],
@@ -122,34 +121,10 @@ export const LayananData = (props: LayananDataProps) => {
         <DataGrid.Display
           data={dataList}
           dataListConfig={dataListConfig}
-          gridItem={({
-            item,
-            row,
-            details,
-            selectedRows,
-            toggleRowSelection,
-          }: any) => {
-            const resolvedItem: LayananItem = item;
-            return (
-              <DataGrid.Item
-                key={resolvedItem.id}
-                item={{
-                  id: `${resolvedItem.id}`,
-                  imgSrc: resolvedItem.icon,
-                  showImg: true,
-                  title: resolvedItem.title?.[locale],
-                  description: resolvedItem.description?.[locale],
-                }}
-                dataListConfig={dataListConfig}
-                row={row}
-                selectedRows={selectedRows}
-                toggleRowSelection={toggleRowSelection}
-                routeTitle={routeTitle}
-                details={details}
-              />
-            );
-          }}
-          mt={isSmContainer ? 3 : 0}
+          routeTitle={routeTitle}
+          gridItem={({ row, details }) => (
+            <DataGrid.Item key={row.id} row={row} details={details} />
+          )}
         />
       )}
     </>
