@@ -36,10 +36,14 @@ import { LayananDelete } from "./layanan.delete";
 import { LayananUpdate } from "./layanan.update";
 import { TopLoadingBar } from "@/components/widgets/loading-bar";
 
-const PREFIX_ID = `layanan`;
+// -----------------------------------------------------------------
+
+const ID = `layanan`;
 const DEFAULT_FILTER = {
   search: "",
 };
+
+// -----------------------------------------------------------------
 
 const DataUtils = (props: any) => {
   // Props
@@ -67,10 +71,12 @@ const DataUtils = (props: any) => {
         </Icon>
       </Btn>
 
-      <DataDisplayToggle iconButton navKey={PREFIX_ID} size={"sm"} />
+      <DataDisplayToggle iconButton navKey={ID} size={"sm"} />
     </HStack>
   );
 };
+
+// -----------------------------------------------------------------
 
 const Data = (props: any) => {
   // Props
@@ -78,7 +84,7 @@ const Data = (props: any) => {
 
   // Contexts
   const { locale } = useLocale();
-  const displayMode = useDataDisplay((s) => s.getDisplay(PREFIX_ID));
+  const displayMode = useDataDisplay((s) => s.getDisplay(ID));
   const displayTable = displayMode === "table";
 
   // Query
@@ -156,7 +162,6 @@ const Data = (props: any) => {
         <TableSkeleton />
       </>
     );
-
   if (isError) return <FeedbackRetry onRetry={refetch} />;
   if (isEmptyArray(data)) return <FeedbackNoData />;
 
@@ -206,6 +211,8 @@ const Data = (props: any) => {
     </>
   );
 };
+
+// -----------------------------------------------------------------
 
 export default function LayananPage() {
   // Contexts

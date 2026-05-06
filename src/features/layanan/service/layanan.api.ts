@@ -1,13 +1,10 @@
 import { http } from "@/api/http";
-import {
-  GetLayananResponse,
-  LayananQuery,
-} from "@/features/layanan/types/layanan.types";
-import { BaseResponse } from "@/types/global.types";
+import { GetLayananResponse } from "@/features/layanan/types/layanan.types";
+import { BaseDataListParams, BaseResponse } from "@/types/global.types";
 import { GenericFormData } from "axios";
 
 export const getLayanan = async (
-  params?: LayananQuery,
+  params?: BaseDataListParams,
   signal?: AbortSignal,
 ) => {
   const res = await http.get<GetLayananResponse>(

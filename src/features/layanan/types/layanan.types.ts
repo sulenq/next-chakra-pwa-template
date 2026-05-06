@@ -1,11 +1,5 @@
 import { LangObject } from "@/types/global.types";
 
-export interface LayananPrams {
-  page?: number;
-  limit?: number;
-  search?: string;
-}
-
 export interface LayananItem {
   id: string;
   icon: string;

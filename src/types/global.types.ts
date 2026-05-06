@@ -176,6 +176,13 @@ export interface BaseResponse {
   data?: any; // TODO_DEV change to result for more semantic
 }
 
+// Request
+export interface BaseDataListParams {
+  search?: string;
+  page?: number;
+  limit?: number;
+}
+
 // Locales
 export interface LangObject {
   [key: string]: string;
