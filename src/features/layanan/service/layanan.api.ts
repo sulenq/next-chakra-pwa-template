@@ -3,29 +3,26 @@ import { LayananItem } from "@/features/layanan/types/layanan.types";
 import { BaseDataListParams, BaseResponse } from "@/types/global.types";
 import { GenericFormData } from "axios";
 
+const BASE_ENDPOINT = "/api/admin/da/services";
+
 export const getLayanan = async (
   params?: BaseDataListParams,
   signal?: AbortSignal,
 ) => {
   const res = await http.get<BaseResponse<LayananItem[]>>(
-    "/api/admin/da/services/index",
+    `${BASE_ENDPOINT}/index`,
     {
       params,
       signal,
     },
   );
-
   return res.data;
 };
 
 export const createLayanan = async (data: GenericFormData) => {
-  const res = await http.post<BaseResponse>(
-    "/api/admin/da/services/create",
-    data,
-    {
-      headers: { "Content-Type": "multipart/form-data" },
-    },
-  );
+  const res = await http.post<BaseResponse>(`${BASE_ENDPOINT}/create`, data, {
+    headers: { "Content-Type": "multipart/form-data" },
+  });
   return res.data;
 };
 
@@ -34,14 +31,14 @@ export const updateLayanan = async (
   data: GenericFormData,
 ) => {
   const res = await http.patch<BaseResponse>(
-    `/api/admin/da/services/update/${id}`,
+    `${BASE_ENDPOINT}/update/${id}`,
     data,
   );
   return res.data;
 };
 
 export const deleteLayanan = async (ids: (string | number)[]) => {
-  const res = await http.delete<BaseResponse>("/api/admin/da/services/delete", {
+  const res = await http.delete<BaseResponse>(`${BASE_ENDPOINT}/delete`, {
     data: { deleteIds: ids },
   });
   return res.data;
