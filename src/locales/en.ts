@@ -274,6 +274,7 @@ const translations = {
   "msg_edge_permissions_settings_link": "Settings → Cookies and site permissions → ",
   "msg_file_input_dropzone": "Drag and drop/click to upload files",
   "msg_firefox_permissions_settings_link": "Preferences → Privacy & Security → Permissions → ",
+  "msg_hard_delete": "Data will be permanently deleted.",
   "msg_location_test_helper": "Click get location to get location data.",
   "msg_master_data_index_route": "Please select the master data menu.",
   "msg_new_avatar_helper": "At least 800 x 800 px recommended",

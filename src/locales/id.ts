@@ -274,6 +274,7 @@ const translations = {
   "msg_edge_permissions_settings_link": "Pengaturan → Cookie dan izin situs → ",
   "msg_file_input_dropzone": "Drag and drop/klik untuk unggah berkas",
   "msg_firefox_permissions_settings_link": "Preferensi → Privasi & Keamanan → Izin → ",
+  "msg_hard_delete": "Data akan dihapus permanen.",
   "msg_location_test_helper": "Klik dapatkan lokasi untuk mendapatkan data lokasi.",
   "msg_master_data_index_route": "Silahkan pilih menu master data.",
   "msg_new_avatar_helper": "Direkomendasikan minimal 800 x 800 px",

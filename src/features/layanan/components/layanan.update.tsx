@@ -18,6 +18,8 @@ import { EditIcon } from "lucide-react";
 import * as yup from "yup";
 import { useUpdateLayananMutation } from "../hooks/use-layanan";
 import { LayananItem } from "../types/layanan.types";
+import { getMainViewTitle } from "@/utils/route";
+import { usePathname } from "next/navigation";
 
 interface Props {
   item: LayananItem;
@@ -32,6 +34,7 @@ export const LayananUpdate = ({ item }: Props) => {
   const { open, onOpen, onClose } = usePopDisclosure(
     `layanan-update-${item.id}`,
   );
+  const pathname = usePathname();
 
   // Query
   const { mutate, isPending } = useUpdateLayananMutation();
@@ -75,6 +78,9 @@ export const LayananUpdate = ({ item }: Props) => {
     },
   });
 
+  // Constants
+  const mainViewTitle = getMainViewTitle(pathname, t);
+
   return (
     <>
       <Tooltip content={"Edit"}>
@@ -90,7 +96,7 @@ export const LayananUpdate = ({ item }: Props) => {
 
       <SimpleDisclosure
         open={open}
-        title={"Update Service"}
+        title={`Edit ${mainViewTitle}`}
         bodyContent={
           <form
             id={`update-layanan-form-${item.id}`}

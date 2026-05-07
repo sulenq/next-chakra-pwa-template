@@ -1071,6 +1071,10 @@ export const msg_soft_delete = {
   id: "Data akan disembunyikan dan bisa dikembalikan nanti.",
   en: "Data will be hidden but can be restored later.",
 };
+export const msg_hard_delete = {
+  id: "Data akan dihapus permanen.",
+  en: "Data will be permanently deleted.",
+};
 export const msg_deactivate = {
   id: "Akun akan dinonaktifkan dan tidak bisa digunakan sementara.",
   en: "The account will be deactivated and cannot be used temporarily.",
