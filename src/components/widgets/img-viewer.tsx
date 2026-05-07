@@ -13,6 +13,7 @@ import { back } from "@/utils/client";
 import { disclosureId } from "@/utils/disclosure";
 import { Icon, StackProps } from "@chakra-ui/react";
 import { IconArrowUpRight } from "@tabler/icons-react";
+import { useEffect, useState } from "react";
 
 // -----------------------------------------------------------------
 
@@ -41,6 +42,13 @@ export const ImgViewer = (props: ImgViewerProps) => {
 
   // Hooks
   const { open, onOpen } = usePopDisclosure(disclosureId(id || `${src}`));
+
+  // States
+  const [isError, setIsError] = useState(!src);
+
+  useEffect(() => {
+    setIsError(!src);
+  }, [src]);
 
   return (
     <>
@@ -83,16 +91,16 @@ export const ImgViewer = (props: ImgViewerProps) => {
                 }}
                 rounded={"full"}
                 pos={"absolute"}
-                top={4}
-                right={4}
+                top={0}
+                right={0}
                 zIndex={2}
               />
 
-              <StackV flex={1} gap={4} align={"center"} p={8} overflow={"auto"}>
+              <StackV flex={1} gap={4} align={"center"} overflow={"auto"}>
                 <Img
                   src={src}
-                  w={"fit"}
-                  h={"70%"}
+                  w={"full"}
+                  maxW={"70svh"}
                   aspectRatio={1}
                   objectFit={"contain"}
                   onClick={(e) => {
@@ -100,8 +108,12 @@ export const ImgViewer = (props: ImgViewerProps) => {
                   }}
                   imageProps={{
                     unoptimized: true,
+                    onLoad: () => {
+                      if (src) setIsError(false);
+                    },
                   }}
-                  bg={"bg.bodySolid"}
+                  onError={() => setIsError(true)}
+                  bg={!src || isError ? "bg.bodySolid" : "transparent"}
                   fallback={fallback}
                   fallbackSrc={fallbackSrc}
                   m={"auto"}
