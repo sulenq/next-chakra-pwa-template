@@ -50,13 +50,11 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
 
         <ChakraCheckbox.Control
           bg={
-            bg || checked
+            checked
               ? isColorPaletteGray
                 ? graySolidBg
-                : themeContext.primaryColor
-              : subtle
-                ? "gray.emphasized"
-                : "transparent"
+                : `${themeContext.colorPalette}.solid`
+              : (bg ?? (subtle ? "bg.muted" : "transparent"))
           }
           rounded={rounded || `calc(${themeContext.radii.component}/2)`}
           borderColor={
