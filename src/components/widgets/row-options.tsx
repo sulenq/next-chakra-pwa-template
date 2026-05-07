@@ -8,7 +8,7 @@ import {
   RowOptionsTableOptionGenerator,
 } from "@/types/global.types";
 import { MenuRootProps } from "@chakra-ui/react";
-import { EllipsisVerticalIcon } from "lucide-react";
+import { EllipsisIcon } from "lucide-react";
 import React from "react";
 
 // -----------------------------------------------------------------
@@ -48,7 +48,7 @@ export const RowOptions = (props: RowOptionsProps) => {
           _open={{ bg: "d0" }}
           {...restProps}
         >
-          <AppIconLucide icon={EllipsisVerticalIcon} />
+          <AppIconLucide icon={EllipsisIcon} />
         </Btn>
       </Menu.Trigger>
 

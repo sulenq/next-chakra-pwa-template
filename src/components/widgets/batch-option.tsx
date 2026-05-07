@@ -1,17 +1,17 @@
 import { Btn, BtnProps } from "@/components/ui/btn";
 import { CContainer } from "@/components/ui/c-container";
+import { Divider } from "@/components/ui/divider";
 import { Menu } from "@/components/ui/menu";
 import { P } from "@/components/ui/p";
 import { AppIconLucide } from "@/components/widgets/app-icon";
 import { Confirmation } from "@/components/widgets/confirmation";
 import { DotIndicator } from "@/components/widgets/indicator";
-import { BatchOptionsTableOptionGenerator } from "@/types/global.types";
 import { useLocale } from "@/contexts/use-locale-context";
 import { useThemeContext } from "@/contexts/use-theme-context";
+import { BatchOptionsTableOptionGenerator } from "@/types/global.types";
 import { Box, MenuRootProps } from "@chakra-ui/react";
-import { EllipsisIcon } from "lucide-react";
+import { ListChecks } from "lucide-react";
 import { Fragment } from "react";
-import { Divider } from "@/components/ui/divider";
 
 // -----------------------------------------------------------------
 
@@ -65,7 +65,7 @@ export const BatchOptions = (props: BatchOptionsProps) => {
           }}
           {...restProps}
         >
-          {children ? children : <AppIconLucide icon={EllipsisIcon} />}
+          {children ? children : <AppIconLucide icon={ListChecks} />}
 
           {!iconButton && "Batch Options"}
         </Btn>

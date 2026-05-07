@@ -57,7 +57,7 @@ export const DataGridItem = (props: DataGridItemProps) => {
 
   // Constants
   const selectedColor = `${themeContext.colorPalette}.solid`;
-  const isRowSelected = selectedRows.includes(id);
+  const isRowSelected = selectedRows.includes(id.toString());
 
   return (
     <StackV

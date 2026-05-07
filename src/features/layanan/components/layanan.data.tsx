@@ -166,8 +166,8 @@ export const LayananData = (props: LayananDataProps) => {
                   >
                     <Btn
                       variant={"ghost"}
-                      colorPalette={themeContext.colorPalette}
                       size={"sm"}
+                      color={"fg.muted"}
                       rounded={themeContext.radii.component}
                     >
                       {t.view_more}
