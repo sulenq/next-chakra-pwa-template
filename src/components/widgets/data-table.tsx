@@ -26,7 +26,7 @@ import {
   TABLE_TH_BORDER_COLOR,
   TABLE_TH_H,
 } from "@/constants/styles";
-import { Type__SortHandler } from "@/types/global.types";
+import { SortHandler } from "@/types/global.types";
 import { useThemeContext } from "@/contexts/use-theme-context";
 import { useScreen } from "@/hooks/use-screen";
 import { isEmptyArray } from "@/utils/array";
@@ -108,7 +108,7 @@ export const DataTableDisplay = (props: DataTableProps) => {
     );
   }, []);
 
-  const sortHandlers: Record<string, Type__SortHandler> = {
+  const sortHandlers: Record<string, SortHandler> = {
     string: (aValue, bValue, direction) =>
       direction === "asc"
         ? String(aValue).localeCompare(String(bValue))

@@ -1,4 +1,4 @@
-import { Type__TimezoneObject } from "@/types/global.types";
+import { TimezoneValue } from "@/types/global.types";
 import { getStorage, setStorage } from "@/utils/client";
 import { getLocalTimezone } from "@/utils/time";
 import { create } from "zustand";
@@ -6,15 +6,15 @@ import { create } from "zustand";
 const STORAGE_KEY = "timezone";
 
 type TimezoneStore = {
-  timeZone: Type__TimezoneObject;
-  setTimeZone: (newState: Type__TimezoneObject) => void;
+  timeZone: TimezoneValue;
+  setTimeZone: (newState: TimezoneValue) => void;
 };
 const useTimezone = create<TimezoneStore>((set) => {
-  const getStoredTimeZone = (): Type__TimezoneObject => {
+  const getStoredTimeZone = (): TimezoneValue => {
     try {
       const rawStored = getStorage(STORAGE_KEY);
       if (rawStored) {
-        const parsed = JSON.parse(rawStored) as Type__TimezoneObject;
+        const parsed = JSON.parse(rawStored) as TimezoneValue;
         return parsed.label.startsWith("Auto") ? getLocalTimezone() : parsed;
       }
     } catch (error) {

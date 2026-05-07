@@ -20,9 +20,9 @@ import { R_SPACING_MD } from "@/constants/styles";
 import { TIME_FORMATS } from "@/constants/time-formats";
 import { TIME_ZONES } from "@/constants/timezones";
 import {
-  Type__DateFormat,
-  Type__LanguageOptions,
-  Type__TimeFormat,
+  type DateFormat,
+  type LocaleOption,
+  type TimeFormat,
 } from "@/types/global.types";
 import { UOM_FORMATS } from "@/constants/uom-formats";
 import useDateFormat from "@/contexts/use-date-format-context";
@@ -80,7 +80,7 @@ const Language = () => {
                   justifyContent={"start"}
                   color={isSelected ? "" : NAVS_COLOR}
                   onClick={() => {
-                    setLocale(item.key as Type__LanguageOptions);
+                    setLocale(item.key as LocaleOption);
                   }}
                   pos={"relative"}
                 >
@@ -281,7 +281,7 @@ const DateFormat = () => {
                   rounded={themeContext.radii.component}
                   color={isSelected ? "" : NAVS_COLOR}
                   onClick={() => {
-                    setDateFormat(item.key as Type__DateFormat);
+                    setDateFormat(item.key as DateFormat);
                   }}
                   cursor={"pointer"}
                   _hover={{ bg: "bg.subtle" }}
@@ -304,7 +304,7 @@ const DateFormat = () => {
                   <P color={"fg.subtle"}>
                     {formatDate(new Date().toISOString(), t, {
                       variant: "weekdayDayShortMonthYear",
-                      dateFormat: item.key as Type__DateFormat,
+                      dateFormat: item.key as DateFormat,
                     })}
                   </P>
                 </CContainer>
@@ -365,7 +365,7 @@ const TimeFormat = () => {
 
                   <P>
                     {formatTime(makeTime(new Date().toISOString()), {
-                      timeFormat: item.key as Type__TimeFormat,
+                      timeFormat: item.key as TimeFormat,
                     })}
                   </P>
                 </CContainer>

@@ -1,9 +1,9 @@
 import { getMonthNames } from "@/constants/months";
 import {
-  Type__DateFormat,
+  DateFormat,
   DateVariant,
   Translations,
-  Type__TimeFormat,
+  TimeFormat,
   UnitKey,
 } from "@/types/global.types";
 import { UOM_FORMATS } from "@/constants/uom-formats";
@@ -24,7 +24,7 @@ export const formatDate = (
     variant?: DateVariant;
     withTime?: boolean;
     timeFormat?: string; // default HH:mm
-    dateFormat?: Type__DateFormat;
+    dateFormat?: DateFormat;
     timezoneKey?: string;
   } = {},
 ): string => {
@@ -286,7 +286,7 @@ export const formatTime = (
   time?: string | null,
   options: {
     showSeconds?: boolean;
-    timeFormat?: Type__TimeFormat;
+    timeFormat?: TimeFormat;
     timezoneKey?: string;
     withSuffix?: boolean;
     showAbbr?: boolean;

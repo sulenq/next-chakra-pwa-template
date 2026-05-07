@@ -1,4 +1,4 @@
-import { Type__TimezoneObject } from "@/types/global.types";
+import { TimezoneValue } from "@/types/global.types";
 import { getStorage } from "@/utils/client";
 import {
   addSeconds,
@@ -18,7 +18,7 @@ export const getTimezoneOffsetMs = (timezoneKey: string): number => {
   return getTimezoneOffset(timezoneKey);
 };
 
-export const getLocalTimezone = (): Type__TimezoneObject => {
+export const getLocalTimezone = (): TimezoneValue => {
   const detected = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
   const TZ_ALIAS: Record<string, string> = {
@@ -52,14 +52,14 @@ export const getLocalTimezone = (): Type__TimezoneObject => {
   };
 };
 
-export const getUserTimezone = (): Type__TimezoneObject => {
+export const getUserTimezone = (): TimezoneValue => {
   const localTZ = getLocalTimezone();
   const storedTimezone = getStorage("timezone");
 
   if (!storedTimezone) return localTZ;
 
   try {
-    const parsedTimezone = JSON.parse(storedTimezone) as Type__TimezoneObject;
+    const parsedTimezone = JSON.parse(storedTimezone) as TimezoneValue;
     if (parsedTimezone.label.startsWith("Auto")) return localTZ;
 
     return parsedTimezone;

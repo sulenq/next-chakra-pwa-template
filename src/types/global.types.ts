@@ -5,12 +5,7 @@ import { LucideIcon } from "lucide-react";
 import { ReactNode } from "react";
 
 import { translations } from "@/contexts/use-locale-context";
-import {
-  ButtonProps,
-  ConditionalValue,
-  MenuItemProps,
-  StackProps,
-} from "@chakra-ui/react";
+import { ConditionalValue, MenuItemProps, StackProps } from "@chakra-ui/react";
 
 export type ColorMode = "light" | "dark";
 
@@ -22,7 +17,8 @@ export type RGB = {
 
 export type Gender = "MALE" | "FEMALE";
 
-export type LocaleKey = keyof typeof translations; // currently "en" | "id"
+export type LocaleOption = "id" | "en"; // currently "en" | "id"
+export type LocaleKey = keyof typeof translations;
 export type Translations = (typeof translations)[LocaleKey];
 
 export type UnitKey =
@@ -41,7 +37,7 @@ export type UnitKey =
   | "dataRate"
   | "angle";
 
-export type Type__ChartData = Record<string, number | string>;
+export type ChartData = Record<string, number | string>;
 
 export type InputSize = ConditionalValue<
   "sm" | "md" | "lg" | "xl" | "2xl" | "xs" | "2xs" | undefined
@@ -66,18 +62,7 @@ export type ButtonVariant = ConditionalValue<
   | undefined
 >;
 
-export type Type__ExtendedPermissionState =
-  | "prompt"
-  | "denied"
-  | "granted-once"
-  | "granted-forever";
-
-export type Type__ContainerDimension = {
-  width: number;
-  height: number;
-};
-
-export type Type__SortHandler = (
+export type SortHandler = (
   aValue: any,
   bValue: any,
   direction: "asc" | "desc",
@@ -88,14 +73,12 @@ export type Period = {
   year: number | null;
 };
 
-export type Type__LanguageOptions = "id" | "en";
-
-export type Type__LatLong = {
+export type LatLon = {
   lat: number;
   lon: number;
 };
 
-export type Type__TimezoneObject = {
+export type TimezoneValue = {
   key: string;
   label: string;
   offset: number;
@@ -104,49 +87,11 @@ export type Type__TimezoneObject = {
   localAbbr: string;
 };
 
-export type Type__TimeFormat = "24-hour" | "12-hour";
+export type TimeFormat = "24-hour" | "12-hour";
 
-export type Type__DateFormat = "dmy" | "mdy" | "ymd";
+export type DateFormat = "dmy" | "mdy" | "ymd";
 
 export type DisclosureSizes = "xs" | "sm" | "md" | "lg" | "xl";
-
-export type Type__DateRange = {
-  from: Date | string | undefined;
-  to: Date | string | undefined;
-};
-
-export type Type__DateRangePresets =
-  | "thisWeek"
-  | "nextWeek"
-  | "thisMonth"
-  | "nextMonth";
-
-export type Type__TimeRange = {
-  from: string | undefined;
-  to: string | undefined;
-};
-
-export type Type__TableOptions = (
-  | {
-      label: string;
-      icon?: any;
-      callback?: (dataParams: any) => void;
-      independent?: boolean;
-      component?: any;
-      confirmation?: (dataParams: any) => {
-        id: string;
-        title: string;
-        description: string;
-        confirmLabel: string;
-        confirmCallback: () => void;
-        confirmButtonProps?: ButtonProps;
-      };
-      subMenu?: any; // unused yet
-      menuItemProps?: MenuItemProps;
-      disabled?: (rowData: any) => boolean | boolean;
-    }
-  | "divider"
-)[];
 
 export type DateVariant =
   | "numeric" // 15-1-2025

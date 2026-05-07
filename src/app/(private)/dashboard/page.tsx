@@ -18,7 +18,7 @@ import { MainView, useMainViewContext } from "@/components/widgets/main-view";
 import { DUMMY_DASHBOARD_DATA } from "@/constants/dummy-data";
 import { getMonthNames } from "@/constants/months";
 import { GAP, R_SPACING_MD } from "@/constants/styles";
-import { Type__ChartData } from "@/types/global.types";
+import { ChartData } from "@/types/global.types";
 import { useLocale } from "@/contexts/use-locale-context";
 import { useThemeContext } from "@/contexts/use-theme-context";
 import { useFetchData } from "@/hooks/useFetchData";
@@ -235,7 +235,7 @@ const Chart1 = (props: any) => {
 
     return totals.reduce((a, b) => (b.sum > a.sum ? b : a)).year;
   })();
-  const chart = useChart<Type__ChartData>({
+  const chart = useChart<ChartData>({
     data: visibleData.map((item: any, index: number) => {
       const absoluteIndex = clampedOffset + index;
 

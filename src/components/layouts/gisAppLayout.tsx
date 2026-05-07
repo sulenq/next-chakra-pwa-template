@@ -53,11 +53,12 @@ import { useScreen } from "@/hooks/use-screen";
 import { last } from "@/utils/array";
 import { getUserData } from "@/utils/auth";
 import { pluckString } from "@/utils/string";
-import { getActiveNavs, imgUrl } from "@/utils/url";
+import { imgUrl } from "@/utils/url";
 import { Center, HStack, VStack } from "@chakra-ui/react";
 import { ChevronsLeftIcon, ChevronsRightIcon, ServerIcon } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { Fragment } from "react";
+import { getActiveNavs } from "@/utils/route";
 
 const MobileLayout = (props: any) => {
   // Props

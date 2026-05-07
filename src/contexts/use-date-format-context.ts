@@ -1,4 +1,4 @@
-import { Type__DateFormat } from "@/types/global.types";
+import { DateFormat } from "@/types/global.types";
 import { getStorage, setStorage } from "@/utils/client";
 import { create } from "zustand";
 
@@ -6,14 +6,14 @@ const STORAGE_KEY = "date-format";
 const DEFAULT = "dmy";
 
 interface DateFormatStore {
-  dateFormat: Type__DateFormat;
-  setDateFormat: (newState: Type__DateFormat) => void;
+  dateFormat: DateFormat;
+  setDateFormat: (newState: DateFormat) => void;
 }
 const useDateFormat = create<DateFormatStore>((set) => {
-  const getStoredFormat = (): Type__DateFormat => {
+  const getStoredFormat = (): DateFormat => {
     try {
       const stored = getStorage(STORAGE_KEY);
-      if (stored) return stored as Type__DateFormat;
+      if (stored) return stored as DateFormat;
       setStorage(STORAGE_KEY, DEFAULT);
     } catch (error) {
       console.error("Failed to access dateFormat from localStorage:", error);
