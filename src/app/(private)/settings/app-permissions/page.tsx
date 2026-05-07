@@ -8,7 +8,7 @@ import { Switch } from "@/components/ui/switch";
 import { toaster } from "@/components/ui/toaster";
 import { AppIconLucide } from "@/components/widgets/app-icon";
 import { Item } from "@/components/widgets/item";
-import { LocalSettingsHelperText } from "@/components/widgets/local-settings-helper-text";
+import { SettingsSavedLocalyHelperText } from "@/components/widgets/local-settings-helper-text";
 import { MicVolumeBar } from "@/components/widgets/mic-volume-bar";
 import { ToggleSettingContainer } from "@/components/widgets/settings-shell";
 import { R_SPACING_MD } from "@/constants/styles";
@@ -16,7 +16,7 @@ import { useCameraPermission } from "@/contexts/use-camera-permission-context";
 import { useLocale } from "@/contexts/use-locale-context";
 import { useLocationPermissions } from "@/contexts/use-location-permission-context";
 import { useMicPermissions } from "@/contexts/use-mic-permission-context";
-import { useThemeConfig } from "@/contexts/use-theme-context";
+import { useThemeContext } from "@/contexts/use-theme-context";
 import { usePopDisclosure } from "@/hooks/use-pop-disclosure";
 import { startCamera, stopCamera } from "@/utils/camera";
 import { disclosureId } from "@/utils/disclosure";
@@ -28,7 +28,7 @@ import { useEffect, useRef, useState } from "react";
 const CameraSection = () => {
   // Contexts
   const { t } = useLocale();
-  const { themeContext } = useThemeConfig();
+  const { themeContext } = useThemeContext();
   const { cameraPermissionsStatus } = useCameraPermission();
 
   // States
@@ -216,7 +216,7 @@ const CameraSection = () => {
 const MicrophoneSection = () => {
   // Contexts
   const { t } = useLocale();
-  const { themeContext } = useThemeConfig();
+  const { themeContext } = useThemeContext();
   const { micPermissionsStatus } = useMicPermissions();
 
   // States
@@ -406,7 +406,7 @@ const MicrophoneSection = () => {
 const LocationSection = () => {
   // Contexts
   const { t } = useLocale();
-  const { themeContext } = useThemeConfig();
+  const { themeContext } = useThemeContext();
   const { locationPermissionsStatus } = useLocationPermissions();
 
   // States
@@ -606,7 +606,7 @@ export default function Page() {
 
       <LocationSection />
 
-      <LocalSettingsHelperText />
+      <SettingsSavedLocalyHelperText />
     </StackV>
   );
 }

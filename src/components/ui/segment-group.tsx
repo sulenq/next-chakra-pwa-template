@@ -1,6 +1,6 @@
 "use client";
 
-import { useThemeConfig } from "@/contexts/use-theme-context";
+import { useThemeContext } from "@/contexts/use-theme-context";
 import { SegmentGroup, SegmentGroupRootProps } from "@chakra-ui/react";
 
 // -----------------------------------------------------------------
@@ -16,7 +16,7 @@ export const Segmented = (props: SegmentedProps) => {
   const { items = [], inputValue, onChange, size = "md", ...restProps } = props;
 
   // Contexts
-  const { themeContext } = useThemeConfig();
+  const { themeContext } = useThemeContext();
 
   // States
   const hBySize: Record<any, any> = {

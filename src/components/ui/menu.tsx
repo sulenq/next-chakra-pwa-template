@@ -1,7 +1,7 @@
 "use client";
 
 import { BACKDROP_BLUR_FILTER, GAP } from "@/constants/styles";
-import { useThemeConfig } from "@/contexts/use-theme-context";
+import { useThemeContext } from "@/contexts/use-theme-context";
 import {
   AbsoluteCenter,
   Menu as ChakraMenu,
@@ -61,7 +61,7 @@ interface MenuTriggerItemProps extends ChakraMenu.ItemProps {
 const MenuTriggerItem = forwardRef<HTMLDivElement, MenuTriggerItemProps>(
   function MenuTriggerItem(props, ref) {
     // Contexts
-    const { themeContext } = useThemeConfig();
+    const { themeContext } = useThemeContext();
 
     const { startIcon, children, ...restProps } = props;
     return (
@@ -91,7 +91,7 @@ const MenuContent = forwardRef<HTMLDivElement, MenuContentProps>(
     const { portalled = true, portalRef, ...restProps } = props;
 
     // Contexts
-    const { themeContext } = useThemeConfig();
+    const { themeContext } = useThemeContext();
 
     return (
       <Portal disabled={!portalled} container={portalRef}>
@@ -123,7 +123,7 @@ const MenuItem = forwardRef<HTMLDivElement, MenuItemProps>(
     const { children, asChild, ...restProps } = props;
 
     // Contexts
-    const { themeContext } = useThemeConfig();
+    const { themeContext } = useThemeContext();
 
     return (
       <ChakraMenu.Item

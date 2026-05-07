@@ -17,7 +17,7 @@ import {
 } from "@/types/global.types";
 import { getWeekdayNames } from "@/constants/weekdays";
 import { useLocale } from "@/contexts/use-locale-context";
-import { useThemeConfig } from "@/contexts/use-theme-context";
+import { useThemeContext } from "@/contexts/use-theme-context";
 import { usePopDisclosure } from "@/hooks/use-pop-disclosure";
 import { isEmptyArray } from "@/utils/array";
 import { back } from "@/utils/client";
@@ -140,7 +140,7 @@ export const DatePicker = (props: DatePickerProps) => {
 
   // Contexts
   const { t } = useLocale();
-  const { themeContext } = useThemeConfig();
+  const { themeContext } = useThemeContext();
 
   // Derived States
   const fullDates = () => {
@@ -284,7 +284,7 @@ const SelectedDateList = (props: SelectedDateListProps) => {
 
   // Contexts
   const { t } = useLocale();
-  const { themeContext } = useThemeConfig();
+  const { themeContext } = useThemeContext();
 
   // Hooks
   const { open, onOpen } = usePopDisclosure(
@@ -395,7 +395,7 @@ export const DatePickerInput = (props: DatePickerInputProps) => {
 
   // Contexts
   const { t } = useLocale();
-  const { themeContext } = useThemeConfig();
+  const { themeContext } = useThemeContext();
   const fc = useFieldContext();
 
   // Hooks

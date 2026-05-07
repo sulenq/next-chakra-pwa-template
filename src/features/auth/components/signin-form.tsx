@@ -18,7 +18,7 @@ import { AUTH_API_SIGNIN } from "@/constants/apis";
 import { BASE_ICON_BOX_SIZE } from "@/constants/styles";
 import { useAuthMiddleware } from "@/contexts/use-auth-middleware-context";
 import { useLocale } from "@/contexts/use-locale-context";
-import { useThemeConfig } from "@/contexts/use-theme-context";
+import { useThemeContext } from "@/contexts/use-theme-context";
 import ResetPasswordDisclosureTrigger from "@/features/auth/components/reset-password";
 import { useRequest } from "@/hooks/useRequestOld";
 import { setAccessToken, setUserData } from "@/utils/auth";
@@ -42,7 +42,7 @@ const INDEX_ROUTE = "/welcome";
 const Signedin = () => {
   // Contexts
   const { t } = useLocale();
-  const { themeContext } = useThemeConfig();
+  const { themeContext } = useThemeContext();
 
   return (
     <StackV gap={8} w={"220px"} m={"auto"}>
@@ -84,7 +84,7 @@ const BasicAuthForm = (props: any) => {
 
   // Contexts
   const { t } = useLocale();
-  const { themeContext } = useThemeConfig();
+  const { themeContext } = useThemeContext();
   const setVerifiedAccessToken = useAuthMiddleware(
     (s) => s.setVerifiedAccessToken,
   );
@@ -232,7 +232,7 @@ export const SigninForm = (props: StackProps) => {
 
   // Contexts
   const { t } = useLocale();
-  const { themeContext } = useThemeConfig();
+  const { themeContext } = useThemeContext();
   const verifiedAccessToken = useAuthMiddleware((s) => s.verifiedAccessToken);
 
   // States

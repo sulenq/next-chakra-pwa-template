@@ -1,6 +1,6 @@
 import { P } from "@/components/ui/p";
 import { BACKDROP_BLUR_FILTER } from "@/constants/styles";
-import { useThemeConfig } from "@/contexts/use-theme-context";
+import { useThemeContext } from "@/contexts/use-theme-context";
 import { Tooltip as ChakraTooltip, Portal } from "@chakra-ui/react";
 import * as React from "react";
 
@@ -30,7 +30,7 @@ export const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>(
     } = props;
 
     // Contexts
-    const { themeContext } = useThemeConfig();
+    const { themeContext } = useThemeContext();
 
     if (disabled) return children;
 

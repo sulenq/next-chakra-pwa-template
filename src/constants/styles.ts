@@ -17,13 +17,14 @@ export const DESKTOP_NAV_GAP = "8px";
 // Sizes
 export const MAIN_BUTTON_SIZE = ["md", null, "sm"] as any;
 export const MAIN_INPUT_SIZE = ["md", null, "sm"] as any;
-export const SM_SCREEN_W_NUMBER = 720;
+export const SM_SCREEN_BREAKPOINT = 720;
 export const MIN_H_FEEDBACK_CONTAINER = "250px";
 export const FIREFOX_SCROLL_Y_CLASS_PR_PREFIX = "6px";
 export const TOP_BAR_H = "56px";
 export const BASE_ICON_BOX_SIZE = 4.5;
 export const MENU_ICON_BOX_SIZE = 4.5;
 export const USER_PANEL_H = "122px";
+export const CONTSTRAINED_CONTAINER_MAX_W = "1200px";
 
 // Spacing
 export const MOBILE_SPACING_MD = "4px";

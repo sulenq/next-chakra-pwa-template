@@ -1,4 +1,4 @@
-import { useThemeConfig } from "@/contexts/use-theme-context";
+import { useThemeContext } from "@/contexts/use-theme-context";
 import {
   Select as ChakraSelect,
   Portal,
@@ -42,7 +42,7 @@ export default function Select(props: SelectProps) {
   } = props;
 
   // Contexts
-  const { themeContext } = useThemeConfig();
+  const { themeContext } = useThemeContext();
 
   // States
   const collection = createListCollection({

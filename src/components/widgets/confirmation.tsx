@@ -2,7 +2,7 @@ import { Btn, BtnProps } from "@/components/ui/btn";
 import { CContainer } from "@/components/ui/c-container";
 import { Disclosure } from "@/components/ui/disclosure";
 import { P } from "@/components/ui/p";
-import { useThemeConfig } from "@/contexts/use-theme-context";
+import { useThemeContext } from "@/contexts/use-theme-context";
 import { usePopDisclosure } from "@/hooks/use-pop-disclosure";
 import { disclosureId } from "@/utils/disclosure";
 import { Box, StackProps } from "@chakra-ui/react";
@@ -42,7 +42,7 @@ const ConfirmationContent = (props: ConfirmationProps) => {
   } = props;
 
   // Contexts
-  const { themeContext } = useThemeConfig();
+  const { themeContext } = useThemeContext();
 
   return (
     <Disclosure.Root open={open} lazyLoad size={"xs"}>

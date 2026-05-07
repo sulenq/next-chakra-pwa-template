@@ -13,20 +13,20 @@ import React from "react";
 
 // -----------------------------------------------------------------
 
-export interface Props_RowOptions extends BtnProps {
+export interface RowOptionsProps extends BtnProps {
   row: FormattedTableRow;
   rowOptions?: RowOptionsTableOptionGenerator<FormattedTableRow>[];
   tableContainerRef?: React.RefObject<HTMLDivElement | null>;
   menuRootProps?: Omit<MenuRootProps, "children">;
 }
 
-export const RowOptions = (props: Props_RowOptions) => {
+export const RowOptions = (props: RowOptionsProps) => {
   // Props
   const { row, rowOptions, tableContainerRef, menuRootProps, ...restProps } =
     props;
 
   // Contexts
-  // const { themeContext } = useThemeConfig();
+  // const { themeContext } = useThemeContext();
 
   return (
     <Menu.Root

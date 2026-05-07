@@ -22,7 +22,7 @@ import {
 import useADM from "@/contexts/use-adm-context";
 import { useAuthMiddleware } from "@/contexts/use-auth-middleware-context";
 import { useLocale } from "@/contexts/use-locale-context";
-import { useThemeConfig } from "@/contexts/use-theme-context";
+import { useThemeContext } from "@/contexts/use-theme-context";
 import { useRequest } from "@/hooks/useRequestOld";
 import { getUserData } from "@/utils/auth";
 import { back, removeStorage } from "@/utils/client";
@@ -80,7 +80,7 @@ export const ProfileMenu = (props: ProfileMenuProps) => {
 
   // Contexts
   const { t } = useLocale();
-  const { themeContext } = useThemeConfig();
+  const { themeContext } = useThemeContext();
   const removeAuthContext = useAuthMiddleware((s) => s.removeAuthContext);
   const ADM = useADM((s) => s.ADM);
 
@@ -265,7 +265,7 @@ export const ProfileMenuTrigger = (props: ProfileMenuTriggerProps) => {
   const { popoverRootProps, ...restProps } = props;
 
   // Contexts
-  const { themeContext } = useThemeConfig();
+  const { themeContext } = useThemeContext();
 
   // States
   const [open, setOpen] = useState<boolean>(false);

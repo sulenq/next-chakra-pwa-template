@@ -1,13 +1,13 @@
 "use client";
 
-import { useThemeConfig } from "@/contexts/use-theme-context";
+import { useThemeContext } from "@/contexts/use-theme-context";
 import { Box, BoxProps, Circle, CircleProps } from "@chakra-ui/react";
 
 // -----------------------------------------------------------------
 
 export const LeftIndicator = (props: BoxProps) => {
   // Contexts
-  const { themeContext } = useThemeConfig();
+  const { themeContext } = useThemeContext();
 
   return (
     <Box
@@ -28,7 +28,7 @@ export const LeftIndicator = (props: BoxProps) => {
 
 export const BottomIndicator = (props: BoxProps) => {
   // Contexts
-  const { themeContext } = useThemeConfig();
+  const { themeContext } = useThemeContext();
 
   return (
     <Box
@@ -52,7 +52,7 @@ export const DotIndicator = (props: CircleProps) => {
   const { children, ...restProps } = props;
 
   // Contexts
-  const { themeContext } = useThemeConfig();
+  const { themeContext } = useThemeContext();
 
   // SX
   const boxSize = "6px";

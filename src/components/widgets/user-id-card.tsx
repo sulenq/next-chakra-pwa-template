@@ -14,7 +14,7 @@ import { DUMMY_USER } from "@/constants/dummy-data";
 import { useAuthMiddleware } from "@/contexts/use-auth-middleware-context";
 import { useLocale } from "@/contexts/use-locale-context";
 import useRenderTrigger from "@/contexts/use-render-trigger";
-import { useThemeConfig } from "@/contexts/use-theme-context";
+import { useThemeContext } from "@/contexts/use-theme-context";
 import { useRequest } from "@/hooks/useRequestOld";
 import { clearAccessToken, clearUserData } from "@/utils/auth";
 import { Box, Circle, StackProps, useToken } from "@chakra-ui/react";
@@ -89,7 +89,7 @@ export const UserIdCard = (props: UserIdCardProps) => {
   const { maskingTop = "0px", withSignoutButton = false, ...restProps } = props;
 
   // Contexts
-  const { themeContext } = useThemeConfig();
+  const { themeContext } = useThemeContext();
 
   // Constants
   // TODO_DEV uncomment on real dev

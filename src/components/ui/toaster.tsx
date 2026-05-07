@@ -5,8 +5,8 @@ import { CContainer } from "@/components/ui/c-container";
 import { useColorMode } from "@/components/ui/color-mode";
 import { Spinner } from "@/components/ui/spinner";
 import { LucideIcon } from "@/components/widgets/icon";
-import { BACKDROP_BLUR_FILTER, SM_SCREEN_W_NUMBER } from "@/constants/styles";
-import { useThemeConfig } from "@/contexts/use-theme-context";
+import { BACKDROP_BLUR_FILTER, SM_SCREEN_BREAKPOINT } from "@/constants/styles";
+import { useThemeContext } from "@/contexts/use-theme-context";
 import { isClient } from "@/utils/client";
 import {
   Center,
@@ -102,7 +102,9 @@ const ToastIcon = (props: any) => {
 
 export const toaster = createToaster({
   placement:
-    isClient() && window.innerWidth < SM_SCREEN_W_NUMBER ? "top" : "bottom-end",
+    isClient() && window.innerWidth < SM_SCREEN_BREAKPOINT
+      ? "top"
+      : "bottom-end",
   pauseOnPageIdle: true,
 });
 
@@ -141,7 +143,7 @@ const ToastActionTriggerComponent = (props: any) => {
   const { toast, ...restProps } = props;
 
   // Contexts
-  const { themeContext } = useThemeConfig();
+  const { themeContext } = useThemeContext();
 
   return (
     <Toast.ActionTrigger
@@ -165,7 +167,7 @@ const ToastComponent = (props: any) => {
   const { toast, ...restProps } = props;
 
   // Contexts
-  const { themeContext } = useThemeConfig();
+  const { themeContext } = useThemeContext();
 
   // States
   const [expanded, setExpanded] = useState<boolean>(false);

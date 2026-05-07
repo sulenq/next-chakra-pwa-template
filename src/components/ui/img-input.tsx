@@ -11,7 +11,7 @@ import { LucideIcon } from "@/components/widgets/icon";
 import { ImgViewer } from "@/components/widgets/img-viewer";
 import { StorageFile } from "@/types/global.types";
 import { useLocale } from "@/contexts/use-locale-context";
-import { useThemeConfig } from "@/contexts/use-theme-context";
+import { useThemeContext } from "@/contexts/use-theme-context";
 import { isEmptyArray } from "@/utils/array";
 import { imgUrl } from "@/utils/url";
 import { Circle, HStack, useFieldContext } from "@chakra-ui/react";
@@ -33,7 +33,7 @@ export const ImgInput = (props: FileInputProps) => {
 
   // Contexts
   const { t } = useLocale();
-  const { themeContext } = useThemeConfig();
+  const { themeContext } = useThemeContext();
   const fc = useFieldContext();
 
   // States

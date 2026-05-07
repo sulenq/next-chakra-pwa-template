@@ -6,8 +6,8 @@ import { Dialog, DialogContentProps } from "@/components/ui/dialog";
 import { Drawer, DrawerContentProps } from "@/components/ui/drawer";
 import { P } from "@/components/ui/p";
 import { AppIconLucide } from "@/components/widgets/app-icon";
-import { SM_SCREEN_W_NUMBER } from "@/constants/styles";
-import { useThemeConfig } from "@/contexts/use-theme-context";
+import { SM_SCREEN_BREAKPOINT } from "@/constants/styles";
+import { useThemeContext } from "@/contexts/use-theme-context";
 import { useIsSmScreenWidth } from "@/hooks/use-is-sm-screen-width";
 import { useScreen } from "@/hooks/use-screen";
 import { back } from "@/utils/client";
@@ -35,7 +35,7 @@ import { useEffect, useState } from "react";
 const DisclosureRoot = ({ children, ...props }: any) => {
   // Utils
   const { sw } = useScreen();
-  const iss = sw < SM_SCREEN_W_NUMBER;
+  const iss = sw < SM_SCREEN_BREAKPOINT;
 
   return iss ? (
     <Drawer.Root placement={"bottom"} {...props}>
@@ -81,7 +81,7 @@ type DisclosureContentProps = {
 } & (DrawerContentProps | DialogContentProps);
 
 const DisclosureContent = ({ children, ...props }: DisclosureContentProps) => {
-  const { themeContext } = useThemeConfig();
+  const { themeContext } = useThemeContext();
   const iss = useIsSmScreenWidth();
 
   return iss ? (
@@ -107,7 +107,6 @@ const DisclosureContent = ({ children, ...props }: DisclosureContentProps) => {
       rounded={themeContext.radii.container}
       border={"1px solid"}
       borderColor={"d0"}
-      _open={{ animation: "bounceIn", animationDuration: "normal" }}
       {...(props as DialogContentProps)}
     >
       {children}

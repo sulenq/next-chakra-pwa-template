@@ -3,7 +3,7 @@ import { P } from "@/components/ui/p";
 import { StackV } from "@/components/ui/stack";
 import { DotIndicator } from "@/components/widgets/indicator";
 import { BACKDROP_BLUR_FILTER } from "@/constants/styles";
-import { useThemeConfig } from "@/contexts/use-theme-context";
+import { useThemeContext } from "@/contexts/use-theme-context";
 import { HStack, Text } from "@chakra-ui/react";
 import type { TooltipContentProps } from "recharts";
 import type {
@@ -20,7 +20,7 @@ export const ChartTooltip = (
   const { active, payload, label } = props;
 
   // Contexts
-  const { themeContext } = useThemeConfig();
+  const { themeContext } = useThemeContext();
 
   if (!active || !payload || payload.length === 0) return null;
 

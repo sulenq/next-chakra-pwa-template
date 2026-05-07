@@ -2,7 +2,7 @@
 
 import { MAIN_BUTTON_SIZE } from "@/constants/styles";
 import { ButtonVariant } from "@/types/global.types";
-import { useThemeConfig } from "@/contexts/use-theme-context";
+import { useThemeContext } from "@/contexts/use-theme-context";
 import { Button, ButtonProps, IconButton } from "@chakra-ui/react";
 import { forwardRef } from "react";
 
@@ -31,7 +31,7 @@ export const Btn = forwardRef<HTMLButtonElement, BtnProps>(
     } = props;
 
     // Contexts
-    const { themeContext } = useThemeConfig();
+    const { themeContext } = useThemeContext();
 
     // Derived Values
     const isVariantOutline = props.variant === "outline";
@@ -98,7 +98,7 @@ export const Btn = forwardRef<HTMLButtonElement, BtnProps>(
 export const PBtn = forwardRef<HTMLButtonElement, BtnProps>(
   function PBtn(props, ref) {
     // Contexts
-    const { themeContext } = useThemeConfig();
+    const { themeContext } = useThemeContext();
 
     return (
       <Btn ref={ref} colorPalette={themeContext.colorPalette} {...props} />

@@ -7,7 +7,7 @@ import { useLocale } from "@/contexts/use-locale-context";
 
 // -----------------------------------------------------------------
 
-export const LocalSettingsHelperText = () => {
+export const SettingsSavedLocalyHelperText = () => {
   // Contexts
   const { t } = useLocale();
 

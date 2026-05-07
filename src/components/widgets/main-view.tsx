@@ -13,13 +13,14 @@ import { DotIndicator } from "@/components/widgets/indicator";
 import { Today } from "@/components/widgets/today";
 import { ToggleTip } from "@/components/widgets/toggle-tip";
 import {
+  CONTSTRAINED_CONTAINER_MAX_W,
   R_SPACING_MD,
-  SM_SCREEN_W_NUMBER,
+  SM_SCREEN_BREAKPOINT,
   TOP_BAR_H,
 } from "@/constants/styles";
 import { useBreadcrumbs } from "@/contexts/use-breadcrumbs-context";
 import { useLocale } from "@/contexts/use-locale-context";
-import { useThemeConfig } from "@/contexts/use-theme-context";
+import { useThemeContext } from "@/contexts/use-theme-context";
 import { useContainerDimension } from "@/hooks/use-container-dimenssion";
 import { useMergedRefs } from "@/hooks/use-merge-refs";
 import { useScreen } from "@/hooks/use-screen";
@@ -144,7 +145,7 @@ export const TopBar = (props: TopBarProps) => {
   const { showDateTime = true, ...restProps } = props;
 
   // Contexts
-  const { themeContext } = useThemeConfig();
+  const { themeContext } = useThemeContext();
   const { dimension } = useMainViewContext();
 
   // Hooks
@@ -227,7 +228,7 @@ export const ConstrainedContainer = forwardRef<HTMLDivElement, StackProps>(
         ref={ref}
         align={"stretch"}
         w={"full"}
-        maxW={"720px"}
+        maxW={CONTSTRAINED_CONTAINER_MAX_W}
         mx={"auto"}
         {...restProps}
       >
@@ -239,7 +240,7 @@ export const ConstrainedContainer = forwardRef<HTMLDivElement, StackProps>(
 
 // -----------------------------------------------------------------
 
-export interface ViewContextInterface {
+export interface MainViewContextValue {
   dimension: {
     width: number;
     height: number;
@@ -248,7 +249,7 @@ export interface ViewContextInterface {
   isSmContainer: boolean;
 }
 
-const ViewContext = createContext<ViewContextInterface | null>(null);
+const ViewContext = createContext<MainViewContextValue | null>(null);
 
 export function useMainViewContext() {
   const context = useContext(ViewContext);
@@ -257,6 +258,8 @@ export function useMainViewContext() {
   }
   return context;
 }
+
+// -----------------------------------------------------------------
 
 const MainViewRoot = forwardRef<HTMLDivElement, StackProps>(
   function MainViewRoot({ children, ...restProps }, ref) {
@@ -269,7 +272,7 @@ const MainViewRoot = forwardRef<HTMLDivElement, StackProps>(
 
     // States
     const isValidDimension = dimension.width > 0 && dimension.height > 0;
-    const isSmContainer = dimension.width < SM_SCREEN_W_NUMBER;
+    const isSmContainer = dimension.width < SM_SCREEN_BREAKPOINT;
 
     // Constants
     const contextValue = useMemo(
@@ -337,7 +340,7 @@ const MainViewHeader = (props: MainViewHeaderProps) => {
 
   // Contexts
   const { t } = useLocale();
-  const { themeContext } = useThemeConfig();
+  const { themeContext } = useThemeContext();
 
   // Hooks
   const pathname = usePathname();

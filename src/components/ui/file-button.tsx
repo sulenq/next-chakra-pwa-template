@@ -3,7 +3,7 @@
 import { FileIcon } from "@/components/ui/file-icon";
 import { P } from "@/components/ui/p";
 import { LucideIcon } from "@/components/widgets/icon";
-import { useThemeConfig } from "@/contexts/use-theme-context";
+import { useThemeContext } from "@/contexts/use-theme-context";
 import type { ButtonProps, RecipeProps } from "@chakra-ui/react";
 import {
   Button,
@@ -69,7 +69,7 @@ export const FileUploadDropzone = forwardRef<
   } = props;
 
   // Contexts
-  const { themeContext } = useThemeConfig();
+  const { themeContext } = useThemeContext();
 
   return (
     <ChakraFileUpload.Dropzone
@@ -131,7 +131,7 @@ interface FileUploadItemProps extends VisibilityProps {
 
 const FileUploadItem = (props: FileUploadItemProps) => {
   // Contexts
-  const { themeContext } = useThemeConfig();
+  const { themeContext } = useThemeContext();
 
   const { file, showSize, clearable } = props;
 

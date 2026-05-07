@@ -27,7 +27,7 @@ import {
   TABLE_TH_H,
 } from "@/constants/styles";
 import { Type__SortHandler } from "@/types/global.types";
-import { useThemeConfig } from "@/contexts/use-theme-context";
+import { useThemeContext } from "@/contexts/use-theme-context";
 import { useScreen } from "@/hooks/use-screen";
 import { isEmptyArray } from "@/utils/array";
 import {
@@ -81,7 +81,7 @@ export const DataTableDisplay = (props: DataTableProps) => {
   } = props;
 
   // Contexts
-  const { themeContext } = useThemeConfig();
+  const { themeContext } = useThemeContext();
 
   // Refs
   const tableContainerRef = useRef<HTMLDivElement>(null);

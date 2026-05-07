@@ -2,7 +2,7 @@
 
 import { CloseButton } from "@/components/ui/close-button";
 import { BACKDROP_BLUR_FILTER } from "@/constants/styles";
-import { useThemeConfig } from "@/contexts/use-theme-context";
+import { useThemeContext } from "@/contexts/use-theme-context";
 import {
   Popover as ChakraPopover,
   PopoverRootProps,
@@ -32,7 +32,7 @@ export interface PopoverContentProps extends ChakraPopover.ContentProps {
 const PopoverContent = forwardRef<HTMLDivElement, PopoverContentProps>(
   function PopoverContent(props, ref) {
     // Contexts
-    const { themeContext } = useThemeConfig();
+    const { themeContext } = useThemeContext();
     const { portalled = true, portalRef, ...restProps } = props;
 
     return (

@@ -13,7 +13,7 @@ import { Tooltip } from "@/components/ui/tooltip";
 import { AppIconLucide } from "@/components/widgets/app-icon";
 import { DotIndicator } from "@/components/widgets/indicator";
 import { Item } from "@/components/widgets/item";
-import { LocalSettingsHelperText } from "@/components/widgets/local-settings-helper-text";
+import { SettingsSavedLocalyHelperText } from "@/components/widgets/local-settings-helper-text";
 import { ToggleSettingContainer } from "@/components/widgets/settings-shell";
 import { COLOR_PALETTES } from "@/constants/colors";
 import { SelectOption } from "@/types/global.types";
@@ -22,7 +22,7 @@ import { OPTIONS_RELIGION } from "@/constants/select-options";
 import { R_SPACING_MD } from "@/constants/styles";
 import useADM from "@/contexts/use-adm-context";
 import { useLocale } from "@/contexts/use-locale-context";
-import { useThemeConfig } from "@/contexts/use-theme-context";
+import { useThemeContext } from "@/contexts/use-theme-context";
 import { formatTime } from "@/utils/formatter";
 import { interpolateString } from "@/utils/string";
 import { Box, Center, Circle, HStack, SimpleGrid } from "@chakra-ui/react";
@@ -38,7 +38,7 @@ import { useEffect, useRef, useState } from "react";
 
 const ManualDarkModeSetting = () => {
   // Contexts
-  const { themeContext } = useThemeConfig();
+  const { themeContext } = useThemeContext();
   const { t } = useLocale();
   const { colorMode, setColorMode } = useColorMode();
   const { ADM } = useADM();
@@ -91,7 +91,7 @@ const ManualDarkModeSetting = () => {
 
 const ADMSetting = () => {
   // Contexts
-  const { themeContext } = useThemeConfig();
+  const { themeContext } = useThemeContext();
   const { t } = useLocale();
   const { ADM, setADM } = useADM();
 
@@ -193,7 +193,7 @@ const DarkModeSection = () => {
 const AccentColorSection = () => {
   // Contexts
   const { t } = useLocale();
-  const { themeContext, setThemeContext } = useThemeConfig();
+  const { themeContext, setThemeContext } = useThemeContext();
 
   return (
     <Item.Root>
@@ -270,7 +270,7 @@ const AccentColorSection = () => {
 const RoundedSection = () => {
   // Contexts
   const { t } = useLocale();
-  const { themeContext, setThemeContext } = useThemeConfig();
+  const { themeContext, setThemeContext } = useThemeContext();
 
   // Utils
   function handleOnClick(preset: (typeof ROUNDED_PRESETS)[number]) {
@@ -373,7 +373,7 @@ const RoundedSection = () => {
 const ExampleUISection = () => {
   // Contexts
   const { t } = useLocale();
-  const { themeContext } = useThemeConfig();
+  const { themeContext } = useThemeContext();
 
   // States
   const [checked, setChecked] = useState<boolean>(true);
@@ -464,7 +464,7 @@ export default function Page() {
 
       <ExampleUISection />
 
-      <LocalSettingsHelperText />
+      <SettingsSavedLocalyHelperText />
     </StackV>
   );
 }

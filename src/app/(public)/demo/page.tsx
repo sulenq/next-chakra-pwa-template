@@ -39,7 +39,7 @@ import { OPTIONS_RELIGION } from "@/constants/select-options";
 import { MENU_ICON_BOX_SIZE } from "@/constants/styles";
 import { useLocale } from "@/contexts/use-locale-context";
 import useRenderTrigger from "@/contexts/use-render-trigger";
-import { useThemeConfig } from "@/contexts/use-theme-context";
+import { useThemeContext } from "@/contexts/use-theme-context";
 import { useRequest } from "@/hooks/useRequestOld";
 import { back } from "@/utils/client";
 import { capitalize } from "@/utils/string";
@@ -733,7 +733,7 @@ const DemoIndexRoute = () => {
     },
   });
 
-  const { themeContext } = useThemeConfig();
+  const { themeContext } = useThemeContext();
 
   return (
     <ConstrainedContainer bg={"bg.body"} maxW={"1280px"} p={4} gap={8}>

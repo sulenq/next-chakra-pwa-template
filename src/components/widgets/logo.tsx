@@ -1,5 +1,5 @@
 import { useColorMode } from "@/components/ui/color-mode";
-import { useThemeConfig } from "@/contexts/use-theme-context";
+import { useThemeContext } from "@/contexts/use-theme-context";
 import { Center, CenterProps, useToken } from "@chakra-ui/react";
 
 // -----------------------------------------------------------------
@@ -15,7 +15,7 @@ export const Logo = (props: LogoProps) => {
 
   // Hooks
   const { colorMode } = useColorMode();
-  const { themeContext } = useThemeConfig();
+  const { themeContext } = useThemeContext();
 
   // Derived Values
   const [themeColor] = useToken("colors", [

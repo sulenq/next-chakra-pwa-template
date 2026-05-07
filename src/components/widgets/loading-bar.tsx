@@ -1,6 +1,6 @@
 "use client";
 
-import { useThemeConfig } from "@/contexts/use-theme-context";
+import { useThemeContext } from "@/contexts/use-theme-context";
 import { Box, BoxProps, Portal } from "@chakra-ui/react";
 import { useEffect, useRef, useState } from "react";
 
@@ -14,7 +14,7 @@ export function TopLoadingBar(props: TopLoadingBarProps) {
   const { loading, ...restProps } = props;
 
   // Contexts
-  const { themeContext } = useThemeConfig();
+  const { themeContext } = useThemeContext();
 
   // States
   const [visible, setVisible] = useState(false);

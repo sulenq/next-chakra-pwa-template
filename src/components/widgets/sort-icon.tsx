@@ -1,4 +1,4 @@
-import { useThemeConfig } from "@/contexts/use-theme-context";
+import { useThemeContext } from "@/contexts/use-theme-context";
 import { Icon, IconProps, VStack } from "@chakra-ui/react";
 import { IconCaretDownFilled, IconCaretUpFilled } from "@tabler/icons-react";
 
@@ -15,7 +15,7 @@ export const SortIcon = (props: SortIconProps) => {
   const { columnIndex, sortColumnIdx, direction, ...restProps } = props;
 
   // Contexts
-  const { themeContext } = useThemeConfig();
+  const { themeContext } = useThemeContext();
 
   // States
   const active = sortColumnIdx === columnIndex;

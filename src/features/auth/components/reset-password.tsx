@@ -7,7 +7,7 @@ import { PasswordInput } from "@/components/ui/password-input";
 import { StringInput } from "@/components/ui/string-input";
 import { BackButton } from "@/components/widgets/back-button";
 import { useLocale } from "@/contexts/use-locale-context";
-import { useThemeConfig } from "@/contexts/use-theme-context";
+import { useThemeContext } from "@/contexts/use-theme-context";
 import { useRequest } from "@/hooks/useRequestOld";
 import { back } from "@/utils/client";
 import { maskEmail } from "@/utils/string";
@@ -32,7 +32,7 @@ const Step1 = (props: any) => {
 
   // Contexts
   const { t } = useLocale();
-  const { themeContext } = useThemeConfig();
+  const { themeContext } = useThemeContext();
 
   // Hooks
   const { req, loading } = useRequest({
@@ -114,7 +114,7 @@ const Step2 = (props: any) => {
 
   // Contexts
   const { t } = useLocale();
-  const { themeContext } = useThemeConfig();
+  const { themeContext } = useThemeContext();
 
   // Hooks
   const { req, loading } = useRequest({
@@ -216,7 +216,7 @@ const Step3 = (props: any) => {
 
   // Contexts
   const { t } = useLocale();
-  const { themeContext } = useThemeConfig();
+  const { themeContext } = useThemeContext();
 
   // Hooks
   const { req, loading } = useRequest({

@@ -6,7 +6,7 @@ import { toaster } from "@/components/ui/toaster";
 import { LucideIcon } from "@/components/widgets/icon";
 import { BASE_ICON_BOX_SIZE, MAIN_INPUT_SIZE } from "@/constants/styles";
 import { useLocale } from "@/contexts/use-locale-context";
-import { useThemeConfig } from "@/contexts/use-theme-context";
+import { useThemeContext } from "@/contexts/use-theme-context";
 import { useMergedRefs } from "@/hooks/use-merge-refs";
 import { interpolateString } from "@/utils/string";
 import {
@@ -58,7 +58,7 @@ export const StringInput = forwardRef<HTMLInputElement, StringInputProps>(
 
     // Contexts
     const { t } = useLocale();
-    const { themeContext } = useThemeConfig();
+    const { themeContext } = useThemeContext();
     const fc = useFieldContext();
 
     // Refs

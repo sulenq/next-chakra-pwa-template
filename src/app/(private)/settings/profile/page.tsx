@@ -28,7 +28,7 @@ import { ActivityActionEnum } from "@/constants/enums";
 import type { ActivityLog, AuthLog, User } from "@/types/global.types";
 import { R_SPACING_MD } from "@/constants/styles";
 import { useLocale } from "@/contexts/use-locale-context";
-import { useThemeConfig } from "@/contexts/use-theme-context";
+import { useThemeContext } from "@/contexts/use-theme-context";
 import ResetPasswordDisclosureTrigger from "@/features/auth/components/reset-password";
 import { useFetchData } from "@/hooks/useFetchData";
 import { useRequest } from "@/hooks/useRequestOld";
@@ -58,7 +58,7 @@ const PersonalInformation = (props: PersonalInformationProps) => {
 
   // Contexts
   const { t } = useLocale();
-  const { themeContext } = useThemeConfig();
+  const { themeContext } = useThemeContext();
   const { isSmContainer } = useMainViewContext();
 
   // Hooks

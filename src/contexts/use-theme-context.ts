@@ -34,7 +34,7 @@ type ThemeConfigStore = {
       | ((prev: ThemeContext) => Partial<ThemeContext>),
   ) => void;
 };
-export const useThemeConfig = create<ThemeConfigStore>((set) => {
+export const useThemeContext = create<ThemeConfigStore>((set) => {
   const stored = getStorage(LOCAL_STORAGE_KEY);
   const initial = stored ? JSON.parse(stored) : DEFAULT;
 

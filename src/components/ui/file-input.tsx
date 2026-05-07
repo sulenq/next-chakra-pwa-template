@@ -16,7 +16,7 @@ import { FileItem } from "@/components/widgets/file-item";
 import { LucideIcon } from "@/components/widgets/icon";
 import { StorageFile } from "@/types/global.types";
 import { useLocale } from "@/contexts/use-locale-context";
-import { useThemeConfig } from "@/contexts/use-theme-context";
+import { useThemeContext } from "@/contexts/use-theme-context";
 import { isEmptyArray } from "@/utils/array";
 import { makeFileUrl } from "@/utils/file";
 import { formatBytes, formatNumber } from "@/utils/formatter";
@@ -315,7 +315,7 @@ export const FileInput = forwardRef<HTMLInputElement, FileInputProps>(
 
     // Contexts
     const { t } = useLocale();
-    const { themeContext } = useThemeConfig();
+    const { themeContext } = useThemeContext();
     const fc = useFieldContext();
 
     // States

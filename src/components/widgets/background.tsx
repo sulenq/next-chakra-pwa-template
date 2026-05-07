@@ -1,13 +1,13 @@
 import { useColorModeValue } from "@/components/ui/color-mode";
 import { StackV } from "@/components/ui/stack";
-import { useThemeConfig } from "@/contexts/use-theme-context";
+import { useThemeContext } from "@/contexts/use-theme-context";
 import { Box, Center, Circle, StackProps } from "@chakra-ui/react";
 
 // -----------------------------------------------------------------
 
 export const RadialGlowBackground = (props: StackProps) => {
   // Contexts
-  const { themeContext } = useThemeConfig();
+  const { themeContext } = useThemeContext();
 
   // Constants
   const colorPalette = themeContext.colorPalette;
@@ -68,7 +68,7 @@ interface AnimatedBlobBackgroundProps extends Omit<
 export const AnimatedBlobBackground = (props: AnimatedBlobBackgroundProps) => {
   const { animationDuration = 5000, ...restProps } = props;
 
-  const { themeContext } = useThemeConfig();
+  const { themeContext } = useThemeContext();
 
   const dur1 = animationDuration;
   const dur2 = Math.round(animationDuration * 1.4);

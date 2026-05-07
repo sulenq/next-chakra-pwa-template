@@ -1,7 +1,7 @@
 "use client";
 
 import { useColorModeValue } from "@/components/ui/color-mode";
-import { useThemeConfig } from "@/contexts/use-theme-context";
+import { useThemeContext } from "@/contexts/use-theme-context";
 import { Checkbox as ChakraCheckbox, Icon } from "@chakra-ui/react";
 import { XIcon } from "lucide-react";
 import { forwardRef } from "react";
@@ -31,7 +31,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
     } = props;
 
     // Contexts
-    const { themeContext } = useThemeConfig();
+    const { themeContext } = useThemeContext();
 
     // Constants
     const graySolidBg = useColorModeValue("dark", "light");
@@ -55,7 +55,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
                 ? graySolidBg
                 : themeContext.primaryColor
               : subtle
-                ? "bg.muted"
+                ? "gray.emphasized"
                 : "transparent"
           }
           rounded={rounded || `calc(${themeContext.radii.component}/2)`}

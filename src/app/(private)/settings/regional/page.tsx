@@ -12,7 +12,7 @@ import FeedbackNotFound from "@/components/widgets/feedback-not-found";
 import { DotIndicator } from "@/components/widgets/indicator";
 import { Item } from "@/components/widgets/item";
 import { Limitation } from "@/components/widgets/limitation";
-import { LocalSettingsHelperText } from "@/components/widgets/local-settings-helper-text";
+import { SettingsSavedLocalyHelperText } from "@/components/widgets/local-settings-helper-text";
 import { Pagination } from "@/components/widgets/pagination";
 import { DATE_FORMATS } from "@/constants/date-formats";
 import { LANGUAGES } from "@/constants/languages";
@@ -27,7 +27,7 @@ import {
 import { UOM_FORMATS } from "@/constants/uom-formats";
 import useDateFormat from "@/contexts/use-date-format-context";
 import { useLocale } from "@/contexts/use-locale-context";
-import { useThemeConfig } from "@/contexts/use-theme-context";
+import { useThemeContext } from "@/contexts/use-theme-context";
 import useTimeFormat from "@/contexts/use-time-format-context";
 import useTimezone from "@/contexts/use-timezone-context";
 import useUOMFormat from "@/contexts/use-uom-format-context";
@@ -51,7 +51,7 @@ const NAVS_COLOR = "fg.muted";
 
 const Language = () => {
   // Contexts
-  const { themeContext } = useThemeConfig();
+  const { themeContext } = useThemeContext();
   const { t, locale, setLocale } = useLocale();
 
   return (
@@ -256,7 +256,7 @@ const Timezone = () => {
 const DateFormat = () => {
   // Contexts
   const { t } = useLocale();
-  const { themeContext } = useThemeConfig();
+  const { themeContext } = useThemeContext();
   const { dateFormat, setDateFormat } = useDateFormat();
 
   return (
@@ -322,7 +322,7 @@ const DateFormat = () => {
 const TimeFormat = () => {
   // Contexts
   const { t } = useLocale();
-  const { themeContext } = useThemeConfig();
+  const { themeContext } = useThemeContext();
   const { timeFormat, setTimeFormat } = useTimeFormat();
 
   return (
@@ -382,7 +382,7 @@ const TimeFormat = () => {
 
 const UOMFormat = () => {
   // Contexts
-  const { themeContext } = useThemeConfig();
+  const { themeContext } = useThemeContext();
   const { t } = useLocale();
   const { UOM, setUOM } = useUOMFormat();
 
@@ -462,7 +462,7 @@ export default function Page() {
 
       <UOMFormat />
 
-      <LocalSettingsHelperText />
+      <SettingsSavedLocalyHelperText />
     </StackV>
   );
 }

@@ -6,13 +6,13 @@ import { NavLink } from "@/components/ui/nav-link";
 import { P } from "@/components/ui/p";
 import { BrandWatermark } from "@/components/widgets/brand-watermark";
 import { useLocale } from "@/contexts/use-locale-context";
-import { useThemeConfig } from "@/contexts/use-theme-context";
+import { useThemeContext } from "@/contexts/use-theme-context";
 import { HStack, VStack } from "@chakra-ui/react";
 
 export default function MaintenanceRoute() {
   // Contexts
   const { t } = useLocale();
-  const { themeContext } = useThemeConfig();
+  const { themeContext } = useThemeContext();
 
   return (
     <VStack h={"100vh"} gap={0}>

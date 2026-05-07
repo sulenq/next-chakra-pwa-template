@@ -2,7 +2,7 @@ import { Btn } from "@/components/ui/btn";
 import { CContainer } from "@/components/ui/c-container";
 import { FileIcon } from "@/components/ui/file-icon";
 import { P } from "@/components/ui/p";
-import { useThemeConfig } from "@/contexts/use-theme-context";
+import { useThemeContext } from "@/contexts/use-theme-context";
 import { Center, Circle, HStack, Icon, StackProps } from "@chakra-ui/react";
 import Link from "next/link";
 
@@ -24,7 +24,7 @@ export const FileItem = (props: FileItemProps) => {
   const { children, fileData, actions = [], index, ...restProps } = props;
 
   // Contexts
-  const { themeContext } = useThemeConfig();
+  const { themeContext } = useThemeContext();
 
   return (
     <HStack

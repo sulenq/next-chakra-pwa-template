@@ -1,14 +1,19 @@
 "use client";
 
+import { Btn } from "@/components/ui/btn";
 import { Img } from "@/components/ui/img";
 import { TableSkeleton } from "@/components/ui/skeleton";
+import { StackH, StackV } from "@/components/ui/stack";
+import { ClampText } from "@/components/widgets/clamp-text";
 import { DataGrid } from "@/components/widgets/data-grid";
 import { DataTable } from "@/components/widgets/data-table";
 import FeedbackNoData from "@/components/widgets/feedback-no-data";
 import FeedbackRetry from "@/components/widgets/feedback-retry";
+import { ImgViewer } from "@/components/widgets/img-viewer";
 import { TopLoadingBar } from "@/components/widgets/loading-bar";
 import { useDataDisplay } from "@/contexts/use-data-display-context";
 import { useLocale } from "@/contexts/use-locale-context";
+import { useThemeContext } from "@/contexts/use-theme-context";
 import { LayananDelete } from "@/features/layanan/components/layanan.delete";
 import { LayananUpdate } from "@/features/layanan/components/layanan.update";
 import { useLayananQuery } from "@/features/layanan/hooks/use-layanan";
@@ -27,20 +32,22 @@ import { StackProps } from "@chakra-ui/react";
 
 interface LayananDataProps extends StackProps {
   filter: any;
-  routeTitle: string;
 }
 
 export const LayananData = (props: LayananDataProps) => {
-  const { filter, routeTitle } = props;
+  // Props
+  const { filter } = props;
 
-  const { locale } = useLocale();
+  // Contexts
+  const { t, locale } = useLocale();
+  const { themeContext } = useThemeContext();
   const isDisplayTable =
     useDataDisplay((s) => s.getDisplay(LAYANAN_ID)) === "table";
 
-  const { dataList, isLoading, isError, refetch } = useLayananQuery({
-    ...filter,
-  });
+  // Query
+  const { dataList, isLoading, isError, refetch } = useLayananQuery(filter);
 
+  // Constants
   const dataListConfig: DataListConfig = {
     headers: [
       {
@@ -121,10 +128,60 @@ export const LayananData = (props: LayananDataProps) => {
         <DataGrid.Display
           data={dataList}
           dataListConfig={dataListConfig}
-          routeTitle={routeTitle}
-          gridItem={({ row, details }) => (
-            <DataGrid.Item key={row.id} row={row} details={details} />
-          )}
+          gridItem={({ item, row, details }) => {
+            console.debug({ row, details });
+
+            return (
+              <DataGrid.Item key={item.id} id={item.id} row={row}>
+                <ImgViewer
+                  id={`img-${row?.id}`}
+                  w={"full"}
+                  h={"fit"}
+                  src={imgUrl(item.icon)}
+                  aspectRatio={1}
+                >
+                  <Img
+                    key={imgUrl(item.icon)}
+                    src={imgUrl(item.icon)}
+                    aspectRatio={1}
+                    rounded={`calc(${themeContext.radii.component} - 4px)`}
+                  />
+                </ImgViewer>
+
+                <StackV gap={1} p={3}>
+                  <ClampText>{item.title?.[locale]}</ClampText>
+                  <ClampText color={"fg.subtle"}>
+                    {item.description?.[locale]}
+                  </ClampText>
+                </StackV>
+
+                <StackH gap={1.5} p={1.5}>
+                  <DataGrid.DetailTrigger
+                    key={item.id}
+                    id={`${item.id}`}
+                    data={item}
+                    details={details}
+                    w={"full"}
+                    cursor={"pointer"}
+                  >
+                    <Btn
+                      variant={"ghost"}
+                      colorPalette={themeContext.colorPalette}
+                      size={"sm"}
+                      rounded={themeContext.radii.component}
+                    >
+                      {t.view_more}
+                    </Btn>
+                  </DataGrid.DetailTrigger>
+
+                  <DataGrid.RowOptions
+                    row={row}
+                    rowOptions={dataListConfig.rowOptions}
+                  />
+                </StackH>
+              </DataGrid.Item>
+            );
+          }}
         />
       )}
     </>

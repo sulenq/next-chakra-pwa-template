@@ -1,7 +1,7 @@
 "use client";
 
 import { Disclosure } from "@/components/ui/disclosure";
-import { useThemeConfig } from "@/contexts/use-theme-context";
+import { useThemeContext } from "@/contexts/use-theme-context";
 import { useIsSmScreenWidth } from "@/hooks/use-is-sm-screen-width";
 import { useState } from "react";
 
@@ -33,7 +33,7 @@ export const SimpleDisclosure = (props: SimpleDisclosureProps) => {
   } = props;
 
   // Contexts
-  const { themeContext } = useThemeConfig();
+  const { themeContext } = useThemeContext();
 
   // Hooks
   const iss = useIsSmScreenWidth();

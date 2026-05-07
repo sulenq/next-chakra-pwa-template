@@ -29,7 +29,7 @@ import {
   R_SPACING_MD,
 } from "@/constants/styles";
 import { useLocale } from "@/contexts/use-locale-context";
-import { useThemeConfig } from "@/contexts/use-theme-context";
+import { useThemeContext } from "@/contexts/use-theme-context";
 import { isEmptyArray } from "@/utils/array";
 import { getUserData } from "@/utils/auth";
 import { pluckString } from "@/utils/string";
@@ -90,7 +90,7 @@ export const DesktopNavs = (props: DesktopNavsProps) => {
 
   // Contexts
   const { t } = useLocale();
-  const { themeContext } = useThemeConfig();
+  const { themeContext } = useThemeContext();
 
   // Hooks
   const pathname = usePathname();

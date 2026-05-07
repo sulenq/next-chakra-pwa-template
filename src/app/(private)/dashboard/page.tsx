@@ -20,7 +20,7 @@ import { getMonthNames } from "@/constants/months";
 import { GAP, R_SPACING_MD } from "@/constants/styles";
 import { Type__ChartData } from "@/types/global.types";
 import { useLocale } from "@/contexts/use-locale-context";
-import { useThemeConfig } from "@/contexts/use-theme-context";
+import { useThemeContext } from "@/contexts/use-theme-context";
 import { useFetchData } from "@/hooks/useFetchData";
 import { getUserData } from "@/utils/auth";
 import { formatDuration, formatNumber } from "@/utils/formatter";
@@ -76,7 +76,7 @@ const OverviewItem = (props: OverviewItemProps) => {
   const { item, ...restProps } = props;
 
   // Contexts
-  const { themeContext } = useThemeConfig();
+  const { themeContext } = useThemeContext();
 
   return (
     <Item.Body gap={1} {...restProps}>
@@ -196,7 +196,7 @@ const Chart1 = (props: any) => {
 
   // Contexts
   const { t } = useLocale();
-  const { themeContext } = useThemeConfig();
+  const { themeContext } = useThemeContext();
 
   // Refs
   const isPanningRef = useRef<boolean>(false);

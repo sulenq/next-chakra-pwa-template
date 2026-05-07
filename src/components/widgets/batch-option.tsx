@@ -7,7 +7,7 @@ import { Confirmation } from "@/components/widgets/confirmation";
 import { DotIndicator } from "@/components/widgets/indicator";
 import { BatchOptionsTableOptionGenerator } from "@/types/global.types";
 import { useLocale } from "@/contexts/use-locale-context";
-import { useThemeConfig } from "@/contexts/use-theme-context";
+import { useThemeContext } from "@/contexts/use-theme-context";
 import { Box, MenuRootProps } from "@chakra-ui/react";
 import { EllipsisIcon } from "lucide-react";
 import { Fragment } from "react";
@@ -42,7 +42,7 @@ export const BatchOptions = (props: BatchOptionsProps) => {
 
   // Contexts
   const { t } = useLocale();
-  const { themeContext } = useThemeConfig();
+  const { themeContext } = useThemeContext();
 
   return (
     <Menu.Root

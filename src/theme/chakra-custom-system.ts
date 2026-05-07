@@ -1,4 +1,4 @@
-import { SM_SCREEN_W_NUMBER } from "@/constants/styles";
+import { SM_SCREEN_BREAKPOINT } from "@/constants/styles";
 import { createSystem, defaultConfig, defineConfig } from "@chakra-ui/react";
 
 const customConfig = defineConfig({
@@ -38,7 +38,7 @@ const customConfig = defineConfig({
     },
     breakpoints: {
       sm: "320px",
-      md: `${SM_SCREEN_W_NUMBER}px`,
+      md: `${SM_SCREEN_BREAKPOINT}px`,
       lg: "960px",
       xl: "1200px",
     },

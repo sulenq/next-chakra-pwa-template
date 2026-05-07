@@ -34,7 +34,7 @@ export const Field = forwardRef<HTMLDivElement, FieldProps>(
     } = props;
 
     // Contexts
-    // const { themeContext } = useThemeConfig();
+    // const { themeContext } = useThemeContext();
 
     // Hooks
     const { t } = useLocale();

@@ -1,7 +1,7 @@
 "use client";
 
 import { CContainer } from "@/components/ui/c-container";
-import { useThemeConfig } from "@/contexts/use-theme-context";
+import { useThemeContext } from "@/contexts/use-theme-context";
 import {
   Skeleton as ChakraSkeleton,
   SkeletonProps,
@@ -12,7 +12,7 @@ import {
 
 export const Skeleton = (props: SkeletonProps) => {
   // Contexts
-  const { themeContext } = useThemeConfig();
+  const { themeContext } = useThemeContext();
 
   return (
     <ChakraSkeleton
