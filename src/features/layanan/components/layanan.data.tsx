@@ -26,7 +26,7 @@ import {
 } from "@/types/global.types";
 import { isEmptyArray } from "@/utils/array";
 import { imgUrl } from "@/utils/url";
-import { StackProps } from "@chakra-ui/react";
+import { Box, StackProps } from "@chakra-ui/react";
 
 // -----------------------------------------------------------------
 
@@ -125,28 +125,27 @@ export const LayananData = (props: LayananDataProps) => {
           batchOptions={dataListConfig.batchOptions}
         />
       ) : (
-        <DataGrid.Display
+        <DataGrid.Root
           data={dataList}
           dataListConfig={dataListConfig}
-          gridItem={({ item, row, details }) => {
-            console.debug({ row, details });
-
+          gridItem={({ item, details, row }) => {
             return (
-              <DataGrid.Item key={item.id} id={item.id} row={row}>
-                <ImgViewer
-                  id={`img-${row?.id}`}
-                  w={"full"}
-                  h={"fit"}
-                  src={imgUrl(item.icon)}
-                  aspectRatio={1}
-                >
-                  <Img
-                    key={imgUrl(item.icon)}
+              <DataGrid.Item key={item.id} id={item.id.toString()}>
+                <Box p={1}>
+                  <ImgViewer
+                    id={`img-viewer-${imgUrl(item.icon)}`}
                     src={imgUrl(item.icon)}
-                    aspectRatio={1}
-                    rounded={`calc(${themeContext.radii.component} - 4px)`}
-                  />
-                </ImgViewer>
+                    w={"full"}
+                    h={"fit"}
+                  >
+                    <Img
+                      key={imgUrl(item.icon)}
+                      src={imgUrl(item.icon)}
+                      aspectRatio={1}
+                      rounded={`calc(${themeContext.radii.component} - 4px)`}
+                    />
+                  </ImgViewer>
+                </Box>
 
                 <StackV gap={1} p={3}>
                   <ClampText>{item.title?.[locale]}</ClampText>
@@ -158,11 +157,9 @@ export const LayananData = (props: LayananDataProps) => {
                 <StackH gap={1.5} p={1.5}>
                   <DataGrid.DetailTrigger
                     key={item.id}
-                    id={`${item.id}`}
-                    data={item}
+                    id={item.id}
                     details={details}
                     w={"full"}
-                    cursor={"pointer"}
                   >
                     <Btn
                       variant={"ghost"}

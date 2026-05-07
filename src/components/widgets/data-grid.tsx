@@ -44,12 +44,11 @@ import React, { createContext, Fragment, useContext, useState } from "react";
 export interface DataGridItemProps extends StackProps {
   id: string;
   dim?: boolean;
-  row: FormattedTableRow;
 }
 
 export const DataGridItem = (props: DataGridItemProps) => {
   // Props
-  const { children, id, row, ...restProps } = props;
+  const { children, id, dim, ...restProps } = props;
 
   // Contexts
   const { themeContext } = useThemeContext();
@@ -57,7 +56,7 @@ export const DataGridItem = (props: DataGridItemProps) => {
 
   // Constants
   const selectedColor = `${themeContext.colorPalette}.solid`;
-  const isRowSelected = selectedRows.includes(id.toString());
+  const isRowSelected = selectedRows.includes(id);
 
   return (
     <StackV
@@ -67,6 +66,7 @@ export const DataGridItem = (props: DataGridItemProps) => {
       border={"1px solid"}
       borderColor={isRowSelected ? selectedColor : "transparent"}
       rounded={themeContext.radii.component}
+      opacity={dim ? 0.4 : 1}
       overflow={"clip"}
       pos={"relative"}
       {...restProps}
@@ -77,7 +77,7 @@ export const DataGridItem = (props: DataGridItemProps) => {
         right={3}
         onClick={(e) => {
           e.stopPropagation();
-          toggleRowSelection(row);
+          toggleRowSelection(id);
         }}
       >
         <Checkbox
@@ -91,6 +91,111 @@ export const DataGridItem = (props: DataGridItemProps) => {
 
       {children}
     </StackV>
+  );
+};
+
+// -----------------------------------------------------------------
+
+export interface DataGridDetailDisclosureProps extends StackProps {
+  open: boolean;
+  details: any;
+}
+
+const DataGridDetailContent = (props: DataGridDetailDisclosureProps) => {
+  // Props
+  const { open, details } = props;
+
+  // States
+  const [search, setSearch] = useState<string>("");
+  const resolvedDetails = details?.filter((detail: any) => {
+    return detail?.label?.toLowerCase()?.includes(search?.toLowerCase());
+  });
+
+  return (
+    <Disclosure.Root open={open} lazyLoad size={"xs"}>
+      <Disclosure.Content>
+        <Disclosure.Header>
+          <Disclosure.HeaderContent title={`Detail`} />
+        </Disclosure.Header>
+
+        <Disclosure.Body pb={2}>
+          <StackV mb={2}>
+            <SearchInput
+              queryKey={"q-data-grid-detail"}
+              inputValue={search}
+              onChange={(inputValue) => {
+                setSearch(inputValue);
+              }}
+            />
+          </StackV>
+
+          <StackV>
+            {details && (
+              <>
+                {isEmptyArray(resolvedDetails) && <FeedbackNotFound />}
+
+                {resolvedDetails?.map((detail: any, index: number) => {
+                  const isLast = index === resolvedDetails.length - 1;
+
+                  return (
+                    <StackV
+                      key={index}
+                      gap={2}
+                      px={1}
+                      pt={2}
+                      pb={3}
+                      borderBottom={!isLast ? "1px solid" : ""}
+                      borderColor={"border.subtle"}
+                      align={"start"}
+                    >
+                      <P fontWeight={"medium"} color={"fg.subtle"}>
+                        {detail.label}
+                      </P>
+
+                      {detail.render}
+                    </StackV>
+                  );
+                })}
+              </>
+            )}
+          </StackV>
+        </Disclosure.Body>
+
+        <Disclosure.Footer>
+          <BackButton />
+        </Disclosure.Footer>
+      </Disclosure.Content>
+    </Disclosure.Root>
+  );
+};
+
+// -----------------------------------------------------------------
+
+export interface DataGridDetailDisclosureTriggerProps extends StackProps {
+  id: string;
+  details: {
+    label: string;
+    render: any;
+  }[];
+}
+
+const DataGridDetailTrigger = (props: DataGridDetailDisclosureTriggerProps) => {
+  // Props
+  const { children, id, details, ...restProps } = props;
+
+  // Hooks
+  const { open, onOpen } = usePopDisclosure(
+    disclosureId(`data-grid-detail-${id}`),
+  );
+
+  return (
+    <>
+      <StackV w={"fit"} onClick={onOpen} {...restProps}>
+        {children}
+      </StackV>
+
+      <DataGridDetailContent open={open} details={details} />
+    </>
   );
 };
 
@@ -130,116 +235,10 @@ const DataGridRowOptions = (props: DataGridRowOptionsProps) => {
 
 // -----------------------------------------------------------------
 
-export interface DataGridDetailDisclosureProps extends StackProps {
-  open: boolean;
-  data: any;
-  details: any;
-}
-
-const DataGridDetailContent = (props: DataGridDetailDisclosureProps) => {
-  // Props
-  const { open, data, details } = props;
-
-  // States
-  const [search, setSearch] = useState<string>("");
-  const resolvedDetails = details?.filter((detail: any) => {
-    return detail?.label?.toLowerCase()?.includes(search?.toLowerCase());
-  });
-
-  return (
-    <Disclosure.Root open={open} lazyLoad size={"xs"}>
-      <Disclosure.Content>
-        <Disclosure.Header>
-          <Disclosure.HeaderContent title={`Detail`} />
-        </Disclosure.Header>
-
-        <Disclosure.Body pb={2}>
-          <StackV mb={2}>
-            <SearchInput
-              queryKey={"q-data-grid-detail"}
-              inputValue={search}
-              onChange={(inputValue) => {
-                setSearch(inputValue);
-              }}
-            />
-          </StackV>
-
-          <StackV>
-            {data && (
-              <>
-                {isEmptyArray(resolvedDetails) && <FeedbackNotFound />}
-
-                {resolvedDetails?.map((detail: any, index: number) => {
-                  const isLast = index === resolvedDetails.length - 1;
-
-                  return (
-                    <StackV
-                      key={index}
-                      gap={1}
-                      px={1}
-                      py={2}
-                      borderBottom={!isLast ? "1px solid" : ""}
-                      borderColor={"border.subtle"}
-                      align={"start"}
-                    >
-                      <P fontWeight={"medium"} color={"fg.subtle"}>
-                        {detail.label}
-                      </P>
-
-                      {detail.render}
-                    </StackV>
-                  );
-                })}
-              </>
-            )}
-          </StackV>
-        </Disclosure.Body>
-
-        <Disclosure.Footer>
-          <BackButton />
-        </Disclosure.Footer>
-      </Disclosure.Content>
-    </Disclosure.Root>
-  );
-};
-
-// -----------------------------------------------------------------
-
-export interface DataGridDetailDisclosureTriggerProps extends StackProps {
-  id: string;
-  data: any;
-  details: {
-    label: string;
-    render: any;
-  }[];
-}
-
-const DataGridDetailTrigger = (props: DataGridDetailDisclosureTriggerProps) => {
-  // Props
-  const { children, id, data, details, ...restProps } = props;
-
-  // Hooks
-  const { open, onOpen } = usePopDisclosure(
-    disclosureId(`data-grid-detail-${id}`),
-  );
-
-  return (
-    <>
-      <StackV w={"fit"} onClick={onOpen} {...restProps}>
-        {children}
-      </StackV>
-
-      <DataGridDetailContent open={open} data={data} details={details} />
-    </>
-  );
-};
-
-// -----------------------------------------------------------------
-
 export interface DataGridContextValue {
   dataListConfig: DataListConfig;
   selectedRows: string[];
-  toggleRowSelection: (row: FormattedTableRow) => void;
+  toggleRowSelection: (id: string) => void;
 }
 
 const DataGridContext = createContext<DataGridContextValue | undefined>(
@@ -249,7 +248,9 @@ const DataGridContext = createContext<DataGridContextValue | undefined>(
 const useDataGridContext = () => {
   const context = useContext(DataGridContext);
   if (!context) {
-    throw new Error("DataGrid components must be wrapped in DataGrid.Display");
+    throw new Error(
+      "useDataGridContext components must be wrapped in DataGrid.Root",
+    );
   }
   return context;
 };
@@ -258,12 +259,12 @@ const useDataGridContext = () => {
 
 export interface GridItemCallbackProps {
   item: any;
-  row: FormattedTableRow;
   index: number;
   details: any;
+  row: FormattedTableRow;
 }
 
-export interface DataGridDisplayProps extends Omit<StackProps, "page"> {
+export interface DataGridRootProps extends Omit<StackProps, "page"> {
   data?: any[];
   dataListConfig: DataListConfig;
   gridItem: (props: GridItemCallbackProps) => React.ReactNode;
@@ -276,7 +277,7 @@ export interface DataGridDisplayProps extends Omit<StackProps, "page"> {
   minChildWidth?: string;
 }
 
-const DataGridDisplay = (props: DataGridDisplayProps) => {
+const DataGridRoot = (props: DataGridRootProps) => {
   // Props
   const {
     data,
@@ -297,7 +298,7 @@ const DataGridDisplay = (props: DataGridDisplayProps) => {
 
   // States
   const [allRowsSelected, setAllRowsSelected] = useState<boolean>(false);
-  const [selectedRows, setSelectedRows] = useState<any[]>([]);
+  const [selectedRows, setSelectedRows] = useState<string[]>([]);
 
   // Derived Values
   const hasFooter = limit && setLimit && page && setPage;
@@ -318,19 +319,18 @@ const DataGridDisplay = (props: DataGridDisplayProps) => {
     setAllRowsSelected(false);
     setSelectedRows([]);
   }
-  function toggleRowSelection(row: FormattedTableRow) {
-    const rowId = row.id;
+  function toggleRowSelection(id: string) {
     setSelectedRows((ps) => {
-      const isSelected = ps.includes(rowId);
+      const isSelected = ps.includes(id);
 
       if (isSelected) {
         setAllRowsSelected(false);
-        return ps.filter((id) => id !== rowId);
+        return ps.filter((id) => id !== id);
       } else {
         if (data?.length === selectedRows.length + 1) {
           setAllRowsSelected(true);
         }
-        return [...ps, rowId];
+        return [...ps, id];
       }
     });
   }
@@ -431,7 +431,7 @@ const DataGridDisplay = (props: DataGridDisplayProps) => {
                           <ImgViewer
                             id={`img-${rowIdx}-${item?.id}`}
                             src={imgUrl(col.value)}
-                            w={"full"}
+                            w={"33%"}
                           >
                             <Img src={imgUrl(col.value)} w={"full"} fluid />
                           </ImgViewer>
@@ -450,9 +450,9 @@ const DataGridDisplay = (props: DataGridDisplayProps) => {
                   <Fragment key={index}>
                     {props.gridItem({
                       item,
-                      row,
-                      index,
                       details,
+                      index,
+                      row,
                     })}
                   </Fragment>
                 );
@@ -481,7 +481,7 @@ const DataGridDisplay = (props: DataGridDisplayProps) => {
 // -----------------------------------------------------------------
 
 export const DataGrid = {
-  Display: DataGridDisplay,
+  Root: DataGridRoot,
   Item: DataGridItem,
   DetailTrigger: DataGridDetailTrigger,
   RowOptions: DataGridRowOptions,

@@ -59,6 +59,7 @@ export const RowOptions = (props: RowOptionsProps) => {
             // const isLastIndex = index === rowOptions.length - 1;
 
             const option = item(row);
+
             if (!option) return null;
 
             const {
@@ -71,7 +72,7 @@ export const RowOptions = (props: RowOptionsProps) => {
               override,
             } = option;
 
-            if (confirmation) {
+            if (confirmation)
               return (
                 <Confirmation.Trigger
                   key={index}
@@ -97,10 +98,9 @@ export const RowOptions = (props: RowOptionsProps) => {
                   </Menu.Item>
                 </Confirmation.Trigger>
               );
-            }
-            if (override) {
+
+            if (override)
               return <React.Fragment key={index}>{override}</React.Fragment>;
-            }
 
             return (
               <Menu.Item
