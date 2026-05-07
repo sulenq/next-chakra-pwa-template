@@ -15,7 +15,6 @@ import { DataFooter } from "@/components/widgets/data-footer";
 import FeedbackNotFound from "@/components/widgets/feedback-not-found";
 import { ImgViewer } from "@/components/widgets/img-viewer";
 import { RowOptions } from "@/components/widgets/row-options";
-import { DataListConfig, FormattedTableRow } from "@/types/global.types";
 import {
   BACKDROP_BLUR_FILTER,
   GAP,
@@ -25,6 +24,7 @@ import {
 import { useLocale } from "@/contexts/use-locale-context";
 import { useThemeConfig } from "@/contexts/use-theme-context";
 import { usePopDisclosure } from "@/hooks/use-pop-disclosure";
+import { DataListConfig, FormattedTableRow } from "@/types/global.types";
 import { isEmptyArray } from "@/utils/array";
 import { disclosureId } from "@/utils/disclosure";
 import {
@@ -34,7 +34,7 @@ import {
   SimpleGrid,
   StackProps,
 } from "@chakra-ui/react";
-import React, { createContext, useContext, Fragment, useState } from "react";
+import React, { createContext, Fragment, useContext, useState } from "react";
 
 // -----------------------------------------------------------------
 
@@ -72,38 +72,19 @@ interface DataGridItemProps extends StackProps {
     deletedAt?: string | null;
   };
   dim?: boolean;
-  dataListConfig?: DataListConfig;
   row: FormattedTableRow;
-  selectedRows?: string[];
-  toggleRowSelection?: (row: FormattedTableRow) => void;
-  routeTitle?: string;
   details?: any;
 }
 
 export const DataGridItem = (props: DataGridItemProps) => {
-  // Contexts
-  const context = useDataGridContext();
-
-  // Props
-  const {
-    item,
-    dim = false,
-    dataListConfig = context.dataListConfig,
-    row,
-    selectedRows = context.selectedRows,
-    toggleRowSelection = context.toggleRowSelection,
-    routeTitle = context.routeTitle || "",
-    details,
-    ...restProps
-  } = props;
+  const { item, dim = false, row, details, ...restProps } = props;
 
   const { t } = useLocale();
   const { themeContext } = useThemeConfig();
+  const { dataListConfig, selectedRows, toggleRowSelection, routeTitle } =
+    useDataGridContext();
 
-  // Constants
   const selectedColor = `${themeContext.colorPalette}.solid`;
-
-  // Derived Values
   const isRowSelected = selectedRows.includes(row.id);
 
   // Automatic Mapping from row.columns if item props are missing
@@ -380,7 +361,6 @@ interface DataGridProps extends Omit<StackProps, "page"> {
 }
 
 const DataGridDisplay = (props: DataGridProps) => {
-  // Props
   const {
     data,
     dataListConfig,
@@ -395,24 +375,20 @@ const DataGridDisplay = (props: DataGridProps) => {
     ...restProps
   } = props;
 
-  // Contexts
   const { t } = useLocale();
   const { themeContext } = useThemeConfig();
 
-  // States
   const [allRowsSelected, setAllRowsSelected] = useState<boolean>(false);
   const [selectedRows, setSelectedRows] = useState<any[]>([]);
 
-  // Derived Values
   const hasFooter = limit && setLimit && page && setPage;
   const shouldShowBatch =
     dataListConfig?.batchOptions && !isEmptyArray(selectedRows);
 
-  // Utils
   function handleSelectAllRows(isChecked: boolean) {
     setAllRowsSelected(!allRowsSelected);
     if (!isChecked) {
-      const allIds = data?.map((row) => row.id);
+      const allIds = data?.map((row) => `${row.id}`);
       setSelectedRows(allIds || []);
     } else {
       setSelectedRows([]);
@@ -453,7 +429,7 @@ const DataGridDisplay = (props: DataGridProps) => {
         <Presence
           present={shouldShowBatch}
           animationName={{ _open: "fade-in", _closed: "fade-out" }}
-          animationDuration={"slow"}
+          animationDuration={"fast"}
           unmountOnExit
           zIndex={10}
         >
