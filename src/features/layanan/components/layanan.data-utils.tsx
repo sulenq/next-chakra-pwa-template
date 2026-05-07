@@ -5,7 +5,7 @@ import { LucideIcon } from "@/components/widgets/icon";
 import { BASE_ICON_BOX_SIZE } from "@/constants/styles";
 import { LAYANAN_ID } from "@/features/layanan/pages/layanan.page";
 import { HStack, Icon } from "@chakra-ui/react";
-import { ArrowDownAz, ListFilterIcon } from "lucide-react";
+import { Settings2Icon } from "lucide-react";
 
 // -----------------------------------------------------------------
 
@@ -30,13 +30,7 @@ export const LayananDataUtils = (props: LayananDataUtilsProps) => {
 
       <Btn iconButton variant={"outline"} size={"sm"}>
         <Icon boxSize={BASE_ICON_BOX_SIZE}>
-          <LucideIcon icon={ListFilterIcon} />
-        </Icon>
-      </Btn>
-
-      <Btn iconButton variant={"outline"} size={"sm"}>
-        <Icon boxSize={BASE_ICON_BOX_SIZE}>
-          <LucideIcon icon={ArrowDownAz} />
+          <LucideIcon icon={Settings2Icon} />
         </Icon>
       </Btn>
 

@@ -29,9 +29,9 @@ export const LayananDelete = ({ ids, clearSelectedRows, disabled }: Props) => {
   return (
     <Confirmation.Trigger
       id={`delete-layanan-${ids.join("-")}`}
-      title={t?.delete_ || "Delete"}
-      description={t?.msg_soft_delete || "Are you sure you want to delete?"}
-      confirmLabel={t?.delete_ || "Delete"}
+      title={t.delete_ || "Delete"}
+      description={t.msg_soft_delete || "Are you sure you want to delete?"}
+      confirmLabel={t.delete_ || "Delete"}
       onConfirm={handleDelete}
       confirmButtonProps={{
         colorPalette: "gray",
@@ -42,7 +42,7 @@ export const LayananDelete = ({ ids, clearSelectedRows, disabled }: Props) => {
       disabled={disabled}
       w={"full"}
     >
-      <Tooltip content={t?.delete_ || "Delete"}>
+      <Tooltip content={t.delete_ || "Delete"}>
         <Menu.Item
           value={"delete"}
           color={"fg.error"}

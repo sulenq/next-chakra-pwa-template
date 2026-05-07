@@ -13,12 +13,20 @@ import { useFormik } from "formik";
 import { PlusIcon } from "lucide-react";
 import * as yup from "yup";
 import { useCreateLayananMutation } from "../hooks/use-layanan";
+import { useThemeContext } from "@/contexts/use-theme-context";
 
 export const LayananCreate = () => {
-  const { open, onOpen, onClose } = usePopDisclosure("layanan-create");
-  const { mutate, isPending } = useCreateLayananMutation();
+  // Contexts
   const { t } = useLocale();
+  const { themeContext } = useThemeContext();
 
+  // Hooks
+  const { open, onOpen, onClose } = usePopDisclosure("layanan-create");
+
+  // Query
+  const { mutate, isPending } = useCreateLayananMutation();
+
+  // States
   const formik = useFormik({
     initialValues: {
       title_id: "",
@@ -28,11 +36,11 @@ export const LayananCreate = () => {
       file: null as File | null,
     },
     validationSchema: yup.object().shape({
-      title_id: yup.string().required(t?.msg_required_form || "Required"),
-      title_en: yup.string().required(t?.msg_required_form || "Required"),
-      description_id: yup.string().required(t?.msg_required_form || "Required"),
-      description_en: yup.string().required(t?.msg_required_form || "Required"),
-      file: yup.mixed().required(t?.msg_required_form || "Required"),
+      title_id: yup.string().required(t.msg_required_form || "Required"),
+      title_en: yup.string().required(t.msg_required_form || "Required"),
+      description_id: yup.string().required(t.msg_required_form || "Required"),
+      description_en: yup.string().required(t.msg_required_form || "Required"),
+      file: yup.mixed().required(t.msg_required_form || "Required"),
     }),
     onSubmit: (values) => {
       const formData = new FormData();
@@ -55,7 +63,12 @@ export const LayananCreate = () => {
 
   return (
     <>
-      <Btn iconButton onClick={onOpen} size={"sm"}>
+      <Btn
+        iconButton
+        onClick={onOpen}
+        size={"sm"}
+        colorPalette={themeContext.colorPalette}
+      >
         <AppIconLucide icon={PlusIcon} />
       </Btn>
 
@@ -66,14 +79,14 @@ export const LayananCreate = () => {
           <form id={"create-layanan-form"} onSubmit={formik.handleSubmit}>
             <FieldsetRoot disabled={isPending}>
               <Field
-                label={t?.title || "Title"}
+                label={t.title || "Title"}
                 invalid={!!formik.errors.title_id && !!formik.touched.title_id}
                 errorText={formik.errors.title_id}
               >
                 <InputGroup w={"full"} startElement={"ID"}>
                   <StringInput
                     name={"title_id"}
-                    placeholder={t?.title || "Title"}
+                    placeholder={t.title || "Title"}
                     inputValue={formik.values.title_id}
                     onChange={(val) => formik.setFieldValue("title_id", val)}
                     pl={"40px !important"}
@@ -82,14 +95,14 @@ export const LayananCreate = () => {
               </Field>
 
               <Field
-                label={t?.title || "Title"}
+                label={t.title || "Title"}
                 invalid={!!formik.errors.title_en && !!formik.touched.title_en}
                 errorText={formik.errors.title_en}
               >
                 <InputGroup w={"full"} startElement={"EN"}>
                   <StringInput
                     name={"title_en"}
-                    placeholder={t?.title || "Title"}
+                    placeholder={t.title || "Title"}
                     inputValue={formik.values.title_en}
                     onChange={(val) => formik.setFieldValue("title_en", val)}
                     pl={"40px !important"}
@@ -98,7 +111,7 @@ export const LayananCreate = () => {
               </Field>
 
               <Field
-                label={t?.description || "Description"}
+                label={t.description || "Description"}
                 invalid={
                   !!formik.errors.description_id &&
                   !!formik.touched.description_id
@@ -108,7 +121,7 @@ export const LayananCreate = () => {
                 <InputGroup w={"full"} startElement={"ID"}>
                   <TextareaInput
                     name={"description_id"}
-                    placeholder={t?.description || "Description"}
+                    placeholder={t.description || "Description"}
                     inputValue={formik.values.description_id}
                     onChange={(val) =>
                       formik.setFieldValue("description_id", val)
@@ -119,7 +132,7 @@ export const LayananCreate = () => {
               </Field>
 
               <Field
-                label={t?.description || "Description"}
+                label={t.description || "Description"}
                 invalid={
                   !!formik.errors.description_en &&
                   !!formik.touched.description_en
@@ -129,7 +142,7 @@ export const LayananCreate = () => {
                 <InputGroup w={"full"} startElement={"EN"}>
                   <TextareaInput
                     name={"description_en"}
-                    placeholder={t?.description || "Description"}
+                    placeholder={t.description || "Description"}
                     inputValue={formik.values.description_en}
                     onChange={(val) =>
                       formik.setFieldValue("description_en", val)
@@ -157,14 +170,16 @@ export const LayananCreate = () => {
         footerContent={
           <>
             <Btn variant={"outline"} onClick={onClose}>
-              {t?.cancel || "Cancel"}
+              {t.cancel || "Cancel"}
             </Btn>
+
             <Btn
               type={"submit"}
               form={"create-layanan-form"}
               loading={isPending}
+              colorPalette={themeContext.colorPalette}
             >
-              {t?.save || "Save"}
+              {t.add}
             </Btn>
           </>
         }
