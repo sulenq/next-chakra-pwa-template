@@ -12,7 +12,6 @@ import { ArrowDownAz, ListFilterIcon } from "lucide-react";
 interface LayananDataUtilsProps {
   filter: any;
   setFilter: any;
-  routeTitle: string;
 }
 
 export const LayananDataUtils = (props: LayananDataUtilsProps) => {

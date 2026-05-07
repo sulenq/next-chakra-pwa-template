@@ -2,6 +2,7 @@ import { getStorage, setStorage } from "@/utils/client";
 import { create } from "zustand";
 import en from "@/locales/en";
 import id from "@/locales/id";
+import { LocaleKey, Translations } from "@/types/global.types";
 
 const STORAGE_KEY = "locale";
 const DEFAULT: keyof typeof translations = "en";
@@ -12,16 +13,15 @@ export const translations = {
 };
 
 type LocaleStore = {
-  t: (typeof translations)[keyof typeof translations];
-  locale: keyof typeof translations;
-  setLocale: (newState: keyof typeof translations) => void;
+  t: Translations;
+  locale: LocaleKey;
+  setLocale: (newState: LocaleKey) => void;
 };
 export const useLocale = create<LocaleStore>((set) => {
-  const getStoredLang = (): keyof typeof translations => {
+  const getStoredLang = (): LocaleKey => {
     try {
       const stored = getStorage(STORAGE_KEY);
-      if (stored && stored in translations)
-        return stored as keyof typeof translations;
+      if (stored && stored in translations) return stored as LocaleKey;
       setStorage(STORAGE_KEY, DEFAULT);
     } catch (error) {
       console.error("Failed to access language from local storage:", error);

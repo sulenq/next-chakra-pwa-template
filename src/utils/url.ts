@@ -1,6 +1,3 @@
-import { NavGroup } from "@/types/global.types";
-import { RESOLVED_NAVS } from "@/constants/navs";
-
 export function generateWAUrl(phone: string, message: string = ""): void {
   const sanitizedPhone = phone.trim().replace(/[^0-9]/g, "");
 
@@ -10,37 +7,6 @@ export function generateWAUrl(phone: string, message: string = ""): void {
   window.open(url, "_blank");
   window.open(url, "_blank");
 }
-
-export const getActiveNavs = (
-  pathname: string,
-  privateNavs?: NavGroup[],
-): NavGroup["navs"][number][] => {
-  const findInList = (
-    items: NavGroup["navs"],
-  ): NavGroup["navs"][number][] | null => {
-    for (const item of items) {
-      if (item.path === pathname) return [item];
-      if (item.children) {
-        for (const subGroup of item.children) {
-          if (subGroup.navs) {
-            const found = findInList(subGroup.navs);
-            if (found) return [item, ...found];
-          }
-        }
-      }
-    }
-    return null;
-  };
-
-  const resolvedPrivateNavs = privateNavs || RESOLVED_NAVS;
-
-  for (const navGroup of resolvedPrivateNavs) {
-    const result = findInList(navGroup.navs);
-    if (result) return result;
-  }
-
-  return [];
-};
 
 export const imgUrl = (url?: string | null): string | undefined => {
   if (!url) return undefined;

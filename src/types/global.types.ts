@@ -22,9 +22,8 @@ export type RGB = {
 
 export type Gender = "MALE" | "FEMALE";
 
-export type LangKey = keyof typeof translations; // currently "en" | "id"
-
-export type Translations = (typeof translations)[LangKey];
+export type LocaleKey = keyof typeof translations; // currently "en" | "id"
+export type Translations = (typeof translations)[LocaleKey];
 
 export type UnitKey =
   | "mass"

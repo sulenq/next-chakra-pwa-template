@@ -27,7 +27,7 @@ import { useScreen } from "@/hooks/use-screen";
 import { Nav } from "@/types/global.types";
 import { isEmptyArray, last } from "@/utils/array";
 import { capitalizeWords, pluckString } from "@/utils/string";
-import { getActiveNavs } from "@/utils/url";
+import { getActiveNavs } from "@/utils/route";
 import { HStack, Icon, StackProps } from "@chakra-ui/react";
 import { IconSlash } from "@tabler/icons-react";
 import { HeadsetIcon, NavigationIcon } from "lucide-react";

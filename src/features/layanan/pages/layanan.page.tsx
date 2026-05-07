@@ -1,18 +1,16 @@
 "use client";
 
-import { StackV } from "@/components/ui/stack";
 import { Item } from "@/components/widgets/item";
-import { MainView, useMainViewContext } from "@/components/widgets/main-view";
+import {
+  ConstrainedContainer,
+  MainView,
+  useMainViewContext,
+} from "@/components/widgets/main-view";
 import { ScrollH } from "@/components/widgets/scroll-h";
 import { GAP, R_SPACING_MD } from "@/constants/styles";
-import { useLocale } from "@/contexts/use-locale-context";
 import { LayananData } from "@/features/layanan/components/layanan.data";
 import { LayananDataUtils } from "@/features/layanan/components/layanan.data-utils";
-import { last } from "@/utils/array";
-import { pluckString } from "@/utils/string";
-import { getActiveNavs } from "@/utils/url";
 import { HStack } from "@chakra-ui/react";
-import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { LayananCreate } from "../components/layanan.create";
 
@@ -26,19 +24,15 @@ const DEFAULT_FILTER = {
 // -----------------------------------------------------------------
 
 export default function LayananPage() {
-  const { t } = useLocale();
+  // Props
   const { isSmContainer } = useMainViewContext();
-  const pathname = usePathname();
 
+  // States
   const [filter, setFilter] = useState(DEFAULT_FILTER);
-
-  const activeNav = getActiveNavs(pathname);
-  const routeTitle =
-    last(activeNav)?.label || pluckString(t, last(activeNav)?.labelKey || "");
 
   return (
     <MainView.Content p={GAP}>
-      <StackV flex={1} overflowY={"auto"}>
+      <ConstrainedContainer flex={1} overflowY={"auto"}>
         <MainView.Header
           withTitle
           MainViewTitleProps={{
@@ -48,11 +42,7 @@ export default function LayananPage() {
         >
           <HStack>
             {!isSmContainer && (
-              <LayananDataUtils
-                filter={filter}
-                setFilter={setFilter}
-                routeTitle={routeTitle}
-              />
+              <LayananDataUtils filter={filter} setFilter={setFilter} />
             )}
 
             <LayananCreate />
@@ -62,19 +52,15 @@ export default function LayananPage() {
         {isSmContainer && (
           <ScrollH mb={4}>
             <HStack minW={"full"} justify={"space-between"} px={R_SPACING_MD}>
-              <LayananDataUtils
-                filter={filter}
-                setFilter={setFilter}
-                routeTitle={routeTitle}
-              />
+              <LayananDataUtils filter={filter} setFilter={setFilter} />
             </HStack>
           </ScrollH>
         )}
 
         <Item.Body flex={1} overflowY={"auto"}>
-          <LayananData filter={filter} routeTitle={routeTitle} />
+          <LayananData filter={filter} />
         </Item.Body>
-      </StackV>
+      </ConstrainedContainer>
     </MainView.Content>
   );
 }
