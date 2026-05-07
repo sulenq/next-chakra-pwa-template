@@ -4,7 +4,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Disclosure } from "@/components/ui/disclosure";
 import { Divider } from "@/components/ui/divider";
 import { Img } from "@/components/ui/img";
-import { P } from "@/components/ui/p";
+import { P, TNum } from "@/components/ui/p";
 import { SearchInput } from "@/components/ui/search-input";
 import { StackV } from "@/components/ui/stack";
 import { BackButton } from "@/components/widgets/back-button";
@@ -325,7 +325,7 @@ const DataGridRoot = (props: DataGridRootProps) => {
 
       if (isSelected) {
         setAllRowsSelected(false);
-        return ps.filter((id) => id !== id);
+        return ps.filter((pid) => pid !== id);
       } else {
         if (data?.length === selectedRows.length + 1) {
           setAllRowsSelected(true);
@@ -372,9 +372,9 @@ const DataGridRoot = (props: DataGridRootProps) => {
               rounded={themeContext.radii.container}
               pointerEvents={"auto"}
             >
-              <P
-                mx={4}
-              >{`${selectedRows.length} ${t.selected.toLowerCase()}`}</P>
+              <P mx={4}>
+                <TNum>{`${selectedRows.length} ${t.selected.toLowerCase()}`}</TNum>
+              </P>
 
               <Divider dir={"vertical"} h={"20px"} />
 
