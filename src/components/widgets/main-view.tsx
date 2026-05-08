@@ -4,6 +4,7 @@ import { Btn } from "@/components/ui/btn";
 import { Divider } from "@/components/ui/divider";
 import { P, PProps } from "@/components/ui/p";
 import { Stack, StackH, StackV } from "@/components/ui/stack";
+import { Tooltip } from "@/components/ui/tooltip";
 import { AppIconLucide } from "@/components/widgets/app-icon";
 import { BackButton } from "@/components/widgets/back-button";
 import { Calendar } from "@/components/widgets/calendar";
@@ -11,7 +12,6 @@ import { ClampText } from "@/components/widgets/clamp-text";
 import { Clock } from "@/components/widgets/clock";
 import { DotIndicator } from "@/components/widgets/indicator";
 import { Today } from "@/components/widgets/today";
-import { ToggleTip } from "@/components/widgets/toggle-tip";
 import {
   CONTSTRAINED_CONTAINER_MAX_W,
   R_SPACING_MD,
@@ -26,9 +26,9 @@ import { useMergedRefs } from "@/hooks/use-merge-refs";
 import { useScreen } from "@/hooks/use-screen";
 import { Nav } from "@/types/global.types";
 import { isEmptyArray, last } from "@/utils/array";
-import { capitalizeWords, pluckString } from "@/utils/string";
 import { getActiveNavs } from "@/utils/route";
-import { HStack, Icon, StackProps } from "@chakra-ui/react";
+import { capitalizeWords, pluckString } from "@/utils/string";
+import { Icon, StackProps } from "@chakra-ui/react";
 import { IconSlash } from "@tabler/icons-react";
 import { HeadsetIcon, NavigationIcon } from "lucide-react";
 import { usePathname } from "next/navigation";
@@ -81,20 +81,19 @@ export const NavBreadcrumb = (props: any) => {
   }, [pathname, sw]);
 
   return (
-    <HStack gap={1} ml={"-4px"} h={"36px"} cursor={"pointer"} {...restProps}>
+    <StackH align={"center"} gap={1} ml={"-4px"} h={"36px"} {...restProps}>
       {backPath && (
         <BackButton iconButton clicky={false} backPath={backPath} size={"sm"} />
       )}
 
-      <ToggleTip
+      <Tooltip
         content={currentActiveNavs
           .map((nav) => {
             return nav?.label || pluckString(t, nav?.labelKey);
           })
           .join(" / ")}
-        maxW={"400px"}
       >
-        <HStack color={"fg.subtle"} gap={0} ml={"-4px"}>
+        <StackH maxW={"400px"} color={"fg.subtle"} ml={"-4px"}>
           <Icon boxSize={5} opacity={0.6} rotate={"-12deg"}>
             <IconSlash stroke={1.5} />
           </Icon>
@@ -103,7 +102,7 @@ export const NavBreadcrumb = (props: any) => {
 
           {activeNavs.map((nav: Nav, index: number) => {
             return (
-              <HStack key={index} gap={0} color={"fg.subtle"}>
+              <StackH key={index} color={"fg.subtle"}>
                 {index !== 0 && (
                   <>
                     {backPath && (
@@ -126,12 +125,12 @@ export const NavBreadcrumb = (props: any) => {
                 <P fontSize={"sm"} lineClamp={1}>
                   {nav?.label ? nav?.label : pluckString(t, nav.labelKey)}
                 </P>
-              </HStack>
+              </StackH>
             );
           })}
-        </HStack>
-      </ToggleTip>
-    </HStack>
+        </StackH>
+      </Tooltip>
+    </StackH>
   );
 };
 
@@ -355,9 +354,11 @@ const MainViewHeader = (props: MainViewHeaderProps) => {
   const resolvedTitle = title || navTitle;
 
   return (
-    <HStack
+    <StackH
       className={"MainViewHeader"}
       flexShrink={0}
+      align={"center"}
+      gap={2}
       w={"full"}
       minH={TOP_BAR_H}
       px={R_SPACING_MD}
@@ -370,7 +371,7 @@ const MainViewHeader = (props: MainViewHeaderProps) => {
       )}
 
       {children}
-    </HStack>
+    </StackH>
   );
 };
 

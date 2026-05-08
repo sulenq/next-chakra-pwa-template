@@ -2,7 +2,6 @@
 
 import { P, PProps } from "@/components/ui/p";
 import { Tooltip } from "@/components/ui/tooltip";
-import { ToggleTip } from "@/components/widgets/toggle-tip";
 import { useHasHover } from "@/hooks/use-has-hover";
 
 // -----------------------------------------------------------------
@@ -28,17 +27,27 @@ export const ClampText = (props: PProps) => {
   }
 
   return (
-    <ToggleTip
+    <Tooltip
       content={children}
-      rootProps={{
-        positioning: {
-          placement: "bottom-start",
-        },
+      positioning={{
+        placement: "bottom-start",
       }}
     >
-      <P w={"fit"} lineClamp={1} cursor={"pointer"} {...restProps}>
+      <P w={"fit"} lineClamp={1} {...restProps}>
         {children}
       </P>
-    </ToggleTip>
+    </Tooltip>
+    // <ToggleTip
+    //   content={children}
+    //   rootProps={{
+    //     positioning: {
+    //       placement: "bottom-start",
+    //     },
+    //   }}
+    // >
+    //   <P w={"fit"} lineClamp={1} cursor={"pointer"} {...restProps}>
+    //     {children}
+    //   </P>
+    // </ToggleTip>
   );
 };
