@@ -258,14 +258,12 @@ const useDataGridContext = () => {
 // -----------------------------------------------------------------
 
 export interface GridItemCallbackProps {
-  item: any;
+  row: FormattedTableRow;
   index: number;
   details: any;
-  row: FormattedTableRow;
 }
 
 export interface DataGridRootProps extends Omit<StackProps, "page"> {
-  dataList?: any[];
   headers?: FormattedTableHeader[];
   rows?: FormattedTableRow[];
   rowOptions?: RowOptionsTableOptionGenerator[];
@@ -283,7 +281,6 @@ export interface DataGridRootProps extends Omit<StackProps, "page"> {
 const DataGridRoot = (props: DataGridRootProps) => {
   // Props
   const {
-    dataList,
     headers,
     rows,
     rowOptions,
@@ -314,7 +311,7 @@ const DataGridRoot = (props: DataGridRootProps) => {
   function handleSelectAllRows(isChecked: boolean) {
     setAllRowsSelected(!allRowsSelected);
     if (!isChecked) {
-      const allIds = dataList?.map((item) => `${item.id}`);
+      const allIds = rows?.map((row) => `${row.id}`);
       setSelectedRows(allIds || []);
     } else {
       setSelectedRows([]);
@@ -332,7 +329,7 @@ const DataGridRoot = (props: DataGridRootProps) => {
         setAllRowsSelected(false);
         return ps.filter((pid) => pid !== id);
       } else {
-        if (dataList?.length === selectedRows.length + 1) {
+        if (rows?.length === selectedRows.length + 1) {
           setAllRowsSelected(true);
         }
         return [...ps, id];
@@ -423,7 +420,6 @@ const DataGridRoot = (props: DataGridRootProps) => {
               gap={GAP}
             >
               {rows?.map((row, index) => {
-                const item = row.item;
                 const details = row?.columns?.map((col, rowIdx) => {
                   const label = headers?.[rowIdx].th;
 
@@ -453,10 +449,9 @@ const DataGridRoot = (props: DataGridRootProps) => {
                 return (
                   <Fragment key={index}>
                     {props.gridItem({
-                      item,
-                      details,
-                      index,
                       row,
+                      index,
+                      details,
                     })}
                   </Fragment>
                 );
@@ -470,7 +465,7 @@ const DataGridRoot = (props: DataGridRootProps) => {
           <DataFooter
             limit={limit}
             setLimit={setLimit}
-            dataLength={dataList?.length}
+            dataLength={rows?.length}
             totalData={totalData}
             page={page}
             setPage={setPage}

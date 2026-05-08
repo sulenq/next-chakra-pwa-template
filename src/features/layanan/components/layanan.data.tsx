@@ -126,12 +126,13 @@ export const LayananData = (props: LayananDataProps) => {
         />
       ) : (
         <DataGrid.Root
-          dataList={dataList}
           headers={dataListConfig.headers}
           rows={dataListConfig.rows}
           rowOptions={dataListConfig.rowOptions}
           batchOptions={dataListConfig.batchOptions}
-          gridItem={({ item, details, row }) => {
+          gridItem={({ row, details }) => {
+            const item = row.item as LayananItem;
+
             return (
               <DataGrid.Item key={item.id} id={item.id.toString()}>
                 <Box p={1}>
