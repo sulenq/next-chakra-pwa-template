@@ -2,7 +2,6 @@ import { Btn, BtnProps } from "@/components/ui/btn";
 import { Menu } from "@/components/ui/menu";
 import { StackV } from "@/components/ui/stack";
 import { AppIconLucide } from "@/components/widgets/app-icon";
-import { Confirmation } from "@/components/widgets/confirmation";
 import {
   FormattedTableRow,
   RowOptionsTableOptionGenerator,
@@ -24,9 +23,6 @@ export const RowOptions = (props: RowOptionsProps) => {
   // Props
   const { row, rowOptions, tableContainerRef, menuRootProps, ...restProps } =
     props;
-
-  // Contexts
-  // const { themeContext } = useThemeContext();
 
   return (
     <Menu.Root
@@ -55,70 +51,9 @@ export const RowOptions = (props: RowOptionsProps) => {
       <Menu.Content minW={"140px"} mr={1} zIndex={10}>
         <StackV gap={1}>
           {rowOptions?.map((item, index) => {
-            // if (item === "divider") return <MenuSeparator key={index} />;
-            // const isLastIndex = index === rowOptions.length - 1;
-
-            const option = item(row);
-
-            if (!option) return null;
-
-            const {
-              disabled = false,
-              label = "",
-              icon,
-              onClick = () => {},
-              confirmation,
-              menuItemProps,
-              override,
-            } = option;
-
-            if (confirmation)
-              return (
-                <Confirmation.Trigger
-                  key={index}
-                  w={"full"}
-                  id={`${row.id}-confirmation-${index}`}
-                  title={confirmation.title}
-                  description={confirmation.description}
-                  confirmLabel={confirmation.confirmLabel}
-                  onConfirm={confirmation.onConfirm}
-                  confirmButtonProps={confirmation.confirmButtonProps}
-                  loading={confirmation.loading}
-                  disabled={disabled}
-                >
-                  <Menu.Item
-                    value={label}
-                    color={"fg.error"}
-                    disabled={disabled}
-                    {...menuItemProps}
-                    justifyContent={"space-between"}
-                  >
-                    {label}
-                    {icon && <AppIconLucide icon={icon} />}
-                  </Menu.Item>
-                </Confirmation.Trigger>
-              );
-
-            if (override)
-              return <React.Fragment key={index}>{override}</React.Fragment>;
-
-            return (
-              <Menu.Item
-                key={index}
-                disabled={disabled}
-                value={label}
-                onClick={() => {
-                  if (!disabled) {
-                    onClick();
-                  }
-                }}
-                justifyContent={"space-between"}
-                {...menuItemProps}
-              >
-                {label}
-                {icon && <AppIconLucide icon={icon} />}
-              </Menu.Item>
-            );
+            const node = item(row);
+            if (!node) return null;
+            return <React.Fragment key={index}>{node}</React.Fragment>;
           })}
         </StackV>
       </Menu.Content>

@@ -85,23 +85,17 @@ export const LayananData = (props: LayananDataProps) => {
       };
     }),
     rowOptions: [
-      (row) => ({
-        override: <LayananUpdate item={row.item} />,
-      }),
-      (row) => ({
-        override: <LayananDelete ids={[row.id]} />,
-      }),
+      (row) => <LayananUpdate item={row.item} />,
+      (row) => <LayananDelete ids={[row.id]} />,
     ] as RowOptionsTableOptionGenerator<LayananItem>[],
     batchOptions: [
-      (ids, { clearSelectedRows }) => ({
-        override: (
-          <LayananDelete
-            ids={ids}
-            clearSelectedRows={clearSelectedRows}
-            disabled={isEmptyArray(ids)}
-          />
-        ),
-      }),
+      (ids, { clearSelectedRows }) => (
+        <LayananDelete
+          ids={ids}
+          clearSelectedRows={clearSelectedRows}
+          disabled={isEmptyArray(ids)}
+        />
+      ),
     ] as BatchOptionsTableOptionGenerator[],
   };
 

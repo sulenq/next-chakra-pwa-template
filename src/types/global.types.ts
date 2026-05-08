@@ -1,11 +1,10 @@
-import { BtnProps } from "@/components/ui/btn";
 import { ActivityActionEnum } from "@/constants/enums";
 import { AxiosRequestConfig, AxiosResponse } from "axios";
-import { LucideIcon } from "lucide-react";
 import { ReactNode } from "react";
 
 import { translations } from "@/contexts/use-locale-context";
-import { ConditionalValue, MenuItemProps, StackProps } from "@chakra-ui/react";
+import { ConditionalValue, StackProps } from "@chakra-ui/react";
+import { LucideIcon } from "lucide-react";
 
 export type ColorMode = "light" | "dark";
 
@@ -259,34 +258,15 @@ export interface FormattedTableRow<T = any> {
   }[];
 }
 
-export interface TableOption {
-  disabled?: boolean;
-  label?: string;
-  icon?: LucideIcon;
-  onClick?: () => void;
-  confirmation?: {
-    id: string;
-    title: string;
-    description: string;
-    confirmLabel: string;
-    onConfirm: () => void;
-    confirmButtonProps?: BtnProps;
-    loading?: boolean;
-    disabled?: boolean;
-  };
-  menuItemProps?: Partial<MenuItemProps>;
-  override?: ReactNode;
-}
-
 export type RowOptionsTableOptionGenerator<T = any> = (
   formattedRow: FormattedTableRow<T>,
   overloads?: any,
-) => TableOption | null | false;
+) => ReactNode | null | false;
 
 export type BatchOptionsTableOptionGenerator<T = string[]> = (
   selectedRowIds: T,
   overloads?: any,
-) => TableOption | null | false;
+) => ReactNode | null | false;
 
 // HTTP
 export interface RequestState<T = any> {

@@ -54,7 +54,12 @@ export const LayananDelete = ({ ids, clearSelectedRows, disabled }: Props) => {
       disabled={disabled}
       w={"full"}
     >
-      <Tooltip content={t.delete_}>
+      <Tooltip
+        content={t.delete_}
+        positioning={{
+          placement: "left",
+        }}
+      >
         <Menu.Item
           value={"delete"}
           color={"fg.error"}

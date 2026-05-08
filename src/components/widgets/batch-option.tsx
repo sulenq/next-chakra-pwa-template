@@ -4,7 +4,6 @@ import { Divider } from "@/components/ui/divider";
 import { Menu } from "@/components/ui/menu";
 import { P } from "@/components/ui/p";
 import { AppIconLucide } from "@/components/widgets/app-icon";
-import { Confirmation } from "@/components/widgets/confirmation";
 import { DotIndicator } from "@/components/widgets/indicator";
 import { useLocale } from "@/contexts/use-locale-context";
 import { useThemeContext } from "@/contexts/use-theme-context";
@@ -99,74 +98,11 @@ export const BatchOptions = (props: BatchOptionsProps) => {
         </Box>
 
         {batchOptions?.map((item, index) => {
-          const noSelection = selectedRows.length === 0;
-
-          // if (item === "divider") return <MenuSeparator key={index} />;
-
-          const option = item(selectedRows, {
+          const node = item(selectedRows, {
             clearSelectedRows: clearSelectedRows,
           });
-          if (!option) return null;
-
-          const {
-            disabled = false,
-            label = "",
-            icon,
-            onClick = () => {},
-            confirmation,
-            menuItemProps,
-            override,
-          } = option;
-
-          const resolvedDisabled = noSelection || disabled;
-
-          if (confirmation) {
-            return (
-              <Confirmation.Trigger
-                key={index}
-                w={"full"}
-                id={`confirmation-batch-${index}`}
-                title={confirmation.title}
-                description={confirmation.description}
-                confirmLabel={confirmation.confirmLabel}
-                onConfirm={confirmation.onConfirm}
-                confirmButtonProps={confirmation.confirmButtonProps}
-                loading={confirmation.loading}
-                disabled={disabled}
-              >
-                <Menu.Item
-                  value={label}
-                  color={"fg.error"}
-                  disabled={disabled}
-                  {...menuItemProps}
-                  justifyContent={"space-between"}
-                >
-                  {label}
-                  {icon && <AppIconLucide icon={icon} />}
-                </Menu.Item>
-              </Confirmation.Trigger>
-            );
-          }
-
-          if (override) {
-            return <Fragment key={index}>{override}</Fragment>;
-          }
-
-          return (
-            <Menu.Item
-              key={index}
-              value={label}
-              onClick={() => {
-                if (!resolvedDisabled) onClick();
-              }}
-              disabled={resolvedDisabled}
-              justifyContent={"space-between"}
-              {...menuItemProps}
-            >
-              {label}
-              {icon && <AppIconLucide icon={icon} />}
-            </Menu.Item>
-          );
+          if (!node) return null;
+          return <Fragment key={index}>{node}</Fragment>;
         })}
       </Menu.Content>
     </Menu.Root>

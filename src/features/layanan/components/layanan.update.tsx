@@ -83,7 +83,12 @@ export const LayananUpdate = ({ item }: Props) => {
 
   return (
     <>
-      <Tooltip content={"Edit"}>
+      <Tooltip
+        content={"Edit"}
+        positioning={{
+          placement: "left",
+        }}
+      >
         <Menu.Item
           value={"update"}
           onClick={onOpen}
