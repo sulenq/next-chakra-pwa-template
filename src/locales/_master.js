@@ -111,6 +111,10 @@ export const settings_navs = {
 };
 
 // Semantic UI
+export const success = {
+  id: "Berhasil",
+  en: "Success",
+};
 export const page = {
   id: "Halaman",
   en: "Page",
@@ -1384,7 +1388,7 @@ export const error_invalid_file = {
     en: "File size, number of files or type is not allowed.",
   },
 };
-export const error_signin_wrong_credentials = {
+export const error_invalid_credentials = {
   title: { id: "Login gagal", en: "Login failed" },
   description: { id: "Kredensial tidak valid.", en: "Invalid credentials." },
 };

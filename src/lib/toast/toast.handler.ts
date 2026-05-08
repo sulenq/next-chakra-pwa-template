@@ -1,28 +1,11 @@
 import { toaster } from "@/components/ui/toaster";
-import { useLocale } from "@/contexts/use-locale-context";
-
-// -----------------------------------------------------------------
-
-type ToastMessage = {
-  title: string;
-  description: string;
-};
-
-// -----------------------------------------------------------------
-
-/**
- * Get current translations outside of React context.
- * Safe because useLocale is a Zustand store.
- */
-function getT() {
-  return useLocale.getState().t;
-}
+import { MutationToastOptions, ToastMessage } from "@/lib/toast/toast.types";
+import { getT } from "@/utils/locale";
 
 // -----------------------------------------------------------------
 
 /**
  * Resolve a human-readable error message from an Axios error.
- * Mirrors the logic in useRequestOld for consistency.
  */
 export function resolveErrorMessage(error: any): ToastMessage {
   const t = getT();
@@ -39,7 +22,7 @@ export function resolveErrorMessage(error: any): ToastMessage {
         case "VALIDATION_FAILED":
           return t.error_422_default;
         case "INVALID_CREDENTIALS":
-          return t.error_signin_wrong_credentials;
+          return t.error_invalid_credentials;
         default:
           return t.error_400_default;
       }
@@ -95,7 +78,7 @@ export function toastLoading(
 }
 
 /**
- * Update an existing loading toast to success state.
+ * Create/Update an existing loading toast to success state.
  */
 export function toastSuccess(
   id: string,
@@ -110,7 +93,7 @@ export function toastSuccess(
 }
 
 /**
- * Update an existing loading toast to error state.
+ * Create/Update an existing loading toast to error state.
  * If no loading toast was shown before, use toastErrorCreate instead.
  */
 export function toastError(
@@ -149,12 +132,6 @@ export function toastDismiss(id: string): void {
 }
 
 // -----------------------------------------------------------------
-
-export interface MutationToastOptions {
-  loadingMessage?: Partial<ToastMessage>;
-  successMessage?: Partial<ToastMessage>;
-  errorMessage?: Partial<ToastMessage>;
-}
 
 /**
  * Returns ready-to-use onMutate / onSuccess / onError handlers

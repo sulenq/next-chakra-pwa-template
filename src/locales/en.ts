@@ -143,6 +143,10 @@ const translations = {
     "title": "An error occurred",
     "description": "An unknown error occurred. Please try again."
   },
+  "error_invalid_credentials": {
+    "title": "Login failed",
+    "description": "Invalid credentials."
+  },
   "error_invalid_file": {
     "title": "Invalid file",
     "description": "File size, number of files or type is not allowed."
@@ -158,10 +162,6 @@ const translations = {
   "error_network": {
     "title": "Server connection problem",
     "description": "Unable to connect to the server. Try again later."
-  },
-  "error_signin_wrong_credentials": {
-    "title": "Login failed",
-    "description": "Invalid credentials."
   },
   "errpr_location_support": {
     "title": "Location not supported",
@@ -437,6 +437,7 @@ const translations = {
   "start_time": "Start time",
   "student": "Student",
   "submit": "Submit",
+  "success": "Success",
   "success_200_default": {
     "title": "Ok",
     "description": "Request was successful."

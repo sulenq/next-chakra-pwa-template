@@ -143,6 +143,10 @@ const translations = {
     "title": "Terjadi kesalahan",
     "description": "Terjadi kesalahan yang tidak diketahui. Silakan coba lagi."
   },
+  "error_invalid_credentials": {
+    "title": "Login gagal",
+    "description": "Kredensial tidak valid."
+  },
   "error_invalid_file": {
     "title": "File tidak valid",
     "description": "Ukuran, jumlah file atau tipe file tidak sesuai."
@@ -158,10 +162,6 @@ const translations = {
   "error_network": {
     "title": "Gangguan koneksi ke server",
     "description": "Tidak dapat terhubung ke server. Coba lagi nanti."
-  },
-  "error_signin_wrong_credentials": {
-    "title": "Login gagal",
-    "description": "Kredensial tidak valid."
   },
   "errpr_location_support": {
     "title": "Lokasi tidak didukung",
@@ -437,6 +437,7 @@ const translations = {
   "start_time": "Waktu mulai",
   "student": "Pelajar",
   "submit": "Submit",
+  "success": "Berhasil",
   "success_200_default": {
     "title": "Ok",
     "description": "Permintaan berhasil diproses."

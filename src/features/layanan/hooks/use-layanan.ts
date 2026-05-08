@@ -1,3 +1,4 @@
+import { useLocale } from "@/contexts/use-locale-context";
 import { invalidateLayanan } from "@/features/layanan/query/layanan.invalidate";
 import {
   createLayanan,
@@ -8,8 +9,10 @@ import {
 import { queryKeys } from "@/lib/tanstack-query/query.keys";
 import { mutationToastHandlers } from "@/lib/toast/toast.handler";
 import { BaseDataListParams } from "@/types/global.types";
+import { getMainViewTitle } from "@/utils/route";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { GenericFormData } from "axios";
+import { usePathname } from "next/navigation";
 
 // -----------------------------------------------------------------
 
@@ -26,7 +29,18 @@ export const useLayananQuery = (params: BaseDataListParams) => {
 };
 
 export const useCreateLayananMutation = () => {
-  const toast = mutationToastHandlers("layanan-create");
+  const { t } = useLocale();
+  const pathname = usePathname();
+  const mainViewTitle = getMainViewTitle(pathname, t);
+
+  const toast = mutationToastHandlers("layanan-create", {
+    loadingMessage: {
+      title: `${t.add} ${mainViewTitle}`,
+    },
+    successMessage: {
+      title: `${t.add} ${mainViewTitle} ${t.success}`,
+    },
+  });
 
   return useMutation({
     mutationFn: (data: GenericFormData) => createLayanan(data),
@@ -40,7 +54,18 @@ export const useCreateLayananMutation = () => {
 };
 
 export const useUpdateLayananMutation = () => {
-  const toast = mutationToastHandlers("layanan-update");
+  const { t } = useLocale();
+  const pathname = usePathname();
+  const mainViewTitle = getMainViewTitle(pathname, t);
+
+  const toast = mutationToastHandlers("layanan-update", {
+    loadingMessage: {
+      title: `${t.update} ${mainViewTitle}`,
+    },
+    successMessage: {
+      title: `${t.update} ${mainViewTitle} ${t.success}`,
+    },
+  });
 
   return useMutation({
     mutationFn: ({
@@ -60,7 +85,18 @@ export const useUpdateLayananMutation = () => {
 };
 
 export const useDeleteLayananMutation = () => {
-  const toast = mutationToastHandlers("layanan-delete");
+  const { t } = useLocale();
+  const pathname = usePathname();
+  const mainViewTitle = getMainViewTitle(pathname, t);
+
+  const toast = mutationToastHandlers("layanan-delete", {
+    loadingMessage: {
+      title: `${t.delete_} ${mainViewTitle}`,
+    },
+    successMessage: {
+      title: `${t.delete_} ${mainViewTitle} ${t.success}`,
+    },
+  });
 
   return useMutation({
     mutationFn: (ids: (string | number)[]) => deleteLayanan(ids),

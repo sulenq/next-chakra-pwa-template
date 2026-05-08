@@ -99,7 +99,7 @@ export const useRequest = <T = any>(props: UseRequestOptions) => {
           case "VALIDATION_FAILED":
             return t.error_422_default;
           case "INVALID_CREDENTIALS":
-            return t.error_signin_wrong_credentials;
+            return t.error_invalid_credentials;
           default:
             return t.error_400_default;
         }
@@ -107,7 +107,7 @@ export const useRequest = <T = any>(props: UseRequestOptions) => {
       case 401:
         switch (errorCase) {
           case "FORBIDDEN_ROLE":
-            return t.error_signin_wrong_credentials;
+            return t.error_invalid_credentials;
           default:
             return t.error_401_default;
         }
