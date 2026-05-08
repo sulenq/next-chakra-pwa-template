@@ -42,7 +42,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 
 // -----------------------------------------------------------------
 
-export interface DataTableProps extends Omit<StackProps, "page"> {
+export interface DataTableRootProps extends Omit<StackProps, "page"> {
   trBodyProps?: TableRowProps | any;
   headers?: FormattedTableHeader[];
   rows?: FormattedTableRow[];
@@ -60,7 +60,7 @@ export interface DataTableProps extends Omit<StackProps, "page"> {
   contentContainerProps?: StackProps;
 }
 
-export const DataTableRoot = (props: DataTableProps) => {
+export const DataTableRoot = (props: DataTableRootProps) => {
   // Props
   const {
     trBodyProps,
