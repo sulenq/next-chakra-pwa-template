@@ -60,7 +60,7 @@ export interface DataTableProps extends Omit<StackProps, "page"> {
   contentContainerProps?: StackProps;
 }
 
-export const DataTableDisplay = (props: DataTableProps) => {
+export const DataTableRoot = (props: DataTableProps) => {
   // Props
   const {
     trBodyProps,
@@ -535,5 +535,5 @@ export const DataTableDisplay = (props: DataTableProps) => {
 // -----------------------------------------------------------------
 
 export const DataTable = {
-  Display: DataTableDisplay,
+  Root: DataTableRoot,
 };

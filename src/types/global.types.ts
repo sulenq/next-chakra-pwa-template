@@ -246,7 +246,7 @@ export interface FormattedTableHeader {
 export interface FormattedTableRow<T = any> {
   id: string;
   index: number;
-  data: T;
+  item: T;
   dim?: boolean;
   columns: {
     td: any;

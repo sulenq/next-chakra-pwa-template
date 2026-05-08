@@ -66,7 +66,7 @@ export const LayananData = (props: LayananDataProps) => {
       return {
         id: `${item.id}`,
         index: index,
-        data: item,
+        item: item,
         columns: [
           {
             td: <Img src={imgUrl(item.icon)} boxSize={"20px"} fluid />,
@@ -86,7 +86,7 @@ export const LayananData = (props: LayananDataProps) => {
     }),
     rowOptions: [
       (row) => ({
-        override: <LayananUpdate item={row.data} />,
+        override: <LayananUpdate item={row.item} />,
       }),
       (row) => ({
         override: <LayananDelete ids={[row.id]} />,
@@ -118,7 +118,7 @@ export const LayananData = (props: LayananDataProps) => {
   return (
     <>
       {isDisplayTable ? (
-        <DataTable.Display
+        <DataTable.Root
           headers={dataListConfig.headers}
           rows={dataListConfig.rows}
           rowOptions={dataListConfig.rowOptions}
@@ -126,8 +126,11 @@ export const LayananData = (props: LayananDataProps) => {
         />
       ) : (
         <DataGrid.Root
-          data={dataList}
-          dataListConfig={dataListConfig}
+          dataList={dataList}
+          headers={dataListConfig.headers}
+          rows={dataListConfig.rows}
+          rowOptions={dataListConfig.rowOptions}
+          batchOptions={dataListConfig.batchOptions}
           gridItem={({ item, details, row }) => {
             return (
               <DataGrid.Item key={item.id} id={item.id.toString()}>

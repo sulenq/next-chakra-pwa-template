@@ -23,7 +23,8 @@ import { useLocale } from "@/contexts/use-locale-context";
 import { useThemeContext } from "@/contexts/use-theme-context";
 import { usePopDisclosure } from "@/hooks/use-pop-disclosure";
 import {
-  DataListConfig,
+  BatchOptionsTableOptionGenerator,
+  FormattedTableHeader,
   FormattedTableRow,
   RowOptionsTableOptionGenerator,
 } from "@/types/global.types";
@@ -236,7 +237,6 @@ const DataGridRowOptions = (props: DataGridRowOptionsProps) => {
 // -----------------------------------------------------------------
 
 export interface DataGridContextValue {
-  dataListConfig: DataListConfig;
   selectedRows: string[];
   toggleRowSelection: (id: string) => void;
 }
@@ -265,8 +265,11 @@ export interface GridItemCallbackProps {
 }
 
 export interface DataGridRootProps extends Omit<StackProps, "page"> {
-  data?: any[];
-  dataListConfig: DataListConfig;
+  dataList?: any[];
+  headers?: FormattedTableHeader[];
+  rows?: FormattedTableRow[];
+  rowOptions?: RowOptionsTableOptionGenerator[];
+  batchOptions?: BatchOptionsTableOptionGenerator[];
   gridItem: (props: GridItemCallbackProps) => React.ReactNode;
   limit?: number;
   setLimit?: (limit: number) => void;
@@ -274,14 +277,17 @@ export interface DataGridRootProps extends Omit<StackProps, "page"> {
   setPage?: (page: number) => void;
   totalPage?: number;
   totalData?: number;
-  minChildWidth?: string;
+  minChildWidth?: string; // px
 }
 
 const DataGridRoot = (props: DataGridRootProps) => {
   // Props
   const {
-    data,
-    dataListConfig,
+    dataList,
+    headers,
+    rows,
+    rowOptions,
+    batchOptions,
     limit,
     setLimit,
     page,
@@ -302,14 +308,13 @@ const DataGridRoot = (props: DataGridRootProps) => {
 
   // Derived Values
   const hasFooter = limit && setLimit && page && setPage;
-  const shouldShowBatch =
-    dataListConfig?.batchOptions && !isEmptyArray(selectedRows);
+  const shouldShowBatch = batchOptions && !isEmptyArray(selectedRows);
 
   // Utils
   function handleSelectAllRows(isChecked: boolean) {
     setAllRowsSelected(!allRowsSelected);
     if (!isChecked) {
-      const allIds = data?.map((row) => `${row.id}`);
+      const allIds = dataList?.map((item) => `${item.id}`);
       setSelectedRows(allIds || []);
     } else {
       setSelectedRows([]);
@@ -327,7 +332,7 @@ const DataGridRoot = (props: DataGridRootProps) => {
         setAllRowsSelected(false);
         return ps.filter((pid) => pid !== id);
       } else {
-        if (data?.length === selectedRows.length + 1) {
+        if (dataList?.length === selectedRows.length + 1) {
           setAllRowsSelected(true);
         }
         return [...ps, id];
@@ -338,7 +343,6 @@ const DataGridRoot = (props: DataGridRootProps) => {
   return (
     <DataGridContext.Provider
       value={{
-        dataListConfig,
         selectedRows,
         toggleRowSelection,
       }}
@@ -383,7 +387,7 @@ const DataGridRoot = (props: DataGridRootProps) => {
                 size={"md"}
                 selectedRows={selectedRows}
                 clearSelectedRows={handleClearSelectedRows}
-                batchOptions={dataListConfig?.batchOptions}
+                batchOptions={batchOptions}
                 allRowsSelected={allRowsSelected}
                 handleSelectAllRows={handleSelectAllRows}
                 pl={3}
@@ -418,10 +422,10 @@ const DataGridRoot = (props: DataGridRootProps) => {
               templateColumns={`repeat(auto-fill, minmax(${minChildWidth}, 1fr))`}
               gap={GAP}
             >
-              {data?.map((item, index) => {
-                const row = dataListConfig.rows?.[index] as FormattedTableRow;
+              {rows?.map((row, index) => {
+                const item = row.item;
                 const details = row?.columns?.map((col, rowIdx) => {
-                  const label = dataListConfig.headers?.[rowIdx].th;
+                  const label = headers?.[rowIdx].th;
 
                   switch (col.dataType) {
                     case "image":
@@ -429,7 +433,7 @@ const DataGridRoot = (props: DataGridRootProps) => {
                         label,
                         render: (
                           <ImgViewer
-                            id={`img-${rowIdx}-${item?.id}`}
+                            id={`img-${rowIdx}-${row?.id}`}
                             src={imgUrl(col.value)}
                             w={"33%"}
                           >
@@ -466,7 +470,7 @@ const DataGridRoot = (props: DataGridRootProps) => {
           <DataFooter
             limit={limit}
             setLimit={setLimit}
-            dataLength={data?.length}
+            dataLength={dataList?.length}
             totalData={totalData}
             page={page}
             setPage={setPage}
