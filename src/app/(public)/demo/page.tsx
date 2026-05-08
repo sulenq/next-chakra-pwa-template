@@ -34,7 +34,10 @@ import { PDFViewer } from "@/components/widgets/pdf-viewer";
 import SelectWorkspaceCategory from "@/components/widgets/select-workspace-category";
 import { Today } from "@/components/widgets/today";
 import VideoPlayer from "@/components/widgets/video-player";
-import { FormattedTableRow } from "@/types/global.types";
+import {
+  BatchOptionsTableOptionGenerator,
+  FormattedTableRow,
+} from "@/types/global.types";
 import { OPTIONS_RELIGION } from "@/constants/select-options";
 import { MENU_ICON_BOX_SIZE } from "@/constants/styles";
 import { useLocale } from "@/contexts/use-locale-context";
@@ -50,6 +53,8 @@ import { useState } from "react";
 import * as yup from "yup";
 import { DataTable } from "@/components/widgets/data-table";
 import { Menu } from "@/components/ui/menu";
+import { AppIconLucide } from "@/components/widgets/app-icon";
+import { isEmptyArray } from "@/utils/array";
 
 // TODO_DEV delete this component
 
@@ -133,7 +138,7 @@ const Delete = (props: any) => {
 };
 
 const DemoDataTable = () => {
-  const tableProps = {
+  const dataListConfig = {
     headers: [
       {
         th: "Name",
@@ -152,7 +157,7 @@ const DemoDataTable = () => {
       {
         id: "1",
         index: 1,
-        data: { name: "Alice Johnson", age: 28, joinDate: "2023-01-12" },
+        item: { name: "Alice Johnson", age: 28, joinDate: "2023-01-12" },
         columns: [
           {
             td: "Alice Johnson",
@@ -170,7 +175,7 @@ const DemoDataTable = () => {
       {
         id: "3",
         index: 2,
-        data: { name: "Charlie Davis", age: 41, joinDate: "2021-05-17" },
+        item: { name: "Charlie Davis", age: 41, joinDate: "2021-05-17" },
         columns: [
           {
             td: "Charlie Davis",
@@ -188,7 +193,7 @@ const DemoDataTable = () => {
       {
         id: "2",
         index: 3,
-        data: { name: "Bob Smith", age: 34, joinDate: "2022-09-30" },
+        item: { name: "Bob Smith", age: 34, joinDate: "2022-09-30" },
         columns: [
           {
             td: "Bob Smith",
@@ -206,7 +211,7 @@ const DemoDataTable = () => {
       {
         id: "1",
         index: 1,
-        data: { name: "Alice Johnson", age: 28, joinDate: "2023-01-12" },
+        item: { name: "Alice Johnson", age: 28, joinDate: "2023-01-12" },
         columns: [
           {
             td: "Alice Johnson",
@@ -224,7 +229,7 @@ const DemoDataTable = () => {
       {
         id: "3",
         index: 2,
-        data: { name: "Charlie Davis", age: 41, joinDate: "2021-05-17" },
+        item: { name: "Charlie Davis", age: 41, joinDate: "2021-05-17" },
         columns: [
           {
             td: "Charlie Davis",
@@ -242,7 +247,7 @@ const DemoDataTable = () => {
       {
         id: "2",
         index: 3,
-        data: { name: "Bob Smith", age: 34, joinDate: "2022-09-30" },
+        item: { name: "Bob Smith", age: 34, joinDate: "2022-09-30" },
         columns: [
           {
             td: "Bob Smith",
@@ -260,7 +265,7 @@ const DemoDataTable = () => {
       {
         id: "1",
         index: 1,
-        data: { name: "Alice Johnson", age: 28, joinDate: "2023-01-12" },
+        item: { name: "Alice Johnson", age: 28, joinDate: "2023-01-12" },
         columns: [
           {
             td: "Alice Johnson",
@@ -278,7 +283,7 @@ const DemoDataTable = () => {
       {
         id: "3",
         index: 2,
-        data: { name: "Charlie Davis", age: 41, joinDate: "2021-05-17" },
+        item: { name: "Charlie Davis", age: 41, joinDate: "2021-05-17" },
         columns: [
           {
             td: "Charlie Davis",
@@ -296,7 +301,7 @@ const DemoDataTable = () => {
       {
         id: "2",
         index: 3,
-        data: { name: "Bob Smith", age: 34, joinDate: "2022-09-30" },
+        item: { name: "Bob Smith", age: 34, joinDate: "2022-09-30" },
         columns: [
           {
             td: "Bob Smith",
@@ -314,7 +319,7 @@ const DemoDataTable = () => {
       {
         id: "1",
         index: 1,
-        data: { name: "Alice Johnson", age: 28, joinDate: "2023-01-12" },
+        item: { name: "Alice Johnson", age: 28, joinDate: "2023-01-12" },
         columns: [
           {
             td: "Alice Johnson",
@@ -332,7 +337,7 @@ const DemoDataTable = () => {
       {
         id: "3",
         index: 2,
-        data: { name: "Charlie Davis", age: 41, joinDate: "2021-05-17" },
+        item: { name: "Charlie Davis", age: 41, joinDate: "2021-05-17" },
         columns: [
           {
             td: "Charlie Davis",
@@ -350,7 +355,7 @@ const DemoDataTable = () => {
       {
         id: "2",
         index: 3,
-        data: { name: "Bob Smith", age: 34, joinDate: "2022-09-30" },
+        item: { name: "Bob Smith", age: 34, joinDate: "2022-09-30" },
         columns: [
           {
             td: "Bob Smith",
@@ -368,7 +373,7 @@ const DemoDataTable = () => {
       {
         id: "1",
         index: 1,
-        data: { name: "Alice Johnson", age: 28, joinDate: "2023-01-12" },
+        item: { name: "Alice Johnson", age: 28, joinDate: "2023-01-12" },
         columns: [
           {
             td: "Alice Johnson",
@@ -386,7 +391,7 @@ const DemoDataTable = () => {
       {
         id: "3",
         index: 2,
-        data: { name: "Charlie Davis", age: 41, joinDate: "2021-05-17" },
+        item: { name: "Charlie Davis", age: 41, joinDate: "2021-05-17" },
         columns: [
           {
             td: "Charlie Davis",
@@ -404,7 +409,7 @@ const DemoDataTable = () => {
       {
         id: "2",
         index: 3,
-        data: { name: "Bob Smith", age: 34, joinDate: "2022-09-30" },
+        item: { name: "Bob Smith", age: 34, joinDate: "2022-09-30" },
         columns: [
           {
             td: "Bob Smith",
@@ -422,7 +427,7 @@ const DemoDataTable = () => {
       {
         id: "1",
         index: 1,
-        data: { name: "Alice Johnson", age: 28, joinDate: "2023-01-12" },
+        item: { name: "Alice Johnson", age: 28, joinDate: "2023-01-12" },
         columns: [
           {
             td: "Alice Johnson",
@@ -440,7 +445,7 @@ const DemoDataTable = () => {
       {
         id: "3",
         index: 2,
-        data: { name: "Charlie Davis", age: 41, joinDate: "2021-05-17" },
+        item: { name: "Charlie Davis", age: 41, joinDate: "2021-05-17" },
         columns: [
           {
             td: "Charlie Davis",
@@ -458,7 +463,7 @@ const DemoDataTable = () => {
       {
         id: "2",
         index: 3,
-        data: { name: "Bob Smith", age: 34, joinDate: "2022-09-30" },
+        item: { name: "Bob Smith", age: 34, joinDate: "2022-09-30" },
         columns: [
           {
             td: "Bob Smith",
@@ -476,7 +481,7 @@ const DemoDataTable = () => {
       {
         id: "1",
         index: 1,
-        data: { name: "Alice Johnson", age: 28, joinDate: "2023-01-12" },
+        item: { name: "Alice Johnson", age: 28, joinDate: "2023-01-12" },
         columns: [
           {
             td: "Alice Johnson",
@@ -494,7 +499,7 @@ const DemoDataTable = () => {
       {
         id: "3",
         index: 2,
-        data: { name: "Charlie Davis", age: 41, joinDate: "2021-05-17" },
+        item: { name: "Charlie Davis", age: 41, joinDate: "2021-05-17" },
         columns: [
           {
             td: "Charlie Davis",
@@ -512,7 +517,7 @@ const DemoDataTable = () => {
       {
         id: "2",
         index: 3,
-        data: { name: "Bob Smith", age: 34, joinDate: "2022-09-30" },
+        item: { name: "Bob Smith", age: 34, joinDate: "2022-09-30" },
         columns: [
           {
             td: "Bob Smith",
@@ -530,7 +535,7 @@ const DemoDataTable = () => {
       {
         id: "1",
         index: 1,
-        data: { name: "Alice Johnson", age: 28, joinDate: "2023-01-12" },
+        item: { name: "Alice Johnson", age: 28, joinDate: "2023-01-12" },
         columns: [
           {
             td: "Alice Johnson",
@@ -548,7 +553,7 @@ const DemoDataTable = () => {
       {
         id: "3",
         index: 2,
-        data: { name: "Charlie Davis", age: 41, joinDate: "2021-05-17" },
+        item: { name: "Charlie Davis", age: 41, joinDate: "2021-05-17" },
         columns: [
           {
             td: "Charlie Davis",
@@ -566,7 +571,7 @@ const DemoDataTable = () => {
       {
         id: "2",
         index: 3,
-        data: { name: "Bob Smith", age: 34, joinDate: "2022-09-30" },
+        item: { name: "Bob Smith", age: 34, joinDate: "2022-09-30" },
         columns: [
           {
             td: "Bob Smith",
@@ -583,50 +588,46 @@ const DemoDataTable = () => {
       },
     ],
     rowOptions: [
-      () => ({
-        label: "Edit",
-        icon: PencilIcon,
-        onClick: () => console.log("Edit"),
-      }),
-      () => ({
-        label: "Restore",
-        icon: RefreshCcwDotIcon,
-        onClick: () => console.log("Restore"),
-      }),
-      (row: FormattedTableRow<any>) => ({
-        override: (
-          <Delete
-            deleteIds={[row.data.id]}
-            disabled={!!row.data.deletedAt}
-            routeTitle={"User"}
-          />
-        ),
-      }),
+      () => (
+        <Btn>
+          Edit
+          <AppIconLucide icon={PencilIcon} />
+        </Btn>
+      ),
+      () => (
+        <Btn>
+          Restore
+          <AppIconLucide icon={RefreshCcwDotIcon} />
+        </Btn>
+      ),
+      (row: FormattedTableRow<any>) => (
+        <Delete
+          deleteIds={[row.item.id]}
+          disabled={!!row.item.deletedAt}
+          routeTitle={"User"}
+        />
+      ),
     ],
     batchOptions: [
-      (ids: string[]) => ({
-        label: "Restore",
-        icon: RefreshCcwDotIcon,
-        onClick: () => console.log("Restore", ids),
-      }),
-      (ids: string[]) => ({
-        label: "Delete",
-        icon: TrashIcon,
-        menuItemProps: { color: "fg.error" },
-        onClick: () => console.log("Delete", ids),
-      }),
-    ],
+      () => (
+        <Btn>
+          Restore
+          <AppIconLucide icon={RefreshCcwDotIcon} />
+        </Btn>
+      ),
+      (ids) => <Delete deleteIds={ids} disabled={isEmptyArray(ids)} />,
+    ] as BatchOptionsTableOptionGenerator[],
   };
 
   const [limit, setLimit] = useState<number>(15);
   const [page, setPage] = useState<number>(1);
 
   return (
-    <DataTable.Display
-      headers={tableProps.headers}
-      rows={tableProps.rows}
-      rowOptions={tableProps.rowOptions}
-      batchOptions={tableProps.batchOptions}
+    <DataTable.Root
+      headers={dataListConfig.headers}
+      rows={dataListConfig.rows}
+      rowOptions={dataListConfig.rowOptions}
+      batchOptions={dataListConfig.batchOptions}
       limit={limit}
       setLimit={setLimit}
       page={page}

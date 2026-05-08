@@ -4,7 +4,7 @@ import {
   ColorModeProvider,
   type ColorModeProviderProps,
 } from "@/components/ui/color-mode";
-import { queryClient } from "@/lib/tanstack-query/query-client";
+import { queryClient } from "@/lib/tanstack-query/query.client";
 import chakraCustomSystem from "@/theme/chakra-custom-system";
 import { ChakraProvider as ChakraProviderOrigin } from "@chakra-ui/react";
 import { QueryClientProvider } from "@tanstack/react-query";

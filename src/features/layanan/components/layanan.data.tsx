@@ -45,7 +45,8 @@ export const LayananData = (props: LayananDataProps) => {
     useDataDisplay((s) => s.getDisplay(LAYANAN_ID)) === "table";
 
   // Query
-  const { dataList, isLoading, isError, refetch } = useLayananQuery(filter);
+  const { dataList, isLoading, isFetching, isError, refetch } =
+    useLayananQuery(filter);
 
   // Constants
   const dataListConfig: DataListConfig = {
@@ -99,18 +100,14 @@ export const LayananData = (props: LayananDataProps) => {
     ] as BatchOptionsTableOptionGenerator[],
   };
 
-  if (isLoading)
-    return (
-      <>
-        <TopLoadingBar loading={isLoading} />
-        <TableSkeleton />
-      </>
-    );
+  if (isLoading) return <TableSkeleton />;
   if (isError) return <FeedbackRetry onRetry={refetch} />;
   if (isEmptyArray(dataList)) return <FeedbackNoData />;
 
   return (
     <>
+      <TopLoadingBar loading={isFetching} />
+
       {isDisplayTable ? (
         <DataTable.Root
           headers={dataListConfig.headers}
