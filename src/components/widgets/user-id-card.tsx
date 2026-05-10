@@ -103,12 +103,19 @@ export const UserIdCard = (props: UserIdCardProps) => {
   ]);
 
   return (
-    <StackV pos={"relative"} {...restProps}>
+    <StackV
+      className={"UserIdCard"}
+      align={"center"}
+      w={"full"}
+      pos={"relative"}
+      {...restProps}
+    >
       {/* Card behind */}
       <StackV
         flex={1}
         aspectRatio={1 / 1.6}
         w={"full"}
+        maxW={restProps?.maxW}
         bg={`${themeContext.colorPalette}.solid`}
         rounded={themeContext.radii.component}
         shadow={"xs"}
@@ -139,6 +146,8 @@ export const UserIdCard = (props: UserIdCardProps) => {
       <StackV
         flex={1}
         aspectRatio={1 / 1.6}
+        w={"full"}
+        maxW={restProps?.maxW}
         bg={"bg.bodySolid"}
         rounded={themeContext.radii.component}
         shadow={"sm"}

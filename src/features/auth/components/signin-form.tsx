@@ -45,8 +45,8 @@ const Signedin = () => {
   const { themeContext } = useThemeContext();
 
   return (
-    <StackV gap={8} w={"220px"} m={"auto"}>
-      <UserIdCard maskingTop={"8px"} withSignoutButton />
+    <StackV align={"center"} gap={8} w={"220px"} m={"auto"}>
+      <UserIdCard maskingTop={"8px"} withSignoutButton maxW={"180px"} />
 
       <StackH gap={2} justify={"center"}>
         {/* TODO_DEV: Remove below component in real dev */}
