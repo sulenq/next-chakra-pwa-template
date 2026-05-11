@@ -1,10 +1,9 @@
 "use client";
 
 import { Btn } from "@/components/ui/btn";
-import { CContainer } from "@/components/ui/c-container";
 import { P } from "@/components/ui/p";
 import { SearchInput } from "@/components/ui/search-input";
-import { StackV } from "@/components/ui/stack";
+import { StackH, StackV } from "@/components/ui/stack";
 import { toaster } from "@/components/ui/toaster";
 import { Tooltip } from "@/components/ui/tooltip";
 import { AppIconLucide } from "@/components/widgets/app-icon";
@@ -19,11 +18,6 @@ import { LANGUAGES } from "@/constants/languages";
 import { R_SPACING_MD } from "@/constants/styles";
 import { TIME_FORMATS } from "@/constants/time-formats";
 import { TIME_ZONES } from "@/constants/timezones";
-import {
-  type DateFormat,
-  type LocaleOption,
-  type TimeFormat,
-} from "@/types/global.types";
 import { UOM_FORMATS } from "@/constants/uom-formats";
 import useDateFormat from "@/contexts/use-date-format-context";
 import { useLocale } from "@/contexts/use-locale-context";
@@ -31,11 +25,16 @@ import { useThemeContext } from "@/contexts/use-theme-context";
 import useTimeFormat from "@/contexts/use-time-format-context";
 import useTimezone from "@/contexts/use-timezone-context";
 import useUOMFormat from "@/contexts/use-uom-format-context";
+import {
+  type DateFormat,
+  type LocaleOption,
+  type TimeFormat,
+} from "@/types/global.types";
 import { isEmptyArray } from "@/utils/array";
 import { formatDate, formatTime } from "@/utils/formatter";
 import { capitalizeWords, pluckString } from "@/utils/string";
 import { getLocalTimezone, makeTime } from "@/utils/time";
-import { chakra, HStack, SimpleGrid, Text } from "@chakra-ui/react";
+import { chakra, SimpleGrid, Text } from "@chakra-ui/react";
 import {
   CalendarIcon,
   GlobeIcon,
@@ -57,15 +56,16 @@ const Language = () => {
   return (
     <Item.Root>
       <Item.Header borderless>
-        <HStack>
+        <StackH align={"center"}>
           <AppIconLucide icon={LanguagesIcon} />
+
           <Item.Title>{t.language}</Item.Title>
-        </HStack>
+        </StackH>
       </Item.Header>
 
       <StackV px={R_SPACING_MD} pb={R_SPACING_MD}>
         <Item.Body p={4}>
-          <HStack wrap={"wrap"}>
+          <StackH align={"center"} wrap={"wrap"}>
             {LANGUAGES.map((item, i) => {
               const isSelected = locale === item.key;
 
@@ -100,7 +100,7 @@ const Language = () => {
                 </Btn>
               );
             })}
-          </HStack>
+          </StackH>
         </Item.Body>
       </StackV>
     </Item.Root>
@@ -139,13 +139,13 @@ const Timezone = () => {
   return (
     <Item.Root>
       <Item.Header borderless justify={"space-between"}>
-        <HStack>
+        <StackH align={"center"}>
           <AppIconLucide icon={GlobeIcon} />
 
           <Item.Title>{capitalizeWords(t.timezone)}</Item.Title>
-        </HStack>
+        </StackH>
 
-        <HStack>
+        <StackH align={"center"}>
           <Btn
             size={"xs"}
             variant={"outline"}
@@ -159,12 +159,12 @@ const Timezone = () => {
           >
             Auto
           </Btn>
-        </HStack>
+        </StackH>
       </Item.Header>
 
       <StackV px={R_SPACING_MD} pb={R_SPACING_MD}>
         <Item.Body>
-          <CContainer p={4}>
+          <StackV p={4}>
             <SearchInput
               onChange={(inputValue) => {
                 setSearch(inputValue || "");
@@ -172,9 +172,9 @@ const Timezone = () => {
               inputValue={search}
               queryKey={"q-timezone-settings"}
             />
-          </CContainer>
+          </StackV>
 
-          <CContainer px={4}>
+          <StackV px={4}>
             {isEmptyArray(resolvedTimezones) && <FeedbackNotFound />}
 
             {!isEmptyArray(resolvedTimezones) && (
@@ -216,24 +216,25 @@ const Timezone = () => {
                   })}
               </SimpleGrid>
             )}
-          </CContainer>
+          </StackV>
 
-          <HStack
+          <StackH
+            align={"center"}
             p={3}
             // borderTop={"1px solid"}
             borderColor={"border.muted"}
             justify={"space-between"}
             wrap={"wrap"}
           >
-            <CContainer w={"fit"} mb={[1, null, 0]}>
+            <StackV w={"fit"} mb={[1, null, 0]}>
               <Limitation
                 limit={limit}
                 setLimit={setLimit}
                 limitOptions={LIMIT_OPTIONS}
               />
-            </CContainer>
+            </StackV>
 
-            <CContainer w={"fit"}>
+            <StackV w={"fit"}>
               <Pagination
                 page={page}
                 setPage={setPage}
@@ -243,8 +244,8 @@ const Timezone = () => {
                     : Math.floor(resolvedTimezones.length / limit)
                 }
               />
-            </CContainer>
-          </HStack>
+            </StackV>
+          </StackH>
         </Item.Body>
       </StackV>
     </Item.Root>
@@ -262,10 +263,11 @@ const DateFormat = () => {
   return (
     <Item.Root>
       <Item.Header borderless>
-        <HStack>
+        <StackH align={"center"}>
           <AppIconLucide icon={CalendarIcon} />
+
           <Item.Title>{t.date_format}</Item.Title>
-        </HStack>
+        </StackH>
       </Item.Header>
 
       <StackV px={R_SPACING_MD} pb={R_SPACING_MD}>
@@ -275,7 +277,7 @@ const DateFormat = () => {
               const isSelected = item.key === dateFormat;
 
               return (
-                <CContainer
+                <StackV
                   key={item.key}
                   p={3}
                   rounded={themeContext.radii.component}
@@ -288,13 +290,13 @@ const DateFormat = () => {
                   _active={{ bg: "bg.subtle" }}
                   transition={"200ms"}
                 >
-                  <HStack>
+                  <StackH align={"center"}>
                     <P fontWeight={"medium"} truncate>
                       {item.label}
                     </P>
 
                     {isSelected && <DotIndicator />}
-                  </HStack>
+                  </StackH>
 
                   <P color={"fg.muted"} mb={2}>
                     {item.description}
@@ -307,7 +309,7 @@ const DateFormat = () => {
                       dateFormat: item.key as DateFormat,
                     })}
                   </P>
-                </CContainer>
+                </StackV>
               );
             })}
           </SimpleGrid>
@@ -328,11 +330,11 @@ const TimeFormat = () => {
   return (
     <Item.Root>
       <Item.Header borderless>
-        <HStack>
+        <StackH align={"center"}>
           <AppIconLucide icon={HourglassIcon} />
 
           <Item.Title>{t.time_format}</Item.Title>
-        </HStack>
+        </StackH>
       </Item.Header>
 
       <StackV px={R_SPACING_MD} pb={R_SPACING_MD}>
@@ -342,7 +344,7 @@ const TimeFormat = () => {
               const isSelected = item.key === timeFormat;
 
               return (
-                <CContainer
+                <StackV
                   key={item.key}
                   p={3}
                   rounded={themeContext.radii.component}
@@ -355,20 +357,20 @@ const TimeFormat = () => {
                   _active={{ bg: "bg.subtle" }}
                   transition={"200ms"}
                 >
-                  <HStack>
+                  <StackH align={"center"}>
                     <P fontWeight={"medium"} truncate>
                       {item.label}
                     </P>
 
                     {isSelected && <DotIndicator />}
-                  </HStack>
+                  </StackH>
 
                   <P>
                     {formatTime(makeTime(new Date().toISOString()), {
                       timeFormat: item.key as TimeFormat,
                     })}
                   </P>
-                </CContainer>
+                </StackV>
               );
             })}
           </SimpleGrid>
@@ -389,10 +391,11 @@ const UOMFormat = () => {
   return (
     <Item.Root>
       <Item.Header borderless>
-        <HStack>
+        <StackH align={"center"}>
           <AppIconLucide icon={RulerDimensionLineIcon} />
+
           <Item.Title>{t.UOM_format}</Item.Title>
-        </HStack>
+        </StackH>
       </Item.Header>
 
       <StackV px={R_SPACING_MD} pb={R_SPACING_MD}>
@@ -402,7 +405,7 @@ const UOMFormat = () => {
               const isSelected = item.key === UOM;
 
               return (
-                <CContainer
+                <StackV
                   key={item.key}
                   p={3}
                   rounded={themeContext.radii.component}
@@ -415,20 +418,20 @@ const UOMFormat = () => {
                   _active={{ bg: "bg.subtle" }}
                   transition={"200ms"}
                 >
-                  <HStack>
+                  <StackH align={"center"}>
                     <P fontWeight={"medium"} truncate>
                       {item.label}
                     </P>
 
                     {isSelected && <DotIndicator />}
-                  </HStack>
+                  </StackH>
 
                   <P color={"fg.muted"} mb={2}>
                     {pluckString(t, item.descriptionKey)}
                   </P>
 
                   {/* Example */}
-                  <HStack wrap={"wrap"} mt={"auto"}>
+                  <StackH align={"center"} wrap={"wrap"} mt={"auto"}>
                     {Object.keys(item.units).map((key) => {
                       return (
                         <P key={key} color={"fg.subtle"}>
@@ -436,8 +439,8 @@ const UOMFormat = () => {
                         </P>
                       );
                     })}
-                  </HStack>
-                </CContainer>
+                  </StackH>
+                </StackV>
               );
             })}
           </SimpleGrid>

@@ -1,20 +1,19 @@
 "use client";
 
-import { CContainer } from "@/components/ui/c-container";
-import { FileInputRoot, FileInputProps } from "@/components/ui/file-input";
+import { FileInputProps, FileInputRoot } from "@/components/ui/file-input";
 import { Img } from "@/components/ui/img";
 import { P } from "@/components/ui/p";
-import { StackV } from "@/components/ui/stack";
+import { StackH, StackV } from "@/components/ui/stack";
 import { FileItem } from "@/components/widgets/file-item";
-import { ScrollH } from "@/components/widgets/scroll-h";
 import { LucideIcon } from "@/components/widgets/icon";
 import { ImgViewer } from "@/components/widgets/img-viewer";
-import { StorageFile } from "@/types/global.types";
+import { ScrollH } from "@/components/widgets/scroll-h";
 import { useLocale } from "@/contexts/use-locale-context";
 import { useThemeContext } from "@/contexts/use-theme-context";
+import { StorageFile } from "@/types/global.types";
 import { isEmptyArray } from "@/utils/array";
 import { imgUrl } from "@/utils/url";
-import { Circle, HStack, useFieldContext } from "@chakra-ui/react";
+import { Circle, useFieldContext } from "@chakra-ui/react";
 import { TrashIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 
@@ -56,16 +55,16 @@ export const ImgInput = (props: FileInputProps) => {
   }, [existing, inputValue]);
 
   return (
-    <CContainer gap={3} flex={restProps?.flex}>
+    <StackV gap={3} flex={restProps?.flex}>
       {!isEmptyArray(existing) && (
-        <CContainer
+        <StackV
           p={2}
           gap={3}
           border={"2px dashed"}
           borderColor={"border.muted"}
           rounded={themeContext.radii.container}
         >
-          <CContainer
+          <StackV
             gap={2}
             opacity={resolvedDisabled ? 0.5 : 1}
             cursor={resolvedDisabled ? "disabled" : "auto"}
@@ -96,19 +95,19 @@ export const ImgInput = (props: FileInputProps) => {
                 />
               );
             })}
-          </CContainer>
-        </CContainer>
+          </StackV>
+        </StackV>
       )}
 
       {!isEmptyArray(deleted) && (
-        <CContainer
+        <StackV
           p={2}
           gap={3}
           border={"2px dashed"}
           borderColor={"border.muted"}
           rounded={themeContext.radii.container}
         >
-          <CContainer
+          <StackV
             gap={2}
             opacity={resolvedDisabled ? 0.5 : 1}
             cursor={resolvedDisabled ? "disabled" : "auto"}
@@ -138,8 +137,8 @@ export const ImgInput = (props: FileInputProps) => {
                 />
               );
             })}
-          </CContainer>
-        </CContainer>
+          </StackV>
+        </StackV>
       )}
 
       <FileInputRoot
@@ -171,7 +170,7 @@ export const ImgInput = (props: FileInputProps) => {
               gap={2}
               mt={1}
             >
-              <HStack justify={"center"} h={"224px"} px={4}>
+              <StackH align={"center"} justify={"center"} h={"224px"} px={4}>
                 {previewUrls.map((url: string, index: number) => {
                   return (
                     <ImgViewer
@@ -211,11 +210,11 @@ export const ImgInput = (props: FileInputProps) => {
                     </ImgViewer>
                   );
                 })}
-              </HStack>
+              </StackH>
             </ScrollH>
           </>
         )}
       </FileInputRoot>
-    </CContainer>
+    </StackV>
   );
 };

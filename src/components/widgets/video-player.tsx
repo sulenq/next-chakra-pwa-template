@@ -1,8 +1,8 @@
 "use client";
 
 import { Btn } from "@/components/ui/btn";
-import { CContainer } from "@/components/ui/c-container";
 import { P } from "@/components/ui/p";
+import { StackH, StackV } from "@/components/ui/stack";
 import { useClickOutside } from "@/hooks/use-click-outside";
 import {
   getVideoCurrentTime,
@@ -18,14 +18,7 @@ import {
   toggleFullscreen,
   toggleMute,
 } from "@/utils/video";
-import {
-  chakra,
-  HStack,
-  Icon,
-  Slider,
-  Stack,
-  StackProps,
-} from "@chakra-ui/react";
+import { chakra, Icon, Slider, Stack, StackProps } from "@chakra-ui/react";
 import {
   IconMaximize,
   IconPlayerPauseFilled,
@@ -273,7 +266,7 @@ export default function VideoPlayer(props: VideoPlayerProps) {
   }, []);
 
   return (
-    <CContainer
+    <StackV
       ref={videoContainerRef}
       justify={"center"}
       align={"center"}
@@ -301,7 +294,7 @@ export default function VideoPlayer(props: VideoPlayerProps) {
         onDoubleClick={handleFullscreen}
       />
 
-      <CContainer
+      <StackV
         w={"full"}
         className={"dsb"}
         pos={"absolute"}
@@ -311,7 +304,7 @@ export default function VideoPlayer(props: VideoPlayerProps) {
         visibility={showControls ? "visible" : "hidden"}
         opacity={showControls ? 1 : 0}
       >
-        <HStack mt={"-5px"}>
+        <StackH align={"center"} mt={"-5px"}>
           {/* Progress bar */}
           <Slider.Root
             flex={1}
@@ -331,7 +324,7 @@ export default function VideoPlayer(props: VideoPlayerProps) {
               <Slider.Thumbs w={"10px"} h={"10px"} bg={"dark"} />
             </Slider.Control>
           </Slider.Root>
-        </HStack>
+        </StackH>
 
         <Stack
           flexDir={["column", null, "row"]}
@@ -340,8 +333,8 @@ export default function VideoPlayer(props: VideoPlayerProps) {
           px={1}
           justify={"space-between"}
         >
-          <HStack justify={"space-between"}>
-            <HStack>
+          <StackH align={"center"} justify={"space-between"}>
+            <StackH align={"center"}>
               {/* Play / Pause */}
               <Btn
                 iconButton
@@ -369,7 +362,7 @@ export default function VideoPlayer(props: VideoPlayerProps) {
               >
                 {`${formatTime(progress)} / ${formatTime(duration)}`}
               </P>
-            </HStack>
+            </StackH>
 
             {/* Playback Rate */}
             <Btn
@@ -395,11 +388,11 @@ export default function VideoPlayer(props: VideoPlayerProps) {
                 bg: "transparent !important",
               }}
             /> */}
-          </HStack>
+          </StackH>
 
-          <HStack justify={"space-between"}>
+          <StackH align={"center"} justify={"space-between"}>
             {/* Forward Backward */}
-            <HStack gap={0}>
+            <StackH align={"center"} gap={0}>
               <Btn
                 clicky={false}
                 size={"md"}
@@ -427,11 +420,11 @@ export default function VideoPlayer(props: VideoPlayerProps) {
                 </Icon>
                 <P fontSize={"sm"}>5</P>
               </Btn>
-            </HStack>
+            </StackH>
 
-            <HStack>
+            <StackH align={"center"}>
               {/* Volume */}
-              <HStack>
+              <StackH align={"center"}>
                 <Btn
                   iconButton
                   clicky={false}
@@ -467,7 +460,7 @@ export default function VideoPlayer(props: VideoPlayerProps) {
                     <Slider.Thumbs w={"10px"} h={"10px"} bg={"dark"} />
                   </Slider.Control>
                 </Slider.Root>
-              </HStack>
+              </StackH>
 
               {/* Fullscreen */}
               <Btn
@@ -480,10 +473,10 @@ export default function VideoPlayer(props: VideoPlayerProps) {
               >
                 <IconMaximize stroke={1.5} />
               </Btn>
-            </HStack>
-          </HStack>
+            </StackH>
+          </StackH>
         </Stack>
-      </CContainer>
-    </CContainer>
+      </StackV>
+    </StackV>
   );
 }

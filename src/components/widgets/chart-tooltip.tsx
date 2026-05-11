@@ -1,10 +1,9 @@
-import { CContainer } from "@/components/ui/c-container";
 import { P } from "@/components/ui/p";
-import { StackV } from "@/components/ui/stack";
+import { StackH, StackV } from "@/components/ui/stack";
 import { DotIndicator } from "@/components/widgets/indicator";
 import { BACKDROP_BLUR_FILTER } from "@/constants/styles";
 import { useThemeContext } from "@/contexts/use-theme-context";
-import { HStack, Text } from "@chakra-ui/react";
+import { Text } from "@chakra-ui/react";
 import type { TooltipContentProps } from "recharts";
 import type {
   NameType,
@@ -40,19 +39,19 @@ export const ChartTooltip = (
           {label}
         </P>
 
-        <CContainer gap={1}>
+        <StackV gap={1}>
           {payload.map((entry, index) => {
             return (
-              <HStack key={index}>
+              <StackH align={"center"} key={index}>
                 <DotIndicator bg={entry.color} />
 
                 <Text fontSize={"sm"}>
                   {entry.name}: {entry.value}
                 </Text>
-              </HStack>
+              </StackH>
             );
           })}
-        </CContainer>
+        </StackV>
       </StackV>
     </StackV>
   );

@@ -1,7 +1,7 @@
 "use client";
 
-import { CContainer } from "@/components/ui/c-container";
 import { P } from "@/components/ui/p";
+import { StackV } from "@/components/ui/stack";
 import { FeedbackStateProps } from "@/components/widgets/feedback-state";
 import { useLocale } from "@/contexts/use-locale-context";
 
@@ -15,7 +15,7 @@ export default function FeedbackNotFound(props: FeedbackStateProps) {
   const { t } = useLocale();
 
   return (
-    <CContainer
+    <StackV
       w={"fit"}
       m={"auto"}
       minH={"100px"}
@@ -28,6 +28,6 @@ export default function FeedbackNotFound(props: FeedbackStateProps) {
       <P textAlign={"center"}>{t.alert_not_found.title}</P>
 
       {children}
-    </CContainer>
+    </StackV>
   );
 }

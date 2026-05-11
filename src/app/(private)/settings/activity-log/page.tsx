@@ -3,7 +3,7 @@
 import { P } from "@/components/ui/p";
 import { SearchInput } from "@/components/ui/search-input";
 import { Skeleton } from "@/components/ui/skeleton";
-import { StackV } from "@/components/ui/stack";
+import { StackH, StackV } from "@/components/ui/stack";
 import { DataFooter } from "@/components/widgets/data-footer";
 import FeedbackNoData from "@/components/widgets/feedback-no-data";
 import FeedbackNotFound from "@/components/widgets/feedback-not-found";
@@ -13,13 +13,13 @@ import { Item } from "@/components/widgets/item";
 import { MiniUser } from "@/components/widgets/mini-user";
 import { dummyAllActivityLogs } from "@/constants/dummy-data";
 import { ActivityActionEnum } from "@/constants/enums";
-import type { ActivityLog } from "@/types/global.types";
 import { BASE_ICON_BOX_SIZE, R_SPACING_MD } from "@/constants/styles";
 import { useLocale } from "@/contexts/use-locale-context";
 import { useFetchData } from "@/hooks/useFetchData";
+import type { ActivityLog } from "@/types/global.types";
 import { isEmptyArray } from "@/utils/array";
 import { formatDate } from "@/utils/formatter";
-import { HStack, Icon } from "@chakra-ui/react";
+import { Icon } from "@chakra-ui/react";
 import { ActivityIcon } from "lucide-react";
 import { useState } from "react";
 
@@ -89,7 +89,8 @@ const ActivityLog = () => {
       <>
         {data?.items?.map((log, index) => {
           return (
-            <HStack
+            <StackH
+              align={"center"}
               key={`${log.id}-${index}`}
               gap={4}
               px={4}
@@ -111,7 +112,7 @@ const ActivityLog = () => {
                   })}
                 </P>
               </StackV>
-            </HStack>
+            </StackH>
           );
         })}
       </>
@@ -121,12 +122,12 @@ const ActivityLog = () => {
   return (
     <Item.Body borderless bg={"transparent"}>
       <Item.Header borderless>
-        <HStack>
+        <StackH align={"center"}>
           <Icon boxSize={BASE_ICON_BOX_SIZE}>
             <LucideIcon icon={ActivityIcon} />
           </Icon>
           <Item.Title>{t.activity_logs}</Item.Title>
-        </HStack>
+        </StackH>
       </Item.Header>
 
       <StackV px={R_SPACING_MD} pb={R_SPACING_MD}>

@@ -1,7 +1,7 @@
 "use client";
 
-import { CContainer } from "@/components/ui/c-container";
 import { useColorMode } from "@/components/ui/color-mode";
+import { StackV } from "@/components/ui/stack";
 import { toaster } from "@/components/ui/toaster";
 import { LucideIcon } from "@/components/widgets/icon";
 import { BASE_ICON_BOX_SIZE, MAIN_INPUT_SIZE } from "@/constants/styles";
@@ -115,7 +115,7 @@ export const StringInput = forwardRef<HTMLInputElement, StringInputProps>(
       <>
         <Global styles={styles} />
 
-        <CContainer
+        <StackV
           position={"relative"}
           w={restProps?.w || "full"}
           h={restProps?.h}
@@ -187,7 +187,7 @@ export const StringInput = forwardRef<HTMLInputElement, StringInputProps>(
               </IconButton>
             </Center>
           )}
-        </CContainer>
+        </StackV>
       </>
     );
   },

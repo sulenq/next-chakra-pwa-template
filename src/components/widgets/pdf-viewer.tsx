@@ -12,7 +12,7 @@ import FeedbackState from "@/components/widgets/feedback-state";
 import { ScrollH } from "@/components/widgets/scroll-h";
 import { GAP } from "@/constants/styles";
 import { useLocale } from "@/contexts/use-locale-context";
-import { Box, Icon, StackProps, VStack } from "@chakra-ui/react";
+import { Box, Icon, StackProps } from "@chakra-ui/react";
 import {
   IconArrowAutofitWidth,
   IconDownload,
@@ -505,7 +505,7 @@ export const PDFViewer = (props: PdfViewerProps) => {
             <>
               {viewer.mode === "single" && (
                 // Single Mode
-                <VStack minW={"full"} w={"max"}>
+                <StackV minW={"full"} w={"max"}>
                   <Page
                     pageNumber={viewer.page}
                     renderTextLayer={true}
@@ -513,12 +513,12 @@ export const PDFViewer = (props: PdfViewerProps) => {
                     width={viewer.pageWidth}
                     scale={viewer.scale}
                   />
-                </VStack>
+                </StackV>
               )}
 
               {viewer.mode === "scroll" && (
                 // Scroll Mode
-                <VStack
+                <StackV
                   display={"flex"}
                   flexDirection={"column"}
                   minW={"full"}
@@ -536,7 +536,7 @@ export const PDFViewer = (props: PdfViewerProps) => {
                       />
                     </Box>
                   ))}
-                </VStack>
+                </StackV>
               )}
             </>
           )}

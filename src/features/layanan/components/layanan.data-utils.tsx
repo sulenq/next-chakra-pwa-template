@@ -1,10 +1,11 @@
 import { Btn } from "@/components/ui/btn";
 import { SearchInput } from "@/components/ui/search-input";
+import { StackH } from "@/components/ui/stack";
 import { DataDisplayToggle } from "@/components/widgets/data-display-toggle";
 import { LucideIcon } from "@/components/widgets/icon";
 import { BASE_ICON_BOX_SIZE } from "@/constants/styles";
 import { LAYANAN_ID } from "@/features/layanan/pages/layanan.page";
-import { HStack, Icon } from "@chakra-ui/react";
+import { Icon } from "@chakra-ui/react";
 import { Settings2Icon } from "lucide-react";
 
 // -----------------------------------------------------------------
@@ -19,7 +20,7 @@ export const LayananDataUtils = (props: LayananDataUtilsProps) => {
   const { filter, setFilter, ...restProps } = props;
 
   return (
-    <HStack w={"full"} {...restProps}>
+    <StackH align={"center"} w={"full"} {...restProps}>
       <SearchInput
         queryKey={"q-layanan"}
         inputProps={{
@@ -35,6 +36,6 @@ export const LayananDataUtils = (props: LayananDataUtilsProps) => {
       </Btn>
 
       <DataDisplayToggle iconButton navKey={LAYANAN_ID} size={"sm"} />
-    </HStack>
+    </StackH>
   );
 };

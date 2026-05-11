@@ -1,6 +1,7 @@
-import { EmptyState as ChakraEmptyState, VStack } from "@chakra-ui/react";
-import { forwardRef } from "react";
 import { P } from "@/components/ui/p";
+import { StackV } from "@/components/ui/stack";
+import { EmptyState as ChakraEmptyState } from "@chakra-ui/react";
+import { forwardRef } from "react";
 
 // -----------------------------------------------------------------
 
@@ -19,14 +20,14 @@ export const EmptyState = forwardRef<HTMLDivElement, EmptyStateProps>(
           {icon && (
             <ChakraEmptyState.Indicator>{icon}</ChakraEmptyState.Indicator>
           )}
-          <VStack textAlign={"center"}>
+          <StackV textAlign={"center"}>
             {title && (
               <P fontSize={"lg"} fontWeight={"medium"}>
                 {title}
               </P>
             )}
             {description && <P color={"fg.subtle"}>{description}</P>}
-          </VStack>
+          </StackV>
           {children}
         </ChakraEmptyState.Content>
       </ChakraEmptyState.Root>

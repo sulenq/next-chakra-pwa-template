@@ -1,7 +1,8 @@
 "use client";
 
+import { StackV } from "@/components/ui/stack";
+import { StackProps } from "@chakra-ui/react";
 import { forwardRef } from "react";
-import { StackProps, VStack } from "@chakra-ui/react";
 
 // -----------------------------------------------------------------
 
@@ -15,7 +16,7 @@ export const CContainer = forwardRef<HTMLDivElement, CContainerProps>(
     const { children, ...restProps } = props;
 
     return (
-      <VStack
+      <StackV
         ref={ref}
         className={"CContainer"}
         gap={0}
@@ -24,7 +25,7 @@ export const CContainer = forwardRef<HTMLDivElement, CContainerProps>(
         {...restProps}
       >
         {children}
-      </VStack>
+      </StackV>
     );
   },
 );

@@ -1,16 +1,10 @@
 import { Checkbox } from "@/components/ui/checkbox";
 import { P } from "@/components/ui/p";
-import { StackV } from "@/components/ui/stack";
+import { StackH, StackV } from "@/components/ui/stack";
 import { BatchOptions } from "@/components/widgets/batch-option";
 import { DataFooter } from "@/components/widgets/data-footer";
 import { RowOptions } from "@/components/widgets/row-options";
 import { SortIcon } from "@/components/widgets/sort-icon";
-import {
-  BatchOptionsTableOptionGenerator,
-  FormattedTableHeader,
-  FormattedTableRow,
-  RowOptionsTableOptionGenerator,
-} from "@/types/global.types";
 import {
   BACKDROP_BLUR_FILTER,
   GAP,
@@ -26,18 +20,17 @@ import {
   TABLE_TH_BORDER_COLOR,
   TABLE_TH_H,
 } from "@/constants/styles";
-import { SortHandler } from "@/types/global.types";
 import { useThemeContext } from "@/contexts/use-theme-context";
 import { useScreen } from "@/hooks/use-screen";
-import { isEmptyArray } from "@/utils/array";
 import {
-  Box,
-  Center,
-  Grid,
-  HStack,
-  StackProps,
-  TableRowProps,
-} from "@chakra-ui/react";
+  BatchOptionsTableOptionGenerator,
+  FormattedTableHeader,
+  FormattedTableRow,
+  RowOptionsTableOptionGenerator,
+  SortHandler,
+} from "@/types/global.types";
+import { isEmptyArray } from "@/utils/array";
+import { Box, Center, Grid, StackProps, TableRowProps } from "@chakra-ui/react";
 import { useEffect, useMemo, useRef, useState } from "react";
 
 // -----------------------------------------------------------------
@@ -281,7 +274,8 @@ export const DataTableRoot = (props: DataTableRootProps) => {
 
             {/* Main columns */}
             {headers.map((header, index) => (
-              <HStack
+              <StackH
+                align={"center"}
                 key={index}
                 justify={header.align}
                 h={"full"}
@@ -322,12 +316,13 @@ export const DataTableRoot = (props: DataTableRootProps) => {
                     direction={sortConfig.direction}
                   />
                 )}
-              </HStack>
+              </StackH>
             ))}
 
             {/* Row options column */}
             {!isEmptyArray(rowOptions) && (
-              <HStack
+              <StackH
+                align={"center"}
                 h={"full"}
                 minH={TABLE_TH_H}
                 px={TABLE_CELL_PX}
@@ -344,7 +339,7 @@ export const DataTableRoot = (props: DataTableRootProps) => {
                 isolation={"isolate"}
               >
                 {/* Row column spacer */}
-              </HStack>
+              </StackH>
             )}
           </Box>
 
@@ -414,7 +409,8 @@ export const DataTableRoot = (props: DataTableRootProps) => {
 
                 {/* Main columns */}
                 {row.columns.map((col, colIndex) => (
-                  <HStack
+                  <StackH
+                    align={"center"}
                     key={colIndex}
                     position={"relative"}
                     justify={col.align}
@@ -457,7 +453,7 @@ export const DataTableRoot = (props: DataTableRootProps) => {
                     <Box opacity={row.dim || col.dim ? 0.4 : 1} w={"full"}>
                       {col?.td}
                     </Box>
-                  </HStack>
+                  </StackH>
                 ))}
 
                 {/* Row options column */}

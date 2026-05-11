@@ -1,11 +1,12 @@
 "use client";
 
 import { P } from "@/components/ui/p";
+import { StackH } from "@/components/ui/stack";
 import { EmptyString } from "@/components/widgets/empty-string";
 import { DotIndicator } from "@/components/widgets/indicator";
 import { useLocale } from "@/contexts/use-locale-context";
 import { formatDate } from "@/utils/formatter";
-import { HStack, StackProps } from "@chakra-ui/react";
+import { StackProps } from "@chakra-ui/react";
 
 // -----------------------------------------------------------------
 
@@ -23,13 +24,13 @@ export const DeletedStatus = (props: DeletedStatusProps) => {
   return (
     <>
       {deletedAt && (
-        <HStack {...restProps}>
+        <StackH align={"center"} {...restProps}>
           <DotIndicator bg={"fg.error"} />
 
           <P>
             {formatDate(deletedAt, t, { variant: "numeric", withTime: true })}
           </P>
-        </HStack>
+        </StackH>
       )}
 
       {!deletedAt && <EmptyString />}

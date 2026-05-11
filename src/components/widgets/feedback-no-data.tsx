@@ -1,6 +1,6 @@
 "use client";
 
-import { CContainer } from "@/components/ui/c-container";
+import { StackV } from "@/components/ui/stack";
 import FeedbackState, {
   FeedbackStateProps,
 } from "@/components/widgets/feedback-state";
@@ -17,7 +17,7 @@ export default function FeedbackNoData(props: FeedbackStateProps) {
   const { t } = useLocale();
 
   return (
-    <CContainer
+    <StackV
       w={"fit"}
       m={"auto"}
       align={"center"}
@@ -34,6 +34,6 @@ export default function FeedbackNoData(props: FeedbackStateProps) {
       />
 
       {children}
-    </CContainer>
+    </StackV>
   );
 }

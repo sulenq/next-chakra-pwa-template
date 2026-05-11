@@ -1,7 +1,8 @@
+"use client";
+
 import { Accordion } from "@/components/ui/accordion";
 import { Avatar } from "@/components/ui/avatar";
 import { Btn } from "@/components/ui/btn";
-import { CContainer } from "@/components/ui/c-container";
 import { ColorModeButton } from "@/components/ui/color-mode";
 import { Menu } from "@/components/ui/menu";
 import { NavLink, NavLinkProps } from "@/components/ui/nav-link";
@@ -14,7 +15,6 @@ import FeedbackNotFound from "@/components/widgets/feedback-not-found";
 import { LeftIndicator } from "@/components/widgets/indicator";
 import { Item } from "@/components/widgets/item";
 import { ProfileMenuTrigger } from "@/components/widgets/profile-menu";
-import { NavGroup } from "@/types/global.types";
 import {
   BACKDROP_BLUR_FILTER,
   BASE_ICON_BOX_SIZE,
@@ -30,6 +30,7 @@ import {
 } from "@/constants/styles";
 import { useLocale } from "@/contexts/use-locale-context";
 import { useThemeContext } from "@/contexts/use-theme-context";
+import { NavGroup } from "@/types/global.types";
 import { isEmptyArray } from "@/utils/array";
 import { getUserData } from "@/utils/auth";
 import { pluckString } from "@/utils/string";
@@ -278,7 +279,7 @@ export const DesktopNavs = (props: DesktopNavsProps) => {
                                         : ""
                                     }
                                   >
-                                    <CContainer gap={1}>
+                                    <StackV gap={1}>
                                       {subGroup.navs.map((menu) => {
                                         const isSubNavsActive =
                                           pathname === menu.path;
@@ -335,7 +336,7 @@ export const DesktopNavs = (props: DesktopNavsProps) => {
                                           </NavLink>
                                         );
                                       })}
-                                    </CContainer>
+                                    </StackV>
                                   </Menu.ItemGroup>
                                 ))}
                               </Menu.Content>
@@ -378,7 +379,7 @@ export const DesktopNavs = (props: DesktopNavsProps) => {
                                     >
                                       {isMainNavsActive && <LeftIndicator />}
 
-                                      <HStack gap={4}>
+                                      <StackH align={"center"} gap={4}>
                                         <Center
                                           p={2}
                                           bg={
@@ -403,7 +404,7 @@ export const DesktopNavs = (props: DesktopNavsProps) => {
                                             ? nav.label
                                             : pluckString(t, nav.labelKey)}
                                         </P>
-                                      </HStack>
+                                      </StackH>
 
                                       <Accordion.ItemIndicator
                                         color={
@@ -418,10 +419,10 @@ export const DesktopNavs = (props: DesktopNavsProps) => {
                                 </DesktopNavTooltip>
 
                                 <Accordion.ItemContent p={0}>
-                                  <CContainer gap={1} pt={DESKTOP_NAV_GAP}>
+                                  <StackV gap={1} pt={DESKTOP_NAV_GAP}>
                                     {nav.children?.map(
                                       (subGroup, menuItemIdx) => (
-                                        <CContainer key={menuItemIdx} gap={1}>
+                                        <StackV key={menuItemIdx} gap={1}>
                                           {subGroup.labelKey && (
                                             <ClampText
                                               fontSize={"sm"}
@@ -469,7 +470,8 @@ export const DesktopNavs = (props: DesktopNavsProps) => {
                                                     },
                                                   }}
                                                 >
-                                                  <HStack
+                                                  <StackH
+                                                    align={"center"}
                                                     pos={"relative"}
                                                     pl={"8.5px"}
                                                     gap={1}
@@ -547,15 +549,15 @@ export const DesktopNavs = (props: DesktopNavsProps) => {
                                                             : "-"}
                                                       </P>
                                                     </Btn>
-                                                  </HStack>
+                                                  </StackH>
                                                 </Tooltip>
                                               </NavLink>
                                             );
                                           })}
-                                        </CContainer>
+                                        </StackV>
                                       ),
                                     )}
-                                  </CContainer>
+                                  </StackV>
                                 </Accordion.ItemContent>
                               </Accordion.Item>
                             </Accordion.Root>
@@ -668,7 +670,7 @@ export const UserPanel = (props: UserPanelProps) => {
 
         {navsExpanded && (
           <>
-            <CContainer>
+            <StackV>
               <P lineClamp={1} fontWeight={"medium"}>
                 {user?.name || user?.email || "Signed out"}
               </P>
@@ -676,7 +678,7 @@ export const UserPanel = (props: UserPanelProps) => {
               <P lineClamp={1} color={"fg.subtle"}>
                 {user?.name ? user?.email || user?.username : "-"}
               </P>
-            </CContainer>
+            </StackV>
 
             <ProfileMenuTrigger
               popoverRootProps={{

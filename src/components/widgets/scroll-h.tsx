@@ -1,4 +1,4 @@
-import { CContainer } from "@/components/ui/c-container";
+import { StackV } from "@/components/ui/stack";
 import { StackProps } from "@chakra-ui/react";
 import React, { forwardRef, useEffect, useRef } from "react";
 
@@ -91,7 +91,7 @@ export const ScrollH = forwardRef<HTMLDivElement, ScrollHProps>(
     }, [hStackRef.current]);
 
     return (
-      <CContainer
+      <StackV
         ref={hStackRef}
         className={`noScroll ${props.className ?? ""}`}
         flexShrink={0}
@@ -100,7 +100,7 @@ export const ScrollH = forwardRef<HTMLDivElement, ScrollHProps>(
         {...props}
       >
         {children}
-      </CContainer>
+      </StackV>
     );
   },
 );

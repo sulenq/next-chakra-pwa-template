@@ -1,7 +1,6 @@
 "use client";
 
 import { Btn } from "@/components/ui/btn";
-import { CContainer } from "@/components/ui/c-container";
 import { CloseButton } from "@/components/ui/close-button";
 import {
   FileUploadDropzone,
@@ -29,6 +28,7 @@ import {
 } from "@chakra-ui/react";
 import { TrashIcon, UploadIcon, XIcon } from "lucide-react";
 import { forwardRef, useEffect, useState } from "react";
+import { StackV } from "@/components/ui/stack";
 
 // -----------------------------------------------------------------
 
@@ -43,7 +43,7 @@ const FileList = (props: FileListProps) => {
   const { inputValue, onChange, existing, ...restProps } = props;
 
   return (
-    <CContainer gap={2} {...restProps}>
+    <StackV gap={2} {...restProps}>
       {inputValue?.map((file: any, index: number) => {
         const fileData = {
           fileName: file.name,
@@ -72,7 +72,7 @@ const FileList = (props: FileListProps) => {
           />
         );
       })}
-    </CContainer>
+    </StackV>
   );
 };
 
@@ -266,7 +266,7 @@ export const FileInputRoot = forwardRef<
           )}
 
           {!singleFileInputted && inputValue && !isEmptyArray(inputValue) && (
-            <CContainer gap={2}>
+            <StackV gap={2}>
               {(!isEmptyArray(existing) || !isEmptyArray(inputValue)) && (
                 <P fontSize={"sm"} color={"fg.subtle"}>{`Total : ${formatNumber(
                   inputValue.length + existing.length,
@@ -278,7 +278,7 @@ export const FileInputRoot = forwardRef<
                 onChange={onChange}
                 existing={existing}
               />
-            </CContainer>
+            </StackV>
           )}
         </>
       </FileUploadRoot>
@@ -328,16 +328,16 @@ export const FileInput = forwardRef<HTMLInputElement, FileInputProps>(
     const resolvedDisabled = fc?.disabled;
 
     return (
-      <CContainer gap={3}>
+      <StackV gap={3}>
         {!isEmptyArray(existing) && (
-          <CContainer
+          <StackV
             p={2}
             gap={3}
             border={"2px dashed"}
             borderColor={"border.muted"}
             rounded={themeContext.radii.container}
           >
-            <CContainer
+            <StackV
               gap={2}
               opacity={resolvedDisabled ? 0.5 : 1}
               cursor={resolvedDisabled ? "disabled" : "auto"}
@@ -368,19 +368,19 @@ export const FileInput = forwardRef<HTMLInputElement, FileInputProps>(
                   />
                 );
               })}
-            </CContainer>
-          </CContainer>
+            </StackV>
+          </StackV>
         )}
 
         {!isEmptyArray(deleted) && (
-          <CContainer
+          <StackV
             p={2}
             gap={3}
             border={"2px dashed"}
             borderColor={"border.muted"}
             rounded={themeContext.radii.container}
           >
-            <CContainer
+            <StackV
               gap={2}
               opacity={resolvedDisabled ? 0.5 : 1}
               cursor={resolvedDisabled ? "disabled" : "auto"}
@@ -410,12 +410,12 @@ export const FileInput = forwardRef<HTMLInputElement, FileInputProps>(
                   />
                 );
               })}
-            </CContainer>
-          </CContainer>
+            </StackV>
+          </StackV>
         )}
 
         <FileInputRoot ref={ref} existing={existing} {...restProps} />
-      </CContainer>
+      </StackV>
     );
   },
 );

@@ -6,7 +6,6 @@ import { BrandWatermark } from "@/components/widgets/brand-watermark";
 import { APP } from "@/constants/_meta";
 import { useLocale } from "@/contexts/use-locale-context";
 import { interpolateString, pluckString } from "@/utils/string";
-import { VStack } from "@chakra-ui/react";
 
 export default function Page() {
   // Contexts
@@ -36,9 +35,9 @@ export default function Page() {
         </StackV>
       </StackV>
 
-      <VStack>
+      <StackV>
         <BrandWatermark my={4} />
-      </VStack>
+      </StackV>
     </StackV>
   );
 }

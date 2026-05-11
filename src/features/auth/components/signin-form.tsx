@@ -22,13 +22,7 @@ import { useThemeContext } from "@/contexts/use-theme-context";
 import ResetPasswordDisclosureTrigger from "@/features/auth/components/reset-password";
 import { useRequest } from "@/hooks/useRequestOld";
 import { setAccessToken, setUserData } from "@/utils/auth";
-import {
-  FieldsetRoot,
-  HStack,
-  Icon,
-  InputGroup,
-  StackProps,
-} from "@chakra-ui/react";
+import { FieldsetRoot, Icon, InputGroup, StackProps } from "@chakra-ui/react";
 import { IconLock, IconUser } from "@tabler/icons-react";
 import { useFormik } from "formik";
 import { ArrowRight, LogInIcon } from "lucide-react";
@@ -209,7 +203,7 @@ const BasicAuthForm = (props: any) => {
         </Btn>
       </form>
 
-      <HStack w={"full"} mt={4}>
+      <StackH align={"center"} w={"full"} mt={4}>
         <Divider flex={1} />
 
         <ResetPasswordDisclosureTrigger>
@@ -219,7 +213,7 @@ const BasicAuthForm = (props: any) => {
         </ResetPasswordDisclosureTrigger>
 
         <Divider flex={1} />
-      </HStack>
+      </StackH>
     </StackV>
   );
 };

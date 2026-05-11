@@ -1,8 +1,8 @@
 "use client";
 
-import { CContainer } from "@/components/ui/c-container";
 import { useColorMode } from "@/components/ui/color-mode";
 import { Img } from "@/components/ui/img";
+import { StackV } from "@/components/ui/stack";
 import { RadialGlowBackground } from "@/components/widgets/background";
 import { GlobalDisclosure } from "@/components/widgets/global-disclosure";
 import { APP } from "@/constants/_meta";
@@ -88,8 +88,8 @@ export default function ClientRoot(props: ClientRootProps) {
   if (!mounted) return <>{fallback || <DefaultFallback />}</>;
 
   return (
-    <CContainer
-      id={"client-root"}
+    <StackV
+      id={"ClientRoot"}
       flex={1}
       minH={"100dvh"}
       bg={"bg.canvas"}
@@ -99,7 +99,7 @@ export default function ClientRoot(props: ClientRootProps) {
 
       <GlobalDisclosure />
 
-      <CContainer zIndex={2}>{children}</CContainer>
-    </CContainer>
+      <StackV zIndex={2}>{children}</StackV>
+    </StackV>
   );
 }

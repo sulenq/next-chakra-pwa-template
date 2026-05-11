@@ -1,8 +1,8 @@
 import { Btn, BtnProps } from "@/components/ui/btn";
-import { CContainer } from "@/components/ui/c-container";
 import { Divider } from "@/components/ui/divider";
 import { Menu } from "@/components/ui/menu";
 import { P } from "@/components/ui/p";
+import { StackV } from "@/components/ui/stack";
 import { AppIconLucide } from "@/components/widgets/app-icon";
 import { DotIndicator } from "@/components/widgets/indicator";
 import { useLocale } from "@/contexts/use-locale-context";
@@ -71,11 +71,11 @@ export const BatchOptions = (props: BatchOptionsProps) => {
       </Menu.Trigger>
 
       <Menu.Content minW={"140px"} zIndex={10}>
-        <CContainer px={3} py={1}>
+        <StackV px={3} py={1}>
           <P fontSize={"sm"} opacity={0.5} fontWeight={500}>
             {`${selectedRows.length} ${t.selected.toLowerCase()}`}
           </P>
-        </CContainer>
+        </StackV>
 
         <Menu.Item
           value={"select all"}

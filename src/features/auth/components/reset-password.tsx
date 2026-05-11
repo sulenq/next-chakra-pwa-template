@@ -1,5 +1,6 @@
+"use client";
+
 import { Btn } from "@/components/ui/btn";
-import { CContainer } from "@/components/ui/c-container";
 import { Disclosure } from "@/components/ui/disclosure";
 import { Field } from "@/components/ui/field";
 import { HelperText } from "@/components/ui/helper-text";
@@ -23,6 +24,7 @@ import * as yup from "yup";
 
 import { usePopDisclosure } from "@/hooks/use-pop-disclosure";
 import { disclosureId } from "@/utils/disclosure";
+import { StackV } from "@/components/ui/stack";
 
 const ID = "forgot-password";
 
@@ -73,7 +75,7 @@ const Step1 = (props: any) => {
   return (
     <>
       <Disclosure.Body>
-        <CContainer>
+        <StackV>
           <form>
             <Field
               label={"Email"}
@@ -93,7 +95,7 @@ const Step1 = (props: any) => {
           </form>
 
           <HelperText>{t.msg_reset_password_step_1}</HelperText>
-        </CContainer>
+        </StackV>
       </Disclosure.Body>
       <Disclosure.Footer>
         <BackButton />
@@ -156,7 +158,7 @@ const Step2 = (props: any) => {
   return (
     <>
       <Disclosure.Body>
-        <CContainer>
+        <StackV>
           <form>
             <Field
               label={"OTP"}
@@ -195,7 +197,7 @@ const Step2 = (props: any) => {
             email,
           )}`}</HelperText>
           <HelperText>{t.msg_reset_password_step_2}</HelperText>
-        </CContainer>
+        </StackV>
       </Disclosure.Body>
       <Disclosure.Footer>
         <BackButton />
@@ -273,7 +275,7 @@ const Step3 = (props: any) => {
   return (
     <>
       <Disclosure.Body>
-        <CContainer>
+        <StackV>
           <form>
             <Field
               label={"Password"}
@@ -305,7 +307,7 @@ const Step3 = (props: any) => {
           </form>
 
           <HelperText>{t.msg_reset_password_step_3}</HelperText>
-        </CContainer>
+        </StackV>
       </Disclosure.Body>
       <Disclosure.Footer>
         <BackButton />
@@ -347,9 +349,9 @@ const ResetPasswordDisclosureTrigger = (props: any) => {
 
   return (
     <>
-      <CContainer onClick={onOpen} w={"fit"} {...restProps}>
+      <StackV onClick={onOpen} w={"fit"} {...restProps}>
         {children}
-      </CContainer>
+      </StackV>
 
       <Disclosure.Root open={open} lazyLoad size={"xs"}>
         <Disclosure.Content>

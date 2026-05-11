@@ -6,7 +6,7 @@ import { InfoTip } from "@/components/widgets/info-tip";
 import { useThemeContext } from "@/contexts/use-theme-context";
 import { useContainerDimension } from "@/hooks/use-container-dimenssion";
 import { useMergedRefs } from "@/hooks/use-merge-refs";
-import { HStack, StackProps } from "@chakra-ui/react";
+import { StackProps } from "@chakra-ui/react";
 import { createContext, forwardRef, useContext, useMemo, useRef } from "react";
 
 // -----------------------------------------------------------------
@@ -163,13 +163,19 @@ const ItemTitle = forwardRef<HTMLDivElement, ItemTitleProps>(
     const { children, popoverContent, autoHeight, ...restProps } = props;
 
     return (
-      <HStack ref={ref} gap={1} w={"fit"} h={autoHeight ? "" : "42px"}>
+      <StackH
+        align={"center"}
+        ref={ref}
+        gap={1}
+        w={"fit"}
+        h={autoHeight ? "" : "42px"}
+      >
         <P fontWeight={"medium"} {...restProps}>
           {children}
         </P>
 
         {popoverContent && <InfoTip popoverContent={popoverContent} />}
-      </HStack>
+      </StackH>
     );
   },
 );

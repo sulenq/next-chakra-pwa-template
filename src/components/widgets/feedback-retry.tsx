@@ -1,7 +1,7 @@
 "use client";
 
 import { Btn } from "@/components/ui/btn";
-import { CContainer } from "@/components/ui/c-container";
+import { StackV } from "@/components/ui/stack";
 import FeedbackState, {
   FeedbackStateProps,
 } from "@/components/widgets/feedback-state";
@@ -27,7 +27,7 @@ export default function FeedbackRetry(props: FeedbackRetryProps) {
   const { themeContext } = useThemeContext();
 
   return (
-    <CContainer
+    <StackV
       w={"fit"}
       m={"auto"}
       minH={MIN_H_FEEDBACK_CONTAINER}
@@ -45,7 +45,7 @@ export default function FeedbackRetry(props: FeedbackRetryProps) {
         maxW={"300px"}
       />
 
-      <CContainer gap={1}>
+      <StackV gap={1}>
         <Btn
           className={"clicky"}
           variant={"ghost"}
@@ -58,7 +58,7 @@ export default function FeedbackRetry(props: FeedbackRetryProps) {
         </Btn>
 
         {children}
-      </CContainer>
-    </CContainer>
+      </StackV>
+    </StackV>
   );
 }

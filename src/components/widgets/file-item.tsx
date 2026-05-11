@@ -1,9 +1,9 @@
 import { Btn } from "@/components/ui/btn";
-import { CContainer } from "@/components/ui/c-container";
 import { FileIcon } from "@/components/ui/file-icon";
 import { P } from "@/components/ui/p";
+import { StackH, StackV } from "@/components/ui/stack";
 import { useThemeContext } from "@/contexts/use-theme-context";
-import { Center, Circle, HStack, Icon, StackProps } from "@chakra-ui/react";
+import { Center, Circle, Icon, StackProps } from "@chakra-ui/react";
 import Link from "next/link";
 
 // -----------------------------------------------------------------
@@ -27,7 +27,8 @@ export const FileItem = (props: FileItemProps) => {
   const { themeContext } = useThemeContext();
 
   return (
-    <HStack
+    <StackH
+      align={"center"}
       py={2}
       px={4}
       pr={"6px"}
@@ -45,7 +46,7 @@ export const FileItem = (props: FileItemProps) => {
           width: "100%",
         }}
       >
-        <HStack gap={4}>
+        <StackH align={"center"} gap={4}>
           <Center pos={"relative"}>
             <FileIcon flexShrink={0} mimeType={fileData?.fileMimeType} />
 
@@ -65,16 +66,16 @@ export const FileItem = (props: FileItemProps) => {
             )}
           </Center>
 
-          <CContainer flex={1}>
+          <StackV flex={1}>
             <P lineClamp={1}>{`${fileData?.fileName}`}</P>
             <P fontSize={"sm"} color={"fg.muted"}>
               {`${fileData?.fileSize}`}
             </P>
-          </CContainer>
-        </HStack>
+          </StackV>
+        </StackH>
       </Link>
 
-      <HStack justify={"end"}>
+      <StackH align={"center"} justify={"end"}>
         {actions.map((action) => {
           return (
             <Btn
@@ -96,9 +97,9 @@ export const FileItem = (props: FileItemProps) => {
             </Btn>
           );
         })}
-      </HStack>
+      </StackH>
 
       {children}
-    </HStack>
+    </StackH>
   );
 };

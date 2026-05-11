@@ -1,6 +1,7 @@
 "use client";
 
-import { Slider as ChakraSlider, HStack } from "@chakra-ui/react";
+import { StackH } from "@/components/ui/stack";
+import { Slider as ChakraSlider } from "@chakra-ui/react";
 import { forwardRef } from "react";
 
 // -----------------------------------------------------------------
@@ -31,12 +32,12 @@ export const Slider = forwardRef<HTMLDivElement, SliderProps>(
           <ChakraSlider.Label fontWeight={"medium"}>{label}</ChakraSlider.Label>
         )}
         {label && showValue && (
-          <HStack justify={"space-between"}>
+          <StackH align={"center"} justify={"space-between"}>
             <ChakraSlider.Label fontWeight={"medium"}>
               {label}
             </ChakraSlider.Label>
             <ChakraSlider.ValueText />
-          </HStack>
+          </StackH>
         )}
         <ChakraSlider.Control mb={hasMarkLabel ? "4" : undefined}>
           <ChakraSlider.Track>

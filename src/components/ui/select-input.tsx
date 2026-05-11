@@ -1,26 +1,31 @@
+"use client";
+
 import { Btn, BtnProps } from "@/components/ui/btn";
-import { CContainer } from "@/components/ui/c-container";
 import { CSpinner } from "@/components/ui/c-spinner";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Disclosure } from "@/components/ui/disclosure";
 import { P } from "@/components/ui/p";
 import { SearchInput } from "@/components/ui/search-input";
+import { StackH, StackV } from "@/components/ui/stack";
 import { Tooltip } from "@/components/ui/tooltip";
 import { AppIconLucide } from "@/components/widgets/app-icon";
 import FeedbackNoData from "@/components/widgets/feedback-no-data";
 import FeedbackNotFound from "@/components/widgets/feedback-not-found";
 import FeedbackRetry from "@/components/widgets/feedback-retry";
 import { DotIndicator } from "@/components/widgets/indicator";
-import { SelectOption } from "@/types/global.types";
-import { ButtonVariant, DisclosureSizes } from "@/types/global.types";
 import { useLocale } from "@/contexts/use-locale-context";
 import { useThemeContext } from "@/contexts/use-theme-context";
 import { usePopDisclosure } from "@/hooks/use-pop-disclosure";
+import {
+  ButtonVariant,
+  DisclosureSizes,
+  SelectOption,
+} from "@/types/global.types";
 import { isEmptyArray } from "@/utils/array";
 import { back } from "@/utils/client";
 import { disclosureId } from "@/utils/disclosure";
 import { capitalizeWords } from "@/utils/string";
-import { Box, HStack, Icon, useFieldContext } from "@chakra-ui/react";
+import { Box, Icon, useFieldContext } from "@chakra-ui/react";
 import { IconReload } from "@tabler/icons-react";
 import { ChevronDownIcon } from "lucide-react";
 import { useEffect, useState } from "react";
@@ -60,8 +65,8 @@ const SelectOptions = (props: SelectOptionsProps) => {
   }, [selected]);
 
   return (
-    <CContainer {...restProps}>
-      <CContainer px={4} pt={4} pos={"sticky"} top={0} zIndex={3}>
+    <StackV {...restProps}>
+      <StackV px={4} pt={4} pos={"sticky"} top={0} zIndex={3}>
         <SearchInput
           inputValue={search}
           onChange={(inputValue) => {
@@ -69,7 +74,7 @@ const SelectOptions = (props: SelectOptionsProps) => {
           }}
           queryKey={`q_${id}`}
         />
-      </CContainer>
+      </StackV>
 
       {search && isEmptyArray(resolvedSelectOptions) && (
         <FeedbackNotFound minH={"250px"} />
@@ -82,7 +87,7 @@ const SelectOptions = (props: SelectOptionsProps) => {
       {!isEmptyArray(resolvedSelectOptions) && (
         <>
           {multiple && (
-            <CContainer px={4} pt={4} zIndex={2}>
+            <StackV px={4} pt={4} zIndex={2}>
               <Box
                 onClick={(e) => {
                   e.stopPropagation();
@@ -108,10 +113,10 @@ const SelectOptions = (props: SelectOptionsProps) => {
                   <P>{t.select_all}</P>
                 </Checkbox>
               </Box>
-            </CContainer>
+            </StackV>
           )}
 
-          <CContainer p={4} gap={2}>
+          <StackV p={4} gap={2}>
             {resolvedSelectOptions?.map((o) => {
               const isSelected = selected?.some((s) => s.id === o.id);
 
@@ -140,7 +145,7 @@ const SelectOptions = (props: SelectOptionsProps) => {
                     }
                   }}
                 >
-                  <HStack w={"full"} justify={"space-between"}>
+                  <StackH align={"center"} w={"full"} justify={"space-between"}>
                     <P textAlign={"left"}>{o.label}</P>
 
                     {isSelected && <DotIndicator />}
@@ -148,14 +153,14 @@ const SelectOptions = (props: SelectOptionsProps) => {
                     {!isSelected && multiple && (
                       <DotIndicator bg={"bg.emphasized"} />
                     )}
-                  </HStack>
+                  </StackH>
                 </Btn>
               );
             })}
-          </CContainer>
+          </StackV>
         </>
       )}
-    </CContainer>
+    </StackV>
   );
 };
 

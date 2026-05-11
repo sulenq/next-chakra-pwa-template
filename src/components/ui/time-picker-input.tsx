@@ -1,15 +1,16 @@
 import { Btn, BtnProps } from "@/components/ui/btn";
 import { Disclosure } from "@/components/ui/disclosure";
 import { P, TNum } from "@/components/ui/p";
+import { StackH, StackV } from "@/components/ui/stack";
 import { StringInput } from "@/components/ui/string-input";
 import { Tooltip } from "@/components/ui/tooltip";
 import { LucideIcon } from "@/components/widgets/icon";
 import { BASE_ICON_BOX_SIZE } from "@/constants/styles";
-import { ButtonVariant, DisclosureSizes } from "@/types/global.types";
 import { useLocale } from "@/contexts/use-locale-context";
 import { useThemeContext } from "@/contexts/use-theme-context";
 import { usePopDisclosure } from "@/hooks/use-pop-disclosure";
 import { useScreen } from "@/hooks/use-screen";
+import { ButtonVariant, DisclosureSizes } from "@/types/global.types";
 import { back } from "@/utils/client";
 import { disclosureId } from "@/utils/disclosure";
 import { formatTime } from "@/utils/formatter";
@@ -20,7 +21,7 @@ import {
   getSecondsFromTime,
   getUserTimezone,
 } from "@/utils/time";
-import { HStack, Icon, Stack, useFieldContext, VStack } from "@chakra-ui/react";
+import { Icon, Stack, useFieldContext } from "@chakra-ui/react";
 import { IconCaretDownFilled, IconCaretUpFilled } from "@tabler/icons-react";
 import { ClockIcon } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
@@ -248,14 +249,15 @@ export const TimePickerInput = (props: TimePickerInputProps) => {
 
           <Disclosure.Body>
             {/* Main layout for hours, minutes, (optional) seconds */}
-            <HStack
+            <StackH
+              align={"center"}
               justify={"space-between"}
               gap={1}
               wrap={wrapped ? "wrap" : ""}
               gapY={wrapped ? 4 : 0}
             >
               {/* Hours control */}
-              <VStack flex={"1 1 120"} align={"stretch"} gap={0}>
+              <StackV flex={"1 1 120"} align={"stretch"} gap={0}>
                 <Btn
                   iconButton
                   size={"sm"}
@@ -276,7 +278,7 @@ export const TimePickerInput = (props: TimePickerInputProps) => {
                   </Icon>
                 </Btn>
 
-                <VStack my={4}>
+                <StackV my={4}>
                   <StringInput
                     clearable={false}
                     name={"hour"}
@@ -299,7 +301,7 @@ export const TimePickerInput = (props: TimePickerInputProps) => {
                     _focus={{ border: "none !important" }}
                   />
                   {/* <P textAlign={"center"}>Jam</P> */}
-                </VStack>
+                </StackV>
 
                 <Btn
                   iconButton
@@ -320,7 +322,7 @@ export const TimePickerInput = (props: TimePickerInputProps) => {
                     <IconCaretDownFilled />
                   </Icon>
                 </Btn>
-              </VStack>
+              </StackV>
 
               {!wrapped && (
                 <P fontSize={50} opacity={0.2} mt={-2}>
@@ -329,7 +331,7 @@ export const TimePickerInput = (props: TimePickerInputProps) => {
               )}
 
               {/* Minutes control */}
-              <VStack flex={"1 1 120"} align={"stretch"} gap={0}>
+              <StackV flex={"1 1 120"} align={"stretch"} gap={0}>
                 <Btn
                   iconButton
                   size={"sm"}
@@ -350,7 +352,7 @@ export const TimePickerInput = (props: TimePickerInputProps) => {
                   </Icon>
                 </Btn>
 
-                <VStack my={4}>
+                <StackV my={4}>
                   <StringInput
                     clearable={false}
                     name={"minute"}
@@ -373,7 +375,7 @@ export const TimePickerInput = (props: TimePickerInputProps) => {
                     _focus={{ border: "none !important" }}
                   />
                   {/* <P textAlign={"center"}>Menit</P> */}
-                </VStack>
+                </StackV>
 
                 <Btn
                   iconButton
@@ -394,7 +396,7 @@ export const TimePickerInput = (props: TimePickerInputProps) => {
                     <IconCaretDownFilled />
                   </Icon>
                 </Btn>
-              </VStack>
+              </StackV>
 
               {withSeconds && (
                 <>
@@ -405,7 +407,7 @@ export const TimePickerInput = (props: TimePickerInputProps) => {
                   )}
 
                   {/* Seconds control */}
-                  <VStack flex={"1 1 120"} align={"stretch"} gap={0}>
+                  <StackV flex={"1 1 120"} align={"stretch"} gap={0}>
                     <Btn
                       iconButton
                       aria-label={"add second button"}
@@ -425,7 +427,7 @@ export const TimePickerInput = (props: TimePickerInputProps) => {
                       </Icon>
                     </Btn>
 
-                    <VStack my={4}>
+                    <StackV my={4}>
                       <StringInput
                         clearable={false}
                         name={"second"}
@@ -448,7 +450,7 @@ export const TimePickerInput = (props: TimePickerInputProps) => {
                         _focus={{ border: "none !important" }}
                       />
                       {/* <P textAlign={"center"}>Detik</P> */}
-                    </VStack>
+                    </StackV>
 
                     <Btn
                       iconButton
@@ -468,10 +470,10 @@ export const TimePickerInput = (props: TimePickerInputProps) => {
                         <IconCaretDownFilled />
                       </Icon>
                     </Btn>
-                  </VStack>
+                  </StackV>
                 </>
               )}
-            </HStack>
+            </StackH>
           </Disclosure.Body>
 
           <Disclosure.Footer>

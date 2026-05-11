@@ -6,7 +6,7 @@ import { Divider } from "@/components/ui/divider";
 import { Img } from "@/components/ui/img";
 import { P, TNum } from "@/components/ui/p";
 import { SearchInput } from "@/components/ui/search-input";
-import { StackV } from "@/components/ui/stack";
+import { StackH, StackV } from "@/components/ui/stack";
 import { BackButton } from "@/components/widgets/back-button";
 import { BatchOptions } from "@/components/widgets/batch-option";
 import { DataFooter } from "@/components/widgets/data-footer";
@@ -31,13 +31,7 @@ import {
 import { isEmptyArray } from "@/utils/array";
 import { disclosureId } from "@/utils/disclosure";
 import { imgUrl } from "@/utils/url";
-import {
-  Box,
-  HStack,
-  Presence,
-  SimpleGrid,
-  StackProps,
-} from "@chakra-ui/react";
+import { Box, Presence, SimpleGrid, StackProps } from "@chakra-ui/react";
 import React, { createContext, Fragment, useContext, useState } from "react";
 
 // -----------------------------------------------------------------
@@ -353,7 +347,8 @@ const DataGridRoot = (props: DataGridRootProps) => {
           unmountOnExit
           zIndex={10}
         >
-          <HStack
+          <StackH
+            align={"center"}
             w={"full"}
             justify={"center"}
             p={3}
@@ -363,7 +358,8 @@ const DataGridRoot = (props: DataGridRootProps) => {
             zIndex={2}
             pointerEvents={"none"}
           >
-            <HStack
+            <StackH
+              align={"center"}
               gap={1}
               bg={GRID_BATCH_OPTIONS_CONTAINER_BG}
               backdropFilter={BACKDROP_BLUR_FILTER}
@@ -397,8 +393,8 @@ const DataGridRoot = (props: DataGridRootProps) => {
                   },
                 }}
               />
-            </HStack>
-          </HStack>
+            </StackH>
+          </StackH>
         </Presence>
 
         {/* Grid */}

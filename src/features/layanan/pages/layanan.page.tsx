@@ -1,5 +1,6 @@
 "use client";
 
+import { StackH } from "@/components/ui/stack";
 import { Item } from "@/components/widgets/item";
 import {
   ConstrainedContainer,
@@ -10,7 +11,6 @@ import { ScrollH } from "@/components/widgets/scroll-h";
 import { GAP, R_SPACING_MD } from "@/constants/styles";
 import { LayananData } from "@/features/layanan/components/layanan.data";
 import { LayananDataUtils } from "@/features/layanan/components/layanan.data-utils";
-import { HStack } from "@chakra-ui/react";
 import { useState } from "react";
 import { LayananCreate } from "../components/layanan.create";
 
@@ -40,20 +40,25 @@ export default function LayananPage() {
           }}
           justify={"space-between"}
         >
-          <HStack>
+          <StackH align={"center"}>
             {!isSmContainer && (
               <LayananDataUtils filter={filter} setFilter={setFilter} />
             )}
 
             <LayananCreate />
-          </HStack>
+          </StackH>
         </MainView.Header>
 
         {isSmContainer && (
           <ScrollH mb={4}>
-            <HStack minW={"full"} justify={"space-between"} px={R_SPACING_MD}>
+            <StackH
+              align={"center"}
+              minW={"full"}
+              justify={"space-between"}
+              px={R_SPACING_MD}
+            >
               <LayananDataUtils filter={filter} setFilter={setFilter} />
-            </HStack>
+            </StackH>
           </ScrollH>
         )}
 

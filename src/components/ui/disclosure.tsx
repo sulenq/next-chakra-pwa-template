@@ -1,10 +1,10 @@
 "use client";
 
 import { Btn } from "@/components/ui/btn";
-import { CContainer } from "@/components/ui/c-container";
 import { Dialog, DialogContentProps } from "@/components/ui/dialog";
 import { Drawer, DrawerContentProps } from "@/components/ui/drawer";
 import { P } from "@/components/ui/p";
+import { StackH, StackV } from "@/components/ui/stack";
 import { AppIconLucide } from "@/components/widgets/app-icon";
 import { SM_SCREEN_BREAKPOINT } from "@/constants/styles";
 import { useThemeContext } from "@/contexts/use-theme-context";
@@ -25,7 +25,6 @@ import {
   DrawerCloseTriggerProps,
   DrawerFooterProps,
   DrawerHeaderProps,
-  HStack,
 } from "@chakra-ui/react";
 import { MaximizeIcon, MinimizeIcon, XIcon } from "lucide-react";
 import { useEffect, useState } from "react";
@@ -185,7 +184,12 @@ export const DisclosureHeaderContent = (
   }, [maximize]);
 
   return (
-    <HStack justify={"space-between"} w={"full"} {...restProps}>
+    <StackH
+      align={"center"}
+      justify={"space-between"}
+      w={"full"}
+      {...restProps}
+    >
       {content ? (
         content
       ) : (
@@ -194,7 +198,7 @@ export const DisclosureHeaderContent = (
         </P>
       )}
 
-      <HStack ml={"auto"} gap={[0, null, 2]}>
+      <StackH align={"center"} ml={"auto"} gap={[0, null, 2]}>
         {children}
 
         {withMaximizeButton && (
@@ -231,8 +235,8 @@ export const DisclosureHeaderContent = (
             )}
           </>
         )}
-      </HStack>
-    </HStack>
+      </StackH>
+    </StackH>
   );
 };
 
@@ -286,9 +290,9 @@ const DisclosureFooter = ({ children, ...props }: DisclosureFooterProps) => {
       borderColor={"border.subtle"}
       {...(props as DrawerHeaderProps)}
     >
-      <CContainer align={"stretch"} gap={2}>
+      <StackV align={"stretch"} gap={2}>
         {children}
-      </CContainer>
+      </StackV>
     </Drawer.Footer>
   ) : (
     <Dialog.Footer
@@ -297,9 +301,9 @@ const DisclosureFooter = ({ children, ...props }: DisclosureFooterProps) => {
       borderColor={"border.subtle"}
       {...(props as DialogFooterProps)}
     >
-      <HStack w={"full"} justify={"end"}>
+      <StackH align={"center"} w={"full"} justify={"end"}>
         {children}
-      </HStack>
+      </StackH>
     </Dialog.Footer>
   );
 };

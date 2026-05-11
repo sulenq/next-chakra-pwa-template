@@ -1,8 +1,8 @@
 "use client";
 
-import { CContainer } from "@/components/ui/c-container";
+import { StackV } from "@/components/ui/stack";
 
 const AdminDashboardRoute = () => {
-  return <CContainer id={"dashboard"}></CContainer>;
+  return <StackV id={"dashboard"}></StackV>;
 };
 export default AdminDashboardRoute;

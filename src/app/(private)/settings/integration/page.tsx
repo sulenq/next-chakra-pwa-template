@@ -3,20 +3,19 @@
 import { Btn } from "@/components/ui/btn";
 import { Field, FieldsetRoot } from "@/components/ui/field";
 import { Skeleton } from "@/components/ui/skeleton";
-import { StackV } from "@/components/ui/stack";
+import { StackH, StackV } from "@/components/ui/stack";
 import { TextareaInput } from "@/components/ui/textarea-input";
+import { AppIconLucide } from "@/components/widgets/app-icon";
 import FeedbackNoData from "@/components/widgets/feedback-no-data";
 import FeedbackNotFound from "@/components/widgets/feedback-not-found";
 import FeedbackRetry from "@/components/widgets/feedback-retry";
-import { LucideIcon } from "@/components/widgets/icon";
 import { Item } from "@/components/widgets/item";
-import { BASE_ICON_BOX_SIZE, R_SPACING_MD } from "@/constants/styles";
+import { R_SPACING_MD } from "@/constants/styles";
 import { useLocale } from "@/contexts/use-locale-context";
 import useRenderTrigger from "@/contexts/use-render-trigger";
 import { useThemeContext } from "@/contexts/use-theme-context";
 import { useFetchData } from "@/hooks/useFetchData";
 import { useRequest } from "@/hooks/useRequestOld";
-import { HStack, Icon } from "@chakra-ui/react";
 import { useFormik } from "formik";
 import { KeyRoundIcon } from "lucide-react";
 import { useEffect } from "react";
@@ -78,12 +77,11 @@ const APIKeys = (props: any) => {
   return (
     <Item.Body borderless bg={"transparent"}>
       <Item.Header borderless>
-        <HStack>
-          <Icon boxSize={BASE_ICON_BOX_SIZE}>
-            <LucideIcon icon={KeyRoundIcon} />
-          </Icon>
+        <StackH align={"center"}>
+          <AppIconLucide icon={KeyRoundIcon} />
+
           <Item.Title>API Keys</Item.Title>
-        </HStack>
+        </StackH>
       </Item.Header>
 
       <StackV px={R_SPACING_MD} pb={R_SPACING_MD}>
@@ -120,7 +118,7 @@ const APIKeys = (props: any) => {
             </FieldsetRoot>
           </form>
 
-          <HStack justify={"end"} mt={8}>
+          <StackH align={"center"} justify={"end"} mt={8}>
             <Btn
               type={"submit"}
               form={"api-keys-form"}
@@ -128,7 +126,7 @@ const APIKeys = (props: any) => {
             >
               {t.save}
             </Btn>
-          </HStack>
+          </StackH>
         </Item.Body>
       </StackV>
     </Item.Body>

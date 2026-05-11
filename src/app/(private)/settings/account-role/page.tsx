@@ -1,7 +1,7 @@
 "use client";
 
-import { CContainer } from "@/components/ui/c-container";
+import { StackV } from "@/components/ui/stack";
 
 export default function Page() {
-  return <CContainer flex={1} gap={4} pb={4}></CContainer>;
+  return <StackV flex={1} gap={4} pb={4}></StackV>;
 }

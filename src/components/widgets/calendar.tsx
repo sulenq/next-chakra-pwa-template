@@ -1,6 +1,5 @@
 "use client";
 
-import { CContainer } from "@/components/ui/c-container";
 import {
   DatePicker,
   DEFAULT_PERIOD,
@@ -14,6 +13,7 @@ import { usePopDisclosure } from "@/hooks/use-pop-disclosure";
 import { disclosureId } from "@/utils/disclosure";
 import { StackProps } from "@chakra-ui/react";
 import { useState } from "react";
+import { StackV } from "@/components/ui/stack";
 
 // -----------------------------------------------------------------
 
@@ -23,14 +23,14 @@ const CalendarUI = () => {
   const [period, setPeriod] = useState<Period>(DEFAULT_PERIOD);
 
   return (
-    <CContainer gap={4}>
+    <StackV gap={4}>
       <PeriodPicker period={period} setPeriod={setPeriod} />
       <DatePicker
         period={period}
         selected={selected}
         setSelected={setSelected}
       />
-    </CContainer>
+    </StackV>
   );
 };
 
@@ -74,7 +74,7 @@ const CalendarTrigger = (props: StackProps) => {
 
   return (
     <>
-      <CContainer w={"fit"} onClick={onOpen} cursor={"pointer"} {...props} />
+      <StackV w={"fit"} onClick={onOpen} cursor={"pointer"} {...props} />
 
       <CalendarContent open={open} />
     </>

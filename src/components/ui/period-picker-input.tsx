@@ -5,20 +5,21 @@ import { Disclosure } from "@/components/ui/disclosure";
 import { Field, FieldsetRoot } from "@/components/ui/field";
 import { NumInput } from "@/components/ui/number-input";
 import { P } from "@/components/ui/p";
+import { StackH } from "@/components/ui/stack";
 import { Tooltip } from "@/components/ui/tooltip";
 import { AppIconLucide } from "@/components/widgets/app-icon";
 import { DotIndicator } from "@/components/widgets/indicator";
 import { getMonthNames } from "@/constants/months";
-import { ButtonVariant, DisclosureSizes, Period } from "@/types/global.types";
 import { useLocale } from "@/contexts/use-locale-context";
 import { useThemeContext } from "@/contexts/use-theme-context";
 import { usePopDisclosure } from "@/hooks/use-pop-disclosure";
+import { ButtonVariant, DisclosureSizes, Period } from "@/types/global.types";
 import { back } from "@/utils/client";
 import { disclosureId } from "@/utils/disclosure";
 import { formatDate } from "@/utils/formatter";
 import { capitalizeWords } from "@/utils/string";
 import { getLocalTimezone } from "@/utils/time";
-import { HStack, SimpleGrid, useFieldContext } from "@chakra-ui/react";
+import { SimpleGrid, useFieldContext } from "@chakra-ui/react";
 import { CalendarClockIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 
@@ -192,11 +193,15 @@ export const PeriodPickerInput = (props: PeriodPickerInputProps) => {
                         }
                         color={isSelected ? "" : "fg.muted"}
                       >
-                        <HStack w={"full"} justify={"space-between"}>
+                        <StackH
+                          align={"center"}
+                          w={"full"}
+                          justify={"space-between"}
+                        >
                           {month}
 
                           {isSelected && <DotIndicator />}
-                        </HStack>
+                        </StackH>
                       </Btn>
                     );
                   })}

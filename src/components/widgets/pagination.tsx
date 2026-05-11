@@ -1,9 +1,9 @@
 import { Btn } from "@/components/ui/btn";
 import { P } from "@/components/ui/p";
+import { StackH } from "@/components/ui/stack";
 import { AppIconLucide } from "@/components/widgets/app-icon";
 import { useLocale } from "@/contexts/use-locale-context";
 import { formatNumber } from "@/utils/formatter";
-import { HStack } from "@chakra-ui/react";
 import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
 
 // -----------------------------------------------------------------
@@ -42,7 +42,7 @@ export const Pagination = (props: PaginationTableDataProps) => {
   // }, [pageTemp]);
 
   return (
-    <HStack gap={2}>
+    <StackH align={"center"} gap={2}>
       <Btn
         iconButton
         clicky={false}
@@ -54,13 +54,13 @@ export const Pagination = (props: PaginationTableDataProps) => {
         <AppIconLucide icon={ChevronLeftIcon} />
       </Btn>
 
-      <HStack whiteSpace={"nowrap"}>
+      <StackH align={"center"} whiteSpace={"nowrap"}>
         <P>{formatNumber(page)}</P>
 
         <P>{t.of}</P>
 
         <P>{formatNumber(totalPage) || "?"}</P>
-      </HStack>
+      </StackH>
 
       <Btn
         iconButton
@@ -72,6 +72,6 @@ export const Pagination = (props: PaginationTableDataProps) => {
       >
         <AppIconLucide icon={ChevronRightIcon} />
       </Btn>
-    </HStack>
+    </StackH>
   );
 };

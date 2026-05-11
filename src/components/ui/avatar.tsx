@@ -1,13 +1,13 @@
 "use client";
 
-import { CContainer } from "@/components/ui/c-container";
 import { Disclosure } from "@/components/ui/disclosure";
 import { FileInputProps } from "@/components/ui/file-input";
 import { ImgInput } from "@/components/ui/img-input";
 import { P } from "@/components/ui/p";
+import { StackV } from "@/components/ui/stack";
 import { BackButton } from "@/components/widgets/back-button";
-import { User } from "@/types/global.types";
 import { usePopDisclosure } from "@/hooks/use-pop-disclosure";
+import { User } from "@/types/global.types";
 import { disclosureId } from "@/utils/disclosure";
 import { getInitials } from "@/utils/string";
 import type { GroupProps, SlotRecipeProps } from "@chakra-ui/react";
@@ -121,9 +121,9 @@ export const AvatarUploadTrigger = (
 
   return (
     <>
-      <CContainer w={"fit"} onClick={onOpen}>
+      <StackV w={"fit"} onClick={onOpen}>
         {children}
-      </CContainer>
+      </StackV>
 
       <Disclosure.Root open={open} lazyLoad size={"xs"}>
         <Disclosure.Content>

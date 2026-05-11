@@ -1,7 +1,6 @@
 "use client";
 
 import { Btn, BtnProps } from "@/components/ui/btn";
-import { CContainer } from "@/components/ui/c-container";
 import { Disclosure } from "@/components/ui/disclosure";
 import { P } from "@/components/ui/p";
 import { PeriodPickerInput } from "@/components/ui/period-picker-input";
@@ -41,6 +40,7 @@ import {
 import { addDays, startOfWeek } from "date-fns";
 import { CalendarIcon, ChevronDownIcon, ChevronUpIcon } from "lucide-react";
 import { useEffect, useState } from "react";
+import { StackV } from "@/components/ui/stack";
 
 // -----------------------------------------------------------------
 
@@ -172,7 +172,7 @@ export const DatePicker = (props: DatePickerProps) => {
   const weekdays = getWeekdayNames(t);
 
   return (
-    <CContainer {...restProps}>
+    <StackV {...restProps}>
       <SimpleGrid
         columns={[7]}
         gap={2}
@@ -189,7 +189,7 @@ export const DatePicker = (props: DatePickerProps) => {
         ))}
       </SimpleGrid>
 
-      <CContainer gap={2}>
+      <StackV gap={2}>
         {fullDates().map((weeks, index) => (
           <SimpleGrid columns={[7]} key={index} gap={2}>
             {weeks.map((date, ii) => {
@@ -265,8 +265,8 @@ export const DatePicker = (props: DatePickerProps) => {
             })}
           </SimpleGrid>
         ))}
-      </CContainer>
-    </CContainer>
+      </StackV>
+    </StackV>
   );
 };
 
@@ -296,7 +296,7 @@ const SelectedDateList = (props: SelectedDateListProps) => {
 
   return (
     <>
-      <CContainer
+      <StackV
         mt={-2}
         borderColor={"border.muted"}
         bg={"bg.muted"}
@@ -316,7 +316,7 @@ const SelectedDateList = (props: SelectedDateListProps) => {
         >
           {formattedSelected}
         </P>
-      </CContainer>
+      </StackV>
 
       <Disclosure.Root open={open} size={"xs"} scrollBehavior={"inside"}>
         <Disclosure.Content>
@@ -327,7 +327,7 @@ const SelectedDateList = (props: SelectedDateListProps) => {
           </Disclosure.Header>
 
           <Disclosure.Body>
-            <CContainer px={2} pl={4} pt={1}>
+            <StackV px={2} pl={4} pt={1}>
               <List.Root gap={2}>
                 {isEmptyArray(selected) && <FeedbackNoData />}
                 {!isEmptyArray(selected) &&
@@ -346,7 +346,7 @@ const SelectedDateList = (props: SelectedDateListProps) => {
                     );
                   })}
               </List.Root>
-            </CContainer>
+            </StackV>
           </Disclosure.Body>
 
           <Disclosure.Footer>
@@ -520,7 +520,7 @@ export const DatePickerInput = (props: DatePickerInputProps) => {
           </Disclosure.Header>
 
           <Disclosure.Body>
-            <CContainer gap={4}>
+            <StackV gap={4}>
               <PeriodPicker period={period} setPeriod={setPeriod} zIndex={2} />
 
               <DatePicker
@@ -535,7 +535,7 @@ export const DatePickerInput = (props: DatePickerInputProps) => {
                 selected={selected}
                 formattedSelected={formattedSelected}
               />
-            </CContainer>
+            </StackV>
           </Disclosure.Body>
 
           <Disclosure.Footer>

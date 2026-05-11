@@ -1,9 +1,9 @@
 "use client";
 
 import { Btn } from "@/components/ui/btn";
-import { CContainer } from "@/components/ui/c-container";
 import { useColorMode } from "@/components/ui/color-mode";
 import { Spinner } from "@/components/ui/spinner";
+import { StackH, StackV } from "@/components/ui/stack";
 import { LucideIcon } from "@/components/widgets/icon";
 import { BACKDROP_BLUR_FILTER, SM_SCREEN_BREAKPOINT } from "@/constants/styles";
 import { useThemeContext } from "@/contexts/use-theme-context";
@@ -11,7 +11,6 @@ import { isClient } from "@/utils/client";
 import {
   Center,
   Toaster as ChakraToaster,
-  HStack,
   Icon,
   Portal,
   Toast,
@@ -190,9 +189,9 @@ const ToastComponent = (props: any) => {
     >
       <ToastIconComponent toast={toast} />
 
-      <CContainer gap={2}>
-        <CContainer>
-          <CContainer
+      <StackV gap={2}>
+        <StackV>
+          <StackV
             flex={1}
             h={expanded ? "max" : ""}
             maxWidth={"full"}
@@ -230,21 +229,21 @@ const ToastComponent = (props: any) => {
                 {toast.description}
               </Toast.Description>
             )}
-          </CContainer>
+          </StackV>
 
           {expanded && (
-            <HStack flexShrink={0} justify={"end"}>
+            <StackH align={"center"} flexShrink={0} justify={"end"}>
               {toast.action && expanded && (
                 <ToastActionTriggerComponent toast={toast} mt={4} />
               )}
-            </HStack>
+            </StackH>
           )}
-        </CContainer>
-      </CContainer>
+        </StackV>
+      </StackV>
 
       {/* {toast.meta?.closable && <Toast.CloseTrigger />} */}
 
-      <HStack pos={"absolute"} top={2} right={2}>
+      <StackH align={"center"} pos={"absolute"} top={2} right={2}>
         <Btn
           as={Toast.CloseTrigger}
           iconButton
@@ -257,7 +256,7 @@ const ToastComponent = (props: any) => {
             <LucideIcon icon={XIcon} />
           </Icon>
         </Btn>
-      </HStack>
+      </StackH>
     </Toast.Root>
   );
 };

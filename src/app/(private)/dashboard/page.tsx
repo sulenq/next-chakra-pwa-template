@@ -1,7 +1,6 @@
 "use client";
 
 import { Btn } from "@/components/ui/btn";
-import { CContainer } from "@/components/ui/c-container";
 import { P } from "@/components/ui/p";
 import { Segmented } from "@/components/ui/segment-group";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -18,10 +17,10 @@ import { MainView, useMainViewContext } from "@/components/widgets/main-view";
 import { DUMMY_DASHBOARD_DATA } from "@/constants/dummy-data";
 import { getMonthNames } from "@/constants/months";
 import { GAP, R_SPACING_MD } from "@/constants/styles";
-import { ChartData } from "@/types/global.types";
 import { useLocale } from "@/contexts/use-locale-context";
 import { useThemeContext } from "@/contexts/use-theme-context";
 import { useFetchData } from "@/hooks/useFetchData";
+import { ChartData } from "@/types/global.types";
 import { getUserData } from "@/utils/auth";
 import { formatDuration, formatNumber } from "@/utils/formatter";
 import { isObjectDeepEmpty } from "@/utils/object";
@@ -30,7 +29,6 @@ import { Chart, useChart } from "@chakra-ui/charts";
 import {
   Badge,
   Center,
-  HStack,
   SimpleGrid,
   SimpleGridProps,
   StackProps,
@@ -80,7 +78,7 @@ const OverviewItem = (props: OverviewItemProps) => {
 
   return (
     <Item.Body gap={1} {...restProps}>
-      <HStack gap={1} p={2} pl={4}>
+      <StackH align={"center"} gap={1} p={2} pl={4}>
         <Item.Title
           autoHeight
           popoverContent={
@@ -98,14 +96,14 @@ const OverviewItem = (props: OverviewItemProps) => {
         >
           <AppIconLucide icon={item.icon} boxSize={5} />
         </Center>
-      </HStack>
+      </StackH>
 
-      <CContainer p={4} pt={0}>
+      <StackV p={4} pt={0}>
         <P fontSize={"2xl"} fontWeight={"medium"}>
           {`${item.value}`}
         </P>
 
-        <HStack mt={2}>
+        <StackH align={"center"} mt={2}>
           <Badge w={"fit"} colorPalette={"green"}>
             <AppIconLucide icon={ArrowUpIcon} boxSize={3} />
             12.5%
@@ -114,8 +112,8 @@ const OverviewItem = (props: OverviewItemProps) => {
           <ClampText fontSize={"sm"} color={"fg.subtle"}>
             since last month
           </ClampText>
-        </HStack>
-      </CContainer>
+        </StackH>
+      </StackV>
     </Item.Body>
   );
 };
@@ -172,7 +170,7 @@ const Overview = (props: OverviewProps) => {
   ];
 
   return (
-    <CContainer>
+    <StackV>
       <SimpleGrid
         columns={isSmContainer ? 2 : 3}
         gap={GAP}
@@ -183,7 +181,7 @@ const Overview = (props: OverviewProps) => {
           return <OverviewItem key={index} item={item} index={index} />;
         })}
       </SimpleGrid>
-    </CContainer>
+    </StackV>
   );
 };
 
@@ -377,8 +375,8 @@ const Chart1 = (props: any) => {
         />
       </Item.Header>
 
-      <CContainer>
-        <CContainer
+      <StackV>
+        <StackV
           onPointerDown={handlePointerDown}
           onPointerMove={handlePointerMove}
           onPointerUp={stopPan}
@@ -463,9 +461,15 @@ const Chart1 = (props: any) => {
               })}
             </LineChart>
           </Chart.Root>
-        </CContainer>
+        </StackV>
 
-        <HStack wrap={"wrap"} justify={"space-between"} px={2} my={2}>
+        <StackH
+          align={"center"}
+          justify={"space-between"}
+          wrap={"wrap"}
+          px={2}
+          my={2}
+        >
           <Switch
             checked={showPointLabel}
             onCheckedChange={(e) => setShowPointLabel(e.checked)}
@@ -475,7 +479,7 @@ const Chart1 = (props: any) => {
             Point label
           </Switch>
 
-          <HStack gap={1}>
+          <StackH align={"center"} gap={1}>
             {chart.series.map((s) => {
               const year = parseInt(s.name as string);
               const isActive = highlights.includes(year);
@@ -504,9 +508,9 @@ const Chart1 = (props: any) => {
                 </Btn>
               );
             })}
-          </HStack>
-        </HStack>
-      </CContainer>
+          </StackH>
+        </StackH>
+      </StackV>
     </Item.Body>
   );
 };
@@ -519,13 +523,13 @@ const Usage = (props: any) => {
   const { isSmContainer } = useMainViewContext();
 
   return (
-    <CContainer>
+    <StackV>
       <SimpleGrid columns={isSmContainer ? 1 : 2} gap={GAP} {...restProps}>
         <Chart1 data={data} year={filter.year} />
 
         <Chart1 data={data} year={filter.year} />
       </SimpleGrid>
-    </CContainer>
+    </StackV>
   );
 };
 

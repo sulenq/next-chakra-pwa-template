@@ -2,7 +2,8 @@
 
 import { NavLink } from "@/components/ui/nav-link";
 import { P } from "@/components/ui/p";
-import { HStack, Icon, StackProps } from "@chakra-ui/react";
+import { StackH } from "@/components/ui/stack";
+import { Icon, StackProps } from "@chakra-ui/react";
 import { IconChevronRight } from "@tabler/icons-react";
 import { Fragment } from "react";
 
@@ -17,7 +18,7 @@ export const Breadcrumbs = (props: BreadcrumbsProps) => {
   const { links, ...restProps } = props;
 
   return (
-    <HStack w={"fit"} {...restProps}>
+    <StackH align={"center"} w={"fit"} {...restProps}>
       {links.map((link, index) => {
         const last = index === links.length - 1;
 
@@ -37,6 +38,6 @@ export const Breadcrumbs = (props: BreadcrumbsProps) => {
           </Fragment>
         );
       })}
-    </HStack>
+    </StackH>
   );
 };

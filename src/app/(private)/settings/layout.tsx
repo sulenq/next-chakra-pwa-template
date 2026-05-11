@@ -1,14 +1,13 @@
 "use client";
 
-import { CContainer } from "@/components/ui/c-container";
 import { HelperText } from "@/components/ui/helper-text";
 import { StackH, StackV } from "@/components/ui/stack";
-import { DesktopNavs } from "@/components/widgets/navs";
 import {
   ConstrainedContainer,
   MainView,
   useMainViewContext,
 } from "@/components/widgets/main-view";
+import { DesktopNavs } from "@/components/widgets/navs";
 import { APP } from "@/constants/_meta";
 import { OTHER_PRIVATE_NAV_GROUPS } from "@/constants/navs";
 import { GAP, R_SPACING_MD } from "@/constants/styles";
@@ -71,7 +70,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               <DesktopNavs
                 navs={NAVS}
                 addonElement={
-                  <CContainer mt={"auto"} gap={1}>
+                  <StackV mt={"auto"} gap={1}>
                     <HelperText>{`v${APP.version}`}</HelperText>
 
                     <HelperText>
@@ -80,7 +79,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                           variant: "numeric",
                         })}`}
                     </HelperText>
-                  </CContainer>
+                  </StackV>
                 }
                 navsExpanded
                 showGroupLabel
@@ -97,7 +96,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           <ConstrainedContainer flex={1} p={GAP}>
             {pathname !== ROOT_PATH && <MainView.Header withTitle px={4} />}
 
-            <CContainer flex={1}>{children}</CContainer>
+            <StackV flex={1}>{children}</StackV>
           </ConstrainedContainer>
         </MainView.Root>
       )}

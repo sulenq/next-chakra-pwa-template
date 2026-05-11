@@ -1,6 +1,6 @@
 "use client";
 
-import { CContainer } from "@/components/ui/c-container";
+import { StackV } from "@/components/ui/stack";
 import FeedbackState from "@/components/widgets/feedback-state";
 import { LucideIcon } from "@/components/widgets/icon";
 import { useLocale } from "@/contexts/use-locale-context";
@@ -13,7 +13,7 @@ const SettingsRoute = () => {
   const { themeContext } = useThemeContext();
 
   return (
-    <CContainer
+    <StackV
       flex={1}
       align={"center"}
       justify={"center"}
@@ -27,7 +27,7 @@ const SettingsRoute = () => {
         title={"Master Data"}
         description={t.msg_master_data_index_route}
       />
-    </CContainer>
+    </StackV>
   );
 };
 export default SettingsRoute;

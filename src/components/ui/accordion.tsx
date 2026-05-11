@@ -1,6 +1,7 @@
 "use client";
 
-import { Accordion as ChakraAccordion, HStack } from "@chakra-ui/react";
+import { StackH } from "@/components/ui/stack";
+import { Accordion as ChakraAccordion } from "@chakra-ui/react";
 import { forwardRef } from "react";
 import { LuChevronDown } from "react-icons/lu";
 
@@ -25,9 +26,15 @@ const AccordionItemTrigger = forwardRef<
         </ChakraAccordion.ItemIndicator>
       )}
 
-      <HStack gap={"4"} flex={"1"} textAlign={"start"} width={"full"}>
+      <StackH
+        align={"center"}
+        gap={"4"}
+        flex={"1"}
+        textAlign={"start"}
+        width={"full"}
+      >
         {children}
-      </HStack>
+      </StackH>
 
       {indicatorPlacement === "end" && (
         <ChakraAccordion.ItemIndicator>

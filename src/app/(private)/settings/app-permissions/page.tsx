@@ -3,7 +3,7 @@
 import { Btn } from "@/components/ui/btn";
 import { Disclosure } from "@/components/ui/disclosure";
 import { P } from "@/components/ui/p";
-import { StackV } from "@/components/ui/stack";
+import { StackH, StackV } from "@/components/ui/stack";
 import { Switch } from "@/components/ui/switch";
 import { toaster } from "@/components/ui/toaster";
 import { AppIconLucide } from "@/components/widgets/app-icon";
@@ -21,7 +21,6 @@ import { usePopDisclosure } from "@/hooks/use-pop-disclosure";
 import { startCamera, stopCamera } from "@/utils/camera";
 import { disclosureId } from "@/utils/disclosure";
 import { getAddress, getLatLon } from "@/utils/location";
-import { HStack } from "@chakra-ui/react";
 import { CameraIcon, MapPinIcon, MicIcon } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
@@ -166,11 +165,11 @@ const CameraSection = () => {
   return (
     <Item.Root>
       <Item.Header borderless justify={"space-between"}>
-        <HStack>
+        <StackH align={"center"}>
           <AppIconLucide icon={CameraIcon} />
 
           <P fontWeight={"semibold"}>{t.camera}</P>
-        </HStack>
+        </StackH>
 
         <Test />
       </Item.Header>
@@ -356,11 +355,11 @@ const MicrophoneSection = () => {
   return (
     <Item.Root>
       <Item.Header borderless justify={"space-between"}>
-        <HStack>
+        <StackH align={"center"}>
           <AppIconLucide icon={MicIcon} />
 
           <P fontWeight={"semibold"}>{t.mic}</P>
-        </HStack>
+        </StackH>
 
         <Test />
       </Item.Header>
@@ -508,26 +507,26 @@ const LocationSection = () => {
 
               {address && center && (
                 <StackV gap={2}>
-                  <HStack align={"start"}>
+                  <StackH align={"start"}>
                     <P w={"100px"} color={"fg.muted"} flexShrink={0}>
                       Latitude
                     </P>
                     <P>{`${center.lat}`}</P>
-                  </HStack>
+                  </StackH>
 
-                  <HStack align={"start"}>
+                  <StackH align={"start"}>
                     <P w={"100px"} color={"fg.muted"} flexShrink={0}>
                       Longitude
                     </P>
                     <P>{`${center.long}`}</P>
-                  </HStack>
+                  </StackH>
 
-                  <HStack align={"start"}>
+                  <StackH align={"start"}>
                     <P w={"100px"} color={"fg.muted"} flexShrink={0}>
                       {t.address}
                     </P>
                     <P>{address}</P>
-                  </HStack>
+                  </StackH>
                 </StackV>
               )}
             </Disclosure.Body>
@@ -550,11 +549,11 @@ const LocationSection = () => {
   return (
     <Item.Root>
       <Item.Header borderless justify={"space-between"}>
-        <HStack>
+        <StackH align={"center"}>
           <AppIconLucide icon={MapPinIcon} />
 
           <P fontWeight={"semibold"}>{t.location}</P>
-        </HStack>
+        </StackH>
 
         <Test />
       </Item.Header>

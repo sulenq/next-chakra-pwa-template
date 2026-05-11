@@ -4,10 +4,10 @@ import { Btn } from "@/components/ui/btn";
 import { Divider } from "@/components/ui/divider";
 import { NavLink } from "@/components/ui/nav-link";
 import { P } from "@/components/ui/p";
+import { StackH, StackV } from "@/components/ui/stack";
 import { BrandWatermark } from "@/components/widgets/brand-watermark";
 import { useLocale } from "@/contexts/use-locale-context";
 import { useThemeContext } from "@/contexts/use-theme-context";
-import { HStack, VStack } from "@chakra-ui/react";
 
 export default function NotFoundRoute() {
   // Contexts
@@ -15,15 +15,15 @@ export default function NotFoundRoute() {
   const { themeContext } = useThemeContext();
 
   return (
-    <VStack h={"100vh"} gap={0}>
-      <VStack p={8} flex={1} justify={"center"} gap={4} w={"full"}>
-        <HStack>
+    <StackV h={"100vh"} gap={0}>
+      <StackV p={8} flex={1} justify={"center"} gap={4} w={"full"}>
+        <StackH align={"center"}>
           <Divider dir={"vertical"} w={"20px"} h={"2px"} />
           <P fontWeight={"bold"} fontSize={"lg"} color={"fg.subtle"}>
             404
           </P>
           <Divider dir={"vertical"} w={"20px"} h={"2px"} />
-        </HStack>
+        </StackH>
 
         <P textAlign={"center"} fontSize={"xl"} fontWeight={"bold"}>
           Page Not Found
@@ -36,11 +36,11 @@ export default function NotFoundRoute() {
         <NavLink to={"/"} w={"fit"}>
           <Btn colorPalette={themeContext.colorPalette}>{t.main_page}</Btn>
         </NavLink>
-      </VStack>
+      </StackV>
 
-      <VStack w={"full"} py={4}>
+      <StackV w={"full"} py={4}>
         <BrandWatermark />
-      </VStack>
-    </VStack>
+      </StackV>
+    </StackV>
   );
 }

@@ -1,5 +1,6 @@
+import { StackV } from "@/components/ui/stack";
 import { useThemeContext } from "@/contexts/use-theme-context";
-import { Icon, IconProps, VStack } from "@chakra-ui/react";
+import { Icon, IconProps } from "@chakra-ui/react";
 import { IconCaretDownFilled, IconCaretUpFilled } from "@tabler/icons-react";
 
 // -----------------------------------------------------------------
@@ -25,7 +26,7 @@ export const SortIcon = (props: SortIconProps) => {
   const descColor = desc ? themeContext.primaryColor : "d3";
 
   return (
-    <VStack gap={0}>
+    <StackV gap={0}>
       <Icon boxSize={"15px"} color={ascColor} mb={"-4.5px"} {...restProps}>
         <IconCaretUpFilled />
       </Icon>
@@ -33,6 +34,6 @@ export const SortIcon = (props: SortIconProps) => {
       <Icon boxSize={"15px"} color={descColor} mt={"-4.5px"} {...restProps}>
         <IconCaretDownFilled />
       </Icon>
-    </VStack>
+    </StackV>
   );
 };

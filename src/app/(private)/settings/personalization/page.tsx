@@ -198,11 +198,11 @@ const AccentColorSection = () => {
   return (
     <Item.Root>
       <Item.Header borderless>
-        <HStack>
+        <StackH align={"center"}>
           <AppIconLucide icon={SwatchBookIcon} />
 
           <Item.Title>{t.accent_color}</Item.Title>
-        </HStack>
+        </StackH>
       </Item.Header>
 
       <StackV px={R_SPACING_MD} pb={R_SPACING_MD}>
@@ -287,11 +287,11 @@ const RoundedSection = () => {
   return (
     <Item.Root>
       <Item.Header borderless>
-        <HStack>
+        <StackH align={"center"}>
           <AppIconLucide icon={SquareRoundCornerIcon} />
 
           <Item.Title>{t.rounded}</Item.Title>
-        </HStack>
+        </StackH>
       </Item.Header>
 
       <StackV px={R_SPACING_MD} pb={R_SPACING_MD}>

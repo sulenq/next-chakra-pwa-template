@@ -1,10 +1,10 @@
 import { Btn } from "@/components/ui/btn";
 import { Menu } from "@/components/ui/menu";
 import { P } from "@/components/ui/p";
+import { StackH } from "@/components/ui/stack";
 import { AppIconLucide } from "@/components/widgets/app-icon";
 import { DotIndicator } from "@/components/widgets/indicator";
 import { useLocale } from "@/contexts/use-locale-context";
-import { HStack } from "@chakra-ui/react";
 import { ChevronDownIcon } from "lucide-react";
 
 // -----------------------------------------------------------------
@@ -29,10 +29,10 @@ export const Limitation = (props: LimitationTableDataProps) => {
     <Menu.Root>
       <Menu.Trigger asChild>
         <Btn clicky={false} size={"xs"} variant={"ghost"} pl={"8px"} pr={"4px"}>
-          <HStack>
+          <StackH align={"center"}>
             <P>{t.show}</P>
             <P>{`${limit}`}</P>
-          </HStack>
+          </StackH>
 
           <AppIconLucide icon={ChevronDownIcon} ml={1} color={"fg.subtle"} />
         </Btn>

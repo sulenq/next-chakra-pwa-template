@@ -8,10 +8,14 @@ import { P } from "@/components/ui/p";
 import { StackH, StackV } from "@/components/ui/stack";
 import { AppIconLucide } from "@/components/widgets/app-icon";
 import { Clock } from "@/components/widgets/clock";
-import { ScrollH } from "@/components/widgets/scroll-h";
 import { BottomIndicator, LeftIndicator } from "@/components/widgets/indicator";
 import { Logo } from "@/components/widgets/logo";
 import { MContainerV } from "@/components/widgets/m-container";
+import {
+  MainView,
+  NavBreadcrumb,
+  TopBar,
+} from "@/components/widgets/main-view";
 import {
   DesktopNavs,
   DesktopNavTooltip,
@@ -19,12 +23,8 @@ import {
   UserPanel,
 } from "@/components/widgets/navs";
 import { ProfileMenuTrigger } from "@/components/widgets/profile-menu";
+import { ScrollH } from "@/components/widgets/scroll-h";
 import { Today } from "@/components/widgets/today";
-import {
-  NavBreadcrumb,
-  TopBar,
-  MainView,
-} from "@/components/widgets/main-view";
 import { APP } from "@/constants/_meta";
 import { OTHER_PRIVATE_NAV_GROUPS, PRIVATE_NAV_GROUPS } from "@/constants/navs";
 import {
@@ -52,13 +52,13 @@ import { useIsSmScreenWidth } from "@/hooks/use-is-sm-screen-width";
 import { useScreen } from "@/hooks/use-screen";
 import { last } from "@/utils/array";
 import { getUserData } from "@/utils/auth";
+import { getActiveNavs } from "@/utils/route";
 import { pluckString } from "@/utils/string";
 import { imgUrl } from "@/utils/url";
-import { Center, HStack, VStack } from "@chakra-ui/react";
+import { Center } from "@chakra-ui/react";
 import { ChevronsLeftIcon, ChevronsRightIcon, ServerIcon } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { Fragment } from "react";
-import { getActiveNavs } from "@/utils/route";
 
 const MobileLayout = (props: any) => {
   // Props
@@ -89,19 +89,26 @@ const MobileLayout = (props: any) => {
       >
         {/* Content header */}
         <StackV gap={2}>
-          <HStack w={"full"} justify={"space-between"} pt={2} px={4}>
-            <HStack>
+          <StackH
+            align={"center"}
+            w={"full"}
+            justify={"space-between"}
+            pt={2}
+            px={4}
+          >
+            <StackH align={"center"}>
               <Logo size={15} ml={"-4px"} />
-            </HStack>
+            </StackH>
 
-            <HStack>
+            <StackH align={"center"}>
               <Clock fontSize={"sm"} />
 
               <Today fontSize={"sm"} />
-            </HStack>
-          </HStack>
+            </StackH>
+          </StackH>
 
-          <HStack
+          <StackH
+            align={"center"}
             gap={4}
             px={4}
             pb={2}
@@ -114,7 +121,7 @@ const MobileLayout = (props: any) => {
               resolvedActiveNavs={resolvedActiveNavs}
               ml={backPath ? -2 : -1}
             />
-          </HStack>
+          </StackH>
         </StackV>
 
         {children}
@@ -126,7 +133,15 @@ const MobileLayout = (props: any) => {
         borderTop={"1px solid"}
         borderColor={"border.subtle"}
       >
-        <HStack w={"max"} gap={4} px={4} pt={3} pb={5} mx={"auto"}>
+        <StackH
+          align={"center"}
+          w={"max"}
+          gap={4}
+          px={4}
+          pt={3}
+          pb={5}
+          mx={"auto"}
+        >
           {PRIVATE_NAV_GROUPS.map((group, index) => {
             return (
               <Fragment key={index}>
@@ -275,7 +290,7 @@ const MobileLayout = (props: any) => {
           })}
 
           <ProfileMenuTrigger flex={1} w={"50px"}>
-            <VStack
+            <StackV
               flex={1}
               color={MOBILE_NAVS_COLOR}
               cursor={"pointer"}
@@ -295,9 +310,9 @@ const MobileLayout = (props: any) => {
               >
                 {t.profile}
               </P>
-            </VStack>
+            </StackV>
           </ProfileMenuTrigger>
-        </HStack>
+        </StackH>
       </ScrollH>
     </StackV>
   );

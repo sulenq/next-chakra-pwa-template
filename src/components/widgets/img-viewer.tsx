@@ -1,7 +1,6 @@
 "use client";
 
 import { Btn } from "@/components/ui/btn";
-import { CContainer } from "@/components/ui/c-container";
 import { CloseButton } from "@/components/ui/close-button";
 import { Dialog } from "@/components/ui/dialog";
 import { Img } from "@/components/ui/img";
@@ -52,7 +51,7 @@ export const ImgViewer = (props: ImgViewerProps) => {
 
   return (
     <>
-      <CContainer
+      <StackV
         w={"fit"}
         cursor={disabled ? "" : "pointer"}
         onClick={
@@ -66,7 +65,7 @@ export const ImgViewer = (props: ImgViewerProps) => {
         {...restProps}
       >
         {children}
-      </CContainer>
+      </StackV>
 
       <Dialog.Root open={open} size={"full"} scrollBehavior={"inside"}>
         <Dialog.Content

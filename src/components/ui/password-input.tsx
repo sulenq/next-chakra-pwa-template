@@ -1,6 +1,7 @@
 "use client";
 
-import { CContainer } from "@/components/ui/c-container";
+import { StackV } from "@/components/ui/stack";
+import { StringInput } from "@/components/ui/string-input";
 import { LucideIcon } from "@/components/widgets/icon";
 import { BASE_ICON_BOX_SIZE } from "@/constants/styles";
 import {
@@ -12,7 +13,6 @@ import {
 } from "@chakra-ui/react";
 import { EyeIcon, EyeOffIcon } from "lucide-react";
 import { forwardRef, useState } from "react";
-import { StringInput } from "@/components/ui/string-input";
 
 // -----------------------------------------------------------------
 
@@ -50,7 +50,7 @@ export const PasswordInput = forwardRef<HTMLInputElement, PasswordInputProps>(
     }
 
     return (
-      <CContainer
+      <StackV
         flex={restProps.flex}
         flexShrink={restProps.flexShrink}
         flexGrow={restProps.flexGrow}
@@ -100,7 +100,7 @@ export const PasswordInput = forwardRef<HTMLInputElement, PasswordInputProps>(
             </Icon>
           </IconButton>
         </Center>
-      </CContainer>
+      </StackV>
     );
   },
 );

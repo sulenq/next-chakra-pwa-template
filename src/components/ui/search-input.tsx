@@ -1,22 +1,17 @@
 "use client";
 
+import { StackH } from "@/components/ui/stack";
 import { StringInput, StringInputProps } from "@/components/ui/string-input";
+import { Tooltip } from "@/components/ui/tooltip";
 import { LucideIcon } from "@/components/widgets/icon";
 import { BASE_ICON_BOX_SIZE, MAIN_INPUT_SIZE } from "@/constants/styles";
-import { InputSize, InputVariant } from "@/types/global.types";
 import { useLocale } from "@/contexts/use-locale-context";
 import { useDebounced } from "@/hooks/use-debounced";
-import {
-  HStack,
-  Icon,
-  IconProps,
-  InputGroup,
-  InputGroupProps,
-} from "@chakra-ui/react";
+import { InputSize, InputVariant } from "@/types/global.types";
+import { Icon, IconProps, InputGroup, InputGroupProps } from "@chakra-ui/react";
 import { SearchIcon } from "lucide-react";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
-import { Tooltip } from "@/components/ui/tooltip";
 
 // -----------------------------------------------------------------
 
@@ -126,7 +121,7 @@ export const SearchInput = (props: SearchInputProps) => {
         }
         {...restProps}
       >
-        <HStack position={"relative"} w={"full"}>
+        <StackH align={"center"} position={"relative"} w={"full"}>
           <StringInput
             ref={inputRef ? inputRef : null}
             pl={noIcon ? "16px" : "34px"}
@@ -145,7 +140,7 @@ export const SearchInput = (props: SearchInputProps) => {
             variant={variant}
             {...inputProps}
           />
-        </HStack>
+        </StackH>
       </InputGroup>
     </Tooltip>
   );

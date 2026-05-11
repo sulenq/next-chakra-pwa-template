@@ -1,15 +1,15 @@
 import { Btn, BtnProps } from "@/components/ui/btn";
-import { CContainer } from "@/components/ui/c-container";
 import { Disclosure } from "@/components/ui/disclosure";
 import { P } from "@/components/ui/p";
+import { StackV } from "@/components/ui/stack";
+import { Tooltip } from "@/components/ui/tooltip";
+import { BackButton } from "@/components/widgets/back-button";
 import { useThemeContext } from "@/contexts/use-theme-context";
+import { useCountdown } from "@/hooks/use-countdown";
 import { usePopDisclosure } from "@/hooks/use-pop-disclosure";
 import { disclosureId } from "@/utils/disclosure";
 import { Box, StackProps } from "@chakra-ui/react";
-import { BackButton } from "@/components/widgets/back-button";
-import { useCountdown } from "@/hooks/use-countdown";
 import { useEffect } from "react";
-import { Tooltip } from "@/components/ui/tooltip";
 
 // -----------------------------------------------------------------
 
@@ -184,7 +184,7 @@ export const ConfirmationTrigger = (props: ConfirmationTriggerProps) => {
 
   return (
     <>
-      <CContainer
+      <StackV
         w={"fit"}
         onClick={(e) => {
           e.preventDefault();
@@ -199,7 +199,7 @@ export const ConfirmationTrigger = (props: ConfirmationTriggerProps) => {
         {...restProps}
       >
         {children}
-      </CContainer>
+      </StackV>
 
       <ConfirmationContent
         open={open}

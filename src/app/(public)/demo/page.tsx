@@ -1,29 +1,32 @@
 "use client";
 
 import { Btn } from "@/components/ui/btn";
-import { CContainer } from "@/components/ui/c-container";
 import { ColorModeButton } from "@/components/ui/color-mode";
 import { DatePickerInput } from "@/components/ui/date-picker-input";
 import { DateTimePickerInput } from "@/components/ui/date-time-picker-input";
 import { Field } from "@/components/ui/field";
 import { FileInput } from "@/components/ui/file-input";
 import { LangMenu } from "@/components/ui/lang-menu";
+import { Menu } from "@/components/ui/menu";
 import { NavLink } from "@/components/ui/nav-link";
 import { NumInput } from "@/components/ui/number-input";
 import { P } from "@/components/ui/p";
 import { PasswordInput } from "@/components/ui/password-input";
 import { PeriodPickerInput } from "@/components/ui/period-picker-input";
-import { TinyMceRichEditor } from "@/components/ui/tiny-mce-rich-editor";
 import { SearchInput } from "@/components/ui/search-input";
 import { SelectInput } from "@/components/ui/select-input";
+import { StackH, StackV } from "@/components/ui/stack";
 import { StringInput } from "@/components/ui/string-input";
 import { TextareaInput } from "@/components/ui/textarea-input";
 import { TimePickerInput } from "@/components/ui/time-picker-input";
+import { TinyMceRichEditor } from "@/components/ui/tiny-mce-rich-editor";
 import { toaster } from "@/components/ui/toaster";
 import { Tooltip } from "@/components/ui/tooltip";
+import { AppIconLucide } from "@/components/widgets/app-icon";
 import { Calendar } from "@/components/widgets/calendar";
 import { Clock } from "@/components/widgets/clock";
 import { Confirmation } from "@/components/widgets/confirmation";
+import { DataTable } from "@/components/widgets/data-table";
 import FeedbackForbidden from "@/components/widgets/feedback-forbidden";
 import FeedbackNoData from "@/components/widgets/feedback-no-data";
 import FeedbackNotFound from "@/components/widgets/feedback-not-found";
@@ -34,27 +37,24 @@ import { PDFViewer } from "@/components/widgets/pdf-viewer";
 import SelectWorkspaceCategory from "@/components/widgets/select-workspace-category";
 import { Today } from "@/components/widgets/today";
 import VideoPlayer from "@/components/widgets/video-player";
-import {
-  BatchOptionsTableOptionGenerator,
-  FormattedTableRow,
-} from "@/types/global.types";
 import { OPTIONS_RELIGION } from "@/constants/select-options";
 import { MENU_ICON_BOX_SIZE } from "@/constants/styles";
 import { useLocale } from "@/contexts/use-locale-context";
 import useRenderTrigger from "@/contexts/use-render-trigger";
 import { useThemeContext } from "@/contexts/use-theme-context";
 import { useRequest } from "@/hooks/useRequestOld";
+import {
+  BatchOptionsTableOptionGenerator,
+  FormattedTableRow,
+} from "@/types/global.types";
+import { isEmptyArray } from "@/utils/array";
 import { back } from "@/utils/client";
 import { capitalize } from "@/utils/string";
-import { HStack, Icon, SimpleGrid } from "@chakra-ui/react";
+import { Icon, SimpleGrid } from "@chakra-ui/react";
 import { useFormik } from "formik";
 import { PencilIcon, RefreshCcwDotIcon, TrashIcon } from "lucide-react";
 import { useState } from "react";
 import * as yup from "yup";
-import { DataTable } from "@/components/widgets/data-table";
-import { Menu } from "@/components/ui/menu";
-import { AppIconLucide } from "@/components/widgets/app-icon";
-import { isEmptyArray } from "@/utils/array";
 
 // TODO_DEV delete this component
 
@@ -738,27 +738,30 @@ const DemoIndexRoute = () => {
 
   return (
     <ConstrainedContainer bg={"bg.body"} maxW={"1280px"} p={4} gap={8}>
-      <HStack
+      <StackH
+        align={"center"}
         justify={"space-between"}
         position={"sticky"}
         top={0}
         zIndex={1000}
       >
-        <HStack gap={4}>
+        <StackH align={"center"} gap={4}>
           <P whiteSpace={"nowrap"} fontSize={"xl"} fontWeight={"bold"}>
             Demo
           </P>
-        </HStack>
+        </StackH>
 
-        <HStack>
+        <StackH align={"center"}>
           <Calendar.Trigger>
             <Today />
           </Calendar.Trigger>
+
           <Clock />
+
           <LangMenu />
           <ColorModeButton />
-        </HStack>
-      </HStack>
+        </StackH>
+      </StackH>
 
       <NavLink to={"/welcome"}>
         <Btn colorPalette={themeContext.colorPalette}>App Layout</Btn>
@@ -766,8 +769,8 @@ const DemoIndexRoute = () => {
 
       <>
         <SimpleGrid columns={[1, null, 2]} gap={8}>
-          <CContainer gap={4}>
-            <HStack wrap={"wrap"}>
+          <StackV gap={4}>
+            <StackH align={"center"} wrap={"wrap"}>
               {toasters.map((toast) => (
                 <Btn
                   key={toast.label}
@@ -789,10 +792,10 @@ const DemoIndexRoute = () => {
                   {toast.label}
                 </Btn>
               ))}
-            </HStack>
+            </StackH>
 
             <form id={"test"} onSubmit={formik.handleSubmit}>
-              <CContainer gap={4}>
+              <StackV gap={4}>
                 <Field invalid={!!formik.errors.string}>
                   <StringInput
                     inputValue={formik.values.string}
@@ -943,15 +946,15 @@ const DemoIndexRoute = () => {
                     maxFiles={5}
                   />
                 </Field>
-              </CContainer>
+              </StackV>
             </form>
 
             <Btn type={"submit"} form={"test"}>
               Submit
             </Btn>
-          </CContainer>
+          </StackV>
 
-          <CContainer gap={4}>
+          <StackV gap={4}>
             <Field invalid={!!formik.errors.richEditor}>
               <TinyMceRichEditor
                 inputValue={formik.values.richEditor}
@@ -966,42 +969,42 @@ const DemoIndexRoute = () => {
                 "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
               }
             />
-          </CContainer>
+          </StackV>
         </SimpleGrid>
 
         <SimpleGrid columns={[1, null, 2]} gap={8}>
-          <CContainer rounded={"md"} border={"1px solid {colors.border.muted}"}>
+          <StackV rounded={"md"} border={"1px solid {colors.border.muted}"}>
             <FeedbackNoData />
-          </CContainer>
+          </StackV>
 
-          <CContainer rounded={"md"} border={"1px solid {colors.border.muted}"}>
+          <StackV rounded={"md"} border={"1px solid {colors.border.muted}"}>
             <FeedbackNotFound />
-          </CContainer>
+          </StackV>
 
-          <CContainer rounded={"md"} border={"1px solid {colors.border.muted}"}>
+          <StackV rounded={"md"} border={"1px solid {colors.border.muted}"}>
             <FeedbackForbidden />
-          </CContainer>
+          </StackV>
 
-          <CContainer rounded={"md"} border={"1px solid {colors.border.muted}"}>
+          <StackV rounded={"md"} border={"1px solid {colors.border.muted}"}>
             <FeedbackRetry />
-          </CContainer>
+          </StackV>
         </SimpleGrid>
 
-        <CContainer border={"1px solid"} borderColor={"border.muted"}>
+        <StackV border={"1px solid"} borderColor={"border.muted"}>
           <DemoDataTable />
-        </CContainer>
+        </StackV>
 
         <SimpleGrid columns={[1, null, 2]} gap={4}>
-          <CContainer>
+          <StackV>
             <PDFViewer fileUrl={"/test.pdf"} maxH={"600px"} />
-          </CContainer>
+          </StackV>
 
-          <CContainer>
+          <StackV>
             <iframe
               src={"/test.pdf#page=2&zoom=120"}
               style={{ width: "100%", height: "100vh", border: "none" }}
             />
-          </CContainer>
+          </StackV>
         </SimpleGrid>
       </>
     </ConstrainedContainer>

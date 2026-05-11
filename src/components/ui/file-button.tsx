@@ -2,6 +2,7 @@
 
 import { FileIcon } from "@/components/ui/file-icon";
 import { P } from "@/components/ui/p";
+import { StackV } from "@/components/ui/stack";
 import { LucideIcon } from "@/components/widgets/icon";
 import { useThemeContext } from "@/contexts/use-theme-context";
 import type { ButtonProps, RecipeProps } from "@chakra-ui/react";
@@ -13,7 +14,6 @@ import {
   Span,
   useFileUploadContext,
   useRecipe,
-  VStack,
 } from "@chakra-ui/react";
 import { UploadIcon, XIcon } from "lucide-react";
 import { forwardRef } from "react";
@@ -85,7 +85,7 @@ export const FileUploadDropzone = forwardRef<
       {...rest}
       _hover={{ bg: "gray.subtle" }}
     >
-      <VStack gap={4} pointerEvents={"none"}>
+      <StackV gap={4} pointerEvents={"none"}>
         {showIcon && (
           <Icon
             fontSize={"2xl"}
@@ -111,7 +111,7 @@ export const FileUploadDropzone = forwardRef<
             )}
           </ChakraFileUpload.DropzoneContent>
         )}
-      </VStack>
+      </StackV>
     </ChakraFileUpload.Dropzone>
   );
 });

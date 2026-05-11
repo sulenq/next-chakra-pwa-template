@@ -1,5 +1,5 @@
-import { CContainer } from "@/components/ui/c-container";
 import { Spinner } from "@/components/ui/spinner";
+import { StackV } from "@/components/ui/stack";
 import { SpinnerProps, StackProps } from "@chakra-ui/react";
 
 // -----------------------------------------------------------------
@@ -10,7 +10,7 @@ interface CSpinner extends StackProps {
 
 export const CSpinner = ({ spinnerProps, ...props }: CSpinner) => {
   return (
-    <CContainer
+    <StackV
       minH={"300px"}
       align={"center"}
       justify={"center"}
@@ -20,6 +20,6 @@ export const CSpinner = ({ spinnerProps, ...props }: CSpinner) => {
       {...props}
     >
       <Spinner {...spinnerProps} />
-    </CContainer>
+    </StackV>
   );
 };

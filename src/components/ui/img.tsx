@@ -1,6 +1,6 @@
 "use client";
 
-import { CContainer } from "@/components/ui/c-container";
+import { StackV } from "@/components/ui/stack";
 import { SVGS_PATH } from "@/constants/paths";
 import { Center, CenterProps, Icon, StackProps } from "@chakra-ui/react";
 import { ImageIcon, LucideIcon } from "lucide-react";
@@ -92,7 +92,7 @@ export const Img = forwardRef<HTMLImageElement, ImgProps>(
     };
 
     return (
-      <CContainer
+      <StackV
         w={"auto"}
         h={"auto"}
         justify={"center"}
@@ -137,7 +137,7 @@ export const Img = forwardRef<HTMLImageElement, ImgProps>(
             {...imageProps}
           />
         )}
-      </CContainer>
+      </StackV>
     );
   },
 );

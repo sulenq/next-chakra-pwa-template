@@ -1,4 +1,5 @@
-import { HStack, StackProps } from "@chakra-ui/react";
+import { StackH } from "@/components/ui/stack";
+import { StackProps } from "@chakra-ui/react";
 
 // -----------------------------------------------------------------
 
@@ -12,13 +13,14 @@ export const ToggleSettingContainer = ({
   ...props
 }: ToggleSettingContainerProps) => {
   return (
-    <HStack
+    <StackH
+      align={"center"}
       justify={"space-between"}
       pointerEvents={disabled ? "none" : "auto"}
       opacity={disabled ? 0.4 : 1}
       {...props}
     >
       {children}
-    </HStack>
+    </StackH>
   );
 };

@@ -1,6 +1,6 @@
 "use client";
 
-import { CContainer } from "@/components/ui/c-container";
+import { StackV } from "@/components/ui/stack";
 import { useThemeContext } from "@/contexts/use-theme-context";
 import {
   Skeleton as ChakraSkeleton,
@@ -34,8 +34,8 @@ export const TableSkeleton = (props: StackProps) => {
   const { ...restProps } = props;
 
   return (
-    <CContainer p={3} flex={1} {...restProps}>
+    <StackV p={3} flex={1} {...restProps}>
       <Skeleton flex={1} />
-    </CContainer>
+    </StackV>
   );
 };
