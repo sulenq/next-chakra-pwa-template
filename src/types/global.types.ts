@@ -119,6 +119,14 @@ export interface BaseResponse<T = any> {
   data?: T;
 }
 
+export interface Pagination {
+  currentPage: number;
+  hasPrevPage: boolean;
+  hasNextPage: boolean;
+  totalPage: number;
+  totalItems: number; // total records
+}
+
 // Request
 export interface BaseDataListParams {
   search?: string;
