@@ -301,7 +301,7 @@ const DisclosureFooter = ({ children, ...props }: DisclosureFooterProps) => {
       borderColor={"border.subtle"}
       {...(props as DialogFooterProps)}
     >
-      <StackH align={"center"} w={"full"} justify={"end"}>
+      <StackH align={"center"} justify={"end"} gap={2} w={"full"}>
         {children}
       </StackH>
     </Dialog.Footer>
