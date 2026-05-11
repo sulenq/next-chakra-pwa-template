@@ -121,9 +121,7 @@ export const AvatarUploadTrigger = (
 
   return (
     <>
-      <StackV w={"fit"} onClick={onOpen}>
-        {children}
-      </StackV>
+      <StackV onClick={onOpen}>{children}</StackV>
 
       <Disclosure.Root open={open} lazyLoad size={"xs"}>
         <Disclosure.Content>

@@ -185,7 +185,7 @@ const DataGridDetailTrigger = (props: DataGridDetailDisclosureTriggerProps) => {
 
   return (
     <>
-      <StackV w={"fit"} onClick={onOpen} {...restProps}>
+      <StackV onClick={onOpen} {...restProps}>
         {children}
       </StackV>
 

@@ -21,7 +21,7 @@ export const StackV = forwardRef<HTMLDivElement, StackProps>(
         className={"stack-v"}
         flexDir={"column"}
         align={"stretch"}
-        w={"full"}
+        w={"auto"}
         {...props}
       />
     );
@@ -38,7 +38,7 @@ export const StackH = forwardRef<HTMLDivElement, StackProps>(
         className={"stack-h"}
         flexDir={"row"}
         align={"stretch"}
-        w={"full"}
+        w={"auto"}
         {...props}
       />
     );

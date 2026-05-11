@@ -163,13 +163,7 @@ const ItemTitle = forwardRef<HTMLDivElement, ItemTitleProps>(
     const { children, popoverContent, autoHeight, ...restProps } = props;
 
     return (
-      <StackH
-        align={"center"}
-        ref={ref}
-        gap={1}
-        w={"fit"}
-        h={autoHeight ? "" : "42px"}
-      >
+      <StackH align={"center"} ref={ref} gap={1} h={autoHeight ? "" : "42px"}>
         <P fontWeight={"medium"} {...restProps}>
           {children}
         </P>

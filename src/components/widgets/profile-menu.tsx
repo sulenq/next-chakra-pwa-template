@@ -282,7 +282,7 @@ export const ProfileMenuTrigger = (props: ProfileMenuTriggerProps) => {
       {...popoverRootProps}
     >
       <Popover.Trigger asChild>
-        <StackV w={"fit"} {...restProps} />
+        <StackV {...restProps} />
       </Popover.Trigger>
 
       <Popover.Content

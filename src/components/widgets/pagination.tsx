@@ -54,7 +54,7 @@ export const Pagination = (props: PaginationTableDataProps) => {
         <AppIconLucide icon={ChevronLeftIcon} />
       </Btn>
 
-      <StackH align={"center"} whiteSpace={"nowrap"}>
+      <StackH align={"center"} gap={2} whiteSpace={"nowrap"}>
         <P>{formatNumber(page)}</P>
 
         <P>{t.of}</P>

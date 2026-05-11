@@ -43,7 +43,7 @@ const FileList = (props: FileListProps) => {
   const { inputValue, onChange, existing, ...restProps } = props;
 
   return (
-    <StackV gap={2} {...restProps}>
+    <StackV w={"full"} gap={2} {...restProps}>
       {inputValue?.map((file: any, index: number) => {
         const fileData = {
           fileName: file.name,
@@ -188,6 +188,13 @@ export const FileInputRoot = forwardRef<
         ref={ref}
         key={`${key}`}
         alignItems={"stretch"}
+        gap={2}
+        w={"full"}
+        disabled={resolvedDisabled}
+        pos={"relative"}
+        accept={accept}
+        maxFileSize={maxFileSizeMB * 1024 * 1024}
+        maxFiles={maxFiles}
         onFileChange={handleFileChange}
         onFileReject={() => {
           toaster.error({
@@ -195,12 +202,6 @@ export const FileInputRoot = forwardRef<
             description: t.error_invalid_file.description,
           });
         }}
-        maxFileSize={maxFileSizeMB * 1024 * 1024}
-        maxFiles={maxFiles}
-        gap={2}
-        accept={accept}
-        disabled={resolvedDisabled}
-        pos={"relative"}
         {...restProps}
       >
         <>
@@ -328,7 +329,7 @@ export const FileInput = forwardRef<HTMLInputElement, FileInputProps>(
     const resolvedDisabled = fc?.disabled;
 
     return (
-      <StackV gap={3}>
+      <StackV gap={3} w={"full"}>
         {!isEmptyArray(existing) && (
           <StackV
             p={2}

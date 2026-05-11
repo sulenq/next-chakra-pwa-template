@@ -20,7 +20,7 @@ export const LayananDataUtils = (props: LayananDataUtilsProps) => {
   const { filter, setFilter, ...restProps } = props;
 
   return (
-    <StackH align={"center"} w={"full"} {...restProps}>
+    <StackH align={"center"} gap={2} {...restProps}>
       <SearchInput
         queryKey={"q-layanan"}
         inputProps={{

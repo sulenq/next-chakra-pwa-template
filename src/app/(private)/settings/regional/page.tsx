@@ -56,7 +56,7 @@ const Language = () => {
   return (
     <Item.Root>
       <Item.Header borderless>
-        <StackH align={"center"}>
+        <StackH align={"center"} gap={2}>
           <AppIconLucide icon={LanguagesIcon} />
 
           <Item.Title>{t.language}</Item.Title>
@@ -139,13 +139,13 @@ const Timezone = () => {
   return (
     <Item.Root>
       <Item.Header borderless justify={"space-between"}>
-        <StackH align={"center"}>
+        <StackH align={"center"} gap={2}>
           <AppIconLucide icon={GlobeIcon} />
 
           <Item.Title>{capitalizeWords(t.timezone)}</Item.Title>
         </StackH>
 
-        <StackH align={"center"}>
+        <StackH align={"center"} gap={2}>
           <Btn
             size={"xs"}
             variant={"outline"}
@@ -226,7 +226,7 @@ const Timezone = () => {
             justify={"space-between"}
             wrap={"wrap"}
           >
-            <StackV w={"fit"} mb={[1, null, 0]}>
+            <StackV mb={[1, null, 0]}>
               <Limitation
                 limit={limit}
                 setLimit={setLimit}
@@ -234,7 +234,7 @@ const Timezone = () => {
               />
             </StackV>
 
-            <StackV w={"fit"}>
+            <StackV>
               <Pagination
                 page={page}
                 setPage={setPage}
@@ -263,7 +263,7 @@ const DateFormat = () => {
   return (
     <Item.Root>
       <Item.Header borderless>
-        <StackH align={"center"}>
+        <StackH align={"center"} gap={2}>
           <AppIconLucide icon={CalendarIcon} />
 
           <Item.Title>{t.date_format}</Item.Title>
@@ -290,7 +290,7 @@ const DateFormat = () => {
                   _active={{ bg: "bg.subtle" }}
                   transition={"200ms"}
                 >
-                  <StackH align={"center"}>
+                  <StackH align={"center"} gap={2}>
                     <P fontWeight={"medium"} truncate>
                       {item.label}
                     </P>
@@ -330,7 +330,7 @@ const TimeFormat = () => {
   return (
     <Item.Root>
       <Item.Header borderless>
-        <StackH align={"center"}>
+        <StackH align={"center"} gap={2}>
           <AppIconLucide icon={HourglassIcon} />
 
           <Item.Title>{t.time_format}</Item.Title>
@@ -357,7 +357,7 @@ const TimeFormat = () => {
                   _active={{ bg: "bg.subtle" }}
                   transition={"200ms"}
                 >
-                  <StackH align={"center"}>
+                  <StackH align={"center"} gap={2}>
                     <P fontWeight={"medium"} truncate>
                       {item.label}
                     </P>
@@ -391,7 +391,7 @@ const UOMFormat = () => {
   return (
     <Item.Root>
       <Item.Header borderless>
-        <StackH align={"center"}>
+        <StackH align={"center"} gap={2}>
           <AppIconLucide icon={RulerDimensionLineIcon} />
 
           <Item.Title>{t.UOM_format}</Item.Title>
@@ -418,7 +418,7 @@ const UOMFormat = () => {
                   _active={{ bg: "bg.subtle" }}
                   transition={"200ms"}
                 >
-                  <StackH align={"center"}>
+                  <StackH align={"center"} gap={2}>
                     <P fontWeight={"medium"} truncate>
                       {item.label}
                     </P>

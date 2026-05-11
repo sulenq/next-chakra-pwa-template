@@ -52,7 +52,6 @@ export const ImgViewer = (props: ImgViewerProps) => {
   return (
     <>
       <StackV
-        w={"fit"}
         cursor={disabled ? "" : "pointer"}
         onClick={
           disabled

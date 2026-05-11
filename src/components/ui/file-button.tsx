@@ -85,7 +85,7 @@ export const FileUploadDropzone = forwardRef<
       {...rest}
       _hover={{ bg: "gray.subtle" }}
     >
-      <StackV gap={4} pointerEvents={"none"}>
+      <StackV gap={4} align={"center"} pointerEvents={"none"}>
         {showIcon && (
           <Icon
             fontSize={"2xl"}

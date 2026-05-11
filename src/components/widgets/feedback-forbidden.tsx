@@ -21,7 +21,6 @@ export default function FeedbackForbidden(props: FeedbackStateProps) {
 
   return (
     <StackV
-      w={"fit"}
       m={"auto"}
       align={"center"}
       minH={MIN_H_FEEDBACK_CONTAINER}

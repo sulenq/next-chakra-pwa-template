@@ -198,7 +198,7 @@ export const DisclosureHeaderContent = (
         </P>
       )}
 
-      <StackH align={"center"} ml={"auto"} gap={[0, null, 2]}>
+      <StackH w={"fit"} align={"center"} ml={"auto"} gap={[0, null, 2]}>
         {children}
 
         {withMaximizeButton && (

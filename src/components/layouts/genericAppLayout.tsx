@@ -352,7 +352,6 @@ const DesktopLayout = (props: any) => {
           transition={"0.3s cubic-bezier(0.175, 0.885, 0.32, 1.1)"}
           pos={"relative"}
         >
-          {/* Content */}
           <StackV
             flex={1}
             gap={GAP}

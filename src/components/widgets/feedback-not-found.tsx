@@ -16,7 +16,6 @@ export default function FeedbackNotFound(props: FeedbackStateProps) {
 
   return (
     <StackV
-      w={"fit"}
       m={"auto"}
       minH={"100px"}
       justify={"center"}

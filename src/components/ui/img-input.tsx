@@ -179,12 +179,7 @@ export const ImgInput = (props: FileInputProps) => {
                       src={url}
                       flex={"1 1 0"}
                     >
-                      <StackV
-                        align={"center"}
-                        w={"fit"}
-                        mx={"auto"}
-                        pos={"relative"}
-                      >
+                      <StackV align={"center"} mx={"auto"} pos={"relative"}>
                         <Circle
                           bg={"bg.body"}
                           size={"20px"}

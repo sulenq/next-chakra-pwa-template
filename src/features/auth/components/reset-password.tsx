@@ -349,7 +349,7 @@ const ResetPasswordDisclosureTrigger = (props: any) => {
 
   return (
     <>
-      <StackV onClick={onOpen} w={"fit"} {...restProps}>
+      <StackV onClick={onOpen} {...restProps}>
         {children}
       </StackV>
 

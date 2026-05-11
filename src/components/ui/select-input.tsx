@@ -98,7 +98,7 @@ const SelectOptions = (props: SelectOptionsProps) => {
                     setSelected([]);
                   }
                 }}
-                w={"fit-content"}
+                w={"fit"}
               >
                 <Checkbox
                   onChange={(e: any) => {

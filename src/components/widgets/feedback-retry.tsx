@@ -28,7 +28,6 @@ export default function FeedbackRetry(props: FeedbackRetryProps) {
 
   return (
     <StackV
-      w={"fit"}
       m={"auto"}
       minH={MIN_H_FEEDBACK_CONTAINER}
       justify={"center"}

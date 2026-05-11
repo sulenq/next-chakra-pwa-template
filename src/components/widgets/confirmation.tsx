@@ -185,7 +185,7 @@ export const ConfirmationTrigger = (props: ConfirmationTriggerProps) => {
   return (
     <>
       <StackV
-        w={"fit"}
+        cursor={disabled ? "disabled" : "pointer"}
         onClick={(e) => {
           e.preventDefault();
           e.stopPropagation();
@@ -195,7 +195,6 @@ export const ConfirmationTrigger = (props: ConfirmationTriggerProps) => {
           openDisclosure();
           onOpen?.();
         }}
-        cursor={disabled ? "disabled" : "pointer"}
         {...restProps}
       >
         {children}

@@ -29,7 +29,7 @@ export const Limitation = (props: LimitationTableDataProps) => {
     <Menu.Root>
       <Menu.Trigger asChild>
         <Btn clicky={false} size={"xs"} variant={"ghost"} pl={"8px"} pr={"4px"}>
-          <StackH align={"center"}>
+          <StackH w={"fit"} align={"center"}>
             <P>{t.show}</P>
             <P>{`${limit}`}</P>
           </StackH>

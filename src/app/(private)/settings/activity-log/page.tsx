@@ -101,7 +101,7 @@ const ActivityLog = () => {
             >
               {log.user && <MiniUser withEmail user={log.user} w={"240px"} />}
 
-              <StackV flex={1} w={"fit"}>
+              <StackV flex={1}>
                 <P>{formatActivityLog(log)}</P>
 
                 <P color={"fg.subtle"}>

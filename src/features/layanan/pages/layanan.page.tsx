@@ -40,7 +40,7 @@ export default function LayananPage() {
           }}
           justify={"space-between"}
         >
-          <StackH align={"center"}>
+          <StackH align={"center"} gap={2}>
             {!isSmContainer && (
               <LayananDataUtils filter={filter} setFilter={setFilter} />
             )}

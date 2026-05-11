@@ -22,7 +22,7 @@ const FeedbackState = (props: FeedbackStateProps) => {
   const descriptionString = typeof description === "string";
 
   return (
-    <StackV gap={1} p={4} {...restProps}>
+    <StackV align={"center"} gap={1} p={4} {...restProps}>
       {icon && (
         <Icon mb={2} color={"fg.subtle"} boxSize={9}>
           {icon || <IconDatabaseOff stroke={1.8} />}

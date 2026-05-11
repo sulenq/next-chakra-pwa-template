@@ -278,6 +278,7 @@ export const DataTableRoot = (props: DataTableRootProps) => {
                 align={"center"}
                 key={index}
                 justify={header.align}
+                gap={2}
                 h={"full"}
                 minH={TABLE_TH_H}
                 px={TABLE_CELL_PX}
