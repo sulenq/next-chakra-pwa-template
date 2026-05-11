@@ -103,9 +103,11 @@ const customConfig = defineConfig({
           950: { value: "#1d1d1d" },
         },
 
+        // -----------------------------------------------------------------
+
         cream: {
-          50: { value: "#f7f3ef" },
-          100: { value: "#F7F1E4" },
+          50: { value: "#f6f0ea" },
+          100: { value: "#f3ebdb" },
           200: { value: "#EFE5CE" },
           300: { value: "#E7D9B8" },
           400: { value: "#DFCCA2" },
@@ -118,7 +120,7 @@ const customConfig = defineConfig({
         },
 
         caramel: {
-          50: { value: "#FBF3EA" },
+          50: { value: "#f3e9df" },
           100: { value: "#F4E0C9" },
           200: { value: "#E8C7A0" },
           300: { value: "#DCAE78" },
@@ -132,7 +134,7 @@ const customConfig = defineConfig({
         },
 
         mocha: {
-          50: { value: "#F5EDE9" },
+          50: { value: "#f3e7e2ff" },
           100: { value: "#EAD7CF" },
           200: { value: "#D7B8A9" },
           300: { value: "#C49A84" },
@@ -146,7 +148,7 @@ const customConfig = defineConfig({
         },
 
         brown: {
-          50: { value: "#EFEBE9" },
+          50: { value: "#eae3df" },
           100: { value: "#D7CCC8" },
           200: { value: "#BCAAA4" },
           300: { value: "#A1887F" },
@@ -160,7 +162,7 @@ const customConfig = defineConfig({
         },
 
         maroon: {
-          50: { value: "#FAEBEB" },
+          50: { value: "#f4e2e2" },
           100: { value: "#F2C8C8" },
           200: { value: "#E69E9E" },
           300: { value: "#D97373" },
@@ -174,7 +176,7 @@ const customConfig = defineConfig({
         },
 
         red: {
-          50: { value: "#fbeded" },
+          50: { value: "#f6e6e6" },
           100: { value: "#fee2e2" },
           200: { value: "#fecaca" },
           300: { value: "#fca5a5" },
@@ -188,7 +190,7 @@ const customConfig = defineConfig({
         },
 
         salmon: {
-          50: { value: "#fceee7" },
+          50: { value: "#f5e6de" },
           100: { value: "#FFE0DA" },
           200: { value: "#FFC1B3" },
           300: { value: "#FFA18D" },
@@ -202,7 +204,7 @@ const customConfig = defineConfig({
         },
 
         pastelOrange: {
-          50: { value: "#ffeee4" },
+          50: { value: "#f5e7dfff" },
           100: { value: "#f5dfd8" },
           200: { value: "#FFD4C1" },
           300: { value: "#FFBDA1" },
@@ -216,8 +218,8 @@ const customConfig = defineConfig({
         },
 
         orange: {
-          50: { value: "#fff7ed" },
-          100: { value: "#ffedd5" },
+          50: { value: "#f5e6d6ff" },
+          100: { value: "#f2dfc9ff" },
           200: { value: "#fed7aa" },
           300: { value: "#fdba74" },
           400: { value: "#fb923c" },
@@ -230,7 +232,7 @@ const customConfig = defineConfig({
         },
 
         gold: {
-          50: { value: "#fff9e6" },
+          50: { value: "#f3e9cbff" },
           100: { value: "#ffefbf" },
           200: { value: "#ffe08a" },
           300: { value: "#ffd24d" },
@@ -244,7 +246,7 @@ const customConfig = defineConfig({
         },
 
         yellow: {
-          50: { value: "#fffccd" },
+          50: { value: "#fbf7c4ff" },
           100: { value: "#fff7b8" },
           200: { value: "#eae1af" },
           300: { value: "#ffe14d" },
@@ -258,7 +260,7 @@ const customConfig = defineConfig({
         },
 
         lime: {
-          50: { value: "#f6fad0" },
+          50: { value: "#edf2c4ff" },
           100: { value: "#e8ecb2" },
           200: { value: "#dde590" },
           300: { value: "#DCE775" },
@@ -272,7 +274,7 @@ const customConfig = defineConfig({
         },
 
         olive: {
-          50: { value: "#F2F4E7" },
+          50: { value: "#ebf0cfff" },
           100: { value: "#DDE3C4" },
           200: { value: "#C7D29F" },
           300: { value: "#B1C17A" },
@@ -286,7 +288,7 @@ const customConfig = defineConfig({
         },
 
         green: {
-          50: { value: "#e4fbeb" },
+          50: { value: "#d6f6dfff" },
           100: { value: "#c9f2d7" },
           200: { value: "#b2eec7" },
           300: { value: "#86efac" },
@@ -300,7 +302,7 @@ const customConfig = defineConfig({
         },
 
         jade: {
-          50: { value: "#e2faee" },
+          50: { value: "#d6f7e7ff" },
           100: { value: "#c9eeda" },
           200: { value: "#aee2c6" },
           300: { value: "#6FDEA5" },
@@ -314,7 +316,7 @@ const customConfig = defineConfig({
         },
 
         teal: {
-          50: { value: "#daf7f0" },
+          50: { value: "#d2f4ecff" },
           100: { value: "#baefe3" },
           200: { value: "#adf0e2" },
           300: { value: "#5eead4" },
@@ -328,7 +330,7 @@ const customConfig = defineConfig({
         },
 
         tealBlue: {
-          50: { value: "#def9f6" },
+          50: { value: "#d3f3efff" },
           100: { value: "#c6ece7" },
           200: { value: "#bcede6" },
           300: { value: "#69D2CD" },
@@ -342,7 +344,7 @@ const customConfig = defineConfig({
         },
 
         cyan: {
-          50: { value: "#ddf8f9" },
+          50: { value: "#d1f1f2ff" },
           100: { value: "#c1eff3" },
           200: { value: "#b6eaf1" },
           300: { value: "#67e8f9" },
@@ -356,8 +358,8 @@ const customConfig = defineConfig({
         },
 
         powderBlue: {
-          50: { value: "#e6f1fb" },
-          100: { value: "#d8e8f6" },
+          50: { value: "#dceaf7ff" },
+          100: { value: "#cee0efff" },
           200: { value: "#c1def7" },
           300: { value: "#9ecaf0" },
           400: { value: "#7fb4e6" },
@@ -370,7 +372,7 @@ const customConfig = defineConfig({
         },
 
         sky: {
-          50: { value: "#e8f2fa" },
+          50: { value: "#dbeaf7ff" },
           100: { value: "#cfe7f7" },
           200: { value: "#c9e7f8" },
           300: { value: "#7DD3FC" },
@@ -384,8 +386,8 @@ const customConfig = defineConfig({
         },
 
         blue: {
-          50: { value: "#e8f2ff" },
-          100: { value: "#d1e2f8" },
+          50: { value: "#dce8f7ff" },
+          100: { value: "#c9daf1ff" },
           200: { value: "#bfdbfe" },
           300: { value: "#a3cfff" },
           400: { value: "#60a5fa" },
@@ -398,7 +400,7 @@ const customConfig = defineConfig({
         },
 
         sapphire: {
-          50: { value: "#e7effd" },
+          50: { value: "#dee7f6ff" },
           100: { value: "#D5E2FF" },
           200: { value: "#b6c9fb" },
           300: { value: "#7B9BFF" },
@@ -412,7 +414,7 @@ const customConfig = defineConfig({
         },
 
         indigo: {
-          50: { value: "#E8EAF6" },
+          50: { value: "#d4d8edff" },
           100: { value: "#C5CAE9" },
           200: { value: "#9FA8DA" },
           300: { value: "#8593d9" },
@@ -426,7 +428,7 @@ const customConfig = defineConfig({
         },
 
         discord: {
-          50: { value: "#eaecfd" },
+          50: { value: "#e3e6faff" },
           100: { value: "#D0D6FA" },
           200: { value: "#B3BCF7" },
           300: { value: "#96A3F4" },
@@ -440,7 +442,7 @@ const customConfig = defineConfig({
         },
 
         powderLavender: {
-          50: { value: "#F0F0FF" },
+          50: { value: "#e4e4f6ff" },
           100: { value: "#E2E1FF" },
           200: { value: "#CECDFF" },
           300: { value: "#BAB8FF" },
@@ -482,7 +484,7 @@ const customConfig = defineConfig({
         },
 
         bubblegumPink: {
-          50: { value: "#FFF0FA" },
+          50: { value: "#fbe4f3ff" },
           100: { value: "#FFD9F2" },
           200: { value: "#FFB6E4" },
           300: { value: "#FF92D7" },
@@ -1045,13 +1047,13 @@ const customConfig = defineConfig({
           },
           muted: {
             value: {
-              base: "{colors.orange.100}",
+              base: "{colors.orange.100} !important",
               _dark: "{colors.orange.900}",
             },
           },
           subtle: {
             value: {
-              base: "{colors.orange.50}",
+              base: "{colors.orange.50} !important",
               _dark: "{colors.orange.950}",
             },
           },
