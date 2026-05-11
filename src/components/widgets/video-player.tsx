@@ -270,11 +270,12 @@ export default function VideoPlayer(props: VideoPlayerProps) {
       ref={videoContainerRef}
       justify={"center"}
       align={"center"}
-      mx={"auto"}
-      pos={"relative"}
-      overflow={"clip"}
       aspectRatio={16 / 10}
+      w={"full"}
       bg={"black"}
+      overflow={"clip"}
+      pos={"relative"}
+      mx={"auto"}
       {...restProps}
     >
       <VideoElement
