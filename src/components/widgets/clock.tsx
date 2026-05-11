@@ -52,7 +52,7 @@ export const Clock = (props: ClockPropsProps) => {
   }, [showSeconds, tzKey]);
 
   return (
-    <StackH {...restProps}>
+    <StackH w={"fit"} {...restProps}>
       <P fontSize={props?.fontSize}>
         <TNum>{time}</TNum>
         {/* {time} */}

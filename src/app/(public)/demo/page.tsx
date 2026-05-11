@@ -752,11 +752,13 @@ const DemoIndexRoute = () => {
         </StackH>
 
         <StackH align={"center"}>
-          <Calendar.Trigger>
-            <Today />
-          </Calendar.Trigger>
+          <StackH align={"center"} gap={2}>
+            <Calendar.Trigger>
+              <Today />
+            </Calendar.Trigger>
 
-          <Clock />
+            <Clock />
+          </StackH>
 
           <LangMenu />
           <ColorModeButton />
