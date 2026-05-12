@@ -8,7 +8,7 @@ import { Switch } from "@/components/ui/switch";
 import { toaster } from "@/components/ui/toaster";
 import { AppIconLucide } from "@/components/widgets/app-icon";
 import { Item } from "@/components/widgets/item";
-import { SettingsSavedLocalyHelperText } from "@/components/widgets/local-settings-helper-text";
+import { SettingsSavedLocalyHelperText } from "@/components/ui/helper-text";
 import { MicVolumeBar } from "@/components/widgets/mic-volume-bar";
 import { ToggleSettingContainer } from "@/components/widgets/settings-shell";
 import { R_SPACING_MD } from "@/constants/styles";

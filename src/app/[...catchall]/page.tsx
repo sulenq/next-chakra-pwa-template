@@ -16,7 +16,14 @@ export default function NotFoundRoute() {
 
   return (
     <StackV h={"100vh"} gap={0}>
-      <StackV p={8} flex={1} justify={"center"} gap={4} w={"full"}>
+      <StackV
+        flex={1}
+        align={"center"}
+        justify={"center"}
+        gap={4}
+        w={"full"}
+        p={8}
+      >
         <StackH align={"center"}>
           <Divider dir={"vertical"} w={"20px"} h={"2px"} />
           <P fontWeight={"bold"} fontSize={"lg"} color={"fg.subtle"}>

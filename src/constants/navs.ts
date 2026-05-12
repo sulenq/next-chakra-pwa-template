@@ -2,7 +2,6 @@ import { NavGroup } from "@/types/global.types";
 import {
   ActivityIcon,
   BlocksIcon,
-  BrushIcon,
   ChartPieIcon,
   DatabaseIcon,
   LanguagesIcon,
@@ -10,6 +9,7 @@ import {
   ScanTextIcon,
   SettingsIcon,
   ShieldHalfIcon,
+  SunIcon,
   UserCogIcon,
   UserIcon,
 } from "lucide-react";
@@ -164,16 +164,16 @@ export const OTHER_PRIVATE_NAV_GROUPS: NavGroup[] = [
                 backPath: `/settings`,
               },
               {
-                icon: LanguagesIcon,
-                labelKey: "settings_navs.main.regional",
-                path: `/settings/regional`,
+                icon: SunIcon,
+                labelKey: "settings_navs.main.display",
+                path: `/settings/display`,
                 allowedRoles: [],
                 backPath: `/settings`,
               },
               {
-                icon: BrushIcon,
-                labelKey: "settings_navs.main.personalization",
-                path: `/settings/personalization`,
+                icon: LanguagesIcon,
+                labelKey: "settings_navs.main.regional",
+                path: `/settings/regional`,
                 allowedRoles: [],
                 backPath: `/settings`,
               },

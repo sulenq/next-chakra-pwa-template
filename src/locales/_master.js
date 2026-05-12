@@ -75,9 +75,9 @@ export const settings_navs = {
       id: "Utama",
       en: "Main",
     },
-    personalization: {
-      id: "Personalisasi",
-      en: "Personalization",
+    display: {
+      id: "Tampilan",
+      en: "Display",
     },
     regional: {
       id: "Regional",
@@ -944,6 +944,10 @@ export const sales = {
 export const yearly_sales = {
   id: "Penjualan tahunan",
   en: "Yearly sales",
+};
+export const personalization = {
+  id: "Personalisasi",
+  en: "Personalization",
 };
 
 // Message

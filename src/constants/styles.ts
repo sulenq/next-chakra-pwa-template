@@ -31,6 +31,7 @@ export const MOBILE_SPACING_MD = "4px";
 export const DESKTOP_SPACING_MD = "10px";
 export const R_SPACING_MD = [MOBILE_SPACING_MD, null, DESKTOP_SPACING_MD];
 export const GAP = "6px";
+export const SECTION_GAP = 4;
 
 // Positioning
 export const MOBILE_POPOVER_MAIN_AXIS = 22;

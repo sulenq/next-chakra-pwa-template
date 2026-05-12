@@ -61,6 +61,13 @@ const customConfig = defineConfig({
         md: { value: "0.875rem" }, // 14px
         lg: { value: "1rem" }, // 16px
       },
+      fontWeights: {
+        normal: { value: "500 !important" },
+        medium: { value: "500" },
+        semibold: { value: "600" },
+        bold: { value: "700" },
+        extrabold: { value: "800" },
+      },
       colors: {
         light: { value: "#fcfcfc" },
         dark: { value: "#151515" },
@@ -540,8 +547,8 @@ const customConfig = defineConfig({
         bg: {
           canvas: {
             value: {
-              base: "#f0eff5",
-              _dark: "#151515",
+              base: "#f0f1f4",
+              _dark: "#111",
             },
           },
           bodySolid: {

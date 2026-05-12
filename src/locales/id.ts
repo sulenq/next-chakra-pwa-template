@@ -358,6 +358,7 @@ const translations = {
   "password_confirmation": "Konfirmasi Password",
   "pending_data": "Data tertunda",
   "personal_information": "Informasi pribadi",
+  "personalization": "Personalisasi",
   "physical_progress": "Progres fisik",
   "previous": "Sebelumnya",
   "previous_page": "Halaman sebelumnya",
@@ -418,7 +419,7 @@ const translations = {
   "settings_navs": {
     "main": {
       "index": "Utama",
-      "personalization": "Personalisasi",
+      "display": "Tampilan",
       "regional": "Regional",
       "app_permissions": "Izin Aplikasi"
     },

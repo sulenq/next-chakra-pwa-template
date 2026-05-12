@@ -358,6 +358,7 @@ const translations = {
   "password_confirmation": "Password Confirmation",
   "pending_data": "Pending data",
   "personal_information": "Personal information",
+  "personalization": "Personalization",
   "physical_progress": "Physical progress",
   "previous": "Previous",
   "previous_page": "Previous page",
@@ -418,7 +419,7 @@ const translations = {
   "settings_navs": {
     "main": {
       "index": "Main",
-      "personalization": "Personalization",
+      "display": "Display",
       "regional": "Regional",
       "app_permissions": "App Permissions"
     },

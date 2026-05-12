@@ -11,7 +11,7 @@ import FeedbackNotFound from "@/components/widgets/feedback-not-found";
 import { DotIndicator } from "@/components/widgets/indicator";
 import { Item } from "@/components/widgets/item";
 import { Limitation } from "@/components/widgets/limitation";
-import { SettingsSavedLocalyHelperText } from "@/components/widgets/local-settings-helper-text";
+import { SettingsSavedLocalyHelperText } from "@/components/ui/helper-text";
 import { Pagination } from "@/components/widgets/pagination";
 import { DATE_FORMATS } from "@/constants/date-formats";
 import { LANGUAGES } from "@/constants/languages";
