@@ -209,8 +209,6 @@ const ExampleUI = () => {
   const [checked2, setChecked2] = useState<boolean>(true);
   const [select, setSelect] = useState<SelectOption[] | null | undefined>(null);
 
-  console.debug(checked2);
-
   return (
     <StackV px={R_SPACING_MD}>
       <Item.Body p={4}>
@@ -229,7 +227,7 @@ const ExampleUI = () => {
                 />
               </Center>
 
-              <StackV gap={2} px={3}>
+              <StackV gap={2} px={2}>
                 <SkeletonP w={"70%"} />
                 <SkeletonP />
               </StackV>
