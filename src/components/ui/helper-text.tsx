@@ -24,7 +24,7 @@ export const SettingsHelperText = (props: StackProps) => {
   const { children, ...restProps } = props;
 
   return (
-    <StackV flex={1} px={4} py={R_SPACING_MD} {...restProps}>
+    <StackV flex={1} px={4} py={R_SPACING_MD} mb={[4, null, 0]} {...restProps}>
       <HelperText>{children}</HelperText>
     </StackV>
   );

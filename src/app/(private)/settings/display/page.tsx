@@ -300,12 +300,8 @@ const AccentColorSetting = () => {
 
       <Item.Body>
         <HScroll>
-          <Box p={4}>
-            <StackH
-              w={"max"}
-              rounded={themeContext.radii.component}
-              overflow={"clip"}
-            >
+          <Box w={"max"} p={4}>
+            <StackH rounded={themeContext.radii.component} overflow={"clip"}>
               {COLOR_PALETTES.map((color, index) => {
                 const isSelected = color.palette === themeContext.colorPalette;
                 const isColorPaletteGray = color.palette === "gray";
