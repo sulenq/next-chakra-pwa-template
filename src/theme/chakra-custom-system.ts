@@ -114,6 +114,20 @@ const customConfig = defineConfig({
 
         // -----------------------------------------------------------------
 
+        grey: {
+          50: { value: "#e7eaec" },
+          100: { value: "#dde1e4" },
+          200: { value: "#cdd3d7" },
+          300: { value: "#b7bfc5" },
+          400: { value: "#959fa7" },
+          500: { value: "#768089" },
+          600: { value: "#606970" },
+          700: { value: "#4b5258" },
+          800: { value: "#373c41" },
+          900: { value: "#282c30" },
+          950: { value: "#1e2124" },
+        },
+
         cream: {
           50: { value: "#f6f0ea" },
           100: { value: "#f3ebdb" },
@@ -669,6 +683,54 @@ const customConfig = defineConfig({
             value: {
               base: "{colors.gray.200}",
               _dark: "{colors.gray.800}",
+            },
+          },
+        },
+
+        // -----------------------------------------------------------------
+
+        grey: {
+          solid: {
+            value: {
+              base: "{colors.grey.500}",
+              _dark: "{colors.grey.700}",
+            },
+          },
+          contrast: {
+            value: {
+              base: "{colors.grey.50}",
+              _dark: "{colors.grey.100}",
+            },
+          },
+          fg: {
+            value: {
+              base: "{colors.grey.600}",
+              _dark: "{colors.grey.200}",
+            },
+          },
+          muted: {
+            value: {
+              base: "{colors.grey.100}",
+              _dark: "{colors.grey.900}",
+            },
+          },
+          subtle: {
+            value: {
+              base: "{colors.grey.50}",
+              _dark: "{colors.grey.950}",
+            },
+          },
+          emphasized: { value: "{colors.grey.800}" },
+          focusRing: {
+            value: {
+              base: "{colors.grey.500}",
+              _dark: "{colors.grey.700}",
+            },
+          },
+          border: {
+            value: {
+              base: "{colors.grey.200}",
+              _dark: "{colors.grey.800}",
             },
           },
         },

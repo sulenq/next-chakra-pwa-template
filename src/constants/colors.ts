@@ -162,10 +162,11 @@ export const LEGEND_COLOR_OPTIONS = [
 
 export const COLOR_PALETTES = [
   { palette: "gray", label: "Default", primaryHex: "#717171" },
+  { palette: "grey", label: "Grey", primaryHex: "#717171" },
 
   { palette: "cream", label: "Cream", primaryHex: "#D7BF8C" },
   { palette: "caramel", label: "Caramel", primaryHex: "#C47B27" },
-  { palette: "mocha", label: "Mocha", primaryHex: "#9F5D39" },
+  // { palette: "mocha", label: "Mocha", primaryHex: "#9F5D39" },
   { palette: "brown", label: "Brown", primaryHex: "#795548" },
 
   { palette: "maroon", label: "Maroon", primaryHex: "#800000" },
