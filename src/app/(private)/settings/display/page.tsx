@@ -129,6 +129,10 @@ const DisplaySkeleton = (props: DisplaySkeletonProps) => {
       light: "bodyLight",
       dark: "bodyDark",
     },
+    fg: {
+      light: "dark",
+      dark: "light",
+    },
   };
 
   return (
@@ -151,7 +155,8 @@ const DisplaySkeleton = (props: DisplaySkeletonProps) => {
               icon={ImageIcon}
               boxSize={20}
               strokeWidth={1}
-              color={"bg.muted"}
+              color={color.fg[colorMode]}
+              opacity={0.05}
             />
           </Center>
         </Center>
