@@ -326,7 +326,6 @@ export const PdfViewer = (props: PdfViewerProps) => {
 
   // Utils
   const handleLoadSuccess = useCallback((pdf: any) => {
-    console.log("handleLoadSuccess called", pdf);
     setViewer((v) => ({ ...v, numPages: pdf.numPages }));
     setLoadState((prev) => ({
       phase: "rendering",
@@ -339,7 +338,6 @@ export const PdfViewer = (props: PdfViewerProps) => {
         .getPage(1)
         .then((page: any) => {
           const viewport = page.getViewport({ scale: 1 });
-          console.log("Page 1 viewport captured", viewport);
           setPdfInfo({
             originalWidth: viewport.width,
             originalHeight: viewport.height,
@@ -484,11 +482,6 @@ export const PdfViewer = (props: PdfViewerProps) => {
       }
 
       const scale = containerHeight / renderedHeightAtScale1;
-      console.log("fitToHeight calculating scale", {
-        containerHeight,
-        renderedHeightAtScale1,
-        scale,
-      });
 
       setViewer((ps) => ({
         ...ps,
