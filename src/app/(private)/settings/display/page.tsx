@@ -30,6 +30,7 @@ import { useThemeContext } from "@/contexts/use-theme-context";
 import { SelectOption } from "@/types/global.types";
 import { formatTime } from "@/utils/formatter";
 import { interpolateString } from "@/utils/string";
+import { cssCalc } from "@/utils/style";
 import { Box, BoxProps, Center, Circle, SimpleGrid } from "@chakra-ui/react";
 import { BrushIcon, EclipseIcon } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
@@ -212,8 +213,8 @@ const ExampleUI = () => {
   return (
     <StackV px={R_SPACING_MD}>
       <Item.Body p={4}>
-        <StackH wrap={"wrap"} gap={6}>
-          <StackV w={"170px"} gap={6}>
+        <StackH wrap={"wrap"} gapX={6} gapY={12}>
+          <StackV gap={6} w={"170px"} mx={"auto"}>
             <StackV
               gap={2}
               rounded={themeContext.radii.component}
@@ -341,7 +342,12 @@ const AccentColorSetting = () => {
       <SettingsHelperText>{t.accent_color}</SettingsHelperText>
 
       <Item.Body p={4}>
-        <SimpleGrid minChildWidth={"56px"} gap={2}>
+        <SimpleGrid
+          minChildWidth={"56px"}
+          gap={0}
+          rounded={cssCalc(`${themeContext.radii.component} - 4px`)}
+          overflow={"clip"}
+        >
           {COLOR_PALETTES.map((color, index) => {
             const isSelected = color.palette === themeContext.colorPalette;
             const isColorPaletteGray = color.palette === "gray";
@@ -353,7 +359,7 @@ const AccentColorSetting = () => {
                   aspectRatio={1}
                   p={2}
                   bg={isColorPaletteGray ? "ibody" : `${color.palette}.500`}
-                  rounded={themeContext.radii.component}
+                  // rounded={themeContext.radii.component}
                   cursor={"pointer"}
                   overflow={"clip"}
                   onClick={() => {
@@ -438,7 +444,7 @@ const RoundedSetting = () => {
                   }}
                   pos={"relative"}
                 >
-                  <StackH gap={2} pl={1}>
+                  <StackH align={"center"} gap={2} pl={1}>
                     <P>{preset.label}</P>
 
                     {isSelected && <DotIndicator />}

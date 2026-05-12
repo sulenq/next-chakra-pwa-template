@@ -21,3 +21,7 @@ export function getGridColumns(
 export function isDimensionValid(dimension: { width: number; height: number }) {
   return dimension.width > 0 && dimension.height > 0;
 }
+
+export function cssCalc(params: string) {
+  return `calc(${params})`;
+}

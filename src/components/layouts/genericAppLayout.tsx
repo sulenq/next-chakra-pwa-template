@@ -293,9 +293,10 @@ const MobileLayout = (props: any) => {
           <ProfileMenuTrigger flex={1} w={"50px"}>
             <StackV
               flex={1}
+              align={"center"}
+              gap={1}
               color={MOBILE_NAVS_COLOR}
               cursor={"pointer"}
-              gap={1}
             >
               <Avatar
                 src={imgUrl(user?.avatar?.[0]?.filePath)}
