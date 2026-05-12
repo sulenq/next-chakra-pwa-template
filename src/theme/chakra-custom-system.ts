@@ -1004,7 +1004,7 @@ const customConfig = defineConfig({
           },
           fg: {
             value: {
-              base: "{colors.pastelOrange.500}",
+              base: "{colors.pastelOrange.600}",
               _dark: "{colors.pastelOrange.400}",
             },
           },
