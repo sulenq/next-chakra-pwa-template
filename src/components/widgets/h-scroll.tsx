@@ -139,7 +139,7 @@ export const HScroll = forwardRef<HTMLDivElement, HScrollProps>(
             position={"absolute"}
             left={2}
             top={"50%"}
-            transform={"translateY(-50%)"}
+            transform={"translateY(calc(-50% - 1.5px))"}
             zIndex={2}
           >
             <Btn
@@ -160,7 +160,7 @@ export const HScroll = forwardRef<HTMLDivElement, HScrollProps>(
             position={"absolute"}
             right={2}
             top={"50%"}
-            transform={"translateY(-50%)"}
+            transform={"translateY(calc(-50% - 1.5px))"}
             zIndex={2}
           >
             <Btn
