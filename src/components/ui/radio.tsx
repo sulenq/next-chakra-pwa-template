@@ -18,7 +18,7 @@ export const RadioItem = (props: RadioItemProps) => {
     <Circle
       w={"20px"}
       h={"20px"}
-      bg={checked ? `${themeContext.colorPalette}.contrast` : ""}
+      bg={checked ? `${themeContext.colorPalette}.muted` : ""}
       border={checked ? "4px solid" : "2px solid"}
       borderColor={
         checked ? `${themeContext.colorPalette}.solid` : "border.muted"
