@@ -6,13 +6,14 @@ import { Menu } from "@/components/ui/menu";
 import { NumInput } from "@/components/ui/number-input";
 import { P } from "@/components/ui/p";
 import { Spinner } from "@/components/ui/spinner";
+import { StackH } from "@/components/ui/stack";
 import { Tooltip } from "@/components/ui/tooltip";
 import { AppIconLucide } from "@/components/widgets/app-icon";
 import FeedbackState from "@/components/widgets/feedback-state";
 import { HScroll } from "@/components/widgets/h-scroll";
 import { useLocale } from "@/contexts/use-locale-context";
 import { useThemeContext } from "@/contexts/use-theme-context";
-import { Box, HStack, Icon, StackProps } from "@chakra-ui/react";
+import { Box, Icon, StackProps } from "@chakra-ui/react";
 import {
   IconArrowAutofitHeight,
   IconArrowAutofitWidth,
@@ -92,7 +93,7 @@ const PageControl = (props: Props__PageControl) => {
   }
 
   return (
-    <HStack gap={0} {...restProps}>
+    <StackH {...restProps}>
       <UtilBtn
         onClick={utils.prevPage}
         disabled={page <= 1}
@@ -158,7 +159,7 @@ const PageControl = (props: Props__PageControl) => {
       >
         <AppIconLucide icon={ChevronRightIcon} />
       </UtilBtn>
-    </HStack>
+    </StackH>
   );
 };
 
@@ -174,7 +175,7 @@ const ZoomControl = (props: Props__ZoomControl) => {
   const { t } = useLocale();
 
   return (
-    <HStack gap={0} {...restProps}>
+    <StackH {...restProps}>
       <UtilBtn onClick={utils.zoomOut} tooltipContent={t.zoom_out}>
         <Icon boxSize={5}>
           <IconZoomOut stroke={1.5} />
@@ -202,7 +203,7 @@ const ZoomControl = (props: Props__ZoomControl) => {
           <IconArrowAutofitHeight stroke={1.5} />
         </Icon>
       </UtilBtn>
-    </HStack>
+    </StackH>
   );
 };
 
@@ -216,7 +217,7 @@ const Toolbar = (props: Props__PDFToolbar) => {
 
   return (
     <HScroll className={"noScroll"} bg={"body"} {...restProps}>
-      <HStack minW={"full"} w={"max"} gap={0} p={2}>
+      <StackH minW={"full"} w={"max"} p={2}>
         {viewer.mode === "single" && (
           <PageControl
             page={viewer.page}
@@ -254,7 +255,7 @@ const Toolbar = (props: Props__PDFToolbar) => {
           {viewer.mode === "single" && "Single"}
           {viewer.mode === "continuous" && "Scroll"}
         </UtilBtn>
-      </HStack>
+      </StackH>
     </HScroll>
   );
 };

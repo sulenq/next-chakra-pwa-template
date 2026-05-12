@@ -4,6 +4,7 @@ import { Btn } from "@/components/ui/btn";
 import { Checkbox } from "@/components/ui/checkbox";
 import { useColorMode } from "@/components/ui/color-mode";
 import { DateTimePickerInput } from "@/components/ui/date-time-picker-input";
+import { Divider } from "@/components/ui/divider";
 import { P } from "@/components/ui/p";
 import { SelectInput } from "@/components/ui/select-input";
 import { StackH, StackV } from "@/components/ui/stack";
@@ -16,16 +17,16 @@ import { Item } from "@/components/widgets/item";
 import { SettingsSavedLocalyHelperText } from "@/components/widgets/local-settings-helper-text";
 import { ToggleSettingContainer } from "@/components/widgets/settings-shell";
 import { COLOR_PALETTES } from "@/constants/colors";
-import { SelectOption } from "@/types/global.types";
 import { ROUNDED_PRESETS } from "@/constants/presets";
 import { OPTIONS_RELIGION } from "@/constants/select-options";
 import { R_SPACING_MD } from "@/constants/styles";
 import useADM from "@/contexts/use-adm-context";
 import { useLocale } from "@/contexts/use-locale-context";
 import { useThemeContext } from "@/contexts/use-theme-context";
+import { SelectOption } from "@/types/global.types";
 import { formatTime } from "@/utils/formatter";
 import { interpolateString } from "@/utils/string";
-import { Box, Center, Circle, HStack, SimpleGrid } from "@chakra-ui/react";
+import { Box, Center, Circle, SimpleGrid } from "@chakra-ui/react";
 import {
   EclipseIcon,
   LayoutPanelLeftIcon,
@@ -58,6 +59,7 @@ const ManualDarkModeSetting = () => {
       timeoutRef.current = null;
     }, 100);
   }, [active]);
+
   useEffect(() => {
     if (timeoutRef.current) {
       clearTimeout(timeoutRef.current);
@@ -73,6 +75,7 @@ const ManualDarkModeSetting = () => {
     <ToggleSettingContainer disabled={ADM}>
       <StackV gap={1}>
         <P>{t.settings_dark_mode.title}</P>
+
         <P color={"fg.subtle"}>{t.settings_dark_mode.description}</P>
       </StackV>
 
@@ -181,6 +184,8 @@ const DarkModeSection = () => {
         <Item.Body gap={4} p={4}>
           <ManualDarkModeSetting />
 
+          <Divider />
+
           <ADMSetting />
         </Item.Body>
       </StackV>
@@ -198,11 +203,9 @@ const AccentColorSection = () => {
   return (
     <Item.Root>
       <Item.Header borderless>
-        <StackH align={"center"}>
-          <AppIconLucide icon={SwatchBookIcon} />
+        <AppIconLucide icon={SwatchBookIcon} />
 
-          <Item.Title>{t.accent_color}</Item.Title>
-        </StackH>
+        <Item.Title>{t.accent_color}</Item.Title>
       </Item.Header>
 
       <StackV px={R_SPACING_MD} pb={R_SPACING_MD}>
@@ -287,11 +290,9 @@ const RoundedSection = () => {
   return (
     <Item.Root>
       <Item.Header borderless>
-        <StackH align={"center"}>
-          <AppIconLucide icon={SquareRoundCornerIcon} />
+        <AppIconLucide icon={SquareRoundCornerIcon} />
 
-          <Item.Title>{t.rounded}</Item.Title>
-        </StackH>
+        <Item.Title>{t.rounded}</Item.Title>
       </Item.Header>
 
       <StackV px={R_SPACING_MD} pb={R_SPACING_MD}>
@@ -315,7 +316,7 @@ const RoundedSection = () => {
                     }}
                     pos={"relative"}
                   >
-                    <HStack pl={1}>
+                    <StackH gap={2} pl={1}>
                       <P>{preset.label}</P>
 
                       {isSelected && <DotIndicator />}
@@ -328,7 +329,7 @@ const RoundedSection = () => {
                         borderColor={"border.muted"}
                         ml={"auto"}
                       />
-                    </HStack>
+                    </StackH>
 
                     <Box
                       flex={1}
@@ -338,7 +339,7 @@ const RoundedSection = () => {
                       bg={"d1"}
                     />
 
-                    <HStack justify={"end"}>
+                    <StackH gap={2} justify={"end"}>
                       <Box
                         w={"30%"}
                         h={"30px"}
@@ -356,7 +357,7 @@ const RoundedSection = () => {
                         borderColor={"border.muted"}
                         bg={"d1"}
                       />
-                    </HStack>
+                    </StackH>
                   </StackV>
                 </StackV>
               );
@@ -382,11 +383,9 @@ const ExampleUISection = () => {
   return (
     <Item.Root>
       <Item.Header borderless>
-        <HStack>
-          <AppIconLucide icon={LayoutPanelLeftIcon} />
+        <AppIconLucide icon={LayoutPanelLeftIcon} />
 
-          <Item.Title>{t.example_UI}</Item.Title>
-        </HStack>
+        <Item.Title>{t.example_UI}</Item.Title>
       </Item.Header>
 
       <StackV px={R_SPACING_MD} pb={R_SPACING_MD}>

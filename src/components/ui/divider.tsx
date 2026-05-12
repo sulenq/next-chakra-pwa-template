@@ -14,7 +14,7 @@ export const Divider = ({ dir = "horizontal", ...props }: DividerProps) => {
           flexShrink={0}
           w={"full"}
           h={"1px"}
-          bg={"border.muted"}
+          bg={"border.subtle"}
           {...props}
         />
       );
@@ -24,7 +24,7 @@ export const Divider = ({ dir = "horizontal", ...props }: DividerProps) => {
           flexShrink={0}
           w={"1px"}
           h={"full"}
-          bg={"border.muted"}
+          bg={"border.subtle"}
           {...props}
         />
       );
