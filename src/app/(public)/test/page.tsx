@@ -1,43 +1,27 @@
 "use client";
 
 import { ColorModeButton } from "@/components/ui/color-mode";
-import { P, TNum } from "@/components/ui/p";
-import { StackV } from "@/components/ui/stack";
-import { TopBar, MainView } from "@/components/widgets/main-view";
+import { LangMenu } from "@/components/ui/lang-menu";
+import { StackH, StackV } from "@/components/ui/stack";
+import { MainView, TopBar } from "@/components/widgets/main-view";
+import { PdfViewer } from "@/components/widgets/pdf-viewer";
 
 export default function Page() {
-  // Data nested array 3x3
-  const numberMatrix = [
-    [1, 2, 3],
-    [4, 5, 6],
-    [7, 8, 9],
-  ];
-
   return (
     <MainView.Root minH={"100svh"} gap={6} p={4}>
-      <ColorModeButton />
+      <StackH>
+        <ColorModeButton />
+        <LangMenu />
+      </StackH>
+
       <TopBar />
 
-      <StackV gap={2}>
-        <P fontWeight="bold" fontSize="sm" color="gray.500">
-          Normal (Non-Tabular)
-        </P>
-        {numberMatrix.map((row, index) => (
-          <P key={`normal-${index}`} fontSize={"3xl"}>
-            {row.join("")}
-          </P>
-        ))}
-      </StackV>
-
-      <StackV gap={2}>
-        <P fontWeight="bold" fontSize="sm" color="gray.500">
-          TNum (Tabular & No Shoes)
-        </P>
-        {numberMatrix.map((row, index) => (
-          <P key={`tnum-${index}`} fontSize={"3xl"}>
-            <TNum>{row.join("")}</TNum>
-          </P>
-        ))}
+      <StackV gap={2} h={"100dvh"}>
+        <PdfViewer
+          fileUrl={
+            "https://mozilla.github.io/pdf.js/web/compressed.tracemonkey-pldi-09.pdf"
+          }
+        />
       </StackV>
     </MainView.Root>
   );

@@ -33,7 +33,7 @@ import FeedbackNotFound from "@/components/widgets/feedback-not-found";
 import FeedbackRetry from "@/components/widgets/feedback-retry";
 import { LucideIcon } from "@/components/widgets/icon";
 import { ConstrainedContainer } from "@/components/widgets/main-view";
-import { PDFViewer } from "@/components/widgets/pdf-viewer";
+import { PdfViewer } from "@/components/widgets/pdf-viewer";
 import SelectWorkspaceCategory from "@/components/widgets/select-workspace-category";
 import { Today } from "@/components/widgets/today";
 import VideoPlayer from "@/components/widgets/video-player";
@@ -998,7 +998,7 @@ const DemoIndexRoute = () => {
 
         <SimpleGrid columns={[1, null, 2]} gap={4}>
           <StackV>
-            <PDFViewer fileUrl={"/test.pdf"} maxH={"600px"} />
+            <PdfViewer fileUrl={"/test.pdf"} maxH={"600px"} />
           </StackV>
 
           <StackV>

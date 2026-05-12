@@ -3,7 +3,7 @@
 import { P } from "@/components/ui/p";
 import { StackV } from "@/components/ui/stack";
 import { Icon, StackProps } from "@chakra-ui/react";
-import { IconDatabaseOff } from "@tabler/icons-react";
+import { CircleXIcon } from "lucide-react";
 
 // -----------------------------------------------------------------
 
@@ -25,7 +25,7 @@ const FeedbackState = (props: FeedbackStateProps) => {
     <StackV align={"center"} gap={1} p={4} {...restProps}>
       {icon && (
         <Icon mb={2} color={"fg.subtle"} boxSize={9}>
-          {icon || <IconDatabaseOff stroke={1.8} />}
+          {icon || <CircleXIcon />}
         </Icon>
       )}
 

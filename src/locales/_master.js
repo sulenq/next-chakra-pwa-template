@@ -111,6 +111,10 @@ export const settings_navs = {
 };
 
 // Semantic UI
+export const done = {
+  id: "Selesai",
+  en: "Done",
+};
 export const success = {
   id: "Berhasil",
   en: "Success",
@@ -943,6 +947,14 @@ export const yearly_sales = {
 };
 
 // Message
+export const msg_loading_pdf = {
+  id: "Memuat dokumen PDF...",
+  en: "Loading PDF document...",
+};
+export const msg_rendering_pdf = {
+  id: "Menyiapkan pratinjau halaman...",
+  en: "Preparing page preview...",
+};
 export const msg_task_count = {
   id: "Kamu memiliki ${count} tugas hari ini",
   en: "You have ${count} tasks today",

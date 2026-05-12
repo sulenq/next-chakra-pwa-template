@@ -4,7 +4,6 @@ import { Btn, BtnProps } from "@/components/ui/btn";
 import { Menu } from "@/components/ui/menu";
 import { NumInput } from "@/components/ui/number-input";
 import { P } from "@/components/ui/p";
-import { Spinner } from "@/components/ui/spinner";
 import { StackH, StackV } from "@/components/ui/stack";
 import { Tooltip } from "@/components/ui/tooltip";
 import { AppIconLucide } from "@/components/widgets/app-icon";
@@ -12,21 +11,25 @@ import FeedbackState from "@/components/widgets/feedback-state";
 import { ScrollH } from "@/components/widgets/scroll-h";
 import { GAP } from "@/constants/styles";
 import { useLocale } from "@/contexts/use-locale-context";
+import { useThemeContext } from "@/contexts/use-theme-context";
 import { Box, Icon, StackProps } from "@chakra-ui/react";
 import {
   IconArrowAutofitWidth,
   IconDownload,
   IconFile,
-  IconFileOff,
   IconFiles,
   IconZoomIn,
   IconZoomOut,
 } from "@tabler/icons-react";
 import { ArrowRight, ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { Document, Page, pdfjs } from "react-pdf";
 import "react-pdf/dist/Page/AnnotationLayer.css";
 import "react-pdf/dist/Page/TextLayer.css";
+
+// -----------------------------------------------------------------
+
+type PdfLoadPhase = "loading" | "rendering" | "ready";
 
 // -----------------------------------------------------------------
 
@@ -260,6 +263,7 @@ const Toolbar = (props: PDFToolbarProps) => {
         </UtilBtn>
 
         <UtilBtn
+          w={"100px"}
           iconButton={false}
           onClick={utils.toggleMode}
           tooltipContent={"Mode"}
@@ -288,12 +292,13 @@ export interface PdfViewerProps extends StackProps {
   fileName?: string;
 }
 
-export const PDFViewer = (props: PdfViewerProps) => {
+export const PdfViewer = (props: PdfViewerProps) => {
   // Props
   const { fileUrl, fileName, ...restProps } = props;
 
   // Contexts
   const { t } = useLocale();
+  const { themeContext } = useThemeContext();
 
   // Refs
   const containerRef = useRef<HTMLDivElement>(null);
@@ -306,6 +311,15 @@ export const PDFViewer = (props: PdfViewerProps) => {
     scale: 1,
     mode: "single" as "single" | "scroll",
   });
+  const [loadState, setLoadState] = useState<{
+    phase: PdfLoadPhase;
+    progress: number;
+  }>({
+    phase: "loading",
+    progress: 0,
+  });
+
+  // Constants
   const utils: PdfViewerUtils = {
     setPageWidth: (width: number) =>
       setViewer((ps) => ({ ...ps, pageWidth: width })),
@@ -413,6 +427,49 @@ export const PDFViewer = (props: PdfViewerProps) => {
       })),
   };
 
+  // Derived Values
+  const isReady = loadState.phase === "ready";
+
+  // Utils
+  const handleLoadSuccess = useCallback(
+    ({ numPages }: { numPages: number }) => {
+      setViewer((v) => ({ ...v, numPages }));
+      setLoadState((prev) => ({
+        phase: "rendering",
+        progress: Math.max(prev.progress, 92),
+      }));
+    },
+    [],
+  );
+  const handleLoadProgress = useCallback(
+    (progressData: { loaded: number; total: number }) => {
+      if (!progressData?.total) return;
+
+      const nextProgress = Math.min(
+        90,
+        Math.round((progressData.loaded / progressData.total) * 100),
+      );
+
+      setLoadState((prev) => {
+        if (prev.phase === "ready") return prev;
+        return {
+          ...prev,
+          progress: Math.max(prev.progress, nextProgress),
+        };
+      });
+    },
+    [],
+  );
+  const handlePageRenderSuccess = useCallback(() => {
+    setLoadState((prev) => {
+      if (prev.phase === "ready") return prev;
+      return {
+        phase: "ready",
+        progress: 100,
+      };
+    });
+  }, []);
+
   // Resize Observer
   useEffect(() => {
     // Logic auto-width 100% container
@@ -428,6 +485,14 @@ export const PDFViewer = (props: PdfViewerProps) => {
 
     return () => observer.disconnect();
   }, []);
+
+  // Reset state when fileUrl changes
+  useEffect(() => {
+    setLoadState({
+      phase: "loading",
+      progress: 0,
+    });
+  }, [fileUrl]);
 
   // Intersection Observer for Scroll Mode
   useEffect(() => {
@@ -487,15 +552,50 @@ export const PDFViewer = (props: PdfViewerProps) => {
         m={"auto"}
         position={"relative"}
       >
+        <StackV
+          align={"center"}
+          justify={"center"}
+          gap={4}
+          px={6}
+          borderRadius={"lg"}
+          pointerEvents={"none"}
+          opacity={isReady ? 0 : 1}
+          position={"absolute"}
+          inset={0}
+          zIndex={1}
+          transition={"200ms"}
+        >
+          <StackV gap={4} maxW={"360px"} w={"full"} align={"center"}>
+            <P fontWeight={"medium"} color={"fg.muted"}>
+              {loadState.phase === "loading"
+                ? `${t.msg_loading_pdf}...`
+                : `${t.msg_rendering_pdf}...`}
+            </P>
+
+            <Box
+              w={"full"}
+              h={"6px"}
+              bg={"bg.muted"}
+              rounded={"full"}
+              overflow={"hidden"}
+            >
+              <Box
+                h={"full"}
+                w={`${loadState.progress}%`}
+                bg={`${themeContext.colorPalette}.solid`}
+                transition={"width 180ms ease"}
+              />
+            </Box>
+          </StackV>
+        </StackV>
+
         <Document
           file={fileUrl}
-          onLoadSuccess={({ numPages }) => {
-            setViewer((v) => ({ ...v, numPages }));
-          }}
-          loading={<Spinner />}
+          onLoadSuccess={handleLoadSuccess}
+          onLoadProgress={handleLoadProgress}
+          loading={null}
           error={
             <FeedbackState
-              icon={<IconFileOff stroke={1.8} />}
               title={t.alert_pdf_failed_to_load.title}
               description={t.alert_pdf_failed_to_load.description}
             />
@@ -508,6 +608,7 @@ export const PDFViewer = (props: PdfViewerProps) => {
                 <StackV minW={"full"} w={"max"}>
                   <Page
                     pageNumber={viewer.page}
+                    onRenderSuccess={handlePageRenderSuccess}
                     renderTextLayer={true}
                     renderAnnotationLayer={true}
                     width={viewer.pageWidth}
@@ -529,6 +630,7 @@ export const PDFViewer = (props: PdfViewerProps) => {
                     <Box key={`page_${index + 1}`} id={`pdf_page_${index + 1}`}>
                       <Page
                         pageNumber={index + 1}
+                        onRenderSuccess={handlePageRenderSuccess}
                         renderTextLayer={true}
                         renderAnnotationLayer={true}
                         width={viewer.pageWidth}
