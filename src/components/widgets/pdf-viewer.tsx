@@ -14,6 +14,7 @@ import { useLocale } from "@/contexts/use-locale-context";
 import { useThemeContext } from "@/contexts/use-theme-context";
 import { Box, Icon, StackProps } from "@chakra-ui/react";
 import {
+  IconArrowAutofitHeight,
   IconArrowAutofitWidth,
   IconDownload,
   IconFile,
@@ -50,7 +51,7 @@ export interface PdfViewerUtils {
   zoomOut: () => void;
   resetZoom: () => void;
   fitToWidth: () => void;
-  fitToPage: () => void;
+  fitToHeight: () => void;
   handleDownload: () => void;
   toggleMode: () => void;
 }
@@ -204,7 +205,7 @@ const ZoomControl = (props: ZoomControlProps) => {
         </Icon>
       </UtilBtn>
 
-      <Box minW={"35px"} textAlign={"center"}>
+      <Box w={"40px"} textAlign={"center"}>
         {Math.round(scale * 100)}%
       </Box>
 
@@ -220,12 +221,11 @@ const ZoomControl = (props: ZoomControlProps) => {
         </Icon>
       </UtilBtn>
 
-      {/* 
-      <UtilBtn onClick={utils.fitToPage} tooltipContent={t.fit_to_page}>
+      <UtilBtn onClick={utils.fitToHeight} tooltipContent={t.fit_to_page}>
         <Icon boxSize={5}>
-          <IconArrowAutofitContent stroke={1.5} />
+          <IconArrowAutofitHeight stroke={1.5} />
         </Icon>
-      </UtilBtn> */}
+      </UtilBtn>
     </StackH>
   );
 };
@@ -319,6 +319,70 @@ export const PdfViewer = (props: PdfViewerProps) => {
     progress: 0,
   });
 
+  const [pdfInfo, setPdfInfo] = useState<{
+    originalWidth: number;
+    originalHeight: number;
+  } | null>(null);
+
+  // Utils
+  const handleLoadSuccess = useCallback((pdf: any) => {
+    console.log("handleLoadSuccess called", pdf);
+    setViewer((v) => ({ ...v, numPages: pdf.numPages }));
+    setLoadState((prev) => ({
+      phase: "rendering",
+      progress: Math.max(prev.progress, 92),
+    }));
+
+    // Get first page dimensions for fitToHeight
+    if (pdf && typeof pdf.getPage === "function") {
+      pdf
+        .getPage(1)
+        .then((page: any) => {
+          const viewport = page.getViewport({ scale: 1 });
+          console.log("Page 1 viewport captured", viewport);
+          setPdfInfo({
+            originalWidth: viewport.width,
+            originalHeight: viewport.height,
+          });
+        })
+        .catch((err: any) => {
+          console.error("Failed to get page 1", err);
+        });
+    } else {
+      console.warn("pdf object does not have getPage method", pdf);
+    }
+  }, []);
+
+  const handleLoadProgress = useCallback(
+    (progressData: { loaded: number; total: number }) => {
+      if (!progressData?.total) return;
+
+      const nextProgress = Math.min(
+        90,
+        Math.round((progressData.loaded / progressData.total) * 100),
+      );
+
+      setLoadState((prev) => {
+        if (prev.phase === "ready") return prev;
+        return {
+          ...prev,
+          progress: Math.max(prev.progress, nextProgress),
+        };
+      });
+    },
+    [],
+  );
+
+  const handlePageRenderSuccess = useCallback(() => {
+    setLoadState((prev) => {
+      if (prev.phase === "ready") return prev;
+      return {
+        phase: "ready",
+        progress: 100,
+      };
+    });
+  }, []);
+
   // Constants
   const utils: PdfViewerUtils = {
     setPageWidth: (width: number) =>
@@ -393,7 +457,44 @@ export const PdfViewer = (props: PdfViewerProps) => {
 
     fitToWidth: () => setViewer((ps) => ({ ...ps, scale: 1 })),
 
-    fitToPage: () => setViewer((ps) => ({ ...ps, scale: 0.6 })),
+    fitToHeight: () => {
+      const container = containerRef.current;
+      if (!container) {
+        console.warn("fitToHeight: containerRef.current is null");
+        return;
+      }
+      if (!pdfInfo) {
+        console.warn(
+          "fitToHeight: pdfInfo is null. PDF might still be loading.",
+        );
+        return;
+      }
+      if (!(viewer.pageWidth > 0)) {
+        console.warn("fitToHeight: viewer.pageWidth is 0");
+        return;
+      }
+
+      const containerHeight = container.clientHeight - 32; // minus padding/margin for better fit
+      const renderedHeightAtScale1 =
+        (pdfInfo.originalHeight / pdfInfo.originalWidth) * viewer.pageWidth;
+
+      if (renderedHeightAtScale1 === 0) {
+        console.warn("fitToHeight: renderedHeightAtScale1 is 0");
+        return;
+      }
+
+      const scale = containerHeight / renderedHeightAtScale1;
+      console.log("fitToHeight calculating scale", {
+        containerHeight,
+        renderedHeightAtScale1,
+        scale,
+      });
+
+      setViewer((ps) => ({
+        ...ps,
+        scale: Math.max(0.1, Math.min(scale, 5)),
+      }));
+    },
 
     handleDownload: async () => {
       const response = await fetch(fileUrl, {
@@ -430,46 +531,6 @@ export const PdfViewer = (props: PdfViewerProps) => {
   // Derived Values
   const isReady = loadState.phase === "ready";
 
-  // Utils
-  const handleLoadSuccess = useCallback(
-    ({ numPages }: { numPages: number }) => {
-      setViewer((v) => ({ ...v, numPages }));
-      setLoadState((prev) => ({
-        phase: "rendering",
-        progress: Math.max(prev.progress, 92),
-      }));
-    },
-    [],
-  );
-  const handleLoadProgress = useCallback(
-    (progressData: { loaded: number; total: number }) => {
-      if (!progressData?.total) return;
-
-      const nextProgress = Math.min(
-        90,
-        Math.round((progressData.loaded / progressData.total) * 100),
-      );
-
-      setLoadState((prev) => {
-        if (prev.phase === "ready") return prev;
-        return {
-          ...prev,
-          progress: Math.max(prev.progress, nextProgress),
-        };
-      });
-    },
-    [],
-  );
-  const handlePageRenderSuccess = useCallback(() => {
-    setLoadState((prev) => {
-      if (prev.phase === "ready") return prev;
-      return {
-        phase: "ready",
-        progress: 100,
-      };
-    });
-  }, []);
-
   // Resize Observer
   useEffect(() => {
     // Logic auto-width 100% container
@@ -492,6 +553,7 @@ export const PdfViewer = (props: PdfViewerProps) => {
       phase: "loading",
       progress: 0,
     });
+    setPdfInfo(null);
   }, [fileUrl]);
 
   // Intersection Observer for Scroll Mode
