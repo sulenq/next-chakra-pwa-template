@@ -37,7 +37,7 @@ export const SettingsSavedLocalyHelperText = () => {
   const { t } = useLocale();
 
   return (
-    <SettingsHelperText>
+    <SettingsHelperText px={6}>
       <HelperText>{t.msg_settings_saved_locally}</HelperText>
     </SettingsHelperText>
   );

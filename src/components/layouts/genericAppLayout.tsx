@@ -28,6 +28,7 @@ import { Today } from "@/components/widgets/today";
 import { APP } from "@/constants/_meta";
 import { OTHER_PRIVATE_NAV_GROUPS, PRIVATE_NAV_GROUPS } from "@/constants/navs";
 import {
+  BOUNCY_TRANSITION,
   DESKTOP_ACTIVE_NAV_BTN_VARIANT,
   DESKTOP_NAV_BTN_ICON_BG,
   DESKTOP_NAV_BTN_PX,
@@ -349,7 +350,7 @@ const DesktopLayout = (props: any) => {
               ? `calc(250px + (${DESKTOP_SPACING_MD} * 2) + ${GAP})`
               : `calc(36px + (${DESKTOP_SPACING_MD} * 2) + ${GAP})`
           }
-          transition={"0.3s cubic-bezier(0.175, 0.885, 0.32, 1.1)"}
+          transition={BOUNCY_TRANSITION}
           pos={"relative"}
         >
           <StackV
@@ -375,7 +376,7 @@ const DesktopLayout = (props: any) => {
                     lineClamp={1}
                     fontSize={"lg"}
                     fontWeight={"semibold"}
-                    color={`${themeContext.colorPalette}.solid`}
+                    color={`${themeContext.colorPalette}.fg`}
                   >
                     {APP.name}
                   </P>

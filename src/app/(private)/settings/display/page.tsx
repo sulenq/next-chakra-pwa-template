@@ -5,6 +5,11 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { useColorMode } from "@/components/ui/color-mode";
 import { DateTimePickerInput } from "@/components/ui/date-time-picker-input";
 import { Divider } from "@/components/ui/divider";
+import {
+  SettingsHelperText,
+  SettingsSavedLocalyHelperText,
+} from "@/components/ui/helper-text";
+import { Img } from "@/components/ui/img";
 import { P } from "@/components/ui/p";
 import { SelectInput } from "@/components/ui/select-input";
 import { StackH, StackV } from "@/components/ui/stack";
@@ -14,10 +19,6 @@ import { Tooltip } from "@/components/ui/tooltip";
 import { AppIconLucide } from "@/components/widgets/app-icon";
 import { DotIndicator } from "@/components/widgets/indicator";
 import { Item } from "@/components/widgets/item";
-import {
-  SettingsHelperText,
-  SettingsSavedLocalyHelperText,
-} from "@/components/ui/helper-text";
 import { ToggleSettingContainer } from "@/components/widgets/settings-shell";
 import { COLOR_PALETTES } from "@/constants/colors";
 import { ROUNDED_PRESETS } from "@/constants/presets";
@@ -29,7 +30,7 @@ import { useThemeContext } from "@/contexts/use-theme-context";
 import { SelectOption } from "@/types/global.types";
 import { formatTime } from "@/utils/formatter";
 import { interpolateString } from "@/utils/string";
-import { Box, Center, Circle, SimpleGrid } from "@chakra-ui/react";
+import { Box, BoxProps, Center, Circle, SimpleGrid } from "@chakra-ui/react";
 import { BrushIcon, EclipseIcon } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
@@ -170,7 +171,7 @@ const DarkModeSection = () => {
 
   return (
     <Item.Root>
-      <Item.Header borderless>
+      <Item.Header borderless color={"fg.muted"}>
         <StackH align={"center"} gap={2}>
           <AppIconLucide icon={EclipseIcon} />
 
@@ -193,6 +194,12 @@ const DarkModeSection = () => {
 
 // -----------------------------------------------------------------
 
+const SkeletonP = (props: BoxProps) => {
+  return (
+    <Box h={"16px"} w={"full"} bg={"bg.muted"} rounded={"full"} {...props} />
+  );
+};
+
 const ExampleUI = () => {
   // Contexts
   const { themeContext } = useThemeContext();
@@ -204,55 +211,111 @@ const ExampleUI = () => {
   return (
     <StackV px={R_SPACING_MD}>
       <Item.Body p={4}>
-        <StackH wrap={"wrap"} gap={3}>
-          <StackV flex={"1 0 200px"} columns={2} gap={3}>
-            <Btn colorPalette={themeContext.colorPalette}>Label</Btn>
+        <StackH wrap={"wrap"} gap={6}>
+          <StackV w={"170px"} gap={6}>
+            <StackV
+              gap={2}
+              rounded={themeContext.radii.component}
+              border={"1px solid"}
+              borderColor={"border.muted"}
+            >
+              <Center aspectRatio={1} w={"full"} p={1}>
+                <Img
+                  w={"full"}
+                  rounded={`calc(${themeContext.radii.component} - 4px)`}
+                />
+              </Center>
 
-            <Btn colorPalette={themeContext.colorPalette} variant={"subtle"}>
-              Label
-            </Btn>
+              <StackV gap={2} px={3}>
+                <SkeletonP w={"70%"} />
+                <SkeletonP />
+              </StackV>
 
-            <Btn colorPalette={themeContext.colorPalette} variant={"outline"}>
-              Label
-            </Btn>
+              <StackV p={2}>
+                <Btn colorPalette={themeContext.colorPalette} variant={"ghost"}>
+                  <SkeletonP w={"70%"} bg={`${themeContext.colorPalette}.fg`} />
+                </Btn>
+              </StackV>
+            </StackV>
 
-            <Btn colorPalette={themeContext.colorPalette} variant={"ghost"}>
-              Label
-            </Btn>
-          </StackV>
-
-          <StackV flex={"1 0 200px"} columns={2} gap={3}>
-            <StringInput placeholder={"example@email.com"} />
-
-            <SelectInput
-              id={"example-select-religion"}
-              name={"select1"}
-              selectOptions={OPTIONS_RELIGION}
-              onChange={(inputValue) => {
-                setSelect(inputValue);
-              }}
-              inputValue={select}
-              multiple
-            />
-
-            <DateTimePickerInput />
-
-            <StackH gap={4}>
+            <StackV gap={4}>
               <StackV justify={"center"} minH={"36px"}>
                 <Checkbox
+                  alignItems={"start"}
                   checked={checked}
                   onChange={(e: any) => setChecked(!e.target.checked)}
                   colorPalette={themeContext.colorPalette}
                   variant={"solid"}
                   size={"lg"}
                 >
-                  Checkbox
+                  <StackV gap={2}>
+                    <SkeletonP w={"100px"} />
+                    <SkeletonP w={"120px"} />
+                  </StackV>
                 </Checkbox>
+              </StackV>
+            </StackV>
+          </StackV>
+
+          <StackV flex={4} gap={SECTION_GAP}>
+            <StackV gap={2}>
+              <SkeletonP w={"100px"} />
+
+              <StringInput placeholder={""} />
+            </StackV>
+
+            <StackV gap={2}>
+              <SkeletonP w={"150px"} />
+
+              <SelectInput
+                id={"example-select-religion"}
+                name={"select1"}
+                placeholder={""}
+                selectOptions={OPTIONS_RELIGION}
+                onChange={(inputValue) => {
+                  setSelect(inputValue);
+                }}
+                inputValue={select}
+                multiple
+              />
+            </StackV>
+
+            <StackV gap={2}>
+              <SkeletonP w={"120px"} />
+
+              <StackV>
+                <DateTimePickerInput
+                  placeholder={{
+                    date: "",
+                    time: "",
+                  }}
+                />
               </StackV>
 
               <StackV justify={"center"} minH={"36px"}>
-                <Switch colorPalette={themeContext.colorPalette}>Switch</Switch>
+                <Switch colorPalette={themeContext.colorPalette}>
+                  <SkeletonP w={"100px"} />
+                </Switch>
               </StackV>
+            </StackV>
+
+            <Divider my={2} />
+
+            <StackH justify={"end"} gap={2}>
+              <Btn w={"80px"} variant={"outline"}>
+                <SkeletonP w={"70%"} />
+              </Btn>
+
+              <Btn
+                w={"100px"}
+                colorPalette={themeContext.colorPalette}
+                variant={"solid"}
+              >
+                <SkeletonP
+                  w={"70%"}
+                  bg={`${themeContext.colorPalette}.contrast`}
+                />
+              </Btn>
             </StackH>
           </StackV>
         </StackH>
@@ -331,6 +394,7 @@ const AccentColorSetting = () => {
 
 const RoundedSetting = () => {
   // Contexts
+  const { t } = useLocale();
   const { themeContext, setThemeContext } = useThemeContext();
 
   // Utils
@@ -347,6 +411,8 @@ const RoundedSetting = () => {
 
   return (
     <StackV px={R_SPACING_MD}>
+      <SettingsHelperText>{t.rounded}</SettingsHelperText>
+
       <Item.Body p={4}>
         <SimpleGrid minChildWidth={"140px"} gap={4}>
           {ROUNDED_PRESETS.map((preset, index) => {
@@ -427,7 +493,7 @@ const PersonalizationSection = () => {
 
   return (
     <Item.Root>
-      <Item.Header borderless>
+      <Item.Header borderless color={"fg.muted"}>
         <AppIconLucide icon={BrushIcon} />
 
         <Item.Title>{t.personalization}</Item.Title>

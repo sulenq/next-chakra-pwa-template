@@ -18,9 +18,7 @@ export const Logo = (props: LogoProps) => {
   const { themeContext } = useThemeContext();
 
   // Derived Values
-  const [themeColor] = useToken("colors", [
-    `${themeContext?.colorPalette}.solid`,
-  ]);
+  const [themeColor] = useToken("colors", [`${themeContext?.colorPalette}.fg`]);
   const resolvedColor = color
     ? color
     : themeContext.colorPalette === "gray"

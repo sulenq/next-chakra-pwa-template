@@ -57,7 +57,7 @@ export const Img = forwardRef<HTMLImageElement, ImgProps>(
       objectFit,
       objectPos,
       imageProps,
-      fluid,
+      fluid = true,
       fallbackSrc,
       fallback,
       fallbackProps,

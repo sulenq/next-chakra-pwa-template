@@ -8,9 +8,11 @@ const customConfig = defineConfig({
   globalCss: {
     "html, body": {
       bg: "bg.body",
+      fontWeight: "normal",
     },
     "div, span, section, article, li, ul, ol, a, label, strong, em": {
       fontSize: "md",
+      fontWeight: "normal",
     },
   },
   theme: {
@@ -62,7 +64,7 @@ const customConfig = defineConfig({
         lg: { value: "1rem" }, // 16px
       },
       fontWeights: {
-        normal: { value: "500 !important" },
+        normal: { value: "450" },
         medium: { value: "500" },
         semibold: { value: "600" },
         bold: { value: "700" },
@@ -911,7 +913,7 @@ const customConfig = defineConfig({
           fg: {
             value: {
               base: "{colors.red.500}",
-              _dark: "{colors.red.200}",
+              _dark: "{colors.red.300}",
             },
           },
           muted: {
@@ -1417,7 +1419,7 @@ const customConfig = defineConfig({
           fg: {
             value: {
               base: "{colors.tealBlue.600}",
-              _dark: "{colors.tealBlue.300}",
+              _dark: "{colors.tealBlue.400}",
             },
           },
           muted: {
@@ -1463,7 +1465,7 @@ const customConfig = defineConfig({
           fg: {
             value: {
               base: "{colors.cyan.600} !important",
-              _dark: "{colors.cyan.300} !important",
+              _dark: "{colors.cyan.400} !important",
             },
           },
           muted: {

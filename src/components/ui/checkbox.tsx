@@ -3,7 +3,7 @@
 import { useColorModeValue } from "@/components/ui/color-mode";
 import { useThemeContext } from "@/contexts/use-theme-context";
 import { Checkbox as ChakraCheckbox, Icon } from "@chakra-ui/react";
-import { XIcon } from "lucide-react";
+import { CheckIcon } from "lucide-react";
 import { forwardRef } from "react";
 
 // -----------------------------------------------------------------
@@ -66,7 +66,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
         >
           {checked && (
             <Icon boxSize={4} color={`${themeContext.colorPalette}.contrast`}>
-              {icon || <XIcon />}
+              {icon || <CheckIcon />}
             </Icon>
           )}
         </ChakraCheckbox.Control>
