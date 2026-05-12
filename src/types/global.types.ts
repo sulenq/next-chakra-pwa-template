@@ -6,7 +6,7 @@ import { translations } from "@/contexts/use-locale-context";
 import { ConditionalValue, StackProps } from "@chakra-ui/react";
 import { LucideIcon } from "lucide-react";
 
-export type ColorMode = "light" | "dark";
+export type ColorMode = "light" | "dark" | "system";
 
 export type RGB = {
   r: number;

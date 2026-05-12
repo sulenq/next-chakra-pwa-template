@@ -17,7 +17,7 @@ import {
   TopBar,
 } from "@/components/widgets/main-view";
 import {
-  DesktopNavs,
+  VNavs,
   DesktopNavTooltip,
   MobileNavLink,
   UserPanel,
@@ -442,7 +442,7 @@ const DesktopLayout = (props: any) => {
                 mb={GAP}
                 transition={"200ms"}
               >
-                <DesktopNavs
+                <VNavs
                   navs={PRIVATE_NAV_GROUPS}
                   navsExpanded={isNavsExpanded}
                   addonElement={

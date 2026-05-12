@@ -432,8 +432,8 @@ const LocationSection = () => {
         switch (error.code) {
           case error.POSITION_UNAVAILABLE:
             toaster.error({
-              title: t.errpr_location_support.title,
-              description: t.errpr_location_support.description,
+              title: t.error_location_support.title,
+              description: t.error_location_support.description,
             });
             break;
           default:
@@ -444,8 +444,8 @@ const LocationSection = () => {
             break;
         }
         toaster.error({
-          title: t.errpr_location_support.title,
-          description: t.errpr_location_support.description,
+          title: t.error_location_support.title,
+          description: t.error_location_support.description,
         });
         return;
       });

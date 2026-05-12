@@ -61,7 +61,6 @@ nextjs-portal {
   --placeholder: #96969691;
 
   --dark: #151515;
-  --darktrans: #202020cf;
 }
 
 /* Custom start*/
@@ -163,14 +162,6 @@ nextjs-portal {
   box-shadow:
     0 4px 12px rgba(0, 0, 0, 0.03),
     0 1px 4px rgba(0, 0, 0, 0.02) !important;
-}
-
-/* Dark Transparent Blured */
-.dsb {
-  background: var(--darktrans) !important;
-  backdrop-filter: blur(15px) !important;
-  color: white !important;
-  box-shadow: none !important;
 }
 
 /* Border Radius */

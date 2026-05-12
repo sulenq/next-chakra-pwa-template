@@ -7,7 +7,7 @@ import {
   MainView,
   useMainViewContext,
 } from "@/components/widgets/main-view";
-import { DesktopNavs } from "@/components/widgets/navs";
+import { VNavs } from "@/components/widgets/navs";
 import { APP } from "@/constants/_meta";
 import { OTHER_PRIVATE_NAV_GROUPS } from "@/constants/navs";
 import { GAP, R_SPACING_MD } from "@/constants/styles";
@@ -67,7 +67,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             />
 
             <StackV className={"scrollY"} flex={1} p={R_SPACING_MD}>
-              <DesktopNavs
+              <VNavs
                 navs={NAVS}
                 addonElement={
                   <StackV mt={"auto"} gap={1}>

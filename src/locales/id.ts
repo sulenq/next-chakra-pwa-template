@@ -156,6 +156,10 @@ const translations = {
     "title": "Gagal mendapatkan lokasi",
     "description": "Periksa izin lokasi atau pastikan GPS diaktifkan."
   },
+  "error_location_support": {
+    "title": "Lokasi tidak didukung",
+    "description": "Perangkat Anda tidak mendukung fitur lokasi."
+  },
   "error_mic": {
     "title": "Gagal mengakses mikrofon",
     "description": "Periksa izin mikrofon atau pastikan tidak digunakan aplikasi lain."
@@ -163,10 +167,6 @@ const translations = {
   "error_network": {
     "title": "Gangguan koneksi ke server",
     "description": "Tidak dapat terhubung ke server. Coba lagi nanti."
-  },
-  "errpr_location_support": {
-    "title": "Lokasi tidak didukung",
-    "description": "Perangkat Anda tidak mendukung fitur lokasi."
   },
   "evidence": "Bukti",
   "example_UI": "Contoh UI",
@@ -183,6 +183,10 @@ const translations = {
   "hide": "Sembunyikan",
   "hour": "Jam",
   "inactive": "Belum aktif",
+  "info_color_mode_reset": {
+    "title": "Color mode di-reset",
+    "description": "Color mode direset ke default (mengikuti sistem)."
+  },
   "info_max_char_reached": {
     "title": "Batas Karakter Tercapai",
     "description": "Hanya maksimal ${maxChar} karakter yang akan diambil."
@@ -266,6 +270,7 @@ const translations = {
   "month": "Bulan",
   "more_info": "Info lebih",
   "msg_ADM_active": "Mode gelap adaptif aktif",
+  "msg_accent_color_helper": "Scroll/geser ke kanan/kiri untuk pilih warna. Warna aksen akan digunakan untuk tombol, checkbox, radio, slider, link, dan elemen lainnya.",
   "msg_activate": "Akun akan diaktifkan kembali dan bisa digunakan.",
   "msg_app_desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam inventore accusantium, libero exercitationem ipsum dolorem delectus iure dolorum quidem modi fugiat voluptate laborum cum laboriosam ullam commodi explicabo, magnam eius.",
   "msg_cannot_be_undone": "Aksi ini tidak dapat dibatalkan, harap hati-hati.",
@@ -404,9 +409,9 @@ const translations = {
     "title": "Akses kamera",
     "description": "Izinkan aplikasi menggunakan kamera perangkat Anda untuk mengambil foto atau video."
   },
-  "settings_dark_mode": {
-    "title": "UI mode gelap",
-    "description": "Mode gelap untuk UI, default mengikuti system"
+  "settings_color_mode_reset": {
+    "title": "Reset ke mode default",
+    "description": "Default color mode mengikuti sistem"
   },
   "settings_location": {
     "title": "Akses lokasi",

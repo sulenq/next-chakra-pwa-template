@@ -1,91 +1,72 @@
 "use client";
 
 import { Btn } from "@/components/ui/btn";
-import { Checkbox } from "@/components/ui/checkbox";
 import { useColorMode } from "@/components/ui/color-mode";
-import { DateTimePickerInput } from "@/components/ui/date-time-picker-input";
 import { Divider } from "@/components/ui/divider";
 import {
   SettingsHelperText,
   SettingsSavedLocalyHelperText,
 } from "@/components/ui/helper-text";
-import { Img } from "@/components/ui/img";
 import { P } from "@/components/ui/p";
-import { SelectInput } from "@/components/ui/select-input";
+import { RadioItem } from "@/components/ui/radio";
 import { StackH, StackV } from "@/components/ui/stack";
-import { StringInput } from "@/components/ui/string-input";
 import { Switch } from "@/components/ui/switch";
+import { toaster } from "@/components/ui/toaster";
 import { Tooltip } from "@/components/ui/tooltip";
 import { AppIconLucide } from "@/components/widgets/app-icon";
+import { HScroll } from "@/components/widgets/h-scroll";
 import { DotIndicator } from "@/components/widgets/indicator";
 import { Item } from "@/components/widgets/item";
 import { ToggleSettingContainer } from "@/components/widgets/settings-shell";
 import { COLOR_PALETTES } from "@/constants/colors";
 import { ROUNDED_PRESETS } from "@/constants/presets";
-import { OPTIONS_RELIGION } from "@/constants/select-options";
 import { R_SPACING_MD, SECTION_GAP } from "@/constants/styles";
 import useADM from "@/contexts/use-adm-context";
 import { useLocale } from "@/contexts/use-locale-context";
 import { useThemeContext } from "@/contexts/use-theme-context";
-import { SelectOption } from "@/types/global.types";
 import { formatTime } from "@/utils/formatter";
 import { interpolateString } from "@/utils/string";
 import { cssCalc } from "@/utils/style";
-import { Box, BoxProps, Center, Circle, SimpleGrid } from "@chakra-ui/react";
-import { BrushIcon, EclipseIcon } from "lucide-react";
+import {
+  Box,
+  BoxProps,
+  Center,
+  Circle,
+  SimpleGrid,
+  StackProps,
+} from "@chakra-ui/react";
+import { ImageIcon } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
 // -----------------------------------------------------------------
 
-const ManualDarkModeSetting = () => {
+const ResetColorModeSetting = () => {
   // Contexts
-  const { themeContext } = useThemeContext();
   const { t } = useLocale();
-  const { colorMode, setColorMode } = useColorMode();
-  const { ADM } = useADM();
-
-  // States, Refs
-  const timeoutRef = useRef<any>(null);
-  const [active, setActive] = useState(colorMode === "dark");
-
-  // Handle active state
-  useEffect(() => {
-    if (timeoutRef.current) {
-      clearTimeout(timeoutRef.current);
-    }
-
-    timeoutRef.current = setTimeout(() => {
-      setColorMode(active ? "dark" : "light");
-      timeoutRef.current = null;
-    }, 100);
-  }, [active]);
-
-  useEffect(() => {
-    if (timeoutRef.current) {
-      clearTimeout(timeoutRef.current);
-    }
-
-    timeoutRef.current = setTimeout(() => {
-      setActive(colorMode === "dark" ? true : false);
-      timeoutRef.current = null;
-    }, 100);
-  }, [colorMode]);
+  const { setColorMode } = useColorMode();
 
   return (
-    <ToggleSettingContainer disabled={ADM}>
+    <ToggleSettingContainer>
       <StackV gap={1}>
-        <P>{t.settings_dark_mode.title}</P>
+        <P>{t.settings_color_mode_reset.title}</P>
 
-        <P color={"fg.subtle"}>{t.settings_dark_mode.description}</P>
+        <P color={"fg.subtle"}>{t.settings_color_mode_reset.description}</P>
       </StackV>
 
-      <Switch
-        checked={active}
-        onCheckedChange={(e) => {
-          setActive(e.checked);
+      <Btn
+        variant={"outline"}
+        w={"fit"}
+        ml={"auto"}
+        onClick={() => {
+          setColorMode("system");
+          toaster.info({
+            title: t.info_color_mode_reset.title,
+            description: t.info_color_mode_reset.description,
+          });
         }}
-        colorPalette={themeContext.colorPalette}
-      />
+      >
+        Reset
+      </Btn>
     </ToggleSettingContainer>
   );
 };
@@ -97,22 +78,6 @@ const ADMSetting = () => {
   const { themeContext } = useThemeContext();
   const { t } = useLocale();
   const { ADM, setADM } = useADM();
-
-  // States, Refs
-  const [active, setActive] = useState(ADM);
-  const timeoutRef = useRef<any>(null);
-
-  // Handle active state
-  useEffect(() => {
-    if (timeoutRef.current) {
-      clearTimeout(timeoutRef.current);
-    }
-
-    timeoutRef.current = setTimeout(() => {
-      setADM(active);
-      timeoutRef.current = null;
-    }, 100);
-  }, [active]);
 
   return (
     <ToggleSettingContainer>
@@ -127,9 +92,9 @@ const ADMSetting = () => {
       </StackV>
 
       <Switch
-        checked={active}
+        checked={ADM}
         onCheckedChange={(e) => {
-          setActive(e.checked);
+          setADM(e.checked);
         }}
         colorPalette={themeContext.colorPalette}
       />
@@ -139,9 +104,139 @@ const ADMSetting = () => {
 
 // -----------------------------------------------------------------
 
-const DarkModeSection = () => {
+const SkeletonP = (props: BoxProps) => {
+  return (
+    <Box h={"16px"} w={"full"} bg={"bg.muted"} rounded={"full"} {...props} />
+  );
+};
+
+// -----------------------------------------------------------------
+
+interface DisplaySkeletonProps extends StackProps {
+  colorMode: "light" | "dark";
+}
+
+const DisplaySkeleton = (props: DisplaySkeletonProps) => {
+  // Props
+  const { colorMode, ...restProps } = props;
+
   // Contexts
-  const { t } = useLocale();
+  const { themeContext } = useThemeContext();
+
+  // Constants
+  const color = {
+    body: {
+      light: "bodyLight",
+      dark: "bodyDark",
+    },
+  };
+
+  return (
+    <StackV gap={4} w={"full"} {...restProps}>
+      <StackV
+        gap={2}
+        bg={color.body[colorMode]}
+        border={"1px solid"}
+        borderColor={"border.muted"}
+        rounded={themeContext.radii.component}
+      >
+        <Center aspectRatio={1} w={"full"} p={1}>
+          <Center
+            w={"full"}
+            h={"full"}
+            bg={"bg.subtle"}
+            rounded={cssCalc(`${themeContext.radii.component} - 4px`)}
+          >
+            <AppIconLucide
+              icon={ImageIcon}
+              boxSize={20}
+              strokeWidth={1}
+              color={"bg.muted"}
+            />
+          </Center>
+        </Center>
+
+        <StackV gap={2} px={2}>
+          <SkeletonP w={"70%"} />
+          <SkeletonP />
+        </StackV>
+
+        <StackV p={2}>
+          <Btn variant={"ghost"}>
+            <SkeletonP w={"70%"} bg={`${themeContext.colorPalette}.fg`} />
+          </Btn>
+        </StackV>
+      </StackV>
+    </StackV>
+  );
+};
+
+// -----------------------------------------------------------------
+
+const ColorModeSetting = () => {
+  // Contexts
+  const { themeContext } = useThemeContext();
+  const { colorMode, setColorMode } = useColorMode();
+
+  return (
+    <StackH justify={"center"} gap={4} px={4}>
+      <StackV
+        align={"center"}
+        gap={4}
+        w={"full"}
+        maxW={"200px"}
+        p={R_SPACING_MD}
+        rounded={themeContext.radii.component}
+        cursor={"pointer"}
+        transition={"200ms"}
+        _hover={{
+          bg: "bg.muted",
+        }}
+        onClick={() => {
+          setColorMode("light");
+        }}
+      >
+        <DisplaySkeleton colorMode="light" />
+
+        <StackV align={"center"} gap={3} pb={2}>
+          <P textAlign={"center"}>Light Mode</P>
+
+          <RadioItem checked={colorMode === "light"} />
+        </StackV>
+      </StackV>
+
+      <StackV
+        align={"center"}
+        gap={4}
+        w={"full"}
+        maxW={"200px"}
+        p={R_SPACING_MD}
+        rounded={themeContext.radii.component}
+        cursor={"pointer"}
+        transition={"200ms"}
+        _hover={{
+          bg: "bg.muted",
+        }}
+        onClick={() => {
+          setColorMode("dark");
+        }}
+      >
+        <DisplaySkeleton colorMode="dark" />
+
+        <StackV align={"center"} gap={3} pb={2}>
+          <P textAlign={"center"}>Dark Mode</P>
+
+          <RadioItem checked={colorMode === "dark"} />
+        </StackV>
+      </StackV>
+    </StackH>
+  );
+};
+
+// -----------------------------------------------------------------
+
+const ColorModeSection = () => {
+  // Contexts
   const { colorMode, setColorMode } = useColorMode();
 
   // States, Refs
@@ -171,162 +266,19 @@ const DarkModeSection = () => {
   }, [colorMode]);
 
   return (
-    <Item.Root>
-      <Item.Header borderless color={"fg.muted"}>
-        <StackH align={"center"} gap={2}>
-          <AppIconLucide icon={EclipseIcon} />
+    <Item.Root px={R_SPACING_MD}>
+      <Item.Body gap={4} p={4}>
+        <ColorModeSetting />
 
-          <Item.Title>{t.dark_mode}</Item.Title>
-        </StackH>
-      </Item.Header>
+        <Divider />
 
-      <StackV px={R_SPACING_MD} pb={R_SPACING_MD}>
-        <Item.Body gap={4} p={4}>
-          <ManualDarkModeSetting />
+        <ADMSetting />
 
-          <Divider />
+        <Divider />
 
-          <ADMSetting />
-        </Item.Body>
-      </StackV>
-    </Item.Root>
-  );
-};
-
-// -----------------------------------------------------------------
-
-const SkeletonP = (props: BoxProps) => {
-  return (
-    <Box h={"16px"} w={"full"} bg={"bg.muted"} rounded={"full"} {...props} />
-  );
-};
-
-const ExampleUI = () => {
-  // Contexts
-  const { themeContext } = useThemeContext();
-
-  // States
-  const [checked, setChecked] = useState<boolean>(true);
-  const [checked2, setChecked2] = useState<boolean>(true);
-  const [select, setSelect] = useState<SelectOption[] | null | undefined>(null);
-
-  return (
-    <StackV px={R_SPACING_MD}>
-      <Item.Body p={4}>
-        <StackH wrap={"wrap"} gapX={6} gapY={12}>
-          <StackV gap={6} w={"170px"} mx={"auto"}>
-            <StackV
-              gap={2}
-              rounded={themeContext.radii.component}
-              border={"1px solid"}
-              borderColor={"border.muted"}
-            >
-              <Center aspectRatio={1} w={"full"} p={1}>
-                <Img
-                  w={"full"}
-                  rounded={`calc(${themeContext.radii.component} - 4px)`}
-                />
-              </Center>
-
-              <StackV gap={2} px={2}>
-                <SkeletonP w={"70%"} />
-                <SkeletonP />
-              </StackV>
-
-              <StackV p={2}>
-                <Btn colorPalette={themeContext.colorPalette} variant={"ghost"}>
-                  <SkeletonP w={"70%"} bg={`${themeContext.colorPalette}.fg`} />
-                </Btn>
-              </StackV>
-            </StackV>
-
-            <StackV gap={4}>
-              <StackV justify={"center"} minH={"36px"}>
-                <Checkbox
-                  checked={checked}
-                  onCheckedChange={(e: any) => setChecked(e.checked)}
-                  alignItems={"start"}
-                  colorPalette={themeContext.colorPalette}
-                  variant={"solid"}
-                  size={"lg"}
-                >
-                  <StackV gap={2}>
-                    <SkeletonP w={"100px"} />
-                    <SkeletonP w={"120px"} />
-                  </StackV>
-                </Checkbox>
-              </StackV>
-            </StackV>
-          </StackV>
-
-          <StackV flex={4} gap={SECTION_GAP}>
-            <StackV gap={2}>
-              <SkeletonP w={"100px"} />
-
-              <StringInput placeholder={""} />
-            </StackV>
-
-            <StackV gap={2}>
-              <SkeletonP w={"150px"} />
-
-              <SelectInput
-                id={"example-select-religion"}
-                name={"select1"}
-                placeholder={""}
-                selectOptions={OPTIONS_RELIGION}
-                onChange={(inputValue) => {
-                  setSelect(inputValue);
-                }}
-                inputValue={select}
-                multiple
-              />
-            </StackV>
-
-            <StackV gap={2}>
-              <SkeletonP w={"120px"} />
-
-              <StackV>
-                <DateTimePickerInput
-                  placeholder={{
-                    date: "",
-                    time: "",
-                  }}
-                />
-              </StackV>
-            </StackV>
-
-            <StackV justify={"center"} minH={"36px"}>
-              <Switch
-                checked={checked2}
-                onCheckedChange={(e) => setChecked2(e.checked)}
-                colorPalette={themeContext.colorPalette}
-              >
-                <SkeletonP w={"100px"} />
-              </Switch>
-            </StackV>
-
-            <Divider my={2} />
-
-            <StackH justify={"end"} gap={2}>
-              <Btn w={"80px"} variant={"outline"}>
-                <SkeletonP w={"70%"} />
-              </Btn>
-
-              <Btn
-                w={"100px"}
-                colorPalette={themeContext.colorPalette}
-                variant={"solid"}
-              >
-                <SkeletonP
-                  w={"70%"}
-                  bg={`${themeContext.colorPalette}.contrast`}
-                />
-              </Btn>
-            </StackH>
-          </StackV>
-        </StackH>
+        <ResetColorModeSetting />
       </Item.Body>
-    </StackV>
+    </Item.Root>
   );
 };
 
@@ -341,39 +293,42 @@ const AccentColorSetting = () => {
     <StackV px={R_SPACING_MD}>
       <SettingsHelperText>{t.accent_color}</SettingsHelperText>
 
-      <Item.Body p={4}>
-        <SimpleGrid
-          minChildWidth={"56px"}
-          gap={0}
-          rounded={cssCalc(`${themeContext.radii.component} - 4px`)}
-          overflow={"clip"}
-        >
-          {COLOR_PALETTES.map((color, index) => {
-            const isSelected = color.palette === themeContext.colorPalette;
-            const isColorPaletteGray = color.palette === "gray";
+      <Item.Body>
+        <HScroll p={4}>
+          <StackH
+            w={"max"}
+            rounded={themeContext.radii.component}
+            overflow={"clip"}
+          >
+            {COLOR_PALETTES.map((color, index) => {
+              const isSelected = color.palette === themeContext.colorPalette;
+              const isColorPaletteGray = color.palette === "gray";
 
-            return (
-              <Tooltip key={`${color.palette}-${index}`} content={color.label}>
-                <Center
-                  w={"full"}
-                  aspectRatio={1}
-                  p={2}
-                  bg={isColorPaletteGray ? "ibody" : `${color.palette}.500`}
-                  // rounded={themeContext.radii.component}
-                  cursor={"pointer"}
-                  overflow={"clip"}
-                  onClick={() => {
-                    setThemeContext({
-                      colorPalette: color.palette,
-                      primaryColor: isColorPaletteGray
-                        ? "ibody"
-                        : `${color.palette}.500`,
-                      primaryColorHex: color.primaryHex,
-                    });
-                  }}
-                  pos={"relative"}
+              return (
+                <Tooltip
+                  key={`${color.palette}-${index}`}
+                  content={color.label}
                 >
-                  {/* <P
+                  <Center
+                    minW={"40px"}
+                    aspectRatio={1}
+                    p={2}
+                    bg={isColorPaletteGray ? "ibody" : `${color.palette}.500`}
+                    // rounded={themeContext.radii.component}
+                    cursor={"pointer"}
+                    overflow={"clip"}
+                    onClick={() => {
+                      setThemeContext({
+                        colorPalette: color.palette,
+                        primaryColor: isColorPaletteGray
+                          ? "ibody"
+                          : `${color.palette}.500`,
+                        primaryColorHex: color.primaryHex,
+                      });
+                    }}
+                    pos={"relative"}
+                  >
+                    {/* <P
                     fontSize={"sm"}
                     fontWeight={"medium"}
                     color={`${color.palette}.contrast`}
@@ -383,19 +338,24 @@ const AccentColorSetting = () => {
                     {color.label}
                   </P> */}
 
-                  {isSelected && (
-                    <DotIndicator
-                      pos={"absolute"}
-                      bg={isColorPaletteGray ? "bg.body" : "light"}
-                      top={2}
-                      right={2}
-                    />
-                  )}
-                </Center>
-              </Tooltip>
-            );
-          })}
-        </SimpleGrid>
+                    {isSelected && (
+                      <DotIndicator
+                        pos={"absolute"}
+                        bg={isColorPaletteGray ? "bg.body" : "light"}
+                        top={2}
+                        right={2}
+                      />
+                    )}
+                  </Center>
+                </Tooltip>
+              );
+            })}
+          </StackH>
+        </HScroll>
+
+        <StackV px={4} pb={4}>
+          <P color={"fg.subtle"}>{t.msg_accent_color_helper}</P>
+        </StackV>
       </Item.Body>
     </StackV>
   );
@@ -499,24 +459,11 @@ const RoundedSetting = () => {
 // -----------------------------------------------------------------
 
 const PersonalizationSection = () => {
-  // Contexts
-  const { t } = useLocale();
-
   return (
-    <Item.Root>
-      <Item.Header borderless color={"fg.muted"}>
-        <AppIconLucide icon={BrushIcon} />
+    <Item.Root gap={2}>
+      <AccentColorSetting />
 
-        <Item.Title>{t.personalization}</Item.Title>
-      </Item.Header>
-
-      <StackV gap={SECTION_GAP}>
-        <ExampleUI />
-
-        <AccentColorSetting />
-
-        <RoundedSetting />
-      </StackV>
+      <RoundedSetting />
     </Item.Root>
   );
 };
@@ -525,8 +472,8 @@ const PersonalizationSection = () => {
 
 export default function Page() {
   return (
-    <StackV gap={2}>
-      <DarkModeSection />
+    <StackV gap={SECTION_GAP}>
+      <ColorModeSection />
 
       <PersonalizationSection />
 

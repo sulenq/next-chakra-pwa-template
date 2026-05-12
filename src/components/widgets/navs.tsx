@@ -70,7 +70,7 @@ export const DesktopNavTooltip = (props: TooltipProps) => {
 
 // -----------------------------------------------------------------
 
-interface DesktopNavsProps extends StackProps {
+interface VNavsProps extends StackProps {
   navs: NavGroup[];
   navsExpanded?: boolean;
   showSearch?: boolean;
@@ -78,7 +78,7 @@ interface DesktopNavsProps extends StackProps {
   showGroupLabel?: boolean;
 }
 
-export const DesktopNavs = (props: DesktopNavsProps) => {
+export const VNavs = (props: VNavsProps) => {
   // Props
   const {
     navs,
@@ -377,7 +377,7 @@ export const DesktopNavs = (props: DesktopNavsProps) => {
                                       w={"full"}
                                       pos={"relative"}
                                     >
-                                      {isMainNavsActive && <LeftIndicator />}
+                                      {/* {isMainNavsActive && <LeftIndicator />} */}
 
                                       <StackH align={"center"} gap={4}>
                                         <Center
@@ -409,7 +409,7 @@ export const DesktopNavs = (props: DesktopNavsProps) => {
                                       <Accordion.ItemIndicator
                                         color={
                                           isMainNavsActive
-                                            ? `${themeContext.colorPalette}.contrast`
+                                            ? `${themeContext.colorPalette}.solid`
                                             : ""
                                         }
                                         ml={"auto"}

@@ -19,11 +19,11 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
   function Checkbox(props, ref) {
     // Props
     const {
+      checked,
       icon,
       children,
       inputProps,
       rootRef,
-      checked,
       subtle,
       bg,
       rounded,
@@ -42,6 +42,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
     return (
       <ChakraCheckbox.Root
         ref={rootRef}
+        checked={checked}
         cursor={"pointer"}
         colorPalette={themeContext.colorPalette}
         {...restProps}
@@ -72,7 +73,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
         </ChakraCheckbox.Control>
 
         {children != null && (
-          <ChakraCheckbox.Label>{children}</ChakraCheckbox.Label>
+          <ChakraCheckbox.Label w={"full"}>{children}</ChakraCheckbox.Label>
         )}
       </ChakraCheckbox.Root>
     );

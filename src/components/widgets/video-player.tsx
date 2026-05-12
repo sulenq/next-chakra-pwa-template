@@ -297,7 +297,6 @@ export default function VideoPlayer(props: VideoPlayerProps) {
 
       <StackV
         w={"full"}
-        className={"dsb"}
         pos={"absolute"}
         left={0}
         transition={"500ms"}

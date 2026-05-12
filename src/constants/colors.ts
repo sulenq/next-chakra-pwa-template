@@ -186,8 +186,8 @@ export const COLOR_PALETTES = [
 
   { palette: "tealBlue", label: "Teal Blue", primaryHex: "#16B3AC" },
   { palette: "cyan", label: "Cyan", primaryHex: "#06b6d4" },
-  { palette: "powderBlue", label: "Powder Blue", primaryHex: "#769cc2" },
   { palette: "sky", label: "Sky", primaryHex: "#0EA5E9" },
+  { palette: "powderBlue", label: "Powder Blue", primaryHex: "#769cc2" },
   { palette: "blue", label: "Blue", primaryHex: "#3a72ed" },
   { palette: "sapphire", label: "Sapphire", primaryHex: "#1939B7" },
   { palette: "indigo", label: "Indigo", primaryHex: "#3F51B5" },

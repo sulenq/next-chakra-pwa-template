@@ -61,13 +61,7 @@ const PopoverArrow = forwardRef<HTMLDivElement, ChakraPopover.ArrowProps>(
   function PopoverArrow(props, ref) {
     return (
       <ChakraPopover.Arrow ref={ref}>
-        <ChakraPopover.ArrowTip
-          bg={"bg.body"}
-          // backdropFilter={"blur(5px)"}
-          // bg={"darktrans !important"}
-          // borderColor={"transparent"}
-          {...props}
-        />
+        <ChakraPopover.ArrowTip bg={"bg.body"} {...props} />
       </ChakraPopover.Arrow>
     );
   },

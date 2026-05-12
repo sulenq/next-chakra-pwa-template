@@ -156,6 +156,10 @@ const translations = {
     "title": "Failed to get location",
     "description": "Check location permission or ensure GPS is enabled."
   },
+  "error_location_support": {
+    "title": "Location not supported",
+    "description": "Your device does not support location features."
+  },
   "error_mic": {
     "title": "Failed to access microphone",
     "description": "Check microphone permission or ensure it's not in use by another app."
@@ -163,10 +167,6 @@ const translations = {
   "error_network": {
     "title": "Server connection problem",
     "description": "Unable to connect to the server. Try again later."
-  },
-  "errpr_location_support": {
-    "title": "Location not supported",
-    "description": "Your device does not support location features."
   },
   "evidence": "Evidence",
   "example_UI": "Example UI",
@@ -183,6 +183,10 @@ const translations = {
   "hide": "Hide",
   "hour": "Hour",
   "inactive": "Inactive",
+  "info_color_mode_reset": {
+    "title": "Color mode reset",
+    "description": "Color mode reset to default (follows the system)."
+  },
   "info_max_char_reached": {
     "title": "Character Limit Reached",
     "description": "Only a maximum of ${maxChar} characters will be used/kept."
@@ -266,6 +270,7 @@ const translations = {
   "month": "Month",
   "more_info": "More info",
   "msg_ADM_active": "Adaptive dark mode is active",
+  "msg_accent_color_helper": "Scroll/swipe right/left to pick a color. Accent color will be used for buttons, checkboxes, radios, sliders, links, and other elements.",
   "msg_activate": "The account will be activated again and can be used.",
   "msg_app_desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam inventore accusantium, libero exercitationem ipsum dolorem delectus iure dolorum quidem modi fugiat voluptate laborum cum laboriosam ullam commodi explicabo, magnam eius.",
   "msg_cannot_be_undone": "This action cannot be undone, please be careful.",
@@ -404,9 +409,9 @@ const translations = {
     "title": "Camera access",
     "description": "Allow the app to access your device's camera to take photos or videos."
   },
-  "settings_dark_mode": {
-    "title": "UI dark mode",
-    "description": "Dark mode for UI, default follows system"
+  "settings_color_mode_reset": {
+    "title": "Reset to default mode",
+    "description": "Default color mode follows the system"
   },
   "settings_location": {
     "title": "Location access",

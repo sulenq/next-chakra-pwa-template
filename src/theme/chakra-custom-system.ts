@@ -71,9 +71,10 @@ const customConfig = defineConfig({
         extrabold: { value: "800" },
       },
       colors: {
-        light: { value: "#fcfcfc" },
-        dark: { value: "#151515" },
-        darktrans: { value: "#202020cf" },
+        light: { value: "#f0f1f4ff" },
+        dark: { value: "#111" },
+        bodyLight: { value: "#faf9ffec" },
+        bodyDark: { value: "rgba(27, 27, 27, 0.925)" },
 
         d0: { value: "#8a909614" },
         d1: { value: "#8a90961a" },
@@ -380,20 +381,6 @@ const customConfig = defineConfig({
           950: { value: "#192328" },
         },
 
-        powderBlue: {
-          50: { value: "#dceaf7ff" },
-          100: { value: "#cee0efff" },
-          200: { value: "#c1def7" },
-          300: { value: "#9ecaf0" },
-          400: { value: "#7fb4e6" },
-          500: { value: "#649fd9" },
-          600: { value: "#4f86bf" },
-          700: { value: "#3f6ba1" },
-          800: { value: "#223249" },
-          900: { value: "#202e3c" },
-          950: { value: "#19222c" },
-        },
-
         sky: {
           50: { value: "#dbeaf7ff" },
           100: { value: "#cfe7f7" },
@@ -406,6 +393,20 @@ const customConfig = defineConfig({
           800: { value: "#12384a" },
           900: { value: "#13313e" },
           950: { value: "#0d222b" },
+        },
+
+        powderBlue: {
+          50: { value: "#dceaf7ff" },
+          100: { value: "#cee0efff" },
+          200: { value: "#c1def7" },
+          300: { value: "#9ecaf0" },
+          400: { value: "#7fb4e6" },
+          500: { value: "#649fd9" },
+          600: { value: "#4f86bf" },
+          700: { value: "#3f6ba1" },
+          800: { value: "#223249" },
+          900: { value: "#202e3c" },
+          950: { value: "#19222c" },
         },
 
         blue: {
@@ -563,8 +564,8 @@ const customConfig = defineConfig({
         bg: {
           canvas: {
             value: {
-              base: "#f0f1f4",
-              _dark: "#111",
+              base: "{colors.light}",
+              _dark: "{colors.dark}",
             },
           },
           bodySolid: {
@@ -1557,6 +1558,49 @@ const customConfig = defineConfig({
           },
         },
 
+        sky: {
+          solid: {
+            value: {
+              base: "{colors.sky.500}",
+              _dark: "{colors.sky.500}",
+            },
+          },
+          contrast: {
+            value: { base: "{colors.sky.50}", _dark: "{colors.sky.900}" },
+          },
+          fg: {
+            value: {
+              base: "{colors.sky.500}",
+              _dark: "{colors.sky.400}",
+            },
+          },
+          muted: {
+            value: {
+              base: "{colors.sky.100}",
+              _dark: "{colors.sky.900}",
+            },
+          },
+          subtle: {
+            value: {
+              base: "{colors.sky.50}",
+              _dark: "{colors.sky.950}",
+            },
+          },
+          emphasized: { value: "{colors.sky.400}" },
+          focusRing: {
+            value: {
+              base: "{colors.sky.500}",
+              _dark: "{colors.sky.700}",
+            },
+          },
+          border: {
+            value: {
+              base: "{colors.sky.200}",
+              _dark: "{colors.sky.800}",
+            },
+          },
+        },
+
         powderBlue: {
           solid: {
             value: {
@@ -1599,49 +1643,6 @@ const customConfig = defineConfig({
             value: {
               base: "{colors.powderBlue.200}",
               _dark: "{colors.powderBlue.800}",
-            },
-          },
-        },
-
-        sky: {
-          solid: {
-            value: {
-              base: "{colors.sky.500}",
-              _dark: "{colors.sky.500}",
-            },
-          },
-          contrast: {
-            value: { base: "{colors.sky.50}", _dark: "{colors.sky.900}" },
-          },
-          fg: {
-            value: {
-              base: "{colors.sky.500}",
-              _dark: "{colors.sky.400}",
-            },
-          },
-          muted: {
-            value: {
-              base: "{colors.sky.100}",
-              _dark: "{colors.sky.900}",
-            },
-          },
-          subtle: {
-            value: {
-              base: "{colors.sky.50}",
-              _dark: "{colors.sky.950}",
-            },
-          },
-          emphasized: { value: "{colors.sky.400}" },
-          focusRing: {
-            value: {
-              base: "{colors.sky.500}",
-              _dark: "{colors.sky.700}",
-            },
-          },
-          border: {
-            value: {
-              base: "{colors.sky.200}",
-              _dark: "{colors.sky.800}",
             },
           },
         },

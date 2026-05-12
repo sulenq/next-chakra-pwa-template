@@ -1147,6 +1147,10 @@ export const msg_file_input_dropzone = {
   id: "Drag and drop/klik untuk unggah berkas",
   en: "Drag and drop/click to upload files",
 };
+export const msg_accent_color_helper = {
+  id: "Scroll/geser ke kanan/kiri untuk pilih warna. Warna aksen akan digunakan untuk tombol, checkbox, radio, slider, link, dan elemen lainnya.",
+  en: "Scroll/swipe right/left to pick a color. Accent color will be used for buttons, checkboxes, radios, sliders, links, and other elements.",
+};
 
 // Alert
 export const alert_offline = {
@@ -1211,11 +1215,11 @@ export const alert_pdf_failed_to_load = {
 };
 
 // Setting Page
-export const settings_dark_mode = {
-  title: { id: "UI mode gelap", en: "UI dark mode" },
+export const settings_color_mode_reset = {
+  title: { id: "Reset ke mode default", en: "Reset to default mode" },
   description: {
-    id: "Mode gelap untuk UI, default mengikuti system",
-    en: "Dark mode for UI, default follows system",
+    id: "Default color mode mengikuti sistem",
+    en: "Default color mode follows the system",
   },
 };
 export const settings_adaptive_dark_mode = {
@@ -1543,7 +1547,7 @@ export const error_location = {
     en: "Check location permission or ensure GPS is enabled.",
   },
 };
-export const errpr_location_support = {
+export const error_location_support = {
   title: {
     id: "Lokasi tidak didukung",
     en: "Location not supported",
@@ -1554,7 +1558,17 @@ export const errpr_location_support = {
   },
 };
 
-// Info
+// Info Toast
+export const info_color_mode_reset = {
+  title: {
+    id: "Color mode di-reset",
+    en: "Color mode reset",
+  },
+  description: {
+    id: "Color mode direset ke default (mengikuti sistem).",
+    en: "Color mode reset to default (follows the system).",
+  },
+};
 export const info_timezone_auto = {
   title: {
     id: "Zona waktu diatur secara otomatis",

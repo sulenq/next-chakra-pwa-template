@@ -36,7 +36,7 @@ interface ItemRootProps extends StackProps {
 }
 
 const ItemRoot = forwardRef<HTMLDivElement, ItemRootProps>(
-  function ItemBody(props, ref) {
+  function ItemRoot(props, ref) {
     const {
       children,
       scrollY = false,

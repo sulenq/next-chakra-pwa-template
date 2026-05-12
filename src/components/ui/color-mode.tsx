@@ -3,9 +3,8 @@
 import { Btn } from "@/components/ui/btn";
 import { Tooltip, TooltipProps } from "@/components/ui/tooltip";
 import { AppIconLucide } from "@/components/widgets/app-icon";
-import { ColorMode } from "@/types/global.types";
-import useADM from "@/contexts/use-adm-context";
 import { useLocale } from "@/contexts/use-locale-context";
+import { ColorMode } from "@/types/global.types";
 import type { IconButtonProps, SpanProps } from "@chakra-ui/react";
 import { ClientOnly, Skeleton, Span } from "@chakra-ui/react";
 import { EclipseIcon, SunIcon } from "lucide-react";
@@ -70,15 +69,16 @@ export const ColorModeButton = forwardRef<
 
   // Contexts
   const { colorMode } = useColorMode();
-  const { ADM } = useADM();
+  // const { ADM } = useADM();
 
-  // States
-  const ADMActive = ADM;
+  // Constants
+  // const ADMActive = ADM;
 
   return (
     <ClientOnly fallback={<Skeleton boxSize={"8"} />}>
       <Tooltip
-        content={ADMActive ? t.msg_ADM_active : t.msg_toggle_dark_mode}
+        // content={ADMActive ? t.msg_ADM_active : t.msg_toggle_dark_mode}
+        content={t.msg_toggle_dark_mode}
         {...tooltipProps}
       >
         <Btn
@@ -88,7 +88,7 @@ export const ColorModeButton = forwardRef<
           variant={"ghost"}
           size={"sm"}
           aria-label={"Toggle color mode"}
-          disabled={ADMActive}
+          // disabled={ADMActive}
           onClick={toggleColorMode}
           {...restProps}
         >
