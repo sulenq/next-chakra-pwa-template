@@ -127,8 +127,8 @@ const ADMSetting = () => {
 
       <Switch
         checked={active}
-        onChange={() => {
-          setActive(!active);
+        onCheckedChange={(e) => {
+          setActive(e.checked);
         }}
         colorPalette={themeContext.colorPalette}
       />
@@ -206,7 +206,10 @@ const ExampleUI = () => {
 
   // States
   const [checked, setChecked] = useState<boolean>(true);
+  const [checked2, setChecked2] = useState<boolean>(true);
   const [select, setSelect] = useState<SelectOption[] | null | undefined>(null);
+
+  console.debug(checked2);
 
   return (
     <StackV px={R_SPACING_MD}>
@@ -241,9 +244,9 @@ const ExampleUI = () => {
             <StackV gap={4}>
               <StackV justify={"center"} minH={"36px"}>
                 <Checkbox
-                  alignItems={"start"}
                   checked={checked}
-                  onChange={(e: any) => setChecked(!e.target.checked)}
+                  onCheckedChange={(e: any) => setChecked(e.checked)}
+                  alignItems={"start"}
                   colorPalette={themeContext.colorPalette}
                   variant={"solid"}
                   size={"lg"}
@@ -291,12 +294,16 @@ const ExampleUI = () => {
                   }}
                 />
               </StackV>
+            </StackV>
 
-              <StackV justify={"center"} minH={"36px"}>
-                <Switch colorPalette={themeContext.colorPalette}>
-                  <SkeletonP w={"100px"} />
-                </Switch>
-              </StackV>
+            <StackV justify={"center"} minH={"36px"}>
+              <Switch
+                checked={checked2}
+                onCheckedChange={(e) => setChecked2(e.checked)}
+                colorPalette={themeContext.colorPalette}
+              >
+                <SkeletonP w={"100px"} />
+              </Switch>
             </StackV>
 
             <Divider my={2} />
