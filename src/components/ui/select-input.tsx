@@ -25,7 +25,7 @@ import { isEmptyArray } from "@/utils/array";
 import { back } from "@/utils/client";
 import { disclosureId } from "@/utils/disclosure";
 import { capitalizeWords } from "@/utils/string";
-import { Box, Icon, useFieldContext } from "@chakra-ui/react";
+import { Icon, useFieldContext } from "@chakra-ui/react";
 import { IconReload } from "@tabler/icons-react";
 import { ChevronDownIcon } from "lucide-react";
 import { useEffect, useState } from "react";
@@ -88,7 +88,12 @@ const SelectOptions = (props: SelectOptionsProps) => {
         <>
           {multiple && (
             <StackV px={4} pt={4} zIndex={2}>
-              <Box
+              <Btn
+                clicky={false}
+                variant={"ghost"}
+                size={"md"}
+                pr={2.5}
+                mb={-2}
                 onClick={(e) => {
                   e.stopPropagation();
                   e.preventDefault();
@@ -98,21 +103,22 @@ const SelectOptions = (props: SelectOptionsProps) => {
                     setSelected([]);
                   }
                 }}
-                w={"fit"}
               >
-                <Checkbox
-                  onChange={(e: any) => {
-                    setSelectAll(e.target.checked);
-                    e.stopPropagation();
-                  }}
-                  checked={selectAll}
-                  invalid={false}
-                  size={"md"}
-                  colorPalette={themeContext.colorPalette}
-                >
-                  <P>{t.select_all}</P>
-                </Checkbox>
-              </Box>
+                <StackH justify={"space-between"} gap={4} w={"full"}>
+                  <P color={"fg.muted"}>{t.select_all}</P>
+
+                  <Checkbox
+                    onChange={(e: any) => {
+                      setSelectAll(e.target.checked);
+                      e.stopPropagation();
+                    }}
+                    checked={selectAll}
+                    invalid={false}
+                    size={"md"}
+                    colorPalette={themeContext.colorPalette}
+                  />
+                </StackH>
+              </Btn>
             </StackV>
           )}
 
