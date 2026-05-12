@@ -556,6 +556,26 @@ export const PdfViewer = (props: PdfViewerProps) => {
     setPdfInfo(null);
   }, [fileUrl]);
 
+  // Ctrl + Scroll for Zoom
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    const handleWheel = (e: WheelEvent) => {
+      if (e.ctrlKey) {
+        e.preventDefault();
+        const delta = e.deltaY > 0 ? -0.05 : 0.05;
+        setViewer((ps) => ({
+          ...ps,
+          scale: Math.max(0.1, Math.min(ps.scale + delta, 5)),
+        }));
+      }
+    };
+
+    container.addEventListener("wheel", handleWheel, { passive: false });
+    return () => container.removeEventListener("wheel", handleWheel);
+  }, []);
+
   // Intersection Observer for Scroll Mode
   useEffect(() => {
     if (viewer.mode !== "scroll" || !containerRef.current) return;
