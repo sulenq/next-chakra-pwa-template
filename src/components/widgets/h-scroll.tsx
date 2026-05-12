@@ -1,26 +1,36 @@
+import { Btn } from "@/components/ui/btn";
 import { CContainer } from "@/components/ui/c-container";
-import { StackProps } from "@chakra-ui/react";
-import React, { useEffect, useRef, forwardRef } from "react";
+import { AppIconLucide } from "@/components/widgets/app-icon";
+import { Box, StackProps } from "@chakra-ui/react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import React, {
+  forwardRef,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 
-interface Props extends StackProps {
+interface HScrollProps extends StackProps {
   children?: React.ReactNode;
+  enableButtons?: boolean;
 }
 
-export const HScroll = forwardRef<HTMLDivElement, Props>(
-  ({ children, ...props }, ref) => {
+export const HScroll = forwardRef<HTMLDivElement, HScrollProps>(
+  (props, ref) => {
+    // Props
+    const { children, enableButtons = true, ...restProps } = props;
+
+    // Refs
     const localRef = useRef<HTMLDivElement | null>(null);
-
-    function setRefs(node: HTMLDivElement | null) {
-      localRef.current = node;
-      if (typeof ref === "function") ref(node);
-      else if (ref)
-        (ref as React.MutableRefObject<HTMLDivElement | null>).current = node;
-    }
-
     const scrollVelocity = useRef(0);
     const rafId = useRef<number | null>(null);
 
-    // Helper to start smooth inertia scrolling if not already running
+    // States
+    const [showLeft, setShowLeft] = useState(false);
+    const [showRight, setShowRight] = useState(false);
+
+    // Utils
     const ensureRaf = (el: HTMLDivElement) => {
       if (rafId.current != null) return;
       const step = () => {
@@ -28,6 +38,9 @@ export const HScroll = forwardRef<HTMLDivElement, Props>(
         el.scrollLeft += scrollVelocity.current;
         // damping
         scrollVelocity.current *= 0.85;
+
+        updateScrollState();
+
         if (Math.abs(scrollVelocity.current) > 0.5) {
           rafId.current = requestAnimationFrame(step);
         } else {
@@ -37,73 +50,141 @@ export const HScroll = forwardRef<HTMLDivElement, Props>(
       rafId.current = requestAnimationFrame(step);
     };
 
+    const updateScrollState = useCallback(() => {
+      const el = localRef.current;
+      if (!el) return;
+
+      const { scrollLeft, scrollWidth, clientWidth } = el;
+      setShowLeft(scrollLeft > 5);
+      setShowRight(scrollLeft < scrollWidth - clientWidth - 5);
+    }, []);
+
+    function setRefs(node: HTMLDivElement | null) {
+      localRef.current = node;
+      if (typeof ref === "function") ref(node);
+      else if (ref)
+        (ref as React.MutableRefObject<HTMLDivElement | null>).current = node;
+
+      if (node) updateScrollState();
+    }
+
+    const scroll = (direction: "left" | "right") => {
+      const el = localRef.current;
+      if (!el) return;
+      const amount = el.clientWidth * 0.8;
+      el.scrollBy({
+        left: direction === "left" ? -amount : amount,
+        behavior: "smooth",
+      });
+    };
+
     useEffect(() => {
       const el = localRef.current;
       if (!el) return;
 
       // Prevent scroll-chaining to ancestors (avoid parent/page vertical scroll).
-      // 'contain' will stop the chain but still allow internal scrolling.
-      // You can use 'none' if you want stricter behavior.
       el.style.overscrollBehavior = "contain";
 
       const onWheel = (ev: WheelEvent) => {
-        // If there's no overflow horizontally, don't interfere.
         const canScroll = el.scrollWidth > el.clientWidth;
         if (!canScroll) return;
 
-        // Detect whether the user's intent is vertical (mostly Y) or horizontal gesture.
         const absX = Math.abs(ev.deltaX);
         const absY = Math.abs(ev.deltaY);
         const isVerticalIntent = absY > absX;
 
-        if (!isVerticalIntent) {
-          // let native horizontal gestures behave normally
-          return;
-        }
+        if (!isVerticalIntent) return;
 
-        // We're converting vertical wheel into horizontal scroll.
-        // Prevent default so page/container doesn't scroll vertically.
         ev.preventDefault();
         ev.stopPropagation();
 
-        // Normalize deltaMode: lines (1) vs pixels (0) vs page (2)
         let multiplier = 1;
-        if (ev.deltaMode === 1)
-          multiplier = 16; // approximate line height
-        else if (ev.deltaMode === 2) multiplier = window.innerHeight; // page
+        if (ev.deltaMode === 1) multiplier = 16;
+        else if (ev.deltaMode === 2) multiplier = window.innerHeight;
 
-        // Tweak this factor to taste for sensitivity / inertia
         scrollVelocity.current += ev.deltaY * 0.25 * multiplier;
-
         ensureRaf(el);
       };
 
-      // Add native listener with { passive: false } so ev.preventDefault() works.
-      el.addEventListener("wheel", onWheel, { passive: false });
+      const onScroll = () => {
+        updateScrollState();
+      };
 
-      // Cleanup on unmount or ref change
+      el.addEventListener("wheel", onWheel, { passive: false });
+      el.addEventListener("scroll", onScroll);
+
+      // Initial check
+      updateScrollState();
+
+      // Resize observer to check if buttons should show when window resizes
+      const observer = new ResizeObserver(() => updateScrollState());
+      observer.observe(el);
+
       return () => {
         el.removeEventListener("wheel", onWheel as EventListener);
+        el.removeEventListener("scroll", onScroll);
+        observer.disconnect();
         if (rafId.current) {
           cancelAnimationFrame(rafId.current);
           rafId.current = null;
         }
-        // optional: reset overscrollBehavior
         el.style.overscrollBehavior = "";
       };
-      // Intentionally depend on ref.current — reattach when element changes
-    }, []);
+    }, [updateScrollState]);
 
     return (
-      <CContainer
-        ref={setRefs}
-        overflowY="hidden"
-        w="full"
-        className={`noScroll ${props.className ?? ""}`}
-        {...props}
-      >
-        {children}
-      </CContainer>
+      <Box position={"relative"} w={"full"} role={"group"} {...restProps}>
+        {enableButtons && showLeft && (
+          <Box
+            position={"absolute"}
+            left={2}
+            top={"50%"}
+            transform={"translateY(-50%)"}
+            zIndex={2}
+          >
+            <Btn
+              iconButton
+              size={"xs"}
+              variant={"frosted"}
+              rounded={"full"}
+              boxShadow={"md"}
+              onClick={() => scroll("left")}
+            >
+              <AppIconLucide icon={ChevronLeft} />
+            </Btn>
+          </Box>
+        )}
+
+        {enableButtons && showRight && (
+          <Box
+            position={"absolute"}
+            right={2}
+            top={"50%"}
+            transform={"translateY(-50%)"}
+            zIndex={2}
+          >
+            <Btn
+              iconButton
+              size={"xs"}
+              variant={"frosted"}
+              rounded={"full"}
+              boxShadow={"md"}
+              onClick={() => scroll("right")}
+            >
+              <AppIconLucide icon={ChevronRight} />
+            </Btn>
+          </Box>
+        )}
+
+        <CContainer
+          ref={setRefs}
+          overflowY={"hidden"}
+          w={"full"}
+          className={`noScroll ${restProps.className ?? ""}`}
+        >
+          {children}
+        </CContainer>
+      </Box>
     );
   },
 );

@@ -294,41 +294,42 @@ const AccentColorSetting = () => {
       <SettingsHelperText>{t.accent_color}</SettingsHelperText>
 
       <Item.Body>
-        <HScroll p={4}>
-          <StackH
-            w={"max"}
-            rounded={themeContext.radii.component}
-            overflow={"clip"}
-          >
-            {COLOR_PALETTES.map((color, index) => {
-              const isSelected = color.palette === themeContext.colorPalette;
-              const isColorPaletteGray = color.palette === "gray";
+        <HScroll>
+          <Box p={4}>
+            <StackH
+              w={"max"}
+              rounded={themeContext.radii.component}
+              overflow={"clip"}
+            >
+              {COLOR_PALETTES.map((color, index) => {
+                const isSelected = color.palette === themeContext.colorPalette;
+                const isColorPaletteGray = color.palette === "gray";
 
-              return (
-                <Tooltip
-                  key={`${color.palette}-${index}`}
-                  content={color.label}
-                >
-                  <Center
-                    minW={"40px"}
-                    aspectRatio={1}
-                    p={2}
-                    bg={isColorPaletteGray ? "ibody" : `${color.palette}.500`}
-                    // rounded={themeContext.radii.component}
-                    cursor={"pointer"}
-                    overflow={"clip"}
-                    onClick={() => {
-                      setThemeContext({
-                        colorPalette: color.palette,
-                        primaryColor: isColorPaletteGray
-                          ? "ibody"
-                          : `${color.palette}.500`,
-                        primaryColorHex: color.primaryHex,
-                      });
-                    }}
-                    pos={"relative"}
+                return (
+                  <Tooltip
+                    key={`${color.palette}-${index}`}
+                    content={color.label}
                   >
-                    {/* <P
+                    <Center
+                      minW={"40px"}
+                      aspectRatio={1}
+                      p={2}
+                      bg={isColorPaletteGray ? "ibody" : `${color.palette}.500`}
+                      // rounded={themeContext.radii.component}
+                      cursor={"pointer"}
+                      overflow={"clip"}
+                      onClick={() => {
+                        setThemeContext({
+                          colorPalette: color.palette,
+                          primaryColor: isColorPaletteGray
+                            ? "ibody"
+                            : `${color.palette}.500`,
+                          primaryColorHex: color.primaryHex,
+                        });
+                      }}
+                      pos={"relative"}
+                    >
+                      {/* <P
                     fontSize={"sm"}
                     fontWeight={"medium"}
                     color={`${color.palette}.contrast`}
@@ -338,19 +339,20 @@ const AccentColorSetting = () => {
                     {color.label}
                   </P> */}
 
-                    {isSelected && (
-                      <DotIndicator
-                        pos={"absolute"}
-                        bg={isColorPaletteGray ? "bg.body" : "light"}
-                        top={2}
-                        right={2}
-                      />
-                    )}
-                  </Center>
-                </Tooltip>
-              );
-            })}
-          </StackH>
+                      {isSelected && (
+                        <DotIndicator
+                          pos={"absolute"}
+                          bg={isColorPaletteGray ? "bg.body" : "light"}
+                          top={2}
+                          right={2}
+                        />
+                      )}
+                    </Center>
+                  </Tooltip>
+                );
+              })}
+            </StackH>
+          </Box>
         </HScroll>
 
         <StackV px={4} pb={4}>
