@@ -1121,13 +1121,13 @@ const customConfig = defineConfig({
           muted: {
             value: {
               base: "{colors.orange.100} !important",
-              _dark: "{colors.orange.900}",
+              _dark: "{colors.orange.900} !important",
             },
           },
           subtle: {
             value: {
               base: "{colors.orange.50} !important",
-              _dark: "{colors.orange.950}",
+              _dark: "{colors.orange.950} !important",
             },
           },
           emphasized: { value: "{colors.orange.800}" },
