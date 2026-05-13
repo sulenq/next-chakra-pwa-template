@@ -83,7 +83,7 @@ export const NavBreadcrumb = (props: any) => {
   return (
     <StackH align={"center"} gap={1} ml={"-4px"} h={"36px"} {...restProps}>
       {backPath && (
-        <BackButton iconButton clicky={false} backPath={backPath} size={"sm"} />
+        <BackButton iconButton clicky={false} backPath={backPath} size={"xs"} />
       )}
 
       <Tooltip
