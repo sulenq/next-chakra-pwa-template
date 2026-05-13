@@ -142,7 +142,7 @@ const ColorModeSetting = () => {
     <StackH justify={"center"} gap={4} px={4}>
       <StackV
         align={"center"}
-        gap={4}
+        gap={2}
         w={"full"}
         maxW={"200px"}
         p={R_SPACING_MD}
@@ -158,7 +158,7 @@ const ColorModeSetting = () => {
       >
         <DisplaySkeleton colorMode="light" />
 
-        <StackV align={"center"} gap={3} pb={2}>
+        <StackV align={"center"} gap={2} pb={2}>
           <P textAlign={"center"}>Light Mode</P>
 
           <RadioItem checked={colorMode === "light"} />
@@ -167,7 +167,7 @@ const ColorModeSetting = () => {
 
       <StackV
         align={"center"}
-        gap={4}
+        gap={2}
         w={"full"}
         maxW={"200px"}
         p={R_SPACING_MD}
@@ -183,7 +183,7 @@ const ColorModeSetting = () => {
       >
         <DisplaySkeleton colorMode="dark" />
 
-        <StackV align={"center"} gap={3} pb={2}>
+        <StackV align={"center"} gap={2} pb={2}>
           <P textAlign={"center"}>Dark Mode</P>
 
           <RadioItem checked={colorMode === "dark"} />
@@ -402,7 +402,7 @@ const RoundedSetting = () => {
             return (
               <StackV
                 key={`${preset.label}-${index}`}
-                gap={4}
+                gap={2}
                 p={R_SPACING_MD}
                 rounded={themeContext.radii.component}
                 transition={"200ms"}
@@ -465,7 +465,7 @@ const RoundedSetting = () => {
                   </StackH>
                 </StackV>
 
-                <StackV align={"center"} gap={3}>
+                <StackV align={"center"} gap={2}>
                   <P textAlign={"center"}>{preset.label}</P>
 
                   <RadioItem checked={isSelected} />
