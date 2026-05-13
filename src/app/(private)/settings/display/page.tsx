@@ -102,7 +102,21 @@ const DisplaySkeleton = (props: DisplaySkeletonProps) => {
         </StackV>
 
         <StackV p={2}>
-          <Btn variant={"ghost"}>
+          <Btn
+            variant={"ghost"}
+            _hover={{
+              bg: getSemanticValue(
+                `${themeContext.colorPalette}.subtle`,
+                colorMode,
+              ),
+            }}
+            _active={{
+              bg: getSemanticValue(
+                `${themeContext.colorPalette}.muted`,
+                colorMode,
+              ),
+            }}
+          >
             <PSleleton
               w={"70%"}
               bg={getSemanticValue(
