@@ -15,7 +15,6 @@ import { toaster } from "@/components/ui/toaster";
 import { Tooltip } from "@/components/ui/tooltip";
 import { AppIconLucide } from "@/components/widgets/app-icon";
 import { HScroll } from "@/components/widgets/h-scroll";
-import { DotIndicator } from "@/components/widgets/indicator";
 import { Item } from "@/components/widgets/item";
 import { ToggleSettingContainer } from "@/components/widgets/settings-shell";
 import { COLOR_PALETTES } from "@/constants/colors";
@@ -26,7 +25,7 @@ import { useLocale } from "@/contexts/use-locale-context";
 import { useThemeContext } from "@/contexts/use-theme-context";
 import { formatTime } from "@/utils/formatter";
 import { interpolateString } from "@/utils/string";
-import { cssCalc } from "@/utils/style";
+import { cssCalc, getSemanticValue } from "@/utils/style";
 import {
   Box,
   BoxProps,
@@ -40,71 +39,7 @@ import { useEffect, useRef, useState } from "react";
 
 // -----------------------------------------------------------------
 
-const ResetColorModeSetting = () => {
-  // Contexts
-  const { t } = useLocale();
-  const { setColorMode } = useColorMode();
-
-  return (
-    <ToggleSettingContainer>
-      <StackV gap={1}>
-        <P>{t.settings_color_mode_reset.title}</P>
-
-        <P color={"fg.subtle"}>{t.settings_color_mode_reset.description}</P>
-      </StackV>
-
-      <Btn
-        variant={"outline"}
-        w={"fit"}
-        ml={"auto"}
-        onClick={() => {
-          setColorMode("system");
-          toaster.info({
-            title: t.info_color_mode_reset.title,
-            description: t.info_color_mode_reset.description,
-          });
-        }}
-      >
-        Reset
-      </Btn>
-    </ToggleSettingContainer>
-  );
-};
-
-// -----------------------------------------------------------------
-
-const ADMSetting = () => {
-  // Contexts
-  const { themeContext } = useThemeContext();
-  const { t } = useLocale();
-  const { ADM, setADM } = useADM();
-
-  return (
-    <ToggleSettingContainer>
-      <StackV gap={1}>
-        <P>{t.settings_adaptive_dark_mode.title}</P>
-
-        <P color={"fg.subtle"}>
-          {interpolateString(t.settings_adaptive_dark_mode.description, {
-            timeRange: `${formatTime("18:00")} - ${formatTime("06:00")}`,
-          })}
-        </P>
-      </StackV>
-
-      <Switch
-        checked={ADM}
-        onCheckedChange={(e) => {
-          setADM(e.checked);
-        }}
-        colorPalette={themeContext.colorPalette}
-      />
-    </ToggleSettingContainer>
-  );
-};
-
-// -----------------------------------------------------------------
-
-const SkeletonP = (props: BoxProps) => {
+const PSleleton = (props: BoxProps) => {
   return (
     <Box h={"16px"} w={"full"} bg={"bg.muted"} rounded={"full"} {...props} />
   );
@@ -162,13 +97,19 @@ const DisplaySkeleton = (props: DisplaySkeletonProps) => {
         </Center>
 
         <StackV gap={2} px={2}>
-          <SkeletonP w={"70%"} />
-          <SkeletonP />
+          <PSleleton w={"70%"} />
+          <PSleleton />
         </StackV>
 
         <StackV p={2}>
           <Btn variant={"ghost"}>
-            <SkeletonP w={"70%"} bg={`${themeContext.colorPalette}.fg`} />
+            <PSleleton
+              w={"70%"}
+              bg={getSemanticValue(
+                `${themeContext.colorPalette}.fg`,
+                colorMode,
+              )}
+            />
           </Btn>
         </StackV>
       </StackV>
@@ -235,6 +176,70 @@ const ColorModeSetting = () => {
         </StackV>
       </StackV>
     </StackH>
+  );
+};
+
+// -----------------------------------------------------------------
+
+const ADMSetting = () => {
+  // Contexts
+  const { themeContext } = useThemeContext();
+  const { t } = useLocale();
+  const { ADM, setADM } = useADM();
+
+  return (
+    <ToggleSettingContainer>
+      <StackV gap={1}>
+        <P>{t.settings_adaptive_dark_mode.title}</P>
+
+        <P color={"fg.subtle"}>
+          {interpolateString(t.settings_adaptive_dark_mode.description, {
+            timeRange: `${formatTime("18:00")} - ${formatTime("06:00")}`,
+          })}
+        </P>
+      </StackV>
+
+      <Switch
+        checked={ADM}
+        onCheckedChange={(e) => {
+          setADM(e.checked);
+        }}
+        colorPalette={themeContext.colorPalette}
+      />
+    </ToggleSettingContainer>
+  );
+};
+
+// -----------------------------------------------------------------
+
+const ResetColorModeSetting = () => {
+  // Contexts
+  const { t } = useLocale();
+  const { setColorMode } = useColorMode();
+
+  return (
+    <ToggleSettingContainer>
+      <StackV gap={1}>
+        <P>{t.settings_color_mode_reset.title}</P>
+
+        <P color={"fg.subtle"}>{t.settings_color_mode_reset.description}</P>
+      </StackV>
+
+      <Btn
+        variant={"outline"}
+        w={"fit"}
+        ml={"auto"}
+        onClick={() => {
+          setColorMode("system");
+          toaster.info({
+            title: t.info_color_mode_reset.title,
+            description: t.info_color_mode_reset.description,
+          });
+        }}
+      >
+        Reset
+      </Btn>
+    </ToggleSettingContainer>
   );
 };
 
@@ -316,7 +321,6 @@ const AccentColorSetting = () => {
                       aspectRatio={1}
                       p={2}
                       bg={isColorPaletteGray ? "ibody" : `${color.palette}.500`}
-                      // rounded={themeContext.radii.component}
                       cursor={"pointer"}
                       overflow={"clip"}
                       onClick={() => {
@@ -330,22 +334,11 @@ const AccentColorSetting = () => {
                       }}
                       pos={"relative"}
                     >
-                      {/* <P
-                    fontSize={"sm"}
-                    fontWeight={"medium"}
-                    color={`${color.palette}.contrast`}
-                    textAlign={"center"}
-                    lineClamp={1}
-                  >
-                    {color.label}
-                  </P> */}
-
                       {isSelected && (
-                        <DotIndicator
-                          pos={"absolute"}
-                          bg={isColorPaletteGray ? "bg.body" : "light"}
-                          top={2}
-                          right={2}
+                        <RadioItem
+                          checked={true}
+                          bg={"transparent"}
+                          borderColor={isColorPaletteGray ? "bg.body" : "light"}
                         />
                       )}
                     </Center>
@@ -388,15 +381,24 @@ const RoundedSetting = () => {
       <SettingsHelperText>{t.rounded}</SettingsHelperText>
 
       <Item.Body p={4}>
-        <SimpleGrid minChildWidth={"140px"} gap={4}>
+        <SimpleGrid minChildWidth={"160px"} gapX={1} gapY={4}>
           {ROUNDED_PRESETS.map((preset, index) => {
             const isSelected = preset.label === themeContext.radii.label;
 
             return (
-              <StackV key={`${preset.label}-${index}`}>
+              <StackV
+                key={`${preset.label}-${index}`}
+                gap={4}
+                p={R_SPACING_MD}
+                rounded={themeContext.radii.component}
+                transition={"200ms"}
+                _hover={{
+                  bg: "bg.muted",
+                }}
+              >
                 <StackV
                   gap={2}
-                  aspectRatio={1}
+                  aspectRatio={3 / 4}
                   p={2}
                   rounded={preset.container}
                   border={"1px solid"}
@@ -408,9 +410,7 @@ const RoundedSetting = () => {
                   pos={"relative"}
                 >
                   <StackH align={"center"} gap={2} pl={1}>
-                    <P>{preset.label}</P>
-
-                    {isSelected && <DotIndicator />}
+                    <PSleleton w={"40%"} />
 
                     <Circle
                       w={"24px"}
@@ -449,6 +449,12 @@ const RoundedSetting = () => {
                       bg={"d1"}
                     />
                   </StackH>
+                </StackV>
+
+                <StackV align={"center"} gap={3}>
+                  <P textAlign={"center"}>{preset.label}</P>
+
+                  <RadioItem checked={isSelected} />
                 </StackV>
               </StackV>
             );

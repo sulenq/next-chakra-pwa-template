@@ -1,7 +1,7 @@
 import { BACKDROP_BLUR_FILTER, SM_SCREEN_BREAKPOINT } from "@/constants/styles";
 import { createSystem, defaultConfig, defineConfig } from "@chakra-ui/react";
 
-const customConfig = defineConfig({
+export const customConfig = defineConfig({
   conditions: {
     hover: "&:is(:hover, [data-hover]):not(:disabled, [data-disabled])",
   },
@@ -122,7 +122,7 @@ const customConfig = defineConfig({
           200: { value: "#cdd3d7" },
           300: { value: "#b7bfc5" },
           400: { value: "#959fa7" },
-          500: { value: "#768089" },
+          500: { value: "#848d95" },
           600: { value: "#606970" },
           700: { value: "#4b5258" },
           800: { value: "#373c41" },

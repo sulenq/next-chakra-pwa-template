@@ -1,3 +1,5 @@
+import { customConfig } from "@/theme/chakra-custom-system";
+
 export function getGridColumns(
   width: number,
   breakpoints: Record<number, number>,
@@ -25,3 +27,31 @@ export function isDimensionValid(dimension: { width: number; height: number }) {
 export function cssCalc(params: string) {
   return `calc(${params})`;
 }
+
+export const getSemanticValue = (tokenPath: string, mode: "light" | "dark") => {
+  const semanticColors = (customConfig.theme as any)?.semanticTokens?.colors;
+
+  if (!semanticColors) return "";
+
+  const cleanPath = tokenPath.replace(/^colors\./, "");
+  const parts = cleanPath.split(".");
+
+  let current = semanticColors;
+  for (const part of parts) {
+    if (current && current[part]) {
+      current = current[part];
+    } else {
+      return "";
+    }
+  }
+
+  if (current && current.value) {
+    const rawValue =
+      mode === "light" ? current.value.base : current.value._dark;
+    return typeof rawValue === "string"
+      ? rawValue.replace(/\s*!important/g, "")
+      : rawValue;
+  }
+
+  return "";
+};
