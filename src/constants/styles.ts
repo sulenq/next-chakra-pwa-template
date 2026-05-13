@@ -41,8 +41,7 @@ export const BLUR_RADIUS = "12px";
 export const BACKDROP_BLUR_FILTER = `blur(${BLUR_RADIUS})`;
 
 // Animation
-export const BOUNCY_TRANSITION =
-  'transition={"300ms cubic-bezier(0.175, 0.885, 0.32, 1.1)"}';
+export const BOUNCY_TRANSITION = "300ms cubic-bezier(0.175, 0.885, 0.32, 1.1)";
 
 // --- Widgets ---
 // Data Table
