@@ -278,7 +278,7 @@ const ColorModeSection = () => {
 
 // -----------------------------------------------------------------
 
-const AccentColorSetting = () => {
+const AccentColorSection = () => {
   // Contexts
   const { t } = useLocale();
   const { themeContext, setThemeContext } = useThemeContext();
@@ -343,7 +343,7 @@ const AccentColorSetting = () => {
 
 // -----------------------------------------------------------------
 
-const RoundedSetting = () => {
+const RoundedSection = () => {
   // Contexts
   const { t } = useLocale();
   const { themeContext, setThemeContext } = useThemeContext();
@@ -451,24 +451,14 @@ const RoundedSetting = () => {
 
 // -----------------------------------------------------------------
 
-const PersonalizationSection = () => {
-  return (
-    <Item.Root gap={2}>
-      <AccentColorSetting />
-
-      <RoundedSetting />
-    </Item.Root>
-  );
-};
-
-// -----------------------------------------------------------------
-
 export default function Page() {
   return (
     <StackV gap={SECTION_GAP}>
       <ColorModeSection />
 
-      <PersonalizationSection />
+      <AccentColorSection />
+
+      <RoundedSection />
 
       <SettingsSavedLocalyHelperText />
     </StackV>
