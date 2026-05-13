@@ -627,7 +627,6 @@ export const UserPanel = (props: UserPanelProps) => {
       {/* User */}
       <StackH
         align={"center"}
-        justify={"space-between"}
         gap={4}
         w={navsExpanded ? "full" : "36px"}
         p={navsExpanded ? R_SPACING_MD : 0}
@@ -690,6 +689,7 @@ export const UserPanel = (props: UserPanelProps) => {
                   },
                 },
               }}
+              ml={"auto"}
             >
               <Btn iconButton clicky={false} variant={"ghost"} w={"fit"}>
                 <AppIconLucide icon={EllipsisVerticalIcon} />

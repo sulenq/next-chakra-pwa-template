@@ -82,10 +82,19 @@ const ToastIcon = (props: any) => {
   // States
   const preset = TOAST_PRESETS[type as keyof typeof TOAST_PRESETS];
 
+  // Resolved Values
+  const resolvedColorMode =
+    colorMode === "system"
+      ? typeof window !== "undefined" &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches
+        ? "dark"
+        : "light"
+      : colorMode;
+
   return (
     <Center
       flexShrink={0}
-      bg={preset.bg[colorMode]}
+      bg={preset.bg[resolvedColorMode as keyof typeof preset.bg]}
       rounded={"full"}
       w={"28px"}
       h={"28px"}
