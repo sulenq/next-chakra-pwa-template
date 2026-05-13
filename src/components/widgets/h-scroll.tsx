@@ -147,7 +147,10 @@ export const HScroll = forwardRef<HTMLDivElement, HScrollProps>(
               size={"xs"}
               variant={"frosted"}
               rounded={"full"}
-              boxShadow={"md"}
+              boxShadow={"xs"}
+              _hover={{
+                bg: "bg.bodySolid",
+              }}
               onClick={() => scroll("left")}
             >
               <AppIconLucide icon={ChevronLeft} />
@@ -168,7 +171,10 @@ export const HScroll = forwardRef<HTMLDivElement, HScrollProps>(
               size={"xs"}
               variant={"frosted"}
               rounded={"full"}
-              boxShadow={"md"}
+              boxShadow={"xs"}
+              _hover={{
+                bg: "bg.bodySolid",
+              }}
               onClick={() => scroll("right")}
             >
               <AppIconLucide icon={ChevronRight} />
