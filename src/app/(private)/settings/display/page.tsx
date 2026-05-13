@@ -35,7 +35,6 @@ import {
   StackProps,
 } from "@chakra-ui/react";
 import { ImageIcon } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
 
 // -----------------------------------------------------------------
 
@@ -139,7 +138,7 @@ const ColorModeSetting = () => {
   const { colorMode, setColorMode } = useColorMode();
 
   return (
-    <StackH justify={"center"} gap={4} px={4}>
+    <StackH justify={"center"} gap={4} px={2}>
       <StackV
         align={"center"}
         gap={2}
@@ -158,7 +157,7 @@ const ColorModeSetting = () => {
       >
         <DisplaySkeleton colorMode="light" />
 
-        <StackV align={"center"} gap={2} pb={2}>
+        <StackV align={"center"} gap={2}>
           <P textAlign={"center"}>Light Mode</P>
 
           <RadioItem checked={colorMode === "light"} />
@@ -183,7 +182,7 @@ const ColorModeSetting = () => {
       >
         <DisplaySkeleton colorMode="dark" />
 
-        <StackV align={"center"} gap={2} pb={2}>
+        <StackV align={"center"} gap={2}>
           <P textAlign={"center"}>Dark Mode</P>
 
           <RadioItem checked={colorMode === "dark"} />
@@ -260,38 +259,9 @@ const ResetColorModeSetting = () => {
 // -----------------------------------------------------------------
 
 const ColorModeSection = () => {
-  // Contexts
-  const { colorMode, setColorMode } = useColorMode();
-
-  // States, Refs
-  const timeoutRef = useRef<any>(null);
-  const [active, setActive] = useState(colorMode === "dark");
-
-  // Handle active state
-  useEffect(() => {
-    if (timeoutRef.current) {
-      clearTimeout(timeoutRef.current);
-    }
-
-    timeoutRef.current = setTimeout(() => {
-      setColorMode(active ? "dark" : "light");
-      timeoutRef.current = null;
-    }, 100);
-  }, [active]);
-  useEffect(() => {
-    if (timeoutRef.current) {
-      clearTimeout(timeoutRef.current);
-    }
-
-    timeoutRef.current = setTimeout(() => {
-      setActive(colorMode === "dark" ? true : false);
-      timeoutRef.current = null;
-    }, 100);
-  }, [colorMode]);
-
   return (
     <Item.Root px={R_SPACING_MD}>
-      <Item.Body gap={4} p={4}>
+      <Item.Body gap={4} p={4} pt={2}>
         <ColorModeSetting />
 
         <Divider />
@@ -394,7 +364,7 @@ const RoundedSetting = () => {
     <StackV px={R_SPACING_MD}>
       <SettingsHelperText>{t.rounded}</SettingsHelperText>
 
-      <Item.Body p={4}>
+      <Item.Body p={2}>
         <SimpleGrid minChildWidth={"160px"} gapX={1} gapY={4}>
           {ROUNDED_PRESETS.map((preset, index) => {
             const isSelected = preset.label === themeContext.radii.label;
