@@ -92,8 +92,8 @@ const MobileLayout = (props: any) => {
         <StackV gap={2}>
           <StackH
             align={"center"}
-            w={"full"}
             justify={"space-between"}
+            w={"full"}
             pt={2}
             px={4}
           >
@@ -101,7 +101,7 @@ const MobileLayout = (props: any) => {
               <Logo size={15} ml={"-4px"} />
             </StackH>
 
-            <StackH align={"center"}>
+            <StackH align={"center"} gap={2}>
               <Clock fontSize={"sm"} />
 
               <Today fontSize={"sm"} />
