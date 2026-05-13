@@ -1,5 +1,4 @@
 import { P, PProps } from "@/components/ui/p";
-import { StackV } from "@/components/ui/stack";
 import { R_SPACING_MD } from "@/constants/styles";
 import { useLocale } from "@/contexts/use-locale-context";
 import { StackProps } from "@chakra-ui/react";
@@ -24,9 +23,9 @@ export const SettingsHelperText = (props: StackProps) => {
   const { children, ...restProps } = props;
 
   return (
-    <StackV flex={1} px={4} py={R_SPACING_MD} mb={[4, null, 0]} {...restProps}>
-      <HelperText>{children}</HelperText>
-    </StackV>
+    <HelperText px={4} py={R_SPACING_MD} mb={[2, null, 0]} {...restProps}>
+      {children}
+    </HelperText>
   );
 };
 

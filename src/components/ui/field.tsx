@@ -45,6 +45,7 @@ export const Field = forwardRef<HTMLDivElement, FieldProps>(
           <ChakraField.Label fontSize={"md"} {...labelProps}>
             <P
               fontWeight={"medium"}
+              color={"fg.muted"}
               // px={`calc(${themeContext.radii.component} - 4px)`}
             >
               {label}

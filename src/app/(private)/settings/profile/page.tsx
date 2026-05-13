@@ -3,7 +3,7 @@
 import { AvatarUploadTrigger } from "@/components/ui/avatar";
 import { Btn } from "@/components/ui/btn";
 import { Field, FieldsetRoot } from "@/components/ui/field";
-import { HelperText } from "@/components/ui/helper-text";
+import { HelperText, SettingsHelperText } from "@/components/ui/helper-text";
 import { P } from "@/components/ui/p";
 import { SearchInput } from "@/components/ui/search-input";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -17,32 +17,26 @@ import FeedbackNoData from "@/components/widgets/feedback-no-data";
 import FeedbackNotFound from "@/components/widgets/feedback-not-found";
 import FeedbackRetry from "@/components/widgets/feedback-retry";
 import { Item } from "@/components/widgets/item";
-import { UserIdCard } from "@/components/widgets/user-id-card";
 import { useMainViewContext } from "@/components/widgets/main-view";
+import { UserIdCard } from "@/components/widgets/user-id-card";
 import {
   DUMMY_USER,
   dummyActivityLogs,
   dummyAuthLogs,
 } from "@/constants/dummy-data";
 import { ActivityActionEnum } from "@/constants/enums";
-import type { ActivityLog, AuthLog, User } from "@/types/global.types";
 import { R_SPACING_MD } from "@/constants/styles";
 import { useLocale } from "@/contexts/use-locale-context";
 import { useThemeContext } from "@/contexts/use-theme-context";
 import ResetPasswordDisclosureTrigger from "@/features/auth/components/reset-password";
 import { useFetchData } from "@/hooks/useFetchData";
 import { useRequest } from "@/hooks/useRequestOld";
+import type { ActivityLog, AuthLog, User } from "@/types/global.types";
 import { isEmptyArray } from "@/utils/array";
 import { formatDate } from "@/utils/formatter";
 import { Circle, Stack } from "@chakra-ui/react";
 import { useFormik } from "formik";
-import {
-  ActivityIcon,
-  ArrowDown,
-  ArrowUp,
-  LogInIcon,
-  UserIcon,
-} from "lucide-react";
+import { ArrowDown, ArrowUp } from "lucide-react";
 import { useEffect, useState } from "react";
 import * as yup from "yup";
 
@@ -116,93 +110,85 @@ const PersonalInformation = (props: PersonalInformationProps) => {
   }, [initialData]);
 
   return (
-    <Item.Root>
-      <Item.Header borderless>
-        <AppIconLucide icon={UserIcon} />
+    <Item.Root px={R_SPACING_MD} pb={R_SPACING_MD}>
+      <Item.Body p={4}>
+        <Stack flexDir={isSmContainer ? "column" : "row"}>
+          <StackV minW={"280px"} pl={10} pr={8} pt={"28px"} pb={2}>
+            <UserIdCard w={"220px"} mx={"auto"} />
+          </StackV>
 
-        <Item.Title>{t.personal_information}</Item.Title>
-      </Item.Header>
-
-      <StackV px={R_SPACING_MD} pb={R_SPACING_MD}>
-        <Item.Body p={4}>
-          <Stack flexDir={isSmContainer ? "column" : "row"}>
-            <StackV minW={"280px"} pl={10} pr={8} pt={"28px"} pb={2}>
-              <UserIdCard w={"220px"} mx={"auto"} />
-            </StackV>
-
-            <StackV flex={1} justify={"space-between"}>
-              <form
-                id={"personal-info-form"}
-                onSubmit={formik.handleSubmit}
-                {...restProps}
-              >
-                <FieldsetRoot disabled={loading}>
-                  <Field
-                    label={"Avatar"}
-                    invalid={!!formik.errors.avatar}
-                    errorText={`${formik.errors.avatar}`}
-                  >
-                    <StackV gap={2}>
-                      <AvatarUploadTrigger formik={formik} user={initialData}>
-                        <Btn w={"fit"} variant={"outline"}>
-                          {t.upload_new_avatar}
-                        </Btn>
-                      </AvatarUploadTrigger>
-
-                      <StackV gap={1}>
-                        <HelperText>{t.msg_new_avatar_helper}</HelperText>
-                        <HelperText>{`PNG, JPG ${t.is_allowed}`}</HelperText>
-                      </StackV>
-                    </StackV>
-                  </Field>
-
-                  <Field
-                    label={t.name}
-                    invalid={!!formik.errors.name}
-                    errorText={`${formik.errors.name}`}
-                  >
-                    <StringInput
-                      inputValue={formik.values.name}
-                      onChange={(inputValue) => {
-                        formik.setFieldValue("name", inputValue);
-                      }}
-                      placeholder={"Jolitos Kurniawan"}
-                    />
-                  </Field>
-
-                  <Field
-                    label={"Email"}
-                    invalid={!!formik.errors.email}
-                    errorText={`${formik.errors.email}`}
-                  >
-                    <StringInput
-                      inputValue={formik.values.email}
-                      onChange={(inputValue) => {
-                        formik.setFieldValue("email", inputValue);
-                      }}
-                      placeholder={"example@email.com"}
-                    />
-                  </Field>
-                </FieldsetRoot>
-              </form>
-
-              <StackH justify={"space-between"} mt={8}>
-                <ResetPasswordDisclosureTrigger>
-                  <Btn variant={"outline"}>Reset password</Btn>
-                </ResetPasswordDisclosureTrigger>
-
-                <Btn
-                  type={"submit"}
-                  form={"personal-info-form"}
-                  colorPalette={themeContext.colorPalette}
+          <StackV flex={1} justify={"space-between"}>
+            <form
+              id={"personal-info-form"}
+              onSubmit={formik.handleSubmit}
+              {...restProps}
+            >
+              <FieldsetRoot disabled={loading}>
+                <Field
+                  label={"Avatar"}
+                  invalid={!!formik.errors.avatar}
+                  errorText={`${formik.errors.avatar}`}
                 >
-                  {t.save}
-                </Btn>
-              </StackH>
-            </StackV>
-          </Stack>
-        </Item.Body>
-      </StackV>
+                  <StackV gap={2}>
+                    <AvatarUploadTrigger formik={formik} user={initialData}>
+                      <Btn w={"fit"} variant={"outline"}>
+                        {t.upload_new_avatar}
+                      </Btn>
+                    </AvatarUploadTrigger>
+
+                    <StackV gap={1}>
+                      <HelperText>{t.msg_new_avatar_helper}</HelperText>
+                      <HelperText>{`PNG, JPG ${t.is_allowed}`}</HelperText>
+                    </StackV>
+                  </StackV>
+                </Field>
+
+                <Field
+                  label={t.name}
+                  invalid={!!formik.errors.name}
+                  errorText={`${formik.errors.name}`}
+                >
+                  <StringInput
+                    inputValue={formik.values.name}
+                    onChange={(inputValue) => {
+                      formik.setFieldValue("name", inputValue);
+                    }}
+                    placeholder={"Jolitos Kurniawan"}
+                  />
+                </Field>
+
+                <Field
+                  label={"Email"}
+                  invalid={!!formik.errors.email}
+                  errorText={`${formik.errors.email}`}
+                >
+                  <StringInput
+                    inputValue={formik.values.email}
+                    onChange={(inputValue) => {
+                      formik.setFieldValue("email", inputValue);
+                    }}
+                    placeholder={"example@email.com"}
+                  />
+                </Field>
+              </FieldsetRoot>
+            </form>
+
+            <StackH justify={"space-between"} mt={8}>
+              <ResetPasswordDisclosureTrigger>
+                <Btn variant={"outline"}>Reset password</Btn>
+              </ResetPasswordDisclosureTrigger>
+
+              <Btn
+                type={"submit"}
+                form={"personal-info-form"}
+                colorPalette={themeContext.colorPalette}
+              >
+                {t.save}
+              </Btn>
+            </StackH>
+          </StackV>
+        </Stack>
+      </Item.Body>
     </Item.Root>
   );
 };
@@ -291,52 +277,46 @@ const AuthLog = () => {
   };
 
   return (
-    <Item.Root>
-      <Item.Header borderless>
-        <AppIconLucide icon={LogInIcon} />
+    <Item.Root px={R_SPACING_MD} pb={R_SPACING_MD}>
+      <SettingsHelperText>{t.my_auth_logs}</SettingsHelperText>
 
-        <Item.Title>{t.my_auth_logs}</Item.Title>
-      </Item.Header>
-
-      <StackV px={R_SPACING_MD} pb={R_SPACING_MD}>
-        <Item.Body>
-          <StackV p={4}>
-            <SearchInput
-              onChange={(inputValue) => {
-                setSearch(inputValue || "");
-              }}
-              inputValue={search}
-              queryKey={"q-my-log-auth"}
-            />
-          </StackV>
-
-          <StackV px={3}>
-            {initialLoading && render.loading}
-            {!initialLoading && (
-              <>
-                {error && render.error}
-                {!error && (
-                  <>
-                    {data?.items && render.loaded}
-                    {(!data?.items || isEmptyArray(data.items)) && render.empty}
-                  </>
-                )}
-              </>
-            )}
-          </StackV>
-
-          <DataFooter
-            borderless
-            limit={limit}
-            setLimit={setLimit}
-            dataLength={data?.items?.length}
-            totalData={data?.totalData}
-            page={page}
-            setPage={setPage}
-            totalPage={pagination?.meta?.totalPage}
+      <Item.Body>
+        <StackV p={4}>
+          <SearchInput
+            onChange={(inputValue) => {
+              setSearch(inputValue || "");
+            }}
+            inputValue={search}
+            queryKey={"q-my-log-auth"}
           />
-        </Item.Body>
-      </StackV>
+        </StackV>
+
+        <StackV px={3}>
+          {initialLoading && render.loading}
+          {!initialLoading && (
+            <>
+              {error && render.error}
+              {!error && (
+                <>
+                  {data?.items && render.loaded}
+                  {(!data?.items || isEmptyArray(data.items)) && render.empty}
+                </>
+              )}
+            </>
+          )}
+        </StackV>
+
+        <DataFooter
+          borderless
+          limit={limit}
+          setLimit={setLimit}
+          dataLength={data?.items?.length}
+          totalData={data?.totalData}
+          page={page}
+          setPage={setPage}
+          totalPage={pagination?.meta?.totalPage}
+        />
+      </Item.Body>
     </Item.Root>
   );
 };
@@ -438,53 +418,46 @@ const ActivityLog = () => {
   };
 
   return (
-    <Item.Root>
-      <Item.Header borderless>
-        <AppIconLucide icon={ActivityIcon} />
+    <Item.Root px={R_SPACING_MD} pb={R_SPACING_MD}>
+      <SettingsHelperText>{t.my_activity_logs}</SettingsHelperText>
 
-        <Item.Title>{t.my_activity_logs}</Item.Title>
-      </Item.Header>
-
-      <StackV px={R_SPACING_MD} pb={R_SPACING_MD}>
-        <Item.Body>
-          <StackV p={4}>
-            <SearchInput
-              onChange={(inputValue) => {
-                setSearch(inputValue || "");
-              }}
-              inputValue={search}
-              queryKey={"q-my-log-auth"}
-            />
-          </StackV>
-
-          <StackV px={3}>
-            {initialLoading && render.loading}
-            {!initialLoading && (
-              <>
-                {error && render.error}
-                {!error && (
-                  <>
-                    {data?.items && render.loaded}
-                    {(!data?.items || isEmptyArray(data?.items)) &&
-                      render.empty}
-                  </>
-                )}
-              </>
-            )}
-          </StackV>
-
-          <DataFooter
-            borderless
-            limit={limit}
-            setLimit={setLimit}
-            dataLength={data?.items?.length}
-            totalData={data?.totalData}
-            page={page}
-            setPage={setPage}
-            totalPage={pagination?.meta?.totalPage}
+      <Item.Body>
+        <StackV p={4}>
+          <SearchInput
+            onChange={(inputValue) => {
+              setSearch(inputValue || "");
+            }}
+            inputValue={search}
+            queryKey={"q-my-log-auth"}
           />
-        </Item.Body>
-      </StackV>
+        </StackV>
+
+        <StackV px={3}>
+          {initialLoading && render.loading}
+          {!initialLoading && (
+            <>
+              {error && render.error}
+              {!error && (
+                <>
+                  {data?.items && render.loaded}
+                  {(!data?.items || isEmptyArray(data?.items)) && render.empty}
+                </>
+              )}
+            </>
+          )}
+        </StackV>
+
+        <DataFooter
+          borderless
+          limit={limit}
+          setLimit={setLimit}
+          dataLength={data?.items?.length}
+          totalData={data?.totalData}
+          page={page}
+          setPage={setPage}
+          totalPage={pagination?.meta?.totalPage}
+        />
+      </Item.Body>
     </Item.Root>
   );
 };
@@ -517,7 +490,7 @@ export default function Page() {
   };
 
   return (
-    <StackV gap={2}>
+    <StackV gap={4}>
       {/* {render.loading} */}
       {initialLoading && render.loading}
       {!initialLoading && (
