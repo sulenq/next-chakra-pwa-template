@@ -34,8 +34,8 @@ export const RadialGlowBackground = (props: StackProps) => {
           bg={`${colorPalette}.subtle`}
           opacity={opacity2}
           pos={"absolute"}
-          right={"0"}
-          bottom={"-50%"}
+          right={"-50%"}
+          bottom={"-100%"}
           // transform={"translate(-50%, -50%)"}
         />
       </StackV>

@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { getStorage, setStorage } from "@/utils/client";
 
-const STORAGE_KEY = "isNavsExpanded";
+const STORAGE_KEY = "is-navs-expanded";
 
 const initialValue =
   getStorage(STORAGE_KEY) === null ? true : getStorage(STORAGE_KEY) === "true";

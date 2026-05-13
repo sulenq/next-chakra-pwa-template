@@ -24,7 +24,7 @@ export const TOP_BAR_H = "56px";
 export const BASE_ICON_BOX_SIZE = 4.5;
 export const MENU_ICON_BOX_SIZE = 4.5;
 export const USER_PANEL_H = "122px";
-export const CONTSTRAINED_CONTAINER_MAX_W = "1200px";
+export const CONTSTRAINED_CONTAINER_MAX_W = "1000px";
 
 // Spacing
 export const MOBILE_SPACING_MD = "4px";

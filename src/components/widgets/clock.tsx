@@ -19,7 +19,7 @@ export const Clock = (props: ClockPropsProps) => {
   const { showSeconds = false, showAbbr = true, ...restProps } = props;
 
   // Contexts
-  const tz = useTimezone((s) => s.timeZone);
+  const tz = useTimezone((s) => s.timezone);
   const tzKey = tz?.key;
 
   // States

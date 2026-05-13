@@ -314,6 +314,6 @@ export interface SelectOption {
   id: any;
   label: any;
   label2?: any;
-  original_data?: any;
+  data?: any;
   disabled?: boolean;
 }

@@ -78,7 +78,7 @@ interface VNavsProps extends StackProps {
   showGroupLabel?: boolean;
 }
 
-export const VNavs = (props: VNavsProps) => {
+export const NavsV = (props: VNavsProps) => {
   // Props
   const {
     navs,

@@ -17,7 +17,7 @@ import {
   TopBar,
 } from "@/components/widgets/main-view";
 import {
-  VNavs,
+  NavsV,
   DesktopNavTooltip,
   MobileNavLink,
   UserPanel,
@@ -28,6 +28,7 @@ import { Today } from "@/components/widgets/today";
 import { APP } from "@/constants/_meta";
 import { OTHER_PRIVATE_NAV_GROUPS, PRIVATE_NAV_GROUPS } from "@/constants/navs";
 import {
+  BOUNCY_TRANSITION,
   DESKTOP_ACTIVE_NAV_BTN_VARIANT,
   DESKTOP_NAV_BTN_ICON_BG,
   DESKTOP_NAV_BTN_PX,
@@ -91,8 +92,8 @@ const MobileLayout = (props: any) => {
         <StackV gap={2}>
           <StackH
             align={"center"}
-            w={"full"}
             justify={"space-between"}
+            w={"full"}
             pt={2}
             px={4}
           >
@@ -100,7 +101,7 @@ const MobileLayout = (props: any) => {
               <Logo size={15} ml={"-4px"} />
             </StackH>
 
-            <StackH align={"center"}>
+            <StackH align={"center"} gap={2}>
               <Clock fontSize={"sm"} />
 
               <Today fontSize={"sm"} />
@@ -292,9 +293,10 @@ const MobileLayout = (props: any) => {
           <ProfileMenuTrigger flex={1} w={"50px"}>
             <StackV
               flex={1}
+              align={"center"}
+              gap={1}
               color={MOBILE_NAVS_COLOR}
               cursor={"pointer"}
-              gap={1}
             >
               <Avatar
                 src={imgUrl(user?.avatar?.[0]?.filePath)}
@@ -333,15 +335,9 @@ const DesktopLayout = (props: any) => {
 
   return (
     <StackV w={"full"} h={`calc(100svh)`} overflowY={"auto"}>
-      {/* Basemap */}
-      <StackV></StackV>
-
-      {/* Main panel */}
       <StackH
         flex={1}
         w={"full"}
-        p={4}
-        maxW={"50%"}
         overflowY={"auto"}
         pos={"relative"}
         zIndex={2}
@@ -355,10 +351,9 @@ const DesktopLayout = (props: any) => {
               ? `calc(250px + (${DESKTOP_SPACING_MD} * 2) + ${GAP})`
               : `calc(36px + (${DESKTOP_SPACING_MD} * 2) + ${GAP})`
           }
-          transition={"0.3s cubic-bezier(0.175, 0.885, 0.32, 1.1)"}
+          transition={BOUNCY_TRANSITION}
           pos={"relative"}
         >
-          {/* Content */}
           <StackV
             flex={1}
             gap={GAP}
@@ -382,7 +377,7 @@ const DesktopLayout = (props: any) => {
                     lineClamp={1}
                     fontSize={"lg"}
                     fontWeight={"semibold"}
-                    color={`${themeContext.colorPalette}.solid`}
+                    color={`${themeContext.colorPalette}.fg`}
                   >
                     {APP.name}
                   </P>
@@ -404,8 +399,8 @@ const DesktopLayout = (props: any) => {
                   justifyContent={"start"}
                   gap={4}
                   px={DESKTOP_NAV_BTN_PX}
+                  color={"fg.muted"}
                   zIndex={99}
-                  transition={"0.3s cubic-bezier(0.175, 0.885, 0.32, 1.1)"}
                   onClick={toggleNavsExpanded}
                 >
                   <Center
@@ -442,7 +437,7 @@ const DesktopLayout = (props: any) => {
                 mb={GAP}
                 transition={"200ms"}
               >
-                <VNavs
+                <NavsV
                   navs={PRIVATE_NAV_GROUPS}
                   navsExpanded={isNavsExpanded}
                   addonElement={
@@ -549,7 +544,7 @@ const DesktopLayout = (props: any) => {
   );
 };
 
-export default function GisAppLayout(props: any) {
+export default function GenericAppLayout(props: any) {
   // Hooks
   const iss = useIsSmScreenWidth();
 

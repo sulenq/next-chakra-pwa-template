@@ -19,7 +19,7 @@ export const Today = (props: TodayProps) => {
 
   // Contexts
   const { t } = useLocale();
-  const tz = useTimezone((s) => s.timeZone);
+  const tz = useTimezone((s) => s.timezone);
   const dateFormat = useDateFormat((s) => s.dateFormat);
 
   return (
@@ -40,7 +40,7 @@ export const TodayWeekday = (props: TodayWeekdayProps) => {
   const { ...restProps } = props;
 
   const { t } = useLocale();
-  const tz = useTimezone((s) => s.timeZone);
+  const tz = useTimezone((s) => s.timezone);
   const dateFormat = useDateFormat((s) => s.dateFormat);
 
   return (

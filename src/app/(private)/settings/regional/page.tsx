@@ -1,23 +1,24 @@
 "use client";
 
 import { Btn } from "@/components/ui/btn";
+import { Divider } from "@/components/ui/divider";
+import {
+  SettingsHelperText,
+  SettingsSavedLocalyHelperText,
+} from "@/components/ui/helper-text";
 import { P } from "@/components/ui/p";
-import { SearchInput } from "@/components/ui/search-input";
+import { RadioItem } from "@/components/ui/radio";
 import { StackH, StackV } from "@/components/ui/stack";
-import { toaster } from "@/components/ui/toaster";
-import { Tooltip } from "@/components/ui/tooltip";
+import { Switch } from "@/components/ui/switch";
 import { AppIconLucide } from "@/components/widgets/app-icon";
-import FeedbackNotFound from "@/components/widgets/feedback-not-found";
 import { DotIndicator } from "@/components/widgets/indicator";
 import { Item } from "@/components/widgets/item";
-import { Limitation } from "@/components/widgets/limitation";
-import { SettingsSavedLocalyHelperText } from "@/components/ui/helper-text";
-import { Pagination } from "@/components/widgets/pagination";
+import { SelectTimezone } from "@/components/widgets/select-timezone";
+import { SettingItemContainer } from "@/components/widgets/settings-shell";
 import { DATE_FORMATS } from "@/constants/date-formats";
 import { LANGUAGES } from "@/constants/languages";
 import { R_SPACING_MD } from "@/constants/styles";
 import { TIME_FORMATS } from "@/constants/time-formats";
-import { TIME_ZONES } from "@/constants/timezones";
 import { UOM_FORMATS } from "@/constants/uom-formats";
 import useDateFormat from "@/contexts/use-date-format-context";
 import { useLocale } from "@/contexts/use-locale-context";
@@ -26,228 +27,178 @@ import useTimeFormat from "@/contexts/use-time-format-context";
 import useTimezone from "@/contexts/use-timezone-context";
 import useUOMFormat from "@/contexts/use-uom-format-context";
 import {
+  SelectOption,
   type DateFormat,
   type LocaleOption,
   type TimeFormat,
 } from "@/types/global.types";
-import { isEmptyArray } from "@/utils/array";
 import { formatDate, formatTime } from "@/utils/formatter";
-import { capitalizeWords, pluckString } from "@/utils/string";
+import { pluckString } from "@/utils/string";
 import { getLocalTimezone, makeTime } from "@/utils/time";
 import { chakra, SimpleGrid, Text } from "@chakra-ui/react";
 import {
   CalendarIcon,
-  GlobeIcon,
   HourglassIcon,
-  LanguagesIcon,
   RulerDimensionLineIcon,
 } from "lucide-react";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 
 const NAVS_COLOR = "fg.muted";
 
 // -----------------------------------------------------------------
 
-const Language = () => {
+const LanguageSection = () => {
   // Contexts
   const { themeContext } = useThemeContext();
   const { t, locale, setLocale } = useLocale();
 
   return (
-    <Item.Root>
-      <Item.Header borderless>
-        <StackH align={"center"} gap={2}>
-          <AppIconLucide icon={LanguagesIcon} />
+    <Item.Root px={R_SPACING_MD} pb={R_SPACING_MD}>
+      <SettingsHelperText>{t.settings_locale.title}</SettingsHelperText>
 
-          <Item.Title>{t.language}</Item.Title>
+      <Item.Body p={4} gap={4}>
+        <StackH align={"center"} wrap={"wrap"} gap={2}>
+          {LANGUAGES.map((item, i) => {
+            const isSelected = locale === item.key;
+
+            return (
+              <Btn
+                key={i}
+                clicky={false}
+                flex={"1 1 180px"}
+                gap={3}
+                px={3}
+                rounded={themeContext.radii.component}
+                variant={"ghost"}
+                justifyContent={"start"}
+                color={isSelected ? "" : NAVS_COLOR}
+                onClick={() => {
+                  setLocale(item.key as LocaleOption);
+                }}
+                pos={"relative"}
+              >
+                <RadioItem checked={isSelected} />
+
+                <Text fontWeight={"medium"} truncate>
+                  {item.label}
+
+                  <chakra.span color={"fg.subtle"} ml={2} fontWeight={"normal"}>
+                    {item.code}
+                  </chakra.span>
+                </Text>
+              </Btn>
+            );
+          })}
         </StackH>
-      </Item.Header>
 
-      <StackV px={R_SPACING_MD} pb={R_SPACING_MD}>
-        <Item.Body p={4}>
-          <StackH align={"center"} wrap={"wrap"}>
-            {LANGUAGES.map((item, i) => {
-              const isSelected = locale === item.key;
+        <P color={"fg.subtle"}>{t.settings_locale.description}</P>
+      </Item.Body>
 
-              return (
-                <Btn
-                  key={i}
-                  clicky={false}
-                  flex={"1 1 180px"}
-                  px={3}
-                  rounded={themeContext.radii.component}
-                  variant={"ghost"}
-                  justifyContent={"start"}
-                  color={isSelected ? "" : NAVS_COLOR}
-                  onClick={() => {
-                    setLocale(item.key as LocaleOption);
-                  }}
-                  pos={"relative"}
-                >
-                  <Text fontWeight={"medium"} truncate>
-                    {item.label}
-
-                    <chakra.span
-                      color={"fg.subtle"}
-                      ml={2}
-                      fontWeight={"normal"}
-                    >
-                      {item.code}
-                    </chakra.span>
-                  </Text>
-
-                  {isSelected && <DotIndicator />}
-                </Btn>
-              );
-            })}
-          </StackH>
-        </Item.Body>
-      </StackV>
+      <SettingsHelperText>{t.settings_locale.helper}</SettingsHelperText>
     </Item.Root>
   );
 };
 
 // -----------------------------------------------------------------
 
-const Timezone = () => {
-  const LIMIT_OPTIONS = [10, 20, 50, 100];
-
+const TimeFormatSetting = () => {
   // Contexts
   const { t } = useLocale();
-  const { timeZone, setTimeZone } = useTimezone();
-
-  // States
-  const localTz = getLocalTimezone();
-  const timezones = TIME_ZONES;
-  const [limit, setLimit] = useState<number>(LIMIT_OPTIONS[0]);
-  const [page, setPage] = useState<number>(1);
-  const [search, setSearch] = useState("");
-  const resolvedTimezones = useMemo(() => {
-    if (!search) return timezones;
-    const searchTerm = search.toLowerCase().normalize("NFD");
-    return timezones.filter(({ key, formattedOffset, localAbbr }) =>
-      `${key} ${formattedOffset} ${localAbbr}`
-        .toLowerCase()
-        .includes(searchTerm),
-    );
-  }, [search, timezones]);
-
-  useEffect(() => {
-    setPage(1);
-  }, [search, limit]);
 
   return (
-    <Item.Root>
-      <Item.Header borderless justify={"space-between"}>
-        <StackH align={"center"} gap={2}>
-          <AppIconLucide icon={GlobeIcon} />
-
-          <Item.Title>{capitalizeWords(t.timezone)}</Item.Title>
-        </StackH>
-
-        <StackH align={"center"} gap={2}>
-          <Btn
-            size={"xs"}
-            variant={"outline"}
-            onClick={() => {
-              setTimeZone(localTz);
-              toaster.info({
-                title: t.info_timezone_auto.title,
-                description: `${localTz.key} ${localTz.formattedOffset} (${localTz.localAbbr})`,
-              });
-            }}
-          >
-            Auto
-          </Btn>
-        </StackH>
-      </Item.Header>
-
-      <StackV px={R_SPACING_MD} pb={R_SPACING_MD}>
-        <Item.Body>
-          <StackV p={4}>
-            <SearchInput
-              onChange={(inputValue) => {
-                setSearch(inputValue || "");
-              }}
-              inputValue={search}
-              queryKey={"q-timezone-settings"}
-            />
-          </StackV>
-
-          <StackV px={4}>
-            {isEmptyArray(resolvedTimezones) && <FeedbackNotFound />}
-
-            {!isEmptyArray(resolvedTimezones) && (
-              <SimpleGrid columns={[1, null, 2]} gap={2}>
-                {resolvedTimezones
-                  .slice((page - 1) * limit, page * limit)
-                  .map((tz, index) => {
-                    const isSelected = timeZone.key === tz.key;
-
-                    return (
-                      <Tooltip
-                        key={`${tz.key}-${index}`}
-                        content={`${tz.key} ${tz.localAbbr} (${tz.formattedOffset})`}
-                      >
-                        <Btn
-                          clicky={false}
-                          variant={"ghost"}
-                          justifyContent={"start"}
-                          px={3}
-                          color={isSelected ? "" : NAVS_COLOR}
-                          onClick={() => {
-                            setTimeZone(tz);
-                          }}
-                          pos={"relative"}
-                        >
-                          <P textAlign={"left"} lineClamp={1}>
-                            {tz.key}
-                          </P>
-
-                          <P
-                            textAlign={"left"}
-                            color={"fg.subtle"}
-                          >{`${tz.localAbbr} (${tz.formattedOffset})`}</P>
-
-                          {isSelected && <DotIndicator />}
-                        </Btn>
-                      </Tooltip>
-                    );
-                  })}
-              </SimpleGrid>
-            )}
-          </StackV>
-
-          <StackH
-            align={"center"}
-            p={3}
-            // borderTop={"1px solid"}
-            borderColor={"border.muted"}
-            justify={"space-between"}
-            wrap={"wrap"}
-          >
-            <StackV mb={[1, null, 0]}>
-              <Limitation
-                limit={limit}
-                setLimit={setLimit}
-                limitOptions={LIMIT_OPTIONS}
-              />
-            </StackV>
-
-            <StackV>
-              <Pagination
-                page={page}
-                setPage={setPage}
-                totalPage={
-                  Math.floor(resolvedTimezones.length / limit) === 0
-                    ? undefined
-                    : Math.floor(resolvedTimezones.length / limit)
-                }
-              />
-            </StackV>
-          </StackH>
-        </Item.Body>
+    <SettingItemContainer>
+      <StackV gap={1}>
+        <P>{t.settings_time_format.title}</P>
       </StackV>
+    </SettingItemContainer>
+  );
+};
+
+// -----------------------------------------------------------------
+
+const AutoTimezomeSetting = () => {
+  // Contexts
+  const { t } = useLocale();
+  const { isAuto, enableAuto, disableAuto } = useTimezone();
+
+  return (
+    <SettingItemContainer>
+      <StackV gap={1}>
+        <P>{t.settings_auto_timezone.title}</P>
+
+        <P color="fg.subtle">{t.settings_auto_timezone.description}</P>
+      </StackV>
+
+      <Switch
+        checked={isAuto}
+        onCheckedChange={(e) => {
+          if (e.checked) {
+            enableAuto();
+          } else {
+            disableAuto(getLocalTimezone());
+          }
+        }}
+      />
+    </SettingItemContainer>
+  );
+};
+
+// -----------------------------------------------------------------
+
+const TimezoneSetting = () => {
+  // Contexts
+  const { t } = useLocale();
+  const { isAuto, setTimezone: setTimezoneContext } = useTimezone();
+
+  // States
+  const [timezone, setTimezone] = useState<SelectOption[] | null | undefined>(
+    null,
+  );
+
+  useEffect(() => {
+    if (timezone) setTimezoneContext(timezone?.[0].data);
+  }, [timezone]);
+
+  return (
+    <SettingItemContainer disabled={isAuto}>
+      <StackV gap={1}>
+        <P>{t.settings_timezone.title}</P>
+      </StackV>
+
+      <SelectTimezone
+        id={"settings-select-time-zone"}
+        inputValue={timezone}
+        onChange={(inputValue) => {
+          setTimezone(inputValue);
+        }}
+        w={"fit"}
+        placeholder={`${t.select} ${t.timezone.toLocaleLowerCase()}`}
+      />
+    </SettingItemContainer>
+  );
+};
+
+// -----------------------------------------------------------------
+
+const TimeSection = () => {
+  // Contexts
+  const { t } = useLocale();
+
+  return (
+    <Item.Root px={R_SPACING_MD} pb={R_SPACING_MD}>
+      <SettingsHelperText>{t.time}</SettingsHelperText>
+
+      <Item.Body>
+        <TimeFormatSetting />
+
+        <Divider mx={4} />
+
+        <AutoTimezomeSetting />
+
+        <Divider mx={4} />
+
+        <TimezoneSetting />
+      </Item.Body>
     </Item.Root>
   );
 };
@@ -455,9 +406,9 @@ const UOMFormat = () => {
 export default function Page() {
   return (
     <StackV gap={2}>
-      <Language />
+      <LanguageSection />
 
-      <Timezone />
+      <TimeSection />
 
       <DateFormat />
 

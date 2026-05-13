@@ -12,7 +12,7 @@ const SelectWorkspaceCategory = (props: SelectInputProps) => {
 
   // Hooks
   const { req, loading, error } = useRequest({
-    id: "select-workspace-category",
+    id: "select-animal",
     absoluteUrl: "https://zoo-animal-api.vercel.app/api/animals/rand/10",
     showLoadingToast: false,
     showSuccessToast: false,

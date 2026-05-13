@@ -110,7 +110,11 @@ export const settings_navs = {
   },
 };
 
-// Semantic UI
+// Common
+export const time = {
+  id: "Waktu",
+  en: "Time",
+};
 export const done = {
   id: "Selesai",
   en: "Done",
@@ -1147,10 +1151,6 @@ export const msg_file_input_dropzone = {
   id: "Drag and drop/klik untuk unggah berkas",
   en: "Drag and drop/click to upload files",
 };
-export const msg_accent_color_helper = {
-  id: "Scroll/geser ke kanan/kiri untuk pilih warna. Warna aksen akan digunakan untuk tombol, checkbox, radio, slider, link, dan elemen lainnya.",
-  en: "Scroll/swipe right/left to pick a color. Accent color will be used for buttons, checkboxes, radios, sliders, links, and other elements.",
-};
 
 // Alert
 export const alert_offline = {
@@ -1217,6 +1217,7 @@ export const alert_pdf_failed_to_load = {
 // Setting Page
 export const settings_color_mode_reset = {
   title: { id: "Reset ke mode default", en: "Reset to default mode" },
+
   description: {
     id: "Default color mode mengikuti sistem",
     en: "Default color mode follows the system",
@@ -1224,6 +1225,7 @@ export const settings_color_mode_reset = {
 };
 export const settings_adaptive_dark_mode = {
   title: { id: "Mode gelap adaptif", en: "Adaptive dark mode" },
+
   description: {
     id: "UI mode gelap aktif saat malam hari ${timeRange} (waktu lokal)",
     en: "UI dark mode active at night ${timeRange} (local time)",
@@ -1234,6 +1236,7 @@ export const settings_camera = {
     id: "Akses kamera",
     en: "Camera access",
   },
+
   description: {
     id: "Izinkan aplikasi menggunakan kamera perangkat Anda untuk mengambil foto atau video.",
     en: "Allow the app to access your device's camera to take photos or videos.",
@@ -1244,6 +1247,7 @@ export const settings_mic = {
     id: "Akses mikrofon",
     en: "Microphone access",
   },
+
   description: {
     id: "Izinkan aplikasi menggunakan mikrofon perangkat Anda untuk mengambil suara.",
     en: "Allow the app to access your device's microphone to record audio.",
@@ -1254,9 +1258,76 @@ export const settings_location = {
     id: "Akses lokasi",
     en: "Location access",
   },
+
   description: {
     id: "Izinkan aplikasi menggunakan lokasi perangkat Anda untuk mendapatkan informasi lokasi.",
     en: "Allow the app to access your device's location to get location information.",
+  },
+};
+export const settings_accent_color = {
+  title: {
+    id: "Warna aksen",
+    en: "Accent color",
+  },
+
+  description: {
+    id: "Warna utama yang memberi identitas visual pada aplikasi.",
+    en: "The primary color that defines the visual identity of the application.",
+  },
+};
+export const settings_rounded = {
+  title: {
+    id: "Radius/pembulatan",
+    en: "Radius/rounding",
+  },
+
+  description: {
+    id: "Mengatur seberapa bulat tampilan elemen antarmuka.",
+    en: "Controls how rounded interface elements appear.",
+  },
+};
+export const settings_locale = {
+  title: {
+    id: "Bahasa",
+    en: "Language",
+  },
+
+  description: {
+    id: "Pilih bahasa yang digunakan untuk antarmuka aplikasi.",
+    en: "Choose the language used for the application interface.",
+  },
+
+  helper: {
+    id: "Pilihan bahasa hanya untuk UI aplikasi, untuk konten yang diinput oleh user mungkin akan berbeda tergantung bahasa yang mereka pilih/input.",
+    en: "Language selection is only for the application UI, for content entered by the user it may be different depending on the language they choose/enter.",
+  },
+};
+export const settings_time_format = {
+  title: {
+    id: "Format waktu",
+    en: "Time format",
+  },
+};
+export const settings_auto_timezone = {
+  title: {
+    id: "Set zona waktu otomatis",
+    en: "Set time zone automatically",
+  },
+
+  description: {
+    id: "Aplikasi akan secara otomatis menyesuaikan zona waktu berdasarkan lokasi perangkat.",
+    en: "The application automatically adjusts the time zone based on the device location.",
+  },
+
+  helper: {
+    id: "Jika dimatikan, zona waktu akan mengikuti pengaturan manual yang dipilih pengguna.",
+    en: "If disabled, the time zone will follow the manually selected user setting.",
+  },
+};
+export const settings_timezone = {
+  title: {
+    id: "Zona waktu",
+    en: "Time zone",
   },
 };
 

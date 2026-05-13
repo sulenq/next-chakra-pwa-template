@@ -1,37 +1,65 @@
 import { TimezoneValue } from "@/types/global.types";
-import { getStorage, setStorage } from "@/utils/client";
+import { getStorage, removeStorage, setStorage } from "@/utils/client";
 import { getLocalTimezone } from "@/utils/time";
 import { create } from "zustand";
 
 const STORAGE_KEY = "timezone";
 
-type TimezoneStore = {
-  timeZone: TimezoneValue;
-  setTimeZone: (newState: TimezoneValue) => void;
-};
+interface TimezoneStore {
+  timezone: TimezoneValue;
+  isAuto: boolean;
+  setTimezone: (value: TimezoneValue) => void;
+  enableAuto: () => void;
+  disableAuto: (value: TimezoneValue) => void;
+}
+
 const useTimezone = create<TimezoneStore>((set) => {
-  const getStoredTimeZone = (): TimezoneValue => {
+  const getInitialTimezone = (): TimezoneValue => {
     try {
-      const rawStored = getStorage(STORAGE_KEY);
-      if (rawStored) {
-        const parsed = JSON.parse(rawStored) as TimezoneValue;
-        return parsed.label.startsWith("Auto") ? getLocalTimezone() : parsed;
-      }
-    } catch (error) {
-      console.error("Failed to parse timezone from localStorage:", error);
+      const raw = getStorage(STORAGE_KEY);
+      if (!raw) return getLocalTimezone();
+
+      const parsed = JSON.parse(raw) as TimezoneValue;
+      return parsed;
+    } catch {
+      return getLocalTimezone();
     }
-    return getLocalTimezone();
+  };
+
+  const isAuto = (): boolean => {
+    return !getStorage(STORAGE_KEY);
   };
 
   return {
-    timeZone: getStoredTimeZone(),
-    setTimeZone: (newState) => {
-      set((state) => {
-        if (state.timeZone.key !== newState.key) {
-          setStorage(STORAGE_KEY, JSON.stringify(newState));
-          return { timeZone: newState };
-        }
-        return state;
+    timezone: getInitialTimezone(),
+    isAuto: isAuto(),
+
+    setTimezone: (value) => {
+      setStorage(STORAGE_KEY, JSON.stringify(value));
+
+      set({
+        timezone: value,
+        isAuto: false,
+      });
+    },
+
+    enableAuto: () => {
+      removeStorage(STORAGE_KEY);
+
+      const local = getLocalTimezone();
+
+      set({
+        timezone: local,
+        isAuto: true,
+      });
+    },
+
+    disableAuto: (value) => {
+      setStorage(STORAGE_KEY, JSON.stringify(value));
+
+      set({
+        timezone: value,
+        isAuto: false,
       });
     },
   };

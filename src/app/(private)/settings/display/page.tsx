@@ -16,7 +16,7 @@ import { Tooltip } from "@/components/ui/tooltip";
 import { AppIconLucide } from "@/components/widgets/app-icon";
 import { HScroll } from "@/components/widgets/h-scroll";
 import { Item } from "@/components/widgets/item";
-import { ToggleSettingContainer } from "@/components/widgets/settings-shell";
+import { SettingItemContainer } from "@/components/widgets/settings-shell";
 import { COLOR_PALETTES } from "@/constants/colors";
 import { ROUNDED_PRESETS } from "@/constants/presets";
 import { R_SPACING_MD, SECTION_GAP } from "@/constants/styles";
@@ -138,7 +138,7 @@ const ColorModeSetting = () => {
   const { colorMode, setColorMode } = useColorMode();
 
   return (
-    <StackH justify={"center"} gap={4} px={2}>
+    <StackH justify={"center"} gap={4} p={2} pb={4}>
       <StackV
         align={"center"}
         gap={2}
@@ -196,12 +196,11 @@ const ColorModeSetting = () => {
 
 const ADMSetting = () => {
   // Contexts
-  const { themeContext } = useThemeContext();
   const { t } = useLocale();
   const { ADM, setADM } = useADM();
 
   return (
-    <ToggleSettingContainer>
+    <SettingItemContainer>
       <StackV gap={1}>
         <P>{t.settings_adaptive_dark_mode.title}</P>
 
@@ -217,9 +216,8 @@ const ADMSetting = () => {
         onCheckedChange={(e) => {
           setADM(e.checked);
         }}
-        colorPalette={themeContext.colorPalette}
       />
-    </ToggleSettingContainer>
+    </SettingItemContainer>
   );
 };
 
@@ -231,7 +229,7 @@ const ResetColorModeSetting = () => {
   const { setColorMode } = useColorMode();
 
   return (
-    <ToggleSettingContainer>
+    <SettingItemContainer>
       <StackV gap={1}>
         <P>{t.settings_color_mode_reset.title}</P>
 
@@ -252,7 +250,7 @@ const ResetColorModeSetting = () => {
       >
         Reset
       </Btn>
-    </ToggleSettingContainer>
+    </SettingItemContainer>
   );
 };
 
@@ -261,14 +259,14 @@ const ResetColorModeSetting = () => {
 const ColorModeSection = () => {
   return (
     <Item.Root px={R_SPACING_MD}>
-      <Item.Body gap={4} p={4} pt={2}>
+      <Item.Body>
         <ColorModeSetting />
 
-        <Divider />
+        <Divider mx={4} />
 
         <ADMSetting />
 
-        <Divider />
+        <Divider mx={4} />
 
         <ResetColorModeSetting />
       </Item.Body>
@@ -285,7 +283,7 @@ const AccentColorSection = () => {
 
   return (
     <StackV px={R_SPACING_MD}>
-      <SettingsHelperText>{t.accent_color}</SettingsHelperText>
+      <SettingsHelperText>{t.settings_accent_color.title}</SettingsHelperText>
 
       <Item.Body>
         <HScroll>
@@ -334,9 +332,11 @@ const AccentColorSection = () => {
         </HScroll>
 
         <StackV px={4} pb={4}>
-          <P color={"fg.subtle"}>{t.msg_accent_color_helper}</P>
+          <P color={"fg.subtle"}>{t.settings_accent_color.description}</P>
         </StackV>
       </Item.Body>
+
+      {/* <SettingsHelperText>{t.settings_accent_color.helper}</SettingsHelperText> */}
     </StackV>
   );
 };
@@ -362,9 +362,9 @@ const RoundedSection = () => {
 
   return (
     <StackV px={R_SPACING_MD}>
-      <SettingsHelperText>{t.rounded}</SettingsHelperText>
+      <SettingsHelperText>{t.settings_rounded.title}</SettingsHelperText>
 
-      <Item.Body p={2}>
+      <Item.Body p={2} gap={4}>
         <SimpleGrid minChildWidth={"160px"} gapX={1} gapY={4}>
           {ROUNDED_PRESETS.map((preset, index) => {
             const isSelected = preset.label === themeContext.radii.label;
@@ -375,9 +375,13 @@ const RoundedSection = () => {
                 gap={2}
                 p={R_SPACING_MD}
                 rounded={themeContext.radii.component}
+                cursor={"pointer"}
                 transition={"200ms"}
                 _hover={{
                   bg: "bg.muted",
+                }}
+                onClick={() => {
+                  handleOnClick(preset);
                 }}
               >
                 <StackV
@@ -387,10 +391,6 @@ const RoundedSection = () => {
                   rounded={preset.container}
                   border={"1px solid"}
                   borderColor={"border.emphasized"}
-                  cursor={"pointer"}
-                  onClick={() => {
-                    handleOnClick(preset);
-                  }}
                   pos={"relative"}
                 >
                   <StackH align={"center"} gap={2} pl={1}>
@@ -444,7 +444,13 @@ const RoundedSection = () => {
             );
           })}
         </SimpleGrid>
+
+        <StackV px={2} pb={2}>
+          <P color={"fg.subtle"}>{t.settings_rounded.description}</P>
+        </StackV>
       </Item.Body>
+
+      {/* <SettingsHelperText>{t.settings_rounded.helper}</SettingsHelperText> */}
     </StackV>
   );
 };

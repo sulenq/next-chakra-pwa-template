@@ -5,6 +5,7 @@ import { CSpinner } from "@/components/ui/c-spinner";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Disclosure } from "@/components/ui/disclosure";
 import { P } from "@/components/ui/p";
+import { RadioItem } from "@/components/ui/radio";
 import { SearchInput } from "@/components/ui/search-input";
 import { StackH, StackV } from "@/components/ui/stack";
 import { Tooltip } from "@/components/ui/tooltip";
@@ -12,7 +13,6 @@ import { AppIconLucide } from "@/components/widgets/app-icon";
 import FeedbackNoData from "@/components/widgets/feedback-no-data";
 import FeedbackNotFound from "@/components/widgets/feedback-not-found";
 import FeedbackRetry from "@/components/widgets/feedback-retry";
-import { DotIndicator } from "@/components/widgets/indicator";
 import { useLocale } from "@/contexts/use-locale-context";
 import { useThemeContext } from "@/contexts/use-theme-context";
 import { usePopDisclosure } from "@/hooks/use-pop-disclosure";
@@ -66,7 +66,7 @@ const SelectOptions = (props: SelectOptionsProps) => {
 
   return (
     <StackV {...restProps}>
-      <StackV px={4} pt={4} pos={"sticky"} top={0} zIndex={3}>
+      <StackV px={4} pt={4} zIndex={3}>
         <SearchInput
           inputValue={search}
           onChange={(inputValue) => {
@@ -92,7 +92,7 @@ const SelectOptions = (props: SelectOptionsProps) => {
                 clicky={false}
                 variant={"ghost"}
                 size={"md"}
-                pr={2.5}
+                pl={3}
                 mb={-2}
                 onClick={(e) => {
                   e.stopPropagation();
@@ -104,9 +104,7 @@ const SelectOptions = (props: SelectOptionsProps) => {
                   }
                 }}
               >
-                <StackH justify={"space-between"} gap={4} w={"full"}>
-                  <P color={"fg.muted"}>{t.select_all}</P>
-
+                <StackH gap={3} w={"full"}>
                   <Checkbox
                     onChange={(e: any) => {
                       setSelectAll(e.target.checked);
@@ -114,9 +112,11 @@ const SelectOptions = (props: SelectOptionsProps) => {
                     }}
                     checked={selectAll}
                     invalid={false}
-                    size={"md"}
+                    size={"sm"}
                     colorPalette={themeContext.colorPalette}
                   />
+
+                  <P color={"fg.muted"}>{t.select_all}</P>
                 </StackH>
               </Btn>
             </StackV>
@@ -133,6 +133,7 @@ const SelectOptions = (props: SelectOptionsProps) => {
                   variant={"ghost"}
                   justifyContent={"start"}
                   size={"md"}
+                  pl={3}
                   color={isSelected ? "" : "fg.muted"}
                   onClick={() => {
                     if (!multiple) {
@@ -151,14 +152,10 @@ const SelectOptions = (props: SelectOptionsProps) => {
                     }
                   }}
                 >
-                  <StackH align={"center"} w={"full"} justify={"space-between"}>
+                  <StackH align={"center"} gap={3} w={"full"}>
+                    <RadioItem checked={isSelected} />
+
                     <P textAlign={"left"}>{o.label}</P>
-
-                    {isSelected && <DotIndicator />}
-
-                    {!isSelected && multiple && (
-                      <DotIndicator bg={"bg.emphasized"} />
-                    )}
                   </StackH>
                 </Btn>
               );
@@ -313,7 +310,7 @@ export const SelectInput = (props: SelectInputProps) => {
             </Disclosure.HeaderContent>
           </Disclosure.Header>
 
-          <Disclosure.Body p={0} overflowY={"auto"} className={"noScroll"}>
+          <Disclosure.Body className={"scrollY"} p={0} overflowY={"auto"}>
             {loading && <CSpinner />}
 
             {!loading && (

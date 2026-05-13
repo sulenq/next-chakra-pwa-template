@@ -270,7 +270,6 @@ const translations = {
   "month": "Month",
   "more_info": "More info",
   "msg_ADM_active": "Adaptive dark mode is active",
-  "msg_accent_color_helper": "Scroll/swipe right/left to pick a color. Accent color will be used for buttons, checkboxes, radios, sliders, links, and other elements.",
   "msg_activate": "The account will be activated again and can be used.",
   "msg_app_desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam inventore accusantium, libero exercitationem ipsum dolorem delectus iure dolorum quidem modi fugiat voluptate laborum cum laboriosam ullam commodi explicabo, magnam eius.",
   "msg_cannot_be_undone": "This action cannot be undone, please be careful.",
@@ -401,9 +400,18 @@ const translations = {
   "selected_date": "Selected date",
   "september": "September",
   "settings": "Settings",
+  "settings_accent_color": {
+    "title": "Accent color",
+    "description": "The primary color that defines the visual identity of the application."
+  },
   "settings_adaptive_dark_mode": {
     "title": "Adaptive dark mode",
     "description": "UI dark mode active at night ${timeRange} (local time)"
+  },
+  "settings_auto_timezone": {
+    "title": "Set time zone automatically",
+    "description": "The application automatically adjusts the time zone based on the device location.",
+    "helper": "If disabled, the time zone will follow the manually selected user setting."
   },
   "settings_camera": {
     "title": "Camera access",
@@ -412,6 +420,11 @@ const translations = {
   "settings_color_mode_reset": {
     "title": "Reset to default mode",
     "description": "Default color mode follows the system"
+  },
+  "settings_locale": {
+    "title": "Language",
+    "description": "Choose the language used for the application interface.",
+    "helper": "Language selection is only for the application UI, for content entered by the user it may be different depending on the language they choose/enter."
   },
   "settings_location": {
     "title": "Location access",
@@ -436,6 +449,16 @@ const translations = {
     "others": {
       "index": "Others"
     }
+  },
+  "settings_rounded": {
+    "title": "Radius/rounding",
+    "description": "Controls how rounded interface elements appear."
+  },
+  "settings_time_format": {
+    "title": "Time format"
+  },
+  "settings_timezone": {
+    "title": "Time zone"
   },
   "show": "Show",
   "show_more": "Show more",
@@ -501,6 +524,7 @@ const translations = {
   "text_input": "Input teks",
   "theme": "Theme",
   "thursday": "Thursday",
+  "time": "Time",
   "time_format": "Time format",
   "timezone": "Timezone",
   "title": "Title",

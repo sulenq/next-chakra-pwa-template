@@ -7,7 +7,7 @@ interface ToggleSettingContainerProps extends StackProps {
   disabled?: boolean;
 }
 
-export const ToggleSettingContainer = ({
+export const SettingItemContainer = ({
   children,
   disabled,
   ...props
@@ -16,6 +16,8 @@ export const ToggleSettingContainer = ({
     <StackH
       align={"center"}
       justify={"space-between"}
+      gap={4}
+      p={4}
       pointerEvents={disabled ? "none" : "auto"}
       opacity={disabled ? 0.4 : 1}
       {...props}

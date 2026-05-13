@@ -10,7 +10,7 @@ import { AppIconLucide } from "@/components/widgets/app-icon";
 import { Item } from "@/components/widgets/item";
 import { SettingsSavedLocalyHelperText } from "@/components/ui/helper-text";
 import { MicVolumeBar } from "@/components/widgets/mic-volume-bar";
-import { ToggleSettingContainer } from "@/components/widgets/settings-shell";
+import { SettingItemContainer } from "@/components/widgets/settings-shell";
 import { R_SPACING_MD } from "@/constants/styles";
 import { useCameraPermission } from "@/contexts/use-camera-permission-context";
 import { useLocale } from "@/contexts/use-locale-context";
@@ -176,7 +176,7 @@ const CameraSection = () => {
 
       <StackV px={R_SPACING_MD} pb={R_SPACING_MD}>
         <Item.Body p={4}>
-          <ToggleSettingContainer>
+          <SettingItemContainer>
             <StackV gap={1}>
               <P>{t.settings_camera.title}</P>
               <P color={"fg.subtle"}>{t.settings_camera.description}</P>
@@ -191,7 +191,7 @@ const CameraSection = () => {
               onChange={requestCameraMic}
               colorPalette={themeContext.colorPalette}
             />
-          </ToggleSettingContainer>
+          </SettingItemContainer>
 
           {(cameraPermissionsStatus === "granted" ||
             cameraPermissionsStatus === "denied") && (
@@ -366,7 +366,7 @@ const MicrophoneSection = () => {
 
       <StackV px={R_SPACING_MD} pb={R_SPACING_MD}>
         <Item.Body p={4}>
-          <ToggleSettingContainer>
+          <SettingItemContainer>
             <StackV gap={1}>
               <P>{t.settings_mic.title}</P>
               <P color={"fg.subtle"}>{t.settings_mic.description}</P>
@@ -381,7 +381,7 @@ const MicrophoneSection = () => {
               onChange={requestMicPermission}
               colorPalette={themeContext.colorPalette}
             />
-          </ToggleSettingContainer>
+          </SettingItemContainer>
 
           {(micPermissionsStatus === "granted" ||
             micPermissionsStatus === "denied") && (
@@ -560,7 +560,7 @@ const LocationSection = () => {
 
       <StackV px={R_SPACING_MD} pb={R_SPACING_MD}>
         <Item.Body p={4}>
-          <ToggleSettingContainer>
+          <SettingItemContainer>
             <StackV gap={1}>
               <P>{t.settings_location.title}</P>
               <P color={"fg.subtle"}>{t.settings_location.description}</P>
@@ -575,7 +575,7 @@ const LocationSection = () => {
               onChange={requestLocationPermission}
               colorPalette={themeContext.colorPalette}
             />
-          </ToggleSettingContainer>
+          </SettingItemContainer>
 
           {(locationPermissionsStatus === "granted" ||
             locationPermissionsStatus === "denied") && (

@@ -9,21 +9,25 @@ import {
 } from "@/components/widgets/main-view";
 import { NavsV } from "@/components/widgets/navs";
 import { APP } from "@/constants/_meta";
-import { OTHER_PRIVATE_NAV_GROUPS } from "@/constants/navs";
 import { GAP, R_SPACING_MD } from "@/constants/styles";
 import { useLocale } from "@/contexts/use-locale-context";
 import { useThemeContext } from "@/contexts/use-theme-context";
+import { NavGroup } from "@/types/global.types";
 import { formatAbsDate } from "@/utils/formatter";
+import { StackProps } from "@chakra-ui/react";
 import { usePathname } from "next/navigation";
-
-const NAVS =
-  OTHER_PRIVATE_NAV_GROUPS[0].navs.find((n) => n.path === "/master-data")
-    ?.children || [];
-const ROOT_PATH = `/master-data`;
 
 // -----------------------------------------------------------------
 
-export default function Layout({ children }: { children: React.ReactNode }) {
+interface WithSidenavLayoutProps extends StackProps {
+  navs: NavGroup[];
+  rootPath: string;
+}
+
+export const WithSidenavLayout = (props: WithSidenavLayoutProps) => {
+  // Props
+  const { children, navs, rootPath, ...restProps } = props;
+
   // Hooks
   const pathname = usePathname();
 
@@ -35,14 +39,20 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   const { themeContext } = useThemeContext();
 
   // Derived Values
-  const isAtSettingsIndexRoute = pathname === ROOT_PATH;
+  const isAtSettingsIndexRoute = pathname === rootPath;
   const showSidebar =
     !isSmContainer || (isSmContainer && isAtSettingsIndexRoute);
   const showContent =
     !isSmContainer || (isSmContainer && !isAtSettingsIndexRoute);
 
   return (
-    <StackH flex={1} w={"full"} overflowY={"auto"} pos={"relative"}>
+    <StackH
+      flex={1}
+      w={"full"}
+      overflowY={"auto"}
+      pos={"relative"}
+      {...restProps}
+    >
       {/* Sidebar */}
       {showSidebar && (
         <StackV
@@ -68,7 +78,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
             <StackV className={"scrollY"} flex={1} p={R_SPACING_MD}>
               <NavsV
-                navs={NAVS}
+                navs={navs}
                 addonElement={
                   <StackV mt={"auto"} gap={1}>
                     <HelperText>{`v${APP.version}`}</HelperText>
@@ -94,7 +104,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       {showContent && (
         <MainView.Root className={"scrollY"} flex={1}>
           <ConstrainedContainer flex={1} p={GAP}>
-            {pathname !== ROOT_PATH && <MainView.Header withTitle px={4} />}
+            {pathname !== rootPath && <MainView.Header withTitle px={4} />}
 
             <StackV flex={1}>{children}</StackV>
           </ConstrainedContainer>
@@ -102,4 +112,4 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       )}
     </StackH>
   );
-}
+};

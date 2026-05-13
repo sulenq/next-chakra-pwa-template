@@ -270,7 +270,6 @@ const translations = {
   "month": "Bulan",
   "more_info": "Info lebih",
   "msg_ADM_active": "Mode gelap adaptif aktif",
-  "msg_accent_color_helper": "Scroll/geser ke kanan/kiri untuk pilih warna. Warna aksen akan digunakan untuk tombol, checkbox, radio, slider, link, dan elemen lainnya.",
   "msg_activate": "Akun akan diaktifkan kembali dan bisa digunakan.",
   "msg_app_desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam inventore accusantium, libero exercitationem ipsum dolorem delectus iure dolorum quidem modi fugiat voluptate laborum cum laboriosam ullam commodi explicabo, magnam eius.",
   "msg_cannot_be_undone": "Aksi ini tidak dapat dibatalkan, harap hati-hati.",
@@ -401,9 +400,18 @@ const translations = {
   "selected_date": "Tanggal dipilih",
   "september": "September",
   "settings": "Pengaturan",
+  "settings_accent_color": {
+    "title": "Warna aksen",
+    "description": "Warna utama yang memberi identitas visual pada aplikasi."
+  },
   "settings_adaptive_dark_mode": {
     "title": "Mode gelap adaptif",
     "description": "UI mode gelap aktif saat malam hari ${timeRange} (waktu lokal)"
+  },
+  "settings_auto_timezone": {
+    "title": "Set zona waktu otomatis",
+    "description": "Aplikasi akan secara otomatis menyesuaikan zona waktu berdasarkan lokasi perangkat.",
+    "helper": "Jika dimatikan, zona waktu akan mengikuti pengaturan manual yang dipilih pengguna."
   },
   "settings_camera": {
     "title": "Akses kamera",
@@ -412,6 +420,11 @@ const translations = {
   "settings_color_mode_reset": {
     "title": "Reset ke mode default",
     "description": "Default color mode mengikuti sistem"
+  },
+  "settings_locale": {
+    "title": "Bahasa",
+    "description": "Pilih bahasa yang digunakan untuk antarmuka aplikasi.",
+    "helper": "Pilihan bahasa hanya untuk UI aplikasi, untuk konten yang diinput oleh user mungkin akan berbeda tergantung bahasa yang mereka pilih/input."
   },
   "settings_location": {
     "title": "Akses lokasi",
@@ -436,6 +449,16 @@ const translations = {
     "others": {
       "index": "Lainnya"
     }
+  },
+  "settings_rounded": {
+    "title": "Radius/pembulatan",
+    "description": "Mengatur seberapa bulat tampilan elemen antarmuka."
+  },
+  "settings_time_format": {
+    "title": "Format waktu"
+  },
+  "settings_timezone": {
+    "title": "Zona waktu"
   },
   "show": "Tampilkan",
   "show_more": "Tampilkan lebih",
@@ -501,6 +524,7 @@ const translations = {
   "text_input": "Input teks",
   "theme": "Tema",
   "thursday": "Kamis",
+  "time": "Waktu",
   "time_format": "Format waktu",
   "timezone": "Zona waktu",
   "title": "Judul",
