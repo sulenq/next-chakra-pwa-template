@@ -409,6 +409,12 @@ const translations = {
     "title": "Mode gelap adaptif",
     "description": "UI mode gelap aktif saat malam hari ${timeRange} (waktu lokal)"
   },
+  "settings_angle_format": {
+    "title": "Sudut"
+  },
+  "settings_area_format": {
+    "title": "Luas"
+  },
   "settings_auto_timezone": {
     "title": "Set zona waktu otomatis",
     "description": "Aplikasi akan secara otomatis menyesuaikan zona waktu berdasarkan lokasi perangkat.",
@@ -422,8 +428,26 @@ const translations = {
     "title": "Reset ke mode default",
     "description": "Default color mode mengikuti sistem"
   },
+  "settings_data_format": {
+    "title": "Data"
+  },
+  "settings_data_rate_format": {
+    "title": "Kecepatan Data"
+  },
   "settings_date_format": {
     "title": "Format tanggal"
+  },
+  "settings_distance_format": {
+    "title": "Jarak"
+  },
+  "settings_energy_format": {
+    "title": "Energi"
+  },
+  "settings_height_format": {
+    "title": "Tinggi"
+  },
+  "settings_length_format": {
+    "title": "Panjang"
   },
   "settings_locale": {
     "title": "Bahasa",
@@ -454,15 +478,33 @@ const translations = {
       "index": "Lainnya"
     }
   },
+  "settings_power_format": {
+    "title": "Daya"
+  },
+  "settings_pressure_format": {
+    "title": "Tekanan"
+  },
   "settings_rounded": {
     "title": "Radius/pembulatan",
     "description": "Mengatur seberapa bulat tampilan elemen antarmuka."
+  },
+  "settings_speed_format": {
+    "title": "Kecepatan"
+  },
+  "settings_temperature_format": {
+    "title": "Suhu"
   },
   "settings_time_format": {
     "title": "Format waktu"
   },
   "settings_timezone": {
     "title": "Zona waktu"
+  },
+  "settings_volume_format": {
+    "title": "Volume"
+  },
+  "settings_weight_format": {
+    "title": "Berat"
   },
   "show": "Tampilkan",
   "show_more": "Tampilkan lebih",

@@ -52,6 +52,13 @@ export const getLocalTimezone = (): TimezoneValue => {
   };
 };
 
+export const cleanTimezoneValue = (tz: TimezoneValue): TimezoneValue => {
+  return {
+    ...tz,
+    label: tz.label.replace(/^Auto\s*\(|\)$|^Auto:\s*/g, "").trim() || tz.key,
+  };
+};
+
 export const getUserTimezone = (): TimezoneValue => {
   const localTZ = getLocalTimezone();
   const storedTimezone = getStorage("timezone");

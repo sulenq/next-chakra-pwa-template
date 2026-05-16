@@ -10,39 +10,22 @@ import { P } from "@/components/ui/p";
 import { RadioItem } from "@/components/ui/radio";
 import { StackH, StackV } from "@/components/ui/stack";
 import { Switch } from "@/components/ui/switch";
-import { AppIconLucide } from "@/components/widgets/app-icon";
-import { DotIndicator } from "@/components/widgets/indicator";
 import { Item } from "@/components/widgets/item";
 import { SelectTimezone } from "@/components/widgets/select-timezone";
 import { SettingItemContainer } from "@/components/widgets/settings-shell";
 import { DATE_FORMATS } from "@/constants/date-formats";
 import { LANGUAGES } from "@/constants/languages";
 import { R_SPACING_MD } from "@/constants/styles";
-import { TIME_FORMATS } from "@/constants/time-formats";
-import { UOM_FORMATS } from "@/constants/uom-formats";
 import useDateFormat from "@/contexts/use-date-format-context";
 import { useLocale } from "@/contexts/use-locale-context";
 import { useThemeContext } from "@/contexts/use-theme-context";
 import useTimeFormat from "@/contexts/use-time-format-context";
 import useTimezone from "@/contexts/use-timezone-context";
-import useUOMFormat from "@/contexts/use-uom-format-context";
 import { SelectDateFormat } from "@/features/settings/components/select-date-format";
 import { SelectTimeFormat } from "@/features/settings/components/select-time-format";
-import {
-  SelectOption,
-  type DateFormat,
-  type LocaleOption,
-  type TimeFormat,
-} from "@/types/global.types";
-import { formatDate, formatTime } from "@/utils/formatter";
-import { pluckString } from "@/utils/string";
-import { getLocalTimezone, makeTime } from "@/utils/time";
-import { chakra, SimpleGrid, Text } from "@chakra-ui/react";
-import {
-  CalendarIcon,
-  HourglassIcon,
-  RulerDimensionLineIcon,
-} from "lucide-react";
+import { SelectOption, type LocaleOption } from "@/types/global.types";
+import { getLocalTimezone } from "@/utils/time";
+import { chakra, Text } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 
 // -----------------------------------------------------------------
@@ -117,7 +100,9 @@ const DateFormatSetting = () => {
   >([
     {
       id: dateFormatContext,
-      label: dateFormatContext,
+      label: DATE_FORMATS.find(
+        (dateFormat) => dateFormat.key === dateFormatContext,
+      )?.label,
       data: dateFormatContext,
     },
   ]);
@@ -140,6 +125,7 @@ const DateFormatSetting = () => {
           setDateFormat(inputValue);
         }}
         w={"fit"}
+        size={"xs"}
       />
     </SettingItemContainer>
   );
@@ -181,6 +167,7 @@ const TimeFormatSetting = () => {
           setTimeFormat(inputValue);
         }}
         w={"fit"}
+        size={"xs"}
       />
     </SettingItemContainer>
   );
@@ -234,11 +221,16 @@ const TimezoneSetting = () => {
     },
   ]);
 
-  // console.debug(isAuto, timezoneContext?.label?.includes("Auto"));
-
+  // Sync local state when context changes (e.g. auto toggle)
   useEffect(() => {
-    if (timezone && !isAuto) setTimezoneContext(timezone?.[0].data);
-  }, [timezone]);
+    setTimezone([
+      {
+        id: timezoneContext.key,
+        label: timezoneContext.label,
+        data: timezoneContext,
+      },
+    ]);
+  }, [timezoneContext]);
 
   return (
     <SettingItemContainer disabled={isAuto}>
@@ -251,8 +243,10 @@ const TimezoneSetting = () => {
         inputValue={timezone}
         onChange={(inputValue) => {
           setTimezone(inputValue);
+          if (inputValue?.[0]?.data) setTimezoneContext(inputValue[0].data);
         }}
         w={"fit"}
+        size={"xs"}
         placeholder={`${t.select} ${t.timezone.toLocaleLowerCase()}`}
       />
     </SettingItemContainer>
@@ -290,198 +284,323 @@ const DateTimeSection = () => {
 
 // -----------------------------------------------------------------
 
-const DateFormat = () => {
+const LengthFormatSetting = () => {
   // Contexts
   const { t } = useLocale();
-  const { themeContext } = useThemeContext();
-  const { dateFormat, setDateFormat } = useDateFormat();
 
   return (
-    <Item.Root>
-      <Item.Header borderless>
-        <StackH align={"center"} gap={2}>
-          <AppIconLucide icon={CalendarIcon} />
-
-          <Item.Title>{t.date_format}</Item.Title>
-        </StackH>
-      </Item.Header>
-
-      <StackV px={R_SPACING_MD} pb={R_SPACING_MD}>
-        <Item.Body p={4}>
-          <SimpleGrid columns={[1, 2, 3]} gap={2}>
-            {DATE_FORMATS.map((item) => {
-              const isSelected = item.key === dateFormat;
-
-              return (
-                <StackV
-                  key={item.key}
-                  p={3}
-                  rounded={themeContext.radii.component}
-                  color={isSelected ? "" : NAVS_COLOR}
-                  onClick={() => {
-                    setDateFormat(item.key as DateFormat);
-                  }}
-                  cursor={"pointer"}
-                  _hover={{ bg: "bg.subtle" }}
-                  _active={{ bg: "bg.subtle" }}
-                  transition={"200ms"}
-                >
-                  <StackH align={"center"} gap={2}>
-                    <P fontWeight={"medium"} truncate>
-                      {item.label}
-                    </P>
-
-                    {isSelected && <DotIndicator />}
-                  </StackH>
-
-                  <P color={"fg.muted"} mb={2}>
-                    {item.description}
-                  </P>
-
-                  {/* Example */}
-                  <P color={"fg.subtle"}>
-                    {formatDate(new Date().toISOString(), t, {
-                      variant: "weekdayDayShortMonthYear",
-                      dateFormat: item.key as DateFormat,
-                    })}
-                  </P>
-                </StackV>
-              );
-            })}
-          </SimpleGrid>
-        </Item.Body>
+    <SettingItemContainer>
+      <StackV gap={1}>
+        <P>{t.settings_length_format.title}</P>
       </StackV>
-    </Item.Root>
+    </SettingItemContainer>
   );
 };
 
 // -----------------------------------------------------------------
 
-const TimeFormat = () => {
+const WeightFormatSetting = () => {
   // Contexts
   const { t } = useLocale();
-  const { themeContext } = useThemeContext();
-  const { timeFormat, setTimeFormat } = useTimeFormat();
 
   return (
-    <Item.Root>
-      <Item.Header borderless>
-        <StackH align={"center"} gap={2}>
-          <AppIconLucide icon={HourglassIcon} />
-
-          <Item.Title>{t.time_format}</Item.Title>
-        </StackH>
-      </Item.Header>
-
-      <StackV px={R_SPACING_MD} pb={R_SPACING_MD}>
-        <Item.Body p={4}>
-          <SimpleGrid columns={[1, 2]} gap={2}>
-            {TIME_FORMATS.map((item) => {
-              const isSelected = item.key === timeFormat;
-
-              return (
-                <StackV
-                  key={item.key}
-                  p={3}
-                  rounded={themeContext.radii.component}
-                  color={isSelected ? "" : NAVS_COLOR}
-                  onClick={() => {
-                    setTimeFormat(item.key as TimeFormat);
-                  }}
-                  cursor={"pointer"}
-                  _hover={{ bg: "bg.subtle" }}
-                  _active={{ bg: "bg.subtle" }}
-                  transition={"200ms"}
-                >
-                  <StackH align={"center"} gap={2}>
-                    <P fontWeight={"medium"} truncate>
-                      {item.label}
-                    </P>
-
-                    {isSelected && <DotIndicator />}
-                  </StackH>
-
-                  <P>
-                    {formatTime(makeTime(new Date().toISOString()), {
-                      timeFormat: item.key as TimeFormat,
-                    })}
-                  </P>
-                </StackV>
-              );
-            })}
-          </SimpleGrid>
-        </Item.Body>
+    <SettingItemContainer>
+      <StackV gap={1}>
+        <P>{t.settings_weight_format.title}</P>
       </StackV>
-    </Item.Root>
+    </SettingItemContainer>
   );
 };
 
 // -----------------------------------------------------------------
 
-const UOMFormat = () => {
+const DistanceFormatSetting = () => {
   // Contexts
-  const { themeContext } = useThemeContext();
   const { t } = useLocale();
-  const { UOM, setUOM } = useUOMFormat();
 
   return (
-    <Item.Root>
-      <Item.Header borderless>
-        <StackH align={"center"} gap={2}>
-          <AppIconLucide icon={RulerDimensionLineIcon} />
+    <SettingItemContainer>
+      <StackV gap={1}>
+        <P>{t.settings_distance_format.title}</P>
+      </StackV>
+    </SettingItemContainer>
+  );
+};
 
-          <Item.Title>{t.UOM_format}</Item.Title>
-        </StackH>
-      </Item.Header>
+// -----------------------------------------------------------------
 
-      <StackV px={R_SPACING_MD} pb={R_SPACING_MD}>
-        <Item.Body gap={4} p={4}>
-          <SimpleGrid columns={[1, 2, 3]} gap={2}>
-            {UOM_FORMATS.map((item) => {
-              const isSelected = item.key === UOM;
+const HeightFormatSetting = () => {
+  // Contexts
+  const { t } = useLocale();
 
-              return (
-                <StackV
-                  key={item.key}
-                  p={3}
-                  rounded={themeContext.radii.component}
-                  color={isSelected ? "" : NAVS_COLOR}
-                  onClick={() => {
-                    setUOM(item.key);
-                  }}
-                  cursor={"pointer"}
-                  _hover={{ bg: "bg.subtle" }}
-                  _active={{ bg: "bg.subtle" }}
-                  transition={"200ms"}
-                >
-                  <StackH align={"center"} gap={2}>
-                    <P fontWeight={"medium"} truncate>
-                      {item.label}
-                    </P>
+  return (
+    <SettingItemContainer>
+      <StackV gap={1}>
+        <P>{t.settings_height_format.title}</P>
+      </StackV>
+    </SettingItemContainer>
+  );
+};
 
-                    {isSelected && <DotIndicator />}
-                  </StackH>
+// -----------------------------------------------------------------
 
-                  <P color={"fg.muted"} mb={2}>
-                    {pluckString(t, item.descriptionKey)}
+const AreaFormatSetting = () => {
+  // Contexts
+  const { t } = useLocale();
+
+  return (
+    <SettingItemContainer>
+      <StackV gap={1}>
+        <P>{t.settings_area_format.title}</P>
+      </StackV>
+    </SettingItemContainer>
+  );
+};
+
+// -----------------------------------------------------------------
+
+const VolumeFormatSetting = () => {
+  // Contexts
+  const { t } = useLocale();
+
+  return (
+    <SettingItemContainer>
+      <StackV gap={1}>
+        <P>{t.settings_volume_format.title}</P>
+      </StackV>
+    </SettingItemContainer>
+  );
+};
+
+// -----------------------------------------------------------------
+
+const TemperatureFormatSetting = () => {
+  // Contexts
+  const { t } = useLocale();
+
+  return (
+    <SettingItemContainer>
+      <StackV gap={1}>
+        <P>{t.settings_temperature_format.title}</P>
+      </StackV>
+    </SettingItemContainer>
+  );
+};
+
+// -----------------------------------------------------------------
+
+const SpeedFormatSetting = () => {
+  // Contexts
+  const { t } = useLocale();
+
+  return (
+    <SettingItemContainer>
+      <StackV gap={1}>
+        <P>{t.settings_speed_format.title}</P>
+      </StackV>
+    </SettingItemContainer>
+  );
+};
+
+// -----------------------------------------------------------------
+
+const EnergyFormatSetting = () => {
+  // Contexts
+  const { t } = useLocale();
+
+  return (
+    <SettingItemContainer>
+      <StackV gap={1}>
+        <P>{t.settings_energy_format.title}</P>
+      </StackV>
+    </SettingItemContainer>
+  );
+};
+
+// -----------------------------------------------------------------
+
+const PowerFormatSetting = () => {
+  // Contexts
+  const { t } = useLocale();
+
+  return (
+    <SettingItemContainer>
+      <StackV gap={1}>
+        <P>{t.settings_power_format.title}</P>
+      </StackV>
+    </SettingItemContainer>
+  );
+};
+
+// -----------------------------------------------------------------
+
+const PressureFormatSetting = () => {
+  // Contexts
+  const { t } = useLocale();
+
+  return (
+    <SettingItemContainer>
+      <StackV gap={1}>
+        <P>{t.settings_pressure_format.title}</P>
+      </StackV>
+    </SettingItemContainer>
+  );
+};
+
+// -----------------------------------------------------------------
+
+const DataFormatSetting = () => {
+  // Contexts
+  const { t } = useLocale();
+
+  return (
+    <SettingItemContainer>
+      <StackV gap={1}>
+        <P>{t.settings_data_format.title}</P>
+      </StackV>
+    </SettingItemContainer>
+  );
+};
+
+// -----------------------------------------------------------------
+
+const DataRateFormatSetting = () => {
+  // Contexts
+  const { t } = useLocale();
+
+  return (
+    <SettingItemContainer>
+      <StackV gap={1}>
+        <P>{t.settings_data_rate_format.title}</P>
+      </StackV>
+    </SettingItemContainer>
+  );
+};
+
+// -----------------------------------------------------------------
+
+const AngleFormatSetting = () => {
+  // Contexts
+  const { t } = useLocale();
+
+  return (
+    <SettingItemContainer>
+      <StackV gap={1}>
+        <P>{t.settings_angle_format.title}</P>
+      </StackV>
+    </SettingItemContainer>
+  );
+};
+
+// -----------------------------------------------------------------
+
+const UOMFormatSection = () => {
+  // Contexts
+  const { t } = useLocale();
+
+  return (
+    <Item.Root px={R_SPACING_MD} pb={R_SPACING_MD}>
+      <SettingsHelperText>{t.UOM_format}</SettingsHelperText>
+
+      <Item.Body>
+        <WeightFormatSetting />
+
+        <Divider mx={4} />
+
+        <HeightFormatSetting />
+
+        <Divider mx={4} />
+
+        <LengthFormatSetting />
+
+        <Divider mx={4} />
+
+        <DistanceFormatSetting />
+
+        <Divider mx={4} />
+
+        <AreaFormatSetting />
+
+        <Divider mx={4} />
+
+        <VolumeFormatSetting />
+
+        <Divider mx={4} />
+
+        <TemperatureFormatSetting />
+
+        <Divider mx={4} />
+
+        <SpeedFormatSetting />
+
+        <Divider mx={4} />
+
+        <EnergyFormatSetting />
+
+        <Divider mx={4} />
+
+        <PowerFormatSetting />
+
+        <Divider mx={4} />
+
+        <PressureFormatSetting />
+
+        <Divider mx={4} />
+
+        <DataFormatSetting />
+
+        <Divider mx={4} />
+
+        <DataRateFormatSetting />
+
+        <Divider mx={4} />
+
+        <AngleFormatSetting />
+
+        {/* <SimpleGrid columns={[1, 2, 3]} gap={2}>
+          {UOM_FORMATS.map((item) => {
+            const isSelected = item.key === UOM;
+
+            return (
+              <StackV
+                key={item.key}
+                p={3}
+                rounded={themeContext.radii.component}
+                color={isSelected ? "" : NAVS_COLOR}
+                onClick={() => {
+                  setUOM(item.key);
+                }}
+                cursor={"pointer"}
+                _hover={{ bg: "bg.subtle" }}
+                _active={{ bg: "bg.subtle" }}
+                transition={"200ms"}
+              >
+                <StackH align={"center"} gap={2}>
+                  <P fontWeight={"medium"} truncate>
+                    {item.label}
                   </P>
 
-                  {/* Example */}
-                  <StackH align={"center"} wrap={"wrap"} mt={"auto"}>
-                    {Object.keys(item.units).map((key) => {
-                      return (
-                        <P key={key} color={"fg.subtle"}>
-                          {item.units[key as keyof typeof item.units]}
-                        </P>
-                      );
-                    })}
-                  </StackH>
-                </StackV>
-              );
-            })}
-          </SimpleGrid>
-        </Item.Body>
-      </StackV>
+                  {isSelected && <DotIndicator />}
+                </StackH>
+
+                <P color={"fg.muted"} mb={2}>
+                  {pluckString(t, item.descriptionKey)}
+                </P>
+
+                <StackH align={"center"} wrap={"wrap"} mt={"auto"}>
+                  {Object.keys(item.units).map((key) => {
+                    return (
+                      <P key={key} color={"fg.subtle"}>
+                        {item.units[key as keyof typeof item.units]}
+                      </P>
+                    );
+                  })}
+                </StackH>
+              </StackV>
+            );
+          })}
+        </SimpleGrid> */}
+      </Item.Body>
     </Item.Root>
   );
 };
@@ -495,11 +614,7 @@ export default function Page() {
 
       <DateTimeSection />
 
-      <DateFormat />
-
-      <TimeFormat />
-
-      <UOMFormat />
+      <UOMFormatSection />
 
       <SettingsSavedLocalyHelperText />
     </StackV>

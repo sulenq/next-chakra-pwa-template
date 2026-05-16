@@ -1,6 +1,6 @@
 import { TimezoneValue } from "@/types/global.types";
 import { getStorage, removeStorage, setStorage } from "@/utils/client";
-import { getLocalTimezone } from "@/utils/time";
+import { cleanTimezoneValue, getLocalTimezone } from "@/utils/time";
 import { create } from "zustand";
 
 const STORAGE_KEY = "timezone";
@@ -26,19 +26,18 @@ const useTimezone = create<TimezoneStore>((set) => {
     }
   };
 
-  const isAuto = (): boolean => {
-    return getInitialTimezone()?.label?.includes("Auto");
-  };
+  const initialIsAuto = !getStorage(STORAGE_KEY);
 
   return {
     timezone: getInitialTimezone(),
-    isAuto: isAuto(),
+    isAuto: initialIsAuto,
 
     setTimezone: (value) => {
-      setStorage(STORAGE_KEY, JSON.stringify(value));
+      const cleanedValue = cleanTimezoneValue(value);
+      setStorage(STORAGE_KEY, JSON.stringify(cleanedValue));
 
       set({
-        timezone: value,
+        timezone: cleanedValue,
         isAuto: false,
       });
     },
@@ -46,19 +45,18 @@ const useTimezone = create<TimezoneStore>((set) => {
     enableAuto: () => {
       removeStorage(STORAGE_KEY);
 
-      const local = getLocalTimezone();
-
       set({
-        timezone: local,
+        timezone: getLocalTimezone(),
         isAuto: true,
       });
     },
 
     disableAuto: (value) => {
-      setStorage(STORAGE_KEY, JSON.stringify(value));
+      const cleanedValue = cleanTimezoneValue(value);
+      setStorage(STORAGE_KEY, JSON.stringify(cleanedValue));
 
       set({
-        timezone: value,
+        timezone: cleanedValue,
         isAuto: false,
       });
     },

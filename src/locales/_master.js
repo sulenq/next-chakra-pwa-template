@@ -1340,6 +1340,90 @@ export const settings_timezone = {
     en: "Time zone",
   },
 };
+export const settings_weight_format = {
+  title: {
+    id: "Berat",
+    en: "Weight",
+  },
+};
+export const settings_height_format = {
+  title: {
+    id: "Tinggi",
+    en: "Height",
+  },
+};
+export const settings_length_format = {
+  title: {
+    id: "Panjang",
+    en: "Length",
+  },
+};
+export const settings_distance_format = {
+  title: {
+    id: "Jarak",
+    en: "Distance",
+  },
+};
+export const settings_area_format = {
+  title: {
+    id: "Luas",
+    en: "Area",
+  },
+};
+export const settings_volume_format = {
+  title: {
+    id: "Volume",
+    en: "Volume",
+  },
+};
+export const settings_temperature_format = {
+  title: {
+    id: "Suhu",
+    en: "Temperature",
+  },
+};
+export const settings_speed_format = {
+  title: {
+    id: "Kecepatan",
+    en: "Speed",
+  },
+};
+export const settings_energy_format = {
+  title: {
+    id: "Energi",
+    en: "Energy",
+  },
+};
+export const settings_power_format = {
+  title: {
+    id: "Daya",
+    en: "Power",
+  },
+};
+export const settings_pressure_format = {
+  title: {
+    id: "Tekanan",
+    en: "Pressure",
+  },
+};
+export const settings_data_format = {
+  title: {
+    id: "Data",
+    en: "Data",
+  },
+};
+export const settings_data_rate_format = {
+  title: {
+    id: "Kecepatan Data",
+    en: "Data Rate",
+  },
+};
+export const settings_angle_format = {
+  title: {
+    id: "Sudut",
+    en: "Angle",
+  },
+};
 
 // Loading Toast
 export const loading_default = {

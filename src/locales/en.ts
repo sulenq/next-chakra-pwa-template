@@ -409,6 +409,12 @@ const translations = {
     "title": "Adaptive dark mode",
     "description": "UI dark mode active at night ${timeRange} (local time)"
   },
+  "settings_angle_format": {
+    "title": "Angle"
+  },
+  "settings_area_format": {
+    "title": "Area"
+  },
   "settings_auto_timezone": {
     "title": "Set time zone automatically",
     "description": "The application automatically adjusts the time zone based on the device location.",
@@ -422,8 +428,26 @@ const translations = {
     "title": "Reset to default mode",
     "description": "Default color mode follows the system"
   },
+  "settings_data_format": {
+    "title": "Data"
+  },
+  "settings_data_rate_format": {
+    "title": "Data Rate"
+  },
   "settings_date_format": {
     "title": "Date format"
+  },
+  "settings_distance_format": {
+    "title": "Distance"
+  },
+  "settings_energy_format": {
+    "title": "Energy"
+  },
+  "settings_height_format": {
+    "title": "Height"
+  },
+  "settings_length_format": {
+    "title": "Length"
   },
   "settings_locale": {
     "title": "Language",
@@ -454,15 +478,33 @@ const translations = {
       "index": "Others"
     }
   },
+  "settings_power_format": {
+    "title": "Power"
+  },
+  "settings_pressure_format": {
+    "title": "Pressure"
+  },
   "settings_rounded": {
     "title": "Radius/rounding",
     "description": "Controls how rounded interface elements appear."
+  },
+  "settings_speed_format": {
+    "title": "Speed"
+  },
+  "settings_temperature_format": {
+    "title": "Temperature"
   },
   "settings_time_format": {
     "title": "Time format"
   },
   "settings_timezone": {
     "title": "Time zone"
+  },
+  "settings_volume_format": {
+    "title": "Volume"
+  },
+  "settings_weight_format": {
+    "title": "Weight"
   },
   "show": "Show",
   "show_more": "Show more",
