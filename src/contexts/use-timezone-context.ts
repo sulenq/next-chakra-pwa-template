@@ -27,7 +27,7 @@ const useTimezone = create<TimezoneStore>((set) => {
   };
 
   const isAuto = (): boolean => {
-    return getInitialTimezone()?.key.includes("Auto");
+    return getInitialTimezone()?.label?.includes("Auto");
   };
 
   return {

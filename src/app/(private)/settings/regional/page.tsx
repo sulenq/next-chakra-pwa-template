@@ -234,10 +234,10 @@ const TimezoneSetting = () => {
     },
   ]);
 
-  console.debug({ isAuto, timezone });
+  // console.debug(isAuto, timezoneContext?.label?.includes("Auto"));
 
   useEffect(() => {
-    if (timezone) setTimezoneContext(timezone?.[0].data);
+    if (timezone && !isAuto) setTimezoneContext(timezone?.[0].data);
   }, [timezone]);
 
   return (
