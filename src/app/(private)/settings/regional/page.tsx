@@ -26,6 +26,8 @@ import { useThemeContext } from "@/contexts/use-theme-context";
 import useTimeFormat from "@/contexts/use-time-format-context";
 import useTimezone from "@/contexts/use-timezone-context";
 import useUOMFormat from "@/contexts/use-uom-format-context";
+import { SelectDateFormat } from "@/features/settings/components/select-date-format";
+import { SelectTimeFormat } from "@/features/settings/components/select-time-format";
 import {
   SelectOption,
   type DateFormat,
@@ -42,6 +44,8 @@ import {
   RulerDimensionLineIcon,
 } from "lucide-react";
 import { useEffect, useState } from "react";
+
+// -----------------------------------------------------------------
 
 const NAVS_COLOR = "fg.muted";
 
@@ -101,19 +105,86 @@ const LanguageSection = () => {
 
 // -----------------------------------------------------------------
 
+const DateFormatSetting = () => {
+  // Contexts
+  const { t } = useLocale();
+  const { dateFormat: dateFormatContext, setDateFormat: setDateFormatContext } =
+    useDateFormat();
+
+  // States
+  const [dateFormat, setDateFormat] = useState<
+    SelectOption[] | null | undefined
+  >([
+    {
+      id: dateFormatContext,
+      label: dateFormatContext,
+      data: dateFormatContext,
+    },
+  ]);
+
+  useEffect(() => {
+    if (dateFormat) setDateFormatContext(dateFormat?.[0].data);
+  }, [dateFormat]);
+
+  return (
+    <SettingItemContainer>
+      <StackV gap={1}>
+        <P>{t.settings_date_format.title}</P>
+      </StackV>
+
+      <SelectDateFormat
+        id={"settings-select-date-format"}
+        inputValue={dateFormat}
+        onChange={(inputValue) => {
+          console.debug(inputValue);
+          setDateFormat(inputValue);
+        }}
+        w={"fit"}
+      />
+    </SettingItemContainer>
+  );
+};
+
+// -----------------------------------------------------------------
+
 const TimeFormatSetting = () => {
   // Contexts
   const { t } = useLocale();
+  const { timeFormat: timeFormatContext, setTimeFormat: setTimeFormatContext } =
+    useTimeFormat();
+
+  // States
+  const [timeFormat, setTimeFormat] = useState<
+    SelectOption[] | null | undefined
+  >([
+    {
+      id: timeFormatContext,
+      label: timeFormatContext,
+      data: timeFormatContext,
+    },
+  ]);
+
+  useEffect(() => {
+    if (timeFormat) setTimeFormatContext(timeFormat?.[0].data);
+  }, [timeFormat]);
 
   return (
     <SettingItemContainer>
       <StackV gap={1}>
         <P>{t.settings_time_format.title}</P>
       </StackV>
+
+      <SelectTimeFormat
+        id={"settings-select-time-format"}
+        inputValue={timeFormat}
+        onChange={(inputValue) => {
+          setTimeFormat(inputValue);
+        }}
+        w={"fit"}
+      />
     </SettingItemContainer>
   );
 };
-
 // -----------------------------------------------------------------
 
 const AutoTimezomeSetting = () => {
@@ -148,12 +219,22 @@ const AutoTimezomeSetting = () => {
 const TimezoneSetting = () => {
   // Contexts
   const { t } = useLocale();
-  const { isAuto, setTimezone: setTimezoneContext } = useTimezone();
+  const {
+    isAuto,
+    timezone: timezoneContext,
+    setTimezone: setTimezoneContext,
+  } = useTimezone();
 
   // States
-  const [timezone, setTimezone] = useState<SelectOption[] | null | undefined>(
-    null,
-  );
+  const [timezone, setTimezone] = useState<SelectOption[] | null | undefined>([
+    {
+      id: timezoneContext.key,
+      label: timezoneContext.label,
+      data: timezoneContext,
+    },
+  ]);
+
+  console.debug({ isAuto, timezone });
 
   useEffect(() => {
     if (timezone) setTimezoneContext(timezone?.[0].data);
@@ -180,15 +261,19 @@ const TimezoneSetting = () => {
 
 // -----------------------------------------------------------------
 
-const TimeSection = () => {
+const DateTimeSection = () => {
   // Contexts
   const { t } = useLocale();
 
   return (
     <Item.Root px={R_SPACING_MD} pb={R_SPACING_MD}>
-      <SettingsHelperText>{t.time}</SettingsHelperText>
+      <SettingsHelperText>{`${t.date} & ${t.time.toLowerCase()}`}</SettingsHelperText>
 
       <Item.Body>
+        <DateFormatSetting />
+
+        <Divider mx={4} />
+
         <TimeFormatSetting />
 
         <Divider mx={4} />
@@ -301,7 +386,7 @@ const TimeFormat = () => {
                   rounded={themeContext.radii.component}
                   color={isSelected ? "" : NAVS_COLOR}
                   onClick={() => {
-                    setTimeFormat(item.key);
+                    setTimeFormat(item.key as TimeFormat);
                   }}
                   cursor={"pointer"}
                   _hover={{ bg: "bg.subtle" }}
@@ -408,7 +493,7 @@ export default function Page() {
     <StackV gap={2}>
       <LanguageSection />
 
-      <TimeSection />
+      <DateTimeSection />
 
       <DateFormat />
 

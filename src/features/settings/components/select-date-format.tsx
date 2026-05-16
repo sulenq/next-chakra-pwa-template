@@ -1,10 +1,10 @@
 import { SelectInput, SelectInputProps } from "@/components/ui/select-input";
-import { TIME_ZONES } from "@/constants/timezones";
+import { DATE_FORMATS } from "@/constants/date-formats";
 import { useLocale } from "@/contexts/use-locale-context";
 
 // -----------------------------------------------------------------
 
-export const SelectTimezone = (props: SelectInputProps) => {
+export const SelectDateFormat = (props: SelectInputProps) => {
   // Props
   const { ...restProps } = props;
 
@@ -12,17 +12,18 @@ export const SelectTimezone = (props: SelectInputProps) => {
   const { t } = useLocale();
 
   // Derived Values
-  const options = TIME_ZONES.map((timezone) => {
+  const options = DATE_FORMATS.map((dateFormat) => {
     return {
-      id: timezone.key,
-      label: timezone.label,
-      data: timezone,
+      id: dateFormat.key,
+      label: dateFormat.label,
+      data: dateFormat,
     };
   });
 
   return (
     <SelectInput
-      title={`${t.select} ${t.timezone}`}
+      required
+      title={`${t.select} ${t.date_format}`}
       selectOptions={options}
       {...restProps}
     />

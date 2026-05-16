@@ -64,6 +64,7 @@ const translations = {
   "created": "Created",
   "current_data": "Current data",
   "dark_mode": "Dark mode",
+  "date": "Date",
   "date_format": "Date format",
   "day": "Day",
   "deactivate": "Deactivate",
@@ -420,6 +421,9 @@ const translations = {
   "settings_color_mode_reset": {
     "title": "Reset to default mode",
     "description": "Default color mode follows the system"
+  },
+  "settings_date_format": {
+    "title": "Date format"
   },
   "settings_locale": {
     "title": "Language",

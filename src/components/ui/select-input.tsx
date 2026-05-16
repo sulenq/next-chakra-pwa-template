@@ -288,9 +288,7 @@ export const SelectInput = (props: SelectInputProps) => {
       <Disclosure.Root open={open} lazyLoad size={disclosureSize}>
         <Disclosure.Content>
           <Disclosure.Header>
-            <Disclosure.HeaderContent
-              title={capitalizeWords(`${t.select} ${title}`)}
-            >
+            <Disclosure.HeaderContent title={capitalizeWords(title)}>
               {fetch && (
                 <Btn
                   iconButton

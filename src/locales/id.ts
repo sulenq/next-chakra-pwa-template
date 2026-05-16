@@ -64,6 +64,7 @@ const translations = {
   "created": "Dibuat",
   "current_data": "Data saat ini",
   "dark_mode": "Mode gelap",
+  "date": "Tanggal",
   "date_format": "Format tanggal",
   "day": "Hari",
   "deactivate": "Nonaktifkan",
@@ -420,6 +421,9 @@ const translations = {
   "settings_color_mode_reset": {
     "title": "Reset ke mode default",
     "description": "Default color mode mengikuti sistem"
+  },
+  "settings_date_format": {
+    "title": "Format tanggal"
   },
   "settings_locale": {
     "title": "Bahasa",

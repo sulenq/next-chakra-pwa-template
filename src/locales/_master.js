@@ -111,6 +111,10 @@ export const settings_navs = {
 };
 
 // Common
+export const date = {
+  id: "Tanggal",
+  en: "Date",
+};
 export const time = {
   id: "Waktu",
   en: "Time",
@@ -1300,6 +1304,12 @@ export const settings_locale = {
   helper: {
     id: "Pilihan bahasa hanya untuk UI aplikasi, untuk konten yang diinput oleh user mungkin akan berbeda tergantung bahasa yang mereka pilih/input.",
     en: "Language selection is only for the application UI, for content entered by the user it may be different depending on the language they choose/enter.",
+  },
+};
+export const settings_date_format = {
+  title: {
+    id: "Format tanggal",
+    en: "Date format",
   },
 };
 export const settings_time_format = {
