@@ -111,6 +111,22 @@ export const settings_navs = {
 };
 
 // Common
+export const perm_granted_permanent = {
+  id: "Permanen",
+  en: "Permanent",
+};
+export const perm_granted_temporary = {
+  id: "Sesi Ini (Temporer)",
+  en: "This Session (Temporary)",
+};
+export const perm_denied_permanent = {
+  id: "Diblokir",
+  en: "Blocked",
+};
+export const perm_denied_temporary = {
+  id: "Ditolak Sesi Ini",
+  en: "Denied This Session",
+};
 export const date = {
   id: "Tanggal",
   en: "Date",
@@ -1830,5 +1846,3 @@ export const offline_route = {
     en: "It looks like you are offline. Check your internet connection and try again.",
   },
 };
-
-// Interfaces

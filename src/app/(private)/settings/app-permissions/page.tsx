@@ -29,13 +29,11 @@ import { Badge } from "@chakra-ui/react";
 
 // -----------------------------------------------------------------
 
-const getBadgeText = (status: string, isId: boolean) => {
-  if (status === "granted_permanent") return isId ? "Permanen" : "Permanent";
-  if (status === "granted_temporary")
-    return isId ? "Sesi Ini (Temporer)" : "This Session (Temporary)";
-  if (status === "denied_permanent") return isId ? "Diblokir" : "Blocked";
-  if (status === "denied_temporary")
-    return isId ? "Ditolak Sesi Ini" : "Denied This Session";
+const getBadgeText = (status: string, t: any) => {
+  if (status === "granted_permanent") return t.perm_granted_permanent;
+  if (status === "granted_temporary") return t.perm_granted_temporary;
+  if (status === "denied_permanent") return t.perm_denied_permanent;
+  if (status === "denied_temporary") return t.perm_denied_temporary;
   return "";
 };
 
@@ -215,8 +213,6 @@ const CameraSection = () => {
     cameraPermissionsStatus === "granted_permanent" ||
     cameraPermissionsStatus === "denied_permanent";
 
-  const isId = t.camera === "Kamera";
-
   return (
     <Item.Root px={R_SPACING_MD}>
       <SettingsHelperText fontWeight={"semibold"}>
@@ -240,7 +236,7 @@ const CameraSection = () => {
                   size={"xs"}
                   variant={"subtle"}
                 >
-                  {getBadgeText(cameraPermissionsStatus, isId)}
+                  {getBadgeText(cameraPermissionsStatus, t)}
                 </Badge>
               )}
             </StackH>
@@ -462,8 +458,6 @@ const MicrophoneSection = () => {
     micPermissionsStatus === "granted_permanent" ||
     micPermissionsStatus === "denied_permanent";
 
-  const isId = t.camera === "Kamera";
-
   return (
     <Item.Root px={R_SPACING_MD}>
       <SettingsHelperText fontWeight={"semibold"}>
@@ -487,7 +481,7 @@ const MicrophoneSection = () => {
                   size={"xs"}
                   variant={"subtle"}
                 >
-                  {getBadgeText(micPermissionsStatus, isId)}
+                  {getBadgeText(micPermissionsStatus, t)}
                 </Badge>
               )}
             </StackH>
@@ -715,8 +709,6 @@ const LocationSection = () => {
     locationPermissionsStatus === "granted_permanent" ||
     locationPermissionsStatus === "denied_permanent";
 
-  const isId = t.camera === "Kamera";
-
   return (
     <Item.Root px={R_SPACING_MD}>
       <SettingsHelperText fontWeight={"semibold"}>
@@ -740,7 +732,7 @@ const LocationSection = () => {
                   size={"xs"}
                   variant={"subtle"}
                 >
-                  {getBadgeText(locationPermissionsStatus, isId)}
+                  {getBadgeText(locationPermissionsStatus, t)}
                 </Badge>
               )}
             </StackH>
