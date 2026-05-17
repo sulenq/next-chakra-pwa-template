@@ -1072,28 +1072,12 @@ export const msg_location_test_helper = {
   en: "Click get location to get location data.",
 };
 export const msg_permissions_granted_helper = {
-  id: "Jika ingin menonaktifkan, buka",
-  en: "If you want to disable it, go to",
+  id: "Jika ingin menonaktifkannya, silakan buka setelan situs/izin aplikasi pada browser Anda, cari izin terkait, lalu ubah nilainya secara manual di sana.",
+  en: "If you want to disable it, please open the site settings/app permissions in your browser, search for the related permission, and change its value manually there.",
 };
 export const msg_permissions_denied_helper = {
-  id: "Jika ingin memberi akses kembali, buka",
-  en: "If you want to grant access again, go to",
-};
-export const msg_chrome_permissions_settings_link = {
-  id: "Buka pengaturan browser → Privasi dan Keamanan → Pengaturan Situs → pilih izin yang ingin diubah.",
-  en: "Open browser settings → Privacy and Security → Site Settings → choose the permission you want to change.",
-};
-export const msg_firefox_permissions_settings_link = {
-  id: "Buka pengaturan browser → Privasi & Keamanan → Izin → ubah izin yang diperlukan.",
-  en: "Open browser settings → Privacy & Security → Permissions → change the required permission.",
-};
-export const msg_edge_permissions_settings_link = {
-  id: "Buka pengaturan browser → Cookie dan izin situs → pilih izin yang ingin diubah.",
-  en: "Open browser settings → Cookies and site permissions → choose the permission you want to change.",
-};
-export const msg_default_permissions_settings_link = {
-  id: "Buka pengaturan browser lalu ubah izin situs sesuai kebutuhan.",
-  en: "Open browser settings and change the site permissions as needed.",
+  id: "Jika ingin memberikan akses kembali, silakan buka setelan situs/izin aplikasi pada browser Anda, cari izin terkait, lalu ubah nilainya secara manual di sana.",
+  en: "If you want to grant access again, please open the site settings/app permissions in your browser, search for the related permission, and change its value manually there.",
 };
 export const msg_settings_saved_locally = {
   id: "*Pengaturan ini disimpan secara lokal di perangkat Anda dan tidak akan disinkronkan dengan akun Anda.",

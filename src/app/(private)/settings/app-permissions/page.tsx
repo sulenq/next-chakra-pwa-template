@@ -171,20 +171,6 @@ const CameraSection = () => {
   const { cameraPermissionsStatus, setCameraPermissionsStatus } =
     useCameraPermission();
 
-  // States
-  const getBrowserSettingsLink = () => {
-    const userAgent = navigator.userAgent;
-    if (userAgent.includes("Chrome")) {
-      return t.msg_chrome_permissions_settings_link;
-    } else if (userAgent.includes("Firefox")) {
-      return t.msg_firefox_permissions_settings_link;
-    } else if (userAgent.includes("Edg")) {
-      return t.msg_edge_permissions_settings_link;
-    }
-
-    return t.msg_default_permissions_settings_link;
-  };
-
   // Utils
   async function requestCameraMic() {
     try {
@@ -275,11 +261,9 @@ const CameraSection = () => {
       {cameraPermissionsStatus !== "prompt" && (
         <StackV>
           <SettingsHelperText color={"fg.subtle"}>
-            {`${
-              isGranted
-                ? t.msg_permissions_granted_helper
-                : t.msg_permissions_denied_helper
-            } ${getBrowserSettingsLink()} ${t.camera}`}
+            {isGranted
+              ? t.msg_permissions_granted_helper
+              : t.msg_permissions_denied_helper}
           </SettingsHelperText>
         </StackV>
       )}
@@ -417,19 +401,6 @@ const MicrophoneSection = () => {
   const { themeContext } = useThemeContext();
   const { micPermissionsStatus, setMicPermissionsStatus } = useMicPermissions();
 
-  // States
-  const getBrowserSettingsLink = () => {
-    const userAgent = navigator.userAgent;
-    if (userAgent.includes("Chrome")) {
-      return t.msg_chrome_permissions_settings_link;
-    } else if (userAgent.includes("Firefox")) {
-      return t.msg_firefox_permissions_settings_link;
-    } else if (userAgent.includes("Edg")) {
-      return t.msg_edge_permissions_settings_link;
-    }
-    return t.msg_default_permissions_settings_link;
-  };
-
   // Utils
   async function requestMicPermission() {
     try {
@@ -518,11 +489,9 @@ const MicrophoneSection = () => {
       {micPermissionsStatus !== "prompt" && (
         <StackV>
           <SettingsHelperText color={"fg.subtle"}>
-            {`${
-              isGranted
-                ? t.msg_permissions_granted_helper
-                : t.msg_permissions_denied_helper
-            } ${getBrowserSettingsLink()} ${t.mic}`}
+            {isGranted
+              ? t.msg_permissions_granted_helper
+              : t.msg_permissions_denied_helper}
           </SettingsHelperText>
         </StackV>
       )}
@@ -654,19 +623,6 @@ const LocationSection = () => {
   const { locationPermissionsStatus, setLocationPermissionsStatus } =
     useLocationPermissions();
 
-  // States
-  const getBrowserSettingsLink = () => {
-    const userAgent = navigator.userAgent;
-    if (userAgent.includes("Chrome")) {
-      return t.msg_chrome_permissions_settings_link;
-    } else if (userAgent.includes("Firefox")) {
-      return t.msg_firefox_permissions_settings_link;
-    } else if (userAgent.includes("Edg")) {
-      return t.msg_edge_permissions_settings_link;
-    }
-    return t.msg_default_permissions_settings_link;
-  };
-
   // Utils
   function requestLocationPermission() {
     getLatLon()
@@ -771,11 +727,9 @@ const LocationSection = () => {
       {locationPermissionsStatus !== "prompt" && (
         <StackV>
           <SettingsHelperText color={"fg.subtle"}>
-            {`${
-              isGranted
-                ? t.msg_permissions_granted_helper
-                : t.msg_permissions_denied_helper
-            } ${getBrowserSettingsLink()} ${t.location}`}
+            {isGranted
+              ? t.msg_permissions_granted_helper
+              : t.msg_permissions_denied_helper}
           </SettingsHelperText>
         </StackV>
       )}
