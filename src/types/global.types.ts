@@ -20,6 +20,13 @@ export type LocaleOption = "id" | "en"; // currently "en" | "id"
 export type LocaleKey = keyof typeof translations;
 export type Translations = (typeof translations)[LocaleKey];
 
+export type UnifiedPermissionState =
+  | "granted_permanent"
+  | "granted_temporary"
+  | "denied_permanent"
+  | "denied_temporary"
+  | "prompt";
+
 export type UnitKey =
   | "mass"
   | "length"

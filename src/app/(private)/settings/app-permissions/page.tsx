@@ -25,6 +25,17 @@ import { startCamera, stopCamera } from "@/utils/camera";
 import { disclosureId } from "@/utils/disclosure";
 import { getAddress, getLatLon } from "@/utils/location";
 import { useEffect, useRef, useState } from "react";
+import { Badge } from "@chakra-ui/react";
+
+// -----------------------------------------------------------------
+
+const getBadgeText = (status: string, isId: boolean) => {
+  if (status === "granted_permanent") return isId ? "Permanen" : "Permanent";
+  if (status === "granted_temporary") return isId ? "Sesi Ini (Temporer)" : "This Session (Temporary)";
+  if (status === "denied_permanent") return isId ? "Diblokir" : "Blocked";
+  if (status === "denied_temporary") return isId ? "Ditolak Sesi Ini" : "Denied This Session";
+  return "";
+};
 
 // -----------------------------------------------------------------
 
@@ -32,7 +43,8 @@ const CameraTester = () => {
   // Contexts
   const { t } = useLocale();
   const { themeContext } = useThemeContext();
-  const { cameraPermissionsStatus } = useCameraPermission();
+  const { cameraPermissionsStatus, setCameraPermissionsStatus } =
+    useCameraPermission();
 
   // Refs
   const videoRef = useRef<HTMLVideoElement | null>(null);
@@ -52,13 +64,17 @@ const CameraTester = () => {
     };
   }, []);
 
+  const isGranted =
+    cameraPermissionsStatus === "granted_permanent" ||
+    cameraPermissionsStatus === "granted_temporary";
+
   return (
     <>
       <Btn
         size={"xs"}
         variant={"outline"}
         onClick={onOpen}
-        disabled={cameraPermissionsStatus !== "granted"}
+        disabled={!isGranted}
       >
         {t.try_camera}
       </Btn>
@@ -118,12 +134,21 @@ const CameraTester = () => {
                     () => {
                       setLoading(false);
                       setCameraOpen(true);
+                      setCameraPermissionsStatus("granted_temporary");
                     },
-                    () =>
+                    (err) => {
+                      setLoading(false);
+                      if (
+                        err?.name === "NotAllowedError" ||
+                        err?.name === "PermissionDeniedError"
+                      ) {
+                        setCameraPermissionsStatus("denied_temporary");
+                      }
                       toaster.error({
                         title: t.error_camera.title,
                         description: t.error_camera.description,
-                      }),
+                      });
+                    },
                   );
                 }
               }}
@@ -143,7 +168,8 @@ const CameraSection = () => {
   // Contexts
   const { t } = useLocale();
   const { themeContext } = useThemeContext();
-  const { cameraPermissionsStatus } = useCameraPermission();
+  const { cameraPermissionsStatus, setCameraPermissionsStatus } =
+    useCameraPermission();
 
   // States
   const getBrowserSettingsLink = () => {
@@ -167,10 +193,27 @@ const CameraSection = () => {
       });
 
       stream.getTracks().forEach((track) => track.stop());
-    } catch (error) {
+      setCameraPermissionsStatus("granted_temporary");
+    } catch (error: any) {
       console.error("Akses ditolak:", error);
+      if (
+        error.name === "NotAllowedError" ||
+        error.name === "PermissionDeniedError"
+      ) {
+        setCameraPermissionsStatus("denied_temporary");
+      }
     }
   }
+
+  const isGranted =
+    cameraPermissionsStatus === "granted_permanent" ||
+    cameraPermissionsStatus === "granted_temporary";
+
+  const isDisabled =
+    cameraPermissionsStatus === "granted_permanent" ||
+    cameraPermissionsStatus === "denied_permanent";
+
+  const isId = t.camera === "Kamera";
 
   return (
     <Item.Root px={R_SPACING_MD}>
@@ -181,7 +224,24 @@ const CameraSection = () => {
       <Item.Body>
         <SettingItemContainer>
           <StackV gap={1}>
-            <P>{t.settings_camera_permission.title}</P>
+            <StackH align={"center"} gap={2}>
+              <P>{t.settings_camera_permission.title}</P>
+              {cameraPermissionsStatus !== "prompt" && (
+                <Badge
+                  colorPalette={
+                    cameraPermissionsStatus.startsWith("granted")
+                      ? cameraPermissionsStatus === "granted_permanent"
+                        ? "green"
+                        : "yellow"
+                      : "red"
+                  }
+                  size={"xs"}
+                  variant={"subtle"}
+                >
+                  {getBadgeText(cameraPermissionsStatus, isId)}
+                </Badge>
+              )}
+            </StackH>
 
             <P color={"fg.subtle"}>
               {t.settings_camera_permission.description}
@@ -189,19 +249,23 @@ const CameraSection = () => {
           </StackV>
 
           <Switch
-            checked={cameraPermissionsStatus === "granted"}
-            disabled={
-              cameraPermissionsStatus === "granted" ||
-              cameraPermissionsStatus === "denied"
-            }
-            onChange={requestCameraMic}
+            checked={isGranted}
+            disabled={isDisabled}
+            onChange={() => {
+              if (isGranted) {
+                // Allow toggling off temporary permissions
+                setCameraPermissionsStatus("prompt");
+              } else {
+                requestCameraMic();
+              }
+            }}
             colorPalette={themeContext.colorPalette}
           />
         </SettingItemContainer>
 
         <Divider mx={4} />
 
-        <SettingItemContainer disabled={cameraPermissionsStatus !== "granted"}>
+        <SettingItemContainer disabled={!isGranted}>
           <StackV gap={1}>
             <P>{t.settings_camera_permission_test.title}</P>
           </StackV>
@@ -210,12 +274,11 @@ const CameraSection = () => {
         </SettingItemContainer>
       </Item.Body>
 
-      {(cameraPermissionsStatus === "granted" ||
-        cameraPermissionsStatus === "denied") && (
+      {cameraPermissionsStatus !== "prompt" && (
         <StackV>
           <SettingsHelperText color={"fg.subtle"}>
             {`${
-              cameraPermissionsStatus === "granted"
+              isGranted
                 ? t.msg_permissions_granted_helper
                 : t.msg_permissions_denied_helper
             } ${getBrowserSettingsLink()} ${t.camera}`}
@@ -232,7 +295,7 @@ const MicTester = () => {
   // Contexts
   const { t } = useLocale();
   const { themeContext } = useThemeContext();
-  const { micPermissionsStatus } = useMicPermissions();
+  const { micPermissionsStatus, setMicPermissionsStatus } = useMicPermissions();
 
   // Refs
   const streamRef = useRef<MediaStream | null>(null);
@@ -265,9 +328,16 @@ const MicTester = () => {
       setAnalyser(analyserNode);
 
       setLoading(false);
-    } catch (error) {
+      setMicPermissionsStatus("granted_temporary");
+    } catch (error: any) {
       setLoading(false);
       console.error("Gagal mengakses mikrofon:", error);
+      if (
+        error.name === "NotAllowedError" ||
+        error.name === "PermissionDeniedError"
+      ) {
+        setMicPermissionsStatus("denied_temporary");
+      }
     }
   }
 
@@ -292,13 +362,17 @@ const MicTester = () => {
     };
   }, []);
 
+  const isGranted =
+    micPermissionsStatus === "granted_permanent" ||
+    micPermissionsStatus === "granted_temporary";
+
   return (
     <>
       <Btn
         size={"xs"}
         variant={"outline"}
         onClick={onOpen}
-        disabled={micPermissionsStatus !== "granted"}
+        disabled={!isGranted}
       >
         {t.try_mic}
       </Btn>
@@ -343,7 +417,7 @@ const MicrophoneSection = () => {
   // Contexts
   const { t } = useLocale();
   const { themeContext } = useThemeContext();
-  const { micPermissionsStatus } = useMicPermissions();
+  const { micPermissionsStatus, setMicPermissionsStatus } = useMicPermissions();
 
   // States
   const getBrowserSettingsLink = () => {
@@ -366,10 +440,27 @@ const MicrophoneSection = () => {
       });
 
       stream.getTracks().forEach((track) => track.stop());
-    } catch (error) {
+      setMicPermissionsStatus("granted_temporary");
+    } catch (error: any) {
       console.error("Akses mikrofon ditolak:", error);
+      if (
+        error.name === "NotAllowedError" ||
+        error.name === "PermissionDeniedError"
+      ) {
+        setMicPermissionsStatus("denied_temporary");
+      }
     }
   }
+
+  const isGranted =
+    micPermissionsStatus === "granted_permanent" ||
+    micPermissionsStatus === "granted_temporary";
+
+  const isDisabled =
+    micPermissionsStatus === "granted_permanent" ||
+    micPermissionsStatus === "denied_permanent";
+
+  const isId = t.camera === "Kamera";
 
   return (
     <Item.Root px={R_SPACING_MD}>
@@ -380,25 +471,46 @@ const MicrophoneSection = () => {
       <Item.Body>
         <SettingItemContainer>
           <StackV gap={1}>
-            <P>{t.settings_mic_permission.title}</P>
+            <StackH align={"center"} gap={2}>
+              <P>{t.settings_mic_permission.title}</P>
+              {micPermissionsStatus !== "prompt" && (
+                <Badge
+                  colorPalette={
+                    micPermissionsStatus.startsWith("granted")
+                      ? micPermissionsStatus === "granted_permanent"
+                        ? "green"
+                        : "yellow"
+                      : "red"
+                  }
+                  size={"xs"}
+                  variant={"subtle"}
+                >
+                  {getBadgeText(micPermissionsStatus, isId)}
+                </Badge>
+              )}
+            </StackH>
 
             <P color={"fg.subtle"}>{t.settings_mic_permission.description}</P>
           </StackV>
 
           <Switch
-            checked={micPermissionsStatus === "granted"}
-            disabled={
-              micPermissionsStatus === "granted" ||
-              micPermissionsStatus === "denied"
-            }
-            onChange={requestMicPermission}
+            checked={isGranted}
+            disabled={isDisabled}
+            onChange={() => {
+              if (isGranted) {
+                // Allow toggling off temporary permissions
+                setMicPermissionsStatus("prompt");
+              } else {
+                requestMicPermission();
+              }
+            }}
             colorPalette={themeContext.colorPalette}
           />
         </SettingItemContainer>
 
         <Divider mx={4} />
 
-        <SettingItemContainer disabled={micPermissionsStatus !== "granted"}>
+        <SettingItemContainer disabled={!isGranted}>
           <StackV gap={1}>
             <P>{t.settings_mic_permission_test.title}</P>
           </StackV>
@@ -407,12 +519,11 @@ const MicrophoneSection = () => {
         </SettingItemContainer>
       </Item.Body>
 
-      {(micPermissionsStatus === "granted" ||
-        micPermissionsStatus === "denied") && (
+      {micPermissionsStatus !== "prompt" && (
         <StackV>
           <SettingsHelperText color={"fg.subtle"}>
             {`${
-              micPermissionsStatus === "granted"
+              isGranted
                 ? t.msg_permissions_granted_helper
                 : t.msg_permissions_denied_helper
             } ${getBrowserSettingsLink()} ${t.mic}`}
@@ -429,7 +540,8 @@ const LocationTester = () => {
   // Contexts
   const { t } = useLocale();
   const { themeContext } = useThemeContext();
-  const { locationPermissionsStatus } = useLocationPermissions();
+  const { locationPermissionsStatus, setLocationPermissionsStatus } =
+    useLocationPermissions();
 
   // Hooks
   const { open, onOpen } = usePopDisclosure(disclosureId("location-test"));
@@ -444,24 +556,37 @@ const LocationTester = () => {
   // Utils
   function startLocationTest() {
     setLoading(true);
-    getLatLon().then(({ coords }: any) => {
-      setCenter({ lat: coords.latitude, long: coords.longitude });
-      getAddress(coords.latitude, coords.longitude)
-        .then((data) => {
-          setAddress(data.display_name || t.address_not_found);
-        })
-        .catch((error) => {
-          console.error("Gagal mendapatkan alamat:", error);
-          toaster.error({
-            title: t.error_location.title,
-            description: t.error_location.description,
+    getLatLon()
+      .then(({ coords }: any) => {
+        setLocationPermissionsStatus("granted_temporary");
+        setCenter({ lat: coords.latitude, long: coords.longitude });
+        getAddress(coords.latitude, coords.longitude)
+          .then((data) => {
+            setAddress(data.display_name || t.address_not_found);
+          })
+          .catch((error) => {
+            console.error("Gagal mendapatkan alamat:", error);
+            toaster.error({
+              title: t.error_location.title,
+              description: t.error_location.description,
+            });
+          })
+          .finally(() => {
+            setLoading(false);
           });
-        })
-        .finally(() => {
-          setLoading(false);
-        });
-    });
+      })
+      .catch((error: any) => {
+        setLoading(false);
+        console.error(error);
+        if (error.code === error.PERMISSION_DENIED) {
+          setLocationPermissionsStatus("denied_temporary");
+        }
+      });
   }
+
+  const isGranted =
+    locationPermissionsStatus === "granted_permanent" ||
+    locationPermissionsStatus === "granted_temporary";
 
   return (
     <>
@@ -469,7 +594,7 @@ const LocationTester = () => {
         size={"xs"}
         variant={"outline"}
         onClick={onOpen}
-        disabled={locationPermissionsStatus !== "granted"}
+        disabled={!isGranted}
       >
         {t.try_location}
       </Btn>
@@ -530,7 +655,8 @@ const LocationSection = () => {
   // Contexts
   const { t } = useLocale();
   const { themeContext } = useThemeContext();
-  const { locationPermissionsStatus } = useLocationPermissions();
+  const { locationPermissionsStatus, setLocationPermissionsStatus } =
+    useLocationPermissions();
 
   // States
   const getBrowserSettingsLink = () => {
@@ -550,9 +676,13 @@ const LocationSection = () => {
     getLatLon()
       .then((r) => {
         console.debug(r);
+        setLocationPermissionsStatus("granted_temporary");
       })
       .catch((error: any) => {
         console.error(error);
+        if (error.code === error.PERMISSION_DENIED) {
+          setLocationPermissionsStatus("denied_temporary");
+        }
         switch (error.code) {
           case error.POSITION_UNAVAILABLE:
             toaster.error({
@@ -575,6 +705,16 @@ const LocationSection = () => {
       });
   }
 
+  const isGranted =
+    locationPermissionsStatus === "granted_permanent" ||
+    locationPermissionsStatus === "granted_temporary";
+
+  const isDisabled =
+    locationPermissionsStatus === "granted_permanent" ||
+    locationPermissionsStatus === "denied_permanent";
+
+  const isId = t.camera === "Kamera";
+
   return (
     <Item.Root px={R_SPACING_MD}>
       <SettingsHelperText fontWeight={"semibold"}>
@@ -584,7 +724,24 @@ const LocationSection = () => {
       <Item.Body>
         <SettingItemContainer>
           <StackV gap={1}>
-            <P>{t.settings_location_permission.title}</P>
+            <StackH align={"center"} gap={2}>
+              <P>{t.settings_location_permission.title}</P>
+              {locationPermissionsStatus !== "prompt" && (
+                <Badge
+                  colorPalette={
+                    locationPermissionsStatus.startsWith("granted")
+                      ? locationPermissionsStatus === "granted_permanent"
+                        ? "green"
+                        : "yellow"
+                      : "red"
+                  }
+                  size={"xs"}
+                  variant={"subtle"}
+                >
+                  {getBadgeText(locationPermissionsStatus, isId)}
+                </Badge>
+              )}
+            </StackH>
 
             <P color={"fg.subtle"}>
               {t.settings_location_permission.description}
@@ -592,21 +749,23 @@ const LocationSection = () => {
           </StackV>
 
           <Switch
-            checked={locationPermissionsStatus === "granted"}
-            disabled={
-              locationPermissionsStatus === "granted" ||
-              locationPermissionsStatus === "denied"
-            }
-            onChange={requestLocationPermission}
+            checked={isGranted}
+            disabled={isDisabled}
+            onChange={() => {
+              if (isGranted) {
+                // Allow toggling off temporary permissions
+                setLocationPermissionsStatus("prompt");
+              } else {
+                requestLocationPermission();
+              }
+            }}
             colorPalette={themeContext.colorPalette}
           />
         </SettingItemContainer>
 
         <Divider mx={4} />
 
-        <SettingItemContainer
-          disabled={locationPermissionsStatus !== "granted"}
-        >
+        <SettingItemContainer disabled={!isGranted}>
           <StackV gap={1}>
             <P>{t.settings_location_permission_test.title}</P>
           </StackV>
@@ -615,12 +774,11 @@ const LocationSection = () => {
         </SettingItemContainer>
       </Item.Body>
 
-      {(locationPermissionsStatus === "granted" ||
-        locationPermissionsStatus === "denied") && (
+      {locationPermissionsStatus !== "prompt" && (
         <StackV>
           <SettingsHelperText color={"fg.subtle"}>
             {`${
-              locationPermissionsStatus === "granted"
+              isGranted
                 ? t.msg_permissions_granted_helper
                 : t.msg_permissions_denied_helper
             } ${getBrowserSettingsLink()} ${t.location}`}
