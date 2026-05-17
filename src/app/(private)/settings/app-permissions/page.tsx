@@ -31,9 +31,11 @@ import { Badge } from "@chakra-ui/react";
 
 const getBadgeText = (status: string, isId: boolean) => {
   if (status === "granted_permanent") return isId ? "Permanen" : "Permanent";
-  if (status === "granted_temporary") return isId ? "Sesi Ini (Temporer)" : "This Session (Temporary)";
+  if (status === "granted_temporary")
+    return isId ? "Sesi Ini (Temporer)" : "This Session (Temporary)";
   if (status === "denied_permanent") return isId ? "Diblokir" : "Blocked";
-  if (status === "denied_temporary") return isId ? "Ditolak Sesi Ini" : "Denied This Session";
+  if (status === "denied_temporary")
+    return isId ? "Ditolak Sesi Ini" : "Denied This Session";
   return "";
 };
 
