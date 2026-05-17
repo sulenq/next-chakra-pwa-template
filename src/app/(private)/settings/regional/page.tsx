@@ -40,7 +40,7 @@ import {
   SelectTemperatureFormat,
   SelectVolumeFormat,
 } from "@/features/settings/components/select-unit-format";
-import { SelectOption, UnitKey, type LocaleOption } from "@/types/global.types";
+import { SelectOption, type LocaleOption } from "@/types/global.types";
 import { getLocalTimezone } from "@/utils/time";
 import { chakra, Text } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
@@ -58,7 +58,7 @@ const LanguageSection = () => {
 
   return (
     <Item.Root px={R_SPACING_MD} pb={R_SPACING_MD}>
-      <SettingsHelperText>{t.settings_locale.title}</SettingsHelperText>
+      <SettingsHelperText>{t.settings_locale_section.title}</SettingsHelperText>
 
       <Item.Body p={4} gap={4}>
         <StackH align={"center"} wrap={"wrap"} gap={2}>
@@ -95,10 +95,12 @@ const LanguageSection = () => {
           })}
         </StackH>
 
-        <P color={"fg.subtle"}>{t.settings_locale.description}</P>
+        <P color={"fg.subtle"}>{t.settings_locale_section.description}</P>
       </Item.Body>
 
-      <SettingsHelperText>{t.settings_locale.helper}</SettingsHelperText>
+      <SettingsHelperText>
+        {t.settings_locale_section.helper}
+      </SettingsHelperText>
     </Item.Root>
   );
 };
@@ -301,33 +303,9 @@ const DateTimeSection = () => {
 
 // -----------------------------------------------------------------
 
-// Helper hook for a single UOM unit setting
-const useUOMUnitState = (unitKey: UnitKey) => {
-  const { UOM, setUOMUnit } = useUOMFormat();
-  const currentValue = UOM[unitKey];
-
-  const [value, setValue] = useState<SelectOption[] | null | undefined>([
-    { id: currentValue, label: currentValue, data: currentValue },
-  ]);
-
-  // Sync local state with context if it changes externally
-  useEffect(() => {
-    setValue([{ id: currentValue, label: currentValue, data: currentValue }]);
-  }, [currentValue]);
-
-  const onChange = (inputValue: SelectOption[] | null | undefined) => {
-    setValue(inputValue);
-    if (inputValue?.[0]?.data) setUOMUnit(unitKey, inputValue[0].data);
-  };
-
-  return { value, onChange };
-};
-
-// -----------------------------------------------------------------
-
 const WeightFormatSetting = () => {
   const { t } = useLocale();
-  const { value, onChange } = useUOMUnitState("mass");
+  const { UOM, setUOMUnit } = useUOMFormat();
   return (
     <SettingItemContainer>
       <StackV gap={1}>
@@ -335,8 +313,10 @@ const WeightFormatSetting = () => {
       </StackV>
       <SelectMassFormat
         id="settings-select-mass-format"
-        inputValue={value}
-        onChange={onChange}
+        inputValue={[{ id: UOM.mass, label: UOM.mass, data: UOM.mass }]}
+        onChange={(v) => {
+          if (v?.[0]?.data) setUOMUnit("mass", v[0].data);
+        }}
         w="fit"
         size="xs"
       />
@@ -348,7 +328,7 @@ const WeightFormatSetting = () => {
 
 const HeightFormatSetting = () => {
   const { t } = useLocale();
-  const { value, onChange } = useUOMUnitState("height");
+  const { UOM, setUOMUnit } = useUOMFormat();
   return (
     <SettingItemContainer>
       <StackV gap={1}>
@@ -356,8 +336,10 @@ const HeightFormatSetting = () => {
       </StackV>
       <SelectHeightFormat
         id="settings-select-height-format"
-        inputValue={value}
-        onChange={onChange}
+        inputValue={[{ id: UOM.height, label: UOM.height, data: UOM.height }]}
+        onChange={(v) => {
+          if (v?.[0]?.data) setUOMUnit("height", v[0].data);
+        }}
         w="fit"
         size="xs"
       />
@@ -369,7 +351,7 @@ const HeightFormatSetting = () => {
 
 const LengthFormatSetting = () => {
   const { t } = useLocale();
-  const { value, onChange } = useUOMUnitState("length");
+  const { UOM, setUOMUnit } = useUOMFormat();
   return (
     <SettingItemContainer>
       <StackV gap={1}>
@@ -377,8 +359,10 @@ const LengthFormatSetting = () => {
       </StackV>
       <SelectLengthFormat
         id="settings-select-length-format"
-        inputValue={value}
-        onChange={onChange}
+        inputValue={[{ id: UOM.length, label: UOM.length, data: UOM.length }]}
+        onChange={(v) => {
+          if (v?.[0]?.data) setUOMUnit("length", v[0].data);
+        }}
         w="fit"
         size="xs"
       />
@@ -390,7 +374,7 @@ const LengthFormatSetting = () => {
 
 const DistanceFormatSetting = () => {
   const { t } = useLocale();
-  const { value, onChange } = useUOMUnitState("distance");
+  const { UOM, setUOMUnit } = useUOMFormat();
   return (
     <SettingItemContainer>
       <StackV gap={1}>
@@ -398,8 +382,12 @@ const DistanceFormatSetting = () => {
       </StackV>
       <SelectDistanceFormat
         id="settings-select-distance-format"
-        inputValue={value}
-        onChange={onChange}
+        inputValue={[
+          { id: UOM.distance, label: UOM.distance, data: UOM.distance },
+        ]}
+        onChange={(v) => {
+          if (v?.[0]?.data) setUOMUnit("distance", v[0].data);
+        }}
         w="fit"
         size="xs"
       />
@@ -411,7 +399,7 @@ const DistanceFormatSetting = () => {
 
 const AreaFormatSetting = () => {
   const { t } = useLocale();
-  const { value, onChange } = useUOMUnitState("area");
+  const { UOM, setUOMUnit } = useUOMFormat();
   return (
     <SettingItemContainer>
       <StackV gap={1}>
@@ -419,8 +407,10 @@ const AreaFormatSetting = () => {
       </StackV>
       <SelectAreaFormat
         id="settings-select-area-format"
-        inputValue={value}
-        onChange={onChange}
+        inputValue={[{ id: UOM.area, label: UOM.area, data: UOM.area }]}
+        onChange={(v) => {
+          if (v?.[0]?.data) setUOMUnit("area", v[0].data);
+        }}
         w="fit"
         size="xs"
       />
@@ -432,7 +422,7 @@ const AreaFormatSetting = () => {
 
 const VolumeFormatSetting = () => {
   const { t } = useLocale();
-  const { value, onChange } = useUOMUnitState("volume");
+  const { UOM, setUOMUnit } = useUOMFormat();
   return (
     <SettingItemContainer>
       <StackV gap={1}>
@@ -440,8 +430,10 @@ const VolumeFormatSetting = () => {
       </StackV>
       <SelectVolumeFormat
         id="settings-select-volume-format"
-        inputValue={value}
-        onChange={onChange}
+        inputValue={[{ id: UOM.volume, label: UOM.volume, data: UOM.volume }]}
+        onChange={(v) => {
+          if (v?.[0]?.data) setUOMUnit("volume", v[0].data);
+        }}
         w="fit"
         size="xs"
       />
@@ -453,7 +445,7 @@ const VolumeFormatSetting = () => {
 
 const TemperatureFormatSetting = () => {
   const { t } = useLocale();
-  const { value, onChange } = useUOMUnitState("temperature");
+  const { UOM, setUOMUnit } = useUOMFormat();
   return (
     <SettingItemContainer>
       <StackV gap={1}>
@@ -461,8 +453,16 @@ const TemperatureFormatSetting = () => {
       </StackV>
       <SelectTemperatureFormat
         id="settings-select-temperature-format"
-        inputValue={value}
-        onChange={onChange}
+        inputValue={[
+          {
+            id: UOM.temperature,
+            label: UOM.temperature,
+            data: UOM.temperature,
+          },
+        ]}
+        onChange={(v) => {
+          if (v?.[0]?.data) setUOMUnit("temperature", v[0].data);
+        }}
         w="fit"
         size="xs"
       />
@@ -474,7 +474,7 @@ const TemperatureFormatSetting = () => {
 
 const SpeedFormatSetting = () => {
   const { t } = useLocale();
-  const { value, onChange } = useUOMUnitState("speed");
+  const { UOM, setUOMUnit } = useUOMFormat();
   return (
     <SettingItemContainer>
       <StackV gap={1}>
@@ -482,8 +482,10 @@ const SpeedFormatSetting = () => {
       </StackV>
       <SelectSpeedFormat
         id="settings-select-speed-format"
-        inputValue={value}
-        onChange={onChange}
+        inputValue={[{ id: UOM.speed, label: UOM.speed, data: UOM.speed }]}
+        onChange={(v) => {
+          if (v?.[0]?.data) setUOMUnit("speed", v[0].data);
+        }}
         w="fit"
         size="xs"
       />
@@ -495,7 +497,7 @@ const SpeedFormatSetting = () => {
 
 const EnergyFormatSetting = () => {
   const { t } = useLocale();
-  const { value, onChange } = useUOMUnitState("energy");
+  const { UOM, setUOMUnit } = useUOMFormat();
   return (
     <SettingItemContainer>
       <StackV gap={1}>
@@ -503,8 +505,10 @@ const EnergyFormatSetting = () => {
       </StackV>
       <SelectEnergyFormat
         id="settings-select-energy-format"
-        inputValue={value}
-        onChange={onChange}
+        inputValue={[{ id: UOM.energy, label: UOM.energy, data: UOM.energy }]}
+        onChange={(v) => {
+          if (v?.[0]?.data) setUOMUnit("energy", v[0].data);
+        }}
         w="fit"
         size="xs"
       />
@@ -516,7 +520,7 @@ const EnergyFormatSetting = () => {
 
 const PowerFormatSetting = () => {
   const { t } = useLocale();
-  const { value, onChange } = useUOMUnitState("power");
+  const { UOM, setUOMUnit } = useUOMFormat();
   return (
     <SettingItemContainer>
       <StackV gap={1}>
@@ -524,8 +528,10 @@ const PowerFormatSetting = () => {
       </StackV>
       <SelectPowerFormat
         id="settings-select-power-format"
-        inputValue={value}
-        onChange={onChange}
+        inputValue={[{ id: UOM.power, label: UOM.power, data: UOM.power }]}
+        onChange={(v) => {
+          if (v?.[0]?.data) setUOMUnit("power", v[0].data);
+        }}
         w="fit"
         size="xs"
       />
@@ -537,7 +543,7 @@ const PowerFormatSetting = () => {
 
 const PressureFormatSetting = () => {
   const { t } = useLocale();
-  const { value, onChange } = useUOMUnitState("pressure");
+  const { UOM, setUOMUnit } = useUOMFormat();
   return (
     <SettingItemContainer>
       <StackV gap={1}>
@@ -545,8 +551,12 @@ const PressureFormatSetting = () => {
       </StackV>
       <SelectPressureFormat
         id="settings-select-pressure-format"
-        inputValue={value}
-        onChange={onChange}
+        inputValue={[
+          { id: UOM.pressure, label: UOM.pressure, data: UOM.pressure },
+        ]}
+        onChange={(v) => {
+          if (v?.[0]?.data) setUOMUnit("pressure", v[0].data);
+        }}
         w="fit"
         size="xs"
       />
@@ -558,7 +568,7 @@ const PressureFormatSetting = () => {
 
 const DataFormatSetting = () => {
   const { t } = useLocale();
-  const { value, onChange } = useUOMUnitState("data");
+  const { UOM, setUOMUnit } = useUOMFormat();
   return (
     <SettingItemContainer>
       <StackV gap={1}>
@@ -566,8 +576,10 @@ const DataFormatSetting = () => {
       </StackV>
       <SelectDataFormat
         id="settings-select-data-format"
-        inputValue={value}
-        onChange={onChange}
+        inputValue={[{ id: UOM.data, label: UOM.data, data: UOM.data }]}
+        onChange={(v) => {
+          if (v?.[0]?.data) setUOMUnit("data", v[0].data);
+        }}
         w="fit"
         size="xs"
       />
@@ -579,7 +591,7 @@ const DataFormatSetting = () => {
 
 const DataRateFormatSetting = () => {
   const { t } = useLocale();
-  const { value, onChange } = useUOMUnitState("dataRate");
+  const { UOM, setUOMUnit } = useUOMFormat();
   return (
     <SettingItemContainer>
       <StackV gap={1}>
@@ -587,8 +599,12 @@ const DataRateFormatSetting = () => {
       </StackV>
       <SelectDataRateFormat
         id="settings-select-data-rate-format"
-        inputValue={value}
-        onChange={onChange}
+        inputValue={[
+          { id: UOM.dataRate, label: UOM.dataRate, data: UOM.dataRate },
+        ]}
+        onChange={(v) => {
+          if (v?.[0]?.data) setUOMUnit("dataRate", v[0].data);
+        }}
         w="fit"
         size="xs"
       />
@@ -600,7 +616,7 @@ const DataRateFormatSetting = () => {
 
 const AngleFormatSetting = () => {
   const { t } = useLocale();
-  const { value, onChange } = useUOMUnitState("angle");
+  const { UOM, setUOMUnit } = useUOMFormat();
   return (
     <SettingItemContainer>
       <StackV gap={1}>
@@ -608,8 +624,10 @@ const AngleFormatSetting = () => {
       </StackV>
       <SelectAngleFormat
         id="settings-select-angle-format"
-        inputValue={value}
-        onChange={onChange}
+        inputValue={[{ id: UOM.angle, label: UOM.angle, data: UOM.angle }]}
+        onChange={(v) => {
+          if (v?.[0]?.data) setUOMUnit("angle", v[0].data);
+        }}
         w="fit"
         size="xs"
       />
@@ -625,7 +643,7 @@ const UOMFormatSection = () => {
 
   return (
     <Item.Root px={R_SPACING_MD} pb={R_SPACING_MD}>
-      <SettingsHelperText>{t.UOM_format}</SettingsHelperText>
+      <SettingsHelperText>{t.settings_uom_section.title}</SettingsHelperText>
 
       <Item.Body>
         <WeightFormatSetting />
@@ -681,51 +699,9 @@ const UOMFormatSection = () => {
         <Divider mx={4} />
 
         <AngleFormatSetting />
-
-        {/* <SimpleGrid columns={[1, 2, 3]} gap={2}>
-          {UOM_FORMATS.map((item) => {
-            const isSelected = item.key === UOM;
-
-            return (
-              <StackV
-                key={item.key}
-                p={3}
-                rounded={themeContext.radii.component}
-                color={isSelected ? "" : NAVS_COLOR}
-                onClick={() => {
-                  setUOM(item.key);
-                }}
-                cursor={"pointer"}
-                _hover={{ bg: "bg.subtle" }}
-                _active={{ bg: "bg.subtle" }}
-                transition={"200ms"}
-              >
-                <StackH align={"center"} gap={2}>
-                  <P fontWeight={"medium"} truncate>
-                    {item.label}
-                  </P>
-
-                  {isSelected && <DotIndicator />}
-                </StackH>
-
-                <P color={"fg.muted"} mb={2}>
-                  {pluckString(t, item.descriptionKey)}
-                </P>
-
-                <StackH align={"center"} wrap={"wrap"} mt={"auto"}>
-                  {Object.keys(item.units).map((key) => {
-                    return (
-                      <P key={key} color={"fg.subtle"}>
-                        {item.units[key as keyof typeof item.units]}
-                      </P>
-                    );
-                  })}
-                </StackH>
-              </StackV>
-            );
-          })}
-        </SimpleGrid> */}
       </Item.Body>
+
+      <SettingsHelperText>{t.settings_uom_section.helper}</SettingsHelperText>
     </Item.Root>
   );
 };

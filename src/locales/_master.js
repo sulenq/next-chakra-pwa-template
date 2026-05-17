@@ -1290,7 +1290,7 @@ export const settings_rounded = {
     en: "Controls how rounded interface elements appear.",
   },
 };
-export const settings_locale = {
+export const settings_locale_section = {
   title: {
     id: "Bahasa",
     en: "Language",
@@ -1338,6 +1338,17 @@ export const settings_timezone = {
   title: {
     id: "Zona waktu",
     en: "Time zone",
+  },
+};
+export const settings_uom_section = {
+  title: {
+    id: "Sistem Satuan",
+    en: "Units of Measurement",
+  },
+
+  helper: {
+    id: "Format akan digunakan saat menampilkan nilai satuan",
+    en: "Format will be used when displaying unit values",
   },
 };
 export const settings_weight_format = {

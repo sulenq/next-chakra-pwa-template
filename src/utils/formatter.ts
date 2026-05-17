@@ -1,21 +1,18 @@
 import { getMonthNames } from "@/constants/months";
+import { NUMBER_LOCALE } from "@/constants/styles";
+import { TIME_ZONES } from "@/constants/timezones";
+import { getWeekdayNames } from "@/constants/weekdays";
 import {
   DateFormat,
   DateVariant,
-  Translations,
   TimeFormat,
-  UnitKey,
+  Translations,
 } from "@/types/global.types";
-import { UOM_FORMATS } from "@/constants/uom-formats";
-import { getWeekdayNames } from "@/constants/weekdays";
-import useUOMFormat from "@/contexts/use-uom-format-context";
 import { getStorage } from "@/utils/client";
-import { isValid, parseISO } from "date-fns";
-import { format as formatTz, toZonedTime } from "date-fns-tz";
 import { isDateObject } from "@/utils/date";
 import { getTimezoneOffsetMs, getUserTimezone } from "@/utils/time";
-import { TIME_ZONES } from "@/constants/timezones";
-import { NUMBER_LOCALE } from "@/constants/styles";
+import { isValid, parseISO } from "date-fns";
+import { format as formatTz, toZonedTime } from "date-fns-tz";
 
 export const formatDate = (
   date: Date | string | null | undefined,
@@ -396,35 +393,35 @@ export const formatDuration = (
   }
 };
 
-export const formatUOM = (
-  value: number | string | null | undefined,
-  unit: UnitKey,
-  options?: Intl.NumberFormatOptions & { compact?: boolean },
-) => {
-  if (value === null || value === undefined || value === "") return "-";
+// export const formatUOM = (
+//   value: number | string | null | undefined,
+//   unit: UnitKey,
+//   options?: Intl.NumberFormatOptions & { compact?: boolean },
+// ) => {
+//   if (value === null || value === undefined || value === "") return "-";
 
-  const key = useUOMFormat.getState().UOM;
-  const format = UOM_FORMATS.find((f) => f.key === key) ?? UOM_FORMATS[0];
-  const unitLabel = format.units[unit];
+//   const key = useUOMFormat.getState().UOM;
+//   const format = UOM_FORMATS.find((f) => f.key === key) ?? UOM_FORMATS[0];
+//   const unitLabel = format.units[unit];
 
-  // normalize number
-  let num: number;
-  if (typeof value === "string") {
-    const normalized = value.replace(/\./g, "").replace(",", ".");
-    num = Number(normalized);
-    if (isNaN(num)) return "-";
-  } else {
-    num = value;
-  }
+//   // normalize number
+//   let num: number;
+//   if (typeof value === "string") {
+//     const normalized = value.replace(/\./g, "").replace(",", ".");
+//     num = Number(normalized);
+//     if (isNaN(num)) return "-";
+//   } else {
+//     num = value;
+//   }
 
-  const formatted = new Intl.NumberFormat(undefined, {
-    maximumFractionDigits: 4,
-    notation: options?.compact ? "compact" : "standard",
-    ...options,
-  }).format(num);
+//   const formatted = new Intl.NumberFormat(undefined, {
+//     maximumFractionDigits: 4,
+//     notation: options?.compact ? "compact" : "standard",
+//     ...options,
+//   }).format(num);
 
-  const noSpaceUnits = ["°C", "°F", "K", "°", "rad"];
-  return noSpaceUnits.includes(unitLabel)
-    ? `${formatted}${unitLabel}`
-    : `${formatted} ${unitLabel}`;
-};
+//   const noSpaceUnits = ["°C", "°F", "K", "°", "rad"];
+//   return noSpaceUnits.includes(unitLabel)
+//     ? `${formatted}${unitLabel}`
+//     : `${formatted} ${unitLabel}`;
+// };

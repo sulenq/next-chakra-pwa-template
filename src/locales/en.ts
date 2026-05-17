@@ -449,7 +449,7 @@ const translations = {
   "settings_length_format": {
     "title": "Length"
   },
-  "settings_locale": {
+  "settings_locale_section": {
     "title": "Language",
     "description": "Choose the language used for the application interface.",
     "helper": "Language selection is only for the application UI, for content entered by the user it may be different depending on the language they choose/enter."
@@ -499,6 +499,10 @@ const translations = {
   },
   "settings_timezone": {
     "title": "Time zone"
+  },
+  "settings_uom_section": {
+    "title": "Units of Measurement",
+    "helper": "Format will be used when displaying unit values"
   },
   "settings_volume_format": {
     "title": "Volume"

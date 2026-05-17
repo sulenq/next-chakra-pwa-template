@@ -449,7 +449,7 @@ const translations = {
   "settings_length_format": {
     "title": "Panjang"
   },
-  "settings_locale": {
+  "settings_locale_section": {
     "title": "Bahasa",
     "description": "Pilih bahasa yang digunakan untuk antarmuka aplikasi.",
     "helper": "Pilihan bahasa hanya untuk UI aplikasi, untuk konten yang diinput oleh user mungkin akan berbeda tergantung bahasa yang mereka pilih/input."
@@ -499,6 +499,10 @@ const translations = {
   },
   "settings_timezone": {
     "title": "Zona waktu"
+  },
+  "settings_uom_section": {
+    "title": "Sistem Satuan",
+    "helper": "Format akan digunakan saat menampilkan nilai satuan"
   },
   "settings_volume_format": {
     "title": "Volume"
