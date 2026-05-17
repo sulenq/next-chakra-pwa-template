@@ -252,7 +252,7 @@ export const SelectInput = (props: SelectInputProps) => {
       <Tooltip content={formattedButtonLabel}>
         <Btn
           w={"full"}
-          gap={4}
+          gap={2}
           justifyContent={"space-between"}
           variant={variant}
           borderColor={
