@@ -274,12 +274,12 @@ const translations = {
   "msg_activate": "The account will be activated again and can be used.",
   "msg_app_desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam inventore accusantium, libero exercitationem ipsum dolorem delectus iure dolorum quidem modi fugiat voluptate laborum cum laboriosam ullam commodi explicabo, magnam eius.",
   "msg_cannot_be_undone": "This action cannot be undone, please be careful.",
-  "msg_chrome_permissions_settings_link": "Settings → Privacy & Security → Site Settings → ",
+  "msg_chrome_permissions_settings_link": "Open browser settings → Privacy and Security → Site Settings → enable/disable the required permission.",
   "msg_deactivate": "The account will be deactivated and cannot be used temporarily.",
-  "msg_default_permissions_settings_link": "Open browser settings to change permissions.",
-  "msg_edge_permissions_settings_link": "Settings → Cookies and site permissions → ",
+  "msg_default_permissions_settings_link": "Open browser settings and enable/disable site permissions as needed.",
+  "msg_edge_permissions_settings_link": "Open browser settings → Cookies and site permissions → enable/disable the required permission.",
   "msg_file_input_dropzone": "Drag and drop/click to upload files",
-  "msg_firefox_permissions_settings_link": "Preferences → Privacy & Security → Permissions → ",
+  "msg_firefox_permissions_settings_link": "Open browser settings → Privacy & Security → Permissions → enable/disable the required permission.",
   "msg_hard_delete": "Data will be permanently deleted.",
   "msg_loading_pdf": "Loading PDF document...",
   "msg_location_test_helper": "Click get location to get location data.",
@@ -424,6 +424,12 @@ const translations = {
     "title": "Camera access",
     "description": "Allow the app to access your device's camera to take photos or videos."
   },
+  "settings_camera_permission_section": {
+    "title": "Camera"
+  },
+  "settings_camera_permission_test": {
+    "title": "Try camera"
+  },
   "settings_color_mode_reset": {
     "title": "Reset to default mode",
     "description": "Default color mode follows the system"
@@ -461,9 +467,21 @@ const translations = {
     "title": "Location access",
     "description": "Allow the app to access your device's location to get location information."
   },
+  "settings_location_permission_section": {
+    "title": "Location"
+  },
+  "settings_location_permission_test": {
+    "title": "Try location"
+  },
   "settings_mic_permission": {
     "title": "Microphone access",
     "description": "Allow the app to access your device's microphone to record audio."
+  },
+  "settings_mic_permission_section": {
+    "title": "Microphone"
+  },
+  "settings_mic_permission_test": {
+    "title": "Try microphone"
   },
   "settings_navs": {
     "main": {

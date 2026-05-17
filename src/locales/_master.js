@@ -1064,20 +1064,20 @@ export const msg_permissions_denied_helper = {
   en: "If you want to grant access again, go to",
 };
 export const msg_chrome_permissions_settings_link = {
-  id: "Pengaturan → Privasi & Keamanan → Pengaturan Situs → ",
-  en: "Settings → Privacy & Security → Site Settings → ",
+  id: "Buka pengaturan browser → Privasi dan Keamanan → Pengaturan Situs → pilih izin yang ingin diubah.",
+  en: "Open browser settings → Privacy and Security → Site Settings → choose the permission you want to change.",
 };
 export const msg_firefox_permissions_settings_link = {
-  id: "Preferensi → Privasi & Keamanan → Izin → ",
-  en: "Preferences → Privacy & Security → Permissions → ",
+  id: "Buka pengaturan browser → Privasi & Keamanan → Izin → ubah izin yang diperlukan.",
+  en: "Open browser settings → Privacy & Security → Permissions → change the required permission.",
 };
 export const msg_edge_permissions_settings_link = {
-  id: "Pengaturan → Cookie dan izin situs → ",
-  en: "Settings → Cookies and site permissions → ",
+  id: "Buka pengaturan browser → Cookie dan izin situs → pilih izin yang ingin diubah.",
+  en: "Open browser settings → Cookies and site permissions → choose the permission you want to change.",
 };
 export const msg_default_permissions_settings_link = {
-  id: "Buka pengaturan browser untuk mengubah izin.",
-  en: "Open browser settings to change permissions.",
+  id: "Buka pengaturan browser lalu ubah izin situs sesuai kebutuhan.",
+  en: "Open browser settings and change the site permissions as needed.",
 };
 export const msg_settings_saved_locally = {
   id: "*Pengaturan ini disimpan secara lokal di perangkat Anda dan tidak akan disinkronkan dengan akun Anda.",
@@ -1411,6 +1411,12 @@ export const settings_angle_format = {
   },
 };
 
+export const settings_camera_permission_section = {
+  title: {
+    id: "Kamera",
+    en: "Camera",
+  },
+};
 export const settings_camera_permission = {
   title: {
     id: "Akses kamera",
@@ -1420,6 +1426,18 @@ export const settings_camera_permission = {
   description: {
     id: "Izinkan aplikasi menggunakan kamera perangkat Anda untuk mengambil foto atau video.",
     en: "Allow the app to access your device's camera to take photos or videos.",
+  },
+};
+export const settings_camera_permission_test = {
+  title: {
+    id: "Coba kamera",
+    en: "Try camera",
+  },
+};
+export const settings_mic_permission_section = {
+  title: {
+    id: "Mikrofon",
+    en: "Microphone",
   },
 };
 export const settings_mic_permission = {
@@ -1433,6 +1451,18 @@ export const settings_mic_permission = {
     en: "Allow the app to access your device's microphone to record audio.",
   },
 };
+export const settings_mic_permission_test = {
+  title: {
+    id: "Coba mikrofon",
+    en: "Try microphone",
+  },
+};
+export const settings_location_permission_section = {
+  title: {
+    id: "Lokasi",
+    en: "Location",
+  },
+};
 export const settings_location_permission = {
   title: {
     id: "Akses lokasi",
@@ -1442,6 +1472,12 @@ export const settings_location_permission = {
   description: {
     id: "Izinkan aplikasi menggunakan lokasi perangkat Anda untuk mendapatkan informasi lokasi.",
     en: "Allow the app to access your device's location to get location information.",
+  },
+};
+export const settings_location_permission_test = {
+  title: {
+    id: "Coba lokasi",
+    en: "Try location",
   },
 };
 

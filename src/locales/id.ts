@@ -274,12 +274,12 @@ const translations = {
   "msg_activate": "Akun akan diaktifkan kembali dan bisa digunakan.",
   "msg_app_desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam inventore accusantium, libero exercitationem ipsum dolorem delectus iure dolorum quidem modi fugiat voluptate laborum cum laboriosam ullam commodi explicabo, magnam eius.",
   "msg_cannot_be_undone": "Aksi ini tidak dapat dibatalkan, harap hati-hati.",
-  "msg_chrome_permissions_settings_link": "Pengaturan → Privasi & Keamanan → Pengaturan Situs → ",
+  "msg_chrome_permissions_settings_link": "Buka pengaturan browser → Privasi dan Keamanan → Pengaturan Situs → aktifkan/nonaktifkan izin yang diperlukan.",
   "msg_deactivate": "Akun akan dinonaktifkan dan tidak bisa digunakan sementara.",
-  "msg_default_permissions_settings_link": "Buka pengaturan browser untuk mengubah izin.",
-  "msg_edge_permissions_settings_link": "Pengaturan → Cookie dan izin situs → ",
+  "msg_default_permissions_settings_link": "Buka pengaturan browser lalu aktifkan/nonaktifkan izin situs sesuai kebutuhan.",
+  "msg_edge_permissions_settings_link": "Buka pengaturan browser → Cookie dan izin situs → aktifkan/nonaktifkan izin yang diperlukan.",
   "msg_file_input_dropzone": "Drag and drop/klik untuk unggah berkas",
-  "msg_firefox_permissions_settings_link": "Preferensi → Privasi & Keamanan → Izin → ",
+  "msg_firefox_permissions_settings_link": "Buka pengaturan browser → Privasi & Keamanan → Izin → aktifkan/nonaktifkan izin yang diperlukan.",
   "msg_hard_delete": "Data akan dihapus permanen.",
   "msg_loading_pdf": "Memuat dokumen PDF...",
   "msg_location_test_helper": "Klik dapatkan lokasi untuk mendapatkan data lokasi.",
@@ -424,6 +424,12 @@ const translations = {
     "title": "Akses kamera",
     "description": "Izinkan aplikasi menggunakan kamera perangkat Anda untuk mengambil foto atau video."
   },
+  "settings_camera_permission_section": {
+    "title": "Kamera"
+  },
+  "settings_camera_permission_test": {
+    "title": "Coba kamera"
+  },
   "settings_color_mode_reset": {
     "title": "Reset ke mode default",
     "description": "Default color mode mengikuti sistem"
@@ -461,9 +467,21 @@ const translations = {
     "title": "Akses lokasi",
     "description": "Izinkan aplikasi menggunakan lokasi perangkat Anda untuk mendapatkan informasi lokasi."
   },
+  "settings_location_permission_section": {
+    "title": "Lokasi"
+  },
+  "settings_location_permission_test": {
+    "title": "Coba lokasi"
+  },
   "settings_mic_permission": {
     "title": "Akses mikrofon",
     "description": "Izinkan aplikasi menggunakan mikrofon perangkat Anda untuk mengambil suara."
+  },
+  "settings_mic_permission_section": {
+    "title": "Mikrofon"
+  },
+  "settings_mic_permission_test": {
+    "title": "Coba mikrofon"
   },
   "settings_navs": {
     "main": {
