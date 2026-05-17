@@ -15,8 +15,10 @@ export const SelectUnitFormat = ({
   unitLabel,
   ...restProps
 }: SelectUnitFormatProps) => {
+  // Contexts
   const { t } = useLocale();
 
+  // Derived Values
   const options = UNIT_OPTIONS[unitKey].map((unit) => ({
     id: unit.key,
     label: unit.label,
@@ -36,10 +38,12 @@ export const SelectUnitFormat = ({
 // -----------------------------------------------------------------
 
 export const SelectMassFormat = (props: SelectInputProps) => {
+  // Contexts
   const { t } = useLocale();
+
   return (
     <SelectUnitFormat
-      unitKey="mass"
+      unitKey={"mass"}
       unitLabel={t.settings_weight_format.title}
       {...props}
     />
@@ -47,10 +51,12 @@ export const SelectMassFormat = (props: SelectInputProps) => {
 };
 
 export const SelectLengthFormat = (props: SelectInputProps) => {
+  // Contexts
   const { t } = useLocale();
+
   return (
     <SelectUnitFormat
-      unitKey="length"
+      unitKey={"length"}
       unitLabel={t.settings_length_format.title}
       {...props}
     />
@@ -58,10 +64,12 @@ export const SelectLengthFormat = (props: SelectInputProps) => {
 };
 
 export const SelectDistanceFormat = (props: SelectInputProps) => {
+  // Contexts
   const { t } = useLocale();
+
   return (
     <SelectUnitFormat
-      unitKey="distance"
+      unitKey={"distance"}
       unitLabel={t.settings_distance_format.title}
       {...props}
     />
@@ -69,10 +77,12 @@ export const SelectDistanceFormat = (props: SelectInputProps) => {
 };
 
 export const SelectHeightFormat = (props: SelectInputProps) => {
+  // Contexts
   const { t } = useLocale();
+
   return (
     <SelectUnitFormat
-      unitKey="height"
+      unitKey={"height"}
       unitLabel={t.settings_height_format.title}
       {...props}
     />
@@ -80,10 +90,12 @@ export const SelectHeightFormat = (props: SelectInputProps) => {
 };
 
 export const SelectAreaFormat = (props: SelectInputProps) => {
+  // Contexts
   const { t } = useLocale();
+
   return (
     <SelectUnitFormat
-      unitKey="area"
+      unitKey={"area"}
       unitLabel={t.settings_area_format.title}
       {...props}
     />
@@ -91,10 +103,12 @@ export const SelectAreaFormat = (props: SelectInputProps) => {
 };
 
 export const SelectVolumeFormat = (props: SelectInputProps) => {
+  // Contexts
   const { t } = useLocale();
+
   return (
     <SelectUnitFormat
-      unitKey="volume"
+      unitKey={"volume"}
       unitLabel={t.settings_volume_format.title}
       {...props}
     />
@@ -102,10 +116,12 @@ export const SelectVolumeFormat = (props: SelectInputProps) => {
 };
 
 export const SelectTemperatureFormat = (props: SelectInputProps) => {
+  // Contexts
   const { t } = useLocale();
+
   return (
     <SelectUnitFormat
-      unitKey="temperature"
+      unitKey={"temperature"}
       unitLabel={t.settings_temperature_format.title}
       {...props}
     />
@@ -113,10 +129,12 @@ export const SelectTemperatureFormat = (props: SelectInputProps) => {
 };
 
 export const SelectSpeedFormat = (props: SelectInputProps) => {
+  // Contexts
   const { t } = useLocale();
+
   return (
     <SelectUnitFormat
-      unitKey="speed"
+      unitKey={"speed"}
       unitLabel={t.settings_speed_format.title}
       {...props}
     />
@@ -124,10 +142,12 @@ export const SelectSpeedFormat = (props: SelectInputProps) => {
 };
 
 export const SelectEnergyFormat = (props: SelectInputProps) => {
+  // Contexts
   const { t } = useLocale();
+
   return (
     <SelectUnitFormat
-      unitKey="energy"
+      unitKey={"energy"}
       unitLabel={t.settings_energy_format.title}
       {...props}
     />
@@ -135,10 +155,12 @@ export const SelectEnergyFormat = (props: SelectInputProps) => {
 };
 
 export const SelectPowerFormat = (props: SelectInputProps) => {
+  // Contexts
   const { t } = useLocale();
+
   return (
     <SelectUnitFormat
-      unitKey="power"
+      unitKey={"power"}
       unitLabel={t.settings_power_format.title}
       {...props}
     />
@@ -146,10 +168,12 @@ export const SelectPowerFormat = (props: SelectInputProps) => {
 };
 
 export const SelectPressureFormat = (props: SelectInputProps) => {
+  // Contexts
   const { t } = useLocale();
+
   return (
     <SelectUnitFormat
-      unitKey="pressure"
+      unitKey={"pressure"}
       unitLabel={t.settings_pressure_format.title}
       {...props}
     />
@@ -157,10 +181,12 @@ export const SelectPressureFormat = (props: SelectInputProps) => {
 };
 
 export const SelectDataFormat = (props: SelectInputProps) => {
+  // Contexts
   const { t } = useLocale();
+
   return (
     <SelectUnitFormat
-      unitKey="data"
+      unitKey={"data"}
       unitLabel={t.settings_data_format.title}
       {...props}
     />
@@ -168,10 +194,12 @@ export const SelectDataFormat = (props: SelectInputProps) => {
 };
 
 export const SelectDataRateFormat = (props: SelectInputProps) => {
+  // Contexts
   const { t } = useLocale();
+
   return (
     <SelectUnitFormat
-      unitKey="dataRate"
+      unitKey={"dataRate"}
       unitLabel={t.settings_data_rate_format.title}
       {...props}
     />
@@ -179,10 +207,12 @@ export const SelectDataRateFormat = (props: SelectInputProps) => {
 };
 
 export const SelectAngleFormat = (props: SelectInputProps) => {
+  // Contexts
   const { t } = useLocale();
+
   return (
     <SelectUnitFormat
-      unitKey="angle"
+      unitKey={"angle"}
       unitLabel={t.settings_angle_format.title}
       {...props}
     />

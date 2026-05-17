@@ -266,13 +266,18 @@ export const SelectInput = (props: SelectInputProps) => {
           {...restProps}
         >
           {!isEmptyArray(inputValue) && (
-            <P lineClamp={1} textAlign={"left"}>
+            <P minH={"18px"} lineClamp={1} textAlign={"left"}>
               {formattedButtonLabel}
             </P>
           )}
 
           {isEmptyArray(inputValue) && (
-            <P color={"placeholder"} lineClamp={1} textAlign={"left"}>
+            <P
+              minH={"18px"}
+              color={"placeholder"}
+              lineClamp={1}
+              textAlign={"left"}
+            >
               {resolvedPlaceholder}
             </P>
           )}

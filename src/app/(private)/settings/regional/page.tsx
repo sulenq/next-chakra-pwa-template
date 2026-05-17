@@ -203,7 +203,7 @@ const AutoTimezomeSetting = () => {
       <StackV gap={1}>
         <P>{t.settings_auto_timezone.title}</P>
 
-        <P color="fg.subtle">{t.settings_auto_timezone.description}</P>
+        <P color={"fg.subtle"}>{t.settings_auto_timezone.description}</P>
       </StackV>
 
       <Switch
@@ -306,21 +306,24 @@ const DateTimeSection = () => {
 // -----------------------------------------------------------------
 
 const WeightFormatSetting = () => {
+  // Contexts
   const { t } = useLocale();
   const { UOM, setUOMUnit } = useUOMFormat();
+
   return (
     <SettingItemContainer>
       <StackV gap={1}>
         <P>{t.settings_weight_format.title}</P>
       </StackV>
+
       <SelectMassFormat
-        id="settings-select-mass-format"
+        id={"settings-select-mass-format"}
         inputValue={[{ id: UOM.mass, label: UOM.mass, data: UOM.mass }]}
         onChange={(v) => {
           if (v?.[0]?.data) setUOMUnit("mass", v[0].data);
         }}
-        w="fit"
-        size="xs"
+        w={"fit"}
+        size={"xs"}
       />
     </SettingItemContainer>
   );
@@ -329,21 +332,24 @@ const WeightFormatSetting = () => {
 // -----------------------------------------------------------------
 
 const HeightFormatSetting = () => {
+  // Contexts
   const { t } = useLocale();
   const { UOM, setUOMUnit } = useUOMFormat();
+
   return (
     <SettingItemContainer>
       <StackV gap={1}>
         <P>{t.settings_height_format.title}</P>
       </StackV>
+
       <SelectHeightFormat
-        id="settings-select-height-format"
+        id={"settings-select-height-format"}
         inputValue={[{ id: UOM.height, label: UOM.height, data: UOM.height }]}
         onChange={(v) => {
           if (v?.[0]?.data) setUOMUnit("height", v[0].data);
         }}
-        w="fit"
-        size="xs"
+        w={"fit"}
+        size={"xs"}
       />
     </SettingItemContainer>
   );
@@ -352,21 +358,24 @@ const HeightFormatSetting = () => {
 // -----------------------------------------------------------------
 
 const LengthFormatSetting = () => {
+  // Contexts
   const { t } = useLocale();
   const { UOM, setUOMUnit } = useUOMFormat();
+
   return (
     <SettingItemContainer>
       <StackV gap={1}>
         <P>{t.settings_length_format.title}</P>
       </StackV>
+
       <SelectLengthFormat
-        id="settings-select-length-format"
+        id={"settings-select-length-format"}
         inputValue={[{ id: UOM.length, label: UOM.length, data: UOM.length }]}
         onChange={(v) => {
           if (v?.[0]?.data) setUOMUnit("length", v[0].data);
         }}
-        w="fit"
-        size="xs"
+        w={"fit"}
+        size={"xs"}
       />
     </SettingItemContainer>
   );
@@ -375,23 +384,26 @@ const LengthFormatSetting = () => {
 // -----------------------------------------------------------------
 
 const DistanceFormatSetting = () => {
+  // Contexts
   const { t } = useLocale();
   const { UOM, setUOMUnit } = useUOMFormat();
+
   return (
     <SettingItemContainer>
       <StackV gap={1}>
         <P>{t.settings_distance_format.title}</P>
       </StackV>
+
       <SelectDistanceFormat
-        id="settings-select-distance-format"
+        id={"settings-select-distance-format"}
         inputValue={[
           { id: UOM.distance, label: UOM.distance, data: UOM.distance },
         ]}
         onChange={(v) => {
           if (v?.[0]?.data) setUOMUnit("distance", v[0].data);
         }}
-        w="fit"
-        size="xs"
+        w={"fit"}
+        size={"xs"}
       />
     </SettingItemContainer>
   );
@@ -400,21 +412,24 @@ const DistanceFormatSetting = () => {
 // -----------------------------------------------------------------
 
 const AreaFormatSetting = () => {
+  // Contexts
   const { t } = useLocale();
   const { UOM, setUOMUnit } = useUOMFormat();
+
   return (
     <SettingItemContainer>
       <StackV gap={1}>
         <P>{t.settings_area_format.title}</P>
       </StackV>
+
       <SelectAreaFormat
-        id="settings-select-area-format"
+        id={"settings-select-area-format"}
         inputValue={[{ id: UOM.area, label: UOM.area, data: UOM.area }]}
         onChange={(v) => {
           if (v?.[0]?.data) setUOMUnit("area", v[0].data);
         }}
-        w="fit"
-        size="xs"
+        w={"fit"}
+        size={"xs"}
       />
     </SettingItemContainer>
   );
@@ -423,21 +438,24 @@ const AreaFormatSetting = () => {
 // -----------------------------------------------------------------
 
 const VolumeFormatSetting = () => {
+  // Contexts
   const { t } = useLocale();
   const { UOM, setUOMUnit } = useUOMFormat();
+
   return (
     <SettingItemContainer>
       <StackV gap={1}>
         <P>{t.settings_volume_format.title}</P>
       </StackV>
+
       <SelectVolumeFormat
-        id="settings-select-volume-format"
+        id={"settings-select-volume-format"}
         inputValue={[{ id: UOM.volume, label: UOM.volume, data: UOM.volume }]}
         onChange={(v) => {
           if (v?.[0]?.data) setUOMUnit("volume", v[0].data);
         }}
-        w="fit"
-        size="xs"
+        w={"fit"}
+        size={"xs"}
       />
     </SettingItemContainer>
   );
@@ -446,15 +464,18 @@ const VolumeFormatSetting = () => {
 // -----------------------------------------------------------------
 
 const TemperatureFormatSetting = () => {
+  // Contexts
   const { t } = useLocale();
   const { UOM, setUOMUnit } = useUOMFormat();
+
   return (
     <SettingItemContainer>
       <StackV gap={1}>
         <P>{t.settings_temperature_format.title}</P>
       </StackV>
+
       <SelectTemperatureFormat
-        id="settings-select-temperature-format"
+        id={"settings-select-temperature-format"}
         inputValue={[
           {
             id: UOM.temperature,
@@ -465,8 +486,8 @@ const TemperatureFormatSetting = () => {
         onChange={(v) => {
           if (v?.[0]?.data) setUOMUnit("temperature", v[0].data);
         }}
-        w="fit"
-        size="xs"
+        w={"fit"}
+        size={"xs"}
       />
     </SettingItemContainer>
   );
@@ -475,21 +496,24 @@ const TemperatureFormatSetting = () => {
 // -----------------------------------------------------------------
 
 const SpeedFormatSetting = () => {
+  // Contexts
   const { t } = useLocale();
   const { UOM, setUOMUnit } = useUOMFormat();
+
   return (
     <SettingItemContainer>
       <StackV gap={1}>
         <P>{t.settings_speed_format.title}</P>
       </StackV>
+
       <SelectSpeedFormat
-        id="settings-select-speed-format"
+        id={"settings-select-speed-format"}
         inputValue={[{ id: UOM.speed, label: UOM.speed, data: UOM.speed }]}
         onChange={(v) => {
           if (v?.[0]?.data) setUOMUnit("speed", v[0].data);
         }}
-        w="fit"
-        size="xs"
+        w={"fit"}
+        size={"xs"}
       />
     </SettingItemContainer>
   );
@@ -498,21 +522,24 @@ const SpeedFormatSetting = () => {
 // -----------------------------------------------------------------
 
 const EnergyFormatSetting = () => {
+  // Contexts
   const { t } = useLocale();
   const { UOM, setUOMUnit } = useUOMFormat();
+
   return (
     <SettingItemContainer>
       <StackV gap={1}>
         <P>{t.settings_energy_format.title}</P>
       </StackV>
+
       <SelectEnergyFormat
-        id="settings-select-energy-format"
+        id={"settings-select-energy-format"}
         inputValue={[{ id: UOM.energy, label: UOM.energy, data: UOM.energy }]}
         onChange={(v) => {
           if (v?.[0]?.data) setUOMUnit("energy", v[0].data);
         }}
-        w="fit"
-        size="xs"
+        w={"fit"}
+        size={"xs"}
       />
     </SettingItemContainer>
   );
@@ -521,21 +548,24 @@ const EnergyFormatSetting = () => {
 // -----------------------------------------------------------------
 
 const PowerFormatSetting = () => {
+  // Contexts
   const { t } = useLocale();
   const { UOM, setUOMUnit } = useUOMFormat();
+
   return (
     <SettingItemContainer>
       <StackV gap={1}>
         <P>{t.settings_power_format.title}</P>
       </StackV>
+
       <SelectPowerFormat
-        id="settings-select-power-format"
+        id={"settings-select-power-format"}
         inputValue={[{ id: UOM.power, label: UOM.power, data: UOM.power }]}
         onChange={(v) => {
           if (v?.[0]?.data) setUOMUnit("power", v[0].data);
         }}
-        w="fit"
-        size="xs"
+        w={"fit"}
+        size={"xs"}
       />
     </SettingItemContainer>
   );
@@ -544,23 +574,26 @@ const PowerFormatSetting = () => {
 // -----------------------------------------------------------------
 
 const PressureFormatSetting = () => {
+  // Contexts
   const { t } = useLocale();
   const { UOM, setUOMUnit } = useUOMFormat();
+
   return (
     <SettingItemContainer>
       <StackV gap={1}>
         <P>{t.settings_pressure_format.title}</P>
       </StackV>
+
       <SelectPressureFormat
-        id="settings-select-pressure-format"
+        id={"settings-select-pressure-format"}
         inputValue={[
           { id: UOM.pressure, label: UOM.pressure, data: UOM.pressure },
         ]}
         onChange={(v) => {
           if (v?.[0]?.data) setUOMUnit("pressure", v[0].data);
         }}
-        w="fit"
-        size="xs"
+        w={"fit"}
+        size={"xs"}
       />
     </SettingItemContainer>
   );
@@ -569,21 +602,24 @@ const PressureFormatSetting = () => {
 // -----------------------------------------------------------------
 
 const DataFormatSetting = () => {
+  // Contexts
   const { t } = useLocale();
   const { UOM, setUOMUnit } = useUOMFormat();
+
   return (
     <SettingItemContainer>
       <StackV gap={1}>
         <P>{t.settings_data_format.title}</P>
       </StackV>
+
       <SelectDataFormat
-        id="settings-select-data-format"
+        id={"settings-select-data-format"}
         inputValue={[{ id: UOM.data, label: UOM.data, data: UOM.data }]}
         onChange={(v) => {
           if (v?.[0]?.data) setUOMUnit("data", v[0].data);
         }}
-        w="fit"
-        size="xs"
+        w={"fit"}
+        size={"xs"}
       />
     </SettingItemContainer>
   );
@@ -592,23 +628,26 @@ const DataFormatSetting = () => {
 // -----------------------------------------------------------------
 
 const DataRateFormatSetting = () => {
+  // Contexts
   const { t } = useLocale();
   const { UOM, setUOMUnit } = useUOMFormat();
+
   return (
     <SettingItemContainer>
       <StackV gap={1}>
         <P>{t.settings_data_rate_format.title}</P>
       </StackV>
+
       <SelectDataRateFormat
-        id="settings-select-data-rate-format"
+        id={"settings-select-data-rate-format"}
         inputValue={[
           { id: UOM.dataRate, label: UOM.dataRate, data: UOM.dataRate },
         ]}
         onChange={(v) => {
           if (v?.[0]?.data) setUOMUnit("dataRate", v[0].data);
         }}
-        w="fit"
-        size="xs"
+        w={"fit"}
+        size={"xs"}
       />
     </SettingItemContainer>
   );
@@ -617,21 +656,24 @@ const DataRateFormatSetting = () => {
 // -----------------------------------------------------------------
 
 const AngleFormatSetting = () => {
+  // Contexts
   const { t } = useLocale();
   const { UOM, setUOMUnit } = useUOMFormat();
+
   return (
     <SettingItemContainer>
       <StackV gap={1}>
         <P>{t.settings_angle_format.title}</P>
       </StackV>
+
       <SelectAngleFormat
-        id="settings-select-angle-format"
+        id={"settings-select-angle-format"}
         inputValue={[{ id: UOM.angle, label: UOM.angle, data: UOM.angle }]}
         onChange={(v) => {
           if (v?.[0]?.data) setUOMUnit("angle", v[0].data);
         }}
-        w="fit"
-        size="xs"
+        w={"fit"}
+        size={"xs"}
       />
     </SettingItemContainer>
   );
@@ -640,6 +682,7 @@ const AngleFormatSetting = () => {
 // -----------------------------------------------------------------
 
 const UOMFormatSection = () => {
+  // Contexts
   // Contexts
   const { t } = useLocale();
 
