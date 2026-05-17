@@ -15,7 +15,7 @@ import { SelectTimezone } from "@/components/widgets/select-timezone";
 import { SettingItemContainer } from "@/components/widgets/settings-shell";
 import { DATE_FORMATS } from "@/constants/date-formats";
 import { LANGUAGES } from "@/constants/languages";
-import { R_SPACING_MD } from "@/constants/styles";
+import { R_SPACING_MD, SECTION_GAP } from "@/constants/styles";
 import useDateFormat from "@/contexts/use-date-format-context";
 import { useLocale } from "@/contexts/use-locale-context";
 import { useThemeContext } from "@/contexts/use-theme-context";
@@ -57,7 +57,7 @@ const LanguageSection = () => {
   const { t, locale, setLocale } = useLocale();
 
   return (
-    <Item.Root px={R_SPACING_MD} pb={R_SPACING_MD}>
+    <Item.Root px={R_SPACING_MD}>
       <SettingsHelperText>{t.settings_locale_section.title}</SettingsHelperText>
 
       <Item.Body p={4} gap={4}>
@@ -279,7 +279,7 @@ const DateTimeSection = () => {
   const { t } = useLocale();
 
   return (
-    <Item.Root px={R_SPACING_MD} pb={R_SPACING_MD}>
+    <Item.Root px={R_SPACING_MD}>
       <SettingsHelperText>
         {t.settings_date_time_section.title}
       </SettingsHelperText>
@@ -687,7 +687,7 @@ const UOMFormatSection = () => {
   const { t } = useLocale();
 
   return (
-    <Item.Root px={R_SPACING_MD} pb={R_SPACING_MD}>
+    <Item.Root px={R_SPACING_MD}>
       <SettingsHelperText>{t.settings_uom_section.title}</SettingsHelperText>
 
       <Item.Body>
@@ -755,7 +755,7 @@ const UOMFormatSection = () => {
 
 export default function Page() {
   return (
-    <StackV gap={2}>
+    <StackV gap={SECTION_GAP}>
       <LanguageSection />
 
       <DateTimeSection />
