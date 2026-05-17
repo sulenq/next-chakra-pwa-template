@@ -178,8 +178,10 @@ const CameraSection = () => {
         <Item.Body p={4}>
           <SettingItemContainer>
             <StackV gap={1}>
-              <P>{t.settings_camera.title}</P>
-              <P color={"fg.subtle"}>{t.settings_camera.description}</P>
+              <P>{t.settings_camera_permission.title}</P>
+              <P color={"fg.subtle"}>
+                {t.settings_camera_permission.description}
+              </P>
             </StackV>
 
             <Switch
@@ -368,8 +370,8 @@ const MicrophoneSection = () => {
         <Item.Body p={4}>
           <SettingItemContainer>
             <StackV gap={1}>
-              <P>{t.settings_mic.title}</P>
-              <P color={"fg.subtle"}>{t.settings_mic.description}</P>
+              <P>{t.settings_mic_permission.title}</P>
+              <P color={"fg.subtle"}>{t.settings_mic_permission.description}</P>
             </StackV>
 
             <Switch
@@ -562,8 +564,10 @@ const LocationSection = () => {
         <Item.Body p={4}>
           <SettingItemContainer>
             <StackV gap={1}>
-              <P>{t.settings_location.title}</P>
-              <P color={"fg.subtle"}>{t.settings_location.description}</P>
+              <P>{t.settings_location_permission.title}</P>
+              <P color={"fg.subtle"}>
+                {t.settings_location_permission.description}
+              </P>
             </StackV>
 
             <Switch

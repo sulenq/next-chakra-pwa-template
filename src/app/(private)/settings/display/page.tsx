@@ -283,7 +283,9 @@ const AccentColorSection = () => {
 
   return (
     <StackV px={R_SPACING_MD}>
-      <SettingsHelperText>{t.settings_accent_color.title}</SettingsHelperText>
+      <SettingsHelperText>
+        {t.settings_accent_color_section.title}
+      </SettingsHelperText>
 
       <Item.Body>
         <HScroll>
@@ -332,11 +334,13 @@ const AccentColorSection = () => {
         </HScroll>
 
         <StackV px={4} pb={4}>
-          <P color={"fg.subtle"}>{t.settings_accent_color.description}</P>
+          <P color={"fg.subtle"}>
+            {t.settings_accent_color_section.description}
+          </P>
         </StackV>
       </Item.Body>
 
-      {/* <SettingsHelperText>{t.settings_accent_color.helper}</SettingsHelperText> */}
+      {/* <SettingsHelperText>{t.settings_accent_color_section.helper}</SettingsHelperText> */}
     </StackV>
   );
 };
@@ -362,7 +366,9 @@ const RoundedSection = () => {
 
   return (
     <StackV px={R_SPACING_MD}>
-      <SettingsHelperText>{t.settings_rounded.title}</SettingsHelperText>
+      <SettingsHelperText>
+        {t.settings_rounded_section.title}
+      </SettingsHelperText>
 
       <Item.Body p={2} gap={4}>
         <SimpleGrid minChildWidth={"160px"} gapX={1} gapY={4}>
@@ -446,11 +452,11 @@ const RoundedSection = () => {
         </SimpleGrid>
 
         <StackV px={2} pb={2}>
-          <P color={"fg.subtle"}>{t.settings_rounded.description}</P>
+          <P color={"fg.subtle"}>{t.settings_rounded_section.description}</P>
         </StackV>
       </Item.Body>
 
-      {/* <SettingsHelperText>{t.settings_rounded.helper}</SettingsHelperText> */}
+      {/* <SettingsHelperText>{t.settings_rounded_section.helper}</SettingsHelperText> */}
     </StackV>
   );
 };

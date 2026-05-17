@@ -401,7 +401,7 @@ const translations = {
   "selected_date": "Selected date",
   "september": "September",
   "settings": "Settings",
-  "settings_accent_color": {
+  "settings_accent_color_section": {
     "title": "Accent color",
     "description": "The primary color that defines the visual identity of the application."
   },
@@ -420,7 +420,7 @@ const translations = {
     "description": "The application automatically adjusts the time zone based on the device location.",
     "helper": "If disabled, the time zone will follow the manually selected user setting."
   },
-  "settings_camera": {
+  "settings_camera_permission": {
     "title": "Camera access",
     "description": "Allow the app to access your device's camera to take photos or videos."
   },
@@ -436,6 +436,9 @@ const translations = {
   },
   "settings_date_format": {
     "title": "Date format"
+  },
+  "settings_date_time_section": {
+    "title": "Date & time"
   },
   "settings_distance_format": {
     "title": "Distance"
@@ -454,11 +457,11 @@ const translations = {
     "description": "Choose the language used for the application interface.",
     "helper": "Language selection is only for the application UI, for content entered by the user it may be different depending on the language they choose/enter."
   },
-  "settings_location": {
+  "settings_location_permission": {
     "title": "Location access",
     "description": "Allow the app to access your device's location to get location information."
   },
-  "settings_mic": {
+  "settings_mic_permission": {
     "title": "Microphone access",
     "description": "Allow the app to access your device's microphone to record audio."
   },
@@ -484,7 +487,7 @@ const translations = {
   "settings_pressure_format": {
     "title": "Pressure"
   },
-  "settings_rounded": {
+  "settings_rounded_section": {
     "title": "Radius/rounding",
     "description": "Controls how rounded interface elements appear."
   },
@@ -501,7 +504,7 @@ const translations = {
     "title": "Time zone"
   },
   "settings_uom_section": {
-    "title": "Units of Measurement",
+    "title": "Units of measurement",
     "helper": "Format will be used when displaying unit values"
   },
   "settings_volume_format": {

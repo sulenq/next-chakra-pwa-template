@@ -280,7 +280,9 @@ const DateTimeSection = () => {
 
   return (
     <Item.Root px={R_SPACING_MD} pb={R_SPACING_MD}>
-      <SettingsHelperText>{`${t.date} & ${t.time.toLowerCase()}`}</SettingsHelperText>
+      <SettingsHelperText>
+        {t.settings_date_time_section.title}
+      </SettingsHelperText>
 
       <Item.Body>
         <DateFormatSetting />

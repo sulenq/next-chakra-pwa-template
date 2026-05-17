@@ -401,7 +401,7 @@ const translations = {
   "selected_date": "Tanggal dipilih",
   "september": "September",
   "settings": "Pengaturan",
-  "settings_accent_color": {
+  "settings_accent_color_section": {
     "title": "Warna aksen",
     "description": "Warna utama yang memberi identitas visual pada aplikasi."
   },
@@ -420,7 +420,7 @@ const translations = {
     "description": "Aplikasi akan secara otomatis menyesuaikan zona waktu berdasarkan lokasi perangkat.",
     "helper": "Jika dimatikan, zona waktu akan mengikuti pengaturan manual yang dipilih pengguna."
   },
-  "settings_camera": {
+  "settings_camera_permission": {
     "title": "Akses kamera",
     "description": "Izinkan aplikasi menggunakan kamera perangkat Anda untuk mengambil foto atau video."
   },
@@ -436,6 +436,9 @@ const translations = {
   },
   "settings_date_format": {
     "title": "Format tanggal"
+  },
+  "settings_date_time_section": {
+    "title": "Tanggal & waktu"
   },
   "settings_distance_format": {
     "title": "Jarak"
@@ -454,11 +457,11 @@ const translations = {
     "description": "Pilih bahasa yang digunakan untuk antarmuka aplikasi.",
     "helper": "Pilihan bahasa hanya untuk UI aplikasi, untuk konten yang diinput oleh user mungkin akan berbeda tergantung bahasa yang mereka pilih/input."
   },
-  "settings_location": {
+  "settings_location_permission": {
     "title": "Akses lokasi",
     "description": "Izinkan aplikasi menggunakan lokasi perangkat Anda untuk mendapatkan informasi lokasi."
   },
-  "settings_mic": {
+  "settings_mic_permission": {
     "title": "Akses mikrofon",
     "description": "Izinkan aplikasi menggunakan mikrofon perangkat Anda untuk mengambil suara."
   },
@@ -484,7 +487,7 @@ const translations = {
   "settings_pressure_format": {
     "title": "Tekanan"
   },
-  "settings_rounded": {
+  "settings_rounded_section": {
     "title": "Radius/pembulatan",
     "description": "Mengatur seberapa bulat tampilan elemen antarmuka."
   },
@@ -501,7 +504,7 @@ const translations = {
     "title": "Zona waktu"
   },
   "settings_uom_section": {
-    "title": "Sistem Satuan",
+    "title": "Sistem satuan",
     "helper": "Format akan digunakan saat menampilkan nilai satuan"
   },
   "settings_volume_format": {

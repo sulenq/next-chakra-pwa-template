@@ -1219,14 +1219,6 @@ export const alert_pdf_failed_to_load = {
 };
 
 // Setting Page
-export const settings_color_mode_reset = {
-  title: { id: "Reset ke mode default", en: "Reset to default mode" },
-
-  description: {
-    id: "Default color mode mengikuti sistem",
-    en: "Default color mode follows the system",
-  },
-};
 export const settings_adaptive_dark_mode = {
   title: { id: "Mode gelap adaptif", en: "Adaptive dark mode" },
 
@@ -1235,40 +1227,16 @@ export const settings_adaptive_dark_mode = {
     en: "UI dark mode active at night ${timeRange} (local time)",
   },
 };
-export const settings_camera = {
-  title: {
-    id: "Akses kamera",
-    en: "Camera access",
-  },
+export const settings_color_mode_reset = {
+  title: { id: "Reset ke mode default", en: "Reset to default mode" },
 
   description: {
-    id: "Izinkan aplikasi menggunakan kamera perangkat Anda untuk mengambil foto atau video.",
-    en: "Allow the app to access your device's camera to take photos or videos.",
+    id: "Default color mode mengikuti sistem",
+    en: "Default color mode follows the system",
   },
 };
-export const settings_mic = {
-  title: {
-    id: "Akses mikrofon",
-    en: "Microphone access",
-  },
 
-  description: {
-    id: "Izinkan aplikasi menggunakan mikrofon perangkat Anda untuk mengambil suara.",
-    en: "Allow the app to access your device's microphone to record audio.",
-  },
-};
-export const settings_location = {
-  title: {
-    id: "Akses lokasi",
-    en: "Location access",
-  },
-
-  description: {
-    id: "Izinkan aplikasi menggunakan lokasi perangkat Anda untuk mendapatkan informasi lokasi.",
-    en: "Allow the app to access your device's location to get location information.",
-  },
-};
-export const settings_accent_color = {
+export const settings_accent_color_section = {
   title: {
     id: "Warna aksen",
     en: "Accent color",
@@ -1279,7 +1247,7 @@ export const settings_accent_color = {
     en: "The primary color that defines the visual identity of the application.",
   },
 };
-export const settings_rounded = {
+export const settings_rounded_section = {
   title: {
     id: "Radius/pembulatan",
     en: "Radius/rounding",
@@ -1290,6 +1258,7 @@ export const settings_rounded = {
     en: "Controls how rounded interface elements appear.",
   },
 };
+
 export const settings_locale_section = {
   title: {
     id: "Bahasa",
@@ -1304,6 +1273,12 @@ export const settings_locale_section = {
   helper: {
     id: "Pilihan bahasa hanya untuk UI aplikasi, untuk konten yang diinput oleh user mungkin akan berbeda tergantung bahasa yang mereka pilih/input.",
     en: "Language selection is only for the application UI, for content entered by the user it may be different depending on the language they choose/enter.",
+  },
+};
+export const settings_date_time_section = {
+  title: {
+    id: "Tanggal & waktu",
+    en: "Date & time",
   },
 };
 export const settings_date_format = {
@@ -1342,8 +1317,8 @@ export const settings_timezone = {
 };
 export const settings_uom_section = {
   title: {
-    id: "Sistem Satuan",
-    en: "Units of Measurement",
+    id: "Sistem satuan",
+    en: "Units of measurement",
   },
 
   helper: {
@@ -1433,6 +1408,40 @@ export const settings_angle_format = {
   title: {
     id: "Sudut",
     en: "Angle",
+  },
+};
+
+export const settings_camera_permission = {
+  title: {
+    id: "Akses kamera",
+    en: "Camera access",
+  },
+
+  description: {
+    id: "Izinkan aplikasi menggunakan kamera perangkat Anda untuk mengambil foto atau video.",
+    en: "Allow the app to access your device's camera to take photos or videos.",
+  },
+};
+export const settings_mic_permission = {
+  title: {
+    id: "Akses mikrofon",
+    en: "Microphone access",
+  },
+
+  description: {
+    id: "Izinkan aplikasi menggunakan mikrofon perangkat Anda untuk mengambil suara.",
+    en: "Allow the app to access your device's microphone to record audio.",
+  },
+};
+export const settings_location_permission = {
+  title: {
+    id: "Akses lokasi",
+    en: "Location access",
+  },
+
+  description: {
+    id: "Izinkan aplikasi menggunakan lokasi perangkat Anda untuk mendapatkan informasi lokasi.",
+    en: "Allow the app to access your device's location to get location information.",
   },
 };
 
