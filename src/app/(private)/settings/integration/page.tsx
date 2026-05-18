@@ -2,10 +2,10 @@
 
 import { Btn } from "@/components/ui/btn";
 import { Field, FieldsetRoot } from "@/components/ui/field";
+import { SettingsHelperText } from "@/components/ui/helper-text";
+import { PasswordInput } from "@/components/ui/password-input";
 import { Skeleton } from "@/components/ui/skeleton";
 import { StackH, StackV } from "@/components/ui/stack";
-import { TextareaInput } from "@/components/ui/textarea-input";
-import { AppIconLucide } from "@/components/widgets/app-icon";
 import FeedbackNoData from "@/components/widgets/feedback-no-data";
 import FeedbackNotFound from "@/components/widgets/feedback-not-found";
 import FeedbackRetry from "@/components/widgets/feedback-retry";
@@ -17,7 +17,6 @@ import { useThemeContext } from "@/contexts/use-theme-context";
 import { useFetchData } from "@/hooks/useFetchData";
 import { useRequest } from "@/hooks/useRequestOld";
 import { useFormik } from "formik";
-import { KeyRoundIcon } from "lucide-react";
 import { useEffect } from "react";
 import * as yup from "yup";
 
@@ -75,61 +74,53 @@ const APIKeys = (props: any) => {
   }, [apiKeys]);
 
   return (
-    <Item.Body borderless bg={"transparent"}>
-      <Item.Header borderless>
-        <StackH align={"center"}>
-          <AppIconLucide icon={KeyRoundIcon} />
+    <Item.Root px={R_SPACING_MD}>
+      <SettingsHelperText>API Keys</SettingsHelperText>
 
-          <Item.Title>API Keys</Item.Title>
-        </StackH>
-      </Item.Header>
-
-      <StackV px={R_SPACING_MD} pb={R_SPACING_MD}>
-        <Item.Body p={4}>
-          <form id={"api-keys-form"} onSubmit={formik.handleSubmit}>
-            <FieldsetRoot disabled={loading}>
-              <Field
-                label={"Mapbox Token"}
-                invalid={!!formik.errors.mapboxToken}
-                errorText={formik.errors.mapboxToken as string}
-              >
-                <TextareaInput
-                  inputValue={formik.values.mapboxToken}
-                  onChange={(inputValue) => {
-                    formik.setFieldValue("mapboxToken", inputValue);
-                  }}
-                  // variant={"subtle"}
-                />
-              </Field>
-
-              <Field
-                label={"Tiny MCE Token"}
-                invalid={!!formik.errors.tinyMceToken}
-                errorText={formik.errors.tinyMceToken as string}
-              >
-                <TextareaInput
-                  inputValue={formik.values.tinyMceToken}
-                  onChange={(inputValue) => {
-                    formik.setFieldValue("tinyMceToken", inputValue);
-                  }}
-                  // variant={"subtle"}
-                />
-              </Field>
-            </FieldsetRoot>
-          </form>
-
-          <StackH align={"center"} justify={"end"} mt={8}>
-            <Btn
-              type={"submit"}
-              form={"api-keys-form"}
-              colorPalette={themeContext.colorPalette}
+      <Item.Body p={4}>
+        <form id={"api-keys-form"} onSubmit={formik.handleSubmit}>
+          <FieldsetRoot disabled={loading}>
+            <Field
+              label={"Mapbox Token"}
+              invalid={!!formik.errors.mapboxToken}
+              errorText={formik.errors.mapboxToken as string}
             >
-              {t.save}
-            </Btn>
-          </StackH>
-        </Item.Body>
-      </StackV>
-    </Item.Body>
+              <PasswordInput
+                inputValue={formik.values.mapboxToken}
+                onChange={(inputValue) => {
+                  formik.setFieldValue("mapboxToken", inputValue);
+                }}
+                // variant={"subtle"}
+              />
+            </Field>
+
+            <Field
+              label={"Tiny MCE Token"}
+              invalid={!!formik.errors.tinyMceToken}
+              errorText={formik.errors.tinyMceToken as string}
+            >
+              <PasswordInput
+                inputValue={formik.values.tinyMceToken}
+                onChange={(inputValue) => {
+                  formik.setFieldValue("tinyMceToken", inputValue);
+                }}
+                // variant={"subtle"}
+              />
+            </Field>
+          </FieldsetRoot>
+        </form>
+
+        <StackH align={"center"} justify={"end"} mt={8}>
+          <Btn
+            type={"submit"}
+            form={"api-keys-form"}
+            colorPalette={themeContext.colorPalette}
+          >
+            {t.save}
+          </Btn>
+        </StackH>
+      </Item.Body>
+    </Item.Root>
   );
 };
 

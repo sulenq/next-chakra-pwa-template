@@ -8,7 +8,7 @@ import {
 } from "@/features/layanan/service/layanan.api";
 import { queryKeys } from "@/lib/tanstack-query/query.keys";
 import { mutationToastHandlers } from "@/lib/toast/toast.handler";
-import { BaseDataListParams } from "@/types/global.types";
+import { BaseDataListParams, Pagination } from "@/types/global.types";
 import { getMainViewTitle } from "@/utils/route";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { GenericFormData } from "axios";
@@ -25,6 +25,10 @@ export const useLayananQuery = (params: BaseDataListParams) => {
   return {
     ...query,
     dataList: query.data?.data,
+    pagination: {
+      totalPage: 10,
+      totalData: 112,
+    } as Pagination,
     // pagination: query.data?.pagination as Pagination,
   };
 };

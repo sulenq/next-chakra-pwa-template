@@ -11,6 +11,7 @@ import FeedbackNoData from "@/components/widgets/feedback-no-data";
 import FeedbackRetry from "@/components/widgets/feedback-retry";
 import { ImgViewer } from "@/components/widgets/img-viewer";
 import { TopLoadingBar } from "@/components/widgets/loading-bar";
+import { DEFAULT_LIMIT, DEFAULT_PAGE } from "@/constants/data-list";
 import { useDataDisplay } from "@/contexts/use-data-display-context";
 import { useLocale } from "@/contexts/use-locale-context";
 import { useThemeContext } from "@/contexts/use-theme-context";
@@ -27,6 +28,7 @@ import {
 import { isEmptyArray } from "@/utils/array";
 import { imgUrl } from "@/utils/url";
 import { Box, StackProps } from "@chakra-ui/react";
+import { useState } from "react";
 
 // -----------------------------------------------------------------
 
@@ -38,6 +40,10 @@ export const LayananData = (props: LayananDataProps) => {
   // Props
   const { filter } = props;
 
+  // States
+  const [limit, setLimit] = useState<number>(DEFAULT_LIMIT);
+  const [page, setPage] = useState<number>(DEFAULT_PAGE);
+
   // Contexts
   const { t, locale } = useLocale();
   const { themeContext } = useThemeContext();
@@ -45,7 +51,7 @@ export const LayananData = (props: LayananDataProps) => {
     useDataDisplay((s) => s.getDisplay(LAYANAN_ID)) === "table";
 
   // Query
-  const { dataList, isLoading, isFetching, isError, refetch } =
+  const { dataList, pagination, isLoading, isFetching, isError, refetch } =
     useLayananQuery(filter);
 
   // Constants
@@ -114,6 +120,12 @@ export const LayananData = (props: LayananDataProps) => {
           rows={dataListConfig.rows}
           rowOptions={dataListConfig.rowOptions}
           batchOptions={dataListConfig.batchOptions}
+          page={page}
+          setPage={setPage}
+          totalPage={pagination.totalPage}
+          totalData={pagination.totalData}
+          limit={limit}
+          setLimit={setLimit}
         />
       ) : (
         <DataGrid.Root
@@ -174,6 +186,12 @@ export const LayananData = (props: LayananDataProps) => {
               </DataGrid.Item>
             );
           }}
+          page={page}
+          setPage={setPage}
+          totalPage={pagination.totalPage}
+          totalData={pagination.totalData}
+          limit={limit}
+          setLimit={setLimit}
         />
       )}
     </>
