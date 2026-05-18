@@ -32,11 +32,11 @@ import { useState } from "react";
 
 // -----------------------------------------------------------------
 
-interface LayananDataProps extends StackProps {
+interface LayananListProps extends StackProps {
   filter: any;
 }
 
-export const LayananData = (props: LayananDataProps) => {
+export const LayananList = (props: LayananListProps) => {
   // Props
   const { filter } = props;
 

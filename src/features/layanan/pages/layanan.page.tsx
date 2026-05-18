@@ -9,8 +9,8 @@ import {
 } from "@/components/widgets/main-view";
 import { ScrollH } from "@/components/widgets/scroll-h";
 import { GAP, R_SPACING_MD } from "@/constants/styles";
-import { LayananData } from "@/features/layanan/components/layanan.data";
-import { LayananDataUtils } from "@/features/layanan/components/layanan.data-utils";
+import { LayananList } from "@/features/layanan/components/layanan.list";
+import { LayananListUtils } from "@/features/layanan/components/layanan.list-utils";
 import { useState } from "react";
 import { LayananCreate } from "../components/layanan.create";
 
@@ -42,7 +42,7 @@ export default function LayananPage() {
         >
           <StackH align={"center"} gap={2}>
             {!isSmContainer && (
-              <LayananDataUtils filter={filter} setFilter={setFilter} />
+              <LayananListUtils filter={filter} setFilter={setFilter} />
             )}
 
             <LayananCreate />
@@ -57,13 +57,13 @@ export default function LayananPage() {
               justify={"space-between"}
               px={R_SPACING_MD}
             >
-              <LayananDataUtils filter={filter} setFilter={setFilter} />
+              <LayananListUtils filter={filter} setFilter={setFilter} />
             </StackH>
           </ScrollH>
         )}
 
         <Item.Body flex={1} overflowY={"auto"}>
-          <LayananData filter={filter} />
+          <LayananList filter={filter} />
         </Item.Body>
       </ConstrainedContainer>
     </MainView.Content>

@@ -10,12 +10,12 @@ import { Settings2Icon } from "lucide-react";
 
 // -----------------------------------------------------------------
 
-interface LayananDataUtilsProps {
+interface LayananListUtilsProps {
   filter: any;
   setFilter: any;
 }
 
-export const LayananDataUtils = (props: LayananDataUtilsProps) => {
+export const LayananListUtils = (props: LayananListUtilsProps) => {
   // Props
   const { filter, setFilter, ...restProps } = props;
 

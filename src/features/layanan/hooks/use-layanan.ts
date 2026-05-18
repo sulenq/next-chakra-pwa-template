@@ -1,5 +1,5 @@
 import { useLocale } from "@/contexts/use-locale-context";
-import { invalidateLayanan } from "@/features/layanan/query/layanan.invalidate";
+import { invalidateLayanan } from "@/features/layanan/query/layanan-list.invalidate";
 import {
   createLayanan,
   deleteLayanan,
