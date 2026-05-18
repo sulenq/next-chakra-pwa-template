@@ -78,7 +78,7 @@ export const DataGridItem = (props: DataGridItemProps) => {
         <Checkbox
           checked={isRowSelected}
           subtle
-          bg={"gray.emphasized"}
+          bg={"grey.muted"}
           borderColor={"border.emphasized"}
           zIndex={2}
         />
