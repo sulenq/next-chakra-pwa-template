@@ -17,7 +17,7 @@ import { useLocale } from "@/contexts/use-locale-context";
 import { useThemeContext } from "@/contexts/use-theme-context";
 import { LayananDelete } from "@/features/layanan/components/layanan.delete";
 import { LayananUpdate } from "@/features/layanan/components/layanan.update";
-import { useLayananQuery } from "@/features/layanan/hooks/use-layanan";
+import { useLayananListQuery } from "@/features/layanan/hooks/use-layanan";
 import { LAYANAN_ID } from "@/features/layanan/pages/layanan.page";
 import { LayananItem } from "@/features/layanan/types/layanan.types";
 import {
@@ -52,7 +52,7 @@ export const LayananList = (props: LayananListProps) => {
 
   // Query
   const { dataList, pagination, isLoading, isFetching, isError, refetch } =
-    useLayananQuery(filter);
+    useLayananListQuery(filter);
 
   // Constants
   const dataListConfig: DataListConfig = {

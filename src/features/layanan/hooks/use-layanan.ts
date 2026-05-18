@@ -1,5 +1,5 @@
 import { useLocale } from "@/contexts/use-locale-context";
-import { invalidateLayanan } from "@/features/layanan/query/layanan-list.invalidate";
+import { invalidateLayananList } from "@/features/layanan/query/layanan-list.invalidate";
 import {
   createLayanan,
   deleteLayanan,
@@ -16,7 +16,7 @@ import { usePathname } from "next/navigation";
 
 // -----------------------------------------------------------------
 
-export const useLayananQuery = (params: BaseDataListParams) => {
+export const useLayananListQuery = (params: BaseDataListParams) => {
   const query = useQuery({
     queryKey: queryKeys.layanan.list(params),
     queryFn: ({ signal }) => getLayanan(params, signal),
@@ -52,7 +52,7 @@ export const useCreateLayananMutation = () => {
     onMutate: toast.onMutate,
     onSuccess: () => {
       toast.onSuccess();
-      invalidateLayanan();
+      invalidateLayananList();
     },
     onError: toast.onError,
   });
@@ -83,7 +83,7 @@ export const useUpdateLayananMutation = () => {
     onMutate: toast.onMutate,
     onSuccess: () => {
       toast.onSuccess();
-      invalidateLayanan();
+      invalidateLayananList();
     },
     onError: toast.onError,
   });
@@ -108,7 +108,7 @@ export const useDeleteLayananMutation = () => {
     onMutate: toast.onMutate,
     onSuccess: () => {
       toast.onSuccess();
-      invalidateLayanan();
+      invalidateLayananList();
     },
     onError: toast.onError,
   });
