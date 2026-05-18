@@ -58,67 +58,6 @@ export const PRIVATE_NAV_GROUPS: NavGroup[] = [
           },
         ],
       },
-
-      // {
-      //   icon: UsersIcon,
-      //   labelKey: "navs.user",
-      //   path: `/user`,
-      //   allowedRoles: [],
-      // },
-      // {
-      //   icon: UsersIcon,
-      //   labelKey: "navs.user",
-      //   path: `/user`,
-      //   allowedRoles: [],
-      // },
-      // {
-      //   icon: UsersIcon,
-      //   labelKey: "navs.user",
-      //   path: `/user`,
-      //   allowedRoles: [],
-      // },
-      // {
-      //   icon: UsersIcon,
-      //   labelKey: "navs.user",
-      //   path: `/user`,
-      //   allowedRoles: [],
-      // },
-      // {
-      //   icon: UsersIcon,
-      //   labelKey: "navs.user",
-      //   path: `/user`,
-      //   allowedRoles: [],
-      // },
-      // {
-      //   icon: UsersIcon,
-      //   labelKey: "navs.user",
-      //   path: `/user`,
-      //   allowedRoles: [],
-      // },
-      // {
-      //   icon: UsersIcon,
-      //   labelKey: "navs.user",
-      //   path: `/user`,
-      //   allowedRoles: [],
-      // },
-      // {
-      //   icon: UsersIcon,
-      //   labelKey: "navs.user",
-      //   path: `/user`,
-      //   allowedRoles: [],
-      // },
-      // {
-      //   icon: UsersIcon,
-      //   labelKey: "navs.user",
-      //   path: `/user`,
-      //   allowedRoles: [],
-      // },
-      // {
-      //   icon: UsersIcon,
-      //   labelKey: "navs.user",
-      //   path: `/user`,
-      //   allowedRoles: [],
-      // },
     ],
   },
 ];
@@ -158,7 +97,7 @@ export const OTHER_PRIVATE_NAV_GROUPS: NavGroup[] = [
             navs: [
               {
                 icon: UserIcon,
-                labelKey: "my_profile",
+                labelKey: "settings_navs.main.my_profile",
                 path: `/settings/profile`,
                 allowedRoles: [],
                 backPath: `/settings`,

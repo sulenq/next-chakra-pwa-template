@@ -75,6 +75,10 @@ export const settings_navs = {
       id: "Utama",
       en: "Main",
     },
+    my_profile: {
+      id: "Profil Saya",
+      en: "My Profile",
+    },
     display: {
       id: "Tampilan",
       en: "Display",

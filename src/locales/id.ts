@@ -486,6 +486,7 @@ const translations = {
   "settings_navs": {
     "main": {
       "index": "Utama",
+      "my_profile": "Profil Saya",
       "display": "Tampilan",
       "regional": "Regional",
       "app_permissions": "Izin Aplikasi"

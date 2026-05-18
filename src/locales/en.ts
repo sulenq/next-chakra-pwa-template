@@ -486,6 +486,7 @@ const translations = {
   "settings_navs": {
     "main": {
       "index": "Main",
+      "my_profile": "My Profile",
       "display": "Display",
       "regional": "Regional",
       "app_permissions": "App Permissions"
