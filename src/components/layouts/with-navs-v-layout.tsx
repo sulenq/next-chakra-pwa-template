@@ -46,70 +46,70 @@ export const WithSidenavLayout = (props: WithSidenavLayoutProps) => {
     !isSmContainer || (isSmContainer && !isAtSettingsIndexRoute);
 
   return (
-    <StackH
-      flex={1}
-      w={"full"}
-      overflowY={"auto"}
-      pos={"relative"}
-      {...restProps}
-    >
-      {/* Sidebar */}
-      {showSidebar && (
-        <StackV
-          flexShrink={0}
-          w={isSmContainer ? "full" : "250px"}
-          h={"full"}
-          py={GAP}
-          pl={GAP}
-          overflowY={"auto"}
-        >
+    <ConstrainedContainer flex={1} overflowY={"auto"}>
+      <StackH
+        flex={1}
+        w={"full"}
+        overflowY={"auto"}
+        pos={"relative"}
+        {...restProps}
+      >
+        {/* Sidebar */}
+        {showSidebar && (
           <StackV
-            flex={1}
-            px={isSmContainer ? 2 : 0}
-            pb={isSmContainer ? 2 : 0}
-            rounded={themeContext.radii.container}
+            flexShrink={0}
+            w={isSmContainer ? "full" : "250px"}
+            h={"full"}
+            py={GAP}
+            pl={GAP}
             overflowY={"auto"}
           >
-            <MainView.Header
-              withTitle
-              title={t.settings}
-              px={isSmContainer ? "6px" : R_SPACING_MD}
-            />
+            <StackV
+              flex={1}
+              px={isSmContainer ? 2 : 0}
+              pb={isSmContainer ? 2 : 0}
+              rounded={themeContext.radii.container}
+              overflowY={"auto"}
+            >
+              <MainView.Header
+                withTitle
+                title={t.settings}
+                px={isSmContainer ? "6px" : R_SPACING_MD}
+              />
 
-            <StackV className={"scrollY"} flex={1} p={R_SPACING_MD}>
-              <NavsV
-                navs={navs}
-                addonElement={
-                  <StackV mt={"auto"} gap={1}>
-                    <HelperText>{`v${APP.version}`}</HelperText>
+              <StackV className={"scrollY"} flex={1} p={R_SPACING_MD}>
+                <NavsV
+                  navs={navs}
+                  addonElement={
+                    <StackV mt={"auto"} gap={1}>
+                      <HelperText>{`v${APP.version}`}</HelperText>
 
-                    <HelperText>
-                      {`Last updated: 
+                      <HelperText>
+                        {`Last updated: 
                         ${formatAbsDate(APP.lastUpdated, t, {
                           variant: "numeric",
                         })}`}
-                    </HelperText>
-                  </StackV>
-                }
-                navsExpanded
-                showGroupLabel
-                flex={1}
-              />
+                      </HelperText>
+                    </StackV>
+                  }
+                  navsExpanded
+                  showGroupLabel
+                  flex={1}
+                />
+              </StackV>
             </StackV>
           </StackV>
-        </StackV>
-      )}
+        )}
 
-      {/* Content */}
-      {showContent && (
-        <MainView.Root className={"scrollY"} flex={1}>
-          <ConstrainedContainer flex={1} p={GAP}>
+        {/* Content */}
+        {showContent && (
+          <MainView.Root className={"scrollY"} flex={1}>
             {pathname !== rootPath && <MainView.Header withTitle px={4} />}
 
             <StackV flex={1}>{children}</StackV>
-          </ConstrainedContainer>
-        </MainView.Root>
-      )}
-    </StackH>
+          </MainView.Root>
+        )}
+      </StackH>
+    </ConstrainedContainer>
   );
 };

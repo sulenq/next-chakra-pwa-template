@@ -12,6 +12,7 @@ import { BottomIndicator, LeftIndicator } from "@/components/widgets/indicator";
 import { Logo } from "@/components/widgets/logo";
 import { MContainerV } from "@/components/widgets/m-container";
 import {
+  ConstrainedContainer,
   MainView,
   NavBreadcrumb,
   TopBar,
@@ -60,6 +61,8 @@ import { Center } from "@chakra-ui/react";
 import { ChevronsLeftIcon, ChevronsRightIcon, ServerIcon } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { Fragment } from "react";
+
+// -----------------------------------------------------------------
 
 const MobileLayout = (props: any) => {
   // Props
@@ -320,6 +323,8 @@ const MobileLayout = (props: any) => {
   );
 };
 
+// -----------------------------------------------------------------
+
 const DesktopLayout = (props: any) => {
   // Props
   const { children, ...restProps } = props;
@@ -522,17 +527,14 @@ const DesktopLayout = (props: any) => {
         {/* Content */}
         <MainView.Root w={"full"} overflowY={"auto"}>
           <StackV px={GAP}>
-            <StackH
+            <ConstrainedContainer
               align={"center"}
               w={"full"}
               h={TOP_BAR_H}
               p={R_SPACING_MD}
-              // borderBottom={"1px solid"}
-              borderColor={"border.muted"}
-              // rounded={themeContext.radii.container}
             >
               <TopBar />
-            </StackH>
+            </ConstrainedContainer>
           </StackV>
 
           <MContainerV flex={1} overflow={"auto"}>
@@ -543,6 +545,8 @@ const DesktopLayout = (props: any) => {
     </StackV>
   );
 };
+
+// -----------------------------------------------------------------
 
 export default function GenericAppLayout(props: any) {
   // Hooks
