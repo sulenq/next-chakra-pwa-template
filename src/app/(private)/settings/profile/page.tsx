@@ -242,8 +242,7 @@ const AuthLog = () => {
               key={`${log.id}-${index}`}
               align={"center"}
               gap={4}
-              px={2}
-              py={2}
+              p={4}
               justify={"space-between"}
               borderTop={index === 0 ? "" : "1px solid"}
               borderColor={"border.subtle"}
@@ -291,7 +290,7 @@ const AuthLog = () => {
           />
         </StackV>
 
-        <StackV px={3}>
+        <StackV>
           {initialLoading && render.loading}
           {!initialLoading && (
             <>
@@ -307,7 +306,6 @@ const AuthLog = () => {
         </StackV>
 
         <DataFooter
-          borderless
           limit={limit}
           setLimit={setLimit}
           dataLength={data?.items?.length}
@@ -393,8 +391,7 @@ const ActivityLog = () => {
               justify={"space-between"}
               borderTop={index === 0 ? "" : "1px solid"}
               borderColor={"border.subtle"}
-              px={2}
-              py={2}
+              p={4}
             >
               <StackV>
                 <P>{formatActivityLog(log)}</P>
@@ -432,7 +429,7 @@ const ActivityLog = () => {
           />
         </StackV>
 
-        <StackV px={3}>
+        <StackV>
           {initialLoading && render.loading}
           {!initialLoading && (
             <>
@@ -448,7 +445,6 @@ const ActivityLog = () => {
         </StackV>
 
         <DataFooter
-          borderless
           limit={limit}
           setLimit={setLimit}
           dataLength={data?.items?.length}

@@ -1,5 +1,6 @@
 "use client";
 
+import { SettingsHelperText } from "@/components/ui/helper-text";
 import { P } from "@/components/ui/p";
 import { SearchInput } from "@/components/ui/search-input";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -8,19 +9,16 @@ import { DataFooter } from "@/components/widgets/data-footer";
 import FeedbackNoData from "@/components/widgets/feedback-no-data";
 import FeedbackNotFound from "@/components/widgets/feedback-not-found";
 import FeedbackRetry from "@/components/widgets/feedback-retry";
-import { LucideIcon } from "@/components/widgets/icon";
 import { Item } from "@/components/widgets/item";
 import { MiniUser } from "@/components/widgets/mini-user";
 import { dummyAllActivityLogs } from "@/constants/dummy-data";
 import { ActivityActionEnum } from "@/constants/enums";
-import { BASE_ICON_BOX_SIZE, R_SPACING_MD } from "@/constants/styles";
+import { R_SPACING_MD } from "@/constants/styles";
 import { useLocale } from "@/contexts/use-locale-context";
 import { useFetchData } from "@/hooks/useFetchData";
 import type { ActivityLog } from "@/types/global.types";
 import { isEmptyArray } from "@/utils/array";
 import { formatDate } from "@/utils/formatter";
-import { Icon } from "@chakra-ui/react";
-import { ActivityIcon } from "lucide-react";
 import { useState } from "react";
 
 const ActivityLog = () => {
@@ -93,8 +91,7 @@ const ActivityLog = () => {
               align={"center"}
               key={`${log.id}-${index}`}
               gap={4}
-              px={4}
-              py={2}
+              p={4}
               justify={"space-between"}
               borderTop={index === 0 ? "" : "1px solid"}
               borderColor={"border.subtle"}
@@ -120,57 +117,46 @@ const ActivityLog = () => {
   };
 
   return (
-    <Item.Body borderless bg={"transparent"}>
-      <Item.Header borderless>
-        <StackH align={"center"}>
-          <Icon boxSize={BASE_ICON_BOX_SIZE}>
-            <LucideIcon icon={ActivityIcon} />
-          </Icon>
-          <Item.Title>{t.activity_logs}</Item.Title>
-        </StackH>
-      </Item.Header>
+    <Item.Root px={R_SPACING_MD}>
+      <SettingsHelperText>{t.activity_logs}</SettingsHelperText>
 
-      <StackV px={R_SPACING_MD} pb={R_SPACING_MD}>
-        <Item.Body>
-          <StackV p={4}>
-            <SearchInput
-              onChange={(inputValue) => {
-                setSearch(inputValue || "");
-              }}
-              inputValue={search}
-              queryKey={"q-activity-auth"}
-            />
-          </StackV>
-
-          <StackV minH={"300px"}>
-            {initialLoading && render.loading}
-            {!initialLoading && (
-              <>
-                {error && render.error}
-                {!error && (
-                  <>
-                    {data?.items && render.loaded}
-                    {(!data?.items || isEmptyArray(data?.items)) &&
-                      render.empty}
-                  </>
-                )}
-              </>
-            )}
-          </StackV>
-
-          <DataFooter
-            borderless
-            limit={limit}
-            setLimit={setLimit}
-            dataLength={data?.items?.length}
-            totalData={data?.totalData}
-            page={page}
-            setPage={setPage}
-            totalPage={pagination?.meta?.totalPage}
+      <Item.Body>
+        <StackV p={4}>
+          <SearchInput
+            onChange={(inputValue) => {
+              setSearch(inputValue || "");
+            }}
+            inputValue={search}
+            queryKey={"q-activity-auth"}
           />
-        </Item.Body>
-      </StackV>
-    </Item.Body>
+        </StackV>
+
+        <StackV minH={"300px"}>
+          {initialLoading && render.loading}
+          {!initialLoading && (
+            <>
+              {error && render.error}
+              {!error && (
+                <>
+                  {data?.items && render.loaded}
+                  {(!data?.items || isEmptyArray(data?.items)) && render.empty}
+                </>
+              )}
+            </>
+          )}
+        </StackV>
+
+        <DataFooter
+          limit={limit}
+          setLimit={setLimit}
+          dataLength={data?.items?.length}
+          totalData={data?.totalData}
+          page={page}
+          setPage={setPage}
+          totalPage={pagination?.meta?.totalPage}
+        />
+      </Item.Body>
+    </Item.Root>
   );
 };
 

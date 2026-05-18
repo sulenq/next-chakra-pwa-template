@@ -1,9 +1,9 @@
 import { Btn } from "@/components/ui/btn";
 import { Menu } from "@/components/ui/menu";
 import { P } from "@/components/ui/p";
+import { RadioItem } from "@/components/ui/radio";
 import { StackH } from "@/components/ui/stack";
 import { AppIconLucide } from "@/components/widgets/app-icon";
-import { DotIndicator } from "@/components/widgets/indicator";
 import { useLocale } from "@/contexts/use-locale-context";
 import { ChevronDownIcon } from "lucide-react";
 
@@ -47,13 +47,14 @@ export const Limitation = (props: LimitationTableDataProps) => {
             <Menu.Item
               key={t}
               value={`${t}`}
+              pl={2}
               onClick={() => {
                 setLimit(t);
               }}
-              justifyContent={"space-between"}
             >
+              <RadioItem checked={isSelected} />
+
               {t}
-              {isSelected && <DotIndicator mr={"2px"} />}
             </Menu.Item>
           );
         })}

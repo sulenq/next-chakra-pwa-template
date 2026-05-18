@@ -27,7 +27,7 @@ import { disclosureId } from "@/utils/disclosure";
 import { capitalizeWords } from "@/utils/string";
 import { Icon, useFieldContext } from "@chakra-ui/react";
 import { IconReload } from "@tabler/icons-react";
-import { ChevronDownIcon } from "lucide-react";
+import { ChevronsUpDownIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 
 // -----------------------------------------------------------------
@@ -283,7 +283,7 @@ export const SelectInput = (props: SelectInputProps) => {
           )}
 
           <AppIconLucide
-            icon={ChevronDownIcon}
+            icon={ChevronsUpDownIcon}
             color={"fg.subtle"}
             mr={"-2px"}
           />
