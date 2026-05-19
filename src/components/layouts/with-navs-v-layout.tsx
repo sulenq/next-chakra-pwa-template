@@ -45,7 +45,7 @@ export const WithNavsVLayout = (props: WithNavsVLayoutProps) => {
     !isSmContainer || (isSmContainer && !isAtSettingsIndexRoute);
 
   return (
-    <StackV className={"WithNavsVLayout"} flex={1}>
+    <MainView.Content className={"WithNavsVLayout"}>
       <ConstrainedContainer flex={1}>
         <StackH flex={1} w={"full"} pos={"relative"} {...restProps}>
           {/* Navs */}
@@ -108,11 +108,11 @@ export const WithNavsVLayout = (props: WithNavsVLayoutProps) => {
             <MainView.Root flex={1} p={GAP}>
               {pathname !== rootPath && <MainView.Header withTitle px={4} />}
 
-              <StackV flex={1}>{children}</StackV>
+              {children}
             </MainView.Root>
           )}
         </StackH>
       </ConstrainedContainer>
-    </StackV>
+    </MainView.Content>
   );
 };

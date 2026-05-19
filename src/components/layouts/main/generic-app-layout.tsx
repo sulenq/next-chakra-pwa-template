@@ -40,7 +40,6 @@ import {
   GAP,
   MOBILE_CONTENT_CONTAINER_BG,
   MOBILE_NAV_LABEL_FONT_SIZE,
-  COMMON_NAV_COLOR,
   MOBILE_POPOVER_MAIN_AXIS,
   R_SPACING_MD,
   TOP_BAR_H,
@@ -534,8 +533,8 @@ const DesktopLayout = (props: any) => {
             </ConstrainedContainer>
           </StackV>
 
-          <MContainerV flex={1} overflow={"auto"}>
-            {children}
+          <MContainerV flex={1} overflowY={"auto"}>
+            <ConstrainedContainer flex={1}>{children}</ConstrainedContainer>
           </MContainerV>
         </MainView.Root>
       </StackH>
