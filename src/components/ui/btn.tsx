@@ -75,7 +75,7 @@ export const Btn = forwardRef<HTMLButtonElement, BtnProps>(
             : ""
         }
         fontSize={"md"}
-        fontWeight={"medium"}
+        fontWeight={"normal"}
         rounded={themeContext.radii.component}
         _focusVisible={
           focusStyle
