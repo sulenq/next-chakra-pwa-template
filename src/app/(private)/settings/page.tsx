@@ -23,7 +23,6 @@ const SettingsRoute = () => {
     >
       <FeedbackState
         icon={<LucideIcon icon={SettingsIcon} />}
-        title={t.settings}
         description={t.msg_settings_index_route}
       />
     </StackV>

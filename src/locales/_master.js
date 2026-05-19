@@ -1084,8 +1084,8 @@ export const msg_settings_saved_locally = {
   en: "*This settings are saved locally on your device and will not be synchronized with your account.",
 };
 export const msg_settings_index_route = {
-  id: "Silahkan pilih menu pengaturan.",
-  en: "Please select the settings menu.",
+  id: "Pilih menu pengaturan.",
+  en: "Select the settings menu.",
 };
 export const msg_master_data_index_route = {
   id: "Silahkan pilih menu master data.",

@@ -33,12 +33,12 @@ import {
   DESKTOP_NAV_BTN_PX,
   DESKTOP_NAV_BTN_SIZE,
   DESKTOP_NAV_BTN_VARIANT,
-  DESKTOP_NAVS_COLOR,
+  COMMON_NAV_COLOR,
   DESKTOP_SPACING_MD,
   GAP,
   MOBILE_CONTENT_CONTAINER_BG,
   MOBILE_NAV_LABEL_FONT_SIZE,
-  MOBILE_NAVS_COLOR,
+  COMMON_NAV_COLOR,
   MOBILE_POPOVER_MAIN_AXIS,
   R_SPACING_MD,
   TOP_BAR_H,
@@ -271,7 +271,7 @@ const MobileLayout = (props: any) => {
               <MobileNavLink
                 key={nav.path}
                 to={nav.path}
-                color={pathname === nav.path ? "" : MOBILE_NAVS_COLOR}
+                color={pathname === nav.path ? "" : COMMON_NAV_COLOR}
                 flex={1}
               >
                 <AppIconLucide icon={nav.icon} />
@@ -292,7 +292,7 @@ const MobileLayout = (props: any) => {
           <ProfileMenuTrigger flex={1} w={"50px"}>
             <StackV
               flex={1}
-              color={MOBILE_NAVS_COLOR}
+              color={COMMON_NAV_COLOR}
               cursor={"pointer"}
               gap={1}
             >
@@ -305,7 +305,7 @@ const MobileLayout = (props: any) => {
               <P
                 fontSize={MOBILE_NAV_LABEL_FONT_SIZE}
                 textAlign={"center"}
-                color={isInProfileRoute ? "" : MOBILE_NAVS_COLOR}
+                color={isInProfileRoute ? "" : COMMON_NAV_COLOR}
                 lineClamp={1}
               >
                 {t.profile}
@@ -491,7 +491,7 @@ const DesktopLayout = (props: any) => {
                                 color={
                                   pathname.includes("/master-data")
                                     ? ""
-                                    : DESKTOP_NAVS_COLOR
+                                    : COMMON_NAV_COLOR
                                 }
                               />
                             </Center>

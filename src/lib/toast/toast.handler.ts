@@ -151,7 +151,7 @@ export function toastDismiss(id: string): void {
  * const toast = mutationToastHandlers("create-layanan");
  * useMutation({
  *   mutationFn: ...,
- *   onMutate: toast.onMutate,
+ *   onMutate: toast.onLoading,
  *   onSuccess: () => { toast.onSuccess(); invalidateSomething(); },
  *   onError: toast.onError,
  * })
@@ -161,7 +161,7 @@ export function mutationToastHandlers(
   options?: MutationToastOptions,
 ) {
   return {
-    onMutate: () => {
+    onLoading: () => {
       toastLoading(id, options?.loadingMessage);
     },
     onSuccess: () => {

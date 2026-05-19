@@ -49,7 +49,7 @@ export const useCreateLayananMutation = () => {
 
   return useMutation({
     mutationFn: (data: GenericFormData) => createLayanan(data),
-    onMutate: toast.onMutate,
+    onMutate: toast.onLoading,
     onSuccess: () => {
       toast.onSuccess();
       invalidateLayananList();
@@ -80,7 +80,7 @@ export const useUpdateLayananMutation = () => {
       id: string | number;
       data: GenericFormData;
     }) => updateLayanan(id, data),
-    onMutate: toast.onMutate,
+    onMutate: toast.onLoading,
     onSuccess: () => {
       toast.onSuccess();
       invalidateLayananList();
@@ -105,7 +105,7 @@ export const useDeleteLayananMutation = () => {
 
   return useMutation({
     mutationFn: (ids: (string | number)[]) => deleteLayanan(ids),
-    onMutate: toast.onMutate,
+    onMutate: toast.onLoading,
     onSuccess: () => {
       toast.onSuccess();
       invalidateLayananList();

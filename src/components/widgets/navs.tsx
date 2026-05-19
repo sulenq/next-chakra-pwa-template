@@ -19,7 +19,7 @@ import {
   BACKDROP_BLUR_FILTER,
   BASE_ICON_BOX_SIZE,
   DESKTOP_ACTIVE_NAV_BTN_VARIANT,
-  DESKTOP_NAVS_COLOR,
+  COMMON_NAV_COLOR,
   DESKTOP_NAV_BTN_COLOR_PATELLE,
   DESKTOP_NAV_BTN_ICON_BG,
   DESKTOP_NAV_BTN_PX,
@@ -174,7 +174,7 @@ export const NavsV = (props: NavsVProps) => {
                                   <AppIconLucide
                                     icon={nav.icon}
                                     color={
-                                      isMainNavsActive ? "" : DESKTOP_NAVS_COLOR
+                                      isMainNavsActive ? "" : COMMON_NAV_COLOR
                                     }
                                   />
                                 </Center>
@@ -256,7 +256,7 @@ export const NavsV = (props: NavsVProps) => {
                                           color={
                                             isMainNavsActive
                                               ? ""
-                                              : DESKTOP_NAVS_COLOR
+                                              : COMMON_NAV_COLOR
                                           }
                                         />
                                       </Center>
@@ -314,7 +314,7 @@ export const NavsV = (props: NavsVProps) => {
                                                   color={
                                                     isSubNavsActive
                                                       ? `${themeContext.colorPalette}.fg`
-                                                      : DESKTOP_NAVS_COLOR
+                                                      : COMMON_NAV_COLOR
                                                   }
                                                   px={3}
                                                   justifyContent={"start"}
@@ -394,7 +394,7 @@ export const NavsV = (props: NavsVProps) => {
                                             color={
                                               isMainNavsActive
                                                 ? ""
-                                                : DESKTOP_NAVS_COLOR
+                                                : COMMON_NAV_COLOR
                                             }
                                           />
                                         </Center>
@@ -532,7 +532,7 @@ export const NavsV = (props: NavsVProps) => {
                                                       color={
                                                         isSubNavsActive
                                                           ? `${themeContext.colorPalette}.fg`
-                                                          : DESKTOP_NAVS_COLOR
+                                                          : COMMON_NAV_COLOR
                                                       }
                                                     >
                                                       <P
