@@ -13,6 +13,7 @@ export const DESKTOP_NAV_BTN_COLOR_PATELLE = "gray";
 export const DESKTOP_NAV_BTN_ICON_BG = "bg.muted";
 export const DESKTOP_ACTIVE_NAV_BTN_VARIANT = "subtle";
 export const DESKTOP_NAV_GAP = "8px";
+export const COMMON_NAV_COLOR = "fg.muted";
 
 // Sizes
 export const MAIN_BUTTON_SIZE = ["md", null, "sm"] as any;

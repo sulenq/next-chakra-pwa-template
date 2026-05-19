@@ -229,7 +229,7 @@ export function formatUOM<K extends UnitKey>(
 
   const fractionDigits = options?.fractionDigits ?? 2;
   const fromUnit: string = options?.from ?? ISO_DEFAULTS[unit];
-  const toUnit: string = useUOMFormat.getState().UOM[unit];
+  const toUnit: string = useUOMFormat.getState().UOM[unit].key;
 
   let converted: number;
 

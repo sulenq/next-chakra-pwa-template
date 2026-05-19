@@ -1,7 +1,7 @@
 "use client";
 
 import { P, PProps } from "@/components/ui/p";
-import { DateVariant } from "@/types/global.types";
+import { DateVariant, DateFormat } from "@/types/global.types";
 import useDateFormat from "@/contexts/use-date-format-context";
 import { useLocale } from "@/contexts/use-locale-context";
 import useTimezone from "@/contexts/use-timezone-context";
@@ -26,7 +26,7 @@ export const Today = (props: TodayProps) => {
     <P {...restProps}>
       {formatDate(new Date().toISOString(), t, {
         variant: dateVariant,
-        dateFormat: dateFormat,
+        dateFormat: dateFormat?.id as DateFormat,
         timezoneKey: tz.key,
       })}
     </P>
@@ -47,7 +47,7 @@ export const TodayWeekday = (props: TodayWeekdayProps) => {
     <P {...restProps}>
       {formatDate(new Date().toISOString(), t, {
         variant: "weekday",
-        dateFormat: dateFormat,
+        dateFormat: dateFormat?.id as DateFormat,
         timezoneKey: tz.key,
       })}
     </P>

@@ -626,8 +626,7 @@ const LocationSection = () => {
   // Utils
   function requestLocationPermission() {
     getLatLon()
-      .then((r) => {
-        console.debug(r);
+      .then(() => {
         setLocationPermissionsStatus("granted_temporary");
       })
       .catch((error: any) => {

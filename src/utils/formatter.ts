@@ -27,7 +27,18 @@ export const formatDate = (
 ): string => {
   if (!date) return "";
 
-  const dateFormat = options.dateFormat || getStorage("dateFormat") || "dmy";
+  const storedDateFormat = getStorage("date-format");
+  let parsedDateFormat = "dmy";
+  if (storedDateFormat) {
+    try {
+      const parsed = JSON.parse(storedDateFormat);
+      parsedDateFormat = parsed.id || "dmy";
+    } catch {
+      parsedDateFormat = storedDateFormat;
+    }
+  }
+  const dateFormat = options.dateFormat || parsedDateFormat;
+
   const timezoneKey = options.timezoneKey || getUserTimezone().key;
 
   let baseDate: Date;
@@ -291,8 +302,18 @@ export const formatTime = (
 ): string => {
   if (!time) return "";
 
-  const timeFormat =
-    options.timeFormat || getStorage("timeFormat") || "24-hour";
+  const storedTimeFormat = getStorage("time-format");
+  let parsedTimeFormat = "24-hour";
+  if (storedTimeFormat) {
+    try {
+      const parsed = JSON.parse(storedTimeFormat);
+      parsedTimeFormat = parsed.id || "24-hour";
+    } catch {
+      parsedTimeFormat = storedTimeFormat;
+    }
+  }
+  const timeFormat = options.timeFormat || parsedTimeFormat;
+
   const timezoneKey = options.timezoneKey || "UTC";
 
   // get timezone offset
