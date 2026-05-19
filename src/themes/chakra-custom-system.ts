@@ -1338,8 +1338,8 @@ export const customConfig = defineConfig({
           },
           contrast: {
             value: {
-              base: "{colors.green.50}",
-              _dark: "{colors.green.950}",
+              base: "{colors.green.50} !important",
+              _dark: "{colors.green.950} !important",
             },
           },
           fg: {
@@ -1384,7 +1384,7 @@ export const customConfig = defineConfig({
           },
           contrast: {
             value: {
-              base: "{colors.jade.950}",
+              base: "{colors.jade.50}",
               _dark: "{colors.jade.950}",
             },
           },
@@ -1430,8 +1430,8 @@ export const customConfig = defineConfig({
           },
           contrast: {
             value: {
-              base: "{colors.teal.50}",
-              _dark: "{colors.teal.950}",
+              base: "{colors.teal.50} !important",
+              _dark: "{colors.teal.950} !important",
             },
           },
           fg: {
@@ -1522,8 +1522,8 @@ export const customConfig = defineConfig({
           },
           contrast: {
             value: {
-              base: "{colors.cyan.50}",
-              _dark: "{colors.cyan.950}",
+              base: "{colors.cyan.50} !important",
+              _dark: "{colors.cyan.950} !important",
             },
           },
           fg: {
@@ -1656,7 +1656,10 @@ export const customConfig = defineConfig({
             },
           },
           contrast: {
-            value: { base: "{colors.blue.50}", _dark: "{colors.blue.100}" },
+            value: {
+              base: "{colors.blue.50} !important",
+              _dark: "{colors.blue.950} !important",
+            },
           },
           fg: {
             value: {
@@ -1926,7 +1929,10 @@ export const customConfig = defineConfig({
             },
           },
           contrast: {
-            value: { base: "{colors.purple.50}", _dark: "{colors.purple.100}" },
+            value: {
+              base: "{colors.purple.50} !important",
+              _dark: "{colors.purple.950} !important",
+            },
           },
           fg: {
             value: {
@@ -2015,7 +2021,10 @@ export const customConfig = defineConfig({
             },
           },
           contrast: {
-            value: { base: "{colors.pink.50}", _dark: "{colors.pink.100}" },
+            value: {
+              base: "{colors.pink.50} !important",
+              _dark: "{colors.pink.950} !important",
+            },
           },
           fg: {
             value: {

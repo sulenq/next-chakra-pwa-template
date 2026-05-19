@@ -20,8 +20,6 @@ export const LanguageSection = () => {
 
   return (
     <Item.Root px={R_SPACING_MD}>
-      <SettingsHelperText>{t.settings_locale_section.title}</SettingsHelperText>
-
       <Item.Body p={4} gap={4}>
         <StackH align={"center"} wrap={"wrap"} gap={2}>
           {LANGUAGES.map((item, i) => {

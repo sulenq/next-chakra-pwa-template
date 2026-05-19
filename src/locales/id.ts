@@ -487,7 +487,7 @@ const translations = {
       "index": "Utama",
       "profile": "Profil",
       "display": "Tampilan",
-      "regional": "Regional",
+      "regional": "Bahasa & Regional",
       "app_permissions": "Izin Aplikasi"
     },
     "system": {

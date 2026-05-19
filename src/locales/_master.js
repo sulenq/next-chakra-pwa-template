@@ -84,8 +84,8 @@ export const settings_navs = {
       en: "Display",
     },
     regional: {
-      id: "Regional",
-      en: "Regional",
+      id: "Bahasa & Regional",
+      en: "Language & Regional",
     },
     app_permissions: {
       id: "Izin Aplikasi",

@@ -487,7 +487,7 @@ const translations = {
       "index": "Main",
       "profile": "Profile",
       "display": "Display",
-      "regional": "Regional",
+      "regional": "Language & Regional",
       "app_permissions": "App Permissions"
     },
     "system": {
