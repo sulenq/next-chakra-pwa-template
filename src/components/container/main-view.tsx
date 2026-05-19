@@ -88,7 +88,7 @@ export const NavBreadcrumb = (props: any) => {
           clicky={false}
           backPath={backPath}
           size={"xs"}
-          ml={"-8px"}
+          ml={[0, null, "-8px"]}
         />
       )}
 
@@ -305,13 +305,7 @@ const MainViewContent = forwardRef<HTMLDivElement, StackProps>(
     const { isValidDimension } = useMainViewContext();
 
     return (
-      <StackV
-        ref={ref}
-        className={"MainViewContent"}
-        flex={1}
-        overflow={"auto"}
-        {...restProps}
-      >
+      <StackV ref={ref} className={"MainViewContent"} flex={1} {...restProps}>
         {isValidDimension ? children : null}
       </StackV>
     );

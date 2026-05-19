@@ -61,7 +61,6 @@ export const WithNavsVLayout = (props: WithNavsVLayoutProps) => {
               px={isSmContainer ? 2 : 0}
               pb={isSmContainer ? 2 : 0}
               rounded={themeContext.radii.container}
-              overflowY={"auto"}
             >
               <MainView.Header
                 withTitle

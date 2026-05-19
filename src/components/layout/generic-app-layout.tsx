@@ -100,7 +100,9 @@ const MobileLayout = (props: any) => {
             px={4}
           >
             <StackH align={"center"}>
-              <Logo size={15} ml={"-4px"} />
+              <NavLink to={"/"}>
+                <Logo size={15} ml={"-4px"} />
+              </NavLink>
             </StackH>
 
             <StackH align={"center"} gap={2}>
@@ -534,7 +536,7 @@ const DesktopLayout = (props: any) => {
           </StackV>
 
           <MContainerV flex={1} overflowY={"auto"} pos={"relative"}>
-            <ConstrainedContainer className={"debug"} flex={1} pos={"relative"}>
+            <ConstrainedContainer flex={1} pos={"relative"}>
               {children}
             </ConstrainedContainer>
           </MContainerV>
