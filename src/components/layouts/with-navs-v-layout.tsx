@@ -10,11 +10,11 @@ import {
 import { NavsV } from "@/components/widgets/navs";
 import { APP } from "@/constants/_meta";
 import { GAP, R_SPACING_MD } from "@/constants/styles";
-import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
 import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";
+import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
 import { NavGroup } from "@/types/global.types";
 import { formatAbsDate } from "@/utils/formatter";
-import { Box, StackProps } from "@chakra-ui/react";
+import { StackProps } from "@chakra-ui/react";
 import { usePathname } from "next/navigation";
 
 // -----------------------------------------------------------------
@@ -45,7 +45,7 @@ export const WithNavsVLayout = (props: WithNavsVLayoutProps) => {
     !isSmContainer || (isSmContainer && !isAtSettingsIndexRoute);
 
   return (
-    <Box className={"WithNavsVLayout"}>
+    <StackV className={"WithNavsVLayout"} flex={1}>
       <ConstrainedContainer flex={1}>
         <StackH flex={1} w={"full"} pos={"relative"} {...restProps}>
           {/* Navs */}
@@ -113,6 +113,6 @@ export const WithNavsVLayout = (props: WithNavsVLayoutProps) => {
           )}
         </StackH>
       </ConstrainedContainer>
-    </Box>
+    </StackV>
   );
 };

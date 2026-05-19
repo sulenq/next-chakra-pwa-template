@@ -18,7 +18,7 @@ export const StackV = forwardRef<HTMLDivElement, StackProps>(
     return (
       <Flex
         ref={ref}
-        className={"stack-v"}
+        className={"stackV"}
         flexDir={"column"}
         align={"stretch"}
         w={"auto"}
@@ -35,7 +35,7 @@ export const StackH = forwardRef<HTMLDivElement, StackProps>(
     return (
       <Flex
         ref={ref}
-        className={"stack-h"}
+        className={"stackH"}
         flexDir={"row"}
         align={"stretch"}
         w={"auto"}
