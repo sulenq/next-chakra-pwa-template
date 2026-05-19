@@ -4,7 +4,7 @@ import { P } from "@/components/ui/p";
 import { StackV } from "@/components/ui/stack";
 import { Switch } from "@/components/ui/switch";
 import { Item } from "@/components/container/item";
-import { SelectTimezone } from "@/components/input/select-timezone";
+import { SelectTimezone } from "@/features/settings/regional/components/select-timezone";
 import { SettingItemContainer } from "@/components/container/settings-shell";
 import { R_SPACING_MD } from "@/constants/styles";
 import useDateFormat from "@/features/settings/regional/contexts/use-date-format-context";

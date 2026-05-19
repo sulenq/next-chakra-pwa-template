@@ -4,7 +4,7 @@ import { FileInputProps, FileInputRoot } from "@/components/ui/file-input";
 import { Img } from "@/components/ui/img";
 import { P } from "@/components/ui/p";
 import { StackH, StackV } from "@/components/ui/stack";
-import { FileItem } from "@/components/input/file-item";
+import { FileItem } from "@/components/ui/file-item";
 import { LucideIcon } from "@/components/misc/icon";
 import { ImgViewer } from "@/components/media/img-viewer";
 import { HScroll } from "@/components/container/h-scroll";

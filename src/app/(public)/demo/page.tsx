@@ -1,5 +1,18 @@
 "use client";
 
+import { AppIconLucide } from "@/components/branding/app-icon";
+import { ConstrainedContainer } from "@/components/container/main-view";
+import { DataTable } from "@/components/data-list/data-table";
+import FeedbackForbidden from "@/components/feedback/feedback-forbidden";
+import FeedbackNoData from "@/components/feedback/feedback-no-data";
+import FeedbackNotFound from "@/components/feedback/feedback-not-found";
+import FeedbackRetry from "@/components/feedback/feedback-retry";
+import { PdfViewer } from "@/components/media/pdf-viewer";
+import { Calendar } from "@/components/misc/calendar";
+import { Clock } from "@/components/misc/clock";
+import { LucideIcon } from "@/components/misc/icon";
+import { Today } from "@/components/misc/today";
+import { Confirmation } from "@/components/overlays/confirmation";
 import { Btn } from "@/components/ui/btn";
 import { ColorModeButton } from "@/components/ui/color-mode";
 import { DatePickerInput } from "@/components/ui/date-picker-input";
@@ -22,26 +35,13 @@ import { TimePickerInput } from "@/components/ui/time-picker-input";
 import { TinyMceRichEditor } from "@/components/ui/tiny-mce-rich-editor";
 import { toaster } from "@/components/ui/toaster";
 import { Tooltip } from "@/components/ui/tooltip";
-import { AppIconLucide } from "@/components/branding/app-icon";
-import { Calendar } from "@/components/misc/calendar";
-import { Clock } from "@/components/misc/clock";
-import { Confirmation } from "@/components/overlays/confirmation";
-import { DataTable } from "@/components/data-list/data-table";
-import FeedbackForbidden from "@/components/feedback/feedback-forbidden";
-import FeedbackNoData from "@/components/feedback/feedback-no-data";
-import FeedbackNotFound from "@/components/feedback/feedback-not-found";
-import FeedbackRetry from "@/components/feedback/feedback-retry";
-import { LucideIcon } from "@/components/misc/icon";
-import { ConstrainedContainer } from "@/components/container/main-view";
-import { PdfViewer } from "@/components/media/pdf-viewer";
-import SelectWorkspaceCategory from "@/components/input/select-workspace-category";
-import { Today } from "@/components/misc/today";
 import VideoPlayer from "@/components/ui/video-player";
 import { OPTIONS_RELIGION } from "@/constants/select-options";
 import { MENU_ICON_BOX_SIZE } from "@/constants/styles";
-import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
 import useRenderTrigger from "@/contexts/use-render-trigger";
 import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";
+import { SelectTimezone } from "@/features/settings/regional/components/select-timezone";
+import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
 import { useRequest } from "@/hooks/useRequestOld";
 import {
   BatchOptionsTableOptionGenerator,
@@ -55,7 +55,6 @@ import { useFormik } from "formik";
 import { PencilIcon, RefreshCcwDotIcon, TrashIcon } from "lucide-react";
 import { useState } from "react";
 import * as yup from "yup";
-
 // TODO_DEV delete this component
 
 const Delete = (props: any) => {
@@ -917,8 +916,8 @@ const DemoIndexRoute = () => {
                 </Field>
 
                 <Field invalid={!!formik.errors.select}>
-                  <SelectWorkspaceCategory
-                    id={"select-workspace-category"}
+                  <SelectTimezone
+                    id={"select-timezone"}
                     inputValue={formik.values.select}
                     onChange={(input) => {
                       formik.setFieldValue("select", input);

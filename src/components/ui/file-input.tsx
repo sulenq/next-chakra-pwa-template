@@ -11,7 +11,7 @@ import { FileIcon } from "@/components/ui/file-icon";
 import { P } from "@/components/ui/p";
 import { toaster } from "@/components/ui/toaster";
 import { Tooltip } from "@/components/ui/tooltip";
-import { FileItem } from "@/components/input/file-item";
+import { FileItem } from "@/components/ui/file-item";
 import { LucideIcon } from "@/components/misc/icon";
 import { StorageFile } from "@/types/global.types";
 import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";

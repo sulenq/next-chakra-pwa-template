@@ -20,7 +20,6 @@ import {
   NavsV,
   DesktopNavTooltip,
   MobileNavLink,
-  UserPanel,
 } from "@/components/navigation/navs";
 import { ProfileMenuTrigger } from "@/components/user/profile-menu";
 import { HScroll } from "@/components/container/h-scroll";
@@ -58,6 +57,7 @@ import { Center } from "@chakra-ui/react";
 import { ChevronsLeftIcon, ChevronsRightIcon, ServerIcon } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { Fragment } from "react";
+import { UserPanel } from "@/components/navigation/user-panel";
 
 const MobileLayout = (props: any) => {
   // Props
