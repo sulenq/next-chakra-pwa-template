@@ -1,28 +1,27 @@
 "use client";
 
+import { AppIconLucide } from "@/components/branding/app-icon";
+import { LucideIcon } from "@/components/misc/icon";
+import { Confirmation } from "@/components/overlays/confirmation";
 import { Avatar } from "@/components/ui/avatar";
 import { Btn } from "@/components/ui/btn";
+import { ClampText } from "@/components/ui/clamp-text";
 import { useColorMode } from "@/components/ui/color-mode";
 import { Divider } from "@/components/ui/divider";
+import { DotIndicator } from "@/components/ui/indicator";
 import { NavLink } from "@/components/ui/nav-link";
 import { P } from "@/components/ui/p";
 import { Popover } from "@/components/ui/popover";
 import { StackH, StackV } from "@/components/ui/stack";
-import { AppIconLucide } from "@/components/branding/app-icon";
-import { ClampText } from "@/components/ui/clamp-text";
-import { Confirmation } from "@/components/overlays/confirmation";
-import { LucideIcon } from "@/components/misc/icon";
-import { DotIndicator } from "@/components/ui/indicator";
 import { AUTH_API_SIGNOUT } from "@/constants/apis";
 import {
   BACKDROP_BLUR_FILTER,
   BASE_ICON_BOX_SIZE,
   GAP,
 } from "@/constants/styles";
-import useADM from "@/features/settings/display/contexts/use-adm-context";
 import { useAuthMiddleware } from "@/contexts/use-auth-middleware-context";
-import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
 import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";
+import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
 import { useRequest } from "@/hooks/useRequestOld";
 import { getUserData } from "@/utils/auth";
 import { back, removeStorage } from "@/utils/client";
@@ -82,7 +81,6 @@ export const ProfileMenu = (props: ProfileMenuProps) => {
   const { t } = useLocaleContext();
   const { themeContext } = useThemeContext();
   const removeAuthContext = useAuthMiddleware((s) => s.removeAuthContext);
-  const ADM = useADM((s) => s.ADM);
 
   // Hooks
   const { colorMode, toggleColorMode } = useColorMode();
@@ -151,24 +149,15 @@ export const ProfileMenu = (props: ProfileMenuProps) => {
       </Stack>
 
       <StackV gap={1} p={"6px"}>
-        {!ADM && (
-          <Btn
-            clicky={false}
-            variant={"ghost"}
-            px={2}
-            onClick={toggleColorMode}
-          >
-            <AppIconLucide
-              icon={colorMode === "dark" ? EclipseIcon : SunIcon}
-            />
-            Dark mode
-            <DotIndicator
-              bg={colorMode === "dark" ? "fg.success" : "bg.muted"}
-              ml={"auto"}
-              mr={1}
-            />
-          </Btn>
-        )}
+        <Btn clicky={false} variant={"ghost"} px={2} onClick={toggleColorMode}>
+          <AppIconLucide icon={colorMode === "dark" ? EclipseIcon : SunIcon} />
+          Dark mode
+          <DotIndicator
+            bg={colorMode === "dark" ? "fg.success" : "bg.muted"}
+            ml={"auto"}
+            mr={1}
+          />
+        </Btn>
 
         <Btn
           clicky={false}

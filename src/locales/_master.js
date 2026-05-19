@@ -1088,8 +1088,8 @@ export const msg_settings_index_route = {
   en: "Select the settings menu.",
 };
 export const msg_master_data_index_route = {
-  id: "Silahkan pilih menu master data.",
-  en: "Please select the master data menu.",
+  id: "Pilih menu master data.",
+  en: "Select the master data menu.",
 };
 export const msg_cannot_be_undone = {
   id: "Aksi ini tidak dapat dibatalkan, harap hati-hati.",

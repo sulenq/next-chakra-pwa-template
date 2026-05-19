@@ -279,7 +279,7 @@ const translations = {
   "msg_hard_delete": "Data will be permanently deleted.",
   "msg_loading_pdf": "Loading PDF document...",
   "msg_location_test_helper": "Click get location to get location data.",
-  "msg_master_data_index_route": "Please select the master data menu.",
+  "msg_master_data_index_route": "Select the master data menu.",
   "msg_new_avatar_helper": "At least 800 x 800 px recommended",
   "msg_no_task": "No scheduled activities today",
   "msg_password_confirmation_not_match": "Password confirmation does not match",

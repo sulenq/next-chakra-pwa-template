@@ -279,7 +279,7 @@ const translations = {
   "msg_hard_delete": "Data akan dihapus permanen.",
   "msg_loading_pdf": "Memuat dokumen PDF...",
   "msg_location_test_helper": "Klik dapatkan lokasi untuk mendapatkan data lokasi.",
-  "msg_master_data_index_route": "Silahkan pilih menu master data.",
+  "msg_master_data_index_route": "Pilih menu master data.",
   "msg_new_avatar_helper": "Direkomendasikan minimal 800 x 800 px",
   "msg_no_task": "Tidak ada aktivitas terjadwal hari ini",
   "msg_password_confirmation_not_match": "Konfirmasi kata sandi tidak cocok",

@@ -7,7 +7,7 @@ import { useLocaleContext } from "@/features/settings/regional/contexts/use-loca
 import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";
 import { SettingsIcon } from "lucide-react";
 
-const SettingsRoute = () => {
+export default function SettingsRoute() {
   // Contexts
   const { t } = useLocaleContext();
   const { themeContext } = useThemeContext();
@@ -27,5 +27,4 @@ const SettingsRoute = () => {
       />
     </StackV>
   );
-};
-export default SettingsRoute;
+}
