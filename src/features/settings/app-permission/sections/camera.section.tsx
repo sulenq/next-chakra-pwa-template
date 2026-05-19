@@ -10,7 +10,7 @@ import { toaster } from "@/components/ui/toaster";
 import { Item } from "@/components/widgets/item";
 import { SettingItemContainer } from "@/components/widgets/settings-shell";
 import { R_SPACING_MD } from "@/constants/styles";
-import { useCameraPermission } from "@/contexts/use-camera-permission-context";
+import { useCameraPermission } from "@/features/settings/app-permission/contexts/use-camera-permission-context";
 import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";
 import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
 import { usePopDisclosure } from "@/hooks/use-pop-disclosure";

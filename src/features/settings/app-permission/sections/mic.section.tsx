@@ -10,7 +10,7 @@ import { Item } from "@/components/widgets/item";
 import { MicVolumeBar } from "@/components/widgets/mic-volume-bar";
 import { SettingItemContainer } from "@/components/widgets/settings-shell";
 import { R_SPACING_MD } from "@/constants/styles";
-import { useMicPermissions } from "@/contexts/use-mic-permission-context";
+import { useMicPermissions } from "@/features/settings/app-permission/contexts/use-mic-permission-context";
 import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";
 import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
 import { usePopDisclosure } from "@/hooks/use-pop-disclosure";
