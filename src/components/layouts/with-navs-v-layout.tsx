@@ -14,17 +14,17 @@ import { useLocale } from "@/contexts/use-locale-context";
 import { useThemeContext } from "@/contexts/use-theme-context";
 import { NavGroup } from "@/types/global.types";
 import { formatAbsDate } from "@/utils/formatter";
-import { StackProps } from "@chakra-ui/react";
+import { Box, StackProps } from "@chakra-ui/react";
 import { usePathname } from "next/navigation";
 
 // -----------------------------------------------------------------
 
-interface WithSidenavLayoutProps extends StackProps {
+interface WithNavsVLayoutProps extends StackProps {
   navs: NavGroup[];
   rootPath: string;
 }
 
-export const WithSidenavLayout = (props: WithSidenavLayoutProps) => {
+export const WithNavsVLayout = (props: WithNavsVLayoutProps) => {
   // Props
   const { children, navs, rootPath, ...restProps } = props;
 
@@ -40,76 +40,73 @@ export const WithSidenavLayout = (props: WithSidenavLayoutProps) => {
 
   // Derived Values
   const isAtSettingsIndexRoute = pathname === rootPath;
-  const showSidebar =
-    !isSmContainer || (isSmContainer && isAtSettingsIndexRoute);
+  const showNavs = !isSmContainer || (isSmContainer && isAtSettingsIndexRoute);
   const showContent =
     !isSmContainer || (isSmContainer && !isAtSettingsIndexRoute);
 
   return (
-    <ConstrainedContainer flex={1} overflowY={"auto"}>
-      <StackH
-        flex={1}
-        w={"full"}
-        overflowY={"auto"}
-        pos={"relative"}
-        {...restProps}
-      >
-        {/* Sidebar */}
-        {showSidebar && (
-          <StackV
-            flexShrink={0}
-            w={isSmContainer ? "full" : "250px"}
-            h={"full"}
-            py={GAP}
-            pl={GAP}
-            overflowY={"auto"}
-          >
+    <Box className={"WithNavsVLayout scrollY"}>
+      <ConstrainedContainer flex={1} overflowY={"auto"}>
+        <StackH flex={1} w={"fullnp"} pos={"relative"} {...restProps}>
+          {/* Sidebar */}
+          {showNavs && (
             <StackV
-              flex={1}
-              px={isSmContainer ? 2 : 0}
-              pb={isSmContainer ? 2 : 0}
-              rounded={themeContext.radii.container}
+              flexShrink={0}
+              w={isSmContainer ? "full" : "250px"}
+              h={"full"}
+              py={GAP}
+              pl={GAP}
               overflowY={"auto"}
+              pos={"sticky"}
+              top={0}
             >
-              <MainView.Header
-                withTitle
-                title={t.settings}
-                px={isSmContainer ? "6px" : R_SPACING_MD}
-              />
+              <StackV
+                flex={1}
+                px={isSmContainer ? 2 : 0}
+                pb={isSmContainer ? 2 : 0}
+                rounded={themeContext.radii.container}
+                overflowY={"auto"}
+              >
+                <MainView.Header
+                  withTitle
+                  title={t.settings}
+                  px={isSmContainer ? "6px" : R_SPACING_MD}
+                />
 
-              <StackV className={"scrollY"} flex={1} p={R_SPACING_MD}>
-                <NavsV
-                  navs={navs}
-                  addonElement={
-                    <StackV mt={"auto"} gap={1}>
-                      <HelperText>{`v${APP.version}`}</HelperText>
+                <StackV className={"scrollY"} flex={1} p={R_SPACING_MD}>
+                  <NavsV
+                    navs={navs}
+                    addonElement={
+                      <StackV mt={"auto"} gap={1}>
+                        <HelperText>{`v${APP.version}`}</HelperText>
 
-                      <HelperText>
-                        {`Last updated: 
+                        <HelperText>
+                          {`Last updated: 
                         ${formatAbsDate(APP.lastUpdated, t, {
                           variant: "numeric",
                         })}`}
-                      </HelperText>
-                    </StackV>
-                  }
-                  navsExpanded
-                  showGroupLabel
-                  flex={1}
-                />
+                        </HelperText>
+                      </StackV>
+                    }
+                    navsExpanded
+                    showGroupLabel
+                    flex={1}
+                  />
+                </StackV>
               </StackV>
             </StackV>
-          </StackV>
-        )}
+          )}
 
-        {/* Content */}
-        {showContent && (
-          <MainView.Root className={"scrollY"} flex={1}>
-            {pathname !== rootPath && <MainView.Header withTitle px={4} />}
+          {/* Content */}
+          {showContent && (
+            <MainView.Root flex={1} p={GAP}>
+              {pathname !== rootPath && <MainView.Header withTitle px={4} />}
 
-            <StackV flex={1}>{children}</StackV>
-          </MainView.Root>
-        )}
-      </StackH>
-    </ConstrainedContainer>
+              <StackV flex={1}>{children}</StackV>
+            </MainView.Root>
+          )}
+        </StackH>
+      </ConstrainedContainer>
+    </Box>
   );
 };

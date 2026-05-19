@@ -1,6 +1,6 @@
 "use client";
 
-import { WithSidenavLayout } from "@/components/layouts/with-navs-v-layout";
+import { WithNavsVLayout } from "@/components/layouts/with-navs-v-layout";
 import { OTHER_PRIVATE_NAV_GROUPS } from "@/constants/navs";
 
 // -----------------------------------------------------------------
@@ -14,8 +14,8 @@ const ROOT_PATH = `/settings`;
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <WithSidenavLayout navs={NAVS} rootPath={ROOT_PATH}>
+    <WithNavsVLayout navs={NAVS} rootPath={ROOT_PATH}>
       {children}
-    </WithSidenavLayout>
+    </WithNavsVLayout>
   );
 }
