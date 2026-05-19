@@ -9,7 +9,7 @@ import { SearchInput } from "@/components/ui/search-input";
 import { StackH, StackV } from "@/components/ui/stack";
 import { BackButton } from "@/components/widgets/back-button";
 import { BatchOptions } from "@/components/widgets/batch-option";
-import { DataFooter } from "@/components/widgets/data-footer";
+import { DataListFooter } from "@/components/widgets/data-footer";
 import FeedbackNotFound from "@/components/widgets/feedback-not-found";
 import { ImgViewer } from "@/components/widgets/img-viewer";
 import { RowOptions, RowOptionsProps } from "@/components/widgets/row-options";
@@ -458,7 +458,7 @@ const DataGridRoot = (props: DataGridRootProps) => {
 
         {/* Footer */}
         {hasFooter && (
-          <DataFooter
+          <DataListFooter
             limit={limit}
             setLimit={setLimit}
             dataLength={rows?.length}

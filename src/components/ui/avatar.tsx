@@ -107,7 +107,7 @@ export const AvatarGroup = forwardRef<HTMLDivElement, AvatarGroupProps>(
 interface AvatarInputDisclosureTriggerProps extends FileInputProps {
   children: React.ReactElement<any>;
   formik: any;
-  user?: User;
+  user?: User | null;
 }
 
 export const AvatarUploadTrigger = (

@@ -58,6 +58,7 @@ const SelectOptions = (props: SelectOptionsProps) => {
     o.label?.toLowerCase().includes(search.toLowerCase()),
   );
 
+  // Select all toggle effect
   useEffect(() => {
     if (selected) {
       setSelectAll(selected.length === selectOptions?.length);
@@ -98,7 +99,7 @@ const SelectOptions = (props: SelectOptionsProps) => {
                   e.stopPropagation();
                   e.preventDefault();
                   if (!selectAll) {
-                    setSelected(selectOptions as any);
+                    setSelected(selectOptions || []);
                   } else {
                     setSelected([]);
                   }

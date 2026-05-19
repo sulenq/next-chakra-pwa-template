@@ -318,7 +318,6 @@ const translations = {
   "my_activity_history": "My activity history",
   "my_activity_logs": "My activity logs",
   "my_auth_logs": "My auth logs",
-  "my_profile": "My profile",
   "my_signin_history": "My sign in history",
   "name": "Name",
   "navigation": "Navigation",
@@ -368,7 +367,7 @@ const translations = {
   "previous": "Previous",
   "previous_page": "Previous page",
   "problem": "Problem",
-  "profile": "Profile",
+  "profile": "My profile",
   "progress": "Progress",
   "published_at": "Published at",
   "purpose": "Purpose",
@@ -486,7 +485,7 @@ const translations = {
   "settings_navs": {
     "main": {
       "index": "Main",
-      "my_profile": "My Profile",
+      "profile": "Profile",
       "display": "Display",
       "regional": "Regional",
       "app_permissions": "App Permissions"

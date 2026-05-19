@@ -1,29 +1,33 @@
-"use client";
-
 import { SettingsHelperText } from "@/components/ui/helper-text";
 import { P } from "@/components/ui/p";
 import { SearchInput } from "@/components/ui/search-input";
 import { Skeleton } from "@/components/ui/skeleton";
 import { StackH, StackV } from "@/components/ui/stack";
+import { AppIconLucide } from "@/components/widgets/app-icon";
+import { ClampText } from "@/components/widgets/clamp-text";
 import { DataListFooter } from "@/components/widgets/data-footer";
 import FeedbackNoData from "@/components/widgets/feedback-no-data";
 import FeedbackNotFound from "@/components/widgets/feedback-not-found";
 import FeedbackRetry from "@/components/widgets/feedback-retry";
-import { Item } from "@/components/widgets/item";
-import { MiniUser } from "@/components/widgets/mini-user";
-import { dummyAllActivityLogs } from "@/constants/dummy-data";
-import { ActivityActionEnum } from "@/constants/enums";
+import { Item, ItemRootProps } from "@/components/widgets/item";
+import { DUMMY_AUTH_LOGS } from "@/constants/dummy-data";
 import { R_SPACING_MD } from "@/constants/styles";
 import { useLocale } from "@/contexts/use-locale-context";
 import { useFetchData } from "@/hooks/useFetchData";
-import type { ActivityLog } from "@/types/global.types";
+import { AuthLog } from "@/types/global.types";
 import { isEmptyArray } from "@/utils/array";
 import { formatDate } from "@/utils/formatter";
+import { Circle } from "@chakra-ui/react";
+import { ArrowDownIcon, ArrowUpIcon } from "lucide-react";
 import { useState } from "react";
 
-const ActivityLog = () => {
+// -----------------------------------------------------------------
+
+export const AuthLogSection = (props: ItemRootProps) => {
   // Contexts
   const { t } = useLocale();
+
+  // Refs
 
   // States
   const [search, setSearch] = useState("");
@@ -39,43 +43,16 @@ const ActivityLog = () => {
     setPage,
   } = useFetchData<{
     totalData: number;
-    items: ActivityLog[];
+    items: AuthLog[];
   }>({
+    // TODO_DEV add url and set initial data to undefined
     initialData: {
       totalData: 100,
-      items: dummyAllActivityLogs,
+      items: DUMMY_AUTH_LOGS,
     },
     url: ``,
-    dataResource: false,
+    dependencies: [search],
   });
-
-  // Derived Values
-  const activityFormatter: Record<
-    string,
-    (meta?: Record<string, any>) => string
-  > = {
-    // TODO_DEV create action sentence glosary
-    [ActivityActionEnum.CREATE_WORKSPACE]: (meta) =>
-      `Created workspace "${meta?.workspaceName ?? "Unknown"}"`,
-
-    [ActivityActionEnum.UPDATE_WORKSPACE]: (meta) =>
-      `Updated workspace "${meta?.workspaceName ?? "Unknown"}"`,
-
-    [ActivityActionEnum.DELETE_WORKSPACE]: (meta) =>
-      `Deleted workspace "${meta?.workspaceName ?? "Unknown"}"`,
-
-    [ActivityActionEnum.CREATE_LAYER]: (meta) =>
-      `Created layer "${meta?.layerName ?? "Unknown"}"`,
-
-    [ActivityActionEnum.UPDATE_LAYER]: (meta) =>
-      `Updated layer "${meta?.layerName ?? "Unknown"}"`,
-
-    [ActivityActionEnum.DELETE_LAYER]: (meta) =>
-      `Deleted layer "${meta?.layerName ?? "Unknown"}`,
-  };
-  const formatActivityLog = (log: ActivityLog): string => {
-    return activityFormatter[log.action as ActivityActionEnum](log.metadata);
-  };
 
   // Render State Map
   const render = {
@@ -86,29 +63,39 @@ const ActivityLog = () => {
     loaded: (
       <>
         {data?.items?.map((log, index) => {
+          const isSignin = log?.action === "Sign in";
+
           return (
             <StackH
-              align={"center"}
               key={`${log.id}-${index}`}
+              align={"center"}
               gap={4}
               p={4}
               justify={"space-between"}
               borderTop={index === 0 ? "" : "1px solid"}
               borderColor={"border.subtle"}
             >
-              {log.user && <MiniUser withEmail user={log.user} w={"240px"} />}
+              <Circle p={1} bg={isSignin ? "bg.success" : "bg.error"}>
+                <AppIconLucide
+                  icon={isSignin ? ArrowDownIcon : ArrowUpIcon}
+                  color={isSignin ? "fg.success" : "fg.error"}
+                />
+              </Circle>
 
-              <StackV flex={1}>
-                <P>{formatActivityLog(log)}</P>
-
-                <P color={"fg.subtle"}>
+              <StackV w={"full"}>
+                <P>
                   {formatDate(log?.createdAt, t, {
                     variant: "dayShortMonthYear",
-
                     withTime: true,
                   })}
                 </P>
+
+                <P color={"fg.subtle"}>{log?.ip}</P>
               </StackV>
+
+              <ClampText color={"fg.subtle"} textAlign={"right"} lineClamp={2}>
+                {log?.userAgent}
+              </ClampText>
             </StackH>
           );
         })}
@@ -117,8 +104,8 @@ const ActivityLog = () => {
   };
 
   return (
-    <Item.Root px={R_SPACING_MD}>
-      <SettingsHelperText>{t.activity_logs}</SettingsHelperText>
+    <Item.Root px={R_SPACING_MD} {...props}>
+      <SettingsHelperText>{t.my_auth_logs}</SettingsHelperText>
 
       <Item.Body>
         <StackV p={4}>
@@ -127,11 +114,11 @@ const ActivityLog = () => {
               setSearch(inputValue || "");
             }}
             inputValue={search}
-            queryKey={"q-activity-auth"}
+            queryKey={"q-my-log-auth"}
           />
         </StackV>
 
-        <StackV minH={"300px"}>
+        <StackV>
           {initialLoading && render.loading}
           {!initialLoading && (
             <>
@@ -139,7 +126,7 @@ const ActivityLog = () => {
               {!error && (
                 <>
                   {data?.items && render.loaded}
-                  {(!data?.items || isEmptyArray(data?.items)) && render.empty}
+                  {(!data?.items || isEmptyArray(data.items)) && render.empty}
                 </>
               )}
             </>
@@ -159,11 +146,3 @@ const ActivityLog = () => {
     </Item.Root>
   );
 };
-
-export default function Page() {
-  return (
-    <StackV flex={1} gap={4}>
-      <ActivityLog />
-    </StackV>
-  );
-}

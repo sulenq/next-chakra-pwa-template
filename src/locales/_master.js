@@ -75,9 +75,9 @@ export const settings_navs = {
       id: "Utama",
       en: "Main",
     },
-    my_profile: {
-      id: "Profil Saya",
-      en: "My Profile",
+    profile: {
+      id: "Profil",
+      en: "Profile",
     },
     display: {
       id: "Tampilan",
@@ -232,10 +232,6 @@ export const local_timezone = {
 export const example_UI = {
   id: "Contoh UI",
   en: "Example UI",
-};
-export const profile = {
-  id: "Profil",
-  en: "Profile",
 };
 export const address_not_found = {
   id: "Alamat tidak ditemukan",
@@ -577,7 +573,7 @@ export const settings = {
   id: "Pengaturan",
   en: "Settings",
 };
-export const my_profile = {
+export const profile = {
   id: "Profil saya",
   en: "My profile",
 };

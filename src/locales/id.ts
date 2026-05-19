@@ -318,7 +318,6 @@ const translations = {
   "my_activity_history": "Riwayat aktivitas saya",
   "my_activity_logs": "Log aktivitas saya",
   "my_auth_logs": "Log autentikasi saya",
-  "my_profile": "Profil saya",
   "my_signin_history": "Riwayat sign in saya",
   "name": "Nama",
   "navigation": "Navigasi",
@@ -368,7 +367,7 @@ const translations = {
   "previous": "Sebelumnya",
   "previous_page": "Halaman sebelumnya",
   "problem": "Masalah",
-  "profile": "Profil",
+  "profile": "Profil saya",
   "progress": "Progres",
   "published_at": "Diterbitkan pada",
   "purpose": "Tujuan",
@@ -486,7 +485,7 @@ const translations = {
   "settings_navs": {
     "main": {
       "index": "Utama",
-      "my_profile": "Profil Saya",
+      "profile": "Profil",
       "display": "Tampilan",
       "regional": "Regional",
       "app_permissions": "Izin Aplikasi"

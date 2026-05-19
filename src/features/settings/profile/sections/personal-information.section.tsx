@@ -1,0 +1,151 @@
+import { AvatarUploadTrigger } from "@/components/ui/avatar";
+import { Btn } from "@/components/ui/btn";
+import { Field, FieldsetRoot } from "@/components/ui/field";
+import { HelperText } from "@/components/ui/helper-text";
+import { StackH, StackV } from "@/components/ui/stack";
+import { StringInput } from "@/components/ui/string-input";
+import { Item, ItemRootProps } from "@/components/widgets/item";
+import { useMainViewContext } from "@/components/widgets/main-view";
+import { UserIdCard } from "@/components/widgets/user-id-card";
+import { R_SPACING_MD } from "@/constants/styles";
+import { useLocale } from "@/contexts/use-locale-context";
+import { useThemeContext } from "@/contexts/use-theme-context";
+import ResetPasswordDisclosureTrigger from "@/features/auth/components/reset-password";
+import { useRequest } from "@/hooks/useRequestOld";
+import { getUserData } from "@/utils/auth";
+import { Stack } from "@chakra-ui/react";
+import { useFormik } from "formik";
+import * as yup from "yup";
+
+// -----------------------------------------------------------------
+
+export const PersonalInformationSection = (props: ItemRootProps) => {
+  // Contexts
+  const { t } = useLocale();
+  const { themeContext } = useThemeContext();
+  const { isSmContainer } = useMainViewContext();
+
+  // Hooks
+  const { req, loading } = useRequest({
+    id: "update-personal-info",
+    loadingMessage: {
+      title: `${t.saving} ${t.personal_information}`,
+    },
+    successMessage: {
+      title: `${t.personal_information} ${t.updated}`,
+    },
+  });
+
+  // Constants
+  const user = getUserData();
+
+  // States
+  const formik = useFormik({
+    validateOnChange: false,
+    initialValues: {
+      avatar: null as any,
+      deleteAvatarIds: [],
+      name: user?.name,
+      email: user?.email,
+    },
+    validationSchema: yup.object().shape({
+      name: yup.string().required(t.msg_required_form),
+      email: yup.string().required(t.msg_required_form),
+    }),
+    onSubmit: (values) => {
+      const config = {
+        url: `/update-users/${user?.id}`,
+        method: "PATCH",
+        data: {
+          avatar: values.avatar,
+          deleteAvatarIds: values.deleteAvatarIds,
+          name: values.name,
+          email: values.email,
+        },
+      };
+
+      req({
+        config,
+      });
+    },
+  });
+
+  return (
+    <Item.Root px={R_SPACING_MD} {...props}>
+      <Item.Body p={4}>
+        <Stack flexDir={isSmContainer ? "column" : "row"}>
+          <StackV minW={"280px"} pl={10} pr={8} pt={"28px"} pb={2}>
+            <UserIdCard w={"220px"} mx={"auto"} />
+          </StackV>
+
+          <StackV flex={1} justify={"space-between"}>
+            <form id={"personal-info-form"} onSubmit={formik.handleSubmit}>
+              <FieldsetRoot disabled={loading}>
+                <Field
+                  label={"Avatar"}
+                  invalid={!!formik.errors.avatar}
+                  errorText={`${formik.errors.avatar}`}
+                >
+                  <StackV gap={2}>
+                    <AvatarUploadTrigger formik={formik} user={user}>
+                      <Btn w={"fit"} variant={"outline"}>
+                        {t.upload_new_avatar}
+                      </Btn>
+                    </AvatarUploadTrigger>
+
+                    <StackV gap={1}>
+                      <HelperText>{t.msg_new_avatar_helper}</HelperText>
+                      <HelperText>{`PNG, JPG ${t.is_allowed}`}</HelperText>
+                    </StackV>
+                  </StackV>
+                </Field>
+
+                <Field
+                  label={t.name}
+                  invalid={!!formik.errors.name}
+                  errorText={`${formik.errors.name}`}
+                >
+                  <StringInput
+                    inputValue={formik.values.name}
+                    onChange={(inputValue) => {
+                      formik.setFieldValue("name", inputValue);
+                    }}
+                    placeholder={"Jolitos Kurniawan"}
+                  />
+                </Field>
+
+                <Field
+                  label={"Email"}
+                  invalid={!!formik.errors.email}
+                  errorText={`${formik.errors.email}`}
+                >
+                  <StringInput
+                    inputValue={formik.values.email}
+                    onChange={(inputValue) => {
+                      formik.setFieldValue("email", inputValue);
+                    }}
+                    placeholder={"example@email.com"}
+                  />
+                </Field>
+              </FieldsetRoot>
+            </form>
+
+            <StackH justify={"space-between"} mt={8}>
+              <ResetPasswordDisclosureTrigger>
+                <Btn variant={"outline"}>Reset password</Btn>
+              </ResetPasswordDisclosureTrigger>
+
+              <Btn
+                type={"submit"}
+                form={"personal-info-form"}
+                colorPalette={themeContext.colorPalette}
+              >
+                {t.save}
+              </Btn>
+            </StackH>
+          </StackV>
+        </Stack>
+      </Item.Body>
+    </Item.Root>
+  );
+};

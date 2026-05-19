@@ -2,7 +2,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { P } from "@/components/ui/p";
 import { StackH, StackV } from "@/components/ui/stack";
 import { BatchOptions } from "@/components/widgets/batch-option";
-import { DataFooter } from "@/components/widgets/data-footer";
+import { DataListFooter } from "@/components/widgets/data-footer";
 import { RowOptions } from "@/components/widgets/row-options";
 import { SortIcon } from "@/components/widgets/sort-icon";
 import {
@@ -514,7 +514,7 @@ export const DataTableRoot = (props: DataTableRootProps) => {
       </StackV>
 
       {hasFooter && (
-        <DataFooter
+        <DataListFooter
           limit={limit}
           setLimit={setLimit}
           dataLength={rows?.length}

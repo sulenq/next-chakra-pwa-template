@@ -22,7 +22,7 @@ export const SelectUnitFormat = ({
   const options = UNIT_OPTIONS[unitKey].map((unit) => ({
     id: unit.key,
     label: unit.label,
-    data: unit.key,
+    data: unit,
   }));
 
   return (

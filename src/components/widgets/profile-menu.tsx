@@ -45,7 +45,7 @@ import { useState } from "react";
 
 const MENUS = [
   {
-    labelKey: "my_profile",
+    labelKey: "profile",
     icon: UserIcon,
     path: "/settings/profile",
   },

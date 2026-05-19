@@ -959,7 +959,7 @@ export const dummyUsers: User[] = [
   },
 ];
 
-export const dummyAuthLogs = [
+export const DUMMY_AUTH_LOGS = [
   {
     id: "sh_001",
     action: "Sign out",
@@ -1018,7 +1018,7 @@ export const dummyAuthLogs = [
   },
 ];
 
-export const dummyActivityLogs = [
+export const DUMMY_ACTIVITY_LOGS = [
   {
     id: "1",
     userId: "101",

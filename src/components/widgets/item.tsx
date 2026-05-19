@@ -30,7 +30,7 @@ export function useItemContext() {
   return context;
 }
 
-interface ItemRootProps extends StackProps {
+export interface ItemRootProps extends StackProps {
   scrollY?: boolean;
   provideContext?: boolean;
 }

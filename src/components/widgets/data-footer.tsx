@@ -22,7 +22,7 @@ interface DataFooterProps extends Omit<StackProps, "page"> {
   totalPage?: number;
 }
 
-export const DataFooter = (props: DataFooterProps) => {
+export const DataListFooter = (props: DataFooterProps) => {
   // Props
   const {
     borderless = false,

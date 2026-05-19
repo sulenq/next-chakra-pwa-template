@@ -97,7 +97,7 @@ export const OTHER_PRIVATE_NAV_GROUPS: NavGroup[] = [
             navs: [
               {
                 icon: UserIcon,
-                labelKey: "settings_navs.main.my_profile",
+                labelKey: "settings_navs.main.profile",
                 path: `/settings/profile`,
                 allowedRoles: [],
                 backPath: `/settings`,

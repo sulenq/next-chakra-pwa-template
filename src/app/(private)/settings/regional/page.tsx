@@ -22,8 +22,8 @@ import { useThemeContext } from "@/contexts/use-theme-context";
 import useTimeFormat from "@/contexts/use-time-format-context";
 import useTimezone from "@/contexts/use-timezone-context";
 import useUOMFormat from "@/contexts/use-uom-format-context";
-import { SelectDateFormat } from "@/features/settings/components/select-date-format";
-import { SelectTimeFormat } from "@/features/settings/components/select-time-format";
+import { SelectDateFormat } from "@/features/settings/regional/components/select-date-format";
+import { SelectTimeFormat } from "@/features/settings/regional/components/select-time-format";
 import {
   SelectAngleFormat,
   SelectAreaFormat,
@@ -39,7 +39,7 @@ import {
   SelectSpeedFormat,
   SelectTemperatureFormat,
   SelectVolumeFormat,
-} from "@/features/settings/components/select-unit-format";
+} from "@/features/settings/regional/components/select-unit-format";
 import { SelectOption, type LocaleOption } from "@/types/global.types";
 import { getLocalTimezone } from "@/utils/time";
 import { chakra, Text } from "@chakra-ui/react";
@@ -309,6 +309,8 @@ const WeightFormatSetting = () => {
   // Contexts
   const { t } = useLocale();
   const { UOM, setUOMUnit } = useUOMFormat();
+
+  console.debug(UOM);
 
   return (
     <SettingItemContainer>

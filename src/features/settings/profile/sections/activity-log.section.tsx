@@ -1,5 +1,3 @@
-"use client";
-
 import { SettingsHelperText } from "@/components/ui/helper-text";
 import { P } from "@/components/ui/p";
 import { SearchInput } from "@/components/ui/search-input";
@@ -9,47 +7,23 @@ import { DataListFooter } from "@/components/widgets/data-footer";
 import FeedbackNoData from "@/components/widgets/feedback-no-data";
 import FeedbackNotFound from "@/components/widgets/feedback-not-found";
 import FeedbackRetry from "@/components/widgets/feedback-retry";
-import { Item } from "@/components/widgets/item";
-import { MiniUser } from "@/components/widgets/mini-user";
-import { dummyAllActivityLogs } from "@/constants/dummy-data";
+import { Item, ItemRootProps } from "@/components/widgets/item";
+import { DUMMY_ACTIVITY_LOGS } from "@/constants/dummy-data";
 import { ActivityActionEnum } from "@/constants/enums";
 import { R_SPACING_MD } from "@/constants/styles";
 import { useLocale } from "@/contexts/use-locale-context";
 import { useFetchData } from "@/hooks/useFetchData";
-import type { ActivityLog } from "@/types/global.types";
+import { ActivityLog } from "@/types/global.types";
 import { isEmptyArray } from "@/utils/array";
 import { formatDate } from "@/utils/formatter";
 import { useState } from "react";
 
-const ActivityLog = () => {
+export const ActivityLogSection = (props: ItemRootProps) => {
   // Contexts
   const { t } = useLocale();
 
   // States
   const [search, setSearch] = useState("");
-  const {
-    error,
-    initialLoading,
-    data,
-    onRetry,
-    limit,
-    setLimit,
-    pagination,
-    page,
-    setPage,
-  } = useFetchData<{
-    totalData: number;
-    items: ActivityLog[];
-  }>({
-    initialData: {
-      totalData: 100,
-      items: dummyAllActivityLogs,
-    },
-    url: ``,
-    dataResource: false,
-  });
-
-  // Derived Values
   const activityFormatter: Record<
     string,
     (meta?: Record<string, any>) => string
@@ -76,6 +50,28 @@ const ActivityLog = () => {
   const formatActivityLog = (log: ActivityLog): string => {
     return activityFormatter[log.action as ActivityActionEnum](log.metadata);
   };
+  const {
+    error,
+    initialLoading,
+    data,
+    onRetry,
+    limit,
+    setLimit,
+    pagination,
+    page,
+    setPage,
+  } = useFetchData<{
+    totalData: number;
+    items: ActivityLog[];
+  }>({
+    // TODO_DEV add url and set initial data to undefined
+    initialData: {
+      totalData: 100,
+      items: DUMMY_ACTIVITY_LOGS,
+    },
+    url: ``,
+    dependencies: [search],
+  });
 
   // Render State Map
   const render = {
@@ -88,27 +84,26 @@ const ActivityLog = () => {
         {data?.items?.map((log, index) => {
           return (
             <StackH
-              align={"center"}
               key={`${log.id}-${index}`}
-              gap={4}
-              p={4}
               justify={"space-between"}
               borderTop={index === 0 ? "" : "1px solid"}
               borderColor={"border.subtle"}
+              p={4}
             >
-              {log.user && <MiniUser withEmail user={log.user} w={"240px"} />}
-
-              <StackV flex={1}>
+              <StackV>
                 <P>{formatActivityLog(log)}</P>
 
                 <P color={"fg.subtle"}>
                   {formatDate(log?.createdAt, t, {
                     variant: "dayShortMonthYear",
-
                     withTime: true,
                   })}
                 </P>
               </StackV>
+
+              <P color={"fg.subtle"} textAlign={"right"}>
+                {/* {log?.userAgent} */}
+              </P>
             </StackH>
           );
         })}
@@ -117,8 +112,8 @@ const ActivityLog = () => {
   };
 
   return (
-    <Item.Root px={R_SPACING_MD}>
-      <SettingsHelperText>{t.activity_logs}</SettingsHelperText>
+    <Item.Root px={R_SPACING_MD} {...props}>
+      <SettingsHelperText>{t.my_activity_logs}</SettingsHelperText>
 
       <Item.Body>
         <StackV p={4}>
@@ -127,11 +122,11 @@ const ActivityLog = () => {
               setSearch(inputValue || "");
             }}
             inputValue={search}
-            queryKey={"q-activity-auth"}
+            queryKey={"q-my-log-auth"}
           />
         </StackV>
 
-        <StackV minH={"300px"}>
+        <StackV>
           {initialLoading && render.loading}
           {!initialLoading && (
             <>
@@ -159,11 +154,3 @@ const ActivityLog = () => {
     </Item.Root>
   );
 };
-
-export default function Page() {
-  return (
-    <StackV flex={1} gap={4}>
-      <ActivityLog />
-    </StackV>
-  );
-}
