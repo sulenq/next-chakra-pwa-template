@@ -13,13 +13,19 @@ import React, {
 
 interface HScrollProps extends StackProps {
   children?: React.ReactNode;
-  enableButtons?: boolean;
+  showScrollButtons?: boolean;
+  enableScroll?: boolean;
 }
 
 export const HScroll = forwardRef<HTMLDivElement, HScrollProps>(
   (props, ref) => {
     // Props
-    const { children, enableButtons = true, ...restProps } = props;
+    const {
+      children,
+      showScrollButtons = true,
+      enableScroll = false,
+      ...restProps
+    } = props;
 
     // Refs
     const localRef = useRef<HTMLDivElement | null>(null);
@@ -110,7 +116,10 @@ export const HScroll = forwardRef<HTMLDivElement, HScrollProps>(
         updateScrollState();
       };
 
-      el.addEventListener("wheel", onWheel, { passive: false });
+      if (enableScroll) {
+        el.addEventListener("wheel", onWheel, { passive: false });
+      }
+
       el.addEventListener("scroll", onScroll);
 
       // Initial check
@@ -134,7 +143,7 @@ export const HScroll = forwardRef<HTMLDivElement, HScrollProps>(
 
     return (
       <Box position={"relative"} w={"full"} role={"group"} {...restProps}>
-        {enableButtons && showLeft && (
+        {showScrollButtons && showLeft && (
           <Box
             position={"absolute"}
             left={2}
@@ -158,7 +167,7 @@ export const HScroll = forwardRef<HTMLDivElement, HScrollProps>(
           </Box>
         )}
 
-        {enableButtons && showRight && (
+        {showScrollButtons && showRight && (
           <Box
             position={"absolute"}
             right={2}

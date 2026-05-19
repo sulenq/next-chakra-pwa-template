@@ -1206,8 +1206,8 @@ export const customConfig = defineConfig({
           },
           fg: {
             value: {
-              base: "{colors.yellow.700} !important",
-              _dark: "{colors.yellow.300} !important",
+              base: "{colors.yellow.600} !important",
+              _dark: "{colors.yellow.500} !important",
             },
           },
           muted: {
