@@ -6,7 +6,7 @@ import { Item } from "@/components/widgets/item";
 import { SettingItemContainer } from "@/components/widgets/settings-shell";
 import { R_SPACING_MD } from "@/constants/styles";
 import { useLocale } from "@/contexts/use-locale-context";
-import useUOMFormat from "@/contexts/use-uom-format-context";
+import useUOMFormat from "@/features/settings/regional/contexts/use-uom-format-context";
 import {
   SelectAngleFormat,
   SelectAreaFormat,

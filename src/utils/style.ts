@@ -1,4 +1,4 @@
-import { customConfig } from "@/theme/chakra-custom-system";
+import { customConfig } from "@/themes/chakra-custom-system";
 
 export function getGridColumns(
   width: number,

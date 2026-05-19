@@ -1,4 +1,4 @@
-import useUOMFormat from "@/contexts/use-uom-format-context";
+import useUOMFormat from "@/features/settings/regional/contexts/use-uom-format-context";
 import { UnitKey } from "@/types/global.types";
 
 // -----------------------------------------------------------------
@@ -137,9 +137,9 @@ const TO_BASE: Record<UnitKey, LinearMap> = {
   angle: {
     "°": 1,
     rad: 180 / Math.PI,
-    grad: 0.9,        // 1 grad = 0.9°
-    "′": 1 / 60,      // arcminute
-    "″": 1 / 3600,    // arcsecond
+    grad: 0.9, // 1 grad = 0.9°
+    "′": 1 / 60, // arcminute
+    "″": 1 / 3600, // arcsecond
   },
 };
 
@@ -234,10 +234,7 @@ export function formatUOM<K extends UnitKey>(
   let converted: number;
 
   if (unit === "temperature") {
-    const celsius = tempToCelsius(
-      value,
-      fromUnit as UnitKeys["temperature"],
-    );
+    const celsius = tempToCelsius(value, fromUnit as UnitKeys["temperature"]);
     converted = celsiusToTemp(celsius, toUnit as UnitKeys["temperature"]);
   } else {
     converted = convertLinear(value, fromUnit, toUnit, TO_BASE[unit]);
