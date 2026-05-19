@@ -4,7 +4,7 @@ import { Btn } from "@/components/ui/btn";
 import { useColorMode } from "@/components/ui/color-mode";
 import { Spinner } from "@/components/ui/spinner";
 import { StackH, StackV } from "@/components/ui/stack";
-import { LucideIcon } from "@/components/widgets/icon";
+import { LucideIcon } from "@/components/misc/icon";
 import { BACKDROP_BLUR_FILTER, SM_SCREEN_BREAKPOINT } from "@/constants/styles";
 import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";
 import { isClient } from "@/utils/client";

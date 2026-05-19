@@ -3,7 +3,7 @@
 import { StackH } from "@/components/ui/stack";
 import { StringInput, StringInputProps } from "@/components/ui/string-input";
 import { Tooltip } from "@/components/ui/tooltip";
-import { LucideIcon } from "@/components/widgets/icon";
+import { LucideIcon } from "@/components/misc/icon";
 import { BASE_ICON_BOX_SIZE, MAIN_INPUT_SIZE } from "@/constants/styles";
 import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
 import { useDebounced } from "@/hooks/use-debounced";

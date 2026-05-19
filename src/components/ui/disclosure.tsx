@@ -5,7 +5,7 @@ import { Dialog, DialogContentProps } from "@/components/ui/dialog";
 import { Drawer, DrawerContentProps } from "@/components/ui/drawer";
 import { P } from "@/components/ui/p";
 import { StackH, StackV } from "@/components/ui/stack";
-import { AppIconLucide } from "@/components/widgets/app-icon";
+import { AppIconLucide } from "@/components/branding/app-icon";
 import { SM_SCREEN_BREAKPOINT } from "@/constants/styles";
 import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";
 import { useIsSmScreenWidth } from "@/hooks/use-is-sm-screen-width";

@@ -2,7 +2,7 @@
 
 import { Btn } from "@/components/ui/btn";
 import { Tooltip, TooltipProps } from "@/components/ui/tooltip";
-import { AppIconLucide } from "@/components/widgets/app-icon";
+import { AppIconLucide } from "@/components/branding/app-icon";
 import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
 import { ColorMode } from "@/types/global.types";
 import type { IconButtonProps, SpanProps } from "@chakra-ui/react";

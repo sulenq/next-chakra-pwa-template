@@ -4,7 +4,7 @@ import { P, TNum } from "@/components/ui/p";
 import { StackH, StackV } from "@/components/ui/stack";
 import { StringInput } from "@/components/ui/string-input";
 import { Tooltip } from "@/components/ui/tooltip";
-import { LucideIcon } from "@/components/widgets/icon";
+import { LucideIcon } from "@/components/misc/icon";
 import { BASE_ICON_BOX_SIZE } from "@/constants/styles";
 import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
 import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";

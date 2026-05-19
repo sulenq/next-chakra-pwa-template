@@ -6,8 +6,8 @@ import {
   ConstrainedContainer,
   MainView,
   useMainViewContext,
-} from "@/components/widgets/main-view";
-import { NavsV } from "@/components/widgets/navs";
+} from "@/components/container/main-view";
+import { NavsV } from "@/components/navigation/navs";
 import { APP } from "@/constants/_meta";
 import { OTHER_PRIVATE_NAV_GROUPS } from "@/constants/navs";
 import { GAP, R_SPACING_MD } from "@/constants/styles";

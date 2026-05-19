@@ -1,10 +1,10 @@
 import { Btn } from "@/components/ui/btn";
 import { SearchInput } from "@/components/ui/search-input";
 import { StackH } from "@/components/ui/stack";
-import { DataDisplayToggle } from "@/components/widgets/data-display-toggle";
-import { LucideIcon } from "@/components/widgets/icon";
+import { DataListDisplayToggle } from "@/features/data-list-display/components/data-list-display-toggle";
+import { LucideIcon } from "@/components/misc/icon";
 import { BASE_ICON_BOX_SIZE } from "@/constants/styles";
-import { LAYANAN_ID } from "@/features/layanan/pages/layanan.page";
+import { displayKeys } from "@/features/data-list-display/constants/displayKeys";
 import { Icon } from "@chakra-ui/react";
 import { Settings2Icon } from "lucide-react";
 
@@ -35,7 +35,11 @@ export const LayananListUtils = (props: LayananListUtilsProps) => {
         </Icon>
       </Btn>
 
-      <DataDisplayToggle iconButton navKey={LAYANAN_ID} size={"sm"} />
+      <DataListDisplayToggle
+        iconButton
+        displayKey={displayKeys.layanan}
+        size={"sm"}
+      />
     </StackH>
   );
 };

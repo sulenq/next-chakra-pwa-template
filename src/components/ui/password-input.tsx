@@ -2,7 +2,7 @@
 
 import { StackV } from "@/components/ui/stack";
 import { StringInput } from "@/components/ui/string-input";
-import { LucideIcon } from "@/components/widgets/icon";
+import { LucideIcon } from "@/components/misc/icon";
 import { BASE_ICON_BOX_SIZE } from "@/constants/styles";
 import {
   Center,

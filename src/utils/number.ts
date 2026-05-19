@@ -1,5 +1,5 @@
 export const parseNumber = (
-  numString: string | undefined | null
+  numString: string | undefined | null,
 ): number | null => {
   if (!numString) return null;
 
@@ -11,7 +11,7 @@ export const parseNumber = (
 
 export function createNumberSequence(
   numberStart: number,
-  numberEnd: number
+  numberEnd: number,
 ): number[] {
   const step = numberStart <= numberEnd ? 1 : -1;
   const result: number[] = [];
@@ -29,7 +29,7 @@ export function createNumberSequence(
 
 export const getPercentage = (
   items: any[],
-  options: { valueKey: string }
+  options: { valueKey: string },
 ): any[] => {
   const { valueKey } = options;
   const total = items.reduce((sum, item) => sum + item[valueKey], 0);

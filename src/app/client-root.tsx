@@ -3,8 +3,8 @@
 import { useColorMode } from "@/components/ui/color-mode";
 import { Img } from "@/components/ui/img";
 import { StackV } from "@/components/ui/stack";
-import { RadialGlowBackground } from "@/components/widgets/background";
-import { GlobalDisclosure } from "@/components/widgets/global-disclosure";
+import { RadialGlowBackground } from "@/components/overlays/background";
+import { GlobalDisclosure } from "@/components/overlays/global-disclosure";
 import { APP } from "@/constants/_meta";
 import { SVGS_PATH } from "@/constants/paths";
 import useADM from "@/features/settings/display/contexts/use-adm-context";

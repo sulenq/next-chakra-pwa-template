@@ -2,7 +2,7 @@
 
 import { P } from "@/components/ui/p";
 import { StackV } from "@/components/ui/stack";
-import { BrandWatermark } from "@/components/widgets/brand-watermark";
+import { BrandWatermark } from "@/components/branding/brand-watermark";
 import { APP } from "@/constants/_meta";
 import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
 import { interpolateString, pluckString } from "@/utils/string";

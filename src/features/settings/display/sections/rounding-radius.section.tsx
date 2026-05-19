@@ -4,7 +4,7 @@ import { SettingsHelperText } from "@/components/ui/helper-text";
 import { P } from "@/components/ui/p";
 import { RadioItem } from "@/components/ui/radio";
 import { StackH, StackV } from "@/components/ui/stack";
-import { Item } from "@/components/widgets/item";
+import { Item } from "@/components/container/item";
 import { ROUNDED_PRESETS } from "@/constants/presets";
 import { R_SPACING_MD } from "@/constants/styles";
 import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";

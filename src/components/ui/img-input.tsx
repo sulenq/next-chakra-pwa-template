@@ -4,10 +4,10 @@ import { FileInputProps, FileInputRoot } from "@/components/ui/file-input";
 import { Img } from "@/components/ui/img";
 import { P } from "@/components/ui/p";
 import { StackH, StackV } from "@/components/ui/stack";
-import { FileItem } from "@/components/widgets/file-item";
-import { LucideIcon } from "@/components/widgets/icon";
-import { ImgViewer } from "@/components/widgets/img-viewer";
-import { ScrollH } from "@/components/widgets/scroll-h";
+import { FileItem } from "@/components/input/file-item";
+import { LucideIcon } from "@/components/misc/icon";
+import { ImgViewer } from "@/components/media/img-viewer";
+import { HScroll } from "@/components/container/h-scroll";
 import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
 import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";
 import { StorageFile } from "@/types/global.types";
@@ -164,7 +164,7 @@ export const ImgInput = (props: FileInputProps) => {
               Preview
             </P> */}
 
-            <ScrollH
+            <HScroll
               className={"scrollX"}
               maxW={restProps?.maxW || ""}
               gap={2}
@@ -206,7 +206,7 @@ export const ImgInput = (props: FileInputProps) => {
                   );
                 })}
               </StackH>
-            </ScrollH>
+            </HScroll>
           </>
         )}
       </FileInputRoot>

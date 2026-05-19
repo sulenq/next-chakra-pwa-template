@@ -5,7 +5,7 @@ import { FileInputProps } from "@/components/ui/file-input";
 import { ImgInput } from "@/components/ui/img-input";
 import { P } from "@/components/ui/p";
 import { StackV } from "@/components/ui/stack";
-import { BackButton } from "@/components/widgets/back-button";
+import { BackButton } from "@/components/navigation/back-button";
 import { usePopDisclosure } from "@/hooks/use-pop-disclosure";
 import { User } from "@/types/global.types";
 import { disclosureId } from "@/utils/disclosure";

@@ -3,8 +3,8 @@
 import { ColorModeButton } from "@/components/ui/color-mode";
 import { LangMenu } from "@/components/ui/lang-menu";
 import { StackH, StackV } from "@/components/ui/stack";
-import { MainView, TopBar } from "@/components/widgets/main-view";
-import { PdfViewer } from "@/components/widgets/pdf-viewer";
+import { MainView, TopBar } from "@/components/container/main-view";
+import { PdfViewer } from "@/components/media/pdf-viewer";
 
 export default function Page() {
   return (

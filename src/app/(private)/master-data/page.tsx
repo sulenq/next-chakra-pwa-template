@@ -1,8 +1,8 @@
 "use client";
 
 import { StackV } from "@/components/ui/stack";
-import FeedbackState from "@/components/widgets/feedback-state";
-import { LucideIcon } from "@/components/widgets/icon";
+import FeedbackState from "@/components/feedback/feedback-state";
+import { LucideIcon } from "@/components/misc/icon";
 import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
 import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";
 import { ServerIcon } from "lucide-react";

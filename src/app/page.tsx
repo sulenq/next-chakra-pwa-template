@@ -3,9 +3,9 @@
 import { ColorModeButton } from "@/components/ui/color-mode";
 import { LangMenu } from "@/components/ui/lang-menu";
 import { P } from "@/components/ui/p";
-import { BrandWatermark } from "@/components/widgets/brand-watermark";
-import { Logo } from "@/components/widgets/logo";
-import { AnimatedBlobBackground } from "@/components/widgets/background";
+import { BrandWatermark } from "@/components/branding/brand-watermark";
+import { Logo } from "@/components/branding/logo";
+import { AnimatedBlobBackground } from "@/components/overlays/background";
 import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
 import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";
 import { SigninForm } from "@/features/auth/components/signin-form";

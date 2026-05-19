@@ -4,22 +4,22 @@ import { Btn } from "@/components/ui/btn";
 import { Img } from "@/components/ui/img";
 import { TableSkeleton } from "@/components/ui/skeleton";
 import { StackH, StackV } from "@/components/ui/stack";
-import { ClampText } from "@/components/widgets/clamp-text";
-import { DataGrid } from "@/components/widgets/data-grid";
-import { DataTable } from "@/components/widgets/data-table";
-import FeedbackNoData from "@/components/widgets/feedback-no-data";
-import FeedbackRetry from "@/components/widgets/feedback-retry";
-import { ImgViewer } from "@/components/widgets/img-viewer";
-import { TopLoadingBar } from "@/components/widgets/loading-bar";
+import { ClampText } from "@/components/ui/clamp-text";
+import { DataGrid } from "@/components/data-list/data-grid";
+import { DataTable } from "@/components/data-list/data-table";
+import FeedbackNoData from "@/components/feedback/feedback-no-data";
+import FeedbackRetry from "@/components/feedback/feedback-retry";
+import { ImgViewer } from "@/components/media/img-viewer";
+import { TopLoadingBar } from "@/components/misc/loading-bar";
 import { DEFAULT_LIMIT, DEFAULT_PAGE } from "@/constants/data-list";
 import { useDataDisplay } from "@/contexts/use-data-display-context";
-import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
-import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";
 import { LayananDelete } from "@/features/layanan/components/layanan.delete";
 import { LayananUpdate } from "@/features/layanan/components/layanan.update";
 import { useLayananListQuery } from "@/features/layanan/hooks/use-layanan";
-import { LAYANAN_ID } from "@/features/layanan/pages/layanan.page";
 import { LayananItem } from "@/features/layanan/types/layanan.types";
+import { displayKeys } from "@/features/data-list-display/constants/displayKeys";
+import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";
+import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
 import {
   BatchOptionsTableOptionGenerator,
   DataListConfig,
@@ -48,7 +48,7 @@ export const LayananList = (props: LayananListProps) => {
   const { t, locale } = useLocaleContext();
   const { themeContext } = useThemeContext();
   const isDisplayTable =
-    useDataDisplay((s) => s.getDisplay(LAYANAN_ID)) === "table";
+    useDataDisplay((s) => s.getDisplay(displayKeys.layanan)) === "table";
 
   // Query
   const { dataList, pagination, isLoading, isFetching, isError, refetch } =

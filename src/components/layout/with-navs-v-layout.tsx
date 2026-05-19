@@ -1,0 +1,118 @@
+"use client";
+
+import { HelperText } from "@/components/ui/helper-text";
+import { StackH, StackV } from "@/components/ui/stack";
+import {
+  ConstrainedContainer,
+  MainView,
+  useMainViewContext,
+} from "@/components/container/main-view";
+import { NavsV } from "@/components/navigation/navs";
+import { APP } from "@/constants/_meta";
+import { GAP, R_SPACING_MD } from "@/constants/styles";
+import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";
+import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
+import { NavGroup } from "@/types/global.types";
+import { formatAbsDate } from "@/utils/formatter";
+import { StackProps } from "@chakra-ui/react";
+import { usePathname } from "next/navigation";
+
+// -----------------------------------------------------------------
+
+interface WithNavsVLayoutProps extends StackProps {
+  navs: NavGroup[];
+  rootPath: string;
+}
+
+export const WithNavsVLayout = (props: WithNavsVLayoutProps) => {
+  // Props
+  const { children, navs, rootPath, ...restProps } = props;
+
+  // Hooks
+  const pathname = usePathname();
+
+  // Refs
+  const { isSmContainer } = useMainViewContext();
+
+  // Contexts
+  const { t } = useLocaleContext();
+  const { themeContext } = useThemeContext();
+
+  // Derived Values
+  const isAtSettingsIndexRoute = pathname === rootPath;
+  const showNavs = !isSmContainer || (isSmContainer && isAtSettingsIndexRoute);
+  const showContent =
+    !isSmContainer || (isSmContainer && !isAtSettingsIndexRoute);
+
+  return (
+    <MainView.Content className={"WithNavsVLayout"}>
+      <ConstrainedContainer flex={1}>
+        <StackH flex={1} w={"full"} pos={"relative"} {...restProps}>
+          {/* Navs */}
+          {showNavs && (
+            <StackV
+              flexShrink={0}
+              w={isSmContainer ? "full" : "250px"}
+              alignSelf={"flex-start"}
+              maxH={"calc(100dvh - 80px)"}
+              py={GAP}
+              pl={GAP}
+              overflowY={"auto"}
+              pos={"sticky"}
+              top={0}
+            >
+              <StackV
+                flex={1}
+                px={isSmContainer ? 2 : 0}
+                pb={isSmContainer ? 2 : 0}
+                rounded={themeContext.radii.container}
+                overflowY={"auto"}
+              >
+                <MainView.Header
+                  withTitle
+                  title={t.settings}
+                  px={isSmContainer ? "6px" : R_SPACING_MD}
+                />
+
+                <StackV
+                  className={"scrollY"}
+                  flex={1}
+                  p={R_SPACING_MD}
+                  overflowY={"auto"}
+                >
+                  <NavsV
+                    navs={navs}
+                    addonBottomElement={
+                      <StackV mt={"auto"} gap={1}>
+                        <HelperText>{`v${APP.version}`}</HelperText>
+
+                        <HelperText>
+                          {`Last updated: 
+                        ${formatAbsDate(APP.lastUpdated, t, {
+                          variant: "numeric",
+                        })}`}
+                        </HelperText>
+                      </StackV>
+                    }
+                    navsExpanded
+                    showGroupLabel
+                    flex={1}
+                  />
+                </StackV>
+              </StackV>
+            </StackV>
+          )}
+
+          {/* Content */}
+          {showContent && (
+            <MainView.Root flex={1} p={GAP}>
+              {pathname !== rootPath && <MainView.Header withTitle px={4} />}
+
+              {children}
+            </MainView.Root>
+          )}
+        </StackH>
+      </ConstrainedContainer>
+    </MainView.Content>
+  );
+};

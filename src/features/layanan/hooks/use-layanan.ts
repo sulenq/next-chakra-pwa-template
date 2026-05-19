@@ -1,11 +1,11 @@
 import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
-import { invalidateLayananList } from "@/features/layanan/query/layanan-list.invalidate";
+import { invalidateLayananList } from "@/features/layanan/queries/layanan-list.invalidate";
 import {
   createLayanan,
   deleteLayanan,
   getLayanan,
   updateLayanan,
-} from "@/features/layanan/service/layanan.api";
+} from "@/features/layanan/services/layanan.api";
 import { queryKeys } from "@/lib/tanstack-query/query.keys";
 import { mutationToastHandlers } from "@/lib/toast/toast.handler";
 import { BaseDataListParams, Pagination } from "@/types/global.types";

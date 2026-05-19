@@ -2,8 +2,8 @@
 
 import { Menu } from "@/components/ui/menu";
 import { Tooltip } from "@/components/ui/tooltip";
-import { AppIconLucide } from "@/components/widgets/app-icon";
-import { Confirmation } from "@/components/widgets/confirmation";
+import { AppIconLucide } from "@/components/branding/app-icon";
+import { Confirmation } from "@/components/overlays/confirmation";
 import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
 import { TrashIcon } from "lucide-react";
 import { useDeleteLayananMutation } from "../hooks/use-layanan";

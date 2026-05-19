@@ -5,9 +5,9 @@ import { Disclosure } from "@/components/ui/disclosure";
 import { P } from "@/components/ui/p";
 import { PeriodPickerInput } from "@/components/ui/period-picker-input";
 import { Tooltip } from "@/components/ui/tooltip";
-import { AppIconLucide } from "@/components/widgets/app-icon";
-import { BackButton } from "@/components/widgets/back-button";
-import FeedbackNoData from "@/components/widgets/feedback-no-data";
+import { AppIconLucide } from "@/components/branding/app-icon";
+import { BackButton } from "@/components/navigation/back-button";
+import FeedbackNoData from "@/components/feedback/feedback-no-data";
 import {
   ButtonVariant,
   DateVariant,

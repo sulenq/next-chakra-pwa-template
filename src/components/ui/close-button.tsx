@@ -1,4 +1,4 @@
-import { LucideIcon } from "@/components/widgets/icon";
+import { LucideIcon } from "@/components/misc/icon";
 import type {
   ButtonProps as ChakraCloseButtonProps,
   IconProps,
