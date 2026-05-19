@@ -57,7 +57,7 @@ import { getUserData } from "@/utils/auth";
 import { getActiveNavs } from "@/utils/route";
 import { pluckString } from "@/utils/string";
 import { imgUrl } from "@/utils/url";
-import { Center } from "@chakra-ui/react";
+import { Box, Center } from "@chakra-ui/react";
 import { ChevronsLeftIcon, ChevronsRightIcon, ServerIcon } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { Fragment } from "react";
@@ -526,14 +526,11 @@ const DesktopLayout = (props: any) => {
 
         {/* Content */}
         <MainView.Root w={"full"} overflowY={"auto"}>
-          <StackV px={GAP}>
-            <ConstrainedContainer
-              align={"center"}
-              w={"full"}
-              h={TOP_BAR_H}
-              p={R_SPACING_MD}
-            >
-              <TopBar />
+          <StackV>
+            <ConstrainedContainer px={GAP}>
+              <Box w={"full"} h={TOP_BAR_H} p={R_SPACING_MD}>
+                <TopBar />
+              </Box>
             </ConstrainedContainer>
           </StackV>
 

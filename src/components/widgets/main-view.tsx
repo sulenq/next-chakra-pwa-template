@@ -201,13 +201,6 @@ export const TopBar = (props: TopBarProps) => {
         </Stack>
 
         <StackH justify={"end"} gap={2} w={"35%"}>
-          {/* <SearchInput
-          queryKey={"quick-navigation"}
-          variant={"subtle"}
-          icon={<LucideIcon icon={NavigationIcon} />}
-          placeholder={t.quick_navigation}
-        /> */}
-
           <Btn iconButton variant={"subtle"} size={"xs"} color={"fg.muted"}>
             <AppIconLucide icon={NavigationIcon} />
           </Btn>

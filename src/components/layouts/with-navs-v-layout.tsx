@@ -45,15 +45,16 @@ export const WithNavsVLayout = (props: WithNavsVLayoutProps) => {
     !isSmContainer || (isSmContainer && !isAtSettingsIndexRoute);
 
   return (
-    <Box className={"WithNavsVLayout scrollY"}>
-      <ConstrainedContainer flex={1} overflowY={"auto"}>
-        <StackH flex={1} w={"fullnp"} pos={"relative"} {...restProps}>
-          {/* Sidebar */}
+    <Box className={"WithNavsVLayout"}>
+      <ConstrainedContainer flex={1}>
+        <StackH flex={1} w={"full"} pos={"relative"} {...restProps}>
+          {/* Navs */}
           {showNavs && (
             <StackV
               flexShrink={0}
               w={isSmContainer ? "full" : "250px"}
-              h={"full"}
+              alignSelf={"flex-start"}
+              maxH={"calc(100dvh - 80px)"}
               py={GAP}
               pl={GAP}
               overflowY={"auto"}
@@ -73,7 +74,12 @@ export const WithNavsVLayout = (props: WithNavsVLayoutProps) => {
                   px={isSmContainer ? "6px" : R_SPACING_MD}
                 />
 
-                <StackV className={"scrollY"} flex={1} p={R_SPACING_MD}>
+                <StackV
+                  className={"scrollY"}
+                  flex={1}
+                  p={R_SPACING_MD}
+                  overflowY={"auto"}
+                >
                   <NavsV
                     navs={navs}
                     addonElement={
@@ -99,7 +105,7 @@ export const WithNavsVLayout = (props: WithNavsVLayoutProps) => {
 
           {/* Content */}
           {showContent && (
-            <MainView.Root flex={1} p={GAP}>
+            <MainView.Root flex={1} p={GAP} overflow={"visible"}>
               {pathname !== rootPath && <MainView.Header withTitle px={4} />}
 
               <StackV flex={1}>{children}</StackV>
