@@ -1102,20 +1102,20 @@ export const customConfig = defineConfig({
         orange: {
           solid: {
             value: {
-              base: "{colors.orange.500}",
-              _dark: "{colors.orange.700}",
+              base: "{colors.orange.500} !important",
+              _dark: "{colors.orange.700} !important",
             },
           },
           contrast: {
             value: {
-              base: "{colors.orange.50}",
-              _dark: "{colors.orange.100}",
+              base: "{colors.orange.50} !important",
+              _dark: "{colors.orange.100} !important",
             },
           },
           fg: {
             value: {
-              base: "{colors.orange.500}",
-              _dark: "{colors.orange.300}",
+              base: "{colors.orange.500} !important",
+              _dark: "{colors.orange.400} !important",
             },
           },
           muted: {
