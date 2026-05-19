@@ -183,11 +183,7 @@ const ADMSetting = () => {
   const { ADM, setADM } = useADMContext();
 
   return (
-    <SettingItemContainer
-      onClick={() => {
-        setADM((ps: boolean) => !ps);
-      }}
-    >
+    <SettingItemContainer>
       <StackV gap={1}>
         <P>{t.settings_adaptive_dark_mode.title}</P>
 

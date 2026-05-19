@@ -20,11 +20,6 @@ export const SettingItemContainer = ({
       p={4}
       pointerEvents={disabled ? "none" : "auto"}
       opacity={disabled ? 0.4 : 1}
-      overflow={"clip"}
-      transition={"200ms"}
-      _hover={{
-        bg: "bg.subtle",
-      }}
       {...props}
     >
       {children}
