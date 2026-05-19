@@ -96,7 +96,15 @@ const AutoTimezomeSetting = () => {
   const { isAuto, enableAuto, disableAuto } = useTimezone();
 
   return (
-    <SettingItemContainer>
+    <SettingItemContainer
+      onClick={() => {
+        if (isAuto) {
+          disableAuto(getLocalTimezone());
+        } else {
+          enableAuto();
+        }
+      }}
+    >
       <StackV gap={1}>
         <P>{t.settings_auto_timezone.title}</P>
 

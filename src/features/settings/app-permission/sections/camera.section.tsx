@@ -10,7 +10,7 @@ import { toaster } from "@/components/ui/toaster";
 import { Item } from "@/components/container/item";
 import { SettingItemContainer } from "@/components/container/settings-shell";
 import { R_SPACING_MD } from "@/constants/styles";
-import { useCameraPermission } from "@/features/settings/app-permission/contexts/use-camera-permission-context";
+import { useCameraPermissionContext } from "@/features/settings/app-permission/contexts/use-camera-permission-context";
 import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";
 import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
 import { usePopDisclosure } from "@/hooks/use-pop-disclosure";
@@ -26,7 +26,7 @@ const CameraTester = () => {
   const { t } = useLocaleContext();
   const { themeContext } = useThemeContext();
   const { cameraPermissionsStatus, setCameraPermissionsStatus } =
-    useCameraPermission();
+    useCameraPermissionContext();
 
   // Refs
   const videoRef = useRef<HTMLVideoElement | null>(null);
@@ -146,12 +146,16 @@ const CameraTester = () => {
 
 // -----------------------------------------------------------------
 
-export const CameraSection = () => {
+const CameraPermissionSetting = () => {
   // Contexts
   const { t } = useLocaleContext();
   const { themeContext } = useThemeContext();
-  const { cameraPermissionsStatus, setCameraPermissionsStatus } =
-    useCameraPermission();
+  const cameraPermissionsStatus = useCameraPermissionContext(
+    (s) => s.cameraPermissionsStatus,
+  );
+  const setCameraPermissionsStatus = useCameraPermissionContext(
+    (s) => s.setCameraPermissionsStatus,
+  );
 
   // Utils
   async function requestCameraMic() {
@@ -182,62 +186,107 @@ export const CameraSection = () => {
     cameraPermissionsStatus === "denied_permanent";
 
   return (
+    <SettingItemContainer
+      onClick={() => {
+        if (!isDisabled) {
+          if (isGranted) {
+            // Allow toggling off temporary permissions
+            setCameraPermissionsStatus("prompt");
+          } else {
+            requestCameraMic();
+          }
+        }
+      }}
+    >
+      <StackV gap={1}>
+        <StackH align={"center"} gap={2}>
+          <P>{t.settings_camera_permission.title}</P>
+          {cameraPermissionsStatus !== "prompt" && (
+            <Badge
+              colorPalette={
+                cameraPermissionsStatus.startsWith("granted")
+                  ? cameraPermissionsStatus === "granted_permanent"
+                    ? "green"
+                    : "yellow"
+                  : "red"
+              }
+              size={"xs"}
+              variant={"subtle"}
+            >
+              {getBadgeText(cameraPermissionsStatus, t)}
+            </Badge>
+          )}
+        </StackH>
+
+        <P color={"fg.subtle"}>{t.settings_camera_permission.description}</P>
+      </StackV>
+
+      <Switch
+        checked={isGranted}
+        disabled={isDisabled}
+        onChange={() => {
+          if (isGranted) {
+            // Allow toggling off temporary permissions
+            setCameraPermissionsStatus("prompt");
+          } else {
+            requestCameraMic();
+          }
+        }}
+        colorPalette={themeContext.colorPalette}
+      />
+    </SettingItemContainer>
+  );
+};
+
+// -----------------------------------------------------------------
+
+const CameraTesterSetting = () => {
+  // Contexts
+  const { t } = useLocaleContext();
+  const cameraPermissionsStatus = useCameraPermissionContext(
+    (s) => s.cameraPermissionsStatus,
+  );
+
+  const isGranted =
+    cameraPermissionsStatus === "granted_permanent" ||
+    cameraPermissionsStatus === "granted_temporary";
+
+  return (
+    <SettingItemContainer disabled={!isGranted}>
+      <StackV gap={1}>
+        <P>{t.settings_camera_permission_test.title}</P>
+      </StackV>
+
+      <CameraTester />
+    </SettingItemContainer>
+  );
+};
+
+// -----------------------------------------------------------------
+
+export const CameraSection = () => {
+  // Contexts
+  const { t } = useLocaleContext();
+  const cameraPermissionsStatus = useCameraPermissionContext(
+    (s) => s.cameraPermissionsStatus,
+  );
+
+  const isGranted =
+    cameraPermissionsStatus === "granted_permanent" ||
+    cameraPermissionsStatus === "granted_temporary";
+
+  return (
     <Item.Root px={R_SPACING_MD}>
       <SettingsHelperText fontWeight={"semibold"}>
         {t.settings_camera_permission_section.title}
       </SettingsHelperText>
 
       <Item.Body>
-        <SettingItemContainer>
-          <StackV gap={1}>
-            <StackH align={"center"} gap={2}>
-              <P>{t.settings_camera_permission.title}</P>
-              {cameraPermissionsStatus !== "prompt" && (
-                <Badge
-                  colorPalette={
-                    cameraPermissionsStatus.startsWith("granted")
-                      ? cameraPermissionsStatus === "granted_permanent"
-                        ? "green"
-                        : "yellow"
-                      : "red"
-                  }
-                  size={"xs"}
-                  variant={"subtle"}
-                >
-                  {getBadgeText(cameraPermissionsStatus, t)}
-                </Badge>
-              )}
-            </StackH>
-
-            <P color={"fg.subtle"}>
-              {t.settings_camera_permission.description}
-            </P>
-          </StackV>
-
-          <Switch
-            checked={isGranted}
-            disabled={isDisabled}
-            onChange={() => {
-              if (isGranted) {
-                // Allow toggling off temporary permissions
-                setCameraPermissionsStatus("prompt");
-              } else {
-                requestCameraMic();
-              }
-            }}
-            colorPalette={themeContext.colorPalette}
-          />
-        </SettingItemContainer>
+        <CameraPermissionSetting />
 
         <Divider mx={4} />
 
-        <SettingItemContainer disabled={!isGranted}>
-          <StackV gap={1}>
-            <P>{t.settings_camera_permission_test.title}</P>
-          </StackV>
-
-          <CameraTester />
-        </SettingItemContainer>
+        <CameraTesterSetting />
       </Item.Body>
 
       {cameraPermissionsStatus !== "prompt" && (

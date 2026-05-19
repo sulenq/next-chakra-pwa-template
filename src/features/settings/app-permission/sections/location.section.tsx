@@ -10,7 +10,7 @@ import { toaster } from "@/components/ui/toaster";
 import { Item } from "@/components/container/item";
 import { SettingItemContainer } from "@/components/container/settings-shell";
 import { R_SPACING_MD } from "@/constants/styles";
-import { useLocationPermissions } from "@/features/settings/app-permission/contexts/use-location-permission-context";
+import { useLocationPermissionContext } from "@/features/settings/app-permission/contexts/use-location-permission-context";
 import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";
 import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
 import { usePopDisclosure } from "@/hooks/use-pop-disclosure";
@@ -26,7 +26,7 @@ const LocationTester = () => {
   const { t } = useLocaleContext();
   const { themeContext } = useThemeContext();
   const { locationPermissionsStatus, setLocationPermissionsStatus } =
-    useLocationPermissions();
+    useLocationPermissionContext();
 
   // Hooks
   const { open, onOpen } = usePopDisclosure(disclosureId("location-test"));
@@ -136,12 +136,16 @@ const LocationTester = () => {
 
 // -----------------------------------------------------------------
 
-export const LocationSection = () => {
+const LocationPermissionSetting = () => {
   // Contexts
   const { t } = useLocaleContext();
   const { themeContext } = useThemeContext();
-  const { locationPermissionsStatus, setLocationPermissionsStatus } =
-    useLocationPermissions();
+  const locationPermissionsStatus = useLocationPermissionContext(
+    (s) => s.locationPermissionsStatus,
+  );
+  const setLocationPermissionsStatus = useLocationPermissionContext(
+    (s) => s.setLocationPermissionsStatus,
+  );
 
   // Utils
   function requestLocationPermission() {
@@ -185,62 +189,107 @@ export const LocationSection = () => {
     locationPermissionsStatus === "denied_permanent";
 
   return (
+    <SettingItemContainer
+      onClick={() => {
+        if (!isDisabled) {
+          if (isGranted) {
+            // Allow toggling off temporary permissions
+            setLocationPermissionsStatus("prompt");
+          } else {
+            requestLocationPermission();
+          }
+        }
+      }}
+    >
+      <StackV gap={1}>
+        <StackH align={"center"} gap={2}>
+          <P>{t.settings_location_permission.title}</P>
+          {locationPermissionsStatus !== "prompt" && (
+            <Badge
+              colorPalette={
+                locationPermissionsStatus.startsWith("granted")
+                  ? locationPermissionsStatus === "granted_permanent"
+                    ? "green"
+                    : "yellow"
+                  : "red"
+              }
+              size={"xs"}
+              variant={"subtle"}
+            >
+              {getBadgeText(locationPermissionsStatus, t)}
+            </Badge>
+          )}
+        </StackH>
+
+        <P color={"fg.subtle"}>{t.settings_location_permission.description}</P>
+      </StackV>
+
+      <Switch
+        checked={isGranted}
+        disabled={isDisabled}
+        onChange={() => {
+          if (isGranted) {
+            // Allow toggling off temporary permissions
+            setLocationPermissionsStatus("prompt");
+          } else {
+            requestLocationPermission();
+          }
+        }}
+        colorPalette={themeContext.colorPalette}
+      />
+    </SettingItemContainer>
+  );
+};
+
+// -----------------------------------------------------------------
+
+const LocationTesterSetting = () => {
+  // Contexts
+  const { t } = useLocaleContext();
+  const locationPermissionsStatus = useLocationPermissionContext(
+    (s) => s.locationPermissionsStatus,
+  );
+
+  const isGranted =
+    locationPermissionsStatus === "granted_permanent" ||
+    locationPermissionsStatus === "granted_temporary";
+
+  return (
+    <SettingItemContainer disabled={!isGranted}>
+      <StackV gap={1}>
+        <P>{t.settings_location_permission_test.title}</P>
+      </StackV>
+
+      <LocationTester />
+    </SettingItemContainer>
+  );
+};
+
+// -----------------------------------------------------------------
+
+export const LocationSection = () => {
+  // Contexts
+  const { t } = useLocaleContext();
+  const locationPermissionsStatus = useLocationPermissionContext(
+    (s) => s.locationPermissionsStatus,
+  );
+
+  const isGranted =
+    locationPermissionsStatus === "granted_permanent" ||
+    locationPermissionsStatus === "granted_temporary";
+
+  return (
     <Item.Root px={R_SPACING_MD}>
       <SettingsHelperText fontWeight={"semibold"}>
         {t.settings_location_permission_section.title}
       </SettingsHelperText>
 
       <Item.Body>
-        <SettingItemContainer>
-          <StackV gap={1}>
-            <StackH align={"center"} gap={2}>
-              <P>{t.settings_location_permission.title}</P>
-              {locationPermissionsStatus !== "prompt" && (
-                <Badge
-                  colorPalette={
-                    locationPermissionsStatus.startsWith("granted")
-                      ? locationPermissionsStatus === "granted_permanent"
-                        ? "green"
-                        : "yellow"
-                      : "red"
-                  }
-                  size={"xs"}
-                  variant={"subtle"}
-                >
-                  {getBadgeText(locationPermissionsStatus, t)}
-                </Badge>
-              )}
-            </StackH>
-
-            <P color={"fg.subtle"}>
-              {t.settings_location_permission.description}
-            </P>
-          </StackV>
-
-          <Switch
-            checked={isGranted}
-            disabled={isDisabled}
-            onChange={() => {
-              if (isGranted) {
-                // Allow toggling off temporary permissions
-                setLocationPermissionsStatus("prompt");
-              } else {
-                requestLocationPermission();
-              }
-            }}
-            colorPalette={themeContext.colorPalette}
-          />
-        </SettingItemContainer>
+        <LocationPermissionSetting />
 
         <Divider mx={4} />
 
-        <SettingItemContainer disabled={!isGranted}>
-          <StackV gap={1}>
-            <P>{t.settings_location_permission_test.title}</P>
-          </StackV>
-
-          <LocationTester />
-        </SettingItemContainer>
+        <LocationTesterSetting />
       </Item.Body>
 
       {locationPermissionsStatus !== "prompt" && (

@@ -1,8 +1,8 @@
 "use client";
 
+import { InfoTip } from "@/components/overlays/info-tip";
 import { P, PProps } from "@/components/ui/p";
 import { StackH, StackV } from "@/components/ui/stack";
-import { InfoTip } from "@/components/overlays/info-tip";
 import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";
 import { useContainerDimension } from "@/hooks/use-container-dimenssion";
 import { useMergedRefs } from "@/hooks/use-merge-refs";
@@ -142,6 +142,7 @@ const ItemBody = forwardRef<HTMLDivElement, ItemBodyProps>(
         rounded={roundedless ? "" : themeContext.radii.container}
         border={borderless ? "" : "1px solid"}
         borderColor={"border.subtle"}
+        overflow={"clip"}
         {...restProps}
       >
         {children}

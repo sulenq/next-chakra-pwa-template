@@ -4,11 +4,12 @@ import { StackH } from "@/components/ui/stack";
 import { Item } from "@/components/container/item";
 import { MainView, useMainViewContext } from "@/components/container/main-view";
 import { HScroll } from "@/components/container/h-scroll";
-import { GAP, R_SPACING_MD } from "@/constants/styles";
+import { GAP, R_SPACING_MD, TOP_BAR_H } from "@/constants/styles";
 import { LayananCreate } from "@/features/layanan/components/layanan.create";
 import { LayananList } from "@/features/layanan/components/layanan.list";
 import { LayananListUtils } from "@/features/layanan/components/layanan.list-utils";
 import { useState } from "react";
+import { cssCalc } from "@/utils/style";
 
 // -----------------------------------------------------------------
 
@@ -26,7 +27,11 @@ export default function LayananPage() {
   const [filter, setFilter] = useState(DEFAULT_FILTER);
 
   return (
-    <MainView.Content p={GAP}>
+    <MainView.Content
+      maxH={cssCalc(`100dvh - ${TOP_BAR_H}`)}
+      p={GAP}
+      overflowY={"auto"}
+    >
       <MainView.Header
         withTitle
         MainViewTitleProps={{

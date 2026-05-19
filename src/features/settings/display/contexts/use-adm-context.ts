@@ -6,9 +6,10 @@ const DEFAULT = false;
 
 type ADMStore = {
   ADM: boolean;
-  setADM: (newState: boolean) => void;
+  setADM: (newState: boolean | ((prevState: boolean) => boolean)) => void;
 };
-const useADM = create<ADMStore>((set) => {
+
+const useADMContext = create<ADMStore>((set) => {
   const stored = getStorage(STORAGE_KEY);
   const initial = stored === null ? DEFAULT : stored === "true";
 
@@ -16,12 +17,14 @@ const useADM = create<ADMStore>((set) => {
 
   return {
     ADM: initial,
-    setADM: (newState: boolean) =>
-      set(() => {
-        setStorage(STORAGE_KEY, newState ? "true" : "false");
-        return { ADM: newState };
+    setADM: (newState: boolean | ((prevState: boolean) => boolean)) =>
+      set((state) => {
+        const updatedValue =
+          typeof newState === "function" ? newState(state.ADM) : newState;
+        setStorage(STORAGE_KEY, updatedValue ? "true" : "false");
+        return { ADM: updatedValue };
       }),
   };
 });
 
-export default useADM;
+export default useADMContext;

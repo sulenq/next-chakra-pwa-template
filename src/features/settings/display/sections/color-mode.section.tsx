@@ -10,7 +10,7 @@ import { AppIconLucide } from "@/components/branding/app-icon";
 import { Item } from "@/components/container/item";
 import { SettingItemContainer } from "@/components/container/settings-shell";
 import { R_SPACING_MD } from "@/constants/styles";
-import useADM from "@/features/settings/display/contexts/use-adm-context";
+import useADMContext from "@/features/settings/display/contexts/use-adm-context";
 import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
 import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";
 import { formatTime } from "@/utils/formatter";
@@ -180,10 +180,14 @@ const ColorModeSetting = () => {
 const ADMSetting = () => {
   // Contexts
   const { t } = useLocaleContext();
-  const { ADM, setADM } = useADM();
+  const { ADM, setADM } = useADMContext();
 
   return (
-    <SettingItemContainer>
+    <SettingItemContainer
+      onClick={() => {
+        setADM((ps: boolean) => !ps);
+      }}
+    >
       <StackV gap={1}>
         <P>{t.settings_adaptive_dark_mode.title}</P>
 

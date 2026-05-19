@@ -10,7 +10,7 @@ import { Item } from "@/components/container/item";
 import { MicVolumeBar } from "@/components/misc/mic-volume-bar";
 import { SettingItemContainer } from "@/components/container/settings-shell";
 import { R_SPACING_MD } from "@/constants/styles";
-import { useMicPermissions } from "@/features/settings/app-permission/contexts/use-mic-permission-context";
+import { useMicPermissionContext } from "@/features/settings/app-permission/contexts/use-mic-permission-context";
 import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";
 import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
 import { usePopDisclosure } from "@/hooks/use-pop-disclosure";
@@ -24,7 +24,8 @@ const MicTester = () => {
   // Contexts
   const { t } = useLocaleContext();
   const { themeContext } = useThemeContext();
-  const { micPermissionsStatus, setMicPermissionsStatus } = useMicPermissions();
+  const { micPermissionsStatus, setMicPermissionsStatus } =
+    useMicPermissionContext();
 
   // Refs
   const streamRef = useRef<MediaStream | null>(null);
@@ -142,11 +143,16 @@ const MicTester = () => {
 
 // -----------------------------------------------------------------
 
-export const MicrophoneSection = () => {
+const MicPermissionSetting = () => {
   // Contexts
   const { t } = useLocaleContext();
   const { themeContext } = useThemeContext();
-  const { micPermissionsStatus, setMicPermissionsStatus } = useMicPermissions();
+  const micPermissionsStatus = useMicPermissionContext(
+    (s) => s.micPermissionsStatus,
+  );
+  const setMicPermissionsStatus = useMicPermissionContext(
+    (s) => s.setMicPermissionsStatus,
+  );
 
   // Utils
   async function requestMicPermission() {
@@ -177,60 +183,107 @@ export const MicrophoneSection = () => {
     micPermissionsStatus === "denied_permanent";
 
   return (
+    <SettingItemContainer
+      onClick={() => {
+        if (!isDisabled) {
+          if (isGranted) {
+            // Allow toggling off temporary permissions
+            setMicPermissionsStatus("prompt");
+          } else {
+            requestMicPermission();
+          }
+        }
+      }}
+    >
+      <StackV gap={1}>
+        <StackH align={"center"} gap={2}>
+          <P>{t.settings_mic_permission.title}</P>
+          {micPermissionsStatus !== "prompt" && (
+            <Badge
+              colorPalette={
+                micPermissionsStatus.startsWith("granted")
+                  ? micPermissionsStatus === "granted_permanent"
+                    ? "green"
+                    : "yellow"
+                  : "red"
+              }
+              size={"xs"}
+              variant={"subtle"}
+            >
+              {getBadgeText(micPermissionsStatus, t)}
+            </Badge>
+          )}
+        </StackH>
+
+        <P color={"fg.subtle"}>{t.settings_mic_permission.description}</P>
+      </StackV>
+
+      <Switch
+        checked={isGranted}
+        disabled={isDisabled}
+        onChange={() => {
+          if (isGranted) {
+            // Allow toggling off temporary permissions
+            setMicPermissionsStatus("prompt");
+          } else {
+            requestMicPermission();
+          }
+        }}
+        colorPalette={themeContext.colorPalette}
+      />
+    </SettingItemContainer>
+  );
+};
+
+// -----------------------------------------------------------------
+
+const MicTesterSetting = () => {
+  // Contexts
+  const { t } = useLocaleContext();
+  const micPermissionsStatus = useMicPermissionContext(
+    (s) => s.micPermissionsStatus,
+  );
+
+  const isGranted =
+    micPermissionsStatus === "granted_permanent" ||
+    micPermissionsStatus === "granted_temporary";
+
+  return (
+    <SettingItemContainer disabled={!isGranted}>
+      <StackV gap={1}>
+        <P>{t.settings_mic_permission_test.title}</P>
+      </StackV>
+
+      <MicTester />
+    </SettingItemContainer>
+  );
+};
+
+// -----------------------------------------------------------------
+
+export const MicrophoneSection = () => {
+  // Contexts
+  const { t } = useLocaleContext();
+  const micPermissionsStatus = useMicPermissionContext(
+    (s) => s.micPermissionsStatus,
+  );
+
+  const isGranted =
+    micPermissionsStatus === "granted_permanent" ||
+    micPermissionsStatus === "granted_temporary";
+
+  return (
     <Item.Root px={R_SPACING_MD}>
       <SettingsHelperText fontWeight={"semibold"}>
         {t.settings_mic_permission_section.title}
       </SettingsHelperText>
 
       <Item.Body>
-        <SettingItemContainer>
-          <StackV gap={1}>
-            <StackH align={"center"} gap={2}>
-              <P>{t.settings_mic_permission.title}</P>
-              {micPermissionsStatus !== "prompt" && (
-                <Badge
-                  colorPalette={
-                    micPermissionsStatus.startsWith("granted")
-                      ? micPermissionsStatus === "granted_permanent"
-                        ? "green"
-                        : "yellow"
-                      : "red"
-                  }
-                  size={"xs"}
-                  variant={"subtle"}
-                >
-                  {getBadgeText(micPermissionsStatus, t)}
-                </Badge>
-              )}
-            </StackH>
-
-            <P color={"fg.subtle"}>{t.settings_mic_permission.description}</P>
-          </StackV>
-
-          <Switch
-            checked={isGranted}
-            disabled={isDisabled}
-            onChange={() => {
-              if (isGranted) {
-                // Allow toggling off temporary permissions
-                setMicPermissionsStatus("prompt");
-              } else {
-                requestMicPermission();
-              }
-            }}
-            colorPalette={themeContext.colorPalette}
-          />
-        </SettingItemContainer>
+        <MicPermissionSetting />
 
         <Divider mx={4} />
 
-        <SettingItemContainer disabled={!isGranted}>
-          <StackV gap={1}>
-            <P>{t.settings_mic_permission_test.title}</P>
-          </StackV>
-
-          <MicTester />
-        </SettingItemContainer>
+        <MicTesterSetting />
       </Item.Body>
 
       {micPermissionsStatus !== "prompt" && (

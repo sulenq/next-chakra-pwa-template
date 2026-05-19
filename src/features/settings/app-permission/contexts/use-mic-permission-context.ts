@@ -1,5 +1,10 @@
 import { UnifiedPermissionState } from "@/types/global.types";
-import { isClient, getStorage, setStorage, removeStorage } from "@/utils/client";
+import {
+  isClient,
+  getStorage,
+  setStorage,
+  removeStorage,
+} from "@/utils/client";
 import { create } from "zustand";
 
 type MicPermissionsStore = {
@@ -8,7 +13,7 @@ type MicPermissionsStore = {
   updateMicPermissionsStatus: () => Promise<void>;
 };
 
-export const useMicPermissions = create<MicPermissionsStore>((set) => {
+export const useMicPermissionContext = create<MicPermissionsStore>((set) => {
   return {
     micPermissionsStatus: "prompt",
     setMicPermissionsStatus: (status) => {
@@ -38,12 +43,15 @@ export const useMicPermissions = create<MicPermissionsStore>((set) => {
         if (navigator.mediaDevices && navigator.mediaDevices.enumerateDevices) {
           const devices = await navigator.mediaDevices.enumerateDevices();
           const hasActiveAccess = devices.some(
-            (d) => d.kind === "audioinput" && d.label !== ""
+            (d) => d.kind === "audioinput" && d.label !== "",
           );
           if (hasActiveAccess) {
-            const isPermanent = getStorage("perm_mic_permanent", "local") === "true";
+            const isPermanent =
+              getStorage("perm_mic_permanent", "local") === "true";
             set({
-              micPermissionsStatus: isPermanent ? "granted_permanent" : "granted_temporary",
+              micPermissionsStatus: isPermanent
+                ? "granted_permanent"
+                : "granted_temporary",
             });
             return;
           }
@@ -59,7 +67,9 @@ export const useMicPermissions = create<MicPermissionsStore>((set) => {
             name: "microphone" as PermissionName,
           });
 
-          const mapStatus = (state: PermissionState): UnifiedPermissionState => {
+          const mapStatus = (
+            state: PermissionState,
+          ): UnifiedPermissionState => {
             if (state === "granted") return "granted_permanent";
             if (state === "denied") return "denied_permanent";
             return "prompt";
@@ -77,7 +87,10 @@ export const useMicPermissions = create<MicPermissionsStore>((set) => {
       }
 
       // 3. Fallback to cached states
-      const cachedSession = getStorage("perm_mic", "session") as UnifiedPermissionState | null;
+      const cachedSession = getStorage(
+        "perm_mic",
+        "session",
+      ) as UnifiedPermissionState | null;
       const cachedPermanent = getStorage("perm_mic_permanent", "local");
 
       if (cachedSession) {
@@ -95,6 +108,6 @@ export const useMicPermissions = create<MicPermissionsStore>((set) => {
 
 if (isClient()) {
   setTimeout(() => {
-    useMicPermissions.getState().updateMicPermissionsStatus();
+    useMicPermissionContext.getState().updateMicPermissionsStatus();
   }, 0);
 }

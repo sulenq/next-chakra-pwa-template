@@ -13,7 +13,7 @@ type LocationPermissionsStore = {
   updateLocationPermissionsStatus: () => Promise<void>;
 };
 
-export const useLocationPermissions = create<LocationPermissionsStore>(
+export const useLocationPermissionContext = create<LocationPermissionsStore>(
   (set) => {
     return {
       locationPermissionsStatus: "prompt",
@@ -88,6 +88,6 @@ export const useLocationPermissions = create<LocationPermissionsStore>(
 
 if (isClient()) {
   setTimeout(() => {
-    useLocationPermissions.getState().updateLocationPermissionsStatus();
+    useLocationPermissionContext.getState().updateLocationPermissionsStatus();
   }, 0);
 }
