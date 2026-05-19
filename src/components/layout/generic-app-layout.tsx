@@ -533,8 +533,10 @@ const DesktopLayout = (props: any) => {
             </ConstrainedContainer>
           </StackV>
 
-          <MContainerV flex={1} overflowY={"auto"}>
-            <ConstrainedContainer flex={1}>{children}</ConstrainedContainer>
+          <MContainerV flex={1} overflowY={"auto"} pos={"relative"}>
+            <ConstrainedContainer className={"debug"} flex={1} pos={"relative"}>
+              {children}
+            </ConstrainedContainer>
           </MContainerV>
         </MainView.Root>
       </StackH>

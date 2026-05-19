@@ -1,13 +1,9 @@
 "use client";
 
+import { MainView, useMainViewContext } from "@/components/container/main-view";
+import { NavsV } from "@/components/navigation/navs";
 import { HelperText } from "@/components/ui/helper-text";
 import { StackH, StackV } from "@/components/ui/stack";
-import {
-  ConstrainedContainer,
-  MainView,
-  useMainViewContext,
-} from "@/components/container/main-view";
-import { NavsV } from "@/components/navigation/navs";
 import { APP } from "@/constants/_meta";
 import { GAP, R_SPACING_MD } from "@/constants/styles";
 import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";
@@ -45,74 +41,72 @@ export const WithNavsVLayout = (props: WithNavsVLayoutProps) => {
     !isSmContainer || (isSmContainer && !isAtSettingsIndexRoute);
 
   return (
-    <MainView.Content className={"WithNavsVLayout"}>
-      <ConstrainedContainer flex={1}>
-        <StackH flex={1} w={"full"} pos={"relative"} {...restProps}>
-          {/* Navs */}
-          {showNavs && (
+    <MainView.Content className={"WithNavsVLayout"} {...restProps}>
+      <StackH flex={1} w={"full"}>
+        {/* Navs */}
+        {showNavs && (
+          <StackV
+            flexShrink={0}
+            w={isSmContainer ? "full" : "250px"}
+            alignSelf={"flex-start"}
+            maxH={"calc(100dvh - 80px)"}
+            py={GAP}
+            pl={GAP}
+            overflowY={"auto"}
+            pos={"sticky"}
+            top={0}
+          >
             <StackV
-              flexShrink={0}
-              w={isSmContainer ? "full" : "250px"}
-              alignSelf={"flex-start"}
-              maxH={"calc(100dvh - 80px)"}
-              py={GAP}
-              pl={GAP}
+              flex={1}
+              px={isSmContainer ? 2 : 0}
+              pb={isSmContainer ? 2 : 0}
+              rounded={themeContext.radii.container}
               overflowY={"auto"}
-              pos={"sticky"}
-              top={0}
             >
+              <MainView.Header
+                withTitle
+                title={t.settings}
+                px={isSmContainer ? "6px" : R_SPACING_MD}
+              />
+
               <StackV
+                className={"scrollY"}
                 flex={1}
-                px={isSmContainer ? 2 : 0}
-                pb={isSmContainer ? 2 : 0}
-                rounded={themeContext.radii.container}
+                p={R_SPACING_MD}
                 overflowY={"auto"}
               >
-                <MainView.Header
-                  withTitle
-                  title={t.settings}
-                  px={isSmContainer ? "6px" : R_SPACING_MD}
-                />
+                <NavsV
+                  navs={navs}
+                  addonBottomElement={
+                    <StackV mt={"auto"} gap={1}>
+                      <HelperText>{`v${APP.version}`}</HelperText>
 
-                <StackV
-                  className={"scrollY"}
-                  flex={1}
-                  p={R_SPACING_MD}
-                  overflowY={"auto"}
-                >
-                  <NavsV
-                    navs={navs}
-                    addonBottomElement={
-                      <StackV mt={"auto"} gap={1}>
-                        <HelperText>{`v${APP.version}`}</HelperText>
-
-                        <HelperText>
-                          {`Last updated: 
+                      <HelperText>
+                        {`Last updated: 
                         ${formatAbsDate(APP.lastUpdated, t, {
                           variant: "numeric",
                         })}`}
-                        </HelperText>
-                      </StackV>
-                    }
-                    navsExpanded
-                    showGroupLabel
-                    flex={1}
-                  />
-                </StackV>
+                      </HelperText>
+                    </StackV>
+                  }
+                  navsExpanded
+                  showGroupLabel
+                  flex={1}
+                />
               </StackV>
             </StackV>
-          )}
+          </StackV>
+        )}
 
-          {/* Content */}
-          {showContent && (
-            <MainView.Root flex={1} p={GAP}>
-              {pathname !== rootPath && <MainView.Header withTitle px={4} />}
+        {/* Content */}
+        {showContent && (
+          <MainView.Root flex={1} p={GAP}>
+            {pathname !== rootPath && <MainView.Header withTitle px={4} />}
 
-              {children}
-            </MainView.Root>
-          )}
-        </StackH>
-      </ConstrainedContainer>
+            {children}
+          </MainView.Root>
+        )}
+      </StackH>
     </MainView.Content>
   );
 };
