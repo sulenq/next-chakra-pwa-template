@@ -74,7 +74,7 @@ interface VNavsProps extends StackProps {
   navs: NavGroup[];
   navsExpanded?: boolean;
   showSearch?: boolean;
-  addonElement?: any;
+  addonBottomElement?: any;
   showGroupLabel?: boolean;
 }
 
@@ -84,7 +84,7 @@ export const NavsV = (props: VNavsProps) => {
     navs,
     navsExpanded = false,
     showSearch = true,
-    addonElement,
+    addonBottomElement,
     showGroupLabel = false,
     ...restProps
   } = props;
@@ -571,7 +571,7 @@ export const NavsV = (props: VNavsProps) => {
             );
           })}
 
-        {addonElement}
+        {addonBottomElement}
       </StackV>
     </StackV>
   );

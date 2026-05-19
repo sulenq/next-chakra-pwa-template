@@ -445,7 +445,7 @@ const DesktopLayout = (props: any) => {
                 <NavsV
                   navs={PRIVATE_NAV_GROUPS}
                   navsExpanded={isNavsExpanded}
-                  addonElement={
+                  addonBottomElement={
                     <StackV gap={1} mt={"auto"}>
                       <NavLink
                         key={"/master-data"}

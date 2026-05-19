@@ -82,7 +82,7 @@ export const WithNavsVLayout = (props: WithNavsVLayoutProps) => {
                 >
                   <NavsV
                     navs={navs}
-                    addonElement={
+                    addonBottomElement={
                       <StackV mt={"auto"} gap={1}>
                         <HelperText>{`v${APP.version}`}</HelperText>
 

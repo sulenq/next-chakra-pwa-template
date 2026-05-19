@@ -69,7 +69,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             <StackV className={"scrollY"} flex={1} p={R_SPACING_MD}>
               <NavsV
                 navs={NAVS}
-                addonElement={
+                addonBottomElement={
                   <StackV mt={"auto"} gap={1}>
                     <HelperText>{`v${APP.version}`}</HelperText>
 
