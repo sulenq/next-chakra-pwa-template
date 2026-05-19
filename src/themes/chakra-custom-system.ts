@@ -63,6 +63,7 @@ export const customConfig = defineConfig({
         sm: { value: "0.75rem" }, // 12px
         md: { value: "0.875rem" }, // 14px
         lg: { value: "1rem" }, // 16px
+        xl: { value: "1.125rem" }, // 18px
       },
       fontWeights: {
         normal: { value: "450" },

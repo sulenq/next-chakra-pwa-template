@@ -1,7 +1,7 @@
 "use client";
 
 import { MainView, useMainViewContext } from "@/components/container/main-view";
-import { NavsV } from "@/components/navigation/navs";
+import { VNavs } from "@/components/navigation/navs";
 import { HelperText } from "@/components/ui/helper-text";
 import { StackH, StackV } from "@/components/ui/stack";
 import { APP } from "@/constants/_meta";
@@ -15,12 +15,12 @@ import { usePathname } from "next/navigation";
 
 // -----------------------------------------------------------------
 
-interface WithNavsVLayoutProps extends StackProps {
+interface WithVNavsLayoutProps extends StackProps {
   navs: NavGroup[];
   rootPath: string;
 }
 
-export const WithNavsVLayout = (props: WithNavsVLayoutProps) => {
+export const WithVNavsLayout = (props: WithVNavsLayoutProps) => {
   // Props
   const { children, navs, rootPath, ...restProps } = props;
 
@@ -41,7 +41,7 @@ export const WithNavsVLayout = (props: WithNavsVLayoutProps) => {
     !isSmContainer || (isSmContainer && !isAtSettingsIndexRoute);
 
   return (
-    <MainView.Content className={"WithNavsVLayout"} {...restProps}>
+    <MainView.Content className={"WithVNavsLayout"} {...restProps}>
       <StackH flex={1} w={"full"}>
         {/* Navs */}
         {showNavs && (
@@ -74,7 +74,7 @@ export const WithNavsVLayout = (props: WithNavsVLayoutProps) => {
                 p={R_SPACING_MD}
                 overflowY={"auto"}
               >
-                <NavsV
+                <VNavs
                   navs={navs}
                   addonBottomElement={
                     <StackV mt={"auto"} gap={1}>

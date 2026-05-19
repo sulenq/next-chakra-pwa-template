@@ -17,7 +17,7 @@ import {
   TopBar,
 } from "@/components/container/main-view";
 import {
-  NavsV,
+  VNavs,
   DesktopNavTooltip,
   MobileNavLink,
 } from "@/components/navigation/navs";
@@ -441,7 +441,7 @@ const DesktopLayout = (props: any) => {
                 mb={GAP}
                 transition={"200ms"}
               >
-                <NavsV
+                <VNavs
                   navs={PRIVATE_NAV_GROUPS}
                   navsExpanded={isNavsExpanded}
                   addonBottomElement={
