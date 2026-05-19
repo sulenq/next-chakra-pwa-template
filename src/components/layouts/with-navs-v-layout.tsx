@@ -105,7 +105,7 @@ export const WithNavsVLayout = (props: WithNavsVLayoutProps) => {
 
           {/* Content */}
           {showContent && (
-            <MainView.Root flex={1} p={GAP} overflow={"visible"}>
+            <MainView.Root flex={1} p={GAP}>
               {pathname !== rootPath && <MainView.Header withTitle px={4} />}
 
               <StackV flex={1}>{children}</StackV>
