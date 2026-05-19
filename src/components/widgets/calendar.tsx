@@ -8,7 +8,7 @@ import {
 import { Disclosure } from "@/components/ui/disclosure";
 import { BackButton } from "@/components/widgets/back-button";
 import { Period } from "@/types/global.types";
-import { useLocale } from "@/contexts/use-locale-context";
+import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
 import { usePopDisclosure } from "@/hooks/use-pop-disclosure";
 import { disclosureId } from "@/utils/disclosure";
 import { StackProps } from "@chakra-ui/react";
@@ -45,7 +45,7 @@ const CalendarContent = (props: CalendarDisclosureProps) => {
   const { open } = props;
 
   // Contexts
-  const { t } = useLocale();
+  const { t } = useLocaleContext();
 
   return (
     <Disclosure.Root open={open} lazyLoad size={"xs"}>

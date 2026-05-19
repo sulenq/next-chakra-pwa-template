@@ -14,7 +14,7 @@ import { MiniUser } from "@/components/widgets/mini-user";
 import { dummyAllActivityLogs } from "@/constants/dummy-data";
 import { ActivityActionEnum } from "@/constants/enums";
 import { R_SPACING_MD } from "@/constants/styles";
-import { useLocale } from "@/contexts/use-locale-context";
+import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
 import { useFetchData } from "@/hooks/useFetchData";
 import type { ActivityLog } from "@/types/global.types";
 import { isEmptyArray } from "@/utils/array";
@@ -23,7 +23,7 @@ import { useState } from "react";
 
 const ActivityLog = () => {
   // Contexts
-  const { t } = useLocale();
+  const { t } = useLocaleContext();
 
   // States
   const [search, setSearch] = useState("");

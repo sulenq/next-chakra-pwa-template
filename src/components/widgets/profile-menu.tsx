@@ -19,10 +19,10 @@ import {
   BASE_ICON_BOX_SIZE,
   GAP,
 } from "@/constants/styles";
-import useADM from "@/contexts/use-adm-context";
+import useADM from "@/features/settings/display/contexts/use-adm-context";
 import { useAuthMiddleware } from "@/contexts/use-auth-middleware-context";
-import { useLocale } from "@/contexts/use-locale-context";
-import { useThemeContext } from "@/contexts/use-theme-context";
+import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
+import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";
 import { useRequest } from "@/hooks/useRequestOld";
 import { getUserData } from "@/utils/auth";
 import { back, removeStorage } from "@/utils/client";
@@ -79,7 +79,7 @@ export const ProfileMenu = (props: ProfileMenuProps) => {
   const { handleClose, ...restProps } = props;
 
   // Contexts
-  const { t } = useLocale();
+  const { t } = useLocaleContext();
   const { themeContext } = useThemeContext();
   const removeAuthContext = useAuthMiddleware((s) => s.removeAuthContext);
   const ADM = useADM((s) => s.ADM);

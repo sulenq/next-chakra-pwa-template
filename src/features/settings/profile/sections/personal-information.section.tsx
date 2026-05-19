@@ -8,8 +8,8 @@ import { Item, ItemRootProps } from "@/components/widgets/item";
 import { useMainViewContext } from "@/components/widgets/main-view";
 import { UserIdCard } from "@/components/widgets/user-id-card";
 import { R_SPACING_MD } from "@/constants/styles";
-import { useLocale } from "@/contexts/use-locale-context";
-import { useThemeContext } from "@/contexts/use-theme-context";
+import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
+import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";
 import ResetPasswordDisclosureTrigger from "@/features/auth/components/reset-password";
 import { useRequest } from "@/hooks/useRequestOld";
 import { getUserData } from "@/utils/auth";
@@ -21,7 +21,7 @@ import * as yup from "yup";
 
 export const PersonalInformationSection = (props: ItemRootProps) => {
   // Contexts
-  const { t } = useLocale();
+  const { t } = useLocaleContext();
   const { themeContext } = useThemeContext();
   const { isSmContainer } = useMainViewContext();
 

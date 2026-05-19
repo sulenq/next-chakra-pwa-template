@@ -2,7 +2,7 @@ import { Btn } from "@/components/ui/btn";
 import { FileIcon } from "@/components/ui/file-icon";
 import { P } from "@/components/ui/p";
 import { StackH, StackV } from "@/components/ui/stack";
-import { useThemeContext } from "@/contexts/use-theme-context";
+import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";
 import { Center, Circle, Icon, StackProps } from "@chakra-ui/react";
 import Link from "next/link";
 

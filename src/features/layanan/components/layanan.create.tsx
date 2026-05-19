@@ -6,18 +6,18 @@ import { StringInput } from "@/components/ui/string-input";
 import { TextareaInput } from "@/components/ui/textarea-input";
 import { AppIconLucide } from "@/components/widgets/app-icon";
 import { SimpleDisclosure } from "@/components/widgets/simple-disclosure";
-import { useLocale } from "@/contexts/use-locale-context";
+import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
 import { usePopDisclosure } from "@/hooks/use-pop-disclosure";
 import { InputGroup } from "@chakra-ui/react";
 import { useFormik } from "formik";
 import { PlusIcon } from "lucide-react";
 import * as yup from "yup";
 import { useCreateLayananMutation } from "../hooks/use-layanan";
-import { useThemeContext } from "@/contexts/use-theme-context";
+import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";
 
 export const LayananCreate = () => {
   // Contexts
-  const { t } = useLocale();
+  const { t } = useLocaleContext();
   const { themeContext } = useThemeContext();
 
   // Hooks

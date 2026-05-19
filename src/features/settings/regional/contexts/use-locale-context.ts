@@ -17,7 +17,7 @@ type LocaleStore = {
   locale: LocaleKey;
   setLocale: (newState: LocaleKey) => void;
 };
-export const useLocale = create<LocaleStore>((set) => {
+export const useLocaleContext = create<LocaleStore>((set) => {
   const getStoredLang = (): LocaleKey => {
     try {
       const stored = getStorage(STORAGE_KEY);

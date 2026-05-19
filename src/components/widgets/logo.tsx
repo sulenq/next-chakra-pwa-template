@@ -1,5 +1,5 @@
 import { useColorMode } from "@/components/ui/color-mode";
-import { useThemeContext } from "@/contexts/use-theme-context";
+import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";
 import { Center, CenterProps, useToken } from "@chakra-ui/react";
 
 // -----------------------------------------------------------------

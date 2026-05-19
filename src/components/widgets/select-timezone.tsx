@@ -1,6 +1,6 @@
 import { SelectInput, SelectInputProps } from "@/components/ui/select-input";
 import { TIME_ZONES } from "@/constants/timezones";
-import { useLocale } from "@/contexts/use-locale-context";
+import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
 
 // -----------------------------------------------------------------
 
@@ -9,7 +9,7 @@ export const SelectTimezone = (props: SelectInputProps) => {
   const { ...restProps } = props;
 
   // Contexts
-  const { t } = useLocale();
+  const { t } = useLocaleContext();
 
   // Derived Values
   const options = TIME_ZONES.map((timezone) => {

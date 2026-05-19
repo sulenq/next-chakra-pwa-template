@@ -7,8 +7,8 @@ import { StackH, StackV } from "@/components/ui/stack";
 import { Item } from "@/components/widgets/item";
 import { ROUNDED_PRESETS } from "@/constants/presets";
 import { R_SPACING_MD } from "@/constants/styles";
-import { useLocale } from "@/contexts/use-locale-context";
-import { useThemeContext } from "@/contexts/use-theme-context";
+import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
+import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";
 import { PSleleton } from "@/features/settings/display/sections/color-mode.section";
 import { Box, Circle, SimpleGrid } from "@chakra-ui/react";
 
@@ -16,7 +16,7 @@ import { Box, Circle, SimpleGrid } from "@chakra-ui/react";
 
 export const RoundedSection = () => {
   // Contexts
-  const { t } = useLocale();
+  const { t } = useLocaleContext();
   const { themeContext, setThemeContext } = useThemeContext();
 
   // Utils

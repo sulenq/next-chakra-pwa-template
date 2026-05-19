@@ -6,8 +6,8 @@ import { P } from "@/components/ui/p";
 import { BrandWatermark } from "@/components/widgets/brand-watermark";
 import { Logo } from "@/components/widgets/logo";
 import { AnimatedBlobBackground } from "@/components/widgets/background";
-import { useLocale } from "@/contexts/use-locale-context";
-import { useThemeContext } from "@/contexts/use-theme-context";
+import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
+import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";
 import { SigninForm } from "@/features/auth/components/signin-form";
 import { useIsSmScreenWidth } from "@/hooks/use-is-sm-screen-width";
 import { SimpleGrid } from "@chakra-ui/react";
@@ -15,7 +15,7 @@ import { StackH, StackV } from "@/components/ui/stack";
 
 export default function Page() {
   // Contexts
-  const { t } = useLocale();
+  const { t } = useLocaleContext();
   const { themeContext } = useThemeContext();
 
   // Hooks

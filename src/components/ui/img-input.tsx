@@ -8,8 +8,8 @@ import { FileItem } from "@/components/widgets/file-item";
 import { LucideIcon } from "@/components/widgets/icon";
 import { ImgViewer } from "@/components/widgets/img-viewer";
 import { ScrollH } from "@/components/widgets/scroll-h";
-import { useLocale } from "@/contexts/use-locale-context";
-import { useThemeContext } from "@/contexts/use-theme-context";
+import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
+import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";
 import { StorageFile } from "@/types/global.types";
 import { isEmptyArray } from "@/utils/array";
 import { imgUrl } from "@/utils/url";
@@ -31,7 +31,7 @@ export const ImgInput = (props: FileInputProps) => {
   } = props;
 
   // Contexts
-  const { t } = useLocale();
+  const { t } = useLocaleContext();
   const { themeContext } = useThemeContext();
   const fc = useFieldContext();
 

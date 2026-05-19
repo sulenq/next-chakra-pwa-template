@@ -28,8 +28,8 @@ import {
   DESKTOP_NAV_GAP,
   R_SPACING_MD,
 } from "@/constants/styles";
-import { useLocale } from "@/contexts/use-locale-context";
-import { useThemeContext } from "@/contexts/use-theme-context";
+import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
+import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";
 import { NavGroup } from "@/types/global.types";
 import { isEmptyArray } from "@/utils/array";
 import { getUserData } from "@/utils/auth";
@@ -90,7 +90,7 @@ export const NavsV = (props: VNavsProps) => {
   } = props;
 
   // Contexts
-  const { t } = useLocale();
+  const { t } = useLocaleContext();
   const { themeContext } = useThemeContext();
 
   // Hooks

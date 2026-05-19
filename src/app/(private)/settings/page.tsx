@@ -3,13 +3,13 @@
 import { StackV } from "@/components/ui/stack";
 import FeedbackState from "@/components/widgets/feedback-state";
 import { LucideIcon } from "@/components/widgets/icon";
-import { useLocale } from "@/contexts/use-locale-context";
-import { useThemeContext } from "@/contexts/use-theme-context";
+import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
+import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";
 import { SettingsIcon } from "lucide-react";
 
 const SettingsRoute = () => {
   // Contexts
-  const { t } = useLocale();
+  const { t } = useLocaleContext();
   const { themeContext } = useThemeContext();
 
   return (

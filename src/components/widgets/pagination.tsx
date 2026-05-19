@@ -2,7 +2,7 @@ import { Btn } from "@/components/ui/btn";
 import { P } from "@/components/ui/p";
 import { StackH } from "@/components/ui/stack";
 import { AppIconLucide } from "@/components/widgets/app-icon";
-import { useLocale } from "@/contexts/use-locale-context";
+import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
 import { formatNumber } from "@/utils/formatter";
 import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
 
@@ -19,7 +19,7 @@ export const Pagination = (props: PaginationTableDataProps) => {
   const { page, setPage, totalPage } = props;
 
   // Contexts
-  const { t } = useLocale();
+  const { t } = useLocaleContext();
 
   // States
   // const [pageTemp, setPageTemp] = useState<number | null | undefined>(page);

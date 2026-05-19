@@ -1,7 +1,7 @@
 "use client";
 
 import { StackV } from "@/components/ui/stack";
-import { useThemeContext } from "@/contexts/use-theme-context";
+import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";
 import {
   Skeleton as ChakraSkeleton,
   SkeletonProps,

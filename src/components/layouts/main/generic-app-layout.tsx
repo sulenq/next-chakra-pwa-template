@@ -46,9 +46,9 @@ import {
   TOP_BAR_H,
   USER_PANEL_H,
 } from "@/constants/styles";
-import { useLocale } from "@/contexts/use-locale-context";
+import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
 import { useNavs } from "@/contexts/use-navs-context";
-import { useThemeContext } from "@/contexts/use-theme-context";
+import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";
 import { AuthGuard } from "@/features/auth/components/auth-guard";
 import { useIsSmScreenWidth } from "@/hooks/use-is-sm-screen-width";
 import { useScreen } from "@/hooks/use-screen";
@@ -69,7 +69,7 @@ const MobileLayout = (props: any) => {
   const { children, ...restProps } = props;
 
   // Contexts
-  const { t } = useLocale();
+  const { t } = useLocaleContext();
 
   // Hooks
   const pathname = usePathname();
@@ -330,7 +330,7 @@ const DesktopLayout = (props: any) => {
   const { children, ...restProps } = props;
 
   // Contexts
-  const { t } = useLocale();
+  const { t } = useLocaleContext();
   const { themeContext } = useThemeContext();
   const isNavsExpanded = useNavs((s) => s.isNavsExpanded);
   const toggleNavsExpanded = useNavs((s) => s.toggleNavsExpanded);

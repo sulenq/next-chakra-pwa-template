@@ -7,15 +7,15 @@ import { HScroll } from "@/components/widgets/h-scroll";
 import { Item } from "@/components/widgets/item";
 import { COLOR_PALETTES } from "@/constants/colors";
 import { R_SPACING_MD } from "@/constants/styles";
-import { useLocale } from "@/contexts/use-locale-context";
-import { useThemeContext } from "@/contexts/use-theme-context";
+import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
+import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";
 import { Box, Center } from "@chakra-ui/react";
 
 // -----------------------------------------------------------------
 
 export const AccentColorSection = () => {
   // Contexts
-  const { t } = useLocale();
+  const { t } = useLocaleContext();
   const { themeContext, setThemeContext } = useThemeContext();
 
   return (

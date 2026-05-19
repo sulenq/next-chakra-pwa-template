@@ -13,8 +13,8 @@ import { ImgViewer } from "@/components/widgets/img-viewer";
 import { TopLoadingBar } from "@/components/widgets/loading-bar";
 import { DEFAULT_LIMIT, DEFAULT_PAGE } from "@/constants/data-list";
 import { useDataDisplay } from "@/contexts/use-data-display-context";
-import { useLocale } from "@/contexts/use-locale-context";
-import { useThemeContext } from "@/contexts/use-theme-context";
+import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
+import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";
 import { LayananDelete } from "@/features/layanan/components/layanan.delete";
 import { LayananUpdate } from "@/features/layanan/components/layanan.update";
 import { useLayananListQuery } from "@/features/layanan/hooks/use-layanan";
@@ -45,7 +45,7 @@ export const LayananList = (props: LayananListProps) => {
   const [page, setPage] = useState<number>(DEFAULT_PAGE);
 
   // Contexts
-  const { t, locale } = useLocale();
+  const { t, locale } = useLocaleContext();
   const { themeContext } = useThemeContext();
   const isDisplayTable =
     useDataDisplay((s) => s.getDisplay(LAYANAN_ID)) === "table";

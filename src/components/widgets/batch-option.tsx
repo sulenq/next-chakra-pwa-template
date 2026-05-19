@@ -5,8 +5,8 @@ import { P } from "@/components/ui/p";
 import { StackV } from "@/components/ui/stack";
 import { AppIconLucide } from "@/components/widgets/app-icon";
 import { DotIndicator } from "@/components/widgets/indicator";
-import { useLocale } from "@/contexts/use-locale-context";
-import { useThemeContext } from "@/contexts/use-theme-context";
+import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
+import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";
 import { BatchOptionsTableOptionGenerator } from "@/types/global.types";
 import { Box, MenuRootProps } from "@chakra-ui/react";
 import { ListChecks } from "lucide-react";
@@ -40,7 +40,7 @@ export const BatchOptions = (props: BatchOptionsProps) => {
   } = props;
 
   // Contexts
-  const { t } = useLocale();
+  const { t } = useLocaleContext();
   const { themeContext } = useThemeContext();
 
   return (

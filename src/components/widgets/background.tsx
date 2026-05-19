@@ -1,6 +1,6 @@
 import { useColorModeValue } from "@/components/ui/color-mode";
 import { StackV } from "@/components/ui/stack";
-import { useThemeContext } from "@/contexts/use-theme-context";
+import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";
 import { Box, Center, Circle, StackProps } from "@chakra-ui/react";
 
 // -----------------------------------------------------------------

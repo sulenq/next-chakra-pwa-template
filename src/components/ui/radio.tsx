@@ -1,6 +1,6 @@
 "use client";
 
-import { useThemeContext } from "@/contexts/use-theme-context";
+import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";
 import { Circle, CircleProps } from "@chakra-ui/react";
 
 interface RadioItemProps extends CircleProps {

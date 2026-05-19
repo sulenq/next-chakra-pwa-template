@@ -1,4 +1,4 @@
-import { useLocale } from "@/contexts/use-locale-context";
+import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
 import { invalidateLayananList } from "@/features/layanan/query/layanan-list.invalidate";
 import {
   createLayanan,
@@ -34,7 +34,7 @@ export const useLayananListQuery = (params: BaseDataListParams) => {
 };
 
 export const useCreateLayananMutation = () => {
-  const { t } = useLocale();
+  const { t } = useLocaleContext();
   const pathname = usePathname();
   const mainViewTitle = getMainViewTitle(pathname, t);
 
@@ -59,7 +59,7 @@ export const useCreateLayananMutation = () => {
 };
 
 export const useUpdateLayananMutation = () => {
-  const { t } = useLocale();
+  const { t } = useLocaleContext();
   const pathname = usePathname();
   const mainViewTitle = getMainViewTitle(pathname, t);
 
@@ -90,7 +90,7 @@ export const useUpdateLayananMutation = () => {
 };
 
 export const useDeleteLayananMutation = () => {
-  const { t } = useLocale();
+  const { t } = useLocaleContext();
   const pathname = usePathname();
   const mainViewTitle = getMainViewTitle(pathname, t);
 

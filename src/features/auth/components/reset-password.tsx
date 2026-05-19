@@ -7,8 +7,8 @@ import { HelperText } from "@/components/ui/helper-text";
 import { PasswordInput } from "@/components/ui/password-input";
 import { StringInput } from "@/components/ui/string-input";
 import { BackButton } from "@/components/widgets/back-button";
-import { useLocale } from "@/contexts/use-locale-context";
-import { useThemeContext } from "@/contexts/use-theme-context";
+import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
+import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";
 import { useRequest } from "@/hooks/useRequestOld";
 import { back } from "@/utils/client";
 import { maskEmail } from "@/utils/string";
@@ -33,7 +33,7 @@ const Step1 = (props: any) => {
   const { setStep, setEmail } = props;
 
   // Contexts
-  const { t } = useLocale();
+  const { t } = useLocaleContext();
   const { themeContext } = useThemeContext();
 
   // Hooks
@@ -115,7 +115,7 @@ const Step2 = (props: any) => {
   const { email, setOtp, setStep } = props;
 
   // Contexts
-  const { t } = useLocale();
+  const { t } = useLocaleContext();
   const { themeContext } = useThemeContext();
 
   // Hooks
@@ -217,7 +217,7 @@ const Step3 = (props: any) => {
   const { email, otp } = props;
 
   // Contexts
-  const { t } = useLocale();
+  const { t } = useLocaleContext();
   const { themeContext } = useThemeContext();
 
   // Hooks

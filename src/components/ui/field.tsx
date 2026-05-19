@@ -1,5 +1,5 @@
 import { P } from "@/components/ui/p";
-import { useLocale } from "@/contexts/use-locale-context";
+import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
 import {
   Badge,
   Field as ChakraField,
@@ -37,7 +37,7 @@ export const Field = forwardRef<HTMLDivElement, FieldProps>(
     // const { themeContext } = useThemeContext();
 
     // Hooks
-    const { t } = useLocale();
+    const { t } = useLocaleContext();
 
     return (
       <ChakraField.Root ref={ref} gap={2} {...rest}>

@@ -1,7 +1,7 @@
 "use client";
 
 import { Disclosure } from "@/components/ui/disclosure";
-import { useThemeContext } from "@/contexts/use-theme-context";
+import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";
 import { useIsSmScreenWidth } from "@/hooks/use-is-sm-screen-width";
 import { useState } from "react";
 

@@ -10,9 +10,9 @@ import { AppIconLucide } from "@/components/widgets/app-icon";
 import { Item } from "@/components/widgets/item";
 import { SettingItemContainer } from "@/components/widgets/settings-shell";
 import { R_SPACING_MD } from "@/constants/styles";
-import useADM from "@/contexts/use-adm-context";
-import { useLocale } from "@/contexts/use-locale-context";
-import { useThemeContext } from "@/contexts/use-theme-context";
+import useADM from "@/features/settings/display/contexts/use-adm-context";
+import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
+import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";
 import { formatTime } from "@/utils/formatter";
 import { interpolateString } from "@/utils/string";
 import { cssCalc, getSemanticValue } from "@/utils/style";
@@ -179,7 +179,7 @@ const ColorModeSetting = () => {
 
 const ADMSetting = () => {
   // Contexts
-  const { t } = useLocale();
+  const { t } = useLocaleContext();
   const { ADM, setADM } = useADM();
 
   return (
@@ -208,7 +208,7 @@ const ADMSetting = () => {
 
 const ResetColorModeSetting = () => {
   // Contexts
-  const { t } = useLocale();
+  const { t } = useLocaleContext();
   const { setColorMode } = useColorMode();
 
   return (

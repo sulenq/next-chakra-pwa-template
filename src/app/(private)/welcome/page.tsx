@@ -4,12 +4,12 @@ import { P } from "@/components/ui/p";
 import { StackV } from "@/components/ui/stack";
 import { BrandWatermark } from "@/components/widgets/brand-watermark";
 import { APP } from "@/constants/_meta";
-import { useLocale } from "@/contexts/use-locale-context";
+import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
 import { interpolateString, pluckString } from "@/utils/string";
 
 export default function Page() {
   // Contexts
-  const { t } = useLocale();
+  const { t } = useLocaleContext();
 
   // States
   const variantNumber = Math.floor(Math.random() * 16) + 1;

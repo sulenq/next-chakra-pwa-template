@@ -5,7 +5,7 @@ import FeedbackState, {
   FeedbackStateProps,
 } from "@/components/widgets/feedback-state";
 import { MIN_H_FEEDBACK_CONTAINER } from "@/constants/styles";
-import { useLocale } from "@/contexts/use-locale-context";
+import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
 
 // -----------------------------------------------------------------
 
@@ -14,7 +14,7 @@ export default function FeedbackNoData(props: FeedbackStateProps) {
   const { title, description, icon, children, ...restProps } = props;
 
   // Contexts
-  const { t } = useLocale();
+  const { t } = useLocaleContext();
 
   return (
     <StackV

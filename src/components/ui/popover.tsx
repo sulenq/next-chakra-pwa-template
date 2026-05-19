@@ -2,7 +2,7 @@
 
 import { CloseButton } from "@/components/ui/close-button";
 import { BACKDROP_BLUR_FILTER } from "@/constants/styles";
-import { useThemeContext } from "@/contexts/use-theme-context";
+import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";
 import {
   Popover as ChakraPopover,
   PopoverRootProps,

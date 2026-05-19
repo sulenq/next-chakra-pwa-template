@@ -6,7 +6,7 @@ import FeedbackState, {
 } from "@/components/widgets/feedback-state";
 import { LucideIcon } from "@/components/widgets/icon";
 import { MIN_H_FEEDBACK_CONTAINER } from "@/constants/styles";
-import { useLocale } from "@/contexts/use-locale-context";
+import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
 import { Icon } from "@chakra-ui/react";
 import { BanIcon } from "lucide-react";
 
@@ -17,7 +17,7 @@ export default function FeedbackForbidden(props: FeedbackStateProps) {
   const { title, description, icon, children, ...restProps } = props;
 
   // Contexts
-  const { t } = useLocale();
+  const { t } = useLocaleContext();
 
   return (
     <StackV

@@ -1,7 +1,7 @@
 import { toaster } from "@/components/ui/toaster";
 import { InputVariant } from "@/types/global.types";
-import { useLocale } from "@/contexts/use-locale-context";
-import { useThemeContext } from "@/contexts/use-theme-context";
+import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
+import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";
 import { interpolateString } from "@/utils/string";
 import {
   Textarea as ChakraTextarea,
@@ -25,7 +25,7 @@ export const TextareaInput = forwardRef<
   HTMLTextAreaElement,
   TextareaInputProps
 >(function TextareaInput(props, ref) {
-  const { t } = useLocale();
+  const { t } = useLocaleContext();
   const { themeContext } = useThemeContext();
 
   // Props

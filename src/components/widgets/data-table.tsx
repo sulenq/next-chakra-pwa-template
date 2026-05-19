@@ -20,7 +20,7 @@ import {
   TABLE_TH_BORDER_COLOR,
   TABLE_TH_H,
 } from "@/constants/styles";
-import { useThemeContext } from "@/contexts/use-theme-context";
+import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";
 import { useScreen } from "@/hooks/use-screen";
 import {
   BatchOptionsTableOptionGenerator,

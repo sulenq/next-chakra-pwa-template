@@ -4,8 +4,8 @@ import { EmptyState } from "@/components/ui/empty-state";
 import { toaster } from "@/components/ui/toaster";
 import { BackButton } from "@/components/widgets/back-button";
 import { useAlerts } from "@/contexts/use-alert-context";
-import { useLocale } from "@/contexts/use-locale-context";
-import { useThemeContext } from "@/contexts/use-theme-context";
+import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
+import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";
 import { usePopDisclosure } from "@/hooks/use-pop-disclosure";
 import { back } from "@/utils/client";
 import { disclosureId } from "@/utils/disclosure";
@@ -17,7 +17,7 @@ import { useEffect, useRef } from "react";
 
 export const OfflineAlert = () => {
   // Contexts
-  const { t } = useLocale();
+  const { t } = useLocaleContext();
   const { themeContext } = useThemeContext();
   const isOffline = useAlerts((s) => s.alerts["offline"] ?? false);
   const showAlert = useAlerts((s) => s.showAlert);

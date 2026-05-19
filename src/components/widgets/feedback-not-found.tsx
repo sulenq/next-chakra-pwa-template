@@ -3,7 +3,7 @@
 import { P } from "@/components/ui/p";
 import { StackV } from "@/components/ui/stack";
 import { FeedbackStateProps } from "@/components/widgets/feedback-state";
-import { useLocale } from "@/contexts/use-locale-context";
+import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
 
 // -----------------------------------------------------------------
 
@@ -12,7 +12,7 @@ export default function FeedbackNotFound(props: FeedbackStateProps) {
   const { children, ...restProps } = props;
 
   // Contexts
-  const { t } = useLocale();
+  const { t } = useLocaleContext();
 
   return (
     <StackV

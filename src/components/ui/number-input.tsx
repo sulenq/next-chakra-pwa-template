@@ -1,7 +1,7 @@
 "use client";
 
 import { StringInput } from "@/components/ui/string-input";
-import { useLocale } from "@/contexts/use-locale-context";
+import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
 import { useMergedRefs } from "@/hooks/use-merge-refs";
 import { formatNumber } from "@/utils/formatter";
 import { parseNumber } from "@/utils/number";
@@ -51,7 +51,7 @@ export const NumInput = forwardRef<HTMLInputElement, NumInputProps>(
     } = props;
 
     // Contexts
-    const { t } = useLocale();
+    const { t } = useLocaleContext();
 
     // Refs
     const caretRef = useRef<number | null>(null);

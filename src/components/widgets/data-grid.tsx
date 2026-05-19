@@ -19,8 +19,8 @@ import {
   GRID_BATCH_OPTIONS_CONTAINER_BG,
   R_SPACING_MD,
 } from "@/constants/styles";
-import { useLocale } from "@/contexts/use-locale-context";
-import { useThemeContext } from "@/contexts/use-theme-context";
+import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
+import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";
 import { usePopDisclosure } from "@/hooks/use-pop-disclosure";
 import {
   BatchOptionsTableOptionGenerator,
@@ -290,7 +290,7 @@ const DataGridRoot = (props: DataGridRootProps) => {
   } = props;
 
   // Contexts
-  const { t } = useLocale();
+  const { t } = useLocaleContext();
   const { themeContext } = useThemeContext();
 
   // States

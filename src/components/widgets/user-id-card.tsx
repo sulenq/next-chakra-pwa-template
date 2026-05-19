@@ -12,9 +12,9 @@ import { APP } from "@/constants/_meta";
 import { AUTH_API_SIGNOUT } from "@/constants/apis";
 import { DUMMY_USER } from "@/constants/dummy-data";
 import { useAuthMiddleware } from "@/contexts/use-auth-middleware-context";
-import { useLocale } from "@/contexts/use-locale-context";
+import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
 import useRenderTrigger from "@/contexts/use-render-trigger";
-import { useThemeContext } from "@/contexts/use-theme-context";
+import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";
 import { useRequest } from "@/hooks/useRequestOld";
 import { clearAccessToken, clearUserData } from "@/utils/auth";
 import { Box, Circle, StackProps, useToken } from "@chakra-ui/react";
@@ -28,7 +28,7 @@ const SignoutButton = (props: BtnProps) => {
 
   // Contexts
   const setRt = useRenderTrigger((s) => s.setRt);
-  const { t } = useLocale();
+  const { t } = useLocaleContext();
   const removeAuthContext = useAuthMiddleware((s) => s.removeAuthContext);
 
   // Hooks

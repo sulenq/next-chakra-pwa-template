@@ -12,7 +12,7 @@ import FeedbackRetry from "@/components/widgets/feedback-retry";
 import { Item, ItemRootProps } from "@/components/widgets/item";
 import { DUMMY_AUTH_LOGS } from "@/constants/dummy-data";
 import { R_SPACING_MD } from "@/constants/styles";
-import { useLocale } from "@/contexts/use-locale-context";
+import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
 import { useFetchData } from "@/hooks/useFetchData";
 import { AuthLog } from "@/types/global.types";
 import { isEmptyArray } from "@/utils/array";
@@ -25,7 +25,7 @@ import { useState } from "react";
 
 export const AuthLogSection = (props: ItemRootProps) => {
   // Contexts
-  const { t } = useLocale();
+  const { t } = useLocaleContext();
 
   // Refs
 

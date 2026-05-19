@@ -39,9 +39,9 @@ import { Today } from "@/components/widgets/today";
 import VideoPlayer from "@/components/widgets/video-player";
 import { OPTIONS_RELIGION } from "@/constants/select-options";
 import { MENU_ICON_BOX_SIZE } from "@/constants/styles";
-import { useLocale } from "@/contexts/use-locale-context";
+import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
 import useRenderTrigger from "@/contexts/use-render-trigger";
-import { useThemeContext } from "@/contexts/use-theme-context";
+import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";
 import { useRequest } from "@/hooks/useRequestOld";
 import {
   BatchOptionsTableOptionGenerator,
@@ -65,7 +65,7 @@ const Delete = (props: any) => {
   const { deleteIds, clearSelectedRows, disabled, routeTitle } = props;
 
   // Contexts
-  const { t } = useLocale();
+  const { t } = useLocaleContext();
   const setRt = useRenderTrigger((s) => s.setRt);
 
   // Hooks

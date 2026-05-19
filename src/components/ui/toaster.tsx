@@ -6,7 +6,7 @@ import { Spinner } from "@/components/ui/spinner";
 import { StackH, StackV } from "@/components/ui/stack";
 import { LucideIcon } from "@/components/widgets/icon";
 import { BACKDROP_BLUR_FILTER, SM_SCREEN_BREAKPOINT } from "@/constants/styles";
-import { useThemeContext } from "@/contexts/use-theme-context";
+import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";
 import { isClient } from "@/utils/client";
 import {
   Center,

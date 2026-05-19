@@ -1,6 +1,6 @@
 import { SelectInput, SelectInputProps } from "@/components/ui/select-input";
 import { UNIT_OPTIONS } from "@/constants/unit-options";
-import { useLocale } from "@/contexts/use-locale-context";
+import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
 import { UnitKey } from "@/types/global.types";
 
 // -----------------------------------------------------------------
@@ -16,7 +16,7 @@ export const SelectUnitFormat = ({
   ...restProps
 }: SelectUnitFormatProps) => {
   // Contexts
-  const { t } = useLocale();
+  const { t } = useLocaleContext();
 
   // Derived Values
   const options = UNIT_OPTIONS[unitKey].map((unit) => ({
@@ -39,7 +39,7 @@ export const SelectUnitFormat = ({
 
 export const SelectMassFormat = (props: SelectInputProps) => {
   // Contexts
-  const { t } = useLocale();
+  const { t } = useLocaleContext();
 
   return (
     <SelectUnitFormat
@@ -52,7 +52,7 @@ export const SelectMassFormat = (props: SelectInputProps) => {
 
 export const SelectLengthFormat = (props: SelectInputProps) => {
   // Contexts
-  const { t } = useLocale();
+  const { t } = useLocaleContext();
 
   return (
     <SelectUnitFormat
@@ -65,7 +65,7 @@ export const SelectLengthFormat = (props: SelectInputProps) => {
 
 export const SelectDistanceFormat = (props: SelectInputProps) => {
   // Contexts
-  const { t } = useLocale();
+  const { t } = useLocaleContext();
 
   return (
     <SelectUnitFormat
@@ -78,7 +78,7 @@ export const SelectDistanceFormat = (props: SelectInputProps) => {
 
 export const SelectHeightFormat = (props: SelectInputProps) => {
   // Contexts
-  const { t } = useLocale();
+  const { t } = useLocaleContext();
 
   return (
     <SelectUnitFormat
@@ -91,7 +91,7 @@ export const SelectHeightFormat = (props: SelectInputProps) => {
 
 export const SelectAreaFormat = (props: SelectInputProps) => {
   // Contexts
-  const { t } = useLocale();
+  const { t } = useLocaleContext();
 
   return (
     <SelectUnitFormat
@@ -104,7 +104,7 @@ export const SelectAreaFormat = (props: SelectInputProps) => {
 
 export const SelectVolumeFormat = (props: SelectInputProps) => {
   // Contexts
-  const { t } = useLocale();
+  const { t } = useLocaleContext();
 
   return (
     <SelectUnitFormat
@@ -117,7 +117,7 @@ export const SelectVolumeFormat = (props: SelectInputProps) => {
 
 export const SelectTemperatureFormat = (props: SelectInputProps) => {
   // Contexts
-  const { t } = useLocale();
+  const { t } = useLocaleContext();
 
   return (
     <SelectUnitFormat
@@ -130,7 +130,7 @@ export const SelectTemperatureFormat = (props: SelectInputProps) => {
 
 export const SelectSpeedFormat = (props: SelectInputProps) => {
   // Contexts
-  const { t } = useLocale();
+  const { t } = useLocaleContext();
 
   return (
     <SelectUnitFormat
@@ -143,7 +143,7 @@ export const SelectSpeedFormat = (props: SelectInputProps) => {
 
 export const SelectEnergyFormat = (props: SelectInputProps) => {
   // Contexts
-  const { t } = useLocale();
+  const { t } = useLocaleContext();
 
   return (
     <SelectUnitFormat
@@ -156,7 +156,7 @@ export const SelectEnergyFormat = (props: SelectInputProps) => {
 
 export const SelectPowerFormat = (props: SelectInputProps) => {
   // Contexts
-  const { t } = useLocale();
+  const { t } = useLocaleContext();
 
   return (
     <SelectUnitFormat
@@ -169,7 +169,7 @@ export const SelectPowerFormat = (props: SelectInputProps) => {
 
 export const SelectPressureFormat = (props: SelectInputProps) => {
   // Contexts
-  const { t } = useLocale();
+  const { t } = useLocaleContext();
 
   return (
     <SelectUnitFormat
@@ -182,7 +182,7 @@ export const SelectPressureFormat = (props: SelectInputProps) => {
 
 export const SelectDataFormat = (props: SelectInputProps) => {
   // Contexts
-  const { t } = useLocale();
+  const { t } = useLocaleContext();
 
   return (
     <SelectUnitFormat
@@ -195,7 +195,7 @@ export const SelectDataFormat = (props: SelectInputProps) => {
 
 export const SelectDataRateFormat = (props: SelectInputProps) => {
   // Contexts
-  const { t } = useLocale();
+  const { t } = useLocaleContext();
 
   return (
     <SelectUnitFormat
@@ -208,7 +208,7 @@ export const SelectDataRateFormat = (props: SelectInputProps) => {
 
 export const SelectAngleFormat = (props: SelectInputProps) => {
   // Contexts
-  const { t } = useLocale();
+  const { t } = useLocaleContext();
 
   return (
     <SelectUnitFormat

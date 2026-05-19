@@ -7,8 +7,8 @@ import FeedbackState, {
 } from "@/components/widgets/feedback-state";
 import { LucideIcon } from "@/components/widgets/icon";
 import { MIN_H_FEEDBACK_CONTAINER } from "@/constants/styles";
-import { useLocale } from "@/contexts/use-locale-context";
-import { useThemeContext } from "@/contexts/use-theme-context";
+import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
+import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";
 import { Icon } from "@chakra-ui/react";
 import { CircleXIcon } from "lucide-react";
 
@@ -23,7 +23,7 @@ export default function FeedbackRetry(props: FeedbackRetryProps) {
   const { title, description, icon, onRetry, children, ...restProps } = props;
 
   // Contexts
-  const { t } = useLocale();
+  const { t } = useLocaleContext();
   const { themeContext } = useThemeContext();
 
   return (

@@ -11,7 +11,7 @@ import { Item, ItemRootProps } from "@/components/widgets/item";
 import { DUMMY_ACTIVITY_LOGS } from "@/constants/dummy-data";
 import { ActivityActionEnum } from "@/constants/enums";
 import { R_SPACING_MD } from "@/constants/styles";
-import { useLocale } from "@/contexts/use-locale-context";
+import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
 import { useFetchData } from "@/hooks/useFetchData";
 import { ActivityLog } from "@/types/global.types";
 import { isEmptyArray } from "@/utils/array";
@@ -20,7 +20,7 @@ import { useState } from "react";
 
 export const ActivityLogSection = (props: ItemRootProps) => {
   // Contexts
-  const { t } = useLocale();
+  const { t } = useLocaleContext();
 
   // States
   const [search, setSearch] = useState("");

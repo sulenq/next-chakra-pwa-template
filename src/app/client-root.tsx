@@ -7,7 +7,7 @@ import { RadialGlowBackground } from "@/components/widgets/background";
 import { GlobalDisclosure } from "@/components/widgets/global-disclosure";
 import { APP } from "@/constants/_meta";
 import { SVGS_PATH } from "@/constants/paths";
-import useADM from "@/contexts/use-adm-context";
+import useADM from "@/features/settings/display/contexts/use-adm-context";
 import { Center } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 

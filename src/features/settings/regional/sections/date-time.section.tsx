@@ -8,7 +8,7 @@ import { SelectTimezone } from "@/components/widgets/select-timezone";
 import { SettingItemContainer } from "@/components/widgets/settings-shell";
 import { R_SPACING_MD } from "@/constants/styles";
 import useDateFormat from "@/features/settings/regional/contexts/use-date-format-context";
-import { useLocale } from "@/contexts/use-locale-context";
+import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
 import useTimeFormat from "@/features/settings/regional/contexts/use-time-format-context";
 import useTimezone from "@/features/settings/regional/contexts/use-timezone-context";
 import { SelectDateFormat } from "@/features/settings/regional/components/select-date-format";
@@ -21,7 +21,7 @@ import { useEffect, useState } from "react";
 
 const DateFormatSetting = () => {
   // Contexts
-  const { t } = useLocale();
+  const { t } = useLocaleContext();
   const { dateFormat: dateFormatContext, setDateFormat: setDateFormatContext } =
     useDateFormat();
 
@@ -57,7 +57,7 @@ const DateFormatSetting = () => {
 
 const TimeFormatSetting = () => {
   // Contexts
-  const { t } = useLocale();
+  const { t } = useLocaleContext();
   const { timeFormat: timeFormatContext, setTimeFormat: setTimeFormatContext } =
     useTimeFormat();
 
@@ -92,7 +92,7 @@ const TimeFormatSetting = () => {
 
 const AutoTimezomeSetting = () => {
   // Contexts
-  const { t } = useLocale();
+  const { t } = useLocaleContext();
   const { isAuto, enableAuto, disableAuto } = useTimezone();
 
   return (
@@ -121,7 +121,7 @@ const AutoTimezomeSetting = () => {
 
 const TimezoneSetting = () => {
   // Contexts
-  const { t } = useLocale();
+  const { t } = useLocaleContext();
   const {
     isAuto,
     timezone: timezoneContext,
@@ -173,7 +173,7 @@ const TimezoneSetting = () => {
 
 export const DateTimeSection = () => {
   // Contexts
-  const { t } = useLocale();
+  const { t } = useLocaleContext();
 
   return (
     <Item.Root px={R_SPACING_MD}>

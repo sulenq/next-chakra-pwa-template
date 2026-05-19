@@ -5,8 +5,8 @@ import { StackV } from "@/components/ui/stack";
 import { toaster } from "@/components/ui/toaster";
 import { LucideIcon } from "@/components/widgets/icon";
 import { BASE_ICON_BOX_SIZE, MAIN_INPUT_SIZE } from "@/constants/styles";
-import { useLocale } from "@/contexts/use-locale-context";
-import { useThemeContext } from "@/contexts/use-theme-context";
+import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
+import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";
 import { useMergedRefs } from "@/hooks/use-merge-refs";
 import { interpolateString } from "@/utils/string";
 import {
@@ -57,7 +57,7 @@ export const StringInput = forwardRef<HTMLInputElement, StringInputProps>(
     } = props;
 
     // Contexts
-    const { t } = useLocale();
+    const { t } = useLocaleContext();
     const { themeContext } = useThemeContext();
     const fc = useFieldContext();
 

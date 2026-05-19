@@ -5,7 +5,7 @@ import { StackV } from "@/components/ui/stack";
 import { Item } from "@/components/widgets/item";
 import { SettingItemContainer } from "@/components/widgets/settings-shell";
 import { R_SPACING_MD } from "@/constants/styles";
-import { useLocale } from "@/contexts/use-locale-context";
+import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
 import useUOMFormat from "@/features/settings/regional/contexts/use-uom-format-context";
 import {
   SelectAngleFormat,
@@ -28,7 +28,7 @@ import {
 
 const WeightFormatSetting = () => {
   // Contexts
-  const { t } = useLocale();
+  const { t } = useLocaleContext();
   const { UOM, setUOMUnit } = useUOMFormat();
 
   return (
@@ -56,7 +56,7 @@ const WeightFormatSetting = () => {
 
 const HeightFormatSetting = () => {
   // Contexts
-  const { t } = useLocale();
+  const { t } = useLocaleContext();
   const { UOM, setUOMUnit } = useUOMFormat();
 
   return (
@@ -84,7 +84,7 @@ const HeightFormatSetting = () => {
 
 const LengthFormatSetting = () => {
   // Contexts
-  const { t } = useLocale();
+  const { t } = useLocaleContext();
   const { UOM, setUOMUnit } = useUOMFormat();
 
   return (
@@ -112,7 +112,7 @@ const LengthFormatSetting = () => {
 
 const DistanceFormatSetting = () => {
   // Contexts
-  const { t } = useLocale();
+  const { t } = useLocaleContext();
   const { UOM, setUOMUnit } = useUOMFormat();
 
   return (
@@ -144,7 +144,7 @@ const DistanceFormatSetting = () => {
 
 const AreaFormatSetting = () => {
   // Contexts
-  const { t } = useLocale();
+  const { t } = useLocaleContext();
   const { UOM, setUOMUnit } = useUOMFormat();
 
   return (
@@ -172,7 +172,7 @@ const AreaFormatSetting = () => {
 
 const VolumeFormatSetting = () => {
   // Contexts
-  const { t } = useLocale();
+  const { t } = useLocaleContext();
   const { UOM, setUOMUnit } = useUOMFormat();
 
   return (
@@ -200,7 +200,7 @@ const VolumeFormatSetting = () => {
 
 const TemperatureFormatSetting = () => {
   // Contexts
-  const { t } = useLocale();
+  const { t } = useLocaleContext();
   const { UOM, setUOMUnit } = useUOMFormat();
 
   return (
@@ -232,7 +232,7 @@ const TemperatureFormatSetting = () => {
 
 const SpeedFormatSetting = () => {
   // Contexts
-  const { t } = useLocale();
+  const { t } = useLocaleContext();
   const { UOM, setUOMUnit } = useUOMFormat();
 
   return (
@@ -260,7 +260,7 @@ const SpeedFormatSetting = () => {
 
 const EnergyFormatSetting = () => {
   // Contexts
-  const { t } = useLocale();
+  const { t } = useLocaleContext();
   const { UOM, setUOMUnit } = useUOMFormat();
 
   return (
@@ -288,7 +288,7 @@ const EnergyFormatSetting = () => {
 
 const PowerFormatSetting = () => {
   // Contexts
-  const { t } = useLocale();
+  const { t } = useLocaleContext();
   const { UOM, setUOMUnit } = useUOMFormat();
 
   return (
@@ -316,7 +316,7 @@ const PowerFormatSetting = () => {
 
 const PressureFormatSetting = () => {
   // Contexts
-  const { t } = useLocale();
+  const { t } = useLocaleContext();
   const { UOM, setUOMUnit } = useUOMFormat();
 
   return (
@@ -348,7 +348,7 @@ const PressureFormatSetting = () => {
 
 const DataFormatSetting = () => {
   // Contexts
-  const { t } = useLocale();
+  const { t } = useLocaleContext();
   const { UOM, setUOMUnit } = useUOMFormat();
 
   return (
@@ -376,7 +376,7 @@ const DataFormatSetting = () => {
 
 const DataRateFormatSetting = () => {
   // Contexts
-  const { t } = useLocale();
+  const { t } = useLocaleContext();
   const { UOM, setUOMUnit } = useUOMFormat();
 
   return (
@@ -408,7 +408,7 @@ const DataRateFormatSetting = () => {
 
 const AngleFormatSetting = () => {
   // Contexts
-  const { t } = useLocale();
+  const { t } = useLocaleContext();
   const { UOM, setUOMUnit } = useUOMFormat();
 
   return (
@@ -437,7 +437,7 @@ const AngleFormatSetting = () => {
 export const UOMFormatSection = () => {
   // Contexts
   // Contexts
-  const { t } = useLocale();
+  const { t } = useLocaleContext();
 
   return (
     <Item.Root px={R_SPACING_MD}>

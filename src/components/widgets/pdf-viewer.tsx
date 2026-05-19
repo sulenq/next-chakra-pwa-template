@@ -10,8 +10,8 @@ import { AppIconLucide } from "@/components/widgets/app-icon";
 import FeedbackState from "@/components/widgets/feedback-state";
 import { ScrollH } from "@/components/widgets/scroll-h";
 import { GAP } from "@/constants/styles";
-import { useLocale } from "@/contexts/use-locale-context";
-import { useThemeContext } from "@/contexts/use-theme-context";
+import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
+import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";
 import { Box, Icon, StackProps } from "@chakra-ui/react";
 import {
   IconArrowAutofitHeight,
@@ -87,7 +87,7 @@ const PageControl = (props: PageControlProps) => {
   const { utils, page, numPages, ...restProps } = props;
 
   // Contexts
-  const { t } = useLocale();
+  const { t } = useLocaleContext();
 
   // States
   const [gotoPage, setGotoPage] = useState<number | null>(page);
@@ -195,7 +195,7 @@ const ZoomControl = (props: ZoomControlProps) => {
   const { utils, scale, ...restProps } = props;
 
   // Contexts
-  const { t } = useLocale();
+  const { t } = useLocaleContext();
 
   return (
     <StackH align={"center"} gap={GAP} {...restProps}>
@@ -297,7 +297,7 @@ export const PdfViewer = (props: PdfViewerProps) => {
   const { fileUrl, fileName, ...restProps } = props;
 
   // Contexts
-  const { t } = useLocale();
+  const { t } = useLocaleContext();
   const { themeContext } = useThemeContext();
 
   // Refs

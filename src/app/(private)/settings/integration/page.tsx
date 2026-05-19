@@ -11,9 +11,9 @@ import FeedbackNotFound from "@/components/widgets/feedback-not-found";
 import FeedbackRetry from "@/components/widgets/feedback-retry";
 import { Item } from "@/components/widgets/item";
 import { R_SPACING_MD } from "@/constants/styles";
-import { useLocale } from "@/contexts/use-locale-context";
+import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
 import useRenderTrigger from "@/contexts/use-render-trigger";
-import { useThemeContext } from "@/contexts/use-theme-context";
+import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";
 import { useFetchData } from "@/hooks/useFetchData";
 import { useRequest } from "@/hooks/useRequestOld";
 import { useFormik } from "formik";
@@ -25,7 +25,7 @@ const APIKeys = (props: any) => {
   const { apiKeys } = props;
 
   // Contexts
-  const { t } = useLocale();
+  const { t } = useLocaleContext();
   const { themeContext } = useThemeContext();
   const setRt = useRenderTrigger((s) => s.setRt);
 

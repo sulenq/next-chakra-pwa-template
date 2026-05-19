@@ -10,8 +10,8 @@ import {
 import { NavsV } from "@/components/widgets/navs";
 import { APP } from "@/constants/_meta";
 import { GAP, R_SPACING_MD } from "@/constants/styles";
-import { useLocale } from "@/contexts/use-locale-context";
-import { useThemeContext } from "@/contexts/use-theme-context";
+import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
+import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";
 import { NavGroup } from "@/types/global.types";
 import { formatAbsDate } from "@/utils/formatter";
 import { Box, StackProps } from "@chakra-ui/react";
@@ -35,7 +35,7 @@ export const WithNavsVLayout = (props: WithNavsVLayoutProps) => {
   const { isSmContainer } = useMainViewContext();
 
   // Contexts
-  const { t } = useLocale();
+  const { t } = useLocaleContext();
   const { themeContext } = useThemeContext();
 
   // Derived Values

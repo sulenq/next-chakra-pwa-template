@@ -19,8 +19,8 @@ import {
   TOP_BAR_H,
 } from "@/constants/styles";
 import { useBreadcrumbs } from "@/contexts/use-breadcrumbs-context";
-import { useLocale } from "@/contexts/use-locale-context";
-import { useThemeContext } from "@/contexts/use-theme-context";
+import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
+import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";
 import { useContainerDimension } from "@/hooks/use-container-dimenssion";
 import { useMergedRefs } from "@/hooks/use-merge-refs";
 import { useScreen } from "@/hooks/use-screen";
@@ -52,7 +52,7 @@ export const NavBreadcrumb = (props: any) => {
   } = props;
 
   // Contexts
-  const { t } = useLocale();
+  const { t } = useLocaleContext();
   const breadcrumbs = useBreadcrumbs((s) => s.breadcrumbs);
   const setBreadcrumbs = useBreadcrumbs((s) => s.setBreadcrumbs);
 
@@ -337,7 +337,7 @@ const MainViewHeader = (props: MainViewHeaderProps) => {
   } = props;
 
   // Contexts
-  const { t } = useLocale();
+  const { t } = useLocaleContext();
   const { themeContext } = useThemeContext();
 
   // Hooks
