@@ -14,19 +14,16 @@ import { LucideIcon } from "@/components/misc/icon";
 import { Logo } from "@/components/branding/logo";
 import { UserIdCard } from "@/components/user/user-id-card";
 import { APP } from "@/constants/_meta";
-import { AUTH_API_SIGNIN } from "@/constants/apis";
 import { BASE_ICON_BOX_SIZE } from "@/constants/styles";
 import { useAuthMiddleware } from "@/contexts/use-auth-middleware-context";
 import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
 import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";
 import ResetPasswordDisclosureTrigger from "@/features/auth/components/reset-password";
-import { useRequest } from "@/hooks/useRequestOld";
-import { setAccessToken, setUserData } from "@/utils/auth";
+import { useSigninMutation } from "@/features/auth/hooks/use-auth";
 import { FieldsetRoot, Icon, InputGroup, StackProps } from "@chakra-ui/react";
 import { IconLock, IconUser } from "@tabler/icons-react";
 import { useFormik } from "formik";
 import { ArrowRight, LogInIcon } from "lucide-react";
-import { useRouter } from "next/navigation";
 import * as yup from "yup";
 
 const INDEX_ROUTE = "/welcome";
@@ -74,23 +71,15 @@ const BasicAuthForm = (props: any) => {
   const ID = "signin-form";
 
   // Props
-  const { signinAPI, ...restProps } = props;
+  const { ...restProps } = props;
 
   // Contexts
   const { t } = useLocaleContext();
   const { themeContext } = useThemeContext();
-  const setVerifiedAccessToken = useAuthMiddleware(
-    (s) => s.setVerifiedAccessToken,
-  );
-  const setPermissions = useAuthMiddleware((s) => s.setPermissions);
 
   // Hooks
-  const router = useRouter();
-  const { req, loading } = useRequest({
-    id: "signin",
-    loadingMessage: t.loading_signin,
-    successMessage: t.success_signin,
-  });
+  const signinMutation = useSigninMutation();
+  const loading = signinMutation.isPending;
 
   // States
   const formik = useFormik({
@@ -108,28 +97,7 @@ const BasicAuthForm = (props: any) => {
         email: values.identifier,
         password: values.password,
       };
-      const config = {
-        method: "POST",
-        url: signinAPI,
-        data: payload,
-      };
-      req({
-        config,
-        onResolve: {
-          onSuccess: (r: any) => {
-            const accessToken = r.data?.data?.authToken;
-            const userData = r.data?.data?.user;
-            const permissionsData = r.data?.data?.user?.permissions;
-
-            setAccessToken(accessToken);
-            setUserData(userData);
-            setVerifiedAccessToken(accessToken);
-            setPermissions(permissionsData);
-
-            router.push(INDEX_ROUTE);
-          },
-        },
-      });
+      signinMutation.mutate(payload);
     },
   });
 
@@ -229,9 +197,6 @@ export const SigninForm = (props: StackProps) => {
   const { themeContext } = useThemeContext();
   const verifiedAccessToken = useAuthMiddleware((s) => s.verifiedAccessToken);
 
-  // States
-  const signinAPI = AUTH_API_SIGNIN;
-
   return (
     <StackV
       m={"auto"}
@@ -258,7 +223,7 @@ export const SigninForm = (props: StackProps) => {
             </P>
           </StackV>
 
-          <BasicAuthForm signinAPI={signinAPI} />
+          <BasicAuthForm />
         </>
       )}
     </StackV>

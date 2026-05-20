@@ -13,18 +13,16 @@ import { NavLink } from "@/components/ui/nav-link";
 import { P } from "@/components/ui/p";
 import { Popover } from "@/components/ui/popover";
 import { StackH, StackV } from "@/components/ui/stack";
-import { AUTH_API_SIGNOUT } from "@/constants/apis";
 import {
   BACKDROP_BLUR_FILTER,
   BASE_ICON_BOX_SIZE,
   GAP,
 } from "@/constants/styles";
-import { useAuthMiddleware } from "@/contexts/use-auth-middleware-context";
 import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";
 import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
-import { useRequest } from "@/hooks/useRequestOld";
+import { useSignoutMutation } from "@/features/auth/hooks/use-auth";
 import { getUserData } from "@/utils/auth";
-import { back, removeStorage } from "@/utils/client";
+import { back } from "@/utils/client";
 import { pluckString } from "@/utils/string";
 import { imgUrl } from "@/utils/url";
 import { Icon, PopoverRootProps, Stack, StackProps } from "@chakra-ui/react";
@@ -80,17 +78,20 @@ export const ProfileMenu = (props: ProfileMenuProps) => {
   // Contexts
   const { t } = useLocaleContext();
   const { themeContext } = useThemeContext();
-  const removeAuthContext = useAuthMiddleware((s) => s.removeAuthContext);
 
   // Hooks
   const { colorMode, toggleColorMode } = useColorMode();
-  const { req } = useRequest({
-    id: "sign-out",
-    loadingMessage: { ...t.loading_signout },
-    successMessage: { ...t.success_signout },
-  });
   const router = useRouter();
   router.prefetch("/");
+
+  const signoutMutation = useSignoutMutation({
+    onSuccess: () => {
+      router.push("/");
+    },
+    onError: () => {
+      router.push("/");
+    },
+  });
 
   // States
   const user = getUserData();
@@ -98,28 +99,7 @@ export const ProfileMenu = (props: ProfileMenuProps) => {
   // Utils
   function handleSignout() {
     back();
-
-    const url = AUTH_API_SIGNOUT;
-    const config = {
-      url,
-      method: "POST",
-    };
-
-    req({
-      config,
-      onResolve: {
-        onSuccess: () => {
-          removeStorage("__access_token");
-          removeStorage("__user_data");
-          removeAuthContext();
-          router.push("/");
-        },
-        onError: () => {
-          removeAuthContext();
-          router.push("/");
-        },
-      },
-    });
+    signoutMutation.mutate();
   }
 
   return (

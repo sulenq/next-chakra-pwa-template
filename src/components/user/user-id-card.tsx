@@ -9,14 +9,9 @@ import { AppIconLucide } from "@/components/branding/app-icon";
 import { Logo } from "@/components/branding/logo";
 import { MContainerV } from "@/components/container/m-container";
 import { APP } from "@/constants/_meta";
-import { AUTH_API_SIGNOUT } from "@/constants/apis";
 import { DUMMY_USER } from "@/constants/dummy-data";
-import { useAuthMiddleware } from "@/contexts/use-auth-middleware-context";
-import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
-import useRenderTrigger from "@/contexts/use-render-trigger";
 import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";
-import { useRequest } from "@/hooks/useRequestOld";
-import { clearAccessToken, clearUserData } from "@/utils/auth";
+import { useSignoutMutation } from "@/features/auth/hooks/use-auth";
 import { Box, Circle, StackProps, useToken } from "@chakra-ui/react";
 import { LogOutIcon } from "lucide-react";
 
@@ -26,40 +21,13 @@ const SignoutButton = (props: BtnProps) => {
   // Props
   const { iconButton = true, ...restProps } = props;
 
-  // Contexts
-  const setRt = useRenderTrigger((s) => s.setRt);
-  const { t } = useLocaleContext();
-  const removeAuthContext = useAuthMiddleware((s) => s.removeAuthContext);
-
   // Hooks
-  const { req, loading } = useRequest({
-    id: "signout",
-    loadingMessage: t.loading_signout,
-    successMessage: t.success_signout,
-  });
+  const signoutMutation = useSignoutMutation();
+  const loading = signoutMutation.isPending;
 
   // Utils
   function onSignout() {
-    const url = AUTH_API_SIGNOUT;
-    const config = {
-      url,
-      method: "POST",
-    };
-
-    req({
-      config,
-      onResolve: {
-        onSuccess: () => {
-          clearAccessToken();
-          clearUserData();
-          removeAuthContext();
-          setRt((ps) => !ps);
-        },
-        onError: () => {
-          removeAuthContext();
-        },
-      },
-    });
+    signoutMutation.mutate();
   }
 
   return (
