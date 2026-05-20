@@ -16,7 +16,7 @@ import { usePathname } from "next/navigation";
 
 // -----------------------------------------------------------------
 
-export const useLayananListQuery = (params: BaseDataListParams) => {
+export const useLayananDataList = (params: BaseDataListParams) => {
   const query = useQuery({
     queryKey: queryKeys.layanan.list(params),
     queryFn: ({ signal }) => getLayanan(params, signal),
@@ -33,7 +33,7 @@ export const useLayananListQuery = (params: BaseDataListParams) => {
   };
 };
 
-export const useCreateLayananMutation = () => {
+export const useCreateLayanan = () => {
   const { t } = useLocaleContext();
   const pathname = usePathname();
   const mainViewTitle = getMainViewTitle(pathname, t);
@@ -58,7 +58,7 @@ export const useCreateLayananMutation = () => {
   });
 };
 
-export const useUpdateLayananMutation = () => {
+export const useUpdateLayanan = () => {
   const { t } = useLocaleContext();
   const pathname = usePathname();
   const mainViewTitle = getMainViewTitle(pathname, t);
@@ -89,7 +89,7 @@ export const useUpdateLayananMutation = () => {
   });
 };
 
-export const useDeleteLayananMutation = () => {
+export const useDeleteLayanan = () => {
   const { t } = useLocaleContext();
   const pathname = usePathname();
   const mainViewTitle = getMainViewTitle(pathname, t);

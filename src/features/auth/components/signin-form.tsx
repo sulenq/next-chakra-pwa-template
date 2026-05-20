@@ -1,5 +1,8 @@
 "use client";
 
+import { AppIconLucide } from "@/components/branding/app-icon";
+import { Logo } from "@/components/branding/logo";
+import { LucideIcon } from "@/components/misc/icon";
 import { Btn } from "@/components/ui/btn";
 import { Divider } from "@/components/ui/divider";
 import { Field } from "@/components/ui/field";
@@ -9,24 +12,20 @@ import { P } from "@/components/ui/p";
 import { PasswordInput } from "@/components/ui/password-input";
 import { StackH, StackV } from "@/components/ui/stack";
 import { StringInput } from "@/components/ui/string-input";
-import { AppIconLucide } from "@/components/branding/app-icon";
-import { LucideIcon } from "@/components/misc/icon";
-import { Logo } from "@/components/branding/logo";
 import { UserIdCard } from "@/components/user/user-id-card";
 import { APP } from "@/constants/_meta";
+import { WELCOME_ROUTE } from "@/constants/routes";
 import { BASE_ICON_BOX_SIZE } from "@/constants/styles";
 import { useAuthMiddleware } from "@/contexts/use-auth-middleware-context";
-import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
-import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";
 import ResetPasswordDisclosureTrigger from "@/features/auth/components/reset-password";
-import { useSigninMutation } from "@/features/auth/hooks/use-auth";
+import { useSignin } from "@/features/auth/hooks/use-auth";
+import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";
+import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
 import { FieldsetRoot, Icon, InputGroup, StackProps } from "@chakra-ui/react";
 import { IconLock, IconUser } from "@tabler/icons-react";
 import { useFormik } from "formik";
 import { ArrowRight, LogInIcon } from "lucide-react";
 import * as yup from "yup";
-
-const INDEX_ROUTE = "/welcome";
 
 // -----------------------------------------------------------------
 
@@ -55,7 +54,7 @@ const Signedin = () => {
           </NavLink>
         </>
 
-        <NavLink to={INDEX_ROUTE}>
+        <NavLink to={WELCOME_ROUTE}>
           <Btn variant={"ghost"} colorPalette={themeContext.colorPalette}>
             {t.enter_app} <AppIconLucide icon={ArrowRight} />
           </Btn>
@@ -78,7 +77,7 @@ const BasicAuthForm = (props: any) => {
   const { themeContext } = useThemeContext();
 
   // Hooks
-  const signinMutation = useSigninMutation();
+  const signinMutation = useSignin();
   const loading = signinMutation.isPending;
 
   // States

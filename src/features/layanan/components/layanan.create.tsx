@@ -12,7 +12,7 @@ import { InputGroup } from "@chakra-ui/react";
 import { useFormik } from "formik";
 import { PlusIcon } from "lucide-react";
 import * as yup from "yup";
-import { useCreateLayananMutation } from "../hooks/use-layanan";
+import { useCreateLayanan } from "../hooks/use-layanan";
 import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";
 
 export const LayananCreate = () => {
@@ -24,7 +24,7 @@ export const LayananCreate = () => {
   const { open, onOpen, onClose } = usePopDisclosure("layanan-create");
 
   // Query
-  const { mutate, isPending } = useCreateLayananMutation();
+  const { mutate, isPending } = useCreateLayanan();
 
   // States
   const formik = useFormik({

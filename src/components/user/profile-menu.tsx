@@ -20,7 +20,7 @@ import {
 } from "@/constants/styles";
 import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";
 import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
-import { useSignoutMutation } from "@/features/auth/hooks/use-auth";
+import { useSignout } from "@/features/auth/hooks/use-auth";
 import { getUserData } from "@/utils/auth";
 import { back } from "@/utils/client";
 import { pluckString } from "@/utils/string";
@@ -84,7 +84,7 @@ export const ProfileMenu = (props: ProfileMenuProps) => {
   const router = useRouter();
   router.prefetch("/");
 
-  const signoutMutation = useSignoutMutation({
+  const signoutMutation = useSignout({
     onSuccess: () => {
       router.push("/");
     },

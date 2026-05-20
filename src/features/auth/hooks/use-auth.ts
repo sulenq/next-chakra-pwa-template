@@ -1,21 +1,28 @@
+import { WELCOME_ROUTE } from "@/constants/routes";
 import { useAuthMiddleware } from "@/contexts/use-auth-middleware-context";
-import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
-import { signin, signout, getUserProfile } from "@/features/auth/services/auth.api";
-import { SigninPayload } from "@/features/auth/types/auth.types";
-import { mutationToastHandlers } from "@/lib/toast/toast.handler";
-import { useMutation, useQuery } from "@tanstack/react-query";
-import { queryKeys } from "@/lib/tanstack-query/query.keys";
-import { clearAccessToken, clearUserData, setAccessToken, setUserData } from "@/utils/auth";
-import { useRouter } from "next/navigation";
 import useRenderTrigger from "@/contexts/use-render-trigger";
+import {
+  getUserProfile,
+  signin,
+  signout,
+} from "@/features/auth/services/auth.api";
+import { SigninPayload } from "@/features/auth/types/auth.types";
+import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
+import { queryKeys } from "@/lib/tanstack-query/query.keys";
+import { mutationToastHandlers } from "@/lib/toast/toast.handler";
+import { setAccessToken, setUserData } from "@/utils/auth";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { useRouter } from "next/navigation";
 
-const INDEX_ROUTE = "/welcome";
+// -----------------------------------------------------------------
 
-export const useSigninMutation = () => {
+export const useSignin = () => {
   const { t } = useLocaleContext();
   const router = useRouter();
-  
-  const setVerifiedAccessToken = useAuthMiddleware((s) => s.setVerifiedAccessToken);
+
+  const setVerifiedAccessToken = useAuthMiddleware(
+    (s) => s.setVerifiedAccessToken,
+  );
   const setPermissions = useAuthMiddleware((s) => s.setPermissions);
 
   const toast = mutationToastHandlers("auth-signin", {
@@ -28,10 +35,12 @@ export const useSigninMutation = () => {
     onMutate: toast.onLoading,
     onSuccess: (res) => {
       toast.onSuccess();
-      
+
       const accessToken = res.data?.authToken;
       const userData = res.data?.user;
-      const permissionsData = (res.data?.user as any)?.permissions || res.data?.user?.role?.permissions;
+      const permissionsData =
+        (res.data?.user as any)?.permissions ||
+        res.data?.user?.role?.permissions;
 
       if (accessToken && userData) {
         setAccessToken(accessToken);
@@ -42,20 +51,15 @@ export const useSigninMutation = () => {
         }
       }
 
-      router.push(INDEX_ROUTE);
+      router.push(WELCOME_ROUTE);
     },
     onError: toast.onError,
   });
 };
 
-interface UseSignoutMutationOptions {
-  onSuccess?: () => void;
-  onError?: (err: any) => void;
-}
-
-export const useSignoutMutation = (options?: UseSignoutMutationOptions) => {
+export const useSignout = () => {
   const { t } = useLocaleContext();
-  const removeAuthContext = useAuthMiddleware((s) => s.removeAuthContext);
+  const removeAuth = useAuthMiddleware((s) => s.removeAuth);
   const setRt = useRenderTrigger((s) => s.setRt);
 
   const toast = mutationToastHandlers("auth-signout", {
@@ -68,19 +72,13 @@ export const useSignoutMutation = (options?: UseSignoutMutationOptions) => {
     onMutate: toast.onLoading,
     onSuccess: () => {
       toast.onSuccess();
-      clearAccessToken();
-      clearUserData();
-      removeAuthContext();
+      removeAuth();
       setRt((ps) => !ps);
-      options?.onSuccess?.();
     },
-    onError: (err) => {
+    onError: () => {
       // Clear token & auth contexts anyway to avoid user being stuck on network errors
-      clearAccessToken();
-      clearUserData();
-      removeAuthContext();
+      removeAuth();
       setRt((ps) => !ps);
-      options?.onError?.(err);
     },
   });
 };

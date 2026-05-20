@@ -4,8 +4,11 @@ import {
   AUTH_API_SIGNOUT,
   AUTH_API_USER_PROFILE,
 } from "@/constants/apis";
+import {
+  SigninPayload,
+  SigninResponseData,
+} from "@/features/auth/types/auth.types";
 import { BaseResponse, User } from "@/types/global.types";
-import { SigninPayload, SigninResponseData } from "@/features/auth/types/auth.types";
 
 export const signin = async (data: SigninPayload) => {
   const res = await http.post<BaseResponse<SigninResponseData>>(

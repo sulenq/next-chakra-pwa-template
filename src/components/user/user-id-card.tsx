@@ -11,7 +11,7 @@ import { MContainerV } from "@/components/container/m-container";
 import { APP } from "@/constants/_meta";
 import { DUMMY_USER } from "@/constants/dummy-data";
 import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";
-import { useSignoutMutation } from "@/features/auth/hooks/use-auth";
+import { useSignout } from "@/features/auth/hooks/use-auth";
 import { Box, Circle, StackProps, useToken } from "@chakra-ui/react";
 import { LogOutIcon } from "lucide-react";
 
@@ -22,7 +22,7 @@ const SignoutButton = (props: BtnProps) => {
   const { iconButton = true, ...restProps } = props;
 
   // Hooks
-  const signoutMutation = useSignoutMutation();
+  const signoutMutation = useSignout();
   const loading = signoutMutation.isPending;
 
   // Utils

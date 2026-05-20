@@ -20,7 +20,7 @@ type AuthMiddlewareStore = {
 
   hasPermissions: (allowedPermissions: number[]) => boolean;
 
-  removeAuthContext: () => void;
+  removeAuth: () => void;
   removeAuthToken: () => void;
   removePermissions: () => void;
   removeRole: () => void;
@@ -44,7 +44,7 @@ export const useAuthMiddleware = create<AuthMiddlewareStore>((set, get) => ({
     return allowedPermissions.every((perm) => userPermissions.includes(perm));
   },
 
-  removeAuthContext: () => {
+  removeAuth: () => {
     get().removePermissions();
     get().removeRole();
     get().setVerifiedAccessToken(null);

@@ -6,7 +6,7 @@ import { AppIconLucide } from "@/components/branding/app-icon";
 import { Confirmation } from "@/components/overlays/confirmation";
 import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
 import { TrashIcon } from "lucide-react";
-import { useDeleteLayananMutation } from "../hooks/use-layanan";
+import { useDeleteLayanan } from "../hooks/use-layanan";
 import { usePathname } from "next/navigation";
 import { getMainViewTitle } from "@/utils/route";
 
@@ -24,7 +24,7 @@ export const LayananDelete = ({ ids, clearSelectedRows, disabled }: Props) => {
   const pathname = usePathname();
 
   // Query
-  const { mutate, isPending } = useDeleteLayananMutation();
+  const { mutate, isPending } = useDeleteLayanan();
 
   // Constants
   const mainViewTitle = getMainViewTitle(pathname, t);

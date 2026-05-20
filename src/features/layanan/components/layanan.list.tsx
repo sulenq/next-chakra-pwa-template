@@ -15,7 +15,7 @@ import { DEFAULT_LIMIT, DEFAULT_PAGE } from "@/constants/data-list";
 import { useDataDisplay } from "@/contexts/use-data-display-context";
 import { LayananDelete } from "@/features/layanan/components/layanan.delete";
 import { LayananUpdate } from "@/features/layanan/components/layanan.update";
-import { useLayananListQuery } from "@/features/layanan/hooks/use-layanan";
+import { useLayananDataList } from "@/features/layanan/hooks/use-layanan";
 import { LayananItem } from "@/features/layanan/types/layanan.types";
 import { displayKeys } from "@/features/data-list-display/constants/displayKeys";
 import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";
@@ -52,7 +52,7 @@ export const LayananList = (props: LayananListProps) => {
 
   // Query
   const { dataList, pagination, isLoading, isFetching, isError, refetch } =
-    useLayananListQuery(filter);
+    useLayananDataList(filter);
 
   // Constants
   const dataListConfig: DataListConfig = {

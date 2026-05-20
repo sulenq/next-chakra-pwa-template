@@ -16,7 +16,7 @@ import { toFormData } from "axios";
 import { useFormik } from "formik";
 import { EditIcon } from "lucide-react";
 import * as yup from "yup";
-import { useUpdateLayananMutation } from "../hooks/use-layanan";
+import { useUpdateLayanan } from "../hooks/use-layanan";
 import { LayananItem } from "../types/layanan.types";
 import { getMainViewTitle } from "@/utils/route";
 import { usePathname } from "next/navigation";
@@ -37,7 +37,7 @@ export const LayananUpdate = ({ item }: Props) => {
   const pathname = usePathname();
 
   // Query
-  const { mutate, isPending } = useUpdateLayananMutation();
+  const { mutate, isPending } = useUpdateLayanan();
 
   // States
   const formik = useFormik({
