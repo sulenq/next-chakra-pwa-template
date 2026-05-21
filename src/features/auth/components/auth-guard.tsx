@@ -1,81 +1,63 @@
 import { VerifyingScreen } from "@/components/feedback/verifying-screen";
-import { useAuthMiddleware } from "@/contexts/use-auth-middleware-context";
-import { useRequest } from "@/hooks/useRequestOld";
+import { useAuthMiddlewareContext } from "@/contexts/use-auth-middleware-context";
 import { getAccessToken, setAccessToken, setUserData } from "@/utils/auth";
 import { useRouter } from "next/navigation";
-import { useRef } from "react";
+import { useEffect } from "react";
 import { useUserProfile } from "../hooks/use-auth";
 
 export function AuthGuard({ children }: { children: React.ReactNode }) {
+  // Constants
+  const ENABLE_AUTH_GUARD =
+    process.env.NEXT_PUBLIC_ENABLE_AUTH_GUARD === "true";
+
   // Contexts
   const authToken = getAccessToken();
-  const verifiedAccessToken = useAuthMiddleware((s) => s.verifiedAccessToken);
-  const setRole = useAuthMiddleware((s) => s.setRole);
-  const setPermissions = useAuthMiddleware((s) => s.setPermissions);
-  const setVerifiedAccessToken = useAuthMiddleware(
+  const verifiedAccessToken = useAuthMiddlewareContext(
+    (s) => s.verifiedAccessToken,
+  );
+  const setRole = useAuthMiddlewareContext((s) => s.setRole);
+  const setPermissions = useAuthMiddlewareContext((s) => s.setPermissions);
+  const setVerifiedAccessToken = useAuthMiddlewareContext(
     (s) => s.setVerifiedAccessToken,
   );
 
   // Hooks
   const router = useRouter();
-  const { req, loading } = useRequest({
-    id: "user-profile",
-    showLoadingToast: false,
-    showSuccessToast: false,
-    showErrorToast: false,
+
+  // Queries
+  const { data, isPending, isError } = useUserProfile({
+    enabled: !!authToken && ENABLE_AUTH_GUARD,
   });
 
-  // Refs
-  const verificationStartedRef = useRef(false);
+  useEffect(() => {
+    if (!data) return;
 
-  // Constants
-  const ENABLE_AUTH_GUARD =
-    process.env.NEXT_PUBLIC_ENABLE_AUTH_GUARD === "true";
+    const user = data.data;
+    if (user) {
+      setAccessToken(authToken!);
+      setUserData(user);
+      setVerifiedAccessToken(authToken!);
+      setRole(user?.role);
+      setPermissions(user?.role?.permissions);
+    }
+  }, [data]);
 
-  if (!ENABLE_AUTH_GUARD) {
-    return children;
-  }
+  if (!ENABLE_AUTH_GUARD) return children;
 
   if (!authToken) {
     router.replace("/");
     return <VerifyingScreen />;
   }
 
-  if (authToken && !verifiedAccessToken) {
-    if (!verificationStartedRef.current) {
-      verificationStartedRef.current = true;
+  if (isPending) return <VerifyingScreen />;
 
-      const config = { method: "GET", url: "" };
-
-      req({
-        config,
-        onResolve: {
-          onSuccess: (r: any) => {
-            const user = r.data.data;
-            setAccessToken(authToken);
-            setUserData(user);
-            setVerifiedAccessToken(authToken);
-            setRole(user?.role);
-            setPermissions(user?.role?.permissions);
-          },
-          onError: () => {
-            setVerifiedAccessToken(null);
-          },
-        },
-      });
-    }
-
-    return <VerifyingScreen />;
-  }
-
-  if (loading) {
-    return <VerifyingScreen />;
-  }
-
-  if (!verifiedAccessToken) {
+  if (isError) {
+    setVerifiedAccessToken(null);
     router.replace("/");
     return <VerifyingScreen />;
   }
+
+  if (!verifiedAccessToken) return <VerifyingScreen />;
 
   return children;
 }

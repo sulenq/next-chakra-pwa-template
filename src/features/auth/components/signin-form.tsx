@@ -16,7 +16,7 @@ import { UserIdCard } from "@/components/user/user-id-card";
 import { APP } from "@/constants/_meta";
 import { WELCOME_ROUTE } from "@/constants/routes";
 import { BASE_ICON_BOX_SIZE } from "@/constants/styles";
-import { useAuthMiddleware } from "@/contexts/use-auth-middleware-context";
+import { useAuthMiddlewareContext } from "@/contexts/use-auth-middleware-context";
 import ResetPasswordDisclosureTrigger from "@/features/auth/components/reset-password";
 import { useSignin } from "@/features/auth/hooks/use-auth";
 import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";
@@ -194,7 +194,9 @@ export const SigninForm = (props: StackProps) => {
   // Contexts
   const { t } = useLocaleContext();
   const { themeContext } = useThemeContext();
-  const verifiedAccessToken = useAuthMiddleware((s) => s.verifiedAccessToken);
+  const verifiedAccessToken = useAuthMiddlewareContext(
+    (s) => s.verifiedAccessToken,
+  );
 
   return (
     <StackV

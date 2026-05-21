@@ -1,5 +1,5 @@
 import { WELCOME_ROUTE } from "@/constants/routes";
-import { useAuthMiddleware } from "@/contexts/use-auth-middleware-context";
+import { useAuthMiddlewareContext } from "@/contexts/use-auth-middleware-context";
 import useRenderTrigger from "@/contexts/use-render-trigger";
 import {
   getUserProfile,
@@ -21,10 +21,10 @@ export const useSignin = () => {
   const { t } = useLocaleContext();
   const router = useRouter();
 
-  const setVerifiedAccessToken = useAuthMiddleware(
+  const setVerifiedAccessToken = useAuthMiddlewareContext(
     (s) => s.setVerifiedAccessToken,
   );
-  const setPermissions = useAuthMiddleware((s) => s.setPermissions);
+  const setPermissions = useAuthMiddlewareContext((s) => s.setPermissions);
 
   const toast = mutationToastHandlers("auth-signin", {
     loadingMessage: t.loading_signin,
@@ -63,7 +63,7 @@ export const useSignout = (options?: {
   onError?: (err: any) => void;
 }) => {
   const { t } = useLocaleContext();
-  const removeAuth = useAuthMiddleware((s) => s.removeAuth);
+  const removeAuth = useAuthMiddlewareContext((s) => s.removeAuth);
   const setRt = useRenderTrigger((s) => s.setRt);
 
   const toast = mutationToastHandlers("auth-signout", {
@@ -88,8 +88,6 @@ export const useSignout = (options?: {
     },
   });
 };
-
-export const useSignoutMutation = useSignout;
 
 export const useUserProfile = (options?: any) => {
   return useQuery<BaseResponse<User>, Error>({

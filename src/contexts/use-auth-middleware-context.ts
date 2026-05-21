@@ -24,31 +24,33 @@ type AuthMiddlewareStore = {
   removeAuth: () => void;
 };
 
-export const useAuthMiddleware = create<AuthMiddlewareStore>((set, get) => ({
-  verifiedAccessToken: getAccessToken(),
-  setVerifiedAccessToken: (newState) =>
-    set(() => {
-      if (typeof window !== "undefined") setAccessToken(newState || "");
-      return { verifiedAccessToken: newState };
-    }),
+export const useAuthMiddlewareContext = create<AuthMiddlewareStore>(
+  (set, get) => ({
+    verifiedAccessToken: getAccessToken(),
+    setVerifiedAccessToken: (newState) =>
+      set(() => {
+        if (typeof window !== "undefined") setAccessToken(newState || "");
+        return { verifiedAccessToken: newState };
+      }),
 
-  role: null,
-  setRole: (newState) => set(() => ({ role: newState })),
+    role: null,
+    setRole: (newState) => set(() => ({ role: newState })),
 
-  permissions: null,
-  setPermissions: (newState) => set(() => ({ permissions: newState })),
-  hasPermissions: (allowedPermissions) => {
-    const userPermissions = get().permissions ?? [];
-    return allowedPermissions.every((permission) =>
-      userPermissions.includes(permission),
-    );
-  },
+    permissions: null,
+    setPermissions: (newState) => set(() => ({ permissions: newState })),
+    hasPermissions: (allowedPermissions) => {
+      const userPermissions = get().permissions ?? [];
+      return allowedPermissions.every((permission) =>
+        userPermissions.includes(permission),
+      );
+    },
 
-  removeAuth: () => {
-    get().setPermissions(null);
-    get().setRole(null);
-    get().setVerifiedAccessToken(null);
-    clearAccessToken();
-    clearUserData();
-  },
-}));
+    removeAuth: () => {
+      get().setPermissions(null);
+      get().setRole(null);
+      get().setVerifiedAccessToken(null);
+      clearAccessToken();
+      clearUserData();
+    },
+  }),
+);
