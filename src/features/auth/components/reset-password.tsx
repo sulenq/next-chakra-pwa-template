@@ -28,6 +28,8 @@ import { StackV } from "@/components/ui/stack";
 
 const ID = "forgot-password";
 
+// -----------------------------------------------------------------
+
 const Step1 = (props: any) => {
   // Props
   const { setStep, setEmail } = props;
@@ -110,6 +112,9 @@ const Step1 = (props: any) => {
     </>
   );
 };
+
+// -----------------------------------------------------------------
+
 const Step2 = (props: any) => {
   // Props
   const { email, setOtp, setStep } = props;
@@ -212,6 +217,9 @@ const Step2 = (props: any) => {
     </>
   );
 };
+
+// -----------------------------------------------------------------
+
 const Step3 = (props: any) => {
   // Props
   const { email, otp } = props;
@@ -326,7 +334,9 @@ const Step3 = (props: any) => {
   );
 };
 
-const ResetPasswordDisclosureTrigger = (props: any) => {
+// -----------------------------------------------------------------
+
+export const ResetPasswordDisclosureTrigger = (props: any) => {
   // Props
   const { children, ...restProps } = props;
 
@@ -365,5 +375,3 @@ const ResetPasswordDisclosureTrigger = (props: any) => {
     </>
   );
 };
-
-export default ResetPasswordDisclosureTrigger;

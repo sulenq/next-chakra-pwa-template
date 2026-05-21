@@ -17,7 +17,7 @@ import { APP } from "@/constants/_meta";
 import { WELCOME_ROUTE } from "@/constants/routes";
 import { BASE_ICON_BOX_SIZE } from "@/constants/styles";
 import { useAuthMiddlewareContext } from "@/contexts/use-auth-middleware-context";
-import ResetPasswordDisclosureTrigger from "@/features/auth/components/reset-password";
+import { ResetPasswordDisclosureTrigger } from "@/features/auth/components/reset-password";
 import { useSignin } from "@/features/auth/hooks/use-auth";
 import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";
 import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";

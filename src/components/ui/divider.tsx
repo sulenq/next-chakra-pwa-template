@@ -25,8 +25,7 @@ export const Divider = ({
         mx={mx}
         my={my}
         m={m}
-        bg="border.subtle"
-        alignSelf="stretch"
+        bg={"border.subtle"}
         {...props}
       />
     );
@@ -40,8 +39,7 @@ export const Divider = ({
       mx={mx}
       my={my}
       m={m}
-      bg="border.subtle"
-      alignSelf="stretch"
+      bg={"border.subtle"}
       {...props}
     />
   );

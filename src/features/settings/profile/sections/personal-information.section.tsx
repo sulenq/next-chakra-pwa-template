@@ -10,7 +10,7 @@ import { UserIdCard } from "@/components/user/user-id-card";
 import { R_SPACING_MD } from "@/constants/styles";
 import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
 import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";
-import ResetPasswordDisclosureTrigger from "@/features/auth/components/reset-password";
+import { ResetPasswordDisclosureTrigger } from "@/features/auth/components/reset-password";
 import { useRequest } from "@/hooks/useRequestOld";
 import { getUserData } from "@/utils/auth";
 import { Stack } from "@chakra-ui/react";
@@ -72,7 +72,7 @@ export const PersonalInformationSection = (props: ItemRootProps) => {
 
   return (
     <Item.Root px={R_SPACING_MD} {...props}>
-      <Item.Body p={4}>
+      <Item.Body p={4} overflow={"visible"}>
         <Stack flexDir={isSmContainer ? "column" : "row"}>
           <StackV minW={"280px"} pl={10} pr={8} pt={"28px"} pb={2}>
             <UserIdCard w={"220px"} mx={"auto"} />
