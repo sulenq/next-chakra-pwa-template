@@ -18,7 +18,7 @@ import {
   SM_SCREEN_BREAKPOINT,
   TOP_BAR_H,
 } from "@/constants/styles";
-import { useBreadcrumbs } from "@/contexts/use-breadcrumbs-context";
+import { useBreadcrumbsContext } from "@/contexts/use-breadcrumbs-context";
 import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
 import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";
 import { useContainerDimension } from "@/hooks/use-container-dimenssion";
@@ -53,8 +53,8 @@ export const NavBreadcrumb = (props: any) => {
 
   // Contexts
   const { t } = useLocaleContext();
-  const breadcrumbs = useBreadcrumbs((s) => s.breadcrumbs);
-  const setBreadcrumbs = useBreadcrumbs((s) => s.setBreadcrumbs);
+  const breadcrumbs = useBreadcrumbsContext((s) => s.breadcrumbs);
+  const setBreadcrumbs = useBreadcrumbsContext((s) => s.setBreadcrumbs);
 
   // Hooks
   const pathname = usePathname();

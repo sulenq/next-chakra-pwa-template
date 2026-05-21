@@ -1,5 +1,5 @@
 import { WELCOME_ROUTE } from "@/constants/routes";
-import { useAuthMiddlewareContext } from "@/contexts/use-auth-middleware-context";
+import { useAuthContext } from "@/contexts/use-auth-context";
 import useRenderTrigger from "@/contexts/use-render-trigger";
 import {
   getUserProfile,
@@ -21,10 +21,8 @@ export const useSignin = () => {
   const { t } = useLocaleContext();
   const router = useRouter();
 
-  const setVerifiedAccessToken = useAuthMiddlewareContext(
-    (s) => s.setVerifiedAccessToken,
-  );
-  const setPermissions = useAuthMiddlewareContext((s) => s.setPermissions);
+  const setAccessTokenContext = useAuthContext((s) => s.setAccessTokenContext);
+  const setPermissions = useAuthContext((s) => s.setPermissions);
 
   const toast = mutationToastHandlers("auth-signin", {
     loadingMessage: t.loading_signin,
@@ -46,7 +44,7 @@ export const useSignin = () => {
       if (accessToken && userData) {
         setAccessToken(accessToken);
         setUserData(userData);
-        setVerifiedAccessToken(accessToken);
+        setAccessTokenContext(accessToken);
         if (permissionsData) {
           setPermissions(permissionsData);
         }
@@ -63,7 +61,7 @@ export const useSignout = (options?: {
   onError?: (err: any) => void;
 }) => {
   const { t } = useLocaleContext();
-  const removeAuth = useAuthMiddlewareContext((s) => s.removeAuth);
+  const removeAuth = useAuthContext((s) => s.removeAuth);
   const setRt = useRenderTrigger((s) => s.setRt);
 
   const toast = mutationToastHandlers("auth-signout", {
