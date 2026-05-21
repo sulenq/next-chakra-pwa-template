@@ -30,7 +30,14 @@ import {
 } from "@/types/global.types";
 import { isEmptyArray } from "@/utils/array";
 import { Box, Center, Grid, StackProps, TableRowProps } from "@chakra-ui/react";
-import { useEffect, useMemo, useRef, useState } from "react";
+import {
+  Dispatch,
+  SetStateAction,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import { DataListFooter } from "@/components/data-list/data-footer";
 
 // -----------------------------------------------------------------
@@ -44,9 +51,9 @@ export interface DataTableRootProps extends Omit<StackProps, "page"> {
   initialSortColumnIndex?: number;
   initialSortOrder?: "asc" | "desc";
   limit?: number;
-  setLimit?: React.Dispatch<number>;
+  setLimit?: Dispatch<SetStateAction<number>>;
   page?: number;
-  setPage?: React.Dispatch<number>;
+  setPage?: Dispatch<SetStateAction<number>>;
   totalPage?: number;
   totalData?: number;
   loading?: boolean;
@@ -502,7 +509,7 @@ export const DataTableRoot = (props: DataTableRootProps) => {
                     <RowOptions
                       row={row}
                       rowOptions={rowOptions}
-                      tableContainerRef={tableContainerRef}
+                      // tableContainerRef={tableContainerRef}
                       color={"fg.ibody"}
                     />
                   </Center>

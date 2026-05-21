@@ -6,8 +6,8 @@ import { MainView, useMainViewContext } from "@/components/container/main-view";
 import { HScroll } from "@/components/container/h-scroll";
 import { GAP, R_SPACING_MD, TOP_BAR_H } from "@/constants/styles";
 import { LayananCreate } from "@/features/layanan/components/layanan.create";
-import { LayananList } from "@/features/layanan/components/layanan.list";
-import { LayananListUtils } from "@/features/layanan/components/layanan.list-utils";
+import { LayananList } from "@/features/layanan/components/layanan.data-list";
+import { LayananListUtils } from "@/features/layanan/components/layanan.data-list-utils";
 import { useState } from "react";
 import { cssCalc } from "@/utils/style";
 

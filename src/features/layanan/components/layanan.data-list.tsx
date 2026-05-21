@@ -164,7 +164,6 @@ export const LayananList = (props: LayananListProps) => {
         <DataGrid.Root
           headers={dataListConfig.headers}
           rows={dataListConfig.rows}
-          rowOptions={dataListConfig.rowOptions}
           batchOptions={dataListConfig.batchOptions}
           gridItem={({ row, details }) => {
             const item = row.item as LayananItem;

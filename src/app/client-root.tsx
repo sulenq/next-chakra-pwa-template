@@ -9,7 +9,7 @@ import { APP } from "@/constants/_meta";
 import { SVGS_PATH } from "@/constants/paths";
 import useADMContext from "@/features/settings/display/contexts/use-adm-context";
 import { Center } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
+import { ReactNode, useEffect, useState } from "react";
 
 // -----------------------------------------------------------------
 
@@ -36,8 +36,8 @@ let mountedGlobal = false;
 // -----------------------------------------------------------------
 
 interface ClientRootProps {
-  children: React.ReactNode;
-  fallback?: React.ReactNode;
+  children: ReactNode;
+  fallback?: ReactNode;
 }
 
 export default function ClientRoot(props: ClientRootProps) {

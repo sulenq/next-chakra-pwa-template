@@ -5,12 +5,13 @@ import { AppIconLucide } from "@/components/branding/app-icon";
 import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
 import { formatNumber } from "@/utils/formatter";
 import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
+import { Dispatch, SetStateAction } from "react";
 
 // -----------------------------------------------------------------
 
 export interface PaginationTableDataProps {
   page: number;
-  setPage: React.Dispatch<React.SetStateAction<number>>;
+  setPage: Dispatch<SetStateAction<number>>;
   totalPage?: number;
 }
 

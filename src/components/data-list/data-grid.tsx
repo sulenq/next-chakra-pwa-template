@@ -1,5 +1,14 @@
 "use client";
 
+import { BatchOptions } from "@/components/data-list/batch-option";
+import { DataListFooter } from "@/components/data-list/data-footer";
+import {
+  RowOptions,
+  RowOptionsProps,
+} from "@/components/data-list/row-options";
+import FeedbackNotFound from "@/components/feedback/feedback-not-found";
+import { ImgViewer } from "@/components/media/img-viewer";
+import { BackButton } from "@/components/navigation/back-button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Disclosure } from "@/components/ui/disclosure";
 import { Divider } from "@/components/ui/divider";
@@ -7,23 +16,14 @@ import { Img } from "@/components/ui/img";
 import { P, TNum } from "@/components/ui/p";
 import { SearchInput } from "@/components/ui/search-input";
 import { StackH, StackV } from "@/components/ui/stack";
-import { BackButton } from "@/components/navigation/back-button";
-import { BatchOptions } from "@/components/data-list/batch-option";
-import { DataListFooter } from "@/components/data-list/data-footer";
-import FeedbackNotFound from "@/components/feedback/feedback-not-found";
-import { ImgViewer } from "@/components/media/img-viewer";
-import {
-  RowOptions,
-  RowOptionsProps,
-} from "@/components/data-list/row-options";
 import {
   BACKDROP_BLUR_FILTER,
   GAP,
   GRID_BATCH_OPTIONS_CONTAINER_BG,
   R_SPACING_MD,
 } from "@/constants/styles";
-import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
 import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";
+import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
 import { usePopDisclosure } from "@/hooks/use-pop-disclosure";
 import {
   BatchOptionsTableOptionGenerator,
@@ -35,7 +35,14 @@ import { isEmptyArray } from "@/utils/array";
 import { disclosureId } from "@/utils/disclosure";
 import { imgUrl } from "@/utils/url";
 import { Box, Presence, SimpleGrid, StackProps } from "@chakra-ui/react";
-import React, { createContext, Fragment, useContext, useState } from "react";
+import React, {
+  createContext,
+  Dispatch,
+  Fragment,
+  SetStateAction,
+  useContext,
+  useState,
+} from "react";
 
 // -----------------------------------------------------------------
 
@@ -263,13 +270,12 @@ export interface GridItemCallbackProps {
 export interface DataGridRootProps extends Omit<StackProps, "page"> {
   headers?: FormattedTableHeader[];
   rows?: FormattedTableRow[];
-  rowOptions?: RowOptionsTableOptionGenerator[];
   batchOptions?: BatchOptionsTableOptionGenerator[];
   gridItem: (props: GridItemCallbackProps) => React.ReactNode;
   limit?: number;
-  setLimit?: (limit: number) => void;
+  setLimit?: Dispatch<SetStateAction<number>>;
   page?: number;
-  setPage?: (page: number) => void;
+  setPage?: Dispatch<SetStateAction<number>>;
   totalPage?: number;
   totalData?: number;
   minChildWidth?: string; // px
@@ -280,7 +286,6 @@ const DataGridRoot = (props: DataGridRootProps) => {
   const {
     headers,
     rows,
-    rowOptions,
     batchOptions,
     limit,
     setLimit,

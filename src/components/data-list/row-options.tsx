@@ -15,14 +15,13 @@ import React from "react";
 export interface RowOptionsProps extends BtnProps {
   row: FormattedTableRow;
   rowOptions?: RowOptionsTableOptionGenerator<FormattedTableRow>[];
-  tableContainerRef?: React.RefObject<HTMLDivElement | null>;
+  // tableContainerRef?: React.RefObject<HTMLDivElement | null>;
   menuRootProps?: Omit<MenuRootProps, "children">;
 }
 
 export const RowOptions = (props: RowOptionsProps) => {
   // Props
-  const { row, rowOptions, tableContainerRef, menuRootProps, ...restProps } =
-    props;
+  const { row, rowOptions, menuRootProps, ...restProps } = props;
 
   return (
     <Menu.Root

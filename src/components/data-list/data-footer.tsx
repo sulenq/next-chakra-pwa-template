@@ -8,6 +8,7 @@ import { TABLE_FOOTER_BORDER_COLOR } from "@/constants/styles";
 import { useIsSmScreenWidth } from "@/hooks/use-is-sm-screen-width";
 import { formatNumber } from "@/utils/formatter";
 import { StackProps } from "@chakra-ui/react";
+import { Dispatch, SetStateAction } from "react";
 
 // -----------------------------------------------------------------
 
@@ -16,9 +17,9 @@ interface DataListFooterProps extends Omit<StackProps, "page"> {
   dataLength?: number;
   totalData?: number;
   limit: number;
-  setLimit: React.Dispatch<number>;
+  setLimit: Dispatch<SetStateAction<number>>;
   page: number;
-  setPage: React.Dispatch<number>;
+  setPage: Dispatch<SetStateAction<number>>;
   totalPage?: number;
 }
 
