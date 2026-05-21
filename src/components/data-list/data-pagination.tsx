@@ -1,5 +1,5 @@
 import { Btn } from "@/components/ui/btn";
-import { P } from "@/components/ui/p";
+import { P, TNum } from "@/components/ui/p";
 import { StackH } from "@/components/ui/stack";
 import { AppIconLucide } from "@/components/branding/app-icon";
 import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
@@ -10,7 +10,7 @@ import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
 
 export interface PaginationTableDataProps {
   page: number;
-  setPage: React.Dispatch<number>;
+  setPage: React.Dispatch<React.SetStateAction<number>>;
   totalPage?: number;
 }
 
@@ -22,24 +22,16 @@ export const Pagination = (props: PaginationTableDataProps) => {
   const { t } = useLocaleContext();
 
   // States
-  // const [pageTemp, setPageTemp] = useState<number | null | undefined>(page);
   const isFirstPage = page === 1;
   const isLastPage = page === (totalPage || 1);
 
   // Utils
   function handlePrev() {
-    // @ts-expect-error this is dispatch
-    if (page > 1) setPage((ps) => ps! - 1);
+    if (page > 1) setPage((ps) => ps - 1);
   }
   function handleNext() {
-    // @ts-expect-error this is dispatch
-    if (page < (totalPage || 1)) setPage((ps) => ps! + 1);
+    if (page < (totalPage || 1)) setPage((ps) => ps + 1);
   }
-
-  // debounce setPage
-  // useEffect(() => {
-  //   if (pageTemp) setPage(pageTemp);
-  // }, [pageTemp]);
 
   return (
     <StackH align={"center"} gap={2}>
@@ -55,11 +47,15 @@ export const Pagination = (props: PaginationTableDataProps) => {
       </Btn>
 
       <StackH align={"center"} gap={2} whiteSpace={"nowrap"}>
-        <P>{formatNumber(page)}</P>
+        <P>
+          <TNum>{formatNumber(page)}</TNum>
+        </P>
 
         <P>{t.of}</P>
 
-        <P>{formatNumber(totalPage) || "?"}</P>
+        <P>
+          <TNum>{formatNumber(totalPage) || "?"}</TNum>
+        </P>
       </StackH>
 
       <Btn

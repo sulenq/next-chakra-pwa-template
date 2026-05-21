@@ -1,30 +1,27 @@
 import { http } from "@/api/http";
 import {
-  AUTH_API_SIGNIN,
-  AUTH_API_SIGNOUT,
-  AUTH_API_USER_PROFILE,
-} from "@/constants/apis";
-import {
   SigninPayload,
   SigninResponseData,
 } from "@/features/auth/types/auth.types";
 import { BaseResponse, User } from "@/types/global.types";
 
+// -----------------------------------------------------------------
+
 export const signin = async (data: SigninPayload) => {
   const res = await http.post<BaseResponse<SigninResponseData>>(
-    AUTH_API_SIGNIN,
+    "/api/login",
     data,
   );
   return res.data;
 };
 
 export const signout = async () => {
-  const res = await http.post<BaseResponse>(AUTH_API_SIGNOUT);
+  const res = await http.post<BaseResponse>("/api/logout");
   return res.data;
 };
 
 export const getUserProfile = async (signal?: AbortSignal) => {
-  const res = await http.get<BaseResponse<User>>(AUTH_API_USER_PROFILE, {
+  const res = await http.get<BaseResponse<User>>("/api/get-user-profile", {
     signal,
   });
   return res.data;

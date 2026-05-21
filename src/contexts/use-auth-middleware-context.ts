@@ -4,27 +4,26 @@ import {
   getAccessToken,
   setAccessToken,
 } from "@/utils/auth";
-import { removeStorage } from "@/utils/client";
 import { create } from "zustand";
+
+// -----------------------------------------------------------------
 
 type AuthMiddlewareStore = {
   verifiedAccessToken: string | null;
-  role: object | null;
-  permissions: number[] | null;
-
   setVerifiedAccessToken: (
     newState: AuthMiddlewareStore["verifiedAccessToken"],
   ) => void;
-  setRole: (newState: AuthMiddlewareStore["role"]) => void;
-  setPermissions: (newState: AuthMiddlewareStore["permissions"]) => void;
 
-  hasPermissions: (allowedPermissions: number[]) => boolean;
+  role: object | null;
+  setRole: (newState: AuthMiddlewareStore["role"]) => void;
+
+  permissions: string[] | null;
+  setPermissions: (newState: AuthMiddlewareStore["permissions"]) => void;
+  hasPermissions: (allowedPermissions: string[]) => boolean;
 
   removeAuth: () => void;
-  removeAuthToken: () => void;
-  removePermissions: () => void;
-  removeRole: () => void;
 };
+
 export const useAuthMiddleware = create<AuthMiddlewareStore>((set, get) => ({
   verifiedAccessToken: getAccessToken(),
   setVerifiedAccessToken: (newState) =>
@@ -38,28 +37,18 @@ export const useAuthMiddleware = create<AuthMiddlewareStore>((set, get) => ({
 
   permissions: null,
   setPermissions: (newState) => set(() => ({ permissions: newState })),
-
   hasPermissions: (allowedPermissions) => {
     const userPermissions = get().permissions ?? [];
-    return allowedPermissions.every((perm) => userPermissions.includes(perm));
+    return allowedPermissions.every((permission) =>
+      userPermissions.includes(permission),
+    );
   },
 
   removeAuth: () => {
-    get().removePermissions();
-    get().removeRole();
+    get().setPermissions(null);
+    get().setRole(null);
     get().setVerifiedAccessToken(null);
     clearAccessToken();
     clearUserData();
   },
-
-  removeAuthToken: () => {
-    if (typeof window !== "undefined") {
-      removeStorage("__access_token");
-    }
-    set(() => ({ authToken: null, verifiedAccessToken: null }));
-  },
-
-  removePermissions: () => set(() => ({ permissions: undefined })),
-
-  removeRole: () => set(() => ({ role: undefined })),
 }));

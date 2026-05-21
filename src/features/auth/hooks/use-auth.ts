@@ -13,6 +13,7 @@ import { mutationToastHandlers } from "@/lib/toast/toast.handler";
 import { setAccessToken, setUserData } from "@/utils/auth";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
+import { BaseResponse, User } from "@/types/global.types";
 
 // -----------------------------------------------------------------
 
@@ -57,7 +58,10 @@ export const useSignin = () => {
   });
 };
 
-export const useSignout = () => {
+export const useSignout = (options?: {
+  onSuccess?: () => void;
+  onError?: (err: any) => void;
+}) => {
   const { t } = useLocaleContext();
   const removeAuth = useAuthMiddleware((s) => s.removeAuth);
   const setRt = useRenderTrigger((s) => s.setRt);
@@ -74,18 +78,23 @@ export const useSignout = () => {
       toast.onSuccess();
       removeAuth();
       setRt((ps) => !ps);
+      options?.onSuccess?.();
     },
-    onError: () => {
+    onError: (err) => {
       // Clear token & auth contexts anyway to avoid user being stuck on network errors
       removeAuth();
       setRt((ps) => !ps);
+      options?.onError?.(err);
     },
   });
 };
 
-export const useUserProfileQuery = () => {
-  return useQuery({
+export const useSignoutMutation = useSignout;
+
+export const useUserProfile = (options?: any) => {
+  return useQuery<BaseResponse<User>, Error>({
     queryKey: queryKeys.auth.profile(),
     queryFn: ({ signal }) => getUserProfile(signal),
+    ...options,
   });
 };
