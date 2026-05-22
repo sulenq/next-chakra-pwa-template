@@ -109,7 +109,7 @@ export const ProfileMenu = (props: ProfileMenuProps) => {
       color={"fg.ibody"}
       {...restProps}
     >
-      <StackH align={"center"} gap={4} p={4}>
+      <StackH align={"center"} gap={4} p={3}>
         <Avatar
           src={imgUrl(user?.avatar?.[0]?.filePath)}
           name={user?.name}

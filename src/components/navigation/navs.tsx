@@ -58,7 +58,6 @@ export const DesktopNavTooltip = (props: TooltipProps) => {
 interface VNavsProps extends StackProps {
   navs: NavGroup[];
   navsExpanded?: boolean;
-  showSearch?: boolean;
   addonBottomElement?: any;
   showGroupLabel?: boolean;
 }
@@ -68,7 +67,6 @@ export const VNavs = (props: VNavsProps) => {
   const {
     navs,
     navsExpanded = false,
-    showSearch = true,
     addonBottomElement,
     showGroupLabel = false,
     ...restProps
