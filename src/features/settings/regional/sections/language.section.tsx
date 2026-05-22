@@ -7,7 +7,7 @@ import { Item } from "@/components/container/item";
 import { LANGUAGES } from "@/constants/languages";
 import { COMMON_NAV_COLOR, R_SPACING_MD } from "@/constants/styles";
 import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
-import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";
+import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
 import { type LocaleOption } from "@/types/global.types";
 import { chakra, Text } from "@chakra-ui/react";
 
@@ -15,7 +15,7 @@ import { chakra, Text } from "@chakra-ui/react";
 
 export const LanguageSection = () => {
   // Contexts
-  const { themeContext } = useThemeContext();
+  const { theme } = useThemeStore();
   const { t, locale, setLocale } = useLocaleContext();
 
   return (
@@ -32,7 +32,7 @@ export const LanguageSection = () => {
                 flex={"1 1 180px"}
                 gap={3}
                 px={3}
-                rounded={themeContext.radii.component}
+                rounded={theme.radii.component}
                 variant={"ghost"}
                 justifyContent={"start"}
                 color={isSelected ? "" : COMMON_NAV_COLOR}

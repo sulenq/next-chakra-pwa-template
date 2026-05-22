@@ -1,9 +1,11 @@
+export function isClient(): boolean {
+  return typeof window !== "undefined";
+}
+
 export function back() {
   if (!isClient()) return;
   window.history.back();
 }
-
-export const isClient = (): boolean => typeof window !== "undefined";
 
 export function setStorage(
   key: string,
@@ -20,10 +22,10 @@ export function setStorage(
   storage.setItem(key, JSON.stringify(payload));
 }
 
-export const getStorage = (
+export function getStorage(
   key: string,
   type: "local" | "session" = "local",
-): string | null => {
+): string | null {
   if (!isClient()) return null;
   const storage = type === "local" ? localStorage : sessionStorage;
   const raw = storage.getItem(key);
@@ -39,7 +41,7 @@ export const getStorage = (
   } catch {
     return raw;
   }
-};
+}
 
 export function removeStorage(
   key: string,

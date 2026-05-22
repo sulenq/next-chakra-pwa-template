@@ -18,7 +18,7 @@ import {
   BASE_ICON_BOX_SIZE,
   GAP,
 } from "@/constants/styles";
-import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";
+import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
 import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
 import { useSignout } from "@/features/auth/hooks/use-auth";
 import { getUserData } from "@/utils/auth";
@@ -77,7 +77,7 @@ export const ProfileMenu = (props: ProfileMenuProps) => {
 
   // Contexts
   const { t } = useLocaleContext();
-  const { themeContext } = useThemeContext();
+  const { theme } = useThemeStore();
 
   // Hooks
   const { colorMode, toggleColorMode } = useColorMode();
@@ -104,7 +104,7 @@ export const ProfileMenu = (props: ProfileMenuProps) => {
 
   return (
     <StackV
-      rounded={themeContext.radii.container}
+      rounded={theme.radii.container}
       overflow={"clip"}
       color={"fg.ibody"}
       {...restProps}
@@ -234,7 +234,7 @@ export const ProfileMenuTrigger = (props: ProfileMenuTriggerProps) => {
   const { popoverRootProps, ...restProps } = props;
 
   // Contexts
-  const { themeContext } = useThemeContext();
+  const { theme } = useThemeStore();
 
   // States
   const [open, setOpen] = useState<boolean>(false);
@@ -258,7 +258,7 @@ export const ProfileMenuTrigger = (props: ProfileMenuTriggerProps) => {
         w={"225px"}
         bg={"bg.body"}
         backdropFilter={BACKDROP_BLUR_FILTER}
-        rounded={themeContext.radii.container}
+        rounded={theme.radii.container}
         zIndex={10}
       >
         <ProfileMenu handleClose={handleClose} />

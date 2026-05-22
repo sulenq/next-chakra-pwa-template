@@ -5,7 +5,7 @@ import { Menu } from "@/components/ui/menu";
 
 import { Tooltip } from "@/components/ui/tooltip";
 import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
-import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";
+import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
 import { Icon, MenuPositioner, Portal } from "@chakra-ui/react";
 import { IconCheck, IconChevronDown } from "@tabler/icons-react";
 
@@ -29,7 +29,7 @@ const LANGUAGES = [
 export const LangMenu = (props: BtnProps) => {
   // Contexts
   const { t, locale, setLocale } = useLocaleContext();
-  const { themeContext } = useThemeContext();
+  const { theme } = useThemeStore();
 
   return (
     <Tooltip content={t.language}>
@@ -66,11 +66,7 @@ export const LangMenu = (props: BtnProps) => {
                     {item.label}
 
                     {active && (
-                      <Icon
-                        boxSize={5}
-                        color={themeContext.primaryColor}
-                        ml={"auto"}
-                      >
+                      <Icon boxSize={5} color={theme.primaryColor} ml={"auto"}>
                         <IconCheck stroke={1.5} />
                       </Icon>
                     )}

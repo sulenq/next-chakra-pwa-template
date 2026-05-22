@@ -1,6 +1,6 @@
 import { P } from "@/components/ui/p";
 import { BACKDROP_BLUR_FILTER } from "@/constants/styles";
-import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";
+import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
 import { Tooltip as ChakraTooltip, Portal } from "@chakra-ui/react";
 import * as React from "react";
 
@@ -30,7 +30,7 @@ export const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>(
     } = props;
 
     // Contexts
-    const { themeContext } = useThemeContext();
+    const { theme } = useThemeStore();
 
     if (disabled) return children;
 
@@ -48,7 +48,7 @@ export const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>(
               color={"fg.ibody"}
               px={2}
               py={1}
-              rounded={themeContext.radii.component}
+              rounded={theme.radii.component}
               border={"1px solid"}
               borderColor={"border.subtle"}
               shadow={"soft"}

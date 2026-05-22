@@ -1,5 +1,5 @@
 import { StackV } from "@/components/ui/stack";
-import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";
+import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
 import { Icon, IconProps } from "@chakra-ui/react";
 import { IconCaretDownFilled, IconCaretUpFilled } from "@tabler/icons-react";
 
@@ -16,14 +16,14 @@ export const SortIcon = (props: SortIconProps) => {
   const { columnIndex, sortColumnIdx, direction, ...restProps } = props;
 
   // Contexts
-  const { themeContext } = useThemeContext();
+  const { theme } = useThemeStore();
 
   // States
   const active = sortColumnIdx === columnIndex;
   const asc = active && direction === "asc";
   const desc = active && direction === "desc";
-  const ascColor = asc ? themeContext.primaryColor : "d3";
-  const descColor = desc ? themeContext.primaryColor : "d3";
+  const ascColor = asc ? theme.primaryColor : "d3";
+  const descColor = desc ? theme.primaryColor : "d3";
 
   return (
     <StackV gap={0}>

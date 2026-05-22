@@ -4,13 +4,13 @@ import { StackV } from "@/components/ui/stack";
 import FeedbackState from "@/components/feedback/feedback-state";
 import { LucideIcon } from "@/components/misc/icon";
 import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
-import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";
+import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
 import { SettingsIcon } from "lucide-react";
 
 export default function SettingsRoute() {
   // Contexts
   const { t } = useLocaleContext();
-  const { themeContext } = useThemeContext();
+  const { theme } = useThemeStore();
 
   return (
     <StackV
@@ -19,7 +19,7 @@ export default function SettingsRoute() {
       justify={"center"}
       p={4}
       mb={4}
-      rounded={themeContext.radii.container}
+      rounded={theme.radii.container}
     >
       <FeedbackState
         icon={<LucideIcon icon={SettingsIcon} />}

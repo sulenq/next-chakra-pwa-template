@@ -7,12 +7,12 @@ import { P } from "@/components/ui/p";
 import { StackH, StackV } from "@/components/ui/stack";
 import { BrandWatermark } from "@/components/branding/brand-watermark";
 import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
-import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";
+import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
 
 export default function MaintenanceRoute() {
   // Contexts
   const { t } = useLocaleContext();
-  const { themeContext } = useThemeContext();
+  const { theme } = useThemeStore();
 
   return (
     <StackV h={"100vh"} gap={0}>
@@ -34,7 +34,7 @@ export default function MaintenanceRoute() {
         </P>
 
         <NavLink to={"/"} w={"fit"}>
-          <Btn colorPalette={themeContext.colorPalette} px={8}>
+          <Btn colorPalette={theme.colorPalette} px={8}>
             {t.main_page}
           </Btn>
         </NavLink>

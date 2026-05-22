@@ -8,7 +8,7 @@ import { Item } from "@/components/container/item";
 import { ROUNDED_PRESETS } from "@/constants/presets";
 import { R_SPACING_MD } from "@/constants/styles";
 import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
-import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";
+import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
 import { PSleleton } from "@/features/settings/display/sections/color-mode.section";
 import { Box, Circle, SimpleGrid } from "@chakra-ui/react";
 
@@ -17,11 +17,11 @@ import { Box, Circle, SimpleGrid } from "@chakra-ui/react";
 export const RoundedSection = () => {
   // Contexts
   const { t } = useLocaleContext();
-  const { themeContext, setThemeContext } = useThemeContext();
+  const { theme, setTheme } = useThemeStore();
 
   // Utils
   function handleOnClick(preset: (typeof ROUNDED_PRESETS)[number]) {
-    setThemeContext((state) => ({
+    setTheme((state) => ({
       ...state,
       radii: {
         label: preset.label,
@@ -40,14 +40,14 @@ export const RoundedSection = () => {
       <Item.Body p={2} gap={4}>
         <SimpleGrid minChildWidth={"160px"} gapX={1} gapY={4}>
           {ROUNDED_PRESETS.map((preset, index) => {
-            const isSelected = preset.label === themeContext.radii.label;
+            const isSelected = preset.label === theme.radii.label;
 
             return (
               <StackV
                 key={`${preset.label}-${index}`}
                 gap={2}
                 p={R_SPACING_MD}
-                rounded={themeContext.radii.component}
+                rounded={theme.radii.component}
                 cursor={"pointer"}
                 transition={"200ms"}
                 _hover={{

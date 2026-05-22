@@ -1,4 +1,4 @@
-import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";
+import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
 import { ProgressRange, ProgressRoot, ProgressTrack } from "@chakra-ui/react";
 import { useEffect, useRef, useState } from "react";
 
@@ -10,7 +10,7 @@ export const MicVolumeBar = ({
   analyser: AnalyserNode | null;
 }) => {
   // Contexts
-  const { themeContext } = useThemeContext();
+  const { theme } = useThemeStore();
 
   // States, Refs
   const [volume, setVolume] = useState(0);
@@ -47,7 +47,7 @@ export const MicVolumeBar = ({
     <ProgressRoot
       value={volume * 5}
       max={100}
-      colorPalette={themeContext.colorPalette}
+      colorPalette={theme.colorPalette}
     >
       <ProgressTrack>
         <ProgressRange />

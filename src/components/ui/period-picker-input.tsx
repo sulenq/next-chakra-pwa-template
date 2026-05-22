@@ -11,7 +11,7 @@ import { AppIconLucide } from "@/components/branding/app-icon";
 import { DotIndicator } from "@/components/ui/indicator";
 import { getMonthNames } from "@/constants/months";
 import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
-import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";
+import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
 import { usePopDisclosure } from "@/hooks/use-pop-disclosure";
 import { ButtonVariant, DisclosureSizes, Period } from "@/types/global.types";
 import { back } from "@/utils/client";
@@ -64,7 +64,7 @@ export const PeriodPickerInput = (props: PeriodPickerInputProps) => {
 
   // Contexts
   const { t } = useLocaleContext();
-  const { themeContext } = useThemeContext();
+  const { theme } = useThemeStore();
   const fc = useFieldContext();
 
   // Hooks
@@ -242,7 +242,7 @@ export const PeriodPickerInput = (props: PeriodPickerInputProps) => {
 
             <Btn
               onClick={handleConfirm}
-              colorPalette={themeContext.colorPalette}
+              colorPalette={theme.colorPalette}
               disabled={(required && isEmpty) || isIncomplete}
             >
               {t.confirm}

@@ -11,7 +11,7 @@ import { Item } from "@/components/container/item";
 import { SettingItemContainer } from "@/components/container/settings-shell";
 import { R_SPACING_MD } from "@/constants/styles";
 import { useCameraPermissionContext } from "@/features/settings/app-permission/contexts/use-camera-permission-context";
-import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";
+import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
 import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
 import { usePopDisclosure } from "@/hooks/use-pop-disclosure";
 import { startCamera, stopCamera } from "@/utils/camera";
@@ -24,7 +24,7 @@ import { useEffect, useRef, useState } from "react";
 const CameraTester = () => {
   // Contexts
   const { t } = useLocaleContext();
-  const { themeContext } = useThemeContext();
+  const { theme } = useThemeStore();
   const { cameraPermissionsStatus, setCameraPermissionsStatus } =
     useCameraPermissionContext();
 
@@ -104,7 +104,7 @@ const CameraTester = () => {
               {t.close} {t.camera.toLowerCase()}
             </Btn>
             <Btn
-              colorPalette={themeContext.colorPalette}
+              colorPalette={theme.colorPalette}
               disabled={cameraOpen}
               loading={loading}
               onClick={() => {
@@ -149,7 +149,7 @@ const CameraTester = () => {
 const CameraPermissionSetting = () => {
   // Contexts
   const { t } = useLocaleContext();
-  const { themeContext } = useThemeContext();
+  const { theme } = useThemeStore();
   const cameraPermissionsStatus = useCameraPermissionContext(
     (s) => s.cameraPermissionsStatus,
   );
@@ -232,7 +232,7 @@ const CameraPermissionSetting = () => {
             requestCameraMic();
           }
         }}
-        colorPalette={themeContext.colorPalette}
+        colorPalette={theme.colorPalette}
       />
     </SettingItemContainer>
   );

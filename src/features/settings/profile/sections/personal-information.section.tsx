@@ -9,7 +9,7 @@ import { useMainViewContext } from "@/components/container/main-view";
 import { UserIdCard } from "@/components/user/user-id-card";
 import { R_SPACING_MD } from "@/constants/styles";
 import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
-import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";
+import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
 import { ResetPasswordDisclosureTrigger } from "@/features/auth/components/reset-password";
 import { useRequest } from "@/hooks/useRequestOld";
 import { getUserData } from "@/utils/auth";
@@ -22,7 +22,7 @@ import * as yup from "yup";
 export const PersonalInformationSection = (props: ItemRootProps) => {
   // Contexts
   const { t } = useLocaleContext();
-  const { themeContext } = useThemeContext();
+  const { theme } = useThemeStore();
   const { isSmContainer } = useMainViewContext();
 
   // Hooks
@@ -138,7 +138,7 @@ export const PersonalInformationSection = (props: ItemRootProps) => {
               <Btn
                 type={"submit"}
                 form={"personal-info-form"}
-                colorPalette={themeContext.colorPalette}
+                colorPalette={theme.colorPalette}
               >
                 {t.save}
               </Btn>

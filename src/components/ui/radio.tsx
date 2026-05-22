@@ -1,6 +1,6 @@
 "use client";
 
-import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";
+import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
 import { Circle, CircleProps } from "@chakra-ui/react";
 
 interface RadioItemProps extends CircleProps {
@@ -12,17 +12,15 @@ export const RadioItem = (props: RadioItemProps) => {
   const { checked = false, ...restProps } = props;
 
   // Contexts
-  const { themeContext } = useThemeContext();
+  const { theme } = useThemeStore();
 
   return (
     <Circle
       w={"16px"}
       h={"16px"}
-      bg={checked ? `${themeContext.colorPalette}.muted` : ""}
+      bg={checked ? `${theme.colorPalette}.muted` : ""}
       border={checked ? "4px solid" : "2px solid"}
-      borderColor={
-        checked ? `${themeContext.colorPalette}.solid` : "border.muted"
-      }
+      borderColor={checked ? `${theme.colorPalette}.solid` : "border.muted"}
       cursor={"pointer"}
       {...restProps}
     />

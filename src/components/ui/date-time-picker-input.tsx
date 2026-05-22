@@ -4,7 +4,7 @@ import {
   TimePickerInputProps,
 } from "@/components/ui/time-picker-input";
 import { ButtonSize, DisclosureSizes } from "@/types/global.types";
-import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";
+import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
 import { extractTime, getUserTimezone, makeUTCISODateTime } from "@/utils/time";
 import { Group, GroupProps, useFieldContext } from "@chakra-ui/react";
 import { parseISO } from "date-fns";
@@ -56,7 +56,7 @@ export const DateTimePickerInput = (props: DateTimePickerInputProps) => {
   } = props;
 
   // Contexts
-  const { themeContext } = useThemeContext();
+  const { theme } = useThemeStore();
   const fc = useFieldContext();
 
   // States
@@ -101,7 +101,7 @@ export const DateTimePickerInput = (props: DateTimePickerInputProps) => {
       w={"full"}
       attached
       border={invalid || fc?.invalid ? "1px solid {colors.border.error}" : ""}
-      rounded={themeContext.radii.component}
+      rounded={theme.radii.component}
       {...restProps}
     >
       <DatePickerInput

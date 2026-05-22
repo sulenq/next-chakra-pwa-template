@@ -18,7 +18,7 @@ import { DUMMY_DASHBOARD_DATA } from "@/constants/dummy-data";
 import { getMonthNames } from "@/constants/months";
 import { GAP, R_SPACING_MD } from "@/constants/styles";
 import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
-import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";
+import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
 import { useFetchData } from "@/hooks/useFetchData";
 import { ChartData } from "@/types/global.types";
 import { getUserData } from "@/utils/auth";
@@ -74,7 +74,7 @@ const OverviewItem = (props: OverviewItemProps) => {
   const { item, ...restProps } = props;
 
   // Contexts
-  const { themeContext } = useThemeContext();
+  const { theme } = useThemeStore();
 
   return (
     <Item.Body gap={1} {...restProps}>
@@ -91,7 +91,7 @@ const OverviewItem = (props: OverviewItemProps) => {
         <Center
           p={2}
           bg={"bg.subtle"}
-          rounded={themeContext.radii.component}
+          rounded={theme.radii.component}
           ml={"auto"}
         >
           <AppIconLucide icon={item.icon} boxSize={5} />
@@ -194,7 +194,7 @@ const Chart1 = (props: any) => {
 
   // Contexts
   const { t } = useLocaleContext();
-  const { themeContext } = useThemeContext();
+  const { theme } = useThemeStore();
 
   // Refs
   const isPanningRef = useRef<boolean>(false);
@@ -473,7 +473,7 @@ const Chart1 = (props: any) => {
           <Switch
             checked={showPointLabel}
             onCheckedChange={(e) => setShowPointLabel(e.checked)}
-            colorPalette={themeContext.colorPalette}
+            colorPalette={theme.colorPalette}
             ml={2}
           >
             Point label

@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useRequest } from "@/hooks/useRequestOld";
-import useRenderTrigger from "@/contexts/use-render-trigger";
-import { useLoadingBar } from "@/contexts/use-loading-bar-context";
+import useRenderTrigger from "@/stores/use-render-trigger";
+import { useLoadingBar } from "@/stores/use-loading-bar-context";
 
 // -----------------------------------------------------------------
 

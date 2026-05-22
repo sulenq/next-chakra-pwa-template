@@ -7,7 +7,7 @@ import { Tooltip } from "@/components/ui/tooltip";
 import { LucideIcon } from "@/components/misc/icon";
 import { BASE_ICON_BOX_SIZE } from "@/constants/styles";
 import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
-import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";
+import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
 import { usePopDisclosure } from "@/hooks/use-pop-disclosure";
 import { useScreen } from "@/hooks/use-screen";
 import { ButtonVariant, DisclosureSizes } from "@/types/global.types";
@@ -67,7 +67,7 @@ export const TimePickerInput = (props: TimePickerInputProps) => {
 
   // Contexts
   const fc = useFieldContext();
-  const { themeContext } = useThemeContext();
+  const { theme } = useThemeStore();
   const { t } = useLocaleContext();
 
   // Hooks
@@ -529,7 +529,7 @@ export const TimePickerInput = (props: TimePickerInputProps) => {
             <Btn
               onClick={handleConfirm}
               disabled={required ? !selected : false}
-              colorPalette={themeContext.colorPalette}
+              colorPalette={theme.colorPalette}
             >
               {t.confirm}
             </Btn>

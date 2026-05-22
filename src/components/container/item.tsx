@@ -3,7 +3,7 @@
 import { InfoTip } from "@/components/overlays/info-tip";
 import { P, PProps } from "@/components/ui/p";
 import { StackH, StackV } from "@/components/ui/stack";
-import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";
+import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
 import { useContainerDimension } from "@/hooks/use-container-dimenssion";
 import { useMergedRefs } from "@/hooks/use-merge-refs";
 import { StackProps } from "@chakra-ui/react";
@@ -131,7 +131,7 @@ const ItemBody = forwardRef<HTMLDivElement, ItemBodyProps>(
     } = props;
 
     // Contexts
-    const { themeContext } = useThemeContext();
+    const { theme } = useThemeStore();
 
     return (
       <StackV
@@ -139,7 +139,7 @@ const ItemBody = forwardRef<HTMLDivElement, ItemBodyProps>(
         className={`ItemBody ${scrollY ? "scrollY" : ""} ${className || ""}`}
         w={"full"}
         bg={"bg.frosted"}
-        rounded={roundedless ? "" : themeContext.radii.container}
+        rounded={roundedless ? "" : theme.radii.container}
         border={borderless ? "" : "1px solid"}
         borderColor={"border.subtle"}
         overflow={"clip"}

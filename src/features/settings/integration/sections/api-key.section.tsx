@@ -7,8 +7,8 @@ import { SettingsHelperText } from "@/components/ui/helper-text";
 import { PasswordInput } from "@/components/ui/password-input";
 import { StackH } from "@/components/ui/stack";
 import { R_SPACING_MD } from "@/constants/styles";
-import useRenderTrigger from "@/contexts/use-render-trigger";
-import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";
+import useRenderTrigger from "@/stores/use-render-trigger";
+import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
 import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
 import { useRequest } from "@/hooks/useRequestOld";
 import { useFormik } from "formik";
@@ -17,7 +17,7 @@ import * as yup from "yup";
 export const APIKeySection = () => {
   // Contexts
   const { t } = useLocaleContext();
-  const { themeContext } = useThemeContext();
+  const { theme } = useThemeStore();
   const setRt = useRenderTrigger((s) => s.setRt);
 
   // Hooks
@@ -95,7 +95,7 @@ export const APIKeySection = () => {
           <Btn
             type={"submit"}
             form={"api-keys-form"}
-            colorPalette={themeContext.colorPalette}
+            colorPalette={theme.colorPalette}
           >
             {t.save}
           </Btn>

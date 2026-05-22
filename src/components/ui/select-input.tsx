@@ -14,7 +14,7 @@ import FeedbackNoData from "@/components/feedback/feedback-no-data";
 import FeedbackNotFound from "@/components/feedback/feedback-not-found";
 import FeedbackRetry from "@/components/feedback/feedback-retry";
 import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
-import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";
+import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
 import { usePopDisclosure } from "@/hooks/use-pop-disclosure";
 import {
   ButtonVariant,
@@ -47,7 +47,7 @@ const SelectOptions = (props: SelectOptionsProps) => {
 
   // Contexts
   const { t } = useLocaleContext();
-  const { themeContext } = useThemeContext();
+  const { theme } = useThemeStore();
 
   // States
   const [search, setSearch] = useState<string>("");
@@ -114,7 +114,7 @@ const SelectOptions = (props: SelectOptionsProps) => {
                     checked={selectAll}
                     invalid={false}
                     size={"sm"}
-                    colorPalette={themeContext.colorPalette}
+                    colorPalette={theme.colorPalette}
                   />
 
                   <P color={"fg.muted"}>{t.select_all}</P>
@@ -209,7 +209,7 @@ export const SelectInput = (props: SelectInputProps) => {
 
   // Contexts
   const { t } = useLocaleContext();
-  const { themeContext } = useThemeContext();
+  const { theme } = useThemeStore();
   const fc = useFieldContext();
 
   // Hooks
@@ -344,7 +344,7 @@ export const SelectInput = (props: SelectInputProps) => {
               Clear
             </Btn>
             <Btn
-              colorPalette={themeContext.colorPalette}
+              colorPalette={theme.colorPalette}
               disabled={required && isEmptyArray(selected)}
               onClick={handleConfirm}
             >

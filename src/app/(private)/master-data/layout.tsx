@@ -12,7 +12,7 @@ import { APP } from "@/constants/_meta";
 import { OTHER_PRIVATE_NAV_GROUPS } from "@/constants/navs";
 import { GAP, R_SPACING_MD } from "@/constants/styles";
 import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
-import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";
+import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
 import { formatAbsDate } from "@/utils/formatter";
 import { usePathname } from "next/navigation";
 
@@ -32,7 +32,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
   // Contexts
   const { t } = useLocaleContext();
-  const { themeContext } = useThemeContext();
+  const { theme } = useThemeStore();
 
   // Derived Values
   const isAtSettingsIndexRoute = pathname === ROOT_PATH;
@@ -57,7 +57,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             flex={1}
             px={isSmContainer ? 2 : 0}
             pb={isSmContainer ? 2 : 0}
-            rounded={themeContext.radii.container}
+            rounded={theme.radii.container}
             overflowY={"auto"}
           >
             <MainView.Header

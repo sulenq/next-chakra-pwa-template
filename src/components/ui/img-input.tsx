@@ -9,7 +9,7 @@ import { LucideIcon } from "@/components/misc/icon";
 import { ImgViewer } from "@/components/media/img-viewer";
 import { HScroll } from "@/components/container/h-scroll";
 import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
-import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";
+import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
 import { StorageFile } from "@/types/global.types";
 import { isEmptyArray } from "@/utils/array";
 import { imgUrl } from "@/utils/url";
@@ -32,7 +32,7 @@ export const ImgInput = (props: FileInputProps) => {
 
   // Contexts
   const { t } = useLocaleContext();
-  const { themeContext } = useThemeContext();
+  const { theme } = useThemeStore();
   const fc = useFieldContext();
 
   // States
@@ -62,7 +62,7 @@ export const ImgInput = (props: FileInputProps) => {
           gap={3}
           border={"2px dashed"}
           borderColor={"border.muted"}
-          rounded={themeContext.radii.container}
+          rounded={theme.radii.container}
         >
           <StackV
             gap={2}
@@ -105,7 +105,7 @@ export const ImgInput = (props: FileInputProps) => {
           gap={3}
           border={"2px dashed"}
           borderColor={"border.muted"}
-          rounded={themeContext.radii.container}
+          rounded={theme.radii.container}
         >
           <StackV
             gap={2}

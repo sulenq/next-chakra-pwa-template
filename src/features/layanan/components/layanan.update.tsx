@@ -9,7 +9,7 @@ import { Tooltip } from "@/components/ui/tooltip";
 import { AppIconLucide } from "@/components/branding/app-icon";
 import { SimpleDisclosure } from "@/components/overlays/simple-disclosure";
 import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
-import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";
+import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
 import { usePopDisclosure } from "@/hooks/use-pop-disclosure";
 import { InputGroup } from "@chakra-ui/react";
 import { toFormData } from "axios";
@@ -28,7 +28,7 @@ interface Props {
 export const LayananUpdate = ({ item }: Props) => {
   // Contexts
   const { t } = useLocaleContext();
-  const { themeContext } = useThemeContext();
+  const { theme } = useThemeStore();
 
   // Hooks
   const { open, onOpen, onClose } = usePopDisclosure(
@@ -207,7 +207,7 @@ export const LayananUpdate = ({ item }: Props) => {
               type={"submit"}
               form={`update-layanan-form-${item.id}`}
               loading={isPending}
-              colorPalette={themeContext.colorPalette}
+              colorPalette={theme.colorPalette}
             >
               {t.save}
             </Btn>

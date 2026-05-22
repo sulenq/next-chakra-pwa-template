@@ -2,7 +2,7 @@ import { Btn } from "@/components/ui/btn";
 import { FileIcon } from "@/components/ui/file-icon";
 import { P } from "@/components/ui/p";
 import { StackH, StackV } from "@/components/ui/stack";
-import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";
+import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
 import { Center, Circle, Icon, StackProps } from "@chakra-ui/react";
 import Link from "next/link";
 
@@ -24,7 +24,7 @@ export const FileItem = (props: FileItemProps) => {
   const { children, fileData, actions = [], index, ...restProps } = props;
 
   // Contexts
-  const { themeContext } = useThemeContext();
+  const { theme } = useThemeStore();
 
   return (
     <StackH
@@ -32,7 +32,7 @@ export const FileItem = (props: FileItemProps) => {
       py={2}
       px={4}
       pr={"6px"}
-      rounded={themeContext.radii.component}
+      rounded={theme.radii.component}
       border={"1px solid"}
       borderColor={"border.muted"}
       gap={4}

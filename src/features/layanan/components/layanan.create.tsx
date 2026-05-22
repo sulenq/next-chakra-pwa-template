@@ -13,12 +13,12 @@ import { useFormik } from "formik";
 import { PlusIcon } from "lucide-react";
 import * as yup from "yup";
 import { useCreateLayanan } from "../hooks/use-layanan";
-import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";
+import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
 
 export const LayananCreate = () => {
   // Contexts
   const { t } = useLocaleContext();
-  const { themeContext } = useThemeContext();
+  const { theme } = useThemeStore();
 
   // Hooks
   const { open, onOpen, onClose } = usePopDisclosure("layanan-create");
@@ -67,7 +67,7 @@ export const LayananCreate = () => {
         iconButton
         onClick={onOpen}
         size={"sm"}
-        colorPalette={themeContext.colorPalette}
+        colorPalette={theme.colorPalette}
       >
         <AppIconLucide icon={PlusIcon} />
       </Btn>
@@ -177,7 +177,7 @@ export const LayananCreate = () => {
               type={"submit"}
               form={"create-layanan-form"}
               loading={isPending}
-              colorPalette={themeContext.colorPalette}
+              colorPalette={theme.colorPalette}
             >
               {t.add}
             </Btn>

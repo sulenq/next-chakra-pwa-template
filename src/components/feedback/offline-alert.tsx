@@ -3,9 +3,9 @@ import { Disclosure } from "@/components/ui/disclosure";
 import { EmptyState } from "@/components/ui/empty-state";
 import { toaster } from "@/components/ui/toaster";
 import { BackButton } from "@/components/navigation/back-button";
-import { useAlerts } from "@/contexts/use-alert-context";
+import { useAlerts } from "@/stores/use-alert-context";
 import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
-import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";
+import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
 import { usePopDisclosure } from "@/hooks/use-pop-disclosure";
 import { back } from "@/utils/client";
 import { disclosureId } from "@/utils/disclosure";
@@ -18,7 +18,7 @@ import { useEffect, useRef } from "react";
 export const OfflineAlert = () => {
   // Contexts
   const { t } = useLocaleContext();
-  const { themeContext } = useThemeContext();
+  const { theme } = useThemeStore();
   const isOffline = useAlerts((s) => s.alerts["offline"] ?? false);
   const showAlert = useAlerts((s) => s.showAlert);
   const hideAlert = useAlerts((s) => s.hideAlert);
@@ -96,7 +96,7 @@ export const OfflineAlert = () => {
         <Disclosure.Footer>
           <BackButton />
           <Btn
-            colorPalette={themeContext.colorPalette}
+            colorPalette={theme.colorPalette}
             onClick={() => {
               window.location.reload();
             }}

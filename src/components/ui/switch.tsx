@@ -1,4 +1,4 @@
-import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";
+import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
 import { Switch as ChakraSwitch } from "@chakra-ui/react";
 import { forwardRef } from "react";
 
@@ -24,14 +24,14 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(
     } = props;
 
     // Contexts
-    const { themeContext } = useThemeContext();
+    const { theme } = useThemeStore();
 
     return (
       <ChakraSwitch.Root
         ref={rootRef}
         checked={checked}
         cursor={"pointer"}
-        colorPalette={themeContext.colorPalette}
+        colorPalette={theme.colorPalette}
         {...restProps}
       >
         <ChakraSwitch.HiddenInput ref={ref} {...inputProps} />

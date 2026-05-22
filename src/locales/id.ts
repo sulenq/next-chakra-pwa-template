@@ -433,6 +433,17 @@ const translations = {
     "title": "Reset ke mode default",
     "description": "Default color mode mengikuti sistem"
   },
+  "settings_constrained_container_active": {
+    "title": "Pakai kontainer terbatas",
+    "description": "Lebar tampilan utama aplikasi akan dibatasi"
+  },
+  "settings_constrained_container_max_w": {
+    "title": "Lebar maksimal",
+    "description": "Mengatur batas lebar maksimum tampilan utama aplikasi. Min. 720"
+  },
+  "settings_constrained_container_section": {
+    "title": "Kontainer terbatas"
+  },
   "settings_data_format": {
     "title": "Data"
   },

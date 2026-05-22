@@ -8,7 +8,7 @@ import { PasswordInput } from "@/components/ui/password-input";
 import { StringInput } from "@/components/ui/string-input";
 import { BackButton } from "@/components/navigation/back-button";
 import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
-import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";
+import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
 import { useRequest } from "@/hooks/useRequestOld";
 import { back } from "@/utils/client";
 import { maskEmail } from "@/utils/string";
@@ -36,7 +36,7 @@ const Step1 = (props: any) => {
 
   // Contexts
   const { t } = useLocaleContext();
-  const { themeContext } = useThemeContext();
+  const { theme } = useThemeStore();
 
   // Hooks
   const { req, loading } = useRequest({
@@ -102,7 +102,7 @@ const Step1 = (props: any) => {
       <Disclosure.Footer>
         <BackButton />
         <Btn
-          colorPalette={themeContext.colorPalette}
+          colorPalette={theme.colorPalette}
           onClick={formik.submitForm}
           loading={loading}
         >
@@ -121,7 +121,7 @@ const Step2 = (props: any) => {
 
   // Contexts
   const { t } = useLocaleContext();
-  const { themeContext } = useThemeContext();
+  const { theme } = useThemeStore();
 
   // Hooks
   const { req, loading } = useRequest({
@@ -172,7 +172,7 @@ const Step2 = (props: any) => {
               mb={4}
             >
               <PinInputRoot
-                colorPalette={themeContext.colorPalette}
+                colorPalette={theme.colorPalette}
                 w={"full"}
                 size={"xl"}
                 onValueChange={(e) => {
@@ -207,7 +207,7 @@ const Step2 = (props: any) => {
       <Disclosure.Footer>
         <BackButton />
         <Btn
-          colorPalette={themeContext.colorPalette}
+          colorPalette={theme.colorPalette}
           onClick={formik.submitForm}
           loading={loading}
         >
@@ -226,7 +226,7 @@ const Step3 = (props: any) => {
 
   // Contexts
   const { t } = useLocaleContext();
-  const { themeContext } = useThemeContext();
+  const { theme } = useThemeStore();
 
   // Hooks
   const { req, loading } = useRequest({
@@ -320,7 +320,7 @@ const Step3 = (props: any) => {
       <Disclosure.Footer>
         <BackButton />
         <Btn
-          colorPalette={themeContext.colorPalette}
+          colorPalette={theme.colorPalette}
           onClick={formik.submitForm}
           loading={loading}
           disabled={

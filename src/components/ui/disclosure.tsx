@@ -7,7 +7,7 @@ import { P } from "@/components/ui/p";
 import { StackH, StackV } from "@/components/ui/stack";
 import { AppIconLucide } from "@/components/branding/app-icon";
 import { SM_SCREEN_BREAKPOINT } from "@/constants/styles";
-import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";
+import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
 import { useIsSmScreenWidth } from "@/hooks/use-is-sm-screen-width";
 import { useScreen } from "@/hooks/use-screen";
 import { back } from "@/utils/client";
@@ -80,12 +80,12 @@ type DisclosureContentProps = {
 } & (DrawerContentProps | DialogContentProps);
 
 const DisclosureContent = ({ children, ...props }: DisclosureContentProps) => {
-  const { themeContext } = useThemeContext();
+  const { theme } = useThemeStore();
   const iss = useIsSmScreenWidth();
 
   return iss ? (
     <Drawer.Content
-      rounded={themeContext.radii.container}
+      rounded={theme.radii.container}
       border={"1px solid"}
       borderColor={"bg.subtle"}
       {...(props as DrawerContentProps)}
@@ -103,7 +103,7 @@ const DisclosureContent = ({ children, ...props }: DisclosureContentProps) => {
     </Drawer.Content>
   ) : (
     <Dialog.Content
-      rounded={themeContext.radii.container}
+      rounded={theme.radii.container}
       border={"1px solid"}
       borderColor={"d0"}
       {...(props as DialogContentProps)}

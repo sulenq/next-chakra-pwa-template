@@ -51,7 +51,7 @@ export const SearchInput = (props: SearchInputProps) => {
     iconProps,
     invalid = false,
     noIcon = false,
-    debounceTime = 200,
+    debounceTime = 400,
     queryKey = "q",
     variant = "outline",
     size = MAIN_INPUT_SIZE,

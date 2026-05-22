@@ -8,7 +8,7 @@ import { Item } from "@/components/container/item";
 import { COLOR_PALETTES } from "@/constants/colors";
 import { R_SPACING_MD } from "@/constants/styles";
 import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
-import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";
+import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
 import { Box, Center } from "@chakra-ui/react";
 
 // -----------------------------------------------------------------
@@ -16,7 +16,7 @@ import { Box, Center } from "@chakra-ui/react";
 export const AccentColorSection = () => {
   // Contexts
   const { t } = useLocaleContext();
-  const { themeContext, setThemeContext } = useThemeContext();
+  const { theme, setTheme } = useThemeStore();
 
   return (
     <StackV px={R_SPACING_MD}>
@@ -27,9 +27,9 @@ export const AccentColorSection = () => {
       <Item.Body>
         <HScroll>
           <Box w={"max"} p={4}>
-            <StackH rounded={themeContext.radii.component} overflow={"clip"}>
+            <StackH rounded={theme.radii.component} overflow={"clip"}>
               {COLOR_PALETTES.map((color, index) => {
-                const isSelected = color.palette === themeContext.colorPalette;
+                const isSelected = color.palette === theme.colorPalette;
                 const isColorPaletteGray = color.palette === "gray";
 
                 return (
@@ -45,7 +45,7 @@ export const AccentColorSection = () => {
                       cursor={"pointer"}
                       overflow={"clip"}
                       onClick={() => {
-                        setThemeContext({
+                        setTheme({
                           colorPalette: color.palette,
                           primaryColor: isColorPaletteGray
                             ? "ibody"

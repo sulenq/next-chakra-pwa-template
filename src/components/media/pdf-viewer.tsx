@@ -11,7 +11,7 @@ import FeedbackState from "@/components/feedback/feedback-state";
 import { HScroll } from "@/components/container/h-scroll";
 import { GAP } from "@/constants/styles";
 import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
-import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";
+import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
 import { Box, Icon, StackProps } from "@chakra-ui/react";
 import {
   IconArrowAutofitHeight,
@@ -298,7 +298,7 @@ export const PdfViewer = (props: PdfViewerProps) => {
 
   // Contexts
   const { t } = useLocaleContext();
-  const { themeContext } = useThemeContext();
+  const { theme } = useThemeStore();
 
   // Refs
   const containerRef = useRef<HTMLDivElement>(null);
@@ -657,7 +657,7 @@ export const PdfViewer = (props: PdfViewerProps) => {
               <Box
                 h={"full"}
                 w={`${loadState.progress}%`}
-                bg={`${themeContext.colorPalette}.solid`}
+                bg={`${theme.colorPalette}.solid`}
                 transition={"width 180ms ease"}
               />
             </Box>

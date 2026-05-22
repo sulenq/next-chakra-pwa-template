@@ -11,7 +11,7 @@ import { MicVolumeBar } from "@/components/misc/mic-volume-bar";
 import { SettingItemContainer } from "@/components/container/settings-shell";
 import { R_SPACING_MD } from "@/constants/styles";
 import { useMicPermissionContext } from "@/features/settings/app-permission/contexts/use-mic-permission-context";
-import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";
+import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
 import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
 import { usePopDisclosure } from "@/hooks/use-pop-disclosure";
 import { disclosureId } from "@/utils/disclosure";
@@ -23,7 +23,7 @@ import { useEffect, useRef, useState } from "react";
 const MicTester = () => {
   // Contexts
   const { t } = useLocaleContext();
-  const { themeContext } = useThemeContext();
+  const { theme } = useThemeStore();
   const { micPermissionsStatus, setMicPermissionsStatus } =
     useMicPermissionContext();
 
@@ -127,7 +127,7 @@ const MicTester = () => {
               {t.close} {t.mic.toLowerCase()}
             </Btn>
             <Btn
-              colorPalette={themeContext.colorPalette}
+              colorPalette={theme.colorPalette}
               disabled={micOpen}
               loading={loading}
               onClick={startMicTest}
@@ -146,7 +146,7 @@ const MicTester = () => {
 const MicPermissionSetting = () => {
   // Contexts
   const { t } = useLocaleContext();
-  const { themeContext } = useThemeContext();
+  const { theme } = useThemeStore();
   const micPermissionsStatus = useMicPermissionContext(
     (s) => s.micPermissionsStatus,
   );
@@ -229,7 +229,7 @@ const MicPermissionSetting = () => {
             requestMicPermission();
           }
         }}
-        colorPalette={themeContext.colorPalette}
+        colorPalette={theme.colorPalette}
       />
     </SettingItemContainer>
   );

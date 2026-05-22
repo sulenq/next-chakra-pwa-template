@@ -433,6 +433,17 @@ const translations = {
     "title": "Reset to default mode",
     "description": "Default color mode follows the system"
   },
+  "settings_constrained_container_active": {
+    "title": "Use constrained container",
+    "description": "The main view of the application will be limited in width"
+  },
+  "settings_constrained_container_max_w": {
+    "title": "Max width",
+    "description": "Controls the maximum width of the application's main view. Min. 720"
+  },
+  "settings_constrained_container_section": {
+    "title": "Constrained container"
+  },
   "settings_data_format": {
     "title": "Data"
   },

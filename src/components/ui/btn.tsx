@@ -2,7 +2,7 @@
 
 import { MAIN_BUTTON_SIZE } from "@/constants/styles";
 import { ButtonVariant } from "@/types/global.types";
-import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";
+import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
 import { Button, ButtonProps, IconButton } from "@chakra-ui/react";
 import { forwardRef } from "react";
 
@@ -31,7 +31,7 @@ export const Btn = forwardRef<HTMLButtonElement, BtnProps>(
     } = props;
 
     // Contexts
-    const { themeContext } = useThemeContext();
+    const { theme } = useThemeStore();
 
     // Derived Values
     const isVariantOutline = props.variant === "outline";
@@ -49,7 +49,7 @@ export const Btn = forwardRef<HTMLButtonElement, BtnProps>(
             ? "border.muted"
             : ""
         }
-        rounded={themeContext.radii.component}
+        rounded={theme.radii.component}
         fontSize={"md"}
         _focusVisible={
           focusStyle
@@ -76,7 +76,7 @@ export const Btn = forwardRef<HTMLButtonElement, BtnProps>(
         }
         fontSize={"md"}
         fontWeight={"normal"}
-        rounded={themeContext.radii.component}
+        rounded={theme.radii.component}
         _focusVisible={
           focusStyle
             ? {
@@ -98,10 +98,8 @@ export const Btn = forwardRef<HTMLButtonElement, BtnProps>(
 export const PBtn = forwardRef<HTMLButtonElement, BtnProps>(
   function PBtn(props, ref) {
     // Contexts
-    const { themeContext } = useThemeContext();
+    const { theme } = useThemeStore();
 
-    return (
-      <Btn ref={ref} colorPalette={themeContext.colorPalette} {...props} />
-    );
+    return <Btn ref={ref} colorPalette={theme.colorPalette} {...props} />;
   },
 );

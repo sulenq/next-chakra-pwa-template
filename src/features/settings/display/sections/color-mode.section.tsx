@@ -10,9 +10,9 @@ import { AppIconLucide } from "@/components/branding/app-icon";
 import { Item } from "@/components/container/item";
 import { SettingItemContainer } from "@/components/container/settings-shell";
 import { R_SPACING_MD } from "@/constants/styles";
-import useADMContext from "@/features/settings/display/contexts/use-adm-context";
+import useADMStore from "@/features/settings/display/stores/use-adm-store";
 import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
-import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";
+import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
 import { formatTime } from "@/utils/formatter";
 import { interpolateString } from "@/utils/string";
 import { cssCalc, getSemanticValue } from "@/utils/style";
@@ -38,7 +38,7 @@ const DisplaySkeleton = (props: DisplaySkeletonProps) => {
   const { colorMode, ...restProps } = props;
 
   // Contexts
-  const { themeContext } = useThemeContext();
+  const { theme } = useThemeStore();
 
   // Constants
   const color = {
@@ -59,14 +59,14 @@ const DisplaySkeleton = (props: DisplaySkeletonProps) => {
         bg={color.body[colorMode]}
         border={"1px solid"}
         borderColor={"border.muted"}
-        rounded={themeContext.radii.component}
+        rounded={theme.radii.component}
       >
         <Center aspectRatio={1} w={"full"} p={1}>
           <Center
             w={"full"}
             h={"full"}
             bg={"bg.subtle"}
-            rounded={cssCalc(`${themeContext.radii.component} - 4px`)}
+            rounded={cssCalc(`${theme.radii.component} - 4px`)}
           >
             <AppIconLucide
               icon={ImageIcon}
@@ -87,24 +87,15 @@ const DisplaySkeleton = (props: DisplaySkeletonProps) => {
           <Btn
             variant={"ghost"}
             _hover={{
-              bg: getSemanticValue(
-                `${themeContext.colorPalette}.subtle`,
-                colorMode,
-              ),
+              bg: getSemanticValue(`${theme.colorPalette}.subtle`, colorMode),
             }}
             _active={{
-              bg: getSemanticValue(
-                `${themeContext.colorPalette}.muted`,
-                colorMode,
-              ),
+              bg: getSemanticValue(`${theme.colorPalette}.muted`, colorMode),
             }}
           >
             <PSleleton
               w={"70%"}
-              bg={getSemanticValue(
-                `${themeContext.colorPalette}.fg`,
-                colorMode,
-              )}
+              bg={getSemanticValue(`${theme.colorPalette}.fg`, colorMode)}
             />
           </Btn>
         </StackV>
@@ -117,7 +108,7 @@ const DisplaySkeleton = (props: DisplaySkeletonProps) => {
 
 const ColorModeSetting = () => {
   // Contexts
-  const { themeContext } = useThemeContext();
+  const { theme } = useThemeStore();
   const { colorMode, setColorMode } = useColorMode();
 
   return (
@@ -128,7 +119,7 @@ const ColorModeSetting = () => {
         w={"full"}
         maxW={"200px"}
         p={R_SPACING_MD}
-        rounded={themeContext.radii.component}
+        rounded={theme.radii.component}
         cursor={"pointer"}
         transition={"200ms"}
         _hover={{
@@ -153,7 +144,7 @@ const ColorModeSetting = () => {
         w={"full"}
         maxW={"200px"}
         p={R_SPACING_MD}
-        rounded={themeContext.radii.component}
+        rounded={theme.radii.component}
         cursor={"pointer"}
         transition={"200ms"}
         _hover={{
@@ -180,7 +171,7 @@ const ColorModeSetting = () => {
 const ADMSetting = () => {
   // Contexts
   const { t } = useLocaleContext();
-  const { ADM, setADM } = useADMContext();
+  const { ADM, setADM } = useADMStore();
 
   return (
     <SettingItemContainer>

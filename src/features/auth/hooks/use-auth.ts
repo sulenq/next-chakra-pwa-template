@@ -1,6 +1,6 @@
 import { WELCOME_ROUTE } from "@/constants/routes";
-import { useAuthContext } from "@/contexts/use-auth-context";
-import useRenderTrigger from "@/contexts/use-render-trigger";
+import { useAuthContext } from "@/stores/use-auth-context";
+import useRenderTrigger from "@/stores/use-render-trigger";
 import {
   getUserProfile,
   signin,

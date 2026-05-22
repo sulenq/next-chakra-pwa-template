@@ -12,13 +12,13 @@ import FeedbackRetry from "@/components/feedback/feedback-retry";
 import { ImgViewer } from "@/components/media/img-viewer";
 import { TopLoadingBar } from "@/components/misc/loading-bar";
 import { DEFAULT_LIMIT, DEFAULT_PAGE } from "@/constants/data-list";
-import { useDataDisplay } from "@/contexts/use-data-display-context";
+import { useDataDisplay } from "@/stores/use-data-display-context";
 import { LayananDelete } from "@/features/layanan/components/layanan.delete";
 import { LayananUpdate } from "@/features/layanan/components/layanan.update";
 import { useLayananDataList } from "@/features/layanan/hooks/use-layanan";
 import { LayananItem } from "@/features/layanan/types/layanan.types";
 import { displayKeys } from "@/features/data-list-display/constants/displayKeys";
-import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";
+import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
 import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
 import {
   BatchOptionsTableOptionGenerator,
@@ -46,7 +46,7 @@ export const LayananList = (props: LayananListProps) => {
 
   // Contexts
   const { t, locale } = useLocaleContext();
-  const { themeContext } = useThemeContext();
+  const { theme } = useThemeStore();
   const isDisplayTable =
     useDataDisplay((s) => s.getDisplay(displayKeys.layanan)) === "table";
 
@@ -181,7 +181,7 @@ export const LayananList = (props: LayananListProps) => {
                       key={imgUrl(item.icon)}
                       src={imgUrl(item.icon)}
                       aspectRatio={1}
-                      rounded={`calc(${themeContext.radii.component} - 4px)`}
+                      rounded={`calc(${theme.radii.component} - 4px)`}
                     />
                   </ImgViewer>
                 </Box>
@@ -204,7 +204,7 @@ export const LayananList = (props: LayananListProps) => {
                       variant={"ghost"}
                       size={"sm"}
                       color={"fg.muted"}
-                      rounded={themeContext.radii.component}
+                      rounded={theme.radii.component}
                     >
                       {t.view_more}
                     </Btn>

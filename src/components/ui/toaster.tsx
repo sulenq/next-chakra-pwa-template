@@ -6,7 +6,7 @@ import { Spinner } from "@/components/ui/spinner";
 import { StackH, StackV } from "@/components/ui/stack";
 import { LucideIcon } from "@/components/misc/icon";
 import { BACKDROP_BLUR_FILTER, SM_SCREEN_BREAKPOINT } from "@/constants/styles";
-import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";
+import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
 import { isClient } from "@/utils/client";
 import {
   Center,
@@ -151,11 +151,11 @@ const ToastActionTriggerComponent = (props: any) => {
   const { toast, ...restProps } = props;
 
   // Contexts
-  const { themeContext } = useThemeContext();
+  const { theme } = useThemeStore();
 
   return (
     <Toast.ActionTrigger
-      rounded={themeContext.radii.component}
+      rounded={theme.radii.component}
       borderColor={"border.muted"}
       cursor={"pointer"}
       _hover={{
@@ -175,7 +175,7 @@ const ToastComponent = (props: any) => {
   const { toast, ...restProps } = props;
 
   // Contexts
-  const { themeContext } = useThemeContext();
+  const { theme } = useThemeStore();
 
   // States
   const [expanded, setExpanded] = useState<boolean>(false);
@@ -183,7 +183,7 @@ const ToastComponent = (props: any) => {
 
   return (
     <Toast.Root
-      rounded={themeContext?.radii?.container}
+      rounded={theme?.radii?.container}
       h={expanded ? "max" : ""}
       w={{ md: "sm" }}
       bg={"bg.body"}

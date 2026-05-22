@@ -12,7 +12,7 @@ import { AppIconLucide } from "@/components/branding/app-icon";
 import FeedbackState from "@/components/feedback/feedback-state";
 import { HScroll } from "@/components/container/h-scroll";
 import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
-import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";
+import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
 import { Box, Icon, StackProps } from "@chakra-ui/react";
 import {
   IconArrowAutofitHeight,
@@ -80,7 +80,7 @@ const PageControl = (props: Props__PageControl) => {
 
   // Contexts
   const { t } = useLocaleContext();
-  const { themeContext } = useThemeContext();
+  const { theme } = useThemeStore();
 
   // States
   const [gotoPage, setGotoPage] = useState<number | null>(null);
@@ -140,7 +140,7 @@ const PageControl = (props: Props__PageControl) => {
             />
 
             <Btn
-              colorPalette={themeContext.colorPalette}
+              colorPalette={theme.colorPalette}
               disabled={gotoPage === null}
               onClick={() => {
                 handleJumpPage(gotoPage);
@@ -279,7 +279,7 @@ export const PdfViewer = (props: Props__PdfViewer) => {
 
   // Contexts
   const { t } = useLocaleContext();
-  const { themeContext } = useThemeContext();
+  const { theme } = useThemeStore();
 
   // Refs
   const containerRef = useRef<HTMLDivElement>(null);
@@ -592,7 +592,7 @@ export const PdfViewer = (props: Props__PdfViewer) => {
                 <Box
                   h={"full"}
                   w={`${loadState.progress}%`}
-                  bg={`${themeContext.colorPalette}.solid`}
+                  bg={`${theme.colorPalette}.solid`}
                   transition={"width 180ms ease"}
                 />
               </Box>

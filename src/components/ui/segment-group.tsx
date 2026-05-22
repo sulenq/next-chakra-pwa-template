@@ -1,6 +1,6 @@
 "use client";
 
-import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";
+import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
 import { SegmentGroup, SegmentGroupRootProps } from "@chakra-ui/react";
 
 // -----------------------------------------------------------------
@@ -16,7 +16,7 @@ export const Segmented = (props: SegmentedProps) => {
   const { items = [], inputValue, onChange, size = "md", ...restProps } = props;
 
   // Contexts
-  const { themeContext } = useThemeContext();
+  const { theme } = useThemeStore();
 
   // States
   const hBySize: Record<any, any> = {
@@ -33,7 +33,7 @@ export const Segmented = (props: SegmentedProps) => {
       value={inputValue}
       onValueChange={(e) => onChange?.(e.value as string)}
       bg={"transparent"}
-      rounded={themeContext.radii.component}
+      rounded={theme.radii.component}
       overflow={"clip"}
       shadow={"none"}
       // border={"1px solid"}
@@ -45,7 +45,7 @@ export const Segmented = (props: SegmentedProps) => {
         bg={"bg.muted"}
         // border={"1px solid"}
         borderColor={"border.muted"}
-        rounded={themeContext.radii.component}
+        rounded={theme.radii.component}
         shadow={"none"}
       />
 

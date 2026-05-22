@@ -34,7 +34,7 @@ export const Field = forwardRef<HTMLDivElement, FieldProps>(
     } = props;
 
     // Contexts
-    // const { themeContext } = useThemeContext();
+    // const { theme } = useThemeStore();
 
     // Hooks
     const { t } = useLocaleContext();
@@ -46,7 +46,7 @@ export const Field = forwardRef<HTMLDivElement, FieldProps>(
             <P
               fontWeight={"medium"}
               color={"fg.muted"}
-              // px={`calc(${themeContext.radii.component} - 4px)`}
+              // px={`calc(${theme.radii.component} - 4px)`}
             >
               {label}
             </P>

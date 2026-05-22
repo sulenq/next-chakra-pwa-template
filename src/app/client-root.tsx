@@ -7,7 +7,7 @@ import { RadialGlowBackground } from "@/components/overlays/background";
 import { GlobalDisclosure } from "@/components/overlays/global-disclosure";
 import { APP } from "@/constants/_meta";
 import { SVGS_PATH } from "@/constants/paths";
-import useADMContext from "@/features/settings/display/contexts/use-adm-context";
+import useADMStore from "@/features/settings/display/stores/use-adm-store";
 import { Center } from "@chakra-ui/react";
 import { ReactNode, useEffect, useState } from "react";
 
@@ -46,7 +46,7 @@ export default function ClientRoot(props: ClientRootProps) {
 
   // Contexts
   const { setColorMode } = useColorMode();
-  const ADM = useADMContext((s) => s.ADM);
+  const ADM = useADMStore((s) => s.ADM);
 
   // Hooks
   // useFirefoxScrollbarPadding();

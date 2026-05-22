@@ -13,14 +13,13 @@ import { Clock } from "@/components/misc/clock";
 import { DotIndicator } from "@/components/ui/indicator";
 import { Today } from "@/components/misc/today";
 import {
-  CONTSTRAINED_CONTAINER_MAX_W,
   R_SPACING_MD,
   SM_SCREEN_BREAKPOINT,
   TOP_BAR_H,
 } from "@/constants/styles";
-import { useBreadcrumbsContext } from "@/contexts/use-breadcrumbs-context";
+import { useBreadcrumbsContext } from "@/stores/use-breadcrumbs-context";
 import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
-import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";
+import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
 import { useContainerDimension } from "@/hooks/use-container-dimenssion";
 import { useMergedRefs } from "@/hooks/use-merge-refs";
 import { useScreen } from "@/hooks/use-screen";
@@ -40,6 +39,7 @@ import {
   useMemo,
   useRef,
 } from "react";
+import { useConstrainedContainerStore } from "@/features/settings/display/stores/use-constrained-container-store";
 
 // -----------------------------------------------------------------
 
@@ -150,7 +150,7 @@ export const TopBar = (props: TopBarProps) => {
   const { showDateTime = true, ...restProps } = props;
 
   // Contexts
-  const { themeContext } = useThemeContext();
+  const { theme } = useThemeStore();
   const { dimension } = useMainViewContext();
 
   // Hooks
@@ -173,7 +173,7 @@ export const TopBar = (props: TopBarProps) => {
         justify={"space-between"}
         gap={2}
         w={"full"}
-        rounded={themeContext.radii.container}
+        rounded={theme.radii.container}
         {...restProps}
       >
         <StackH w={"35%"}>
@@ -220,13 +220,20 @@ export const ConstrainedContainer = forwardRef<HTMLDivElement, StackProps>(
     // Props
     const { children, ...restProps } = props;
 
+    // Contexts
+    const constrainedContainer = useConstrainedContainerStore(
+      (s) => s.constrainedContainer,
+    );
+
     return (
       <StackV
         className={"constrained-container"}
         ref={ref}
         align={"stretch"}
         w={"full"}
-        maxW={CONTSTRAINED_CONTAINER_MAX_W}
+        maxW={
+          constrainedContainer.isActive ? constrainedContainer.maxW : "full"
+        }
         mx={"auto"}
         {...restProps}
       >
@@ -332,7 +339,7 @@ const MainViewHeader = (props: MainViewHeaderProps) => {
 
   // Contexts
   const { t } = useLocaleContext();
-  const { themeContext } = useThemeContext();
+  const { theme } = useThemeStore();
 
   // Hooks
   const pathname = usePathname();
@@ -356,7 +363,7 @@ const MainViewHeader = (props: MainViewHeaderProps) => {
       minH={TOP_BAR_H}
       px={R_SPACING_MD}
       pb={R_SPACING_MD}
-      rounded={themeContext.radii.container}
+      rounded={theme.radii.container}
       {...restProps}
     >
       {withTitle && (

@@ -1,7 +1,7 @@
 "use client";
 
 import { useColorModeValue } from "@/components/ui/color-mode";
-import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";
+import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
 import { Checkbox as ChakraCheckbox, Icon } from "@chakra-ui/react";
 import { CheckIcon } from "lucide-react";
 import { forwardRef } from "react";
@@ -31,20 +31,20 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
     } = props;
 
     // Contexts
-    const { themeContext } = useThemeContext();
+    const { theme } = useThemeStore();
 
     // Constants
     const graySolidBg = useColorModeValue("dark", "light");
 
     // Derived Values
-    const isColorPaletteGray = themeContext.colorPalette === "gray";
+    const isColorPaletteGray = theme.colorPalette === "gray";
 
     return (
       <ChakraCheckbox.Root
         ref={rootRef}
         checked={checked}
         cursor={"pointer"}
-        colorPalette={themeContext.colorPalette}
+        colorPalette={theme.colorPalette}
         {...restProps}
       >
         <ChakraCheckbox.HiddenInput ref={ref} {...inputProps} />
@@ -54,10 +54,10 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
             checked
               ? isColorPaletteGray
                 ? graySolidBg
-                : `${themeContext.colorPalette}.solid`
+                : `${theme.colorPalette}.solid`
               : (bg ?? (subtle ? "bg.muted" : "transparent"))
           }
-          rounded={rounded || `calc(${themeContext.radii.component}/2)`}
+          rounded={rounded || `calc(${theme.radii.component}/2)`}
           borderColor={
             checked
               ? "transparent !important"
@@ -66,7 +66,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
           cursor={"pointer"}
         >
           {checked && (
-            <Icon boxSize={4} color={`${themeContext.colorPalette}.contrast`}>
+            <Icon boxSize={4} color={`${theme.colorPalette}.contrast`}>
               {icon || <CheckIcon />}
             </Icon>
           )}

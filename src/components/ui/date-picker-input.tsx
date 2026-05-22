@@ -16,7 +16,7 @@ import {
 } from "@/types/global.types";
 import { getWeekdayNames } from "@/constants/weekdays";
 import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
-import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";
+import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
 import { usePopDisclosure } from "@/hooks/use-pop-disclosure";
 import { isEmptyArray } from "@/utils/array";
 import { back } from "@/utils/client";
@@ -140,7 +140,7 @@ export const DatePicker = (props: DatePickerProps) => {
 
   // Contexts
   const { t } = useLocaleContext();
-  const { themeContext } = useThemeContext();
+  const { theme } = useThemeStore();
 
   // Derived States
   const fullDates = () => {
@@ -243,7 +243,7 @@ export const DatePicker = (props: DatePickerProps) => {
                     }
                   }}
                   variant={isDateSelected ? "outline" : "ghost"}
-                  borderColor={isDateSelected ? themeContext.primaryColor : ""}
+                  borderColor={isDateSelected ? theme.primaryColor : ""}
                   aspectRatio={1}
                 >
                   <P
@@ -251,7 +251,7 @@ export const DatePicker = (props: DatePickerProps) => {
                       isOutsideMonthAndUnselected
                         ? "d4"
                         : isDateToday
-                          ? themeContext.primaryColor
+                          ? theme.primaryColor
                           : isDateSelected
                             ? ""
                             : "fg.muted"
@@ -284,7 +284,7 @@ const SelectedDateList = (props: SelectedDateListProps) => {
 
   // Contexts
   const { t } = useLocaleContext();
-  const { themeContext } = useThemeContext();
+  const { theme } = useThemeStore();
 
   // Hooks
   const { open, onOpen } = usePopDisclosure(
@@ -302,7 +302,7 @@ const SelectedDateList = (props: SelectedDateListProps) => {
         bg={"bg.muted"}
         p={2}
         h={"36px"}
-        rounded={themeContext.radii.component}
+        rounded={theme.radii.component}
         cursor={"pointer"}
         onClick={onOpen}
       >
@@ -395,7 +395,7 @@ export const DatePickerInput = (props: DatePickerInputProps) => {
 
   // Contexts
   const { t } = useLocaleContext();
-  const { themeContext } = useThemeContext();
+  const { theme } = useThemeStore();
   const fc = useFieldContext();
 
   // Hooks
@@ -569,7 +569,7 @@ export const DatePickerInput = (props: DatePickerInputProps) => {
             </Btn>
 
             <Btn
-              colorPalette={themeContext.colorPalette}
+              colorPalette={theme.colorPalette}
               disabled={required && isEmptyArray(selected)}
               onClick={handleConfirm}
             >

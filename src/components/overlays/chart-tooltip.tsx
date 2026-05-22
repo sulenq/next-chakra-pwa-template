@@ -2,7 +2,7 @@ import { P } from "@/components/ui/p";
 import { StackH, StackV } from "@/components/ui/stack";
 import { DotIndicator } from "@/components/ui/indicator";
 import { BACKDROP_BLUR_FILTER } from "@/constants/styles";
-import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";
+import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
 import { Text } from "@chakra-ui/react";
 import type { TooltipContentProps } from "recharts";
 import type {
@@ -19,7 +19,7 @@ export const ChartTooltip = (
   const { active, payload, label } = props;
 
   // Contexts
-  const { themeContext } = useThemeContext();
+  const { theme } = useThemeStore();
 
   if (!active || !payload || payload.length === 0) return null;
 
@@ -31,7 +31,7 @@ export const ChartTooltip = (
         bg={"bg.body"}
         border={"1px solid"}
         borderColor={"border.subtle"}
-        rounded={themeContext.radii.component}
+        rounded={theme.radii.component}
         shadow={"soft"}
         backdropFilter={BACKDROP_BLUR_FILTER}
       >

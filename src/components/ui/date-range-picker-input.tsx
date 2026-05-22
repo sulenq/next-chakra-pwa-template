@@ -3,7 +3,7 @@
 import { DatePickerInput } from "@/components/ui/date-picker-input";
 import { ButtonSize, DisclosureSizes } from "@/types/global.types";
 import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
-import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";
+import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
 import { capitalize } from "@/utils/string";
 import { Group, GroupProps, useFieldContext } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
@@ -57,7 +57,7 @@ export const DateRangePickerInput = (props: DateRangePickerInputProps) => {
 
   // Contexts
   const { t } = useLocaleContext();
-  const { themeContext } = useThemeContext();
+  const { theme } = useThemeStore();
   const fc = useFieldContext();
 
   // States
@@ -89,7 +89,7 @@ export const DateRangePickerInput = (props: DateRangePickerInputProps) => {
       w={"full"}
       attached
       border={invalid || fc?.invalid ? "1px solid {colors.border.error}" : ""}
-      rounded={themeContext.radii.component}
+      rounded={theme.radii.component}
       {...restProps}
     >
       <DatePickerInput

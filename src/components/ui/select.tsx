@@ -1,4 +1,4 @@
-import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";
+import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
 import {
   Select as ChakraSelect,
   Portal,
@@ -42,7 +42,7 @@ export default function Select(props: SelectProps) {
   } = props;
 
   // Contexts
-  const { themeContext } = useThemeContext();
+  const { theme } = useThemeStore();
 
   // States
   const collection = createListCollection({
@@ -85,7 +85,7 @@ export default function Select(props: SelectProps) {
       <Portal container={portalRef} disabled={!portalled}>
         <ChakraSelect.Positioner>
           <ChakraSelect.Content
-            rounded={themeContext?.radii.container}
+            rounded={theme?.radii.container}
             minW={"80px"}
             shadow={"soft"}
           >
@@ -93,7 +93,7 @@ export default function Select(props: SelectProps) {
               <ChakraSelect.Item
                 item={opt}
                 key={opt.value}
-                rounded={themeContext?.radii.component}
+                rounded={theme?.radii.component}
                 color={"fg.ibody"}
               >
                 {opt.label}

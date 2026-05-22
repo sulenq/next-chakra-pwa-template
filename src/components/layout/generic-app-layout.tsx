@@ -45,8 +45,8 @@ import {
   USER_PANEL_H,
 } from "@/constants/styles";
 import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
-import { useNavs } from "@/contexts/use-navs-context";
-import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";
+import { useNavs } from "@/stores/use-navs-context";
+import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
 import { AuthGuard } from "@/features/auth/components/auth-guard";
 import { useIsSmScreenWidth } from "@/hooks/use-is-sm-screen-width";
 import { useScreen } from "@/hooks/use-screen";
@@ -332,7 +332,7 @@ const DesktopLayout = (props: any) => {
 
   // Contexts
   const { t } = useLocaleContext();
-  const { themeContext } = useThemeContext();
+  const { theme } = useThemeStore();
   const isNavsExpanded = useNavs((s) => s.isNavsExpanded);
   const toggleNavsExpanded = useNavs((s) => s.toggleNavsExpanded);
 
@@ -383,7 +383,7 @@ const DesktopLayout = (props: any) => {
                     lineClamp={1}
                     fontSize={"lg"}
                     fontWeight={"semibold"}
-                    color={`${themeContext.colorPalette}.fg`}
+                    color={`${theme.colorPalette}.fg`}
                   >
                     {APP.name}
                   </P>
@@ -412,7 +412,7 @@ const DesktopLayout = (props: any) => {
                   <Center
                     p={2}
                     bg={DESKTOP_NAV_BTN_ICON_BG}
-                    rounded={themeContext.radii.component}
+                    rounded={theme.radii.component}
                   >
                     <AppIconLucide
                       icon={
@@ -469,7 +469,7 @@ const DesktopLayout = (props: any) => {
                             }
                             colorPalette={
                               pathname.includes("/master-data")
-                                ? themeContext.colorPalette
+                                ? theme.colorPalette
                                 : ""
                             }
                             pos={"relative"}
@@ -485,7 +485,7 @@ const DesktopLayout = (props: any) => {
                                   ? ""
                                   : DESKTOP_NAV_BTN_ICON_BG
                               }
-                              rounded={themeContext.radii.component}
+                              rounded={theme.radii.component}
                             >
                               <AppIconLucide
                                 icon={ServerIcon}

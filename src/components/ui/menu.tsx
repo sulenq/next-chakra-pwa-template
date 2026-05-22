@@ -1,7 +1,7 @@
 "use client";
 
 import { BACKDROP_BLUR_FILTER, GAP } from "@/constants/styles";
-import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";
+import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
 import {
   AbsoluteCenter,
   Menu as ChakraMenu,
@@ -61,13 +61,13 @@ interface MenuTriggerItemProps extends ChakraMenu.ItemProps {
 const MenuTriggerItem = forwardRef<HTMLDivElement, MenuTriggerItemProps>(
   function MenuTriggerItem(props, ref) {
     // Contexts
-    const { themeContext } = useThemeContext();
+    const { theme } = useThemeStore();
 
     const { startIcon, children, ...restProps } = props;
     return (
       <ChakraMenu.TriggerItem
         ref={ref}
-        rounded={themeContext.radii.component}
+        rounded={theme.radii.component}
         {...restProps}
       >
         {startIcon}
@@ -91,7 +91,7 @@ const MenuContent = forwardRef<HTMLDivElement, MenuContentProps>(
     const { portalled = true, portalRef, ...restProps } = props;
 
     // Contexts
-    const { themeContext } = useThemeContext();
+    const { theme } = useThemeStore();
 
     return (
       <Portal disabled={!portalled} container={portalRef}>
@@ -105,7 +105,7 @@ const MenuContent = forwardRef<HTMLDivElement, MenuContentProps>(
             backdropFilter={BACKDROP_BLUR_FILTER}
             border={"1px solid"}
             borderColor={"border.subtle"}
-            rounded={themeContext.radii.component}
+            rounded={theme.radii.component}
             shadow={"soft"}
             {...restProps}
           />
@@ -123,7 +123,7 @@ const MenuItem = forwardRef<HTMLDivElement, MenuItemProps>(
     const { children, asChild, ...restProps } = props;
 
     // Contexts
-    const { themeContext } = useThemeContext();
+    const { theme } = useThemeStore();
 
     return (
       <ChakraMenu.Item
@@ -133,9 +133,7 @@ const MenuItem = forwardRef<HTMLDivElement, MenuItemProps>(
         px={3}
         cursor={"pointer"}
         fontSize={asChild ? undefined : "md"}
-        rounded={
-          asChild ? undefined : `calc(${themeContext.radii.component} - 2px)`
-        }
+        rounded={asChild ? undefined : `calc(${theme.radii.component} - 2px)`}
         _hover={
           asChild
             ? undefined

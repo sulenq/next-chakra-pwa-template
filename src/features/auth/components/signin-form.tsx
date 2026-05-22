@@ -16,10 +16,10 @@ import { UserIdCard } from "@/components/user/user-id-card";
 import { APP } from "@/constants/_meta";
 import { WELCOME_ROUTE } from "@/constants/routes";
 import { BASE_ICON_BOX_SIZE } from "@/constants/styles";
-import { useAuthContext } from "@/contexts/use-auth-context";
+import { useAuthContext } from "@/stores/use-auth-context";
 import { ResetPasswordDisclosureTrigger } from "@/features/auth/components/reset-password";
 import { useSignin } from "@/features/auth/hooks/use-auth";
-import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";
+import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
 import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
 import { FieldsetRoot, Icon, InputGroup, StackProps } from "@chakra-ui/react";
 import { IconLock, IconUser } from "@tabler/icons-react";
@@ -32,7 +32,7 @@ import * as yup from "yup";
 const Signedin = () => {
   // Contexts
   const { t } = useLocaleContext();
-  const { themeContext } = useThemeContext();
+  const { theme } = useThemeStore();
 
   return (
     <StackV align={"center"} gap={8} w={"220px"} m={"auto"}>
@@ -42,20 +42,20 @@ const Signedin = () => {
         {/* TODO_DEV: Remove below component in real dev */}
         <>
           <NavLink to={"/test"} mx={"auto"}>
-            <Btn variant={"ghost"} colorPalette={themeContext.colorPalette}>
+            <Btn variant={"ghost"} colorPalette={theme.colorPalette}>
               Test
             </Btn>
           </NavLink>
 
           <NavLink to={"/demo"} mx={"auto"}>
-            <Btn variant={"ghost"} colorPalette={themeContext.colorPalette}>
+            <Btn variant={"ghost"} colorPalette={theme.colorPalette}>
               Demo
             </Btn>
           </NavLink>
         </>
 
         <NavLink to={WELCOME_ROUTE}>
-          <Btn variant={"ghost"} colorPalette={themeContext.colorPalette}>
+          <Btn variant={"ghost"} colorPalette={theme.colorPalette}>
             {t.enter_app} <AppIconLucide icon={ArrowRight} />
           </Btn>
         </NavLink>
@@ -74,7 +74,7 @@ const BasicAuthForm = (props: any) => {
 
   // Contexts
   const { t } = useLocaleContext();
-  const { themeContext } = useThemeContext();
+  const { theme } = useThemeStore();
 
   // Hooks
   const signinMutation = useSignin();
@@ -161,7 +161,7 @@ const BasicAuthForm = (props: any) => {
           w={"full"}
           mt={6}
           loading={loading}
-          colorPalette={themeContext.colorPalette}
+          colorPalette={theme.colorPalette}
         >
           <Icon boxSize={BASE_ICON_BOX_SIZE}>
             <LucideIcon icon={LogInIcon} />
@@ -174,7 +174,7 @@ const BasicAuthForm = (props: any) => {
         <Divider flex={1} />
 
         <ResetPasswordDisclosureTrigger>
-          <Btn variant={"ghost"} colorPalette={themeContext.colorPalette}>
+          <Btn variant={"ghost"} colorPalette={theme.colorPalette}>
             Reset Password
           </Btn>
         </ResetPasswordDisclosureTrigger>
@@ -193,7 +193,7 @@ export const SigninForm = (props: StackProps) => {
 
   // Contexts
   const { t } = useLocaleContext();
-  const { themeContext } = useThemeContext();
+  const { theme } = useThemeStore();
   const accessTokenContext = useAuthContext((s) => s.accessTokenContext);
 
   return (
@@ -203,7 +203,7 @@ export const SigninForm = (props: StackProps) => {
       maxW={"360px"}
       p={4}
       gap={4}
-      rounded={themeContext.radii.container}
+      rounded={theme.radii.container}
       {...restProps}
     >
       {accessTokenContext ? (

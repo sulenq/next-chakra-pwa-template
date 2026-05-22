@@ -9,7 +9,7 @@ type ADMStore = {
   setADM: (newState: boolean | ((prevState: boolean) => boolean)) => void;
 };
 
-const useADMContext = create<ADMStore>((set) => {
+const useADMStore = create<ADMStore>((set) => {
   const stored = getStorage(STORAGE_KEY);
   const initial = stored === null ? DEFAULT : stored === "true";
 
@@ -27,4 +27,4 @@ const useADMContext = create<ADMStore>((set) => {
   };
 });
 
-export default useADMContext;
+export default useADMStore;

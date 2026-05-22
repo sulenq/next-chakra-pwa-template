@@ -6,7 +6,7 @@ import { toaster } from "@/components/ui/toaster";
 import { LucideIcon } from "@/components/misc/icon";
 import { BASE_ICON_BOX_SIZE, MAIN_INPUT_SIZE } from "@/constants/styles";
 import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
-import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";
+import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
 import { useMergedRefs } from "@/hooks/use-merge-refs";
 import { interpolateString } from "@/utils/string";
 import {
@@ -58,7 +58,7 @@ export const StringInput = forwardRef<HTMLInputElement, StringInputProps>(
 
     // Contexts
     const { t } = useLocaleContext();
-    const { themeContext } = useThemeContext();
+    const { theme } = useThemeStore();
     const fc = useFieldContext();
 
     // Refs
@@ -75,7 +75,7 @@ export const StringInput = forwardRef<HTMLInputElement, StringInputProps>(
     // Derived Values
     const resolvedPlaceholder = placeholder ?? t.text_input;
     const resolvedInvalid = invalid || fc?.invalid;
-    const isColorPaletteGray = themeContext.colorPalette === "gray";
+    const isColorPaletteGray = theme.colorPalette === "gray";
 
     // Utils
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -145,11 +145,9 @@ export const StringInput = forwardRef<HTMLInputElement, StringInputProps>(
             fontSize={"md"}
             outline={"none !important"}
             _focus={{
-              borderColor: isColorPaletteGray
-                ? "ibody"
-                : themeContext.primaryColor,
+              borderColor: isColorPaletteGray ? "ibody" : theme.primaryColor,
             }}
-            rounded={themeContext.radii.component}
+            rounded={theme.radii.component}
             autoComplete={"off"}
             transition={"200ms"}
             color={"text"}

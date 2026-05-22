@@ -6,7 +6,7 @@ import { HelperText } from "@/components/ui/helper-text";
 import { StackH, StackV } from "@/components/ui/stack";
 import { APP } from "@/constants/_meta";
 import { GAP, R_SPACING_MD } from "@/constants/styles";
-import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";
+import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
 import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
 import { NavGroup } from "@/types/global.types";
 import { formatAbsDate } from "@/utils/formatter";
@@ -32,7 +32,7 @@ export const WithVNavsLayout = (props: WithVNavsLayoutProps) => {
 
   // Contexts
   const { t } = useLocaleContext();
-  const { themeContext } = useThemeContext();
+  const { theme } = useThemeStore();
 
   // Derived Values
   const isAtSettingsIndexRoute = pathname === rootPath;
@@ -60,7 +60,7 @@ export const WithVNavsLayout = (props: WithVNavsLayoutProps) => {
               flex={1}
               px={isSmContainer ? 2 : 0}
               pb={isSmContainer ? 2 : 0}
-              rounded={themeContext.radii.container}
+              rounded={theme.radii.container}
             >
               <MainView.Header
                 withTitle

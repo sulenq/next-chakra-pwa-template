@@ -4,7 +4,7 @@ import { FileIcon } from "@/components/ui/file-icon";
 import { P } from "@/components/ui/p";
 import { StackV } from "@/components/ui/stack";
 import { LucideIcon } from "@/components/misc/icon";
-import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";
+import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
 import type { ButtonProps, RecipeProps } from "@chakra-ui/react";
 import {
   Button,
@@ -69,7 +69,7 @@ export const FileUploadDropzone = forwardRef<
   } = props;
 
   // Contexts
-  const { themeContext } = useThemeContext();
+  const { theme } = useThemeStore();
 
   return (
     <ChakraFileUpload.Dropzone
@@ -79,7 +79,7 @@ export const FileUploadDropzone = forwardRef<
       maxH={"full"}
       p={imgInput ? 0 : 4}
       bg={"transparent"}
-      rounded={themeContext.radii.component}
+      rounded={theme.radii.component}
       cursor={"pointer"}
       overflow={"auto"}
       {...rest}
@@ -131,7 +131,7 @@ interface FileUploadItemProps extends VisibilityProps {
 
 const FileUploadItem = (props: FileUploadItemProps) => {
   // Contexts
-  const { themeContext } = useThemeContext();
+  const { theme } = useThemeStore();
 
   const { file, showSize, clearable } = props;
 
@@ -141,7 +141,7 @@ const FileUploadItem = (props: FileUploadItemProps) => {
       py={2}
       h={"54px"}
       bg={"bg.body"}
-      rounded={themeContext.radii.component}
+      rounded={theme.radii.component}
     >
       <ChakraFileUpload.ItemPreview asChild>
         <Icon fontSize={20}>

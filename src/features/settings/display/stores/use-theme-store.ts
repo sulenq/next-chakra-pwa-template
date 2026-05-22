@@ -4,7 +4,9 @@ import { ROUNDED_PRESETS } from "@/constants/presets";
 import { getStorage, setStorage } from "@/utils/client";
 import { create } from "zustand";
 
-interface ThemeContext {
+const STORAGE_KEY = "theme-config";
+
+interface ThemeStore {
   colorPalette: string;
   primaryColor: string;
   primaryColorHex: string;
@@ -16,9 +18,7 @@ interface ThemeContext {
   };
 }
 
-const LOCAL_STORAGE_KEY = "theme-config";
-
-export const DEFAULT: ThemeContext = {
+export const DEFAULT: ThemeStore = {
   colorPalette: COLOR_PALETTES[0].palette,
   primaryColor: `${COLOR_PALETTES[0].palette}.solid`,
   primaryColorHex: COLOR_PALETTES[0].primaryHex,
@@ -27,28 +27,27 @@ export const DEFAULT: ThemeContext = {
 };
 
 type ThemeConfigStore = {
-  themeContext: ThemeContext;
-  setThemeContext: (
-    config:
-      | Partial<ThemeContext>
-      | ((prev: ThemeContext) => Partial<ThemeContext>),
+  theme: ThemeStore;
+  setTheme: (
+    config: Partial<ThemeStore> | ((prev: ThemeStore) => Partial<ThemeStore>),
   ) => void;
 };
-export const useThemeContext = create<ThemeConfigStore>((set) => {
-  const stored = getStorage(LOCAL_STORAGE_KEY);
+
+export const useThemeStore = create<ThemeConfigStore>((set) => {
+  const stored = getStorage(STORAGE_KEY);
   const initial = stored ? JSON.parse(stored) : DEFAULT;
 
   return {
-    themeContext: initial,
-    setThemeContext: (config) => {
+    theme: initial,
+    setTheme: (config) => {
       set((state) => {
         const update =
-          typeof config === "function" ? config(state.themeContext) : config;
+          typeof config === "function" ? config(state.theme) : config;
 
-        const newConfig = { ...state.themeContext, ...update };
-        setStorage(LOCAL_STORAGE_KEY, JSON.stringify(newConfig));
+        const newConfig = { ...state.theme, ...update };
+        setStorage(STORAGE_KEY, JSON.stringify(newConfig));
 
-        return { themeContext: newConfig };
+        return { theme: newConfig };
       });
     },
   };

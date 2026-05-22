@@ -1,6 +1,6 @@
 "use client";
 
-import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";
+import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
 import { Box, BoxProps, Portal } from "@chakra-ui/react";
 import { useEffect, useRef, useState } from "react";
 
@@ -14,7 +14,7 @@ export function TopLoadingBar(props: TopLoadingBarProps) {
   const { loading, ...restProps } = props;
 
   // Contexts
-  const { themeContext } = useThemeContext();
+  const { theme } = useThemeStore();
 
   // States
   const [visible, setVisible] = useState(false);
@@ -72,7 +72,7 @@ export function TopLoadingBar(props: TopLoadingBarProps) {
           flexShrink={0}
           w={`${progress}%`}
           h={"full"}
-          bg={`${themeContext.colorPalette}.solid`}
+          bg={`${theme.colorPalette}.solid`}
           opacity={visible ? 1 : 0}
           transition={"width 200ms linear, opacity 200ms ease"}
         />

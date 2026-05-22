@@ -38,8 +38,8 @@ import { Tooltip } from "@/components/ui/tooltip";
 import VideoPlayer from "@/components/ui/video-player";
 import { OPTIONS_RELIGION } from "@/constants/select-options";
 import { MENU_ICON_BOX_SIZE } from "@/constants/styles";
-import useRenderTrigger from "@/contexts/use-render-trigger";
-import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";
+import useRenderTrigger from "@/stores/use-render-trigger";
+import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
 import { SelectTimezone } from "@/features/settings/regional/components/select-timezone";
 import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
 import { useRequest } from "@/hooks/useRequestOld";
@@ -733,7 +733,7 @@ const DemoIndexRoute = () => {
     },
   });
 
-  const { themeContext } = useThemeContext();
+  const { theme } = useThemeStore();
 
   return (
     <ConstrainedContainer bg={"bg.body"} maxW={"1280px"} p={4} gap={8}>
@@ -765,7 +765,7 @@ const DemoIndexRoute = () => {
       </StackH>
 
       <NavLink to={"/welcome"}>
-        <Btn colorPalette={themeContext.colorPalette}>App Layout</Btn>
+        <Btn colorPalette={theme.colorPalette}>App Layout</Btn>
       </NavLink>
 
       <>

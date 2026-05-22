@@ -10,7 +10,7 @@ import { Logo } from "@/components/branding/logo";
 import { MContainerV } from "@/components/container/m-container";
 import { APP } from "@/constants/_meta";
 import { DUMMY_USER } from "@/constants/dummy-data";
-import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";
+import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
 import { useSignout } from "@/features/auth/hooks/use-auth";
 import { Box, Circle, StackProps, useToken } from "@chakra-ui/react";
 import { LogOutIcon } from "lucide-react";
@@ -57,7 +57,7 @@ export const UserIdCard = (props: UserIdCardProps) => {
   const { maskingTop = "0px", withSignoutButton = false, ...restProps } = props;
 
   // Contexts
-  const { themeContext } = useThemeContext();
+  const { theme } = useThemeStore();
 
   // Constants
   // TODO_DEV uncomment on real dev
@@ -66,9 +66,7 @@ export const UserIdCard = (props: UserIdCardProps) => {
   const userAvatarSrc = user?.avatar?.[0]?.fileUrl;
 
   // SX
-  const [logoColor] = useToken("colors", [
-    `${themeContext.colorPalette}.contrast`,
-  ]);
+  const [logoColor] = useToken("colors", [`${theme.colorPalette}.contrast`]);
 
   return (
     <StackV
@@ -84,8 +82,8 @@ export const UserIdCard = (props: UserIdCardProps) => {
         aspectRatio={1 / 1.6}
         w={"full"}
         maxW={restProps?.maxW}
-        bg={`${themeContext.colorPalette}.solid`}
-        rounded={themeContext.radii.component}
+        bg={`${theme.colorPalette}.solid`}
+        rounded={theme.radii.component}
         shadow={"xs"}
         overflow={"clip"}
         pos={"absolute"}
@@ -117,7 +115,7 @@ export const UserIdCard = (props: UserIdCardProps) => {
         w={"full"}
         maxW={restProps?.maxW}
         bg={"bg.bodySolid"}
-        rounded={themeContext.radii.component}
+        rounded={theme.radii.component}
         shadow={"sm"}
         overflow={"clip"}
         zIndex={2}
@@ -206,7 +204,7 @@ export const UserIdCard = (props: UserIdCardProps) => {
           <Box
             w={"30px"}
             h={"24px"}
-            bg={`${themeContext.colorPalette}.solid`}
+            bg={`${theme.colorPalette}.solid`}
             roundedBottom={"sm"}
           />
         </MContainerV>

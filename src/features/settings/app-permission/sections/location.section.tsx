@@ -11,7 +11,7 @@ import { Item } from "@/components/container/item";
 import { SettingItemContainer } from "@/components/container/settings-shell";
 import { R_SPACING_MD } from "@/constants/styles";
 import { useLocationPermissionContext } from "@/features/settings/app-permission/contexts/use-location-permission-context";
-import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";
+import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
 import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
 import { usePopDisclosure } from "@/hooks/use-pop-disclosure";
 import { disclosureId } from "@/utils/disclosure";
@@ -24,7 +24,7 @@ import { useState } from "react";
 const LocationTester = () => {
   // Contexts
   const { t } = useLocaleContext();
-  const { themeContext } = useThemeContext();
+  const { theme } = useThemeStore();
   const { locationPermissionsStatus, setLocationPermissionsStatus } =
     useLocationPermissionContext();
 
@@ -121,7 +121,7 @@ const LocationTester = () => {
 
           <Disclosure.Footer>
             <Btn
-              colorPalette={themeContext.colorPalette}
+              colorPalette={theme.colorPalette}
               loading={loading}
               onClick={startLocationTest}
             >
@@ -139,7 +139,7 @@ const LocationTester = () => {
 const LocationPermissionSetting = () => {
   // Contexts
   const { t } = useLocaleContext();
-  const { themeContext } = useThemeContext();
+  const { theme } = useThemeStore();
   const locationPermissionsStatus = useLocationPermissionContext(
     (s) => s.locationPermissionsStatus,
   );
@@ -235,7 +235,7 @@ const LocationPermissionSetting = () => {
             requestLocationPermission();
           }
         }}
-        colorPalette={themeContext.colorPalette}
+        colorPalette={theme.colorPalette}
       />
     </SettingItemContainer>
   );

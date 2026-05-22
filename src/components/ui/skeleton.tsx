@@ -1,7 +1,7 @@
 "use client";
 
 import { StackV } from "@/components/ui/stack";
-import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";
+import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
 import {
   Skeleton as ChakraSkeleton,
   SkeletonProps,
@@ -12,11 +12,11 @@ import {
 
 export const Skeleton = (props: SkeletonProps) => {
   // Contexts
-  const { themeContext } = useThemeContext();
+  const { theme } = useThemeStore();
 
   return (
     <ChakraSkeleton
-      rounded={themeContext.radii.component}
+      rounded={theme.radii.component}
       variant={"shine"}
       css={{
         "--start-color": "transparent",

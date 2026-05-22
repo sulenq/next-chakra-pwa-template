@@ -1,5 +1,5 @@
 import { VerifyingScreen } from "@/components/feedback/verifying-screen";
-import { useAuthContext } from "@/contexts/use-auth-context";
+import { useAuthContext } from "@/stores/use-auth-context";
 import { setUserData } from "@/utils/auth";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";

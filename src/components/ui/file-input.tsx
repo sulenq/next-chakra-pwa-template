@@ -15,7 +15,7 @@ import { FileItem } from "@/components/ui/file-item";
 import { LucideIcon } from "@/components/misc/icon";
 import { StorageFile } from "@/types/global.types";
 import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
-import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";
+import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
 import { isEmptyArray } from "@/utils/array";
 import { makeFileUrl } from "@/utils/file";
 import { formatBytes, formatNumber } from "@/utils/formatter";
@@ -316,7 +316,7 @@ export const FileInput = forwardRef<HTMLInputElement, FileInputProps>(
 
     // Contexts
     const { t } = useLocaleContext();
-    const { themeContext } = useThemeContext();
+    const { theme } = useThemeStore();
     const fc = useFieldContext();
 
     // States
@@ -336,7 +336,7 @@ export const FileInput = forwardRef<HTMLInputElement, FileInputProps>(
             gap={3}
             border={"2px dashed"}
             borderColor={"border.muted"}
-            rounded={themeContext.radii.container}
+            rounded={theme.radii.container}
           >
             <StackV
               gap={2}
@@ -379,7 +379,7 @@ export const FileInput = forwardRef<HTMLInputElement, FileInputProps>(
             gap={3}
             border={"2px dashed"}
             borderColor={"border.muted"}
-            rounded={themeContext.radii.container}
+            rounded={theme.radii.container}
           >
             <StackV
               gap={2}

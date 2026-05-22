@@ -22,7 +22,7 @@ import {
   GRID_BATCH_OPTIONS_CONTAINER_BG,
   R_SPACING_MD,
 } from "@/constants/styles";
-import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";
+import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
 import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
 import { usePopDisclosure } from "@/hooks/use-pop-disclosure";
 import {
@@ -56,11 +56,11 @@ export const DataGridItem = (props: DataGridItemProps) => {
   const { children, id, dim, ...restProps } = props;
 
   // Contexts
-  const { themeContext } = useThemeContext();
+  const { theme } = useThemeStore();
   const { selectedRows, toggleRowSelection } = useDataGridContext();
 
   // Constants
-  const selectedColor = `${themeContext.colorPalette}.solid`;
+  const selectedColor = `${theme.colorPalette}.solid`;
   const isRowSelected = selectedRows.includes(id);
 
   return (
@@ -70,7 +70,7 @@ export const DataGridItem = (props: DataGridItemProps) => {
       bg={"bg.body"}
       border={"1px solid"}
       borderColor={isRowSelected ? selectedColor : "transparent"}
-      rounded={themeContext.radii.component}
+      rounded={theme.radii.component}
       opacity={dim ? 0.4 : 1}
       overflow={"clip"}
       pos={"relative"}
@@ -216,7 +216,7 @@ const DataGridRowOptions = (props: DataGridRowOptionsProps) => {
   const { row, rowOptions, ...restProps } = props;
 
   // Contexts
-  const { themeContext } = useThemeContext();
+  const { theme } = useThemeStore();
 
   if (rowOptions)
     return (
@@ -225,7 +225,7 @@ const DataGridRowOptions = (props: DataGridRowOptionsProps) => {
         rowOptions={rowOptions}
         size={"sm"}
         variant={"ghost"}
-        rounded={themeContext.radii.component}
+        rounded={theme.radii.component}
         menuRootProps={{
           positioning: {
             offset: {
@@ -299,7 +299,7 @@ const DataGridRoot = (props: DataGridRootProps) => {
 
   // Contexts
   const { t } = useLocaleContext();
-  const { themeContext } = useThemeContext();
+  const { theme } = useThemeStore();
 
   // States
   const [allRowsSelected, setAllRowsSelected] = useState<boolean>(false);
@@ -374,7 +374,7 @@ const DataGridRoot = (props: DataGridRootProps) => {
               p={1}
               border={"1px solid"}
               borderColor={"border.muted"}
-              rounded={themeContext.radii.container}
+              rounded={theme.radii.container}
               pointerEvents={"auto"}
             >
               <P mx={4}>

@@ -7,7 +7,7 @@ import { BrandWatermark } from "@/components/branding/brand-watermark";
 import { Logo } from "@/components/branding/logo";
 import { AnimatedBlobBackground } from "@/components/overlays/background";
 import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
-import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";
+import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
 import { SigninForm } from "@/features/auth/components/signin-form";
 import { useIsSmScreenWidth } from "@/hooks/use-is-sm-screen-width";
 import { SimpleGrid } from "@chakra-ui/react";
@@ -16,7 +16,7 @@ import { StackH, StackV } from "@/components/ui/stack";
 export default function Page() {
   // Contexts
   const { t } = useLocaleContext();
-  const { themeContext } = useThemeContext();
+  const { theme } = useThemeStore();
 
   // Hooks
   const iss = useIsSmScreenWidth();
@@ -38,7 +38,7 @@ export default function Page() {
         bg={"bg.body"}
         shadow={"soft"}
         m={"auto"}
-        rounded={themeContext.radii.container}
+        rounded={theme.radii.container}
       >
         <SimpleGrid
           columns={[1, null, 2]}
@@ -52,7 +52,7 @@ export default function Page() {
           {!iss && (
             <StackV
               justify={"space-between"}
-              rounded={themeContext.radii.component}
+              rounded={theme.radii.component}
               maxH={"calc(100dvh - 16px)"}
               overflow={"clip"}
               pos={"relative"}
@@ -72,7 +72,7 @@ export default function Page() {
           <StackV
             p={4}
             gap={16}
-            rounded={themeContext.radii.container}
+            rounded={theme.radii.container}
             overflowY={"auto"}
           >
             <StackH justify={"center"} gap={2}>

@@ -8,7 +8,7 @@ import FeedbackState, {
 import { LucideIcon } from "@/components/misc/icon";
 import { MIN_H_FEEDBACK_CONTAINER } from "@/constants/styles";
 import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
-import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";
+import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
 import { Icon } from "@chakra-ui/react";
 import { CircleXIcon } from "lucide-react";
 
@@ -24,7 +24,7 @@ export default function FeedbackRetry(props: FeedbackRetryProps) {
 
   // Contexts
   const { t } = useLocaleContext();
-  const { themeContext } = useThemeContext();
+  const { theme } = useThemeStore();
 
   return (
     <StackV
@@ -48,7 +48,7 @@ export default function FeedbackRetry(props: FeedbackRetryProps) {
         <Btn
           className={"clicky"}
           variant={"ghost"}
-          colorPalette={themeContext.colorPalette}
+          colorPalette={theme.colorPalette}
           mx={"auto"}
           size={"sm"}
           onClick={onRetry}

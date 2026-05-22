@@ -6,7 +6,7 @@ import { StackV } from "@/components/ui/stack";
 import { AppIconLucide } from "@/components/branding/app-icon";
 import { DotIndicator } from "@/components/ui/indicator";
 import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
-import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";
+import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
 import { BatchOptionsTableOptionGenerator } from "@/types/global.types";
 import { Box, MenuRootProps } from "@chakra-ui/react";
 import { ListChecks } from "lucide-react";
@@ -41,7 +41,7 @@ export const BatchOptions = (props: BatchOptionsProps) => {
 
   // Contexts
   const { t } = useLocaleContext();
-  const { themeContext } = useThemeContext();
+  const { theme } = useThemeStore();
 
   return (
     <Menu.Root
@@ -88,12 +88,12 @@ export const BatchOptions = (props: BatchOptionsProps) => {
           <P>{t.select_all}</P>
 
           <DotIndicator
-            bg={allRowsSelected ? themeContext.primaryColor : "gray.muted"}
+            bg={allRowsSelected ? theme.primaryColor : "gray.muted"}
             mr={1}
           />
         </Menu.Item>
 
-        <Box px={`calc(${themeContext.radii.component}/4)`} my={1}>
+        <Box px={`calc(${theme.radii.component}/4)`} my={1}>
           <Divider />
         </Box>
 

@@ -19,7 +19,7 @@ import {
   TABLE_TH_BORDER_COLOR,
   TABLE_TH_H,
 } from "@/constants/styles";
-import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";
+import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
 import { useScreen } from "@/hooks/use-screen";
 import {
   BatchOptionsTableOptionGenerator,
@@ -81,7 +81,7 @@ export const DataTableRoot = (props: DataTableRootProps) => {
   } = props;
 
   // Contexts
-  const { themeContext } = useThemeContext();
+  const { theme } = useThemeStore();
 
   // Refs
   const tableContainerRef = useRef<HTMLDivElement>(null);
@@ -210,7 +210,7 @@ export const DataTableRoot = (props: DataTableRootProps) => {
   }, [rows]);
 
   // SX
-  const SELECTED_BG = `${themeContext.colorPalette}.subtle`;
+  const SELECTED_BG = `${theme.colorPalette}.subtle`;
   const TABLE_ROW_ROUNDED = 0;
 
   // Grid Cols Generator
@@ -238,7 +238,7 @@ export const DataTableRoot = (props: DataTableRootProps) => {
         flex={1}
         pb={R_SPACING_MD}
         bg={TABLE_CONTAINER_BG}
-        roundedTop={themeContext.radii.component}
+        roundedTop={theme.radii.component}
         zIndex={2}
         {...contentContainerProps}
       >
@@ -409,7 +409,7 @@ export const DataTableRoot = (props: DataTableRootProps) => {
                     <Checkbox
                       subtle={true}
                       size={"sm"}
-                      colorPalette={themeContext.colorPalette}
+                      colorPalette={theme.colorPalette}
                       checked={selectedRows.includes(row.id)}
                     />
                   </Center>

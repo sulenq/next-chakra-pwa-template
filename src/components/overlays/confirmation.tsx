@@ -4,7 +4,7 @@ import { P } from "@/components/ui/p";
 import { StackV } from "@/components/ui/stack";
 import { Tooltip } from "@/components/ui/tooltip";
 import { BackButton } from "@/components/navigation/back-button";
-import { useThemeContext } from "@/features/settings/display/contexts/use-theme-context";
+import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
 import { useCountdown } from "@/hooks/use-countdown";
 import { usePopDisclosure } from "@/hooks/use-pop-disclosure";
 import { disclosureId } from "@/utils/disclosure";
@@ -42,7 +42,7 @@ const ConfirmationContent = (props: ConfirmationProps) => {
   } = props;
 
   // Contexts
-  const { themeContext } = useThemeContext();
+  const { theme } = useThemeStore();
 
   return (
     <Disclosure.Root open={open} lazyLoad size={"xs"}>
@@ -64,7 +64,7 @@ const ConfirmationContent = (props: ConfirmationProps) => {
             <Btn
               w={"full"}
               loading={loading}
-              colorPalette={themeContext.colorPalette}
+              colorPalette={theme.colorPalette}
               fontVariantNumeric={"tabular-nums"}
               disabled={!isCountdownFinished}
               onClick={onConfirm}

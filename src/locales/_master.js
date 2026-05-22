@@ -1218,7 +1218,7 @@ export const alert_pdf_failed_to_load = {
   },
 };
 
-// Setting Page
+// Settings Page
 export const settings_adaptive_dark_mode = {
   title: { id: "Mode gelap adaptif", en: "Adaptive dark mode" },
 
@@ -1258,6 +1258,34 @@ export const settings_rounded_section = {
     en: "Controls how rounded interface elements appear.",
   },
 };
+export const settings_constrained_container_section = {
+  title: {
+    id: "Kontainer terbatas",
+    en: "Constrained container",
+  },
+};
+export const settings_constrained_container_active = {
+  title: {
+    id: "Pakai kontainer terbatas",
+    en: "Use constrained container",
+  },
+
+  description: {
+    id: "Lebar tampilan utama aplikasi akan dibatasi",
+    en: "The main view of the application will be limited in width",
+  },
+};
+export const settings_constrained_container_max_w = {
+  title: {
+    id: "Lebar maksimal",
+    en: "Max width",
+  },
+
+  description: {
+    id: "Mengatur batas lebar maksimum tampilan utama aplikasi. Min. 720",
+    en: "Controls the maximum width of the application's main view. Min. 720",
+  },
+};
 
 export const settings_locale_section = {
   title: {
@@ -1275,6 +1303,7 @@ export const settings_locale_section = {
     en: "Language selection is only for the application UI, for content entered by the user it may be different depending on the language they choose/enter.",
   },
 };
+
 export const settings_date_time_section = {
   title: {
     id: "Tanggal & waktu",
@@ -1315,6 +1344,7 @@ export const settings_timezone = {
     en: "Time zone",
   },
 };
+
 export const settings_uom_section = {
   title: {
     id: "Sistem satuan",

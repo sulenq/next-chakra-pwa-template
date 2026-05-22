@@ -69,7 +69,7 @@ export const ColorModeButton = forwardRef<
 
   // Contexts
   const { colorMode } = useColorMode();
-  // const { ADM } = useADMContext();
+  // const { ADM } = useADMStore();
 
   // Constants
   // const ADMActive = ADM;
