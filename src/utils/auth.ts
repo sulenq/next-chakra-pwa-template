@@ -25,7 +25,7 @@ export function getUserData(): User | null {
   }
 }
 
-export function setUserData(user: User) {
+export function setUser(user: User) {
   try {
     setStorage("__user_data", JSON.stringify(user), "local", 259200000);
   } catch (e) {

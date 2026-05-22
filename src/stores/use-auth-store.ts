@@ -1,3 +1,4 @@
+import { User } from "@/types/global.types";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
@@ -6,15 +7,17 @@ const ACCESS_TOKEN_TTL = 0;
 
 type AuthState = {
   accessTokenContext: string | null;
+  user: User | null;
   role: object | null;
   permissions: string[] | null;
   updatedAt: number | null;
 };
 
 type AuthActions = {
-  setAccessTokenContext: (newState: AuthState["accessTokenContext"]) => void;
+  setAccessToken: (newState: AuthState["accessTokenContext"]) => void;
   setRole: (newState: AuthState["role"]) => void;
   setPermissions: (newState: AuthState["permissions"]) => void;
+  setUser: (user: User) => void;
   hasPermissions: (allowedPermissions: string[]) => boolean;
   removeAuth: () => void;
 };
@@ -27,6 +30,7 @@ type PersistedAuthState = Partial<AuthState> & {
 
 const DEFAULT_VALUES: AuthState = {
   accessTokenContext: null,
+  user: null,
   role: null,
   permissions: null,
   updatedAt: null,
@@ -37,7 +41,7 @@ export const useAuthStore = create<AuthStore>()(
     (set, get) => ({
       ...DEFAULT_VALUES,
 
-      setAccessTokenContext: (newState) =>
+      setAccessToken: (newState) =>
         set(() => ({
           accessTokenContext: newState,
           updatedAt: newState ? Date.now() : null,
@@ -46,6 +50,11 @@ export const useAuthStore = create<AuthStore>()(
       setRole: (newState) => set(() => ({ role: newState })),
 
       setPermissions: (newState) => set(() => ({ permissions: newState })),
+
+      setUser: (newState) =>
+        set(() => ({
+          user: newState,
+        })),
 
       hasPermissions: (allowedPermissions) => {
         const userPermissions = get().permissions ?? [];

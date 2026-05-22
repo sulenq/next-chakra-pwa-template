@@ -1,6 +1,4 @@
 import { WELCOME_ROUTE } from "@/constants/routes";
-import { useAuthStore } from "@/stores/use-auth-store";
-import useRenderTrigger from "@/stores/use-render-trigger";
 import {
   getUserProfile,
   signin,
@@ -10,10 +8,11 @@ import { SigninPayload } from "@/features/auth/types/auth.types";
 import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
 import { queryKeys } from "@/lib/tanstack-query/query.keys";
 import { mutationToastHandlers } from "@/lib/toast/toast.handler";
-import { setAccessToken, setUserData } from "@/utils/auth";
+import { useAuthStore } from "@/stores/use-auth-store";
+import useRenderTrigger from "@/stores/use-render-trigger";
+import { BaseResponse, User } from "@/types/global.types";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
-import { BaseResponse, User } from "@/types/global.types";
 
 // -----------------------------------------------------------------
 
@@ -21,7 +20,8 @@ export const useSignin = () => {
   const { t } = useLocaleStore();
   const router = useRouter();
 
-  const setAccessTokenContext = useAuthStore((s) => s.setAccessTokenContext);
+  const setAccessToken = useAuthStore((s) => s.setAccessToken);
+  const setUser = useAuthStore((s) => s.setUser);
   const setPermissions = useAuthStore((s) => s.setPermissions);
 
   const toast = mutationToastHandlers("auth-signin", {
@@ -36,18 +36,15 @@ export const useSignin = () => {
       toast.onSuccess();
 
       const accessToken = res.data?.authToken;
-      const userData = res.data?.user;
+      const user = res.data?.user;
       const permissionsData =
         (res.data?.user as any)?.permissions ||
         res.data?.user?.role?.permissions;
 
-      if (accessToken && userData) {
+      if (accessToken && user && permissionsData) {
         setAccessToken(accessToken);
-        setUserData(userData);
-        setAccessTokenContext(accessToken);
-        if (permissionsData) {
-          setPermissions(permissionsData);
-        }
+        setUser(user);
+        setPermissions(permissionsData);
       }
 
       router.push(WELCOME_ROUTE);
