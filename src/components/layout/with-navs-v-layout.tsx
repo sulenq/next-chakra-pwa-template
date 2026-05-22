@@ -30,7 +30,7 @@ export const WithVNavsLayout = (props: WithVNavsLayoutProps) => {
   // Refs
   const { isSmContainer } = useMainViewContext();
 
-  // Contexts
+  // Store
   const { t } = useLocaleStore();
   const { theme } = useThemeStore();
 

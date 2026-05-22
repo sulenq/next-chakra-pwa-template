@@ -41,7 +41,7 @@ export default function Select(props: SelectProps) {
     ...restProps
   } = props;
 
-  // Contexts
+  // Store
   const { theme } = useThemeStore();
 
   // States

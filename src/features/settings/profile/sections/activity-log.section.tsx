@@ -19,7 +19,7 @@ import { formatDate } from "@/utils/formatter";
 import { useState } from "react";
 
 export const ActivityLogSection = (props: ItemRootProps) => {
-  // Contexts
+  // Store
   const { t } = useLocaleStore();
 
   // States

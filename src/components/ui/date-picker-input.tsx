@@ -138,7 +138,7 @@ export const DatePicker = (props: DatePickerProps) => {
   // Props
   const { period, selected, setSelected, multiple, ...restProps } = props;
 
-  // Contexts
+  // Store
   const { t } = useLocaleStore();
   const { theme } = useThemeStore();
 
@@ -282,7 +282,7 @@ const SelectedDateList = (props: SelectedDateListProps) => {
   // Props
   const { id, selected, formattedSelected } = props;
 
-  // Contexts
+  // Store
   const { t } = useLocaleStore();
   const { theme } = useThemeStore();
 
@@ -393,7 +393,7 @@ export const DatePickerInput = (props: DatePickerInputProps) => {
     ...restProps
   } = props;
 
-  // Contexts
+  // Store
   const { t } = useLocaleStore();
   const { theme } = useThemeStore();
   const fc = useFieldContext();

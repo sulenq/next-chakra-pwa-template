@@ -24,7 +24,7 @@ import { useState } from "react";
 // -----------------------------------------------------------------
 
 export const AuthLogSection = (props: ItemRootProps) => {
-  // Contexts
+  // Store
   const { t } = useLocaleStore();
 
   // Refs

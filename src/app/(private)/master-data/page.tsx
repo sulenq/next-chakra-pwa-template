@@ -8,7 +8,7 @@ import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-s
 import { ServerIcon } from "lucide-react";
 
 export default function SettingsRoute() {
-  // Contexts
+  // Store
   const { t } = useLocaleStore();
   const { theme } = useThemeStore();
 

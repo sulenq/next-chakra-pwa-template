@@ -19,7 +19,7 @@ export const Limitation = (props: LimitationTableDataProps) => {
   // Props
   const { limit, setLimit, limitOptions: limitOptionsProps } = props;
 
-  // Contexts
+  // Store
   const { t } = useLocaleStore();
 
   // States

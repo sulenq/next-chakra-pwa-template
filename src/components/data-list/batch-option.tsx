@@ -39,7 +39,7 @@ export const BatchOptions = (props: BatchOptionsProps) => {
     ...restProps
   } = props;
 
-  // Contexts
+  // Store
   const { t } = useLocaleStore();
   const { theme } = useThemeStore();
 

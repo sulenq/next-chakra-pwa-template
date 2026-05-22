@@ -36,7 +36,7 @@ export const ImgViewer = (props: ImgViewerProps) => {
     ...restProps
   } = props;
 
-  // Contexts
+  // Store
   const { t } = useLocaleStore();
 
   // Hooks

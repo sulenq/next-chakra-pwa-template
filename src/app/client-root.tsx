@@ -4,7 +4,7 @@ import { useColorMode } from "@/components/ui/color-mode";
 import { Img } from "@/components/ui/img";
 import { StackV } from "@/components/ui/stack";
 import { RadialGlowBackground } from "@/components/overlays/background";
-import { GlobalDisclosure } from "@/components/overlays/global-disclosure";
+import { GlobalAlerts } from "@/components/overlays/global-alerts";
 import { APP } from "@/constants/_meta";
 import { SVGS_PATH } from "@/constants/paths";
 import useADMStore from "@/features/settings/display/stores/use-adm-store";
@@ -44,7 +44,7 @@ export default function ClientRoot(props: ClientRootProps) {
   // Props
   const { children, fallback } = props;
 
-  // Contexts
+  // Store
   const { setColorMode } = useColorMode();
   const ADM = useADMStore((s) => s.ADM);
 
@@ -97,7 +97,7 @@ export default function ClientRoot(props: ClientRootProps) {
     >
       <RadialGlowBackground pos={"absolute"} zIndex={1} />
 
-      <GlobalDisclosure />
+      <GlobalAlerts />
 
       <StackV zIndex={2}>{children}</StackV>
     </StackV>

@@ -73,7 +73,7 @@ const OverviewItem = (props: OverviewItemProps) => {
   // Props
   const { item, ...restProps } = props;
 
-  // Contexts
+  // Store
   const { theme } = useThemeStore();
 
   return (
@@ -125,7 +125,7 @@ const Overview = (props: OverviewProps) => {
   // Props
   const { data, ...restProps } = props;
 
-  // Contexts
+  // Store
   const { t } = useLocaleStore();
   const { isSmContainer } = useMainViewContext();
 
@@ -192,7 +192,7 @@ const Chart1 = (props: any) => {
   // Props
   const { data, year, ...restProps } = props;
 
-  // Contexts
+  // Store
   const { t } = useLocaleStore();
   const { theme } = useThemeStore();
 
@@ -519,7 +519,7 @@ const Usage = (props: any) => {
   // Props
   const { data, filter, ...restProps } = props;
 
-  // Contexts
+  // Store
   const { isSmContainer } = useMainViewContext();
 
   return (
@@ -534,7 +534,7 @@ const Usage = (props: any) => {
 };
 
 export default function Page() {
-  // Contexts
+  // Store
   const { t } = useLocaleStore();
 
   // States

@@ -2,7 +2,7 @@ import { OfflineAlert } from "@/components/feedback/offline-alert";
 
 // -----------------------------------------------------------------
 
-export const GlobalDisclosure = () => {
+export const GlobalAlerts = () => {
   return (
     <>
       <OfflineAlert />

@@ -39,7 +39,7 @@ const DialogContent = forwardRef<HTMLDivElement, DialogContentProps>(
       ...rest
     } = props;
 
-    // Contexts
+    // Store
     const {} = useDialogContext();
 
     // States

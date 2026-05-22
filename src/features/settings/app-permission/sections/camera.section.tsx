@@ -22,7 +22,7 @@ import { useEffect, useRef, useState } from "react";
 // -----------------------------------------------------------------
 
 const CameraTester = () => {
-  // Contexts
+  // Store
   const { t } = useLocaleStore();
   const { theme } = useThemeStore();
   const { cameraPermissionsStatus, setCameraPermissionsStatus } =
@@ -147,7 +147,7 @@ const CameraTester = () => {
 // -----------------------------------------------------------------
 
 const CameraPermissionSetting = () => {
-  // Contexts
+  // Store
   const { t } = useLocaleStore();
   const { theme } = useThemeStore();
   const cameraPermissionsStatus = useCameraPermissionStore(
@@ -241,7 +241,7 @@ const CameraPermissionSetting = () => {
 // -----------------------------------------------------------------
 
 const CameraTesterSetting = () => {
-  // Contexts
+  // Store
   const { t } = useLocaleStore();
   const cameraPermissionsStatus = useCameraPermissionStore(
     (s) => s.cameraPermissionsStatus,
@@ -265,7 +265,7 @@ const CameraTesterSetting = () => {
 // -----------------------------------------------------------------
 
 export const CameraSection = () => {
-  // Contexts
+  // Store
   const { t } = useLocaleStore();
   const cameraPermissionsStatus = useCameraPermissionStore(
     (s) => s.cameraPermissionsStatus,

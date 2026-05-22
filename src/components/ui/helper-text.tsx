@@ -32,7 +32,7 @@ export const SettingsHelperText = (props: StackProps) => {
 // -----------------------------------------------------------------
 
 export const SettingsSavedLocalyHelperText = () => {
-  // Contexts
+  // Store
   const { t } = useLocaleStore();
 
   return (

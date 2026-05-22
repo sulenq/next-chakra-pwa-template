@@ -40,7 +40,7 @@ export const TextareaInput = forwardRef<
     ...restProps
   } = props;
 
-  // Contexts
+  // Store
   const fc = useFieldContext();
 
   // Derived Values

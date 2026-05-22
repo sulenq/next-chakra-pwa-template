@@ -17,7 +17,7 @@ interface Props {
 }
 
 export const LayananDelete = ({ ids, clearSelectedRows, disabled }: Props) => {
-  // Contexts
+  // Store
   const { t } = useLocaleStore();
 
   // Hooks

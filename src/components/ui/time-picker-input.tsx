@@ -65,7 +65,7 @@ export const TimePickerInput = (props: TimePickerInputProps) => {
     ...restProps
   } = props;
 
-  // Contexts
+  // Store
   const fc = useFieldContext();
   const { theme } = useThemeStore();
   const { t } = useLocaleStore();

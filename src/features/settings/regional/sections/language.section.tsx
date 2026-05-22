@@ -14,7 +14,7 @@ import { chakra, Text } from "@chakra-ui/react";
 // -----------------------------------------------------------------
 
 export const LanguageSection = () => {
-  // Contexts
+  // Store
   const { theme } = useThemeStore();
   const { t, locale, setLocale } = useLocaleStore();
 

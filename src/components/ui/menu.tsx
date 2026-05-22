@@ -60,7 +60,7 @@ interface MenuTriggerItemProps extends ChakraMenu.ItemProps {
 
 const MenuTriggerItem = forwardRef<HTMLDivElement, MenuTriggerItemProps>(
   function MenuTriggerItem(props, ref) {
-    // Contexts
+    // Store
     const { theme } = useThemeStore();
 
     const { startIcon, children, ...restProps } = props;
@@ -90,7 +90,7 @@ const MenuContent = forwardRef<HTMLDivElement, MenuContentProps>(
     // Props
     const { portalled = true, portalRef, ...restProps } = props;
 
-    // Contexts
+    // Store
     const { theme } = useThemeStore();
 
     return (
@@ -122,7 +122,7 @@ const MenuItem = forwardRef<HTMLDivElement, MenuItemProps>(
     //Props
     const { children, asChild, ...restProps } = props;
 
-    // Contexts
+    // Store
     const { theme } = useThemeStore();
 
     return (

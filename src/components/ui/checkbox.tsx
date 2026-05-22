@@ -30,7 +30,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
       ...restProps
     } = props;
 
-    // Contexts
+    // Store
     const { theme } = useThemeStore();
 
     // Constants

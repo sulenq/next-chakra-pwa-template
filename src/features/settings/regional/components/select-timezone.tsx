@@ -8,7 +8,7 @@ export const SelectTimezone = (props: SelectInputProps) => {
   // Props
   const { ...restProps } = props;
 
-  // Contexts
+  // Store
   const { t } = useLocaleStore();
 
   // Derived Values

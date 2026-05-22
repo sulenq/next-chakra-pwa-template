@@ -27,7 +27,7 @@ const LANGUAGES = [
 // -----------------------------------------------------------------
 
 export const LangMenu = (props: BtnProps) => {
-  // Contexts
+  // Store
   const { t, locale, setLocale } = useLocaleStore();
   const { theme } = useThemeStore();
 

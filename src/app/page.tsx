@@ -14,7 +14,7 @@ import { SimpleGrid } from "@chakra-ui/react";
 import { StackH, StackV } from "@/components/ui/stack";
 
 export default function Page() {
-  // Contexts
+  // Store
   const { t } = useLocaleStore();
   const { theme } = useThemeStore();
 

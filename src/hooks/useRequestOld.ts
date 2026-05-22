@@ -39,7 +39,7 @@ export const useRequest = <T = any>(props: UseRequestOptions) => {
     signinPath = "/",
   } = props;
 
-  // Contexts
+  // Store
   const { t } = useLocaleStore();
 
   // Refs

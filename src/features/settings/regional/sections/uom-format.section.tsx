@@ -27,7 +27,7 @@ import {
 // -----------------------------------------------------------------
 
 const WeightFormatSetting = () => {
-  // Contexts
+  // Store
   const { t } = useLocaleStore();
   const { UOM, setUOMUnit } = useUOMFormatStore();
 
@@ -55,7 +55,7 @@ const WeightFormatSetting = () => {
 // -----------------------------------------------------------------
 
 const HeightFormatSetting = () => {
-  // Contexts
+  // Store
   const { t } = useLocaleStore();
   const { UOM, setUOMUnit } = useUOMFormatStore();
 
@@ -83,7 +83,7 @@ const HeightFormatSetting = () => {
 // -----------------------------------------------------------------
 
 const LengthFormatSetting = () => {
-  // Contexts
+  // Store
   const { t } = useLocaleStore();
   const { UOM, setUOMUnit } = useUOMFormatStore();
 
@@ -111,7 +111,7 @@ const LengthFormatSetting = () => {
 // -----------------------------------------------------------------
 
 const DistanceFormatSetting = () => {
-  // Contexts
+  // Store
   const { t } = useLocaleStore();
   const { UOM, setUOMUnit } = useUOMFormatStore();
 
@@ -143,7 +143,7 @@ const DistanceFormatSetting = () => {
 // -----------------------------------------------------------------
 
 const AreaFormatSetting = () => {
-  // Contexts
+  // Store
   const { t } = useLocaleStore();
   const { UOM, setUOMUnit } = useUOMFormatStore();
 
@@ -171,7 +171,7 @@ const AreaFormatSetting = () => {
 // -----------------------------------------------------------------
 
 const VolumeFormatSetting = () => {
-  // Contexts
+  // Store
   const { t } = useLocaleStore();
   const { UOM, setUOMUnit } = useUOMFormatStore();
 
@@ -199,7 +199,7 @@ const VolumeFormatSetting = () => {
 // -----------------------------------------------------------------
 
 const TemperatureFormatSetting = () => {
-  // Contexts
+  // Store
   const { t } = useLocaleStore();
   const { UOM, setUOMUnit } = useUOMFormatStore();
 
@@ -231,7 +231,7 @@ const TemperatureFormatSetting = () => {
 // -----------------------------------------------------------------
 
 const SpeedFormatSetting = () => {
-  // Contexts
+  // Store
   const { t } = useLocaleStore();
   const { UOM, setUOMUnit } = useUOMFormatStore();
 
@@ -259,7 +259,7 @@ const SpeedFormatSetting = () => {
 // -----------------------------------------------------------------
 
 const EnergyFormatSetting = () => {
-  // Contexts
+  // Store
   const { t } = useLocaleStore();
   const { UOM, setUOMUnit } = useUOMFormatStore();
 
@@ -287,7 +287,7 @@ const EnergyFormatSetting = () => {
 // -----------------------------------------------------------------
 
 const PowerFormatSetting = () => {
-  // Contexts
+  // Store
   const { t } = useLocaleStore();
   const { UOM, setUOMUnit } = useUOMFormatStore();
 
@@ -315,7 +315,7 @@ const PowerFormatSetting = () => {
 // -----------------------------------------------------------------
 
 const PressureFormatSetting = () => {
-  // Contexts
+  // Store
   const { t } = useLocaleStore();
   const { UOM, setUOMUnit } = useUOMFormatStore();
 
@@ -347,7 +347,7 @@ const PressureFormatSetting = () => {
 // -----------------------------------------------------------------
 
 const DataFormatSetting = () => {
-  // Contexts
+  // Store
   const { t } = useLocaleStore();
   const { UOM, setUOMUnit } = useUOMFormatStore();
 
@@ -375,7 +375,7 @@ const DataFormatSetting = () => {
 // -----------------------------------------------------------------
 
 const DataRateFormatSetting = () => {
-  // Contexts
+  // Store
   const { t } = useLocaleStore();
   const { UOM, setUOMUnit } = useUOMFormatStore();
 
@@ -407,7 +407,7 @@ const DataRateFormatSetting = () => {
 // -----------------------------------------------------------------
 
 const AngleFormatSetting = () => {
-  // Contexts
+  // Store
   const { t } = useLocaleStore();
   const { UOM, setUOMUnit } = useUOMFormatStore();
 
@@ -435,8 +435,8 @@ const AngleFormatSetting = () => {
 // -----------------------------------------------------------------
 
 export const UOMFormatSection = () => {
-  // Contexts
-  // Contexts
+  // Store
+  // Store
   const { t } = useLocaleStore();
 
   return (

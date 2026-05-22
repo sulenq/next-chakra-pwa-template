@@ -78,7 +78,7 @@ const PageControl = (props: Props__PageControl) => {
   // Props
   const { utils, page, numPages, ...restProps } = props;
 
-  // Contexts
+  // Store
   const { t } = useLocaleStore();
   const { theme } = useThemeStore();
 
@@ -171,7 +171,7 @@ const ZoomControl = (props: Props__ZoomControl) => {
   // Props
   const { utils, scale, ...restProps } = props;
 
-  // Contexts
+  // Store
   const { t } = useLocaleStore();
 
   return (
@@ -277,7 +277,7 @@ export const PdfViewer = (props: Props__PdfViewer) => {
     ...restProps
   } = props;
 
-  // Contexts
+  // Store
   const { t } = useLocaleStore();
   const { theme } = useThemeStore();
 

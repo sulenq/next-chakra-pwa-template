@@ -8,7 +8,7 @@ import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-s
 import { interpolateString, pluckString } from "@/utils/string";
 
 export default function Page() {
-  // Contexts
+  // Store
   const { t } = useLocaleStore();
 
   // States

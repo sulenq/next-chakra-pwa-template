@@ -15,7 +15,7 @@ import { Box, Circle, SimpleGrid } from "@chakra-ui/react";
 // -----------------------------------------------------------------
 
 export const RoundedSection = () => {
-  // Contexts
+  // Store
   const { t } = useLocaleStore();
   const { theme, setTheme } = useThemeStore();
 

@@ -11,7 +11,7 @@ import {
 // -----------------------------------------------------------------
 
 export const Skeleton = (props: SkeletonProps) => {
-  // Contexts
+  // Store
   const { theme } = useThemeStore();
 
   return (

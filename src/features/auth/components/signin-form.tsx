@@ -30,7 +30,7 @@ import * as yup from "yup";
 // -----------------------------------------------------------------
 
 const Signedin = () => {
-  // Contexts
+  // Store
   const { t } = useLocaleStore();
   const { theme } = useThemeStore();
 
@@ -72,7 +72,7 @@ const BasicAuthForm = (props: any) => {
   // Props
   const { ...restProps } = props;
 
-  // Contexts
+  // Store
   const { t } = useLocaleStore();
   const { theme } = useThemeStore();
 
@@ -191,7 +191,7 @@ export const SigninForm = (props: StackProps) => {
   // Props
   const { ...restProps } = props;
 
-  // Contexts
+  // Store
   const { t } = useLocaleStore();
   const { theme } = useThemeStore();
   const accessTokenContext = useAuthStore((s) => s.accessTokenContext);

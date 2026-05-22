@@ -11,7 +11,7 @@ export default function FeedbackNotFound(props: FeedbackStateProps) {
   // Props
   const { children, ...restProps } = props;
 
-  // Contexts
+  // Store
   const { t } = useLocaleStore();
 
   return (

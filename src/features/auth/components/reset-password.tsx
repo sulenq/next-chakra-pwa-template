@@ -34,7 +34,7 @@ const Step1 = (props: any) => {
   // Props
   const { setStep, setEmail } = props;
 
-  // Contexts
+  // Store
   const { t } = useLocaleStore();
   const { theme } = useThemeStore();
 
@@ -119,7 +119,7 @@ const Step2 = (props: any) => {
   // Props
   const { email, setOtp, setStep } = props;
 
-  // Contexts
+  // Store
   const { t } = useLocaleStore();
   const { theme } = useThemeStore();
 
@@ -224,7 +224,7 @@ const Step3 = (props: any) => {
   // Props
   const { email, otp } = props;
 
-  // Contexts
+  // Store
   const { t } = useLocaleStore();
   const { theme } = useThemeStore();
 

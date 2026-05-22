@@ -76,7 +76,7 @@ const ToastIcon = (props: any) => {
   // Props
   const { type } = props;
 
-  // Contexts
+  // Store
   const { colorMode } = useColorMode();
 
   // States
@@ -150,7 +150,7 @@ const ToastActionTriggerComponent = (props: any) => {
   // Props
   const { toast, ...restProps } = props;
 
-  // Contexts
+  // Store
   const { theme } = useThemeStore();
 
   return (
@@ -174,7 +174,7 @@ const ToastComponent = (props: any) => {
   // Props
   const { toast, ...restProps } = props;
 
-  // Contexts
+  // Store
   const { theme } = useThemeStore();
 
   // States

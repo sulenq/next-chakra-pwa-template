@@ -10,7 +10,7 @@ import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-s
 import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
 
 export default function NotFoundRoute() {
-  // Contexts
+  // Store
   const { t } = useLocaleStore();
   const { theme } = useThemeStore();
 

@@ -6,7 +6,7 @@ import { Box, Center, Circle, StackProps } from "@chakra-ui/react";
 // -----------------------------------------------------------------
 
 export const RadialGlowBackground = (props: StackProps) => {
-  // Contexts
+  // Store
   const { theme } = useThemeStore();
 
   // Constants

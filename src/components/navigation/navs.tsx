@@ -72,7 +72,7 @@ export const VNavs = (props: VNavsProps) => {
     ...restProps
   } = props;
 
-  // Contexts
+  // Store
   const { t } = useLocaleStore();
   const { theme } = useThemeStore();
 

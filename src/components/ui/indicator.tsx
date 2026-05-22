@@ -6,7 +6,7 @@ import { Box, BoxProps, Circle, CircleProps } from "@chakra-ui/react";
 // -----------------------------------------------------------------
 
 export const LeftIndicator = (props: BoxProps) => {
-  // Contexts
+  // Store
   const { theme } = useThemeStore();
 
   return (
@@ -27,7 +27,7 @@ export const LeftIndicator = (props: BoxProps) => {
 // -----------------------------------------------------------------
 
 export const BottomIndicator = (props: BoxProps) => {
-  // Contexts
+  // Store
   const { theme } = useThemeStore();
 
   return (
@@ -51,7 +51,7 @@ export const DotIndicator = (props: CircleProps) => {
   // Props
   const { children, ...restProps } = props;
 
-  // Contexts
+  // Store
   const { theme } = useThemeStore();
 
   // SX

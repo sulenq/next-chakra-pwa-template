@@ -51,7 +51,7 @@ export const NavBreadcrumb = (props: any) => {
     ...restProps
   } = props;
 
-  // Contexts
+  // Store
   const { t } = useLocaleStore();
   const breadcrumbs = useBreadcrumbsStore((s) => s.breadcrumbs);
   const setBreadcrumbs = useBreadcrumbsStore((s) => s.setBreadcrumbs);
@@ -149,7 +149,7 @@ export const TopBar = (props: TopBarProps) => {
   // Props
   const { showDateTime = true, ...restProps } = props;
 
-  // Contexts
+  // Store
   const { theme } = useThemeStore();
   const { dimension } = useMainViewContext();
 
@@ -220,7 +220,7 @@ export const ConstrainedContainer = forwardRef<HTMLDivElement, StackProps>(
     // Props
     const { children, ...restProps } = props;
 
-    // Contexts
+    // Store
     const constrainedContainer = useConstrainedContainerStore(
       (s) => s.constrainedContainer,
     );
@@ -308,7 +308,7 @@ const MainViewContent = forwardRef<HTMLDivElement, StackProps>(
     // Props
     const { children, ...restProps } = props;
 
-    // Contexts
+    // Store
     const { isValidDimension } = useMainViewContext();
 
     return (
@@ -337,7 +337,7 @@ const MainViewHeader = (props: MainViewHeaderProps) => {
     ...restProps
   } = props;
 
-  // Contexts
+  // Store
   const { t } = useLocaleStore();
   const { theme } = useThemeStore();
 

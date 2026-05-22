@@ -55,7 +55,7 @@ export const DateRangePickerInput = (props: DateRangePickerInputProps) => {
     ...restProps
   } = props;
 
-  // Contexts
+  // Store
   const { t } = useLocaleStore();
   const { theme } = useThemeStore();
   const fc = useFieldContext();

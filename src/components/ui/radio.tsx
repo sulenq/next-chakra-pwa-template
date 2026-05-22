@@ -11,7 +11,7 @@ export const RadioItem = (props: RadioItemProps) => {
   // Props
   const { checked = false, ...restProps } = props;
 
-  // Contexts
+  // Store
   const { theme } = useThemeStore();
 
   return (

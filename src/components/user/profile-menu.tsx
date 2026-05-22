@@ -75,7 +75,7 @@ export const ProfileMenu = (props: ProfileMenuProps) => {
   // Props
   const { handleClose, ...restProps } = props;
 
-  // Contexts
+  // Store
   const { t } = useLocaleStore();
   const { theme } = useThemeStore();
 
@@ -233,7 +233,7 @@ export const ProfileMenuTrigger = (props: ProfileMenuTriggerProps) => {
   // Props
   const { popoverRootProps, ...restProps } = props;
 
-  // Contexts
+  // Store
   const { theme } = useThemeStore();
 
   // States

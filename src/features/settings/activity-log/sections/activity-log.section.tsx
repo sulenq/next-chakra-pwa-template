@@ -24,7 +24,7 @@ import { useState } from "react";
 // -----------------------------------------------------------------
 
 export const ActivityLogSection = () => {
-  // Contexts
+  // Store
   const { t } = useLocaleStore();
 
   // States

@@ -32,7 +32,7 @@ export const SimpleDisclosure = (props: SimpleDisclosureProps) => {
     ...restProps
   } = props;
 
-  // Contexts
+  // Store
   const { theme } = useThemeStore();
 
   // Hooks

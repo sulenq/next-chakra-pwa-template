@@ -63,7 +63,7 @@ const Delete = (props: any) => {
   // Props
   const { deleteIds, clearSelectedRows, disabled, routeTitle } = props;
 
-  // Contexts
+  // Store
   const { t } = useLocaleStore();
   const setRt = useRenderTrigger((s) => s.setRt);
 

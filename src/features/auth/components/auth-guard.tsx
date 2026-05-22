@@ -10,7 +10,7 @@ export function AuthGuard({ children }: { children: React.ReactNode }) {
   const ENABLE_AUTH_GUARD =
     process.env.NEXT_PUBLIC_ENABLE_AUTH_GUARD === "true";
 
-  // Contexts
+  // Store
   const accessToken = useAuthStore((s) => s.accessTokenContext);
   const setRole = useAuthStore((s) => s.setRole);
   const setPermissions = useAuthStore((s) => s.setPermissions);

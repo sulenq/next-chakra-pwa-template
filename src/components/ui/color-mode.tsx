@@ -67,7 +67,7 @@ export const ColorModeButton = forwardRef<
   const { t } = useLocaleStore();
   const { toggleColorMode } = useColorMode();
 
-  // Contexts
+  // Store
   const { colorMode } = useColorMode();
   // const { ADM } = useADMStore();
 

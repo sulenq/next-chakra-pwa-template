@@ -20,7 +20,7 @@ import * as yup from "yup";
 // -----------------------------------------------------------------
 
 export const PersonalInformationSection = (props: ItemRootProps) => {
-  // Contexts
+  // Store
   const { t } = useLocaleStore();
   const { theme } = useThemeStore();
   const { isSmContainer } = useMainViewContext();

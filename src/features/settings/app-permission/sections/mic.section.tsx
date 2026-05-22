@@ -21,7 +21,7 @@ import { useEffect, useRef, useState } from "react";
 // -----------------------------------------------------------------
 
 const MicTester = () => {
-  // Contexts
+  // Store
   const { t } = useLocaleStore();
   const { theme } = useThemeStore();
   const { micPermissionsStatus, setMicPermissionsStatus } =
@@ -144,7 +144,7 @@ const MicTester = () => {
 // -----------------------------------------------------------------
 
 const MicPermissionSetting = () => {
-  // Contexts
+  // Store
   const { t } = useLocaleStore();
   const { theme } = useThemeStore();
   const micPermissionsStatus = useMicPermissionStore(
@@ -238,7 +238,7 @@ const MicPermissionSetting = () => {
 // -----------------------------------------------------------------
 
 const MicTesterSetting = () => {
-  // Contexts
+  // Store
   const { t } = useLocaleStore();
   const micPermissionsStatus = useMicPermissionStore(
     (s) => s.micPermissionsStatus,
@@ -262,7 +262,7 @@ const MicTesterSetting = () => {
 // -----------------------------------------------------------------
 
 export const MicrophoneSection = () => {
-  // Contexts
+  // Store
   const { t } = useLocaleStore();
   const micPermissionsStatus = useMicPermissionStore(
     (s) => s.micPermissionsStatus,

@@ -41,7 +41,7 @@ export const useFetchData = <T = any>(props: UseFetchDataOptions<T>) => {
     dataResource = true,
   } = props;
 
-  // Contexts
+  // Store
   const setLoadingBar = useLoadingBarStore((s) => s.setLoadingBar);
 
   // Refs

@@ -15,7 +15,7 @@ import { useFormik } from "formik";
 import * as yup from "yup";
 
 export const APIKeySection = () => {
-  // Contexts
+  // Store
   const { t } = useLocaleStore();
   const { theme } = useThemeStore();
   const setRt = useRenderTrigger((s) => s.setRt);

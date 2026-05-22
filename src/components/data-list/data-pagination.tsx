@@ -19,7 +19,7 @@ export const Pagination = (props: PaginationTableDataProps) => {
   // Props
   const { page, setPage, totalPage } = props;
 
-  // Contexts
+  // Store
   const { t } = useLocaleStore();
 
   // States

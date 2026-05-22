@@ -63,7 +63,7 @@ const MobileLayout = (props: any) => {
   // Props
   const { children, ...restProps } = props;
 
-  // Contexts
+  // Store
   const { t } = useLocaleStore();
 
   // Hooks
@@ -321,7 +321,7 @@ const DesktopLayout = (props: any) => {
   // Props
   const { children, ...restProps } = props;
 
-  // Contexts
+  // Store
   const { t } = useLocaleStore();
   const { theme } = useThemeStore();
   const isNavsExpanded = useNavsStore((s) => s.isNavsExpanded);

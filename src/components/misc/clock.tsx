@@ -18,7 +18,7 @@ export const Clock = (props: ClockPropsProps) => {
   // Props
   const { showSeconds = false, showAbbr = true, ...restProps } = props;
 
-  // Contexts
+  // Store
   const tz = useTimezoneStore((s) => s.timezone);
   const tzKey = tz?.key;
 

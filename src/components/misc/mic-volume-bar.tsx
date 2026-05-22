@@ -9,7 +9,7 @@ export const MicVolumeBar = ({
 }: {
   analyser: AnalyserNode | null;
 }) => {
-  // Contexts
+  // Store
   const { theme } = useThemeStore();
 
   // States, Refs

@@ -20,7 +20,7 @@ import { useEffect, useState } from "react";
 // -----------------------------------------------------------------
 
 const DateFormatSetting = () => {
-  // Contexts
+  // Store
   const { t } = useLocaleStore();
   const { dateFormat: dateFormatContext, setDateFormat: setDateFormatContext } =
     useDateFormatStore();
@@ -56,7 +56,7 @@ const DateFormatSetting = () => {
 // -----------------------------------------------------------------
 
 const TimeFormatSetting = () => {
-  // Contexts
+  // Store
   const { t } = useLocaleStore();
   const { timeFormat: timeFormatContext, setTimeFormat: setTimeFormatContext } =
     useTimeFormatStore();
@@ -91,7 +91,7 @@ const TimeFormatSetting = () => {
 // -----------------------------------------------------------------
 
 const AutoTimezomeSetting = () => {
-  // Contexts
+  // Store
   const { t } = useLocaleStore();
   const { isAuto, enableAuto, disableAuto } = useTimezoneStore();
 
@@ -120,7 +120,7 @@ const AutoTimezomeSetting = () => {
 // -----------------------------------------------------------------
 
 const TimezoneSetting = () => {
-  // Contexts
+  // Store
   const { t } = useLocaleStore();
   const {
     isAuto,
@@ -172,7 +172,7 @@ const TimezoneSetting = () => {
 // -----------------------------------------------------------------
 
 export const DateTimeSection = () => {
-  // Contexts
+  // Store
   const { t } = useLocaleStore();
 
   return (
