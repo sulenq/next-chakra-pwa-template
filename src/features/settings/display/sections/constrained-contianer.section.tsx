@@ -43,6 +43,8 @@ const ActiveSetting = () => {
   );
 };
 
+// -----------------------------------------------------------------
+
 const MaxWSetting = () => {
   // Contexts
   const { t } = useLocaleContext();
