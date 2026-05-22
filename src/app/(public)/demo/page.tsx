@@ -41,7 +41,7 @@ import { MENU_ICON_BOX_SIZE } from "@/constants/styles";
 import useRenderTrigger from "@/stores/use-render-trigger";
 import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
 import { SelectTimezone } from "@/features/settings/regional/components/select-timezone";
-import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
+import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
 import { useRequest } from "@/hooks/useRequestOld";
 import {
   BatchOptionsTableOptionGenerator,
@@ -64,7 +64,7 @@ const Delete = (props: any) => {
   const { deleteIds, clearSelectedRows, disabled, routeTitle } = props;
 
   // Contexts
-  const { t } = useLocaleContext();
+  const { t } = useLocaleStore();
   const setRt = useRenderTrigger((s) => s.setRt);
 
   // Hooks

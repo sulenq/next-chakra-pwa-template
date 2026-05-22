@@ -10,9 +10,9 @@ import { toaster } from "@/components/ui/toaster";
 import { Item } from "@/components/container/item";
 import { SettingItemContainer } from "@/components/container/settings-shell";
 import { R_SPACING_MD } from "@/constants/styles";
-import { useCameraPermissionContext } from "@/features/settings/app-permission/contexts/use-camera-permission-context";
+import { useCameraPermissionStore } from "@/features/settings/app-permission/stores/use-camera-permission-stores";
 import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
-import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
+import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
 import { usePopDisclosure } from "@/hooks/use-pop-disclosure";
 import { startCamera, stopCamera } from "@/utils/camera";
 import { disclosureId } from "@/utils/disclosure";
@@ -23,10 +23,10 @@ import { useEffect, useRef, useState } from "react";
 
 const CameraTester = () => {
   // Contexts
-  const { t } = useLocaleContext();
+  const { t } = useLocaleStore();
   const { theme } = useThemeStore();
   const { cameraPermissionsStatus, setCameraPermissionsStatus } =
-    useCameraPermissionContext();
+    useCameraPermissionStore();
 
   // Refs
   const videoRef = useRef<HTMLVideoElement | null>(null);
@@ -148,12 +148,12 @@ const CameraTester = () => {
 
 const CameraPermissionSetting = () => {
   // Contexts
-  const { t } = useLocaleContext();
+  const { t } = useLocaleStore();
   const { theme } = useThemeStore();
-  const cameraPermissionsStatus = useCameraPermissionContext(
+  const cameraPermissionsStatus = useCameraPermissionStore(
     (s) => s.cameraPermissionsStatus,
   );
-  const setCameraPermissionsStatus = useCameraPermissionContext(
+  const setCameraPermissionsStatus = useCameraPermissionStore(
     (s) => s.setCameraPermissionsStatus,
   );
 
@@ -242,8 +242,8 @@ const CameraPermissionSetting = () => {
 
 const CameraTesterSetting = () => {
   // Contexts
-  const { t } = useLocaleContext();
-  const cameraPermissionsStatus = useCameraPermissionContext(
+  const { t } = useLocaleStore();
+  const cameraPermissionsStatus = useCameraPermissionStore(
     (s) => s.cameraPermissionsStatus,
   );
 
@@ -266,8 +266,8 @@ const CameraTesterSetting = () => {
 
 export const CameraSection = () => {
   // Contexts
-  const { t } = useLocaleContext();
-  const cameraPermissionsStatus = useCameraPermissionContext(
+  const { t } = useLocaleStore();
+  const cameraPermissionsStatus = useCameraPermissionStore(
     (s) => s.cameraPermissionsStatus,
   );
 

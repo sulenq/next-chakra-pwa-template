@@ -4,7 +4,7 @@ import { Menu } from "@/components/ui/menu";
 import { Tooltip } from "@/components/ui/tooltip";
 import { AppIconLucide } from "@/components/branding/app-icon";
 import { Confirmation } from "@/components/overlays/confirmation";
-import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
+import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
 import { TrashIcon } from "lucide-react";
 import { useDeleteLayanan } from "../hooks/use-layanan";
 import { usePathname } from "next/navigation";
@@ -18,7 +18,7 @@ interface Props {
 
 export const LayananDelete = ({ ids, clearSelectedRows, disabled }: Props) => {
   // Contexts
-  const { t } = useLocaleContext();
+  const { t } = useLocaleStore();
 
   // Hooks
   const pathname = usePathname();

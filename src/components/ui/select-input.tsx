@@ -13,7 +13,7 @@ import { AppIconLucide } from "@/components/branding/app-icon";
 import FeedbackNoData from "@/components/feedback/feedback-no-data";
 import FeedbackNotFound from "@/components/feedback/feedback-not-found";
 import FeedbackRetry from "@/components/feedback/feedback-retry";
-import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
+import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
 import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
 import { usePopDisclosure } from "@/hooks/use-pop-disclosure";
 import {
@@ -46,7 +46,7 @@ const SelectOptions = (props: SelectOptionsProps) => {
     props;
 
   // Contexts
-  const { t } = useLocaleContext();
+  const { t } = useLocaleStore();
   const { theme } = useThemeStore();
 
   // States
@@ -208,7 +208,7 @@ export const SelectInput = (props: SelectInputProps) => {
   } = props;
 
   // Contexts
-  const { t } = useLocaleContext();
+  const { t } = useLocaleStore();
   const { theme } = useThemeStore();
   const fc = useFieldContext();
 

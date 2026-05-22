@@ -4,7 +4,7 @@ import { P } from "@/components/ui/p";
 import { RadioItem } from "@/components/ui/radio";
 import { StackH } from "@/components/ui/stack";
 import { AppIconLucide } from "@/components/branding/app-icon";
-import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
+import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
 import { ChevronDownIcon } from "lucide-react";
 
 // -----------------------------------------------------------------
@@ -20,7 +20,7 @@ export const Limitation = (props: LimitationTableDataProps) => {
   const { limit, setLimit, limitOptions: limitOptionsProps } = props;
 
   // Contexts
-  const { t } = useLocaleContext();
+  const { t } = useLocaleStore();
 
   // States
   const limitOptions = limitOptionsProps || [15, 30, 50, 100];

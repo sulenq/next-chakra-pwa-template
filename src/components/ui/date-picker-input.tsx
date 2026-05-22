@@ -15,7 +15,7 @@ import {
   Period,
 } from "@/types/global.types";
 import { getWeekdayNames } from "@/constants/weekdays";
-import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
+import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
 import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
 import { usePopDisclosure } from "@/hooks/use-pop-disclosure";
 import { isEmptyArray } from "@/utils/array";
@@ -139,7 +139,7 @@ export const DatePicker = (props: DatePickerProps) => {
   const { period, selected, setSelected, multiple, ...restProps } = props;
 
   // Contexts
-  const { t } = useLocaleContext();
+  const { t } = useLocaleStore();
   const { theme } = useThemeStore();
 
   // Derived States
@@ -283,7 +283,7 @@ const SelectedDateList = (props: SelectedDateListProps) => {
   const { id, selected, formattedSelected } = props;
 
   // Contexts
-  const { t } = useLocaleContext();
+  const { t } = useLocaleStore();
   const { theme } = useThemeStore();
 
   // Hooks
@@ -394,7 +394,7 @@ export const DatePickerInput = (props: DatePickerInputProps) => {
   } = props;
 
   // Contexts
-  const { t } = useLocaleContext();
+  const { t } = useLocaleStore();
   const { theme } = useThemeStore();
   const fc = useFieldContext();
 

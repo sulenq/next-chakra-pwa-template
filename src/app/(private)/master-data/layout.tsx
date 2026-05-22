@@ -11,7 +11,7 @@ import { VNavs } from "@/components/navigation/navs";
 import { APP } from "@/constants/_meta";
 import { OTHER_PRIVATE_NAV_GROUPS } from "@/constants/navs";
 import { GAP, R_SPACING_MD } from "@/constants/styles";
-import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
+import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
 import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
 import { formatAbsDate } from "@/utils/formatter";
 import { usePathname } from "next/navigation";
@@ -31,7 +31,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   const { isSmContainer } = useMainViewContext();
 
   // Contexts
-  const { t } = useLocaleContext();
+  const { t } = useLocaleStore();
   const { theme } = useThemeStore();
 
   // Derived Values

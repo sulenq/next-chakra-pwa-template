@@ -7,7 +7,7 @@ import { StackH, StackV } from "@/components/ui/stack";
 import { APP } from "@/constants/_meta";
 import { GAP, R_SPACING_MD } from "@/constants/styles";
 import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
-import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
+import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
 import { NavGroup } from "@/types/global.types";
 import { formatAbsDate } from "@/utils/formatter";
 import { StackProps } from "@chakra-ui/react";
@@ -31,7 +31,7 @@ export const WithVNavsLayout = (props: WithVNavsLayoutProps) => {
   const { isSmContainer } = useMainViewContext();
 
   // Contexts
-  const { t } = useLocaleContext();
+  const { t } = useLocaleStore();
   const { theme } = useThemeStore();
 
   // Derived Values

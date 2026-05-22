@@ -2,7 +2,7 @@
 
 import { DatePickerInput } from "@/components/ui/date-picker-input";
 import { ButtonSize, DisclosureSizes } from "@/types/global.types";
-import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
+import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
 import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
 import { capitalize } from "@/utils/string";
 import { Group, GroupProps, useFieldContext } from "@chakra-ui/react";
@@ -56,7 +56,7 @@ export const DateRangePickerInput = (props: DateRangePickerInputProps) => {
   } = props;
 
   // Contexts
-  const { t } = useLocaleContext();
+  const { t } = useLocaleStore();
   const { theme } = useThemeStore();
   const fc = useFieldContext();
 

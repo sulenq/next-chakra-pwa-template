@@ -6,7 +6,7 @@ import { P } from "@/components/ui/p";
 import { BrandWatermark } from "@/components/branding/brand-watermark";
 import { Logo } from "@/components/branding/logo";
 import { AnimatedBlobBackground } from "@/components/overlays/background";
-import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
+import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
 import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
 import { SigninForm } from "@/features/auth/components/signin-form";
 import { useIsSmScreenWidth } from "@/hooks/use-is-sm-screen-width";
@@ -15,7 +15,7 @@ import { StackH, StackV } from "@/components/ui/stack";
 
 export default function Page() {
   // Contexts
-  const { t } = useLocaleContext();
+  const { t } = useLocaleStore();
   const { theme } = useThemeStore();
 
   // Hooks

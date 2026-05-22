@@ -1,6 +1,6 @@
 import { toaster } from "@/components/ui/toaster";
 import { Req, RequestState } from "@/types/global.types";
-import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
+import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
 import { clearAccessToken, clearUserData } from "@/utils/auth";
 import { request } from "@/utils/request";
 import { useRouter } from "next/navigation";
@@ -40,7 +40,7 @@ export const useRequest = <T = any>(props: UseRequestOptions) => {
   } = props;
 
   // Contexts
-  const { t } = useLocaleContext();
+  const { t } = useLocaleStore();
 
   // Refs
   const abortControllerRef = useRef<AbortController | null>(null);

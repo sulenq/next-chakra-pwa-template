@@ -4,6 +4,7 @@ type RenderTriggerStore = {
   rt: boolean;
   setRt: (rt: boolean | ((prev: boolean) => boolean)) => void;
 };
+
 const useRenderTrigger = create<RenderTriggerStore>((set, get) => ({
   rt: false,
   setRt: (rt) => {

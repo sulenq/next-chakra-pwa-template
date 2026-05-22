@@ -421,7 +421,7 @@ export const formatDuration = (
 // ) => {
 //   if (value === null || value === undefined || value === "") return "-";
 
-//   const key = useUOMFormat.getState().UOM;
+//   const key = useUOMFormatStore.getState().UOM;
 //   const format = UOM_FORMATS.find((f) => f.key === key) ?? UOM_FORMATS[0];
 //   const unitLabel = format.units[unit];
 

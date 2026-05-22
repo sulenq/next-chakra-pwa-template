@@ -1,6 +1,6 @@
 import { SelectInput, SelectInputProps } from "@/components/ui/select-input";
 import { DATE_FORMATS } from "@/constants/date-formats";
-import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
+import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
 
 // -----------------------------------------------------------------
 
@@ -9,7 +9,7 @@ export const SelectDateFormat = (props: SelectInputProps) => {
   const { ...restProps } = props;
 
   // Contexts
-  const { t } = useLocaleContext();
+  const { t } = useLocaleStore();
 
   // Derived Values
   const options = DATE_FORMATS.map((dateFormat) => {

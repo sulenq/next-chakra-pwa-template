@@ -7,7 +7,7 @@ import { HelperText } from "@/components/ui/helper-text";
 import { PasswordInput } from "@/components/ui/password-input";
 import { StringInput } from "@/components/ui/string-input";
 import { BackButton } from "@/components/navigation/back-button";
-import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
+import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
 import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
 import { useRequest } from "@/hooks/useRequestOld";
 import { back } from "@/utils/client";
@@ -35,7 +35,7 @@ const Step1 = (props: any) => {
   const { setStep, setEmail } = props;
 
   // Contexts
-  const { t } = useLocaleContext();
+  const { t } = useLocaleStore();
   const { theme } = useThemeStore();
 
   // Hooks
@@ -120,7 +120,7 @@ const Step2 = (props: any) => {
   const { email, setOtp, setStep } = props;
 
   // Contexts
-  const { t } = useLocaleContext();
+  const { t } = useLocaleStore();
   const { theme } = useThemeStore();
 
   // Hooks
@@ -225,7 +225,7 @@ const Step3 = (props: any) => {
   const { email, otp } = props;
 
   // Contexts
-  const { t } = useLocaleContext();
+  const { t } = useLocaleStore();
   const { theme } = useThemeStore();
 
   // Hooks

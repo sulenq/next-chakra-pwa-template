@@ -4,7 +4,10 @@ import en from "@/locales/en";
 import id from "@/locales/id";
 import { LocaleKey, Translations } from "@/types/global.types";
 
+// -----------------------------------------------------------------
+
 const STORAGE_KEY = "locale";
+
 const DEFAULT: keyof typeof translations = "en";
 
 export const translations = {
@@ -17,7 +20,7 @@ type LocaleStore = {
   locale: LocaleKey;
   setLocale: (newState: LocaleKey) => void;
 };
-export const useLocaleContext = create<LocaleStore>((set) => {
+export const useLocaleStore = create<LocaleStore>((set) => {
   const getStoredLang = (): LocaleKey => {
     try {
       const stored = getStorage(STORAGE_KEY);

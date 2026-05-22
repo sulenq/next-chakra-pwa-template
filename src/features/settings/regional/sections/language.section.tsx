@@ -6,7 +6,7 @@ import { StackH } from "@/components/ui/stack";
 import { Item } from "@/components/container/item";
 import { LANGUAGES } from "@/constants/languages";
 import { COMMON_NAV_COLOR, R_SPACING_MD } from "@/constants/styles";
-import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
+import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
 import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
 import { type LocaleOption } from "@/types/global.types";
 import { chakra, Text } from "@chakra-ui/react";
@@ -16,7 +16,7 @@ import { chakra, Text } from "@chakra-ui/react";
 export const LanguageSection = () => {
   // Contexts
   const { theme } = useThemeStore();
-  const { t, locale, setLocale } = useLocaleContext();
+  const { t, locale, setLocale } = useLocaleStore();
 
   return (
     <Item.Root px={R_SPACING_MD}>

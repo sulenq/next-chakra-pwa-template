@@ -8,7 +8,7 @@ import { FileItem } from "@/components/ui/file-item";
 import { LucideIcon } from "@/components/misc/icon";
 import { ImgViewer } from "@/components/media/img-viewer";
 import { HScroll } from "@/components/container/h-scroll";
-import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
+import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
 import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
 import { StorageFile } from "@/types/global.types";
 import { isEmptyArray } from "@/utils/array";
@@ -31,7 +31,7 @@ export const ImgInput = (props: FileInputProps) => {
   } = props;
 
   // Contexts
-  const { t } = useLocaleContext();
+  const { t } = useLocaleStore();
   const { theme } = useThemeStore();
   const fc = useFieldContext();
 

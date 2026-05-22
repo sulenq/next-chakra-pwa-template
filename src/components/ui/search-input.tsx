@@ -5,7 +5,7 @@ import { StringInput, StringInputProps } from "@/components/ui/string-input";
 import { Tooltip } from "@/components/ui/tooltip";
 import { LucideIcon } from "@/components/misc/icon";
 import { BASE_ICON_BOX_SIZE, MAIN_INPUT_SIZE } from "@/constants/styles";
-import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
+import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
 import { useDebounced } from "@/hooks/use-debounced";
 import { InputSize, InputVariant } from "@/types/global.types";
 import { Icon, IconProps, InputGroup, InputGroupProps } from "@chakra-ui/react";
@@ -59,7 +59,7 @@ export const SearchInput = (props: SearchInputProps) => {
   } = props;
 
   // Contexts
-  const { t } = useLocaleContext();
+  const { t } = useLocaleStore();
 
   // Hooks
   const searchParams = useSearchParams();

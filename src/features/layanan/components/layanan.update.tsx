@@ -8,7 +8,7 @@ import { TextareaInput } from "@/components/ui/textarea-input";
 import { Tooltip } from "@/components/ui/tooltip";
 import { AppIconLucide } from "@/components/branding/app-icon";
 import { SimpleDisclosure } from "@/components/overlays/simple-disclosure";
-import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
+import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
 import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
 import { usePopDisclosure } from "@/hooks/use-pop-disclosure";
 import { InputGroup } from "@chakra-ui/react";
@@ -27,7 +27,7 @@ interface Props {
 
 export const LayananUpdate = ({ item }: Props) => {
   // Contexts
-  const { t } = useLocaleContext();
+  const { t } = useLocaleStore();
   const { theme } = useThemeStore();
 
   // Hooks

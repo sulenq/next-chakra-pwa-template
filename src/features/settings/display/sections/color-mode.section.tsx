@@ -11,7 +11,7 @@ import { Item } from "@/components/container/item";
 import { SettingItemContainer } from "@/components/container/settings-shell";
 import { R_SPACING_MD } from "@/constants/styles";
 import useADMStore from "@/features/settings/display/stores/use-adm-store";
-import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
+import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
 import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
 import { formatTime } from "@/utils/formatter";
 import { interpolateString } from "@/utils/string";
@@ -170,7 +170,7 @@ const ColorModeSetting = () => {
 
 const ADMSetting = () => {
   // Contexts
-  const { t } = useLocaleContext();
+  const { t } = useLocaleStore();
   const { ADM, setADM } = useADMStore();
 
   return (
@@ -199,7 +199,7 @@ const ADMSetting = () => {
 
 const ResetColorModeSetting = () => {
   // Contexts
-  const { t } = useLocaleContext();
+  const { t } = useLocaleStore();
   const { setColorMode } = useColorMode();
 
   return (

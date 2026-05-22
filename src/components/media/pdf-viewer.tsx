@@ -10,7 +10,7 @@ import { AppIconLucide } from "@/components/branding/app-icon";
 import FeedbackState from "@/components/feedback/feedback-state";
 import { HScroll } from "@/components/container/h-scroll";
 import { GAP } from "@/constants/styles";
-import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
+import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
 import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
 import { Box, Icon, StackProps } from "@chakra-ui/react";
 import {
@@ -87,7 +87,7 @@ const PageControl = (props: PageControlProps) => {
   const { utils, page, numPages, ...restProps } = props;
 
   // Contexts
-  const { t } = useLocaleContext();
+  const { t } = useLocaleStore();
 
   // States
   const [gotoPage, setGotoPage] = useState<number | null>(page);
@@ -195,7 +195,7 @@ const ZoomControl = (props: ZoomControlProps) => {
   const { utils, scale, ...restProps } = props;
 
   // Contexts
-  const { t } = useLocaleContext();
+  const { t } = useLocaleStore();
 
   return (
     <StackH align={"center"} gap={GAP} {...restProps}>
@@ -297,7 +297,7 @@ export const PdfViewer = (props: PdfViewerProps) => {
   const { fileUrl, fileName, ...restProps } = props;
 
   // Contexts
-  const { t } = useLocaleContext();
+  const { t } = useLocaleStore();
   const { theme } = useThemeStore();
 
   // Refs

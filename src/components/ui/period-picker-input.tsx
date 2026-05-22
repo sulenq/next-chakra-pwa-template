@@ -10,7 +10,7 @@ import { Tooltip } from "@/components/ui/tooltip";
 import { AppIconLucide } from "@/components/branding/app-icon";
 import { DotIndicator } from "@/components/ui/indicator";
 import { getMonthNames } from "@/constants/months";
-import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
+import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
 import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
 import { usePopDisclosure } from "@/hooks/use-pop-disclosure";
 import { ButtonVariant, DisclosureSizes, Period } from "@/types/global.types";
@@ -63,7 +63,7 @@ export const PeriodPickerInput = (props: PeriodPickerInputProps) => {
   } = props;
 
   // Contexts
-  const { t } = useLocaleContext();
+  const { t } = useLocaleStore();
   const { theme } = useThemeStore();
   const fc = useFieldContext();
 

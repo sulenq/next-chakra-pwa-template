@@ -10,9 +10,9 @@ import { Item } from "@/components/container/item";
 import { MicVolumeBar } from "@/components/misc/mic-volume-bar";
 import { SettingItemContainer } from "@/components/container/settings-shell";
 import { R_SPACING_MD } from "@/constants/styles";
-import { useMicPermissionContext } from "@/features/settings/app-permission/contexts/use-mic-permission-context";
+import { useMicPermissionStore } from "@/features/settings/app-permission/stores/use-mic-permission-store";
 import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
-import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
+import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
 import { usePopDisclosure } from "@/hooks/use-pop-disclosure";
 import { disclosureId } from "@/utils/disclosure";
 import { Badge } from "@chakra-ui/react";
@@ -22,10 +22,10 @@ import { useEffect, useRef, useState } from "react";
 
 const MicTester = () => {
   // Contexts
-  const { t } = useLocaleContext();
+  const { t } = useLocaleStore();
   const { theme } = useThemeStore();
   const { micPermissionsStatus, setMicPermissionsStatus } =
-    useMicPermissionContext();
+    useMicPermissionStore();
 
   // Refs
   const streamRef = useRef<MediaStream | null>(null);
@@ -145,12 +145,12 @@ const MicTester = () => {
 
 const MicPermissionSetting = () => {
   // Contexts
-  const { t } = useLocaleContext();
+  const { t } = useLocaleStore();
   const { theme } = useThemeStore();
-  const micPermissionsStatus = useMicPermissionContext(
+  const micPermissionsStatus = useMicPermissionStore(
     (s) => s.micPermissionsStatus,
   );
-  const setMicPermissionsStatus = useMicPermissionContext(
+  const setMicPermissionsStatus = useMicPermissionStore(
     (s) => s.setMicPermissionsStatus,
   );
 
@@ -239,8 +239,8 @@ const MicPermissionSetting = () => {
 
 const MicTesterSetting = () => {
   // Contexts
-  const { t } = useLocaleContext();
-  const micPermissionsStatus = useMicPermissionContext(
+  const { t } = useLocaleStore();
+  const micPermissionsStatus = useMicPermissionStore(
     (s) => s.micPermissionsStatus,
   );
 
@@ -263,8 +263,8 @@ const MicTesterSetting = () => {
 
 export const MicrophoneSection = () => {
   // Contexts
-  const { t } = useLocaleContext();
-  const micPermissionsStatus = useMicPermissionContext(
+  const { t } = useLocaleStore();
+  const micPermissionsStatus = useMicPermissionStore(
     (s) => s.micPermissionsStatus,
   );
 

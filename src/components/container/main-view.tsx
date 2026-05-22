@@ -17,8 +17,8 @@ import {
   SM_SCREEN_BREAKPOINT,
   TOP_BAR_H,
 } from "@/constants/styles";
-import { useBreadcrumbsContext } from "@/stores/use-breadcrumbs-context";
-import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
+import { useBreadcrumbsStore } from "@/stores/use-breadcrumbs-store";
+import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
 import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
 import { useContainerDimension } from "@/hooks/use-container-dimenssion";
 import { useMergedRefs } from "@/hooks/use-merge-refs";
@@ -52,9 +52,9 @@ export const NavBreadcrumb = (props: any) => {
   } = props;
 
   // Contexts
-  const { t } = useLocaleContext();
-  const breadcrumbs = useBreadcrumbsContext((s) => s.breadcrumbs);
-  const setBreadcrumbs = useBreadcrumbsContext((s) => s.setBreadcrumbs);
+  const { t } = useLocaleStore();
+  const breadcrumbs = useBreadcrumbsStore((s) => s.breadcrumbs);
+  const setBreadcrumbs = useBreadcrumbsStore((s) => s.setBreadcrumbs);
 
   // Hooks
   const pathname = usePathname();
@@ -338,7 +338,7 @@ const MainViewHeader = (props: MainViewHeaderProps) => {
   } = props;
 
   // Contexts
-  const { t } = useLocaleContext();
+  const { t } = useLocaleStore();
   const { theme } = useThemeStore();
 
   // Hooks

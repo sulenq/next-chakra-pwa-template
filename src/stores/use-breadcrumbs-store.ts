@@ -11,7 +11,7 @@ interface BreadcrumbsStore {
   setBreadcrumbs: (partial: Partial<BreadcrumbsState>) => void;
 }
 
-export const useBreadcrumbsContext = create<BreadcrumbsStore>((set) => ({
+export const useBreadcrumbsStore = create<BreadcrumbsStore>((set) => ({
   breadcrumbs: {
     backPath: undefined,
     activeNavs: [],

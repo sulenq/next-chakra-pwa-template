@@ -3,7 +3,10 @@ import { DATE_FORMATS } from "@/constants/date-formats";
 import { getStorage, setStorage } from "@/utils/client";
 import { create } from "zustand";
 
+// -----------------------------------------------------------------
+
 const STORAGE_KEY = "date-format";
+
 const DEFAULT: SelectOption = {
   id: "dmy",
   label: DATE_FORMATS.find((f) => f.key === "dmy")?.label,
@@ -14,7 +17,8 @@ interface DateFormatStore {
   dateFormat: SelectOption;
   setDateFormat: (newState: SelectOption) => void;
 }
-const useDateFormat = create<DateFormatStore>((set) => {
+
+const useDateFormatStore = create<DateFormatStore>((set) => {
   const getStoredFormat = (): SelectOption => {
     try {
       const stored = getStorage(STORAGE_KEY);
@@ -50,4 +54,4 @@ const useDateFormat = create<DateFormatStore>((set) => {
   };
 });
 
-export default useDateFormat;
+export default useDateFormatStore;

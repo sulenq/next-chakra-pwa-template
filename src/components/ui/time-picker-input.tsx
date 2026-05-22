@@ -6,7 +6,7 @@ import { StringInput } from "@/components/ui/string-input";
 import { Tooltip } from "@/components/ui/tooltip";
 import { LucideIcon } from "@/components/misc/icon";
 import { BASE_ICON_BOX_SIZE } from "@/constants/styles";
-import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
+import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
 import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
 import { usePopDisclosure } from "@/hooks/use-pop-disclosure";
 import { useScreen } from "@/hooks/use-screen";
@@ -68,7 +68,7 @@ export const TimePickerInput = (props: TimePickerInputProps) => {
   // Contexts
   const fc = useFieldContext();
   const { theme } = useThemeStore();
-  const { t } = useLocaleContext();
+  const { t } = useLocaleStore();
 
   // Hooks
   const { open, onOpen } = usePopDisclosure(

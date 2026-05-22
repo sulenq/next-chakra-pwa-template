@@ -9,7 +9,7 @@ type NavsStore = {
   toggleNavsExpanded: () => void;
 };
 
-export const useNavs = create<NavsStore>()(
+export const useNavsStore = create<NavsStore>()(
   persist(
     (set) => ({
       isNavsExpanded: true,

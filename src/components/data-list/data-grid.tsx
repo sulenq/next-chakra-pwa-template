@@ -23,7 +23,7 @@ import {
   R_SPACING_MD,
 } from "@/constants/styles";
 import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
-import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
+import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
 import { usePopDisclosure } from "@/hooks/use-pop-disclosure";
 import {
   BatchOptionsTableOptionGenerator,
@@ -298,7 +298,7 @@ const DataGridRoot = (props: DataGridRootProps) => {
   } = props;
 
   // Contexts
-  const { t } = useLocaleContext();
+  const { t } = useLocaleStore();
   const { theme } = useThemeStore();
 
   // States

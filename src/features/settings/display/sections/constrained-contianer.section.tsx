@@ -9,7 +9,7 @@ import { P } from "@/components/ui/p";
 import { StackV } from "@/components/ui/stack";
 import { Switch } from "@/components/ui/switch";
 import { R_SPACING_MD } from "@/constants/styles";
-import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
+import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
 import { useConstrainedContainerStore } from "../stores/use-constrained-container-store";
 import { useDebounced } from "@/hooks/use-debounced";
 
@@ -17,7 +17,7 @@ import { useDebounced } from "@/hooks/use-debounced";
 
 const ActiveSetting = () => {
   // Contexts
-  const { t } = useLocaleContext();
+  const { t } = useLocaleStore();
   const { constrainedContainer, setConstrainedContainer } =
     useConstrainedContainerStore();
 
@@ -47,7 +47,7 @@ const ActiveSetting = () => {
 
 const MaxWSetting = () => {
   // Contexts
-  const { t } = useLocaleContext();
+  const { t } = useLocaleStore();
   const { constrainedContainer, setConstrainedContainer } =
     useConstrainedContainerStore();
 
@@ -85,7 +85,7 @@ const MaxWSetting = () => {
 
 export const ConstrainedContainerSection = () => {
   // Contexts
-  const { t } = useLocaleContext();
+  const { t } = useLocaleStore();
 
   return (
     <StackV px={R_SPACING_MD}>

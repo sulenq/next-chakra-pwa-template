@@ -4,7 +4,7 @@ import { Btn, BtnProps } from "@/components/ui/btn";
 import { Menu } from "@/components/ui/menu";
 
 import { Tooltip } from "@/components/ui/tooltip";
-import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
+import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
 import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
 import { Icon, MenuPositioner, Portal } from "@chakra-ui/react";
 import { IconCheck, IconChevronDown } from "@tabler/icons-react";
@@ -28,7 +28,7 @@ const LANGUAGES = [
 
 export const LangMenu = (props: BtnProps) => {
   // Contexts
-  const { t, locale, setLocale } = useLocaleContext();
+  const { t, locale, setLocale } = useLocaleStore();
   const { theme } = useThemeStore();
 
   return (

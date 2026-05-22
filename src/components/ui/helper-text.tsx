@@ -1,6 +1,6 @@
 import { P, PProps } from "@/components/ui/p";
 import { R_SPACING_MD } from "@/constants/styles";
-import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
+import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
 import { StackProps } from "@chakra-ui/react";
 
 // -----------------------------------------------------------------
@@ -33,7 +33,7 @@ export const SettingsHelperText = (props: StackProps) => {
 
 export const SettingsSavedLocalyHelperText = () => {
   // Contexts
-  const { t } = useLocaleContext();
+  const { t } = useLocaleStore();
 
   return (
     <SettingsHelperText px={6}>

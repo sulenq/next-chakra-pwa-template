@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useRequest } from "@/hooks/useRequestOld";
 import useRenderTrigger from "@/stores/use-render-trigger";
-import { useLoadingBar } from "@/stores/use-loading-bar-context";
+import { useLoadingBarStore } from "@/stores/use-loading-bar-store";
 
 // -----------------------------------------------------------------
 
@@ -42,7 +42,7 @@ export const useFetchData = <T = any>(props: UseFetchDataOptions<T>) => {
   } = props;
 
   // Contexts
-  const setLoadingBar = useLoadingBar((s) => s.setLoadingBar);
+  const setLoadingBar = useLoadingBarStore((s) => s.setLoadingBar);
 
   // Refs
   const abortControllerRef = useRef<AbortController | null>(null);

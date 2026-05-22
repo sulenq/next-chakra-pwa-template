@@ -7,10 +7,10 @@ import { Item } from "@/components/container/item";
 import { SelectTimezone } from "@/features/settings/regional/components/select-timezone";
 import { SettingItemContainer } from "@/components/container/settings-shell";
 import { R_SPACING_MD } from "@/constants/styles";
-import useDateFormat from "@/features/settings/regional/contexts/use-date-format-context";
-import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
-import useTimeFormat from "@/features/settings/regional/contexts/use-time-format-context";
-import useTimezone from "@/features/settings/regional/contexts/use-timezone-context";
+import useDateFormatStore from "@/features/settings/regional/stores/use-date-format-store";
+import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
+import useTimeFormatStore from "@/features/settings/regional/stores/use-time-format-store";
+import useTimezoneStore from "@/features/settings/regional/stores/use-timezone-store";
 import { SelectDateFormat } from "@/features/settings/regional/components/select-date-format";
 import { SelectTimeFormat } from "@/features/settings/regional/components/select-time-format";
 import { SelectOption } from "@/types/global.types";
@@ -21,9 +21,9 @@ import { useEffect, useState } from "react";
 
 const DateFormatSetting = () => {
   // Contexts
-  const { t } = useLocaleContext();
+  const { t } = useLocaleStore();
   const { dateFormat: dateFormatContext, setDateFormat: setDateFormatContext } =
-    useDateFormat();
+    useDateFormatStore();
 
   // States
   const [dateFormat, setDateFormat] = useState<
@@ -57,9 +57,9 @@ const DateFormatSetting = () => {
 
 const TimeFormatSetting = () => {
   // Contexts
-  const { t } = useLocaleContext();
+  const { t } = useLocaleStore();
   const { timeFormat: timeFormatContext, setTimeFormat: setTimeFormatContext } =
-    useTimeFormat();
+    useTimeFormatStore();
 
   // States
   const [timeFormat, setTimeFormat] = useState<
@@ -92,8 +92,8 @@ const TimeFormatSetting = () => {
 
 const AutoTimezomeSetting = () => {
   // Contexts
-  const { t } = useLocaleContext();
-  const { isAuto, enableAuto, disableAuto } = useTimezone();
+  const { t } = useLocaleStore();
+  const { isAuto, enableAuto, disableAuto } = useTimezoneStore();
 
   return (
     <SettingItemContainer>
@@ -121,12 +121,12 @@ const AutoTimezomeSetting = () => {
 
 const TimezoneSetting = () => {
   // Contexts
-  const { t } = useLocaleContext();
+  const { t } = useLocaleStore();
   const {
     isAuto,
     timezone: timezoneContext,
     setTimezone: setTimezoneContext,
-  } = useTimezone();
+  } = useTimezoneStore();
 
   // States
   const [timezone, setTimezone] = useState<SelectOption[] | null | undefined>([
@@ -173,7 +173,7 @@ const TimezoneSetting = () => {
 
 export const DateTimeSection = () => {
   // Contexts
-  const { t } = useLocaleContext();
+  const { t } = useLocaleStore();
 
   return (
     <Item.Root px={R_SPACING_MD}>

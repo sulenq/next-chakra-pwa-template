@@ -13,7 +13,7 @@ type MicPermissionsStore = {
   updateMicPermissionsStatus: () => Promise<void>;
 };
 
-export const useMicPermissionContext = create<MicPermissionsStore>((set) => {
+export const useMicPermissionStore = create<MicPermissionsStore>((set) => {
   return {
     micPermissionsStatus: "prompt",
     setMicPermissionsStatus: (status) => {
@@ -82,7 +82,7 @@ export const useMicPermissionContext = create<MicPermissionsStore>((set) => {
           };
           return;
         } catch (error) {
-          // Firefox/Safari throws TypeError. Gracefully fall through.
+          console.error(error);
         }
       }
 
@@ -108,6 +108,6 @@ export const useMicPermissionContext = create<MicPermissionsStore>((set) => {
 
 if (isClient()) {
   setTimeout(() => {
-    useMicPermissionContext.getState().updateMicPermissionsStatus();
+    useMicPermissionStore.getState().updateMicPermissionsStatus();
   }, 0);
 }

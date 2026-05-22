@@ -5,8 +5,8 @@ import { StackV } from "@/components/ui/stack";
 import { Item } from "@/components/container/item";
 import { SettingItemContainer } from "@/components/container/settings-shell";
 import { R_SPACING_MD } from "@/constants/styles";
-import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
-import useUOMFormat from "@/features/settings/regional/contexts/use-uom-format-context";
+import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
+import useUOMFormatStore from "@/features/settings/regional/stores/use-uom-format-store";
 import {
   SelectAngleFormat,
   SelectAreaFormat,
@@ -28,8 +28,8 @@ import {
 
 const WeightFormatSetting = () => {
   // Contexts
-  const { t } = useLocaleContext();
-  const { UOM, setUOMUnit } = useUOMFormat();
+  const { t } = useLocaleStore();
+  const { UOM, setUOMUnit } = useUOMFormatStore();
 
   return (
     <SettingItemContainer>
@@ -56,8 +56,8 @@ const WeightFormatSetting = () => {
 
 const HeightFormatSetting = () => {
   // Contexts
-  const { t } = useLocaleContext();
-  const { UOM, setUOMUnit } = useUOMFormat();
+  const { t } = useLocaleStore();
+  const { UOM, setUOMUnit } = useUOMFormatStore();
 
   return (
     <SettingItemContainer>
@@ -84,8 +84,8 @@ const HeightFormatSetting = () => {
 
 const LengthFormatSetting = () => {
   // Contexts
-  const { t } = useLocaleContext();
-  const { UOM, setUOMUnit } = useUOMFormat();
+  const { t } = useLocaleStore();
+  const { UOM, setUOMUnit } = useUOMFormatStore();
 
   return (
     <SettingItemContainer>
@@ -112,8 +112,8 @@ const LengthFormatSetting = () => {
 
 const DistanceFormatSetting = () => {
   // Contexts
-  const { t } = useLocaleContext();
-  const { UOM, setUOMUnit } = useUOMFormat();
+  const { t } = useLocaleStore();
+  const { UOM, setUOMUnit } = useUOMFormatStore();
 
   return (
     <SettingItemContainer>
@@ -144,8 +144,8 @@ const DistanceFormatSetting = () => {
 
 const AreaFormatSetting = () => {
   // Contexts
-  const { t } = useLocaleContext();
-  const { UOM, setUOMUnit } = useUOMFormat();
+  const { t } = useLocaleStore();
+  const { UOM, setUOMUnit } = useUOMFormatStore();
 
   return (
     <SettingItemContainer>
@@ -172,8 +172,8 @@ const AreaFormatSetting = () => {
 
 const VolumeFormatSetting = () => {
   // Contexts
-  const { t } = useLocaleContext();
-  const { UOM, setUOMUnit } = useUOMFormat();
+  const { t } = useLocaleStore();
+  const { UOM, setUOMUnit } = useUOMFormatStore();
 
   return (
     <SettingItemContainer>
@@ -200,8 +200,8 @@ const VolumeFormatSetting = () => {
 
 const TemperatureFormatSetting = () => {
   // Contexts
-  const { t } = useLocaleContext();
-  const { UOM, setUOMUnit } = useUOMFormat();
+  const { t } = useLocaleStore();
+  const { UOM, setUOMUnit } = useUOMFormatStore();
 
   return (
     <SettingItemContainer>
@@ -232,8 +232,8 @@ const TemperatureFormatSetting = () => {
 
 const SpeedFormatSetting = () => {
   // Contexts
-  const { t } = useLocaleContext();
-  const { UOM, setUOMUnit } = useUOMFormat();
+  const { t } = useLocaleStore();
+  const { UOM, setUOMUnit } = useUOMFormatStore();
 
   return (
     <SettingItemContainer>
@@ -260,8 +260,8 @@ const SpeedFormatSetting = () => {
 
 const EnergyFormatSetting = () => {
   // Contexts
-  const { t } = useLocaleContext();
-  const { UOM, setUOMUnit } = useUOMFormat();
+  const { t } = useLocaleStore();
+  const { UOM, setUOMUnit } = useUOMFormatStore();
 
   return (
     <SettingItemContainer>
@@ -288,8 +288,8 @@ const EnergyFormatSetting = () => {
 
 const PowerFormatSetting = () => {
   // Contexts
-  const { t } = useLocaleContext();
-  const { UOM, setUOMUnit } = useUOMFormat();
+  const { t } = useLocaleStore();
+  const { UOM, setUOMUnit } = useUOMFormatStore();
 
   return (
     <SettingItemContainer>
@@ -316,8 +316,8 @@ const PowerFormatSetting = () => {
 
 const PressureFormatSetting = () => {
   // Contexts
-  const { t } = useLocaleContext();
-  const { UOM, setUOMUnit } = useUOMFormat();
+  const { t } = useLocaleStore();
+  const { UOM, setUOMUnit } = useUOMFormatStore();
 
   return (
     <SettingItemContainer>
@@ -348,8 +348,8 @@ const PressureFormatSetting = () => {
 
 const DataFormatSetting = () => {
   // Contexts
-  const { t } = useLocaleContext();
-  const { UOM, setUOMUnit } = useUOMFormat();
+  const { t } = useLocaleStore();
+  const { UOM, setUOMUnit } = useUOMFormatStore();
 
   return (
     <SettingItemContainer>
@@ -376,8 +376,8 @@ const DataFormatSetting = () => {
 
 const DataRateFormatSetting = () => {
   // Contexts
-  const { t } = useLocaleContext();
-  const { UOM, setUOMUnit } = useUOMFormat();
+  const { t } = useLocaleStore();
+  const { UOM, setUOMUnit } = useUOMFormatStore();
 
   return (
     <SettingItemContainer>
@@ -408,8 +408,8 @@ const DataRateFormatSetting = () => {
 
 const AngleFormatSetting = () => {
   // Contexts
-  const { t } = useLocaleContext();
-  const { UOM, setUOMUnit } = useUOMFormat();
+  const { t } = useLocaleStore();
+  const { UOM, setUOMUnit } = useUOMFormatStore();
 
   return (
     <SettingItemContainer>
@@ -437,7 +437,7 @@ const AngleFormatSetting = () => {
 export const UOMFormatSection = () => {
   // Contexts
   // Contexts
-  const { t } = useLocaleContext();
+  const { t } = useLocaleStore();
 
   return (
     <Item.Root px={R_SPACING_MD}>

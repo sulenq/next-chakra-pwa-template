@@ -3,6 +3,8 @@ import { UnitOption, UNIT_OPTIONS } from "@/constants/unit-options";
 import { getStorage, setStorage } from "@/utils/client";
 import { create } from "zustand";
 
+// -----------------------------------------------------------------
+
 const STORAGE_KEY = "uom";
 
 const getUnitOption = (unitKey: UnitKey, keyString: string): UnitOption => {
@@ -38,7 +40,7 @@ type UOMFormatStore = {
   setUOMUnit: (key: UnitKey, value: UnitOption) => void;
 };
 
-const useUOMFormat = create<UOMFormatStore>((set) => {
+const useUOMFormatStore = create<UOMFormatStore>((set) => {
   const getStoredUOM = (): Record<UnitKey, UnitOption> => {
     try {
       const stored = getStorage(STORAGE_KEY);
@@ -79,4 +81,4 @@ const useUOMFormat = create<UOMFormatStore>((set) => {
   };
 });
 
-export default useUOMFormat;
+export default useUOMFormatStore;

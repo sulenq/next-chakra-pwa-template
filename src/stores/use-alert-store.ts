@@ -6,7 +6,7 @@ type AlertsStore = {
   hideAlert: (key: string) => void;
 };
 
-export const useAlerts = create<AlertsStore>((set) => ({
+export const useAlertsStore = create<AlertsStore>((set) => ({
   alerts: {},
 
   showAlert: (key: string) =>

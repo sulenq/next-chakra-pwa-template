@@ -3,7 +3,10 @@ import { TIME_FORMATS } from "@/constants/time-formats";
 import { getStorage, setStorage } from "@/utils/client";
 import { create } from "zustand";
 
+// -----------------------------------------------------------------
+
 const STORAGE_KEY = "time-format";
+
 const DEFAULT: SelectOption = {
   id: "24-hour",
   label: TIME_FORMATS.find((f) => f.key === "24-hour")?.label,
@@ -14,7 +17,8 @@ type TimeFormatStore = {
   timeFormat: SelectOption;
   setTimeFormat: (newState: SelectOption) => void;
 };
-const useTimeFormat = create<TimeFormatStore>((set) => {
+
+const useTimeFormatStore = create<TimeFormatStore>((set) => {
   const getStoredFormat = (): SelectOption => {
     try {
       const stored = getStorage(STORAGE_KEY);
@@ -49,4 +53,4 @@ const useTimeFormat = create<TimeFormatStore>((set) => {
   };
 });
 
-export default useTimeFormat;
+export default useTimeFormatStore;

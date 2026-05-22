@@ -22,7 +22,7 @@ type AuthStore = {
   removeAuth: () => void;
 };
 
-export const useAuthContext = create<AuthStore>((set, get) => ({
+export const useAuthStore = create<AuthStore>((set, get) => ({
   accessTokenContext: getAccessToken(),
   setAccessTokenContext: (newState) =>
     set(() => {

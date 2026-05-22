@@ -17,7 +17,7 @@ import { MainView, useMainViewContext } from "@/components/container/main-view";
 import { DUMMY_DASHBOARD_DATA } from "@/constants/dummy-data";
 import { getMonthNames } from "@/constants/months";
 import { GAP, R_SPACING_MD } from "@/constants/styles";
-import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
+import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
 import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
 import { useFetchData } from "@/hooks/useFetchData";
 import { ChartData } from "@/types/global.types";
@@ -126,7 +126,7 @@ const Overview = (props: OverviewProps) => {
   const { data, ...restProps } = props;
 
   // Contexts
-  const { t } = useLocaleContext();
+  const { t } = useLocaleStore();
   const { isSmContainer } = useMainViewContext();
 
   // States
@@ -193,7 +193,7 @@ const Chart1 = (props: any) => {
   const { data, year, ...restProps } = props;
 
   // Contexts
-  const { t } = useLocaleContext();
+  const { t } = useLocaleStore();
   const { theme } = useThemeStore();
 
   // Refs
@@ -535,7 +535,7 @@ const Usage = (props: any) => {
 
 export default function Page() {
   // Contexts
-  const { t } = useLocaleContext();
+  const { t } = useLocaleStore();
 
   // States
   const [filter] = useState<any>(DEFAULT_FILTER);

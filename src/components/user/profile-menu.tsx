@@ -19,7 +19,7 @@ import {
   GAP,
 } from "@/constants/styles";
 import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
-import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
+import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
 import { useSignout } from "@/features/auth/hooks/use-auth";
 import { getUserData } from "@/utils/auth";
 import { back } from "@/utils/client";
@@ -76,7 +76,7 @@ export const ProfileMenu = (props: ProfileMenuProps) => {
   const { handleClose, ...restProps } = props;
 
   // Contexts
-  const { t } = useLocaleContext();
+  const { t } = useLocaleStore();
   const { theme } = useThemeStore();
 
   // Hooks

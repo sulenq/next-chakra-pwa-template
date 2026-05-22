@@ -14,7 +14,7 @@ import { Tooltip } from "@/components/ui/tooltip";
 import { FileItem } from "@/components/ui/file-item";
 import { LucideIcon } from "@/components/misc/icon";
 import { StorageFile } from "@/types/global.types";
-import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
+import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
 import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
 import { isEmptyArray } from "@/utils/array";
 import { makeFileUrl } from "@/utils/file";
@@ -119,7 +119,7 @@ export const FileInputRoot = forwardRef<
   } = props;
 
   // Contexts
-  const { t } = useLocaleContext();
+  const { t } = useLocaleStore();
   const fc = useFieldContext();
 
   // States
@@ -315,7 +315,7 @@ export const FileInput = forwardRef<HTMLInputElement, FileInputProps>(
       props;
 
     // Contexts
-    const { t } = useLocaleContext();
+    const { t } = useLocaleStore();
     const { theme } = useThemeStore();
     const fc = useFieldContext();
 

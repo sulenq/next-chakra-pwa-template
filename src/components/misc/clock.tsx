@@ -2,7 +2,7 @@
 
 import { TNum, P } from "@/components/ui/p";
 import { StackH } from "@/components/ui/stack";
-import useTimezone from "@/features/settings/regional/contexts/use-timezone-context";
+import useTimezoneStore from "@/features/settings/regional/stores/use-timezone-store";
 import { formatTime } from "@/utils/formatter";
 import { Span, StackProps } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
@@ -19,7 +19,7 @@ export const Clock = (props: ClockPropsProps) => {
   const { showSeconds = false, showAbbr = true, ...restProps } = props;
 
   // Contexts
-  const tz = useTimezone((s) => s.timezone);
+  const tz = useTimezoneStore((s) => s.timezone);
   const tzKey = tz?.key;
 
   // States

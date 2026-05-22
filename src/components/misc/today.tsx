@@ -2,9 +2,9 @@
 
 import { P, PProps } from "@/components/ui/p";
 import { DateVariant, DateFormat } from "@/types/global.types";
-import useDateFormat from "@/features/settings/regional/contexts/use-date-format-context";
-import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
-import useTimezone from "@/features/settings/regional/contexts/use-timezone-context";
+import useDateFormatStore from "@/features/settings/regional/stores/use-date-format-store";
+import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
+import useTimezoneStore from "@/features/settings/regional/stores/use-timezone-store";
 import { formatDate } from "@/utils/formatter";
 
 // -----------------------------------------------------------------
@@ -18,9 +18,9 @@ export const Today = (props: TodayProps) => {
   const { dateVariant = "numeric", ...restProps } = props;
 
   // Contexts
-  const { t } = useLocaleContext();
-  const tz = useTimezone((s) => s.timezone);
-  const dateFormat = useDateFormat((s) => s.dateFormat);
+  const { t } = useLocaleStore();
+  const tz = useTimezoneStore((s) => s.timezone);
+  const dateFormat = useDateFormatStore((s) => s.dateFormat);
 
   return (
     <P {...restProps}>
@@ -39,9 +39,9 @@ export interface TodayWeekdayProps extends PProps {}
 export const TodayWeekday = (props: TodayWeekdayProps) => {
   const { ...restProps } = props;
 
-  const { t } = useLocaleContext();
-  const tz = useTimezone((s) => s.timezone);
-  const dateFormat = useDateFormat((s) => s.dateFormat);
+  const { t } = useLocaleStore();
+  const tz = useTimezoneStore((s) => s.timezone);
+  const dateFormat = useDateFormatStore((s) => s.dateFormat);
 
   return (
     <P {...restProps}>

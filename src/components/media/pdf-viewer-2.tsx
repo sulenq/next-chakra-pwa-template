@@ -11,7 +11,7 @@ import { Tooltip } from "@/components/ui/tooltip";
 import { AppIconLucide } from "@/components/branding/app-icon";
 import FeedbackState from "@/components/feedback/feedback-state";
 import { HScroll } from "@/components/container/h-scroll";
-import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
+import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
 import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
 import { Box, Icon, StackProps } from "@chakra-ui/react";
 import {
@@ -79,7 +79,7 @@ const PageControl = (props: Props__PageControl) => {
   const { utils, page, numPages, ...restProps } = props;
 
   // Contexts
-  const { t } = useLocaleContext();
+  const { t } = useLocaleStore();
   const { theme } = useThemeStore();
 
   // States
@@ -172,7 +172,7 @@ const ZoomControl = (props: Props__ZoomControl) => {
   const { utils, scale, ...restProps } = props;
 
   // Contexts
-  const { t } = useLocaleContext();
+  const { t } = useLocaleStore();
 
   return (
     <StackH {...restProps}>
@@ -278,7 +278,7 @@ export const PdfViewer = (props: Props__PdfViewer) => {
   } = props;
 
   // Contexts
-  const { t } = useLocaleContext();
+  const { t } = useLocaleStore();
   const { theme } = useThemeStore();
 
   // Refs

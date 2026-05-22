@@ -1,5 +1,5 @@
 import { VerifyingScreen } from "@/components/feedback/verifying-screen";
-import { useAuthContext } from "@/stores/use-auth-context";
+import { useAuthStore } from "@/stores/use-auth-store";
 import { setUserData } from "@/utils/auth";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
@@ -11,10 +11,10 @@ export function AuthGuard({ children }: { children: React.ReactNode }) {
     process.env.NEXT_PUBLIC_ENABLE_AUTH_GUARD === "true";
 
   // Contexts
-  const accessToken = useAuthContext((s) => s.accessTokenContext);
-  const setRole = useAuthContext((s) => s.setRole);
-  const setPermissions = useAuthContext((s) => s.setPermissions);
-  const setAccessTokenContext = useAuthContext((s) => s.setAccessTokenContext);
+  const accessToken = useAuthStore((s) => s.accessTokenContext);
+  const setRole = useAuthStore((s) => s.setRole);
+  const setPermissions = useAuthStore((s) => s.setPermissions);
+  const setAccessTokenContext = useAuthStore((s) => s.setAccessTokenContext);
 
   // Hooks
   const router = useRouter();

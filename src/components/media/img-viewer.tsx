@@ -6,7 +6,7 @@ import { Dialog } from "@/components/ui/dialog";
 import { Img } from "@/components/ui/img";
 import { NavLink } from "@/components/ui/nav-link";
 import { StackV } from "@/components/ui/stack";
-import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
+import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
 import { usePopDisclosure } from "@/hooks/use-pop-disclosure";
 import { back } from "@/utils/client";
 import { disclosureId } from "@/utils/disclosure";
@@ -37,7 +37,7 @@ export const ImgViewer = (props: ImgViewerProps) => {
   } = props;
 
   // Contexts
-  const { t } = useLocaleContext();
+  const { t } = useLocaleStore();
 
   // Hooks
   const { open, onOpen } = usePopDisclosure(disclosureId(id || `${src}`));

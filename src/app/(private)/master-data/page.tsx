@@ -4,12 +4,12 @@ import FeedbackState from "@/components/feedback/feedback-state";
 import { LucideIcon } from "@/components/misc/icon";
 import { StackV } from "@/components/ui/stack";
 import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
-import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
+import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
 import { ServerIcon } from "lucide-react";
 
 export default function SettingsRoute() {
   // Contexts
-  const { t } = useLocaleContext();
+  const { t } = useLocaleStore();
   const { theme } = useThemeStore();
 
   return (

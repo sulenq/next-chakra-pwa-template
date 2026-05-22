@@ -1,4 +1,4 @@
-import useUOMFormat from "@/features/settings/regional/contexts/use-uom-format-context";
+import useUOMFormatStore from "@/features/settings/regional/stores/use-uom-format-store";
 import { UnitKey } from "@/types/global.types";
 
 // -----------------------------------------------------------------
@@ -229,7 +229,7 @@ export function formatUOM<K extends UnitKey>(
 
   const fractionDigits = options?.fractionDigits ?? 2;
   const fromUnit: string = options?.from ?? ISO_DEFAULTS[unit];
-  const toUnit: string = useUOMFormat.getState().UOM[unit].key;
+  const toUnit: string = useUOMFormatStore.getState().UOM[unit].key;
 
   let converted: number;
 

@@ -16,11 +16,11 @@ import { UserIdCard } from "@/components/user/user-id-card";
 import { APP } from "@/constants/_meta";
 import { WELCOME_ROUTE } from "@/constants/routes";
 import { BASE_ICON_BOX_SIZE } from "@/constants/styles";
-import { useAuthContext } from "@/stores/use-auth-context";
+import { useAuthStore } from "@/stores/use-auth-store";
 import { ResetPasswordDisclosureTrigger } from "@/features/auth/components/reset-password";
 import { useSignin } from "@/features/auth/hooks/use-auth";
 import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
-import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
+import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
 import { FieldsetRoot, Icon, InputGroup, StackProps } from "@chakra-ui/react";
 import { IconLock, IconUser } from "@tabler/icons-react";
 import { useFormik } from "formik";
@@ -31,7 +31,7 @@ import * as yup from "yup";
 
 const Signedin = () => {
   // Contexts
-  const { t } = useLocaleContext();
+  const { t } = useLocaleStore();
   const { theme } = useThemeStore();
 
   return (
@@ -73,7 +73,7 @@ const BasicAuthForm = (props: any) => {
   const { ...restProps } = props;
 
   // Contexts
-  const { t } = useLocaleContext();
+  const { t } = useLocaleStore();
   const { theme } = useThemeStore();
 
   // Hooks
@@ -192,9 +192,9 @@ export const SigninForm = (props: StackProps) => {
   const { ...restProps } = props;
 
   // Contexts
-  const { t } = useLocaleContext();
+  const { t } = useLocaleStore();
   const { theme } = useThemeStore();
-  const accessTokenContext = useAuthContext((s) => s.accessTokenContext);
+  const accessTokenContext = useAuthStore((s) => s.accessTokenContext);
 
   return (
     <StackV

@@ -1,9 +1,9 @@
-import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
+import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
 
 /**
  * Get current translations outside of React context.
- * Safe because useLocaleContext is a Zustand store.
+ * Safe because useLocaleStore is a Zustand store.
  */
 export const getT = () => {
-  return useLocaleContext.getState().t;
+  return useLocaleStore.getState().t;
 };

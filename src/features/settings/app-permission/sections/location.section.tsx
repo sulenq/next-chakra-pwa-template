@@ -10,9 +10,9 @@ import { toaster } from "@/components/ui/toaster";
 import { Item } from "@/components/container/item";
 import { SettingItemContainer } from "@/components/container/settings-shell";
 import { R_SPACING_MD } from "@/constants/styles";
-import { useLocationPermissionContext } from "@/features/settings/app-permission/contexts/use-location-permission-context";
+import { useLocationPermissionStore } from "@/features/settings/app-permission/stores/use-location-permission-store";
 import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
-import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
+import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
 import { usePopDisclosure } from "@/hooks/use-pop-disclosure";
 import { disclosureId } from "@/utils/disclosure";
 import { getAddress, getLatLon } from "@/utils/location";
@@ -23,10 +23,10 @@ import { useState } from "react";
 
 const LocationTester = () => {
   // Contexts
-  const { t } = useLocaleContext();
+  const { t } = useLocaleStore();
   const { theme } = useThemeStore();
   const { locationPermissionsStatus, setLocationPermissionsStatus } =
-    useLocationPermissionContext();
+    useLocationPermissionStore();
 
   // Hooks
   const { open, onOpen } = usePopDisclosure(disclosureId("location-test"));
@@ -138,12 +138,12 @@ const LocationTester = () => {
 
 const LocationPermissionSetting = () => {
   // Contexts
-  const { t } = useLocaleContext();
+  const { t } = useLocaleStore();
   const { theme } = useThemeStore();
-  const locationPermissionsStatus = useLocationPermissionContext(
+  const locationPermissionsStatus = useLocationPermissionStore(
     (s) => s.locationPermissionsStatus,
   );
-  const setLocationPermissionsStatus = useLocationPermissionContext(
+  const setLocationPermissionsStatus = useLocationPermissionStore(
     (s) => s.setLocationPermissionsStatus,
   );
 
@@ -245,8 +245,8 @@ const LocationPermissionSetting = () => {
 
 const LocationTesterSetting = () => {
   // Contexts
-  const { t } = useLocaleContext();
-  const locationPermissionsStatus = useLocationPermissionContext(
+  const { t } = useLocaleStore();
+  const locationPermissionsStatus = useLocationPermissionStore(
     (s) => s.locationPermissionsStatus,
   );
 
@@ -269,8 +269,8 @@ const LocationTesterSetting = () => {
 
 export const LocationSection = () => {
   // Contexts
-  const { t } = useLocaleContext();
-  const locationPermissionsStatus = useLocationPermissionContext(
+  const { t } = useLocaleStore();
+  const locationPermissionsStatus = useLocationPermissionStore(
     (s) => s.locationPermissionsStatus,
   );
 

@@ -4,7 +4,7 @@ import { P } from "@/components/ui/p";
 import { StackH } from "@/components/ui/stack";
 import { EmptyString } from "@/components/data-list/data-empty-value";
 import { DotIndicator } from "@/components/ui/indicator";
-import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
+import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
 import { formatDate } from "@/utils/formatter";
 import { StackProps } from "@chakra-ui/react";
 
@@ -19,7 +19,7 @@ export const DeletedStatus = (props: DeletedStatusProps) => {
   const { deletedAt, ...restProps } = props;
 
   // Contexts
-  const { t } = useLocaleContext();
+  const { t } = useLocaleStore();
 
   return (
     <>

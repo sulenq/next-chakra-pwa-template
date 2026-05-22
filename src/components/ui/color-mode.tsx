@@ -3,7 +3,7 @@
 import { Btn } from "@/components/ui/btn";
 import { Tooltip, TooltipProps } from "@/components/ui/tooltip";
 import { AppIconLucide } from "@/components/branding/app-icon";
-import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
+import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
 import { ColorMode } from "@/types/global.types";
 import type { IconButtonProps, SpanProps } from "@chakra-ui/react";
 import { ClientOnly, Skeleton, Span } from "@chakra-ui/react";
@@ -64,7 +64,7 @@ export const ColorModeButton = forwardRef<
   const { tooltipProps, ...restProps } = props;
 
   // Hooks
-  const { t } = useLocaleContext();
+  const { t } = useLocaleStore();
   const { toggleColorMode } = useColorMode();
 
   // Contexts

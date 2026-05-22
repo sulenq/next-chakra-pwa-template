@@ -11,7 +11,7 @@ interface DataDisplayStore {
   getDisplay: (key: string) => DataDisplayMode;
 }
 
-export const useDataDisplay = create<DataDisplayStore>()(
+export const useDataDisplayStore = create<DataDisplayStore>()(
   persist(
     (set, get) => ({
       displays: {},

@@ -9,14 +9,14 @@ import { StackH } from "@/components/ui/stack";
 import { R_SPACING_MD } from "@/constants/styles";
 import useRenderTrigger from "@/stores/use-render-trigger";
 import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
-import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
+import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
 import { useRequest } from "@/hooks/useRequestOld";
 import { useFormik } from "formik";
 import * as yup from "yup";
 
 export const APIKeySection = () => {
   // Contexts
-  const { t } = useLocaleContext();
+  const { t } = useLocaleStore();
   const { theme } = useThemeStore();
   const setRt = useRenderTrigger((s) => s.setRt);
 

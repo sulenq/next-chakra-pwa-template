@@ -12,14 +12,14 @@ import FeedbackRetry from "@/components/feedback/feedback-retry";
 import { ImgViewer } from "@/components/media/img-viewer";
 import { TopLoadingBar } from "@/components/misc/loading-bar";
 import { DEFAULT_LIMIT, DEFAULT_PAGE } from "@/constants/data-list";
-import { useDataDisplay } from "@/stores/use-data-display-context";
+import { useDataDisplayStore } from "@/stores/use-data-display-store";
 import { LayananDelete } from "@/features/layanan/components/layanan.delete";
 import { LayananUpdate } from "@/features/layanan/components/layanan.update";
 import { useLayananDataList } from "@/features/layanan/hooks/use-layanan";
 import { LayananItem } from "@/features/layanan/types/layanan.types";
 import { displayKeys } from "@/features/data-list-display/constants/displayKeys";
 import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
-import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
+import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
 import {
   BatchOptionsTableOptionGenerator,
   DataListConfig,
@@ -45,10 +45,10 @@ export const LayananList = (props: LayananListProps) => {
   const [page, setPage] = useState<number>(DEFAULT_PAGE);
 
   // Contexts
-  const { t, locale } = useLocaleContext();
+  const { t, locale } = useLocaleStore();
   const { theme } = useThemeStore();
   const isDisplayTable =
-    useDataDisplay((s) => s.getDisplay(displayKeys.layanan)) === "table";
+    useDataDisplayStore((s) => s.getDisplay(displayKeys.layanan)) === "table";
 
   // Query
   const { dataList, pagination, isLoading, isFetching, isError, refetch } =

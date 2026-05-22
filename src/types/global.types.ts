@@ -2,7 +2,7 @@ import { ActivityActionEnum } from "@/constants/enums";
 import { AxiosRequestConfig, AxiosResponse } from "axios";
 import { ReactNode } from "react";
 
-import { translations } from "@/features/settings/regional/contexts/use-locale-context";
+import { translations } from "@/features/settings/regional/stores/use-locale-store";
 import { ConditionalValue, StackProps } from "@chakra-ui/react";
 import { LucideIcon } from "lucide-react";
 

@@ -3,8 +3,8 @@ import { Disclosure } from "@/components/ui/disclosure";
 import { EmptyState } from "@/components/ui/empty-state";
 import { toaster } from "@/components/ui/toaster";
 import { BackButton } from "@/components/navigation/back-button";
-import { useAlerts } from "@/stores/use-alert-context";
-import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
+import { useAlertsStore } from "@/stores/use-alert-store";
+import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
 import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
 import { usePopDisclosure } from "@/hooks/use-pop-disclosure";
 import { back } from "@/utils/client";
@@ -17,11 +17,11 @@ import { useEffect, useRef } from "react";
 
 export const OfflineAlert = () => {
   // Contexts
-  const { t } = useLocaleContext();
+  const { t } = useLocaleStore();
   const { theme } = useThemeStore();
-  const isOffline = useAlerts((s) => s.alerts["offline"] ?? false);
-  const showAlert = useAlerts((s) => s.showAlert);
-  const hideAlert = useAlerts((s) => s.hideAlert);
+  const isOffline = useAlertsStore((s) => s.alerts["offline"] ?? false);
+  const showAlert = useAlertsStore((s) => s.showAlert);
+  const hideAlert = useAlertsStore((s) => s.hideAlert);
 
   // Refs
   const hasOpenedRef = useRef(false);

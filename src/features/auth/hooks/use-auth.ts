@@ -1,5 +1,5 @@
 import { WELCOME_ROUTE } from "@/constants/routes";
-import { useAuthContext } from "@/stores/use-auth-context";
+import { useAuthStore } from "@/stores/use-auth-store";
 import useRenderTrigger from "@/stores/use-render-trigger";
 import {
   getUserProfile,
@@ -7,7 +7,7 @@ import {
   signout,
 } from "@/features/auth/services/auth.api";
 import { SigninPayload } from "@/features/auth/types/auth.types";
-import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
+import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
 import { queryKeys } from "@/lib/tanstack-query/query.keys";
 import { mutationToastHandlers } from "@/lib/toast/toast.handler";
 import { setAccessToken, setUserData } from "@/utils/auth";
@@ -18,11 +18,11 @@ import { BaseResponse, User } from "@/types/global.types";
 // -----------------------------------------------------------------
 
 export const useSignin = () => {
-  const { t } = useLocaleContext();
+  const { t } = useLocaleStore();
   const router = useRouter();
 
-  const setAccessTokenContext = useAuthContext((s) => s.setAccessTokenContext);
-  const setPermissions = useAuthContext((s) => s.setPermissions);
+  const setAccessTokenContext = useAuthStore((s) => s.setAccessTokenContext);
+  const setPermissions = useAuthStore((s) => s.setPermissions);
 
   const toast = mutationToastHandlers("auth-signin", {
     loadingMessage: t.loading_signin,
@@ -60,8 +60,8 @@ export const useSignout = (options?: {
   onSuccess?: () => void;
   onError?: (err: any) => void;
 }) => {
-  const { t } = useLocaleContext();
-  const removeAuth = useAuthContext((s) => s.removeAuth);
+  const { t } = useLocaleStore();
+  const removeAuth = useAuthStore((s) => s.removeAuth);
   const setRt = useRenderTrigger((s) => s.setRt);
 
   const toast = mutationToastHandlers("auth-signout", {

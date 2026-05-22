@@ -23,7 +23,7 @@ import {
   DESKTOP_NAV_GAP,
 } from "@/constants/styles";
 import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
-import { useLocaleContext } from "@/features/settings/regional/contexts/use-locale-context";
+import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
 import { NavGroup } from "@/types/global.types";
 import { isEmptyArray } from "@/utils/array";
 import { pluckString } from "@/utils/string";
@@ -73,7 +73,7 @@ export const VNavs = (props: VNavsProps) => {
   } = props;
 
   // Contexts
-  const { t } = useLocaleContext();
+  const { t } = useLocaleStore();
   const { theme } = useThemeStore();
 
   // Hooks

@@ -3,7 +3,7 @@
 import { Btn, BtnProps } from "@/components/ui/btn";
 import { Tooltip } from "@/components/ui/tooltip";
 import { AppIconLucide } from "@/components/branding/app-icon";
-import { useDataDisplay } from "@/stores/use-data-display-context";
+import { useDataDisplayStore } from "@/stores/use-data-display-store";
 import { LayoutGridIcon, TableIcon } from "lucide-react";
 
 // -----------------------------------------------------------------
@@ -17,8 +17,8 @@ export function DataListDisplayToggle(props: DataListDisplayToggleProps) {
   const { displayKey, ...restProps } = props;
 
   // Contexts
-  const displays = useDataDisplay((s) => s.displays);
-  const setDisplay = useDataDisplay((s) => s.setDisplay);
+  const displays = useDataDisplayStore((s) => s.displays);
+  const setDisplay = useDataDisplayStore((s) => s.setDisplay);
 
   // Derived Values
   const displayTable = (displays[displayKey] || "table") === "table";

@@ -3,6 +3,8 @@ import { getStorage, removeStorage, setStorage } from "@/utils/client";
 import { cleanTimezoneValue, getLocalTimezone } from "@/utils/time";
 import { create } from "zustand";
 
+// -----------------------------------------------------------------
+
 const STORAGE_KEY = "timezone";
 
 interface TimezoneStore {
@@ -13,7 +15,7 @@ interface TimezoneStore {
   disableAuto: (value: TimezoneValue) => void;
 }
 
-const useTimezone = create<TimezoneStore>((set) => {
+const useTimezoneStore = create<TimezoneStore>((set) => {
   const getInitialTimezone = (): TimezoneValue => {
     try {
       const raw = getStorage(STORAGE_KEY);
@@ -63,4 +65,4 @@ const useTimezone = create<TimezoneStore>((set) => {
   };
 });
 
-export default useTimezone;
+export default useTimezoneStore;
