@@ -1,7 +1,7 @@
 import type { NextConfig } from "next";
 import createNextPWA from "@ducanh2912/next-pwa";
 
-// --- PWA CONFIGURATION FIX ---
+// --- PWA CONFIGURATION ---
 const withPWA = createNextPWA({
   dest: "public",
   disable: process.env.NODE_ENV === "development",
@@ -13,7 +13,7 @@ const withPWA = createNextPWA({
 } as any);
 
 const nextConfig: NextConfig = {
-  // --- STANDALONE OUTPUT FOR DOCKER ---
+  // --- STANDALONE OUTPUT ---
   output: "standalone",
 
   // --- GENERAL CONFIG ---
