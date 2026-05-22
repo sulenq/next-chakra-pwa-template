@@ -1,53 +1,87 @@
-import {
-  clearAccessToken,
-  clearUserData,
-  getAccessToken,
-  setAccessToken as setAccessTokenToLocalStorage,
-} from "@/utils/auth";
 import { create } from "zustand";
+import { persist } from "zustand/middleware";
 
-// -----------------------------------------------------------------
+const STORAGE_KEY = "auth-storage";
+const ACCESS_TOKEN_TTL = 0;
 
-type AuthStore = {
+type AuthState = {
   accessTokenContext: string | null;
-  setAccessTokenContext: (newState: AuthStore["accessTokenContext"]) => void;
-
   role: object | null;
-  setRole: (newState: AuthStore["role"]) => void;
-
   permissions: string[] | null;
-  setPermissions: (newState: AuthStore["permissions"]) => void;
-  hasPermissions: (allowedPermissions: string[]) => boolean;
+  updatedAt: number | null;
+};
 
+type AuthActions = {
+  setAccessTokenContext: (newState: AuthState["accessTokenContext"]) => void;
+  setRole: (newState: AuthState["role"]) => void;
+  setPermissions: (newState: AuthState["permissions"]) => void;
+  hasPermissions: (allowedPermissions: string[]) => boolean;
   removeAuth: () => void;
 };
 
-export const useAuthStore = create<AuthStore>((set, get) => ({
-  accessTokenContext: getAccessToken(),
-  setAccessTokenContext: (newState) =>
-    set(() => {
-      if (typeof window !== "undefined")
-        setAccessTokenToLocalStorage(newState || "");
-      return { accessTokenContext: newState };
-    }),
+type AuthStore = AuthState & AuthActions;
 
+type PersistedAuthState = Partial<AuthState> & {
+  updatedAt?: number | null;
+};
+
+const DEFAULT_VALUES: AuthState = {
+  accessTokenContext: null,
   role: null,
-  setRole: (newState) => set(() => ({ role: newState })),
-
   permissions: null,
-  setPermissions: (newState) => set(() => ({ permissions: newState })),
-  hasPermissions: (allowedPermissions) => {
-    const userPermissions = get().permissions ?? [];
-    return allowedPermissions.every((permission) =>
-      userPermissions.includes(permission),
-    );
-  },
+  updatedAt: null,
+};
 
-  removeAuth: () => {
-    get().setPermissions(null);
-    get().setRole(null);
-    get().setAccessTokenContext(null);
-    clearAccessToken();
-    clearUserData();
-  },
-}));
+export const useAuthStore = create<AuthStore>()(
+  persist(
+    (set, get) => ({
+      ...DEFAULT_VALUES,
+
+      setAccessTokenContext: (newState) =>
+        set(() => ({
+          accessTokenContext: newState,
+          updatedAt: newState ? Date.now() : null,
+        })),
+
+      setRole: (newState) => set(() => ({ role: newState })),
+
+      setPermissions: (newState) => set(() => ({ permissions: newState })),
+
+      hasPermissions: (allowedPermissions) => {
+        const userPermissions = get().permissions ?? [];
+        return allowedPermissions.every((permission) =>
+          userPermissions.includes(permission),
+        );
+      },
+
+      removeAuth: () => {
+        set(DEFAULT_VALUES);
+      },
+    }),
+    {
+      name: STORAGE_KEY,
+      version: 1,
+
+      migrate: (persistedState) => {
+        const castedState = persistedState as PersistedAuthState | undefined;
+
+        const now = Date.now();
+        const lastUpdated = castedState?.updatedAt;
+
+        if (
+          ACCESS_TOKEN_TTL > 0 &&
+          lastUpdated &&
+          now - lastUpdated > ACCESS_TOKEN_TTL
+        ) {
+          console.warn("Token expired. Automatically clearing auth store.");
+          return {
+            ...castedState,
+            ...DEFAULT_VALUES,
+          } as AuthStore;
+        }
+
+        return castedState as AuthStore;
+      },
+    },
+  ),
+);

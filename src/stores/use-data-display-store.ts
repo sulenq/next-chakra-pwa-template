@@ -5,11 +5,11 @@ const STORAGE_KEY = "data-display";
 
 type DataDisplayMode = "table" | "grid";
 
-interface DataDisplayStore {
+type DataDisplayStore = {
   displays: Record<string, DataDisplayMode>;
   setDisplay: (key: string, mode: DataDisplayMode) => void;
   getDisplay: (key: string) => DataDisplayMode;
-}
+};
 
 export const useDataDisplayStore = create<DataDisplayStore>()(
   persist(

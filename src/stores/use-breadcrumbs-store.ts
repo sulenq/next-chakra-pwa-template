@@ -6,10 +6,10 @@ type BreadcrumbsState = {
   activeNavs: Nav[];
 };
 
-interface BreadcrumbsStore {
+type BreadcrumbsStore = {
   breadcrumbs: BreadcrumbsState;
   setBreadcrumbs: (partial: Partial<BreadcrumbsState>) => void;
-}
+};
 
 export const useBreadcrumbsStore = create<BreadcrumbsStore>((set) => ({
   breadcrumbs: {
