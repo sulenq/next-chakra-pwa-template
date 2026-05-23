@@ -1,7 +1,7 @@
 import { toaster } from "@/components/ui/toaster";
 import { Req, RequestState } from "@/types/global.types";
 import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
-import { clearAccessToken, clearUserData } from "@/utils/auth";
+import { useAuthStore } from "@/stores/use-auth-store";
 import { request } from "@/utils/request";
 import { useRouter } from "next/navigation";
 import { useCallback, useRef, useState } from "react";
@@ -211,8 +211,8 @@ export const useRequest = <T = any>(props: UseRequestOptions) => {
           case 401:
           case 403:
             if (!absoluteUrl) {
-              clearAccessToken();
-              clearUserData();
+              useAuthStore.getState().setAccessToken(null);
+              useAuthStore.getState().setUser(null);
               router?.push(signinPath);
             }
             break;

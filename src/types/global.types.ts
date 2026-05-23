@@ -139,36 +139,20 @@ export interface LangObject {
 }
 
 // Auth
-export interface ActivityLog extends CUD {
-  id: string;
-  userId: string;
-  action: ActivityActionEnum | string;
-  metadata?: Record<string, any>;
-  user?: User;
-}
-
-export interface AuthLog extends CUD {
-  id: string;
-  ip: string;
-  city: string;
-  countryCode: string;
-  userAgent: string;
-  action: string; // "Sign in" | "Sign out" ;
-}
-
 export interface User extends CUD {
   id: string;
-  avatar: StorageFile[];
-  name: string;
   email: string;
   role: Role;
   accountStatus: string;
-  // optional
-  username?: string | null;
+  permissions: Permission[]; // TODO DEV assign Permission type
+  avatar: StorageFile[];
+  name: string;
   gender: Gender | null;
   phoneNumber: string | null;
   birthDate: string | null;
   address: string | null;
+  // optional
+  username?: string | null;
   // audit timestamps
   lastLoginAt: string | null;
   lastChangePasswordAt: string | null;
@@ -186,6 +170,29 @@ export interface Role {
   createdAt: string;
   updatedAt: string;
   deletedAt: string | null;
+}
+
+export type Permission =
+  | "todo.create"
+  | "todo.read"
+  | "todo.update"
+  | "todo.delete";
+
+export interface ActivityLog extends CUD {
+  id: string;
+  userId: string;
+  action: ActivityActionEnum | string;
+  metadata?: Record<string, any>;
+  user?: User;
+}
+
+export interface AuthLog extends CUD {
+  id: string;
+  ip: string;
+  city: string;
+  countryCode: string;
+  userAgent: string;
+  action: string; // "Sign in" | "Sign out" ;
 }
 
 // Navs

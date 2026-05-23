@@ -10,7 +10,7 @@ import { P } from "@/components/ui/p";
 import { StackH, StackV } from "@/components/ui/stack";
 import { ProfileMenuTrigger } from "@/components/user/profile-menu";
 import { BACKDROP_BLUR_FILTER, R_SPACING_MD } from "@/constants/styles";
-import { getUserData } from "@/utils/auth";
+import { useAuthStore } from "@/stores/use-auth-store";
 import { imgUrl } from "@/utils/url";
 import {
   BellIcon,
@@ -31,7 +31,7 @@ export const UserPanel = (props: UserPanelProps) => {
   const { navsExpanded } = props;
 
   // Constants
-  const user = getUserData();
+  const user = useAuthStore((s) => s.user);
 
   return (
     <Item.Body

@@ -77,8 +77,8 @@ const BasicAuthForm = (props: any) => {
   const { theme } = useThemeStore();
 
   // Hooks
-  const signinMutation = useSignin();
-  const loading = signinMutation.isPending;
+  const signin = useSignin();
+  const loading = signin.isPending;
 
   // States
   const formik = useFormik({
@@ -96,7 +96,7 @@ const BasicAuthForm = (props: any) => {
         email: values.identifier,
         password: values.password,
       };
-      signinMutation.mutate(payload);
+      signin.mutate(payload);
     },
   });
 
@@ -194,7 +194,7 @@ export const SigninForm = (props: StackProps) => {
   // Store
   const { t } = useLocaleStore();
   const { theme } = useThemeStore();
-  const accessTokenContext = useAuthStore((s) => s.accessTokenContext);
+  const accessToken = useAuthStore((s) => s.accessToken);
 
   return (
     <StackV
@@ -206,7 +206,7 @@ export const SigninForm = (props: StackProps) => {
       rounded={theme.radii.container}
       {...restProps}
     >
-      {accessTokenContext ? (
+      {accessToken ? (
         <Signedin />
       ) : (
         <>

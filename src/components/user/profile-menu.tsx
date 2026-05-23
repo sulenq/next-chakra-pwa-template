@@ -21,7 +21,7 @@ import {
 import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
 import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
 import { useSignout } from "@/features/auth/hooks/use-auth";
-import { getUserData } from "@/utils/auth";
+import { useAuthStore } from "@/stores/use-auth-store";
 import { back } from "@/utils/client";
 import { pluckString } from "@/utils/string";
 import { imgUrl } from "@/utils/url";
@@ -94,7 +94,7 @@ export const ProfileMenu = (props: ProfileMenuProps) => {
   });
 
   // States
-  const user = getUserData();
+  const user = useAuthStore((s) => s.user);
 
   // Utils
   function handleSignout() {

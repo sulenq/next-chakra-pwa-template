@@ -1,5 +1,5 @@
 import axios from "axios";
-import { getAccessToken, setAccessToken } from "@/utils/auth";
+import { useAuthStore } from "@/stores/use-auth-store";
 
 // create axios instance
 export const request = axios.create({
@@ -11,7 +11,7 @@ export const request = axios.create({
 // inject access token to request
 request.interceptors.request.use(
   (config) => {
-    const token = getAccessToken();
+    const token = useAuthStore.getState().accessToken;
     if (token) config.headers.Authorization = `Bearer ${token}`;
     return config;
   },
@@ -46,7 +46,7 @@ async function refreshAccessToken(): Promise<string | null> {
       { withCredentials: true },
     );
     const newToken = r.data.accessToken;
-    setAccessToken(newToken);
+    useAuthStore.getState().setAccessToken(newToken);
     return newToken;
   } catch {
     return null;

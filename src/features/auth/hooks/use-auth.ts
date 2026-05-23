@@ -35,11 +35,12 @@ export const useSignin = () => {
     onSuccess: (res) => {
       toast.onSuccess();
 
+      console.debug(res);
+
       const accessToken = res.data?.authToken;
       const user = res.data?.user;
       const permissionsData =
-        (res.data?.user as any)?.permissions ||
-        res.data?.user?.role?.permissions;
+        res.data?.user?.permissions || res.data?.user?.role?.permissions;
 
       if (accessToken && user && permissionsData) {
         setAccessToken(accessToken);

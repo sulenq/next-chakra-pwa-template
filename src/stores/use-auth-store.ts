@@ -6,7 +6,7 @@ const STORAGE_KEY = "auth-storage";
 const ACCESS_TOKEN_TTL = 0;
 
 type AuthState = {
-  accessTokenContext: string | null;
+  accessToken: string | null;
   user: User | null;
   role: object | null;
   permissions: string[] | null;
@@ -14,7 +14,7 @@ type AuthState = {
 };
 
 type AuthActions = {
-  setAccessToken: (newState: AuthState["accessTokenContext"]) => void;
+  setAccessToken: (newState: AuthState["accessToken"]) => void;
   setRole: (newState: AuthState["role"]) => void;
   setPermissions: (newState: AuthState["permissions"]) => void;
   setUser: (user: User) => void;
@@ -29,7 +29,7 @@ type PersistedAuthState = Partial<AuthState> & {
 };
 
 const DEFAULT_VALUES: AuthState = {
-  accessTokenContext: null,
+  accessToken: null,
   user: null,
   role: null,
   permissions: null,
@@ -43,7 +43,7 @@ export const useAuthStore = create<AuthStore>()(
 
       setAccessToken: (newState) =>
         set(() => ({
-          accessTokenContext: newState,
+          accessToken: newState,
           updatedAt: newState ? Date.now() : null,
         })),
 

@@ -1,8 +1,7 @@
 import { VerifyingScreen } from "@/components/feedback/verifying-screen";
 import { useAuthStore } from "@/stores/use-auth-store";
-import { setUser } from "@/utils/auth";
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useUserProfile } from "../hooks/use-auth";
 
 export function AuthGuard({ children }: { children: React.ReactNode }) {
@@ -10,19 +9,28 @@ export function AuthGuard({ children }: { children: React.ReactNode }) {
   const ENABLE_AUTH_GUARD =
     process.env.NEXT_PUBLIC_ENABLE_AUTH_GUARD === "true";
 
+  // States
+  const [isHydrated, setIsHydrated] = useState(false);
+
   // Store
-  const accessToken = useAuthStore((s) => s.accessTokenContext);
+  const accessToken = useAuthStore((s) => s.accessToken);
   const setRole = useAuthStore((s) => s.setRole);
   const setPermissions = useAuthStore((s) => s.setPermissions);
-  const setAccessToken = useAuthStore((s) => s.setAccessToken);
+  const removeAuth = useAuthStore((s) => s.removeAuth);
+  const setUser = useAuthStore((s) => s.setUser);
 
   // Hooks
   const router = useRouter();
 
   // Queries
   const { data, isPending, isError } = useUserProfile({
-    enabled: !!accessToken && ENABLE_AUTH_GUARD,
+    enabled: isHydrated && !!accessToken && ENABLE_AUTH_GUARD,
+    retry: false,
   });
+
+  useEffect(() => {
+    setIsHydrated(true);
+  }, []);
 
   useEffect(() => {
     if (!data) return;
@@ -33,22 +41,30 @@ export function AuthGuard({ children }: { children: React.ReactNode }) {
       setRole(user?.role);
       setPermissions(user?.role?.permissions);
     }
-  }, [data]);
+  }, [data, setRole, setPermissions, setUser]);
 
-  if (!ENABLE_AUTH_GUARD) return children;
+  useEffect(() => {
+    if (!isHydrated || !ENABLE_AUTH_GUARD) return;
 
-  if (!accessToken) {
-    router.replace("/");
+    if (!accessToken) {
+      router.replace("/");
+    }
+  }, [accessToken, ENABLE_AUTH_GUARD, router, isHydrated]);
+
+  useEffect(() => {
+    if (!isHydrated || !ENABLE_AUTH_GUARD) return;
+
+    if (isError) {
+      removeAuth();
+      router.replace("/");
+    }
+  }, [isError, ENABLE_AUTH_GUARD, router, removeAuth, isHydrated]);
+
+  if (!ENABLE_AUTH_GUARD) return <>{children}</>;
+
+  if (!isHydrated || !accessToken || isPending || isError) {
     return <VerifyingScreen />;
   }
 
-  if (isPending) return <VerifyingScreen />;
-
-  if (isError) {
-    setAccessToken(null);
-    router.replace("/");
-    return <VerifyingScreen />;
-  }
-
-  return children;
+  return <>{children}</>;
 }

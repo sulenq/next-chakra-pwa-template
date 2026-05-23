@@ -49,7 +49,7 @@ import { AuthGuard } from "@/features/auth/components/auth-guard";
 import { useIsSmScreenWidth } from "@/hooks/use-is-sm-screen-width";
 import { useScreen } from "@/hooks/use-screen";
 import { last } from "@/utils/array";
-import { getUserData } from "@/utils/auth";
+import { useAuthStore } from "@/stores/use-auth-store";
 import { getActiveNavs } from "@/utils/route";
 import { pluckString } from "@/utils/string";
 import { imgUrl } from "@/utils/url";
@@ -71,7 +71,7 @@ const MobileLayout = (props: any) => {
   const { sw } = useScreen();
 
   // States
-  const user = getUserData();
+  const user = useAuthStore((s) => s.user);
   const activeNavs = getActiveNavs(pathname);
   const resolvedActiveNavs =
     sw < 360 ? [activeNavs[activeNavs.length - 1]] : activeNavs;

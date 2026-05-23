@@ -12,7 +12,7 @@ import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-s
 import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
 import { ResetPasswordDisclosureTrigger } from "@/features/auth/components/reset-password";
 import { useRequest } from "@/hooks/useRequestOld";
-import { getUserData } from "@/utils/auth";
+import { useAuthStore } from "@/stores/use-auth-store";
 import { Stack } from "@chakra-ui/react";
 import { useFormik } from "formik";
 import * as yup from "yup";
@@ -37,7 +37,7 @@ export const PersonalInformationSection = (props: ItemRootProps) => {
   });
 
   // Constants
-  const user = getUserData();
+  const user = useAuthStore((s) => s.user);
 
   // States
   const formik = useFormik({

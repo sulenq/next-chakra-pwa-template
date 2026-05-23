@@ -21,7 +21,7 @@ import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-s
 import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
 import { useFetchData } from "@/hooks/useFetchData";
 import { ChartData } from "@/types/global.types";
-import { getUserData } from "@/utils/auth";
+import { useAuthStore } from "@/stores/use-auth-store";
 import { formatDuration, formatNumber } from "@/utils/formatter";
 import { isObjectDeepEmpty } from "@/utils/object";
 import { capitalizeWords, interpolateString } from "@/utils/string";
@@ -546,7 +546,7 @@ export default function Page() {
   });
 
   // Constants
-  const user = getUserData();
+  const user = useAuthStore((s) => s.user);
 
   // Render State Map
   const render = {
