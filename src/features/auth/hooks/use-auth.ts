@@ -20,9 +20,7 @@ export const useSignin = () => {
   const { t } = useLocaleStore();
   const router = useRouter();
 
-  const setAccessToken = useAuthStore((s) => s.setAccessToken);
-  const setUser = useAuthStore((s) => s.setUser);
-  const setPermissions = useAuthStore((s) => s.setPermissions);
+  const setAuth = useAuthStore((s) => s.setAuth);
 
   const toast = mutationToastHandlers("auth-signin", {
     loadingMessage: t.loading_signin,
@@ -35,18 +33,19 @@ export const useSignin = () => {
     onSuccess: (res) => {
       toast.onSuccess();
 
-      console.debug(res);
-
       const accessToken = res.data?.authToken;
       const user = res.data?.user;
-      const permissionsData =
-        res.data?.user?.permissions || res.data?.user?.role?.permissions;
 
-      if (accessToken && user && permissionsData) {
-        setAccessToken(accessToken);
-        setUser(user);
-        setPermissions(permissionsData);
+      if (accessToken && user) {
+        setAuth({ accessToken, user });
       }
+
+      // TODO DEV : enable below
+      // const permissions = res.data?.user?.role?.permissions;
+
+      // if (accessToken && user && permissions) {
+      //   setAuth({ accessToken, user, permissions });
+      // }
 
       router.push(WELCOME_ROUTE);
     },

@@ -211,8 +211,7 @@ export const useRequest = <T = any>(props: UseRequestOptions) => {
           case 401:
           case 403:
             if (!absoluteUrl) {
-              useAuthStore.getState().setAccessToken(null);
-              useAuthStore.getState().setUser(null);
+              useAuthStore.getState().setAuth({ accessToken: null, user: null });
               router?.push(signinPath);
             }
             break;

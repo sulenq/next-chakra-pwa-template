@@ -144,15 +144,15 @@ export interface User extends CUD {
   email: string;
   role: Role;
   accountStatus: string;
-  permissions: Permission[]; // TODO DEV assign Permission type
+  permissions: Permission[];
   avatar: StorageFile[];
   name: string;
+  // optional
+  username?: string | null; // TODO remove undefined type
   gender: Gender | null;
   phoneNumber: string | null;
   birthDate: string | null;
   address: string | null;
-  // optional
-  username?: string | null;
   // audit timestamps
   lastLoginAt: string | null;
   lastChangePasswordAt: string | null;
@@ -166,17 +166,13 @@ export interface Role {
   id: string;
   name: string;
   description: string;
-  permissions: string[];
+  permissions: Permission[];
   createdAt: string;
   updatedAt: string;
   deletedAt: string | null;
 }
 
-export type Permission =
-  | "todo.create"
-  | "todo.read"
-  | "todo.update"
-  | "todo.delete";
+export type Permission = string; // TODO DEV : assign correct permissions
 
 export interface ActivityLog extends CUD {
   id: string;

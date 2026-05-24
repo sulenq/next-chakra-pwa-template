@@ -37,7 +37,7 @@ export const PersonalInformationSection = (props: ItemRootProps) => {
   });
 
   // Constants
-  const user = useAuthStore((s) => s.user);
+  const user = useAuthStore((s) => s.auth.user);
 
   // States
   const formik = useFormik({

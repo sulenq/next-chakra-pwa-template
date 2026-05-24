@@ -4,7 +4,7 @@ import axios from "axios";
 export const setupInterceptors = (http: any) => {
   http.interceptors.request.use(
     (config: any) => {
-      const token = useAuthStore.getState().accessToken;
+      const token = useAuthStore.getState().auth.accessToken;
       if (token) config.headers.Authorization = `Bearer ${token}`;
       return config;
     },
@@ -38,7 +38,7 @@ async function refreshAccessToken(): Promise<string | null> {
       { withCredentials: true },
     );
     const newToken = r.data.accessToken;
-    useAuthStore.getState().setAccessToken(newToken);
+    useAuthStore.getState().setAuth({ accessToken: newToken });
     return newToken;
   } catch {
     return null;

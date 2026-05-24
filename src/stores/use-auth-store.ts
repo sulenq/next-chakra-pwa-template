@@ -2,7 +2,7 @@ import { User } from "@/types/global.types";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
-const STORAGE_KEY = "auth-storage";
+const STORAGE_KEY = "auth";
 const ACCESS_TOKEN_TTL = 0;
 
 type AuthState = {
@@ -13,19 +13,11 @@ type AuthState = {
   updatedAt: number | null;
 };
 
-type AuthActions = {
-  setAccessToken: (newState: AuthState["accessToken"]) => void;
-  setRole: (newState: AuthState["role"]) => void;
-  setPermissions: (newState: AuthState["permissions"]) => void;
-  setUser: (user: User) => void;
+type AuthStore = {
+  auth: AuthState;
+  setAuth: (partial: Partial<AuthState>) => void;
   hasPermissions: (allowedPermissions: string[]) => boolean;
   removeAuth: () => void;
-};
-
-type AuthStore = AuthState & AuthActions;
-
-type PersistedAuthState = Partial<AuthState> & {
-  updatedAt?: number | null;
 };
 
 const DEFAULT_VALUES: AuthState = {
@@ -39,32 +31,28 @@ const DEFAULT_VALUES: AuthState = {
 export const useAuthStore = create<AuthStore>()(
   persist(
     (set, get) => ({
-      ...DEFAULT_VALUES,
+      auth: { ...DEFAULT_VALUES },
 
-      setAccessToken: (newState) =>
-        set(() => ({
-          accessToken: newState,
-          updatedAt: newState ? Date.now() : null,
-        })),
-
-      setRole: (newState) => set(() => ({ role: newState })),
-
-      setPermissions: (newState) => set(() => ({ permissions: newState })),
-
-      setUser: (newState) =>
-        set(() => ({
-          user: newState,
+      setAuth: (partial) =>
+        set((state) => ({
+          auth: {
+            ...state.auth,
+            ...partial,
+            ...(partial.accessToken !== undefined
+              ? { updatedAt: partial.accessToken ? Date.now() : null }
+              : {}),
+          },
         })),
 
       hasPermissions: (allowedPermissions) => {
-        const userPermissions = get().permissions ?? [];
+        const userPermissions = get().auth.permissions ?? [];
         return allowedPermissions.every((permission) =>
           userPermissions.includes(permission),
         );
       },
 
       removeAuth: () => {
-        set(DEFAULT_VALUES);
+        set(() => ({ auth: { ...DEFAULT_VALUES } }));
       },
     }),
     {
@@ -72,10 +60,10 @@ export const useAuthStore = create<AuthStore>()(
       version: 1,
 
       migrate: (persistedState) => {
-        const castedState = persistedState as PersistedAuthState | undefined;
+        const castedState = persistedState as Partial<AuthStore> | undefined;
 
         const now = Date.now();
-        const lastUpdated = castedState?.updatedAt;
+        const lastUpdated = castedState?.auth?.updatedAt;
 
         if (
           ACCESS_TOKEN_TTL > 0 &&
@@ -85,7 +73,7 @@ export const useAuthStore = create<AuthStore>()(
           console.warn("Token expired. Automatically clearing auth store.");
           return {
             ...castedState,
-            ...DEFAULT_VALUES,
+            auth: { ...DEFAULT_VALUES },
           } as AuthStore;
         }
 

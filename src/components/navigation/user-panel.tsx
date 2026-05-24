@@ -31,7 +31,7 @@ export const UserPanel = (props: UserPanelProps) => {
   const { navsExpanded } = props;
 
   // Constants
-  const user = useAuthStore((s) => s.user);
+  const user = useAuthStore((s) => s.auth.user);
 
   return (
     <Item.Body

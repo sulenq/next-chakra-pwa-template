@@ -11,7 +11,7 @@ export const request = axios.create({
 // inject access token to request
 request.interceptors.request.use(
   (config) => {
-    const token = useAuthStore.getState().accessToken;
+    const token = useAuthStore.getState().auth.accessToken;
     if (token) config.headers.Authorization = `Bearer ${token}`;
     return config;
   },
@@ -46,7 +46,7 @@ async function refreshAccessToken(): Promise<string | null> {
       { withCredentials: true },
     );
     const newToken = r.data.accessToken;
-    useAuthStore.getState().setAccessToken(newToken);
+    useAuthStore.getState().setAuth({ accessToken: newToken });
     return newToken;
   } catch {
     return null;

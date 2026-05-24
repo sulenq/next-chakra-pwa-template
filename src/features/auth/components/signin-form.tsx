@@ -1,5 +1,7 @@
 "use client";
 
+import { useEffect, useState } from "react";
+
 import { AppIconLucide } from "@/components/branding/app-icon";
 import { Logo } from "@/components/branding/logo";
 import { LucideIcon } from "@/components/misc/icon";
@@ -191,10 +193,17 @@ export const SigninForm = (props: StackProps) => {
   // Props
   const { ...restProps } = props;
 
+  // States
+  const [isHydrated, setIsHydrated] = useState(false);
+
   // Store
   const { t } = useLocaleStore();
   const { theme } = useThemeStore();
-  const accessToken = useAuthStore((s) => s.accessToken);
+  const accessToken = useAuthStore((s) => s.auth.accessToken);
+
+  useEffect(() => {
+    setIsHydrated(true);
+  }, []);
 
   return (
     <StackV
@@ -206,7 +215,7 @@ export const SigninForm = (props: StackProps) => {
       rounded={theme.radii.container}
       {...restProps}
     >
-      {accessToken ? (
+      {isHydrated && accessToken ? (
         <Signedin />
       ) : (
         <>

@@ -546,7 +546,7 @@ export default function Page() {
   });
 
   // Constants
-  const user = useAuthStore((s) => s.user);
+  const user = useAuthStore((s) => s.auth.user);
 
   // Render State Map
   const render = {

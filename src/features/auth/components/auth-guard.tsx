@@ -13,11 +13,9 @@ export function AuthGuard({ children }: { children: React.ReactNode }) {
   const [isHydrated, setIsHydrated] = useState(false);
 
   // Store
-  const accessToken = useAuthStore((s) => s.accessToken);
-  const setRole = useAuthStore((s) => s.setRole);
-  const setPermissions = useAuthStore((s) => s.setPermissions);
+  const accessToken = useAuthStore((s) => s.auth.accessToken);
+  const setAuth = useAuthStore((s) => s.setAuth);
   const removeAuth = useAuthStore((s) => s.removeAuth);
-  const setUser = useAuthStore((s) => s.setUser);
 
   // Hooks
   const router = useRouter();
@@ -37,11 +35,9 @@ export function AuthGuard({ children }: { children: React.ReactNode }) {
 
     const user = data.data;
     if (user) {
-      setUser(user);
-      setRole(user?.role);
-      setPermissions(user?.role?.permissions);
+      setAuth({ user, role: user?.role, permissions: user?.role?.permissions });
     }
-  }, [data, setRole, setPermissions, setUser]);
+  }, [data, setAuth]);
 
   useEffect(() => {
     if (!isHydrated || !ENABLE_AUTH_GUARD) return;

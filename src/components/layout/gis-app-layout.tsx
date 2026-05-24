@@ -71,7 +71,7 @@ const MobileLayout = (props: any) => {
   const { sw } = useScreen();
 
   // States
-  const user = useAuthStore((s) => s.user);
+  const user = useAuthStore((s) => s.auth.user);
   const activeNavs = getActiveNavs(pathname);
   const resolvedActiveNavs =
     sw < 360 ? [activeNavs[activeNavs.length - 1]] : activeNavs;

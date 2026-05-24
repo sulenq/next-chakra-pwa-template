@@ -94,7 +94,7 @@ export const ProfileMenu = (props: ProfileMenuProps) => {
   });
 
   // States
-  const user = useAuthStore((s) => s.user);
+  const user = useAuthStore((s) => s.auth.user);
 
   // Utils
   function handleSignout() {
