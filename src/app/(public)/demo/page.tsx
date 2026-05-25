@@ -38,7 +38,6 @@ import { Tooltip } from "@/components/ui/tooltip";
 import VideoPlayer from "@/components/ui/video-player";
 import { OPTIONS_RELIGION } from "@/constants/select-options";
 import { MENU_ICON_BOX_SIZE } from "@/constants/styles";
-import useRenderTrigger from "@/stores/use-render-trigger";
 import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
 import { SelectTimezone } from "@/features/settings/regional/components/select-timezone";
 import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
@@ -65,7 +64,6 @@ const Delete = (props: any) => {
 
   // Store
   const { t } = useLocaleStore();
-  const setRt = useRenderTrigger((s) => s.setRt);
 
   // Hooks
   const { req, loading } = useRequest({
@@ -91,7 +89,6 @@ const Delete = (props: any) => {
       },
       onResolve: {
         onSuccess: () => {
-          setRt((ps) => !ps);
           clearSelectedRows?.();
         },
       },

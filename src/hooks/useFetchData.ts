@@ -1,7 +1,6 @@
-import { useEffect, useRef, useState } from "react";
 import { useRequest } from "@/hooks/useRequestOld";
-import useRenderTrigger from "@/stores/use-render-trigger";
 import { useLoadingBarStore } from "@/stores/use-loading-bar-store";
+import { useEffect, useRef, useState } from "react";
 
 // -----------------------------------------------------------------
 
@@ -34,7 +33,6 @@ export const useFetchData = <T = any>(props: UseFetchDataOptions<T>) => {
     method,
     dependencies = [],
     conditions = true,
-    noRt = false,
     initialPage = 1,
     initialLimit = 15,
     intialOffset = 0,
@@ -56,7 +54,6 @@ export const useFetchData = <T = any>(props: UseFetchDataOptions<T>) => {
   const [limit, setLimit] = useState(initialLimit);
   const [offset, setOffset] = useState(intialOffset);
   const [pagination, setPagination] = useState<any>(undefined);
-  const { rt } = useRenderTrigger();
   const { req, response, loading, error, status } = useRequest({
     id: url || "data-state",
     showLoadingToast: false,
@@ -164,14 +161,7 @@ export const useFetchData = <T = any>(props: UseFetchDataOptions<T>) => {
         abortControllerRef.current.abort();
       }
     };
-  }, [
-    conditions,
-    url,
-    page,
-    limit,
-    ...(noRt ? [] : [rt]),
-    ...(dependencies || []),
-  ]);
+  }, [conditions, url, page, limit, ...(dependencies || [])]);
 
   // set initial limit
   useEffect(() => {

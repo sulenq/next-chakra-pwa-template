@@ -7,7 +7,6 @@ import { SettingsHelperText } from "@/components/ui/helper-text";
 import { PasswordInput } from "@/components/ui/password-input";
 import { StackH } from "@/components/ui/stack";
 import { R_SPACING_MD } from "@/constants/styles";
-import useRenderTrigger from "@/stores/use-render-trigger";
 import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
 import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
 import { useRequest } from "@/hooks/useRequestOld";
@@ -18,7 +17,6 @@ export const APIKeySection = () => {
   // Store
   const { t } = useLocaleStore();
   const { theme } = useThemeStore();
-  const setRt = useRenderTrigger((s) => s.setRt);
 
   // Hooks
   const { req, loading } = useRequest({
@@ -48,9 +46,7 @@ export const APIKeySection = () => {
       req({
         config,
         onResolve: {
-          onSuccess: () => {
-            setRt((ps) => !ps);
-          },
+          onSuccess: () => {},
         },
       });
     },

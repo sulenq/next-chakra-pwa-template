@@ -9,7 +9,6 @@ import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-s
 import { queryKeys } from "@/lib/tanstack-query/query.keys";
 import { mutationToastHandlers } from "@/lib/toast/toast.handler";
 import { useAuthStore } from "@/stores/use-auth-store";
-import useRenderTrigger from "@/stores/use-render-trigger";
 import { BaseResponse, User } from "@/types/global.types";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
@@ -52,7 +51,6 @@ export const useSignout = (options?: {
 }) => {
   const { t } = useLocaleStore();
   const removeAuth = useAuthStore((s) => s.removeAuth);
-  const setRt = useRenderTrigger((s) => s.setRt);
 
   const toast = mutationToastHandlers("auth-signout", {
     loadingMessage: t.loading_signout,
@@ -65,13 +63,11 @@ export const useSignout = (options?: {
     onSuccess: () => {
       toast.onSuccess();
       removeAuth();
-      setRt((ps) => !ps);
       options?.onSuccess?.();
     },
     onError: (err) => {
       // Clear token & auth contexts anyway to avoid user being stuck on network errors
       removeAuth();
-      setRt((ps) => !ps);
       options?.onError?.(err);
     },
   });
