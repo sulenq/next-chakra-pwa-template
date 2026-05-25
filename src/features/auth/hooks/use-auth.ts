@@ -35,17 +35,10 @@ export const useSignin = () => {
 
       const accessToken = res.data?.authToken;
       const user = res.data?.user;
+      const permissions = res.data?.user?.role?.permissions;
 
-      if (accessToken && user) {
-        setAuth({ accessToken, user });
-      }
-
-      // TODO DEV : enable below
-      // const permissions = res.data?.user?.role?.permissions;
-
-      // if (accessToken && user && permissions) {
-      //   setAuth({ accessToken, user, permissions });
-      // }
+      if (accessToken && user) setAuth({ accessToken, user });
+      if (permissions) setAuth({ permissions });
 
       router.push(WELCOME_ROUTE);
     },
