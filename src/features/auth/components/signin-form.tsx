@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-
 import { AppIconLucide } from "@/components/branding/app-icon";
 import { Logo } from "@/components/branding/logo";
 import { LucideIcon } from "@/components/misc/icon";
