@@ -26,7 +26,7 @@ import { usePopDisclosure } from "@/hooks/use-pop-disclosure";
 import { disclosureId } from "@/utils/disclosure";
 import { StackV } from "@/components/ui/stack";
 
-const ID = "forgot-password";
+const ID = "reset-password";
 
 // -----------------------------------------------------------------
 
