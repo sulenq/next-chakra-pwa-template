@@ -91,7 +91,7 @@ export const AuthLogSection = (props: ItemRootProps) => {
         <DataListFooter
           limit={limit}
           setLimit={setLimit}
-          dataLength={15}
+          currentDataLength={15}
           totalData={1000}
           page={page}
           setPage={setPage}

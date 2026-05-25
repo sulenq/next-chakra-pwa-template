@@ -469,7 +469,7 @@ const DataGridRoot = (props: DataGridRootProps) => {
           <DataListFooter
             limit={limit}
             setLimit={setLimit}
-            dataLength={rows?.length}
+            currentDataLength={rows?.length}
             totalData={totalData}
             page={page}
             setPage={setPage}

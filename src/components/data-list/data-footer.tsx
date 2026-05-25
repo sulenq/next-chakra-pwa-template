@@ -14,7 +14,7 @@ import { Dispatch, SetStateAction } from "react";
 
 interface DataListFooterProps extends Omit<StackProps, "page"> {
   borderless?: boolean;
-  dataLength?: number;
+  currentDataLength?: number;
   totalData?: number;
   limit: number;
   setLimit: Dispatch<SetStateAction<number>>;
@@ -27,7 +27,7 @@ export const DataListFooter = (props: DataListFooterProps) => {
   // Props
   const {
     borderless = false,
-    dataLength,
+    currentDataLength,
     totalData,
     limit,
     setLimit,
@@ -41,7 +41,7 @@ export const DataListFooter = (props: DataListFooterProps) => {
   const iss = useIsSmScreenWidth();
 
   // Constants
-  const dataLenghContent = `${dataLength ? `${formatNumber(dataLength)}` : "?"} / ${totalData != null ? formatNumber(totalData) : "?"} items`;
+  const dataLenghContent = `${currentDataLength ? `${formatNumber(currentDataLength)}` : "?"} / ${totalData != null ? formatNumber(totalData) : "?"} items`;
 
   return (
     <StackV

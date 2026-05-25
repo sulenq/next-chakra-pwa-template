@@ -524,7 +524,7 @@ export const DataTableRoot = (props: DataTableRootProps) => {
         <DataListFooter
           limit={limit}
           setLimit={setLimit}
-          dataLength={rows?.length}
+          currentDataLength={rows?.length}
           totalData={totalData}
           page={page}
           setPage={setPage}

@@ -118,6 +118,8 @@ export type DateVariant =
   | "shortWeekdayDayMonthYear" // Wed, 15 January 2025
   | "shortWeekdayDayShortMonthYear"; // Wed, 15 Jan 2025
 
+// -----------------------------------------------------------------
+
 // Response
 export interface BaseResponse<T = any> {
   status: number;
@@ -145,18 +147,20 @@ export interface User extends CUD {
   name: string;
   email: string;
   role: Role;
+
   // nullable
-  username?: string | null; // TODO remove undefined type
+  username: string | null; // TODO remove undefined type
   gender: Gender | null;
   phoneNumber: string | null;
   birthDate: string | null;
   address: string | null;
+
   // audit timestamps
   lastLoginAt: string | null;
   lastChangePasswordAt: string | null;
   deactiveAt: string | null;
 
-  // additional
+  // more info
   taskCount?: number;
 }
 
@@ -300,11 +304,10 @@ export interface CUD {
 // Storage
 export interface StorageFile extends CUD {
   id: string;
-  fileName: string;
-  filePath: string;
-  fileUrl: string;
-  fileMimeType: string;
-  fileSize: string;
+  name: string;
+  path: string;
+  mimeType: string;
+  size: number; // bytes
 }
 
 // Select Input
