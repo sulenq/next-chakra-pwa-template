@@ -3,7 +3,7 @@ import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
 const STORAGE_KEY = "auth";
-const ACCESS_TOKEN_TTL = 0;
+const ACCESS_TOKEN_TTL = 0; // in ms
 
 type AuthState = {
   accessToken: string | null;
