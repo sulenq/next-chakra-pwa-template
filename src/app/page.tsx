@@ -2,11 +2,12 @@
 
 import { BrandWatermark } from "@/components/branding/brand-watermark";
 import { Logo } from "@/components/branding/logo";
-import { AnimatedBlobBackground } from "@/components/overlays/background";
 import { ColorModeButton } from "@/components/ui/color-mode";
+import { Img } from "@/components/ui/img";
 import { LangMenu } from "@/components/ui/lang-menu";
 import { P } from "@/components/ui/p";
 import { StackH, StackV } from "@/components/ui/stack";
+import { IMAGES_PATH } from "@/constants/paths";
 import { SigninForm } from "@/features/auth/components/signin-form";
 import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
 import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
@@ -80,7 +81,13 @@ export default function Page() {
               overflow={"clip"}
               pos={"relative"}
             >
-              <AnimatedBlobBackground />
+              {/* <AnimatedBlobBackground /> */}
+
+              <Img
+                src={`${IMAGES_PATH}/root.jpg`}
+                h={"full"}
+                pos={"absolute"}
+              />
 
               <StackV h={"full"} p={5} pos={"absolute"}>
                 <StackV color={"light"} mt={"auto"}>
