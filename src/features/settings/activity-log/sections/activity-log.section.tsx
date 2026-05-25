@@ -2,22 +2,17 @@
 
 import { Item } from "@/components/container/item";
 import { DataListFooter } from "@/components/data-list/data-footer";
-import FeedbackNoData from "@/components/feedback/feedback-no-data";
-import FeedbackNotFound from "@/components/feedback/feedback-not-found";
-import FeedbackRetry from "@/components/feedback/feedback-retry";
 import { SettingsHelperText } from "@/components/ui/helper-text";
 import { P } from "@/components/ui/p";
 import { SearchInput } from "@/components/ui/search-input";
-import { Skeleton } from "@/components/ui/skeleton";
 import { StackH, StackV } from "@/components/ui/stack";
 import { MiniUser } from "@/components/user/mini-user";
-import { dummyAllActivityLogs } from "@/constants/dummy-data";
-import { ActivityActionEnum } from "@/constants/enums";
+import { activityActionTemplates } from "@/constants/activity-action";
+import { DEFAULT_LIMIT, DEFAULT_PAGE } from "@/constants/data-list";
+import { DUMMY_ALL_ACTIVITY_LOGS } from "@/constants/dummy-data";
 import { R_SPACING_MD } from "@/constants/styles";
 import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
-import { useFetchData } from "@/hooks/useFetchData";
 import type { ActivityLog } from "@/types/global.types";
-import { isEmptyArray } from "@/utils/array";
 import { formatDate } from "@/utils/formatter";
 import { useState } from "react";
 
@@ -27,95 +22,17 @@ export const ActivityLogSection = () => {
   // Store
   const { t } = useLocaleStore();
 
+  // Constants
+  const data = DUMMY_ALL_ACTIVITY_LOGS;
+
   // States
   const [search, setSearch] = useState("");
-  const {
-    error,
-    initialLoading,
-    data,
-    onRetry,
-    limit,
-    setLimit,
-    pagination,
-    page,
-    setPage,
-  } = useFetchData<{
-    totalData: number;
-    items: ActivityLog[];
-  }>({
-    initialData: {
-      totalData: 100,
-      items: dummyAllActivityLogs,
-    },
-    url: ``,
-    dataResource: false,
-  });
+  const [limit, setLimit] = useState<number>(DEFAULT_LIMIT);
+  const [page, setPage] = useState<number>(DEFAULT_PAGE);
 
-  // Derived Values
-  const activityFormatter: Record<
-    string,
-    (meta?: Record<string, any>) => string
-  > = {
-    // TODO_DEV create action sentence glosary
-    [ActivityActionEnum.CREATE_WORKSPACE]: (meta) =>
-      `Created workspace "${meta?.workspaceName ?? "Unknown"}"`,
-
-    [ActivityActionEnum.UPDATE_WORKSPACE]: (meta) =>
-      `Updated workspace "${meta?.workspaceName ?? "Unknown"}"`,
-
-    [ActivityActionEnum.DELETE_WORKSPACE]: (meta) =>
-      `Deleted workspace "${meta?.workspaceName ?? "Unknown"}"`,
-
-    [ActivityActionEnum.CREATE_LAYER]: (meta) =>
-      `Created layer "${meta?.layerName ?? "Unknown"}"`,
-
-    [ActivityActionEnum.UPDATE_LAYER]: (meta) =>
-      `Updated layer "${meta?.layerName ?? "Unknown"}"`,
-
-    [ActivityActionEnum.DELETE_LAYER]: (meta) =>
-      `Deleted layer "${meta?.layerName ?? "Unknown"}`,
-  };
+  // Utils
   const formatActivityLog = (log: ActivityLog): string => {
-    return activityFormatter[log.action as ActivityActionEnum](log.metadata);
-  };
-
-  // Render State Map
-  const render = {
-    loading: <Skeleton flex={1} />,
-    error: <FeedbackRetry onRetry={onRetry} />,
-    empty: <FeedbackNoData />,
-    notFound: <FeedbackNotFound />,
-    loaded: (
-      <>
-        {data?.items?.map((log, index) => {
-          return (
-            <StackH
-              align={"center"}
-              key={`${log.id}-${index}`}
-              gap={4}
-              p={4}
-              justify={"space-between"}
-              borderTop={index === 0 ? "" : "1px solid"}
-              borderColor={"border.subtle"}
-            >
-              {log.user && <MiniUser withEmail user={log.user} w={"240px"} />}
-
-              <StackV flex={1}>
-                <P>{formatActivityLog(log)}</P>
-
-                <P color={"fg.subtle"}>
-                  {formatDate(log?.createdAt, t, {
-                    variant: "dayShortMonthYear",
-
-                    withTime: true,
-                  })}
-                </P>
-              </StackV>
-            </StackH>
-          );
-        })}
-      </>
-    ),
+    return activityActionTemplates[log.action](log.metadata);
   };
 
   return (
@@ -134,28 +51,43 @@ export const ActivityLogSection = () => {
         </StackV>
 
         <StackV minH={"300px"}>
-          {initialLoading && render.loading}
-          {!initialLoading && (
-            <>
-              {error && render.error}
-              {!error && (
-                <>
-                  {data?.items && render.loaded}
-                  {(!data?.items || isEmptyArray(data?.items)) && render.empty}
-                </>
-              )}
-            </>
-          )}
+          {data?.map((log, index) => {
+            return (
+              <StackH
+                align={"center"}
+                key={`${log.id}-${index}`}
+                gap={4}
+                p={4}
+                justify={"space-between"}
+                borderTop={index === 0 ? "" : "1px solid"}
+                borderColor={"border.subtle"}
+              >
+                {log.user && <MiniUser withEmail user={log.user} w={"240px"} />}
+
+                <StackV flex={1}>
+                  <P>{formatActivityLog(log)}</P>
+
+                  <P color={"fg.subtle"}>
+                    {formatDate(log?.createdAt, t, {
+                      variant: "dayShortMonthYear",
+
+                      withTime: true,
+                    })}
+                  </P>
+                </StackV>
+              </StackH>
+            );
+          })}
         </StackV>
 
         <DataListFooter
           limit={limit}
           setLimit={setLimit}
-          dataLength={data?.items?.length}
-          totalData={data?.totalData}
+          dataLength={15}
+          totalData={1000}
           page={page}
           setPage={setPage}
-          totalPage={pagination?.meta?.totalPage}
+          totalPage={100}
         />
       </Item.Body>
     </Item.Root>

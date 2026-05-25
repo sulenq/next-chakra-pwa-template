@@ -141,13 +141,12 @@ export interface LangObject {
 // Auth
 export interface User extends CUD {
   id: string;
-  email: string;
-  role: Role;
   accountStatus: string;
-  permissions: Permission[];
   avatar: StorageFile[];
   name: string;
-  // optional
+  email: string;
+  role: Role;
+  // nullable
   username?: string | null; // TODO remove undefined type
   gender: Gender | null;
   phoneNumber: string | null;

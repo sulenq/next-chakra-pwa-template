@@ -111,6 +111,7 @@ export const DUMMY_CHART_DATA = {
 
   "3M": generate3M(),
 };
+
 export const DUMMY_DASHBOARD_DATA = {
   overview: {
     totalUsers: 1284,
@@ -124,6 +125,7 @@ export const DUMMY_DASHBOARD_DATA = {
   modelPerformance: {},
   comparison: {},
 };
+
 export const DUMMY_USER = {
   id: "1",
   avatar: [
@@ -1066,7 +1068,7 @@ export const DUMMY_ACTIVITY_LOGS = [
   },
 ];
 
-export const dummyAllActivityLogs = [
+export const DUMMY_ALL_ACTIVITY_LOGS = [
   {
     id: "1",
     userId: "103",

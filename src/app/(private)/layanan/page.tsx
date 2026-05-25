@@ -6,7 +6,7 @@ import { MainView, useMainViewContext } from "@/components/container/main-view";
 import { HScroll } from "@/components/container/h-scroll";
 import { GAP, R_SPACING_MD, TOP_BAR_H } from "@/constants/styles";
 import { LayananCreate } from "@/features/layanan/components/layanan.create";
-import { LayananList } from "@/features/layanan/components/layanan.data-list";
+import { LayananDataList } from "@/features/layanan/components/layanan.data-list";
 import { LayananListUtils } from "@/features/layanan/components/layanan.data-list-utils";
 import { useState } from "react";
 import { cssCalc } from "@/utils/style";
@@ -62,7 +62,7 @@ export default function LayananPage() {
       )}
 
       <Item.Body flex={1} overflowY={"auto"}>
-        <LayananList filter={filter} />
+        <LayananDataList filter={filter} />
       </Item.Body>
     </MainView.Content>
   );

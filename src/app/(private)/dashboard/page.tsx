@@ -1,38 +1,27 @@
 "use client";
 
-import { Btn } from "@/components/ui/btn";
-import { P } from "@/components/ui/p";
-import { Segmented } from "@/components/ui/segment-group";
-import { Skeleton } from "@/components/ui/skeleton";
-import { StackH, StackV } from "@/components/ui/stack";
-import { Switch } from "@/components/ui/switch";
 import { AppIconLucide } from "@/components/branding/app-icon";
-import { ChartTooltip } from "@/components/overlays/chart-tooltip";
-import { ClampText } from "@/components/ui/clamp-text";
-import FeedbackNoData from "@/components/feedback/feedback-no-data";
-import FeedbackRetry from "@/components/feedback/feedback-retry";
-import { DotIndicator } from "@/components/ui/indicator";
 import { Item } from "@/components/container/item";
 import { MainView, useMainViewContext } from "@/components/container/main-view";
+import { ChartTooltip } from "@/components/overlays/chart-tooltip";
+import { Btn } from "@/components/ui/btn";
+import { ClampText } from "@/components/ui/clamp-text";
+import { DotIndicator } from "@/components/ui/indicator";
+import { P } from "@/components/ui/p";
+import { Segmented } from "@/components/ui/segment-group";
+import { StackH, StackV } from "@/components/ui/stack";
+import { Switch } from "@/components/ui/switch";
 import { DUMMY_DASHBOARD_DATA } from "@/constants/dummy-data";
 import { getMonthNames } from "@/constants/months";
 import { GAP, R_SPACING_MD } from "@/constants/styles";
-import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
 import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
-import { useFetchData } from "@/hooks/useFetchData";
-import { ChartData } from "@/types/global.types";
+import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
 import { useAuthStore } from "@/stores/use-auth-store";
+import { ChartData } from "@/types/global.types";
 import { formatDuration, formatNumber } from "@/utils/formatter";
-import { isObjectDeepEmpty } from "@/utils/object";
 import { capitalizeWords, interpolateString } from "@/utils/string";
 import { Chart, useChart } from "@chakra-ui/charts";
-import {
-  Badge,
-  Center,
-  SimpleGrid,
-  SimpleGridProps,
-  StackProps,
-} from "@chakra-ui/react";
+import { Badge, Center, SimpleGrid, StackProps } from "@chakra-ui/react";
 import {
   ArrowUpIcon,
   CheckCheckIcon,
@@ -54,11 +43,21 @@ import {
   YAxis,
 } from "recharts";
 
-const DEFAULT_FILTER = {
+// -----------------------------------------------------------------
+
+interface DashboardFilter {
+  startDate: Date | null;
+  endDate: Date | null;
+  year: number;
+}
+
+const DEFAULT_FILTER: DashboardFilter = {
   startDate: null,
   endDate: null,
   year: new Date().getFullYear(),
 };
+
+// -----------------------------------------------------------------
 
 interface OverviewItemProps extends StackProps {
   item: {
@@ -69,6 +68,7 @@ interface OverviewItemProps extends StackProps {
   };
   index?: number;
 }
+
 const OverviewItem = (props: OverviewItemProps) => {
   // Props
   const { item, ...restProps } = props;
@@ -118,16 +118,15 @@ const OverviewItem = (props: OverviewItemProps) => {
   );
 };
 
-interface OverviewProps extends SimpleGridProps {
-  data: any;
-}
-const Overview = (props: OverviewProps) => {
-  // Props
-  const { data, ...restProps } = props;
+// -----------------------------------------------------------------
 
+const Overview = (props: StackProps) => {
   // Store
   const { t } = useLocaleStore();
   const { isSmContainer } = useMainViewContext();
+
+  // Constants
+  const data = DUMMY_DASHBOARD_DATA.overview;
 
   // States
   const resolvedData = [
@@ -170,13 +169,8 @@ const Overview = (props: OverviewProps) => {
   ];
 
   return (
-    <StackV>
-      <SimpleGrid
-        columns={isSmContainer ? 2 : 3}
-        gap={GAP}
-        pos={"relative"}
-        {...restProps}
-      >
+    <StackV {...props}>
+      <SimpleGrid columns={isSmContainer ? 2 : 3} gap={GAP} pos={"relative"}>
         {resolvedData?.map((item: any, index: number) => {
           return <OverviewItem key={index} item={item} index={index} />;
         })}
@@ -184,6 +178,8 @@ const Overview = (props: OverviewProps) => {
     </StackV>
   );
 };
+
+// -----------------------------------------------------------------
 
 const Chart1 = (props: any) => {
   const ZOOM_STEP = 5;
@@ -515,16 +511,24 @@ const Chart1 = (props: any) => {
   );
 };
 
-const Usage = (props: any) => {
+// -----------------------------------------------------------------
+
+interface UsageProps extends Omit<StackProps, "filter"> {
+  filter: DashboardFilter;
+}
+const Usage = (props: UsageProps) => {
   // Props
-  const { data, filter, ...restProps } = props;
+  const { filter, ...restProps } = props;
 
   // Store
   const { isSmContainer } = useMainViewContext();
 
+  // Constants
+  const data = DUMMY_DASHBOARD_DATA.usage;
+
   return (
-    <StackV>
-      <SimpleGrid columns={isSmContainer ? 1 : 2} gap={GAP} {...restProps}>
+    <StackV {...restProps}>
+      <SimpleGrid columns={isSmContainer ? 1 : 2} gap={GAP}>
         <Chart1 data={data} year={filter.year} />
 
         <Chart1 data={data} year={filter.year} />
@@ -539,28 +543,9 @@ export default function Page() {
 
   // States
   const [filter] = useState<any>(DEFAULT_FILTER);
-  const { initialLoading, error, data, onRetry } = useFetchData<any>({
-    initialData: DUMMY_DASHBOARD_DATA,
-    // url: ``,
-    dataResource: false,
-  });
 
   // Constants
   const user = useAuthStore((s) => s.auth.user);
-
-  // Render State Map
-  const render = {
-    loading: <Skeleton />,
-    error: <FeedbackRetry onRetry={onRetry} />,
-    empty: <FeedbackNoData />,
-    loaded: data && (
-      <StackV gap={GAP}>
-        <Overview data={data.overview} />
-
-        <Usage data={data.usage} filter={filter} />
-      </StackV>
-    ),
-  };
 
   return (
     <MainView.Content gap={GAP} p={GAP}>
@@ -587,19 +572,10 @@ export default function Page() {
         </StackV>
       </StackH>
 
-      <StackV>
-        {initialLoading && render.loading}
-        {!initialLoading && (
-          <>
-            {error && render.error}
-            {!error && (
-              <>
-                {isObjectDeepEmpty(data) && render.empty}
-                {!isObjectDeepEmpty(data) && render.loaded}
-              </>
-            )}
-          </>
-        )}
+      <StackV gap={GAP}>
+        <Overview />
+
+        <Usage filter={filter} />
       </StackV>
     </MainView.Content>
   );
