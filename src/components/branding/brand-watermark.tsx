@@ -15,7 +15,7 @@ export const BrandWatermark = (props: PProps) => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <P textAlign={"center"} fontSize={"sm"} color={"fg.muted"} {...restProps}>
+    <P textAlign={"center"} color={"fg.muted"} {...restProps}>
       © {currentYear} powered by{" "}
       <Span fontWeight={"bold"}>
         <Link href={"https://exium.id"} target={"_blank"}>

@@ -1,8 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { AppIconLucide } from "@/components/branding/app-icon";
-import { Logo } from "@/components/branding/logo";
 import { LucideIcon } from "@/components/misc/icon";
 import { Btn } from "@/components/ui/btn";
 import { Divider } from "@/components/ui/divider";
@@ -14,18 +12,18 @@ import { PasswordInput } from "@/components/ui/password-input";
 import { StackH, StackV } from "@/components/ui/stack";
 import { StringInput } from "@/components/ui/string-input";
 import { UserIdCard } from "@/components/user/user-id-card";
-import { APP } from "@/constants/_meta";
 import { WELCOME_ROUTE } from "@/constants/routes";
 import { BASE_ICON_BOX_SIZE } from "@/constants/styles";
-import { useAuthStore } from "@/stores/use-auth-store";
 import { ResetPasswordDisclosureTrigger } from "@/features/auth/components/reset-password";
 import { useSignin } from "@/features/auth/hooks/use-auth";
 import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
 import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
+import { useAuthStore } from "@/stores/use-auth-store";
 import { FieldsetRoot, Icon, InputGroup, StackProps } from "@chakra-ui/react";
 import { IconLock, IconUser } from "@tabler/icons-react";
 import { useFormik } from "formik";
 import { ArrowRight, LogInIcon } from "lucide-react";
+import { useEffect, useState } from "react";
 import * as yup from "yup";
 
 // -----------------------------------------------------------------
@@ -219,10 +217,8 @@ export const SigninForm = (props: StackProps) => {
       ) : (
         <>
           <StackV align={"center"} gap={2} mb={4}>
-            <Logo size={28} mb={2} />
-
             <H1 fontSize={"3xl"} fontWeight={"bold"} textAlign={"center"}>
-              {APP.name}
+              Welcome back!
             </H1>
 
             <P textAlign={"center"} color={"fg.subtle"}>

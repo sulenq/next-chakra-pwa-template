@@ -8,21 +8,21 @@ import { BaseResponse, User } from "@/types/global.types";
 // -----------------------------------------------------------------
 
 export const signin = async (data: SigninPayload) => {
-  const res = await http.post<BaseResponse<SigninResponseData>>(
+  const response = await http.post<BaseResponse<SigninResponseData>>(
     "/api/login",
     data,
   );
-  return res.data;
+  return response.data;
 };
 
 export const signout = async () => {
-  const res = await http.post<BaseResponse>("/api/logout");
-  return res.data;
+  const response = await http.post<BaseResponse>("/api/logout");
+  return response.data;
 };
 
 export const getUserProfile = async (signal?: AbortSignal) => {
-  const res = await http.get<BaseResponse<User>>("/api/get-user-profile", {
+  const response = await http.get<BaseResponse<User>>("/api/get-user-profile", {
     signal,
   });
-  return res.data;
+  return response.data;
 };

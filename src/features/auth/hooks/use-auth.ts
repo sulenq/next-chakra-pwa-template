@@ -29,12 +29,12 @@ export const useSignin = () => {
   return useMutation({
     mutationFn: (data: SigninPayload) => signin(data),
     onMutate: toast.onLoading,
-    onSuccess: (res) => {
+    onSuccess: (response) => {
       toast.onSuccess();
 
-      const accessToken = res.data?.authToken;
-      const user = res.data?.user;
-      const permissions = res.data?.user?.role?.permissions;
+      const accessToken = response.data?.authToken;
+      const user = response.data?.user;
+      const permissions = response.data?.user?.role?.permissions;
 
       if (accessToken && user) setAuth({ accessToken, user });
       if (permissions) setAuth({ permissions });

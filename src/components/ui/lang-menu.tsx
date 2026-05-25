@@ -4,32 +4,17 @@ import { Btn, BtnProps } from "@/components/ui/btn";
 import { Menu } from "@/components/ui/menu";
 
 import { Tooltip } from "@/components/ui/tooltip";
+import { LANGUAGES } from "@/constants/languages";
 import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
-import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
-import { Icon, MenuPositioner, Portal } from "@chakra-ui/react";
-import { IconCheck, IconChevronDown } from "@tabler/icons-react";
-
-// -----------------------------------------------------------------
-
-const LANGUAGES = [
-  {
-    key: "id",
-    code: "id-ID",
-    label: "Indonesia",
-  },
-  {
-    key: "en",
-    code: "en-US",
-    label: "English",
-  },
-];
+import { MenuPositioner, Portal } from "@chakra-ui/react";
+import { IconChevronDown } from "@tabler/icons-react";
+import { RadioItem } from "./radio";
 
 // -----------------------------------------------------------------
 
 export const LangMenu = (props: BtnProps) => {
   // Store
   const { t, locale, setLocale } = useLocaleStore();
-  const { theme } = useThemeStore();
 
   return (
     <Tooltip content={t.language}>
@@ -54,22 +39,18 @@ export const LangMenu = (props: BtnProps) => {
           <MenuPositioner>
             <Menu.Content zIndex={2000}>
               {LANGUAGES.map((item, i) => {
-                const active = item.key === locale;
+                const isSelected = item.key === locale;
 
                 return (
                   <Menu.Item
                     key={i}
                     value={item.key}
                     onClick={() => setLocale(item.key as any)}
-                    fontWeight={active ? "medium" : "normal"}
+                    fontWeight={isSelected ? "medium" : "normal"}
                   >
-                    {item.label}
+                    <RadioItem checked={isSelected} />
 
-                    {active && (
-                      <Icon boxSize={5} color={theme.primaryColor} ml={"auto"}>
-                        <IconCheck stroke={1.5} />
-                      </Icon>
-                    )}
+                    {item.label}
                   </Menu.Item>
                 );
               })}
