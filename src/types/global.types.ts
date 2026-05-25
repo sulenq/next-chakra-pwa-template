@@ -1,4 +1,3 @@
-import { ActivityActionEnum } from "@/constants/enums";
 import { AxiosRequestConfig, AxiosResponse } from "axios";
 import { ReactNode } from "react";
 
@@ -176,7 +175,7 @@ export type Permission = string; // TODO DEV : assign correct permissions
 export interface ActivityLog extends CUD {
   id: string;
   userId: string;
-  action: ActivityActionEnum | string;
+  action: string;
   metadata?: Record<string, any>;
   user?: User;
 }
