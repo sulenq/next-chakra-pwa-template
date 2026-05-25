@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
-const STORAGE_KEY = "is-navs-expanded";
+const STORAGE_KEY = "navs";
 
 type NavsStore = {
   isNavsExpanded: boolean;
