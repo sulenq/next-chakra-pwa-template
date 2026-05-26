@@ -87,7 +87,7 @@ export const UserIdCard = (props: UserIdCardProps) => {
         shadow={"xs"}
         overflow={"clip"}
         pos={"absolute"}
-        transform={"translate(-42px, -6px) rotate(12deg)"}
+        transform={"translate(-36px, -6px) rotate(10deg)"}
         zIndex={1}
       >
         <StackH

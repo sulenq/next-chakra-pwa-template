@@ -41,7 +41,7 @@ const ItemRoot = forwardRef<HTMLDivElement, ItemRootProps>(
       children,
       scrollY = false,
       provideContext = false,
-      className,
+      className = "",
       ...restProps
     } = props;
 
@@ -124,7 +124,7 @@ const ItemBody = forwardRef<HTMLDivElement, ItemBodyProps>(
     const {
       children,
       scrollY = false,
-      className,
+      className = "",
       roundedless = false,
       borderless = true,
       ...restProps
@@ -136,7 +136,7 @@ const ItemBody = forwardRef<HTMLDivElement, ItemBodyProps>(
     return (
       <StackV
         ref={ref}
-        className={`ItemBody ${scrollY ? "scrollY" : ""} ${className || ""}`}
+        className={`ItemBody ${scrollY ? "scrollY" : ""} ${className}`}
         w={"full"}
         bg={"bg.frosted"}
         rounded={roundedless ? "" : theme.radii.container}
