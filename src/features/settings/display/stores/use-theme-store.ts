@@ -23,7 +23,7 @@ export const DEFAULT: ThemeStore = {
   primaryColor: `${COLOR_PALETTES[0].palette}.solid`,
   primaryColorHex: COLOR_PALETTES[0].primaryHex,
   logo: `${IMAGES_PATH}/logo_graphic.png`,
-  radii: ROUNDED_PRESETS[4],
+  radii: ROUNDED_PRESETS[5],
 };
 
 type ThemeConfigStore = {
