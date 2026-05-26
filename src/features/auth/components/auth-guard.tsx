@@ -2,7 +2,7 @@ import { VerifyingScreen } from "@/components/feedback/verifying-screen";
 import { useAuthStore } from "@/stores/use-auth-store";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { useUserProfile } from "../hooks/use-auth";
+import { useCurrentUser } from "../hooks/use-auth";
 
 export function AuthGuard({ children }: { children: React.ReactNode }) {
   // Constants
@@ -21,7 +21,7 @@ export function AuthGuard({ children }: { children: React.ReactNode }) {
   const router = useRouter();
 
   // Queries
-  const { data, isPending, isError } = useUserProfile({
+  const { data, isPending, isError } = useCurrentUser({
     enabled: isHydrated && !!accessToken && ENABLE_AUTH_GUARD,
     retry: false,
   });

@@ -1527,8 +1527,26 @@ export const loading_signout = {
   title: { id: "Sign out", en: "Sign out" },
   description: { id: "Mengakhiri sesi...", en: "Ending session..." },
 };
+export const loading_sending_otp = {
+  title: { id: "Mengirim OTP", en: "Sending OTP" },
+  description: {
+    id: "Sedang mengirim OTP ke email anda...",
+    en: "Sending OTP to your email...",
+  },
+};
+export const loading_verify_otp = {
+  title: { id: "Verifikasi OTP", en: "OTP Verification" },
+  description: { id: "Sedang memverifikasi OTP...", en: "Verifying OTP..." },
+};
+export const loading_save_new_password = {
+  title: { id: "Simpan password baru", en: "Save new password" },
+  description: {
+    id: "Sedang menyimpan password baru...",
+    en: "Saving new password...",
+  },
+};
 export const loading_fetch_data = {
-  title: { id: "Fetch data", en: "Fetch data" },
+  title: { id: "Mengambil data", en: "Fetch data" },
   description: { id: "Sedang mengambil data...", en: "Fetching data..." },
 };
 export const loading_submit_form = {
@@ -1583,6 +1601,27 @@ export const success_signin = {
 export const success_signout = {
   title: { id: "Sign out berhasil", en: "Sign out successful" },
   description: { id: "Anda telah keluar.", en: "You are now signed out." },
+};
+export const success_otp_sent = {
+  title: { id: "OTP sent", en: "OTP sent" },
+  description: {
+    id: "OTP has been sent to your email.",
+    en: "OTP has been sent to your email.",
+  },
+};
+export const success_verify_otp = {
+  title: { id: "Verifikasi OTP", en: "OTP Verification" },
+  description: {
+    id: "OTP berhasil diverifikasi",
+    en: "OTP verified successfully",
+  },
+};
+export const success_save_new_password = {
+  title: { id: "Simpan password baru", en: "Save new password" },
+  description: {
+    id: "Password berhasil diperbarui.",
+    en: "Password updated successfully.",
+  },
 };
 export const success_200_default = {
   title: { id: "Ok", en: "Ok" },

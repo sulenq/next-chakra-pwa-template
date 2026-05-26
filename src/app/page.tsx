@@ -2,20 +2,18 @@
 
 import { BrandWatermark } from "@/components/branding/brand-watermark";
 import { Logo } from "@/components/branding/logo";
+import { RandomQuote } from "@/components/misc/random-quote";
 import { AnimatedBlobBackground } from "@/components/overlays/background";
 import { ColorModeButton } from "@/components/ui/color-mode";
 import { LangMenu } from "@/components/ui/lang-menu";
-import { P } from "@/components/ui/p";
 import { StackH, StackV } from "@/components/ui/stack";
 import { SigninForm } from "@/features/auth/components/signin-form";
 import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
-import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
 import { useIsSmScreenWidth } from "@/hooks/use-is-sm-screen-width";
 import { SimpleGrid } from "@chakra-ui/react";
 
 export default function Page() {
   // Store
-  const { t } = useLocaleStore();
   const { theme } = useThemeStore();
 
   // Hooks
@@ -82,10 +80,20 @@ export default function Page() {
             >
               <AnimatedBlobBackground />
 
-              <StackV h={"full"} p={10} pos={"absolute"}>
-                <StackV color={"light"} my={"auto"}>
-                  <P textAlign={"center"}>{t.msg_app_desc}</P>
-                </StackV>
+              <StackV
+                align={"center"}
+                w={"full"}
+                h={"full"}
+                p={10}
+                pos={"absolute"}
+              >
+                <RandomQuote
+                  textAlign={"center"}
+                  fontSize={"lg"}
+                  fontWeight={"bold"}
+                  color={"light"}
+                  m={"auto"}
+                />
               </StackV>
             </StackV>
           )}

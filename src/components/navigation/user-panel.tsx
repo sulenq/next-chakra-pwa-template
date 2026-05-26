@@ -39,6 +39,9 @@ export const UserPanel = (props: UserPanelProps) => {
       bg={navsExpanded ? "bg.frosted" : "transparent"}
       backdropFilter={BACKDROP_BLUR_FILTER}
       overflow={"clip"}
+      // border={navsExpanded ? "1px solid" : "none"}
+      // borderColor={"border.subtle"}
+      // shadow={"soft"}
     >
       {/* Quick actions */}
       {navsExpanded && (

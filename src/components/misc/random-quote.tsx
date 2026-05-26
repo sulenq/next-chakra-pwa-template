@@ -1,40 +1,44 @@
 "use client";
 
-import { P, PProps } from "@/components/ui/p";
-import { useRequest } from "@/hooks/useRequestOld";
 import { useEffect, useState } from "react";
-
-// -----------------------------------------------------------------
+import { P, PProps } from "@/components/ui/p";
+import { http } from "@/api/http";
 
 export const RandomQuote = (props: PProps) => {
   const [quote, setQuote] = useState<string>("");
-
-  const { req, loading, error } = useRequest({
-    id: "quote",
-    absoluteUrl: `https://api.quotable.io/quotes/random?limit=1&maxLength=60`,
-    showLoadingToast: false,
-    showSuccessToast: false,
-    showErrorToast: false,
-  });
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<boolean>(false);
 
   useEffect(() => {
-    async function load() {
-      const config = {
-        method: "GET",
-        withCredentials: false,
-      };
-      req({
-        config,
-        onResolve: {
-          onSuccess: (r: any) => {
-            const picked = r?.data?.[0]?.content ?? "";
-            setQuote(picked || "Stay sharp, keep moving.");
-          },
-        },
-      });
-    }
+    const controller = new AbortController();
 
-    load();
+    const fetchQuote = async () => {
+      try {
+        setLoading(true);
+        setError(false);
+
+        const response = await http.get(
+          "https://api.quotable.io/quotes/random?limit=1&maxLength=60",
+          {
+            signal: controller.signal,
+            withCredentials: false,
+          },
+        );
+
+        const picked = response?.data?.[0]?.content ?? "";
+        setQuote(picked || "Stay sharp, keep moving.");
+      } catch (err: any) {
+        if (err.name !== "CanceledError") {
+          setError(true);
+        }
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchQuote();
+
+    return () => controller.abort();
   }, []);
 
   if (loading) return <P {...props}>...</P>;

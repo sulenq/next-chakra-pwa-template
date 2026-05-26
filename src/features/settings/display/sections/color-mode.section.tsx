@@ -54,7 +54,6 @@ const DisplaySkeleton = (props: DisplaySkeletonProps) => {
 
   return (
     <StackV gap={4} w={"full"} {...restProps}>
-      <P color={"gray.fg"}>Jancok</P>
       <StackV
         gap={2}
         bg={color.body[colorMode]}

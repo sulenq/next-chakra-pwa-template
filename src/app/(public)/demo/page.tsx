@@ -41,14 +41,12 @@ import { MENU_ICON_BOX_SIZE } from "@/constants/styles";
 import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
 import { SelectTimezone } from "@/features/settings/regional/components/select-timezone";
 import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
-import { useRequest } from "@/hooks/useRequestOld";
 import {
   BatchOptionsTableOptionGenerator,
   FormattedTableRow,
 } from "@/types/global.types";
 import { isEmptyArray } from "@/utils/array";
 import { back } from "@/utils/client";
-import { capitalize } from "@/utils/string";
 import { Icon, SimpleGrid } from "@chakra-ui/react";
 import { useFormik } from "formik";
 import { PencilIcon, RefreshCcwDotIcon, TrashIcon } from "lucide-react";
@@ -60,39 +58,19 @@ const Delete = (props: any) => {
   const ID = `delete`;
 
   // Props
-  const { deleteIds, clearSelectedRows, disabled, routeTitle } = props;
+  const {
+    deleteIds,
+    // clearSelectedRows,
+    disabled,
+    routeTitle,
+  } = props;
 
   // Store
   const { t } = useLocaleStore();
 
-  // Hooks
-  const { req, loading } = useRequest({
-    id: ID,
-    loadingMessage: {
-      title: capitalize(`${t.delete_} ${routeTitle}`),
-    },
-    successMessage: {
-      title: capitalize(`${t.delete_} ${routeTitle} ${t.successful}`),
-    },
-  });
-
   // Utils
   function onDeactivate() {
     back();
-    req({
-      config: {
-        url: `/delete`,
-        method: "DELETE",
-        data: {
-          deleteIds: deleteIds,
-        },
-      },
-      onResolve: {
-        onSuccess: () => {
-          clearSelectedRows?.();
-        },
-      },
-    });
   }
 
   return (
@@ -108,7 +86,6 @@ const Delete = (props: any) => {
         variant: "outline",
         color: "fg.error",
       }}
-      loading={loading}
       disabled={disabled}
     >
       <Tooltip

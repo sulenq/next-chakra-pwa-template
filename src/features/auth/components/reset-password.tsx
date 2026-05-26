@@ -1,36 +1,38 @@
 "use client";
 
+import { BackButton } from "@/components/navigation/back-button";
 import { Btn } from "@/components/ui/btn";
 import { Disclosure } from "@/components/ui/disclosure";
 import { Field } from "@/components/ui/field";
 import { HelperText } from "@/components/ui/helper-text";
 import { PasswordInput } from "@/components/ui/password-input";
 import { StringInput } from "@/components/ui/string-input";
-import { BackButton } from "@/components/navigation/back-button";
-import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
 import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
-import { useRequest } from "@/hooks/useRequestOld";
+import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
 import { back } from "@/utils/client";
 import { maskEmail } from "@/utils/string";
-import {
-  PinInputControl,
-  PinInputHiddenInput,
-  PinInputInput,
-  PinInputRoot,
-} from "@chakra-ui/react";
+import { PinInput, PinInputInput } from "@chakra-ui/react";
 import { useFormik } from "formik";
 import { useEffect, useState } from "react";
 import * as yup from "yup";
 
+import { StackV } from "@/components/ui/stack";
 import { usePopDisclosure } from "@/hooks/use-pop-disclosure";
 import { disclosureId } from "@/utils/disclosure";
-import { StackV } from "@/components/ui/stack";
-
-const ID = "reset-password";
+import {
+  useResetPasswordStep1,
+  useResetPasswordStep2,
+  useResetPasswordStep3,
+} from "../hooks/use-auth";
 
 // -----------------------------------------------------------------
 
-const Step1 = (props: any) => {
+interface Step1Props {
+  setStep: (step: number) => void;
+  setEmail: (email: string) => void;
+}
+
+const Step1 = (props: Step1Props) => {
   // Props
   const { setStep, setEmail } = props;
 
@@ -39,8 +41,11 @@ const Step1 = (props: any) => {
   const { theme } = useThemeStore();
 
   // Hooks
-  const { req, loading } = useRequest({
-    id: ID,
+  const { mutate, isPending } = useResetPasswordStep1({
+    onSuccess: () => {
+      setStep(2);
+      setEmail(formik.values.email);
+    },
   });
 
   // States
@@ -51,26 +56,8 @@ const Step1 = (props: any) => {
       email: yup.string().email().required(t.msg_required_form),
     }),
     onSubmit: (values) => {
-      // console.log(values);
-
-      const payload = new FormData();
-      payload.append("email", values.email);
-      const url = `/api/send-otp`;
-      const config = {
-        url,
-        method: "POST",
-        data: payload,
-      };
-
-      req({
-        config,
-        onResolve: {
-          onSuccess: () => {
-            setStep(2);
-            setEmail(values.email);
-          },
-        },
-      });
+      const payload = values;
+      mutate(payload);
     },
   });
 
@@ -78,7 +65,7 @@ const Step1 = (props: any) => {
     <>
       <Disclosure.Body>
         <StackV>
-          <form>
+          <form onSubmit={formik.handleSubmit}>
             <Field
               label={"Email"}
               invalid={!!formik.errors.email}
@@ -99,12 +86,14 @@ const Step1 = (props: any) => {
           <HelperText>{t.msg_reset_password_step_1}</HelperText>
         </StackV>
       </Disclosure.Body>
+
       <Disclosure.Footer>
         <BackButton />
+
         <Btn
           colorPalette={theme.colorPalette}
           onClick={formik.submitForm}
-          loading={loading}
+          loading={isPending}
         >
           {t.recieve} OTP
         </Btn>
@@ -115,17 +104,28 @@ const Step1 = (props: any) => {
 
 // -----------------------------------------------------------------
 
-const Step2 = (props: any) => {
+interface Step2Props {
+  email: string;
+  setStep: (step: number) => void;
+  setResetPasswordToken: (token: string) => void;
+}
+
+const Step2 = (props: Step2Props) => {
   // Props
-  const { email, setOtp, setStep } = props;
+  const { email, setResetPasswordToken, setStep } = props;
 
   // Store
   const { t } = useLocaleStore();
   const { theme } = useThemeStore();
 
   // Hooks
-  const { req, loading } = useRequest({
-    id: ID,
+  const { mutate, isPending } = useResetPasswordStep2({
+    onSuccess: (response) => {
+      if (response?.data) {
+        setResetPasswordToken(response.data.resetPasswordToken);
+      }
+      setStep(3);
+    },
   });
 
   // States
@@ -134,29 +134,11 @@ const Step2 = (props: any) => {
     initialValues: { email: email, otp: "" },
     validationSchema: yup.object().shape({
       email: yup.string().email().required(t.msg_required_form),
-      otp: yup.string().email().required(t.msg_required_form),
+      otp: yup.string().required(t.msg_required_form),
     }),
     onSubmit: (values) => {
-      // console.log(values);
-
-      const payload = new FormData();
-      payload.append("email", values.email);
-      const url = `/api/verify-otp`;
-      const config = {
-        url,
-        method: "POST",
-        data: payload,
-      };
-
-      req({
-        config,
-        onResolve: {
-          onSuccess: () => {
-            setOtp(values.otp);
-            setStep(3);
-          },
-        },
-      });
+      const payload = values;
+      mutate(payload);
     },
   });
 
@@ -164,23 +146,23 @@ const Step2 = (props: any) => {
     <>
       <Disclosure.Body>
         <StackV>
-          <form>
+          <form onSubmit={formik.handleSubmit}>
             <Field
               label={"OTP"}
               invalid={!!formik.errors.otp}
               errorText={formik.errors.otp as string}
               mb={4}
             >
-              <PinInputRoot
-                colorPalette={theme.colorPalette}
+              <PinInput.Root
                 w={"full"}
                 size={"xl"}
+                colorPalette={theme.colorPalette}
                 onValueChange={(e) => {
-                  formik?.setFieldValue("otp", e.value);
+                  formik?.setFieldValue("otp", e.value.join(""));
                 }}
               >
-                <PinInputHiddenInput />
-                <PinInputControl w={"full"}>
+                <PinInput.HiddenInput />
+                <PinInput.Control w={"full"}>
                   {Array.from({ length: 6 }, (_, i) => {
                     return (
                       <PinInputInput
@@ -193,8 +175,8 @@ const Step2 = (props: any) => {
                       />
                     );
                   })}
-                </PinInputControl>
-              </PinInputRoot>
+                </PinInput.Control>
+              </PinInput.Root>
             </Field>
           </form>
 
@@ -209,7 +191,7 @@ const Step2 = (props: any) => {
         <Btn
           colorPalette={theme.colorPalette}
           onClick={formik.submitForm}
-          loading={loading}
+          loading={isPending}
         >
           {t.verify} OTP
         </Btn>
@@ -220,63 +202,47 @@ const Step2 = (props: any) => {
 
 // -----------------------------------------------------------------
 
-const Step3 = (props: any) => {
+interface Step3Props {
+  resetPasswordToken: string;
+}
+
+const Step3 = (props: Step3Props) => {
   // Props
-  const { email, otp } = props;
+  const { resetPasswordToken } = props;
 
   // Store
   const { t } = useLocaleStore();
   const { theme } = useThemeStore();
 
   // Hooks
-  const { req, loading } = useRequest({
-    id: ID,
+  const { mutate, isPending } = useResetPasswordStep3({
+    onSuccess: () => {
+      back();
+    },
   });
 
   // States
   const formik = useFormik({
     validateOnChange: false,
     initialValues: {
-      email: email,
-      otp: otp,
-      password: "",
-      password_confirmation: "",
+      resetPasswordToken: resetPasswordToken,
+      newPassword: "",
+      newPasswordConfirmation: "",
     },
     validationSchema: yup.object().shape({
-      email: yup.string().email().required(t.msg_required_form),
-      otp: yup.string().required(t.msg_required_form),
-      password: yup.string().required(t.msg_required_form),
-      password_confirmation: yup
+      resetPasswordToken: yup.string().required(t.msg_required_form),
+      newPassword: yup.string().required(t.msg_required_form),
+      newPasswordConfirmation: yup
         .string()
         .required(t.msg_required_form)
         .oneOf(
-          [yup.ref("password"), ""],
+          [yup.ref("newPassword"), ""],
           t.msg_password_confirmation_not_match,
         ),
     }),
     onSubmit: (values) => {
-      // console.log(values);
-
-      const payload = new FormData();
-      payload.append("email", values.email);
-      payload.append("otp", values.otp);
-      payload.append("password", values.password);
-      payload.append("password_confirmation", values.password_confirmation);
-      const url = `/api/reset-password`;
-      const config = {
-        url,
-        method: "POST",
-        data: payload,
-      };
-
-      req({
-        config,
-        onResolve: {
-          onSuccess: () => {
-            back();
-          },
-        },
-      });
+      const payload = values;
+      mutate(payload);
     },
   });
 
@@ -287,29 +253,29 @@ const Step3 = (props: any) => {
           <form>
             <Field
               label={"Password"}
-              invalid={!!formik.errors.password}
-              errorText={formik.errors.password as string}
+              invalid={!!formik.errors.newPassword}
+              errorText={formik.errors.newPassword as string}
               mb={4}
             >
               <PasswordInput
                 onChange={(input) => {
-                  formik.setFieldValue("password", input);
+                  formik.setFieldValue("newPassword", input);
                 }}
-                inputValue={formik.values.password}
+                inputValue={formik.values.newPassword}
               />
             </Field>
 
             <Field
               label={t.password_confirmation}
-              invalid={!!formik.errors.password_confirmation}
-              errorText={formik.errors.password_confirmation as string}
+              invalid={!!formik.errors.newPasswordConfirmation}
+              errorText={formik.errors.newPasswordConfirmation as string}
               mb={4}
             >
               <PasswordInput
                 onChange={(input) => {
-                  formik.setFieldValue("password_confirmation", input);
+                  formik.setFieldValue("newPasswordConfirmation", input);
                 }}
-                inputValue={formik.values.password_confirmation}
+                inputValue={formik.values.newPasswordConfirmation}
               />
             </Field>
           </form>
@@ -322,9 +288,11 @@ const Step3 = (props: any) => {
         <Btn
           colorPalette={theme.colorPalette}
           onClick={formik.submitForm}
-          loading={loading}
+          loading={isPending}
           disabled={
-            !!!(formik.values.password && formik.values.password_confirmation)
+            !!!(
+              formik.values.newPassword && formik.values.newPasswordConfirmation
+            )
           }
         >
           {t.save}
@@ -341,20 +309,29 @@ export const ResetPasswordDisclosureTrigger = (props: any) => {
   const { children, ...restProps } = props;
 
   // Hooks
-  const { open, onOpen } = usePopDisclosure(disclosureId("rese.t-password"));
+  const { open, onOpen } = usePopDisclosure(disclosureId("reset-password"));
 
   // States
-  const [otp, setOtp] = useState<string>("");
-  const [email, setEmail] = useState<string>("");
   const [step, setStep] = useState<number>(1);
+  const [email, setEmail] = useState<string>("");
+  const [resetPasswordToken, setResetPasswordToken] = useState<string>("");
+
   const STEP_SECTION = {
     1: <Step1 setEmail={setEmail} setStep={setStep} />,
-    2: <Step2 email={email} setOtp={setOtp} setStep={setStep} />,
-    3: <Step3 email={email} otp={otp} />,
+    2: (
+      <Step2
+        email={email}
+        setResetPasswordToken={setResetPasswordToken}
+        setStep={setStep}
+      />
+    ),
+    3: <Step3 resetPasswordToken={resetPasswordToken} />,
   };
 
   useEffect(() => {
     if (open) setStep(1);
+    setEmail("");
+    setResetPasswordToken("");
   }, [open]);
 
   return (
