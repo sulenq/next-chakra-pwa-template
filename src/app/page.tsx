@@ -84,13 +84,13 @@ export default function Page() {
                 align={"center"}
                 w={"full"}
                 h={"full"}
-                p={10}
+                p={20}
                 pos={"absolute"}
               >
                 <RandomQuote
                   textAlign={"center"}
-                  fontSize={"lg"}
-                  fontWeight={"bold"}
+                  fontSize={"xl"}
+                  fontWeight={"semibold"}
                   color={"light"}
                   m={"auto"}
                 />

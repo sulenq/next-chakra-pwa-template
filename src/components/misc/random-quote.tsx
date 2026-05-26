@@ -18,7 +18,7 @@ export const RandomQuote = (props: PProps) => {
         setError(false);
 
         const response = await http.get(
-          "https://api.quotable.io/quotes/random?limit=1&maxLength=60",
+          "https://api.quotable.io/quotes/random?limit=1&minLength=80&maxLength=150",
           {
             signal: controller.signal,
             withCredentials: false,
