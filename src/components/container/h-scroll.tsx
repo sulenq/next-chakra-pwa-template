@@ -88,9 +88,6 @@ export const HScroll = forwardRef<HTMLDivElement, HScrollProps>(
       const el = localRef.current;
       if (!el) return;
 
-      // Prevent scroll-chaining to ancestors (avoid parent/page vertical scroll).
-      el.style.overscrollBehavior = "contain";
-
       const onWheel = (ev: WheelEvent) => {
         const canScroll = el.scrollWidth > el.clientWidth;
         if (!canScroll) return;
@@ -117,7 +114,12 @@ export const HScroll = forwardRef<HTMLDivElement, HScrollProps>(
       };
 
       if (enableScroll) {
+        // Prevent scroll-chaining to ancestors only when this element handles scroll
+        el.style.overscrollBehavior = "contain";
         el.addEventListener("wheel", onWheel, { passive: false });
+      } else {
+        // Transparent to wheel events — let the parent scroll freely
+        el.style.overscrollBehavior = "";
       }
 
       el.addEventListener("scroll", onScroll);
@@ -139,7 +141,7 @@ export const HScroll = forwardRef<HTMLDivElement, HScrollProps>(
         }
         el.style.overscrollBehavior = "";
       };
-    }, [updateScrollState]);
+    }, [enableScroll, updateScrollState]);
 
     return (
       <Box position={"relative"} w={"full"} role={"group"} {...restProps}>
