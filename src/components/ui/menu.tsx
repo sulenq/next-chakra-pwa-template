@@ -1,6 +1,6 @@
 "use client";
 
-import { BACKDROP_BLUR_FILTER, GAP } from "@/constants/styles";
+import { BACKDROP_BLUR_FILTER } from "@/constants/styles";
 import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
 import {
   AbsoluteCenter,
@@ -100,7 +100,7 @@ const MenuContent = forwardRef<HTMLDivElement, MenuContentProps>(
             ref={ref}
             w={"160px"}
             gap={1}
-            p={GAP}
+            p={1}
             bg={"bg.body"}
             backdropFilter={BACKDROP_BLUR_FILTER}
             border={"1px solid"}
