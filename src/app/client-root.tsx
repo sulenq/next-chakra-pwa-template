@@ -1,10 +1,9 @@
 "use client";
 
+import { GlobalAlerts } from "@/components/overlays/global-alerts";
 import { useColorMode } from "@/components/ui/color-mode";
 import { Img } from "@/components/ui/img";
 import { StackV } from "@/components/ui/stack";
-import { RadialGlowBackground } from "@/components/overlays/background";
-import { GlobalAlerts } from "@/components/overlays/global-alerts";
 import { APP } from "@/constants/_meta";
 import { SVGS_PATH } from "@/constants/paths";
 import useADMStore from "@/features/settings/display/stores/use-adm-store";
@@ -95,8 +94,6 @@ export default function ClientRoot(props: ClientRootProps) {
       bg={"bg.canvas"}
       pos={"relative"}
     >
-      <RadialGlowBackground pos={"absolute"} zIndex={1} />
-
       <GlobalAlerts />
 
       <StackV zIndex={2}>{children}</StackV>
