@@ -1,5 +1,5 @@
-import { getStorage, setStorage } from "@/utils/client";
 import { create } from "zustand";
+import { persist } from "zustand/middleware";
 import en from "@/locales/en";
 import id from "@/locales/id";
 import { LocaleKey, Translations } from "@/types/global.types";
@@ -20,33 +20,32 @@ type LocaleStore = {
   locale: LocaleKey;
   setLocale: (newState: LocaleKey) => void;
 };
-export const useLocaleStore = create<LocaleStore>((set) => {
-  const getStoredLang = (): LocaleKey => {
-    try {
-      const stored = getStorage(STORAGE_KEY);
-      if (stored && stored in translations) return stored as LocaleKey;
-      setStorage(STORAGE_KEY, DEFAULT);
-    } catch (error) {
-      console.error("Failed to access language from local storage:", error);
-    }
-    return DEFAULT;
-  };
 
-  const locale = getStoredLang();
-
-  return {
-    locale: locale,
-    t: translations[locale],
-    setLocale: (newState) =>
-      set((state) => {
-        if (state.locale !== newState) {
-          setStorage(STORAGE_KEY, newState);
-          return {
-            locale: newState,
-            t: translations[newState],
-          };
+export const useLocaleStore = create<LocaleStore>()(
+  persist(
+    (set) => ({
+      locale: DEFAULT,
+      t: translations[DEFAULT],
+      setLocale: (newState) =>
+        set((state) => {
+          if (state.locale !== newState) {
+            return {
+              locale: newState,
+              t: translations[newState],
+            };
+          }
+          return state;
+        }),
+    }),
+    {
+      name: STORAGE_KEY,
+      // Only persist `locale`; `t` is derived and re-computed on rehydration
+      partialize: (state) => ({ locale: state.locale }),
+      onRehydrateStorage: () => (state) => {
+        if (state) {
+          state.t = translations[state.locale];
         }
-        return state;
-      }),
-  };
-});
+      },
+    },
+  ),
+);

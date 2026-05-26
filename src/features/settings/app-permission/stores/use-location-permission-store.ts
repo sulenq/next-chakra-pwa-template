@@ -1,11 +1,7 @@
 import { UnifiedPermissionState } from "@/types/global.types";
-import {
-  isClient,
-  getStorage,
-  setStorage,
-  removeStorage,
-} from "@/utils/client";
+import { isClient } from "@/utils/client";
 import { create } from "zustand";
+import { persist } from "zustand/middleware";
 
 type LocationPermissionsStore = {
   locationPermissionsStatus: UnifiedPermissionState;
@@ -13,28 +9,12 @@ type LocationPermissionsStore = {
   updateLocationPermissionsStatus: () => Promise<void>;
 };
 
-export const useLocationPermissionStore = create<LocationPermissionsStore>(
-  (set) => {
-    return {
+export const useLocationPermissionStore = create<LocationPermissionsStore>()(
+  persist(
+    (set) => ({
       locationPermissionsStatus: "prompt",
       setLocationPermissionsStatus: (status) => {
         set({ locationPermissionsStatus: status });
-        if (status === "granted_temporary") {
-          setStorage("perm_location", "granted_temporary", "session");
-          removeStorage("perm_location_permanent", "local");
-        } else if (status === "granted_permanent") {
-          setStorage("perm_location", "granted_permanent", "session");
-          setStorage("perm_location_permanent", "true", "local");
-        } else if (status === "denied_temporary") {
-          setStorage("perm_location", "denied_temporary", "session");
-          removeStorage("perm_location_permanent", "local");
-        } else if (status === "denied_permanent") {
-          setStorage("perm_location", "denied_permanent", "session");
-          setStorage("perm_location_permanent", "false", "local");
-        } else {
-          removeStorage("perm_location", "session");
-          removeStorage("perm_location_permanent", "local");
-        }
       },
       updateLocationPermissionsStatus: async () => {
         if (!isClient()) return;
@@ -65,25 +45,19 @@ export const useLocationPermissionStore = create<LocationPermissionsStore>(
           }
         }
 
-        // Fallback to cached states
-        const cachedSession = getStorage(
-          "perm_location",
-          "session",
-        ) as UnifiedPermissionState | null;
-        const cachedPermanent = getStorage("perm_location_permanent", "local");
-
-        if (cachedSession) {
-          set({ locationPermissionsStatus: cachedSession });
-        } else if (cachedPermanent === "true") {
-          set({ locationPermissionsStatus: "granted_permanent" });
-        } else if (cachedPermanent === "false") {
-          set({ locationPermissionsStatus: "denied_permanent" });
-        } else {
-          set({ locationPermissionsStatus: "prompt" });
+        // Fallback — state already hydrated via persist middleware
+      },
+    }),
+    {
+      name: "perm_location",
+      onRehydrateStorage: () => (state) => {
+        // Temporary grants don't survive browser restart
+        if (state?.locationPermissionsStatus?.includes("_temporary")) {
+          state.locationPermissionsStatus = "prompt";
         }
       },
-    };
-  },
+    },
+  ),
 );
 
 if (isClient()) {

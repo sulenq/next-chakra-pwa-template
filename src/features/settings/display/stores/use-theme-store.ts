@@ -1,8 +1,8 @@
 import { COLOR_PALETTES } from "@/constants/colors";
 import { IMAGES_PATH } from "@/constants/paths";
 import { ROUNDED_PRESETS } from "@/constants/presets";
-import { getStorage, setStorage } from "@/utils/client";
 import { create } from "zustand";
+import { persist } from "zustand/middleware";
 
 const STORAGE_KEY = "theme-config";
 
@@ -33,22 +33,18 @@ type ThemeConfigStore = {
   ) => void;
 };
 
-export const useThemeStore = create<ThemeConfigStore>((set) => {
-  const stored = getStorage(STORAGE_KEY);
-  const initial = stored ? JSON.parse(stored) : DEFAULT;
-
-  return {
-    theme: initial,
-    setTheme: (config) => {
-      set((state) => {
-        const update =
-          typeof config === "function" ? config(state.theme) : config;
-
-        const newConfig = { ...state.theme, ...update };
-        setStorage(STORAGE_KEY, JSON.stringify(newConfig));
-
-        return { theme: newConfig };
-      });
-    },
-  };
-});
+export const useThemeStore = create<ThemeConfigStore>()(
+  persist(
+    (set) => ({
+      theme: DEFAULT,
+      setTheme: (config) => {
+        set((state) => {
+          const update =
+            typeof config === "function" ? config(state.theme) : config;
+          return { theme: { ...state.theme, ...update } };
+        });
+      },
+    }),
+    { name: STORAGE_KEY },
+  ),
+);

@@ -1,7 +1,7 @@
 import { UnitKey } from "@/types/global.types";
 import { UnitOption, UNIT_OPTIONS } from "@/constants/unit-options";
-import { getStorage, setStorage } from "@/utils/client";
 import { create } from "zustand";
+import { persist } from "zustand/middleware";
 
 // -----------------------------------------------------------------
 
@@ -40,45 +40,36 @@ type UOMFormatStore = {
   setUOMUnit: (key: UnitKey, value: UnitOption) => void;
 };
 
-const useUOMFormatStore = create<UOMFormatStore>((set) => {
-  const getStoredUOM = (): Record<UnitKey, UnitOption> => {
-    try {
-      const stored = getStorage(STORAGE_KEY);
-      if (stored) {
-        const parsed = JSON.parse(stored) as Record<UnitKey, any>;
+const useUOMFormatStore = create<UOMFormatStore>()(
+  persist(
+    (set) => ({
+      UOM: DEFAULT_UOM,
+
+      setUOM: (newState) => {
+        set({ UOM: newState });
+      },
+
+      setUOMUnit: (key, value) =>
+        set((state) => ({
+          UOM: { ...state.UOM, [key]: value },
+        })),
+    }),
+    {
+      name: STORAGE_KEY,
+      onRehydrateStorage: () => (state) => {
+        if (!state?.UOM) return;
         // Upgrade legacy string values to UnitOption objects
-        const upgraded: any = {};
-        for (const [k, v] of Object.entries(parsed)) {
-          if (typeof v === "string") {
-            upgraded[k as UnitKey] = getUnitOption(k as UnitKey, v);
-          } else {
-            upgraded[k as UnitKey] = v;
-          }
+        const upgraded: Record<string, UnitOption> = {};
+        for (const [k, v] of Object.entries(state.UOM)) {
+          upgraded[k] =
+            typeof v === "string"
+              ? getUnitOption(k as UnitKey, v as string)
+              : (v as UnitOption);
         }
-        return upgraded as Record<UnitKey, UnitOption>;
-      }
-      setStorage(STORAGE_KEY, JSON.stringify(DEFAULT_UOM));
-    } catch (error) {
-      console.error("Failed to access UOM from localStorage:", error);
-    }
-    return DEFAULT_UOM;
-  };
-
-  return {
-    UOM: getStoredUOM(),
-
-    setUOM: (newState) => {
-      setStorage(STORAGE_KEY, JSON.stringify(newState));
-      set({ UOM: newState });
+        state.UOM = upgraded as Record<UnitKey, UnitOption>;
+      },
     },
-
-    setUOMUnit: (key, value) =>
-      set((state) => {
-        const updated = { ...state.UOM, [key]: value };
-        setStorage(STORAGE_KEY, JSON.stringify(updated));
-        return { UOM: updated };
-      }),
-  };
-});
+  ),
+);
 
 export default useUOMFormatStore;

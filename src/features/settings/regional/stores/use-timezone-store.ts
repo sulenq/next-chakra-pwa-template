@@ -1,7 +1,7 @@
 import { TimezoneValue } from "@/types/global.types";
-import { getStorage, removeStorage, setStorage } from "@/utils/client";
 import { cleanTimezoneValue, getLocalTimezone } from "@/utils/time";
 import { create } from "zustand";
+import { persist } from "zustand/middleware";
 
 // -----------------------------------------------------------------
 
@@ -15,54 +15,28 @@ interface TimezoneStore {
   disableAuto: (value: TimezoneValue) => void;
 }
 
-const useTimezoneStore = create<TimezoneStore>((set) => {
-  const getInitialTimezone = (): TimezoneValue => {
-    try {
-      const raw = getStorage(STORAGE_KEY);
-      if (!raw) return getLocalTimezone();
+const useTimezoneStore = create<TimezoneStore>()(
+  persist(
+    (set) => ({
+      timezone: getLocalTimezone(),
+      isAuto: true,
 
-      const parsed = JSON.parse(raw) as TimezoneValue;
-      return parsed;
-    } catch {
-      return getLocalTimezone();
-    }
-  };
+      setTimezone: (value) => {
+        const cleanedValue = cleanTimezoneValue(value);
+        set({ timezone: cleanedValue, isAuto: false });
+      },
 
-  const initialIsAuto = !getStorage(STORAGE_KEY);
+      enableAuto: () => {
+        set({ timezone: getLocalTimezone(), isAuto: true });
+      },
 
-  return {
-    timezone: getInitialTimezone(),
-    isAuto: initialIsAuto,
-
-    setTimezone: (value) => {
-      const cleanedValue = cleanTimezoneValue(value);
-      setStorage(STORAGE_KEY, JSON.stringify(cleanedValue));
-
-      set({
-        timezone: cleanedValue,
-        isAuto: false,
-      });
-    },
-
-    enableAuto: () => {
-      removeStorage(STORAGE_KEY);
-
-      set({
-        timezone: getLocalTimezone(),
-        isAuto: true,
-      });
-    },
-
-    disableAuto: (value) => {
-      const cleanedValue = cleanTimezoneValue(value);
-      setStorage(STORAGE_KEY, JSON.stringify(cleanedValue));
-
-      set({
-        timezone: cleanedValue,
-        isAuto: false,
-      });
-    },
-  };
-});
+      disableAuto: (value) => {
+        const cleanedValue = cleanTimezoneValue(value);
+        set({ timezone: cleanedValue, isAuto: false });
+      },
+    }),
+    { name: STORAGE_KEY },
+  ),
+);
 
 export default useTimezoneStore;

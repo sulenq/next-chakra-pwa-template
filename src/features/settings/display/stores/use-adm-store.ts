@@ -1,5 +1,5 @@
-import { getStorage, setStorage } from "@/utils/client";
 import { create } from "zustand";
+import { persist } from "zustand/middleware";
 
 const STORAGE_KEY = "adm";
 const DEFAULT = false;
@@ -9,22 +9,17 @@ type ADMStore = {
   setADM: (newState: boolean | ((prevState: boolean) => boolean)) => void;
 };
 
-const useADMStore = create<ADMStore>((set) => {
-  const stored = getStorage(STORAGE_KEY);
-  const initial = stored === null ? DEFAULT : stored === "true";
-
-  if (stored === null) setStorage(STORAGE_KEY, DEFAULT ? "true" : "false");
-
-  return {
-    ADM: initial,
-    setADM: (newState: boolean | ((prevState: boolean) => boolean)) =>
-      set((state) => {
-        const updatedValue =
-          typeof newState === "function" ? newState(state.ADM) : newState;
-        setStorage(STORAGE_KEY, updatedValue ? "true" : "false");
-        return { ADM: updatedValue };
-      }),
-  };
-});
+const useADMStore = create<ADMStore>()(
+  persist(
+    (set) => ({
+      ADM: DEFAULT,
+      setADM: (newState) =>
+        set((state) => ({
+          ADM: typeof newState === "function" ? newState(state.ADM) : newState,
+        })),
+    }),
+    { name: STORAGE_KEY },
+  ),
+);
 
 export default useADMStore;

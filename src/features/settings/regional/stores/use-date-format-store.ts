@@ -1,7 +1,7 @@
 import { SelectOption } from "@/types/global.types";
 import { DATE_FORMATS } from "@/constants/date-formats";
-import { getStorage, setStorage } from "@/utils/client";
 import { create } from "zustand";
+import { persist } from "zustand/middleware";
 
 // -----------------------------------------------------------------
 
@@ -18,40 +18,20 @@ interface DateFormatStore {
   setDateFormat: (newState: SelectOption) => void;
 }
 
-const useDateFormatStore = create<DateFormatStore>((set) => {
-  const getStoredFormat = (): SelectOption => {
-    try {
-      const stored = getStorage(STORAGE_KEY);
-      if (stored) {
-        try {
-          return JSON.parse(stored) as SelectOption;
-        } catch {
-          // fallback for older string values
-          return {
-            id: stored,
-            label: DATE_FORMATS.find((f) => f.key === stored)?.label,
-            data: stored,
-          };
-        }
-      }
-      setStorage(STORAGE_KEY, JSON.stringify(DEFAULT));
-    } catch (error) {
-      console.error("Failed to access dateFormat from localStorage:", error);
-    }
-    return DEFAULT;
-  };
-
-  return {
-    dateFormat: getStoredFormat(),
-    setDateFormat: (newState) =>
-      set((state) => {
-        if (state.dateFormat.id !== newState.id) {
-          setStorage(STORAGE_KEY, JSON.stringify(newState));
-          return { dateFormat: newState };
-        }
-        return state;
-      }),
-  };
-});
+const useDateFormatStore = create<DateFormatStore>()(
+  persist(
+    (set) => ({
+      dateFormat: DEFAULT,
+      setDateFormat: (newState) =>
+        set((state) => {
+          if (state.dateFormat.id !== newState.id) {
+            return { dateFormat: newState };
+          }
+          return state;
+        }),
+    }),
+    { name: STORAGE_KEY },
+  ),
+);
 
 export default useDateFormatStore;
