@@ -256,7 +256,7 @@ export const ProfileMenuTrigger = (props: ProfileMenuTriggerProps) => {
 
       <Popover.Content
         w={"225px"}
-        bg={"bg.body"}
+        bg={"bg.frosted"}
         backdropFilter={BACKDROP_BLUR_FILTER}
         rounded={theme.radii.container}
         zIndex={10}
