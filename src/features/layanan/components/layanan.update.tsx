@@ -26,7 +26,7 @@ interface Props {
 }
 
 export const LayananUpdate = ({ item }: Props) => {
-  // Store
+  // Stores
   const { t } = useLocaleStore();
   const { theme } = useThemeStore();
 

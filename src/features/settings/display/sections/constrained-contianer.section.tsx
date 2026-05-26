@@ -16,7 +16,7 @@ import { useDebounced } from "@/hooks/use-debounced";
 // -----------------------------------------------------------------
 
 const ActiveSetting = () => {
-  // Store
+  // Stores
   const { t } = useLocaleStore();
   const { constrainedContainer, setConstrainedContainer } =
     useConstrainedContainerStore();
@@ -46,7 +46,7 @@ const ActiveSetting = () => {
 // -----------------------------------------------------------------
 
 const MaxWSetting = () => {
-  // Store
+  // Stores
   const { t } = useLocaleStore();
   const { constrainedContainer, setConstrainedContainer } =
     useConstrainedContainerStore();
@@ -84,7 +84,7 @@ const MaxWSetting = () => {
 // -----------------------------------------------------------------
 
 export const ConstrainedContainerSection = () => {
-  // Store
+  // Stores
   const { t } = useLocaleStore();
 
   return (

@@ -1,18 +1,14 @@
 "use client";
 
-import { AppIconLucide } from "@/components/branding/app-icon";
 import { LucideIcon } from "@/components/misc/icon";
 import { Btn } from "@/components/ui/btn";
 import { Divider } from "@/components/ui/divider";
 import { Field } from "@/components/ui/field";
 import { H1 } from "@/components/ui/heading";
-import { NavLink } from "@/components/ui/nav-link";
 import { P } from "@/components/ui/p";
 import { PasswordInput } from "@/components/ui/password-input";
 import { StackH, StackV } from "@/components/ui/stack";
 import { StringInput } from "@/components/ui/string-input";
-import { UserIdCard } from "@/components/user/user-id-card";
-import { WELCOME_ROUTE } from "@/constants/routes";
 import { BASE_ICON_BOX_SIZE } from "@/constants/styles";
 import { ResetPasswordDisclosureTrigger } from "@/features/auth/components/reset-password";
 import { useSignin } from "@/features/auth/hooks/use-auth";
@@ -20,92 +16,62 @@ import { useThemeStore } from "@/features/settings/display/stores/use-theme-stor
 import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
 import { useAuthStore } from "@/stores/use-auth-store";
 import { FieldsetRoot, Icon, InputGroup, StackProps } from "@chakra-ui/react";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { IconLock, IconUser } from "@tabler/icons-react";
-import { useFormik } from "formik";
-import { ArrowRight, LogInIcon } from "lucide-react";
-import { useEffect, useState } from "react";
-import * as yup from "yup";
+import { LogInIcon } from "lucide-react";
+import { Controller, useForm } from "react-hook-form";
+import { z } from "zod";
+import { SignedinState } from "./signed-in.state";
 
 // -----------------------------------------------------------------
 
-const Signedin = () => {
-  // Store
-  const { t } = useLocaleStore();
-  const { theme } = useThemeStore();
+type BasicAuthSigninFormValues = z.infer<
+  ReturnType<typeof basicAuthSigninSchema>
+>;
 
-  return (
-    <StackV align={"center"} gap={8} w={"220px"} m={"auto"}>
-      <UserIdCard maskingTop={"8px"} withSignoutButton maxW={"180px"} />
-
-      <StackH gap={2} justify={"center"}>
-        {/* TODO_DEV: Remove below component in real dev */}
-        <>
-          <NavLink to={"/test"} mx={"auto"}>
-            <Btn variant={"ghost"} colorPalette={theme.colorPalette}>
-              Test
-            </Btn>
-          </NavLink>
-
-          <NavLink to={"/demo"} mx={"auto"}>
-            <Btn variant={"ghost"} colorPalette={theme.colorPalette}>
-              Demo
-            </Btn>
-          </NavLink>
-        </>
-
-        <NavLink to={WELCOME_ROUTE}>
-          <Btn variant={"ghost"} colorPalette={theme.colorPalette}>
-            {t.enter_app} <AppIconLucide icon={ArrowRight} />
-          </Btn>
-        </NavLink>
-      </StackH>
-    </StackV>
-  );
-};
-
-// -----------------------------------------------------------------
+const basicAuthSigninSchema = (t: { msg_required_form: string }) =>
+  z.object({
+    identifier: z.string().min(1, t.msg_required_form),
+    password: z.string().min(1, t.msg_required_form),
+  });
 
 const BasicAuthForm = (props: any) => {
   const ID = "signin-form";
 
-  // Props
   const { ...restProps } = props;
 
-  // Store
   const { t } = useLocaleStore();
   const { theme } = useThemeStore();
 
-  // Hooks
   const signin = useSignin();
   const loading = signin.isPending;
 
-  // States
-  const formik = useFormik({
-    validateOnChange: false,
-    initialValues: {
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<BasicAuthSigninFormValues>({
+    resolver: zodResolver(basicAuthSigninSchema(t)),
+    defaultValues: {
       identifier: "",
       password: "",
     },
-    validationSchema: yup.object().shape({
-      identifier: yup.string().required(t.msg_required_form),
-      password: yup.string().required(t.msg_required_form),
-    }),
-    onSubmit: (values) => {
-      const payload = {
-        email: values.identifier,
-        password: values.password,
-      };
-      signin.mutate(payload);
-    },
   });
+
+  const onSubmit = (values: BasicAuthSigninFormValues) => {
+    signin.mutate({
+      email: values.identifier,
+      password: values.password,
+    });
+  };
 
   return (
     <StackV {...restProps}>
-      <form id={ID} onSubmit={formik.handleSubmit}>
+      <form id={ID} onSubmit={handleSubmit(onSubmit)}>
         <FieldsetRoot disabled={loading}>
           <Field
-            invalid={!!formik.errors.identifier}
-            errorText={formik.errors.identifier as string}
+            invalid={!!errors.identifier}
+            errorText={errors.identifier?.message}
           >
             <InputGroup
               w={"full"}
@@ -115,22 +81,26 @@ const BasicAuthForm = (props: any) => {
                 </Icon>
               }
             >
-              <StringInput
-                name={"identifier"}
-                onChange={(input) => {
-                  formik.setFieldValue("identifier", input);
-                }}
-                inputValue={formik.values.identifier}
-                placeholder={"Email"}
-                pl={"40px !important"}
-                variant={"subtle"}
+              <Controller
+                name="identifier"
+                control={control}
+                render={({ field }) => (
+                  <StringInput
+                    name={field.name}
+                    onChange={(input) => field.onChange(input)}
+                    inputValue={field.value}
+                    placeholder={"Email"}
+                    pl={"40px !important"}
+                    variant={"subtle"}
+                  />
+                )}
               />
             </InputGroup>
           </Field>
 
           <Field
-            invalid={!!formik.errors.password}
-            errorText={formik.errors.password as string}
+            invalid={!!errors.password}
+            errorText={errors.password?.message}
           >
             <InputGroup
               w={"full"}
@@ -140,15 +110,19 @@ const BasicAuthForm = (props: any) => {
                 </Icon>
               }
             >
-              <PasswordInput
-                name={"password"}
-                onChange={(input) => {
-                  formik.setFieldValue("password", input);
-                }}
-                inputValue={formik.values.password}
-                placeholder={"Password"}
-                pl={"40px !important"}
-                variant={"subtle"}
+              <Controller
+                name="password"
+                control={control}
+                render={({ field }) => (
+                  <PasswordInput
+                    name={field.name}
+                    onChange={(input) => field.onChange(input)}
+                    inputValue={field.value}
+                    placeholder={"Password"}
+                    pl={"40px !important"}
+                    variant={"subtle"}
+                  />
+                )}
               />
             </InputGroup>
           </Field>
@@ -190,17 +164,10 @@ export const SigninForm = (props: StackProps) => {
   // Props
   const { ...restProps } = props;
 
-  // States
-  const [isHydrated, setIsHydrated] = useState(false);
-
-  // Store
+  // Stores
   const { t } = useLocaleStore();
   const { theme } = useThemeStore();
   const accessToken = useAuthStore((s) => s.auth.accessToken);
-
-  useEffect(() => {
-    setIsHydrated(true);
-  }, []);
 
   return (
     <StackV
@@ -212,8 +179,8 @@ export const SigninForm = (props: StackProps) => {
       rounded={theme.radii.container}
       {...restProps}
     >
-      {isHydrated && accessToken ? (
-        <Signedin />
+      {accessToken ? (
+        <SignedinState />
       ) : (
         <>
           <StackV align={"center"} gap={2} mb={4}>

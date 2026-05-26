@@ -13,7 +13,7 @@ import { useFormik } from "formik";
 import * as yup from "yup";
 
 export const APIKeySection = () => {
-  // Store
+  // Stores
   const { t } = useLocaleStore();
   const { theme } = useThemeStore();
 

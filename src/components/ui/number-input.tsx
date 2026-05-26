@@ -50,7 +50,7 @@ export const NumInput = forwardRef<HTMLInputElement, NumInputProps>(
       ...restProps
     } = props;
 
-    // Store
+    // Stores
     const { t } = useLocaleStore();
 
     // Refs

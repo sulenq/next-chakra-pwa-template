@@ -29,7 +29,7 @@ export const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>(
       ...restProps
     } = props;
 
-    // Store
+    // Stores
     const { theme } = useThemeStore();
 
     if (disabled) return children;

@@ -12,7 +12,7 @@ import { IconAccessPointOff } from "@tabler/icons-react";
 import { useEffect, useState } from "react";
 
 export const OfflineAlert = () => {
-  // Store
+  // Stores
   const { t } = useLocaleStore();
   const { theme } = useThemeStore();
 

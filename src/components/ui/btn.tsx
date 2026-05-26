@@ -30,7 +30,7 @@ export const Btn = forwardRef<HTMLButtonElement, BtnProps>(
       ...restProps
     } = props;
 
-    // Store
+    // Stores
     const { theme } = useThemeStore();
 
     // Derived Values
@@ -97,7 +97,7 @@ export const Btn = forwardRef<HTMLButtonElement, BtnProps>(
 
 export const PBtn = forwardRef<HTMLButtonElement, BtnProps>(
   function PBtn(props, ref) {
-    // Store
+    // Stores
     const { theme } = useThemeStore();
 
     return <Btn ref={ref} colorPalette={theme.colorPalette} {...props} />;

@@ -68,7 +68,7 @@ export const FileUploadDropzone = forwardRef<
     ...rest
   } = props;
 
-  // Store
+  // Stores
   const { theme } = useThemeStore();
 
   return (
@@ -130,7 +130,7 @@ interface FileUploadItemProps extends VisibilityProps {
 }
 
 const FileUploadItem = (props: FileUploadItemProps) => {
-  // Store
+  // Stores
   const { theme } = useThemeStore();
 
   const { file, showSize, clearable } = props;

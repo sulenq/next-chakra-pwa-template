@@ -22,7 +22,7 @@ import { useState } from "react";
 // -----------------------------------------------------------------
 
 const LocationTester = () => {
-  // Store
+  // Stores
   const { t } = useLocaleStore();
   const { theme } = useThemeStore();
   const { locationPermissionsStatus, setLocationPermissionsStatus } =
@@ -137,7 +137,7 @@ const LocationTester = () => {
 // -----------------------------------------------------------------
 
 const LocationPermissionSetting = () => {
-  // Store
+  // Stores
   const { t } = useLocaleStore();
   const { theme } = useThemeStore();
   const locationPermissionsStatus = useLocationPermissionStore(
@@ -244,7 +244,7 @@ const LocationPermissionSetting = () => {
 // -----------------------------------------------------------------
 
 const LocationTesterSetting = () => {
-  // Store
+  // Stores
   const { t } = useLocaleStore();
   const locationPermissionsStatus = useLocationPermissionStore(
     (s) => s.locationPermissionsStatus,
@@ -268,7 +268,7 @@ const LocationTesterSetting = () => {
 // -----------------------------------------------------------------
 
 export const LocationSection = () => {
-  // Store
+  // Stores
   const { t } = useLocaleStore();
   const locationPermissionsStatus = useLocationPermissionStore(
     (s) => s.locationPermissionsStatus,

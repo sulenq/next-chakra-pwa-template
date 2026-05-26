@@ -16,7 +16,7 @@ export function DataListDisplayToggle(props: DataListDisplayToggleProps) {
   // Props
   const { displayKey, ...restProps } = props;
 
-  // Store
+  // Stores
   const displays = useDataDisplayStore((s) => s.displays);
   const setDisplay = useDataDisplayStore((s) => s.setDisplay);
 

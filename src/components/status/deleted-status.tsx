@@ -18,7 +18,7 @@ export const DeletedStatus = (props: DeletedStatusProps) => {
   // Props
   const { deletedAt, ...restProps } = props;
 
-  // Store
+  // Stores
   const { t } = useLocaleStore();
 
   return (

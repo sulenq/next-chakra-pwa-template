@@ -56,7 +56,7 @@ export const StringInput = forwardRef<HTMLInputElement, StringInputProps>(
       ...restProps
     } = props;
 
-    // Store
+    // Stores
     const { t } = useLocaleStore();
     const { theme } = useThemeStore();
     const fc = useFieldContext();

@@ -130,7 +130,7 @@ const ItemBody = forwardRef<HTMLDivElement, ItemBodyProps>(
       ...restProps
     } = props;
 
-    // Store
+    // Stores
     const { theme } = useThemeStore();
 
     return (

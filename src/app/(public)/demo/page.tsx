@@ -65,7 +65,7 @@ const Delete = (props: any) => {
     routeTitle,
   } = props;
 
-  // Store
+  // Stores
   const { t } = useLocaleStore();
 
   // Utils

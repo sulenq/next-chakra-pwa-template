@@ -23,7 +23,7 @@ export const FileItem = (props: FileItemProps) => {
   // Props
   const { children, fileData, actions = [], index, ...restProps } = props;
 
-  // Store
+  // Stores
   const { theme } = useThemeStore();
 
   return (

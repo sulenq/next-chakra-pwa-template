@@ -118,7 +118,7 @@ export const FileInputRoot = forwardRef<
     ...restProps
   } = props;
 
-  // Store
+  // Stores
   const { t } = useLocaleStore();
   const fc = useFieldContext();
 
@@ -314,7 +314,7 @@ export const FileInput = forwardRef<HTMLInputElement, FileInputProps>(
     const { existingFiles, onDeleteFile, onUndoDeleteFile, ...restProps } =
       props;
 
-    // Store
+    // Stores
     const { t } = useLocaleStore();
     const { theme } = useThemeStore();
     const fc = useFieldContext();

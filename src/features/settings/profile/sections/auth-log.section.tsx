@@ -18,7 +18,7 @@ import { useState } from "react";
 // -----------------------------------------------------------------
 
 export const AuthLogSection = (props: ItemRootProps) => {
-  // Store
+  // Stores
   const { t } = useLocaleStore();
 
   // Constants

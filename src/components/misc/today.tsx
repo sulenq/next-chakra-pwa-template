@@ -17,7 +17,7 @@ export const Today = (props: TodayProps) => {
   // Props
   const { dateVariant = "numeric", ...restProps } = props;
 
-  // Store
+  // Stores
   const { t } = useLocaleStore();
   const tz = useTimezoneStore((s) => s.timezone);
   const dateFormat = useDateFormatStore((s) => s.dateFormat);

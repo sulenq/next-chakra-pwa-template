@@ -12,7 +12,7 @@ export const BrandWatermark = (props: PProps) => {
   // Props
   const { ...restProps } = props;
 
-  // Store
+  // Stores
   const { theme } = useThemeStore();
 
   // States

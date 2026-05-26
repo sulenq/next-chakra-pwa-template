@@ -41,7 +41,7 @@ const ConfirmationContent = (props: ConfirmationProps) => {
     addonElement,
   } = props;
 
-  // Store
+  // Stores
   const { theme } = useThemeStore();
 
   return (

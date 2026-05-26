@@ -19,7 +19,7 @@ import { useState } from "react";
 // -----------------------------------------------------------------
 
 export const ActivityLogSection = () => {
-  // Store
+  // Stores
   const { t } = useLocaleStore();
 
   // Constants

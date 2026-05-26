@@ -55,7 +55,7 @@ export const DataGridItem = (props: DataGridItemProps) => {
   // Props
   const { children, id, dim, ...restProps } = props;
 
-  // Store
+  // Stores
   const { theme } = useThemeStore();
   const { selectedRows, toggleRowSelection } = useDataGridContext();
 
@@ -215,7 +215,7 @@ const DataGridRowOptions = (props: DataGridRowOptionsProps) => {
   // Props
   const { row, rowOptions, ...restProps } = props;
 
-  // Store
+  // Stores
   const { theme } = useThemeStore();
 
   if (rowOptions)
@@ -297,7 +297,7 @@ const DataGridRoot = (props: DataGridRootProps) => {
     ...restProps
   } = props;
 
-  // Store
+  // Stores
   const { t } = useLocaleStore();
   const { theme } = useThemeStore();
 

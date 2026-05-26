@@ -3,7 +3,10 @@
 import { BrandWatermark } from "@/components/branding/brand-watermark";
 import { Logo } from "@/components/branding/logo";
 import { RandomQuote } from "@/components/misc/random-quote";
-import { AnimatedBlobBackground } from "@/components/overlays/background";
+import {
+  AnimatedBlobBackground,
+  AnimatedGlassPillarsBackground,
+} from "@/components/overlays/background";
 import { ColorModeButton } from "@/components/ui/color-mode";
 import { LangMenu } from "@/components/ui/lang-menu";
 import { StackH, StackV } from "@/components/ui/stack";
@@ -13,7 +16,7 @@ import { useIsSmScreenWidth } from "@/hooks/use-is-sm-screen-width";
 import { SimpleGrid } from "@chakra-ui/react";
 
 export default function Page() {
-  // Store
+  // Stores
   const { theme } = useThemeStore();
 
   // Hooks
@@ -95,6 +98,8 @@ export default function Page() {
                   m={"auto"}
                 />
               </StackV>
+
+              <AnimatedGlassPillarsBackground pos={"absolute"} />
             </StackV>
           )}
         </SimpleGrid>

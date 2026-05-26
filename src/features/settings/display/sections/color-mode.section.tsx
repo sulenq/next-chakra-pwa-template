@@ -37,7 +37,7 @@ const DisplaySkeleton = (props: DisplaySkeletonProps) => {
   // Props
   const { colorMode, ...restProps } = props;
 
-  // Store
+  // Stores
   const { theme } = useThemeStore();
 
   // Constants
@@ -107,7 +107,7 @@ const DisplaySkeleton = (props: DisplaySkeletonProps) => {
 // -----------------------------------------------------------------
 
 const ColorModeSetting = () => {
-  // Store
+  // Stores
   const { theme } = useThemeStore();
   const { colorMode, setColorMode } = useColorMode();
 
@@ -169,7 +169,7 @@ const ColorModeSetting = () => {
 // -----------------------------------------------------------------
 
 const ADMSetting = () => {
-  // Store
+  // Stores
   const { t } = useLocaleStore();
   const { ADM, setADM } = useADMStore();
 
@@ -198,7 +198,7 @@ const ADMSetting = () => {
 // -----------------------------------------------------------------
 
 const ResetColorModeSetting = () => {
-  // Store
+  // Stores
   const { t } = useLocaleStore();
   const { setColorMode } = useColorMode();
 

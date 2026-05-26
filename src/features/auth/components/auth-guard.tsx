@@ -12,7 +12,7 @@ export function AuthGuard({ children }: { children: React.ReactNode }) {
   // States
   const [isHydrated, setIsHydrated] = useState(false);
 
-  // Store
+  // Stores
   const accessToken = useAuthStore((s) => s.auth.accessToken);
   const setAuth = useAuthStore((s) => s.setAuth);
   const removeAuth = useAuthStore((s) => s.removeAuth);

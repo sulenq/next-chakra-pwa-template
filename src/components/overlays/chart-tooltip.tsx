@@ -18,7 +18,7 @@ export const ChartTooltip = (
   // Props
   const { active, payload, label } = props;
 
-  // Store
+  // Stores
   const { theme } = useThemeStore();
 
   if (!active || !payload || payload.length === 0) return null;

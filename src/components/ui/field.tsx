@@ -33,7 +33,7 @@ export const Field = forwardRef<HTMLDivElement, FieldProps>(
       ...rest
     } = props;
 
-    // Store
+    // Stores
     // const { theme } = useThemeStore();
 
     // Hooks

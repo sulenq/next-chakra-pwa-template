@@ -23,7 +23,7 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(
       ...restProps
     } = props;
 
-    // Store
+    // Stores
     const { theme } = useThemeStore();
 
     return (

@@ -71,7 +71,7 @@ export const VNavs = (props: VNavsProps) => {
     ...restProps
   } = props;
 
-  // Store
+  // Stores
   const { t } = useLocaleStore();
   const { theme } = useThemeStore();
 

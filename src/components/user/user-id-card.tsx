@@ -56,7 +56,7 @@ export const UserIdCard = (props: UserIdCardProps) => {
   // Props
   const { maskingTop = "0px", withSignoutButton = false, ...restProps } = props;
 
-  // Store
+  // Stores
   const { theme } = useThemeStore();
 
   // Constants

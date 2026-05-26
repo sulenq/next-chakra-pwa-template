@@ -58,7 +58,7 @@ export const SearchInput = (props: SearchInputProps) => {
     ...restProps
   } = props;
 
-  // Store
+  // Stores
   const { t } = useLocaleStore();
 
   // Hooks

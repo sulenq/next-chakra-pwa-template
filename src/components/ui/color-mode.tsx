@@ -63,7 +63,7 @@ export const ColorModeButton = forwardRef<
   // Props
   const { tooltipProps, ...restProps } = props;
 
-  // Store
+  // Stores
   const { colorMode } = useColorMode();
 
   // Hooks

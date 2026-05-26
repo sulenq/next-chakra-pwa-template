@@ -14,7 +14,7 @@ import { Box, Center } from "@chakra-ui/react";
 // -----------------------------------------------------------------
 
 export const AccentColorSection = () => {
-  // Store
+  // Stores
   const { t } = useLocaleStore();
   const { theme, setTheme } = useThemeStore();
 

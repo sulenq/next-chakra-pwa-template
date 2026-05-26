@@ -45,7 +45,7 @@ const SelectOptions = (props: SelectOptionsProps) => {
   const { id, multiple, selectOptions, selected, setSelected, ...restProps } =
     props;
 
-  // Store
+  // Stores
   const { t } = useLocaleStore();
   const { theme } = useThemeStore();
 
@@ -207,7 +207,7 @@ export const SelectInput = (props: SelectInputProps) => {
     ...restProps
   } = props;
 
-  // Store
+  // Stores
   const { t } = useLocaleStore();
   const { theme } = useThemeStore();
   const fc = useFieldContext();

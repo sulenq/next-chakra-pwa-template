@@ -80,7 +80,7 @@ export const DataTableRoot = (props: DataTableRootProps) => {
     ...restProps
   } = props;
 
-  // Store
+  // Stores
   const { theme } = useThemeStore();
 
   // Refs

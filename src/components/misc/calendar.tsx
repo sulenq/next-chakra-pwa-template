@@ -44,7 +44,7 @@ const CalendarContent = (props: CalendarDisclosureProps) => {
   // Props
   const { open } = props;
 
-  // Store
+  // Stores
   const { t } = useLocaleStore();
 
   return (

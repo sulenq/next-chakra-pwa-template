@@ -22,7 +22,7 @@ export default function FeedbackRetry(props: FeedbackRetryProps) {
   // Props
   const { title, description, icon, onRetry, children, ...restProps } = props;
 
-  // Store
+  // Stores
   const { t } = useLocaleStore();
   const { theme } = useThemeStore();
 

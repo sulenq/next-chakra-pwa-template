@@ -14,7 +14,7 @@ import { formatDate } from "@/utils/formatter";
 import { useState } from "react";
 
 export const ActivityLogSection = (props: ItemRootProps) => {
-  // Store
+  // Stores
   const { t } = useLocaleStore();
 
   // Constants

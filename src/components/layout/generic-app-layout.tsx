@@ -66,7 +66,7 @@ const MobileLayout = (props: any) => {
   // Props
   const { children, ...restProps } = props;
 
-  // Store
+  // Stores
   const { t } = useLocaleStore();
 
   // Hooks
@@ -329,7 +329,7 @@ const DesktopLayout = (props: any) => {
   // Props
   const { children, ...restProps } = props;
 
-  // Store
+  // Stores
   const { t } = useLocaleStore();
   const { theme } = useThemeStore();
   const isNavsExpanded = useNavsStore((s) => s.isNavsExpanded);
@@ -548,7 +548,7 @@ const DesktopLayout = (props: any) => {
 // -----------------------------------------------------------------
 
 export default function GenericAppLayout(props: any) {
-  // Store
+  // Stores
   const { theme } = useThemeStore();
 
   // Hooks

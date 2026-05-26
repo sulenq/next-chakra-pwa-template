@@ -8,7 +8,7 @@ import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-s
 import { pluckString } from "@/utils/string";
 
 export default function Page() {
-  // Store
+  // Stores
   const { t } = useLocaleStore();
 
   // States

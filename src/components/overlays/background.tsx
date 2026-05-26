@@ -1,57 +1,7 @@
-import { useColorModeValue } from "@/components/ui/color-mode";
-import { StackV } from "@/components/ui/stack";
+import { StackH, StackV } from "@/components/ui/stack";
 import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
-import { Box, Center, Circle, StackProps } from "@chakra-ui/react";
-
-// -----------------------------------------------------------------
-
-export const RadialGlowBackground = (props: StackProps) => {
-  // Store
-  const { theme } = useThemeStore();
-
-  // Constants
-  const colorPalette = theme.colorPalette;
-  const opacity1 = useColorModeValue(0.2, 0.15);
-  const opacity2 = useColorModeValue(0.2, 0.15);
-
-  return (
-    <Center w={"full"} h={"full"} overflow={"clip"} {...props}>
-      <StackV w={"full"} h={"full"} pos={"relative"}>
-        <Circle
-          aspectRatio={1}
-          w={"16%"}
-          bg={`${colorPalette}.solid`}
-          opacity={opacity1}
-          pos={"absolute"}
-          left={"0"}
-          top={"0"}
-          transform={"translate(-50%, -50%)"}
-        />
-
-        <Circle
-          aspectRatio={1}
-          w={"80%"}
-          bg={`${colorPalette}.subtle`}
-          opacity={opacity2}
-          pos={"absolute"}
-          right={"-50%"}
-          bottom={"-100%"}
-          // transform={"translate(-50%, -50%)"}
-        />
-      </StackV>
-
-      {/* Blur overlay */}
-      <StackV
-        w={"full"}
-        h={"full"}
-        backdropFilter={"blur(100px)"}
-        pos={"absolute"}
-        left={0}
-        top={0}
-      />
-    </Center>
-  );
-};
+import { Box, StackProps } from "@chakra-ui/react";
+import { useRef, useState } from "react";
 
 // -----------------------------------------------------------------
 
@@ -59,10 +9,7 @@ interface AnimatedBlobBackgroundProps extends Omit<
   StackProps,
   "animationDuration"
 > {
-  /**
-   * Base animation duration in milliseconds (ms).
-   */
-  animationDuration?: number;
+  animationDuration?: number; // ms
 }
 
 export const AnimatedBlobBackground = (props: AnimatedBlobBackgroundProps) => {
@@ -77,7 +24,7 @@ export const AnimatedBlobBackground = (props: AnimatedBlobBackgroundProps) => {
   return (
     <StackV
       h={"full"}
-      bg={`${theme.colorPalette}.900`}
+      bg={`${theme.colorPalette}.700`}
       pos={"relative"}
       overflow={"clip"}
       {...restProps}
@@ -99,11 +46,11 @@ export const AnimatedBlobBackground = (props: AnimatedBlobBackgroundProps) => {
           w={"65%"}
           h={"65%"}
           aspectRatio={1}
-          bg={`${theme.colorPalette}.800`}
+          bg={`${theme.colorPalette}.700`}
           borderRadius={"30% 70% 40% 60% / 60% 40% 70% 30%"}
           animation={`rotate360 ${dur2}ms linear infinite`}
           pos={"absolute"}
-          bottom={"-20%"}
+          bottom={"-30%"}
           left={"-20%"}
         />
 
@@ -123,11 +70,60 @@ export const AnimatedBlobBackground = (props: AnimatedBlobBackgroundProps) => {
       <Box
         w={"full"}
         h={"full"}
-        backdropFilter={"blur(80px)"}
+        backdropFilter={"blur(60px)"}
         pos={"absolute"}
         top={0}
         left={0}
       />
     </StackV>
+  );
+};
+
+// -----------------------------------------------------------------
+
+export const AnimatedGlassPillarsBackground = (props: StackProps) => {
+  // Stores
+  const { theme } = useThemeStore();
+
+  // Refs
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  // States
+  const [cursorX, setCursorX] = useState<number>(0.5);
+
+  // Utils
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const el = containerRef.current;
+    if (!el) return;
+    const rect = el.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width;
+    setCursorX(Math.max(0, Math.min(1, x)));
+  };
+
+  return (
+    <StackH
+      ref={containerRef}
+      w={"full"}
+      h={"full"}
+      onMouseMove={handleMouseMove}
+      {...props}
+    >
+      {Array.from({ length: 10 }, (_, i) => {
+        const pillarX = i / 9;
+        const opacity = Math.abs(pillarX - cursorX);
+
+        return (
+          <Box
+            key={i}
+            flex={1}
+            h={"full"}
+            bg={`${theme.colorPalette}.emphasized`}
+            transition={"opacity 100ms ease-out"}
+            style={{ opacity }}
+            shadow={"soft"}
+          />
+        );
+      })}
+    </StackH>
   );
 };

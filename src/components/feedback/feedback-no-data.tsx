@@ -13,7 +13,7 @@ export default function FeedbackNoData(props: FeedbackStateProps) {
   // Props
   const { title, description, icon, children, ...restProps } = props;
 
-  // Store
+  // Stores
   const { t } = useLocaleStore();
 
   return (

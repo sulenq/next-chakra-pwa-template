@@ -43,7 +43,7 @@ export default function ClientRoot(props: ClientRootProps) {
   // Props
   const { children, fallback } = props;
 
-  // Store
+  // Stores
   const { setColorMode } = useColorMode();
   const ADM = useADMStore((s) => s.ADM);
 

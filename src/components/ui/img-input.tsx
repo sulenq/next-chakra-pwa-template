@@ -30,7 +30,7 @@ export const ImgInput = (props: FileInputProps) => {
     ...restProps
   } = props;
 
-  // Store
+  // Stores
   const { t } = useLocaleStore();
   const { theme } = useThemeStore();
   const fc = useFieldContext();

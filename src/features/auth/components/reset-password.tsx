@@ -36,7 +36,7 @@ const Step1 = (props: Step1Props) => {
   // Props
   const { setStep, setEmail } = props;
 
-  // Store
+  // Stores
   const { t } = useLocaleStore();
   const { theme } = useThemeStore();
 
@@ -114,7 +114,7 @@ const Step2 = (props: Step2Props) => {
   // Props
   const { email, setResetPasswordToken, setStep } = props;
 
-  // Store
+  // Stores
   const { t } = useLocaleStore();
   const { theme } = useThemeStore();
 
@@ -210,7 +210,7 @@ const Step3 = (props: Step3Props) => {
   // Props
   const { resetPasswordToken } = props;
 
-  // Store
+  // Stores
   const { t } = useLocaleStore();
   const { theme } = useThemeStore();
 

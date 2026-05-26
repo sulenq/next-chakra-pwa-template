@@ -15,7 +15,7 @@ export const Segmented = (props: SegmentedProps) => {
   // Props
   const { items = [], inputValue, onChange, size = "md", ...restProps } = props;
 
-  // Store
+  // Stores
   const { theme } = useThemeStore();
 
   // States

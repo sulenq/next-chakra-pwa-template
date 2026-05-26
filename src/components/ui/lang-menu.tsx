@@ -13,7 +13,7 @@ import { RadioItem } from "./radio";
 // -----------------------------------------------------------------
 
 export const LangMenu = (props: BtnProps) => {
-  // Store
+  // Stores
   const { t, locale, setLocale } = useLocaleStore();
 
   return (

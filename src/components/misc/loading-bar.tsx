@@ -13,7 +13,7 @@ export function TopLoadingBar(props: TopLoadingBarProps) {
   // Props
   const { loading, ...restProps } = props;
 
-  // Store
+  // Stores
   const { theme } = useThemeStore();
 
   // States

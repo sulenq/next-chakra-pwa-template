@@ -8,7 +8,7 @@ export const SelectDateFormat = (props: SelectInputProps) => {
   // Props
   const { ...restProps } = props;
 
-  // Store
+  // Stores
   const { t } = useLocaleStore();
 
   // Derived Values

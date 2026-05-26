@@ -8,7 +8,7 @@ import { useThemeStore } from "@/features/settings/display/stores/use-theme-stor
 import { SettingsIcon } from "lucide-react";
 
 export default function SettingsRoute() {
-  // Store
+  // Stores
   const { t } = useLocaleStore();
   const { theme } = useThemeStore();
 

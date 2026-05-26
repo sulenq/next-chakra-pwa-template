@@ -44,7 +44,7 @@ export const LayananDataList = (props: LayananDataListProps) => {
   const [limit, setLimit] = useState<number>(DEFAULT_LIMIT);
   const [page, setPage] = useState<number>(DEFAULT_PAGE);
 
-  // Store
+  // Stores
   const { t, locale } = useLocaleStore();
   const { theme } = useThemeStore();
   const isDisplayTable =

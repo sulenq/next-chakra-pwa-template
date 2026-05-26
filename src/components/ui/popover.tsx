@@ -31,7 +31,7 @@ export interface PopoverContentProps extends ChakraPopover.ContentProps {
 
 const PopoverContent = forwardRef<HTMLDivElement, PopoverContentProps>(
   function PopoverContent(props, ref) {
-    // Store
+    // Stores
     const { theme } = useThemeStore();
     const { portalled = true, portalRef, ...restProps } = props;
 

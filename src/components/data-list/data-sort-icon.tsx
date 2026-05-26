@@ -15,7 +15,7 @@ export const SortIcon = (props: SortIconProps) => {
   // Props
   const { columnIndex, sortColumnIdx, direction, ...restProps } = props;
 
-  // Store
+  // Stores
   const { theme } = useThemeStore();
 
   // States

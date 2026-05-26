@@ -30,7 +30,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   // Refs
   const { isSmContainer } = useMainViewContext();
 
-  // Store
+  // Stores
   const { t } = useLocaleStore();
   const { theme } = useThemeStore();
 

@@ -55,7 +55,7 @@ export const DateTimePickerInput = (props: DateTimePickerInputProps) => {
     ...restProps
   } = props;
 
-  // Store
+  // Stores
   const { theme } = useThemeStore();
   const fc = useFieldContext();
 
