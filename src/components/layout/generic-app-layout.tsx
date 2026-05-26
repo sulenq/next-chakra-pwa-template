@@ -55,7 +55,7 @@ import { last } from "@/utils/array";
 import { getActiveNavs } from "@/utils/route";
 import { pluckString } from "@/utils/string";
 import { imgUrl } from "@/utils/url";
-import { Box, Center } from "@chakra-ui/react";
+import { Box, Center, Circle } from "@chakra-ui/react";
 import { ChevronsLeftIcon, ChevronsRightIcon, ServerIcon } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { Fragment } from "react";
@@ -550,6 +550,7 @@ const DesktopLayout = (props: any) => {
 export default function GenericAppLayout(props: any) {
   // Stores
   const { theme } = useThemeStore();
+  const isNavsExpanded = useNavsStore((s) => s.isNavsExpanded);
 
   // Hooks
   const iss = useIsSmScreenWidth();
@@ -568,16 +569,28 @@ export default function GenericAppLayout(props: any) {
         w={"full"}
         h={"500px"}
         pointerEvents={"none"}
-        filter={"blur(40px)"}
         opacity={isWelcomeScreen ? 0.15 : 0}
         bgGradient={"to-t"}
         gradientFrom={`${theme.colorPalette}.solid`}
         gradientTo={"transparent 90%"}
         transition={"1000ms"}
         pos={"fixed"}
-        bottom={"-300px"}
+        bottom={0}
         left={0}
-        zIndex={10}
+      />
+
+      <Circle
+        aspectRatio={1}
+        w={"full"}
+        h={"auto"}
+        bg={"bg.canvas"}
+        filter={"blur(40px)"}
+        opacity={isWelcomeScreen ? 0.75 : 0}
+        pos={"absolute"}
+        left={0}
+        bottom={"50px"}
+        transform={`translateX(${isNavsExpanded ? "100px" : "0px"})`}
+        transition={"opacity 1000ms, filter 1000ms, transform 200ms"}
       />
     </AuthGuard>
   );

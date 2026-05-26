@@ -19,7 +19,7 @@ import { FieldsetRoot, Icon, InputGroup, StackProps } from "@chakra-ui/react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { IconLock, IconUser } from "@tabler/icons-react";
 import { LogInIcon } from "lucide-react";
-import { Controller, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { SignedinState } from "./signed-in.state";
 
@@ -37,17 +37,13 @@ const basicAuthSigninSchema = (t: { msg_required_form: string }) =>
 
 const BasicAuthForm = (props: any) => {
   const ID = "signin-form";
-
   const { ...restProps } = props;
 
   const { t } = useLocaleStore();
   const { theme } = useThemeStore();
 
-  const signin = useSignin();
-  const loading = signin.isPending;
-
   const {
-    control,
+    register,
     handleSubmit,
     formState: { errors },
   } = useForm<BasicAuthSigninFormValues>({
@@ -58,6 +54,7 @@ const BasicAuthForm = (props: any) => {
     },
   });
 
+  const signin = useSignin();
   const onSubmit = (values: BasicAuthSigninFormValues) => {
     signin.mutate({
       email: values.identifier,
@@ -68,7 +65,7 @@ const BasicAuthForm = (props: any) => {
   return (
     <StackV {...restProps}>
       <form id={ID} onSubmit={handleSubmit(onSubmit)}>
-        <FieldsetRoot disabled={loading}>
+        <FieldsetRoot disabled={signin.isPending}>
           <Field
             invalid={!!errors.identifier}
             errorText={errors.identifier?.message}
@@ -81,19 +78,11 @@ const BasicAuthForm = (props: any) => {
                 </Icon>
               }
             >
-              <Controller
-                name="identifier"
-                control={control}
-                render={({ field }) => (
-                  <StringInput
-                    name={field.name}
-                    onChange={(input) => field.onChange(input)}
-                    inputValue={field.value}
-                    placeholder={"Email"}
-                    pl={"40px !important"}
-                    variant={"subtle"}
-                  />
-                )}
+              <StringInput
+                placeholder={"Email"}
+                pl={"40px !important"}
+                variant={"subtle"}
+                {...register("identifier")}
               />
             </InputGroup>
           </Field>
@@ -110,19 +99,11 @@ const BasicAuthForm = (props: any) => {
                 </Icon>
               }
             >
-              <Controller
-                name="password"
-                control={control}
-                render={({ field }) => (
-                  <PasswordInput
-                    name={field.name}
-                    onChange={(input) => field.onChange(input)}
-                    inputValue={field.value}
-                    placeholder={"Password"}
-                    pl={"40px !important"}
-                    variant={"subtle"}
-                  />
-                )}
+              <PasswordInput
+                placeholder={"Password"}
+                pl={"40px !important"}
+                variant={"subtle"}
+                {...register("password")}
               />
             </InputGroup>
           </Field>
@@ -133,7 +114,7 @@ const BasicAuthForm = (props: any) => {
           form={ID}
           w={"full"}
           mt={6}
-          loading={loading}
+          loading={signin.isPending}
           colorPalette={theme.colorPalette}
         >
           <Icon boxSize={BASE_ICON_BOX_SIZE}>
@@ -161,10 +142,8 @@ const BasicAuthForm = (props: any) => {
 // -----------------------------------------------------------------
 
 export const SigninForm = (props: StackProps) => {
-  // Props
   const { ...restProps } = props;
 
-  // Stores
   const { t } = useLocaleStore();
   const { theme } = useThemeStore();
   const accessToken = useAuthStore((s) => s.auth.accessToken);

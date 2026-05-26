@@ -20,13 +20,11 @@ import {
 } from "@chakra-ui/react";
 import { css, Global } from "@emotion/react";
 import { XIcon } from "lucide-react";
-import { forwardRef, useRef } from "react";
+import { forwardRef, useRef, useState } from "react";
 
 // -----------------------------------------------------------------
 
-export interface StringInputProps extends Omit<InputProps, "onChange"> {
-  inputValue?: string;
-  onChange?: (inputValue: string) => void;
+export interface StringInputProps extends InputProps {
   placeholder?: string;
   containerProps?: StackProps;
   invalid?: boolean;
@@ -41,7 +39,6 @@ export const StringInput = forwardRef<HTMLInputElement, StringInputProps>(
     const {
       name,
       onChange,
-      inputValue,
       placeholder,
       containerProps,
       invalid,
@@ -77,13 +74,15 @@ export const StringInput = forwardRef<HTMLInputElement, StringInputProps>(
     const resolvedInvalid = invalid || fc?.invalid;
     const isColorPaletteGray = theme.colorPalette === "gray";
 
-    // Utils
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-      let value = e.target.value;
+    const [hasValue, setHasValue] = useState(
+      () => !!(props.value || props.defaultValue),
+    );
 
-      // Handle maxChar limitation
-      if (maxChar !== null && value.length > maxChar) {
-        value = value.slice(0, maxChar);
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      const targetValue = e.target.value;
+
+      if (maxChar !== null && targetValue.length > maxChar) {
+        e.target.value = targetValue.slice(0, maxChar);
         toaster.create({
           title: t.info_max_char_reached.title,
           description: interpolateString(t.info_max_char_reached.description, {
@@ -92,7 +91,8 @@ export const StringInput = forwardRef<HTMLInputElement, StringInputProps>(
         });
       }
 
-      onChange?.(value);
+      setHasValue(!!e.target.value);
+      onChange?.(e);
       if (isFirstRender.current) isFirstRender.current = false;
     };
 
@@ -131,7 +131,6 @@ export const StringInput = forwardRef<HTMLInputElement, StringInputProps>(
             ref={mergeRef}
             name={name}
             onChange={handleChange}
-            value={inputValue}
             bg={variant === "subtle" ? "d0" : ""}
             _placeholder={{ fontSize: "md" }}
             placeholder={resolvedPlaceholder}
@@ -159,7 +158,7 @@ export const StringInput = forwardRef<HTMLInputElement, StringInputProps>(
             {...restProps}
           />
 
-          {inputValue && clearable && !disabled && (
+          {hasValue && clearable && !disabled && (
             <Center
               flexShrink={0}
               zIndex={2}
@@ -172,8 +171,18 @@ export const StringInput = forwardRef<HTMLInputElement, StringInputProps>(
               <IconButton
                 aria-label={"clear input"}
                 onClick={() => {
-                  onChange?.("");
-                  inputRef.current?.focus(); // back to input after clear
+                  if (inputRef.current) {
+                    inputRef.current.value = "";
+                    setHasValue(false);
+                    inputRef.current.focus();
+
+                    const event = {
+                      target: inputRef.current,
+                      currentTarget: inputRef.current,
+                    } as React.ChangeEvent<HTMLInputElement>;
+
+                    onChange?.(event);
+                  }
                 }}
                 variant={"plain"}
                 size={"sm"}

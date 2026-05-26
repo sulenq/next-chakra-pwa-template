@@ -17,8 +17,8 @@ export default function Page() {
   return (
     <StackV flex={1} justify={"center"} gap={1} mb={TOP_BAR_H}>
       <StackV align={"center"} my={"auto"}>
-        <StackV align={"center"} gap={4}>
-          <Logo size={32} />
+        <StackV align={"center"} gap={6}>
+          <Logo size={42} />
 
           <P fontSize={"xl"} fontWeight={"medium"} textAlign={"center"}>
             {pluckString(t, `msg_welcome_${variantNumber}`)}

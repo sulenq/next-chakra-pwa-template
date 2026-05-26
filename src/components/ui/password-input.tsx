@@ -16,10 +16,7 @@ import { forwardRef, useState } from "react";
 
 // -----------------------------------------------------------------
 
-export interface PasswordInputProps extends Omit<InputProps, "onChange"> {
-  name?: string;
-  onChange?: (inputValue: string) => void;
-  inputValue?: string | undefined;
+export interface PasswordInputProps extends InputProps {
   placeholder?: string;
   containerProps?: StackProps;
   invalid?: boolean;
@@ -31,7 +28,6 @@ export const PasswordInput = forwardRef<HTMLInputElement, PasswordInputProps>(
     const {
       name,
       onChange,
-      inputValue,
       placeholder = "••••••••",
       containerProps,
       invalid,
@@ -44,9 +40,6 @@ export const PasswordInput = forwardRef<HTMLInputElement, PasswordInputProps>(
     // Utils
     function togglePasswordVisibility() {
       setIsPasswordVisible((prev) => !prev);
-    }
-    function handleChange(inputValue: string) {
-      if (onChange) onChange(inputValue);
     }
 
     return (
@@ -65,8 +58,7 @@ export const PasswordInput = forwardRef<HTMLInputElement, PasswordInputProps>(
           ref={ref}
           name={name}
           placeholder={placeholder}
-          inputValue={inputValue}
-          onChange={handleChange}
+          onChange={onChange}
           pr={20}
           type={isPasswordVisible ? "text" : "password"}
           invalid={invalid}

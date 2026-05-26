@@ -92,6 +92,7 @@ export default function ClientRoot(props: ClientRootProps) {
       flex={1}
       minH={"100dvh"}
       bg={"bg.canvas"}
+      overflowX={"hidden"}
       pos={"relative"}
     >
       <GlobalAlerts />
