@@ -1,15 +1,8 @@
 "use client";
 
-import { Avatar } from "@/components/ui/avatar";
-import { Btn } from "@/components/ui/btn";
-import { Menu } from "@/components/ui/menu";
-import { NavLink } from "@/components/ui/nav-link";
-import { P } from "@/components/ui/p";
-import { StackH, StackV } from "@/components/ui/stack";
 import { AppIconLucide } from "@/components/branding/app-icon";
-import { Clock } from "@/components/misc/clock";
-import { BottomIndicator, LeftIndicator } from "@/components/ui/indicator";
 import { Logo } from "@/components/branding/logo";
+import { HScroll } from "@/components/container/h-scroll";
 import { MContainerV } from "@/components/container/m-container";
 import {
   ConstrainedContainer,
@@ -17,24 +10,31 @@ import {
   NavBreadcrumb,
   TopBar,
 } from "@/components/container/main-view";
+import { Clock } from "@/components/misc/clock";
+import { Today } from "@/components/misc/today";
 import {
-  VNavs,
   DesktopNavTooltip,
   MobileNavLink,
+  VNavs,
 } from "@/components/navigation/navs";
+import { UserPanel } from "@/components/navigation/user-panel";
+import { Avatar } from "@/components/ui/avatar";
+import { Btn } from "@/components/ui/btn";
+import { BottomIndicator, LeftIndicator } from "@/components/ui/indicator";
+import { Menu } from "@/components/ui/menu";
+import { NavLink } from "@/components/ui/nav-link";
+import { P } from "@/components/ui/p";
+import { StackH, StackV } from "@/components/ui/stack";
 import { ProfileMenuTrigger } from "@/components/user/profile-menu";
-import { HScroll } from "@/components/container/h-scroll";
-import { Today } from "@/components/misc/today";
 import { APP } from "@/constants/_meta";
 import { OTHER_PRIVATE_NAV_GROUPS, PRIVATE_NAV_GROUPS } from "@/constants/navs";
 import {
   BOUNCY_TRANSITION,
+  COMMON_NAV_COLOR,
   DESKTOP_ACTIVE_NAV_BTN_VARIANT,
-  DESKTOP_NAV_BTN_ICON_BG,
   DESKTOP_NAV_BTN_PX,
   DESKTOP_NAV_BTN_SIZE,
   DESKTOP_NAV_BTN_VARIANT,
-  COMMON_NAV_COLOR,
   DESKTOP_SPACING_MD,
   GAP,
   MOBILE_CONTENT_CONTAINER_BG,
@@ -44,14 +44,14 @@ import {
   TOP_BAR_H,
   USER_PANEL_H,
 } from "@/constants/styles";
-import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
-import { useNavsStore } from "@/stores/use-navs-store";
-import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
 import { AuthGuard } from "@/features/auth/components/auth-guard";
+import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
+import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
 import { useIsSmScreenWidth } from "@/hooks/use-is-sm-screen-width";
 import { useScreen } from "@/hooks/use-screen";
-import { last } from "@/utils/array";
 import { useAuthStore } from "@/stores/use-auth-store";
+import { useNavsStore } from "@/stores/use-navs-store";
+import { last } from "@/utils/array";
 import { getActiveNavs } from "@/utils/route";
 import { pluckString } from "@/utils/string";
 import { imgUrl } from "@/utils/url";
@@ -59,7 +59,6 @@ import { Box, Center } from "@chakra-ui/react";
 import { ChevronsLeftIcon, ChevronsRightIcon, ServerIcon } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { Fragment } from "react";
-import { UserPanel } from "@/components/navigation/user-panel";
 
 // -----------------------------------------------------------------
 
@@ -411,7 +410,7 @@ const DesktopLayout = (props: any) => {
                 >
                   <Center
                     p={2}
-                    bg={DESKTOP_NAV_BTN_ICON_BG}
+                    // bg={DESKTOP_NAV_BTN_ICON_BG}
                     rounded={theme.radii.component}
                   >
                     <AppIconLucide
@@ -480,11 +479,11 @@ const DesktopLayout = (props: any) => {
 
                             <Center
                               p={2}
-                              bg={
-                                pathname.includes("/master-data")
-                                  ? ""
-                                  : DESKTOP_NAV_BTN_ICON_BG
-                              }
+                              // bg={
+                              //   pathname.includes("/master-data")
+                              //     ? ""
+                              //     : DESKTOP_NAV_BTN_ICON_BG
+                              // }
                               rounded={theme.radii.component}
                             >
                               <AppIconLucide

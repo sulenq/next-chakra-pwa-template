@@ -16,7 +16,6 @@ import {
   COMMON_NAV_COLOR,
   DESKTOP_ACTIVE_NAV_BTN_VARIANT,
   DESKTOP_NAV_BTN_COLOR_PATELLE,
-  DESKTOP_NAV_BTN_ICON_BG,
   DESKTOP_NAV_BTN_PX,
   DESKTOP_NAV_BTN_SIZE,
   DESKTOP_NAV_BTN_VARIANT,
@@ -140,18 +139,14 @@ export const VNavs = (props: VNavsProps) => {
                                   : DESKTOP_NAV_BTN_COLOR_PATELLE
                               }
                             >
-                              {/* {isMainNavsActive && nav.icon && (
-                                  <LeftIndicator />
-                                )} */}
-
                               {nav.icon && (
                                 <Center
                                   p={2}
-                                  bg={
-                                    isMainNavsActive
-                                      ? ""
-                                      : DESKTOP_NAV_BTN_ICON_BG
-                                  }
+                                  // bg={
+                                  //   isMainNavsActive
+                                  //     ? ""
+                                  //     : DESKTOP_NAV_BTN_ICON_BG
+                                  // }
                                   rounded={theme.radii.component}
                                 >
                                   <AppIconLucide
@@ -227,11 +222,11 @@ export const VNavs = (props: VNavsProps) => {
 
                                       <Center
                                         p={2}
-                                        bg={
-                                          isMainNavsActive
-                                            ? ""
-                                            : DESKTOP_NAV_BTN_ICON_BG
-                                        }
+                                        // bg={
+                                        //   isMainNavsActive
+                                        //     ? ""
+                                        //     : DESKTOP_NAV_BTN_ICON_BG
+                                        // }
                                         rounded={theme.radii.component}
                                       >
                                         <AppIconLucide
@@ -365,11 +360,11 @@ export const VNavs = (props: VNavsProps) => {
                                       <StackH align={"center"} gap={4}>
                                         <Center
                                           p={2}
-                                          bg={
-                                            isMainNavsActive
-                                              ? ""
-                                              : DESKTOP_NAV_BTN_ICON_BG
-                                          }
+                                          // bg={
+                                          //   isMainNavsActive
+                                          //     ? ""
+                                          //     : DESKTOP_NAV_BTN_ICON_BG
+                                          // }
                                           rounded={theme.radii.component}
                                         >
                                           <AppIconLucide

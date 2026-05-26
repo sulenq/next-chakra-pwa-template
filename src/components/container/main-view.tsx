@@ -99,7 +99,7 @@ export const NavBreadcrumb = (props: any) => {
           })
           .join(" / ")}
       >
-        <StackH maxW={"400px"} color={"fg.subtle"} ml={"-4px"}>
+        <StackH align={"center"} maxW={"400px"} color={"fg.subtle"} ml={"-4px"}>
           <Icon boxSize={5} opacity={0.6} rotate={"-12deg"}>
             <IconSlash stroke={1.5} />
           </Icon>
@@ -108,7 +108,7 @@ export const NavBreadcrumb = (props: any) => {
 
           {activeNavs.map((nav: Nav, index: number) => {
             return (
-              <StackH key={index} color={"fg.subtle"}>
+              <StackH key={index} align={"center"} color={"fg.subtle"}>
                 {index !== 0 && (
                   <>
                     {backPath && (
