@@ -166,23 +166,23 @@ export const TopBar = (props: TopBarProps) => {
   // Derived Values
   const isSmContainer = dimension.width < 650;
 
-  if (showDateTime)
-    return (
-      <StackH
-        flexShrink={0}
-        justify={"space-between"}
-        gap={2}
-        w={"full"}
-        rounded={theme.radii.container}
-        {...restProps}
-      >
-        <StackH w={"35%"}>
-          <NavBreadcrumb
-            backPath={backPath}
-            resolvedActiveNavs={resolvedActiveNavs}
-          />
-        </StackH>
+  return (
+    <StackH
+      flexShrink={0}
+      justify={"space-between"}
+      gap={2}
+      w={"full"}
+      rounded={theme.radii.container}
+      {...restProps}
+    >
+      <StackH w={"35%"}>
+        <NavBreadcrumb
+          backPath={backPath}
+          resolvedActiveNavs={resolvedActiveNavs}
+        />
+      </StackH>
 
+      {showDateTime && (
         <Stack
           flexDir={isSmContainer ? "column" : "row"}
           align={"center"}
@@ -199,18 +199,19 @@ export const TopBar = (props: TopBarProps) => {
 
           <Clock fontSize={"sm"} />
         </Stack>
+      )}
 
-        <StackH justify={"end"} gap={2} w={"35%"}>
-          <Btn iconButton variant={"subtle"} size={"xs"} color={"fg.muted"}>
-            <AppIconLucide icon={NavigationIcon} />
-          </Btn>
+      <StackH justify={"end"} gap={2} w={"35%"}>
+        <Btn iconButton variant={"subtle"} size={"xs"} color={"fg.muted"}>
+          <AppIconLucide icon={NavigationIcon} />
+        </Btn>
 
-          <Btn iconButton variant={"subtle"} size={"xs"} color={"fg.muted"}>
-            <AppIconLucide icon={HeadsetIcon} />
-          </Btn>
-        </StackH>
+        <Btn iconButton variant={"subtle"} size={"xs"} color={"fg.muted"}>
+          <AppIconLucide icon={HeadsetIcon} />
+        </Btn>
       </StackH>
-    );
+    </StackH>
+  );
 };
 
 // -----------------------------------------------------------------

@@ -6,6 +6,9 @@ export interface SigninPayload {
 }
 
 export interface SigninResponseData {
-  authToken: string;
+  accessToken: string;
+  refreshToken: string;
+  tokenType: string;
+  expiresIn: number; // second
   user: User;
 }

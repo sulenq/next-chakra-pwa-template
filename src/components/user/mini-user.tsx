@@ -21,12 +21,9 @@ export const MiniUser = (props: MiniUserProps) => {
 
   return (
     <StackH align={"center"} gap={3} minW={"200px"} {...restProps}>
-      <ImgViewer
-        id={`avatar-${user.id}`}
-        src={imgUrl(user?.avatar?.[0]?.filePath)}
-      >
+      <ImgViewer id={`avatar-${user.id}`} src={imgUrl(user?.avatar?.[0]?.path)}>
         <Avatar
-          src={imgUrl(user?.avatar?.[0]?.filePath)}
+          src={imgUrl(user?.avatar?.[0]?.path)}
           name={user.name}
           size={withEmail ? "xs" : "2xs"}
           fontSize={"sm"}

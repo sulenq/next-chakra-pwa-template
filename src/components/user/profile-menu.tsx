@@ -111,7 +111,7 @@ export const ProfileMenu = (props: ProfileMenuProps) => {
     >
       <StackH align={"center"} gap={4} p={3}>
         <Avatar
-          src={imgUrl(user?.avatar?.[0]?.filePath)}
+          src={imgUrl(user?.avatar?.[0]?.path)}
           name={user?.name}
           size={"lg"}
         />

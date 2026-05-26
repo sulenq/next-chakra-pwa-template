@@ -303,7 +303,7 @@ const MobileLayout = (props: any) => {
               cursor={"pointer"}
             >
               <Avatar
-                src={imgUrl(user?.avatar?.[0]?.filePath)}
+                src={imgUrl(user?.avatar?.[0]?.path)}
                 name={user?.name}
                 size={"2xs"}
               />
@@ -530,7 +530,7 @@ const DesktopLayout = (props: any) => {
           <StackV>
             <ConstrainedContainer px={GAP}>
               <Box w={"full"} h={TOP_BAR_H} p={R_SPACING_MD}>
-                <TopBar />
+                <TopBar showDateTime={false} />
               </Box>
             </ConstrainedContainer>
           </StackV>
@@ -549,14 +549,37 @@ const DesktopLayout = (props: any) => {
 // -----------------------------------------------------------------
 
 export default function GenericAppLayout(props: any) {
+  // Contexts
+  const { theme } = useThemeStore();
+
   // Hooks
   const iss = useIsSmScreenWidth();
+  const pathname = usePathname();
+
+  // Derived Values
+  const isWelcomeScreen = pathname === "/welcome";
 
   return (
     <AuthGuard>
       <StackV id={"app-layout"} h={"100dvh"}>
         {iss ? <MobileLayout {...props} /> : <DesktopLayout {...props} />}
       </StackV>
+
+      <Box
+        w={"full"}
+        h={"500px"}
+        pointerEvents={"none"}
+        filter={"blur(40px)"}
+        opacity={isWelcomeScreen ? 0.15 : 0}
+        bgGradient={"to-t"}
+        gradientFrom={`${theme.colorPalette}.solid`}
+        gradientTo={"transparent 90%"}
+        transition={"1000ms"}
+        pos={"fixed"}
+        bottom={"-200px"}
+        left={0}
+        zIndex={10}
+      />
     </AuthGuard>
   );
 }

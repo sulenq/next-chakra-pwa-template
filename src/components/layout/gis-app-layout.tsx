@@ -296,7 +296,7 @@ const MobileLayout = (props: any) => {
               gap={1}
             >
               <Avatar
-                src={imgUrl(user?.avatar?.[0]?.filePath)}
+                src={imgUrl(user?.avatar?.[0]?.path)}
                 name={user?.name}
                 size={"2xs"}
               />

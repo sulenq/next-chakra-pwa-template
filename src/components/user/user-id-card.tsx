@@ -66,7 +66,7 @@ export const UserIdCard = (props: UserIdCardProps) => {
   const userAvatarSrc = user?.avatar?.[0]?.fileUrl;
 
   // SX
-  const [logoColor] = useToken("colors", [`${theme.colorPalette}.contrast`]);
+  const [fontColor] = useToken("colors", [`${theme.colorPalette}.contrast`]);
 
   return (
     <StackV
@@ -101,8 +101,9 @@ export const UserIdCard = (props: UserIdCardProps) => {
           whiteSpace={"nowrap"}
           opacity={0.5}
         >
-          <Logo size={40} color={logoColor} />
-          <P fontSize={"48px"} fontWeight={"semibold"} color={logoColor}>
+          <Logo size={40} color={fontColor} />
+
+          <P fontSize={"48px"} fontWeight={"semibold"} color={fontColor}>
             {APP.name}
           </P>
         </StackH>

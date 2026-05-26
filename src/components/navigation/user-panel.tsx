@@ -77,7 +77,7 @@ export const UserPanel = (props: UserPanelProps) => {
       >
         {navsExpanded ? (
           <Avatar
-            src={imgUrl(user?.avatar?.[0]?.filePath)}
+            src={imgUrl(user?.avatar?.[0]?.path)}
             name={user?.name}
             size={"lg"}
             transition={"200ms"}
@@ -101,7 +101,7 @@ export const UserPanel = (props: UserPanelProps) => {
             }}
           >
             <Avatar
-              src={imgUrl(user?.avatar?.[0]?.filePath)}
+              src={imgUrl(user?.avatar?.[0]?.path)}
               name={user?.name}
               size={"xs"}
               transition={"200ms"}

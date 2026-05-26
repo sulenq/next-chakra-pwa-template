@@ -48,7 +48,7 @@ export const ImgInput = (props: FileInputProps) => {
       inputValueUrls = inputValue.map((f: any) => URL.createObjectURL(f));
     }
     const exsistingUrls = existing.map((f: StorageFile) =>
-      imgUrl(f.filePath),
+      imgUrl(f.path),
     ) as string[];
 
     setPreviewUrls([...exsistingUrls, ...inputValueUrls]);

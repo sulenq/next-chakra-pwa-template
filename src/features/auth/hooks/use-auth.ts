@@ -32,7 +32,7 @@ export const useSignin = () => {
     onSuccess: (response) => {
       toast.onSuccess();
 
-      const accessToken = response.data?.authToken;
+      const accessToken = response.data?.accessToken;
       const user = response.data?.user;
       const permissions = response.data?.user?.role?.permissions;
 
