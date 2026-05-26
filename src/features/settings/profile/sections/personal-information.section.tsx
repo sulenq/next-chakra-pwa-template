@@ -1,17 +1,16 @@
+import { Item, ItemRootProps } from "@/components/container/item";
+import { useMainViewContext } from "@/components/container/main-view";
 import { AvatarUploadTrigger } from "@/components/ui/avatar";
 import { Btn } from "@/components/ui/btn";
 import { Field, FieldsetRoot } from "@/components/ui/field";
 import { HelperText } from "@/components/ui/helper-text";
 import { StackH, StackV } from "@/components/ui/stack";
 import { StringInput } from "@/components/ui/string-input";
-import { Item, ItemRootProps } from "@/components/container/item";
-import { useMainViewContext } from "@/components/container/main-view";
 import { UserIdCard } from "@/components/user/user-id-card";
 import { R_SPACING_MD } from "@/constants/styles";
-import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
-import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
 import { ResetPasswordDisclosureTrigger } from "@/features/auth/components/reset-password";
-import { useRequest } from "@/hooks/useRequestOld";
+import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
+import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
 import { useAuthStore } from "@/stores/use-auth-store";
 import { Stack } from "@chakra-ui/react";
 import { useFormik } from "formik";
@@ -24,17 +23,6 @@ export const PersonalInformationSection = (props: ItemRootProps) => {
   const { t } = useLocaleStore();
   const { theme } = useThemeStore();
   const { isSmContainer } = useMainViewContext();
-
-  // Hooks
-  const { req, loading } = useRequest({
-    id: "update-personal-info",
-    loadingMessage: {
-      title: `${t.saving} ${t.personal_information}`,
-    },
-    successMessage: {
-      title: `${t.personal_information} ${t.updated}`,
-    },
-  });
 
   // Constants
   const user = useAuthStore((s) => s.auth.user);
@@ -52,22 +40,7 @@ export const PersonalInformationSection = (props: ItemRootProps) => {
       name: yup.string().required(t.msg_required_form),
       email: yup.string().required(t.msg_required_form),
     }),
-    onSubmit: (values) => {
-      const config = {
-        url: `/update-users/${user?.id}`,
-        method: "PATCH",
-        data: {
-          avatar: values.avatar,
-          deleteAvatarIds: values.deleteAvatarIds,
-          name: values.name,
-          email: values.email,
-        },
-      };
-
-      req({
-        config,
-      });
-    },
+    onSubmit: () => {},
   });
 
   return (
@@ -80,7 +53,7 @@ export const PersonalInformationSection = (props: ItemRootProps) => {
 
           <StackV flex={1} justify={"space-between"}>
             <form id={"personal-info-form"} onSubmit={formik.handleSubmit}>
-              <FieldsetRoot disabled={loading}>
+              <FieldsetRoot>
                 <Field
                   label={"Avatar"}
                   invalid={!!formik.errors.avatar}

@@ -9,7 +9,6 @@ import { StackH } from "@/components/ui/stack";
 import { R_SPACING_MD } from "@/constants/styles";
 import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
 import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
-import { useRequest } from "@/hooks/useRequestOld";
 import { useFormik } from "formik";
 import * as yup from "yup";
 
@@ -17,11 +16,6 @@ export const APIKeySection = () => {
   // Store
   const { t } = useLocaleStore();
   const { theme } = useThemeStore();
-
-  // Hooks
-  const { req, loading } = useRequest({
-    id: "",
-  });
 
   // States
   const formik = useFormik({
@@ -34,22 +28,7 @@ export const APIKeySection = () => {
       mapboxToken: yup.string().required(t.msg_required_form),
       tinyMceToken: yup.string().required(t.msg_required_form),
     }),
-    onSubmit: (values) => {
-      // console.debug(values);
-
-      const config = {
-        url: ``,
-        method: "PATCH",
-        data: values,
-      };
-
-      req({
-        config,
-        onResolve: {
-          onSuccess: () => {},
-        },
-      });
-    },
+    onSubmit: () => {},
   });
 
   return (
@@ -58,7 +37,7 @@ export const APIKeySection = () => {
 
       <Item.Body p={4}>
         <form id={"api-keys-form"} onSubmit={formik.handleSubmit}>
-          <FieldsetRoot disabled={loading}>
+          <FieldsetRoot>
             <Field
               label={"Mapbox Token"}
               invalid={!!formik.errors.mapboxToken}
