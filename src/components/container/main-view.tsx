@@ -202,11 +202,11 @@ export const TopBar = (props: TopBarProps) => {
       )}
 
       <StackH justify={"end"} gap={2} w={"35%"}>
-        <Btn iconButton variant={"subtle"} size={"xs"} color={"fg.muted"}>
+        <Btn iconButton variant={"ghost"} size={"xs"} color={"fg.muted"}>
           <AppIconLucide icon={NavigationIcon} />
         </Btn>
 
-        <Btn iconButton variant={"subtle"} size={"xs"} color={"fg.muted"}>
+        <Btn iconButton variant={"ghost"} size={"xs"} color={"fg.muted"}>
           <AppIconLucide icon={HeadsetIcon} />
         </Btn>
       </StackH>
