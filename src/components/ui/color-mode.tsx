@@ -1,8 +1,8 @@
 "use client";
 
+import { AppIconLucide } from "@/components/branding/app-icon";
 import { Btn } from "@/components/ui/btn";
 import { Tooltip, TooltipProps } from "@/components/ui/tooltip";
-import { AppIconLucide } from "@/components/branding/app-icon";
 import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
 import { ColorMode } from "@/types/global.types";
 import type { IconButtonProps, SpanProps } from "@chakra-ui/react";
@@ -63,24 +63,16 @@ export const ColorModeButton = forwardRef<
   // Props
   const { tooltipProps, ...restProps } = props;
 
+  // Store
+  const { colorMode } = useColorMode();
+
   // Hooks
   const { t } = useLocaleStore();
   const { toggleColorMode } = useColorMode();
 
-  // Store
-  const { colorMode } = useColorMode();
-  // const { ADM } = useADMStore();
-
-  // Constants
-  // const ADMActive = ADM;
-
   return (
     <ClientOnly fallback={<Skeleton boxSize={"8"} />}>
-      <Tooltip
-        // content={ADMActive ? t.msg_ADM_active : t.msg_toggle_dark_mode}
-        content={t.msg_toggle_dark_mode}
-        {...tooltipProps}
-      >
+      <Tooltip content={t.msg_toggle_dark_mode} {...tooltipProps}>
         <Btn
           iconButton
           clicky={false}
@@ -88,7 +80,6 @@ export const ColorModeButton = forwardRef<
           variant={"ghost"}
           size={"sm"}
           aria-label={"Toggle color mode"}
-          // disabled={ADMActive}
           onClick={toggleColorMode}
           {...restProps}
         >

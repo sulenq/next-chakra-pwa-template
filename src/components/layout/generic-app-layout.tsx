@@ -548,7 +548,7 @@ const DesktopLayout = (props: any) => {
 // -----------------------------------------------------------------
 
 export default function GenericAppLayout(props: any) {
-  // Contexts
+  // Store
   const { theme } = useThemeStore();
 
   // Hooks
@@ -575,7 +575,7 @@ export default function GenericAppLayout(props: any) {
         gradientTo={"transparent 90%"}
         transition={"1000ms"}
         pos={"fixed"}
-        bottom={"-200px"}
+        bottom={"-300px"}
         left={0}
         zIndex={10}
       />

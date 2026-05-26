@@ -62,7 +62,7 @@ export default function Page() {
             <SigninForm />
 
             <StackH align={"center"} justify={"center"}>
-              <BrandWatermark textAlign={"center"} mr={4} />
+              <BrandWatermark color={"fg.solid"} textAlign={"center"} mr={4} />
 
               <StackH gap={1}>
                 <ColorModeButton size={"xs"} />
