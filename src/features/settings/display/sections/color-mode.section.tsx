@@ -52,8 +52,12 @@ const DisplaySkeleton = (props: DisplaySkeletonProps) => {
     },
   };
 
+  console.debug(theme.colorPalette);
+  console.debug(getSemanticValue(`${theme.colorPalette}.fg`, colorMode));
+
   return (
     <StackV gap={4} w={"full"} {...restProps}>
+      <P color={"gray.fg"}>Jancok</P>
       <StackV
         gap={2}
         bg={color.body[colorMode]}
