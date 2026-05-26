@@ -1,6 +1,6 @@
 import { WELCOME_ROUTE } from "@/constants/routes";
 import {
-  getUserProfile,
+  getCurrentUser,
   signin,
   signout,
 } from "@/features/auth/services/auth.api";
@@ -76,7 +76,7 @@ export const useSignout = (options?: {
 export const useUserProfile = (options?: any) => {
   return useQuery<BaseResponse<User>, Error>({
     queryKey: queryKeys.auth.profile(),
-    queryFn: ({ signal }) => getUserProfile(signal),
+    queryFn: ({ signal }) => getCurrentUser(signal),
     ...options,
   });
 };
