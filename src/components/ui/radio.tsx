@@ -22,6 +22,7 @@ export const RadioItem = (props: RadioItemProps) => {
       border={checked ? "4px solid" : "2px solid"}
       borderColor={checked ? `${theme.colorPalette}.solid` : "border.muted"}
       cursor={"pointer"}
+      transition={"200ms"}
       {...restProps}
     />
   );
