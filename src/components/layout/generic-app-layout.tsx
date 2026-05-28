@@ -589,7 +589,7 @@ export default function GenericAppLayout(props: any) {
         pos={"absolute"}
         left={0}
         bottom={"50px"}
-        transform={`translateX(${isNavsExpanded ? "100px" : "0px"})`}
+        transform={`translateX(${isNavsExpanded ? "60px" : "0px"})`}
         transition={"opacity 1000ms, filter 1000ms, transform 200ms"}
       />
     </AuthGuard>
