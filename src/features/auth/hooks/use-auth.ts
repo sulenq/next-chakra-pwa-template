@@ -1,4 +1,3 @@
-import { WELCOME_ROUTE } from "@/constants/routes";
 import {
   getCurrentUser,
   resetPasswordStep1,
@@ -23,14 +22,11 @@ import { mutationToastHandlers } from "@/lib/toast/toast.handler";
 import { useAuthStore } from "@/stores/use-auth-store";
 import { BaseResponse } from "@/types/global.types";
 import { useMutation, useQuery, UseQueryOptions } from "@tanstack/react-query";
-import { useRouter } from "next/navigation";
 
 // -----------------------------------------------------------------
 
 export const useSignin = (options?: AuthOptions) => {
   const { t } = useLocaleStore();
-  const router = useRouter();
-
   const setAuth = useAuthStore((s) => s.setAuth);
 
   const toast = mutationToastHandlers("auth-signin", {
@@ -50,8 +46,6 @@ export const useSignin = (options?: AuthOptions) => {
 
       if (accessToken && user) setAuth({ accessToken, user });
       if (permissions) setAuth({ permissions });
-
-      router.push(WELCOME_ROUTE);
 
       options?.onSuccess?.(response);
     },

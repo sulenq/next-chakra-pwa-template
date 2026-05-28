@@ -23,6 +23,8 @@ import { useForm } from "react-hook-form";
 import { SignedinState } from "./signed-in.state";
 import z from "zod/v3";
 import { Translations } from "@/types/global.types";
+import { useRouter } from "next/navigation";
+import { WELCOME_ROUTE } from "@/constants/routes";
 
 // -----------------------------------------------------------------
 
@@ -38,10 +40,16 @@ const basicAuthSigninSchema = (t: Translations) =>
 
 const BasicAuthForm = (props: any) => {
   const ID = "signin-form";
+
+  // Props
   const { ...restProps } = props;
 
+  // Stores
   const { t } = useLocaleStore();
   const { theme } = useThemeStore();
+
+  // Hooks
+  const router = useRouter();
 
   const {
     register,
@@ -55,7 +63,11 @@ const BasicAuthForm = (props: any) => {
     },
   });
 
-  const signin = useSignin();
+  const signin = useSignin({
+    onSuccess: () => {
+      router.push(WELCOME_ROUTE);
+    },
+  });
   const onSubmit = (values: BasicAuthSigninFormValues) => {
     signin.mutate({
       email: values.identifier,
