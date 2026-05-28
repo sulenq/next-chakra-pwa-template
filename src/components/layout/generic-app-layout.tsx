@@ -554,10 +554,6 @@ export default function GenericAppLayout(props: any) {
 
   // Hooks
   const iss = useIsSmScreenWidth();
-  const pathname = usePathname();
-
-  // Derived Values
-  const isWelcomeScreen = pathname === "/welcome";
 
   return (
     <AuthGuard>
@@ -569,7 +565,7 @@ export default function GenericAppLayout(props: any) {
         w={"full"}
         h={"500px"}
         pointerEvents={"none"}
-        opacity={isWelcomeScreen ? 0.15 : 0}
+        opacity={theme.ambienceColor ? 0.15 : 0}
         bgGradient={"to-t"}
         gradientFrom={`${theme.colorPalette}.solid`}
         gradientTo={"transparent 90%"}
@@ -585,7 +581,7 @@ export default function GenericAppLayout(props: any) {
         h={"auto"}
         bg={"bg.canvas"}
         filter={"blur(40px)"}
-        opacity={isWelcomeScreen ? 0.75 : 0}
+        opacity={theme.ambienceColor ? 0.75 : 0}
         pos={"absolute"}
         left={0}
         bottom={"50px"}

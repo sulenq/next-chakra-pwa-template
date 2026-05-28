@@ -1247,6 +1247,17 @@ export const settings_accent_color_section = {
     en: "The primary color that defines the visual identity of the application.",
   },
 };
+export const settings_ambience_color = {
+  title: {
+    id: "Warna ambience",
+    en: "Ambience color",
+  },
+
+  description: {
+    id: "Warna yang memberikan nuansa warna sesuai dengan warna aksen yang sedang aktif",
+    en: "The color that provides a color nuance according to the currently active accent color",
+  },
+};
 export const settings_rounded_section = {
   title: {
     id: "Radius/pembulatan",
