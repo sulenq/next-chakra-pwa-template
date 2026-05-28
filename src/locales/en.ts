@@ -447,7 +447,7 @@ const translations = {
   },
   "settings_color_mode_reset": {
     "title": "Reset to default mode",
-    "description": "Default color mode follows the system"
+    "description": "Default color mode follows the system (your device)"
   },
   "settings_constrained_container_active": {
     "title": "Use constrained container",

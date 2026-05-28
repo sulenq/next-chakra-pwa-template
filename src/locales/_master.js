@@ -1231,8 +1231,8 @@ export const settings_color_mode_reset = {
   title: { id: "Reset ke mode default", en: "Reset to default mode" },
 
   description: {
-    id: "Default color mode mengikuti sistem",
-    en: "Default color mode follows the system",
+    id: "Default color mode mengikuti sistem (perangkat anda)",
+    en: "Default color mode follows the system (your device)",
   },
 };
 

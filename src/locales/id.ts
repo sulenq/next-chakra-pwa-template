@@ -447,7 +447,7 @@ const translations = {
   },
   "settings_color_mode_reset": {
     "title": "Reset ke mode default",
-    "description": "Default color mode mengikuti sistem"
+    "description": "Default color mode mengikuti sistem (perangkat anda)"
   },
   "settings_constrained_container_active": {
     "title": "Pakai kontainer terbatas",
