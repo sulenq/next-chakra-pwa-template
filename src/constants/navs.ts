@@ -6,7 +6,6 @@ import {
   DatabaseIcon,
   LanguagesIcon,
   MapPinIcon,
-  ScanTextIcon,
   SettingsIcon,
   ShieldHalfIcon,
   SunIcon,
@@ -22,13 +21,6 @@ export const PRIVATE_NAV_GROUPS: NavGroup[] = [
         icon: ChartPieIcon,
         labelKey: "navs.dashboard",
         path: `/dashboard`,
-        allowedRoles: [],
-      },
-      {
-        icon: ScanTextIcon,
-        label: "Sevicing",
-        labelKey: "navs.user",
-        path: `/layanan`,
         allowedRoles: [],
       },
       {
