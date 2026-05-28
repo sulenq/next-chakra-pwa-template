@@ -3,7 +3,7 @@
 import { Btn, BtnProps } from "@/components/ui/btn";
 import { Tooltip } from "@/components/ui/tooltip";
 import { AppIconLucide } from "@/components/branding/app-icon";
-import { useDataDisplayStore } from "@/stores/use-data-display-store";
+import { useDataDisplayStore } from "@/features/data-list-display/stores/use-data-display-store";
 import { LayoutGridIcon, TableIcon } from "lucide-react";
 
 // -----------------------------------------------------------------

@@ -12,7 +12,7 @@ import FeedbackRetry from "@/components/feedback/feedback-retry";
 import { ImgViewer } from "@/components/media/img-viewer";
 import { TopLoadingBar } from "@/components/misc/loading-bar";
 import { DEFAULT_LIMIT, DEFAULT_PAGE } from "@/constants/data-list";
-import { useDataDisplayStore } from "@/stores/use-data-display-store";
+import { useDataDisplayStore } from "@/features/data-list-display/stores/use-data-display-store";
 import { LayananDelete } from "@/features/layanan/components/layanan.delete";
 import { LayananUpdate } from "@/features/layanan/components/layanan.update";
 import { useLayananDataList } from "@/features/layanan/hooks/use-layanan";
