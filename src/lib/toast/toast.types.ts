@@ -1,10 +1,10 @@
-export interface ToastMessage {
+export type ToastMessage = {
   title: string;
   description: string;
-}
+};
 
-export interface MutationToastOptions {
+export type MutationToastOptions = {
   loadingMessage?: Partial<ToastMessage>;
   successMessage?: Partial<ToastMessage>;
   errorMessage?: Partial<ToastMessage>;
-}
+};

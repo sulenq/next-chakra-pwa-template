@@ -1,48 +1,48 @@
 import { User } from "@/types/global.types";
 
-export interface AuthOptions<TData = any> {
+export type AuthOptions<TData = any> = {
   onSuccess?: (data: TData) => void;
   onError?: (err: any) => void;
-}
+};
 
-export interface SigninPayload {
+export type SigninPayload = {
   email: string;
   password?: string;
-}
+};
 
-export interface SigninResponseData {
+export type SigninResponseData = {
   accessToken: string;
   refreshToken: string;
   tokenType: string;
   expiresIn: number; // second
   user: User;
-}
+};
 
-export interface ResetPasswordStep1Payload {
+export type ResetPasswordStep1Payload = {
   email: string;
-}
+};
 
-export interface ResetPasswordStep1ResponseData {
+export type ResetPasswordStep1ResponseData = {
   email: string;
   otpExpiresIn: number; // second
-}
+};
 
-export interface ResetPasswordStep2Payload {
+export type ResetPasswordStep2Payload = {
   email: string;
   otp: string;
-}
+};
 
-export interface ResetPasswordStep2ResponseData {
+export type ResetPasswordStep2ResponseData = {
   resetPasswordToken: string;
   resetPasswordTokenExpiresIn: number; // second
-}
+};
 
-export interface ResetPasswordStep3Payload {
+export type ResetPasswordStep3Payload = {
   resetPasswordToken: string;
   newPassword: string;
   newPasswordConfirmation: string;
-}
+};
 
-export interface CurrentUserResponseData {
+export type CurrentUserResponseData = {
   user: User;
-}
+};

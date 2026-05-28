@@ -1,13 +1,13 @@
 import { LangObject } from "@/types/global.types";
 
-export interface LayananItem {
+export type LayananItem = {
   id: string;
   icon: string;
   title: LangObject;
   description: LangObject;
-}
+};
 
-export interface GetLayananResponseData {
+export type GetLayananResponseData = {
   count: number;
   data: LayananItem[];
-}
+};

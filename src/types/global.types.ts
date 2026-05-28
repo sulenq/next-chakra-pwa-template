@@ -118,29 +118,33 @@ export type DateVariant =
   | "shortWeekdayDayMonthYear" // Wed, 15 January 2025
   | "shortWeekdayDayShortMonthYear"; // Wed, 15 Jan 2025
 
-// -----------------------------------------------------------------
-
 // Response
-export interface BaseResponse<T = any> {
+export type BaseResponse<T = any> = {
   status: number;
   message: string;
   data?: T;
-}
+};
+
+export type CUD = {
+  createdAt?: string;
+  updatedAt?: string | null;
+  deletedAt?: string | null;
+};
 
 // Request
-export interface BaseDataListParams {
+export type BaseDataListParams = {
   search?: string;
   page?: number;
   limit?: number;
-}
+};
 
 // Locales
-export interface LangObject {
-  [key: string]: string;
-}
+export type LangObject = {
+  [key in LocaleKey]: string;
+};
 
 // Auth
-export interface User extends CUD {
+export type User = {
   id: string;
   accountStatus: string;
   avatar: StorageFile[];
@@ -162,9 +166,9 @@ export interface User extends CUD {
 
   // more info
   taskCount?: number;
-}
+} & CUD;
 
-export interface Role {
+export type Role = {
   id: string;
   name: string;
   description: string;
@@ -172,35 +176,35 @@ export interface Role {
   createdAt: string;
   updatedAt: string;
   deletedAt: string | null;
-}
+};
 
 export type Permission = string; // TODO DEV : assign correct permissions
 
-export interface ActivityLog extends CUD {
+export type ActivityLog = {
   id: string;
   userId: string;
   action: string;
   metadata?: Record<string, any>;
   user?: User;
-}
+} & CUD;
 
-export interface AuthLog extends CUD {
+export type AuthLog = {
   id: string;
   ip: string;
   city: string;
   countryCode: string;
   userAgent: string;
   action: string; // "Sign in" | "Sign out" ;
-}
+} & CUD;
 
 // Navs
-export interface NavGroup {
+export type NavGroup = {
   labelKey?: string;
   label?: string;
   navs: Nav[];
-}
+};
 
-export interface Nav {
+export type Nav = {
   icon?: LucideIcon;
   labelKey?: string;
   label?: string;
@@ -210,10 +214,10 @@ export interface Nav {
   allowedPermissions?: string[];
   children?: NavGroup[];
   childrenInvisible?: boolean;
-}
+};
 
 // Pdf Viewer
-export interface PdfViewerUtils {
+export type PdfViewerUtils = {
   setPageWidth: (width: number) => void;
   setPage: (p: number) => void;
   prevPage: () => void;
@@ -225,34 +229,34 @@ export interface PdfViewerUtils {
   fitToPage: () => void;
   handleDownload: () => void;
   toggleMode: () => void;
-}
+};
 
 // Data List
-export interface Pagination {
+export type Pagination = {
   currentPage: number;
   totalPage: number;
   totalData: number; // total records
   hasPrevPage: boolean;
   hasNextPage: boolean;
-}
+};
 
 // Data Table
-export interface DataListConfig {
+export type DataListConfig = {
   headers?: FormattedTableHeader[];
   rows?: FormattedTableRow[];
   rowOptions?: RowOptionsTableOptionGenerator[];
   batchOptions?: BatchOptionsTableOptionGenerator[];
-}
+};
 
-export interface FormattedTableHeader {
+export type FormattedTableHeader = {
   th: string;
   sortable?: boolean;
   headerProps?: StackProps;
   wrapperProps?: StackProps;
   align?: string;
-}
+};
 
-export interface FormattedTableRow<T = any> {
+export type FormattedTableRow<T = any> = {
   id: string;
   index: number;
   item: T;
@@ -266,7 +270,7 @@ export interface FormattedTableRow<T = any> {
     align?: string;
     dim?: boolean;
   }[];
-}
+};
 
 export type RowOptionsTableOptionGenerator<T = any> = (
   formattedRow: FormattedTableRow<T>,
@@ -279,42 +283,35 @@ export type BatchOptionsTableOptionGenerator<T = string[]> = (
 ) => ReactNode | null | false;
 
 // HTTP
-export interface RequestState<T = any> {
+export type RequestState<T = any> = {
   loading: boolean;
   status: number | null;
   error: any;
   response: AxiosResponse<T> | null;
-}
+};
 
-export interface Req<T = any> {
+export type Req<T = any> = {
   config: AxiosRequestConfig;
   onResolve?: {
     onSuccess?: (r: AxiosResponse<T>) => void;
     onError?: (e: any) => void;
   };
-}
-
-// CUD
-export interface CUD {
-  createdAt?: string;
-  updatedAt?: string | null;
-  deletedAt?: string | null;
-}
+};
 
 // Storage
-export interface StorageFile extends CUD {
+export type StorageFile = {
   id: string;
   name: string;
   path: string;
   mimeType: string;
   size: number; // bytes
-}
+} & CUD;
 
 // Select Input
-export interface SelectOption {
+export type SelectOption = {
   id: any;
   label: any;
   label2?: any;
   data?: any;
   disabled?: boolean;
-}
+};
