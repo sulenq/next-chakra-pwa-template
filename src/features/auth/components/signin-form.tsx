@@ -20,8 +20,9 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { IconLock, IconUser } from "@tabler/icons-react";
 import { LogInIcon } from "lucide-react";
 import { useForm } from "react-hook-form";
-import { z } from "zod";
 import { SignedinState } from "./signed-in.state";
+import z from "zod/v3";
+import { Translations } from "@/types/global.types";
 
 // -----------------------------------------------------------------
 
@@ -29,7 +30,7 @@ type BasicAuthSigninFormValues = z.infer<
   ReturnType<typeof basicAuthSigninSchema>
 >;
 
-const basicAuthSigninSchema = (t: { msg_required_form: string }) =>
+const basicAuthSigninSchema = (t: Translations) =>
   z.object({
     identifier: z.string().min(1, t.msg_required_form),
     password: z.string().min(1, t.msg_required_form),
