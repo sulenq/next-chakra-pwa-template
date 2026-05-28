@@ -69,61 +69,61 @@ export const LayananDataList = (props: LayananDataListProps) => {
         sortable: true,
       },
     ],
-    // rows: Array.from({ length: 50 }, (_, i) => {
-    //   return {
-    //     id: "1",
-    //     index: 0,
-    //     item: {
-    //       id: 1,
-    //       title: {
-    //         id: "id",
-    //         en: "en",
-    //       },
-    //       description: {
-    //         id: "id",
-    //         en: "en",
-    //       },
-    //       icon: "https://images.unsplash.com/photo-1506748786050-46a060bb9e03?w=400&h=400&fit=crop",
-    //     },
-    //     columns: [
-    //       {
-    //         td: <Img boxSize={"20px"} fluid />,
-    //         value: "",
-    //         dataType: "image",
-    //       },
-    //       {
-    //         td: "title",
-    //         value: "title",
-    //       },
-    //       {
-    //         td: "desc",
-    //         value: "desc",
-    //       },
-    //     ],
-    //   };
-    // }),
-    rows: dataList?.map((item, index) => {
+    rows: Array.from({ length: 50 }, (_, index) => {
       return {
-        id: `${item.id}`,
+        id: `${index}`,
         index: index,
-        item: item,
+        item: {
+          id: 1,
+          title: {
+            id: "id",
+            en: "en",
+          },
+          description: {
+            id: "id",
+            en: "en",
+          },
+          icon: "https://images.unsplash.com/photo-1506748786050-46a060bb9e03?w=400&h=400&fit=crop",
+        },
         columns: [
           {
-            td: <Img src={imgUrl(item.icon)} boxSize={"20px"} fluid />,
-            value: item.icon,
+            td: <Img boxSize={"20px"} fluid />,
+            value: "",
             dataType: "image",
           },
           {
-            td: item.title?.[locale],
-            value: item.title?.[locale],
+            td: "title",
+            value: "title",
           },
           {
-            td: item.description?.[locale],
-            value: item.description?.[locale],
+            td: "desc",
+            value: "desc",
           },
         ],
       };
     }),
+    // rows: dataList?.map((item, index) => {
+    //   return {
+    //     id: `${item.id}`,
+    //     index: index,
+    //     item: item,
+    //     columns: [
+    //       {
+    //         td: <Img src={imgUrl(item.icon)} boxSize={"20px"} fluid />,
+    //         value: item.icon,
+    //         dataType: "image",
+    //       },
+    //       {
+    //         td: item.title?.[locale],
+    //         value: item.title?.[locale],
+    //       },
+    //       {
+    //         td: item.description?.[locale],
+    //         value: item.description?.[locale],
+    //       },
+    //     ],
+    //   };
+    // }),
     rowOptions: [
       (row) => <LayananUpdate item={row.item} />,
       (row) => <LayananDelete ids={[row.id]} />,
