@@ -565,7 +565,7 @@ export default function GenericAppLayout(props: any) {
         w={"full"}
         h={"500px"}
         pointerEvents={"none"}
-        opacity={theme.ambienceColor ? 0.15 : 0}
+        opacity={theme.ambienceColor ? 0.05 : 0}
         bgGradient={"to-t"}
         gradientFrom={`${theme.colorPalette}.solid`}
         gradientTo={"transparent 90%"}
