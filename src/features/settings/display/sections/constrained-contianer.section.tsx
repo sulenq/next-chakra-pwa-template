@@ -69,9 +69,9 @@ const MaxWSetting = () => {
       </StackV>
 
       <NumInput
-        inputValue={parseInt(constrainedContainer.maxW)}
-        onChange={(inputValue) => {
-          if (inputValue) debouncedMaxW(`${inputValue}px`);
+        defaultValue={parseInt(constrainedContainer.maxW)}
+        onChange={(value) => {
+          if (value) debouncedMaxW(`${value}px`);
         }}
         min={720}
         placeholder={""}

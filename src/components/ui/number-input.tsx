@@ -4,9 +4,8 @@ import { StringInput } from "@/components/ui/string-input";
 import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
 import { useMergedRefs } from "@/hooks/use-merge-refs";
 import { formatNumber } from "@/utils/formatter";
-import { parseNumber } from "@/utils/number";
 import { InputProps, StackProps } from "@chakra-ui/react";
-import { forwardRef, useEffect, useRef, useState } from "react";
+import { forwardRef, useRef } from "react";
 
 // -----------------------------------------------------------------
 
@@ -14,13 +13,16 @@ const MAX_INTEGER_DIGITS = 15;
 
 // -----------------------------------------------------------------
 
-export interface NumInputProps extends Omit<InputProps, "onChange"> {
-  inputValue?: number | null;
-  onChange?: (inputValue: number | null) => void;
+export interface NumInputProps extends Omit<
+  InputProps,
+  "onChange" | "defaultValue"
+> {
+  defaultValue?: number | null;
+  onChange?: (value: number | null) => void;
   placeholder?: string;
   invalid?: boolean;
   containerProps?: StackProps;
-  formatFunction?: (inputValue: number | null) => string;
+  formatFunction?: (value: number | null) => string;
   formatted?: boolean;
   integer?: boolean;
   min?: number;
@@ -35,7 +37,7 @@ export const NumInput = forwardRef<HTMLInputElement, NumInputProps>(
   function NumInput(props, ref) {
     // Props
     const {
-      inputValue,
+      defaultValue,
       onChange,
       placeholder,
       invalid,
@@ -58,9 +60,6 @@ export const NumInput = forwardRef<HTMLInputElement, NumInputProps>(
     const inputRef = useRef<HTMLInputElement | null>(null);
     const mergeRef = useMergedRefs(inputRef, ref);
 
-    // States
-    const [numString, setNumString] = useState<string>("");
-
     // Derived Values
     const isID = locale === "id-ID";
     const decimalSep = isID ? "," : ".";
@@ -68,19 +67,30 @@ export const NumInput = forwardRef<HTMLInputElement, NumInputProps>(
     const resolvedPlaceholder =
       placeholder ?? (integer ? t.number_input : t.decimal_input);
 
-    // Utils
-    function handleChange(rawInput?: string) {
-      if (rawInput === undefined) return;
+    // Utils: format a number into display string (used for defaultValue)
+    function toDisplayValue(val: number | null | undefined): string {
+      if (val === null || val === undefined) return "";
+      const v = integer ? Math.round(val) : val;
+      if (!formatted) return v.toString().replace(".", decimalSep);
+      if (formatFunction) return formatFunction(v);
+      return formatNumber(v, locale) || "";
+    }
+
+    // Handle change from StringInput (React.ChangeEvent)
+    function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
+      const rawInput = e.target.value;
+
       if (inputRef.current) caretRef.current = inputRef.current.selectionStart;
 
+      const escapedThousand = thousandSep === "." ? "\\." : thousandSep;
+
       if (rawInput.trim() === "") {
-        setNumString("");
+        if (inputRef.current) inputRef.current.value = "";
         onChange?.(null);
         return;
       }
 
       // 1. Sanitize: Remove all thousand separators
-      const escapedThousand = thousandSep === "." ? "\\." : thousandSep;
       let cleanNode = rawInput.replace(new RegExp(escapedThousand, "g"), "");
 
       // 2. Mode enforcement
@@ -124,7 +134,7 @@ export const NumInput = forwardRef<HTMLInputElement, NumInputProps>(
         cleanNode = `${intPart}${decimalSep}${decPart}`;
       }
 
-      // 5. Create numeric value for Backend (always dot-based)
+      // 5. Create numeric value for backend (always dot-based)
       let numericValue: number | null = null;
 
       if (intPart || decPart !== undefined) {
@@ -142,7 +152,7 @@ export const NumInput = forwardRef<HTMLInputElement, NumInputProps>(
         }
       }
 
-      // 6. Visual Formatting
+      // 6. Visual Formatting — write directly to DOM (uncontrolled)
       let displayValue = cleanNode;
       if (formatted) {
         const formattedInt = intPart.replace(
@@ -155,7 +165,7 @@ export const NumInput = forwardRef<HTMLInputElement, NumInputProps>(
             : formattedInt;
       }
 
-      setNumString(displayValue);
+      if (inputRef.current) inputRef.current.value = displayValue;
 
       // 7. Prevent '1,2' -> '12' by not updating parent on hanging decimal
       if (!cleanNode.endsWith(decimalSep) && numericValue !== null) {
@@ -181,36 +191,11 @@ export const NumInput = forwardRef<HTMLInputElement, NumInputProps>(
       });
     }
 
-    // Sync external prop to internal state
-    useEffect(() => {
-      if (inputValue !== undefined && inputValue !== null) {
-        const val = integer ? Math.round(inputValue) : inputValue;
-
-        // Guard: Don't overwrite if numeric value is identical and user is typing a decimal
-        const currentInternal = parseNumber(
-          numString
-            .replace(new RegExp(`\\${thousandSep}`, "g"), "")
-            .replace(decimalSep, "."),
-        );
-        if (currentInternal === val && numString.includes(decimalSep)) return;
-
-        const formattedValue = !formatted
-          ? val.toString().replace(".", decimalSep)
-          : formatFunction
-            ? formatFunction(val)
-            : formatNumber(val, locale);
-
-        setNumString(formattedValue || "");
-      } else {
-        if (numString !== "") setNumString("");
-      }
-    }, [inputValue, locale, formatted, integer]);
-
     return (
       <StringInput
         ref={mergeRef}
+        defaultValue={toDisplayValue(defaultValue)}
         onChange={handleChange}
-        inputValue={numString}
         invalid={invalid}
         placeholder={resolvedPlaceholder}
         containerProps={containerProps}
