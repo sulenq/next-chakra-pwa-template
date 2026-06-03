@@ -37,7 +37,7 @@ export const SettingsSavedLocalyHelperText = () => {
 
   return (
     <SettingsHelperText px={6}>
-      <HelperText>{t.msg_settings_saved_locally}</HelperText>
+      {t.msg_settings_saved_locally}
     </SettingsHelperText>
   );
 };
