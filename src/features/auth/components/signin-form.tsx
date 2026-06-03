@@ -50,7 +50,6 @@ const BasicAuthForm = (props: any) => {
 
   // Hooks
   const router = useRouter();
-
   const {
     register,
     handleSubmit,
@@ -62,12 +61,13 @@ const BasicAuthForm = (props: any) => {
       password: "",
     },
   });
-
   const signin = useSignin({
     onSuccess: () => {
       router.push(WELCOME_ROUTE);
     },
   });
+
+  // Utils
   const onSubmit = (values: BasicAuthSigninFormValues) => {
     signin.mutate({
       email: values.identifier,
