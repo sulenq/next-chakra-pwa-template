@@ -74,9 +74,12 @@ export const StringInput = forwardRef<HTMLInputElement, StringInputProps>(
     const resolvedInvalid = invalid || fc?.invalid;
     const isColorPaletteGray = theme.colorPalette === "gray";
 
-    const [hasValue, setHasValue] = useState(
+    // Hybrid: track hasValue differently for controlled vs uncontrolled
+    const isControlled = props.value !== undefined;
+    const [internalHasValue, setInternalHasValue] = useState(
       () => !!(props.value || props.defaultValue),
     );
+    const hasValue = isControlled ? !!props.value : internalHasValue;
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       const targetValue = e.target.value;
@@ -91,7 +94,7 @@ export const StringInput = forwardRef<HTMLInputElement, StringInputProps>(
         });
       }
 
-      setHasValue(!!e.target.value);
+      if (!isControlled) setInternalHasValue(!!e.target.value);
       onChange?.(e);
       if (isFirstRender.current) isFirstRender.current = false;
     };
@@ -173,7 +176,7 @@ export const StringInput = forwardRef<HTMLInputElement, StringInputProps>(
                 onClick={() => {
                   if (inputRef.current) {
                     inputRef.current.value = "";
-                    setHasValue(false);
+                    if (!isControlled) setInternalHasValue(false);
                     inputRef.current.focus();
 
                     const event = {

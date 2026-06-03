@@ -12,13 +12,15 @@ import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-s
 import { back } from "@/utils/client";
 import { maskEmail } from "@/utils/string";
 import { PinInput, PinInputInput } from "@chakra-ui/react";
-import { useFormik } from "formik";
 import { useEffect, useState } from "react";
-import * as yup from "yup";
 
 import { StackV } from "@/components/ui/stack";
 import { usePopDisclosure } from "@/hooks/use-pop-disclosure";
 import { disclosureId } from "@/utils/disclosure";
+import { Translations } from "@/types/global.types";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm, Controller } from "react-hook-form";
+import z from "zod/v3";
 import {
   useResetPasswordStep1,
   useResetPasswordStep2,
@@ -26,6 +28,15 @@ import {
 } from "../hooks/use-auth";
 
 // -----------------------------------------------------------------
+// Step 1
+// -----------------------------------------------------------------
+
+type Step1Values = z.infer<ReturnType<typeof step1Schema>>;
+
+const step1Schema = (t: Translations) =>
+  z.object({
+    email: z.string().min(1, t.msg_required_form).email(),
+  });
 
 interface Step1Props {
   setStep: (step: number) => void;
@@ -40,45 +51,43 @@ const Step1 = (props: Step1Props) => {
   const { t } = useLocaleStore();
   const { theme } = useThemeStore();
 
+  // Form
+  const {
+    register,
+    handleSubmit,
+    getValues,
+    formState: { errors },
+  } = useForm<Step1Values>({
+    resolver: zodResolver(step1Schema(t)),
+    defaultValues: { email: "" },
+  });
+
   // Hooks
   const { mutate, isPending } = useResetPasswordStep1({
     onSuccess: () => {
       setStep(2);
-      setEmail(formik.values.email);
+      setEmail(getValues("email"));
     },
   });
 
-  // States
-  const formik = useFormik({
-    validateOnChange: false,
-    initialValues: { email: "" },
-    validationSchema: yup.object().shape({
-      email: yup.string().email().required(t.msg_required_form),
-    }),
-    onSubmit: (values) => {
-      const payload = values;
-      mutate(payload);
-    },
-  });
+  const onSubmit = (values: Step1Values) => {
+    mutate(values);
+  };
 
   return (
     <>
       <Disclosure.Body>
         <StackV>
-          <form onSubmit={formik.handleSubmit}>
+          <form onSubmit={handleSubmit(onSubmit)}>
             <Field
               label={"Email"}
-              invalid={!!formik.errors.email}
-              errorText={formik.errors.email as string}
+              invalid={!!errors.email}
+              errorText={errors.email?.message}
               mb={4}
             >
               <StringInput
-                name={"email"}
-                onChange={(input) => {
-                  formik.setFieldValue("email", input);
-                }}
-                inputValue={formik.values.email}
                 placeholder={"example@email.com"}
+                {...register("email")}
               />
             </Field>
           </form>
@@ -92,7 +101,7 @@ const Step1 = (props: Step1Props) => {
 
         <Btn
           colorPalette={theme.colorPalette}
-          onClick={formik.submitForm}
+          onClick={handleSubmit(onSubmit)}
           loading={isPending}
         >
           {t.recieve} OTP
@@ -103,6 +112,16 @@ const Step1 = (props: Step1Props) => {
 };
 
 // -----------------------------------------------------------------
+// Step 2
+// -----------------------------------------------------------------
+
+type Step2Values = z.infer<ReturnType<typeof step2Schema>>;
+
+const step2Schema = (t: Translations) =>
+  z.object({
+    email: z.string().min(1, t.msg_required_form).email(),
+    otp: z.string().min(1, t.msg_required_form),
+  });
 
 interface Step2Props {
   email: string;
@@ -118,6 +137,16 @@ const Step2 = (props: Step2Props) => {
   const { t } = useLocaleStore();
   const { theme } = useThemeStore();
 
+  // Form
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<Step2Values>({
+    resolver: zodResolver(step2Schema(t)),
+    defaultValues: { email, otp: "" },
+  });
+
   // Hooks
   const { mutate, isPending } = useResetPasswordStep2({
     onSuccess: (response) => {
@@ -128,55 +157,51 @@ const Step2 = (props: Step2Props) => {
     },
   });
 
-  // States
-  const formik = useFormik({
-    validateOnChange: false,
-    initialValues: { email: email, otp: "" },
-    validationSchema: yup.object().shape({
-      email: yup.string().email().required(t.msg_required_form),
-      otp: yup.string().required(t.msg_required_form),
-    }),
-    onSubmit: (values) => {
-      const payload = values;
-      mutate(payload);
-    },
-  });
+  const onSubmit = (values: Step2Values) => {
+    mutate(values);
+  };
 
   return (
     <>
       <Disclosure.Body>
         <StackV>
-          <form onSubmit={formik.handleSubmit}>
+          <form onSubmit={handleSubmit(onSubmit)}>
             <Field
               label={"OTP"}
-              invalid={!!formik.errors.otp}
-              errorText={formik.errors.otp as string}
+              invalid={!!errors.otp}
+              errorText={errors.otp?.message}
               mb={4}
             >
-              <PinInput.Root
-                w={"full"}
-                size={"xl"}
-                colorPalette={theme.colorPalette}
-                onValueChange={(e) => {
-                  formik?.setFieldValue("otp", e.value.join(""));
-                }}
-              >
-                <PinInput.HiddenInput />
-                <PinInput.Control w={"full"}>
-                  {Array.from({ length: 6 }, (_, i) => {
-                    return (
-                      <PinInputInput
-                        key={i}
-                        index={i}
-                        flex={1}
-                        h={"60px"}
-                        fontSize={"xl"}
-                        fontWeight={"bold"}
-                      />
-                    );
-                  })}
-                </PinInput.Control>
-              </PinInput.Root>
+              <Controller
+                name="otp"
+                control={control}
+                render={({ field: { onChange } }) => (
+                  <PinInput.Root
+                    w={"full"}
+                    size={"xl"}
+                    colorPalette={theme.colorPalette}
+                    onValueChange={(e) => {
+                      onChange(e.value.join(""));
+                    }}
+                  >
+                    <PinInput.HiddenInput />
+                    <PinInput.Control w={"full"}>
+                      {Array.from({ length: 6 }, (_, i) => {
+                        return (
+                          <PinInputInput
+                            key={i}
+                            index={i}
+                            flex={1}
+                            h={"60px"}
+                            fontSize={"xl"}
+                            fontWeight={"bold"}
+                          />
+                        );
+                      })}
+                    </PinInput.Control>
+                  </PinInput.Root>
+                )}
+              />
             </Field>
           </form>
 
@@ -190,7 +215,7 @@ const Step2 = (props: Step2Props) => {
         <BackButton />
         <Btn
           colorPalette={theme.colorPalette}
-          onClick={formik.submitForm}
+          onClick={handleSubmit(onSubmit)}
           loading={isPending}
         >
           {t.verify} OTP
@@ -201,6 +226,22 @@ const Step2 = (props: Step2Props) => {
 };
 
 // -----------------------------------------------------------------
+// Step 3
+// -----------------------------------------------------------------
+
+type Step3Values = z.infer<ReturnType<typeof step3Schema>>;
+
+const step3Schema = (t: Translations) =>
+  z
+    .object({
+      resetPasswordToken: z.string().min(1, t.msg_required_form),
+      newPassword: z.string().min(1, t.msg_required_form),
+      newPasswordConfirmation: z.string().min(1, t.msg_required_form),
+    })
+    .refine((data) => data.newPassword === data.newPasswordConfirmation, {
+      message: t.msg_password_confirmation_not_match,
+      path: ["newPasswordConfirmation"],
+    });
 
 interface Step3Props {
   resetPasswordToken: string;
@@ -214,6 +255,21 @@ const Step3 = (props: Step3Props) => {
   const { t } = useLocaleStore();
   const { theme } = useThemeStore();
 
+  // Form
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm<Step3Values>({
+    resolver: zodResolver(step3Schema(t)),
+    defaultValues: {
+      resetPasswordToken,
+      newPassword: "",
+      newPasswordConfirmation: "",
+    },
+  });
+
   // Hooks
   const { mutate, isPending } = useResetPasswordStep3({
     onSuccess: () => {
@@ -221,62 +277,34 @@ const Step3 = (props: Step3Props) => {
     },
   });
 
-  // States
-  const formik = useFormik({
-    validateOnChange: false,
-    initialValues: {
-      resetPasswordToken: resetPasswordToken,
-      newPassword: "",
-      newPasswordConfirmation: "",
-    },
-    validationSchema: yup.object().shape({
-      resetPasswordToken: yup.string().required(t.msg_required_form),
-      newPassword: yup.string().required(t.msg_required_form),
-      newPasswordConfirmation: yup
-        .string()
-        .required(t.msg_required_form)
-        .oneOf(
-          [yup.ref("newPassword"), ""],
-          t.msg_password_confirmation_not_match,
-        ),
-    }),
-    onSubmit: (values) => {
-      const payload = values;
-      mutate(payload);
-    },
-  });
+  const onSubmit = (values: Step3Values) => {
+    mutate(values);
+  };
+
+  const newPassword = watch("newPassword");
+  const newPasswordConfirmation = watch("newPasswordConfirmation");
 
   return (
     <>
       <Disclosure.Body>
         <StackV>
-          <form>
+          <form onSubmit={handleSubmit(onSubmit)}>
             <Field
               label={"Password"}
-              invalid={!!formik.errors.newPassword}
-              errorText={formik.errors.newPassword as string}
+              invalid={!!errors.newPassword}
+              errorText={errors.newPassword?.message}
               mb={4}
             >
-              <PasswordInput
-                onChange={(input) => {
-                  formik.setFieldValue("newPassword", input);
-                }}
-                inputValue={formik.values.newPassword}
-              />
+              <PasswordInput {...register("newPassword")} />
             </Field>
 
             <Field
               label={t.password_confirmation}
-              invalid={!!formik.errors.newPasswordConfirmation}
-              errorText={formik.errors.newPasswordConfirmation as string}
+              invalid={!!errors.newPasswordConfirmation}
+              errorText={errors.newPasswordConfirmation?.message}
               mb={4}
             >
-              <PasswordInput
-                onChange={(input) => {
-                  formik.setFieldValue("newPasswordConfirmation", input);
-                }}
-                inputValue={formik.values.newPasswordConfirmation}
-              />
+              <PasswordInput {...register("newPasswordConfirmation")} />
             </Field>
           </form>
 
@@ -287,13 +315,9 @@ const Step3 = (props: Step3Props) => {
         <BackButton />
         <Btn
           colorPalette={theme.colorPalette}
-          onClick={formik.submitForm}
+          onClick={handleSubmit(onSubmit)}
           loading={isPending}
-          disabled={
-            !!!(
-              formik.values.newPassword && formik.values.newPasswordConfirmation
-            )
-          }
+          disabled={!!!(newPassword && newPasswordConfirmation)}
         >
           {t.save}
         </Btn>

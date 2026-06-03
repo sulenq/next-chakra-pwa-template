@@ -5,7 +5,7 @@ import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-s
 import { useMergedRefs } from "@/hooks/use-merge-refs";
 import { formatNumber } from "@/utils/formatter";
 import { InputProps, StackProps } from "@chakra-ui/react";
-import { forwardRef, useRef } from "react";
+import { forwardRef, useEffect, useRef } from "react";
 
 // -----------------------------------------------------------------
 
@@ -15,8 +15,9 @@ const MAX_INTEGER_DIGITS = 15;
 
 export interface NumInputProps extends Omit<
   InputProps,
-  "onChange" | "defaultValue"
+  "onChange" | "value" | "defaultValue"
 > {
+  value?: number | null;
   defaultValue?: number | null;
   onChange?: (value: number | null) => void;
   placeholder?: string;
@@ -37,6 +38,7 @@ export const NumInput = forwardRef<HTMLInputElement, NumInputProps>(
   function NumInput(props, ref) {
     // Props
     const {
+      value,
       defaultValue,
       onChange,
       placeholder,
@@ -51,6 +53,9 @@ export const NumInput = forwardRef<HTMLInputElement, NumInputProps>(
       maxFractionDigits = 4,
       ...restProps
     } = props;
+
+    // Hybrid: detect controlled mode
+    const isControlled = value !== undefined;
 
     // Stores
     const { t } = useLocaleStore();
@@ -191,10 +196,19 @@ export const NumInput = forwardRef<HTMLInputElement, NumInputProps>(
       });
     }
 
+    // Sync controlled value to DOM (keeps formatting correct without
+    // fighting React's controlled-input re-render cycle)
+    useEffect(() => {
+      if (isControlled && inputRef.current) {
+        inputRef.current.value = toDisplayValue(value ?? null);
+      }
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [value, isControlled]);
+
     return (
       <StringInput
         ref={mergeRef}
-        defaultValue={toDisplayValue(defaultValue)}
+        defaultValue={toDisplayValue(isControlled ? value : defaultValue)}
         onChange={handleChange}
         invalid={invalid}
         placeholder={resolvedPlaceholder}
