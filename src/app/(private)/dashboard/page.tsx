@@ -565,8 +565,8 @@ export default function Page() {
           <P>
             {user?.taskCount
               ? interpolateString(t.msg_task_count, {
-                  count: user?.taskCount,
-                })
+                count: user?.taskCount,
+              })
               : t.msg_no_task}
           </P>
         </StackV>
