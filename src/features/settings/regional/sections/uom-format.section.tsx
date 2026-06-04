@@ -39,9 +39,7 @@ const WeightFormatSetting = () => {
 
       <SelectMassFormat
         id={"settings-select-mass-format"}
-        inputValue={[
-          { id: UOM.mass.key, label: UOM.mass.label, data: UOM.mass },
-        ]}
+        value={[{ id: UOM.mass.key, label: UOM.mass.label, data: UOM.mass }]}
         onChange={(v) => {
           if (v?.[0]?.data) setUOMUnit("mass", v[0].data);
         }}
@@ -67,7 +65,7 @@ const HeightFormatSetting = () => {
 
       <SelectHeightFormat
         id={"settings-select-height-format"}
-        inputValue={[
+        value={[
           { id: UOM.height.key, label: UOM.height.label, data: UOM.height },
         ]}
         onChange={(v) => {
@@ -95,7 +93,7 @@ const LengthFormatSetting = () => {
 
       <SelectLengthFormat
         id={"settings-select-length-format"}
-        inputValue={[
+        value={[
           { id: UOM.length.key, label: UOM.length.label, data: UOM.length },
         ]}
         onChange={(v) => {
@@ -123,7 +121,7 @@ const DistanceFormatSetting = () => {
 
       <SelectDistanceFormat
         id={"settings-select-distance-format"}
-        inputValue={[
+        value={[
           {
             id: UOM.distance.key,
             label: UOM.distance.label,
@@ -155,9 +153,7 @@ const AreaFormatSetting = () => {
 
       <SelectAreaFormat
         id={"settings-select-area-format"}
-        inputValue={[
-          { id: UOM.area.key, label: UOM.area.label, data: UOM.area },
-        ]}
+        value={[{ id: UOM.area.key, label: UOM.area.label, data: UOM.area }]}
         onChange={(v) => {
           if (v?.[0]?.data) setUOMUnit("area", v[0].data);
         }}
@@ -183,7 +179,7 @@ const VolumeFormatSetting = () => {
 
       <SelectVolumeFormat
         id={"settings-select-volume-format"}
-        inputValue={[
+        value={[
           { id: UOM.volume.key, label: UOM.volume.label, data: UOM.volume },
         ]}
         onChange={(v) => {
@@ -211,7 +207,7 @@ const TemperatureFormatSetting = () => {
 
       <SelectTemperatureFormat
         id={"settings-select-temperature-format"}
-        inputValue={[
+        value={[
           {
             id: UOM.temperature.key,
             label: UOM.temperature.label,
@@ -243,9 +239,7 @@ const SpeedFormatSetting = () => {
 
       <SelectSpeedFormat
         id={"settings-select-speed-format"}
-        inputValue={[
-          { id: UOM.speed.key, label: UOM.speed.label, data: UOM.speed },
-        ]}
+        value={[{ id: UOM.speed.key, label: UOM.speed.label, data: UOM.speed }]}
         onChange={(v) => {
           if (v?.[0]?.data) setUOMUnit("speed", v[0].data);
         }}
@@ -271,7 +265,7 @@ const EnergyFormatSetting = () => {
 
       <SelectEnergyFormat
         id={"settings-select-energy-format"}
-        inputValue={[
+        value={[
           { id: UOM.energy.key, label: UOM.energy.label, data: UOM.energy },
         ]}
         onChange={(v) => {
@@ -299,9 +293,7 @@ const PowerFormatSetting = () => {
 
       <SelectPowerFormat
         id={"settings-select-power-format"}
-        inputValue={[
-          { id: UOM.power.key, label: UOM.power.label, data: UOM.power },
-        ]}
+        value={[{ id: UOM.power.key, label: UOM.power.label, data: UOM.power }]}
         onChange={(v) => {
           if (v?.[0]?.data) setUOMUnit("power", v[0].data);
         }}
@@ -327,7 +319,7 @@ const PressureFormatSetting = () => {
 
       <SelectPressureFormat
         id={"settings-select-pressure-format"}
-        inputValue={[
+        value={[
           {
             id: UOM.pressure.key,
             label: UOM.pressure.label,
@@ -359,9 +351,7 @@ const DataFormatSetting = () => {
 
       <SelectDataFormat
         id={"settings-select-data-format"}
-        inputValue={[
-          { id: UOM.data.key, label: UOM.data.label, data: UOM.data },
-        ]}
+        value={[{ id: UOM.data.key, label: UOM.data.label, data: UOM.data }]}
         onChange={(v) => {
           if (v?.[0]?.data) setUOMUnit("data", v[0].data);
         }}
@@ -387,7 +377,7 @@ const DataRateFormatSetting = () => {
 
       <SelectDataRateFormat
         id={"settings-select-data-rate-format"}
-        inputValue={[
+        value={[
           {
             id: UOM.dataRate.key,
             label: UOM.dataRate.label,
@@ -419,9 +409,7 @@ const AngleFormatSetting = () => {
 
       <SelectAngleFormat
         id={"settings-select-angle-format"}
-        inputValue={[
-          { id: UOM.angle.key, label: UOM.angle.label, data: UOM.angle },
-        ]}
+        value={[{ id: UOM.angle.key, label: UOM.angle.label, data: UOM.angle }]}
         onChange={(v) => {
           if (v?.[0]?.data) setUOMUnit("angle", v[0].data);
         }}

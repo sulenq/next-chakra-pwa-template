@@ -93,11 +93,11 @@ export const PeriodPicker = (props: PeriodPickerProps) => {
         flex={1}
         size={"sm"}
         px={3}
-        inputValue={period}
+        value={period}
         variant={"ghost"}
         invalid={false}
-        onChange={(inputValue) => {
-          if (inputValue) setPeriod(inputValue);
+        onChange={(value) => {
+          if (value) setPeriod(value);
         }}
         withIcon={false}
         required
@@ -127,7 +127,7 @@ export const PeriodPicker = (props: PeriodPickerProps) => {
 // -----------------------------------------------------------------
 
 export interface DatePickerProps extends StackProps {
-  inputValue?: string[];
+  value?: string[];
   period: Period;
   selected?: Date[];
   setSelected?: React.Dispatch<Date[]>;
@@ -363,8 +363,8 @@ const SelectedDateList = (props: SelectedDateListProps) => {
 export interface DatePickerInputProps extends Omit<BtnProps, "onChange"> {
   id?: string;
   title?: string;
-  inputValue?: string[] | null;
-  onChange?: (inputValue: DatePickerInputProps["inputValue"]) => void;
+  value?: string[] | null;
+  onChange?: (value: DatePickerInputProps["value"]) => void;
   showTimezone?: boolean;
   placeholder?: string;
   required?: boolean;
@@ -380,7 +380,7 @@ export const DatePickerInput = (props: DatePickerInputProps) => {
   const {
     id,
     title = "",
-    inputValue,
+    value,
     onChange,
     showTimezone,
     placeholder,
@@ -428,8 +428,8 @@ export const DatePickerInput = (props: DatePickerInputProps) => {
           .join(", ")
       : t.selected_date;
   const formattedButtonLabel =
-    inputValue && inputValue?.length > 0
-      ? inputValue
+    value && value?.length > 0
+      ? value
           .map((date) =>
             formatAbsDate(new Date(date), t, {
               variant: labelFormatVariant,
@@ -459,8 +459,8 @@ export const DatePickerInput = (props: DatePickerInputProps) => {
 
   // set selected date on open
   useEffect(() => {
-    if (inputValue && !isEmptyArray(inputValue)) {
-      const localDates = inputValue.map((item) => {
+    if (value && !isEmptyArray(value)) {
+      const localDates = value.map((item) => {
         return new Date(new Date(item).getTime() - localTzOffsetInMs);
       });
 
@@ -477,9 +477,7 @@ export const DatePickerInput = (props: DatePickerInputProps) => {
 
   return (
     <>
-      <Tooltip
-        content={inputValue ? formattedButtonLabel : resolvedPlaceholder}
-      >
+      <Tooltip content={value ? formattedButtonLabel : resolvedPlaceholder}>
         <Btn
           w={"full"}
           gap={4}
@@ -495,13 +493,13 @@ export const DatePickerInput = (props: DatePickerInputProps) => {
           variant={variant}
           {...restProps}
         >
-          {!isEmptyArray(inputValue) && (
+          {!isEmptyArray(value) && (
             <P lineClamp={1} textAlign={"left"}>
               {formattedButtonLabel}
             </P>
           )}
 
-          {isEmptyArray(inputValue) && (
+          {isEmptyArray(value) && (
             <P color={"placeholder"} lineClamp={1} textAlign={"left"}>
               {resolvedPlaceholder}
             </P>

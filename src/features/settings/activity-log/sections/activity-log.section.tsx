@@ -42,10 +42,10 @@ export const ActivityLogSection = () => {
       <Item.Body>
         <StackV p={4}>
           <SearchInput
-            onChange={(inputValue) => {
-              setSearch(inputValue || "");
+            onChange={(value) => {
+              setSearch(value || "");
             }}
-            inputValue={search}
+            value={search}
             queryKey={"q-activity-auth"}
           />
         </StackV>

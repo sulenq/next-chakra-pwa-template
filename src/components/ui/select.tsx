@@ -17,7 +17,7 @@ interface SelectProps extends Omit<
   SelectRootProps,
   "value" | "onValueChange" | "collection"
 > {
-  inputValue: string;
+  value: string;
   onValueChange: (value: string) => void;
   selectOptions: SelectOption[];
   placeholder?: string;
@@ -30,7 +30,7 @@ interface SelectProps extends Omit<
 export default function Select(props: SelectProps) {
   // Props
   const {
-    inputValue,
+    value,
     onValueChange,
     selectOptions,
     placeholder = "Select option",
@@ -56,7 +56,7 @@ export default function Select(props: SelectProps) {
       collection={collection}
       width={width}
       size={size}
-      value={[inputValue]}
+      value={[value]}
       onValueChange={(e) => {
         if (e.value[0]) {
           onValueChange(e.value[0]);

@@ -13,8 +13,8 @@ import { forwardRef } from "react";
 // -----------------------------------------------------------------
 
 export interface TextareaInputProps extends Omit<TextareaProps, "onChange"> {
-  inputValue?: string;
-  onChange?: (inputValue: string) => void;
+  value?: string;
+  onChange?: (value: string) => void;
   invalid?: boolean;
   placeholder?: string;
   maxChar?: number;
@@ -32,7 +32,7 @@ export const TextareaInput = forwardRef<
   const {
     name,
     onChange,
-    inputValue,
+    value,
     invalid,
     placeholder = t.text_input,
     maxChar = null,
@@ -86,7 +86,7 @@ export const TextareaInput = forwardRef<
       placeholder={placeholder}
       onChange={handleChange}
       px={4}
-      value={inputValue}
+      value={value}
       autoresize
       variant={variant}
       spellCheck={false}

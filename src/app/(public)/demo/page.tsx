@@ -767,7 +767,7 @@ const DemoIndexRoute = () => {
               <StackV gap={4}>
                 <Field invalid={!!formik.errors.string}>
                   <StringInput
-                    inputValue={formik.values.string}
+                    value={formik.values.string}
                     onChange={(input) => {
                       formik.setFieldValue("string", input);
                     }}
@@ -776,7 +776,7 @@ const DemoIndexRoute = () => {
 
                 <Field invalid={!!formik.errors.password}>
                   <PasswordInput
-                    inputValue={formik.values.password}
+                    value={formik.values.password}
                     onChange={(input) => {
                       formik.setFieldValue("password", input);
                     }}
@@ -785,7 +785,7 @@ const DemoIndexRoute = () => {
 
                 <Field invalid={!!formik.errors.search}>
                   <SearchInput
-                    inputValue={formik.values.search}
+                    value={formik.values.search}
                     onChange={(input) => {
                       formik.setFieldValue("search", input);
                     }}
@@ -795,7 +795,7 @@ const DemoIndexRoute = () => {
 
                 <Field invalid={!!formik.errors.textarea}>
                   <TextareaInput
-                    inputValue={formik.values.textarea}
+                    value={formik.values.textarea}
                     onChange={(input) => {
                       formik.setFieldValue("textarea", input);
                     }}
@@ -804,7 +804,7 @@ const DemoIndexRoute = () => {
 
                 <Field invalid={!!formik.errors.number}>
                   <NumInput
-                    inputValue={formik.values.number}
+                    value={formik.values.number}
                     onChange={(input) => {
                       formik.setFieldValue("number", input);
                     }}
@@ -815,7 +815,7 @@ const DemoIndexRoute = () => {
                   <NumInput
                     integer={false}
                     // locale={"en-US"}
-                    inputValue={formik.values.number2}
+                    value={formik.values.number2}
                     onChange={(input) => {
                       formik.setFieldValue("number2", input);
                     }}
@@ -824,7 +824,7 @@ const DemoIndexRoute = () => {
 
                 <Field invalid={!!formik.errors.period}>
                   <PeriodPickerInput
-                    inputValue={formik.values.period}
+                    value={formik.values.period}
                     onChange={(input) => {
                       formik.setFieldValue("period", input);
                     }}
@@ -833,7 +833,7 @@ const DemoIndexRoute = () => {
 
                 <Field invalid={!!formik.errors.date}>
                   <DatePickerInput
-                    inputValue={formik.values.date}
+                    value={formik.values.date}
                     onChange={(input) => {
                       formik.setFieldValue("date", input);
                     }}
@@ -842,7 +842,7 @@ const DemoIndexRoute = () => {
 
                 <Field invalid={!!formik.errors.time}>
                   <TimePickerInput
-                    inputValue={formik.values.time}
+                    value={formik.values.time}
                     onChange={(input) => {
                       formik.setFieldValue("time", input);
                     }}
@@ -851,7 +851,7 @@ const DemoIndexRoute = () => {
 
                 <Field invalid={!!formik.errors.dateTime}>
                   <DateTimePickerInput
-                    inputValue={formik.values.dateTime}
+                    value={formik.values.dateTime}
                     onChange={(input) => {
                       formik.setFieldValue("dateTime", input);
                     }}
@@ -862,7 +862,7 @@ const DemoIndexRoute = () => {
                   <SelectInput
                     id={"select-single"}
                     title={"Agama"}
-                    inputValue={formik.values.select}
+                    value={formik.values.select}
                     onChange={(input) => {
                       formik.setFieldValue("select", input);
                     }}
@@ -874,7 +874,7 @@ const DemoIndexRoute = () => {
                   <SelectInput
                     id={"select-multiple"}
                     title={"Agama"}
-                    inputValue={formik.values.multiSelect}
+                    value={formik.values.multiSelect}
                     onChange={(input) => {
                       formik.setFieldValue("multiSelect", input);
                     }}
@@ -886,7 +886,7 @@ const DemoIndexRoute = () => {
                 <Field invalid={!!formik.errors.select}>
                   <SelectTimezone
                     id={"select-timezone"}
-                    inputValue={formik.values.select}
+                    value={formik.values.select}
                     onChange={(input) => {
                       formik.setFieldValue("select", input);
                     }}
@@ -895,7 +895,7 @@ const DemoIndexRoute = () => {
 
                 <Field label={"Dokumen Negara"} invalid={!!formik.errors.file}>
                   <FileInput
-                    inputValue={formik.values.file2}
+                    value={formik.values.file2}
                     onChange={(input) => {
                       formik.setFieldValue("file2", input);
                     }}
@@ -907,7 +907,7 @@ const DemoIndexRoute = () => {
                 <Field label={"Dokumen Negara"} invalid={!!formik.errors.file}>
                   <FileInput
                     dropzone
-                    inputValue={formik.values.file}
+                    value={formik.values.file}
                     onChange={(input) => {
                       formik.setFieldValue("file", input);
                     }}
@@ -926,7 +926,7 @@ const DemoIndexRoute = () => {
           <StackV gap={4}>
             <Field invalid={!!formik.errors.richEditor}>
               <TinyMceRichEditor
-                inputValue={formik.values.richEditor}
+                value={formik.values.richEditor}
                 onChange={(input) => {
                   formik.setFieldValue("richEditor", input);
                 }}

@@ -33,18 +33,18 @@ import { StackV } from "@/components/ui/stack";
 // -----------------------------------------------------------------
 
 interface FileListProps extends Omit<StackProps, "onChange"> {
-  inputValue: File[] | null;
-  onChange?: (inputValue: FileInputProps["inputValue"]) => void;
+  value: File[] | null;
+  onChange?: (value: FileInputProps["value"]) => void;
   existing: StorageFile[];
 }
 
 const FileList = (props: FileListProps) => {
   // Props
-  const { inputValue, onChange, existing, ...restProps } = props;
+  const { value, onChange, existing, ...restProps } = props;
 
   return (
     <StackV w={"full"} gap={2} {...restProps}>
-      {inputValue?.map((file: any, index: number) => {
+      {value?.map((file: any, index: number) => {
         const fileData = {
           fileName: file.name,
           fileMimeType: file.type,
@@ -62,7 +62,7 @@ const FileList = (props: FileListProps) => {
                 type: "REMOVE",
                 icon: <LucideIcon icon={XIcon} />,
                 onClick: () => {
-                  const next = inputValue.filter(
+                  const next = value.filter(
                     (_file: File, i: number) => i !== index,
                   );
                   onChange?.(next.length > 0 ? next : null);
@@ -98,7 +98,7 @@ export const FileInputRoot = forwardRef<
   const {
     children,
     onChange,
-    inputValue,
+    value,
     accept,
     acceptPlaceholder,
     invalid,
@@ -130,9 +130,9 @@ export const FileInputRoot = forwardRef<
     ? existing
     : ([] as StorageFile[]);
   const existingCount = existingArr.length;
-  const singleFile = inputValue?.[0] as File;
+  const singleFile = value?.[0] as File;
   const singleFileInputted =
-    maxFiles === 1 && (!isEmptyArray(inputValue) as boolean);
+    maxFiles === 1 && (!isEmptyArray(value) as boolean);
   const resolvedIcon = singleFileInputted ? (
     <FileIcon name={singleFile.name} mimeType={singleFile.type} size={"2xl"} />
   ) : undefined;
@@ -241,8 +241,7 @@ export const FileInputRoot = forwardRef<
             >
               <Center
                 mt={
-                  imgInput &&
-                  (!isEmptyArray(inputValue) || !isEmptyArray(existing))
+                  imgInput && (!isEmptyArray(value) || !isEmptyArray(existing))
                     ? 7
                     : -4
                 }
@@ -266,19 +265,15 @@ export const FileInputRoot = forwardRef<
             </FileUploadTrigger>
           )}
 
-          {!singleFileInputted && inputValue && !isEmptyArray(inputValue) && (
+          {!singleFileInputted && value && !isEmptyArray(value) && (
             <StackV gap={2}>
-              {(!isEmptyArray(existing) || !isEmptyArray(inputValue)) && (
+              {(!isEmptyArray(existing) || !isEmptyArray(value)) && (
                 <P fontSize={"sm"} color={"fg.subtle"}>{`Total : ${formatNumber(
-                  inputValue.length + existing.length,
+                  value.length + existing.length,
                 )}`}</P>
               )}
 
-              <FileList
-                inputValue={inputValue}
-                onChange={onChange}
-                existing={existing}
-              />
+              <FileList value={value} onChange={onChange} existing={existing} />
             </StackV>
           )}
         </>
@@ -291,8 +286,8 @@ export const FileInputRoot = forwardRef<
 
 export interface FileInputProps extends Omit<FileUploadRootProps, "onChange"> {
   id?: string;
-  inputValue?: File[] | null;
-  onChange?: (inputValue: FileInputProps["inputValue"]) => void;
+  value?: File[] | null;
+  onChange?: (value: FileInputProps["value"]) => void;
   accept?: string;
   acceptPlaceholder?: string;
   invalid?: boolean;

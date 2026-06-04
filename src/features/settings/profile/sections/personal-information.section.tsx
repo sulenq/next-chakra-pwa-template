@@ -79,9 +79,9 @@ export const PersonalInformationSection = (props: ItemRootProps) => {
                   errorText={`${formik.errors.name}`}
                 >
                   <StringInput
-                    inputValue={formik.values.name}
-                    onChange={(inputValue) => {
-                      formik.setFieldValue("name", inputValue);
+                    value={formik.values.name}
+                    onChange={(value) => {
+                      formik.setFieldValue("name", value);
                     }}
                     placeholder={"Jolitos Kurniawan"}
                   />
@@ -93,9 +93,9 @@ export const PersonalInformationSection = (props: ItemRootProps) => {
                   errorText={`${formik.errors.email}`}
                 >
                   <StringInput
-                    inputValue={formik.values.email}
-                    onChange={(inputValue) => {
-                      formik.setFieldValue("email", inputValue);
+                    value={formik.values.email}
+                    onChange={(value) => {
+                      formik.setFieldValue("email", value);
                     }}
                     placeholder={"example@email.com"}
                   />

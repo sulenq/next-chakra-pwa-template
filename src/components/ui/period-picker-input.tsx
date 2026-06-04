@@ -35,8 +35,8 @@ const DEFAULT = {
 export interface PeriodPickerInputProps extends Omit<BtnProps, "onChange"> {
   id?: string;
   title?: string;
-  inputValue?: Period | null;
-  onChange?: (inputValue?: PeriodPickerInputProps["inputValue"]) => void;
+  value?: Period | null;
+  onChange?: (value?: PeriodPickerInputProps["value"]) => void;
   placeholder?: string;
   required?: boolean;
   invalid?: boolean;
@@ -51,7 +51,7 @@ export const PeriodPickerInput = (props: PeriodPickerInputProps) => {
   const {
     id,
     title = "",
-    inputValue,
+    value,
     onChange,
     placeholder,
     required,
@@ -105,13 +105,13 @@ export const PeriodPickerInput = (props: PeriodPickerInputProps) => {
 
   // handle initial value on open
   useEffect(() => {
-    if (inputValue) {
+    if (value) {
       setSelected({
-        year: inputValue.year,
-        month: inputValue.month,
+        year: value.year,
+        month: value.month,
       });
     }
-  }, [open, inputValue]);
+  }, [open, value]);
 
   return (
     <>
@@ -141,11 +141,11 @@ export const PeriodPickerInput = (props: PeriodPickerInputProps) => {
           }
           {...restProps}
         >
-          {!inputValue && <P color={"placeholder"}>{resolvedPlaceholder}</P>}
+          {!value && <P color={"placeholder"}>{resolvedPlaceholder}</P>}
 
-          {inputValue && (
+          {value && (
             <P>
-              {formatDate(new Date(inputValue.year!, inputValue.month!), t, {
+              {formatDate(new Date(value.year!, value.month!), t, {
                 variant: "monthYear",
                 timezoneKey: getLocalTimezone().key,
               })}
@@ -216,7 +216,7 @@ export const PeriodPickerInput = (props: PeriodPickerInputProps) => {
                 }
               >
                 <NumInput
-                  inputValue={selected.year}
+                  value={selected.year}
                   onChange={(val) =>
                     setSelected((prev) => ({ ...prev, year: val! }))
                   }

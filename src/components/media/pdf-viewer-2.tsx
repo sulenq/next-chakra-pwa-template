@@ -127,9 +127,9 @@ const PageControl = (props: Props__PageControl) => {
             </P>
 
             <NumInput
-              inputValue={gotoPage}
-              onChange={(inputValue) => {
-                setGotoPage(inputValue);
+              value={gotoPage}
+              onChange={(value) => {
+                setGotoPage(value);
               }}
               max={numPages}
               placeholder={""}

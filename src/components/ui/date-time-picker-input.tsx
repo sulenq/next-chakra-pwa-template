@@ -22,8 +22,8 @@ export interface DateTimePickerInputProps extends Omit<
     date: string;
     time: string;
   };
-  inputValue?: string | null;
-  onChange?: (inputValue: DateTimePickerInputProps["inputValue"]) => void;
+  value?: string | null;
+  onChange?: (value: DateTimePickerInputProps["value"]) => void;
   placeholder?: {
     date: string;
     time: string;
@@ -42,7 +42,7 @@ export const DateTimePickerInput = (props: DateTimePickerInputProps) => {
       date: "",
       time: "",
     },
-    inputValue,
+    value,
     onChange,
     placeholder = {
       date: undefined,
@@ -64,8 +64,8 @@ export const DateTimePickerInput = (props: DateTimePickerInputProps) => {
   const [time, setTime] = useState<string>("");
 
   // Utils
-  function handleConfirm(inputValue: TimePickerInputProps["inputValue"]) {
-    setTime(inputValue || "");
+  function handleConfirm(value: TimePickerInputProps["value"]) {
+    setTime(value || "");
   }
 
   // handle on change
@@ -79,9 +79,9 @@ export const DateTimePickerInput = (props: DateTimePickerInputProps) => {
 
   // handle initial value
   useEffect(() => {
-    if (inputValue) {
+    if (value) {
       const userTzKey = getUserTimezone().key;
-      const utcDate = parseISO(inputValue);
+      const utcDate = parseISO(value);
       const localizedDate = toZonedTime(utcDate, userTzKey);
       const localized = formatTz(localizedDate, "yyyy-MM-dd'T'HH:mm:ss", {
         timeZone: userTzKey,
@@ -107,8 +107,8 @@ export const DateTimePickerInput = (props: DateTimePickerInputProps) => {
       <DatePickerInput
         w={"50%"}
         id={`${id}-date-picker-for-date-time-picker`}
-        inputValue={date ? [date] : null}
-        onChange={(inputValue) => setDate(inputValue?.[0] || "")}
+        value={date ? [date] : null}
+        onChange={(value) => setDate(value?.[0] || "")}
         title={title?.date}
         placeholder={placeholder?.date}
         disclosureSize={disclosureSize}
@@ -120,7 +120,7 @@ export const DateTimePickerInput = (props: DateTimePickerInputProps) => {
       <TimePickerInput
         w={"50%"}
         id={`${id}-time-picker-for-date-time-picker}`}
-        inputValue={time}
+        value={time}
         onChange={handleConfirm}
         title={title?.time}
         placeholder={placeholder?.time}

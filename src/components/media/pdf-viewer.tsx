@@ -140,9 +140,9 @@ const PageControl = (props: PageControlProps) => {
 
             <StackH gap={GAP}>
               <NumInput
-                inputValue={gotoPage}
-                onChange={(inputValue) => {
-                  setGotoPage(inputValue);
+                value={gotoPage}
+                onChange={(value) => {
+                  setGotoPage(value);
                 }}
                 max={numPages}
                 placeholder={""}

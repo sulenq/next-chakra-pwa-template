@@ -19,11 +19,11 @@ export interface DateRangePickerInputProps extends Omit<
     startDate: string;
     endDate: string;
   };
-  inputValue?: {
+  value?: {
     startDate: string;
     endDate: string;
   } | null;
-  onChange?: (inputValue: DateRangePickerInputProps["inputValue"]) => void;
+  onChange?: (value: DateRangePickerInputProps["value"]) => void;
   placeholder?: {
     startDate: string;
     endDate: string;
@@ -42,7 +42,7 @@ export const DateRangePickerInput = (props: DateRangePickerInputProps) => {
       startDate: "",
       endDate: "",
     },
-    inputValue,
+    value,
     onChange,
     placeholder = {
       startDate: "",
@@ -78,9 +78,9 @@ export const DateRangePickerInput = (props: DateRangePickerInputProps) => {
 
   // handle initial value
   useEffect(() => {
-    if (inputValue) {
-      setStartDate(inputValue?.startDate);
-      setEndDate(inputValue?.endDate);
+    if (value) {
+      setStartDate(value?.startDate);
+      setEndDate(value?.endDate);
     }
   }, []);
 
@@ -95,9 +95,9 @@ export const DateRangePickerInput = (props: DateRangePickerInputProps) => {
       <DatePickerInput
         w={"50%"}
         id={`${id}_start_date`}
-        inputValue={startDate ? [startDate] : null}
-        onChange={(inputValue) => {
-          setStartDate(inputValue?.[0]);
+        value={startDate ? [startDate] : null}
+        onChange={(value) => {
+          setStartDate(value?.[0]);
         }}
         labelFormatVariant={"numeric"}
         title={title?.startDate}
@@ -111,9 +111,9 @@ export const DateRangePickerInput = (props: DateRangePickerInputProps) => {
       <DatePickerInput
         w={"50%"}
         id={`${id}_end_date`}
-        inputValue={endDate ? [endDate] : null}
-        onChange={(inputValue) => {
-          setEndDate(inputValue?.[0]);
+        value={endDate ? [endDate] : null}
+        onChange={(value) => {
+          setEndDate(value?.[0]);
         }}
         labelFormatVariant={"numeric"}
         title={title?.endDate || capitalize(`${t.select} ${t.end_date}`)}

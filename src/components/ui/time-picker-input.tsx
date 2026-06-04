@@ -36,8 +36,8 @@ export interface TimePickerInputProps extends Omit<BtnProps, "onChange"> {
   id?: string;
   name?: string;
   title?: string;
-  inputValue?: string | null;
-  onChange?: (inputValue?: TimePickerInputProps["inputValue"]) => void;
+  value?: string | null;
+  onChange?: (value?: TimePickerInputProps["value"]) => void;
   withSeconds?: boolean;
   showTimezone?: boolean;
   placeholder?: string;
@@ -54,7 +54,7 @@ export const TimePickerInput = (props: TimePickerInputProps) => {
     name,
     title,
     onChange,
-    inputValue,
+    value,
     showTimezone = true,
     withSeconds = false,
     placeholder,
@@ -92,16 +92,10 @@ export const TimePickerInput = (props: TimePickerInputProps) => {
   );
 
   // States
-  const [selected, setSelected] = useState<string | null | undefined>(
-    inputValue,
-  );
-  const [hours, setHours] = useState<number>(getHoursFromTime(inputValue));
-  const [minutes, setMinutes] = useState<number>(
-    getMinutesFromTime(inputValue),
-  );
-  const [seconds, setSeconds] = useState<number>(
-    getSecondsFromTime(inputValue),
-  );
+  const [selected, setSelected] = useState<string | null | undefined>(value);
+  const [hours, setHours] = useState<number>(getHoursFromTime(value));
+  const [minutes, setMinutes] = useState<number>(getMinutesFromTime(value));
+  const [seconds, setSeconds] = useState<number>(getSecondsFromTime(value));
 
   // Constants
   const userTz = getUserTimezone();
@@ -173,14 +167,14 @@ export const TimePickerInput = (props: TimePickerInputProps) => {
     }
   }
 
-  // Update hours, minutes, seconds when inputValue changes
+  // Update hours, minutes, seconds when value changes
   useEffect(() => {
-    if (inputValue) {
-      setHours(getHoursFromTime(inputValue));
-      setMinutes(getMinutesFromTime(inputValue));
-      setSeconds(getSecondsFromTime(inputValue));
+    if (value) {
+      setHours(getHoursFromTime(value));
+      setMinutes(getMinutesFromTime(value));
+      setSeconds(getSecondsFromTime(value));
     }
-  }, [inputValue]);
+  }, [value]);
 
   // Update selected value when hours, minutes, or seconds change
   useEffect(() => {
@@ -192,9 +186,7 @@ export const TimePickerInput = (props: TimePickerInputProps) => {
 
   return (
     <>
-      <Tooltip
-        content={inputValue ? formatTime(inputValue) : resolvedPlaceholder}
-      >
+      <Tooltip content={value ? formatTime(value) : resolvedPlaceholder}>
         <Btn
           name={name}
           justifyContent={"space-between"}
@@ -209,19 +201,19 @@ export const TimePickerInput = (props: TimePickerInputProps) => {
                 : "border.muted"
           }
           onClick={() => {
-            if (inputValue) {
-              setSelected(inputValue);
+            if (value) {
+              setSelected(value);
             }
             onOpen();
           }}
           {...restProps}
         >
-          {inputValue ? (
+          {value ? (
             <P truncate>
               <TNum>
                 {withSeconds
-                  ? inputValue
-                  : formatTime(inputValue, { timezoneKey: "UTC" })}
+                  ? value
+                  : formatTime(value, { timezoneKey: "UTC" })}
               </TNum>
             </P>
           ) : (
@@ -282,9 +274,7 @@ export const TimePickerInput = (props: TimePickerInputProps) => {
                   <StringInput
                     clearable={false}
                     name={"hour"}
-                    inputValue={
-                      selected ? String(hours).padStart(2, "0") : "--"
-                    }
+                    value={selected ? String(hours).padStart(2, "0") : "--"}
                     onChange={(input) => {
                       if (parseInt(input as string) < 24) {
                         setHours(parseInt(input as string));
@@ -356,9 +346,7 @@ export const TimePickerInput = (props: TimePickerInputProps) => {
                   <StringInput
                     clearable={false}
                     name={"minute"}
-                    inputValue={
-                      selected ? String(minutes).padStart(2, "0") : "--"
-                    }
+                    value={selected ? String(minutes).padStart(2, "0") : "--"}
                     onChange={(input) => {
                       if (parseInt(input as string) < 60) {
                         setMinutes(parseInt(input as string));
@@ -431,7 +419,7 @@ export const TimePickerInput = (props: TimePickerInputProps) => {
                       <StringInput
                         clearable={false}
                         name={"second"}
-                        inputValue={
+                        value={
                           selected ? String(seconds).padStart(2, "0") : "--"
                         }
                         onChange={(input) => {

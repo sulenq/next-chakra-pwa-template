@@ -35,7 +35,7 @@ import { useEffect, useState } from "react";
 export interface SelectOptionsProps {
   id: string;
   multiple: SelectInputProps["multiple"];
-  selectOptions: SelectInputProps["inputValue"];
+  selectOptions: SelectInputProps["value"];
   selected: SelectOption[];
   setSelected: React.Dispatch<SelectOptionsProps["selected"]>;
 }
@@ -69,9 +69,9 @@ const SelectOptions = (props: SelectOptionsProps) => {
     <StackV {...restProps}>
       <StackV px={4} pt={4} zIndex={3}>
         <SearchInput
-          inputValue={search}
-          onChange={(inputValue) => {
-            setSearch(inputValue || "");
+          value={search}
+          onChange={(value) => {
+            setSearch(value || "");
           }}
           queryKey={`q_${id}`}
         />
@@ -173,11 +173,11 @@ const SelectOptions = (props: SelectOptionsProps) => {
 export interface SelectInputProps extends Omit<BtnProps, "onChange"> {
   id: string;
   title?: string;
-  inputValue?: SelectOption[] | null;
-  onChange?: (inputValue: SelectInputProps["inputValue"]) => void;
+  value?: SelectOption[] | null;
+  onChange?: (value: SelectInputProps["value"]) => void;
   loading?: boolean;
   error?: any;
-  selectOptions?: SelectInputProps["inputValue"];
+  selectOptions?: SelectInputProps["value"];
   placeholder?: string;
   invalid?: boolean;
   required?: boolean;
@@ -192,7 +192,7 @@ export const SelectInput = (props: SelectInputProps) => {
   const {
     id,
     title = "",
-    inputValue,
+    value,
     onChange,
     loading,
     error,
@@ -223,8 +223,8 @@ export const SelectInput = (props: SelectInputProps) => {
     placeholder ?? (multiple ? t.select_one_or_more : t.select);
   const resolvedInvalid = invalid ?? fc?.invalid;
   const formattedButtonLabel =
-    inputValue && !isEmptyArray(inputValue)
-      ? inputValue.map((o) => o.label).join(", ")
+    value && !isEmptyArray(value)
+      ? value.map((o) => o.label).join(", ")
       : resolvedPlaceholder;
 
   // Utils
@@ -241,8 +241,8 @@ export const SelectInput = (props: SelectInputProps) => {
 
   // Set initial selected on open
   useEffect(() => {
-    if (inputValue && !isEmptyArray(inputValue)) {
-      setSelected(inputValue);
+    if (value && !isEmptyArray(value)) {
+      setSelected(value);
     } else {
       setSelected([]);
     }
@@ -266,13 +266,13 @@ export const SelectInput = (props: SelectInputProps) => {
           onClick={onOpen}
           {...restProps}
         >
-          {!isEmptyArray(inputValue) && (
+          {!isEmptyArray(value) && (
             <P minH={"18px"} lineClamp={1} textAlign={"left"}>
               {formattedButtonLabel}
             </P>
           )}
 
-          {isEmptyArray(inputValue) && (
+          {isEmptyArray(value) && (
             <P
               minH={"18px"}
               color={"placeholder"}

@@ -127,9 +127,9 @@ const DataGridDetailContent = (props: DataGridDetailDisclosureProps) => {
           <StackV mb={2}>
             <SearchInput
               queryKey={"q-data-grid-detail"}
-              inputValue={search}
-              onChange={(inputValue) => {
-                setSearch(inputValue);
+              value={search}
+              onChange={(value) => {
+                setSearch(value);
               }}
             />
           </StackV>

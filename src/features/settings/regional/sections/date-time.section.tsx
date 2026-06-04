@@ -42,9 +42,9 @@ const DateFormatSetting = () => {
 
       <SelectDateFormat
         id={"settings-select-date-format"}
-        inputValue={dateFormat}
-        onChange={(inputValue) => {
-          setDateFormat(inputValue);
+        value={dateFormat}
+        onChange={(value) => {
+          setDateFormat(value);
         }}
         w={"fit"}
         size={"xs"}
@@ -78,9 +78,9 @@ const TimeFormatSetting = () => {
 
       <SelectTimeFormat
         id={"settings-select-time-format"}
-        inputValue={timeFormat}
-        onChange={(inputValue) => {
-          setTimeFormat(inputValue);
+        value={timeFormat}
+        onChange={(value) => {
+          setTimeFormat(value);
         }}
         w={"fit"}
         size={"xs"}
@@ -156,10 +156,10 @@ const TimezoneSetting = () => {
 
       <SelectTimezone
         id={"settings-select-time-zone"}
-        inputValue={timezone}
-        onChange={(inputValue) => {
-          setTimezone(inputValue);
-          if (inputValue?.[0]?.data) setTimezoneContext(inputValue[0].data);
+        value={timezone}
+        onChange={(value) => {
+          setTimezone(value);
+          if (value?.[0]?.data) setTimezoneContext(value[0].data);
         }}
         w={"fit"}
         size={"xs"}

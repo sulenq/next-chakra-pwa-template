@@ -44,9 +44,9 @@ export const APIKeySection = () => {
               errorText={formik.errors.mapboxToken as string}
             >
               <PasswordInput
-                inputValue={formik.values.mapboxToken}
-                onChange={(inputValue) => {
-                  formik.setFieldValue("mapboxToken", inputValue);
+                value={formik.values.mapboxToken}
+                onChange={(value) => {
+                  formik.setFieldValue("mapboxToken", value);
                 }}
               />
             </Field>
@@ -57,9 +57,9 @@ export const APIKeySection = () => {
               errorText={formik.errors.tinyMceToken as string}
             >
               <PasswordInput
-                inputValue={formik.values.tinyMceToken}
-                onChange={(inputValue) => {
-                  formik.setFieldValue("tinyMceToken", inputValue);
+                value={formik.values.tinyMceToken}
+                onChange={(value) => {
+                  formik.setFieldValue("tinyMceToken", value);
                 }}
               />
             </Field>

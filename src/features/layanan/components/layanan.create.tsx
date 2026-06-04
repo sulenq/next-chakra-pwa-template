@@ -87,7 +87,7 @@ export const LayananCreate = () => {
                   <StringInput
                     name={"title_id"}
                     placeholder={t.title || "Title"}
-                    inputValue={formik.values.title_id}
+                    value={formik.values.title_id}
                     onChange={(val) => formik.setFieldValue("title_id", val)}
                     pl={"40px !important"}
                   />
@@ -103,7 +103,7 @@ export const LayananCreate = () => {
                   <StringInput
                     name={"title_en"}
                     placeholder={t.title || "Title"}
-                    inputValue={formik.values.title_en}
+                    value={formik.values.title_en}
                     onChange={(val) => formik.setFieldValue("title_en", val)}
                     pl={"40px !important"}
                   />
@@ -122,7 +122,7 @@ export const LayananCreate = () => {
                   <TextareaInput
                     name={"description_id"}
                     placeholder={t.description || "Description"}
-                    inputValue={formik.values.description_id}
+                    value={formik.values.description_id}
                     onChange={(val) =>
                       formik.setFieldValue("description_id", val)
                     }
@@ -143,7 +143,7 @@ export const LayananCreate = () => {
                   <TextareaInput
                     name={"description_en"}
                     placeholder={t.description || "Description"}
-                    inputValue={formik.values.description_en}
+                    value={formik.values.description_en}
                     onChange={(val) =>
                       formik.setFieldValue("description_en", val)
                     }

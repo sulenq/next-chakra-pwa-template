@@ -7,13 +7,13 @@ import { SegmentGroup, SegmentGroupRootProps } from "@chakra-ui/react";
 
 interface SegmentedProps extends Omit<SegmentGroupRootProps, "onChange"> {
   items?: any[];
-  inputValue?: string;
-  onChange?: (inputValue: string) => void;
+  value?: string;
+  onChange?: (value: string) => void;
 }
 
 export const Segmented = (props: SegmentedProps) => {
   // Props
-  const { items = [], inputValue, onChange, size = "md", ...restProps } = props;
+  const { items = [], value, onChange, size = "md", ...restProps } = props;
 
   // Stores
   const { theme } = useThemeStore();
@@ -30,7 +30,7 @@ export const Segmented = (props: SegmentedProps) => {
 
   return (
     <SegmentGroup.Root
-      value={inputValue}
+      value={value}
       onValueChange={(e) => onChange?.(e.value as string)}
       bg={"transparent"}
       rounded={theme.radii.component}

@@ -20,8 +20,8 @@ export interface SearchInputProps extends Omit<
   "children" | "onChange"
 > {
   queryKey: string;
-  inputValue?: string;
-  onChange?: (inputValue: string) => void;
+  value?: string;
+  onChange?: (value: string) => void;
   placeholder?: string;
   additionalPlaceholder?: string;
   tooltipLabel?: string;
@@ -41,7 +41,7 @@ export const SearchInput = (props: SearchInputProps) => {
   // Props
   const {
     inputRef,
-    inputValue,
+    value,
     onChange,
     tooltipLabel,
     placeholder,
@@ -63,8 +63,8 @@ export const SearchInput = (props: SearchInputProps) => {
 
   // Hooks
   const searchParams = useSearchParams();
-  const debounced = useDebounced((inputValue: string) => {
-    onChange?.(inputValue);
+  const debounced = useDebounced((value: string) => {
+    onChange?.(value);
   }, debounceTime);
 
   // States
@@ -76,9 +76,9 @@ export const SearchInput = (props: SearchInputProps) => {
     : (placeholder ?? t.search);
 
   // Utils
-  function handleChange(inputValue: string) {
-    setSearchTemp(inputValue);
-    debounced(inputValue);
+  function handleChange(value: string) {
+    setSearchTemp(value);
+    debounced(value);
   }
 
   // Initialize from URL or prop
@@ -88,10 +88,10 @@ export const SearchInput = (props: SearchInputProps) => {
       setSearchTemp(queryValue);
       onChange?.(queryValue);
     } else {
-      setSearchTemp(inputValue || "");
-      onChange?.(inputValue || "");
+      setSearchTemp(value || "");
+      onChange?.(value || "");
     }
-  }, [inputValue, queryKey]);
+  }, [value, queryKey]);
 
   // Update query string whenever search changes
   useEffect(() => {
@@ -104,7 +104,7 @@ export const SearchInput = (props: SearchInputProps) => {
   }, [searchTemp, queryKey]);
 
   return (
-    <Tooltip content={inputValue || tooltipLabel || placeholder || t.search}>
+    <Tooltip content={value || tooltipLabel || placeholder || t.search}>
       <InputGroup
         w={"full"}
         startElement={
@@ -128,7 +128,7 @@ export const SearchInput = (props: SearchInputProps) => {
             pr={"40px"}
             placeholder={resolvedPlacholder}
             onChange={handleChange}
-            inputValue={searchTemp}
+            value={searchTemp}
             size={size}
             borderColor={
               invalid

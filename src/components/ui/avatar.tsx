@@ -114,7 +114,7 @@ export const AvatarUploadTrigger = (
   props: AvatarInputDisclosureTriggerProps,
 ) => {
   // Props
-  const { children, inputValue, onChange, formik, user } = props;
+  const { children, value, onChange, formik, user } = props;
 
   // Hooks
   const { open, onOpen } = usePopDisclosure(disclosureId("avatar-input"));
@@ -131,9 +131,9 @@ export const AvatarUploadTrigger = (
 
           <Disclosure.Body>
             <ImgInput
-              inputValue={inputValue}
-              onChange={(inputValue) => {
-                onChange?.(inputValue);
+              value={value}
+              onChange={(value) => {
+                onChange?.(value);
               }}
               existingFiles={user?.avatar}
               onDeleteFile={(fileData) => {

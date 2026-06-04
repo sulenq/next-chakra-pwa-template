@@ -379,7 +379,7 @@ export default function VideoPlayer(props: VideoPlayerProps) {
             {/* <Select
               portalRef={videoContainerRef}
               selectOptions={rates}
-              inputValue={`${playbackRate}`}
+              value={`${playbackRate}`}
               onValueChange={(val) => handleRate(Number(val))}
               w={"68px"}
               size={"md"}

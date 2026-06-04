@@ -7,13 +7,13 @@ const TINY_MCE_API_KEY = process.env.NEXT_PUBLIC_TINY_MCE_API_KEY || "";
 // -----------------------------------------------------------------
 
 export interface RichEditorProps {
-  inputValue?: string;
-  onChange?: (inputValue: RichEditorProps["inputValue"]) => void;
+  value?: string;
+  onChange?: (value: RichEditorProps["value"]) => void;
 }
 
 export const TinyMceRichEditor = (props: RichEditorProps) => {
   // Props
-  const { inputValue = "", onChange, ...restProps } = props;
+  const { value = "", onChange, ...restProps } = props;
 
   return (
     <TinyMCEEditor
@@ -37,7 +37,7 @@ export const TinyMceRichEditor = (props: RichEditorProps) => {
         ],
         highlight_on_focus: false,
       }}
-      value={inputValue}
+      value={value}
       onEditorChange={(content) => {
         onChange?.(content);
       }}

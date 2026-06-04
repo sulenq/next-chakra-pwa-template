@@ -364,7 +364,7 @@ const Chart1 = (props: any) => {
 
         <Segmented
           items={["1D", "1W", "1M", "3M"]}
-          inputValue={timeFrame}
+          value={timeFrame}
           onChange={setTimeFrame}
           size={"xs"}
           mr={-2}
@@ -565,8 +565,8 @@ export default function Page() {
           <P>
             {user?.taskCount
               ? interpolateString(t.msg_task_count, {
-                count: user?.taskCount,
-              })
+                  count: user?.taskCount,
+                })
               : t.msg_no_task}
           </P>
         </StackV>

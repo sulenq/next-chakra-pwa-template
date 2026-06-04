@@ -26,7 +26,7 @@ export const ImgInput = (props: FileInputProps) => {
     existingFiles,
     onDeleteFile,
     onUndoDeleteFile,
-    inputValue,
+    value,
     ...restProps
   } = props;
 
@@ -44,15 +44,15 @@ export const ImgInput = (props: FileInputProps) => {
 
   useEffect(() => {
     let inputValueUrls: string[] = [];
-    if (inputValue) {
-      inputValueUrls = inputValue.map((f: any) => URL.createObjectURL(f));
+    if (value) {
+      inputValueUrls = value.map((f: any) => URL.createObjectURL(f));
     }
     const exsistingUrls = existing.map((f: StorageFile) =>
       imgUrl(f.path),
     ) as string[];
 
     setPreviewUrls([...exsistingUrls, ...inputValueUrls]);
-  }, [existing, inputValue]);
+  }, [existing, value]);
 
   return (
     <StackV gap={3} flex={restProps?.flex}>
@@ -146,7 +146,7 @@ export const ImgInput = (props: FileInputProps) => {
         dropzone
         existing={existing}
         showDropzoneIcon={shouldRenderPreview ? false : true}
-        inputValue={inputValue}
+        value={value}
         accept={"image/png, image/jpeg, image/webp"}
         acceptPlaceholder={".jpg, .jpeg, .png"}
         {...restProps}
