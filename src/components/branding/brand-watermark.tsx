@@ -3,8 +3,7 @@
 import { P, PProps } from "@/components/ui/p";
 import { APP } from "@/constants/_meta";
 import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
-import { Span } from "@chakra-ui/react";
-import Link from "next/link";
+import { Link, Span } from "@chakra-ui/react";
 
 // -----------------------------------------------------------------
 

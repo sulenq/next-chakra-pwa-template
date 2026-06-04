@@ -3,8 +3,7 @@ import { FileIcon } from "@/components/ui/file-icon";
 import { P } from "@/components/ui/p";
 import { StackH, StackV } from "@/components/ui/stack";
 import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
-import { Center, Circle, Icon, StackProps } from "@chakra-ui/react";
-import Link from "next/link";
+import { Center, Circle, Icon, Link, StackProps } from "@chakra-ui/react";
 
 // -----------------------------------------------------------------
 
