@@ -7,7 +7,7 @@ import { P } from "@/components/ui/p";
 import { StackH, StackV } from "@/components/ui/stack";
 import { Tooltip } from "@/components/ui/tooltip";
 import { AppIconLucide } from "@/components/branding/app-icon";
-import FeedbackState from "@/components/feedback/feedback-state";
+
 import { HScroll } from "@/components/container/h-scroll";
 import { GAP } from "@/constants/styles";
 import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
@@ -56,7 +56,7 @@ export interface PdfViewerUtils {
   toggleMode: () => void;
 }
 
-pdfjs.GlobalWorkerOptions.workerSrc = "/pdf.worker.min.mjs";
+pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
 
 // -----------------------------------------------------------------
 
@@ -669,12 +669,6 @@ export const PdfViewer = (props: PdfViewerProps) => {
           onLoadSuccess={handleLoadSuccess}
           onLoadProgress={handleLoadProgress}
           loading={null}
-          error={
-            <FeedbackState
-              title={t.alert_pdf_failed_to_load.title}
-              description={t.alert_pdf_failed_to_load.description}
-            />
-          }
         >
           {viewer.pageWidth > 0 && (
             <>
