@@ -1,6 +1,8 @@
 import { useColorMode } from "@/components/ui/color-mode";
 import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
-import { Center, CenterProps, useToken } from "@chakra-ui/react";
+import { getSemanticValue, resolveCssVar } from "@/utils/style";
+import { Center, CenterProps } from "@chakra-ui/react";
+import { useEffect, useState } from "react";
 
 // -----------------------------------------------------------------
 
@@ -18,14 +20,26 @@ export const Logo = (props: LogoProps) => {
   const { theme } = useThemeStore();
 
   // Derived Values
-  const [themeColor] = useToken("colors", [`${theme?.colorPalette}.fg`]);
-  const resolvedColor = color
-    ? color
-    : theme.colorPalette === "gray"
-      ? colorMode === "dark"
-        ? "#fff"
-        : "#1b1b1b"
-      : themeColor;
+  const [resolvedColor, setResolvedColor] = useState("#888888");
+
+  useEffect(() => {
+    if (color) {
+      setResolvedColor(color);
+      return;
+    }
+
+    if (theme.colorPalette === "gray") {
+      setResolvedColor(colorMode === "dark" ? "#fff" : "#1b1b1b");
+      return;
+    }
+
+    const cssVarString = getSemanticValue(
+      `${theme.colorPalette}.fg`,
+      colorMode,
+    );
+    const actualColor = resolveCssVar(cssVarString);
+    setResolvedColor(actualColor || "#888888");
+  }, [color, colorMode, theme.colorPalette]);
 
   return (
     <Center
