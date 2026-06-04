@@ -3,7 +3,7 @@
 import { Btn, BtnProps } from "@/components/ui/btn";
 import { CContainer } from "@/components/ui/c-container";
 import { Menu } from "@/components/ui/menu";
-import { NumInput } from "@/components/ui/number-input";
+import { NumInput } from "@/components/ui/num-input";
 import { P } from "@/components/ui/p";
 import { Spinner } from "@/components/ui/spinner";
 import { StackH } from "@/components/ui/stack";

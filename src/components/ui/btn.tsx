@@ -8,7 +8,7 @@ import { forwardRef } from "react";
 
 // -----------------------------------------------------------------
 
-export interface BtnProps extends ButtonProps {
+export interface BtnProps extends Omit<ButtonProps, "variant"> {
   children?: React.ReactNode;
   clicky?: boolean;
   iconButton?: boolean;
@@ -60,6 +60,7 @@ export const Btn = forwardRef<HTMLButtonElement, BtnProps>(
         }
         transition={"200ms"}
         {...restProps}
+        variant={props.variant as any}
       >
         {children}
       </IconButton>
@@ -86,6 +87,7 @@ export const Btn = forwardRef<HTMLButtonElement, BtnProps>(
         }
         transition={"200ms"}
         {...restProps}
+        variant={props.variant as any}
       >
         {children}
       </Button>

@@ -24,7 +24,7 @@ import {
 import { Icon, Stack, useFieldContext } from "@chakra-ui/react";
 import { IconCaretDownFilled, IconCaretUpFilled } from "@tabler/icons-react";
 import { ClockIcon } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, forwardRef } from "react";
 
 // -----------------------------------------------------------------
 
@@ -32,11 +32,12 @@ const DEFAULT_TIME = "00:00:00";
 
 // -----------------------------------------------------------------
 
-export interface TimePickerInputProps extends Omit<BtnProps, "onChange"> {
+export interface TimePickerInputProps extends Omit<BtnProps, "onChange" | "defaultValue" | "value"> {
   id?: string;
   name?: string;
   title?: string;
   value?: string | null;
+  defaultValue?: string | null;
   onChange?: (value?: TimePickerInputProps["value"]) => void;
   withSeconds?: boolean;
   showTimezone?: boolean;
@@ -47,7 +48,8 @@ export interface TimePickerInputProps extends Omit<BtnProps, "onChange"> {
   variant?: ButtonVariant;
 }
 
-export const TimePickerInput = (props: TimePickerInputProps) => {
+export const TimePickerInput = forwardRef<HTMLButtonElement, TimePickerInputProps>(
+  function TimePickerInput(props, ref) {
   // Props
   const {
     id,
@@ -55,6 +57,7 @@ export const TimePickerInput = (props: TimePickerInputProps) => {
     title,
     onChange,
     value,
+    defaultValue,
     showTimezone = true,
     withSeconds = false,
     placeholder,
@@ -92,10 +95,16 @@ export const TimePickerInput = (props: TimePickerInputProps) => {
   );
 
   // States
-  const [selected, setSelected] = useState<string | null | undefined>(value);
-  const [hours, setHours] = useState<number>(getHoursFromTime(value));
-  const [minutes, setMinutes] = useState<number>(getMinutesFromTime(value));
-  const [seconds, setSeconds] = useState<number>(getSecondsFromTime(value));
+  const [internalValue, setInternalValue] = useState<string | null>(defaultValue ?? null);
+
+  // Hybrid: detect controlled mode
+  const isControlled = value !== undefined;
+  const displayValue = isControlled ? value : internalValue;
+
+  const [selected, setSelected] = useState<string | null | undefined>(displayValue);
+  const [hours, setHours] = useState<number>(getHoursFromTime(displayValue));
+  const [minutes, setMinutes] = useState<number>(getMinutesFromTime(displayValue));
+  const [seconds, setSeconds] = useState<number>(getSecondsFromTime(displayValue));
 
   // Constants
   const userTz = getUserTimezone();
@@ -156,10 +165,11 @@ export const TimePickerInput = (props: TimePickerInputProps) => {
     }
   }
   function handleConfirm() {
-    if (!required) {
-      onChange?.(selected ?? null);
-      back();
-    }
+    if (required && !selected) return;
+    const finalValue = selected ?? null;
+    if (!isControlled) setInternalValue(finalValue);
+    onChange?.(finalValue);
+    back();
   }
   function handleEnterToConfirm(e: React.KeyboardEvent<HTMLInputElement>) {
     if (e.key === "Enter") {
@@ -169,12 +179,12 @@ export const TimePickerInput = (props: TimePickerInputProps) => {
 
   // Update hours, minutes, seconds when value changes
   useEffect(() => {
-    if (value) {
-      setHours(getHoursFromTime(value));
-      setMinutes(getMinutesFromTime(value));
-      setSeconds(getSecondsFromTime(value));
+    if (displayValue) {
+      setHours(getHoursFromTime(displayValue));
+      setMinutes(getMinutesFromTime(displayValue));
+      setSeconds(getSecondsFromTime(displayValue));
     }
-  }, [value]);
+  }, [displayValue]);
 
   // Update selected value when hours, minutes, or seconds change
   useEffect(() => {
@@ -186,8 +196,9 @@ export const TimePickerInput = (props: TimePickerInputProps) => {
 
   return (
     <>
-      <Tooltip content={value ? formatTime(value) : resolvedPlaceholder}>
+      <Tooltip content={displayValue ? formatTime(displayValue) : resolvedPlaceholder}>
         <Btn
+          ref={ref}
           name={name}
           justifyContent={"space-between"}
           gap={4}
@@ -201,19 +212,19 @@ export const TimePickerInput = (props: TimePickerInputProps) => {
                 : "border.muted"
           }
           onClick={() => {
-            if (value) {
-              setSelected(value);
+            if (displayValue) {
+              setSelected(displayValue);
             }
             onOpen();
           }}
           {...restProps}
         >
-          {value ? (
+          {displayValue ? (
             <P truncate>
               <TNum>
                 {withSeconds
-                  ? value
-                  : formatTime(value, { timezoneKey: "UTC" })}
+                  ? displayValue
+                  : formatTime(displayValue, { timezoneKey: "UTC" })}
               </TNum>
             </P>
           ) : (
@@ -275,9 +286,10 @@ export const TimePickerInput = (props: TimePickerInputProps) => {
                     clearable={false}
                     name={"hour"}
                     value={selected ? String(hours).padStart(2, "0") : "--"}
-                    onChange={(input) => {
-                      if (parseInt(input as string) < 24) {
-                        setHours(parseInt(input as string));
+                    onChange={(e) => {
+                      const val = e.target.value;
+                      if (parseInt(val) < 24) {
+                        setHours(parseInt(val));
                       }
                     }}
                     onKeyDown={handleEnterToConfirm}
@@ -347,9 +359,10 @@ export const TimePickerInput = (props: TimePickerInputProps) => {
                     clearable={false}
                     name={"minute"}
                     value={selected ? String(minutes).padStart(2, "0") : "--"}
-                    onChange={(input) => {
-                      if (parseInt(input as string) < 60) {
-                        setMinutes(parseInt(input as string));
+                    onChange={(e) => {
+                      const val = e.target.value;
+                      if (parseInt(val) < 60) {
+                        setMinutes(parseInt(val));
                       }
                     }}
                     onKeyDown={handleEnterToConfirm}
@@ -422,9 +435,10 @@ export const TimePickerInput = (props: TimePickerInputProps) => {
                         value={
                           selected ? String(seconds).padStart(2, "0") : "--"
                         }
-                        onChange={(input) => {
-                          if (parseInt(input as string) < 60) {
-                            setSeconds(parseInt(input as string));
+                        onChange={(e) => {
+                          const val = e.target.value;
+                          if (parseInt(val) < 60) {
+                            setSeconds(parseInt(val));
                           }
                         }}
                         onKeyDown={handleEnterToConfirm}
@@ -526,4 +540,4 @@ export const TimePickerInput = (props: TimePickerInputProps) => {
       </Disclosure.Root>
     </>
   );
-};
+});

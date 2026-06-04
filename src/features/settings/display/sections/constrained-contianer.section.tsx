@@ -4,7 +4,7 @@ import { Item } from "@/components/container/item";
 import { SettingItemContainer } from "@/components/container/settings-shell";
 import { Divider } from "@/components/ui/divider";
 import { SettingsHelperText } from "@/components/ui/helper-text";
-import { NumInput } from "@/components/ui/number-input";
+import { NumInput } from "@/components/ui/num-input";
 import { P } from "@/components/ui/p";
 import { StackV } from "@/components/ui/stack";
 import { Switch } from "@/components/ui/switch";

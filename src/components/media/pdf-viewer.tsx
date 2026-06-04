@@ -2,7 +2,7 @@
 
 import { Btn, BtnProps } from "@/components/ui/btn";
 import { Menu } from "@/components/ui/menu";
-import { NumInput } from "@/components/ui/number-input";
+import { NumInput } from "@/components/ui/num-input";
 import { P } from "@/components/ui/p";
 import { StackH, StackV } from "@/components/ui/stack";
 import { Tooltip } from "@/components/ui/tooltip";

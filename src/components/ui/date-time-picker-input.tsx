@@ -9,13 +9,13 @@ import { extractTime, getUserTimezone, makeUTCISODateTime } from "@/utils/time";
 import { Group, GroupProps, useFieldContext } from "@chakra-ui/react";
 import { parseISO } from "date-fns";
 import { format as formatTz, toZonedTime } from "date-fns-tz";
-import { useEffect, useState } from "react";
+import { useEffect, useState, forwardRef } from "react";
 
 // -----------------------------------------------------------------
 
 export interface DateTimePickerInputProps extends Omit<
   GroupProps,
-  "title" | "placeholder" | "onChange"
+  "title" | "placeholder" | "onChange" | "defaultValue"
 > {
   id?: string;
   title?: {
@@ -23,6 +23,7 @@ export interface DateTimePickerInputProps extends Omit<
     time: string;
   };
   value?: string | null;
+  defaultValue?: string | null;
   onChange?: (value: DateTimePickerInputProps["value"]) => void;
   placeholder?: {
     date: string;
@@ -34,7 +35,8 @@ export interface DateTimePickerInputProps extends Omit<
   size?: ButtonSize;
 }
 
-export const DateTimePickerInput = (props: DateTimePickerInputProps) => {
+export const DateTimePickerInput = forwardRef<HTMLDivElement, DateTimePickerInputProps>(
+  function DateTimePickerInput(props, ref) {
   // Props
   const {
     id,
@@ -43,6 +45,7 @@ export const DateTimePickerInput = (props: DateTimePickerInputProps) => {
       time: "",
     },
     value,
+    defaultValue,
     onChange,
     placeholder = {
       date: undefined,
@@ -60,6 +63,12 @@ export const DateTimePickerInput = (props: DateTimePickerInputProps) => {
   const fc = useFieldContext();
 
   // States
+  const [internalValue, setInternalValue] = useState<string | null>(defaultValue ?? null);
+  
+  // Hybrid: detect controlled mode
+  const isControlled = value !== undefined;
+  const displayValue = isControlled ? value : internalValue;
+
   const [date, setDate] = useState<string>("");
   const [time, setTime] = useState<string>("");
 
@@ -71,17 +80,20 @@ export const DateTimePickerInput = (props: DateTimePickerInputProps) => {
   // handle on change
   useEffect(() => {
     if (date && time) {
-      onChange?.(makeUTCISODateTime(date, time));
+      const finalValue = makeUTCISODateTime(date, time);
+      if (!isControlled) setInternalValue(finalValue);
+      onChange?.(finalValue);
     } else {
+      if (!isControlled) setInternalValue(null);
       onChange?.(null);
     }
-  }, [date, time]);
+  }, [date, time]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // handle initial value
   useEffect(() => {
-    if (value) {
+    if (displayValue) {
       const userTzKey = getUserTimezone().key;
-      const utcDate = parseISO(value);
+      const utcDate = parseISO(displayValue);
       const localizedDate = toZonedTime(utcDate, userTzKey);
       const localized = formatTz(localizedDate, "yyyy-MM-dd'T'HH:mm:ss", {
         timeZone: userTzKey,
@@ -93,11 +105,15 @@ export const DateTimePickerInput = (props: DateTimePickerInputProps) => {
           withSeconds: true,
         }),
       );
+    } else {
+      setDate("");
+      setTime("");
     }
-  }, []);
+  }, [displayValue]);
 
   return (
     <Group
+      ref={ref}
       w={"full"}
       attached
       border={invalid || fc?.invalid ? "1px solid {colors.border.error}" : ""}
@@ -132,4 +148,4 @@ export const DateTimePickerInput = (props: DateTimePickerInputProps) => {
       />
     </Group>
   );
-};
+});

@@ -22,7 +22,7 @@ import { FileInput } from "@/components/ui/file-input";
 import { LangMenu } from "@/components/ui/lang-menu";
 import { Menu } from "@/components/ui/menu";
 import { NavLink } from "@/components/ui/nav-link";
-import { NumInput } from "@/components/ui/number-input";
+import { NumInput } from "@/components/ui/num-input";
 import { P } from "@/components/ui/p";
 import { PasswordInput } from "@/components/ui/password-input";
 import { PeriodPickerInput } from "@/components/ui/period-picker-input";

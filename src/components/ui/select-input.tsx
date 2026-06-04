@@ -28,7 +28,7 @@ import { capitalizeWords } from "@/utils/string";
 import { Icon, useFieldContext } from "@chakra-ui/react";
 import { IconReload } from "@tabler/icons-react";
 import { ChevronsUpDownIcon } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, forwardRef } from "react";
 
 // -----------------------------------------------------------------
 
@@ -170,10 +170,11 @@ const SelectOptions = (props: SelectOptionsProps) => {
 
 // -----------------------------------------------------------------
 
-export interface SelectInputProps extends Omit<BtnProps, "onChange"> {
+export interface SelectInputProps extends Omit<BtnProps, "onChange" | "defaultValue" | "value"> {
   id: string;
   title?: string;
   value?: SelectOption[] | null;
+  defaultValue?: SelectOption[] | null;
   onChange?: (value: SelectInputProps["value"]) => void;
   loading?: boolean;
   error?: any;
@@ -187,12 +188,14 @@ export interface SelectInputProps extends Omit<BtnProps, "onChange"> {
   variant?: ButtonVariant;
 }
 
-export const SelectInput = (props: SelectInputProps) => {
+export const SelectInput = forwardRef<HTMLButtonElement, SelectInputProps>(
+  function SelectInput(props, ref) {
   // Props
   const {
     id,
     title = "",
     value,
+    defaultValue,
     onChange,
     loading,
     error,
@@ -217,41 +220,45 @@ export const SelectInput = (props: SelectInputProps) => {
 
   // States
   const [selected, setSelected] = useState<SelectOption[]>([]);
+  const [internalValue, setInternalValue] = useState<SelectOption[] | null>(defaultValue ?? null);
+
+  // Hybrid: detect controlled mode
+  const isControlled = value !== undefined;
+  const displayValue = isControlled ? value : internalValue;
 
   // Derived Values
   const resolvedPlaceholder =
     placeholder ?? (multiple ? t.select_one_or_more : t.select);
   const resolvedInvalid = invalid ?? fc?.invalid;
   const formattedButtonLabel =
-    value && !isEmptyArray(value)
-      ? value.map((o) => o.label).join(", ")
+    displayValue && !isEmptyArray(displayValue)
+      ? displayValue.map((o) => o.label).join(", ")
       : resolvedPlaceholder;
 
   // Utils
   function handleConfirm() {
     if (!required) {
-      if (!isEmptyArray(selected)) {
-        onChange?.(selected);
-      } else {
-        onChange?.(null);
-      }
+      const finalValue = !isEmptyArray(selected) ? selected : null;
+      if (!isControlled) setInternalValue(finalValue);
+      onChange?.(finalValue);
       back();
     }
   }
 
   // Set initial selected on open
   useEffect(() => {
-    if (value && !isEmptyArray(value)) {
-      setSelected(value);
+    if (displayValue && !isEmptyArray(displayValue)) {
+      setSelected(displayValue);
     } else {
       setSelected([]);
     }
-  }, [open]);
+  }, [open, displayValue]);
 
   return (
     <>
       <Tooltip content={formattedButtonLabel}>
         <Btn
+          ref={ref}
           w={"full"}
           gap={2}
           justifyContent={"space-between"}
@@ -266,13 +273,13 @@ export const SelectInput = (props: SelectInputProps) => {
           onClick={onOpen}
           {...restProps}
         >
-          {!isEmptyArray(value) && (
+          {!isEmptyArray(displayValue) && (
             <P minH={"18px"} lineClamp={1} textAlign={"left"}>
               {formattedButtonLabel}
             </P>
           )}
 
-          {isEmptyArray(value) && (
+          {isEmptyArray(displayValue) && (
             <P
               minH={"18px"}
               color={"placeholder"}
@@ -355,4 +362,4 @@ export const SelectInput = (props: SelectInputProps) => {
       </Disclosure.Root>
     </>
   );
-};
+});

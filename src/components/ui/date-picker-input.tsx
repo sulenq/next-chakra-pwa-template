@@ -39,7 +39,7 @@ import {
 } from "@chakra-ui/react";
 import { addDays, startOfWeek } from "date-fns";
 import { CalendarIcon, ChevronDownIcon, ChevronUpIcon } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, forwardRef } from "react";
 import { StackV } from "@/components/ui/stack";
 
 // -----------------------------------------------------------------
@@ -360,10 +360,11 @@ const SelectedDateList = (props: SelectedDateListProps) => {
 
 // -----------------------------------------------------------------
 
-export interface DatePickerInputProps extends Omit<BtnProps, "onChange"> {
+export interface DatePickerInputProps extends Omit<BtnProps, "onChange" | "defaultValue" | "value"> {
   id?: string;
   title?: string;
   value?: string[] | null;
+  defaultValue?: string[] | null;
   onChange?: (value: DatePickerInputProps["value"]) => void;
   showTimezone?: boolean;
   placeholder?: string;
@@ -375,12 +376,14 @@ export interface DatePickerInputProps extends Omit<BtnProps, "onChange"> {
   labelFormatVariant?: DateVariant;
 }
 
-export const DatePickerInput = (props: DatePickerInputProps) => {
+export const DatePickerInput = forwardRef<HTMLButtonElement, DatePickerInputProps>(
+  function DatePickerInput(props, ref) {
   // Props
   const {
     id,
     title = "",
     value,
+    defaultValue,
     onChange,
     showTimezone,
     placeholder,
@@ -405,7 +408,12 @@ export const DatePickerInput = (props: DatePickerInputProps) => {
 
   // States
   const [selected, setSelected] = useState<Date[]>([]);
+  const [internalValue, setInternalValue] = useState<string[] | null>(defaultValue ?? null);
   const [period, setPeriod] = useState<Period>(DEFAULT_PERIOD);
+
+  // Hybrid: detect controlled mode
+  const isControlled = value !== undefined;
+  const displayValue = isControlled ? value : internalValue;
 
   // Constants
   const userTz = getUserTimezone();
@@ -428,8 +436,8 @@ export const DatePickerInput = (props: DatePickerInputProps) => {
           .join(", ")
       : t.selected_date;
   const formattedButtonLabel =
-    value && value?.length > 0
-      ? value
+    displayValue && displayValue?.length > 0
+      ? displayValue
           .map((date) =>
             formatAbsDate(new Date(date), t, {
               variant: labelFormatVariant,
@@ -443,14 +451,15 @@ export const DatePickerInput = (props: DatePickerInputProps) => {
   function handleConfirm() {
     if (!required) {
       if (!isEmptyArray(selected)) {
-        onChange?.(
-          selected.map((item) =>
-            new Date(
-              item.getTime() + getTimezoneOffsetMs(localTz.key),
-            ).toISOString(),
-          ),
+        const finalValue = selected.map((item) =>
+          new Date(
+            item.getTime() + getTimezoneOffsetMs(localTz.key),
+          ).toISOString(),
         );
+        if (!isControlled) setInternalValue(finalValue);
+        onChange?.(finalValue);
       } else {
+        if (!isControlled) setInternalValue(null);
         onChange?.(null);
       }
       back();
@@ -459,8 +468,8 @@ export const DatePickerInput = (props: DatePickerInputProps) => {
 
   // set selected date on open
   useEffect(() => {
-    if (value && !isEmptyArray(value)) {
-      const localDates = value.map((item) => {
+    if (displayValue && !isEmptyArray(displayValue)) {
+      const localDates = displayValue.map((item) => {
         return new Date(new Date(item).getTime() - localTzOffsetInMs);
       });
 
@@ -472,13 +481,17 @@ export const DatePickerInput = (props: DatePickerInputProps) => {
         month: lastDate.getMonth(),
         year: lastDate.getFullYear(),
       });
+    } else {
+      setSelected([]);
+      setPeriod(DEFAULT_PERIOD);
     }
-  }, [open]);
+  }, [open, displayValue]);
 
   return (
     <>
-      <Tooltip content={value ? formattedButtonLabel : resolvedPlaceholder}>
+      <Tooltip content={displayValue ? formattedButtonLabel : resolvedPlaceholder}>
         <Btn
+          ref={ref}
           w={"full"}
           gap={4}
           justifyContent={"space-between"}
@@ -493,13 +506,13 @@ export const DatePickerInput = (props: DatePickerInputProps) => {
           variant={variant}
           {...restProps}
         >
-          {!isEmptyArray(value) && (
+          {!isEmptyArray(displayValue) && (
             <P lineClamp={1} textAlign={"left"}>
               {formattedButtonLabel}
             </P>
           )}
 
-          {isEmptyArray(value) && (
+          {isEmptyArray(displayValue) && (
             <P color={"placeholder"} lineClamp={1} textAlign={"left"}>
               {resolvedPlaceholder}
             </P>
@@ -578,4 +591,4 @@ export const DatePickerInput = (props: DatePickerInputProps) => {
       </Disclosure.Root>
     </>
   );
-};
+});

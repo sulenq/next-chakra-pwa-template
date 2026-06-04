@@ -33,9 +33,13 @@ export function AuthGuard({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     if (!data) return;
 
-    const user = data.data;
+    const user = data.data?.user;
     if (user) {
-      setAuth({ user, role: user?.role, permissions: user?.role?.permissions });
+      setAuth({
+        user: user,
+        role: user?.role,
+        permissions: user?.role?.permissions,
+      });
     }
   }, [data, setAuth]);
 

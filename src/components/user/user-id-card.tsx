@@ -14,6 +14,7 @@ import { useThemeStore } from "@/features/settings/display/stores/use-theme-stor
 import { useSignout } from "@/features/auth/hooks/use-auth";
 import { Box, Circle, StackProps, useToken } from "@chakra-ui/react";
 import { LogOutIcon } from "lucide-react";
+import { imgUrl } from "@/utils/url";
 
 // -----------------------------------------------------------------
 
@@ -60,10 +61,9 @@ export const UserIdCard = (props: UserIdCardProps) => {
   const { theme } = useThemeStore();
 
   // Constants
-  // TODO_DEV uncomment on real dev
-  // const user = getUserData();
-  const user = DUMMY_USER;
-  const userAvatarSrc = user?.avatar?.[0]?.fileUrl;
+  // TODO_DEV use getUserData()
+  const user = DUMMY_USER; // getUserData();
+  const userAvatarSrc = imgUrl(user?.avatar?.[0]?.path);
 
   // SX
   const [fontColor] = useToken("colors", [`${theme.colorPalette}.contrast`]);

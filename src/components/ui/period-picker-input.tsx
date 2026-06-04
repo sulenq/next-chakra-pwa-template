@@ -3,7 +3,7 @@
 import { Btn, BtnProps } from "@/components/ui/btn";
 import { Disclosure } from "@/components/ui/disclosure";
 import { Field, FieldsetRoot } from "@/components/ui/field";
-import { NumInput } from "@/components/ui/number-input";
+import { NumInput } from "@/components/ui/num-input";
 import { P } from "@/components/ui/p";
 import { StackH } from "@/components/ui/stack";
 import { Tooltip } from "@/components/ui/tooltip";
@@ -21,7 +21,7 @@ import { capitalizeWords } from "@/utils/string";
 import { getLocalTimezone } from "@/utils/time";
 import { SimpleGrid, useFieldContext } from "@chakra-ui/react";
 import { CalendarClockIcon } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, forwardRef } from "react";
 
 // -----------------------------------------------------------------
 
@@ -32,10 +32,11 @@ const DEFAULT = {
 
 // -----------------------------------------------------------------
 
-export interface PeriodPickerInputProps extends Omit<BtnProps, "onChange"> {
+export interface PeriodPickerInputProps extends Omit<BtnProps, "onChange" | "defaultValue" | "value"> {
   id?: string;
   title?: string;
   value?: Period | null;
+  defaultValue?: Period | null;
   onChange?: (value?: PeriodPickerInputProps["value"]) => void;
   placeholder?: string;
   required?: boolean;
@@ -46,12 +47,14 @@ export interface PeriodPickerInputProps extends Omit<BtnProps, "onChange"> {
   withIcon?: boolean;
 }
 
-export const PeriodPickerInput = (props: PeriodPickerInputProps) => {
+export const PeriodPickerInput = forwardRef<HTMLButtonElement, PeriodPickerInputProps>(
+  function PeriodPickerInput(props, ref) {
   // Props
   const {
     id,
     title = "",
     value,
+    defaultValue,
     onChange,
     placeholder,
     required,
@@ -74,6 +77,11 @@ export const PeriodPickerInput = (props: PeriodPickerInputProps) => {
 
   // States
   const [selected, setSelected] = useState<Period>(DEFAULT);
+  const [internalValue, setInternalValue] = useState<Period | null>(defaultValue ?? null);
+
+  // Hybrid: detect controlled mode
+  const isControlled = value !== undefined;
+  const displayValue = isControlled ? value : internalValue;
 
   // Constants
   const monthNames = getMonthNames(t);
@@ -91,8 +99,11 @@ export const PeriodPickerInput = (props: PeriodPickerInputProps) => {
   // Utils
   function handleConfirm() {
     if (!isEmpty) {
-      onChange?.({ month: selected.month, year: selected.year });
+      const finalValue = { month: selected.month, year: selected.year };
+      if (!isControlled) setInternalValue(finalValue);
+      onChange?.(finalValue);
     } else {
+      if (!isControlled) setInternalValue(null);
       onChange?.(null);
     }
     back();
@@ -105,13 +116,15 @@ export const PeriodPickerInput = (props: PeriodPickerInputProps) => {
 
   // handle initial value on open
   useEffect(() => {
-    if (value) {
+    if (displayValue) {
       setSelected({
-        year: value.year,
-        month: value.month,
+        year: displayValue.year,
+        month: displayValue.month,
       });
+    } else {
+      setSelected(DEFAULT);
     }
-  }, [open, value]);
+  }, [open, displayValue]);
 
   return (
     <>
@@ -125,6 +138,7 @@ export const PeriodPickerInput = (props: PeriodPickerInputProps) => {
         }
       >
         <Btn
+          ref={ref}
           w={"full"}
           bg={isSubtleVariant ? "d0" : ""}
           gap={4}
@@ -141,11 +155,11 @@ export const PeriodPickerInput = (props: PeriodPickerInputProps) => {
           }
           {...restProps}
         >
-          {!value && <P color={"placeholder"}>{resolvedPlaceholder}</P>}
+          {!displayValue && <P color={"placeholder"}>{resolvedPlaceholder}</P>}
 
-          {value && (
+          {displayValue && (
             <P>
-              {formatDate(new Date(value.year!, value.month!), t, {
+              {formatDate(new Date(displayValue.year!, displayValue.month!), t, {
                 variant: "monthYear",
                 timezoneKey: getLocalTimezone().key,
               })}
@@ -252,4 +266,4 @@ export const PeriodPickerInput = (props: PeriodPickerInputProps) => {
       </Disclosure.Root>
     </>
   );
-};
+});
