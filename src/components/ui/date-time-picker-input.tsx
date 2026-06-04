@@ -1,15 +1,12 @@
 import { DatePickerInput } from "@/components/ui/date-picker-input";
-import {
-  TimePickerInput,
-  TimePickerInputProps,
-} from "@/components/ui/time-picker-input";
-import { ButtonSize, DisclosureSizes } from "@/types/global.types";
+import { TimePickerInput } from "@/components/ui/time-picker-input";
 import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
+import { ButtonSize, DisclosureSizes } from "@/types/global.types";
 import { extractTime, getUserTimezone, makeUTCISODateTime } from "@/utils/time";
 import { Group, GroupProps, useFieldContext } from "@chakra-ui/react";
 import { parseISO } from "date-fns";
 import { format as formatTz, toZonedTime } from "date-fns-tz";
-import { useEffect, useState, forwardRef } from "react";
+import { forwardRef, useEffect, useState } from "react";
 
 // -----------------------------------------------------------------
 
@@ -35,8 +32,10 @@ export interface DateTimePickerInputProps extends Omit<
   size?: ButtonSize;
 }
 
-export const DateTimePickerInput = forwardRef<HTMLDivElement, DateTimePickerInputProps>(
-  function DateTimePickerInput(props, ref) {
+export const DateTimePickerInput = forwardRef<
+  HTMLDivElement,
+  DateTimePickerInputProps
+>(function DateTimePickerInput(props, ref) {
   // Props
   const {
     id,
@@ -63,8 +62,10 @@ export const DateTimePickerInput = forwardRef<HTMLDivElement, DateTimePickerInpu
   const fc = useFieldContext();
 
   // States
-  const [internalValue, setInternalValue] = useState<string | null>(defaultValue ?? null);
-  
+  const [internalValue, setInternalValue] = useState<string | null>(
+    defaultValue ?? null,
+  );
+
   // Hybrid: detect controlled mode
   const isControlled = value !== undefined;
   const displayValue = isControlled ? value : internalValue;
@@ -73,21 +74,33 @@ export const DateTimePickerInput = forwardRef<HTMLDivElement, DateTimePickerInpu
   const [time, setTime] = useState<string>("");
 
   // Utils
-  function handleConfirm(value: TimePickerInputProps["value"]) {
-    setTime(value || "");
-  }
+  function handleDateChange(newDateVals: string[] | null | undefined) {
+    const newDate = newDateVals?.[0] || "";
+    setDate(newDate);
 
-  // handle on change
-  useEffect(() => {
-    if (date && time) {
-      const finalValue = makeUTCISODateTime(date, time);
+    if (newDate && time) {
+      const finalValue = makeUTCISODateTime(newDate, time);
       if (!isControlled) setInternalValue(finalValue);
       onChange?.(finalValue);
     } else {
       if (!isControlled) setInternalValue(null);
       onChange?.(null);
     }
-  }, [date, time]); // eslint-disable-line react-hooks/exhaustive-deps
+  }
+
+  function handleTimeChange(newTimeVal: string | null | undefined) {
+    const newTime = newTimeVal || "";
+    setTime(newTime);
+
+    if (date && newTime) {
+      const finalValue = makeUTCISODateTime(date, newTime);
+      if (!isControlled) setInternalValue(finalValue);
+      onChange?.(finalValue);
+    } else {
+      if (!isControlled) setInternalValue(null);
+      onChange?.(null);
+    }
+  }
 
   // handle initial value
   useEffect(() => {
@@ -124,7 +137,7 @@ export const DateTimePickerInput = forwardRef<HTMLDivElement, DateTimePickerInpu
         w={"50%"}
         id={`${id}-date-picker-for-date-time-picker`}
         value={date ? [date] : null}
-        onChange={(value) => setDate(value?.[0] || "")}
+        onChange={handleDateChange}
         title={title?.date}
         placeholder={placeholder?.date}
         disclosureSize={disclosureSize}
@@ -137,7 +150,7 @@ export const DateTimePickerInput = forwardRef<HTMLDivElement, DateTimePickerInpu
         w={"50%"}
         id={`${id}-time-picker-for-date-time-picker}`}
         value={time}
-        onChange={handleConfirm}
+        onChange={handleTimeChange}
         title={title?.time}
         placeholder={placeholder?.time}
         disclosureSize={disclosureSize}

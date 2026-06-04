@@ -79,11 +79,8 @@ export const fileValidation = ({
 
                 if (filesInZip.length === 0) return false;
 
-                const hasValidFile = filesInZip.some((fileName) => {
-                  const fileExtension = fileName
-                    .split(".")
-                    .pop()
-                    ?.toLowerCase();
+                const hasValidFile = filesInZip.some((name) => {
+                  const fileExtension = name.split(".").pop()?.toLowerCase();
                   return allowedExtensions?.includes(fileExtension || "");
                 });
 

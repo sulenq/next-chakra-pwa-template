@@ -66,7 +66,7 @@ export const FileItem = (props: FileItemProps) => {
           </Center>
 
           <StackV flex={1}>
-            <P lineClamp={1}>{`${fileData?.fileName}`}</P>
+            <P lineClamp={1}>{`${fileData?.name}`}</P>
             <P fontSize={"sm"} color={"fg.muted"}>
               {`${fileData?.fileSize}`}
             </P>

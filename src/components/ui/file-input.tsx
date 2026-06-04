@@ -46,10 +46,10 @@ const FileList = (props: FileListProps) => {
     <StackV w={"full"} gap={2} {...restProps}>
       {value?.map((file: any, index: number) => {
         const fileData = {
-          fileName: file.name,
-          fileMimeType: file.type,
-          fileSize: formatBytes(file.size),
-          fileUrl: makeFileUrl(file) || "",
+          name: file.name,
+          mimeType: file.type,
+          size: formatBytes(file.size),
+          url: makeFileUrl(file) || "",
         };
 
         return (
