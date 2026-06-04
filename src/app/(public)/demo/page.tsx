@@ -970,7 +970,7 @@ const DemoIndexRoute = () => {
 
           <StackV>
             <iframe
-              src={"/test.pdf#page=2&zoom=120"}
+              src={"/test.pdf"}
               style={{ width: "100%", height: "100vh", border: "none" }}
             />
           </StackV>
