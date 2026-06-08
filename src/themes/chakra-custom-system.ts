@@ -48,10 +48,10 @@ export const customConfig = defineConfig({
 
     tokens: {
       animations: {
-        scaleUpOvershoot: {
+        "scale-up-overshoot": {
           value: "scale-up-overshoot 0.35s cubic-bezier(0.16, 1, 0.3, 1)",
         },
-        scaleDown: {
+        "scale-down": {
           value: "scale-down 0.35s cubic-bezier(0.16, 1, 0.3, 1)",
         },
       },

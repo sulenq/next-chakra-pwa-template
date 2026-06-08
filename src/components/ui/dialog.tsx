@@ -89,11 +89,11 @@ const DialogContent = forwardRef<HTMLDivElement, DialogContentProps>(
             backdropFilter={BACKDROP_BLUR_FILTER}
             shadow={"none"}
             _open={{
-              animation: "scaleUpOvershoot",
+              animation: "scale-up-overshoot",
               animationDuration: "slowest",
             }}
             _closed={{
-              animation: "scaleDown",
+              animation: "scale-down",
               animationDuration: "slower",
             }}
             onClick={(e) => {
