@@ -1,5 +1,5 @@
 import { Divider } from "@/components/ui/divider";
-import { SettingsHelperText } from "@/components/ui/helper-text";
+import { SettingsHelperText } from "@/components/ui/typography";
 import { P } from "@/components/ui/p";
 import { StackV } from "@/components/ui/stack";
 import { Item } from "@/components/container/item";
@@ -434,55 +434,55 @@ export const UOMFormatSection = () => {
       <Item.Body>
         <WeightFormatSetting />
 
-        <Divider mx={4} />
+        <Divider />
 
         <HeightFormatSetting />
 
-        <Divider mx={4} />
+        <Divider />
 
         <LengthFormatSetting />
 
-        <Divider mx={4} />
+        <Divider />
 
         <DistanceFormatSetting />
 
-        <Divider mx={4} />
+        <Divider />
 
         <AreaFormatSetting />
 
-        <Divider mx={4} />
+        <Divider />
 
         <VolumeFormatSetting />
 
-        <Divider mx={4} />
+        <Divider />
 
         <TemperatureFormatSetting />
 
-        <Divider mx={4} />
+        <Divider />
 
         <SpeedFormatSetting />
 
-        <Divider mx={4} />
+        <Divider />
 
         <EnergyFormatSetting />
 
-        <Divider mx={4} />
+        <Divider />
 
         <PowerFormatSetting />
 
-        <Divider mx={4} />
+        <Divider />
 
         <PressureFormatSetting />
 
-        <Divider mx={4} />
+        <Divider />
 
         <DataFormatSetting />
 
-        <Divider mx={4} />
+        <Divider />
 
         <DataRateFormatSetting />
 
-        <Divider mx={4} />
+        <Divider />
 
         <AngleFormatSetting />
       </Item.Body>

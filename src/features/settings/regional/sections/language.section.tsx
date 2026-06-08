@@ -1,5 +1,5 @@
 import { Btn } from "@/components/ui/btn";
-import { SettingsHelperText } from "@/components/ui/helper-text";
+import { SettingsHelperText } from "@/components/ui/typography";
 import { P } from "@/components/ui/p";
 import { RadioItem } from "@/components/ui/radio";
 import { StackH } from "@/components/ui/stack";

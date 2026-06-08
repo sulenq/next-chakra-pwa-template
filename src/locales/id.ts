@@ -513,7 +513,7 @@ const translations = {
     "main": {
       "index": "Utama",
       "profile": "Profil",
-      "display": "Tampilan",
+      "appearance": "Penampilan",
       "regional": "Bahasa & Regional",
       "app_permissions": "Izin Aplikasi"
     },

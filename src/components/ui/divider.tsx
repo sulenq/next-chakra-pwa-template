@@ -11,6 +11,9 @@ export const Divider = ({
   m,
   ...props
 }: DividerProps) => {
+  // SX
+  const thickness = "1px";
+  const color = "bg.canvas";
   const hasHorizontalMargin =
     mx !== undefined || (typeof m === "number" && m > 0);
   const hasVerticalMargin =
@@ -21,11 +24,11 @@ export const Divider = ({
       <Box
         flexShrink={0}
         w={hasHorizontalMargin ? "auto" : "full"}
-        h="1px"
+        h={thickness}
         mx={mx}
         my={my}
         m={m}
-        bg={"border.subtle"}
+        bg={color}
         {...props}
       />
     );
@@ -35,11 +38,11 @@ export const Divider = ({
     <Box
       flexShrink={0}
       h={hasVerticalMargin ? "auto" : "full"}
-      w="1px"
+      w={thickness}
       mx={mx}
       my={my}
       m={m}
-      bg={"border.subtle"}
+      bg={color}
       {...props}
     />
   );

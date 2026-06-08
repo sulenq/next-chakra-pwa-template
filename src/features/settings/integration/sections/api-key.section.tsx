@@ -3,7 +3,7 @@
 import { Item } from "@/components/container/item";
 import { Btn } from "@/components/ui/btn";
 import { Field, FieldsetRoot } from "@/components/ui/field";
-import { SettingsHelperText } from "@/components/ui/helper-text";
+import { SettingsHelperText } from "@/components/ui/typography";
 import { PasswordInput } from "@/components/ui/password-input";
 import { StackH } from "@/components/ui/stack";
 import { R_SPACING_MD } from "@/constants/styles";

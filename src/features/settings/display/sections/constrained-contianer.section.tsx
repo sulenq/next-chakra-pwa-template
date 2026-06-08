@@ -3,15 +3,15 @@
 import { Item } from "@/components/container/item";
 import { SettingItemContainer } from "@/components/container/settings-shell";
 import { Divider } from "@/components/ui/divider";
-import { SettingsHelperText } from "@/components/ui/helper-text";
 import { NumInput } from "@/components/ui/num-input";
 import { P } from "@/components/ui/p";
 import { StackV } from "@/components/ui/stack";
 import { Switch } from "@/components/ui/switch";
+import { SettingsGroupTitle } from "@/components/ui/typography";
 import { R_SPACING_MD } from "@/constants/styles";
 import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
-import { useConstrainedContainerStore } from "../stores/use-constrained-container-store";
 import { useDebounced } from "@/hooks/use-debounced";
+import { useConstrainedContainerStore } from "../stores/use-constrained-container-store";
 
 // -----------------------------------------------------------------
 
@@ -89,14 +89,14 @@ export const ConstrainedContainerSection = () => {
 
   return (
     <StackV px={R_SPACING_MD}>
-      <SettingsHelperText>
+      <SettingsGroupTitle>
         {t.settings_constrained_container_section.title}
-      </SettingsHelperText>
+      </SettingsGroupTitle>
 
       <Item.Body>
         <ActiveSetting />
 
-        <Divider mx={4}></Divider>
+        <Divider />
 
         <MaxWSetting />
       </Item.Body>

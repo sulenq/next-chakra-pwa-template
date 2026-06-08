@@ -1,5 +1,5 @@
 import { Divider } from "@/components/ui/divider";
-import { SettingsHelperText } from "@/components/ui/helper-text";
+import { SettingsHelperText } from "@/components/ui/typography";
 import { P } from "@/components/ui/p";
 import { StackV } from "@/components/ui/stack";
 import { Switch } from "@/components/ui/switch";
@@ -184,15 +184,15 @@ export const DateTimeSection = () => {
       <Item.Body>
         <DateFormatSetting />
 
-        <Divider mx={4} />
+        <Divider />
 
         <TimeFormatSetting />
 
-        <Divider mx={4} />
+        <Divider />
 
         <AutoTimezomeSetting />
 
-        <Divider mx={4} />
+        <Divider />
 
         <TimezoneSetting />
       </Item.Body>

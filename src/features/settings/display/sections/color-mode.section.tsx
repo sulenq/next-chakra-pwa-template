@@ -236,11 +236,11 @@ export const ColorModeSection = () => {
       <Item.Body>
         <ColorModeSetting />
 
-        <Divider mx={4} />
+        <Divider />
 
         <ADMSetting />
 
-        <Divider mx={4} />
+        <Divider />
 
         <ResetColorModeSetting />
       </Item.Body>

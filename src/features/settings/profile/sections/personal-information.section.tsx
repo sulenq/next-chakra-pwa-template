@@ -3,7 +3,7 @@ import { useMainViewContext } from "@/components/container/main-view";
 import { AvatarUploadTrigger } from "@/components/ui/avatar";
 import { Btn } from "@/components/ui/btn";
 import { Field, FieldsetRoot } from "@/components/ui/field";
-import { HelperText } from "@/components/ui/helper-text";
+import { HelperText } from "@/components/ui/typography";
 import { StackH, StackV } from "@/components/ui/stack";
 import { StringInput } from "@/components/ui/string-input";
 import { UserIdCard } from "@/components/user/user-id-card";

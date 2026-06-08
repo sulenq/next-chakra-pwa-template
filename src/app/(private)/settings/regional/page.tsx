@@ -1,6 +1,6 @@
 "use client";
 
-import { SettingsSavedLocalyHelperText } from "@/components/ui/helper-text";
+import { SettingsSavedLocalyHelperText } from "@/components/ui/typography";
 import { StackV } from "@/components/ui/stack";
 import { SECTION_GAP } from "@/constants/styles";
 import { DateTimeSection } from "@/features/settings/regional/sections/date-time.section";

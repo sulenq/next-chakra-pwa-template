@@ -541,7 +541,7 @@ export const customConfig = defineConfig({
     semanticTokens: {
       colors: {
         text: { value: { base: "{colors.neutral.950}", _dark: "#ddd" } },
-
+                                
         ibody: {
           value: {
             base: "{colors.neutral.950}",
@@ -566,8 +566,8 @@ export const customConfig = defineConfig({
         bg: {
           canvas: {
             value: {
-              base: "{colors.light}",
-              _dark: "{colors.dark}",
+              base: "#e8eaf1ff",
+              _dark: "#111111",
             },
           },
           bodySolid: {
@@ -577,15 +577,19 @@ export const customConfig = defineConfig({
             },
           },
           body: {
-            value: {
-              base: "#faf9ffec",
-              _dark: "rgba(27, 27, 27, 0.925)",
+             value: {
+              base: "#faf9ffff",
+              _dark: "#1c1c1c",
             },
+            // value: {
+            //   base: "#faf9ffec",
+            //   _dark: "rgba(27, 27, 27, 0.925)",
+            // },
           },
           frosted: {
             value: {
               base: "rgba(250, 249, 255, 0.5)",
-              _dark: "rgba(27, 27, 27, 0.5)",
+              _dark: "rgba(40, 40, 40, 0.5)",
             },
           },
           subtle: {

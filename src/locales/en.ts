@@ -513,7 +513,7 @@ const translations = {
     "main": {
       "index": "Main",
       "profile": "Profile",
-      "display": "Display",
+      "appearance": "Appearance",
       "regional": "Language & Regional",
       "app_permissions": "App Permissions"
     },

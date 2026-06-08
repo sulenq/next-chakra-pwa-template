@@ -1,7 +1,7 @@
 "use client";
 
 import { Btn, BtnProps } from "@/components/ui/btn";
-import { HelperText } from "@/components/ui/helper-text";
+import { HelperText } from "@/components/ui/typography";
 import { Img } from "@/components/ui/img";
 import { P } from "@/components/ui/p";
 import { StackH, StackV } from "@/components/ui/stack";

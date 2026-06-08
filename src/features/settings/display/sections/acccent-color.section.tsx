@@ -1,18 +1,18 @@
-import { SettingsHelperText } from "@/components/ui/helper-text";
+import { HScroll } from "@/components/container/h-scroll";
+import { Item } from "@/components/container/item";
+import { SettingItemContainer } from "@/components/container/settings-shell";
+import { Divider } from "@/components/ui/divider";
+import { SettingsGroupTitle } from "@/components/ui/typography";
 import { P } from "@/components/ui/p";
 import { RadioItem } from "@/components/ui/radio";
 import { StackH, StackV } from "@/components/ui/stack";
+import { Switch } from "@/components/ui/switch";
 import { Tooltip } from "@/components/ui/tooltip";
-import { HScroll } from "@/components/container/h-scroll";
-import { Item } from "@/components/container/item";
 import { COLOR_PALETTES } from "@/constants/colors";
 import { R_SPACING_MD } from "@/constants/styles";
-import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
 import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
+import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
 import { Box, Center } from "@chakra-ui/react";
-import { Divider } from "@/components/ui/divider";
-import { SettingItemContainer } from "@/components/container/settings-shell";
-import { Switch } from "@/components/ui/switch";
 
 // -----------------------------------------------------------------
 
@@ -110,14 +110,14 @@ export const AccentColorSection = () => {
 
   return (
     <StackV px={R_SPACING_MD}>
-      <SettingsHelperText>
+      <SettingsGroupTitle>
         {t.settings_accent_color_section.title}
-      </SettingsHelperText>
+      </SettingsGroupTitle>
 
       <Item.Body>
         <AccentColorSetting />
 
-        <Divider mx={4} />
+        <Divider />
 
         <AmbienceColorSetting />
       </Item.Body>

@@ -2,7 +2,7 @@ import { AppIconLucide } from "@/components/branding/app-icon";
 import { Item, ItemRootProps } from "@/components/container/item";
 import { DataListFooter } from "@/components/data-list/data-footer";
 import { ClampText } from "@/components/ui/clamp-text";
-import { SettingsHelperText } from "@/components/ui/helper-text";
+import { SettingsHelperText } from "@/components/ui/typography";
 import { P } from "@/components/ui/p";
 import { SearchInput } from "@/components/ui/search-input";
 import { StackH, StackV } from "@/components/ui/stack";

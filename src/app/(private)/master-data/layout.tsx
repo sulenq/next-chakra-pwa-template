@@ -1,6 +1,6 @@
 "use client";
 
-import { HelperText } from "@/components/ui/helper-text";
+import { HelperText } from "@/components/ui/typography";
 import { StackH, StackV } from "@/components/ui/stack";
 import {
   ConstrainedContainer,

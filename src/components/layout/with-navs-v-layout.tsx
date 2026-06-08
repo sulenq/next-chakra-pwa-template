@@ -2,7 +2,7 @@
 
 import { MainView, useMainViewContext } from "@/components/container/main-view";
 import { VNavs } from "@/components/navigation/navs";
-import { HelperText } from "@/components/ui/helper-text";
+import { HelperText } from "@/components/ui/typography";
 import { StackH, StackV } from "@/components/ui/stack";
 import { APP } from "@/constants/_meta";
 import { GAP, R_SPACING_MD } from "@/constants/styles";

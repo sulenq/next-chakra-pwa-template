@@ -4,7 +4,7 @@ import { BackButton } from "@/components/navigation/back-button";
 import { Btn } from "@/components/ui/btn";
 import { Disclosure } from "@/components/ui/disclosure";
 import { Field } from "@/components/ui/field";
-import { HelperText } from "@/components/ui/helper-text";
+import { HelperText } from "@/components/ui/typography";
 import { PasswordInput } from "@/components/ui/password-input";
 import { StringInput } from "@/components/ui/string-input";
 import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";

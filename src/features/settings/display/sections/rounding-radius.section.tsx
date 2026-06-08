@@ -1,15 +1,15 @@
 "use client";
 
-import { SettingsHelperText } from "@/components/ui/helper-text";
+import { Item } from "@/components/container/item";
 import { P } from "@/components/ui/p";
 import { RadioItem } from "@/components/ui/radio";
 import { StackH, StackV } from "@/components/ui/stack";
-import { Item } from "@/components/container/item";
+import { SettingsGroupTitle } from "@/components/ui/typography";
 import { ROUNDED_PRESETS } from "@/constants/presets";
 import { R_SPACING_MD } from "@/constants/styles";
-import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
-import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
 import { PSleleton } from "@/features/settings/display/sections/color-mode.section";
+import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
+import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
 import { Box, Circle, SimpleGrid } from "@chakra-ui/react";
 
 // -----------------------------------------------------------------
@@ -33,9 +33,9 @@ export const RoundedSection = () => {
 
   return (
     <StackV px={R_SPACING_MD}>
-      <SettingsHelperText>
+      <SettingsGroupTitle>
         {t.settings_rounded_section.title}
-      </SettingsHelperText>
+      </SettingsGroupTitle>
 
       <Item.Body p={2} gap={4}>
         <SimpleGrid minChildWidth={"160px"} gapX={1} gapY={4}>

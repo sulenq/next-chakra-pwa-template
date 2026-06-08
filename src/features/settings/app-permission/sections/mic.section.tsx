@@ -2,7 +2,7 @@ import { getBadgeText } from "@/features/settings/app-permission/utils/getBadgeT
 import { Btn } from "@/components/ui/btn";
 import { Disclosure } from "@/components/ui/disclosure";
 import { Divider } from "@/components/ui/divider";
-import { SettingsHelperText } from "@/components/ui/helper-text";
+import { SettingsHelperText } from "@/components/ui/typography";
 import { P } from "@/components/ui/p";
 import { StackH, StackV } from "@/components/ui/stack";
 import { Switch } from "@/components/ui/switch";
@@ -281,7 +281,7 @@ export const MicrophoneSection = () => {
       <Item.Body>
         <MicPermissionSetting />
 
-        <Divider mx={4} />
+        <Divider />
 
         <MicTesterSetting />
       </Item.Body>
