@@ -1,12 +1,13 @@
-import { Divider } from "@/components/ui/divider";
-import { SettingsHelperText } from "@/components/ui/typography";
-import { P } from "@/components/ui/p";
-import { StackV } from "@/components/ui/stack";
 import { Item } from "@/components/container/item";
 import { SettingItemContainer } from "@/components/container/settings-shell";
+import { Divider } from "@/components/ui/divider";
+import { P } from "@/components/ui/p";
+import { StackV } from "@/components/ui/stack";
+import {
+  SettingsGroupTitle,
+  SettingsHelperText,
+} from "@/components/ui/typography";
 import { R_SPACING_MD } from "@/constants/styles";
-import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
-import useUOMFormatStore from "@/features/settings/regional/stores/use-uom-format-store";
 import {
   SelectAngleFormat,
   SelectAreaFormat,
@@ -23,6 +24,8 @@ import {
   SelectTemperatureFormat,
   SelectVolumeFormat,
 } from "@/features/settings/regional/components/select-unit-format";
+import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
+import useUOMFormatStore from "@/features/settings/regional/stores/use-uom-format-store";
 
 // -----------------------------------------------------------------
 
@@ -429,7 +432,7 @@ export const UOMFormatSection = () => {
 
   return (
     <Item.Root px={R_SPACING_MD}>
-      <SettingsHelperText>{t.settings_uom_section.title}</SettingsHelperText>
+      <SettingsGroupTitle>{t.settings_uom_section.title}</SettingsGroupTitle>
 
       <Item.Body>
         <WeightFormatSetting />

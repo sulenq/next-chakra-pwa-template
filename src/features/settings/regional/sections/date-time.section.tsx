@@ -1,18 +1,18 @@
+import { Item } from "@/components/container/item";
+import { SettingItemContainer } from "@/components/container/settings-shell";
 import { Divider } from "@/components/ui/divider";
-import { SettingsHelperText } from "@/components/ui/typography";
 import { P } from "@/components/ui/p";
 import { StackV } from "@/components/ui/stack";
 import { Switch } from "@/components/ui/switch";
-import { Item } from "@/components/container/item";
-import { SelectTimezone } from "@/features/settings/regional/components/select-timezone";
-import { SettingItemContainer } from "@/components/container/settings-shell";
+import { SettingsGroupTitle } from "@/components/ui/typography";
 import { R_SPACING_MD } from "@/constants/styles";
+import { SelectDateFormat } from "@/features/settings/regional/components/select-date-format";
+import { SelectTimeFormat } from "@/features/settings/regional/components/select-time-format";
+import { SelectTimezone } from "@/features/settings/regional/components/select-timezone";
 import useDateFormatStore from "@/features/settings/regional/stores/use-date-format-store";
 import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
 import useTimeFormatStore from "@/features/settings/regional/stores/use-time-format-store";
 import useTimezoneStore from "@/features/settings/regional/stores/use-timezone-store";
-import { SelectDateFormat } from "@/features/settings/regional/components/select-date-format";
-import { SelectTimeFormat } from "@/features/settings/regional/components/select-time-format";
 import { SelectOption } from "@/types/global.types";
 import { getLocalTimezone } from "@/utils/time";
 import { useEffect, useState } from "react";
@@ -177,9 +177,9 @@ export const DateTimeSection = () => {
 
   return (
     <Item.Root px={R_SPACING_MD}>
-      <SettingsHelperText>
+      <SettingsGroupTitle>
         {t.settings_date_time_section.title}
-      </SettingsHelperText>
+      </SettingsGroupTitle>
 
       <Item.Body>
         <DateFormatSetting />

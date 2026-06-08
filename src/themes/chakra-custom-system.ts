@@ -48,10 +48,12 @@ export const customConfig = defineConfig({
 
     tokens: {
       animations: {
-        bounceIn: {
-          value: "bounce-in 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.1)",
+        scaleUpOvershoot: {
+          value: "scale-up-overshoot 0.35s cubic-bezier(0.16, 1, 0.3, 1)",
         },
-        bounceOut: { value: "bounce-out 0.2s ease-in" },
+        scaleDown: {
+          value: "scale-down 0.35s cubic-bezier(0.16, 1, 0.3, 1)",
+        },
       },
       fonts: {
         heading: { value: "Plus Jakarta Sans, sans-serif" },
@@ -541,7 +543,7 @@ export const customConfig = defineConfig({
     semanticTokens: {
       colors: {
         text: { value: { base: "{colors.neutral.950}", _dark: "#ddd" } },
-                                
+
         ibody: {
           value: {
             base: "{colors.neutral.950}",
@@ -577,7 +579,7 @@ export const customConfig = defineConfig({
             },
           },
           body: {
-             value: {
+            value: {
               base: "{colors.bodyLight}",
               _dark: "{colors.bodyDark}",
             },
