@@ -75,8 +75,8 @@ export const customConfig = defineConfig({
       colors: {
         light: { value: "#f0f1f4ff" },
         dark: { value: "#111" },
-        bodyLight: { value: "#faf9ffec" },
-        bodyDark: { value: "rgba(27, 27, 27, 0.925)" },
+        bodyLight: { value: "#faf9ff" },
+        bodyDark: { value: "#1d1d1d" },
 
         d0: { value: "#8a909614" },
         d1: { value: "#8a90961a" },
@@ -578,8 +578,8 @@ export const customConfig = defineConfig({
           },
           body: {
              value: {
-              base: "#faf9ffff",
-              _dark: "#1c1c1c",
+              base: "{colors.bodyLight}",
+              _dark: "{colors.bodyDark}",
             },
             // value: {
             //   base: "#faf9ffec",
