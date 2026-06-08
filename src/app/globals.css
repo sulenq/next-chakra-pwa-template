@@ -19,7 +19,6 @@ nextjs-portal {
 * {
   font-optical-sizing: auto;
   box-sizing: border-box !important;
-  /* font-family: "Google Sans Flex", sans-serif; */
 }
 *::selection {
   background: var(--d3);

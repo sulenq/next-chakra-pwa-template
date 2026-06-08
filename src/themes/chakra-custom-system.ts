@@ -68,8 +68,8 @@ export const customConfig = defineConfig({
         xl: { value: "1.125rem" }, // 18px
       },
       fontWeights: {
-        normal: { value: "450" },
-        medium: { value: "500" },
+        normal: { value: "500" },
+        medium: { value: "550" },
         semibold: { value: "600" },
         bold: { value: "700" },
         extrabold: { value: "800" },

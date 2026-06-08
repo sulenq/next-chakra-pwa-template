@@ -355,6 +355,7 @@ export const DisclosureSelectInput = forwardRef<
 
           <Disclosure.Footer>
             <Btn
+              w={"50%"}
               variant={"outline"}
               onClick={() => {
                 setSelected([]);
@@ -363,6 +364,7 @@ export const DisclosureSelectInput = forwardRef<
               Clear
             </Btn>
             <Btn
+              w={"50%"}
               colorPalette={theme.colorPalette}
               disabled={required && isEmptyArray(selected)}
               onClick={handleConfirm}
