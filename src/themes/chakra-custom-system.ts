@@ -567,7 +567,7 @@ export const customConfig = defineConfig({
           canvas: {
             value: {
               base: "#e8eaf1ff",
-              _dark: "#111111",
+              _dark: "#151515",
             },
           },
           bodySolid: {
