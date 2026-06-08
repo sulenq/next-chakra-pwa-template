@@ -13,13 +13,15 @@ import { useThemeStore } from "@/features/settings/display/stores/use-theme-stor
 import { usePopDisclosure } from "@/hooks/use-pop-disclosure";
 import { InputGroup } from "@chakra-ui/react";
 import { toFormData } from "axios";
-import { useFormik } from "formik";
+import { Controller, useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
 import { EditIcon } from "lucide-react";
-import * as yup from "yup";
 import { useUpdateLayanan } from "../hooks/use-layanan";
 import { LayananItem } from "../types/layanan.types";
 import { getMainViewTitle } from "@/utils/route";
 import { usePathname } from "next/navigation";
+import { useEffect } from "react";
 
 interface Props {
   item: LayananItem;
@@ -40,43 +42,55 @@ export const LayananUpdate = ({ item }: Props) => {
   const { mutate, isPending } = useUpdateLayanan();
 
   // States
-  const formik = useFormik({
-    initialValues: {
+  const schema = z.object({
+    title_id: z.string().min(1, t.msg_required_form || "Required"),
+    title_en: z.string().min(1, t.msg_required_form || "Required"),
+    description_id: z.string().min(1, t.msg_required_form || "Required"),
+    description_en: z.string().min(1, t.msg_required_form || "Required"),
+    file: z.any().nullable().optional(),
+  });
+
+  const {
+    control,
+    handleSubmit,
+    setValue,
+    reset,
+    formState: { errors },
+  } = useForm({
+    resolver: zodResolver(schema),
+    defaultValues: {
       title_id: item.title?.id || "",
       title_en: item.title?.en || "",
       description_id: item.description?.id || "",
       description_en: item.description?.en || "",
       file: null as File | null,
     },
-    enableReinitialize: true,
-    validationSchema: yup.object().shape({
-      title_id: yup.string().required(t.msg_required_form || "Required"),
-      title_en: yup.string().required(t.msg_required_form || "Required"),
-      description_id: yup.string().required(t.msg_required_form || "Required"),
-      description_en: yup.string().required(t.msg_required_form || "Required"),
-    }),
-    onSubmit: (values) => {
-      // const formData = new FormData();
-      // formData.append("title_id", values.title_id);
-      // formData.append("title_en", values.title_en);
-      // formData.append("description_id", values.description_id);
-      // formData.append("description_en", values.description_en);
-      // if (values.file) {
-      //   formData.append("file", values.file);
-      // }
-
-      const payload = values;
-
-      mutate(
-        { id: item.id, data: toFormData(payload) },
-        {
-          onSuccess: () => {
-            onClose();
-          },
-        },
-      );
-    },
   });
+
+  useEffect(() => {
+    if (open) {
+      reset({
+        title_id: item.title?.id || "",
+        title_en: item.title?.en || "",
+        description_id: item.description?.id || "",
+        description_en: item.description?.en || "",
+        file: null,
+      });
+    }
+  }, [open, item, reset]);
+
+  const onSubmit = (values: any) => {
+    const payload = values;
+
+    mutate(
+      { id: item.id, data: toFormData(payload) },
+      {
+        onSuccess: () => {
+          onClose();
+        },
+      },
+    );
+  };
 
   // Constants
   const mainViewTitle = getMainViewTitle(pathname, t);
@@ -105,92 +119,106 @@ export const LayananUpdate = ({ item }: Props) => {
         bodyContent={
           <form
             id={`update-layanan-form-${item.id}`}
-            onSubmit={formik.handleSubmit}
+            onSubmit={handleSubmit(onSubmit)}
           >
             <FieldsetRoot disabled={isPending}>
               <Field
                 label={t.title || "Title"}
-                invalid={!!formik.errors.title_id && !!formik.touched.title_id}
-                errorText={formik.errors.title_id}
+                invalid={!!errors.title_id}
+                errorText={errors.title_id?.message as string}
               >
                 <InputGroup w={"full"} startElement={"ID"}>
-                  <StringInput
-                    name={"title_id"}
-                    placeholder={t.title || "Title"}
-                    value={formik.values.title_id}
-                    onChange={(val) => formik.setFieldValue("title_id", val)}
-                    pl={"40px !important"}
+                  <Controller
+                    name="title_id"
+                    control={control}
+                    render={({ field }) => (
+                      <StringInput
+                        name={field.name}
+                        placeholder={t.title || "Title"}
+                        value={field.value}
+                        onChange={field.onChange}
+                        pl={"40px !important"}
+                      />
+                    )}
                   />
                 </InputGroup>
               </Field>
 
               <Field
                 label={t.title || "Title"}
-                invalid={!!formik.errors.title_en && !!formik.touched.title_en}
-                errorText={formik.errors.title_en}
+                invalid={!!errors.title_en}
+                errorText={errors.title_en?.message as string}
               >
                 <InputGroup w={"full"} startElement={"EN"}>
-                  <StringInput
-                    name={"title_en"}
-                    placeholder={t.title || "Title"}
-                    value={formik.values.title_en}
-                    onChange={(val) => formik.setFieldValue("title_en", val)}
-                    pl={"40px !important"}
+                  <Controller
+                    name="title_en"
+                    control={control}
+                    render={({ field }) => (
+                      <StringInput
+                        name={field.name}
+                        placeholder={t.title || "Title"}
+                        value={field.value}
+                        onChange={field.onChange}
+                        pl={"40px !important"}
+                      />
+                    )}
                   />
                 </InputGroup>
               </Field>
 
               <Field
                 label={t.description || "Description"}
-                invalid={
-                  !!formik.errors.description_id &&
-                  !!formik.touched.description_id
-                }
-                errorText={formik.errors.description_id}
+                invalid={!!errors.description_id}
+                errorText={errors.description_id?.message as string}
               >
                 <InputGroup w={"full"} startElement={"ID"}>
-                  <TextareaInput
-                    name={"description_id"}
-                    placeholder={t.description || "Description"}
-                    value={formik.values.description_id}
-                    onChange={(val) =>
-                      formik.setFieldValue("description_id", val)
-                    }
-                    pl={"40px !important"}
+                  <Controller
+                    name="description_id"
+                    control={control}
+                    render={({ field }) => (
+                      <TextareaInput
+                        name={field.name}
+                        placeholder={t.description || "Description"}
+                        value={field.value}
+                        onChange={field.onChange}
+                        pl={"40px !important"}
+                      />
+                    )}
                   />
                 </InputGroup>
               </Field>
 
               <Field
                 label={t.description || "Description"}
-                invalid={
-                  !!formik.errors.description_en &&
-                  !!formik.touched.description_en
-                }
-                errorText={formik.errors.description_en}
+                invalid={!!errors.description_en}
+                errorText={errors.description_en?.message as string}
               >
                 <InputGroup w={"full"} startElement={"EN"}>
-                  <TextareaInput
-                    name={"description_en"}
-                    placeholder={t.description || "Description"}
-                    value={formik.values.description_en}
-                    onChange={(val) =>
-                      formik.setFieldValue("description_en", val)
-                    }
-                    pl={"40px !important"}
+                  <Controller
+                    name="description_en"
+                    control={control}
+                    render={({ field }) => (
+                      <TextareaInput
+                        name={field.name}
+                        placeholder={t.description || "Description"}
+                        value={field.value}
+                        onChange={field.onChange}
+                        pl={"40px !important"}
+                      />
+                    )}
                   />
                 </InputGroup>
               </Field>
 
               <Field
                 label={"Icon"}
-                invalid={!!formik.errors.file && !!formik.touched.file}
-                errorText={formik.errors.file as string}
+                invalid={!!errors.file}
+                errorText={errors.file?.message as string}
               >
                 <input
                   type={"file"}
                   onChange={(e) =>
-                    formik.setFieldValue("file", e.target.files?.[0] || null)
+                    setValue("file", e.target.files?.[0] || null, { shouldValidate: true })
                   }
                 />
               </Field>

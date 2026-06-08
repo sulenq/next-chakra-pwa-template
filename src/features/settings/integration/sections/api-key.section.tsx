@@ -9,8 +9,9 @@ import { StackH } from "@/components/ui/stack";
 import { R_SPACING_MD } from "@/constants/styles";
 import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
 import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
-import { useFormik } from "formik";
-import * as yup from "yup";
+import { Controller, useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
 
 export const APIKeySection = () => {
   // Stores
@@ -18,49 +19,63 @@ export const APIKeySection = () => {
   const { theme } = useThemeStore();
 
   // States
-  const formik = useFormik({
-    validateOnChange: false,
-    initialValues: {
+  const schema = z.object({
+    mapboxToken: z.string().min(1, t.msg_required_form),
+    tinyMceToken: z.string().min(1, t.msg_required_form),
+  });
+
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: zodResolver(schema),
+    defaultValues: {
       mapboxToken: "",
       tinyMceToken: "",
     },
-    validationSchema: yup.object().shape({
-      mapboxToken: yup.string().required(t.msg_required_form),
-      tinyMceToken: yup.string().required(t.msg_required_form),
-    }),
-    onSubmit: () => {},
   });
+
+  const onSubmit = (values: any) => {};
 
   return (
     <Item.Root px={R_SPACING_MD}>
       <SettingsHelperText>API Keys</SettingsHelperText>
 
       <Item.Body p={4}>
-        <form id={"api-keys-form"} onSubmit={formik.handleSubmit}>
+        <form id={"api-keys-form"} onSubmit={handleSubmit(onSubmit)}>
           <FieldsetRoot>
             <Field
               label={"Mapbox Token"}
-              invalid={!!formik.errors.mapboxToken}
-              errorText={formik.errors.mapboxToken as string}
+              invalid={!!errors.mapboxToken}
+              errorText={errors.mapboxToken?.message as string}
             >
-              <PasswordInput
-                value={formik.values.mapboxToken}
-                onChange={(value) => {
-                  formik.setFieldValue("mapboxToken", value);
-                }}
+              <Controller
+                name="mapboxToken"
+                control={control}
+                render={({ field }) => (
+                  <PasswordInput
+                    value={field.value}
+                    onChange={field.onChange}
+                  />
+                )}
               />
             </Field>
 
             <Field
               label={"Tiny MCE Token"}
-              invalid={!!formik.errors.tinyMceToken}
-              errorText={formik.errors.tinyMceToken as string}
+              invalid={!!errors.tinyMceToken}
+              errorText={errors.tinyMceToken?.message as string}
             >
-              <PasswordInput
-                value={formik.values.tinyMceToken}
-                onChange={(value) => {
-                  formik.setFieldValue("tinyMceToken", value);
-                }}
+              <Controller
+                name="tinyMceToken"
+                control={control}
+                render={({ field }) => (
+                  <PasswordInput
+                    value={field.value}
+                    onChange={field.onChange}
+                  />
+                )}
               />
             </Field>
           </FieldsetRoot>

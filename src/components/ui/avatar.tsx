@@ -106,7 +106,8 @@ export const AvatarGroup = forwardRef<HTMLDivElement, AvatarGroupProps>(
 
 interface AvatarInputDisclosureTriggerProps extends FileInputProps {
   children: React.ReactElement<any>;
-  formik: any;
+  onDeleteFile?: (fileData: any) => void;
+  onUndoDeleteFile?: (fileData: any) => void;
   user?: User | null;
 }
 
@@ -114,7 +115,8 @@ export const AvatarUploadTrigger = (
   props: AvatarInputDisclosureTriggerProps,
 ) => {
   // Props
-  const { children, value, onChange, formik, user } = props;
+  const { children, value, onChange, onDeleteFile, onUndoDeleteFile, user } =
+    props;
 
   // Hooks
   const { open, onOpen } = usePopDisclosure(disclosureId("avatar-input"));
@@ -136,22 +138,8 @@ export const AvatarUploadTrigger = (
                 onChange?.(value);
               }}
               existingFiles={user?.avatar}
-              onDeleteFile={(fileData) => {
-                formik.setFieldValue(
-                  "deleteAvatarIds",
-                  Array.from(
-                    new Set([...formik.values.deleteAvatarIds, fileData.id]),
-                  ),
-                );
-              }}
-              onUndoDeleteFile={(fileData) => {
-                formik.setFieldValue(
-                  "deleteAvatarIds",
-                  formik.values.deleteAvatarIds.filter(
-                    (id: string) => id !== fileData.id,
-                  ),
-                );
-              }}
+              onDeleteFile={onDeleteFile}
+              onUndoDeleteFile={onUndoDeleteFile}
             />
           </Disclosure.Body>
 

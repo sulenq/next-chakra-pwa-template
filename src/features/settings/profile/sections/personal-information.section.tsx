@@ -13,8 +13,9 @@ import { useThemeStore } from "@/features/settings/display/stores/use-theme-stor
 import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
 import { useAuthStore } from "@/stores/use-auth-store";
 import { Stack } from "@chakra-ui/react";
-import { useFormik } from "formik";
-import * as yup from "yup";
+import { Controller, useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
 
 // -----------------------------------------------------------------
 
@@ -28,20 +29,30 @@ export const PersonalInformationSection = (props: ItemRootProps) => {
   const user = useAuthStore((s) => s.auth.user);
 
   // States
-  const formik = useFormik({
-    validateOnChange: false,
-    initialValues: {
-      avatar: null as any,
-      deleteAvatarIds: [],
-      name: user?.name,
-      email: user?.email,
-    },
-    validationSchema: yup.object().shape({
-      name: yup.string().required(t.msg_required_form),
-      email: yup.string().required(t.msg_required_form),
-    }),
-    onSubmit: () => {},
+  const schema = z.object({
+    avatar: z.any().nullable().optional(),
+    deleteAvatarIds: z.array(z.string()).default([]),
+    name: z.string().min(1, t.msg_required_form),
+    email: z.string().min(1, t.msg_required_form),
   });
+
+  const {
+    control,
+    handleSubmit,
+    setValue,
+    getValues,
+    formState: { errors },
+  } = useForm({
+    resolver: zodResolver(schema),
+    defaultValues: {
+      avatar: null,
+      deleteAvatarIds: [],
+      name: user?.name || "",
+      email: user?.email || "",
+    },
+  });
+
+  const onSubmit = (values: any) => {};
 
   return (
     <Item.Root px={R_SPACING_MD} {...props}>
@@ -52,19 +63,43 @@ export const PersonalInformationSection = (props: ItemRootProps) => {
           </StackV>
 
           <StackV flex={1} justify={"space-between"}>
-            <form id={"personal-info-form"} onSubmit={formik.handleSubmit}>
+            <form id={"personal-info-form"} onSubmit={handleSubmit(onSubmit)}>
               <FieldsetRoot>
                 <Field
                   label={"Avatar"}
-                  invalid={!!formik.errors.avatar}
-                  errorText={`${formik.errors.avatar}`}
+                  invalid={!!errors.avatar}
+                  errorText={errors.avatar?.message as string}
                 >
                   <StackV gap={2}>
-                    <AvatarUploadTrigger formik={formik} user={user}>
-                      <Btn w={"fit"} variant={"outline"}>
-                        {t.upload_new_avatar}
-                      </Btn>
-                    </AvatarUploadTrigger>
+                    <Controller
+                      name="avatar"
+                      control={control}
+                      render={({ field }) => (
+                        <AvatarUploadTrigger
+                          value={field.value}
+                          onChange={field.onChange}
+                          user={user}
+                          onDeleteFile={(fileData) => {
+                            const currentIds = getValues("deleteAvatarIds");
+                            setValue(
+                              "deleteAvatarIds",
+                              Array.from(new Set([...currentIds, fileData.id])),
+                            );
+                          }}
+                          onUndoDeleteFile={(fileData) => {
+                            const currentIds = getValues("deleteAvatarIds");
+                            setValue(
+                              "deleteAvatarIds",
+                              currentIds.filter((id) => id !== fileData.id),
+                            );
+                          }}
+                        >
+                          <Btn w={"fit"} variant={"outline"}>
+                            {t.upload_new_avatar}
+                          </Btn>
+                        </AvatarUploadTrigger>
+                      )}
+                    />
 
                     <StackV gap={1}>
                       <HelperText>{t.msg_new_avatar_helper}</HelperText>
@@ -75,29 +110,37 @@ export const PersonalInformationSection = (props: ItemRootProps) => {
 
                 <Field
                   label={t.name}
-                  invalid={!!formik.errors.name}
-                  errorText={`${formik.errors.name}`}
+                  invalid={!!errors.name}
+                  errorText={errors.name?.message as string}
                 >
-                  <StringInput
-                    value={formik.values.name}
-                    onChange={(value) => {
-                      formik.setFieldValue("name", value);
-                    }}
-                    placeholder={"Jolitos Kurniawan"}
+                  <Controller
+                    name="name"
+                    control={control}
+                    render={({ field }) => (
+                      <StringInput
+                        value={field.value}
+                        onChange={field.onChange}
+                        placeholder={"Jolitos Kurniawan"}
+                      />
+                    )}
                   />
                 </Field>
 
                 <Field
                   label={"Email"}
-                  invalid={!!formik.errors.email}
-                  errorText={`${formik.errors.email}`}
+                  invalid={!!errors.email}
+                  errorText={errors.email?.message as string}
                 >
-                  <StringInput
-                    value={formik.values.email}
-                    onChange={(value) => {
-                      formik.setFieldValue("email", value);
-                    }}
-                    placeholder={"example@email.com"}
+                  <Controller
+                    name="email"
+                    control={control}
+                    render={({ field }) => (
+                      <StringInput
+                        value={field.value}
+                        onChange={field.onChange}
+                        placeholder={"example@email.com"}
+                      />
+                    )}
                   />
                 </Field>
               </FieldsetRoot>
