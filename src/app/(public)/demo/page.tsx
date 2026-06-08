@@ -27,7 +27,7 @@ import { P } from "@/components/ui/p";
 import { PasswordInput } from "@/components/ui/password-input";
 import { PeriodPickerInput } from "@/components/ui/period-picker-input";
 import { SearchInput } from "@/components/ui/search-input";
-import { SelectInput } from "@/components/ui/select-input";
+import { DisclosureSelectInput } from "@/components/ui/disclosure-select-input";
 import { StackH, StackV } from "@/components/ui/stack";
 import { StringInput } from "@/components/ui/string-input";
 import { TextareaInput } from "@/components/ui/textarea-input";
@@ -859,7 +859,7 @@ const DemoIndexRoute = () => {
                 </Field>
 
                 <Field invalid={!!formik.errors.select}>
-                  <SelectInput
+                  <DisclosureSelectInput
                     id={"select-single"}
                     title={"Agama"}
                     value={formik.values.select}
@@ -871,7 +871,7 @@ const DemoIndexRoute = () => {
                 </Field>
 
                 <Field invalid={!!formik.errors.multiSelect}>
-                  <SelectInput
+                  <DisclosureSelectInput
                     id={"select-multiple"}
                     title={"Agama"}
                     value={formik.values.multiSelect}

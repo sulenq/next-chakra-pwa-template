@@ -1,4 +1,7 @@
-import { SelectInput, SelectInputProps } from "@/components/ui/select-input";
+import {
+  DisclosureSelectInput,
+  DisclosureSelectInputProps,
+} from "@/components/ui/disclosure-select-input";
 import { TIME_ZONES } from "@/constants/timezones";
 import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
 import { SelectOption } from "@/types/global.types";
@@ -6,7 +9,7 @@ import { useEffect, useState } from "react";
 
 // -----------------------------------------------------------------
 
-export const SelectTimezone = (props: SelectInputProps) => {
+export const SelectTimezone = (props: DisclosureSelectInputProps) => {
   // Props
   const { ...restProps } = props;
 
@@ -37,10 +40,10 @@ export const SelectTimezone = (props: SelectInputProps) => {
   }, [isOpen]);
 
   return (
-    <SelectInput
+    <DisclosureSelectInput
       title={`${t.select} ${t.timezone}`}
       selectOptions={options || []}
-      loading={options === null && isOpen}
+      loading={options === null}
       onOpenChange={setIsOpen}
       {...restProps}
     />

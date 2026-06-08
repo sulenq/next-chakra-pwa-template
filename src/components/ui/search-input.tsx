@@ -1,17 +1,17 @@
 "use client";
 
+import { LucideIcon } from "@/components/misc/icon";
 import { StackH } from "@/components/ui/stack";
 import { StringInput, StringInputProps } from "@/components/ui/string-input";
 import { Tooltip } from "@/components/ui/tooltip";
-import { LucideIcon } from "@/components/misc/icon";
-import { BASE_ICON_BOX_SIZE, MAIN_INPUT_SIZE } from "@/constants/styles";
+import { MAIN_INPUT_SIZE } from "@/constants/styles";
 import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
 import { useDebounced } from "@/hooks/use-debounced";
 import { InputSize, InputVariant } from "@/types/global.types";
 import { Icon, IconProps, InputGroup, InputGroupProps } from "@chakra-ui/react";
 import { SearchIcon } from "lucide-react";
 import { useSearchParams } from "next/navigation";
-import { useEffect, useState, forwardRef } from "react";
+import { forwardRef, useEffect, useState } from "react";
 
 // -----------------------------------------------------------------
 
@@ -123,9 +123,10 @@ export const SearchInput = forwardRef<HTMLInputElement, SearchInputProps>(
           startElement={
             !noIcon && (
               <Icon
-                boxSize={BASE_ICON_BOX_SIZE}
+                boxSize={4}
                 color={"fg.subtle"}
-                ml={"-2px"}
+                ml={"-1px"}
+                mt={"1px"}
                 {...iconProps}
               >
                 {icon || <LucideIcon icon={SearchIcon} />}

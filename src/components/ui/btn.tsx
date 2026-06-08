@@ -22,7 +22,7 @@ export const Btn = forwardRef<HTMLButtonElement, BtnProps>(
     const {
       children,
       className = "",
-      clicky = true,
+      clicky = false,
       iconButton = false,
       colorPalette = "gray",
       size,

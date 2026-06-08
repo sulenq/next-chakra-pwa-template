@@ -1,10 +1,13 @@
-import { SelectInput, SelectInputProps } from "@/components/ui/select-input";
+import {
+  DisclosureSelectInput,
+  DisclosureSelectInputProps,
+} from "@/components/ui/disclosure-select-input";
 import { DATE_FORMATS } from "@/constants/date-formats";
 import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
 
 // -----------------------------------------------------------------
 
-export const SelectDateFormat = (props: SelectInputProps) => {
+export const SelectDateFormat = (props: DisclosureSelectInputProps) => {
   // Props
   const { ...restProps } = props;
 
@@ -21,7 +24,7 @@ export const SelectDateFormat = (props: SelectInputProps) => {
   });
 
   return (
-    <SelectInput
+    <DisclosureSelectInput
       required
       title={`${t.select} ${t.date_format}`}
       selectOptions={options}

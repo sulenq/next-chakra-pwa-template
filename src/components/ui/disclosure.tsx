@@ -1,11 +1,10 @@
 "use client";
 
+import { AppIconLucide } from "@/components/branding/app-icon";
 import { Btn } from "@/components/ui/btn";
 import { Dialog, DialogContentProps } from "@/components/ui/dialog";
 import { Drawer, DrawerContentProps } from "@/components/ui/drawer";
-import { P } from "@/components/ui/p";
 import { StackH, StackV } from "@/components/ui/stack";
-import { AppIconLucide } from "@/components/branding/app-icon";
 import { SM_SCREEN_BREAKPOINT } from "@/constants/styles";
 import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
 import { useIsSmScreenWidth } from "@/hooks/use-is-sm-screen-width";
@@ -28,6 +27,7 @@ import {
 } from "@chakra-ui/react";
 import { MaximizeIcon, MinimizeIcon, XIcon } from "lucide-react";
 import { useEffect, useState } from "react";
+import { ClampText } from "./clamp-text";
 
 // -----------------------------------------------------------------
 
@@ -190,15 +190,24 @@ export const DisclosureHeaderContent = (
       w={"full"}
       {...restProps}
     >
+      {/* Spacer */}
+      <Box w={"56px"} />
+
       {content ? (
         content
       ) : (
-        <P fontWeight={"medium"} ml={!prefix ? [0, null, 0] : ""}>
+        <ClampText textAlign={"center"} fontWeight={"medium"} mx={"auto"}>
           {title}
-        </P>
+        </ClampText>
       )}
 
-      <StackH w={"fit"} align={"center"} ml={"auto"} gap={[0, null, 2]}>
+      <StackH
+        flexShrink={0}
+        align={"center"}
+        justify={"end"}
+        gap={[0, null, 2]}
+        w={"56px"}
+      >
         {children}
 
         {withMaximizeButton && (
@@ -262,7 +271,6 @@ const DisclosureBody = ({ children, ...props }: DisclosureBodyProps) => {
   ) : (
     <Dialog.Body
       px={4}
-      // pr={`calc(16px - ${FIREFOX_SCROLL_Y_CLASS_PR_PREFIX})`}
       py={4}
       className={props.className || "scrollY"}
       {...(props as DialogBodyProps)}
