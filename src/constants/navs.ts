@@ -104,8 +104,8 @@ export const OTHER_PRIVATE_NAV_GROUPS: NavGroup[] = [
               },
               {
                 icon: SunIcon,
-                labelKey: "settings_navs.main.display",
-                path: `/settings/display`,
+                labelKey: "settings_navs.main.appearance",
+                path: `/settings/appearance`,
                 allowedRoles: [],
                 backPath: `/settings`,
               },

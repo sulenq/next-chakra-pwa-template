@@ -79,9 +79,9 @@ export const settings_navs = {
       id: "Profil",
       en: "Profile",
     },
-    display: {
-      id: "Tampilan",
-      en: "Display",
+    appearance: {
+      id: "Penampilan",
+      en: "Appearance",
     },
     regional: {
       id: "Bahasa & Regional",
