@@ -386,7 +386,7 @@ const MainViewTitle = (props: PProps) => {
     <ClampText
       className={"MainViewTitle"}
       fontSize={"xl"}
-      fontWeight={"medium"}
+      fontWeight={"semibold"}
       textAlign={restProps.textAlign}
       {...restProps}
     >

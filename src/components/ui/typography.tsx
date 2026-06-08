@@ -27,7 +27,7 @@ export const SettingsGroupTitle = (props: StackProps) => {
       // px={4}
       py={R_SPACING_MD}
       fontSize={"md"}
-      fontWeight={"medium"}
+      fontWeight={"semibold"}
       mb={[2, null, 0]}
       {...restProps}
     >
