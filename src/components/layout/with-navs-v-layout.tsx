@@ -10,7 +10,7 @@ import { useThemeStore } from "@/features/settings/views/appearance/stores/use-t
 import { useLocaleStore } from "@/features/settings/views/regional/stores/use-locale-store";
 import { NavGroup } from "@/types/global.types";
 import { formatAbsDate } from "@/utils/formatter";
-import { StackProps } from "@chakra-ui/react";
+import { Box, StackProps } from "@chakra-ui/react";
 import { usePathname } from "next/navigation";
 
 // -----------------------------------------------------------------
@@ -99,8 +99,12 @@ export const WithVNavsLayout = (props: WithVNavsLayoutProps) => {
 
         {/* Content */}
         {showContent && (
-          <MainView.Root flex={1} p={GAP}>
-            {pathname !== rootPath && <MainView.Header withTitle />}
+          <MainView.Root flex={1} p={GAP} pb={[4, null, GAP]}>
+            {pathname !== rootPath && (
+              <Box px={R_SPACING_MD}>
+                <MainView.Header withTitle px={4} />
+              </Box>
+            )}
 
             {children}
           </MainView.Root>

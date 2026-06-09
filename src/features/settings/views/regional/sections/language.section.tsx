@@ -2,10 +2,7 @@ import { GroupItem } from "@/components/container/group-item";
 import { Item } from "@/components/container/item";
 import { P } from "@/components/ui/p";
 import { StackV } from "@/components/ui/stack";
-import {
-  SettingsGroupTitle,
-  SettingsHelperText,
-} from "@/components/ui/typography";
+import { SettingsHelperText } from "@/components/ui/typography";
 import { LANGUAGES } from "@/constants/languages";
 import { R_SPACING_MD } from "@/constants/styles";
 import { useLocaleStore } from "@/features/settings/views/regional/stores/use-locale-store";
@@ -56,8 +53,6 @@ export const LanguageSection = () => {
 
   return (
     <Item.Root px={R_SPACING_MD}>
-      <SettingsGroupTitle>{t.language}</SettingsGroupTitle>
-
       <Item.Body gap={4}>
         <LanguageSelectSetting />
       </Item.Body>

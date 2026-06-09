@@ -10,8 +10,6 @@ import {
   NavBreadcrumb,
   TopBar,
 } from "@/components/container/main-view";
-import { Clock } from "@/components/misc/clock";
-import { Today } from "@/components/misc/today";
 import {
   DesktopNavTooltip,
   MobileNavLink,
@@ -91,7 +89,7 @@ const MobileLayout = (props: any) => {
       >
         {/* Content header */}
         <StackV gap={2}>
-          <StackH
+          {/* <StackH
             align={"center"}
             justify={"space-between"}
             w={"full"}
@@ -109,13 +107,13 @@ const MobileLayout = (props: any) => {
 
               <Today fontSize={"sm"} />
             </StackH>
-          </StackH>
+          </StackH> */}
 
           <StackH
             align={"center"}
             gap={4}
             px={4}
-            pb={2}
+            py={1}
             borderBottom={"1px solid"}
             borderColor={"border.muted"}
             justify={"space-between"}

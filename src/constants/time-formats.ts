@@ -5,6 +5,6 @@ export const TIME_FORMATS = [
   },
   {
     key: "12-hour",
-    label: "12-hour",
+    label: "12-hour (AM/PM)",
   },
 ];
