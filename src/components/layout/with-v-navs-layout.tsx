@@ -102,7 +102,7 @@ export const WithVNavsLayout = (props: WithVNavsLayoutProps) => {
           <MainView.Root flex={1} p={GAP} pb={[4, null, GAP]}>
             {pathname !== rootPath && (
               <Box px={R_SPACING_MD}>
-                <MainView.Header withTitle px={4} />
+                <MainView.Header withTitle />
               </Box>
             )}
 

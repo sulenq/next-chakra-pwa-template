@@ -361,7 +361,6 @@ const MainViewHeader = (props: MainViewHeaderProps) => {
       gap={2}
       w={"full"}
       minH={TOP_BAR_H}
-      px={R_SPACING_MD}
       pb={R_SPACING_MD}
       rounded={theme.radii.container}
       {...restProps}

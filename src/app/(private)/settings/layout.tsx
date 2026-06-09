@@ -1,6 +1,6 @@
 "use client";
 
-import { WithVNavsLayout } from "@/components/layout/with-navs-v-layout";
+import { WithVNavsLayout } from "@/components/layout/with-v-navs-layout";
 import { OTHER_PRIVATE_NAV_GROUPS } from "@/constants/navs";
 
 // -----------------------------------------------------------------

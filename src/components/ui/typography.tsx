@@ -23,7 +23,7 @@ export const SettingsGroupTitle = (props: StackProps) => {
 
   return (
     <P
-      px={4}
+      // px={4}
       py={R_SPACING_MD}
       fontSize={"md"}
       fontWeight={"semibold"}
@@ -42,7 +42,11 @@ export const SettingsHelperText = (props: StackProps) => {
   const { children, ...restProps } = props;
 
   return (
-    <HelperText px={4} mt={2} {...restProps}>
+    <HelperText
+      // px={4}
+      mt={2}
+      {...restProps}
+    >
       {children}
     </HelperText>
   );
