@@ -13,7 +13,7 @@ import { StackH, StackV } from "@/components/ui/stack";
 import { Switch } from "@/components/ui/switch";
 import { DUMMY_DASHBOARD_DATA } from "@/constants/dummy-data";
 import { getMonthNames } from "@/constants/months";
-import { GAP, R_SPACING_MD } from "@/constants/styles";
+import { GAP, MOBILE_SPACING_MD, R_SPACING_MD } from "@/constants/styles";
 import { useThemeStore } from "@/features/settings/views/appearance/stores/use-theme-store";
 import { useLocaleStore } from "@/features/settings/views/regional/stores/use-locale-store";
 import { useAuthStore } from "@/stores/use-auth-store";
@@ -515,6 +515,7 @@ const Chart1 = (props: any) => {
 interface UsageProps extends Omit<StackProps, "filter"> {
   filter: DashboardFilter;
 }
+
 const Usage = (props: UsageProps) => {
   // Props
   const { filter, ...restProps } = props;
@@ -536,6 +537,8 @@ const Usage = (props: UsageProps) => {
   );
 };
 
+// -----------------------------------------------------------------
+
 export default function Page() {
   // Stores
   const { t } = useLocaleStore();
@@ -547,15 +550,15 @@ export default function Page() {
   const user = useAuthStore((s) => s.auth.user);
 
   return (
-    <MainView.Content gap={GAP} p={GAP}>
+    <MainView.Content gap={GAP} p={GAP} pb={[4, null, 0]}>
       <StackH
         wrap={"wrap"}
         align={"center"}
         justify={"space-between"}
         p={R_SPACING_MD}
-        mb={4}
+        mb={3}
       >
-        <StackV>
+        <StackV px={4}>
           <P
             fontSize={"3xl"}
             fontWeight={"medium"}
@@ -571,7 +574,7 @@ export default function Page() {
         </StackV>
       </StackH>
 
-      <StackV gap={GAP}>
+      <StackV gap={GAP} px={[MOBILE_SPACING_MD, null, 0]}>
         <Overview />
 
         <Usage filter={filter} />

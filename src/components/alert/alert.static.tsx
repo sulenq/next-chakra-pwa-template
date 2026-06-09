@@ -4,6 +4,7 @@ import { InfoIcon } from "lucide-react";
 import { AppIconLucide } from "../branding/app-icon";
 import { P } from "../ui/p";
 import { StackH } from "../ui/stack";
+import { R_SPACING_MD } from "@/constants/styles";
 
 export const SettingsSavedLocalyAlert = () => {
   // Store
@@ -17,7 +18,7 @@ export const SettingsSavedLocalyAlert = () => {
       bg={"bg.body"}
       rounded={theme.radii.container}
       color={"fg.subtle"}
-      mx={2}
+      mx={R_SPACING_MD}
     >
       <AppIconLucide icon={InfoIcon} mt={"2px"} />
 
