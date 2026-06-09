@@ -21,7 +21,7 @@ const LanguageSelectSetting = () => {
   return (
     <StackV>
       <GroupItem.Root>
-        <StackV>
+        <StackV gap={1}>
           <P>{t.settings_locale_section.title}</P>
 
           <P color={"fg.subtle"}>{t.settings_locale_section.description}</P>
@@ -40,13 +40,11 @@ const LanguageSelectSetting = () => {
               if (v?.[0]) setLocale(v[0].id);
             }}
             w={"fit"}
+            variant={"plain"}
+            p={0}
           />
         </GroupItem.Target>
       </GroupItem.Root>
-
-      <SettingsHelperText>
-        {t.settings_locale_section.helper}
-      </SettingsHelperText>
     </StackV>
   );
 };
@@ -61,6 +59,10 @@ export const LanguageSection = () => {
       <Item.Body gap={4}>
         <LanguageSelectSetting />
       </Item.Body>
+
+      <SettingsHelperText>
+        {t.settings_locale_section.helper}
+      </SettingsHelperText>
     </Item.Root>
   );
 };
