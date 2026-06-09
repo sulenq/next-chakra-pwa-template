@@ -338,7 +338,6 @@ export default function VideoPlayer(props: VideoPlayerProps) {
               {/* Play / Pause */}
               <Btn
                 iconButton
-                clicky={false}
                 size={"md"}
                 colorPalette={"light"}
                 variant={"plain"}
@@ -366,7 +365,6 @@ export default function VideoPlayer(props: VideoPlayerProps) {
 
             {/* Playback Rate */}
             <Btn
-              clicky={false}
               size={"md"}
               colorPalette={"light"}
               variant={"plain"}
@@ -394,7 +392,6 @@ export default function VideoPlayer(props: VideoPlayerProps) {
             {/* Forward Backward */}
             <StackH align={"center"} gap={0}>
               <Btn
-                clicky={false}
                 size={"md"}
                 colorPalette={"light"}
                 variant={"plain"}
@@ -408,7 +405,6 @@ export default function VideoPlayer(props: VideoPlayerProps) {
               </Btn>
 
               <Btn
-                clicky={false}
                 size={"md"}
                 colorPalette={"light"}
                 variant={"plain"}
@@ -427,7 +423,6 @@ export default function VideoPlayer(props: VideoPlayerProps) {
               <StackH align={"center"}>
                 <Btn
                   iconButton
-                  clicky={false}
                   size={"md"}
                   variant={"plain"}
                   onClick={handleMute}
@@ -465,7 +460,6 @@ export default function VideoPlayer(props: VideoPlayerProps) {
               {/* Fullscreen */}
               <Btn
                 iconButton
-                clicky={false}
                 size={"md"}
                 colorPalette={"light"}
                 variant={"plain"}

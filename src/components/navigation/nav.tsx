@@ -123,7 +123,6 @@ export const VNavs = (props: VNavsProps) => {
                           >
                             <Btn
                               iconButton={navsExpanded ? false : true}
-                              clicky={false}
                               justifyContent={navsExpanded ? "start" : "start"}
                               gap={4}
                               px={DESKTOP_NAV_BTN_PX}
@@ -194,7 +193,6 @@ export const VNavs = (props: VNavsProps) => {
                                   <Menu.Trigger asChild>
                                     <Btn
                                       iconButton
-                                      clicky={false}
                                       justifyContent={"start"}
                                       px={DESKTOP_NAV_BTN_PX}
                                       pr={navsExpanded ? DESKTOP_NAV_BTN_PX : 0}
@@ -283,7 +281,6 @@ export const VNavs = (props: VNavsProps) => {
                                                 asChild
                                               >
                                                 <Btn
-                                                  clicky={false}
                                                   variant={"ghost"}
                                                   color={
                                                     isSubNavsActive
@@ -334,7 +331,6 @@ export const VNavs = (props: VNavsProps) => {
                                     p={0}
                                   >
                                     <Btn
-                                      clicky={false}
                                       justifyContent={"start"}
                                       px={DESKTOP_NAV_BTN_PX}
                                       size={DESKTOP_NAV_BTN_SIZE}
@@ -500,7 +496,6 @@ export const VNavs = (props: VNavsProps) => {
                                                     </Center>
 
                                                     <Btn
-                                                      clicky={false}
                                                       flex={1}
                                                       justifyContent={"start"}
                                                       gap={3}

@@ -85,7 +85,6 @@ export const NavBreadcrumb = (props: any) => {
       {backPath && (
         <BackButton
           iconButton
-          clicky={false}
           backPath={backPath}
           size={"xs"}
           ml={[0, null, "-8px"]}

@@ -40,17 +40,21 @@ const WeightFormatSetting = () => {
         <P>{t.settings_weight_format.title}</P>
       </StackV>
 
-      <SelectMassFormat
-        id={"settings-select-mass-format"}
-        value={[{ id: UOM.mass.key, label: UOM.mass.label, data: UOM.mass }]}
-        onChange={(v) => {
-          if (v?.[0]?.data) setUOMUnit("mass", v[0].data);
-        }}
-        w={"fit"}
-        size={"xs"}
-        variant={"plain"}
-        p={0}
-      />
+      <GroupItem.Target>
+        <SelectMassFormat
+          id={"settings-select-mass-format"}
+          value={[{ id: UOM.mass.key, label: UOM.mass.label, data: UOM.mass }]}
+          onChange={(v) => {
+            if (v?.[0]?.data) {
+              setUOMUnit("mass", v[0].data);
+            }
+          }}
+          w={"fit"}
+          size={"xs"}
+          variant={"plain"}
+          p={0}
+        />
+      </GroupItem.Target>
     </GroupItem.Root>
   );
 };
@@ -68,19 +72,21 @@ const HeightFormatSetting = () => {
         <P>{t.settings_height_format.title}</P>
       </StackV>
 
-      <SelectHeightFormat
-        id={"settings-select-height-format"}
-        value={[
-          { id: UOM.height.key, label: UOM.height.label, data: UOM.height },
-        ]}
-        onChange={(v) => {
-          if (v?.[0]?.data) setUOMUnit("height", v[0].data);
-        }}
-        w={"fit"}
-        size={"xs"}
-        variant={"plain"}
-        p={0}
-      />
+      <GroupItem.Target>
+        <SelectHeightFormat
+          id={"settings-select-height-format"}
+          value={[
+            { id: UOM.height.key, label: UOM.height.label, data: UOM.height },
+          ]}
+          onChange={(v) => {
+            if (v?.[0]?.data) setUOMUnit("height", v[0].data);
+          }}
+          w={"fit"}
+          size={"xs"}
+          variant={"plain"}
+          p={0}
+        />
+      </GroupItem.Target>
     </GroupItem.Root>
   );
 };
@@ -98,19 +104,21 @@ const LengthFormatSetting = () => {
         <P>{t.settings_length_format.title}</P>
       </StackV>
 
-      <SelectLengthFormat
-        id={"settings-select-length-format"}
-        value={[
-          { id: UOM.length.key, label: UOM.length.label, data: UOM.length },
-        ]}
-        onChange={(v) => {
-          if (v?.[0]?.data) setUOMUnit("length", v[0].data);
-        }}
-        w={"fit"}
-        size={"xs"}
-        variant={"plain"}
-        p={0}
-      />
+      <GroupItem.Target>
+        <SelectLengthFormat
+          id={"settings-select-length-format"}
+          value={[
+            { id: UOM.length.key, label: UOM.length.label, data: UOM.length },
+          ]}
+          onChange={(v) => {
+            if (v?.[0]?.data) setUOMUnit("length", v[0].data);
+          }}
+          w={"fit"}
+          size={"xs"}
+          variant={"plain"}
+          p={0}
+        />
+      </GroupItem.Target>
     </GroupItem.Root>
   );
 };
@@ -128,23 +136,25 @@ const DistanceFormatSetting = () => {
         <P>{t.settings_distance_format.title}</P>
       </StackV>
 
-      <SelectDistanceFormat
-        id={"settings-select-distance-format"}
-        value={[
-          {
-            id: UOM.distance.key,
-            label: UOM.distance.label,
-            data: UOM.distance,
-          },
-        ]}
-        onChange={(v) => {
-          if (v?.[0]?.data) setUOMUnit("distance", v[0].data);
-        }}
-        w={"fit"}
-        size={"xs"}
-        variant={"plain"}
-        p={0}
-      />
+      <GroupItem.Target>
+        <SelectDistanceFormat
+          id={"settings-select-distance-format"}
+          value={[
+            {
+              id: UOM.distance.key,
+              label: UOM.distance.label,
+              data: UOM.distance,
+            },
+          ]}
+          onChange={(v) => {
+            if (v?.[0]?.data) setUOMUnit("distance", v[0].data);
+          }}
+          w={"fit"}
+          size={"xs"}
+          variant={"plain"}
+          p={0}
+        />
+      </GroupItem.Target>
     </GroupItem.Root>
   );
 };
@@ -162,17 +172,19 @@ const AreaFormatSetting = () => {
         <P>{t.settings_area_format.title}</P>
       </StackV>
 
-      <SelectAreaFormat
-        id={"settings-select-area-format"}
-        value={[{ id: UOM.area.key, label: UOM.area.label, data: UOM.area }]}
-        onChange={(v) => {
-          if (v?.[0]?.data) setUOMUnit("area", v[0].data);
-        }}
-        w={"fit"}
-        size={"xs"}
-        variant={"plain"}
-        p={0}
-      />
+      <GroupItem.Target>
+        <SelectAreaFormat
+          id={"settings-select-area-format"}
+          value={[{ id: UOM.area.key, label: UOM.area.label, data: UOM.area }]}
+          onChange={(v) => {
+            if (v?.[0]?.data) setUOMUnit("area", v[0].data);
+          }}
+          w={"fit"}
+          size={"xs"}
+          variant={"plain"}
+          p={0}
+        />
+      </GroupItem.Target>
     </GroupItem.Root>
   );
 };
@@ -190,19 +202,21 @@ const VolumeFormatSetting = () => {
         <P>{t.settings_volume_format.title}</P>
       </StackV>
 
-      <SelectVolumeFormat
-        id={"settings-select-volume-format"}
-        value={[
-          { id: UOM.volume.key, label: UOM.volume.label, data: UOM.volume },
-        ]}
-        onChange={(v) => {
-          if (v?.[0]?.data) setUOMUnit("volume", v[0].data);
-        }}
-        w={"fit"}
-        size={"xs"}
-        variant={"plain"}
-        p={0}
-      />
+      <GroupItem.Target>
+        <SelectVolumeFormat
+          id={"settings-select-volume-format"}
+          value={[
+            { id: UOM.volume.key, label: UOM.volume.label, data: UOM.volume },
+          ]}
+          onChange={(v) => {
+            if (v?.[0]?.data) setUOMUnit("volume", v[0].data);
+          }}
+          w={"fit"}
+          size={"xs"}
+          variant={"plain"}
+          p={0}
+        />
+      </GroupItem.Target>
     </GroupItem.Root>
   );
 };
@@ -220,23 +234,25 @@ const TemperatureFormatSetting = () => {
         <P>{t.settings_temperature_format.title}</P>
       </StackV>
 
-      <SelectTemperatureFormat
-        id={"settings-select-temperature-format"}
-        value={[
-          {
-            id: UOM.temperature.key,
-            label: UOM.temperature.label,
-            data: UOM.temperature,
-          },
-        ]}
-        onChange={(v) => {
-          if (v?.[0]?.data) setUOMUnit("temperature", v[0].data);
-        }}
-        w={"fit"}
-        size={"xs"}
-        variant={"plain"}
-        p={0}
-      />
+      <GroupItem.Target>
+        <SelectTemperatureFormat
+          id={"settings-select-temperature-format"}
+          value={[
+            {
+              id: UOM.temperature.key,
+              label: UOM.temperature.label,
+              data: UOM.temperature,
+            },
+          ]}
+          onChange={(v) => {
+            if (v?.[0]?.data) setUOMUnit("temperature", v[0].data);
+          }}
+          w={"fit"}
+          size={"xs"}
+          variant={"plain"}
+          p={0}
+        />
+      </GroupItem.Target>
     </GroupItem.Root>
   );
 };
@@ -254,17 +270,21 @@ const SpeedFormatSetting = () => {
         <P>{t.settings_speed_format.title}</P>
       </StackV>
 
-      <SelectSpeedFormat
-        id={"settings-select-speed-format"}
-        value={[{ id: UOM.speed.key, label: UOM.speed.label, data: UOM.speed }]}
-        onChange={(v) => {
-          if (v?.[0]?.data) setUOMUnit("speed", v[0].data);
-        }}
-        w={"fit"}
-        size={"xs"}
-        variant={"plain"}
-        p={0}
-      />
+      <GroupItem.Target>
+        <SelectSpeedFormat
+          id={"settings-select-speed-format"}
+          value={[
+            { id: UOM.speed.key, label: UOM.speed.label, data: UOM.speed },
+          ]}
+          onChange={(v) => {
+            if (v?.[0]?.data) setUOMUnit("speed", v[0].data);
+          }}
+          w={"fit"}
+          size={"xs"}
+          variant={"plain"}
+          p={0}
+        />
+      </GroupItem.Target>
     </GroupItem.Root>
   );
 };
@@ -282,19 +302,21 @@ const EnergyFormatSetting = () => {
         <P>{t.settings_energy_format.title}</P>
       </StackV>
 
-      <SelectEnergyFormat
-        id={"settings-select-energy-format"}
-        value={[
-          { id: UOM.energy.key, label: UOM.energy.label, data: UOM.energy },
-        ]}
-        onChange={(v) => {
-          if (v?.[0]?.data) setUOMUnit("energy", v[0].data);
-        }}
-        w={"fit"}
-        size={"xs"}
-        variant={"plain"}
-        p={0}
-      />
+      <GroupItem.Target>
+        <SelectEnergyFormat
+          id={"settings-select-energy-format"}
+          value={[
+            { id: UOM.energy.key, label: UOM.energy.label, data: UOM.energy },
+          ]}
+          onChange={(v) => {
+            if (v?.[0]?.data) setUOMUnit("energy", v[0].data);
+          }}
+          w={"fit"}
+          size={"xs"}
+          variant={"plain"}
+          p={0}
+        />
+      </GroupItem.Target>
     </GroupItem.Root>
   );
 };
@@ -312,17 +334,21 @@ const PowerFormatSetting = () => {
         <P>{t.settings_power_format.title}</P>
       </StackV>
 
-      <SelectPowerFormat
-        id={"settings-select-power-format"}
-        value={[{ id: UOM.power.key, label: UOM.power.label, data: UOM.power }]}
-        onChange={(v) => {
-          if (v?.[0]?.data) setUOMUnit("power", v[0].data);
-        }}
-        w={"fit"}
-        size={"xs"}
-        variant={"plain"}
-        p={0}
-      />
+      <GroupItem.Target>
+        <SelectPowerFormat
+          id={"settings-select-power-format"}
+          value={[
+            { id: UOM.power.key, label: UOM.power.label, data: UOM.power },
+          ]}
+          onChange={(v) => {
+            if (v?.[0]?.data) setUOMUnit("power", v[0].data);
+          }}
+          w={"fit"}
+          size={"xs"}
+          variant={"plain"}
+          p={0}
+        />
+      </GroupItem.Target>
     </GroupItem.Root>
   );
 };
@@ -340,23 +366,25 @@ const PressureFormatSetting = () => {
         <P>{t.settings_pressure_format.title}</P>
       </StackV>
 
-      <SelectPressureFormat
-        id={"settings-select-pressure-format"}
-        value={[
-          {
-            id: UOM.pressure.key,
-            label: UOM.pressure.label,
-            data: UOM.pressure,
-          },
-        ]}
-        onChange={(v) => {
-          if (v?.[0]?.data) setUOMUnit("pressure", v[0].data);
-        }}
-        w={"fit"}
-        size={"xs"}
-        variant={"plain"}
-        p={0}
-      />
+      <GroupItem.Target>
+        <SelectPressureFormat
+          id={"settings-select-pressure-format"}
+          value={[
+            {
+              id: UOM.pressure.key,
+              label: UOM.pressure.label,
+              data: UOM.pressure,
+            },
+          ]}
+          onChange={(v) => {
+            if (v?.[0]?.data) setUOMUnit("pressure", v[0].data);
+          }}
+          w={"fit"}
+          size={"xs"}
+          variant={"plain"}
+          p={0}
+        />
+      </GroupItem.Target>
     </GroupItem.Root>
   );
 };
@@ -374,17 +402,19 @@ const DataFormatSetting = () => {
         <P>{t.settings_data_format.title}</P>
       </StackV>
 
-      <SelectDataFormat
-        id={"settings-select-data-format"}
-        value={[{ id: UOM.data.key, label: UOM.data.label, data: UOM.data }]}
-        onChange={(v) => {
-          if (v?.[0]?.data) setUOMUnit("data", v[0].data);
-        }}
-        w={"fit"}
-        size={"xs"}
-        variant={"plain"}
-        p={0}
-      />
+      <GroupItem.Target>
+        <SelectDataFormat
+          id={"settings-select-data-format"}
+          value={[{ id: UOM.data.key, label: UOM.data.label, data: UOM.data }]}
+          onChange={(v) => {
+            if (v?.[0]?.data) setUOMUnit("data", v[0].data);
+          }}
+          w={"fit"}
+          size={"xs"}
+          variant={"plain"}
+          p={0}
+        />
+      </GroupItem.Target>
     </GroupItem.Root>
   );
 };
@@ -402,23 +432,25 @@ const DataRateFormatSetting = () => {
         <P>{t.settings_data_rate_format.title}</P>
       </StackV>
 
-      <SelectDataRateFormat
-        id={"settings-select-data-rate-format"}
-        value={[
-          {
-            id: UOM.dataRate.key,
-            label: UOM.dataRate.label,
-            data: UOM.dataRate,
-          },
-        ]}
-        onChange={(v) => {
-          if (v?.[0]?.data) setUOMUnit("dataRate", v[0].data);
-        }}
-        w={"fit"}
-        size={"xs"}
-        variant={"plain"}
-        p={0}
-      />
+      <GroupItem.Target>
+        <SelectDataRateFormat
+          id={"settings-select-data-rate-format"}
+          value={[
+            {
+              id: UOM.dataRate.key,
+              label: UOM.dataRate.label,
+              data: UOM.dataRate,
+            },
+          ]}
+          onChange={(v) => {
+            if (v?.[0]?.data) setUOMUnit("dataRate", v[0].data);
+          }}
+          w={"fit"}
+          size={"xs"}
+          variant={"plain"}
+          p={0}
+        />
+      </GroupItem.Target>
     </GroupItem.Root>
   );
 };
@@ -436,17 +468,21 @@ const AngleFormatSetting = () => {
         <P>{t.settings_angle_format.title}</P>
       </StackV>
 
-      <SelectAngleFormat
-        id={"settings-select-angle-format"}
-        value={[{ id: UOM.angle.key, label: UOM.angle.label, data: UOM.angle }]}
-        onChange={(v) => {
-          if (v?.[0]?.data) setUOMUnit("angle", v[0].data);
-        }}
-        w={"fit"}
-        size={"xs"}
-        variant={"plain"}
-        p={0}
-      />
+      <GroupItem.Target>
+        <SelectAngleFormat
+          id={"settings-select-angle-format"}
+          value={[
+            { id: UOM.angle.key, label: UOM.angle.label, data: UOM.angle },
+          ]}
+          onChange={(v) => {
+            if (v?.[0]?.data) setUOMUnit("angle", v[0].data);
+          }}
+          w={"fit"}
+          size={"xs"}
+          variant={"plain"}
+          p={0}
+        />
+      </GroupItem.Target>
     </GroupItem.Root>
   );
 };

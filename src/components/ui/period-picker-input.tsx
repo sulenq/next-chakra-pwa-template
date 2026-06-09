@@ -211,7 +211,6 @@ export const PeriodPickerInput = forwardRef<
                     return (
                       <Btn
                         key={month}
-                        clicky={false}
                         variant={"outline"}
                         onClick={() =>
                           setSelected((prev) => ({ ...prev, month: index }))

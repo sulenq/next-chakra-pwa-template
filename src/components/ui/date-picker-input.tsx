@@ -210,7 +210,6 @@ export const DatePicker = (props: DatePickerProps) => {
               return (
                 <Btn
                   key={ii}
-                  clicky={false}
                   rounded={"full"}
                   size={"md"}
                   onClick={() => {
@@ -360,7 +359,10 @@ const SelectedDateList = (props: SelectedDateListProps) => {
 
 // -----------------------------------------------------------------
 
-export interface DatePickerInputProps extends Omit<BtnProps, "onChange" | "defaultValue" | "value"> {
+export interface DatePickerInputProps extends Omit<
+  BtnProps,
+  "onChange" | "defaultValue" | "value"
+> {
   id?: string;
   title?: string;
   value?: string[] | null;
@@ -376,8 +378,10 @@ export interface DatePickerInputProps extends Omit<BtnProps, "onChange" | "defau
   labelFormatVariant?: DateVariant;
 }
 
-export const DatePickerInput = forwardRef<HTMLButtonElement, DatePickerInputProps>(
-  function DatePickerInput(props, ref) {
+export const DatePickerInput = forwardRef<
+  HTMLButtonElement,
+  DatePickerInputProps
+>(function DatePickerInput(props, ref) {
   // Props
   const {
     id,
@@ -408,7 +412,9 @@ export const DatePickerInput = forwardRef<HTMLButtonElement, DatePickerInputProp
 
   // States
   const [selected, setSelected] = useState<Date[]>([]);
-  const [internalValue, setInternalValue] = useState<string[] | null>(defaultValue ?? null);
+  const [internalValue, setInternalValue] = useState<string[] | null>(
+    defaultValue ?? null,
+  );
   const [period, setPeriod] = useState<Period>(DEFAULT_PERIOD);
 
   // Hybrid: detect controlled mode
@@ -489,7 +495,9 @@ export const DatePickerInput = forwardRef<HTMLButtonElement, DatePickerInputProp
 
   return (
     <>
-      <Tooltip content={displayValue ? formattedButtonLabel : resolvedPlaceholder}>
+      <Tooltip
+        content={displayValue ? formattedButtonLabel : resolvedPlaceholder}
+      >
         <Btn
           ref={ref}
           w={"full"}

@@ -66,15 +66,17 @@ const SelectOptions = (props: SelectOptionsProps) => {
 
   return (
     <StackV {...restProps}>
-      <StackV px={3} pt={3} zIndex={3}>
-        <SearchInput
-          value={search}
-          onChange={(value) => {
-            setSearch(value || "");
-          }}
-          queryKey={`q_${id}`}
-        />
-      </StackV>
+      {selectOptions && selectOptions?.length > 10 && (
+        <StackV px={3} pt={3} zIndex={3}>
+          <SearchInput
+            value={search}
+            onChange={(value) => {
+              setSearch(value || "");
+            }}
+            queryKey={`q_${id}`}
+          />
+        </StackV>
+      )}
 
       {search && isEmptyArray(resolvedSelectOptions) && (
         <FeedbackNotFound minH={"250px"} />
@@ -89,7 +91,7 @@ const SelectOptions = (props: SelectOptionsProps) => {
           {/* {multiple && (
             <StackV px={3} pt={3} zIndex={2}>
               <Btn
-                clicky={false}
+                
                 variant={"ghost"}
                 size={"md"}
                 pl={3}
@@ -123,7 +125,6 @@ const SelectOptions = (props: SelectOptionsProps) => {
               return (
                 <Btn
                   key={o.id}
-                  clicky={false}
                   variant={"ghost"}
                   justifyContent={"start"}
                   size={"md"}
@@ -242,12 +243,10 @@ export const DisclosureSelectInput = forwardRef<
 
   // Utils
   function handleConfirm() {
-    if (!required) {
-      const finalValue = !isEmptyArray(selected) ? selected : null;
-      if (!isControlled) setInternalValue(finalValue);
-      onChange?.(finalValue);
-      back();
-    }
+    const finalValue = !isEmptyArray(selected) ? selected : null;
+    if (!isControlled) setInternalValue(finalValue);
+    onChange?.(finalValue);
+    back();
   }
 
   // Set initial selected on open
@@ -356,6 +355,7 @@ export const DisclosureSelectInput = forwardRef<
             >
               Clear
             </Btn>
+
             <Btn
               flex={1}
               colorPalette={theme.colorPalette}

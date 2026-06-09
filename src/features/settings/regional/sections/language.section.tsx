@@ -1,66 +1,66 @@
-import { Btn } from "@/components/ui/btn";
-import { SettingsHelperText } from "@/components/ui/typography";
-import { P } from "@/components/ui/p";
-import { RadioItem } from "@/components/ui/radio";
-import { StackH } from "@/components/ui/stack";
+import { GroupItem } from "@/components/container/group-item";
 import { Item } from "@/components/container/item";
+import { P } from "@/components/ui/p";
+import { StackV } from "@/components/ui/stack";
+import {
+  SettingsGroupTitle,
+  SettingsHelperText,
+} from "@/components/ui/typography";
 import { LANGUAGES } from "@/constants/languages";
-import { COMMON_NAV_COLOR, R_SPACING_MD } from "@/constants/styles";
+import { R_SPACING_MD } from "@/constants/styles";
 import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
-import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
-import { type LocaleOption } from "@/types/global.types";
-import { chakra, Text } from "@chakra-ui/react";
+import { SelectLanguage } from "../components/select.language";
 
 // -----------------------------------------------------------------
 
-export const LanguageSection = () => {
-  // Stores
-  const { theme } = useThemeStore();
-  const { t, locale, setLocale } = useLocaleStore();
+const LanguageSelectSetting = () => {
+  // Store
+  const { t } = useLocaleStore();
+  const { locale, setLocale } = useLocaleStore();
 
   return (
-    <Item.Root px={R_SPACING_MD}>
-      <Item.Body p={4} gap={4}>
-        <StackH align={"center"} wrap={"wrap"} gap={2}>
-          {LANGUAGES.map((item, i) => {
-            const isSelected = locale === item.key;
+    <StackV>
+      <GroupItem.Root>
+        <StackV>
+          <P>{t.settings_locale_section.title}</P>
 
-            return (
-              <Btn
-                key={i}
-                clicky={false}
-                flex={"1 1 180px"}
-                gap={3}
-                px={3}
-                rounded={theme.radii.component}
-                variant={"ghost"}
-                justifyContent={"start"}
-                color={isSelected ? "" : COMMON_NAV_COLOR}
-                onClick={() => {
-                  setLocale(item.key as LocaleOption);
-                }}
-                pos={"relative"}
-              >
-                <RadioItem checked={isSelected} />
+          <P color={"fg.subtle"}>{t.settings_locale_section.description}</P>
+        </StackV>
 
-                <Text fontWeight={"medium"} truncate>
-                  {item.label}
-
-                  <chakra.span color={"fg.subtle"} ml={2} fontWeight={"normal"}>
-                    {item.code}
-                  </chakra.span>
-                </Text>
-              </Btn>
-            );
-          })}
-        </StackH>
-
-        <P color={"fg.subtle"}>{t.settings_locale_section.description}</P>
-      </Item.Body>
+        <GroupItem.Target>
+          <SelectLanguage
+            id={"select-language"}
+            value={[
+              {
+                id: locale,
+                label: LANGUAGES.find((l) => l.key === locale)?.label!,
+              },
+            ]}
+            onChange={(v) => {
+              if (v?.[0]) setLocale(v[0].id);
+            }}
+            w={"fit"}
+          />
+        </GroupItem.Target>
+      </GroupItem.Root>
 
       <SettingsHelperText>
         {t.settings_locale_section.helper}
       </SettingsHelperText>
+    </StackV>
+  );
+};
+export const LanguageSection = () => {
+  // Stores
+  const { t } = useLocaleStore();
+
+  return (
+    <Item.Root px={R_SPACING_MD}>
+      <SettingsGroupTitle>{t.language}</SettingsGroupTitle>
+
+      <Item.Body gap={4}>
+        <LanguageSelectSetting />
+      </Item.Body>
     </Item.Root>
   );
 };

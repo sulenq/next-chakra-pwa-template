@@ -48,22 +48,22 @@ export const UserPanel = (props: UserPanelProps) => {
         <StackH justify={"space-between"} gap={R_SPACING_MD} p={R_SPACING_MD}>
           <ColorModeButton variant={"outline"} />
 
-          <Btn iconButton clicky={false} variant={"outline"}>
+          <Btn iconButton variant={"outline"}>
             <AppIconLucide icon={CircleCheckBigIcon} />
           </Btn>
 
-          <Btn iconButton clicky={false} variant={"outline"}>
+          <Btn iconButton variant={"outline"}>
             <AppIconLucide icon={BellIcon} />
           </Btn>
 
           <NavLink to={"/settings/profile"}>
-            <Btn iconButton clicky={false} variant={"outline"}>
+            <Btn iconButton variant={"outline"}>
               <AppIconLucide icon={UserIcon} />
             </Btn>
           </NavLink>
 
           <NavLink to={"/settings"}>
-            <Btn iconButton clicky={false} variant={"outline"}>
+            <Btn iconButton variant={"outline"}>
               <AppIconLucide icon={SettingsIcon} />
             </Btn>
           </NavLink>
@@ -137,7 +137,7 @@ export const UserPanel = (props: UserPanelProps) => {
               }}
               ml={"auto"}
             >
-              <Btn iconButton clicky={false} variant={"ghost"} w={"fit"}>
+              <Btn iconButton variant={"ghost"} w={"fit"}>
                 <AppIconLucide icon={EllipsisVerticalIcon} />
               </Btn>
             </ProfileMenuTrigger>

@@ -19,7 +19,6 @@ export const InfoTip = (props: InfoTooltipProps) => {
   return (
     <ToggleTip content={popoverContent}>
       <Btn
-        clicky={false}
         iconButton
         size={"2xs"}
         rounded={"full"}

@@ -396,7 +396,6 @@ const DesktopLayout = (props: any) => {
               <StackH px={R_SPACING_MD} my={`calc(${GAP})`}>
                 <Btn
                   flex={1}
-                  clicky={false}
                   aria-label={"toggle expand navs"}
                   size={DESKTOP_NAV_BTN_SIZE}
                   variant={DESKTOP_NAV_BTN_VARIANT}
@@ -455,7 +454,6 @@ const DesktopLayout = (props: any) => {
                           content={pluckString(t, "navs.master_data")}
                         >
                           <Btn
-                            clicky={false}
                             justifyContent={isNavsExpanded ? "start" : "start"}
                             gap={4}
                             px={DESKTOP_NAV_BTN_PX}

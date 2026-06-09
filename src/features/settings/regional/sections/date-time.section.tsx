@@ -164,19 +164,21 @@ const TimezoneSetting = () => {
         <P>{t.settings_timezone.title}</P>
       </StackV>
 
-      <SelectTimezone
-        id={"settings-select-time-zone"}
-        value={timezone}
-        onChange={(value) => {
-          setTimezone(value);
-          if (value?.[0]?.data) setTimezoneContext(value[0].data);
-        }}
-        w={"fit"}
-        size={"xs"}
-        placeholder={`${t.select} ${t.timezone.toLocaleLowerCase()}`}
-        variant={"plain"}
-        p={0}
-      />
+      <GroupItem.Target>
+        <SelectTimezone
+          id={"settings-select-time-zone"}
+          value={timezone}
+          onChange={(value) => {
+            setTimezone(value);
+            if (value?.[0]?.data) setTimezoneContext(value[0].data);
+          }}
+          w={"fit"}
+          size={"xs"}
+          placeholder={`${t.select} ${t.timezone.toLocaleLowerCase()}`}
+          variant={"plain"}
+          p={0}
+        />
+      </GroupItem.Target>
     </GroupItem.Root>
   );
 };

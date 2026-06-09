@@ -129,7 +129,7 @@ export const ProfileMenu = (props: ProfileMenuProps) => {
       </Stack>
 
       <StackV gap={1} p={"6px"}>
-        <Btn clicky={false} variant={"ghost"} px={2} onClick={toggleColorMode}>
+        <Btn variant={"ghost"} px={2} onClick={toggleColorMode}>
           <AppIconLucide icon={colorMode === "dark" ? EclipseIcon : SunIcon} />
           Dark mode
           <DotIndicator
@@ -140,7 +140,6 @@ export const ProfileMenu = (props: ProfileMenuProps) => {
         </Btn>
 
         <Btn
-          clicky={false}
           px={2}
           variant={"ghost"}
           justifyContent={"start"}
@@ -154,7 +153,6 @@ export const ProfileMenu = (props: ProfileMenuProps) => {
         </Btn>
 
         <Btn
-          clicky={false}
           px={2}
           variant={"ghost"}
           justifyContent={"start"}
@@ -172,7 +170,6 @@ export const ProfileMenu = (props: ProfileMenuProps) => {
           return (
             <NavLink key={menu.path} to={menu.path} w={"full"}>
               <Btn
-                clicky={false}
                 px={2}
                 variant={"ghost"}
                 justifyContent={"start"}
@@ -206,7 +203,6 @@ export const ProfileMenu = (props: ProfileMenuProps) => {
           w={"full"}
         >
           <Btn
-            clicky={false}
             px={2}
             variant={"ghost"}
             color={"fg.error"}

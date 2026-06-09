@@ -211,7 +211,6 @@ export const DisclosureHeaderContent = (
 
         {withMaximizeButton && (
           <Btn
-            clicky={false}
             iconButton
             size={["xs", null, "2xs"]}
             rounded={"full"}
@@ -232,7 +231,6 @@ export const DisclosureHeaderContent = (
             {!prefix && (
               <Btn
                 iconButton
-                clicky={false}
                 rounded={"full"}
                 variant={iss ? "ghost" : "subtle"}
                 size={["xs", null, "2xs"]}

@@ -75,7 +75,6 @@ export const ColorModeButton = forwardRef<
       <Tooltip content={t.msg_toggle_dark_mode} {...tooltipProps}>
         <Btn
           iconButton
-          clicky={false}
           ref={ref}
           variant={"ghost"}
           size={"sm"}

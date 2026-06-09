@@ -38,7 +38,6 @@ export const Pagination = (props: PaginationTableDataProps) => {
     <StackH align={"center"} gap={2}>
       <Btn
         iconButton
-        clicky={false}
         size={"xs"}
         variant={"ghost"}
         onClick={handlePrev}
@@ -61,7 +60,6 @@ export const Pagination = (props: PaginationTableDataProps) => {
 
       <Btn
         iconButton
-        clicky={false}
         size={"xs"}
         variant={"ghost"}
         onClick={handleNext}

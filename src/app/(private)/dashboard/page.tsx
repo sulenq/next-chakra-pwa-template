@@ -483,7 +483,6 @@ const Chart1 = (props: any) => {
               return (
                 <Btn
                   key={s.name}
-                  clicky={false}
                   onClick={() =>
                     setHighlights((prev) =>
                       prev.includes(year)

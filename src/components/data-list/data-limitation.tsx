@@ -28,7 +28,7 @@ export const Limitation = (props: LimitationTableDataProps) => {
   return (
     <Menu.Root>
       <Menu.Trigger asChild>
-        <Btn clicky={false} size={"xs"} variant={"ghost"} pl={"8px"} pr={"4px"}>
+        <Btn size={"xs"} variant={"ghost"} pl={"8px"} pr={"4px"}>
           <StackH gap={2} w={"fit"} align={"center"}>
             <P>{t.show}</P>
 

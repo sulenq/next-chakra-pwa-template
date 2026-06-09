@@ -21,7 +21,6 @@ export const LangMenu = (props: BtnProps) => {
       <Menu.Root>
         <Menu.Trigger asChild>
           <Btn
-            clicky={false}
             w={"60px"}
             px={2}
             pr={1}
