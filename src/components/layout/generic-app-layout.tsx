@@ -359,7 +359,7 @@ const DesktopLayout = (props: any) => {
 
           {/* Toggle expand */}
           <DesktopNavTooltip content={isNavsExpanded ? t.minimize : t.maximize}>
-            <StackH px={SPACING_MD} my={2}>
+            <StackH px={SPACING_MD} my={"10px"}>
               <Btn
                 flex={1}
                 aria-label={"toggle expand navs"}
