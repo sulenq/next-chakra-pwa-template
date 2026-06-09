@@ -4,7 +4,7 @@ import { P } from "@/components/ui/p";
 import { StackV } from "@/components/ui/stack";
 import { SettingsHelperText } from "@/components/ui/typography";
 import { LANGUAGES } from "@/constants/languages";
-import { R_SPACING_MD } from "@/constants/styles";
+import { SPACING_MD } from "@/constants/styles";
 import { useLocaleStore } from "@/features/settings/views/regional/stores/use-locale-store";
 import { SelectLanguage } from "../components/select.language";
 
@@ -52,7 +52,7 @@ export const LanguageSection = () => {
   const { t } = useLocaleStore();
 
   return (
-    <Item.Root px={R_SPACING_MD}>
+    <Item.Root px={SPACING_MD}>
       <Item.Body gap={4}>
         <LanguageSelectSetting />
       </Item.Body>

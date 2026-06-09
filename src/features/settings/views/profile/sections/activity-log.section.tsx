@@ -7,7 +7,7 @@ import { StackH, StackV } from "@/components/ui/stack";
 import { activityActionTemplates } from "@/constants/activity-action";
 import { DEFAULT_LIMIT, DEFAULT_PAGE } from "@/constants/data-list";
 import { DUMMY_ACTIVITY_LOGS } from "@/constants/dummy-data";
-import { R_SPACING_MD } from "@/constants/styles";
+import { SPACING_MD } from "@/constants/styles";
 import { useLocaleStore } from "@/features/settings/views/regional/stores/use-locale-store";
 import { ActivityLog } from "@/types/global.types";
 import { formatDate } from "@/utils/formatter";
@@ -31,7 +31,7 @@ export const ActivityLogSection = (props: ItemRootProps) => {
   };
 
   return (
-    <Item.Root px={R_SPACING_MD} {...props}>
+    <Item.Root px={SPACING_MD} {...props}>
       <SettingsHelperText>{t.my_activity_logs}</SettingsHelperText>
 
       <Item.Body>

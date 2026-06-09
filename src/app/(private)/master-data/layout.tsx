@@ -10,7 +10,7 @@ import {
 import { VNavs } from "@/components/navigation/nav";
 import { APP } from "@/constants/_meta";
 import { OTHER_PRIVATE_NAV_GROUPS } from "@/constants/navs";
-import { GAP, R_SPACING_MD } from "@/constants/styles";
+import { GAP, SPACING_MD } from "@/constants/styles";
 import { useLocaleStore } from "@/features/settings/views/regional/stores/use-locale-store";
 import { useThemeStore } from "@/features/settings/views/appearance/stores/use-theme-store";
 import { formatAbsDate } from "@/utils/formatter";
@@ -63,10 +63,10 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             <MainView.Header
               withTitle
               title={t.settings}
-              px={isSmContainer ? "6px" : R_SPACING_MD}
+              px={isSmContainer ? "6px" : SPACING_MD}
             />
 
-            <StackV className={"scrollY"} flex={1} p={R_SPACING_MD}>
+            <StackV className={"scrollY"} flex={1} p={SPACING_MD}>
               <VNavs
                 navs={NAVS}
                 addonBottomElement={

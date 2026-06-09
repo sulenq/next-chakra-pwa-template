@@ -1,28 +1,25 @@
 "use client";
 
+import { AppIconLucide } from "@/components/branding/app-icon";
+import { Calendar } from "@/components/misc/calendar";
+import { Clock } from "@/components/misc/clock";
+import { Today } from "@/components/misc/today";
+import { BackButton } from "@/components/navigation/back-button";
 import { Btn } from "@/components/ui/btn";
+import { ClampText } from "@/components/ui/clamp-text";
 import { Divider } from "@/components/ui/divider";
+import { DotIndicator } from "@/components/ui/indicator";
 import { P, PProps } from "@/components/ui/p";
 import { Stack, StackH, StackV } from "@/components/ui/stack";
 import { Tooltip } from "@/components/ui/tooltip";
-import { AppIconLucide } from "@/components/branding/app-icon";
-import { BackButton } from "@/components/navigation/back-button";
-import { Calendar } from "@/components/misc/calendar";
-import { ClampText } from "@/components/ui/clamp-text";
-import { Clock } from "@/components/misc/clock";
-import { DotIndicator } from "@/components/ui/indicator";
-import { Today } from "@/components/misc/today";
-import {
-  R_SPACING_MD,
-  SM_SCREEN_BREAKPOINT,
-  TOP_BAR_H,
-} from "@/constants/styles";
-import { useBreadcrumbsStore } from "@/stores/use-breadcrumbs-store";
-import { useLocaleStore } from "@/features/settings/views/regional/stores/use-locale-store";
+import { SM_SCREEN_BREAKPOINT, TOP_BAR_H } from "@/constants/styles";
+import { useConstrainedContainerStore } from "@/features/settings/views/appearance/stores/use-constrained-container-store";
 import { useThemeStore } from "@/features/settings/views/appearance/stores/use-theme-store";
+import { useLocaleStore } from "@/features/settings/views/regional/stores/use-locale-store";
 import { useContainerDimension } from "@/hooks/use-container-dimenssion";
 import { useMergedRefs } from "@/hooks/use-merge-refs";
 import { useScreen } from "@/hooks/use-screen";
+import { useBreadcrumbsStore } from "@/stores/use-breadcrumbs-store";
 import { Nav } from "@/types/global.types";
 import { isEmptyArray, last } from "@/utils/array";
 import { getActiveNavs } from "@/utils/route";
@@ -39,7 +36,6 @@ import {
   useMemo,
   useRef,
 } from "react";
-import { useConstrainedContainerStore } from "@/features/settings/views/appearance/stores/use-constrained-container-store";
 
 // -----------------------------------------------------------------
 
@@ -361,7 +357,6 @@ const MainViewHeader = (props: MainViewHeaderProps) => {
       gap={2}
       w={"full"}
       minH={TOP_BAR_H}
-      pb={R_SPACING_MD}
       rounded={theme.radii.container}
       {...restProps}
     >

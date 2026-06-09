@@ -1,11 +1,11 @@
-import { Item } from "@/components/container/item";
 import { GroupItem } from "@/components/container/group-item";
+import { Item } from "@/components/container/item";
 import { Divider } from "@/components/ui/divider";
 import { P } from "@/components/ui/p";
 import { StackV } from "@/components/ui/stack";
 import { Switch } from "@/components/ui/switch";
 import { SettingsGroupTitle } from "@/components/ui/typography";
-import { R_SPACING_MD } from "@/constants/styles";
+import { SPACING_MD } from "@/constants/styles";
 import { SelectDateFormat } from "@/features/settings/views/regional/components/select-date-format";
 import { SelectTimeFormat } from "@/features/settings/views/regional/components/select-time-format";
 import { SelectTimezone } from "@/features/settings/views/regional/components/select-timezone";
@@ -193,7 +193,7 @@ export const DateTimeSection = () => {
   const { t } = useLocaleStore();
 
   return (
-    <Item.Root px={R_SPACING_MD}>
+    <Item.Root px={SPACING_MD}>
       <SettingsGroupTitle>
         {t.settings_date_time_section.title}
       </SettingsGroupTitle>

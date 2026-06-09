@@ -13,7 +13,7 @@ import { StackH, StackV } from "@/components/ui/stack";
 import { Switch } from "@/components/ui/switch";
 import { DUMMY_DASHBOARD_DATA } from "@/constants/dummy-data";
 import { getMonthNames } from "@/constants/months";
-import { GAP, MOBILE_SPACING_MD, R_SPACING_MD } from "@/constants/styles";
+import { GAP, SPACING_SM, SPACING_MD } from "@/constants/styles";
 import { useThemeStore } from "@/features/settings/views/appearance/stores/use-theme-store";
 import { useLocaleStore } from "@/features/settings/views/regional/stores/use-locale-store";
 import { useAuthStore } from "@/stores/use-auth-store";
@@ -555,7 +555,7 @@ export default function Page() {
         wrap={"wrap"}
         align={"center"}
         justify={"space-between"}
-        p={R_SPACING_MD}
+        p={SPACING_MD}
         mb={3}
       >
         <StackV px={4}>
@@ -574,7 +574,7 @@ export default function Page() {
         </StackV>
       </StackH>
 
-      <StackV gap={GAP} px={[MOBILE_SPACING_MD, null, 0]}>
+      <StackV gap={GAP} px={[SPACING_SM, null, 0]}>
         <Overview />
 
         <Usage filter={filter} />

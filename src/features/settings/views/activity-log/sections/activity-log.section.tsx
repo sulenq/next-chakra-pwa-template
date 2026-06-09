@@ -10,7 +10,7 @@ import { MiniUser } from "@/components/user/mini-user";
 import { activityActionTemplates } from "@/constants/activity-action";
 import { DEFAULT_LIMIT, DEFAULT_PAGE } from "@/constants/data-list";
 import { DUMMY_ALL_ACTIVITY_LOGS } from "@/constants/dummy-data";
-import { R_SPACING_MD } from "@/constants/styles";
+import { SPACING_MD } from "@/constants/styles";
 import { useLocaleStore } from "@/features/settings/views/regional/stores/use-locale-store";
 import type { ActivityLog } from "@/types/global.types";
 import { formatDate } from "@/utils/formatter";
@@ -36,7 +36,7 @@ export const ActivityLogSection = () => {
   };
 
   return (
-    <Item.Root px={R_SPACING_MD}>
+    <Item.Root px={SPACING_MD}>
       <SettingsHelperText>{t.activity_logs}</SettingsHelperText>
 
       <Item.Body>

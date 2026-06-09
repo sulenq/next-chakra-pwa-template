@@ -8,7 +8,7 @@ import { RadioItem } from "@/components/ui/radio";
 import { StackH, StackV } from "@/components/ui/stack";
 import { Switch } from "@/components/ui/switch";
 import { toaster } from "@/components/ui/toaster";
-import { R_SPACING_MD } from "@/constants/styles";
+import { SPACING_MD } from "@/constants/styles";
 import useADMStore from "@/features/settings/views/appearance/stores/use-adm-store";
 import { useThemeStore } from "@/features/settings/views/appearance/stores/use-theme-store";
 import { useLocaleStore } from "@/features/settings/views/regional/stores/use-locale-store";
@@ -91,7 +91,7 @@ const ColorModeSetting = () => {
         gap={2}
         w={"full"}
         maxW={"200px"}
-        p={R_SPACING_MD}
+        p={SPACING_MD}
         rounded={theme.radii.component}
         cursor={"pointer"}
         transition={"200ms"}
@@ -116,7 +116,7 @@ const ColorModeSetting = () => {
         gap={2}
         w={"full"}
         maxW={"200px"}
-        p={R_SPACING_MD}
+        p={SPACING_MD}
         rounded={theme.radii.component}
         cursor={"pointer"}
         transition={"200ms"}
@@ -207,7 +207,7 @@ const ResetColorModeSetting = () => {
 
 export const ColorModeSection = () => {
   return (
-    <Item.Root px={R_SPACING_MD}>
+    <Item.Root px={SPACING_MD}>
       <Item.Body>
         <ColorModeSetting />
 

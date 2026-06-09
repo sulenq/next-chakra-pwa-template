@@ -7,7 +7,7 @@ import { SortIcon } from "@/components/data-list/data-sort-icon";
 import {
   BACKDROP_BLUR_FILTER,
   GAP,
-  R_SPACING_MD,
+  SPACING_MD,
   TABLE_CELL_PX,
   TABLE_CELL_PY,
   TABLE_CONTAINER_BG,
@@ -226,8 +226,8 @@ export const DataTableRoot = (props: DataTableRootProps) => {
     <StackV
       ref={tableContainerRef}
       flex={1}
-      px={R_SPACING_MD}
-      pt={R_SPACING_MD}
+      px={SPACING_MD}
+      pt={SPACING_MD}
       overflow={"auto"}
       minH={props?.minH || sh < 625 ? "400px" : ""}
       pos={"relative"}
@@ -236,7 +236,7 @@ export const DataTableRoot = (props: DataTableRootProps) => {
       <StackV
         className={"scrollX scrollYAlt"}
         flex={1}
-        pb={R_SPACING_MD}
+        pb={SPACING_MD}
         bg={TABLE_CONTAINER_BG}
         roundedTop={theme.radii.component}
         zIndex={2}

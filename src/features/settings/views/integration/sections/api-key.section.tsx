@@ -6,7 +6,7 @@ import { Field, FieldsetRoot } from "@/components/ui/field";
 import { SettingsHelperText } from "@/components/ui/typography";
 import { PasswordInput } from "@/components/ui/password-input";
 import { StackH } from "@/components/ui/stack";
-import { R_SPACING_MD } from "@/constants/styles";
+import { SPACING_MD } from "@/constants/styles";
 import { useThemeStore } from "@/features/settings/views/appearance/stores/use-theme-store";
 import { useLocaleStore } from "@/features/settings/views/regional/stores/use-locale-store";
 import { Controller, useForm } from "react-hook-form";
@@ -39,7 +39,7 @@ export const APIKeySection = () => {
   const onSubmit = (values: any) => {};
 
   return (
-    <Item.Root px={R_SPACING_MD}>
+    <Item.Root px={SPACING_MD}>
       <SettingsHelperText>API Keys</SettingsHelperText>
 
       <Item.Body p={4}>

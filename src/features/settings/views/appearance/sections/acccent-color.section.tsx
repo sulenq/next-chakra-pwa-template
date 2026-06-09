@@ -9,7 +9,7 @@ import { StackH, StackV } from "@/components/ui/stack";
 import { Switch } from "@/components/ui/switch";
 import { Tooltip } from "@/components/ui/tooltip";
 import { COLOR_PALETTES } from "@/constants/colors";
-import { R_SPACING_MD } from "@/constants/styles";
+import { SPACING_MD } from "@/constants/styles";
 import { useThemeStore } from "@/features/settings/views/appearance/stores/use-theme-store";
 import { useLocaleStore } from "@/features/settings/views/regional/stores/use-locale-store";
 import { Box, Center } from "@chakra-ui/react";
@@ -111,7 +111,7 @@ export const AccentColorSection = () => {
   const { t } = useLocaleStore();
 
   return (
-    <StackV px={R_SPACING_MD}>
+    <StackV px={SPACING_MD}>
       <SettingsGroupTitle>
         {t.settings_accent_color_section.title}
       </SettingsGroupTitle>

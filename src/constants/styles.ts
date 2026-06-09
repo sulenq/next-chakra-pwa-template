@@ -26,11 +26,16 @@ export const USER_PANEL_H = "122px";
 export const CONTSTRAINED_CONTAINER_MAX_W = "1000px";
 
 // Spacing
-export const MOBILE_SPACING_MD = "4px";
-export const DESKTOP_SPACING_MD = "10px";
-export const R_SPACING_MD = [MOBILE_SPACING_MD, null, DESKTOP_SPACING_MD];
+export const SPACING_SM = "4px";
+export const SPACING_MD = "12px";
+export const SPACING_LG = "24px";
 export const GAP = "6px";
 export const SECTION_GAP = 8;
+
+// Padding
+export const PADDING_SM = "8px";
+export const PADDING_MD = "16px";
+export const PADDING_LG = "24px";
 
 // Positioning
 export const MOBILE_POPOVER_MAIN_AXIS = 22;

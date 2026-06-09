@@ -6,13 +6,13 @@ import { forwardRef } from "react";
 
 // -----------------------------------------------------------------
 
-export interface MContainerVProps extends StackProps {
+export interface MVContainerProps extends StackProps {
   maskingTop?: string | number;
   maskingBottom?: string | number;
 }
 
-export const MContainerV = forwardRef<HTMLDivElement, MContainerVProps>(
-  function MContainerV(props, ref) {
+export const MVContainer = forwardRef<HTMLDivElement, MVContainerProps>(
+  function MVContainer(props, ref) {
     const {
       maskingTop = "8px",
       maskingBottom = "8px",
@@ -58,13 +58,13 @@ export const MContainerV = forwardRef<HTMLDivElement, MContainerVProps>(
 
 // -----------------------------------------------------------------
 
-export interface MContainerHProps extends StackProps {
+export interface MHContainerProps extends StackProps {
   maskingLeft?: string | number;
   maskingRight?: string | number;
 }
 
-export const MContainerH = forwardRef<HTMLDivElement, MContainerHProps>(
-  function MContainerH(props, ref) {
+export const MHContainer = forwardRef<HTMLDivElement, MHContainerProps>(
+  function MHContainer(props, ref) {
     const {
       maskingLeft = "8px",
       maskingRight = "8px",

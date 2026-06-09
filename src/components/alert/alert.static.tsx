@@ -1,10 +1,10 @@
+import { SPACING_MD } from "@/constants/styles";
 import { useThemeStore } from "@/features/settings/views/appearance/stores/use-theme-store";
 import { useLocaleStore } from "@/features/settings/views/regional/stores/use-locale-store";
 import { InfoIcon } from "lucide-react";
 import { AppIconLucide } from "../branding/app-icon";
 import { P } from "../ui/p";
 import { StackH } from "../ui/stack";
-import { R_SPACING_MD } from "@/constants/styles";
 
 export const SettingsSavedLocalyAlert = () => {
   // Store
@@ -18,7 +18,7 @@ export const SettingsSavedLocalyAlert = () => {
       bg={"bg.body"}
       rounded={theme.radii.container}
       color={"fg.subtle"}
-      mx={R_SPACING_MD}
+      mx={SPACING_MD}
     >
       <AppIconLucide icon={InfoIcon} mt={"2px"} />
 

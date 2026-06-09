@@ -1,5 +1,5 @@
 import { P, PProps } from "@/components/ui/p";
-import { R_SPACING_MD } from "@/constants/styles";
+import { PADDING_MD, SPACING_MD } from "@/constants/styles";
 import { StackProps } from "@chakra-ui/react";
 
 // -----------------------------------------------------------------
@@ -23,8 +23,8 @@ export const SettingsGroupTitle = (props: StackProps) => {
 
   return (
     <P
-      // px={4}
-      py={R_SPACING_MD}
+      px={[PADDING_MD, null, 0]}
+      py={SPACING_MD}
       fontSize={"md"}
       fontWeight={"semibold"}
       mb={[2, null, 0]}
@@ -42,11 +42,7 @@ export const SettingsHelperText = (props: StackProps) => {
   const { children, ...restProps } = props;
 
   return (
-    <HelperText
-      // px={4}
-      mt={2}
-      {...restProps}
-    >
+    <HelperText px={[PADDING_MD, null, 0]} mt={2} {...restProps}>
       {children}
     </HelperText>
   );

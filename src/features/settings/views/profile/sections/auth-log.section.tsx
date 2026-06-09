@@ -8,7 +8,7 @@ import { SearchInput } from "@/components/ui/search-input";
 import { StackH, StackV } from "@/components/ui/stack";
 import { DEFAULT_LIMIT, DEFAULT_PAGE } from "@/constants/data-list";
 import { DUMMY_AUTH_LOGS } from "@/constants/dummy-data";
-import { R_SPACING_MD } from "@/constants/styles";
+import { SPACING_MD } from "@/constants/styles";
 import { useLocaleStore } from "@/features/settings/views/regional/stores/use-locale-store";
 import { formatDate } from "@/utils/formatter";
 import { Circle } from "@chakra-ui/react";
@@ -30,7 +30,7 @@ export const AuthLogSection = (props: ItemRootProps) => {
   const [page, setPage] = useState<number>(DEFAULT_PAGE);
 
   return (
-    <Item.Root px={R_SPACING_MD} {...props}>
+    <Item.Root px={SPACING_MD} {...props}>
       <SettingsHelperText>{t.my_auth_logs}</SettingsHelperText>
 
       <Item.Body>

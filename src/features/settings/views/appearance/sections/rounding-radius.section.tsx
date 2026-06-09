@@ -6,7 +6,7 @@ import { RadioItem } from "@/components/ui/radio";
 import { StackH, StackV } from "@/components/ui/stack";
 import { SettingsGroupTitle } from "@/components/ui/typography";
 import { ROUNDED_PRESETS } from "@/constants/presets";
-import { R_SPACING_MD } from "@/constants/styles";
+import { SPACING_MD } from "@/constants/styles";
 import { PSleleton } from "@/features/settings/views/appearance/sections/color-mode.section";
 import { useThemeStore } from "@/features/settings/views/appearance/stores/use-theme-store";
 import { useLocaleStore } from "@/features/settings/views/regional/stores/use-locale-store";
@@ -32,7 +32,7 @@ export const RoundedSection = () => {
   }
 
   return (
-    <StackV px={R_SPACING_MD}>
+    <StackV px={SPACING_MD}>
       <SettingsGroupTitle>
         {t.settings_rounded_section.title}
       </SettingsGroupTitle>
@@ -46,7 +46,7 @@ export const RoundedSection = () => {
               <StackV
                 key={`${preset.label}-${index}`}
                 gap={2}
-                p={R_SPACING_MD}
+                p={SPACING_MD}
                 rounded={theme.radii.component}
                 cursor={"pointer"}
                 transition={"200ms"}

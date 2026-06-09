@@ -1,55 +1,55 @@
 "use client";
 
-import { Avatar } from "@/components/ui/avatar";
-import { Btn } from "@/components/ui/btn";
-import { Menu } from "@/components/ui/menu";
-import { NavLink } from "@/components/ui/nav-link";
-import { P } from "@/components/ui/p";
-import { StackH, StackV } from "@/components/ui/stack";
 import { AppIconLucide } from "@/components/branding/app-icon";
-import { Clock } from "@/components/misc/clock";
-import { BottomIndicator, LeftIndicator } from "@/components/ui/indicator";
 import { Logo } from "@/components/branding/logo";
-import { MContainerV } from "@/components/container/m-container";
+import { HScroll } from "@/components/container/h-scroll";
+import { MVContainer } from "@/components/container/m-container";
 import {
   MainView,
   NavBreadcrumb,
   TopBar,
 } from "@/components/container/main-view";
+import { Clock } from "@/components/misc/clock";
+import { Today } from "@/components/misc/today";
 import {
-  VNavs,
   DesktopNavTooltip,
   MobileNavLink,
+  VNavs,
 } from "@/components/navigation/nav";
+import { UserPanel } from "@/components/navigation/user-panel";
+import { Avatar } from "@/components/ui/avatar";
+import { Btn } from "@/components/ui/btn";
+import { BottomIndicator, LeftIndicator } from "@/components/ui/indicator";
+import { Menu } from "@/components/ui/menu";
+import { NavLink } from "@/components/ui/nav-link";
+import { P } from "@/components/ui/p";
+import { StackH, StackV } from "@/components/ui/stack";
 import { ProfileMenuTrigger } from "@/components/user/profile-menu";
-import { HScroll } from "@/components/container/h-scroll";
-import { Today } from "@/components/misc/today";
 import { APP } from "@/constants/_meta";
 import { OTHER_PRIVATE_NAV_GROUPS, PRIVATE_NAV_GROUPS } from "@/constants/navs";
 import {
+  COMMON_NAV_COLOR,
   DESKTOP_ACTIVE_NAV_BTN_VARIANT,
   DESKTOP_NAV_BTN_ICON_BG,
   DESKTOP_NAV_BTN_PX,
   DESKTOP_NAV_BTN_SIZE,
   DESKTOP_NAV_BTN_VARIANT,
-  COMMON_NAV_COLOR,
-  DESKTOP_SPACING_MD,
   GAP,
   MOBILE_CONTENT_CONTAINER_BG,
   MOBILE_NAV_LABEL_FONT_SIZE,
   MOBILE_POPOVER_MAIN_AXIS,
-  R_SPACING_MD,
+  SPACING_MD,
   TOP_BAR_H,
   USER_PANEL_H,
 } from "@/constants/styles";
-import { useLocaleStore } from "@/features/settings/views/regional/stores/use-locale-store";
-import { useNavsStore } from "@/stores/use-navs-store";
-import { useThemeStore } from "@/features/settings/views/appearance/stores/use-theme-store";
 import { AuthGuard } from "@/features/auth/components/auth-guard";
+import { useThemeStore } from "@/features/settings/views/appearance/stores/use-theme-store";
+import { useLocaleStore } from "@/features/settings/views/regional/stores/use-locale-store";
 import { useIsSmScreenWidth } from "@/hooks/use-is-sm-screen-width";
 import { useScreen } from "@/hooks/use-screen";
-import { last } from "@/utils/array";
 import { useAuthStore } from "@/stores/use-auth-store";
+import { useNavsStore } from "@/stores/use-navs-store";
+import { last } from "@/utils/array";
 import { getActiveNavs } from "@/utils/route";
 import { pluckString } from "@/utils/string";
 import { imgUrl } from "@/utils/url";
@@ -57,7 +57,6 @@ import { Center } from "@chakra-ui/react";
 import { ChevronsLeftIcon, ChevronsRightIcon, ServerIcon } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { Fragment } from "react";
-import { UserPanel } from "@/components/navigation/user-panel";
 
 const MobileLayout = (props: any) => {
   // Props
@@ -351,8 +350,8 @@ const DesktopLayout = (props: any) => {
           flexShrink={0}
           w={
             isNavsExpanded
-              ? `calc(250px + (${DESKTOP_SPACING_MD} * 2) + ${GAP})`
-              : `calc(36px + (${DESKTOP_SPACING_MD} * 2) + ${GAP})`
+              ? `calc(250px + (${SPACING_MD} * 2) + ${GAP})`
+              : `calc(36px + (${SPACING_MD} * 2) + ${GAP})`
           }
           transition={"0.3s cubic-bezier(0.175, 0.885, 0.32, 1.1)"}
           pos={"relative"}
@@ -368,12 +367,7 @@ const DesktopLayout = (props: any) => {
           >
             {/* Header */}
             <NavLink to={"/"}>
-              <StackH
-                align={"center"}
-                gap={3}
-                minH={TOP_BAR_H}
-                p={R_SPACING_MD}
-              >
+              <StackH align={"center"} gap={3} minH={TOP_BAR_H} p={SPACING_MD}>
                 <Logo size={18} ml={"6px"} />
 
                 {isNavsExpanded && (
@@ -393,7 +387,7 @@ const DesktopLayout = (props: any) => {
             <DesktopNavTooltip
               content={isNavsExpanded ? t.minimize : t.maximize}
             >
-              <StackH px={R_SPACING_MD} my={`calc(${GAP})`}>
+              <StackH px={SPACING_MD} my={`calc(${GAP})`}>
                 <Btn
                   flex={1}
                   aria-label={"toggle expand navs"}
@@ -430,12 +424,12 @@ const DesktopLayout = (props: any) => {
               <StackV
                 className={"scrollY"}
                 flex={1}
-                px={R_SPACING_MD}
-                pt={R_SPACING_MD}
+                px={SPACING_MD}
+                pt={SPACING_MD}
                 pb={
                   isNavsExpanded
-                    ? `calc(${USER_PANEL_H} + (${DESKTOP_SPACING_MD} * 1))`
-                    : `calc(36px + (${DESKTOP_SPACING_MD} * 2))`
+                    ? `calc(${USER_PANEL_H} + (${SPACING_MD} * 1))`
+                    : `calc(36px + (${SPACING_MD} * 2))`
                 }
                 mb={GAP}
                 transition={"200ms"}
@@ -528,7 +522,7 @@ const DesktopLayout = (props: any) => {
               align={"center"}
               w={"full"}
               h={TOP_BAR_H}
-              p={R_SPACING_MD}
+              p={SPACING_MD}
               // borderBottom={"1px solid"}
               borderColor={"border.muted"}
               // rounded={theme.radii.container}
@@ -537,9 +531,9 @@ const DesktopLayout = (props: any) => {
             </StackH>
           </StackV>
 
-          <MContainerV flex={1} overflow={"auto"}>
+          <MVContainer flex={1} overflow={"auto"}>
             {children}
-          </MContainerV>
+          </MVContainer>
         </MainView.Root>
       </StackH>
     </StackV>

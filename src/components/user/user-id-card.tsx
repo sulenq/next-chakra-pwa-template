@@ -7,7 +7,7 @@ import { P } from "@/components/ui/p";
 import { StackH, StackV } from "@/components/ui/stack";
 import { AppIconLucide } from "@/components/branding/app-icon";
 import { Logo } from "@/components/branding/logo";
-import { MContainerV } from "@/components/container/m-container";
+import { MVContainer } from "@/components/container/m-container";
 import { APP } from "@/constants/_meta";
 import { DUMMY_USER } from "@/constants/dummy-data";
 import { useThemeStore } from "@/features/settings/views/appearance/stores/use-theme-store";
@@ -193,7 +193,7 @@ export const UserIdCard = (props: UserIdCardProps) => {
         </Box>
 
         {/* Strap */}
-        <MContainerV
+        <MVContainer
           maskingTop={maskingTop}
           maskingBottom={0}
           pos={"absolute"}
@@ -208,7 +208,7 @@ export const UserIdCard = (props: UserIdCardProps) => {
             bg={`${theme.colorPalette}.solid`}
             roundedBottom={"sm"}
           />
-        </MContainerV>
+        </MVContainer>
       </>
     </StackV>
   );

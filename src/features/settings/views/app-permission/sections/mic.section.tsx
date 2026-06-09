@@ -11,7 +11,7 @@ import {
   SettingsGroupTitle,
   SettingsHelperText,
 } from "@/components/ui/typography";
-import { R_SPACING_MD } from "@/constants/styles";
+import { SPACING_MD } from "@/constants/styles";
 import { useMicPermissionStore } from "@/features/settings/views/app-permission/stores/use-mic-permission-store";
 import { getBadgeText } from "@/features/settings/views/app-permission/utils/getBadgeText";
 import { useThemeStore } from "@/features/settings/views/appearance/stores/use-theme-store";
@@ -274,7 +274,7 @@ export const MicrophoneSection = () => {
     micPermissionsStatus === "granted_temporary";
 
   return (
-    <Item.Root px={R_SPACING_MD}>
+    <Item.Root px={SPACING_MD}>
       <SettingsGroupTitle fontWeight={"semibold"}>
         {t.settings_mic_permission_section.title}
       </SettingsGroupTitle>

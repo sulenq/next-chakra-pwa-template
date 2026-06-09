@@ -9,7 +9,7 @@ import { NavLink } from "@/components/ui/nav-link";
 import { P } from "@/components/ui/p";
 import { StackH, StackV } from "@/components/ui/stack";
 import { ProfileMenuTrigger } from "@/components/user/profile-menu";
-import { BACKDROP_BLUR_FILTER, R_SPACING_MD } from "@/constants/styles";
+import { BACKDROP_BLUR_FILTER, SPACING_MD } from "@/constants/styles";
 import { useAuthStore } from "@/stores/use-auth-store";
 import { imgUrl } from "@/utils/url";
 import {
@@ -35,17 +35,15 @@ export const UserPanel = (props: UserPanelProps) => {
 
   return (
     <Item.Body
-      p={navsExpanded ? 0 : R_SPACING_MD}
+      p={navsExpanded ? 0 : SPACING_MD}
       bg={navsExpanded ? "bg.frosted" : "transparent"}
       backdropFilter={BACKDROP_BLUR_FILTER}
       overflow={"clip"}
-      // border={navsExpanded ? "1px solid" : "none"}
-      // borderColor={"border.subtle"}
-      // shadow={"soft"}
+      shadow={"soft"}
     >
       {/* Quick actions */}
       {navsExpanded && (
-        <StackH justify={"space-between"} gap={R_SPACING_MD} p={R_SPACING_MD}>
+        <StackH justify={"space-between"} gap={SPACING_MD} p={SPACING_MD}>
           <ColorModeButton variant={"outline"} />
 
           <Btn iconButton variant={"outline"}>
@@ -75,7 +73,7 @@ export const UserPanel = (props: UserPanelProps) => {
         align={"center"}
         gap={4}
         w={navsExpanded ? "full" : "36px"}
-        p={navsExpanded ? R_SPACING_MD : 0}
+        p={navsExpanded ? SPACING_MD : 0}
         pos={"relative"}
       >
         {navsExpanded ? (
@@ -130,8 +128,8 @@ export const UserPanel = (props: UserPanelProps) => {
                 positioning: {
                   placement: "right-end",
                   offset: {
-                    mainAxis: 16,
-                    crossAxis: 16,
+                    mainAxis: 18,
+                    crossAxis: 18,
                   },
                 },
               }}

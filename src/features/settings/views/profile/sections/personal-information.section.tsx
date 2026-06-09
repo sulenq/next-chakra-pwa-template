@@ -7,7 +7,7 @@ import { HelperText } from "@/components/ui/typography";
 import { StackH, StackV } from "@/components/ui/stack";
 import { StringInput } from "@/components/ui/string-input";
 import { UserIdCard } from "@/components/user/user-id-card";
-import { R_SPACING_MD } from "@/constants/styles";
+import { SPACING_MD } from "@/constants/styles";
 import { ResetPasswordDisclosureTrigger } from "@/features/auth/components/reset-password";
 import { useThemeStore } from "@/features/settings/views/appearance/stores/use-theme-store";
 import { useLocaleStore } from "@/features/settings/views/regional/stores/use-locale-store";
@@ -55,7 +55,7 @@ export const PersonalInformationSection = (props: ItemRootProps) => {
   const onSubmit = (values: any) => {};
 
   return (
-    <Item.Root px={R_SPACING_MD} {...props}>
+    <Item.Root px={SPACING_MD} {...props}>
       <Item.Body p={4} overflow={"visible"}>
         <Stack flexDir={isSmContainer ? "column" : "row"}>
           <StackV minW={"280px"} pl={10} pr={8} pt={"28px"} pb={2}>

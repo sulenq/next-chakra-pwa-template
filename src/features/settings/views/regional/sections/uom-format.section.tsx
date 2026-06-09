@@ -7,7 +7,7 @@ import {
   SettingsGroupTitle,
   SettingsHelperText,
 } from "@/components/ui/typography";
-import { R_SPACING_MD } from "@/constants/styles";
+import { SPACING_MD } from "@/constants/styles";
 import {
   SelectAngleFormat,
   SelectAreaFormat,
@@ -495,7 +495,7 @@ export const UOMFormatSection = () => {
   const { t } = useLocaleStore();
 
   return (
-    <Item.Root px={R_SPACING_MD}>
+    <Item.Root px={SPACING_MD}>
       <SettingsGroupTitle>{t.settings_uom_section.title}</SettingsGroupTitle>
 
       <Item.Body>

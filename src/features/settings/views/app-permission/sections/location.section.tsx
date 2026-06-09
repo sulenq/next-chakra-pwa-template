@@ -9,7 +9,7 @@ import { Switch } from "@/components/ui/switch";
 import { toaster } from "@/components/ui/toaster";
 import { Item } from "@/components/container/item";
 import { GroupItem } from "@/components/container/group-item";
-import { R_SPACING_MD } from "@/constants/styles";
+import { SPACING_MD } from "@/constants/styles";
 import { useLocationPermissionStore } from "@/features/settings/views/app-permission/stores/use-location-permission-store";
 import { useThemeStore } from "@/features/settings/views/appearance/stores/use-theme-store";
 import { useLocaleStore } from "@/features/settings/views/regional/stores/use-locale-store";
@@ -276,7 +276,7 @@ export const LocationSection = () => {
     locationPermissionsStatus === "granted_temporary";
 
   return (
-    <Item.Root px={R_SPACING_MD}>
+    <Item.Root px={SPACING_MD}>
       <SettingsHelperText fontWeight={"semibold"}>
         {t.settings_location_permission_section.title}
       </SettingsHelperText>

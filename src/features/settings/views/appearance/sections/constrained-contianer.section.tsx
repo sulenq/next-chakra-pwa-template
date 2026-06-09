@@ -8,7 +8,7 @@ import { P } from "@/components/ui/p";
 import { StackV } from "@/components/ui/stack";
 import { Switch } from "@/components/ui/switch";
 import { SettingsGroupTitle } from "@/components/ui/typography";
-import { R_SPACING_MD } from "@/constants/styles";
+import { SPACING_MD } from "@/constants/styles";
 import { useLocaleStore } from "@/features/settings/views/regional/stores/use-locale-store";
 import { useDebounced } from "@/hooks/use-debounced";
 import { useConstrainedContainerStore } from "../stores/use-constrained-container-store";
@@ -90,7 +90,7 @@ export const ConstrainedContainerSection = () => {
   const { t } = useLocaleStore();
 
   return (
-    <StackV px={R_SPACING_MD}>
+    <StackV px={SPACING_MD}>
       <SettingsGroupTitle>
         {t.settings_constrained_container_section.title}
       </SettingsGroupTitle>

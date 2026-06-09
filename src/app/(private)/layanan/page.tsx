@@ -4,7 +4,7 @@ import { StackH } from "@/components/ui/stack";
 import { Item } from "@/components/container/item";
 import { MainView, useMainViewContext } from "@/components/container/main-view";
 import { HScroll } from "@/components/container/h-scroll";
-import { GAP, R_SPACING_MD, TOP_BAR_H } from "@/constants/styles";
+import { GAP, SPACING_MD, TOP_BAR_H } from "@/constants/styles";
 import { LayananCreate } from "@/features/layanan/components/layanan.create";
 import { LayananDataList } from "@/features/layanan/components/layanan.data-list";
 import { LayananListUtils } from "@/features/layanan/components/layanan.data-list-utils";
@@ -54,7 +54,7 @@ export default function LayananPage() {
             align={"center"}
             minW={"full"}
             justify={"space-between"}
-            px={R_SPACING_MD}
+            px={SPACING_MD}
           >
             <LayananListUtils filter={filter} setFilter={setFilter} />
           </StackH>

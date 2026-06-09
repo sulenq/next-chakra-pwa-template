@@ -3,6 +3,7 @@ import { back } from "@/utils/client";
 import { ChevronLeftIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { AppIconLucide } from "../branding/app-icon";
+import { useThemeStore } from "@/features/settings/views/appearance/stores/use-theme-store";
 
 // -----------------------------------------------------------------
 
@@ -20,9 +21,14 @@ export const BackButton = ({
   onBack,
   ...props
 }: BackButtonProps) => {
+  // Store
+  const { theme } = useThemeStore();
+
+  // Hooks
   const router = useRouter();
   router.prefetch(backPath || "");
 
+  // Utils
   function handleBack() {
     if (backPath) {
       router.push(backPath);
@@ -37,7 +43,7 @@ export const BackButton = ({
       <Btn
         iconButton
         variant={"ghost"}
-        rounded={"full"}
+        rounded={theme.radii.component}
         onClick={handleBack}
         size={"xs"}
         {...props}

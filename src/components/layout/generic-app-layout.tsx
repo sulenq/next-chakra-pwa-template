@@ -3,7 +3,7 @@
 import { AppIconLucide } from "@/components/branding/app-icon";
 import { Logo } from "@/components/branding/logo";
 import { HScroll } from "@/components/container/h-scroll";
-import { MContainerV } from "@/components/container/m-container";
+import { MVContainer } from "@/components/container/m-container";
 import {
   ConstrainedContainer,
   MainView,
@@ -33,12 +33,11 @@ import {
   DESKTOP_NAV_BTN_PX,
   DESKTOP_NAV_BTN_SIZE,
   DESKTOP_NAV_BTN_VARIANT,
-  DESKTOP_SPACING_MD,
   GAP,
   MOBILE_CONTENT_CONTAINER_BG,
   MOBILE_NAV_LABEL_FONT_SIZE,
   MOBILE_POPOVER_MAIN_AXIS,
-  R_SPACING_MD,
+  SPACING_MD,
   TOP_BAR_H,
   USER_PANEL_H,
 } from "@/constants/styles";
@@ -88,43 +87,25 @@ const MobileLayout = (props: any) => {
         overflowY={"auto"}
       >
         {/* Content header */}
-        <StackV gap={2}>
-          {/* <StackH
-            align={"center"}
-            justify={"space-between"}
-            w={"full"}
-            pt={2}
-            px={4}
-          >
-            <StackH align={"center"}>
-              <NavLink to={"/"}>
-                <Logo size={15} ml={"-4px"} />
-              </NavLink>
-            </StackH>
-
-            <StackH align={"center"} gap={2}>
-              <Clock fontSize={"sm"} />
-
-              <Today fontSize={"sm"} />
-            </StackH>
-          </StackH> */}
-
-          <StackH
-            align={"center"}
-            gap={4}
-            px={4}
-            py={1}
-            borderBottom={"1px solid"}
-            borderColor={"border.muted"}
-            justify={"space-between"}
-          >
-            <NavBreadcrumb
-              backPath={backPath}
-              resolvedActiveNavs={resolvedActiveNavs}
-              ml={backPath ? -2 : -1}
-            />
-          </StackH>
-        </StackV>
+        <StackH
+          align={"center"}
+          gap={4}
+          px={4}
+          py={1}
+          bg={"bg.canvas"}
+          borderBottom={"1px solid"}
+          borderColor={"border.muted"}
+          justify={"space-between"}
+          pos={"sticky"}
+          top={0}
+          zIndex={2}
+        >
+          <NavBreadcrumb
+            backPath={backPath}
+            resolvedActiveNavs={resolvedActiveNavs}
+            ml={backPath ? -2 : -1}
+          />
+        </StackH>
 
         {children}
       </MainView.Root>
@@ -351,16 +332,16 @@ const DesktopLayout = (props: any) => {
         flexShrink={0}
         w={
           isNavsExpanded
-            ? `calc(250px + (${DESKTOP_SPACING_MD} * 2))`
-            : `calc(36px + (${DESKTOP_SPACING_MD} * 2))`
+            ? `calc(250px + (${SPACING_MD} * 2))`
+            : `calc(36px + (${SPACING_MD} * 2))`
         }
         transition={BOUNCY_TRANSITION}
         pos={"relative"}
       >
         <StackV flex={1} overflowY={"auto"} overflowX={"clip"}>
           {/* Header */}
-          <NavLink to={"/"}>
-            <StackH align={"center"} gap={3} minH={TOP_BAR_H} p={R_SPACING_MD}>
+          <NavLink to={"/"} w={"fit"}>
+            <StackH align={"center"} gap={3} minH={TOP_BAR_H} p={SPACING_MD}>
               <Logo size={18} ml={"6px"} />
 
               {isNavsExpanded && (
@@ -378,7 +359,7 @@ const DesktopLayout = (props: any) => {
 
           {/* Toggle expand */}
           <DesktopNavTooltip content={isNavsExpanded ? t.minimize : t.maximize}>
-            <StackH px={R_SPACING_MD} my={`calc(${GAP})`}>
+            <StackH px={SPACING_MD} my={2}>
               <Btn
                 flex={1}
                 aria-label={"toggle expand navs"}
@@ -407,17 +388,18 @@ const DesktopLayout = (props: any) => {
             </StackH>
           </DesktopNavTooltip>
 
-          {/* Navs */}
+          {/* Navs & user panel */}
           <StackV flex={1} overflowY={"auto"} pos={"relative"}>
+            {/* Navs */}
             <StackV
               className={"scrollY"}
               flex={1}
-              px={R_SPACING_MD}
-              pt={R_SPACING_MD}
+              px={SPACING_MD}
+              pt={SPACING_MD}
               pb={
                 isNavsExpanded
-                  ? `calc(${USER_PANEL_H} + (${DESKTOP_SPACING_MD} * 1))`
-                  : `calc(36px + (${DESKTOP_SPACING_MD} * 2))`
+                  ? `calc(${USER_PANEL_H} + (${SPACING_MD} * 1 + ${SPACING_MD}))`
+                  : `calc(36px + (${SPACING_MD} * 2))`
               }
               mb={GAP}
               transition={"200ms"}
@@ -426,6 +408,7 @@ const DesktopLayout = (props: any) => {
                 navs={PRIVATE_NAV_GROUPS}
                 navsExpanded={isNavsExpanded}
                 addonBottomElement={
+                  // Master data nav
                   <StackV gap={1} mt={"auto"}>
                     <NavLink
                       key={"/master-data"}
@@ -451,19 +434,7 @@ const DesktopLayout = (props: any) => {
                           }
                           pos={"relative"}
                         >
-                          {/* {pathname.includes("/master-data") && (
-                            <LeftIndicator />
-                          )} */}
-
-                          <Center
-                            p={2}
-                            // bg={
-                            //   pathname.includes("/master-data")
-                            //     ? ""
-                            //     : DESKTOP_NAV_BTN_ICON_BG
-                            // }
-                            rounded={theme.radii.component}
-                          >
+                          <Center p={2} rounded={theme.radii.component}>
                             <AppIconLucide
                               icon={ServerIcon}
                               color={
@@ -489,7 +460,14 @@ const DesktopLayout = (props: any) => {
             </StackV>
 
             {/* User panel */}
-            <StackV w={"full"} pos={"absolute"} left={0} bottom={0} zIndex={2}>
+            <StackV
+              w={"full"}
+              p={isNavsExpanded ? SPACING_MD : 0}
+              pos={"absolute"}
+              left={0}
+              bottom={0}
+              zIndex={2}
+            >
               <UserPanel navsExpanded={isNavsExpanded} />
             </StackV>
           </StackV>
@@ -498,19 +476,17 @@ const DesktopLayout = (props: any) => {
 
       {/* Content */}
       <MainView.Root w={"full"} overflowY={"auto"}>
-        <StackV>
-          <ConstrainedContainer px={GAP}>
-            <Box w={"full"} h={TOP_BAR_H} p={R_SPACING_MD}>
-              <TopBar showDateTime={false} />
-            </Box>
-          </ConstrainedContainer>
-        </StackV>
+        <ConstrainedContainer>
+          <StackH w={"full"} h={TOP_BAR_H} p={SPACING_MD}>
+            <TopBar showDateTime={false} />
+          </StackH>
+        </ConstrainedContainer>
 
-        <MContainerV flex={1} overflowY={"auto"} pos={"relative"}>
+        <MVContainer flex={1} overflowY={"auto"} pos={"relative"}>
           <ConstrainedContainer flex={1} pos={"relative"}>
             {children}
           </ConstrainedContainer>
-        </MContainerV>
+        </MVContainer>
       </MainView.Root>
     </StackH>
   );

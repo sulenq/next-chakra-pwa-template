@@ -20,7 +20,7 @@ import {
   BACKDROP_BLUR_FILTER,
   GAP,
   GRID_BATCH_OPTIONS_CONTAINER_BG,
-  R_SPACING_MD,
+  SPACING_MD,
 } from "@/constants/styles";
 import { useThemeStore } from "@/features/settings/views/appearance/stores/use-theme-store";
 import { useLocaleStore } from "@/features/settings/views/regional/stores/use-locale-store";
@@ -409,15 +409,15 @@ const DataGridRoot = (props: DataGridRootProps) => {
         <StackV
           flex={1}
           // pt={`calc(${rSpacingMd} - 8px)`}
-          pt={R_SPACING_MD}
+          pt={SPACING_MD}
           overflowY={"auto"}
         >
           <StackV
             className={"scrollY"}
             flex={1}
-            px={R_SPACING_MD}
+            px={SPACING_MD}
             //  pt={"8px"}
-            pb={R_SPACING_MD}
+            pb={SPACING_MD}
           >
             <SimpleGrid
               templateColumns={`repeat(auto-fill, minmax(${minChildWidth}, 1fr))`}

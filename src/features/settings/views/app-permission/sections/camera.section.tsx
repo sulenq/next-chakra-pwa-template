@@ -9,7 +9,7 @@ import { Switch } from "@/components/ui/switch";
 import { toaster } from "@/components/ui/toaster";
 import { Item } from "@/components/container/item";
 import { GroupItem } from "@/components/container/group-item";
-import { R_SPACING_MD } from "@/constants/styles";
+import { SPACING_MD } from "@/constants/styles";
 import { useCameraPermissionStore } from "@/features/settings/views/app-permission/stores/use-camera-permission-stores";
 import { useThemeStore } from "@/features/settings/views/appearance/stores/use-theme-store";
 import { useLocaleStore } from "@/features/settings/views/regional/stores/use-locale-store";
@@ -270,7 +270,7 @@ export const CameraSection = () => {
     cameraPermissionsStatus === "granted_temporary";
 
   return (
-    <Item.Root px={R_SPACING_MD}>
+    <Item.Root px={SPACING_MD}>
       <SettingsHelperText fontWeight={"semibold"}>
         {t.settings_camera_permission_section.title}
       </SettingsHelperText>
