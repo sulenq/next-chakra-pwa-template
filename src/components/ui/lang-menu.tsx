@@ -5,7 +5,7 @@ import { Menu } from "@/components/ui/menu";
 
 import { Tooltip } from "@/components/ui/tooltip";
 import { LANGUAGES } from "@/constants/languages";
-import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
+import { useLocaleStore } from "@/features/settings/views/regional/stores/use-locale-store";
 import { MenuPositioner, Portal } from "@chakra-ui/react";
 import { IconChevronDown } from "@tabler/icons-react";
 import { RadioItem } from "./radio";

@@ -3,7 +3,7 @@
 import { P } from "@/components/ui/p";
 import { StackV } from "@/components/ui/stack";
 import { FeedbackStateProps } from "@/components/feedback/feedback-state";
-import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
+import { useLocaleStore } from "@/features/settings/views/regional/stores/use-locale-store";
 
 // -----------------------------------------------------------------
 

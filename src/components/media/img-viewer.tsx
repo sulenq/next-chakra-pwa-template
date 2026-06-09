@@ -6,7 +6,7 @@ import { Dialog } from "@/components/ui/dialog";
 import { Img } from "@/components/ui/img";
 import { NavLink } from "@/components/ui/nav-link";
 import { StackV } from "@/components/ui/stack";
-import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
+import { useLocaleStore } from "@/features/settings/views/regional/stores/use-locale-store";
 import { usePopDisclosure } from "@/hooks/use-pop-disclosure";
 import { back } from "@/utils/client";
 import { disclosureId } from "@/utils/disclosure";

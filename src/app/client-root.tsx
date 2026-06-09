@@ -6,7 +6,7 @@ import { Img } from "@/components/ui/img";
 import { StackV } from "@/components/ui/stack";
 import { APP } from "@/constants/_meta";
 import { SVGS_PATH } from "@/constants/paths";
-import useADMStore from "@/features/settings/appearance/stores/use-adm-store";
+import useADMStore from "@/features/settings/views/appearance/stores/use-adm-store";
 import { Center } from "@chakra-ui/react";
 import { ReactNode, useEffect, useState } from "react";
 

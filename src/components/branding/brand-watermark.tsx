@@ -2,7 +2,7 @@
 
 import { P, PProps } from "@/components/ui/p";
 import { APP } from "@/constants/_meta";
-import { useThemeStore } from "@/features/settings/appearance/stores/use-theme-store";
+import { useThemeStore } from "@/features/settings/views/appearance/stores/use-theme-store";
 import { Link, Span } from "@chakra-ui/react";
 
 // -----------------------------------------------------------------

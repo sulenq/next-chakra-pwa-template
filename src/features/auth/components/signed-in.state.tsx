@@ -4,8 +4,8 @@ import { NavLink } from "@/components/ui/nav-link";
 import { StackH, StackV } from "@/components/ui/stack";
 import { UserIdCard } from "@/components/user/user-id-card";
 import { WELCOME_ROUTE } from "@/constants/routes";
-import { useThemeStore } from "@/features/settings/appearance/stores/use-theme-store";
-import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
+import { useThemeStore } from "@/features/settings/views/appearance/stores/use-theme-store";
+import { useLocaleStore } from "@/features/settings/views/regional/stores/use-locale-store";
 import { ArrowRightIcon } from "lucide-react";
 
 export const SignedinState = () => {

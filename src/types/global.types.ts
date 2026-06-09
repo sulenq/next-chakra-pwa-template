@@ -1,7 +1,7 @@
 import { AxiosRequestConfig, AxiosResponse } from "axios";
 import { ReactNode } from "react";
 
-import { translations } from "@/features/settings/regional/stores/use-locale-store";
+import { translations } from "@/features/settings/views/regional/stores/use-locale-store";
 import { ConditionalValue, StackProps } from "@chakra-ui/react";
 import { LucideIcon } from "lucide-react";
 

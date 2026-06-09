@@ -1,5 +1,5 @@
 import { useColorMode } from "@/components/ui/color-mode";
-import { useThemeStore } from "@/features/settings/appearance/stores/use-theme-store";
+import { useThemeStore } from "@/features/settings/views/appearance/stores/use-theme-store";
 import { getSemanticValue, resolveCssVar } from "@/utils/style";
 import { Center, CenterProps } from "@chakra-ui/react";
 import { useEffect, useState } from "react";

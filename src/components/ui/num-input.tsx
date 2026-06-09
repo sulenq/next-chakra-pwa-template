@@ -1,7 +1,7 @@
 "use client";
 
 import { StringInput } from "@/components/ui/string-input";
-import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
+import { useLocaleStore } from "@/features/settings/views/regional/stores/use-locale-store";
 import { useMergedRefs } from "@/hooks/use-merge-refs";
 import { formatNumber } from "@/utils/formatter";
 import { InputProps, StackProps } from "@chakra-ui/react";

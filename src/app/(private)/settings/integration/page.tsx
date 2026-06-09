@@ -2,7 +2,7 @@
 
 import { StackV } from "@/components/ui/stack";
 import { SECTION_GAP } from "@/constants/styles";
-import { APIKeySection } from "@/features/settings/integration/sections/api-key.section";
+import { APIKeySection } from "@/features/settings/views/integration/sections/api-key.section";
 
 // -----------------------------------------------------------------
 

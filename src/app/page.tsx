@@ -11,7 +11,7 @@ import { ColorModeButton } from "@/components/ui/color-mode";
 import { LangMenu } from "@/components/ui/lang-menu";
 import { StackH, StackV } from "@/components/ui/stack";
 import { SigninForm } from "@/features/auth/components/signin-form";
-import { useThemeStore } from "@/features/settings/appearance/stores/use-theme-store";
+import { useThemeStore } from "@/features/settings/views/appearance/stores/use-theme-store";
 import { useIsSmScreenWidth } from "@/hooks/use-is-sm-screen-width";
 import { SimpleGrid } from "@chakra-ui/react";
 

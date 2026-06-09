@@ -2,7 +2,7 @@ import { Btn } from "@/components/ui/btn";
 import { P, TNum } from "@/components/ui/p";
 import { StackH } from "@/components/ui/stack";
 import { AppIconLucide } from "@/components/branding/app-icon";
-import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
+import { useLocaleStore } from "@/features/settings/views/regional/stores/use-locale-store";
 import { formatNumber } from "@/utils/formatter";
 import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
 import { Dispatch, SetStateAction } from "react";

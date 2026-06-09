@@ -1,5 +1,5 @@
 import { StackH, StackV } from "@/components/ui/stack";
-import { useThemeStore } from "@/features/settings/appearance/stores/use-theme-store";
+import { useThemeStore } from "@/features/settings/views/appearance/stores/use-theme-store";
 import { Box, StackProps } from "@chakra-ui/react";
 import { useRef, useState } from "react";
 

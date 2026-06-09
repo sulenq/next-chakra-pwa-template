@@ -4,7 +4,7 @@ import { P } from "@/components/ui/p";
 import { RadioItem } from "@/components/ui/radio";
 import { StackH } from "@/components/ui/stack";
 import { AppIconLucide } from "@/components/branding/app-icon";
-import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
+import { useLocaleStore } from "@/features/settings/views/regional/stores/use-locale-store";
 import { ChevronDownIcon } from "lucide-react";
 
 // -----------------------------------------------------------------

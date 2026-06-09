@@ -21,8 +21,8 @@ import {
   DESKTOP_NAV_BTN_VARIANT,
   DESKTOP_NAV_GAP,
 } from "@/constants/styles";
-import { useThemeStore } from "@/features/settings/appearance/stores/use-theme-store";
-import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
+import { useThemeStore } from "@/features/settings/views/appearance/stores/use-theme-store";
+import { useLocaleStore } from "@/features/settings/views/regional/stores/use-locale-store";
 import { NavGroup } from "@/types/global.types";
 import { isEmptyArray } from "@/utils/array";
 import { pluckString } from "@/utils/string";

@@ -10,7 +10,7 @@ import { Logo } from "@/components/branding/logo";
 import { MContainerV } from "@/components/container/m-container";
 import { APP } from "@/constants/_meta";
 import { DUMMY_USER } from "@/constants/dummy-data";
-import { useThemeStore } from "@/features/settings/appearance/stores/use-theme-store";
+import { useThemeStore } from "@/features/settings/views/appearance/stores/use-theme-store";
 import { useSignout } from "@/features/auth/hooks/use-auth";
 import { Box, Circle, StackProps, useToken } from "@chakra-ui/react";
 import { LogOutIcon } from "lucide-react";

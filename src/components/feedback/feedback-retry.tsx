@@ -7,8 +7,8 @@ import FeedbackState, {
 } from "@/components/feedback/feedback-state";
 import { LucideIcon } from "@/components/misc/icon";
 import { MIN_H_FEEDBACK_CONTAINER } from "@/constants/styles";
-import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
-import { useThemeStore } from "@/features/settings/appearance/stores/use-theme-store";
+import { useLocaleStore } from "@/features/settings/views/regional/stores/use-locale-store";
+import { useThemeStore } from "@/features/settings/views/appearance/stores/use-theme-store";
 import { Icon } from "@chakra-ui/react";
 import { CircleXIcon } from "lucide-react";
 

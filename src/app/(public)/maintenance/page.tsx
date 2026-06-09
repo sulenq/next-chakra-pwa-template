@@ -6,8 +6,8 @@ import { NavLink } from "@/components/ui/nav-link";
 import { P } from "@/components/ui/p";
 import { StackH, StackV } from "@/components/ui/stack";
 import { BrandWatermark } from "@/components/branding/brand-watermark";
-import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
-import { useThemeStore } from "@/features/settings/appearance/stores/use-theme-store";
+import { useLocaleStore } from "@/features/settings/views/regional/stores/use-locale-store";
+import { useThemeStore } from "@/features/settings/views/appearance/stores/use-theme-store";
 
 export default function MaintenanceRoute() {
   // Stores

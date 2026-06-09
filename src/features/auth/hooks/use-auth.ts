@@ -16,7 +16,7 @@ import {
   ResetPasswordStep3Payload,
   SigninPayload,
 } from "@/features/auth/types/auth.types";
-import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
+import { useLocaleStore } from "@/features/settings/views/regional/stores/use-locale-store";
 import { queryKeys } from "@/lib/tanstack-query/query.keys";
 import { mutationToastHandlers } from "@/lib/toast/toast.handler";
 import { useAuthStore } from "@/stores/use-auth-store";

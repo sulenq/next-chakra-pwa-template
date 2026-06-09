@@ -1,6 +1,6 @@
 import { P } from "@/components/ui/p";
 import { BACKDROP_BLUR_FILTER } from "@/constants/styles";
-import { useThemeStore } from "@/features/settings/appearance/stores/use-theme-store";
+import { useThemeStore } from "@/features/settings/views/appearance/stores/use-theme-store";
 import { Tooltip as ChakraTooltip, Portal } from "@chakra-ui/react";
 import * as React from "react";
 

@@ -1,4 +1,4 @@
-import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
+import { useLocaleStore } from "@/features/settings/views/regional/stores/use-locale-store";
 import { invalidateLayananList } from "@/features/layanan/queries/layanan-list.invalidate";
 import {
   createLayanan,

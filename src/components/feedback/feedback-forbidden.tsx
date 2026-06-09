@@ -6,7 +6,7 @@ import FeedbackState, {
 } from "@/components/feedback/feedback-state";
 import { LucideIcon } from "@/components/misc/icon";
 import { MIN_H_FEEDBACK_CONTAINER } from "@/constants/styles";
-import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
+import { useLocaleStore } from "@/features/settings/views/regional/stores/use-locale-store";
 import { Icon } from "@chakra-ui/react";
 import { BanIcon } from "lucide-react";
 

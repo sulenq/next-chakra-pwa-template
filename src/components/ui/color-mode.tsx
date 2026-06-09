@@ -3,7 +3,7 @@
 import { AppIconLucide } from "@/components/branding/app-icon";
 import { Btn } from "@/components/ui/btn";
 import { Tooltip, TooltipProps } from "@/components/ui/tooltip";
-import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
+import { useLocaleStore } from "@/features/settings/views/regional/stores/use-locale-store";
 import { ColorMode } from "@/types/global.types";
 import type { IconButtonProps, SpanProps } from "@chakra-ui/react";
 import { ClientOnly, Skeleton, Span } from "@chakra-ui/react";

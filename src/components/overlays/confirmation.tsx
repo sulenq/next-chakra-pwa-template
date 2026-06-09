@@ -4,7 +4,7 @@ import { P } from "@/components/ui/p";
 import { StackV } from "@/components/ui/stack";
 import { Tooltip } from "@/components/ui/tooltip";
 import { BackButton } from "@/components/navigation/back-button";
-import { useThemeStore } from "@/features/settings/appearance/stores/use-theme-store";
+import { useThemeStore } from "@/features/settings/views/appearance/stores/use-theme-store";
 import { useCountdown } from "@/hooks/use-countdown";
 import { usePopDisclosure } from "@/hooks/use-pop-disclosure";
 import { disclosureId } from "@/utils/disclosure";

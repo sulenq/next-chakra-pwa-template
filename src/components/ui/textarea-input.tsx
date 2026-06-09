@@ -1,7 +1,7 @@
 import { toaster } from "@/components/ui/toaster";
 import { InputVariant } from "@/types/global.types";
-import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
-import { useThemeStore } from "@/features/settings/appearance/stores/use-theme-store";
+import { useLocaleStore } from "@/features/settings/views/regional/stores/use-locale-store";
+import { useThemeStore } from "@/features/settings/views/appearance/stores/use-theme-store";
 import { interpolateString } from "@/utils/string";
 import {
   Textarea as ChakraTextarea,

@@ -5,7 +5,7 @@ import { StackH } from "@/components/ui/stack";
 import { StringInput, StringInputProps } from "@/components/ui/string-input";
 import { Tooltip } from "@/components/ui/tooltip";
 import { MAIN_INPUT_SIZE } from "@/constants/styles";
-import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
+import { useLocaleStore } from "@/features/settings/views/regional/stores/use-locale-store";
 import { useDebounced } from "@/hooks/use-debounced";
 import { InputSize, InputVariant } from "@/types/global.types";
 import { Icon, IconProps, InputGroup, InputGroupProps } from "@chakra-ui/react";

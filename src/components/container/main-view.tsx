@@ -18,8 +18,8 @@ import {
   TOP_BAR_H,
 } from "@/constants/styles";
 import { useBreadcrumbsStore } from "@/stores/use-breadcrumbs-store";
-import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
-import { useThemeStore } from "@/features/settings/appearance/stores/use-theme-store";
+import { useLocaleStore } from "@/features/settings/views/regional/stores/use-locale-store";
+import { useThemeStore } from "@/features/settings/views/appearance/stores/use-theme-store";
 import { useContainerDimension } from "@/hooks/use-container-dimenssion";
 import { useMergedRefs } from "@/hooks/use-merge-refs";
 import { useScreen } from "@/hooks/use-screen";
@@ -39,7 +39,7 @@ import {
   useMemo,
   useRef,
 } from "react";
-import { useConstrainedContainerStore } from "@/features/settings/appearance/stores/use-constrained-container-store";
+import { useConstrainedContainerStore } from "@/features/settings/views/appearance/stores/use-constrained-container-store";
 
 // -----------------------------------------------------------------
 

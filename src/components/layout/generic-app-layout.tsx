@@ -45,8 +45,8 @@ import {
   USER_PANEL_H,
 } from "@/constants/styles";
 import { AuthGuard } from "@/features/auth/components/auth-guard";
-import { useThemeStore } from "@/features/settings/appearance/stores/use-theme-store";
-import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
+import { useThemeStore } from "@/features/settings/views/appearance/stores/use-theme-store";
+import { useLocaleStore } from "@/features/settings/views/regional/stores/use-locale-store";
 import { useIsSmScreenWidth } from "@/hooks/use-is-sm-screen-width";
 import { useScreen } from "@/hooks/use-screen";
 import { useAuthStore } from "@/stores/use-auth-store";

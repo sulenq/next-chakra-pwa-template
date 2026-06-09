@@ -11,8 +11,8 @@ import { VNavs } from "@/components/navigation/nav";
 import { APP } from "@/constants/_meta";
 import { OTHER_PRIVATE_NAV_GROUPS } from "@/constants/navs";
 import { GAP, R_SPACING_MD } from "@/constants/styles";
-import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
-import { useThemeStore } from "@/features/settings/appearance/stores/use-theme-store";
+import { useLocaleStore } from "@/features/settings/views/regional/stores/use-locale-store";
+import { useThemeStore } from "@/features/settings/views/appearance/stores/use-theme-store";
 import { formatAbsDate } from "@/utils/formatter";
 import { usePathname } from "next/navigation";
 

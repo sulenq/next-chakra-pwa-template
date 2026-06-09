@@ -11,8 +11,8 @@ import { Tooltip } from "@/components/ui/tooltip";
 import { AppIconLucide } from "@/components/branding/app-icon";
 import FeedbackState from "@/components/feedback/feedback-state";
 import { HScroll } from "@/components/container/h-scroll";
-import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
-import { useThemeStore } from "@/features/settings/appearance/stores/use-theme-store";
+import { useLocaleStore } from "@/features/settings/views/regional/stores/use-locale-store";
+import { useThemeStore } from "@/features/settings/views/appearance/stores/use-theme-store";
 import { Box, Icon, StackProps } from "@chakra-ui/react";
 import {
   IconArrowAutofitHeight,

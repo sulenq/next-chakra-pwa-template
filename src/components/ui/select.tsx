@@ -1,4 +1,4 @@
-import { useThemeStore } from "@/features/settings/appearance/stores/use-theme-store";
+import { useThemeStore } from "@/features/settings/views/appearance/stores/use-theme-store";
 import {
   Select as ChakraSelect,
   Portal,

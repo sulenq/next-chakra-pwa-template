@@ -38,9 +38,9 @@ import { Tooltip } from "@/components/ui/tooltip";
 import VideoPlayer from "@/components/ui/video-player";
 import { OPTIONS_RELIGION } from "@/constants/select-options";
 import { MENU_ICON_BOX_SIZE } from "@/constants/styles";
-import { useThemeStore } from "@/features/settings/appearance/stores/use-theme-store";
-import { SelectTimezone } from "@/features/settings/regional/components/select-timezone";
-import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
+import { useThemeStore } from "@/features/settings/views/appearance/stores/use-theme-store";
+import { SelectTimezone } from "@/features/settings/views/regional/components/select-timezone";
+import { useLocaleStore } from "@/features/settings/views/regional/stores/use-locale-store";
 import {
   BatchOptionsTableOptionGenerator,
   FormattedTableRow,

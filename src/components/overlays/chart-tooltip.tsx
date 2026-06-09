@@ -2,7 +2,7 @@ import { P } from "@/components/ui/p";
 import { StackH, StackV } from "@/components/ui/stack";
 import { DotIndicator } from "@/components/ui/indicator";
 import { BACKDROP_BLUR_FILTER } from "@/constants/styles";
-import { useThemeStore } from "@/features/settings/appearance/stores/use-theme-store";
+import { useThemeStore } from "@/features/settings/views/appearance/stores/use-theme-store";
 import { Text } from "@chakra-ui/react";
 import type { TooltipContentProps } from "recharts";
 import type {

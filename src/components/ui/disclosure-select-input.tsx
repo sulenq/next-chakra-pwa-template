@@ -12,8 +12,8 @@ import { RadioItem } from "@/components/ui/radio";
 import { SearchInput } from "@/components/ui/search-input";
 import { StackH, StackV } from "@/components/ui/stack";
 import { Tooltip } from "@/components/ui/tooltip";
-import { useThemeStore } from "@/features/settings/appearance/stores/use-theme-store";
-import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
+import { useThemeStore } from "@/features/settings/views/appearance/stores/use-theme-store";
+import { useLocaleStore } from "@/features/settings/views/regional/stores/use-locale-store";
 import { usePopDisclosure } from "@/hooks/use-pop-disclosure";
 import {
   ButtonVariant,

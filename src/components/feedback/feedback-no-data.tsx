@@ -5,7 +5,7 @@ import FeedbackState, {
   FeedbackStateProps,
 } from "@/components/feedback/feedback-state";
 import { MIN_H_FEEDBACK_CONTAINER } from "@/constants/styles";
-import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
+import { useLocaleStore } from "@/features/settings/views/regional/stores/use-locale-store";
 
 // -----------------------------------------------------------------
 

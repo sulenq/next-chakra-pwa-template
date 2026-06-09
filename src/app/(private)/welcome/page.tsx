@@ -4,7 +4,7 @@ import { Logo } from "@/components/branding/logo";
 import { P } from "@/components/ui/p";
 import { StackV } from "@/components/ui/stack";
 import { TOP_BAR_H } from "@/constants/styles";
-import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
+import { useLocaleStore } from "@/features/settings/views/regional/stores/use-locale-store";
 import { pluckString } from "@/utils/string";
 
 export default function Page() {

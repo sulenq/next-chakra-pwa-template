@@ -3,9 +3,9 @@
 import { SettingsSavedLocalyAlert } from "@/components/alert/alert.static";
 import { StackV } from "@/components/ui/stack";
 import { SECTION_GAP } from "@/constants/styles";
-import { CameraSection } from "@/features/settings/app-permission/sections/camera.section";
-import { LocationSection } from "@/features/settings/app-permission/sections/location.section";
-import { MicrophoneSection } from "@/features/settings/app-permission/sections/mic.section";
+import { CameraSection } from "@/features/settings/views/app-permission/sections/camera.section";
+import { LocationSection } from "@/features/settings/views/app-permission/sections/location.section";
+import { MicrophoneSection } from "@/features/settings/views/app-permission/sections/mic.section";
 
 // -----------------------------------------------------------------
 

@@ -1,4 +1,4 @@
-import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
+import { useLocaleStore } from "@/features/settings/views/regional/stores/use-locale-store";
 
 /**
  * Get current translations outside of React context.

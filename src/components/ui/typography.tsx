@@ -1,6 +1,6 @@
 import { P, PProps } from "@/components/ui/p";
 import { R_SPACING_MD } from "@/constants/styles";
-import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
+import { useLocaleStore } from "@/features/settings/views/regional/stores/use-locale-store";
 import { StackProps } from "@chakra-ui/react";
 
 // -----------------------------------------------------------------

@@ -2,7 +2,7 @@
 
 import { TNum, P } from "@/components/ui/p";
 import { StackH } from "@/components/ui/stack";
-import useTimezoneStore from "@/features/settings/regional/stores/use-timezone-store";
+import useTimezoneStore from "@/features/settings/views/regional/stores/use-timezone-store";
 import { formatTime } from "@/utils/formatter";
 import { Span, StackProps } from "@chakra-ui/react";
 import { useEffect, useState } from "react";

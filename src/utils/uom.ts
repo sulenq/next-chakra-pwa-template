@@ -1,4 +1,4 @@
-import useUOMFormatStore from "@/features/settings/regional/stores/use-uom-format-store";
+import useUOMFormatStore from "@/features/settings/views/regional/stores/use-uom-format-store";
 import { UnitKey } from "@/types/global.types";
 
 // -----------------------------------------------------------------

@@ -42,9 +42,9 @@ import {
   TOP_BAR_H,
   USER_PANEL_H,
 } from "@/constants/styles";
-import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
+import { useLocaleStore } from "@/features/settings/views/regional/stores/use-locale-store";
 import { useNavsStore } from "@/stores/use-navs-store";
-import { useThemeStore } from "@/features/settings/appearance/stores/use-theme-store";
+import { useThemeStore } from "@/features/settings/views/appearance/stores/use-theme-store";
 import { AuthGuard } from "@/features/auth/components/auth-guard";
 import { useIsSmScreenWidth } from "@/hooks/use-is-sm-screen-width";
 import { useScreen } from "@/hooks/use-screen";

@@ -4,7 +4,7 @@ import { P } from "@/components/ui/p";
 import { StackH } from "@/components/ui/stack";
 import { EmptyString } from "@/components/data-list/data-empty-value";
 import { DotIndicator } from "@/components/ui/indicator";
-import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
+import { useLocaleStore } from "@/features/settings/views/regional/stores/use-locale-store";
 import { formatDate } from "@/utils/formatter";
 import { StackProps } from "@chakra-ui/react";
 

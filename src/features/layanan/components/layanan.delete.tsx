@@ -4,7 +4,7 @@ import { Menu } from "@/components/ui/menu";
 import { Tooltip } from "@/components/ui/tooltip";
 import { AppIconLucide } from "@/components/branding/app-icon";
 import { Confirmation } from "@/components/overlays/confirmation";
-import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
+import { useLocaleStore } from "@/features/settings/views/regional/stores/use-locale-store";
 import { TrashIcon } from "lucide-react";
 import { useDeleteLayanan } from "../hooks/use-layanan";
 import { usePathname } from "next/navigation";

@@ -18,8 +18,8 @@ import {
   BASE_ICON_BOX_SIZE,
   GAP,
 } from "@/constants/styles";
-import { useThemeStore } from "@/features/settings/appearance/stores/use-theme-store";
-import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
+import { useThemeStore } from "@/features/settings/views/appearance/stores/use-theme-store";
+import { useLocaleStore } from "@/features/settings/views/regional/stores/use-locale-store";
 import { useSignout } from "@/features/auth/hooks/use-auth";
 import { useAuthStore } from "@/stores/use-auth-store";
 import { back } from "@/utils/client";
