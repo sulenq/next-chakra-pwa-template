@@ -14,7 +14,7 @@ import { Switch } from "@/components/ui/switch";
 import { DUMMY_DASHBOARD_DATA } from "@/constants/dummy-data";
 import { getMonthNames } from "@/constants/months";
 import { GAP, R_SPACING_MD } from "@/constants/styles";
-import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
+import { useThemeStore } from "@/features/settings/appearance/stores/use-theme-store";
 import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
 import { useAuthStore } from "@/stores/use-auth-store";
 import { ChartData } from "@/types/global.types";

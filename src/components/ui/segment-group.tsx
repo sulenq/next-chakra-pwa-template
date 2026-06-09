@@ -1,6 +1,6 @@
 "use client";
 
-import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
+import { useThemeStore } from "@/features/settings/appearance/stores/use-theme-store";
 import { SegmentGroup, SegmentGroupRootProps } from "@chakra-ui/react";
 
 // -----------------------------------------------------------------

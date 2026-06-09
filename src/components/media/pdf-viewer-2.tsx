@@ -12,7 +12,7 @@ import { AppIconLucide } from "@/components/branding/app-icon";
 import FeedbackState from "@/components/feedback/feedback-state";
 import { HScroll } from "@/components/container/h-scroll";
 import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
-import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
+import { useThemeStore } from "@/features/settings/appearance/stores/use-theme-store";
 import { Box, Icon, StackProps } from "@chakra-ui/react";
 import {
   IconArrowAutofitHeight,

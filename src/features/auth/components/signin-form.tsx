@@ -12,7 +12,7 @@ import { StringInput } from "@/components/ui/string-input";
 import { BASE_ICON_BOX_SIZE } from "@/constants/styles";
 import { ResetPasswordDisclosureTrigger } from "@/features/auth/components/reset-password";
 import { useSignin } from "@/features/auth/hooks/use-auth";
-import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
+import { useThemeStore } from "@/features/settings/appearance/stores/use-theme-store";
 import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
 import { useAuthStore } from "@/stores/use-auth-store";
 import { FieldsetRoot, Icon, InputGroup, StackProps } from "@chakra-ui/react";

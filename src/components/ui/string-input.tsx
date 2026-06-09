@@ -6,7 +6,7 @@ import { toaster } from "@/components/ui/toaster";
 import { LucideIcon } from "@/components/misc/icon";
 import { BASE_ICON_BOX_SIZE, MAIN_INPUT_SIZE } from "@/constants/styles";
 import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
-import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
+import { useThemeStore } from "@/features/settings/appearance/stores/use-theme-store";
 import { useMergedRefs } from "@/hooks/use-merge-refs";
 import { interpolateString } from "@/utils/string";
 import {

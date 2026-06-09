@@ -1,4 +1,4 @@
-import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
+import { useThemeStore } from "@/features/settings/appearance/stores/use-theme-store";
 import { ProgressRange, ProgressRoot, ProgressTrack } from "@chakra-ui/react";
 import { useEffect, useRef, useState } from "react";
 

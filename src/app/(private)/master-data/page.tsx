@@ -3,7 +3,7 @@
 import FeedbackState from "@/components/feedback/feedback-state";
 import { LucideIcon } from "@/components/misc/icon";
 import { StackV } from "@/components/ui/stack";
-import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
+import { useThemeStore } from "@/features/settings/appearance/stores/use-theme-store";
 import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
 import { ServerIcon } from "lucide-react";
 

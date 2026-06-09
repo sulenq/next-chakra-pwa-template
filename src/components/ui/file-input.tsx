@@ -15,7 +15,7 @@ import { FileItem } from "@/components/ui/file-item";
 import { LucideIcon } from "@/components/misc/icon";
 import { StorageFile } from "@/types/global.types";
 import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
-import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
+import { useThemeStore } from "@/features/settings/appearance/stores/use-theme-store";
 import { isEmptyArray } from "@/utils/array";
 import { makeFileUrl } from "@/utils/file";
 import { formatBytes, formatNumber } from "@/utils/formatter";

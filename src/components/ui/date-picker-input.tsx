@@ -16,7 +16,7 @@ import {
 } from "@/types/global.types";
 import { getWeekdayNames } from "@/constants/weekdays";
 import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
-import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
+import { useThemeStore } from "@/features/settings/appearance/stores/use-theme-store";
 import { usePopDisclosure } from "@/hooks/use-pop-disclosure";
 import { isEmptyArray } from "@/utils/array";
 import { back } from "@/utils/client";

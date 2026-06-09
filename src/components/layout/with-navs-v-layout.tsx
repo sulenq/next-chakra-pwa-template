@@ -6,7 +6,7 @@ import { HelperText } from "@/components/ui/typography";
 import { StackH, StackV } from "@/components/ui/stack";
 import { APP } from "@/constants/_meta";
 import { GAP, R_SPACING_MD } from "@/constants/styles";
-import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
+import { useThemeStore } from "@/features/settings/appearance/stores/use-theme-store";
 import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
 import { NavGroup } from "@/types/global.types";
 import { formatAbsDate } from "@/utils/formatter";

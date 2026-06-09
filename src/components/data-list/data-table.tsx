@@ -19,7 +19,7 @@ import {
   TABLE_TH_BORDER_COLOR,
   TABLE_TH_H,
 } from "@/constants/styles";
-import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
+import { useThemeStore } from "@/features/settings/appearance/stores/use-theme-store";
 import { useScreen } from "@/hooks/use-screen";
 import {
   BatchOptionsTableOptionGenerator,

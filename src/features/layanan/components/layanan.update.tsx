@@ -9,7 +9,7 @@ import { Tooltip } from "@/components/ui/tooltip";
 import { AppIconLucide } from "@/components/branding/app-icon";
 import { SimpleDisclosure } from "@/components/overlays/simple-disclosure";
 import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
-import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
+import { useThemeStore } from "@/features/settings/appearance/stores/use-theme-store";
 import { usePopDisclosure } from "@/hooks/use-pop-disclosure";
 import { InputGroup } from "@chakra-ui/react";
 import { toFormData } from "axios";
@@ -218,7 +218,9 @@ export const LayananUpdate = ({ item }: Props) => {
                 <input
                   type={"file"}
                   onChange={(e) =>
-                    setValue("file", e.target.files?.[0] || null, { shouldValidate: true })
+                    setValue("file", e.target.files?.[0] || null, {
+                      shouldValidate: true,
+                    })
                   }
                 />
               </Field>

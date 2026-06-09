@@ -7,7 +7,7 @@ import { Tooltip } from "@/components/ui/tooltip";
 import { LucideIcon } from "@/components/misc/icon";
 import { BASE_ICON_BOX_SIZE } from "@/constants/styles";
 import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
-import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
+import { useThemeStore } from "@/features/settings/appearance/stores/use-theme-store";
 import { usePopDisclosure } from "@/hooks/use-pop-disclosure";
 import { useScreen } from "@/hooks/use-screen";
 import { ButtonVariant, DisclosureSizes } from "@/types/global.types";
@@ -32,7 +32,10 @@ const DEFAULT_TIME = "00:00:00";
 
 // -----------------------------------------------------------------
 
-export interface TimePickerInputProps extends Omit<BtnProps, "onChange" | "defaultValue" | "value"> {
+export interface TimePickerInputProps extends Omit<
+  BtnProps,
+  "onChange" | "defaultValue" | "value"
+> {
   id?: string;
   name?: string;
   title?: string;
@@ -48,8 +51,10 @@ export interface TimePickerInputProps extends Omit<BtnProps, "onChange" | "defau
   variant?: ButtonVariant;
 }
 
-export const TimePickerInput = forwardRef<HTMLButtonElement, TimePickerInputProps>(
-  function TimePickerInput(props, ref) {
+export const TimePickerInput = forwardRef<
+  HTMLButtonElement,
+  TimePickerInputProps
+>(function TimePickerInput(props, ref) {
   // Props
   const {
     id,
@@ -95,16 +100,24 @@ export const TimePickerInput = forwardRef<HTMLButtonElement, TimePickerInputProp
   );
 
   // States
-  const [internalValue, setInternalValue] = useState<string | null>(defaultValue ?? null);
+  const [internalValue, setInternalValue] = useState<string | null>(
+    defaultValue ?? null,
+  );
 
   // Hybrid: detect controlled mode
   const isControlled = value !== undefined;
   const displayValue = isControlled ? value : internalValue;
 
-  const [selected, setSelected] = useState<string | null | undefined>(displayValue);
+  const [selected, setSelected] = useState<string | null | undefined>(
+    displayValue,
+  );
   const [hours, setHours] = useState<number>(getHoursFromTime(displayValue));
-  const [minutes, setMinutes] = useState<number>(getMinutesFromTime(displayValue));
-  const [seconds, setSeconds] = useState<number>(getSecondsFromTime(displayValue));
+  const [minutes, setMinutes] = useState<number>(
+    getMinutesFromTime(displayValue),
+  );
+  const [seconds, setSeconds] = useState<number>(
+    getSecondsFromTime(displayValue),
+  );
 
   // Constants
   const userTz = getUserTimezone();
@@ -196,7 +209,9 @@ export const TimePickerInput = forwardRef<HTMLButtonElement, TimePickerInputProp
 
   return (
     <>
-      <Tooltip content={displayValue ? formatTime(displayValue) : resolvedPlaceholder}>
+      <Tooltip
+        content={displayValue ? formatTime(displayValue) : resolvedPlaceholder}
+      >
         <Btn
           ref={ref}
           name={name}

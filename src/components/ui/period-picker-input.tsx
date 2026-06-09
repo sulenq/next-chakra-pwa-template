@@ -11,7 +11,7 @@ import { AppIconLucide } from "@/components/branding/app-icon";
 import { DotIndicator } from "@/components/ui/indicator";
 import { getMonthNames } from "@/constants/months";
 import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
-import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
+import { useThemeStore } from "@/features/settings/appearance/stores/use-theme-store";
 import { usePopDisclosure } from "@/hooks/use-pop-disclosure";
 import { ButtonVariant, DisclosureSizes, Period } from "@/types/global.types";
 import { back } from "@/utils/client";

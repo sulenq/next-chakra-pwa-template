@@ -1,6 +1,6 @@
 import { DatePickerInput } from "@/components/ui/date-picker-input";
 import { TimePickerInput } from "@/components/ui/time-picker-input";
-import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
+import { useThemeStore } from "@/features/settings/appearance/stores/use-theme-store";
 import { ButtonSize, DisclosureSizes } from "@/types/global.types";
 import { extractTime, getUserTimezone, makeUTCISODateTime } from "@/utils/time";
 import { Group, GroupProps, useFieldContext } from "@chakra-ui/react";

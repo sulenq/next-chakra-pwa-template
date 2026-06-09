@@ -9,7 +9,7 @@ import { LucideIcon } from "@/components/misc/icon";
 import { ImgViewer } from "@/components/media/img-viewer";
 import { HScroll } from "@/components/container/h-scroll";
 import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
-import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
+import { useThemeStore } from "@/features/settings/appearance/stores/use-theme-store";
 import { StorageFile } from "@/types/global.types";
 import { isEmptyArray } from "@/utils/array";
 import { imgUrl } from "@/utils/url";

@@ -7,7 +7,7 @@ import { SettingsHelperText } from "@/components/ui/typography";
 import { PasswordInput } from "@/components/ui/password-input";
 import { StackH } from "@/components/ui/stack";
 import { R_SPACING_MD } from "@/constants/styles";
-import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
+import { useThemeStore } from "@/features/settings/appearance/stores/use-theme-store";
 import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
 import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";

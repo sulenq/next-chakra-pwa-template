@@ -7,7 +7,7 @@ import { Field } from "@/components/ui/field";
 import { HelperText } from "@/components/ui/typography";
 import { PasswordInput } from "@/components/ui/password-input";
 import { StringInput } from "@/components/ui/string-input";
-import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
+import { useThemeStore } from "@/features/settings/appearance/stores/use-theme-store";
 import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
 import { back } from "@/utils/client";
 import { maskEmail } from "@/utils/string";

@@ -18,7 +18,7 @@ import { LayananUpdate } from "@/features/layanan/components/layanan.update";
 import { useLayananDataList } from "@/features/layanan/hooks/use-layanan";
 import { LayananItem } from "@/features/layanan/types/layanan.types";
 import { displayKeys } from "@/features/data-list-display/constants/displayKeys";
-import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
+import { useThemeStore } from "@/features/settings/appearance/stores/use-theme-store";
 import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
 import {
   BatchOptionsTableOptionGenerator,

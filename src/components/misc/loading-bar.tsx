@@ -1,6 +1,6 @@
 "use client";
 
-import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
+import { useThemeStore } from "@/features/settings/appearance/stores/use-theme-store";
 import { Box, BoxProps, Portal } from "@chakra-ui/react";
 import { useEffect, useRef, useState } from "react";
 

@@ -6,7 +6,7 @@ import { Dialog, DialogContentProps } from "@/components/ui/dialog";
 import { Drawer, DrawerContentProps } from "@/components/ui/drawer";
 import { StackH, StackV } from "@/components/ui/stack";
 import { SM_SCREEN_BREAKPOINT } from "@/constants/styles";
-import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
+import { useThemeStore } from "@/features/settings/appearance/stores/use-theme-store";
 import { useIsSmScreenWidth } from "@/hooks/use-is-sm-screen-width";
 import { useScreen } from "@/hooks/use-screen";
 import { back } from "@/utils/client";

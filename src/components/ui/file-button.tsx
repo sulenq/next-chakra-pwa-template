@@ -4,7 +4,7 @@ import { FileIcon } from "@/components/ui/file-icon";
 import { P } from "@/components/ui/p";
 import { StackV } from "@/components/ui/stack";
 import { LucideIcon } from "@/components/misc/icon";
-import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
+import { useThemeStore } from "@/features/settings/appearance/stores/use-theme-store";
 import type { ButtonProps, RecipeProps } from "@chakra-ui/react";
 import {
   Button,

@@ -6,7 +6,7 @@ import { StackV } from "@/components/ui/stack";
 import { AppIconLucide } from "@/components/branding/app-icon";
 import { DotIndicator } from "@/components/ui/indicator";
 import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
-import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
+import { useThemeStore } from "@/features/settings/appearance/stores/use-theme-store";
 import { BatchOptionsTableOptionGenerator } from "@/types/global.types";
 import { Box, MenuRootProps } from "@chakra-ui/react";
 import { ListChecks } from "lucide-react";

@@ -22,7 +22,7 @@ import {
   GRID_BATCH_OPTIONS_CONTAINER_BG,
   R_SPACING_MD,
 } from "@/constants/styles";
-import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
+import { useThemeStore } from "@/features/settings/appearance/stores/use-theme-store";
 import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
 import { usePopDisclosure } from "@/hooks/use-pop-disclosure";
 import {

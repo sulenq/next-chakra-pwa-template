@@ -3,7 +3,7 @@
 import { InfoTip } from "@/components/overlays/info-tip";
 import { P, PProps } from "@/components/ui/p";
 import { StackH, StackV } from "@/components/ui/stack";
-import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
+import { useThemeStore } from "@/features/settings/appearance/stores/use-theme-store";
 import { useContainerDimension } from "@/hooks/use-container-dimenssion";
 import { useMergedRefs } from "@/hooks/use-merge-refs";
 import { StackProps } from "@chakra-ui/react";

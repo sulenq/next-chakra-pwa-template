@@ -11,7 +11,7 @@ import { Item } from "@/components/container/item";
 import { GroupItem } from "@/components/container/group-item";
 import { R_SPACING_MD } from "@/constants/styles";
 import { useCameraPermissionStore } from "@/features/settings/app-permission/stores/use-camera-permission-stores";
-import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
+import { useThemeStore } from "@/features/settings/appearance/stores/use-theme-store";
 import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
 import { usePopDisclosure } from "@/hooks/use-pop-disclosure";
 import { startCamera, stopCamera } from "@/utils/camera";

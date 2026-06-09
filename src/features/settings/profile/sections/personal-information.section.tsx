@@ -9,7 +9,7 @@ import { StringInput } from "@/components/ui/string-input";
 import { UserIdCard } from "@/components/user/user-id-card";
 import { R_SPACING_MD } from "@/constants/styles";
 import { ResetPasswordDisclosureTrigger } from "@/features/auth/components/reset-password";
-import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
+import { useThemeStore } from "@/features/settings/appearance/stores/use-theme-store";
 import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
 import { useAuthStore } from "@/stores/use-auth-store";
 import { Stack } from "@chakra-ui/react";

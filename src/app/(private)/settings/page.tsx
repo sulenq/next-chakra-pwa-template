@@ -4,7 +4,7 @@ import { StackV } from "@/components/ui/stack";
 import FeedbackState from "@/components/feedback/feedback-state";
 import { LucideIcon } from "@/components/misc/icon";
 import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
-import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
+import { useThemeStore } from "@/features/settings/appearance/stores/use-theme-store";
 import { SettingsIcon } from "lucide-react";
 
 export default function SettingsRoute() {
