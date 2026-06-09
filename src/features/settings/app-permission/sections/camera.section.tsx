@@ -8,7 +8,7 @@ import { StackH, StackV } from "@/components/ui/stack";
 import { Switch } from "@/components/ui/switch";
 import { toaster } from "@/components/ui/toaster";
 import { Item } from "@/components/container/item";
-import { SettingItemContainer } from "@/components/container/settings-shell";
+import { SettingItem } from "@/components/container/settings-shell";
 import { R_SPACING_MD } from "@/constants/styles";
 import { useCameraPermissionStore } from "@/features/settings/app-permission/stores/use-camera-permission-stores";
 import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
@@ -186,7 +186,7 @@ const CameraPermissionSetting = () => {
     cameraPermissionsStatus === "denied_permanent";
 
   return (
-    <SettingItemContainer
+    <SettingItem.Root
       onClick={() => {
         if (!isDisabled) {
           if (isGranted) {
@@ -234,7 +234,7 @@ const CameraPermissionSetting = () => {
         }}
         colorPalette={theme.colorPalette}
       />
-    </SettingItemContainer>
+    </SettingItem.Root>
   );
 };
 
@@ -252,13 +252,13 @@ const CameraTesterSetting = () => {
     cameraPermissionsStatus === "granted_temporary";
 
   return (
-    <SettingItemContainer disabled={!isGranted}>
+    <SettingItem.Root disabled={!isGranted}>
       <StackV gap={1}>
         <P>{t.settings_camera_permission_test.title}</P>
       </StackV>
 
       <CameraTester />
-    </SettingItemContainer>
+    </SettingItem.Root>
   );
 };
 

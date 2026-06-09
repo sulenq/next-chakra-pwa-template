@@ -8,7 +8,7 @@ import { Switch } from "@/components/ui/switch";
 import { toaster } from "@/components/ui/toaster";
 import { AppIconLucide } from "@/components/branding/app-icon";
 import { Item } from "@/components/container/item";
-import { SettingItemContainer } from "@/components/container/settings-shell";
+import { SettingItem } from "@/components/container/settings-shell";
 import { R_SPACING_MD } from "@/constants/styles";
 import useADMStore from "@/features/settings/display/stores/use-adm-store";
 import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
@@ -174,7 +174,7 @@ const ADMSetting = () => {
   const { ADM, setADM } = useADMStore();
 
   return (
-    <SettingItemContainer>
+    <SettingItem.Root>
       <StackV gap={1}>
         <P>{t.settings_adaptive_dark_mode.title}</P>
 
@@ -185,13 +185,15 @@ const ADMSetting = () => {
         </P>
       </StackV>
 
-      <Switch
-        checked={ADM}
-        onCheckedChange={(e) => {
-          setADM(e.checked);
-        }}
-      />
-    </SettingItemContainer>
+      <SettingItem.Target>
+        <Switch
+          checked={ADM}
+          onCheckedChange={(e) => {
+            setADM(e.checked);
+          }}
+        />
+      </SettingItem.Target>
+    </SettingItem.Root>
   );
 };
 
@@ -203,7 +205,7 @@ const ResetColorModeSetting = () => {
   const { setColorMode } = useColorMode();
 
   return (
-    <SettingItemContainer>
+    <SettingItem.Root hoverable={false}>
       <StackV gap={1}>
         <P>{t.settings_color_mode_reset.title}</P>
 
@@ -224,7 +226,7 @@ const ResetColorModeSetting = () => {
       >
         Reset
       </Btn>
-    </SettingItemContainer>
+    </SettingItem.Root>
   );
 };
 

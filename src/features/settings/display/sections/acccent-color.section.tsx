@@ -1,6 +1,6 @@
 import { HScroll } from "@/components/container/h-scroll";
 import { Item } from "@/components/container/item";
-import { SettingItemContainer } from "@/components/container/settings-shell";
+import { SettingItem } from "@/components/container/settings-shell";
 import { Divider } from "@/components/ui/divider";
 import { SettingsGroupTitle } from "@/components/ui/typography";
 import { P } from "@/components/ui/p";
@@ -83,7 +83,7 @@ const AmbienceColorSetting = () => {
   const { theme, setTheme } = useThemeStore();
 
   return (
-    <SettingItemContainer>
+    <SettingItem.Root>
       <StackV gap={1}>
         <P>{t.settings_ambience_color.title}</P>
 
@@ -98,7 +98,7 @@ const AmbienceColorSetting = () => {
           });
         }}
       />
-    </SettingItemContainer>
+    </SettingItem.Root>
   );
 };
 

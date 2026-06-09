@@ -1,7 +1,7 @@
 "use client";
 
 import { Item } from "@/components/container/item";
-import { SettingItemContainer } from "@/components/container/settings-shell";
+import { SettingItem } from "@/components/container/settings-shell";
 import { Divider } from "@/components/ui/divider";
 import { NumInput } from "@/components/ui/num-input";
 import { P } from "@/components/ui/p";
@@ -22,7 +22,7 @@ const ActiveSetting = () => {
     useConstrainedContainerStore();
 
   return (
-    <SettingItemContainer>
+    <SettingItem.Root>
       <StackV gap={1}>
         <P>{t.settings_constrained_container_active.title}</P>
 
@@ -31,15 +31,17 @@ const ActiveSetting = () => {
         </P>
       </StackV>
 
-      <Switch
-        checked={constrainedContainer.isActive}
-        onCheckedChange={(e) => {
-          setConstrainedContainer({
-            isActive: e.checked,
-          });
-        }}
-      />
-    </SettingItemContainer>
+      <SettingItem.Target>
+        <Switch
+          checked={constrainedContainer.isActive}
+          onCheckedChange={(e) => {
+            setConstrainedContainer({
+              isActive: e.checked,
+            });
+          }}
+        />
+      </SettingItem.Target>
+    </SettingItem.Root>
   );
 };
 
@@ -59,7 +61,10 @@ const MaxWSetting = () => {
   }, 400);
 
   return (
-    <SettingItemContainer disabled={!constrainedContainer.isActive}>
+    <SettingItem.Root
+      hoverable={false}
+      disabled={!constrainedContainer.isActive}
+    >
       <StackV gap={1}>
         <P>{`${t.settings_constrained_container_max_w.title} (px)`}</P>
 
@@ -77,7 +82,7 @@ const MaxWSetting = () => {
         placeholder={""}
         w={"120px"}
       />
-    </SettingItemContainer>
+    </SettingItem.Root>
   );
 };
 

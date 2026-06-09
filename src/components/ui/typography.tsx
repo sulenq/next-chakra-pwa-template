@@ -10,7 +10,7 @@ export const HelperText = (props: PProps) => {
   const { children, ...restProps } = props;
 
   return (
-    <P fontSize={"sm"} color={"fg.subtle"} lineHeight={1.2} {...restProps}>
+    <P fontSize={"sm"} color={"fg.subtle"} {...restProps}>
       {children}
     </P>
   );

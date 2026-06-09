@@ -8,7 +8,7 @@ import { StackH, StackV } from "@/components/ui/stack";
 import { Switch } from "@/components/ui/switch";
 import { toaster } from "@/components/ui/toaster";
 import { Item } from "@/components/container/item";
-import { SettingItemContainer } from "@/components/container/settings-shell";
+import { SettingItem } from "@/components/container/settings-shell";
 import { R_SPACING_MD } from "@/constants/styles";
 import { useLocationPermissionStore } from "@/features/settings/app-permission/stores/use-location-permission-store";
 import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
@@ -189,7 +189,7 @@ const LocationPermissionSetting = () => {
     locationPermissionsStatus === "denied_permanent";
 
   return (
-    <SettingItemContainer
+    <SettingItem.Root
       onClick={() => {
         if (!isDisabled) {
           if (isGranted) {
@@ -237,7 +237,7 @@ const LocationPermissionSetting = () => {
         }}
         colorPalette={theme.colorPalette}
       />
-    </SettingItemContainer>
+    </SettingItem.Root>
   );
 };
 
@@ -255,13 +255,13 @@ const LocationTesterSetting = () => {
     locationPermissionsStatus === "granted_temporary";
 
   return (
-    <SettingItemContainer disabled={!isGranted}>
+    <SettingItem.Root disabled={!isGranted}>
       <StackV gap={1}>
         <P>{t.settings_location_permission_test.title}</P>
       </StackV>
 
       <LocationTester />
-    </SettingItemContainer>
+    </SettingItem.Root>
   );
 };
 

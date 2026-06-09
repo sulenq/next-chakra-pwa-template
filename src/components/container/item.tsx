@@ -142,6 +142,7 @@ const ItemBody = forwardRef<HTMLDivElement, ItemBodyProps>(
         rounded={roundedless ? "" : theme.radii.container}
         border={borderless ? "" : "1px solid"}
         borderColor={"border.subtle"}
+        shadow={"soft"}
         overflow={"clip"}
         {...restProps}
       >

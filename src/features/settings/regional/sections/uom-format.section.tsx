@@ -1,5 +1,5 @@
 import { Item } from "@/components/container/item";
-import { SettingItemContainer } from "@/components/container/settings-shell";
+import { SettingItem } from "@/components/container/settings-shell";
 import { Divider } from "@/components/ui/divider";
 import { P } from "@/components/ui/p";
 import { StackV } from "@/components/ui/stack";
@@ -35,7 +35,7 @@ const WeightFormatSetting = () => {
   const { UOM, setUOMUnit } = useUOMFormatStore();
 
   return (
-    <SettingItemContainer>
+    <SettingItem.Root>
       <StackV gap={1}>
         <P>{t.settings_weight_format.title}</P>
       </StackV>
@@ -48,8 +48,10 @@ const WeightFormatSetting = () => {
         }}
         w={"fit"}
         size={"xs"}
+        variant={"plain"}
+        p={0}
       />
-    </SettingItemContainer>
+    </SettingItem.Root>
   );
 };
 
@@ -61,7 +63,7 @@ const HeightFormatSetting = () => {
   const { UOM, setUOMUnit } = useUOMFormatStore();
 
   return (
-    <SettingItemContainer>
+    <SettingItem.Root>
       <StackV gap={1}>
         <P>{t.settings_height_format.title}</P>
       </StackV>
@@ -76,8 +78,10 @@ const HeightFormatSetting = () => {
         }}
         w={"fit"}
         size={"xs"}
+        variant={"plain"}
+        p={0}
       />
-    </SettingItemContainer>
+    </SettingItem.Root>
   );
 };
 
@@ -89,7 +93,7 @@ const LengthFormatSetting = () => {
   const { UOM, setUOMUnit } = useUOMFormatStore();
 
   return (
-    <SettingItemContainer>
+    <SettingItem.Root>
       <StackV gap={1}>
         <P>{t.settings_length_format.title}</P>
       </StackV>
@@ -104,8 +108,10 @@ const LengthFormatSetting = () => {
         }}
         w={"fit"}
         size={"xs"}
+        variant={"plain"}
+        p={0}
       />
-    </SettingItemContainer>
+    </SettingItem.Root>
   );
 };
 
@@ -117,7 +123,7 @@ const DistanceFormatSetting = () => {
   const { UOM, setUOMUnit } = useUOMFormatStore();
 
   return (
-    <SettingItemContainer>
+    <SettingItem.Root>
       <StackV gap={1}>
         <P>{t.settings_distance_format.title}</P>
       </StackV>
@@ -136,8 +142,10 @@ const DistanceFormatSetting = () => {
         }}
         w={"fit"}
         size={"xs"}
+        variant={"plain"}
+        p={0}
       />
-    </SettingItemContainer>
+    </SettingItem.Root>
   );
 };
 
@@ -149,7 +157,7 @@ const AreaFormatSetting = () => {
   const { UOM, setUOMUnit } = useUOMFormatStore();
 
   return (
-    <SettingItemContainer>
+    <SettingItem.Root>
       <StackV gap={1}>
         <P>{t.settings_area_format.title}</P>
       </StackV>
@@ -162,8 +170,10 @@ const AreaFormatSetting = () => {
         }}
         w={"fit"}
         size={"xs"}
+        variant={"plain"}
+        p={0}
       />
-    </SettingItemContainer>
+    </SettingItem.Root>
   );
 };
 
@@ -175,7 +185,7 @@ const VolumeFormatSetting = () => {
   const { UOM, setUOMUnit } = useUOMFormatStore();
 
   return (
-    <SettingItemContainer>
+    <SettingItem.Root>
       <StackV gap={1}>
         <P>{t.settings_volume_format.title}</P>
       </StackV>
@@ -190,8 +200,10 @@ const VolumeFormatSetting = () => {
         }}
         w={"fit"}
         size={"xs"}
+        variant={"plain"}
+        p={0}
       />
-    </SettingItemContainer>
+    </SettingItem.Root>
   );
 };
 
@@ -203,7 +215,7 @@ const TemperatureFormatSetting = () => {
   const { UOM, setUOMUnit } = useUOMFormatStore();
 
   return (
-    <SettingItemContainer>
+    <SettingItem.Root>
       <StackV gap={1}>
         <P>{t.settings_temperature_format.title}</P>
       </StackV>
@@ -222,8 +234,10 @@ const TemperatureFormatSetting = () => {
         }}
         w={"fit"}
         size={"xs"}
+        variant={"plain"}
+        p={0}
       />
-    </SettingItemContainer>
+    </SettingItem.Root>
   );
 };
 
@@ -235,7 +249,7 @@ const SpeedFormatSetting = () => {
   const { UOM, setUOMUnit } = useUOMFormatStore();
 
   return (
-    <SettingItemContainer>
+    <SettingItem.Root>
       <StackV gap={1}>
         <P>{t.settings_speed_format.title}</P>
       </StackV>
@@ -248,8 +262,10 @@ const SpeedFormatSetting = () => {
         }}
         w={"fit"}
         size={"xs"}
+        variant={"plain"}
+        p={0}
       />
-    </SettingItemContainer>
+    </SettingItem.Root>
   );
 };
 
@@ -261,7 +277,7 @@ const EnergyFormatSetting = () => {
   const { UOM, setUOMUnit } = useUOMFormatStore();
 
   return (
-    <SettingItemContainer>
+    <SettingItem.Root>
       <StackV gap={1}>
         <P>{t.settings_energy_format.title}</P>
       </StackV>
@@ -276,8 +292,10 @@ const EnergyFormatSetting = () => {
         }}
         w={"fit"}
         size={"xs"}
+        variant={"plain"}
+        p={0}
       />
-    </SettingItemContainer>
+    </SettingItem.Root>
   );
 };
 
@@ -289,7 +307,7 @@ const PowerFormatSetting = () => {
   const { UOM, setUOMUnit } = useUOMFormatStore();
 
   return (
-    <SettingItemContainer>
+    <SettingItem.Root>
       <StackV gap={1}>
         <P>{t.settings_power_format.title}</P>
       </StackV>
@@ -302,8 +320,10 @@ const PowerFormatSetting = () => {
         }}
         w={"fit"}
         size={"xs"}
+        variant={"plain"}
+        p={0}
       />
-    </SettingItemContainer>
+    </SettingItem.Root>
   );
 };
 
@@ -315,7 +335,7 @@ const PressureFormatSetting = () => {
   const { UOM, setUOMUnit } = useUOMFormatStore();
 
   return (
-    <SettingItemContainer>
+    <SettingItem.Root>
       <StackV gap={1}>
         <P>{t.settings_pressure_format.title}</P>
       </StackV>
@@ -334,8 +354,10 @@ const PressureFormatSetting = () => {
         }}
         w={"fit"}
         size={"xs"}
+        variant={"plain"}
+        p={0}
       />
-    </SettingItemContainer>
+    </SettingItem.Root>
   );
 };
 
@@ -347,7 +369,7 @@ const DataFormatSetting = () => {
   const { UOM, setUOMUnit } = useUOMFormatStore();
 
   return (
-    <SettingItemContainer>
+    <SettingItem.Root>
       <StackV gap={1}>
         <P>{t.settings_data_format.title}</P>
       </StackV>
@@ -360,8 +382,10 @@ const DataFormatSetting = () => {
         }}
         w={"fit"}
         size={"xs"}
+        variant={"plain"}
+        p={0}
       />
-    </SettingItemContainer>
+    </SettingItem.Root>
   );
 };
 
@@ -373,7 +397,7 @@ const DataRateFormatSetting = () => {
   const { UOM, setUOMUnit } = useUOMFormatStore();
 
   return (
-    <SettingItemContainer>
+    <SettingItem.Root>
       <StackV gap={1}>
         <P>{t.settings_data_rate_format.title}</P>
       </StackV>
@@ -392,8 +416,10 @@ const DataRateFormatSetting = () => {
         }}
         w={"fit"}
         size={"xs"}
+        variant={"plain"}
+        p={0}
       />
-    </SettingItemContainer>
+    </SettingItem.Root>
   );
 };
 
@@ -405,7 +431,7 @@ const AngleFormatSetting = () => {
   const { UOM, setUOMUnit } = useUOMFormatStore();
 
   return (
-    <SettingItemContainer>
+    <SettingItem.Root>
       <StackV gap={1}>
         <P>{t.settings_angle_format.title}</P>
       </StackV>
@@ -418,8 +444,10 @@ const AngleFormatSetting = () => {
         }}
         w={"fit"}
         size={"xs"}
+        variant={"plain"}
+        p={0}
       />
-    </SettingItemContainer>
+    </SettingItem.Root>
   );
 };
 

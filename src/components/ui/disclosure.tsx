@@ -136,7 +136,6 @@ const DisclosureHeader = ({ children, ...props }: DisclosureHeaderProps) => {
   ) : (
     <Dialog.Header
       p={3}
-      pl={4}
       borderBottom={"1px solid"}
       borderColor={children ? "border.subtle" : ""}
       {...(props as DialogHeaderProps)}
@@ -270,8 +269,7 @@ const DisclosureBody = ({ children, ...props }: DisclosureBodyProps) => {
     </Drawer.Body>
   ) : (
     <Dialog.Body
-      px={4}
-      py={4}
+      p={3}
       className={props.className || "scrollY"}
       {...(props as DialogBodyProps)}
     >
@@ -304,7 +302,7 @@ const DisclosureFooter = ({ children, ...props }: DisclosureFooterProps) => {
     </Drawer.Footer>
   ) : (
     <Dialog.Footer
-      p={4}
+      p={3}
       borderTop={"1px solid"}
       borderColor={"border.subtle"}
       {...(props as DialogFooterProps)}

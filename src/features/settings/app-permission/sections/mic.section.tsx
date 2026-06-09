@@ -8,7 +8,7 @@ import { StackH, StackV } from "@/components/ui/stack";
 import { Switch } from "@/components/ui/switch";
 import { Item } from "@/components/container/item";
 import { MicVolumeBar } from "@/components/misc/mic-volume-bar";
-import { SettingItemContainer } from "@/components/container/settings-shell";
+import { SettingItem } from "@/components/container/settings-shell";
 import { R_SPACING_MD } from "@/constants/styles";
 import { useMicPermissionStore } from "@/features/settings/app-permission/stores/use-mic-permission-store";
 import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
@@ -183,7 +183,7 @@ const MicPermissionSetting = () => {
     micPermissionsStatus === "denied_permanent";
 
   return (
-    <SettingItemContainer
+    <SettingItem.Root
       onClick={() => {
         if (!isDisabled) {
           if (isGranted) {
@@ -231,7 +231,7 @@ const MicPermissionSetting = () => {
         }}
         colorPalette={theme.colorPalette}
       />
-    </SettingItemContainer>
+    </SettingItem.Root>
   );
 };
 
@@ -249,13 +249,13 @@ const MicTesterSetting = () => {
     micPermissionsStatus === "granted_temporary";
 
   return (
-    <SettingItemContainer disabled={!isGranted}>
+    <SettingItem.Root disabled={!isGranted}>
       <StackV gap={1}>
         <P>{t.settings_mic_permission_test.title}</P>
       </StackV>
 
       <MicTester />
-    </SettingItemContainer>
+    </SettingItem.Root>
   );
 };
 

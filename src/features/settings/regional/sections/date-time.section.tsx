@@ -1,5 +1,5 @@
 import { Item } from "@/components/container/item";
-import { SettingItemContainer } from "@/components/container/settings-shell";
+import { SettingItem } from "@/components/container/settings-shell";
 import { Divider } from "@/components/ui/divider";
 import { P } from "@/components/ui/p";
 import { StackV } from "@/components/ui/stack";
@@ -35,21 +35,25 @@ const DateFormatSetting = () => {
   }, [dateFormat]);
 
   return (
-    <SettingItemContainer>
+    <SettingItem.Root>
       <StackV gap={1}>
         <P>{t.settings_date_format.title}</P>
       </StackV>
 
-      <SelectDateFormat
-        id={"settings-select-date-format"}
-        value={dateFormat}
-        onChange={(value) => {
-          setDateFormat(value);
-        }}
-        w={"fit"}
-        size={"xs"}
-      />
-    </SettingItemContainer>
+      <SettingItem.Target>
+        <SelectDateFormat
+          id={"settings-select-date-format"}
+          value={dateFormat}
+          onChange={(value) => {
+            setDateFormat(value);
+          }}
+          w={"fit"}
+          size={"xs"}
+          variant={"plain"}
+          p={0}
+        />
+      </SettingItem.Target>
+    </SettingItem.Root>
   );
 };
 
@@ -71,21 +75,25 @@ const TimeFormatSetting = () => {
   }, [timeFormat]);
 
   return (
-    <SettingItemContainer>
+    <SettingItem.Root>
       <StackV gap={1}>
         <P>{t.settings_time_format.title}</P>
       </StackV>
 
-      <SelectTimeFormat
-        id={"settings-select-time-format"}
-        value={timeFormat}
-        onChange={(value) => {
-          setTimeFormat(value);
-        }}
-        w={"fit"}
-        size={"xs"}
-      />
-    </SettingItemContainer>
+      <SettingItem.Target>
+        <SelectTimeFormat
+          id={"settings-select-time-format"}
+          value={timeFormat}
+          onChange={(value) => {
+            setTimeFormat(value);
+          }}
+          w={"fit"}
+          size={"xs"}
+          variant={"plain"}
+          p={0}
+        />
+      </SettingItem.Target>
+    </SettingItem.Root>
   );
 };
 // -----------------------------------------------------------------
@@ -96,24 +104,26 @@ const AutoTimezomeSetting = () => {
   const { isAuto, enableAuto, disableAuto } = useTimezoneStore();
 
   return (
-    <SettingItemContainer>
+    <SettingItem.Root>
       <StackV gap={1}>
         <P>{t.settings_auto_timezone.title}</P>
 
         <P color={"fg.subtle"}>{t.settings_auto_timezone.description}</P>
       </StackV>
 
-      <Switch
-        checked={isAuto}
-        onCheckedChange={(e) => {
-          if (e.checked) {
-            enableAuto();
-          } else {
-            disableAuto(getLocalTimezone());
-          }
-        }}
-      />
-    </SettingItemContainer>
+      <SettingItem.Target>
+        <Switch
+          checked={isAuto}
+          onCheckedChange={(e) => {
+            if (e.checked) {
+              enableAuto();
+            } else {
+              disableAuto(getLocalTimezone());
+            }
+          }}
+        />
+      </SettingItem.Target>
+    </SettingItem.Root>
   );
 };
 
@@ -149,7 +159,7 @@ const TimezoneSetting = () => {
   }, [timezoneContext]);
 
   return (
-    <SettingItemContainer disabled={isAuto}>
+    <SettingItem.Root disabled={isAuto}>
       <StackV gap={1}>
         <P>{t.settings_timezone.title}</P>
       </StackV>
@@ -164,8 +174,10 @@ const TimezoneSetting = () => {
         w={"fit"}
         size={"xs"}
         placeholder={`${t.select} ${t.timezone.toLocaleLowerCase()}`}
+        variant={"plain"}
+        p={0}
       />
-    </SettingItemContainer>
+    </SettingItem.Root>
   );
 };
 

@@ -1,20 +1,19 @@
 "use client";
 
+import { AppIconLucide } from "@/components/branding/app-icon";
+import FeedbackNoData from "@/components/feedback/feedback-no-data";
+import FeedbackNotFound from "@/components/feedback/feedback-not-found";
+import FeedbackRetry from "@/components/feedback/feedback-retry";
 import { Btn, BtnProps } from "@/components/ui/btn";
 import { CSpinner } from "@/components/ui/c-spinner";
-import { Checkbox } from "@/components/ui/checkbox";
 import { Disclosure } from "@/components/ui/disclosure";
 import { P } from "@/components/ui/p";
 import { RadioItem } from "@/components/ui/radio";
 import { SearchInput } from "@/components/ui/search-input";
 import { StackH, StackV } from "@/components/ui/stack";
 import { Tooltip } from "@/components/ui/tooltip";
-import { AppIconLucide } from "@/components/branding/app-icon";
-import FeedbackNoData from "@/components/feedback/feedback-no-data";
-import FeedbackNotFound from "@/components/feedback/feedback-not-found";
-import FeedbackRetry from "@/components/feedback/feedback-retry";
-import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
 import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
+import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
 import { usePopDisclosure } from "@/hooks/use-pop-disclosure";
 import {
   ButtonVariant,
@@ -28,7 +27,7 @@ import { capitalizeWords } from "@/utils/string";
 import { Icon, useFieldContext } from "@chakra-ui/react";
 import { IconReload } from "@tabler/icons-react";
 import { ChevronsUpDownIcon } from "lucide-react";
-import { useEffect, useState, forwardRef } from "react";
+import { forwardRef, useEffect, useState } from "react";
 
 // -----------------------------------------------------------------
 
@@ -46,12 +45,12 @@ const SelectOptions = (props: SelectOptionsProps) => {
     props;
 
   // Stores
-  const { t } = useLocaleStore();
-  const { theme } = useThemeStore();
+  // const { t } = useLocaleStore();
+  // const { theme } = useThemeStore();
 
   // States
   const [search, setSearch] = useState<string>("");
-  const [selectAll, setSelectAll] = useState<boolean>(false);
+  // const [selectAll, setSelectAll] = useState<boolean>(false);
 
   // Derived Values
   const resolvedSelectOptions = selectOptions?.filter((o) =>
@@ -59,15 +58,15 @@ const SelectOptions = (props: SelectOptionsProps) => {
   );
 
   // Select all toggle effect
-  useEffect(() => {
-    if (selected) {
-      setSelectAll(selected.length === selectOptions?.length);
-    }
-  }, [selected]);
+  // useEffect(() => {
+  //   if (selected) {
+  //     setSelectAll(selected.length === selectOptions?.length);
+  //   }
+  // }, [selected]);
 
   return (
     <StackV {...restProps}>
-      <StackV px={4} pt={4} zIndex={3}>
+      <StackV px={3} pt={3} zIndex={3}>
         <SearchInput
           value={search}
           onChange={(value) => {
@@ -87,8 +86,8 @@ const SelectOptions = (props: SelectOptionsProps) => {
 
       {!isEmptyArray(resolvedSelectOptions) && (
         <>
-          {multiple && (
-            <StackV px={4} pt={4} zIndex={2}>
+          {/* {multiple && (
+            <StackV px={3} pt={3} zIndex={2}>
               <Btn
                 clicky={false}
                 variant={"ghost"}
@@ -105,25 +104,19 @@ const SelectOptions = (props: SelectOptionsProps) => {
                   }
                 }}
               >
-                <StackH gap={3} w={"full"}>
-                  <Checkbox
-                    onChange={(e: any) => {
-                      setSelectAll(e.target.checked);
-                      e.stopPropagation();
-                    }}
-                    checked={selectAll}
-                    invalid={false}
-                    size={"sm"}
-                    colorPalette={theme.colorPalette}
+                <StackH align={"center"} gap={3} w={"full"}>
+                  <DotIndicator
+                    bg={selectAll ? `${theme.colorPalette}.solid` : "bg.muted"}
+                    mx={"5px"}
                   />
 
                   <P color={"fg.muted"}>{t.select_all}</P>
                 </StackH>
               </Btn>
             </StackV>
-          )}
+          )} */}
 
-          <StackV p={4} gap={2}>
+          <StackV p={3} gap={2}>
             {resolvedSelectOptions?.map((o) => {
               const isSelected = selected?.some((s) => s.id === o.id);
 
@@ -278,7 +271,7 @@ export const DisclosureSelectInput = forwardRef<
           borderColor={
             resolvedInvalid
               ? "border.error"
-              : variant === "subtle"
+              : variant !== "outline" && variant !== "surface"
                 ? "transparent"
                 : "border.muted"
           }
@@ -355,7 +348,7 @@ export const DisclosureSelectInput = forwardRef<
 
           <Disclosure.Footer>
             <Btn
-              w={"50%"}
+              flex={1}
               variant={"outline"}
               onClick={() => {
                 setSelected([]);
@@ -364,7 +357,7 @@ export const DisclosureSelectInput = forwardRef<
               Clear
             </Btn>
             <Btn
-              w={"50%"}
+              flex={1}
               colorPalette={theme.colorPalette}
               disabled={required && isEmptyArray(selected)}
               onClick={handleConfirm}

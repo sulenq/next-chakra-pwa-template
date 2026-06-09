@@ -2075,9 +2075,9 @@ export const customConfig = defineConfig({
       shadows: {
         soft: {
           value: {
-            base: "0 4px 8px rgba(0,0,0,0.03), 0 1px 2px rgba(0,0,0,0.02) !important",
+            base: "0 2px 4px rgba(0,0,0,0.03), 0 1px 2px rgba(0,0,0,0.02) !important",
             _dark:
-              "0 4px 8px rgba(0,0,0,0.20), 0 1px 2px rgba(0,0,0,0.16) !important",
+              "0 2px 4px rgba(0,0,0,0.15), 0 1px 2px rgba(0,0,0,0.16) !important",
           },
         },
       },

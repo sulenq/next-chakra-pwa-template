@@ -32,7 +32,10 @@ const DEFAULT = {
 
 // -----------------------------------------------------------------
 
-export interface PeriodPickerInputProps extends Omit<BtnProps, "onChange" | "defaultValue" | "value"> {
+export interface PeriodPickerInputProps extends Omit<
+  BtnProps,
+  "onChange" | "defaultValue" | "value"
+> {
   id?: string;
   title?: string;
   value?: Period | null;
@@ -47,8 +50,10 @@ export interface PeriodPickerInputProps extends Omit<BtnProps, "onChange" | "def
   withIcon?: boolean;
 }
 
-export const PeriodPickerInput = forwardRef<HTMLButtonElement, PeriodPickerInputProps>(
-  function PeriodPickerInput(props, ref) {
+export const PeriodPickerInput = forwardRef<
+  HTMLButtonElement,
+  PeriodPickerInputProps
+>(function PeriodPickerInput(props, ref) {
   // Props
   const {
     id,
@@ -77,7 +82,9 @@ export const PeriodPickerInput = forwardRef<HTMLButtonElement, PeriodPickerInput
 
   // States
   const [selected, setSelected] = useState<Period>(DEFAULT);
-  const [internalValue, setInternalValue] = useState<Period | null>(defaultValue ?? null);
+  const [internalValue, setInternalValue] = useState<Period | null>(
+    defaultValue ?? null,
+  );
 
   // Hybrid: detect controlled mode
   const isControlled = value !== undefined;
@@ -159,10 +166,14 @@ export const PeriodPickerInput = forwardRef<HTMLButtonElement, PeriodPickerInput
 
           {displayValue && (
             <P>
-              {formatDate(new Date(displayValue.year!, displayValue.month!), t, {
-                variant: "monthYear",
-                timezoneKey: getLocalTimezone().key,
-              })}
+              {formatDate(
+                new Date(displayValue.year!, displayValue.month!),
+                t,
+                {
+                  variant: "monthYear",
+                  timezoneKey: getLocalTimezone().key,
+                },
+              )}
             </P>
           )}
 
