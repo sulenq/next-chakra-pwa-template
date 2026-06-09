@@ -26,7 +26,7 @@ export const SelectLanguage = (props: DisclosureSelectInputProps) => {
   return (
     <DisclosureSelectInput
       required
-      title={`${t.select} ${t.time_format}`}
+      title={`${t.select} ${t.language}`}
       selectOptions={options}
       {...restProps}
     />

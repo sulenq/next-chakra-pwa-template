@@ -351,20 +351,13 @@ const DesktopLayout = (props: any) => {
         flexShrink={0}
         w={
           isNavsExpanded
-            ? `calc(250px + (${DESKTOP_SPACING_MD} * 2) + ${GAP})`
-            : `calc(36px + (${DESKTOP_SPACING_MD} * 2) + ${GAP})`
+            ? `calc(250px + (${DESKTOP_SPACING_MD} * 2))`
+            : `calc(36px + (${DESKTOP_SPACING_MD} * 2))`
         }
         transition={BOUNCY_TRANSITION}
         pos={"relative"}
       >
-        <StackV
-          flex={1}
-          gap={GAP}
-          pl={GAP}
-          pb={GAP}
-          overflowY={"auto"}
-          overflowX={"clip"}
-        >
+        <StackV flex={1} overflowY={"auto"} overflowX={"clip"}>
           {/* Header */}
           <NavLink to={"/"}>
             <StackH align={"center"} gap={3} minH={TOP_BAR_H} p={R_SPACING_MD}>
