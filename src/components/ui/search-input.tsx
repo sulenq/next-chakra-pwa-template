@@ -67,12 +67,11 @@ export const SearchInput = forwardRef<HTMLInputElement, SearchInputProps>(
 
     // Hooks
     const searchParams = useSearchParams();
-    const debounced = useDebounced((value: string) => {
-      onChange?.(value);
-    }, debounceTime);
 
     // States
-    const [internalValue, setInternalValue] = useState<string>(() => {
+    const [displayValue, setDisplayValue] = useState<string>(() => {
+      if (isControlled) return value || "";
+
       if (typeof window !== "undefined") {
         const params = new URLSearchParams(window.location.search);
         const queryValue = params.get(queryKey);
@@ -81,43 +80,50 @@ export const SearchInput = forwardRef<HTMLInputElement, SearchInputProps>(
       return defaultValue || "";
     });
 
-    const searchTemp = isControlled ? value : internalValue;
+    useEffect(() => {
+      if (isControlled && value !== undefined) {
+        setDisplayValue(value);
+      }
+    }, [value, isControlled]);
+
+    const triggerDebouncedUpdates = useDebounced((val: string) => {
+      onChange?.(val);
+
+      const params = new URLSearchParams(window.location.search);
+      if (val) {
+        params.set(queryKey, val);
+      } else {
+        params.delete(queryKey);
+      }
+      window.history.replaceState(null, "", `?${params.toString()}`);
+    }, debounceTime);
 
     // Derived Values
-    const resolvedPlacholder = additionalPlaceholder
+    const resolvedPlaceholder = additionalPlaceholder
       ? `${t.search} ${additionalPlaceholder}`
       : (placeholder ?? t.search);
 
     // Utils
     function handleChange(val: string) {
-      if (!isControlled) setInternalValue(val);
-      debounced(val);
+      setDisplayValue(val);
+      triggerDebouncedUpdates(val);
     }
 
     // Initialize from URL or prop (run only when queryKey changes)
     useEffect(() => {
       const queryValue = searchParams.get(queryKey);
-      if (queryValue !== null) {
-        if (!isControlled) setInternalValue(queryValue);
-        onChange?.(queryValue);
-      } else {
-        if (!isControlled) setInternalValue(defaultValue || "");
-        onChange?.(defaultValue || "");
+      const initialVal = queryValue !== null ? queryValue : defaultValue || "";
+
+      if (!isControlled) {
+        setDisplayValue(initialVal);
+        onChange?.(initialVal);
       }
     }, [queryKey]);
 
-    // Update query string whenever search changes
-    useEffect(() => {
-      const params = new URLSearchParams(searchParams.toString());
-      if (searchTemp) params.set(queryKey, searchTemp);
-      else params.delete(queryKey);
-
-      // Use native history.replaceState to prevent rerender or scroll reset
-      window.history.replaceState(null, "", `?${params.toString()}`);
-    }, [searchTemp, queryKey]);
-
     return (
-      <Tooltip content={value || tooltipLabel || placeholder || t.search}>
+      <Tooltip
+        content={displayValue || tooltipLabel || placeholder || t.search}
+      >
         <InputGroup
           w={"full"}
           startElement={
@@ -140,9 +146,9 @@ export const SearchInput = forwardRef<HTMLInputElement, SearchInputProps>(
               ref={ref}
               pl={noIcon ? "16px" : "34px"}
               pr={"40px"}
-              placeholder={resolvedPlacholder}
+              placeholder={resolvedPlaceholder}
               onChange={(e: any) => handleChange(e.target.value)}
-              value={searchTemp}
+              value={displayValue}
               size={size}
               borderColor={
                 invalid

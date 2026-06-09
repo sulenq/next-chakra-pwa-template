@@ -50,9 +50,9 @@ const WeightFormatSetting = () => {
             }
           }}
           w={"fit"}
-          size={"xs"}
-          variant={"plain"}
           p={0}
+          variant={"plain"}
+          size={"xs"}
         />
       </GroupItem.Target>
     </GroupItem.Root>
@@ -82,9 +82,9 @@ const HeightFormatSetting = () => {
             if (v?.[0]?.data) setUOMUnit("height", v[0].data);
           }}
           w={"fit"}
-          size={"xs"}
-          variant={"plain"}
           p={0}
+          variant={"plain"}
+          size={"xs"}
         />
       </GroupItem.Target>
     </GroupItem.Root>
@@ -114,9 +114,9 @@ const LengthFormatSetting = () => {
             if (v?.[0]?.data) setUOMUnit("length", v[0].data);
           }}
           w={"fit"}
-          size={"xs"}
-          variant={"plain"}
           p={0}
+          variant={"plain"}
+          size={"xs"}
         />
       </GroupItem.Target>
     </GroupItem.Root>
@@ -150,9 +150,9 @@ const DistanceFormatSetting = () => {
             if (v?.[0]?.data) setUOMUnit("distance", v[0].data);
           }}
           w={"fit"}
-          size={"xs"}
-          variant={"plain"}
           p={0}
+          variant={"plain"}
+          size={"xs"}
         />
       </GroupItem.Target>
     </GroupItem.Root>
@@ -180,9 +180,9 @@ const AreaFormatSetting = () => {
             if (v?.[0]?.data) setUOMUnit("area", v[0].data);
           }}
           w={"fit"}
-          size={"xs"}
-          variant={"plain"}
           p={0}
+          variant={"plain"}
+          size={"xs"}
         />
       </GroupItem.Target>
     </GroupItem.Root>
@@ -212,9 +212,9 @@ const VolumeFormatSetting = () => {
             if (v?.[0]?.data) setUOMUnit("volume", v[0].data);
           }}
           w={"fit"}
-          size={"xs"}
-          variant={"plain"}
           p={0}
+          variant={"plain"}
+          size={"xs"}
         />
       </GroupItem.Target>
     </GroupItem.Root>
@@ -248,9 +248,9 @@ const TemperatureFormatSetting = () => {
             if (v?.[0]?.data) setUOMUnit("temperature", v[0].data);
           }}
           w={"fit"}
-          size={"xs"}
-          variant={"plain"}
           p={0}
+          variant={"plain"}
+          size={"xs"}
         />
       </GroupItem.Target>
     </GroupItem.Root>
@@ -280,9 +280,9 @@ const SpeedFormatSetting = () => {
             if (v?.[0]?.data) setUOMUnit("speed", v[0].data);
           }}
           w={"fit"}
-          size={"xs"}
-          variant={"plain"}
           p={0}
+          variant={"plain"}
+          size={"xs"}
         />
       </GroupItem.Target>
     </GroupItem.Root>
@@ -312,9 +312,9 @@ const EnergyFormatSetting = () => {
             if (v?.[0]?.data) setUOMUnit("energy", v[0].data);
           }}
           w={"fit"}
-          size={"xs"}
-          variant={"plain"}
           p={0}
+          variant={"plain"}
+          size={"xs"}
         />
       </GroupItem.Target>
     </GroupItem.Root>
@@ -344,9 +344,9 @@ const PowerFormatSetting = () => {
             if (v?.[0]?.data) setUOMUnit("power", v[0].data);
           }}
           w={"fit"}
-          size={"xs"}
-          variant={"plain"}
           p={0}
+          variant={"plain"}
+          size={"xs"}
         />
       </GroupItem.Target>
     </GroupItem.Root>
@@ -380,9 +380,9 @@ const PressureFormatSetting = () => {
             if (v?.[0]?.data) setUOMUnit("pressure", v[0].data);
           }}
           w={"fit"}
-          size={"xs"}
-          variant={"plain"}
           p={0}
+          variant={"plain"}
+          size={"xs"}
         />
       </GroupItem.Target>
     </GroupItem.Root>
@@ -410,9 +410,9 @@ const DataFormatSetting = () => {
             if (v?.[0]?.data) setUOMUnit("data", v[0].data);
           }}
           w={"fit"}
-          size={"xs"}
-          variant={"plain"}
           p={0}
+          variant={"plain"}
+          size={"xs"}
         />
       </GroupItem.Target>
     </GroupItem.Root>
@@ -446,9 +446,9 @@ const DataRateFormatSetting = () => {
             if (v?.[0]?.data) setUOMUnit("dataRate", v[0].data);
           }}
           w={"fit"}
-          size={"xs"}
-          variant={"plain"}
           p={0}
+          variant={"plain"}
+          size={"xs"}
         />
       </GroupItem.Target>
     </GroupItem.Root>
@@ -478,9 +478,9 @@ const AngleFormatSetting = () => {
             if (v?.[0]?.data) setUOMUnit("angle", v[0].data);
           }}
           w={"fit"}
-          size={"xs"}
-          variant={"plain"}
           p={0}
+          variant={"plain"}
+          size={"xs"}
         />
       </GroupItem.Target>
     </GroupItem.Root>

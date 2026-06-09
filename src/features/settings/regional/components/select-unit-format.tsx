@@ -33,6 +33,7 @@ export const SelectUnitFormat = ({
       required
       title={`${t.select} ${unitLabel}`}
       selectOptions={options}
+      color={"fg.subtle"}
       {...restProps}
     />
   );

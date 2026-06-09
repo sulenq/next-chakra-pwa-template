@@ -48,9 +48,10 @@ const DateFormatSetting = () => {
             setDateFormat(value);
           }}
           w={"fit"}
+          p={0}
           size={"xs"}
           variant={"plain"}
-          p={0}
+          color={"fg.subtle"}
         />
       </GroupItem.Target>
     </GroupItem.Root>
@@ -88,9 +89,10 @@ const TimeFormatSetting = () => {
             setTimeFormat(value);
           }}
           w={"fit"}
+          p={0}
           size={"xs"}
           variant={"plain"}
-          p={0}
+          color={"fg.subtle"}
         />
       </GroupItem.Target>
     </GroupItem.Root>
@@ -173,10 +175,11 @@ const TimezoneSetting = () => {
             if (value?.[0]?.data) setTimezoneContext(value[0].data);
           }}
           w={"fit"}
+          p={0}
+          variant={"plain"}
           size={"xs"}
           placeholder={`${t.select} ${t.timezone.toLocaleLowerCase()}`}
-          variant={"plain"}
-          p={0}
+          color={"fg.subtle"}
         />
       </GroupItem.Target>
     </GroupItem.Root>

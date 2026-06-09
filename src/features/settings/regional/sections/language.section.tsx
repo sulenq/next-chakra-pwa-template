@@ -40,8 +40,10 @@ const LanguageSelectSetting = () => {
               if (v?.[0]) setLocale(v[0].id);
             }}
             w={"fit"}
-            variant={"plain"}
             p={0}
+            variant={"plain"}
+            size={"xs"}
+            color={"fg.subtle"}
           />
         </GroupItem.Target>
       </GroupItem.Root>

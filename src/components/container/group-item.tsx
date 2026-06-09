@@ -6,6 +6,7 @@ import React, { createContext, useContext, useRef } from "react";
 
 interface GroupItemContextType {
   targetRef: React.RefObject<HTMLElement | null>;
+  disabled?: boolean;
 }
 
 const GroupItemContext = createContext<GroupItemContextType | null>(null);
@@ -18,30 +19,6 @@ const useGroupItem = () => {
     );
   }
   return context;
-};
-
-// -----------------------------------------------------------------
-
-interface GroupItemTargetProps {
-  children: React.ReactElement<any & React.RefAttributes<any>>;
-}
-
-const GroupItemTarget = ({ children }: GroupItemTargetProps) => {
-  const { targetRef } = useGroupItem();
-
-  return React.cloneElement(children, {
-    ref: (node: HTMLElement | null) => {
-      targetRef.current = node;
-
-      const { ref } = children as any;
-      if (typeof ref === "function") ref(node);
-      else if (ref && "current" in ref) ref.current = node;
-    },
-    style: {
-      ...children.props.style,
-      pointerEvents: "auto",
-    },
-  });
 };
 
 // -----------------------------------------------------------------
@@ -65,6 +42,12 @@ const GroupItemRoot = ({
   );
 
   const handleContainerClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (disabled) {
+      e.preventDefault();
+      e.stopPropagation();
+      return;
+    }
+
     onClick?.(e);
 
     if (hasTarget && e.target === e.currentTarget && targetRef.current) {
@@ -75,7 +58,7 @@ const GroupItemRoot = ({
   };
 
   return (
-    <GroupItemContext.Provider value={{ targetRef }}>
+    <GroupItemContext.Provider value={{ targetRef, disabled }}>
       <StackH
         align={"center"}
         justify={"space-between"}
@@ -83,18 +66,18 @@ const GroupItemRoot = ({
         p={4}
         pointerEvents={disabled ? "none" : "auto"}
         opacity={disabled ? 0.4 : 1}
-        cursor={clickable ? "pointer" : ""}
+        cursor={disabled ? "not-allowed" : clickable ? "pointer" : ""}
         transition={"200ms"}
         onClick={handleContainerClick}
         _hover={
-          clickable
+          !disabled && clickable
             ? {
                 bg: "bg.subtle",
               }
             : undefined
         }
         _active={
-          clickable
+          !disabled && clickable
             ? {
                 bg: "bg.muted",
               }
@@ -107,13 +90,15 @@ const GroupItemRoot = ({
 
           if (!hasTarget) return child;
 
+          const typedChild = child as React.ReactElement<any>;
+
           if (child.type === GroupItemTarget) {
             return child;
           }
 
-          return React.cloneElement(child as React.ReactElement<any>, {
+          return React.cloneElement(typedChild, {
             style: {
-              ...(child.props as any).style,
+              ...typedChild.props.style,
               pointerEvents: "none",
             },
           });
@@ -121,6 +106,31 @@ const GroupItemRoot = ({
       </StackH>
     </GroupItemContext.Provider>
   );
+};
+
+// -----------------------------------------------------------------
+
+interface GroupItemTargetProps {
+  children: React.ReactElement<any & React.RefAttributes<any>>;
+}
+
+const GroupItemTarget = ({ children }: GroupItemTargetProps) => {
+  const { targetRef, disabled } = useGroupItem();
+
+  return React.cloneElement(children, {
+    ref: (node: HTMLElement | null) => {
+      targetRef.current = node;
+
+      const { ref } = children as any;
+      if (typeof ref === "function") ref(node);
+      else if (ref && "current" in ref) ref.current = node;
+    },
+    style: {
+      ...children.props.style,
+      pointerEvents: disabled ? "none" : "auto",
+      cursor: disabled ? "not-allowed" : children.props.style?.cursor,
+    },
+  });
 };
 
 // -----------------------------------------------------------------
