@@ -1,6 +1,6 @@
 "use client";
 
-import { SettingsSavedLocalyHelperText } from "@/components/ui/typography";
+import { SettingsSavedLocalyAlert } from "@/components/alert/alert.static";
 import { StackV } from "@/components/ui/stack";
 import { SECTION_GAP } from "@/constants/styles";
 import { AccentColorSection } from "@/features/settings/display/sections/acccent-color.section";
@@ -21,7 +21,7 @@ export default function Page() {
 
       <RoundedSection />
 
-      <SettingsSavedLocalyHelperText />
+      <SettingsSavedLocalyAlert />
     </StackV>
   );
 }

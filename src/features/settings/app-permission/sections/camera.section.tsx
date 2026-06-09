@@ -8,7 +8,7 @@ import { StackH, StackV } from "@/components/ui/stack";
 import { Switch } from "@/components/ui/switch";
 import { toaster } from "@/components/ui/toaster";
 import { Item } from "@/components/container/item";
-import { SettingItem } from "@/components/container/settings-shell";
+import { GroupItem } from "@/components/container/group-item";
 import { R_SPACING_MD } from "@/constants/styles";
 import { useCameraPermissionStore } from "@/features/settings/app-permission/stores/use-camera-permission-stores";
 import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
@@ -95,6 +95,7 @@ const CameraTester = () => {
 
           <Disclosure.Footer>
             <Btn
+              flex={1}
               variant={"outline"}
               onClick={() => {
                 stopCamera(videoRef, streamRef, () => setCameraOpen(false));
@@ -103,7 +104,9 @@ const CameraTester = () => {
             >
               {t.close} {t.camera.toLowerCase()}
             </Btn>
+
             <Btn
+              flex={1}
               colorPalette={theme.colorPalette}
               disabled={cameraOpen}
               loading={loading}
@@ -146,7 +149,7 @@ const CameraTester = () => {
 
 // -----------------------------------------------------------------
 
-const CameraPermissionSetting = () => {
+const CameraAccessSetting = () => {
   // Stores
   const { t } = useLocaleStore();
   const { theme } = useThemeStore();
@@ -186,18 +189,7 @@ const CameraPermissionSetting = () => {
     cameraPermissionsStatus === "denied_permanent";
 
   return (
-    <SettingItem.Root
-      onClick={() => {
-        if (!isDisabled) {
-          if (isGranted) {
-            // Allow toggling off temporary permissions
-            setCameraPermissionsStatus("prompt");
-          } else {
-            requestCameraMic();
-          }
-        }
-      }}
-    >
+    <GroupItem.Root>
       <StackV gap={1}>
         <StackH align={"center"} gap={2}>
           <P>{t.settings_camera_permission.title}</P>
@@ -221,20 +213,22 @@ const CameraPermissionSetting = () => {
         <P color={"fg.subtle"}>{t.settings_camera_permission.description}</P>
       </StackV>
 
-      <Switch
-        checked={isGranted}
-        disabled={isDisabled}
-        onChange={() => {
-          if (isGranted) {
-            // Allow toggling off temporary permissions
-            setCameraPermissionsStatus("prompt");
-          } else {
-            requestCameraMic();
-          }
-        }}
-        colorPalette={theme.colorPalette}
-      />
-    </SettingItem.Root>
+      <GroupItem.Target>
+        <Switch
+          checked={isGranted}
+          disabled={isDisabled}
+          onChange={() => {
+            if (isGranted) {
+              // Allow toggling off temporary permissions
+              setCameraPermissionsStatus("prompt");
+            } else {
+              requestCameraMic();
+            }
+          }}
+          colorPalette={theme.colorPalette}
+        />
+      </GroupItem.Target>
+    </GroupItem.Root>
   );
 };
 
@@ -252,13 +246,13 @@ const CameraTesterSetting = () => {
     cameraPermissionsStatus === "granted_temporary";
 
   return (
-    <SettingItem.Root disabled={!isGranted}>
+    <GroupItem.Root disabled={!isGranted} clickable={false}>
       <StackV gap={1}>
         <P>{t.settings_camera_permission_test.title}</P>
       </StackV>
 
       <CameraTester />
-    </SettingItem.Root>
+    </GroupItem.Root>
   );
 };
 
@@ -282,7 +276,7 @@ export const CameraSection = () => {
       </SettingsHelperText>
 
       <Item.Body>
-        <CameraPermissionSetting />
+        <CameraAccessSetting />
 
         <Divider />
 

@@ -16,7 +16,7 @@ import {
   DesktopNavTooltip,
   MobileNavLink,
   VNavs,
-} from "@/components/navigation/navs";
+} from "@/components/navigation/nav";
 import { UserPanel } from "@/components/navigation/user-panel";
 import { Avatar } from "@/components/ui/avatar";
 import { Btn } from "@/components/ui/btn";
@@ -339,209 +339,191 @@ const DesktopLayout = (props: any) => {
   const pathname = usePathname();
 
   return (
-    <StackV w={"full"} h={`calc(100svh)`} overflowY={"auto"}>
-      <StackH
-        flex={1}
-        w={"full"}
-        overflowY={"auto"}
+    <StackH
+      flex={1}
+      w={"full"}
+      h={"100svh"}
+      overflowY={"auto"}
+      pos={"relative"}
+      zIndex={2}
+      {...restProps}
+    >
+      {/* Sidebar */}
+      <StackV
+        flexShrink={0}
+        w={
+          isNavsExpanded
+            ? `calc(250px + (${DESKTOP_SPACING_MD} * 2) + ${GAP})`
+            : `calc(36px + (${DESKTOP_SPACING_MD} * 2) + ${GAP})`
+        }
+        transition={BOUNCY_TRANSITION}
         pos={"relative"}
-        zIndex={2}
-        {...restProps}
       >
-        {/* Sidebar */}
         <StackV
-          flexShrink={0}
-          w={
-            isNavsExpanded
-              ? `calc(250px + (${DESKTOP_SPACING_MD} * 2) + ${GAP})`
-              : `calc(36px + (${DESKTOP_SPACING_MD} * 2) + ${GAP})`
-          }
-          transition={BOUNCY_TRANSITION}
-          pos={"relative"}
+          flex={1}
+          gap={GAP}
+          pl={GAP}
+          pb={GAP}
+          overflowY={"auto"}
+          overflowX={"clip"}
         >
-          <StackV
-            flex={1}
-            gap={GAP}
-            pl={GAP}
-            pb={GAP}
-            overflowY={"auto"}
-            overflowX={"clip"}
-          >
-            {/* Header */}
-            <NavLink to={"/"}>
-              <StackH
-                align={"center"}
-                gap={3}
-                minH={TOP_BAR_H}
-                p={R_SPACING_MD}
+          {/* Header */}
+          <NavLink to={"/"}>
+            <StackH align={"center"} gap={3} minH={TOP_BAR_H} p={R_SPACING_MD}>
+              <Logo size={18} ml={"6px"} />
+
+              {isNavsExpanded && (
+                <P
+                  lineClamp={1}
+                  fontSize={"lg"}
+                  fontWeight={"semibold"}
+                  color={`${theme.colorPalette}.fg`}
+                >
+                  {APP.name}
+                </P>
+              )}
+            </StackH>
+          </NavLink>
+
+          {/* Toggle expand */}
+          <DesktopNavTooltip content={isNavsExpanded ? t.minimize : t.maximize}>
+            <StackH px={R_SPACING_MD} my={`calc(${GAP})`}>
+              <Btn
+                flex={1}
+                clicky={false}
+                aria-label={"toggle expand navs"}
+                size={DESKTOP_NAV_BTN_SIZE}
+                variant={DESKTOP_NAV_BTN_VARIANT}
+                justifyContent={"start"}
+                px={DESKTOP_NAV_BTN_PX}
+                color={"fg.muted"}
+                zIndex={99}
+                onClick={toggleNavsExpanded}
               >
-                <Logo size={18} ml={"6px"} />
+                <Center
+                  p={2}
+                  // bg={DESKTOP_NAV_BTN_ICON_BG}
+                  rounded={theme.radii.component}
+                >
+                  <AppIconLucide
+                    icon={isNavsExpanded ? ChevronsLeftIcon : ChevronsRightIcon}
+                  />
+                </Center>
 
                 {isNavsExpanded && (
-                  <P
-                    lineClamp={1}
-                    fontSize={"lg"}
-                    fontWeight={"semibold"}
-                    color={`${theme.colorPalette}.fg`}
-                  >
-                    {APP.name}
-                  </P>
+                  <P>{isNavsExpanded ? t.minimize : t.maximize}</P>
                 )}
-              </StackH>
-            </NavLink>
+              </Btn>
+            </StackH>
+          </DesktopNavTooltip>
 
-            {/* Toggle expand */}
-            <DesktopNavTooltip
-              content={isNavsExpanded ? t.minimize : t.maximize}
+          {/* Navs */}
+          <StackV flex={1} overflowY={"auto"} pos={"relative"}>
+            <StackV
+              className={"scrollY"}
+              flex={1}
+              px={R_SPACING_MD}
+              pt={R_SPACING_MD}
+              pb={
+                isNavsExpanded
+                  ? `calc(${USER_PANEL_H} + (${DESKTOP_SPACING_MD} * 1))`
+                  : `calc(36px + (${DESKTOP_SPACING_MD} * 2))`
+              }
+              mb={GAP}
+              transition={"200ms"}
             >
-              <StackH px={R_SPACING_MD} my={`calc(${GAP})`}>
-                <Btn
-                  flex={1}
-                  clicky={false}
-                  aria-label={"toggle expand navs"}
-                  size={DESKTOP_NAV_BTN_SIZE}
-                  variant={DESKTOP_NAV_BTN_VARIANT}
-                  justifyContent={"start"}
-                  gap={4}
-                  px={DESKTOP_NAV_BTN_PX}
-                  color={"fg.muted"}
-                  zIndex={99}
-                  onClick={toggleNavsExpanded}
-                >
-                  <Center
-                    p={2}
-                    // bg={DESKTOP_NAV_BTN_ICON_BG}
-                    rounded={theme.radii.component}
-                  >
-                    <AppIconLucide
-                      icon={
-                        isNavsExpanded ? ChevronsLeftIcon : ChevronsRightIcon
-                      }
-                    />
-                  </Center>
-
-                  {isNavsExpanded && (
-                    <P>{isNavsExpanded ? t.minimize : t.maximize}</P>
-                  )}
-                </Btn>
-              </StackH>
-            </DesktopNavTooltip>
-
-            {/* Navs */}
-            <StackV flex={1} overflowY={"auto"} pos={"relative"}>
-              <StackV
-                className={"scrollY"}
-                flex={1}
-                px={R_SPACING_MD}
-                pt={R_SPACING_MD}
-                pb={
-                  isNavsExpanded
-                    ? `calc(${USER_PANEL_H} + (${DESKTOP_SPACING_MD} * 1))`
-                    : `calc(36px + (${DESKTOP_SPACING_MD} * 2))`
-                }
-                mb={GAP}
-                transition={"200ms"}
-              >
-                <VNavs
-                  navs={PRIVATE_NAV_GROUPS}
-                  navsExpanded={isNavsExpanded}
-                  addonBottomElement={
-                    <StackV gap={1} mt={"auto"}>
-                      <NavLink
-                        key={"/master-data"}
-                        to={"/master-data"}
-                        w={"full"}
+              <VNavs
+                navs={PRIVATE_NAV_GROUPS}
+                navsExpanded={isNavsExpanded}
+                addonBottomElement={
+                  <StackV gap={1} mt={"auto"}>
+                    <NavLink
+                      key={"/master-data"}
+                      to={"/master-data"}
+                      w={"full"}
+                    >
+                      <DesktopNavTooltip
+                        content={pluckString(t, "navs.master_data")}
                       >
-                        <DesktopNavTooltip
-                          content={pluckString(t, "navs.master_data")}
+                        <Btn
+                          clicky={false}
+                          justifyContent={isNavsExpanded ? "start" : "start"}
+                          px={DESKTOP_NAV_BTN_PX}
+                          size={DESKTOP_NAV_BTN_SIZE}
+                          variant={
+                            pathname.includes("/master-data")
+                              ? DESKTOP_ACTIVE_NAV_BTN_VARIANT
+                              : DESKTOP_NAV_BTN_VARIANT
+                          }
+                          colorPalette={
+                            pathname.includes("/master-data")
+                              ? theme.colorPalette
+                              : ""
+                          }
+                          pos={"relative"}
                         >
-                          <Btn
-                            clicky={false}
-                            justifyContent={isNavsExpanded ? "start" : "start"}
-                            gap={4}
-                            px={DESKTOP_NAV_BTN_PX}
-                            size={DESKTOP_NAV_BTN_SIZE}
-                            variant={
-                              pathname.includes("/master-data")
-                                ? DESKTOP_ACTIVE_NAV_BTN_VARIANT
-                                : DESKTOP_NAV_BTN_VARIANT
-                            }
-                            colorPalette={
-                              pathname.includes("/master-data")
-                                ? theme.colorPalette
-                                : ""
-                            }
-                            pos={"relative"}
-                          >
-                            {/* {pathname.includes("/master-data") && (
+                          {/* {pathname.includes("/master-data") && (
                             <LeftIndicator />
                           )} */}
 
-                            <Center
-                              p={2}
-                              // bg={
-                              //   pathname.includes("/master-data")
-                              //     ? ""
-                              //     : DESKTOP_NAV_BTN_ICON_BG
-                              // }
-                              rounded={theme.radii.component}
-                            >
-                              <AppIconLucide
-                                icon={ServerIcon}
-                                color={
-                                  pathname.includes("/master-data")
-                                    ? ""
-                                    : COMMON_NAV_COLOR
-                                }
-                              />
-                            </Center>
+                          <Center
+                            p={2}
+                            // bg={
+                            //   pathname.includes("/master-data")
+                            //     ? ""
+                            //     : DESKTOP_NAV_BTN_ICON_BG
+                            // }
+                            rounded={theme.radii.component}
+                          >
+                            <AppIconLucide
+                              icon={ServerIcon}
+                              color={
+                                pathname.includes("/master-data")
+                                  ? ""
+                                  : COMMON_NAV_COLOR
+                              }
+                            />
+                          </Center>
 
-                            {isNavsExpanded && (
-                              <P lineClamp={1} textAlign={"left"}>
-                                {pluckString(t, "navs.master_data")}
-                              </P>
-                            )}
-                          </Btn>
-                        </DesktopNavTooltip>
-                      </NavLink>
-                    </StackV>
-                  }
-                  flex={1}
-                />
-              </StackV>
+                          {isNavsExpanded && (
+                            <P lineClamp={1} textAlign={"left"}>
+                              {pluckString(t, "navs.master_data")}
+                            </P>
+                          )}
+                        </Btn>
+                      </DesktopNavTooltip>
+                    </NavLink>
+                  </StackV>
+                }
+                flex={1}
+              />
+            </StackV>
 
-              {/* User panel */}
-              <StackV
-                w={"full"}
-                pos={"absolute"}
-                left={0}
-                bottom={0}
-                zIndex={2}
-              >
-                <UserPanel navsExpanded={isNavsExpanded} />
-              </StackV>
+            {/* User panel */}
+            <StackV w={"full"} pos={"absolute"} left={0} bottom={0} zIndex={2}>
+              <UserPanel navsExpanded={isNavsExpanded} />
             </StackV>
           </StackV>
         </StackV>
+      </StackV>
 
-        {/* Content */}
-        <MainView.Root w={"full"} overflowY={"auto"}>
-          <StackV>
-            <ConstrainedContainer px={GAP}>
-              <Box w={"full"} h={TOP_BAR_H} p={R_SPACING_MD}>
-                <TopBar showDateTime={false} />
-              </Box>
-            </ConstrainedContainer>
-          </StackV>
+      {/* Content */}
+      <MainView.Root w={"full"} overflowY={"auto"}>
+        <StackV>
+          <ConstrainedContainer px={GAP}>
+            <Box w={"full"} h={TOP_BAR_H} p={R_SPACING_MD}>
+              <TopBar showDateTime={false} />
+            </Box>
+          </ConstrainedContainer>
+        </StackV>
 
-          <MContainerV flex={1} overflowY={"auto"} pos={"relative"}>
-            <ConstrainedContainer flex={1} pos={"relative"}>
-              {children}
-            </ConstrainedContainer>
-          </MContainerV>
-        </MainView.Root>
-      </StackH>
-    </StackV>
+        <MContainerV flex={1} overflowY={"auto"} pos={"relative"}>
+          <ConstrainedContainer flex={1} pos={"relative"}>
+            {children}
+          </ConstrainedContainer>
+        </MContainerV>
+      </MainView.Root>
+    </StackH>
   );
 };
 

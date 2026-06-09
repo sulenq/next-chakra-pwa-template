@@ -77,6 +77,10 @@ export const customConfig = defineConfig({
       colors: {
         light: { value: "#f0f1f4ff" },
         dark: { value: "#111" },
+
+        canvasLight: { value: "#e8eaf1" },
+        canvasDark: { value: "#151515" },
+
         bodyLight: { value: "#faf9ff" },
         bodyDark: { value: "#1d1d1d" },
 

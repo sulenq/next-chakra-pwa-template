@@ -133,22 +133,15 @@ export const VNavs = (props: VNavsProps) => {
                                   ? DESKTOP_ACTIVE_NAV_BTN_VARIANT
                                   : DESKTOP_NAV_BTN_VARIANT
                               }
-                              colorPalette={
-                                isMainNavsActive
-                                  ? theme.colorPalette
-                                  : DESKTOP_NAV_BTN_COLOR_PATELLE
-                              }
+                              colorPalette={DESKTOP_NAV_BTN_COLOR_PATELLE}
+                              // colorPalette={
+                              //   isMainNavsActive
+                              //     ? theme.colorPalette
+                              //     : DESKTOP_NAV_BTN_COLOR_PATELLE
+                              // }
                             >
                               {nav.icon && (
-                                <Center
-                                  p={2}
-                                  // bg={
-                                  //   isMainNavsActive
-                                  //     ? ""
-                                  //     : DESKTOP_NAV_BTN_ICON_BG
-                                  // }
-                                  rounded={theme.radii.component}
-                                >
+                                <Center p={2} rounded={theme.radii.component}>
                                   <AppIconLucide
                                     icon={nav.icon}
                                     color={
@@ -172,7 +165,7 @@ export const VNavs = (props: VNavsProps) => {
                               )}
 
                               {navsExpanded && (
-                                <P lineClamp={1} textAlign={"left"}>
+                                <P lineClamp={1} textAlign={"left"} ml={-2}>
                                   {nav.label || pluckString(t, nav.labelKey)}
                                 </P>
                               )}
@@ -212,10 +205,13 @@ export const VNavs = (props: VNavsProps) => {
                                           : DESKTOP_NAV_BTN_VARIANT
                                       }
                                       colorPalette={
-                                        isMainNavsActive
-                                          ? theme.colorPalette
-                                          : DESKTOP_NAV_BTN_COLOR_PATELLE
+                                        DESKTOP_NAV_BTN_COLOR_PATELLE
                                       }
+                                      // colorPalette={
+                                      //   isMainNavsActive
+                                      //     ? theme.colorPalette
+                                      //     : DESKTOP_NAV_BTN_COLOR_PATELLE
+                                      // }
                                       pos={"relative"}
                                     >
                                       {/* {isMainNavsActive && <LeftIndicator />} */}
@@ -348,10 +344,13 @@ export const VNavs = (props: VNavsProps) => {
                                           : DESKTOP_NAV_BTN_VARIANT
                                       }
                                       colorPalette={
-                                        isMainNavsActive
-                                          ? theme.colorPalette
-                                          : DESKTOP_NAV_BTN_COLOR_PATELLE
+                                        DESKTOP_NAV_BTN_COLOR_PATELLE
                                       }
+                                      // colorPalette={
+                                      //   isMainNavsActive
+                                      //     ? theme.colorPalette
+                                      //     : DESKTOP_NAV_BTN_COLOR_PATELLE
+                                      // }
                                       w={"full"}
                                       pos={"relative"}
                                     >
@@ -377,7 +376,11 @@ export const VNavs = (props: VNavsProps) => {
                                           />
                                         </Center>
 
-                                        <P lineClamp={1} textAlign={"left"}>
+                                        <P
+                                          lineClamp={1}
+                                          textAlign={"left"}
+                                          ml={-2}
+                                        >
                                           {nav.label
                                             ? nav.label
                                             : pluckString(t, nav.labelKey)}

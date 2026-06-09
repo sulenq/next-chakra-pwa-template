@@ -304,7 +304,7 @@ const translations = {
   "msg_reset_password_step_3": "Third step, enter your new password",
   "msg_restore": "The data will be restored to its original state.",
   "msg_settings_index_route": "Select the settings menu.",
-  "msg_settings_saved_locally": "*This settings are saved locally on your device and will not be synchronized with your account.",
+  "msg_settings_saved_locally": "This settings are saved locally on your device and will not be synchronized with your account.",
   "msg_signin": "Enter your account details to continue.",
   "msg_signout": "Are you sure you want to sign out?",
   "msg_soft_delete": "Data will be hidden but can be restored later.",

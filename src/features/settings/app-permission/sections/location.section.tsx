@@ -8,7 +8,7 @@ import { StackH, StackV } from "@/components/ui/stack";
 import { Switch } from "@/components/ui/switch";
 import { toaster } from "@/components/ui/toaster";
 import { Item } from "@/components/container/item";
-import { SettingItem } from "@/components/container/settings-shell";
+import { GroupItem } from "@/components/container/group-item";
 import { R_SPACING_MD } from "@/constants/styles";
 import { useLocationPermissionStore } from "@/features/settings/app-permission/stores/use-location-permission-store";
 import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
@@ -91,10 +91,8 @@ const LocationTester = () => {
           </Disclosure.Header>
 
           <Disclosure.Body>
-            {!address && <P>{t.msg_location_test_helper}</P>}
-
             {address && center && (
-              <StackV gap={2}>
+              <StackV gap={2} mb={4}>
                 <StackH align={"start"}>
                   <P w={"100px"} color={"fg.muted"} flexShrink={0}>
                     Latitude
@@ -117,17 +115,16 @@ const LocationTester = () => {
                 </StackH>
               </StackV>
             )}
-          </Disclosure.Body>
 
-          <Disclosure.Footer>
             <Btn
+              w={"full"}
               colorPalette={theme.colorPalette}
               loading={loading}
               onClick={startLocationTest}
             >
               {t.get} {t.location.toLowerCase()}
             </Btn>
-          </Disclosure.Footer>
+          </Disclosure.Body>
         </Disclosure.Content>
       </Disclosure.Root>
     </>
@@ -189,7 +186,7 @@ const LocationPermissionSetting = () => {
     locationPermissionsStatus === "denied_permanent";
 
   return (
-    <SettingItem.Root
+    <GroupItem.Root
       onClick={() => {
         if (!isDisabled) {
           if (isGranted) {
@@ -237,7 +234,7 @@ const LocationPermissionSetting = () => {
         }}
         colorPalette={theme.colorPalette}
       />
-    </SettingItem.Root>
+    </GroupItem.Root>
   );
 };
 
@@ -255,13 +252,13 @@ const LocationTesterSetting = () => {
     locationPermissionsStatus === "granted_temporary";
 
   return (
-    <SettingItem.Root disabled={!isGranted}>
+    <GroupItem.Root disabled={!isGranted} clickable={false}>
       <StackV gap={1}>
         <P>{t.settings_location_permission_test.title}</P>
       </StackV>
 
       <LocationTester />
-    </SettingItem.Root>
+    </GroupItem.Root>
   );
 };
 

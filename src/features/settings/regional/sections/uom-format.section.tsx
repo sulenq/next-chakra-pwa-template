@@ -1,5 +1,5 @@
 import { Item } from "@/components/container/item";
-import { SettingItem } from "@/components/container/settings-shell";
+import { GroupItem } from "@/components/container/group-item";
 import { Divider } from "@/components/ui/divider";
 import { P } from "@/components/ui/p";
 import { StackV } from "@/components/ui/stack";
@@ -35,7 +35,7 @@ const WeightFormatSetting = () => {
   const { UOM, setUOMUnit } = useUOMFormatStore();
 
   return (
-    <SettingItem.Root>
+    <GroupItem.Root>
       <StackV gap={1}>
         <P>{t.settings_weight_format.title}</P>
       </StackV>
@@ -51,7 +51,7 @@ const WeightFormatSetting = () => {
         variant={"plain"}
         p={0}
       />
-    </SettingItem.Root>
+    </GroupItem.Root>
   );
 };
 
@@ -63,7 +63,7 @@ const HeightFormatSetting = () => {
   const { UOM, setUOMUnit } = useUOMFormatStore();
 
   return (
-    <SettingItem.Root>
+    <GroupItem.Root>
       <StackV gap={1}>
         <P>{t.settings_height_format.title}</P>
       </StackV>
@@ -81,7 +81,7 @@ const HeightFormatSetting = () => {
         variant={"plain"}
         p={0}
       />
-    </SettingItem.Root>
+    </GroupItem.Root>
   );
 };
 
@@ -93,7 +93,7 @@ const LengthFormatSetting = () => {
   const { UOM, setUOMUnit } = useUOMFormatStore();
 
   return (
-    <SettingItem.Root>
+    <GroupItem.Root>
       <StackV gap={1}>
         <P>{t.settings_length_format.title}</P>
       </StackV>
@@ -111,7 +111,7 @@ const LengthFormatSetting = () => {
         variant={"plain"}
         p={0}
       />
-    </SettingItem.Root>
+    </GroupItem.Root>
   );
 };
 
@@ -123,7 +123,7 @@ const DistanceFormatSetting = () => {
   const { UOM, setUOMUnit } = useUOMFormatStore();
 
   return (
-    <SettingItem.Root>
+    <GroupItem.Root>
       <StackV gap={1}>
         <P>{t.settings_distance_format.title}</P>
       </StackV>
@@ -145,7 +145,7 @@ const DistanceFormatSetting = () => {
         variant={"plain"}
         p={0}
       />
-    </SettingItem.Root>
+    </GroupItem.Root>
   );
 };
 
@@ -157,7 +157,7 @@ const AreaFormatSetting = () => {
   const { UOM, setUOMUnit } = useUOMFormatStore();
 
   return (
-    <SettingItem.Root>
+    <GroupItem.Root>
       <StackV gap={1}>
         <P>{t.settings_area_format.title}</P>
       </StackV>
@@ -173,7 +173,7 @@ const AreaFormatSetting = () => {
         variant={"plain"}
         p={0}
       />
-    </SettingItem.Root>
+    </GroupItem.Root>
   );
 };
 
@@ -185,7 +185,7 @@ const VolumeFormatSetting = () => {
   const { UOM, setUOMUnit } = useUOMFormatStore();
 
   return (
-    <SettingItem.Root>
+    <GroupItem.Root>
       <StackV gap={1}>
         <P>{t.settings_volume_format.title}</P>
       </StackV>
@@ -203,7 +203,7 @@ const VolumeFormatSetting = () => {
         variant={"plain"}
         p={0}
       />
-    </SettingItem.Root>
+    </GroupItem.Root>
   );
 };
 
@@ -215,7 +215,7 @@ const TemperatureFormatSetting = () => {
   const { UOM, setUOMUnit } = useUOMFormatStore();
 
   return (
-    <SettingItem.Root>
+    <GroupItem.Root>
       <StackV gap={1}>
         <P>{t.settings_temperature_format.title}</P>
       </StackV>
@@ -237,7 +237,7 @@ const TemperatureFormatSetting = () => {
         variant={"plain"}
         p={0}
       />
-    </SettingItem.Root>
+    </GroupItem.Root>
   );
 };
 
@@ -249,7 +249,7 @@ const SpeedFormatSetting = () => {
   const { UOM, setUOMUnit } = useUOMFormatStore();
 
   return (
-    <SettingItem.Root>
+    <GroupItem.Root>
       <StackV gap={1}>
         <P>{t.settings_speed_format.title}</P>
       </StackV>
@@ -265,7 +265,7 @@ const SpeedFormatSetting = () => {
         variant={"plain"}
         p={0}
       />
-    </SettingItem.Root>
+    </GroupItem.Root>
   );
 };
 
@@ -277,7 +277,7 @@ const EnergyFormatSetting = () => {
   const { UOM, setUOMUnit } = useUOMFormatStore();
 
   return (
-    <SettingItem.Root>
+    <GroupItem.Root>
       <StackV gap={1}>
         <P>{t.settings_energy_format.title}</P>
       </StackV>
@@ -295,7 +295,7 @@ const EnergyFormatSetting = () => {
         variant={"plain"}
         p={0}
       />
-    </SettingItem.Root>
+    </GroupItem.Root>
   );
 };
 
@@ -307,7 +307,7 @@ const PowerFormatSetting = () => {
   const { UOM, setUOMUnit } = useUOMFormatStore();
 
   return (
-    <SettingItem.Root>
+    <GroupItem.Root>
       <StackV gap={1}>
         <P>{t.settings_power_format.title}</P>
       </StackV>
@@ -323,7 +323,7 @@ const PowerFormatSetting = () => {
         variant={"plain"}
         p={0}
       />
-    </SettingItem.Root>
+    </GroupItem.Root>
   );
 };
 
@@ -335,7 +335,7 @@ const PressureFormatSetting = () => {
   const { UOM, setUOMUnit } = useUOMFormatStore();
 
   return (
-    <SettingItem.Root>
+    <GroupItem.Root>
       <StackV gap={1}>
         <P>{t.settings_pressure_format.title}</P>
       </StackV>
@@ -357,7 +357,7 @@ const PressureFormatSetting = () => {
         variant={"plain"}
         p={0}
       />
-    </SettingItem.Root>
+    </GroupItem.Root>
   );
 };
 
@@ -369,7 +369,7 @@ const DataFormatSetting = () => {
   const { UOM, setUOMUnit } = useUOMFormatStore();
 
   return (
-    <SettingItem.Root>
+    <GroupItem.Root>
       <StackV gap={1}>
         <P>{t.settings_data_format.title}</P>
       </StackV>
@@ -385,7 +385,7 @@ const DataFormatSetting = () => {
         variant={"plain"}
         p={0}
       />
-    </SettingItem.Root>
+    </GroupItem.Root>
   );
 };
 
@@ -397,7 +397,7 @@ const DataRateFormatSetting = () => {
   const { UOM, setUOMUnit } = useUOMFormatStore();
 
   return (
-    <SettingItem.Root>
+    <GroupItem.Root>
       <StackV gap={1}>
         <P>{t.settings_data_rate_format.title}</P>
       </StackV>
@@ -419,7 +419,7 @@ const DataRateFormatSetting = () => {
         variant={"plain"}
         p={0}
       />
-    </SettingItem.Root>
+    </GroupItem.Root>
   );
 };
 
@@ -431,7 +431,7 @@ const AngleFormatSetting = () => {
   const { UOM, setUOMUnit } = useUOMFormatStore();
 
   return (
-    <SettingItem.Root>
+    <GroupItem.Root>
       <StackV gap={1}>
         <P>{t.settings_angle_format.title}</P>
       </StackV>
@@ -447,7 +447,7 @@ const AngleFormatSetting = () => {
         variant={"plain"}
         p={0}
       />
-    </SettingItem.Root>
+    </GroupItem.Root>
   );
 };
 

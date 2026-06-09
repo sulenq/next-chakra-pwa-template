@@ -20,7 +20,7 @@ import {
   VNavs,
   DesktopNavTooltip,
   MobileNavLink,
-} from "@/components/navigation/navs";
+} from "@/components/navigation/nav";
 import { ProfileMenuTrigger } from "@/components/user/profile-menu";
 import { HScroll } from "@/components/container/h-scroll";
 import { Today } from "@/components/misc/today";

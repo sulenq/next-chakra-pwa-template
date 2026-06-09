@@ -1080,8 +1080,8 @@ export const msg_permissions_denied_helper = {
   en: "If you want to grant access again, please open the site settings/app permissions in your browser, search for the related permission, and change its value manually there.",
 };
 export const msg_settings_saved_locally = {
-  id: "*Pengaturan ini disimpan secara lokal di perangkat Anda dan tidak akan disinkronkan dengan akun Anda.",
-  en: "*This settings are saved locally on your device and will not be synchronized with your account.",
+  id: "Pengaturan ini disimpan secara lokal di perangkat Anda dan tidak akan disinkronkan dengan akun Anda.",
+  en: "This settings are saved locally on your device and will not be synchronized with your account.",
 };
 export const msg_settings_index_route = {
   id: "Pilih menu pengaturan.",

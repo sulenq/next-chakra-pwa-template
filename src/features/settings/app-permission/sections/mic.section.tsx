@@ -1,16 +1,19 @@
-import { getBadgeText } from "@/features/settings/app-permission/utils/getBadgeText";
+import { GroupItem } from "@/components/container/group-item";
+import { Item } from "@/components/container/item";
+import { MicVolumeBar } from "@/components/misc/mic-volume-bar";
 import { Btn } from "@/components/ui/btn";
 import { Disclosure } from "@/components/ui/disclosure";
 import { Divider } from "@/components/ui/divider";
-import { SettingsHelperText } from "@/components/ui/typography";
 import { P } from "@/components/ui/p";
 import { StackH, StackV } from "@/components/ui/stack";
 import { Switch } from "@/components/ui/switch";
-import { Item } from "@/components/container/item";
-import { MicVolumeBar } from "@/components/misc/mic-volume-bar";
-import { SettingItem } from "@/components/container/settings-shell";
+import {
+  SettingsGroupTitle,
+  SettingsHelperText,
+} from "@/components/ui/typography";
 import { R_SPACING_MD } from "@/constants/styles";
 import { useMicPermissionStore } from "@/features/settings/app-permission/stores/use-mic-permission-store";
+import { getBadgeText } from "@/features/settings/app-permission/utils/getBadgeText";
 import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
 import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
 import { usePopDisclosure } from "@/hooks/use-pop-disclosure";
@@ -123,10 +126,17 @@ const MicTester = () => {
           </Disclosure.Body>
 
           <Disclosure.Footer>
-            <Btn variant={"outline"} onClick={stopMicTest} disabled={!micOpen}>
+            <Btn
+              flex={1}
+              variant={"outline"}
+              onClick={stopMicTest}
+              disabled={!micOpen}
+            >
               {t.close} {t.mic.toLowerCase()}
             </Btn>
+
             <Btn
+              flex={1}
               colorPalette={theme.colorPalette}
               disabled={micOpen}
               loading={loading}
@@ -143,7 +153,7 @@ const MicTester = () => {
 
 // -----------------------------------------------------------------
 
-const MicPermissionSetting = () => {
+const MicAccessSetting = () => {
   // Stores
   const { t } = useLocaleStore();
   const { theme } = useThemeStore();
@@ -183,18 +193,7 @@ const MicPermissionSetting = () => {
     micPermissionsStatus === "denied_permanent";
 
   return (
-    <SettingItem.Root
-      onClick={() => {
-        if (!isDisabled) {
-          if (isGranted) {
-            // Allow toggling off temporary permissions
-            setMicPermissionsStatus("prompt");
-          } else {
-            requestMicPermission();
-          }
-        }
-      }}
-    >
+    <GroupItem.Root>
       <StackV gap={1}>
         <StackH align={"center"} gap={2}>
           <P>{t.settings_mic_permission.title}</P>
@@ -218,20 +217,22 @@ const MicPermissionSetting = () => {
         <P color={"fg.subtle"}>{t.settings_mic_permission.description}</P>
       </StackV>
 
-      <Switch
-        checked={isGranted}
-        disabled={isDisabled}
-        onChange={() => {
-          if (isGranted) {
-            // Allow toggling off temporary permissions
-            setMicPermissionsStatus("prompt");
-          } else {
-            requestMicPermission();
-          }
-        }}
-        colorPalette={theme.colorPalette}
-      />
-    </SettingItem.Root>
+      <GroupItem.Target>
+        <Switch
+          checked={isGranted}
+          disabled={isDisabled}
+          onChange={() => {
+            if (isGranted) {
+              // Allow toggling off temporary permissions
+              setMicPermissionsStatus("prompt");
+            } else {
+              requestMicPermission();
+            }
+          }}
+          colorPalette={theme.colorPalette}
+        />
+      </GroupItem.Target>
+    </GroupItem.Root>
   );
 };
 
@@ -249,13 +250,13 @@ const MicTesterSetting = () => {
     micPermissionsStatus === "granted_temporary";
 
   return (
-    <SettingItem.Root disabled={!isGranted}>
+    <GroupItem.Root disabled={!isGranted} clickable={false}>
       <StackV gap={1}>
         <P>{t.settings_mic_permission_test.title}</P>
       </StackV>
 
       <MicTester />
-    </SettingItem.Root>
+    </GroupItem.Root>
   );
 };
 
@@ -274,12 +275,12 @@ export const MicrophoneSection = () => {
 
   return (
     <Item.Root px={R_SPACING_MD}>
-      <SettingsHelperText fontWeight={"semibold"}>
+      <SettingsGroupTitle fontWeight={"semibold"}>
         {t.settings_mic_permission_section.title}
-      </SettingsHelperText>
+      </SettingsGroupTitle>
 
       <Item.Body>
-        <MicPermissionSetting />
+        <MicAccessSetting />
 
         <Divider />
 

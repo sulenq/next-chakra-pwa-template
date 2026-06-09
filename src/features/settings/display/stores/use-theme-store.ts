@@ -25,7 +25,7 @@ export const DEFAULT: ThemeStore = {
   primaryColorHex: COLOR_PALETTES[0].primaryHex,
   logo: `${IMAGES_PATH}/logo_graphic.png`,
   radii: ROUNDED_PRESETS[5],
-  ambienceColor: true,
+  ambienceColor: false,
 };
 
 type ThemeConfigStore = {

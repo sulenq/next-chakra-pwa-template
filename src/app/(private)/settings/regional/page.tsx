@@ -1,6 +1,6 @@
 "use client";
 
-import { SettingsSavedLocalyHelperText } from "@/components/ui/typography";
+import { SettingsSavedLocalyAlert } from "@/components/alert/alert.static";
 import { StackV } from "@/components/ui/stack";
 import { SECTION_GAP } from "@/constants/styles";
 import { DateTimeSection } from "@/features/settings/regional/sections/date-time.section";
@@ -18,7 +18,7 @@ export default function Page() {
 
       <UOMFormatSection />
 
-      <SettingsSavedLocalyHelperText />
+      <SettingsSavedLocalyAlert />
     </StackV>
   );
 }

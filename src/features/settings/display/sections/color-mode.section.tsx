@@ -1,3 +1,5 @@
+import { Item } from "@/components/container/item";
+import { GroupItem } from "@/components/container/group-item";
 import { Btn } from "@/components/ui/btn";
 import { useColorMode } from "@/components/ui/color-mode";
 import { Divider } from "@/components/ui/divider";
@@ -6,24 +8,19 @@ import { RadioItem } from "@/components/ui/radio";
 import { StackH, StackV } from "@/components/ui/stack";
 import { Switch } from "@/components/ui/switch";
 import { toaster } from "@/components/ui/toaster";
-import { AppIconLucide } from "@/components/branding/app-icon";
-import { Item } from "@/components/container/item";
-import { SettingItem } from "@/components/container/settings-shell";
 import { R_SPACING_MD } from "@/constants/styles";
 import useADMStore from "@/features/settings/display/stores/use-adm-store";
-import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
 import { useThemeStore } from "@/features/settings/display/stores/use-theme-store";
+import { useLocaleStore } from "@/features/settings/regional/stores/use-locale-store";
 import { formatTime } from "@/utils/formatter";
 import { interpolateString } from "@/utils/string";
-import { cssCalc, getSemanticValue } from "@/utils/style";
-import { Box, BoxProps, Center, StackProps } from "@chakra-ui/react";
-import { ImageIcon } from "lucide-react";
+import { Box, BoxProps, StackProps } from "@chakra-ui/react";
 
 // -----------------------------------------------------------------
 
 export const PSleleton = (props: BoxProps) => {
   return (
-    <Box h={"16px"} w={"full"} bg={"bg.muted"} rounded={"full"} {...props} />
+    <Box h={"10px"} w={"full"} bg={"bg.muted"} rounded={"full"} {...props} />
   );
 };
 
@@ -42,6 +39,10 @@ const DisplaySkeleton = (props: DisplaySkeletonProps) => {
 
   // Constants
   const color = {
+    canvas: {
+      light: "canvasLight",
+      dark: "canvasDark",
+    },
     body: {
       light: "bodyLight",
       dark: "bodyDark",
@@ -53,54 +54,26 @@ const DisplaySkeleton = (props: DisplaySkeletonProps) => {
   };
 
   return (
-    <StackV gap={4} w={"full"} {...restProps}>
-      <StackV
-        gap={2}
-        bg={color.body[colorMode]}
-        border={"1px solid"}
-        borderColor={"border.muted"}
-        rounded={theme.radii.component}
-      >
-        <Center aspectRatio={1} w={"full"} p={1}>
-          <Center
-            w={"full"}
-            h={"full"}
-            bg={"bg.subtle"}
-            rounded={cssCalc(`${theme.radii.component} - 4px`)}
-          >
-            <AppIconLucide
-              icon={ImageIcon}
-              boxSize={20}
-              strokeWidth={1}
-              color={color.fg[colorMode]}
-              opacity={0.05}
-            />
-          </Center>
-        </Center>
+    <StackH
+      aspectRatio={4 / 3}
+      w={"full"}
+      rounded={theme.radii.component}
+      shadow={"soft"}
+      overflow={"clip"}
+      {...restProps}
+    >
+      <StackV flex={1} gap={2} p={2} bg={color.body[colorMode]}>
+        <PSleleton w={"50%"} mx={"auto"} mb={1} />
 
-        <StackV gap={2} px={2}>
-          <PSleleton w={"70%"} />
-          <PSleleton />
-        </StackV>
-
-        <StackV p={2}>
-          <Btn
-            variant={"ghost"}
-            _hover={{
-              bg: getSemanticValue(`${theme.colorPalette}.subtle`, colorMode),
-            }}
-            _active={{
-              bg: getSemanticValue(`${theme.colorPalette}.muted`, colorMode),
-            }}
-          >
-            <PSleleton
-              w={"70%"}
-              bg={getSemanticValue(`${theme.colorPalette}.fg`, colorMode)}
-            />
-          </Btn>
-        </StackV>
+        <PSleleton />
+        <PSleleton />
+        <PSleleton />
       </StackV>
-    </StackV>
+
+      <StackV flex={2} gap={2} px={4} py={2} bg={color.canvas[colorMode]}>
+        <PSleleton w={"40%"} mx={"auto"} mb={1} />
+      </StackV>
+    </StackH>
   );
 };
 
@@ -112,7 +85,7 @@ const ColorModeSetting = () => {
   const { colorMode, setColorMode } = useColorMode();
 
   return (
-    <StackH justify={"center"} gap={4} p={2} pb={4}>
+    <StackH justify={"center"} gap={4} p={4}>
       <StackV
         align={"center"}
         gap={2}
@@ -174,7 +147,7 @@ const ADMSetting = () => {
   const { ADM, setADM } = useADMStore();
 
   return (
-    <SettingItem.Root>
+    <GroupItem.Root>
       <StackV gap={1}>
         <P>{t.settings_adaptive_dark_mode.title}</P>
 
@@ -185,15 +158,15 @@ const ADMSetting = () => {
         </P>
       </StackV>
 
-      <SettingItem.Target>
+      <GroupItem.Target>
         <Switch
           checked={ADM}
           onCheckedChange={(e) => {
             setADM(e.checked);
           }}
         />
-      </SettingItem.Target>
-    </SettingItem.Root>
+      </GroupItem.Target>
+    </GroupItem.Root>
   );
 };
 
@@ -205,7 +178,7 @@ const ResetColorModeSetting = () => {
   const { setColorMode } = useColorMode();
 
   return (
-    <SettingItem.Root hoverable={false}>
+    <GroupItem.Root clickable={false}>
       <StackV gap={1}>
         <P>{t.settings_color_mode_reset.title}</P>
 
@@ -226,7 +199,7 @@ const ResetColorModeSetting = () => {
       >
         Reset
       </Btn>
-    </SettingItem.Root>
+    </GroupItem.Root>
   );
 };
 

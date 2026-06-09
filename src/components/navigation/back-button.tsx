@@ -1,8 +1,8 @@
-import { back } from "@/utils/client";
-import { Icon } from "@chakra-ui/react";
-import { IconArrowLeft } from "@tabler/icons-react";
-import { useRouter } from "next/navigation";
 import { Btn, BtnProps } from "@/components/ui/btn";
+import { back } from "@/utils/client";
+import { ChevronLeftIcon } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { AppIconLucide } from "../branding/app-icon";
 
 // -----------------------------------------------------------------
 
@@ -42,9 +42,7 @@ export const BackButton = ({
         size={"xs"}
         {...props}
       >
-        <Icon boxSize={5}>
-          <IconArrowLeft stroke={1.5} />
-        </Icon>
+        <AppIconLucide icon={ChevronLeftIcon} />
       </Btn>
     );
 

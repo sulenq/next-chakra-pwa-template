@@ -7,7 +7,7 @@ import {
   MainView,
   useMainViewContext,
 } from "@/components/container/main-view";
-import { VNavs } from "@/components/navigation/navs";
+import { VNavs } from "@/components/navigation/nav";
 import { APP } from "@/constants/_meta";
 import { OTHER_PRIVATE_NAV_GROUPS } from "@/constants/navs";
 import { GAP, R_SPACING_MD } from "@/constants/styles";

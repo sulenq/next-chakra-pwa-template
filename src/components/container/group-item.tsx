@@ -4,17 +4,17 @@ import React, { createContext, useContext, useRef } from "react";
 
 // -----------------------------------------------------------------
 
-interface SettingItemContextType {
+interface GroupItemContextType {
   targetRef: React.RefObject<HTMLElement | null>;
 }
 
-const SettingItemContext = createContext<SettingItemContextType | null>(null);
+const GroupItemContext = createContext<GroupItemContextType | null>(null);
 
-const useSettingItem = () => {
-  const context = useContext(SettingItemContext);
+const useGroupItem = () => {
+  const context = useContext(GroupItemContext);
   if (!context) {
     throw new Error(
-      "SettingItem sub-components must be used within a SettingItem.Root",
+      "GroupItem sub-components must be used within a GroupItem.Root",
     );
   }
   return context;
@@ -22,12 +22,12 @@ const useSettingItem = () => {
 
 // -----------------------------------------------------------------
 
-interface SettingItemTargetProps {
+interface GroupItemTargetProps {
   children: React.ReactElement<any & React.RefAttributes<any>>;
 }
 
-const SettingItemTarget = ({ children }: SettingItemTargetProps) => {
-  const { targetRef } = useSettingItem();
+const GroupItemTarget = ({ children }: GroupItemTargetProps) => {
+  const { targetRef } = useGroupItem();
 
   return React.cloneElement(children, {
     ref: (node: HTMLElement | null) => {
@@ -46,22 +46,22 @@ const SettingItemTarget = ({ children }: SettingItemTargetProps) => {
 
 // -----------------------------------------------------------------
 
-interface SettingItemRootProps extends StackProps {
+interface GroupItemRootProps extends StackProps {
   disabled?: boolean;
-  hoverable?: boolean;
+  clickable?: boolean;
 }
 
-const SettingItemRoot = ({
+const GroupItemRoot = ({
   children,
   disabled,
-  hoverable = true,
+  clickable = true,
   onClick,
   ...props
-}: SettingItemRootProps) => {
+}: GroupItemRootProps) => {
   const targetRef = useRef<HTMLElement | null>(null);
 
   const hasTarget = React.Children.toArray(children).some(
-    (child) => React.isValidElement(child) && child.type === SettingItemTarget,
+    (child) => React.isValidElement(child) && child.type === GroupItemTarget,
   );
 
   const handleContainerClick = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -75,7 +75,7 @@ const SettingItemRoot = ({
   };
 
   return (
-    <SettingItemContext.Provider value={{ targetRef }}>
+    <GroupItemContext.Provider value={{ targetRef }}>
       <StackH
         align={"center"}
         justify={"space-between"}
@@ -83,13 +83,20 @@ const SettingItemRoot = ({
         p={4}
         pointerEvents={disabled ? "none" : "auto"}
         opacity={disabled ? 0.4 : 1}
-        cursor={hoverable ? "pointer" : ""}
+        cursor={clickable ? "pointer" : ""}
         transition={"200ms"}
         onClick={handleContainerClick}
         _hover={
-          hoverable
+          clickable
             ? {
                 bg: "bg.subtle",
+              }
+            : undefined
+        }
+        _active={
+          clickable
+            ? {
+                bg: "bg.muted",
               }
             : undefined
         }
@@ -100,7 +107,7 @@ const SettingItemRoot = ({
 
           if (!hasTarget) return child;
 
-          if (child.type === SettingItemTarget) {
+          if (child.type === GroupItemTarget) {
             return child;
           }
 
@@ -112,13 +119,13 @@ const SettingItemRoot = ({
           });
         })}
       </StackH>
-    </SettingItemContext.Provider>
+    </GroupItemContext.Provider>
   );
 };
 
 // -----------------------------------------------------------------
 
-export const SettingItem = {
-  Root: SettingItemRoot,
-  Target: SettingItemTarget,
+export const GroupItem = {
+  Root: GroupItemRoot,
+  Target: GroupItemTarget,
 };

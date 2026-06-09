@@ -1,6 +1,6 @@
 import { HScroll } from "@/components/container/h-scroll";
 import { Item } from "@/components/container/item";
-import { SettingItem } from "@/components/container/settings-shell";
+import { GroupItem } from "@/components/container/group-item";
 import { Divider } from "@/components/ui/divider";
 import { SettingsGroupTitle } from "@/components/ui/typography";
 import { P } from "@/components/ui/p";
@@ -83,22 +83,24 @@ const AmbienceColorSetting = () => {
   const { theme, setTheme } = useThemeStore();
 
   return (
-    <SettingItem.Root>
+    <GroupItem.Root>
       <StackV gap={1}>
         <P>{t.settings_ambience_color.title}</P>
 
         <P color={"fg.subtle"}>{t.settings_ambience_color.description}</P>
       </StackV>
 
-      <Switch
-        checked={theme.ambienceColor}
-        onCheckedChange={(e) => {
-          setTheme({
-            ambienceColor: e.checked,
-          });
-        }}
-      />
-    </SettingItem.Root>
+      <GroupItem.Target>
+        <Switch
+          checked={theme.ambienceColor}
+          onCheckedChange={(e) => {
+            setTheme({
+              ambienceColor: e.checked,
+            });
+          }}
+        />
+      </GroupItem.Target>
+    </GroupItem.Root>
   );
 };
 

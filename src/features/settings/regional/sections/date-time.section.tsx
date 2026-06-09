@@ -1,5 +1,5 @@
 import { Item } from "@/components/container/item";
-import { SettingItem } from "@/components/container/settings-shell";
+import { GroupItem } from "@/components/container/group-item";
 import { Divider } from "@/components/ui/divider";
 import { P } from "@/components/ui/p";
 import { StackV } from "@/components/ui/stack";
@@ -35,12 +35,12 @@ const DateFormatSetting = () => {
   }, [dateFormat]);
 
   return (
-    <SettingItem.Root>
+    <GroupItem.Root>
       <StackV gap={1}>
         <P>{t.settings_date_format.title}</P>
       </StackV>
 
-      <SettingItem.Target>
+      <GroupItem.Target>
         <SelectDateFormat
           id={"settings-select-date-format"}
           value={dateFormat}
@@ -52,8 +52,8 @@ const DateFormatSetting = () => {
           variant={"plain"}
           p={0}
         />
-      </SettingItem.Target>
-    </SettingItem.Root>
+      </GroupItem.Target>
+    </GroupItem.Root>
   );
 };
 
@@ -75,12 +75,12 @@ const TimeFormatSetting = () => {
   }, [timeFormat]);
 
   return (
-    <SettingItem.Root>
+    <GroupItem.Root>
       <StackV gap={1}>
         <P>{t.settings_time_format.title}</P>
       </StackV>
 
-      <SettingItem.Target>
+      <GroupItem.Target>
         <SelectTimeFormat
           id={"settings-select-time-format"}
           value={timeFormat}
@@ -92,8 +92,8 @@ const TimeFormatSetting = () => {
           variant={"plain"}
           p={0}
         />
-      </SettingItem.Target>
-    </SettingItem.Root>
+      </GroupItem.Target>
+    </GroupItem.Root>
   );
 };
 // -----------------------------------------------------------------
@@ -104,14 +104,14 @@ const AutoTimezomeSetting = () => {
   const { isAuto, enableAuto, disableAuto } = useTimezoneStore();
 
   return (
-    <SettingItem.Root>
+    <GroupItem.Root>
       <StackV gap={1}>
         <P>{t.settings_auto_timezone.title}</P>
 
         <P color={"fg.subtle"}>{t.settings_auto_timezone.description}</P>
       </StackV>
 
-      <SettingItem.Target>
+      <GroupItem.Target>
         <Switch
           checked={isAuto}
           onCheckedChange={(e) => {
@@ -122,8 +122,8 @@ const AutoTimezomeSetting = () => {
             }
           }}
         />
-      </SettingItem.Target>
-    </SettingItem.Root>
+      </GroupItem.Target>
+    </GroupItem.Root>
   );
 };
 
@@ -159,7 +159,7 @@ const TimezoneSetting = () => {
   }, [timezoneContext]);
 
   return (
-    <SettingItem.Root disabled={isAuto}>
+    <GroupItem.Root disabled={isAuto}>
       <StackV gap={1}>
         <P>{t.settings_timezone.title}</P>
       </StackV>
@@ -177,7 +177,7 @@ const TimezoneSetting = () => {
         variant={"plain"}
         p={0}
       />
-    </SettingItem.Root>
+    </GroupItem.Root>
   );
 };
 

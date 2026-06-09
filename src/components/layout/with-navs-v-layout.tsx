@@ -1,7 +1,7 @@
 "use client";
 
 import { MainView, useMainViewContext } from "@/components/container/main-view";
-import { VNavs } from "@/components/navigation/navs";
+import { VNavs } from "@/components/navigation/nav";
 import { HelperText } from "@/components/ui/typography";
 import { StackH, StackV } from "@/components/ui/stack";
 import { APP } from "@/constants/_meta";
