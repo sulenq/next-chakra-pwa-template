@@ -158,14 +158,14 @@ const ADMSetting = () => {
         </P>
       </StackV>
 
-      <GroupItem.Target>
+      <GroupItem.ClickTarget>
         <Switch
           checked={ADM}
           onCheckedChange={(e) => {
             setADM(e.checked);
           }}
         />
-      </GroupItem.Target>
+      </GroupItem.ClickTarget>
     </GroupItem.Root>
   );
 };

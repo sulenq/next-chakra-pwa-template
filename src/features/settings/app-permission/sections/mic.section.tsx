@@ -217,7 +217,7 @@ const MicAccessSetting = () => {
         <P color={"fg.subtle"}>{t.settings_mic_permission.description}</P>
       </StackV>
 
-      <GroupItem.Target>
+      <GroupItem.ClickTarget>
         <Switch
           checked={isGranted}
           disabled={isDisabled}
@@ -231,7 +231,7 @@ const MicAccessSetting = () => {
           }}
           colorPalette={theme.colorPalette}
         />
-      </GroupItem.Target>
+      </GroupItem.ClickTarget>
     </GroupItem.Root>
   );
 };

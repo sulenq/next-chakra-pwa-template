@@ -31,7 +31,7 @@ const ActiveSetting = () => {
         </P>
       </StackV>
 
-      <GroupItem.Target>
+      <GroupItem.ClickTarget>
         <Switch
           checked={constrainedContainer.isActive}
           onCheckedChange={(e) => {
@@ -40,7 +40,7 @@ const ActiveSetting = () => {
             });
           }}
         />
-      </GroupItem.Target>
+      </GroupItem.ClickTarget>
     </GroupItem.Root>
   );
 };

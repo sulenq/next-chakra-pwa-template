@@ -40,7 +40,7 @@ const WeightFormatSetting = () => {
         <P>{t.settings_weight_format.title}</P>
       </StackV>
 
-      <GroupItem.Target>
+      <GroupItem.ClickTarget>
         <SelectMassFormat
           id={"settings-select-mass-format"}
           value={[{ id: UOM.mass.key, label: UOM.mass.label, data: UOM.mass }]}
@@ -54,7 +54,7 @@ const WeightFormatSetting = () => {
           variant={"plain"}
           size={"xs"}
         />
-      </GroupItem.Target>
+      </GroupItem.ClickTarget>
     </GroupItem.Root>
   );
 };
@@ -72,7 +72,7 @@ const HeightFormatSetting = () => {
         <P>{t.settings_height_format.title}</P>
       </StackV>
 
-      <GroupItem.Target>
+      <GroupItem.ClickTarget>
         <SelectHeightFormat
           id={"settings-select-height-format"}
           value={[
@@ -86,7 +86,7 @@ const HeightFormatSetting = () => {
           variant={"plain"}
           size={"xs"}
         />
-      </GroupItem.Target>
+      </GroupItem.ClickTarget>
     </GroupItem.Root>
   );
 };
@@ -104,7 +104,7 @@ const LengthFormatSetting = () => {
         <P>{t.settings_length_format.title}</P>
       </StackV>
 
-      <GroupItem.Target>
+      <GroupItem.ClickTarget>
         <SelectLengthFormat
           id={"settings-select-length-format"}
           value={[
@@ -118,7 +118,7 @@ const LengthFormatSetting = () => {
           variant={"plain"}
           size={"xs"}
         />
-      </GroupItem.Target>
+      </GroupItem.ClickTarget>
     </GroupItem.Root>
   );
 };
@@ -136,7 +136,7 @@ const DistanceFormatSetting = () => {
         <P>{t.settings_distance_format.title}</P>
       </StackV>
 
-      <GroupItem.Target>
+      <GroupItem.ClickTarget>
         <SelectDistanceFormat
           id={"settings-select-distance-format"}
           value={[
@@ -154,7 +154,7 @@ const DistanceFormatSetting = () => {
           variant={"plain"}
           size={"xs"}
         />
-      </GroupItem.Target>
+      </GroupItem.ClickTarget>
     </GroupItem.Root>
   );
 };
@@ -172,7 +172,7 @@ const AreaFormatSetting = () => {
         <P>{t.settings_area_format.title}</P>
       </StackV>
 
-      <GroupItem.Target>
+      <GroupItem.ClickTarget>
         <SelectAreaFormat
           id={"settings-select-area-format"}
           value={[{ id: UOM.area.key, label: UOM.area.label, data: UOM.area }]}
@@ -184,7 +184,7 @@ const AreaFormatSetting = () => {
           variant={"plain"}
           size={"xs"}
         />
-      </GroupItem.Target>
+      </GroupItem.ClickTarget>
     </GroupItem.Root>
   );
 };
@@ -202,7 +202,7 @@ const VolumeFormatSetting = () => {
         <P>{t.settings_volume_format.title}</P>
       </StackV>
 
-      <GroupItem.Target>
+      <GroupItem.ClickTarget>
         <SelectVolumeFormat
           id={"settings-select-volume-format"}
           value={[
@@ -216,7 +216,7 @@ const VolumeFormatSetting = () => {
           variant={"plain"}
           size={"xs"}
         />
-      </GroupItem.Target>
+      </GroupItem.ClickTarget>
     </GroupItem.Root>
   );
 };
@@ -234,7 +234,7 @@ const TemperatureFormatSetting = () => {
         <P>{t.settings_temperature_format.title}</P>
       </StackV>
 
-      <GroupItem.Target>
+      <GroupItem.ClickTarget>
         <SelectTemperatureFormat
           id={"settings-select-temperature-format"}
           value={[
@@ -252,7 +252,7 @@ const TemperatureFormatSetting = () => {
           variant={"plain"}
           size={"xs"}
         />
-      </GroupItem.Target>
+      </GroupItem.ClickTarget>
     </GroupItem.Root>
   );
 };
@@ -270,7 +270,7 @@ const SpeedFormatSetting = () => {
         <P>{t.settings_speed_format.title}</P>
       </StackV>
 
-      <GroupItem.Target>
+      <GroupItem.ClickTarget>
         <SelectSpeedFormat
           id={"settings-select-speed-format"}
           value={[
@@ -284,7 +284,7 @@ const SpeedFormatSetting = () => {
           variant={"plain"}
           size={"xs"}
         />
-      </GroupItem.Target>
+      </GroupItem.ClickTarget>
     </GroupItem.Root>
   );
 };
@@ -302,7 +302,7 @@ const EnergyFormatSetting = () => {
         <P>{t.settings_energy_format.title}</P>
       </StackV>
 
-      <GroupItem.Target>
+      <GroupItem.ClickTarget>
         <SelectEnergyFormat
           id={"settings-select-energy-format"}
           value={[
@@ -316,7 +316,7 @@ const EnergyFormatSetting = () => {
           variant={"plain"}
           size={"xs"}
         />
-      </GroupItem.Target>
+      </GroupItem.ClickTarget>
     </GroupItem.Root>
   );
 };
@@ -334,7 +334,7 @@ const PowerFormatSetting = () => {
         <P>{t.settings_power_format.title}</P>
       </StackV>
 
-      <GroupItem.Target>
+      <GroupItem.ClickTarget>
         <SelectPowerFormat
           id={"settings-select-power-format"}
           value={[
@@ -348,7 +348,7 @@ const PowerFormatSetting = () => {
           variant={"plain"}
           size={"xs"}
         />
-      </GroupItem.Target>
+      </GroupItem.ClickTarget>
     </GroupItem.Root>
   );
 };
@@ -366,7 +366,7 @@ const PressureFormatSetting = () => {
         <P>{t.settings_pressure_format.title}</P>
       </StackV>
 
-      <GroupItem.Target>
+      <GroupItem.ClickTarget>
         <SelectPressureFormat
           id={"settings-select-pressure-format"}
           value={[
@@ -384,7 +384,7 @@ const PressureFormatSetting = () => {
           variant={"plain"}
           size={"xs"}
         />
-      </GroupItem.Target>
+      </GroupItem.ClickTarget>
     </GroupItem.Root>
   );
 };
@@ -402,7 +402,7 @@ const DataFormatSetting = () => {
         <P>{t.settings_data_format.title}</P>
       </StackV>
 
-      <GroupItem.Target>
+      <GroupItem.ClickTarget>
         <SelectDataFormat
           id={"settings-select-data-format"}
           value={[{ id: UOM.data.key, label: UOM.data.label, data: UOM.data }]}
@@ -414,7 +414,7 @@ const DataFormatSetting = () => {
           variant={"plain"}
           size={"xs"}
         />
-      </GroupItem.Target>
+      </GroupItem.ClickTarget>
     </GroupItem.Root>
   );
 };
@@ -432,7 +432,7 @@ const DataRateFormatSetting = () => {
         <P>{t.settings_data_rate_format.title}</P>
       </StackV>
 
-      <GroupItem.Target>
+      <GroupItem.ClickTarget>
         <SelectDataRateFormat
           id={"settings-select-data-rate-format"}
           value={[
@@ -450,7 +450,7 @@ const DataRateFormatSetting = () => {
           variant={"plain"}
           size={"xs"}
         />
-      </GroupItem.Target>
+      </GroupItem.ClickTarget>
     </GroupItem.Root>
   );
 };
@@ -468,7 +468,7 @@ const AngleFormatSetting = () => {
         <P>{t.settings_angle_format.title}</P>
       </StackV>
 
-      <GroupItem.Target>
+      <GroupItem.ClickTarget>
         <SelectAngleFormat
           id={"settings-select-angle-format"}
           value={[
@@ -482,7 +482,7 @@ const AngleFormatSetting = () => {
           variant={"plain"}
           size={"xs"}
         />
-      </GroupItem.Target>
+      </GroupItem.ClickTarget>
     </GroupItem.Root>
   );
 };

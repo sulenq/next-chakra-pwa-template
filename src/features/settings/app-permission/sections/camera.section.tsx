@@ -213,7 +213,7 @@ const CameraAccessSetting = () => {
         <P color={"fg.subtle"}>{t.settings_camera_permission.description}</P>
       </StackV>
 
-      <GroupItem.Target>
+      <GroupItem.ClickTarget>
         <Switch
           checked={isGranted}
           disabled={isDisabled}
@@ -227,7 +227,7 @@ const CameraAccessSetting = () => {
           }}
           colorPalette={theme.colorPalette}
         />
-      </GroupItem.Target>
+      </GroupItem.ClickTarget>
     </GroupItem.Root>
   );
 };

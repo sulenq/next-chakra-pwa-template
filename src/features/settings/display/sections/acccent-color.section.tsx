@@ -90,7 +90,7 @@ const AmbienceColorSetting = () => {
         <P color={"fg.subtle"}>{t.settings_ambience_color.description}</P>
       </StackV>
 
-      <GroupItem.Target>
+      <GroupItem.ClickTarget>
         <Switch
           checked={theme.ambienceColor}
           onCheckedChange={(e) => {
@@ -99,7 +99,7 @@ const AmbienceColorSetting = () => {
             });
           }}
         />
-      </GroupItem.Target>
+      </GroupItem.ClickTarget>
     </GroupItem.Root>
   );
 };

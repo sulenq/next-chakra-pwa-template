@@ -27,7 +27,7 @@ const LanguageSelectSetting = () => {
           <P color={"fg.subtle"}>{t.settings_locale_section.description}</P>
         </StackV>
 
-        <GroupItem.Target>
+        <GroupItem.ClickTarget>
           <SelectLanguage
             id={"select-language"}
             value={[
@@ -45,7 +45,7 @@ const LanguageSelectSetting = () => {
             size={"xs"}
             color={"fg.subtle"}
           />
-        </GroupItem.Target>
+        </GroupItem.ClickTarget>
       </GroupItem.Root>
     </StackV>
   );

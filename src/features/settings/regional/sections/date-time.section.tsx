@@ -40,7 +40,7 @@ const DateFormatSetting = () => {
         <P>{t.settings_date_format.title}</P>
       </StackV>
 
-      <GroupItem.Target>
+      <GroupItem.ClickTarget>
         <SelectDateFormat
           id={"settings-select-date-format"}
           value={dateFormat}
@@ -53,7 +53,7 @@ const DateFormatSetting = () => {
           variant={"plain"}
           color={"fg.subtle"}
         />
-      </GroupItem.Target>
+      </GroupItem.ClickTarget>
     </GroupItem.Root>
   );
 };
@@ -81,7 +81,7 @@ const TimeFormatSetting = () => {
         <P>{t.settings_time_format.title}</P>
       </StackV>
 
-      <GroupItem.Target>
+      <GroupItem.ClickTarget>
         <SelectTimeFormat
           id={"settings-select-time-format"}
           value={timeFormat}
@@ -94,7 +94,7 @@ const TimeFormatSetting = () => {
           variant={"plain"}
           color={"fg.subtle"}
         />
-      </GroupItem.Target>
+      </GroupItem.ClickTarget>
     </GroupItem.Root>
   );
 };
@@ -113,7 +113,7 @@ const AutoTimezomeSetting = () => {
         <P color={"fg.subtle"}>{t.settings_auto_timezone.description}</P>
       </StackV>
 
-      <GroupItem.Target>
+      <GroupItem.ClickTarget>
         <Switch
           checked={isAuto}
           onCheckedChange={(e) => {
@@ -124,7 +124,7 @@ const AutoTimezomeSetting = () => {
             }
           }}
         />
-      </GroupItem.Target>
+      </GroupItem.ClickTarget>
     </GroupItem.Root>
   );
 };
@@ -166,7 +166,7 @@ const TimezoneSetting = () => {
         <P>{t.settings_timezone.title}</P>
       </StackV>
 
-      <GroupItem.Target>
+      <GroupItem.ClickTarget>
         <SelectTimezone
           id={"settings-select-time-zone"}
           value={timezone}
@@ -181,7 +181,7 @@ const TimezoneSetting = () => {
           placeholder={`${t.select} ${t.timezone.toLocaleLowerCase()}`}
           color={"fg.subtle"}
         />
-      </GroupItem.Target>
+      </GroupItem.ClickTarget>
     </GroupItem.Root>
   );
 };

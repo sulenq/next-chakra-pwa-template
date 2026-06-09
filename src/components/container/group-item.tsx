@@ -38,7 +38,8 @@ const GroupItemRoot = ({
   const targetRef = useRef<HTMLElement | null>(null);
 
   const hasTarget = React.Children.toArray(children).some(
-    (child) => React.isValidElement(child) && child.type === GroupItemTarget,
+    (child) =>
+      React.isValidElement(child) && child.type === GroupItemClickTarget,
   );
 
   const handleContainerClick = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -92,7 +93,7 @@ const GroupItemRoot = ({
 
           const typedChild = child as React.ReactElement<any>;
 
-          if (child.type === GroupItemTarget) {
+          if (child.type === GroupItemClickTarget) {
             return child;
           }
 
@@ -110,11 +111,11 @@ const GroupItemRoot = ({
 
 // -----------------------------------------------------------------
 
-interface GroupItemTargetProps {
+interface GroupItemClickTargetProps {
   children: React.ReactElement<any & React.RefAttributes<any>>;
 }
 
-const GroupItemTarget = ({ children }: GroupItemTargetProps) => {
+const GroupItemClickTarget = ({ children }: GroupItemClickTargetProps) => {
   const { targetRef, disabled } = useGroupItem();
 
   return React.cloneElement(children, {
@@ -137,5 +138,5 @@ const GroupItemTarget = ({ children }: GroupItemTargetProps) => {
 
 export const GroupItem = {
   Root: GroupItemRoot,
-  Target: GroupItemTarget,
+  ClickTarget: GroupItemClickTarget,
 };
