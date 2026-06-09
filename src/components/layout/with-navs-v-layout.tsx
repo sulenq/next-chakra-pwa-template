@@ -100,7 +100,7 @@ export const WithVNavsLayout = (props: WithVNavsLayoutProps) => {
         {/* Content */}
         {showContent && (
           <MainView.Root flex={1} p={GAP}>
-            {pathname !== rootPath && <MainView.Header withTitle px={4} />}
+            {pathname !== rootPath && <MainView.Header withTitle />}
 
             {children}
           </MainView.Root>
