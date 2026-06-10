@@ -1,3 +1,5 @@
+"use client";
+
 import { Item, ItemRootProps } from "@/components/container/item";
 import { useMainViewContext } from "@/components/container/main-view";
 import { AvatarUploadTrigger } from "@/components/ui/avatar";
@@ -17,7 +19,16 @@ import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 
-// -----------------------------------------------------------------
+// Buat skema di luar komponen agar efisien dan bebas dari re-instantiation
+const createSchema = (t: any) =>
+  z.object({
+    avatar: z.any().nullable().optional(),
+    deleteAvatarIds: z.array(z.string()).default([]),
+    name: z.string().min(1, t.msg_required_form),
+    email: z.string().min(1, t.msg_required_form),
+  });
+
+type FormValues = z.infer<ReturnType<typeof createSchema>>;
 
 export const PersonalInformationSection = (props: ItemRootProps) => {
   // Stores
@@ -27,23 +38,17 @@ export const PersonalInformationSection = (props: ItemRootProps) => {
 
   // Constants
   const user = useAuthStore((s) => s.auth.user);
-
-  // States
-  const schema = z.object({
-    avatar: z.any().nullable().optional(),
-    deleteAvatarIds: z.array(z.string()).default([]),
-    name: z.string().min(1, t.msg_required_form),
-    email: z.string().min(1, t.msg_required_form),
-  });
+  const schema = createSchema(t);
 
   const {
     control,
+    register,
     handleSubmit,
     setValue,
     getValues,
     formState: { errors },
-  } = useForm({
-    resolver: zodResolver(schema),
+  } = useForm<FormValues>({
+    resolver: zodResolver(schema) as any,
     defaultValues: {
       avatar: null,
       deleteAvatarIds: [],
@@ -52,7 +57,9 @@ export const PersonalInformationSection = (props: ItemRootProps) => {
     },
   });
 
-  const onSubmit = (values: any) => {};
+  const onSubmit = () => {
+    // call API
+  };
 
   return (
     <Item.Root px={SPACING_MD} {...props}>
@@ -65,6 +72,7 @@ export const PersonalInformationSection = (props: ItemRootProps) => {
           <StackV flex={1} justify={"space-between"}>
             <form id={"personal-info-form"} onSubmit={handleSubmit(onSubmit)}>
               <FieldsetRoot>
+                {/* Avatar tetap menggunakan Controller karena berinteraksi dengan State Array Kustom */}
                 <Field
                   label={"Avatar"}
                   invalid={!!errors.avatar}
@@ -108,39 +116,26 @@ export const PersonalInformationSection = (props: ItemRootProps) => {
                   </StackV>
                 </Field>
 
+                {/* Input Teks sudah bersih dari Controller */}
                 <Field
                   label={t.name}
                   invalid={!!errors.name}
-                  errorText={errors.name?.message as string}
+                  errorText={errors.name?.message}
                 >
-                  <Controller
-                    name="name"
-                    control={control}
-                    render={({ field }) => (
-                      <StringInput
-                        value={field.value}
-                        onChange={field.onChange}
-                        placeholder={"Jolitos Kurniawan"}
-                      />
-                    )}
+                  <StringInput
+                    placeholder="Jolitos Kurniawan"
+                    {...register("name")}
                   />
                 </Field>
 
                 <Field
                   label={"Email"}
                   invalid={!!errors.email}
-                  errorText={errors.email?.message as string}
+                  errorText={errors.email?.message}
                 >
-                  <Controller
-                    name="email"
-                    control={control}
-                    render={({ field }) => (
-                      <StringInput
-                        value={field.value}
-                        onChange={field.onChange}
-                        placeholder={"example@email.com"}
-                      />
-                    )}
+                  <StringInput
+                    placeholder="example@email.com"
+                    {...register("email")}
                   />
                 </Field>
               </FieldsetRoot>

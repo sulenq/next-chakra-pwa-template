@@ -9,26 +9,32 @@ import { StackH } from "@/components/ui/stack";
 import { SPACING_MD } from "@/constants/styles";
 import { useThemeStore } from "@/features/settings/views/appearance/stores/use-theme-store";
 import { useLocaleStore } from "@/features/settings/views/regional/stores/use-locale-store";
-import { Controller, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
+
+// Buat skema di luar komponen agar tidak dibuat ulang di setiap siklus render
+const createSchema = (t: any) =>
+  z.object({
+    mapboxToken: z.string().min(1, t.msg_required_form),
+    tinyMceToken: z.string().min(1, t.msg_required_form),
+  });
+
+type FormValues = z.infer<ReturnType<typeof createSchema>>;
 
 export const APIKeySection = () => {
   // Stores
   const { t } = useLocaleStore();
   const { theme } = useThemeStore();
 
-  // States
-  const schema = z.object({
-    mapboxToken: z.string().min(1, t.msg_required_form),
-    tinyMceToken: z.string().min(1, t.msg_required_form),
-  });
+  // Initialize schema with translations
+  const schema = createSchema(t);
 
   const {
-    control,
+    register,
     handleSubmit,
     formState: { errors },
-  } = useForm({
+  } = useForm<FormValues>({
     resolver: zodResolver(schema),
     defaultValues: {
       mapboxToken: "",
@@ -36,7 +42,9 @@ export const APIKeySection = () => {
     },
   });
 
-  const onSubmit = (values: any) => {};
+  const onSubmit = () => {
+    // call API
+  };
 
   return (
     <Item.Root px={SPACING_MD}>
@@ -48,35 +56,17 @@ export const APIKeySection = () => {
             <Field
               label={"Mapbox Token"}
               invalid={!!errors.mapboxToken}
-              errorText={errors.mapboxToken?.message as string}
+              errorText={errors.mapboxToken?.message}
             >
-              <Controller
-                name="mapboxToken"
-                control={control}
-                render={({ field }) => (
-                  <PasswordInput
-                    value={field.value}
-                    onChange={field.onChange}
-                  />
-                )}
-              />
+              <PasswordInput {...register("mapboxToken")} />
             </Field>
 
             <Field
               label={"Tiny MCE Token"}
               invalid={!!errors.tinyMceToken}
-              errorText={errors.tinyMceToken?.message as string}
+              errorText={errors.tinyMceToken?.message}
             >
-              <Controller
-                name="tinyMceToken"
-                control={control}
-                render={({ field }) => (
-                  <PasswordInput
-                    value={field.value}
-                    onChange={field.onChange}
-                  />
-                )}
-              />
+              <PasswordInput {...register("tinyMceToken")} />
             </Field>
           </FieldsetRoot>
         </form>
