@@ -13,7 +13,7 @@ import { StackH, StackV } from "@/components/ui/stack";
 import { Switch } from "@/components/ui/switch";
 import { DUMMY_DASHBOARD_DATA } from "@/constants/dummy-data";
 import { getMonthNames } from "@/constants/months";
-import { GAP, SPACING_SM, SPACING_MD } from "@/constants/styles";
+import { GAP, SPACING_SM, SPACING_MD, PADDING_MD } from "@/constants/styles";
 import { useThemeStore } from "@/features/settings/views/appearance/stores/use-theme-store";
 import { useLocaleStore } from "@/features/settings/views/regional/stores/use-locale-store";
 import { useAuthStore } from "@/stores/use-auth-store";
@@ -558,7 +558,7 @@ export default function Page() {
         p={SPACING_MD}
         mb={3}
       >
-        <StackV px={4}>
+        <StackV px={[PADDING_MD, null, 0]}>
           <P
             fontSize={"3xl"}
             fontWeight={"medium"}
