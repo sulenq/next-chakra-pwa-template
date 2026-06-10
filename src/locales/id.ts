@@ -310,6 +310,7 @@ const translations = {
   "msg_soft_delete": "Data akan disembunyikan dan bisa dikembalikan nanti.",
   "msg_task_count": "Kamu memiliki ${count} tugas hari ini",
   "msg_toggle_dark_mode": "Toggle mode gelap",
+  "msg_welcome": "Mau mulai dari mana?",
   "msg_welcome_1": "Semoga harimu berjalan lancar.",
   "msg_welcome_10": "Semoga harimu dimulai dengan baik.",
   "msg_welcome_11": "Semoga harimu berjalan sesuai rencana.",

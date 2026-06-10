@@ -310,6 +310,7 @@ const translations = {
   "msg_soft_delete": "Data will be hidden but can be restored later.",
   "msg_task_count": "You have ${count} tasks today",
   "msg_toggle_dark_mode": "Toggle dark mode",
+  "msg_welcome": "Where should we start?",
   "msg_welcome_1": "Hope your day goes smoothly.",
   "msg_welcome_10": "Hope your day starts well.",
   "msg_welcome_11": "Hope your day goes as planned.",

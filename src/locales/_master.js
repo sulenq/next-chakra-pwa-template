@@ -999,6 +999,10 @@ export const msg_welcome_to_the_app = {
   id: "Selamat datang di ${appName}",
   en: "Welcome to ${appName}",
 };
+export const msg_welcome = {
+  id:'Mau mulai dari mana?',
+  en:'Where should we start?'
+}
 export const msg_welcome_1 = {
   id: "Semoga harimu berjalan lancar.",
   en: "Hope your day goes smoothly.",
