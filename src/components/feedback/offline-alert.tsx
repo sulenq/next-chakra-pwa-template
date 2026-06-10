@@ -9,7 +9,7 @@ import { usePopDisclosure } from "@/hooks/use-pop-disclosure";
 import { disclosureId } from "@/utils/disclosure";
 import { Icon } from "@chakra-ui/react";
 import { IconAccessPointOff } from "@tabler/icons-react";
-import { useEffect, useState } from "react";
+import { useEffect, useRef } from "react";
 
 export const OfflineAlert = () => {
   // Stores
@@ -21,25 +21,41 @@ export const OfflineAlert = () => {
     disclosureId("offline-alert"),
   );
 
-  // States
-  const [isOffline, setIsOffline] = useState(false);
+  // Ref untuk mengunci agar trigger offline hanya dieksekusi tepat 1 kali
+  const hasTriggered = useRef(false);
+  // Simpan referensi teks translasi ke dalam ref agar event listener selalu mendapatkan data terbaru tanpa memicu ulang useEffect
+  const translationRef = useRef(t);
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      setIsOffline(!navigator.onLine);
+    translationRef.current = t;
+  }, [t]);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    // 1. Cek kondisi awal saat pertama kali masuk ke client-side
+    if (!navigator.onLine && !hasTriggered.current) {
+      hasTriggered.current = true;
+      onOpen();
     }
 
+    // 2. Handler Online
     function handleOnline() {
-      setIsOffline(false);
+      hasTriggered.current = false; // Reset kunci saat internet kembali
+      onClose();
       toaster.success({
         id: "success-online",
-        title: t.success_online.title,
-        description: t.success_online.description,
+        title: translationRef.current.success_online.title,
+        description: translationRef.current.success_online.description,
       });
     }
 
+    // 3. Handler Offline
     function handleOffline() {
-      setIsOffline(true);
+      if (!hasTriggered.current) {
+        hasTriggered.current = true;
+        onOpen();
+      }
     }
 
     window.addEventListener("online", handleOnline);
@@ -49,24 +65,10 @@ export const OfflineAlert = () => {
       window.removeEventListener("online", handleOnline);
       window.removeEventListener("offline", handleOffline);
     };
-  }, [t]);
-
-  useEffect(() => {
-    if (isOffline) {
-      const timer = setTimeout(() => onOpen(), 50);
-      return () => clearTimeout(timer);
-    } else {
-      onClose();
-    }
-  }, [isOffline, onOpen, onClose]);
+  }, [onOpen, onClose]); // Array dependensi bersih dari objek dinamis
 
   return (
-    <Disclosure.Root
-      open={isOffline || open}
-      lazyLoad
-      size={"xs"}
-      role={"alertdialog"}
-    >
+    <Disclosure.Root open={open} lazyLoad size={"xs"} role={"alertdialog"}>
       <Disclosure.Content>
         <Disclosure.Header border={"none"}>
           <Disclosure.HeaderContent title={``} />

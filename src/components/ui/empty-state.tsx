@@ -20,7 +20,8 @@ export const EmptyState = forwardRef<HTMLDivElement, EmptyStateProps>(
           {icon && (
             <ChakraEmptyState.Indicator>{icon}</ChakraEmptyState.Indicator>
           )}
-          <StackV textAlign={"center"}>
+
+          <StackV gap={2} textAlign={"center"}>
             {title && (
               <P fontSize={"lg"} fontWeight={"medium"}>
                 {title}

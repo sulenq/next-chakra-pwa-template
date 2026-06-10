@@ -10,6 +10,7 @@ import { P } from "@/components/ui/p";
 import { StackH, StackV } from "@/components/ui/stack";
 import { ProfileMenuTrigger } from "@/components/user/profile-menu";
 import { BACKDROP_BLUR_FILTER, SPACING_MD } from "@/constants/styles";
+import { Settings } from "@/features/settings/components/settings.disclosure";
 import { useAuthStore } from "@/stores/use-auth-store";
 import { imgUrl } from "@/utils/url";
 import {
@@ -60,11 +61,11 @@ export const UserPanel = (props: UserPanelProps) => {
             </Btn>
           </NavLink>
 
-          <NavLink to={"/settings"}>
+          <Settings.Trigger>
             <Btn iconButton variant={"outline"}>
               <AppIconLucide icon={SettingsIcon} />
             </Btn>
-          </NavLink>
+          </Settings.Trigger>
         </StackH>
       )}
 

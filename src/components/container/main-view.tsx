@@ -23,7 +23,7 @@ import { useBreadcrumbsStore } from "@/stores/use-breadcrumbs-store";
 import { Nav } from "@/types/global.types";
 import { isEmptyArray, last } from "@/utils/array";
 import { getActiveNavs } from "@/utils/route";
-import { capitalizeWords, pluckString } from "@/utils/string";
+import { pluckString } from "@/utils/string";
 import { Icon, StackProps } from "@chakra-ui/react";
 import { IconSlash } from "@tabler/icons-react";
 import { HeadsetIcon, NavigationIcon } from "lucide-react";
@@ -262,7 +262,9 @@ export function useMainViewContext() {
 
 // -----------------------------------------------------------------
 
-const MainViewRoot = forwardRef<HTMLDivElement, StackProps>(
+export interface MainViewRootProps extends StackProps {}
+
+const MainViewRoot = forwardRef<HTMLDivElement, MainViewRootProps>(
   function MainViewRoot({ children, ...restProps }, ref) {
     // Refs
     const containerRef = useRef<HTMLDivElement>(null);
@@ -273,7 +275,8 @@ const MainViewRoot = forwardRef<HTMLDivElement, StackProps>(
 
     // States
     const isValidDimension = dimension.width > 0 && dimension.height > 0;
-    const isSmContainer = dimension.width < SM_SCREEN_BREAKPOINT;
+    const isSmContainer =
+      isValidDimension && dimension.width < SM_SCREEN_BREAKPOINT;
 
     // Constants
     const contextValue = useMemo(
@@ -334,20 +337,7 @@ const MainViewHeader = (props: MainViewHeaderProps) => {
   } = props;
 
   // Stores
-  const { t } = useLocaleStore();
   const { theme } = useThemeStore();
-
-  // Hooks
-  const pathname = usePathname();
-
-  // Constants
-  const activeNavs = getActiveNavs(pathname);
-  const navTitle =
-    last<any>(activeNavs)?.label ||
-    pluckString(t, last<any>(activeNavs)?.labelKey);
-
-  // Derived Values
-  const resolvedTitle = title || navTitle;
 
   return (
     <StackH
@@ -360,9 +350,7 @@ const MainViewHeader = (props: MainViewHeaderProps) => {
       rounded={theme.radii.container}
       {...restProps}
     >
-      {withTitle && (
-        <MainViewTitle {...MainViewTitleProps}>{resolvedTitle}</MainViewTitle>
-      )}
+      {withTitle && <MainViewTitle {...MainViewTitleProps} />}
 
       {children}
     </StackH>
@@ -375,15 +363,29 @@ const MainViewTitle = (props: PProps) => {
   // Props
   const { children = "", ...restProps } = props;
 
+  // Store
+  const { t } = useLocaleStore();
+
+  // Hooks
+  const pathname = usePathname();
+
+  // Constants
+  const activeNavs = getActiveNavs(pathname);
+  const navTitle =
+    last<any>(activeNavs)?.label ||
+    pluckString(t, last<any>(activeNavs)?.labelKey);
+
+  // Resolved Values
+  const resolvedTitle = children || navTitle;
+
   return (
     <ClampText
       className={"MainViewTitle"}
-      fontSize={"xl"}
       fontWeight={"semibold"}
       textAlign={restProps.textAlign}
       {...restProps}
     >
-      {capitalizeWords(children)}
+      {resolvedTitle}
     </ClampText>
   );
 };

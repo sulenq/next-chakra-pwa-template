@@ -1,7 +1,7 @@
 "use client";
 
 import { AppIconLucide } from "@/components/branding/app-icon";
-import { Btn } from "@/components/ui/btn";
+import { Btn, BtnProps } from "@/components/ui/btn";
 import { Dialog, DialogContentProps } from "@/components/ui/dialog";
 import { Drawer, DrawerContentProps } from "@/components/ui/drawer";
 import { StackH, StackV } from "@/components/ui/stack";
@@ -104,8 +104,7 @@ const DisclosureContent = ({ children, ...props }: DisclosureContentProps) => {
   ) : (
     <Dialog.Content
       rounded={theme.radii.container}
-      border={"1px solid"}
-      borderColor={"d0"}
+      shadow={"soft"}
       {...(props as DialogContentProps)}
     >
       {children}
@@ -142,6 +141,28 @@ const DisclosureHeader = ({ children, ...props }: DisclosureHeaderProps) => {
     >
       {children}
     </Dialog.Header>
+  );
+};
+
+// -----------------------------------------------------------------
+
+export const DisclosureCloseButton = (props: BtnProps) => {
+  // Hooks
+  const iss = useIsSmScreenWidth();
+
+  return (
+    <Btn
+      iconButton
+      variant={iss ? "ghost" : "subtle"}
+      size={"2xs"}
+      w={"28px"}
+      h={"28px"}
+      rounded={"full"}
+      onClick={back}
+      {...props}
+    >
+      <AppIconLucide icon={XIcon} boxSize={4} />
+    </Btn>
   );
 };
 
@@ -212,9 +233,11 @@ export const DisclosureHeaderContent = (
         {withMaximizeButton && (
           <Btn
             iconButton
-            size={["xs", null, "2xs"]}
-            rounded={"full"}
             variant={iss ? "ghost" : "subtle"}
+            size={"2xs"}
+            w={"28px"}
+            h={"28px"}
+            rounded={"full"}
             onClick={() => {
               setMaximize((ps) => !ps);
             }}
@@ -226,21 +249,7 @@ export const DisclosureHeaderContent = (
           </Btn>
         )}
 
-        {withCloseButton && (
-          <>
-            {!prefix && (
-              <Btn
-                iconButton
-                rounded={"full"}
-                variant={iss ? "ghost" : "subtle"}
-                size={["xs", null, "2xs"]}
-                onClick={back}
-              >
-                <AppIconLucide icon={XIcon} boxSize={4} />
-              </Btn>
-            )}
-          </>
-        )}
+        {withCloseButton && <>{!prefix && <DisclosureCloseButton />}</>}
       </StackH>
     </StackH>
   );
@@ -389,4 +398,5 @@ export const Disclosure = {
   Trigger: DisclosureTrigger,
   ActionTrigger: DisclosureActionTrigger,
   CloseTrigger: DisclosureCloseTrigger,
+  CloseButton: DisclosureCloseButton,
 };

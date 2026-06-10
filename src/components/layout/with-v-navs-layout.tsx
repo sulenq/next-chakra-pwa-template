@@ -12,21 +12,17 @@ import { NavGroup } from "@/types/global.types";
 import { formatAbsDate } from "@/utils/formatter";
 import { cssCalc } from "@/utils/style";
 import { Box, StackProps } from "@chakra-ui/react";
-import { usePathname } from "next/navigation";
 
 // -----------------------------------------------------------------
 
 interface WithVNavsLayoutProps extends StackProps {
   navs: NavGroup[];
-  rootPath: string;
+  isAtSettingsIndex?: boolean;
 }
 
 export const WithVNavsLayout = (props: WithVNavsLayoutProps) => {
   // Props
-  const { children, navs, rootPath, ...restProps } = props;
-
-  // Hooks
-  const pathname = usePathname();
+  const { children, navs, isAtSettingsIndex, ...restProps } = props;
 
   // Refs
   const { isSmContainer } = useMainViewContext();
@@ -36,10 +32,8 @@ export const WithVNavsLayout = (props: WithVNavsLayoutProps) => {
   const { theme } = useThemeStore();
 
   // Derived Values
-  const isAtSettingsIndexRoute = pathname === rootPath;
-  const showNavs = !isSmContainer || (isSmContainer && isAtSettingsIndexRoute);
-  const showContent =
-    !isSmContainer || (isSmContainer && !isAtSettingsIndexRoute);
+  const showNavs = !isSmContainer || (isSmContainer && isAtSettingsIndex);
+  const showContent = !isSmContainer || (isSmContainer && !isAtSettingsIndex);
 
   return (
     <MainView.Content className={"WithVNavsLayout"} {...restProps}>
@@ -99,7 +93,7 @@ export const WithVNavsLayout = (props: WithVNavsLayoutProps) => {
         {/* Content */}
         {showContent && (
           <MainView.Root flex={1} pb={[SPACING_MD]}>
-            {pathname !== rootPath && (
+            {!isAtSettingsIndex && (
               <Box
                 px={[
                   cssCalc(`${SPACING_MD} + ${PADDING_MD}`),
