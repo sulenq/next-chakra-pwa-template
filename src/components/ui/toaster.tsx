@@ -5,7 +5,7 @@ import { useColorMode } from "@/components/ui/color-mode";
 import { Spinner } from "@/components/ui/spinner";
 import { StackH, StackV } from "@/components/ui/stack";
 import { LucideIcon } from "@/components/misc/icon";
-import { BACKDROP_BLUR_FILTER, SM_SCREEN_BREAKPOINT } from "@/constants/styles";
+import { BACKDROP_FILTER_BLUR, SM_SCREEN_BREAKPOINT } from "@/constants/styles";
 import { useThemeStore } from "@/features/settings/views/appearance/stores/use-theme-store";
 import { isClient } from "@/utils/client";
 import {
@@ -187,7 +187,7 @@ const ToastComponent = (props: any) => {
       h={expanded ? "max" : ""}
       w={{ md: "sm" }}
       bg={"bg.body"}
-      backdropFilter={BACKDROP_BLUR_FILTER}
+      backdropFilter={BACKDROP_FILTER_BLUR}
       color={"current"}
       p={"14px"}
       border={"1px solid"}

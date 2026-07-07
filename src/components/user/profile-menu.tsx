@@ -14,7 +14,7 @@ import { P } from "@/components/ui/p";
 import { Popover } from "@/components/ui/popover";
 import { StackH, StackV } from "@/components/ui/stack";
 import {
-  BACKDROP_BLUR_FILTER,
+  BACKDROP_FILTER_BLUR,
   BASE_ICON_BOX_SIZE,
   GAP,
 } from "@/constants/styles";
@@ -253,7 +253,7 @@ export const ProfileMenuTrigger = (props: ProfileMenuTriggerProps) => {
       <Popover.Content
         w={"225px"}
         bg={"bg.frosted"}
-        backdropFilter={BACKDROP_BLUR_FILTER}
+        backdropFilter={BACKDROP_FILTER_BLUR}
         rounded={theme.radii.container}
         zIndex={10}
       >

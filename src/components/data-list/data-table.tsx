@@ -5,7 +5,7 @@ import { BatchOptions } from "@/components/data-list/batch-option";
 import { RowOptions } from "@/components/data-list/row-options";
 import { SortIcon } from "@/components/data-list/data-sort-icon";
 import {
-  BACKDROP_BLUR_FILTER,
+  BACKDROP_FILTER_BLUR,
   GAP,
   SPACING_MD,
   TABLE_CELL_PX,
@@ -222,6 +222,8 @@ export const DataTableRoot = (props: DataTableRootProps) => {
     return cols.join(" ");
   }, [batchOptions, headers, rowOptions]);
 
+  console.log(gridCols);
+
   return (
     <StackV
       ref={tableContainerRef}
@@ -258,7 +260,7 @@ export const DataTableRoot = (props: DataTableRootProps) => {
                 minW={"0% !important"}
                 minH={TABLE_TH_H}
                 bg={isFirefox ? "bg.bodySolid" : TABLE_TH_BG}
-                backdropFilter={isFirefox ? "none" : BACKDROP_BLUR_FILTER}
+                backdropFilter={isFirefox ? "none" : BACKDROP_FILTER_BLUR}
                 borderBottom={"1px solid"}
                 borderColor={TABLE_TH_BORDER_COLOR}
                 roundedLeft={TABLE_ROW_ROUNDED}
@@ -301,7 +303,7 @@ export const DataTableRoot = (props: DataTableRootProps) => {
                       : ""
                 }
                 bg={isFirefox ? "bg.bodySolid" : TABLE_TH_BG}
-                backdropFilter={isFirefox ? "none" : BACKDROP_BLUR_FILTER}
+                backdropFilter={isFirefox ? "none" : BACKDROP_FILTER_BLUR}
                 borderBottom={"1px solid"}
                 borderColor={TABLE_TH_BORDER_COLOR}
                 whiteSpace={"nowrap"}
@@ -336,7 +338,7 @@ export const DataTableRoot = (props: DataTableRootProps) => {
                 px={TABLE_CELL_PX}
                 py={3}
                 bg={isFirefox ? "bg.bodySolid" : TABLE_TH_BG}
-                backdropFilter={isFirefox ? "none" : BACKDROP_BLUR_FILTER}
+                backdropFilter={isFirefox ? "none" : BACKDROP_FILTER_BLUR}
                 borderBottom={"1px solid"}
                 borderColor={TABLE_TH_BORDER_COLOR}
                 roundedRight={TABLE_ROW_ROUNDED}
@@ -384,7 +386,7 @@ export const DataTableRoot = (props: DataTableRootProps) => {
                             content: '""',
                             position: "absolute",
                             inset: 0,
-                            backdropFilter: BACKDROP_BLUR_FILTER,
+                            backdropFilter: BACKDROP_FILTER_BLUR,
                             zIndex: -1,
                           }
                     }
@@ -450,7 +452,7 @@ export const DataTableRoot = (props: DataTableRootProps) => {
                             content: '""',
                             position: "absolute",
                             inset: 0,
-                            backdropFilter: BACKDROP_BLUR_FILTER,
+                            backdropFilter: BACKDROP_FILTER_BLUR,
                             zIndex: -1,
                           }
                     }
@@ -486,7 +488,7 @@ export const DataTableRoot = (props: DataTableRootProps) => {
                             content: '""',
                             position: "absolute",
                             inset: 0,
-                            backdropFilter: BACKDROP_BLUR_FILTER,
+                            backdropFilter: BACKDROP_FILTER_BLUR,
                             zIndex: -1,
                           }
                     }

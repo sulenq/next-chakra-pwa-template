@@ -1,4 +1,4 @@
-import { BACKDROP_BLUR_FILTER, SM_SCREEN_BREAKPOINT } from "@/constants/styles";
+import { BACKDROP_FILTER_BLUR, SM_SCREEN_BREAKPOINT } from "@/constants/styles";
 import { createSystem, defaultConfig, defineConfig } from "@chakra-ui/react";
 
 export const customConfig = defineConfig({
@@ -30,7 +30,7 @@ export const customConfig = defineConfig({
             frosted: {
               bg: "bg.frosted",
               color: "fg",
-              backdropFilter: BACKDROP_BLUR_FILTER,
+              backdropFilter: BACKDROP_FILTER_BLUR,
               _hover: {
                 bg: "bg.muted",
               },
@@ -588,8 +588,8 @@ export const customConfig = defineConfig({
               _dark: "{colors.bodyDark}",
             },
             // value: {
-            //   base: "#faf9ffec",
-            //   _dark: "rgba(27, 27, 27, 0.925)",
+            //   base: "rgba(250, 249, 255, 0.5)",
+            //   _dark: "rgba(27, 27, 27, 0.5)",
             // },
           },
           frosted: {

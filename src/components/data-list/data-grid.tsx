@@ -17,7 +17,7 @@ import { P, TNum } from "@/components/ui/p";
 import { SearchInput } from "@/components/ui/search-input";
 import { StackH, StackV } from "@/components/ui/stack";
 import {
-  BACKDROP_BLUR_FILTER,
+  BACKDROP_FILTER_BLUR,
   GAP,
   GRID_BATCH_OPTIONS_CONTAINER_BG,
   SPACING_MD,
@@ -370,7 +370,7 @@ const DataGridRoot = (props: DataGridRootProps) => {
               align={"center"}
               gap={1}
               bg={GRID_BATCH_OPTIONS_CONTAINER_BG}
-              backdropFilter={BACKDROP_BLUR_FILTER}
+              backdropFilter={BACKDROP_FILTER_BLUR}
               p={1}
               border={"1px solid"}
               borderColor={"border.muted"}

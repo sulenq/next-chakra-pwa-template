@@ -1,6 +1,6 @@
 "use client";
 
-import { BACKDROP_BLUR_FILTER } from "@/constants/styles";
+import { BACKDROP_FILTER_BLUR } from "@/constants/styles";
 import { useThemeStore } from "@/features/settings/views/appearance/stores/use-theme-store";
 import {
   AbsoluteCenter,
@@ -102,7 +102,7 @@ const MenuContent = forwardRef<HTMLDivElement, MenuContentProps>(
             gap={1}
             p={1}
             bg={"bg.body"}
-            backdropFilter={BACKDROP_BLUR_FILTER}
+            backdropFilter={BACKDROP_FILTER_BLUR}
             border={"1px solid"}
             borderColor={"border.subtle"}
             rounded={theme.radii.component}

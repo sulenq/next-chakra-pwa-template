@@ -9,7 +9,7 @@ import { NavLink } from "@/components/ui/nav-link";
 import { P } from "@/components/ui/p";
 import { StackH, StackV } from "@/components/ui/stack";
 import { ProfileMenuTrigger } from "@/components/user/profile-menu";
-import { BACKDROP_BLUR_FILTER, SPACING_MD } from "@/constants/styles";
+import { BACKDROP_FILTER_BLUR, SPACING_MD } from "@/constants/styles";
 import { Settings } from "@/features/settings/components/settings.disclosure";
 import { useAuthStore } from "@/stores/use-auth-store";
 import { imgUrl } from "@/utils/url";
@@ -38,7 +38,7 @@ export const UserPanel = (props: UserPanelProps) => {
     <Item.Body
       p={navsExpanded ? 0 : SPACING_MD}
       bg={navsExpanded ? "bg.frosted" : "transparent"}
-      backdropFilter={BACKDROP_BLUR_FILTER}
+      backdropFilter={BACKDROP_FILTER_BLUR}
       overflow={"clip"}
       shadow={"soft"}
     >

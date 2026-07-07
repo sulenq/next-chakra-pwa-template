@@ -10,6 +10,18 @@ import { forwardRef } from "react";
 
 // -----------------------------------------------------------------
 
+export const FieldsetRoot = forwardRef<any, FieldsetRootProps>(
+  function FieldsetRoot(props, ref) {
+    return (
+      <ChakraFieldsetRoot ref={ref} {...props}>
+        {props.children}
+      </ChakraFieldsetRoot>
+    );
+  },
+);
+
+// -----------------------------------------------------------------
+
 export interface FieldProps extends Omit<ChakraField.RootProps, "label"> {
   label?: React.ReactNode;
   labelProps?: ChakraField.LabelProps;
@@ -59,26 +71,17 @@ export const Field = forwardRef<HTMLDivElement, FieldProps>(
             <ChakraField.RequiredIndicator fallback={optionalText} />
           </ChakraField.Label>
         )}
+
         {children}
+
         {helperText && (
           <ChakraField.HelperText>{helperText}</ChakraField.HelperText>
         )}
+
         {errorText && (
           <ChakraField.ErrorText>{errorText}</ChakraField.ErrorText>
         )}
       </ChakraField.Root>
-    );
-  },
-);
-
-// -----------------------------------------------------------------
-
-export const FieldsetRoot = forwardRef<any, FieldsetRootProps>(
-  function FieldsetRoot(props, ref) {
-    return (
-      <ChakraFieldsetRoot ref={ref} {...props}>
-        {props.children}
-      </ChakraFieldsetRoot>
     );
   },
 );

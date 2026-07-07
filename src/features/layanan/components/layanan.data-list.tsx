@@ -140,8 +140,8 @@ export const LayananDataList = (props: LayananDataListProps) => {
   };
 
   if (isLoading) return <TableSkeleton />;
-  if (isError) return <FeedbackRetry onRetry={refetch} />;
-  if (isEmptyArray(dataList)) return <FeedbackNoData />;
+  // if (isError) return <FeedbackRetry onRetry={refetch} />;
+  // if (isEmptyArray(dataList)) return <FeedbackNoData />;
 
   return (
     <>

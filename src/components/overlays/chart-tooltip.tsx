@@ -1,7 +1,7 @@
 import { P } from "@/components/ui/p";
 import { StackH, StackV } from "@/components/ui/stack";
 import { DotIndicator } from "@/components/ui/indicator";
-import { BACKDROP_BLUR_FILTER } from "@/constants/styles";
+import { BACKDROP_FILTER_BLUR } from "@/constants/styles";
 import { useThemeStore } from "@/features/settings/views/appearance/stores/use-theme-store";
 import { Text } from "@chakra-ui/react";
 import type { TooltipContentProps } from "recharts";
@@ -33,7 +33,7 @@ export const ChartTooltip = (
         borderColor={"border.subtle"}
         rounded={theme.radii.component}
         shadow={"soft"}
-        backdropFilter={BACKDROP_BLUR_FILTER}
+        backdropFilter={BACKDROP_FILTER_BLUR}
       >
         <P fontWeight={"semibold"} mb={1}>
           {label}

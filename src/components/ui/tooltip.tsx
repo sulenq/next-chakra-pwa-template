@@ -1,5 +1,5 @@
 import { P } from "@/components/ui/p";
-import { BACKDROP_BLUR_FILTER } from "@/constants/styles";
+import { BACKDROP_FILTER_BLUR } from "@/constants/styles";
 import { useThemeStore } from "@/features/settings/views/appearance/stores/use-theme-store";
 import { Tooltip as ChakraTooltip, Portal } from "@chakra-ui/react";
 import * as React from "react";
@@ -44,7 +44,7 @@ export const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>(
               w={"fit"}
               maxW={"240px"}
               bg={"bg.body"}
-              backdropFilter={BACKDROP_BLUR_FILTER}
+              backdropFilter={BACKDROP_FILTER_BLUR}
               color={"fg.ibody"}
               px={2}
               py={1}

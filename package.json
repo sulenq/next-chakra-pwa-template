@@ -7,11 +7,11 @@
     "build": "npm run chakra:typegen && next build",
     "start": "next start",
     "lint": "eslint",
-    "d": "npm run dev",
-    "t": "npx tsc --noEmit --watch --preserveWatchOutput",
     "l": "node src/scripts/generate-translation.js",
     "s": "node src/scripts/generate-sitemap.js",
-    "chakra:typegen": "chakra typegen ./src/themes/chakra-custom-system.ts"
+    "chakra:typegen": "chakra typegen ./src/themes/chakra-custom-system.ts",
+    "typecheck": "npx tsc --noEmit",
+    "typecheck:watch": "npx tsc --noEmit --watch --preserveWatchOutput"
   },
   "dependencies": {
     "@chakra-ui/charts": "^3.30.0",
